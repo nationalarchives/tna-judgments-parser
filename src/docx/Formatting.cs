@@ -58,10 +58,11 @@ class Formatting {
     }
 
     public static StringValue GetLeftIndent(MainDocumentPart main, ParagraphProperties pProps) {
-        StringValue left = pProps.Indentation?.Left;
+        StringValue left;
+        left = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Indentation?.Left;
         if (left is not null)
             return left;
-        left = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Indentation?.Left;
+        left = pProps.Indentation?.Left;
         if (left is not null)
             return left;
         left = Styles.GetStyle(main, pProps)?.StyleParagraphProperties?.Indentation?.Left;

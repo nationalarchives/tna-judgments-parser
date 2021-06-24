@@ -1,6 +1,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
@@ -21,16 +23,18 @@ class Metadata {
         return e;
     }
 
-    public static XmlElement make(XmlDocument doc, IMetadata metadata, bool includeReferences) {
+    public static XmlElement make(XmlDocument doc, IJudgment judgment, IMetadata metadata, bool includeReferences) {
 
         string docId = metadata.DocumentId();
         string compId = metadata is IComponentMetadata c ? c.ComponentId : docId;
-        string date = metadata.Date() ?? "9999-01-01";
+        string date = metadata.Date();
+
+        Court? court = metadata.Court();
 
         XmlElement meta = doc.CreateElement("meta", ns);
 
         XmlElement identification = append(doc, meta, "identification");
-        identification.SetAttribute("source", "-");
+        identification.SetAttribute("source", "#tna");
 
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
@@ -38,12 +42,17 @@ class Metadata {
         XmlElement workURI = append(doc, work, "FRBRuri");
         workURI.SetAttribute("value", docId);
         XmlElement workDate = append(doc, work, "FRBRdate");
-        workDate.SetAttribute("date", date);
-        workDate.SetAttribute("name", "-");
+        workDate.SetAttribute("date", date ?? "1000-01-01");
+        workDate.SetAttribute("name", date is null ? "unknown" : "judgment");
         XmlElement workAuthor = append(doc, work, "FRBRauthor");
-        workAuthor.SetAttribute("href", "-");
+        workAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
         XmlElement workCountry = append(doc, work, "FRBRcountry");
         workCountry.SetAttribute("value", "GB-UKM");
+        string caseNumber = metadata.CaseNo();
+        if (caseNumber is not null) {
+            XmlElement workNumber = append(doc, work, "FRBRnumber");
+            workNumber.SetAttribute("value", caseNumber);
+        }
 
         XmlElement expression = append(doc, identification, "FRBRExpression");
         XmlElement expThis = append(doc, expression, "FRBRthis");
@@ -51,10 +60,10 @@ class Metadata {
         XmlElement expURI = append(doc, expression, "FRBRuri");
         expURI.SetAttribute("value", docId + "/eng");
         XmlElement expDate = append(doc, expression, "FRBRdate");
-        expDate.SetAttribute("date", date);
-        expDate.SetAttribute("name", "-");
+        expDate.SetAttribute("date", date ?? "1000-01-01");
+        expDate.SetAttribute("name", date is null ? "unknown" : "judgment");
         XmlElement expAuthor = append(doc, expression, "FRBRauthor");
-        expAuthor.SetAttribute("href", "-");
+        expAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
         // XmlElement expAuthoritative = append(doc, expression, "FRBRauthoritative");
         // expAuthoritative.SetAttribute("value", "true");
         XmlElement expLanguage = append(doc, expression, "FRBRlanguage");
@@ -75,17 +84,34 @@ class Metadata {
 
         if (includeReferences) {
             XmlElement references = append(doc, meta, "references");
-            references.SetAttribute("source", "-");
+            references.SetAttribute("source", "#tna");
+
+            if (court is not null) {
+                XmlElement org = append(doc, references, "TLCOrganization");
+                org.SetAttribute("eId", court?.Code.ToLower());
+                org.SetAttribute("href", court?.URL);
+                org.SetAttribute("showAs", court?.Name);
+            }
+
             XmlElement tna = append(doc, references, "TLCOrganization");
             tna.SetAttribute("eId", "tna");
             tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
             tna.SetAttribute("showAs", "The National Archives");
+
+            IEnumerable<IParty> parties = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IParty>();
+            foreach (IParty party in parties) {
+                XmlElement org = append(doc, references, "TLCPerson");
+                org.SetAttribute("eId", party.PartyId);
+                org.SetAttribute("href", "/" + party.PartyId);
+                org.SetAttribute("showAs", party.Name);
+            }
+
         }
 
         Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
         if (styles is not null) {
             XmlElement presentation = append(doc, meta, "presentation");
-            presentation.SetAttribute("source", "-");
+            presentation.SetAttribute("source", "-");   // the URI of the Word version?
             XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
             presentation.AppendChild(style);
             style.AppendChild(doc.CreateTextNode("\n"));
@@ -110,6 +136,8 @@ class AttachmentMetadata : IComponentMetadata {
         this.n = n;
     }
 
+    public Court? Court() { return prototype.Court(); }
+
     public string DocumentId() { return prototype.DocumentId(); }
 
     public string ComponentId {
@@ -117,6 +145,8 @@ class AttachmentMetadata : IComponentMetadata {
     }
 
     public string Date() { return prototype.Date(); }
+
+    public string CaseNo() => null;
 
     public Dictionary<string, Dictionary<string, string>> CSSStyles() => null;
 

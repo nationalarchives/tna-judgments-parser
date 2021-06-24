@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -23,10 +24,6 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
     public WText(Run run) {
         this.properties = run.RunProperties;
         this.text = run.InnerText;
-    }
-    public WText(TabChar tab, RunProperties properties) {
-        this.properties = properties;
-        this.text = " ";
     }
     public WText(NoBreakHyphen hyphen, RunProperties properties) {
         this.properties = properties;
@@ -104,9 +101,34 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
 
 }
 
+class WTab : ITab {
+
+    private readonly TabChar tab;
+
+    internal WTab(TabChar tab) {
+        this.tab = tab;
+    }
+
+}
+
+
 internal class WNeutralCitation : WText, INeutralCitation {
 
     public WNeutralCitation(string text, RunProperties properties) : base(text, properties) { }
+
+}
+
+internal class WCourtType : WText, ICourtType {
+
+    public WCourtType(string text, RunProperties props) : base(text, props) { }
+
+    public string Code { get; init; }
+
+}
+
+internal class WCaseNo : WText, ICaseNo {
+
+    public WCaseNo(string text, RunProperties props) : base(text, props) { }
 
 }
 
@@ -132,9 +154,18 @@ internal class WDocDate : IDocDate {
 
 }
 
-internal class WBreak : ILineBreak {
+internal class WParty : WText, IParty {
 
-    internal WBreak(Break br) { }
+    public WParty(string text, RunProperties props) : base(text, props) { }
+
+    public WParty(WText text) : base(text.Text, text.properties) { }
+
+}
+
+
+internal class WLineBreak : ILineBreak {
+
+    internal WLineBreak(Break br) { }
 
 }
 
