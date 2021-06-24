@@ -10,7 +10,7 @@ class CSS {
     public static string Serialize(Dictionary<string, Dictionary<string, string>> selectors) {
         StringBuilder builder = new StringBuilder();
         foreach (KeyValuePair<string, Dictionary<string, string>> selector in selectors) {
-            builder.Append("." + selector.Key + " {");
+            builder.Append(selector.Key + " {");
             foreach (KeyValuePair<string, string> prop in selector.Value)
                 builder.Append($" { prop.Key }: { prop.Value };");
             builder.AppendLine(" }");
@@ -20,6 +20,11 @@ class CSS {
 
     public static string SerializeInline(Dictionary<string, string> properties) {
         return string.Join(";", properties.Select(pair => pair.Key + ":" + pair.Value));
+    }
+    public static Dictionary<string, string> ParseInline(string css) {
+        return css.Split(";")
+            .Select(pair => pair.Split(":"))
+            .ToDictionary(x => x[0], x => x[1]);
     }
 
 }

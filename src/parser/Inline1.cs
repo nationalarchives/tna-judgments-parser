@@ -46,9 +46,9 @@ class Inline {
         if (e is Text text)
             return new WText(text, run.RunProperties);
         if (e is TabChar tab)
-            return new WText(tab, run.RunProperties);
+            return new WTab(tab);
         if (e is Break br)
-            return new WBreak(br);
+            return new WLineBreak(br);
         if (e is NoBreakHyphen hyphen)
             return new WText(hyphen, run.RunProperties);
         if (e is FootnoteReference fn)
@@ -57,6 +57,11 @@ class Inline {
             return new WImageRef(main, draw);
         if (e is Picture pict)
             return new WImageRef(main, pict);
+        if (e.LocalName == "object") {
+            DocumentFormat.OpenXml.Vml.Shape shape = e.ChildElements.OfType<DocumentFormat.OpenXml.Vml.Shape>().FirstOrDefault();
+            if (shape is not null)
+                return new WImageRef(main, shape);
+        }
         if (e is RunProperties)
             return null;
         if (e is FieldChar || e is FieldCode)
@@ -65,6 +70,13 @@ class Inline {
             return null;
         if (e is FootnoteReferenceMark)
             return null;
+        if (e is AlternateContent altContent) {
+            AlternateContentChoice choice = (AlternateContentChoice) altContent.FirstChild;
+            if (choice.ChildElements.Count != 1)
+                throw new Exception();
+            Drawing child = (Drawing) choice.FirstChild;
+            return null;
+        }
         throw new Exception(e.OuterXml);
     }
 
