@@ -12,12 +12,13 @@ class Augmentation {
     internal static IEnumerable<IBlock> AugmentHeader(IEnumerable<IBlock> header) {
         IEnumerable<IBlock> merged = MergeRuns(header);
         IEnumerable<IBlock> withNeutralCitation = AddNeutralCitation(merged);
-        IEnumerable<IBlock> withDocDate = AddDocDate(withNeutralCitation);
+        IEnumerable<IBlock> withCaseNo = new CaseNo().Enrich(withNeutralCitation);
+        IEnumerable<IBlock> withDocDate = AddDocDate(withCaseNo);
         return withDocDate;
     }
 
     internal static IEnumerable<IDecision> AugmentBody(IEnumerable<IDecision> body) {
-        return body.Select(d => new Decision { Author = MergeRuns((WLine) d.Author), Contents = MergeRuns(d.Contents) });
+        return body.Select(d => new Decision { Author = (d.Author is null) ? null : MergeRuns((WLine) d.Author), Contents = MergeRuns(d.Contents) });
     }
     internal static IEnumerable<IAnnex> AugmentAnnexes(IEnumerable<IAnnex> annexes) {
         return annexes.Select(a => new Annex { Number = a.Number, Contents = MergeRuns(a.Contents) });

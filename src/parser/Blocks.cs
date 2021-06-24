@@ -84,6 +84,8 @@ class WLine : ILine {
 
     public string LeftIndent {
         get {
+            if (properties is null)
+                return null;
             string i = DOCX.Formatting.GetLeftIndent(main, properties);
             if (i is null)
                 return null;

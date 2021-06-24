@@ -10,10 +10,17 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 
 class Numbering {
 
+    public static NumberingInstance GetNumbering(MainDocumentPart main, int id) {
+        return main.NumberingDefinitionsPart.Numbering.ChildElements
+            .OfType<NumberingInstance>()
+            .Where(n => n.NumberID.Equals(id))
+            .FirstOrDefault();
+    }
     public static NumberingInstance GetNumbering(MainDocumentPart main, NumberingId id) {
         return main.NumberingDefinitionsPart.Numbering.ChildElements
-            .Where(e => e is NumberingInstance)
-            .Cast<NumberingInstance>()
+            .OfType<NumberingInstance>()
+            // .Where(e => e is NumberingInstance)
+            // .Cast<NumberingInstance>()
             .Where(n => n.NumberID.Equals(id.Val))
             .FirstOrDefault();
     }
@@ -25,12 +32,15 @@ class Numbering {
         return GetNumbering(main, id);
     }
 
-    public static Level GetLevel(MainDocumentPart main, NumberingProperties props) {
-        NumberingId id = props.NumberingId;
-        // if (id is null)
-        //     return null;
-        int ilvl = props?.NumberingLevelReference?.Val?.Value ?? 0;
-        NumberingInstance numbering = GetNumbering(main, id);
+    public static AbstractNum GetAbstractNum(MainDocumentPart main, NumberingInstance numbering) {
+        return main.NumberingDefinitionsPart.Numbering.ChildElements
+            .OfType<AbstractNum>()
+            .Where(abs => abs.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
+            .FirstOrDefault();
+    }
+
+    public static Level GetLevel(MainDocumentPart main, int numberingId, int ilvl) {
+        NumberingInstance numbering = GetNumbering(main, numberingId);
         if (numbering is null)  // this does happen, I think it means that (style) numbering is removed
             return null;
         Level level = numbering.Descendants<Level>()
@@ -49,6 +59,54 @@ class Numbering {
                 .First();
         }
         return level;
+    }
+    public static Level GetLevel(MainDocumentPart main, NumberingId id, int ilvl) {
+        return GetLevel(main, id.Val, ilvl);
+        // NumberingInstance numbering = GetNumbering(main, id);
+        // if (numbering is null)  // this does happen, I think it means that (style) numbering is removed
+        //     return null;
+        // Level level = numbering.Descendants<Level>()
+        //     .Where(l => l.LevelIndex.Value == ilvl)
+        //     .FirstOrDefault();
+        // if (level is null) {
+        //     AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+        //         .Where(e => e is AbstractNum)
+        //         .Cast<AbstractNum>()
+        //         .Where(a => a.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
+        //         .First();
+        //     level = abs.ChildElements
+        //         .Where(e => e is Level)
+        //         .Cast<Level>()
+        //         .Where(l => l.LevelIndex.Value == ilvl)
+        //         .First();
+        // }
+        // return level;
+    }
+    public static Level GetLevel(MainDocumentPart main, NumberingProperties props) {
+        NumberingId id = props.NumberingId;
+        // if (id is null)
+        //     return null;
+        int ilvl = props?.NumberingLevelReference?.Val?.Value ?? 0;
+        return GetLevel(main, id, ilvl);
+        // NumberingInstance numbering = GetNumbering(main, id);
+        // if (numbering is null)  // this does happen, I think it means that (style) numbering is removed
+        //     return null;
+        // Level level = numbering.Descendants<Level>()
+        //     .Where(l => l.LevelIndex.Value == ilvl)
+        //     .FirstOrDefault();
+        // if (level is null) {
+        //     AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+        //         .Where(e => e is AbstractNum)
+        //         .Cast<AbstractNum>()
+        //         .Where(a => a.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
+        //         .First();
+        //     level = abs.ChildElements
+        //         .Where(e => e is Level)
+        //         .Cast<Level>()
+        //         .Where(l => l.LevelIndex.Value == ilvl)
+        //         .First();
+        // }
+        // return level;
     }
     public static Level GetOwnLevel(MainDocumentPart main, ParagraphProperties pProps) {
         NumberingProperties props = pProps?.NumberingProperties;
@@ -100,7 +158,7 @@ class Numbering {
         return !format.Equals(NumberFormatValues.None);
     }
 
-    private static NumberingProperties GetNumberingPropertiesOrStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
+    internal static NumberingProperties GetNumberingPropertiesOrStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
         NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
         if (props is null) {
             ParagraphStyleId styleId = paragraph.ParagraphProperties?.ParagraphStyleId;
@@ -154,7 +212,9 @@ class Numbering {
         Level level = abs.ChildElements
             .OfType<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
-            .First();
+            .FirstOrDefault();
+        if (level is null)
+            return null;
         int start = level.StartNumberingValue.Val ?? 1;
         n = start + n;
 

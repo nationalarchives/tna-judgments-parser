@@ -7,7 +7,13 @@
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.13.0" />
-    <!-- <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1003" /> -->
   </ItemGroup>
+
+  <!-- <ItemGroup>
+    <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1003" />
+    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.1.0" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.0.1" />
+  </ItemGroup> -->
 
 </Project>

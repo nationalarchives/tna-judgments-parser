@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments {
 
@@ -96,9 +97,15 @@ interface IImageRef : IInline {
 
     string Src { get; }
 
+    string Style { get; }
+
 }
 
 interface INeutralCitation : IFormattedText { }
+
+interface ICourtType : IFormattedText { }
+
+interface ICaseNo : IFormattedText { }
 
 interface IDocDate : IInline {
 
@@ -108,6 +115,36 @@ interface IDocDate : IInline {
 
 }
 
+interface IParty : IFormattedText {
+
+    string Name { get {
+        string text = Regex.Replace(this.Text, @"\s+", " ").Trim();
+        if (text.StartsWith("Mr "))
+            text = text.Substring(3);
+        if (text.StartsWith("Mrs "))
+            text = text.Substring(4);
+        if (text.StartsWith("Miss "))
+            text = text.Substring(5);
+        Match match = Regex.Match(text, @" \(the “[A-Z][a-z]+”\)$");
+        if (match.Success)
+            text = text.Substring(0, match.Index);
+        if (text.EndsWith(" (in administration)"))
+            text = text.Substring(0, text.Length - 20);
+        if (text.EndsWith(" in administration"))
+            text = text.Substring(0, text.Length - 18);
+        return text;
+    } }
+
+    string PartyId { get {
+        string id = Regex.Replace(this.Name, @"\s", "-");
+        id = Regex.Replace(id, @"[\.\(\)“”‘’]+", "");
+        return "party-" + id.ToLower();
+    } }
+
+}
+
 interface ILineBreak : IInline { }
+
+interface ITab : IInline { }
 
 }
