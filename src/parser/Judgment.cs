@@ -16,9 +16,13 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public IMetadata Metadata { get; }
 
+    public IEnumerable<IBlock> CoverPage { get; internal set; }
+
     public IEnumerable<IBlock> Header { get; internal set; }
 
     public IEnumerable<IDecision> Body { get; internal set; }
+
+    public IEnumerable<IBlock> Conclusions { get; internal set; }
 
     public IEnumerable<IAnnex> Annexes { get; internal set; }
 
