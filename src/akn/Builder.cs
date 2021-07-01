@@ -35,6 +35,15 @@ class Builder {
         Annexes(main, judgment);
     }
 
+    private XmlElement CreateElement(string name) {
+        return doc.CreateElement(name, ns);
+    }
+    private XmlElement CreateAndAppend(string name, XmlElement parent) {
+        XmlElement e = CreateElement(name);
+        parent.AppendChild(e);
+        return e;
+    }
+
     private void AddCoverPage(XmlElement main, IJudgment judgment) {
         if (judgment.CoverPage is null)
             return;
@@ -107,15 +116,23 @@ class Builder {
 
     private void AddInline(XmlElement parent, IInline model) {
         if (model is INeutralCitation cite)
-            AddText(parent, "neutralCitation", cite);
+            AddAndWrapText(parent, "neutralCitation", cite);
         else if (model is ICourtType caseType)
-            AddText(parent, "courtType", caseType);
+            AddAndWrapText(parent, "courtType", caseType);
         else if (model is ICaseNo caseNo)
-            AddText(parent, "docketNumber", caseNo);
+            AddAndWrapText(parent, "docketNumber", caseNo);
         else if (model is IParty party)
             AddParty(parent, party);
+        else if (model is IJudge judge)
+            AddJudge(parent, judge);
+        else if (model is ILawyer lawyer)
+            AddLawyer(parent, lawyer);
+        else if (model is IHyperlink1 link)
+            AddAndWrapText(parent, "a", link).SetAttribute("href", link.Href);
+        else if (model is IHyperlink2 link2)
+            AddHperlink(parent, link2);
         else if (model is IFormattedText fText)
-            AddText(parent, fText);
+            AddOrWrapText(parent, fText);
         else if (model is IDocDate docDate)
             AddDocDate(parent, docDate);
         else if (model is IFootnote footnote)
@@ -130,14 +147,20 @@ class Builder {
             throw new Exception(model.GetType().ToString());
     }
 
-    private XmlElement AddText(XmlElement parent, string name, IFormattedText model) {
+    private XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
         XmlElement e = doc.CreateElement(name, ns);
         parent.AppendChild(e);
+        if (model.Style is not null)
+            e.SetAttribute("class", model.Style);
         Dictionary<string, string> styles = model.GetCSSStyles();
         if (styles.Count > 0)
             e.SetAttribute("style", CSS.SerializeInline(styles));
-        XmlText text = doc.CreateTextNode(model.Text);
-        e.AppendChild(text);
+        if (model.IsHidden) {
+            e.SetAttribute("class", model.Style is null ? "hidden" : model.Style + " hidden");
+        } else {
+            XmlText text = doc.CreateTextNode(model.Text);
+            e.AppendChild(text);
+        }
         return e;
     }
 
@@ -153,26 +176,55 @@ class Builder {
             XmlText text = doc.CreateTextNode(fText.Text);
             docDate.AppendChild(text);
         } else {
-            AddText(docDate, model.Contents);
+            AddOrWrapText(docDate, model.Contents);
         }
     }
 
     private void AddParty(XmlElement parent, IParty model) {
         XmlElement party = doc.CreateElement("party", ns);
         parent.AppendChild(party);
-        party.SetAttribute("refersTo", "#" + model.PartyId);
+        party.SetAttribute("refersTo", "#" + model.Id);
         Dictionary<string, string> styles = model.GetCSSStyles();
         if (styles.Count > 0)
             party.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
         party.AppendChild(text);
     }
-
-    private void AddText(XmlElement parent, IEnumerable<IFormattedText> text) {
-        foreach (IFormattedText span in text)
-            AddText(parent, span);
+    private void AddJudge(XmlElement parent, IJudge model) {
+        XmlElement judge = doc.CreateElement("judge", ns);
+        parent.AppendChild(judge);
+        judge.SetAttribute("refersTo", "#" + model.Id);
+        Dictionary<string, string> styles = model.GetCSSStyles();
+        if (styles.Count > 0)
+            judge.SetAttribute("style", CSS.SerializeInline(styles));
+        XmlText text = doc.CreateTextNode(model.Text);
+        judge.AppendChild(text);
     }
-    private void AddText(XmlElement parent, IFormattedText fText) {
+    private void AddLawyer(XmlElement parent, ILawyer model) {
+        XmlElement judge = doc.CreateElement("lawyer", ns);
+        parent.AppendChild(judge);
+        judge.SetAttribute("refersTo", "#" + model.Id);
+        Dictionary<string, string> styles = model.GetCSSStyles();
+        if (styles.Count > 0)
+            judge.SetAttribute("style", CSS.SerializeInline(styles));
+        XmlText text = doc.CreateTextNode(model.Text);
+        judge.AppendChild(text);
+    }
+
+
+    private void AddOrWrapText(XmlElement parent, IEnumerable<IFormattedText> text) {
+        foreach (IFormattedText span in text)
+            AddOrWrapText(parent, span);
+    }
+    private void AddOrWrapText(XmlElement parent, IFormattedText fText) {
+        if (fText.Style is not null) {
+            AddAndWrapText(parent, "span", fText);
+            return;
+        }
+        if (fText.IsHidden) {
+            AddAndWrapText(parent, "span", fText);
+            return;
+        }
         XmlText text = doc.CreateTextNode(fText.Text);
         Dictionary<string, string> styles = fText.GetCSSStyles();
         if (styles.Count > 0) {
@@ -182,7 +234,7 @@ class Builder {
             span.AppendChild(text);
         } else {
             parent.AppendChild(text);
-        }    
+        }
     }
 
     private void AddFootnote(XmlElement parent, IFootnote fn) {
@@ -202,17 +254,23 @@ class Builder {
         parent.AppendChild(img);
     }
 
+    private void AddHperlink(XmlElement parent, IHyperlink2 link) {
+        XmlElement a = CreateAndAppend("a", parent);
+        a.SetAttribute("href", link.Href);
+        foreach (IInline inline in link.Contents)
+            AddInline(a, inline);
+    }
+
     private void AddLineBreak(XmlElement parent) {
         XmlElement br = doc.CreateElement("br", ns);
         parent.AppendChild(br);
     }
 
     private void AddTab(XmlElement parent) {
-        XmlElement tab = doc.CreateElement("span", ns);
-        tab.SetAttribute("class", "tab");
-        tab.SetAttribute("style", "display:inline-block");
-        // tab.SetAttribute("style", "min-width:1in");
-        tab.AppendChild(doc.CreateTextNode(" "));
+        XmlElement tab = doc.CreateElement("marker", ns);
+        tab.SetAttribute("name", "tab");
+        // tab.SetAttribute("style", "display:inline-block");
+        // tab.AppendChild(doc.CreateTextNode(" "));
         parent.AppendChild(tab);
     }
 
@@ -241,7 +299,7 @@ class Builder {
         parent.AppendChild(level);
         // level.SetAttribute("class", div.GetType().Name);
         if (div.Number is not null) {
-            XmlElement num = AddText(level, "num", div.Number);
+            XmlElement num = AddAndWrapText(level, "num", div.Number);
             // if ()
             // XmlElement num = doc.CreateElement("num", ns);
             // level.AppendChild(num);
@@ -263,6 +321,8 @@ class Builder {
     /* conclusions */
 
     private void AddConclusions(XmlElement main, IEnumerable<IBlock> conclusions) {
+        if (conclusions is null)
+            return;
         if (conclusions.Count() == 0)
             return;
         XmlElement container = doc.CreateElement("conclusions", ns);

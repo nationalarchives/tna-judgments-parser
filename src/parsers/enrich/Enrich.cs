@@ -10,6 +10,18 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class Enricher {
 
+    internal static IEnumerable<IDecision> Enrich(IEnumerable<IDecision> body, IEnumerable<Enricher> enrichers) {
+        return enrichers.Aggregate(body, (done, enricher) => enricher.Enrich(done));
+    }
+    internal static IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks, IEnumerable<Enricher> enrichers) {
+        return enrichers.Aggregate(blocks, (done, enricher) => enricher.Enrich(done));
+    }
+    internal static IEnumerable<IAnnex> Enrich(IEnumerable<IAnnex> annexes, IEnumerable<Enricher> enrichers) {
+        return enrichers.Aggregate(annexes, (done, enricher) => enricher.Enrich(done));
+    }
+
+
+
     internal IEnumerable<IDecision> Enrich(IEnumerable<IDecision> body) {
         return body.Select(d => new Decision { Author = (d.Author is null) ? null : Enrich((WLine) d.Author), Contents = Enrich(d.Contents) });
     }
@@ -31,9 +43,9 @@ abstract class Enricher {
         throw new Exception();
     }
 
-    internal IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) => blocks.Select(Enrich);
+    internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) => blocks.Select(Enrich);
 
-    internal IBlock Enrich(IBlock block) {
+    protected IBlock Enrich(IBlock block) {
         if (block is WOldNumberedParagraph np)
             return new WOldNumberedParagraph(np.Number, Enrich(np));
         if (block is WLine line)
@@ -41,12 +53,12 @@ abstract class Enricher {
         return block;
     }
 
-    internal WLine Enrich(WLine line) {
+    protected WLine Enrich(WLine line) {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
         return new WLine(line, enriched);
     }
 
-    abstract internal IEnumerable<IInline> Enrich(IEnumerable<IInline> line);
+    abstract protected IEnumerable<IInline> Enrich(IEnumerable<IInline> line);
 
     internal IEnumerable<IAnnex> Enrich(IEnumerable<IAnnex> annexes) {
         return annexes.Select(a => new Annex { Number = a.Number, Contents = Enrich(a.Contents) });
@@ -60,7 +72,7 @@ abstract class Enricher {
     // }
     protected string NormalizeLine(IEnumerable<IInline> line) {
         IEnumerable<string> texts = line
-            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is TabChar) return " "; return ""; });
+            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
         return string.Join("", texts).Trim();
     }
 
