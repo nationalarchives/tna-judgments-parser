@@ -1,9 +1,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
@@ -28,6 +30,10 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
     public WText(NoBreakHyphen hyphen, RunProperties properties) {
         this.properties = properties;
         this.text = "-";
+    }
+
+    public string Style {
+        get => properties?.RunStyle?.Val;
     }
 
     public bool? Italic {
@@ -61,10 +67,12 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
                 return null;
             EnumValue<UnderlineValues> val = underline.Val;
             if (val == null)
+                return false;
+            if (val.Equals(UnderlineValues.Single))
                 return true;
             if (val.Equals(UnderlineValues.None))
                 return false;
-            return true;
+            throw new Exception();
         }
     }
 
@@ -82,15 +90,46 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         }
     }
 
-    public string FontName { get {
-        return properties?.RunFonts?.Ascii?.Value;
-    } }
+    public string FontName {
+        get {
+            if (properties is null)
+                return null;
+            return DOCX.Fonts.GetFontName(properties);
+        }
+        // get {
+        //     if (properties?.RunFonts?.AsciiTheme is not null) {
+        //         MainDocumentPart main = properties.Ancestors<Document>().First().MainDocumentPart;
+        //         return DOCX.Themes.GetFontName(main, properties.RunFonts.AsciiTheme);
+        //     }
+        //     return properties?.RunFonts?.Ascii?.Value;
+        // }
+    }
 
     public float? FontSizePt { get {
         string fontSize = properties?.FontSize?.Val;
         if (fontSize is null)
             return null;
         return float.Parse(fontSize) / 2f;
+    } }
+
+    public string FontColor { get {
+        // if (properties?.Color?.Val?.Value == "auto")
+        //     return "black";
+        return properties?.Color?.Val?.Value;
+    } }
+
+    public string BackgroundColor { get {
+        return properties?.Shading?.Color?.Value;
+    } }
+
+    public bool IsHidden { get {
+        Vanish vanish = properties?.Vanish;
+        if (vanish is null)
+            return false;
+        OnOffValue val = vanish.Val;
+        if (val is null)
+            return true;
+        return val.Value;
     } }
 
     public string Text {
@@ -162,6 +201,37 @@ internal class WParty : WText, IParty {
 
 }
 
+internal class WJudge : WText, IJudge {
+
+    public WJudge(string text, RunProperties props) : base(text, props) { }
+
+    public WJudge(WText text) : base(text.Text, text.properties) { }
+
+}
+
+internal class WLawyer : WText, ILawyer {
+
+    public WLawyer(string text, RunProperties props) : base(text, props) { }
+
+    public WLawyer(WText text) : base(text.Text, text.properties) { }
+
+}
+
+internal class WHyperlink1 : WText, IHyperlink1 {
+
+    public WHyperlink1(WText text) : base(text.Text, text.properties) { }
+
+    public string Href { get; init; }
+
+}
+
+internal class WHyperlink2 : IHyperlink2 {
+
+    public IEnumerable<IInline> Contents { get; init; }
+
+    public string Href { get; init; }
+
+}
 
 internal class WLineBreak : ILineBreak {
 

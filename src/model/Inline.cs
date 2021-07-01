@@ -19,6 +19,8 @@ interface IFontInfo {
 
 interface IFormattedText : IInline {
 
+    string Style { get; }
+    
     bool? Italic { get; }
 
     bool? Bold { get; }
@@ -30,6 +32,12 @@ interface IFormattedText : IInline {
     string FontName { get; }
 
     float? FontSizePt { get; }
+
+    string FontColor { get; }
+
+    string BackgroundColor { get; }
+
+    bool IsHidden { get; }
 
     string Text { get; }
 
@@ -45,6 +53,10 @@ interface IFormattedText : IInline {
         if (fText1.FontName != fText2.FontName)
             return false;
         if (fText1.FontSizePt != fText2.FontSizePt)
+            return false;
+        if (fText1.FontColor != fText2.FontColor)
+            return false;
+        if (fText1.BackgroundColor != fText2.BackgroundColor)
             return false;
         return true;
     }
@@ -74,12 +86,20 @@ interface IFormattedText : IInline {
             }
         }
         if (this.FontName is not null) {
-            string value = this.FontName.Contains(" ") ? "'" + this.FontName + "'" : this.FontName;
+            string value = DOCX.CSS.ToFontFamily(this.FontName);
             styles.Add("font-family", value);
         }
         if (this.FontSizePt is not null) {
             styles["font-size"] = this.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
         }
+        if (this.FontColor is not null) {
+            string value = this.FontColor;
+            if (value == "auto")
+                value = "initial";
+            styles.Add("color", value);
+        }
+        if (this.BackgroundColor is not null)
+            styles.Add("background-color", this.BackgroundColor);
         return styles;    
     }
 
@@ -135,11 +155,65 @@ interface IParty : IFormattedText {
         return text;
     } }
 
-    string PartyId { get {
+    string Id { get {
         string id = Regex.Replace(this.Name, @"\s", "-");
-        id = Regex.Replace(id, @"[\.\(\)“”‘’]+", "");
+        id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
         return "party-" + id.ToLower();
     } }
+
+}
+
+interface IJudge : IFormattedText {
+
+    string Name { get {
+        string text = Regex.Replace(this.Text, @"\s+", " ").Trim();
+        if (text.StartsWith("Employment Judge "))
+            text = text.Substring(17);
+        if (text.StartsWith("Judge "))
+            text = text.Substring(6);
+        return text;
+    } }
+
+    string Id { get {
+        string id = Regex.Replace(this.Name, @"\s", "-");
+        id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
+        return "judge-" + id.ToLower();
+    } }
+
+}
+
+interface ILawyer : IFormattedText {
+
+    string Name { get {
+        string text = Regex.Replace(this.Text, @"\s+", " ").Trim();
+        if (text.StartsWith("Mr "))
+            text = text.Substring(3);
+        if (text.StartsWith("Mrs "))
+            text = text.Substring(4);
+        if (text.StartsWith("Miss "))
+            text = text.Substring(5);
+        return text;
+    } }
+
+    string Id { get {
+        string id = Regex.Replace(this.Name, @"\s", "-");
+        id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
+        return "lawyer-" + id.ToLower();
+    } }
+
+}
+
+interface IHyperlink1 : IFormattedText {
+
+    string Href { get; }
+
+}
+
+interface IHyperlink2 : IInline {
+
+    string Href { get; }
+
+    IEnumerable<IInline> Contents { get; }
 
 }
 

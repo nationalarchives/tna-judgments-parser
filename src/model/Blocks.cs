@@ -15,6 +15,7 @@ interface ILine : IBlock {
 
     string LeftIndent { get; }
     string RightIndent { get; }
+    string FirstLineIndent { get; }
 
     IEnumerable<IInline> Contents { get; }
 
@@ -26,6 +27,8 @@ interface ILine : IBlock {
             styles.Add("margin-left", this.LeftIndent);
         if (this.RightIndent is not null)
             styles.Add("margin-right", this.RightIndent);
+        if (this.FirstLineIndent is not null)
+            styles.Add("text-indent", this.FirstLineIndent);
         return styles;
     }
 

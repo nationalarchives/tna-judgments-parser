@@ -13,7 +13,7 @@ public class FontInfo : IFontInfo {
     public float? SizePt { get; internal set; }
 }
 
-class Styles {
+static class Styles {
 
     public static Style? GetStyle(DocumentFormat.OpenXml.Wordprocessing.Styles styles, string id) {
         return styles.ChildElements
@@ -55,38 +55,45 @@ class Styles {
             .Where(s => s.Default is not null && s.Default.Value)
             .FirstOrDefault();
     }
-
-    internal delegate string? StylePropertyGetter(Style style);
-
-    private static string? GetStyleValue(MainDocumentPart main, Style style, StylePropertyGetter getValue) {
-        string? size = getValue(style);
-        if (size is not null)
-            return size;
-        string? parentId = style.BasedOn?.Val?.Value;
-        if (parentId is null)
-            return null;
-        Style? parent = GetStyle(main, parentId);
-        if (parent is null)
-            return null;
-        return GetStyleValue(main, parent, getValue);
-    }
-    internal static string? GetStyleValue(Style style, StylePropertyGetter getValue) {
-        string? size = getValue(style);
-        if (size is not null)
-            return size;
-        string? parentId = style.BasedOn?.Val?.Value;
-        if (parentId is null)
-            return null;
-        DocumentFormat.OpenXml.Wordprocessing.Styles root = (DocumentFormat.OpenXml.Wordprocessing.Styles) style.Ancestors<OpenXmlPartRootElement>().First();
-        Style? parent = GetStyle(root, parentId);
-        if (parent is null)
-            return null;
-        return GetStyleValue(parent, getValue);
+    public static Style? GetDefaultCharacterStyle(MainDocumentPart main) {
+        return main.StyleDefinitionsPart?.Styles?.ChildElements
+            .OfType<Style>()
+            .Where(s => s.Type is not null && s.Type == StyleValues.Character)
+            .Where(s => s.Default is not null && s.Default.Value)
+            .FirstOrDefault();
     }
 
-    internal delegate T? StyleThingGetter<T>(Style style);
+    // internal delegate string? StylePropertyGetter(Style style);
 
-    internal static T? GetStyleThing<T>(Style? style, StyleThingGetter<T> getValue) {
+    // private static string? GetStyleValue(MainDocumentPart main, Style style, StylePropertyGetter getValue) {
+    //     string? size = getValue(style);
+    //     if (size is not null)
+    //         return size;
+    //     string? parentId = style.BasedOn?.Val?.Value;
+    //     if (parentId is null)
+    //         return null;
+    //     Style? parent = GetStyle(main, parentId);
+    //     if (parent is null)
+    //         return null;
+    //     return GetStyleValue(main, parent, getValue);
+    // }
+    // internal static string? GetStyleValue(Style style, StylePropertyGetter getValue) {
+    //     string? size = getValue(style);
+    //     if (size is not null)
+    //         return size;
+    //     string? parentId = style.BasedOn?.Val?.Value;
+    //     if (parentId is null)
+    //         return null;
+    //     DocumentFormat.OpenXml.Wordprocessing.Styles root = (DocumentFormat.OpenXml.Wordprocessing.Styles) style.Ancestors<OpenXmlPartRootElement>().First();
+    //     Style? parent = GetStyle(root, parentId);
+    //     if (parent is null)
+    //         return null;
+    //     return GetStyleValue(parent, getValue);
+    // }
+
+    internal delegate T? StylePropertyGetter<T>(Style style);
+
+    internal static T? GetStyleProperty<T>(Style? style, StylePropertyGetter<T> getValue) {
         if (style is null)
             return default(T);
         T? value = getValue(style);
@@ -97,33 +104,35 @@ class Styles {
             return default(T);
         DocumentFormat.OpenXml.Wordprocessing.Styles root = (DocumentFormat.OpenXml.Wordprocessing.Styles) style.Ancestors<OpenXmlPartRootElement>().First();
         Style? parent = GetStyle(root, parentId);
-        return GetStyleThing(parent, getValue);
+        return GetStyleProperty(parent, getValue);
     }
 
-    public static string? GetFontName(MainDocumentPart main, Style style) {
-        StylePropertyGetter getter = (Style style) => style.StyleRunProperties?.RunFonts?.Ascii?.Value;
-        return GetStyleValue(main, style, getter);
+    public static T? GetInheritedProperty<T>(this Style style, StylePropertyGetter<T> propGetter) {
+        return GetStyleProperty(style, propGetter);
     }
 
-    private static string? GetFontSizeHalfPt(MainDocumentPart main, Style style) {
-        StylePropertyGetter getter = (Style style) => style.StyleRunProperties?.FontSize?.Val?.Value;
-        return GetStyleValue(main, style, getter);
-    }
-    public static float? GetFontSizePt(MainDocumentPart main, Style style) {
-        string? halfPoints = GetFontSizeHalfPt(main, style);
-        if (halfPoints is null)
-            return null;
-        return float.Parse(halfPoints) / 2f;
-    }
+    // public static StringValue? GetFontName(MainDocumentPart main, Style style) {
+    //     return GetStyleProperty(style, style => style.StyleRunProperties?.RunFonts?.Ascii);
+    // }
 
-    public static FontInfo? GetDefaultFont(MainDocumentPart main) {
-        Style? style = GetDefaultParagraphStyle(main);
-        if (style is null)
-            return null;
-        string? name = GetFontName(main, style);
-        float? sizePt = GetFontSizePt(main, style);
-        return new FontInfo() { Name = name, SizePt = sizePt };
-    }
+    // private static StringValue? GetFontSizeHalfPt(MainDocumentPart main, Style style) {
+    //     return GetStyleProperty(style, style => style.StyleRunProperties?.FontSize?.Val);
+    // }
+    // public static float? GetFontSizePt(MainDocumentPart main, Style style) {
+    //     string? halfPoints = GetFontSizeHalfPt(main, style);
+    //     if (halfPoints is null)
+    //         return null;
+    //     return float.Parse(halfPoints) / 2f;
+    // }
+
+    // public static FontInfo? GetDefaultFont(MainDocumentPart main) {
+    //     Style? style = GetDefaultParagraphStyle(main);
+    //     if (style is null)
+    //         return null;
+    //     string? name = GetFontName(main, style);
+    //     float? sizePt = GetFontSizePt(main, style);
+    //     return new FontInfo() { Name = name, SizePt = sizePt };
+    // }
 
 }
 

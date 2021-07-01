@@ -46,7 +46,7 @@ class CaseNo : Enricher {
     //     return line;
     // }
 
-    internal override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         Regex re = new Regex(@"^\s*Case\s+(No|Number):?\s*(\d+/\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
         return line.SelectMany(inline => {
             if (inline is WText text) {

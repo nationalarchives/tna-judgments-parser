@@ -2,34 +2,375 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+
+// using VML = DocumentFormat.OpenXml.Vector;
+
+using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Inline {
 
     public static IEnumerable<IInline> ParseRuns(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
-        return elements
-        .Where(e => !(e is ParagraphProperties))
-        .Where(e => !(e is BookmarkStart))
-        .Where(e => !(e is BookmarkEnd))
-        .SelectMany(e => MapRun(main, e));
+        List<IInline> parsed = new List<IInline>();
+        List<OpenXmlElement> withinField = null;
+        foreach (OpenXmlElement e in elements) {
+            if (e is ParagraphProperties)
+                continue;
+            if (e is ProofError)
+                continue;
+            if (e is BookmarkStart || e is BookmarkEnd)
+                continue;
+            if (IsFieldStart(e)) {
+                if (withinField is not null)
+                    throw new Exception();
+                withinField = new List<OpenXmlElement>();
+                continue;
+            }
+            if (IsFieldSeparater(e)) {
+                if (withinField is null)
+                    throw new Exception();
+                withinField.Add(e);
+                continue;
+            }
+            if (IsFieldEnd(e)) {
+                if (withinField is null)
+                    throw new Exception();
+                IEnumerable<IInline> parsedFieldContents = ParseFieldContents(main, withinField);
+                parsed.AddRange(parsedFieldContents);
+                withinField = null;
+                continue;
+            }
+            if (IsFieldCode(e)) {
+                if (withinField is null)
+                    throw new Exception();
+                withinField.Add(e);
+                continue;
+            }
+            if (e is Hyperlink link) {
+                if (withinField is not null)
+                    throw new Exception();
+                WHyperlink2 link2 = MapHyperlink(main, link);
+                parsed.Add(link2);
+                continue;
+            }
+            if (e is Run run) {
+                if (withinField is null) {
+                    IEnumerable<IInline> inlines = MapRunChildren(main, run);
+                    parsed.AddRange(inlines);
+                } else {
+                    withinField.Add(e);
+                }
+                continue;
+            }
+            if (e is OpenXmlUnknownElement) {
+                if (withinField is not null)
+                    throw new Exception();
+                if (e.LocalName == "smartTag") {
+                    var children = ParseRuns(main, e.ChildElements);
+                    parsed.AddRange(children);
+                    continue;
+                }
+                if (e.LocalName == "r") {
+                    Run run2 = new Run(e.OuterXml);
+                    e.InsertAfterSelf(run2);
+                    e.Remove();
+                    var children = MapRunChildren(main, run2);
+                    parsed.AddRange(children);
+                    continue;
+                }
+            }
+            throw new Exception();
+        }
+        return parsed;
+    }
+
+    private static IEnumerable<IInline> ParseFieldContents(MainDocumentPart main, List<OpenXmlElement> withinField) {
+        if (withinField.Count == 0)
+            return Enumerable.Empty<IInline>();
+        // List<IInline> parsed = new List<IInline>();
+        OpenXmlElement first = withinField.First();
+        if (!IsFieldCode(first))
+            throw new Exception();
+        string fieldCode = GetFieldCode(first);
+        int i = 1;
+        while (i < withinField.Count) {
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldCode(next))
+                break;
+            fieldCode += GetFieldCode(next);
+            i += 1;
+        }
+        if (fieldCode == @" FILENAME \* MERGEFORMAT")
+            return Enumerable.Empty<IInline>();
+        if (fieldCode.StartsWith(" FILLIN "))
+            return Enumerable.Empty<IInline>();
+        // if (fieldCode.StartsWith(" MERGEFIELD "))
+        //     return Enumerable.Empty<IInline>();
+        Match match = Regex.Match(fieldCode, "^ MERGEFIELD \"(.+?)\"");
+        if (match.Success) {
+            // if (i > withinField.Count - 2)
+            //     throw new Exception();
+            if (i == withinField.Count)
+                return Enumerable.Empty<IInline>();
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            return ParseRuns(main, withinField.Skip(i + 1));
+        }
+        match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" ?$");
+        if (match.Success) {
+            if (i != withinField.Count - 2)
+                throw new Exception();
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            OpenXmlElement last = withinField[i+1];
+            if (last is not Run run)
+                throw new Exception();
+            IEnumerable<IInline> children = MapRunChildren(main, run);
+            if (children.Count() != 1)
+                throw new Exception();
+            IInline firstChild = children.First();
+            if (firstChild is not WText wt)
+                throw new Exception();
+            string href = match.Groups[1].Value;
+            WHyperlink1 hyperlink = new WHyperlink1(wt) { Href = href };
+            return new List<IInline>(1) { hyperlink };
+        }
+        match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" " + @"\\o" +" \"(.+?)\" ?$");
+        if (match.Success) {
+            if (i != withinField.Count)
+                throw new Exception();
+            string address = match.Groups[1].Value;
+            string text = match.Groups[2].Value;
+            RunProperties rProps = first.Ancestors<Run>().FirstOrDefault().Descendants<RunProperties>().FirstOrDefault();
+            WText wText = new WText(text, rProps);
+            WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = address };
+            return new List<IInline>(1) { hyperlink };
+        }
+        match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\r \\h  \\\* MERGEFORMAT $");
+        if (match.Success) {
+            string rf = match.Groups[1].Value;
+            OpenXmlElement root = first;
+            while (root.Parent is not null)
+                root = root.Parent;
+            BookmarkStart bkmk = root.Descendants<BookmarkStart>().Where(b => b.Name == rf).First();
+            Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
+            IFormattedText refNumber = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
+            RunProperties rProps = first is Run run ? run.RunProperties : null;
+            WText numberInThisFormat = new WText(refNumber.Text, rProps);
+            return new List<IInline>(1) { numberInThisFormat };
+        }
+        throw new Exception();
+    }
+
+    private static IEnumerable<IInline> NewParseRunsFirstTry(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
+        List<IInline> parsed = new List<IInline>();
+        int fieldState = 0;
+        string fieldCode = null;
+        List<WText> fieldTexts = null;
+        foreach (OpenXmlElement e in elements) {
+            if (e is ParagraphProperties)
+                continue;
+            if (e is ProofError)
+                continue;
+            if (e is BookmarkStart || e is BookmarkEnd)
+                continue;
+            if (IsFieldStart(e)) {
+                if (fieldState != 0)
+                    throw new Exception();
+                fieldState = 1;
+                fieldCode = "";
+                continue;
+            }
+            if (IsFieldSeparater(e)) {
+                if (fieldState != 1)
+                    throw new Exception();
+                fieldState = 2;
+                fieldTexts = new List<WText>();
+                continue;
+            }
+            if (IsFieldEnd(e)) {
+                if (fieldCode == @" FILENAME \* MERGEFORMAT") {
+                    fieldState = 0;
+                    fieldCode = null;
+                    fieldTexts = null;
+                    continue;
+                }
+                if (fieldCode.StartsWith(" FILLIN ")) {
+                    fieldState = 0;
+                    fieldCode = null;
+                    fieldTexts = null;
+                    continue;
+                }
+                if (fieldCode.StartsWith(" MERGEFIELD ")) {
+                    fieldState = 0;
+                    fieldCode = null;
+                    fieldTexts = null;
+                    continue;
+                }
+                if (fieldState != 2)
+                    throw new Exception();
+                if (string.IsNullOrWhiteSpace(fieldCode))
+                    throw new Exception();
+                if (fieldTexts.Count != 1)
+                    throw new Exception();
+                Match match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\"$");
+                if (!match.Success)
+                    throw new Exception();
+                string href = match.Groups[1].Value;
+                WHyperlink1 hyperlink = new WHyperlink1(fieldTexts.First()) { Href = href };
+                parsed.Add(hyperlink);
+                fieldState = 0;
+                fieldCode = null;
+                fieldTexts = null;
+                continue;
+            }
+            if (IsFieldCode(e)) {
+                if (fieldState != 1)
+                    throw new Exception();
+                fieldCode += GetFieldCode(e);
+                continue;
+            }
+            if (e is Hyperlink link) {
+                if (fieldState != 0)
+                    throw new Exception();
+                WHyperlink2 link2 = MapHyperlink(main, link);
+                parsed.Add(link2);
+                continue;
+            }
+            if (e is Run run) {
+                IEnumerable<IInline> inlines = MapRunChildren(main, run);
+                if (fieldState == 0)
+                    parsed.AddRange(inlines);
+                else if (fieldState == 1)
+                    throw new Exception();
+                else if (fieldState == 2) {
+                    if (inlines.Count() != 1)
+                        throw new Exception();
+                    IInline first = inlines.First();
+                    if (first is not WText wt)
+                        throw new Exception();
+                    fieldTexts.Add(wt);
+                } else
+                    throw new Exception();
+                continue;
+            }
+            if (e is OpenXmlUnknownElement) {
+                if (e.LocalName == "smartTag") {
+                    if (fieldState != 0)
+                         throw new Exception();
+                    var children = ParseRuns(main, e.ChildElements);
+                    parsed.AddRange(children);
+                    continue;
+                }
+                if (e.LocalName == "r") {
+                    if (fieldState != 0)
+                         throw new Exception();
+                    Run run2 = new Run(e.OuterXml);
+                    e.InsertAfterSelf(run2);
+                    e.Remove();
+                    var children = MapRunChildren(main, run2);
+                    parsed.AddRange(children);
+                    continue;
+                }
+            }
+            throw new Exception();
+        }
+        return parsed;
+        // return elements
+        // .Where(e => !(e is ParagraphProperties))
+        // .Where(e => !(e is BookmarkStart))
+        // .Where(e => !(e is BookmarkEnd))
+        // .SelectMany(e => MapRun(main, e));
+    }
+
+    private static bool IsFieldStart(OpenXmlElement e) {
+        if (e is not Run)
+            return false;
+        if (!e.ChildElements.Any(child => child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.Begin)))
+            return false;
+        if (!e.ChildElements.All(child => child is RunProperties || (child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.Begin))))
+            throw new Exception();
+        return true;
+    }
+    private static bool IsFieldSeparater(OpenXmlElement e) {
+        if (e is not Run)
+            return false;
+        if (!e.ChildElements.Any(child => child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.Separate)))
+            return false;
+        if (!e.ChildElements.All(child => child is RunProperties || (child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.Separate))))
+            throw new Exception();
+        return true;
+    }
+    private static bool IsFieldEnd(OpenXmlElement e) {
+        if (e is not Run)
+            return false;
+        if (!e.ChildElements.Any(child => child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.End)))
+            return false;
+        if (!e.ChildElements.All(child => child is RunProperties || (child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.End))))
+            throw new Exception();
+        return true;
+    }
+    private static bool IsFieldCode(OpenXmlElement e) {
+        if (e is not Run)
+            return false;
+        if (!e.ChildElements.Any(child => child is FieldCode))
+            return false;
+        if (!e.ChildElements.All(child => child is RunProperties || child is FieldCode))
+            throw new Exception();
+        return true;
+    }
+    private static string GetFieldCode(OpenXmlElement e) {
+        IEnumerable<FieldCode> fieldCodes = e.ChildElements.OfType<FieldCode>();
+        if (fieldCodes.Count() != 1)
+            throw new Exception();
+        return fieldCodes.First().InnerText;
+    }
+
+    private static WHyperlink2 MapHyperlink(MainDocumentPart main, Hyperlink link) {
+        // if (link1.ChildElements.Count != 1)
+        //     throw new Exception();
+        // Run run = (Run) link1.ChildElements.First();
+        // IEnumerable<IInline> texts = MapRunChildren(main, run);
+        // if (texts.Count() != 1)
+        //     throw new Exception();
+        // WText wText = (WText) texts.First();
+        // return new WHyperlink(wText) { Href = wText.Text };
+        string href;
+        if (link.Id is not null)
+            href = DOCX.Relationships.GetUriForHyperlink(link).AbsoluteUri;
+        else
+            href = link.InnerText;
+        IEnumerable<IInline> contents = ParseRuns(main, link.ChildElements);
+        contents = Merger.Merge(contents);
+        // if (inlines.Count() != 1)
+        //     throw new Exception();
+        // if (!inlines.All(i => i is WText))
+        //     throw new Exception();
+        // WText wText = (WText) inlines.First();
+        return new WHyperlink2() { Href = href, Contents = contents };
     }
 
     private static IEnumerable<IInline> MapRun(MainDocumentPart main, OpenXmlElement e) {
         if (e is Run run1)
             return MapRunChildren(main, run1);
-        if (e is Hyperlink)
-            return ParseRuns(main, e.ChildElements);
-        if (e is ProofError)
-            return Enumerable.Empty<IInline>();
-        if (e.LocalName == "smartTag")
-            return ParseRuns(main, e.ChildElements);
+        // if (e is Hyperlink)
+        //     return ParseRuns(main, e.ChildElements);
+        // if (e is ProofError)
+        //     return Enumerable.Empty<IInline>();
+        // if (e.LocalName == "smartTag")
+        //     return ParseRuns(main, e.ChildElements);
         if (e.LocalName == "r") {
             Run run2 = new Run(e.OuterXml);
+            e.InsertAfterSelf(run2);
+            e.Remove();
             return MapRunChildren(main, run2);
         }
         throw new Exception(e.OuterXml);
@@ -71,11 +412,16 @@ class Inline {
         if (e is FootnoteReferenceMark)
             return null;
         if (e is AlternateContent altContent) {
-            AlternateContentChoice choice = (AlternateContentChoice) altContent.FirstChild;
-            if (choice.ChildElements.Count != 1)
+            if (altContent.ChildElements.Count != 2)
                 throw new Exception();
-            Drawing child = (Drawing) choice.FirstChild;
-            return null;
+            AlternateContentChoice choice = (AlternateContentChoice) altContent.FirstChild;
+            AlternateContentFallback fallback = (AlternateContentFallback) altContent.ChildElements.ElementAt(1);
+            if (fallback.FirstChild is Picture pict2) {
+                if (pict2.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
+                    return new WImageRef(main, pict2);
+                if (pict2.ChildElements.Count == 1 && pict2.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict2.FirstChild.LocalName == "line")
+                    return null;
+            }
         }
         throw new Exception(e.OuterXml);
     }
