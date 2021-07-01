@@ -141,6 +141,12 @@ class Numbering {
         return GetStyleLevel(main, pProps);
     }
 
+    public static Level GetLevelOrStyleLevel(MainDocumentPart main, ParagraphProperties pProps) {
+        NumberingProperties numProps = pProps?.NumberingProperties;
+        if (pProps is null)
+            return GetStyleLevel(main, pProps);
+        return GetLevel(main, numProps);
+    }
     public static Level GetLevelOrStyleLevel(MainDocumentPart main, Paragraph paragraph) {
         NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
         if (props is null)
@@ -170,80 +176,80 @@ class Numbering {
         return props;
     }
 
-    public static IFormattedText GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
-        NumberingProperties props = GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
-        if (props is null)
-            return null;
-        int? id1 = props.NumberingId?.Val?.Value;
-        if (id1 is null)
-            return null;
-        int level1 = props.NumberingLevelReference?.Val?.Value ?? 0;
-        int count = 0;
-        Paragraph previous = paragraph.PreviousSibling<Paragraph>();
-        while (previous != null) {
-            NumberingProperties prevProps = GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
-            if (prevProps is not null) {
-                int? id2 = prevProps.NumberingId?.Val?.Value;
-                if (id1.Equals(id2)) {
-                    int level2 = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
-                    if (level2 == level1)
-                        count += 1;
-                    if (level2 < level1)
-                        break;
-                }
-            }
-            previous = previous.PreviousSibling<Paragraph>();
-        }
-        return FormatNumber(main, props, count);
-    }
+    // public static IFormattedText GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
+    //     NumberingProperties props = GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+    //     if (props is null)
+    //         return null;
+    //     int? id1 = props.NumberingId?.Val?.Value;
+    //     if (id1 is null)
+    //         return null;
+    //     int level1 = props.NumberingLevelReference?.Val?.Value ?? 0;
+    //     int count = 0;
+    //     Paragraph previous = paragraph.PreviousSibling<Paragraph>();
+    //     while (previous != null) {
+    //         NumberingProperties prevProps = GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
+    //         if (prevProps is not null) {
+    //             int? id2 = prevProps.NumberingId?.Val?.Value;
+    //             if (id1.Equals(id2)) {
+    //                 int level2 = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
+    //                 if (level2 == level1)
+    //                     count += 1;
+    //                 if (level2 < level1)
+    //                     break;
+    //             }
+    //         }
+    //         previous = previous.PreviousSibling<Paragraph>();
+    //     }
+    //     return FormatNumber(main, props, count);
+    // }
 
-    internal static IFormattedText FormatNumber(MainDocumentPart main, NumberingProperties numbering, int n) {
-        NumberingInstance num = main.NumberingDefinitionsPart.Numbering.ChildElements
-            .OfType<NumberingInstance>()
-            .Where(n => n.NumberID.Value.Equals(numbering.NumberingId.Val.Value))
-            .FirstOrDefault();
-        if (num == null)
-            return null;
-        AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
-            .OfType<AbstractNum>()
-            .Where(a => a.AbstractNumberId.Value == num.AbstractNumId.Val.Value)
-            .First();
-        int ilvl = numbering.NumberingLevelReference?.Val ?? 0;
-        Level level = abs.ChildElements
-            .OfType<Level>()
-            .Where(l => l.LevelIndex.Value == ilvl)
-            .FirstOrDefault();
-        if (level is null)
-            return null;
-        int start = level.StartNumberingValue.Val ?? 1;
-        n = start + n;
+    // internal static IFormattedText FormatNumber(MainDocumentPart main, NumberingProperties numbering, int n) {
+    //     NumberingInstance num = main.NumberingDefinitionsPart.Numbering.ChildElements
+    //         .OfType<NumberingInstance>()
+    //         .Where(n => n.NumberID.Value.Equals(numbering.NumberingId.Val.Value))
+    //         .FirstOrDefault();
+    //     if (num == null)
+    //         return null;
+    //     AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+    //         .OfType<AbstractNum>()
+    //         .Where(a => a.AbstractNumberId.Value == num.AbstractNumId.Val.Value)
+    //         .First();
+    //     int ilvl = numbering.NumberingLevelReference?.Val ?? 0;
+    //     Level level = abs.ChildElements
+    //         .OfType<Level>()
+    //         .Where(l => l.LevelIndex.Value == ilvl)
+    //         .FirstOrDefault();
+    //     if (level is null)
+    //         return null;
+    //     int start = level.StartNumberingValue.Val ?? 1;
+    //     n = start + n;
 
-        string n2;
-        if (level.NumberingFormat.Val == NumberFormatValues.Decimal)
-            n2 = n.ToString();
-        else if (level.NumberingFormat.Val == NumberFormatValues.LowerLetter)
-            n2 = Formatting.ToLowerLetter(n);
-        else if (level.NumberingFormat.Val == NumberFormatValues.LowerRoman)
-            n2 = Formatting.ToLowerRoman(n);
-        else if (level.NumberingFormat.Val == NumberFormatValues.Bullet)
-            n2 = "•";
-        else
-            throw new Exception("unsupported numbering format: " + level.NumberingFormat.Val);
+    //     string n2;
+    //     if (level.NumberingFormat.Val == NumberFormatValues.Decimal)
+    //         n2 = n.ToString();
+    //     else if (level.NumberingFormat.Val == NumberFormatValues.LowerLetter)
+    //         n2 = Formatting.ToLowerLetter(n);
+    //     else if (level.NumberingFormat.Val == NumberFormatValues.LowerRoman)
+    //         n2 = Formatting.ToLowerRoman(n);
+    //     else if (level.NumberingFormat.Val == NumberFormatValues.Bullet)
+    //         n2 = "•";
+    //     else
+    //         throw new Exception("unsupported numbering format: " + level.NumberingFormat.Val);
 
-        string n3;
-        if (level.LevelText.Val.Value == "-")
-            n3 = n2;
-        else if (Regex.IsMatch(level.LevelText.Val.Value, "^%\\d\\.$"))
-            n3 = n2 + ".";
-        else if (Regex.IsMatch(level.LevelText.Val.Value, "^\\(%\\d\\)$"))
-            n3 = "(" + n2 + ")";
-        else if (Regex.IsMatch(level.LevelText.Val.Value, "^%\\d\\)$"))
-            n3 = n2 + ")";
-        else
-            throw new Exception("unsupported level text: " + level.LevelText.Val.Value);
+    //     string n3;
+    //     if (level.LevelText.Val.Value == "-")
+    //         n3 = n2;
+    //     else if (Regex.IsMatch(level.LevelText.Val.Value, "^%\\d\\.$"))
+    //         n3 = n2 + ".";
+    //     else if (Regex.IsMatch(level.LevelText.Val.Value, "^\\(%\\d\\)$"))
+    //         n3 = "(" + n2 + ")";
+    //     else if (Regex.IsMatch(level.LevelText.Val.Value, "^%\\d\\)$"))
+    //         n3 = n2 + ")";
+    //     else
+    //         throw new Exception("unsupported level text: " + level.LevelText.Val.Value);
 
-        return new WNumText(n3, level.NumberingSymbolRunProperties);
-    }
+    //     return new WNumText(n3, level.NumberingSymbolRunProperties);
+    // }
 
 }
 

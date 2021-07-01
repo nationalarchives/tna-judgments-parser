@@ -25,7 +25,7 @@ internal class Blocks {
     }
 
     internal static IBlock Parse1(MainDocumentPart main, Paragraph paragraph) {
-        string number = DOCX.Numbering.GetFormattedNumber(main, paragraph)?.Text;
+        string number = DOCX.Numbering2.GetFormattedNumber(main, paragraph)?.Text;
         if (number is null)
             return new WLine(main, paragraph);
         return new WOldNumberedParagraph(number, main, paragraph);
@@ -39,6 +39,8 @@ class WLine : ILine {
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties properties;
     private readonly IEnumerable<IInline> contents;
+
+    internal bool IsFirstLineOfNumberedParagraph { get; init; }
 
     public WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
         this.main = main;
@@ -54,11 +56,13 @@ class WLine : ILine {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents;
+        IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
     }
     internal WLine(WLine prototype) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = prototype.contents;
+        IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
     }
 
     public string Style {
@@ -84,13 +88,10 @@ class WLine : ILine {
 
     public string LeftIndent {
         get {
-            if (properties is null)
+            float? inches = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
+            if (inches is null)
                 return null;
-            string i = DOCX.Formatting.GetLeftIndent(main, properties);
-            if (i is null)
-                return null;
-            float inches = float.Parse(i) / 1440f;
-            return inches.ToString("F2") + "in";
+            return inches.Value.ToString("F2") + "in";
         }
     }
     public string RightIndent {
@@ -99,6 +100,16 @@ class WLine : ILine {
                 return null;
             float inches = float.Parse(properties.Indentation.Right.Value) / 1440f;
             return inches.ToString("F2") + "in";
+        }
+    }
+    public string FirstLineIndent {
+        get {
+            if (IsFirstLineOfNumberedParagraph)
+                return null;
+            float? inches = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, properties);
+            if (inches is null)
+                return null;
+            return inches.Value.ToString("F2") + "in";
         }
     }
 

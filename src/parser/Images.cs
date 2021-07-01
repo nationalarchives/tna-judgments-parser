@@ -44,7 +44,7 @@ public class WImageRef : IImageRef {
 
     public WImageRef(MainDocumentPart main, Drawing drawing) {
         StringValue relId = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().First().Embed;
-        this.uri = DOCX.Relationships.GetUriForRelationshipId(relId, drawing);
+        this.uri = DOCX.Relationships.GetUriForImage(relId, drawing);
 
         // StringValue relId = drawing.Inline.Graphic.GraphicData.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().First().Embed;
         // StringValue relId = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().First().Embed;
@@ -73,7 +73,7 @@ public class WImageRef : IImageRef {
         StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().First().RelationshipId;
         // OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relId.Value).First().OpenXmlPart;
         // this.uri = part.Uri;
-        this.uri = DOCX.Relationships.GetUriForRelationshipId(relId, picture);
+        this.uri = DOCX.Relationships.GetUriForImage(relId, picture);
         string tempStyle = picture.Descendants<DocumentFormat.OpenXml.Vml.Shape>().First().Style?.Value;
         if (!string.IsNullOrEmpty(tempStyle)) {
             Dictionary<string, string> parsed = DOCX.CSS.ParseInline(tempStyle);
@@ -88,7 +88,7 @@ public class WImageRef : IImageRef {
         StringValue relId = shape.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().First().RelationshipId;
         // OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relId.Value).First().OpenXmlPart;
         // this.uri = part.Uri;
-        this.uri = DOCX.Relationships.GetUriForRelationshipId(relId, shape);
+        this.uri = DOCX.Relationships.GetUriForImage(relId, shape);
         // Style = shape.Style?.Value;
         string tempStyle = shape.Style?.Value;
         if (!string.IsNullOrEmpty(tempStyle)) {

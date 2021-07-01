@@ -101,17 +101,33 @@ class Metadata {
             IEnumerable<IParty> parties = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IParty>();
             foreach (IParty party in parties) {
                 XmlElement org = append(doc, references, "TLCPerson");
-                org.SetAttribute("eId", party.PartyId);
-                org.SetAttribute("href", "/" + party.PartyId);
+                org.SetAttribute("eId", party.Id);
+                org.SetAttribute("href", "/" + party.Id);
                 org.SetAttribute("showAs", party.Name);
             }
+
+            IEnumerable<IJudge> judges = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IJudge>();
+            foreach (IJudge judge in judges) {
+                XmlElement org = append(doc, references, "TLCPerson");
+                org.SetAttribute("eId", judge.Id);
+                org.SetAttribute("href", "/" + judge.Id);
+                org.SetAttribute("showAs", judge.Name);
+            }
+
+            foreach (ILawyer lawyer in judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ILawyer>()) {
+                XmlElement org = append(doc, references, "TLCPerson");
+                org.SetAttribute("eId", lawyer.Id);
+                org.SetAttribute("href", "/" + lawyer.Id);
+                org.SetAttribute("showAs", lawyer.Name);
+            }
+
 
         }
 
         Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
         if (styles is not null) {
             XmlElement presentation = append(doc, meta, "presentation");
-            presentation.SetAttribute("source", "-");   // the URI of the Word version?
+            presentation.SetAttribute("source", docId + "/eng/docx");
             XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
             presentation.AppendChild(style);
             style.AppendChild(doc.CreateTextNode("\n"));

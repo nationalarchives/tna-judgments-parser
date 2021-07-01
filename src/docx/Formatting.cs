@@ -57,34 +57,37 @@ class Formatting {
         throw new ArgumentOutOfRangeException("something bad happened");
     }
 
-    public static StringValue GetLeftIndent(MainDocumentPart main, ParagraphProperties pProps) {
-        StringValue left;
-        left = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Indentation?.Left;
-        if (left is not null)
-            return left;
-        left = pProps.Indentation?.Left;
-        if (left is not null)
-            return left;
-        left = Styles.GetStyle(main, pProps)?.StyleParagraphProperties?.Indentation?.Left;
-        if (left is not null)
-            return left;
-        /* if style numbering has a left indent, return it only if numbering is not overridden by pProps */
-        StringValue styleNumberingValue = Numbering.GetStyleLevel(main, pProps)?.PreviousParagraphProperties?.Indentation?.Left;
-        if (styleNumberingValue is null)
-            return null;
-        NumberingId numberingId = pProps.NumberingProperties?.NumberingId;
-        if (numberingId is null)
-            return styleNumberingValue;
-        NumberingInstance numberingInstance = Numbering.GetNumbering(main, numberingId);
-        return (numberingInstance is null) ? null : styleNumberingValue;
-    }
+    // public static StringValue GetLeftIndent(MainDocumentPart main, ParagraphProperties pProps) {
+    //     StringValue left;
+    //     left = pProps.Indentation?.Left;
+    //     if (left is not null)
+    //         return left;
+    //     left = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Indentation?.Left;
+    //     if (left is not null)
+    //         return left;
+    //     // left = pProps.Indentation?.Left;
+    //     // if (left is not null)
+    //     //     return left;
+    //     left = Styles.GetStyle(main, pProps)?.StyleParagraphProperties?.Indentation?.Left;
+    //     if (left is not null)
+    //         return left;
+    //     /* if style numbering has a left indent, return it only if numbering is not overridden by pProps */
+    //     StringValue styleNumberingValue = Numbering.GetStyleLevel(main, pProps)?.PreviousParagraphProperties?.Indentation?.Left;
+    //     if (styleNumberingValue is null)
+    //         return null;
+    //     NumberingId numberingId = pProps.NumberingProperties?.NumberingId;
+    //     if (numberingId is null)
+    //         return styleNumberingValue;
+    //     NumberingInstance numberingInstance = Numbering.GetNumbering(main, numberingId);
+    //     return (numberingInstance is null) ? null : styleNumberingValue;
+    // }
 
-    public static StringValue GetLeftIndent(MainDocumentPart main, Paragraph paragraph) {
-        ParagraphProperties pProps = paragraph.ParagraphProperties;
-        if (pProps is null)
-            return null;
-        return GetLeftIndent(main, pProps);
-    }
+    // public static StringValue GetLeftIndent(MainDocumentPart main, Paragraph paragraph) {
+    //     ParagraphProperties pProps = paragraph.ParagraphProperties;
+    //     if (pProps is null)
+    //         return null;
+    //     return GetLeftIndent(main, pProps);
+    // }
 
     public static StringValue GetHangingIndent(MainDocumentPart main, ParagraphProperties pProps) {
         StringValue hanging = pProps.Indentation?.Hanging;
@@ -112,22 +115,22 @@ class Formatting {
         return GetHangingIndent(main, pProps);
     }
 
-    public static bool IsFlushLeft(MainDocumentPart main, ParagraphProperties pProps) {
-        EnumValue<JustificationValues> just = pProps.Justification?.Val ?? JustificationValues.Left;
-        if (just == JustificationValues.Center || just == JustificationValues.Right)
-            return false;
-        string left = GetLeftIndent(main, pProps)?.Value ?? "0";
-        string hanging = GetHangingIndent(main, pProps)?.Value ?? "0";
-        return left == hanging;
-    }
+    // public static bool IsFlushLeft(MainDocumentPart main, ParagraphProperties pProps) {
+    //     EnumValue<JustificationValues> just = pProps.Justification?.Val ?? JustificationValues.Left;
+    //     if (just == JustificationValues.Center || just == JustificationValues.Right)
+    //         return false;
+    //     string left = GetLeftIndent(main, pProps)?.Value ?? "0";
+    //     string hanging = GetHangingIndent(main, pProps)?.Value ?? "0";
+    //     return left == hanging;
+    // }
 
-    public static bool IsFlushLeft(MainDocumentPart main, Paragraph para) {
-        if (para.ChildElements.OfType<Run>().FirstOrDefault()?.ChildElements.FirstOrDefault() is TabChar)
-            return false;
-        if (para.ParagraphProperties is null)
-            return true;
-        return IsFlushLeft(main, para.ParagraphProperties);
-    }
+    // public static bool IsFlushLeft(MainDocumentPart main, Paragraph para) {
+    //     if (para.ChildElements.OfType<Run>().FirstOrDefault()?.ChildElements.FirstOrDefault() is TabChar)
+    //         return false;
+    //     if (para.ParagraphProperties is null)
+    //         return true;
+    //     return IsFlushLeft(main, para.ParagraphProperties);
+    // }
 
 }
 

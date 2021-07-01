@@ -52,7 +52,7 @@ class WMetadata : IMetadata {
         ICaseNo caseNo = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().FirstOrDefault();
         if (caseNo is not null)
             return caseNo.Text;
-        caseNo = judgment.CoverPage.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().FirstOrDefault();
+        caseNo = judgment.CoverPage?.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().FirstOrDefault();
         if (caseNo is not null)
             return caseNo.Text;
         return null;
@@ -66,7 +66,7 @@ class WMetadata : IMetadata {
         IDocDate date = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
         if (date is not null)
             return date.Date;
-        date = judgment.Conclusions.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
+        date = judgment.Conclusions?.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
         if (date is not null)
             return date.Date;
         return null;

@@ -53,23 +53,52 @@ class EmploymentTribunalParser : AbstractParser {
         return header;
     }
 
+    private List<Enricher> coverPageEnrichers = new List<Enricher>() {
+        new RemoveTrailingWhitespace(),
+        new Merger(),
+        new CaseNo()
+        // new EmploymentTribunalCourtType(),
+    };
+
     protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage) {
-        Enricher courtType = new EmploymentTribunalCourtType();
-        Enricher caseNo = new CaseNo();
-        return coverPage
-            .Select(block => Merger.Singleton.Enrich(block))
-            .Select(block => caseNo.Enrich(block));
+        return Enricher.Enrich(coverPage, coverPageEnrichers);
+        // Enricher removeTrailingTabs = new RemoveTrailingWhitespace();
+        // Enricher merger = new Merger();
+        // Enricher courtType = new EmploymentTribunalCourtType();
+        // Enricher caseNo = new CaseNo();
+        // return coverPage
+        //     .Select(block => removeTrailingTabs.Enrich(block))
+        //     .Select(block => merger.Enrich(block))
+        //     .Select(block => caseNo.Enrich(block));
     }
 
+    private List<Enricher> headerEnrichers = new List<Enricher>() {
+        new RemoveTrailingWhitespace(),
+        new Merger(),
+        new CaseNo(),
+        new EmploymentTribunalCourtType(),
+        new EmploymentTribunalDateOfJudgment(),
+        new PartyEnricher(),
+        new Judge(),
+        new LawyerEnricher()
+    };
+
     protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {
-        Enricher courtType = new EmploymentTribunalCourtType();
-        Enricher caseNo = new CaseNo();
-        Enricher party = new PartyEnricher();
-        return header
-            .Select(block => Merger.Singleton.Enrich(block))
-            .Select(block => courtType.Enrich(block))
-            .Select(block => caseNo.Enrich(block))
-            .Select(block => party.Enrich(block));
+        return Enricher.Enrich(header, headerEnrichers);
+        // Enricher removeTrailingTabs = new RemoveTrailingTabs();
+        // IEnumerable<IBlock> merged = header
+        //     .Select(block => removeTrailingTabs.Enrich(block))
+        //     .Select(block => Merger.Singleton.Enrich(block));
+        // IEnumerable<IBlock> withPartyNames = new PartyEnricher().Enrich(merged);
+        // Enricher courtType = new EmploymentTribunalCourtType();
+        // Enricher caseNo = new CaseNo();
+        // Enricher date = new EmploymentTribunalDateOfJudgment();
+        // Enricher judges = new Judge();
+        // return withPartyNames
+        //     .Select(block => courtType.Enrich(block))
+        //     .Select(block => caseNo.Enrich(block))
+        //     .Select(block => date.Enrich(block))
+        //     .Select(block => judges.Enrich(block));
     }
 
     protected override List<IDecision> Body() {
@@ -83,17 +112,29 @@ class EmploymentTribunalParser : AbstractParser {
     }
 
     protected override IEnumerable<IBlock> EnrichConclusions(IEnumerable<IBlock> conclusions) {
-        Enricher dateOfJudgment = new EmploymentTribunalDateOfJudgment();
-        return conclusions
-            .Select(block => Merger.Singleton.Enrich(block))
-            .Select(block => dateOfJudgment.Enrich(block));
+        // List<Enricher> conclusionEnrichers = new List<Enricher>() {
+        //     new RemoveTrailingWhitespace(),
+        //     new Merger(),
+        //     new EmploymentTribunalDateOfJudgment()
+        // };
+        return Enricher.Enrich(conclusions, new List<Enricher>() {
+            new RemoveTrailingWhitespace(),
+            new Merger(),
+            new EmploymentTribunalDateOfJudgment()
+        });
+        // Enricher removeTrailingTabs = new RemoveTrailingWhitespace();
+        // Enricher dateOfJudgment = new EmploymentTribunalDateOfJudgment();
+        // return conclusions
+        //     .Select(block => removeTrailingTabs.Enrich(block))
+        //     .Select(block => Merger.Singleton.Enrich(block))
+        //     .Select(block => dateOfJudgment.Enrich(block));
     }
 
 }
 
 class EmploymentTribunalCourtType : Enricher {
 
-    internal override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (line.Count() == 0)
             return line;
         IInline first = line.First();
@@ -121,11 +162,12 @@ class EmploymentTribunalCourtType : Enricher {
 
 class EmploymentTribunalDateOfJudgment : Enricher {
 
-    internal override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (line.Count() == 0)
             return line;
-        string pattern = @"^\s*Date of Judgment:\s+\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}\s*$";
+        string pattern = @"^\s*(Date of Judgment|On):\s+\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}\s*$";
         Regex re = new Regex(pattern);
+        var junk = NormalizeLine(line);
         if (!re.IsMatch(NormalizeLine(line)))
             return line;
         pattern = @"(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})";
