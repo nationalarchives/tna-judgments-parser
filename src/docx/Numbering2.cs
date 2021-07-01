@@ -29,7 +29,10 @@ class Numbering2 {
         string styleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
         Style style = styleId is null ? null : Styles.GetStyle(main, styleId);
 
-        return new WNumText2(magic, level.NumberingSymbolRunProperties, style);
+        // var x = style.StyleRunProperties
+        ParagraphMarkRunProperties strange = paragraph.ParagraphProperties.ParagraphMarkRunProperties;
+
+        return new WNumText(magic, level.NumberingSymbolRunProperties, strange, style);
     }
 
     private static string Magic(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {

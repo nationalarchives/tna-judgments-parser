@@ -332,16 +332,18 @@ class Parser {
         if (match.Success) {
             string rest = t1.Text.Substring(match.Length).TrimStart();
             if (string.IsNullOrEmpty(rest)) {
-                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1));
+                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1)) { IsFirstLineOfNumberedParagraph = true };
             } else {
                 WText prepend = new WText(rest, t1.properties);
-                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1).Prepend(prepend));
+                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1).Prepend(prepend)) { IsFirstLineOfNumberedParagraph = true };
             }
         }
         match = Regex.Match(t1.Text + " ", format + @"$");
         if (match.Success) {
             IInline second = unfiltered.Skip(1).FirstOrDefault();
-            if (second is not null && second is WText t2) {
+            if (second is not null && second is WTab) {
+                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
+            } else if (second is not null && second is WText t2) {
                 WText prepend = new WText(t2.Text.TrimStart(), t2.properties);
                 return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
             } else {
@@ -355,11 +357,11 @@ class Parser {
         if (e is not Paragraph p)
             return false;
         if (e.InnerText.StartsWith("(i) The ")) {
-            bool junk1 = DOCX.Formatting.IsFlushLeft(main, p);
+            bool junk1 = DOCX.Paragraphs.IsFlushLeft(main, p);
             string junk2 = NormalizeFirstLineOfBigLevel(e, format);
             bool junk3 = Regex.IsMatch(junk2, format);
         }
-        if (!DOCX.Formatting.IsFlushLeft(main, p))
+        if (!DOCX.Paragraphs.IsFlushLeft(main, p))
             return false;
         string text = NormalizeFirstLineOfBigLevel(e, format);
         if (Regex.IsMatch(text, format)) {
@@ -433,24 +435,30 @@ class Parser {
     private bool IsFirstLineOfCrossHeading(OpenXmlElement e) {
         if (e is not Paragraph p)
             return false;
-        if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p) && DOCX.Numbering.GetFormattedNumber(doc.MainDocumentPart, p) is null)
+        if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p) && DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is null)
             throw new Exception();
         if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p))
             return false;
-        if (DOCX.Numbering.GetFormattedNumber(doc.MainDocumentPart, p) is not null)
+        if (DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is not null)
             throw new Exception();
         if (IsFirstLineOfBigLevel(e, bigLevelNumberingFormats))
             return false;
         // StringValue indent = Util.GetLeftIndent(doc.MainDocumentPart, p);
         // System.Console.WriteLine("indent " + indent + " - " + e.InnerText);
         // bool value = indent is null || indent == "0";
-        bool value = DOCX.Formatting.IsFlushLeft(doc.MainDocumentPart, p);
-        if (e.InnerText == "Essential Factual Background" && !value)
+        bool value = DOCX.Paragraphs.IsFlushLeft(doc.MainDocumentPart, p);
+        if (e.InnerText == "Essential Factual Background" && !value) {
+            float? left = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties);
+            float? hanging = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties);
             throw new Exception();
+        }
         if (e.InnerText == "The Course of the Proceedings at Lewes Crown Court" && !value)
             throw new Exception();
-        if (e.InnerText == "Grounds of Appeal" && !value)
+        if (e.InnerText == "Grounds of Appeal" && !value) {
+            float? left = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties);
+            float? hanging = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties);
             throw new Exception();
+        }
         if (e.InnerText == "Discussion and Conclusions" && !value)
             throw new Exception();
         if (e.InnerText == "Disposal" && !value)
@@ -577,11 +585,11 @@ class Parser {
         if (e is Paragraph p) {
             i += 1;
             WLine line = new WLine(doc.MainDocumentPart, p);
-            IFormattedText number = DOCX.Numbering.GetFormattedNumber(main, p);
+            IFormattedText number = DOCX.Numbering2.GetFormattedNumber(main, p);
             if (number is null)
                 return new WDummyDivision(line);
             else
-                return new WNewNumberedParagraph(number, line);
+                return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
         }
         if (e is Table table) {
             i += 1;

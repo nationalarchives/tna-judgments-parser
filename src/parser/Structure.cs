@@ -43,17 +43,19 @@ internal class WNewNumberedParagraph : ILeaf {
         Contents = blocks;
     }
     internal WNewNumberedParagraph(IFormattedText number, IBlock block) {
+        // if (block is WLine line)
+        //     line.FirstLineIndent = null;
         Number = number;
         Contents = new List<IBlock>(1) { block };
     }
-    internal WNewNumberedParagraph(string number, RunProperties numProps, IEnumerable<IBlock> blocks) {
-        Number = new WText(number, numProps);
-        Contents = blocks;
-    }
-    internal WNewNumberedParagraph(string number, RunProperties numProps, IBlock block) {
-        Number = new WText(number, numProps);
-        Contents = new List<IBlock>(1) { block };
-    }
+    // internal WNewNumberedParagraph(string number, RunProperties numProps, IEnumerable<IBlock> blocks) {
+    //     Number = new WText(number, numProps);
+    //     Contents = blocks;
+    // }
+    // internal WNewNumberedParagraph(string number, RunProperties numProps, IBlock block) {
+    //     Number = new WText(number, numProps);
+    //     Contents = new List<IBlock>(1) { block };
+    // }
 
     public IFormattedText Number { get; internal set; }
 
@@ -84,9 +86,11 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
 
     internal WOldNumberedParagraph(string number, MainDocumentPart main, Paragraph paragraph) : base(main, paragraph) {
         Number = number;
+        IsFirstLineOfNumberedParagraph = true;
     }
     internal WOldNumberedParagraph(string number, WLine line) : base(line) {
         Number = number;
+        IsFirstLineOfNumberedParagraph = true;
     }
 
     public string Number { get; }
