@@ -8,32 +8,6 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
-internal class Blocks {
-
-    internal static IEnumerable<IBlock> ParseBlocks(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
-        return elements
-        .Where(e => !(e is SectionProperties))
-        .Where(e => !(e is BookmarkStart))
-        .Where(e => !(e is BookmarkEnd))
-        .Select<OpenXmlElement, IBlock>(e => {
-            if (e is Paragraph para)
-                return Parse1(main, para);
-            if (e is Table table)
-                return new WTable(main, table);
-            throw new System.Exception(e.GetType().ToString());
-        });
-    }
-
-    internal static IBlock Parse1(MainDocumentPart main, Paragraph paragraph) {
-        string number = DOCX.Numbering2.GetFormattedNumber(main, paragraph)?.Text;
-        if (number is null)
-            return new WLine(main, paragraph);
-        return new WOldNumberedParagraph(number, main, paragraph);
-    }
-
-
-}
-
 class WLine : ILine {
 
     private readonly MainDocumentPart main;
