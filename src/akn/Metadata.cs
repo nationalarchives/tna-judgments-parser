@@ -90,7 +90,9 @@ class Metadata {
                 XmlElement org = append(doc, references, "TLCOrganization");
                 org.SetAttribute("eId", court?.Code.ToLower());
                 org.SetAttribute("href", court?.URL);
-                org.SetAttribute("showAs", court?.Name);
+                org.SetAttribute("showAs", court?.LongName);
+                if (court?.ShortName is not null)
+                    org.SetAttribute("shortForm", court?.ShortName);
             }
 
             XmlElement tna = append(doc, references, "TLCOrganization");

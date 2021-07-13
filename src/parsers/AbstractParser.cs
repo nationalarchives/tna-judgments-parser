@@ -23,18 +23,23 @@ abstract class AbstractParser {
     protected AbstractParser(WordprocessingDocument doc) {
         this.doc = doc;
         main = doc.MainDocumentPart;
-        // var x = main.Document.part;
         elements = main.Document.Body.ChildElements;
     }
 
     protected Judgment Parse() {
-        IEnumerable<IBlock> coverPage = CoverPage();
         int save = i;
+        IEnumerable<IBlock> coverPage = CoverPage();
+        if (coverPage is null)
+            i = save;
+        save = i;
         IEnumerable<IBlock> header = Header();
         if (header is null)
             i = save;
         IEnumerable<IDecision> body = Body();
+        save = i;
         IEnumerable<IBlock> conclusions = Conclusions();
+        if (conclusions is null)
+            i = save;
         IEnumerable<IAnnex> annexes = Annexes();
         if (i != doc.MainDocumentPart.Document.Body.ChildElements.Count) {
             System.Console.WriteLine("parsing did not complete: " + i);
@@ -46,8 +51,10 @@ abstract class AbstractParser {
         if (header is not null)
             header = EnrichHeader(header);
         body = EnrichBody(body);
-        conclusions = EnrichConclusions(conclusions);
-        annexes = EnrichAnnexes(annexes);
+        if (conclusions is not null)
+            conclusions = EnrichConclusions(conclusions);
+        if (annexes is not null)
+            annexes = EnrichAnnexes(annexes);
         return new Judgment(doc) {
             CoverPage = coverPage,
             Header = header,
@@ -57,30 +64,8 @@ abstract class AbstractParser {
         };
     }
 
-    private Header GetFirstHeader() {
-        SectionProperties sectProps = main.Document.Body.ChildElements.OfType<SectionProperties>().Last();
-        TitlePage titlePage = sectProps.ChildElements.OfType<TitlePage>().FirstOrDefault();
-        bool hasFirstPage;
-        if (titlePage is null)
-            hasFirstPage = false;
-        else if (titlePage.Val is null)
-            hasFirstPage = true;
-        else
-            hasFirstPage = titlePage.Val.Value;
-        HeaderReference hr;
-        if (hasFirstPage)
-            hr = sectProps.ChildElements.OfType<HeaderReference>().Where(hr => hr.Type.Equals(HeaderFooterValues.First)).FirstOrDefault();
-        else
-            hr = sectProps.ChildElements.OfType<HeaderReference>().Where(hr => hr.Type.Equals(HeaderFooterValues.Default)).FirstOrDefault();
-        if (hr is null)
-            return null;
-        HeaderPart part = (HeaderPart) main.Parts.Where(part => part.RelationshipId == hr.Id).Select(pair => pair.OpenXmlPart).First();
-        return part.Header;
-    }
-
     private IEnumerable<IBlock> CoverPage() {
-        // Header header = main.HeaderParts.FirstOrDefault().Header;
-        Header header = GetFirstHeader();
+        Header header = DOCX.Headers.GetFirst(main);
         if (header is null)
             return null;
         return header.ChildElements
@@ -201,25 +186,26 @@ abstract class AbstractParser {
         return false;
     }
     
-    protected virtual List<IDecision> Body() {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
-        List<IDecision> decisions = new List<IDecision>();
-        while (i < elements.Count) {
-            OpenXmlElement e = elements.ElementAt(i);
-            if (IsFirstLineOfAnnex(e))
-                break;
-            int save = i;
-            IDecision decision = Decision();
-            if (decision is null) {
-                i = save;
-                break;
-            }
-            decisions.Add(decision);
-            // OpenXmlElement e = elements.ElementAt(i);
-            // Add(e, judgment.body);
-        }
-        return decisions;
-    }
+    protected abstract List<IDecision> Body();
+    // protected virtual List<IDecision> Body() {
+    //     OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
+    //     List<IDecision> decisions = new List<IDecision>();
+    //     while (i < elements.Count) {
+    //         OpenXmlElement e = elements.ElementAt(i);
+    //         if (IsFirstLineOfAnnex(e))
+    //             break;
+    //         int save = i;
+    //         IDecision decision = Decision();
+    //         if (decision is null) {
+    //             i = save;
+    //             break;
+    //         }
+    //         decisions.Add(decision);
+    //         // OpenXmlElement e = elements.ElementAt(i);
+    //         // Add(e, judgment.body);
+    //     }
+    //     return decisions;
+    // }
 
     // private IDecision Decision() {
     //     OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
@@ -263,7 +249,7 @@ abstract class AbstractParser {
     // }
 
 
-    private IDecision Decision() {
+    protected IDecision Decision() {
         OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         OpenXmlElement e = elements.ElementAt(i);
         // if (e is not Paragraph) {
@@ -371,7 +357,8 @@ abstract class AbstractParser {
 
     private WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
-        unfiltered = Augmentation.MergeRuns(unfiltered);
+        // unfiltered = Augmentation.MergeRuns(unfiltered);
+        unfiltered = Merger.Merge(unfiltered);
         IInline first = unfiltered.First();
         if (first is not WText t1)
             throw new Exception();
@@ -391,6 +378,8 @@ abstract class AbstractParser {
             if (second is not null && second is WText t2) {
                 WText prepend = new WText(t2.Text.TrimStart(), t2.properties);
                 return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
+            } else if (second is not null && second is WTab tab) {
+                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
             } else {
                 throw new Exception();
             }
@@ -688,7 +677,7 @@ abstract class AbstractParser {
 
     private readonly Regex annexPattern = new Regex(@"^\s*ANNEX\s+\d+\s*$");
 
-    private bool IsFirstLineOfAnnex(OpenXmlElement e) {
+    protected bool IsFirstLineOfAnnex(OpenXmlElement e) {
         return annexPattern.IsMatch(e.InnerText);
     }
 

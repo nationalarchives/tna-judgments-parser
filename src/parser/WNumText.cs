@@ -1,7 +1,9 @@
 
+using System.Collections.Generic;
 using System.Linq;
 
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.DOCX {
@@ -141,5 +143,41 @@ internal class WNumText : IFormattedText {
     }
 
 }
+
+internal class WNumber : WNumText, INumber {
+
+    private readonly MainDocumentPart main;
+    private readonly ParagraphProperties pProps;
+
+    public WNumber(MainDocumentPart main, string text, NumberingSymbolRunProperties props, ParagraphMarkRunProperties props2, Style style, ParagraphProperties pProps) : base(text, props, props2, style) {
+        this.main = main;
+        this.pProps = pProps;
+    }
+
+    public string LeftIndent {
+        get {
+            float? inches = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
+            if (inches is null)
+                return null;
+            return inches.Value.ToString("F2") + "in";
+        }
+    }
+    public string FirstLineIndent {
+        get {
+            float? inches = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, pProps);
+            if (inches is null)
+                return null;
+            if (inches == 0.0f)
+                return null;
+            return inches.Value.ToString("F2") + "in";
+        }
+    }
+
+    // public Dictionary<string, string> GetCSSStyles() {
+    //    return INumber.GetCSSStyles(this);
+    // }
+
+}
+
 
 }
