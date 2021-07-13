@@ -27,7 +27,6 @@ public class CSS {
         AddFontStyle(defaultParagraphStyle, defaultProperties);
         AddFontWeight(defaultParagraphStyle, defaultProperties);
         AddTextDecoration(defaultParagraphStyle, defaultProperties);
-        // AddVerticalAlign(defaultParagraphStyle, defaultProperties);
         AddFontFamily(defaultParagraphStyle, defaultProperties);
         AddFontSize(defaultParagraphStyle, defaultProperties);
         AddColor(defaultParagraphStyle, defaultProperties);
@@ -37,62 +36,18 @@ public class CSS {
         AddFontStyle(defaultCharacterStyle, defaultProperties);
         AddFontWeight(defaultCharacterStyle, defaultProperties);
         AddTextDecoration(defaultCharacterStyle, defaultProperties);
-        // AddVerticalAlign(defaultCharacterStyle, defaultProperties);
         AddFontFamily(defaultCharacterStyle, defaultProperties);
         AddFontSize(defaultCharacterStyle, defaultProperties);
         AddColor(defaultCharacterStyle, defaultProperties);
         AddBackgroundColor(defaultCharacterStyle, defaultProperties);
         selectors.Add("body", defaultProperties);
 
-        // if (defaultFont is not null && (defaultFont.Name is not null || defaultFont.SizePt is not null)) {
-        //     string selector = "body";   // this is unreliable
-        //     Dictionary<string, string> properties = new Dictionary<string, string>();
-        //     if (defaultFont.Name is not null) {
-        //         string value = defaultFont.Name.Contains(" ") ? "'" + defaultFont.Name + "'" : defaultFont.Name;
-        //         properties.Add("font-family", value);
-        //     }
-        //     if (defaultFont.SizePt is not null) {
-        //         properties.Add("font-size", defaultFont.SizePt + "pt");
-        //     }
-        //     selectors.Add(selector, properties);
-        // }
         IEnumerable<Style> paragraphStyles = styles.ChildElements
             .OfType<Style>()
             // .Where(e => e is Style).Cast<Style>()
             .Where(p => p.Type.Equals(StyleValues.Paragraph));
         foreach (Style style in paragraphStyles) {
             Dictionary<string, string> properties = new Dictionary<string, string>();
-            // if (style.StyleParagraphProperties?.Indentation?.Left is not null) {
-            //     string key = "margin-left";
-            //     float inches = float.Parse(style.StyleParagraphProperties.Indentation.Left.Value) / 1440f;
-            //     string value = inches.ToString("F2") + "in";
-            //     properties.Add(key, value);
-            // } else {
-            //     NumberingProperties nProps = style.StyleParagraphProperties?.NumberingProperties;
-            //     if (nProps is not null) {
-            //         Level level = Numbering.GetLevel(main, nProps);
-            //         if (level?.PreviousParagraphProperties?.Indentation?.Left is not null) {
-            //             string key = "margin-left";
-            //             float inches = float.Parse(level.PreviousParagraphProperties.Indentation.Left.Value) / 1440f;
-            //             string value = inches.ToString("F2") + "in";
-            //             properties.Add(key, value);
-            //         }
-            //     }
-            // }
-            
-            // if (style.StyleParagraphProperties?.Indentation?.Right is not null) {
-            //     string key = "margin-right";
-            //     float inches = float.Parse(style.StyleParagraphProperties.Indentation.Right.Value) / 1440f;
-            //     string value = inches.ToString("F2") + "in";
-            //     properties.Add(key, value);
-            // }
-            // if (style.StyleParagraphProperties?.Justification is not null) {
-            //     string key = "text-align";
-            //     string value = style.StyleParagraphProperties.Justification.Val.Equals(JustificationValues.Both)
-            //         ? "justify"
-            //         : style.StyleParagraphProperties.Justification.Val.Value.ToString().ToLower();
-            //         properties.Add(key, value);
-            // }
             AddAlignment(style, properties, main);
             AddMarginLeft(style, properties, main);
             AddMarginRight(style, properties);
@@ -104,16 +59,6 @@ public class CSS {
             AddFontSize(style, properties);
             AddColor(style, properties);
             AddBackgroundColor(style, properties);
-            // string fontName = Styles.GetFontName(main, style);
-            // if (fontName is not null) {
-            //     if (fontName.Contains(" "))
-            //         fontName = "'" + fontName + "'";
-            //     properties.Add("font-family", fontName);
-            // }
-            // float? fontSize = Styles.GetFontSizePt(main, style);
-            // if (fontSize is not null) {
-            //     properties.Add("font-size", fontSize.ToString() + "pt");
-            // }
             if (properties.Count > 0)
                 selectors.Add("." + style.StyleId.Value, properties);
         }
@@ -229,8 +174,6 @@ public class CSS {
     }
 
     internal static string ToFontFamily(string fontName) {
-        // if (fontName == "Arial (W1)")
-        //     return "Arial";
         if (fontName.EndsWith(" (W1)"))
             return fontName.Substring(0, fontName.Length - 5);
         if (fontName.Contains(" "))
