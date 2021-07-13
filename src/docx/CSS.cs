@@ -57,7 +57,8 @@ public class CSS {
         //     selectors.Add(selector, properties);
         // }
         IEnumerable<Style> paragraphStyles = styles.ChildElements
-            .Where(e => e is Style).Cast<Style>()
+            .OfType<Style>()
+            // .Where(e => e is Style).Cast<Style>()
             .Where(p => p.Type.Equals(StyleValues.Paragraph));
         foreach (Style style in paragraphStyles) {
             Dictionary<string, string> properties = new Dictionary<string, string>();
@@ -92,6 +93,7 @@ public class CSS {
             //         : style.StyleParagraphProperties.Justification.Val.Value.ToString().ToLower();
             //         properties.Add(key, value);
             // }
+            AddAlignment(style, properties, main);
             AddMarginLeft(style, properties, main);
             AddMarginRight(style, properties);
             AddFontStyle(style, properties);
@@ -132,6 +134,15 @@ public class CSS {
                 selectors.Add("." + style.StyleId.Value, properties);
         }
         return selectors;
+    }
+
+    private static void AddAlignment(Style style, Dictionary<string, string> css, MainDocumentPart main) {
+        Justification just = style.GetInheritedProperty(style => style.StyleParagraphProperties?.Justification);
+        if (just is null)
+            return;
+        string key = "text-align";
+        string value = (just.Val == JustificationValues.Both) ? "justify" : just.Val.Value.ToString().ToLower();
+        css[key] = value;
     }
 
     private static void AddMarginLeft(Style style, Dictionary<string, string> css, MainDocumentPart main) {
@@ -218,8 +229,10 @@ public class CSS {
     }
 
     internal static string ToFontFamily(string fontName) {
-        if (fontName == "Arial (W1)")
-            return "Arial";
+        // if (fontName == "Arial (W1)")
+        //     return "Arial";
+        if (fontName.EndsWith(" (W1)"))
+            return fontName.Substring(0, fontName.Length - 5);
         if (fontName.Contains(" "))
             return "'" + fontName + "'";
         return fontName;

@@ -40,7 +40,7 @@ class WLine : ILine {
     private readonly ParagraphProperties properties;
     private readonly IEnumerable<IInline> contents;
 
-    internal bool IsFirstLineOfNumberedParagraph { get; init; }
+    internal bool IsFirstLineOfNumberedParagraph { private get; init; }
 
     public WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
         this.main = main;
@@ -104,11 +104,14 @@ class WLine : ILine {
     }
     public string FirstLineIndent {
         get {
-            if (IsFirstLineOfNumberedParagraph)
-                return null;
             float? inches = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, properties);
             if (inches is null)
                 return null;
+            if (IsFirstLineOfNumberedParagraph && inches < 0.0f)
+                return null;
+            // when number and first line indent is 0, default indent is a tab
+            if (IsFirstLineOfNumberedParagraph && inches < 0.25f)
+                return "0.25in";
             return inches.Value.ToString("F2") + "in";
         }
     }

@@ -29,11 +29,15 @@ class EmploymentTribunalParser : AbstractParser {
 
 
     private readonly ISet<string> titles = new HashSet<string>() {
-        "JUDGMENT",
+        "JUDGMENT", "JUDGEMENT",
         "FINAL JUDGMENT",
-        "RESERVED JUDGMENT", "RESERVED JUDGMENT ON LIABILITY",
+        "RESERVED JUDGMENT",
+        "RESERVED JUDGMENT ON LIABILITY",
         "JUDGMENT OF THE EMPLOYMENT TRIBUNAL",
-        "JUDGMENT ON AN OPEN PRELIMINARY HEARING"
+        "JUDGMENT ON AN OPEN PRELIMINARY HEARING",
+        "JUDGMENT AT A PRELIMINARY HEARING",
+        "JUDGMENT ON RECONSIDERATION",
+        "LIABILITY JUDGMENT"
     };
 
     protected override List<IBlock> Header() {
@@ -44,12 +48,8 @@ class EmploymentTribunalParser : AbstractParser {
             if (titles.Contains(e.InnerText.Trim()))
                 break;
         }
-        if (i == elements.Count)
+        if (i == 50 || i == elements.Count)
             return null;
-        // OpenXmlElement next = elements.ElementAt(i + 1);
-        // if (next.InnerText.TrimStart().StartsWith()) {
-
-        // }
         return header;
     }
 
@@ -77,7 +77,7 @@ class EmploymentTribunalParser : AbstractParser {
         new Merger(),
         new CaseNo(),
         new EmploymentTribunalCourtType(),
-        new EmploymentTribunalDateOfJudgment(),
+        new DocDate(),
         new PartyEnricher(),
         new Judge(),
         new LawyerEnricher()
@@ -120,7 +120,7 @@ class EmploymentTribunalParser : AbstractParser {
         return Enricher.Enrich(conclusions, new List<Enricher>() {
             new RemoveTrailingWhitespace(),
             new Merger(),
-            new EmploymentTribunalDateOfJudgment()
+            new DocDate()
         });
         // Enricher removeTrailingTabs = new RemoveTrailingWhitespace();
         // Enricher dateOfJudgment = new EmploymentTribunalDateOfJudgment();
@@ -134,13 +134,22 @@ class EmploymentTribunalParser : AbstractParser {
 
 class EmploymentTribunalCourtType : Enricher {
 
+    HashSet<string> set = new HashSet<string>() {
+        "employment tribunals",
+        "employment tribunals (scotland)",
+        "the employment tribunal",
+        "the employment tribunal (scotland)",
+        "the employment tribunals",
+        "the employment tribunals (scotland)"
+    };
+
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (line.Count() == 0)
             return line;
         IInline first = line.First();
         if (first is WText text) {
-            string t = Regex.Replace(text.Text, @"\s+", " ").Trim();
-            if (t.Equals("Employment Tribunals", StringComparison.OrdinalIgnoreCase) || t.Equals("Employment Tribunals (Scotland)", StringComparison.OrdinalIgnoreCase) || t.Equals("The Employment Tribunal", StringComparison.OrdinalIgnoreCase)) {
+            string t = Regex.Replace(text.Text, @"\s+", " ").Trim().ToLower();
+            if (set.Contains(t)) {
                 WCourtType caseType = new WCourtType(text.Text, text.properties) { Code = Courts.EmploymentTribunal.Code };
                 return line.Skip(1).Prepend(caseType);
             }
@@ -148,8 +157,8 @@ class EmploymentTribunalCourtType : Enricher {
         if (first is WImageRef || first is WLineBreak) {
             IInline second = line.Skip(1).FirstOrDefault();
             if (second is WText text2) {
-                string t = Regex.Replace(text2.Text, @"\s+", " ").Trim();
-                if (t.Equals("Employment Tribunals", StringComparison.OrdinalIgnoreCase) || t.Equals("Employment Tribunals (Scotland)", StringComparison.OrdinalIgnoreCase) || t.Equals("The Employment Tribunal", StringComparison.OrdinalIgnoreCase)) {
+                string t = Regex.Replace(text2.Text, @"\s+", " ").Trim().ToLower();
+                if (set.Contains(t)) {
                     WCourtType caseType = new WCourtType(text2.Text, text2.properties) { Code = Courts.EmploymentTribunal.Code };
                     return line.Skip(2).Prepend(caseType).Prepend(first);
                 }
@@ -160,41 +169,41 @@ class EmploymentTribunalCourtType : Enricher {
 
 }
 
-class EmploymentTribunalDateOfJudgment : Enricher {
+// class EmploymentTribunalDateOfJudgment : Enricher {
 
-    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        if (line.Count() == 0)
-            return line;
-        string pattern = @"^\s*(Date of Judgment|On):\s+\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}\s*$";
-        Regex re = new Regex(pattern);
-        var junk = NormalizeLine(line);
-        if (!re.IsMatch(NormalizeLine(line)))
-            return line;
-        pattern = @"(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})";
-        re = new Regex(pattern);
-        return line.SelectMany<IInline, IInline>(i => {
-            if (i is WText text) {
-                Match match = re.Match(text.Text);
-                if (match.Success) {
-                    string before = text.Text.Substring(0, match.Index);
-                    string during = text.Text.Substring(match.Index, match.Length);
-                    CultureInfo culture = new CultureInfo("en-GB");
-                    DateTime date = DateTime.Parse(during, culture);
-                    string after = text.Text.Substring(match.Index + match.Length);
-                    return new List<IInline>() {
-                        new WText(before, text.properties),
-                        new WDocDate(new List<WText>(1) { new WText(during, text.properties) }, date),
-                        new WText(after, text.properties),
-                    };
-                } else {
-                    return new List<IInline>(1) { text };
-                }
-            } else {
-                return new List<IInline>(1) { i };
-            }
-        });
-    }
+//     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+//         if (line.Count() == 0)
+//             return line;
+//         string pattern = @"^\s*(Date of Judgment|On):\s+\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}\s*$";
+//         Regex re = new Regex(pattern);
+//         var junk = NormalizeLine(line);
+//         if (!re.IsMatch(NormalizeLine(line)))
+//             return line;
+//         pattern = @"(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})";
+//         re = new Regex(pattern);
+//         return line.SelectMany<IInline, IInline>(i => {
+//             if (i is WText text) {
+//                 Match match = re.Match(text.Text);
+//                 if (match.Success) {
+//                     string before = text.Text.Substring(0, match.Index);
+//                     string during = text.Text.Substring(match.Index, match.Length);
+//                     CultureInfo culture = new CultureInfo("en-GB");
+//                     DateTime date = DateTime.Parse(during, culture);
+//                     string after = text.Text.Substring(match.Index + match.Length);
+//                     return new List<IInline>() {
+//                         new WText(before, text.properties),
+//                         new WDocDate(new List<WText>(1) { new WText(during, text.properties) }, date),
+//                         new WText(after, text.properties),
+//                     };
+//                 } else {
+//                     return new List<IInline>(1) { text };
+//                 }
+//             } else {
+//                 return new List<IInline>(1) { i };
+//             }
+//         });
+//     }
 
-}
+// }
 
 }
