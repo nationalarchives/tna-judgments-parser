@@ -32,7 +32,9 @@ class Numbering2 {
         // var x = style.StyleRunProperties
         ParagraphMarkRunProperties strange = paragraph.ParagraphProperties.ParagraphMarkRunProperties;
 
-        return new WNumText(magic, level.NumberingSymbolRunProperties, strange, style);
+        // return new WNumText(magic, level.NumberingSymbolRunProperties, strange, style);
+        return new WNumber(main, magic, level.NumberingSymbolRunProperties, strange, style, paragraph.ParagraphProperties);
+
     }
 
     private static string Magic(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
@@ -69,7 +71,7 @@ class Numbering2 {
             int start = lvl.StartNumberingValue.Val ?? 1;
             int n = GetNForLevel(main, paragraph, numberingId, ilvl, start);
             string num = FormatN(n, lvl.NumberingFormat);
-            return "(" + num + ")";
+            return num + ")";
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
         if (match.Success) {
@@ -126,7 +128,7 @@ class Numbering2 {
             int start = lvl.StartNumberingValue?.Val ?? 1;
             int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
             string num = FormatN(n, lvl.NumberingFormat);
-            return "(" + num + ")";
+            return num + ")";
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
         if (match.Success) {

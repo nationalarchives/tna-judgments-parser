@@ -5,23 +5,95 @@ using System.Linq;
 
 namespace UK.Gov.Legislation.Judgments {
 
+// public enum CourtCode {
+//     EWCA,
+//     EWHC_Admin,
+//     EWHC_Admin_Planning,
+//     EWHC_Circuit_Commercial,
+//     ET
+// }
+
 public readonly struct Court {
 
     public string Code { get; init; }
-    public string Name { get; init; }
+    public string LongName { get; init; }
+    public string ShortName { get; init; }
     public string URL { get; init; }
 
 }
 
 public readonly struct Courts {
 
+    public static readonly Court CoA_Crim = new Court {
+        Code = "EWCA-Criminal",
+        LongName = "Court of Appeal Criminal Division",
+        // ShortName = "Court of Appeal Criminal Division",
+        URL = "https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division"
+    };
+    public static readonly Court CoA_Civil = new Court {
+        Code = "EWCA-Civil",
+        LongName = "Court of Appeal Civil Division",
+        // ShortName = "Court of Appeal Criminal Division",
+        URL = "https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division"
+    };
+    
+    // public static readonly Court EWHC = new Court {
+    //     Code = "EWHC",
+    //     Name = "Queen’s Bench Division of the High Court of Justice",
+    //     URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court"
+    // };
+    public static readonly Court EWHC_QBD = new Court {
+        Code = "EWHC-QBD",
+        LongName = "Queen's Bench Division of the High Court",
+        ShortName = "Queen's Bench Division",
+        URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court"
+    };
+    public static readonly Court EWHC_QBD_Admin = new Court {
+        Code = "EWHC-QBD-Admin",
+        LongName = "Queen's Bench Division of the High Court (Administrative Court)",
+        ShortName = "Administrative Court",
+        URL = "https://www.gov.uk/courts-tribunals/administrative-court"
+    };
+    public static readonly Court EWHC_QBD_Admin_Planning = new Court {
+        Code = "EWHC-QBD-Admin-Planning",
+        LongName = "Queen's Bench Division of the High Court (Planning Court)",
+        ShortName = "Planning Court",
+        URL = "https://www.gov.uk/courts-tribunals/planning-court"
+    };
+    public static readonly Court EWHC_QBD_Circuit_Commercial_Court = new Court {
+        Code = "EWHC-QBD-Circuit-Commercial",
+        LongName = "Queen's Bench Division of the High Court (Circuit Commercial Court)",
+        ShortName = "Circuit Commercial Court",
+        URL = "https://www.gov.uk/courts-tribunals/commercial-circuit-court"
+    };
+
+    public static readonly Court HC_Chancery_BusAndProp_BusinessList = new Court {
+        Code = "EWHC-Business",
+        LongName = "Business and Property Courts (Chancery Division) (Business List)",
+        ShortName = "Business List",
+        URL = "https://www.gov.uk/courts-tribunals/the-business-list"
+    };
+
+
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
-        Name = "Employment Tribunal",
+        LongName = "Employment Tribunal",
+        // ShortName = "Employment Tribunal",
         URL = "https://www.gov.uk/courts-tribunals/employment-tribunal"
     };
 
     public static readonly Court[] All = {
+        
+        CoA_Crim,
+        CoA_Civil,
+
+        EWHC_QBD,
+        EWHC_QBD_Admin,
+        EWHC_QBD_Admin_Planning,
+        EWHC_QBD_Circuit_Commercial_Court,
+
+        HC_Chancery_BusAndProp_BusinessList,
+
         EmploymentTribunal
     };
 

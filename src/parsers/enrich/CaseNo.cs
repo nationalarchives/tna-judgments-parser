@@ -9,9 +9,9 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class CaseNo : Enricher {
 
-    delegate IFormattedText Wrapper(string text, RunProperties props);
+    internal delegate IFormattedText Wrapper(string text, RunProperties props);
 
-    private static List<IInline> Split(WText text, Group group, Wrapper wrapper) {
+    internal static List<IInline> Split(WText text, Group group, Wrapper wrapper) {
         string before = text.Text.Substring(0, group.Index);
         string during = group.Value;
         string after = text.Text.Substring(group.Index + group.Length);
@@ -45,9 +45,39 @@ class CaseNo : Enricher {
     //     }
     //     return line;
     // }
-
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        Regex re = new Regex(@"^\s*Case\s+(No|Number):?\s*(\d+/\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
+        Regex re0 = new Regex(@"^\s*Case\s+(No|Number):?\s*(\d+[/\.]\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
+        Regex re1 = new Regex(@"^\s*Case\s+(No|Number):?\s*$", RegexOptions.IgnoreCase);
+        Regex re2 = new Regex(@"^\s*(\d+/\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
+        List<IInline> enriched = new List<IInline>();
+        for (int i = 0; i < line.Count(); i++) {
+            IInline inline = line.ElementAt(i);
+            if (inline is WText text) {
+                Match match = re0.Match(text.Text);
+                if (match.Success) {
+                    Group group = match.Groups[2];
+                    List<IInline> replacement = Split(text, group, (t, props) => new WCaseNo(t, props));
+                    enriched.AddRange(replacement);
+                    continue;
+                }
+                match = re2.Match(text.Text);
+                if (match.Success && i > 0) {
+                    IInline last = line.ElementAt(i - 1);
+                    if (last is WText text0 && re1.IsMatch(text0.Text)) {
+                        Group group = match.Groups[1];
+                        List<IInline> replacement = Split(text, group, (t, props) => new WCaseNo(t, props));
+                        enriched.AddRange(replacement);
+                        continue;
+                    }
+                }
+            }
+            enriched.Add(inline);
+        }
+        return enriched;
+    }
+
+    private IEnumerable<IInline> Enrich0(IEnumerable<IInline> line) {
+        Regex re = new Regex(@"^\s*Case\s+(No|Number):?\s*(\d+[/\.]\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
         return line.SelectMany(inline => {
             if (inline is WText text) {
                 Match match = re.Match(text.Text);

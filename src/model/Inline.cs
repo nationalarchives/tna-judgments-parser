@@ -61,46 +61,89 @@ interface IFormattedText : IInline {
         return true;
     }
 
-    Dictionary<string, string> GetCSSStyles() {
+    static Dictionary<string, string> GetCSSStyles(IFormattedText that) {
         Dictionary<string, string> styles = new Dictionary<string, string>();
-        if (this.Italic.HasValue)
-            styles.Add("font-style", this.Italic.Value ? "italic" : "normal");
-        if (this.Bold.HasValue)
-            styles.Add("font-weight", this.Bold.Value ? "bold" : "normal");
-        if (this.Underline.HasValue) {
-            if (!this.Underline.Value)
+        if (that.Italic.HasValue)
+            styles.Add("font-style", that.Italic.Value ? "italic" : "normal");
+        if (that.Bold.HasValue)
+            styles.Add("font-weight", that.Bold.Value ? "bold" : "normal");
+        if (that.Underline.HasValue) {
+            if (!that.Underline.Value)
                 styles.Add("display", "inline-block");
-            styles.Add("text-decoration", this.Underline.Value ? "underline" : "none");
+            styles.Add("text-decoration", that.Underline.Value ? "underline" : "none");
         }
-        if (this.SuperSub is not null) {
+        if (that.SuperSub is not null) {
             string key = "vertical-align";
-            string value = this.SuperSub switch {
+            string value = that.SuperSub switch {
                 SuperSubValues.Superscript => "super",
                 SuperSubValues.Subscript => "sub",
                 SuperSubValues.Baseline => "baseline",
                 _ => throw new Exception()
             };
             styles.Add(key, value);
-            if (this.SuperSub == SuperSubValues.Superscript || this.SuperSub == SuperSubValues.Subscript) {
+            if (that.SuperSub == SuperSubValues.Superscript || that.SuperSub == SuperSubValues.Subscript) {
                 styles.Add("font-size", "smaller");
             }
         }
-        if (this.FontName is not null) {
-            string value = DOCX.CSS.ToFontFamily(this.FontName);
+        if (that.FontName is not null) {
+            string value = DOCX.CSS.ToFontFamily(that.FontName);
             styles.Add("font-family", value);
         }
-        if (this.FontSizePt is not null) {
-            styles["font-size"] = this.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
+        if (that.FontSizePt is not null) {
+            styles["font-size"] = that.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
         }
-        if (this.FontColor is not null) {
-            string value = this.FontColor;
+        if (that.FontColor is not null) {
+            string value = that.FontColor;
             if (value == "auto")
                 value = "initial";
             styles.Add("color", value);
         }
-        if (this.BackgroundColor is not null)
-            styles.Add("background-color", this.BackgroundColor);
+        if (that.BackgroundColor is not null)
+            styles.Add("background-color", that.BackgroundColor);
         return styles;    
+    }
+
+    Dictionary<string, string> GetCSSStyles() {
+        return GetCSSStyles(this);
+        // Dictionary<string, string> styles = new Dictionary<string, string>();
+        // if (this.Italic.HasValue)
+        //     styles.Add("font-style", this.Italic.Value ? "italic" : "normal");
+        // if (this.Bold.HasValue)
+        //     styles.Add("font-weight", this.Bold.Value ? "bold" : "normal");
+        // if (this.Underline.HasValue) {
+        //     if (!this.Underline.Value)
+        //         styles.Add("display", "inline-block");
+        //     styles.Add("text-decoration", this.Underline.Value ? "underline" : "none");
+        // }
+        // if (this.SuperSub is not null) {
+        //     string key = "vertical-align";
+        //     string value = this.SuperSub switch {
+        //         SuperSubValues.Superscript => "super",
+        //         SuperSubValues.Subscript => "sub",
+        //         SuperSubValues.Baseline => "baseline",
+        //         _ => throw new Exception()
+        //     };
+        //     styles.Add(key, value);
+        //     if (this.SuperSub == SuperSubValues.Superscript || this.SuperSub == SuperSubValues.Subscript) {
+        //         styles.Add("font-size", "smaller");
+        //     }
+        // }
+        // if (this.FontName is not null) {
+        //     string value = DOCX.CSS.ToFontFamily(this.FontName);
+        //     styles.Add("font-family", value);
+        // }
+        // if (this.FontSizePt is not null) {
+        //     styles["font-size"] = this.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
+        // }
+        // if (this.FontColor is not null) {
+        //     string value = this.FontColor;
+        //     if (value == "auto")
+        //         value = "initial";
+        //     styles.Add("color", value);
+        // }
+        // if (this.BackgroundColor is not null)
+        //     styles.Add("background-color", this.BackgroundColor);
+        // return styles;    
     }
 
 }

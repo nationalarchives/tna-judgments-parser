@@ -75,6 +75,9 @@ abstract class Enricher {
             .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
         return string.Join("", texts).Trim();
     }
+    protected string NormalizeLine(ILine line) {
+        return NormalizeLine(line.Contents);
+    }
 
 }
 
