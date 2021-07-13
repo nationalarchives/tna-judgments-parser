@@ -12,19 +12,26 @@ class Builder {
 
     private readonly XmlDocument doc;
 
-    private Builder(IJudgment judgment) {
+    private Builder() {
         doc = new XmlDocument();
-        // doc.Schemas
+    }
 
-        XmlProcessingInstruction stylesheet = doc.CreateProcessingInstruction("xml-stylesheet", "href='../judgment.xsl' type='text/xsl'");
-        doc.AppendChild(stylesheet);
+    private XmlElement CreateElement(string name) {
+        return doc.CreateElement(name, ns);
+    }
+    private XmlElement CreateAndAppend(string name, XmlNode parent) {
+        XmlElement e = CreateElement(name);
+        parent.AppendChild(e);
+        return e;
+    }
 
-        XmlElement akomaNtoso = doc.CreateElement("akomaNtoso", ns);
-        doc.AppendChild(akomaNtoso);
+    private void Build1(IJudgment judgment) {
 
-        XmlElement main = doc.CreateElement("judgment", ns);
+        XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
+
+        XmlElement main = CreateAndAppend("judgment", akomaNtoso);
         main.SetAttribute("name", "judgment");
-        akomaNtoso.AppendChild(main);
+
         XmlElement meta = Metadata.make(doc, judgment, judgment.Metadata, true);
         main.AppendChild(meta);
 
@@ -32,20 +39,13 @@ class Builder {
         AddHeader(main, judgment);
         AddBody(main, judgment);
         AddConclusions(main, judgment.Conclusions);
-        Annexes(main, judgment);
-    }
-
-    private XmlElement CreateElement(string name) {
-        return doc.CreateElement(name, ns);
-    }
-    private XmlElement CreateAndAppend(string name, XmlElement parent) {
-        XmlElement e = CreateElement(name);
-        parent.AppendChild(e);
-        return e;
+        AddAnnexes(main, judgment);
     }
 
     private void AddCoverPage(XmlElement main, IJudgment judgment) {
         if (judgment.CoverPage is null)
+            return;
+        if (judgment.CoverPage.Count() == 0)
             return;
         XmlElement container = doc.CreateElement("coverPage", ns);
         main.AppendChild(container);
@@ -62,8 +62,89 @@ class Builder {
         XmlElement body = doc.CreateElement("judgmentBody", ns);
         main.AppendChild(body);
         foreach (IDecision decision in judgment.Body)
-            Decision(body,decision);
+            AddDecision(body,decision);
     }
+
+    private void AddConclusions(XmlElement main, IEnumerable<IBlock> conclusions) {
+        if (conclusions is null)
+            return;
+        if (conclusions.Count() == 0)
+            return;
+        XmlElement container = doc.CreateElement("conclusions", ns);
+        main.AppendChild(container);
+        blocks(container, conclusions);
+    }
+
+    private void AddAnnexes(XmlElement main, IJudgment judgment) {
+        if (judgment.Annexes is null)
+            return;
+        if (judgment.Annexes.Count() == 0)
+            return;
+        XmlElement attachments = doc.CreateElement("attachments", ns);
+        main.AppendChild(attachments);
+        foreach (var annex in judgment.Annexes.Select((value, i) => new { i, value }))
+            AddAnnex(attachments, judgment, annex.value, annex.i + 1);
+    }
+
+    private void AddAnnex(XmlElement attachments, IJudgment judgment, IAnnex annex, int n) {
+        XmlElement attachment = doc.CreateElement("attachment", ns);
+        attachments.AppendChild(attachment);
+        XmlElement main = doc.CreateElement("doc", ns);
+        main.SetAttribute("name", "annex");
+        attachment.AppendChild(main);
+
+        AttachmentMetadata metadata = new AttachmentMetadata(judgment.Metadata, n);
+        XmlElement meta = Metadata.make(doc, null, metadata, false);
+        main.AppendChild(meta);
+
+        XmlElement body = doc.CreateElement("mainBody", ns);
+        main.AppendChild(body);
+        p(body, annex.Number);
+        blocks(body, annex.Contents);
+    }
+
+    /* structure */
+
+    private void AddDecision(XmlElement body, IDecision model) {
+        XmlElement decision = doc.CreateElement("decision", ns);
+        body.AppendChild(decision);
+        if (model.Author is not null) {
+            XmlElement wrapper = doc.CreateElement("level", ns);
+            decision.AppendChild(wrapper);
+            wrapper.SetAttribute("class", "author");
+            XmlElement content = doc.CreateElement("content", ns);
+            wrapper.AppendChild(content);
+            Block(content, model.Author, "p");
+        }
+        AddDivisions(decision, model.Contents);
+    }
+
+    private void AddDivisions(XmlElement parent, IEnumerable<IDivision> divisions) {
+        foreach (IDivision division in divisions)
+            AddDivision(parent, division);
+    }
+
+    private void AddDivision(XmlElement parent, IDivision div) {
+        string name = (div is ILeaf && div.Number is not null) ? "paragraph" : "level";
+        XmlElement level = doc.CreateElement(name, ns);
+        parent.AppendChild(level);
+        if (div.Number is not null) {
+            XmlElement num = AddAndWrapText(level, "num", div.Number);
+        }
+        if (div.Heading is not null)
+            Block(level, div.Heading, "heading");
+        if (div is IBranch branch) {
+            AddDivisions(level, branch.Children);
+        } else if (div is ILeaf leaf) {
+            XmlElement content = doc.CreateElement("content", ns);
+            level.AppendChild(content);
+            blocks(content, leaf.Contents);
+        } else {
+            throw new Exception();
+        }
+    }
+
+    /* blocks */
 
     private void blocks(XmlElement parent, IEnumerable<IBlock> blocks) {
         foreach (IBlock block in blocks) {
@@ -274,94 +355,11 @@ class Builder {
         parent.AppendChild(tab);
     }
 
-    private void Decision(XmlElement body, IDecision model) {
-        XmlElement decision = doc.CreateElement("decision", ns);
-        body.AppendChild(decision);
-        if (model.Author is not null) {
-            XmlElement wrapper = doc.CreateElement("level", ns);
-            decision.AppendChild(wrapper);
-            wrapper.SetAttribute("class", "author");
-            XmlElement content = doc.CreateElement("content", ns);
-            wrapper.AppendChild(content);
-            Block(content, model.Author, "p");
-        }
-        Divisions(decision, model.Contents);
-    }
-
-    private void Divisions(XmlElement parent, IEnumerable<IDivision> divisions) {
-        foreach (IDivision division in divisions)
-            Division(parent, division);
-    }
-
-    private void Division(XmlElement parent, IDivision div) {
-        string name = (div is ILeaf && div.Number is not null) ? "paragraph" : "level";
-        XmlElement level = doc.CreateElement(name, ns);
-        parent.AppendChild(level);
-        // level.SetAttribute("class", div.GetType().Name);
-        if (div.Number is not null) {
-            XmlElement num = AddAndWrapText(level, "num", div.Number);
-            // if ()
-            // XmlElement num = doc.CreateElement("num", ns);
-            // level.AppendChild(num);
-            // AddText(num, div.Number);
-        }
-        if (div.Heading is not null)
-            Block(level, div.Heading, "heading");
-        if (div is IBranch branch) {
-            Divisions(level, branch.Children);
-        } else if (div is ILeaf leaf) {
-            XmlElement content = doc.CreateElement("content", ns);
-            level.AppendChild(content);
-            blocks(content, leaf.Contents);
-        } else {
-            throw new Exception();
-        }
-    }
-
-    /* conclusions */
-
-    private void AddConclusions(XmlElement main, IEnumerable<IBlock> conclusions) {
-        if (conclusions is null)
-            return;
-        if (conclusions.Count() == 0)
-            return;
-        XmlElement container = doc.CreateElement("conclusions", ns);
-        main.AppendChild(container);
-        blocks(container, conclusions);
-    }
-
-    /* annexes */
-
-    private void Annexes(XmlElement main, IJudgment judgment) {
-        if (judgment.Annexes.Count() == 0)
-            return;
-        XmlElement attachments = doc.CreateElement("attachments", ns);
-        main.AppendChild(attachments);
-        foreach (var annex in judgment.Annexes.Select((value, i) => new { i, value }))
-            Annex(attachments, judgment, annex.value, annex.i + 1);
-    }
-
-    private void Annex(XmlElement attachments, IJudgment judgment, IAnnex annex, int n) {
-        XmlElement attachment = doc.CreateElement("attachment", ns);
-        attachments.AppendChild(attachment);
-        XmlElement main = doc.CreateElement("doc", ns);
-        main.SetAttribute("name", "annex");
-        attachment.AppendChild(main);
-
-        AttachmentMetadata metadata = new AttachmentMetadata(judgment.Metadata, n);
-        XmlElement meta = Metadata.make(doc, null, metadata, false);
-        main.AppendChild(meta);
-
-        XmlElement body = doc.CreateElement("mainBody", ns);
-        main.AppendChild(body);
-        p(body, annex.Number);
-        blocks(body, annex.Contents);
-    }
-
     /* public */
 
     public static XmlDocument Build(UK.Gov.Legislation.Judgments.IJudgment judgment) {
-        Builder akn = new Builder(judgment);
+        Builder akn = new Builder();
+        akn.Build1(judgment);
         return akn.doc;
     }
 
