@@ -657,11 +657,17 @@ abstract class AbstractParser {
         if (e is Paragraph p) {
             i += 1;
             WLine line = new WLine(doc.MainDocumentPart, p);
-            IFormattedText number = DOCX.Numbering2.GetFormattedNumber(main, p);
-            if (number is null)
+            // IFormattedText number = DOCX.Numbering2.GetFormattedNumber1(main, p);
+            DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
+            if (info is null)
                 return new WDummyDivision(line);
-            else
+            else {
+                ParagraphMarkRunProperties pMarkProps = p.ParagraphProperties.ParagraphMarkRunProperties;
+                string styleId = p.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
+                Style style = styleId is null ? null : DOCX.Styles.GetStyle(main, styleId);
+                DOCX.WNumber number = new DOCX.WNumber(main, info.Value.Number, info.Value.Props, pMarkProps, style, p.ParagraphProperties);
                 return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+            }
         }
         if (e is Table table) {
             i += 1;

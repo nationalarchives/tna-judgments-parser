@@ -31,16 +31,9 @@ class Relationships {
         return part.Uri;
     }
 
-    // public static Uri GetUriForRelationshipId(MainDocumentPart main, StringValue relationshipId) {
-    //     ExternalRelationship exRel = main.ExternalRelationships.Where(rel => rel.Id == relationshipId).First();
-    //     return exRel.Uri;
-    // }
-
     public static Uri GetUriForImage(HeaderPart header, StringValue relationshipId) {
         OpenXmlPart part = header.Parts.Where(part => part.RelationshipId == relationshipId.Value).First().OpenXmlPart;
         return part.Uri;
-        // ExternalRelationship exRel = header.ExternalRelationships.Where(rel => rel.Id == relationshipId).First();
-        // return exRel.Uri;
     }
 
     public static Uri GetUriForHyperlink(OpenXmlElement e, StringValue relationshipId) {
@@ -56,6 +49,7 @@ class Relationships {
             throw new Exception();
         return relationships.Where(r => r.Id == relationshipId).First().Uri;
     }
+
     public static Uri GetUriForHyperlink(Hyperlink link) {
         return GetUriForHyperlink(link, link.Id);
     }

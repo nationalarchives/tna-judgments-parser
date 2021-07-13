@@ -162,9 +162,10 @@ class Fields {
                 root = root.Parent;
             BookmarkStart bkmk = root.Descendants<BookmarkStart>().Where(b => b.Name == rf).First();
             Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
-            IFormattedText refNumber = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
+            // IFormattedText refNumber = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
+            DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
             RunProperties rProps = first is Run run ? run.RunProperties : null;
-            WText numberInThisFormat = new WText(refNumber.Text, rProps);
+            WText numberInThisFormat = new WText(info.Value.Number, rProps);
             return new List<IInline>(1) { numberInThisFormat };
         }
         throw new Exception();

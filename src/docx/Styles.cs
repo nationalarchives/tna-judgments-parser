@@ -63,34 +63,6 @@ static class Styles {
             .FirstOrDefault();
     }
 
-    // internal delegate string? StylePropertyGetter(Style style);
-
-    // private static string? GetStyleValue(MainDocumentPart main, Style style, StylePropertyGetter getValue) {
-    //     string? size = getValue(style);
-    //     if (size is not null)
-    //         return size;
-    //     string? parentId = style.BasedOn?.Val?.Value;
-    //     if (parentId is null)
-    //         return null;
-    //     Style? parent = GetStyle(main, parentId);
-    //     if (parent is null)
-    //         return null;
-    //     return GetStyleValue(main, parent, getValue);
-    // }
-    // internal static string? GetStyleValue(Style style, StylePropertyGetter getValue) {
-    //     string? size = getValue(style);
-    //     if (size is not null)
-    //         return size;
-    //     string? parentId = style.BasedOn?.Val?.Value;
-    //     if (parentId is null)
-    //         return null;
-    //     DocumentFormat.OpenXml.Wordprocessing.Styles root = (DocumentFormat.OpenXml.Wordprocessing.Styles) style.Ancestors<OpenXmlPartRootElement>().First();
-    //     Style? parent = GetStyle(root, parentId);
-    //     if (parent is null)
-    //         return null;
-    //     return GetStyleValue(parent, getValue);
-    // }
-
     internal delegate T? StylePropertyGetter<T>(Style style);
 
     internal static T? GetStyleProperty<T>(Style? style, StylePropertyGetter<T> getValue) {
@@ -107,32 +79,9 @@ static class Styles {
         return GetStyleProperty(parent, getValue);
     }
 
-    public static T? GetInheritedProperty<T>(this Style style, StylePropertyGetter<T> propGetter) {
-        return GetStyleProperty(style, propGetter);
+    public static T? GetInheritedProperty<T>(this Style style, StylePropertyGetter<T> getValue) {
+        return GetStyleProperty(style, getValue);
     }
-
-    // public static StringValue? GetFontName(MainDocumentPart main, Style style) {
-    //     return GetStyleProperty(style, style => style.StyleRunProperties?.RunFonts?.Ascii);
-    // }
-
-    // private static StringValue? GetFontSizeHalfPt(MainDocumentPart main, Style style) {
-    //     return GetStyleProperty(style, style => style.StyleRunProperties?.FontSize?.Val);
-    // }
-    // public static float? GetFontSizePt(MainDocumentPart main, Style style) {
-    //     string? halfPoints = GetFontSizeHalfPt(main, style);
-    //     if (halfPoints is null)
-    //         return null;
-    //     return float.Parse(halfPoints) / 2f;
-    // }
-
-    // public static FontInfo? GetDefaultFont(MainDocumentPart main) {
-    //     Style? style = GetDefaultParagraphStyle(main);
-    //     if (style is null)
-    //         return null;
-    //     string? name = GetFontName(main, style);
-    //     float? sizePt = GetFontSizePt(main, style);
-    //     return new FontInfo() { Name = name, SizePt = sizePt };
-    // }
 
 }
 
