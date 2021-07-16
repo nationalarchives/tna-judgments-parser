@@ -153,7 +153,10 @@ static class Paragraphs {
     }
 
     public static bool IsFlushLeft(MainDocumentPart main, Paragraph para) {
-        if (para.ChildElements.OfType<Run>().FirstOrDefault()?.ChildElements.FirstOrDefault() is TabChar)
+        // if (para.InnerText.StartsWith("Thus, the Judge specifically stated")) {
+        //     System.Console.WriteLine();
+        // }
+        if (para.ChildElements.OfType<Run>().FirstOrDefault()?.ChildElements.Where(e => e is not RunProperties).Where(e => e is not LastRenderedPageBreak).FirstOrDefault() is TabChar)
             return false;
         if (para.ParagraphProperties is null)
             return true;
