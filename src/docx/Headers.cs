@@ -9,7 +9,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 class Headers {
 
    internal static Header GetFirst(MainDocumentPart main) {
-        SectionProperties sProps = main.Document.Body.ChildElements.OfType<SectionProperties>().First();
+        SectionProperties sProps = main.Document.Body.Descendants<SectionProperties>().First();
         TitlePage titlePage = sProps.ChildElements.OfType<TitlePage>().FirstOrDefault();
         bool hasFirstPage;
         if (titlePage is null)
