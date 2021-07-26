@@ -21,6 +21,8 @@ class Inline {
                 continue;
             if (e is BookmarkStart || e is BookmarkEnd)
                 continue;
+            if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkEnd")
+                continue;
             if (Fields.IsFieldStart(e)) {
                 if (withinField is not null)
                     throw new Exception();
@@ -63,6 +65,14 @@ class Inline {
                 }
                 continue;
             }
+            if (e is InsertedRun iRun) {    // EWCA/Civ/2004/1580
+                var children = ParseRuns(main, e.ChildElements);
+                parsed.AddRange(children);
+                continue;
+            }
+            if (e is DeletedRun dRun) {    // EWCA/Civ/2004/1580
+                continue;
+            }
             if (e is OpenXmlUnknownElement) {
                 if (withinField is not null)
                     throw new Exception();
@@ -71,6 +81,10 @@ class Inline {
                     parsed.AddRange(children);
                     continue;
                 }
+                if (e.LocalName == "smartTagPr")
+                    continue;
+                if (e.LocalName == "proofErr")   // EWCA/Civ/2017/320
+                    continue;
                 if (e.LocalName == "r") {
                     Run run2 = new Run(e.OuterXml);
                     e.InsertAfterSelf(run2);
@@ -112,12 +126,14 @@ class Inline {
             return new WLineBreak(br);
         if (e is NoBreakHyphen hyphen)
             return new WText(hyphen, run.RunProperties);
+        if (e is SoftHyphen soft)
+            return null;
         if (e is FootnoteReference fn)
             return new WFootnote(main, fn);
         if (e is Drawing draw)
             return new WImageRef(main, draw);
         if (e is Picture pict)
-            return new WImageRef(main, pict);
+            return WImageRef.Make(main, pict);
         if (e.LocalName == "object") {
             DocumentFormat.OpenXml.Vml.Shape shape = e.ChildElements.OfType<DocumentFormat.OpenXml.Vml.Shape>().FirstOrDefault();
             if (shape is not null)
@@ -138,10 +154,13 @@ class Inline {
             AlternateContentFallback fallback = (AlternateContentFallback) altContent.ChildElements.ElementAt(1);
             if (fallback.FirstChild is Picture pict2) {
                 if (pict2.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
-                    return new WImageRef(main, pict2);
+                    return WImageRef.Make(main, pict2);
                 if (pict2.ChildElements.Count == 1 && pict2.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict2.FirstChild.LocalName == "line")
                     return null;
             }
+        }
+        if (e is SymbolChar sym) {  // EWCA/Civ/2013/470
+            return SpecialCharacter.Make(sym, run.RunProperties);
         }
         throw new Exception(e.OuterXml);
     }

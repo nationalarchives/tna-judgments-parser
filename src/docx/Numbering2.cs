@@ -33,83 +33,6 @@ class Numbering2 {
         return new NumberInfo() { Number = magic, Props = level.NumberingSymbolRunProperties };
     }
 
-    // public static IFormattedText GetFormattedNumber1(MainDocumentPart main, Paragraph paragraph) {
-    //     NumberingProperties props = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
-    //     if (props is null)
-    //         return null;
-    //     NumberingId id = props.NumberingId;
-    //     if (id?.Val?.Value is null)
-    //         return null;
-    //     // there may be no numbering instance that corresponds to this id, in which case Magic2 returns null
-    //     int ilvl = props.NumberingLevelReference?.Val?.Value ?? 0;
-    //     Level level = Numbering.GetLevel(main, id, ilvl);
-    //     string magic = Magic2(main, paragraph, id.Val.Value, ilvl);
-    //     if (magic is null)
-    //         return null;
-
-    //     string styleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
-    //     Style style = styleId is null ? null : Styles.GetStyle(main, styleId);
-
-    //     // var x = style.StyleRunProperties
-    //     ParagraphMarkRunProperties strange = paragraph.ParagraphProperties.ParagraphMarkRunProperties;
-
-    //     // return new WNumText(magic, level.NumberingSymbolRunProperties, strange, style);
-    //     return new WNumber(main, magic, level.NumberingSymbolRunProperties, strange, style, paragraph.ParagraphProperties);
-
-    // }
-
-    // private static string Magic(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
-    //     Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
-    //     LevelText format = baseLevel.LevelText;
-    //     if (format.Val.Value == "-") {
-    //         int baseStart = baseLevel.StartNumberingValue.Val ?? 1;
-    //         int n = GetNForLevel(main, paragraph, numberingId, baseIlvl, baseStart);
-    //         string num = FormatN(n, baseLevel.NumberingFormat);
-    //         return num;
-    //     }
-    //     Match match = Regex.Match(format.Val.Value, "^%(\\d)\\.$");
-    //     if (match.Success) {
-    //         int ilvl = int.Parse(match.Groups[1].Value) - 1;
-    //         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-    //         int start = lvl.StartNumberingValue.Val ?? 1;
-    //         int n = GetNForLevel(main, paragraph, numberingId, ilvl, start);
-    //         string num = FormatN(n, lvl.NumberingFormat);
-    //         return num + ".";
-    //     }
-    //     match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)$");
-    //     if (match.Success) {
-    //         int ilvl = int.Parse(match.Groups[1].Value) - 1;
-    //         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-    //         int start = lvl.StartNumberingValue.Val ?? 1;
-    //         int n = GetNForLevel(main, paragraph, numberingId, ilvl, start);
-    //         string num = FormatN(n, lvl.NumberingFormat);
-    //         return "(" + num + ")";
-    //     }
-    //     match = Regex.Match(format.Val.Value, "%(\\d)\\)$");
-    //     if (match.Success) {
-    //         int ilvl = int.Parse(match.Groups[1].Value) - 1;
-    //         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-    //         int start = lvl.StartNumberingValue.Val ?? 1;
-    //         int n = GetNForLevel(main, paragraph, numberingId, ilvl, start);
-    //         string num = FormatN(n, lvl.NumberingFormat);
-    //         return num + ")";
-    //     }
-    //     match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
-    //     if (match.Success) {
-    //         int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-    //         int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-    //         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-    //         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-    //         int start1 = lvl1.StartNumberingValue.Val ?? 1;
-    //         int start2 = lvl2.StartNumberingValue.Val ?? 1;
-    //         int n1 = GetNForLevel(main, paragraph, numberingId, ilvl1, start1);
-    //         int n2 = GetNForLevel(main, paragraph, numberingId, ilvl2, start2);
-    //         string num1 = FormatN(n1, lvl1.NumberingFormat);
-    //         string num2 = FormatN(n2, lvl2.NumberingFormat);
-    //         return num1 + "." + num2 + ".";
-    //     }
-    //     throw new Exception("unsupported level text: " + format.Val.Value);
-    // }
     private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
         NumberingInstance instance = Numbering.GetNumbering(main, numberingId);
         if (instance is null)
@@ -118,13 +41,23 @@ class Numbering2 {
         Int32Value abstractNumberId = abstractNum.AbstractNumberId;
         Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
         LevelText format = baseLevel.LevelText;
-        if (format.Val.Value == "-") {
-            int baseStart = baseLevel.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, baseIlvl, baseStart);
-            string num = FormatN(n, baseLevel.NumberingFormat);
+
+        // if (format.Val.Value == "-") {
+        //     int baseStart = baseLevel.StartNumberingValue?.Val ?? 1;
+        //     int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, baseIlvl, baseStart);
+        //     string num = FormatN(n, baseLevel.NumberingFormat);
+        //     return num;
+        // }
+        Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
+        if (match.Success) {
+            int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            int start = lvl.StartNumberingValue?.Val ?? 1;
+            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            string num = FormatN(n, lvl.NumberingFormat);
             return num;
         }
-        Match match = Regex.Match(format.Val.Value, "^%(\\d)\\.$");
+        match = Regex.Match(format.Val.Value, "^%(\\d)\\.$");
         if (match.Success) {
             int ilvl = int.Parse(match.Groups[1].Value) - 1;
             Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
@@ -226,6 +159,22 @@ class Numbering2 {
             string num3 = FormatN(n3, lvl3.NumberingFormat);
             return num1 + "." + num2 + "." + num3;
         }
+        if (baseLevel.NumberingFormat.Val == NumberFormatValues.Bullet) {
+            if (format.Val.Value == "-")
+                return "-";
+            if (format.Val.Value == ".")    // EWHC/QB/2018/2066
+                return ".";
+            if (format.Val.Value == "o")    // EWCA/Civ/2013/923.
+                return "◦";
+            if (format.Val.Value == "–")    // EWCA/Civ/2013/1015
+                return "–"; // en dash ??
+            if (format.Val.Value == "")    // EWHC/QB/2018/2066
+                return "•";
+            if (format.Val.Value == "")    // EWCA/Civ/2013/11
+                return "•";
+        }
+        if (format.Val.Value == "")     // EWHC/QB/2018/2066
+            return "";
         throw new Exception("unsupported level text: " + format.Val.Value);
     }
 
@@ -234,10 +183,14 @@ class Numbering2 {
             return n.ToString();
         if (format.Val == NumberFormatValues.LowerLetter)
             return Util.ToLowerLetter(n);
+        if (format.Val == NumberFormatValues.UpperLetter)
+            return Util.ToUpperLetter(n);
         if (format.Val == NumberFormatValues.LowerRoman)
             return Util.ToLowerRoman(n);
-        if (format.Val == NumberFormatValues.Bullet)
-            return "•";
+        if (format.Val == NumberFormatValues.UpperRoman)
+            return Util.ToUpperRoman(n);
+        // if (format.Val == NumberFormatValues.Bullet)
+        //     return "•";
         throw new Exception("unsupported numbering format: " + format.Val.ToString());
     }
 

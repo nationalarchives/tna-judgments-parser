@@ -158,21 +158,37 @@ class CourtType : Enricher {
         return enriched;
     }
 
-    Regex ewca_crim = new Regex("^IN THE (COURT OF APPEAL \\(CRIMINAL DIVISION\\))$", RegexOptions.IgnoreCase);
-    Regex ewca_civil = new Regex("^IN THE (COURT OF APPEAL \\(CIVIL DIVISION\\))$", RegexOptions.IgnoreCase);
+struct Combo1 {
+
+    public Regex Re { get; init; }
+    public Court Court { get; init; }
+
+    internal static Combo1[] combos = new Combo1[] {
+        new Combo1 {
+            Re = new Regex("^IN THE (COURT OF APPEAL \\(CRIMINAL DIVISION\\))$", RegexOptions.IgnoreCase),
+            Court = Courts.CoA_Crim
+        },
+        new Combo1 {
+            Re = new Regex("^IN THE (COURT OF APPEAL \\(CIVIL DIVISION\\))$", RegexOptions.IgnoreCase),
+            Court = Courts.CoA_Civil
+        },
+        new Combo1 {
+            Re = new Regex("^IN THE (COURT OF PROTECTION)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWCOP
+        },
+    };
+
+}
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         return line.SelectMany(inline => {
             if (inline is WText text) {
-                Match match = ewca_crim.Match(text.Text);
-                if (match.Success) {
-                    Group group = match.Groups[1];
-                    return CaseNo.Split(text, group, (t, props) => new WCourtType(t, props) { Code = Courts.CoA_Crim.Code });
-                }
-                match = ewca_civil.Match(text.Text);
-                if (match.Success) {
-                    Group group = match.Groups[1];
-                    return CaseNo.Split(text, group, (t, props) => new WCourtType(t, props) { Code = Courts.CoA_Civil.Code });
+                foreach (Combo1 combo in Combo1.combos) {
+                    Match match = combo.Re.Match(text.Text);
+                    if (match.Success) {
+                        Group group = match.Groups[1];
+                        return CaseNo.Split(text, group, (t, props) => new WCourtType(t, props) { Code = combo.Court.Code });
+                    }
                 }
             }
             return new List<IInline>(1) { inline };

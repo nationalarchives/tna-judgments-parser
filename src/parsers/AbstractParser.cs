@@ -33,8 +33,10 @@ abstract class AbstractParser {
             i = save;
         save = i;
         IEnumerable<IBlock> header = Header();
-        if (header is null)
+        if (header is null) {
+            header = new List<IBlock>();
             i = save;
+        }
         IEnumerable<IDecision> body = Body();
         save = i;
         IEnumerable<IBlock> conclusions = Conclusions();
@@ -68,15 +70,7 @@ abstract class AbstractParser {
         Header header = DOCX.Headers.GetFirst(main);
         if (header is null)
             return null;
-        return header.ChildElements
-            .Where(e => e is Paragraph || e is Table)
-            .Select(e => {
-                if (e is Paragraph para)
-                    return Blocks.Parse1(main, para);
-                if (e is Table table)
-                    return new WTable(main, table);
-                throw new Exception();
-            });
+        return Blocks.ParseBlocks(main, header.ChildElements);
     }
 
     protected abstract List<IBlock> Header();
@@ -154,129 +148,82 @@ abstract class AbstractParser {
 
 
     private static readonly string[] titledJudgeNamePatterns = {
-        @"^MRS? JUSTICE [A-Z]+$",
+        @"^MRS?\.? JUSTICE( [A-Z]+)+$",
         @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?$",
         @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+$",
         @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge$"
     };
-    IEnumerable<Regex> titledJudgeNameRegexes = titledJudgeNamePatterns
+    private IEnumerable<Regex> titledJudgeNameRegexes = titledJudgeNamePatterns
         .Select(p => new Regex(p));
 
-    private bool IsTitledJudgeName(OpenXmlElement e) {
+    protected bool IsTitledJudgeName(OpenXmlElement e) {
         if (e is not Paragraph)
             return false;
         return IsTitledJudgeName(e.InnerText);
     }
-    private bool IsTitledJudgeName(string text) {
+    protected bool IsTitledJudgeName(string text) {
         text = Regex.Replace(text, @"\s+", " ").Trim();
         if (text.EndsWith(":"))
             text = text.Substring(0 , text.Length - 1).Trim();
-        // string[] patterns = {
-        //     @"^MRS? JUSTICE [A-Z]+$",
-        //     @"^(Lord|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+( VP)?$",
-        //     @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+$",
-        //     @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge$"
-        // };
-        // foreach (string pattern in patterns)
-        //     if (Regex.Match(text, pattern).Success)
-        //         return true;
         foreach (Regex re in titledJudgeNameRegexes)
             if (re.IsMatch(text))
                 return true;
         return false;
     }
-    
+
+    private static readonly string[] titledJudgeNamePatterns2 = {
+        @"^MRS?\.? JUSTICE( [A-Z]+)+: ",
+        @"^(LORD|LADY|MRS?) JUSTICE( [A-Z]+)+: ",
+        @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?: ",
+        @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+: ",
+        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge: "
+    };
+    private IEnumerable<Regex> titledJudgeNameRegexes2 = titledJudgeNamePatterns2
+        .Select(p => new Regex(p));
+
+    protected bool StartsWithTitledJudgeName(string text) {
+        text = Regex.Replace(text, @"\s+", " ").TrimStart();
+        foreach (Regex re in titledJudgeNameRegexes2)
+            if (re.IsMatch(text))
+                return true;
+        return false;
+    }
+    protected bool StartsWithTitledJudgeName(OpenXmlElement e) {
+        if (e is not Paragraph p)
+            return false;
+        Paragraph p2 = DOCX.Fields.CloneAndRemoveFieldCodes(p);
+        string text = p2.InnerText;
+        return StartsWithTitledJudgeName(text);
+    }
+
     protected abstract List<IDecision> Body();
-    // protected virtual List<IDecision> Body() {
-    //     OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
-    //     List<IDecision> decisions = new List<IDecision>();
-    //     while (i < elements.Count) {
-    //         OpenXmlElement e = elements.ElementAt(i);
-    //         if (IsFirstLineOfAnnex(e))
-    //             break;
-    //         int save = i;
-    //         IDecision decision = Decision();
-    //         if (decision is null) {
-    //             i = save;
-    //             break;
-    //         }
-    //         decisions.Add(decision);
-    //         // OpenXmlElement e = elements.ElementAt(i);
-    //         // Add(e, judgment.body);
-    //     }
-    //     return decisions;
-    // }
 
-    // private IDecision Decision() {
-    //     OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
-    //     OpenXmlElement e = elements.ElementAt(i);
-    //     if (e is not Paragraph || !IsTitledJudgeName(e.InnerText))
-    //         throw new Exception("A decision should start with the name of a Judge.");
-    //     WLine author = new WLine(doc.MainDocumentPart, (Paragraph) e);
-    //     i += 1;
-    //     if (i == elements.Count)
-    //         throw new Exception("A decision must have contents.");
-    //     List<IBlock> contents = new List<IBlock>();
-    //     while (i < elements.Count) {
-    //         e = elements.ElementAt(i);
-    //         if (e is Paragraph && IsTitledJudgeName(e.InnerText))
-    //             break;
-    //         if (IsFirstLineOfAnnex(e))
-    //             break;
-    //         Add(e, contents);
-    //     }
-    //     return new Decision { Author = author, Contents = contents };
-    // }
-
-    // private void AddLeaf(OpenXmlElement e, List<IDivision> collection) {
-    //     if (e is Paragraph para) {
-    //         string number = Numbering.GetFormattedNumber(doc.MainDocumentPart, para);
-    //         if (number is null) {
-
-    //         } else {
-
-    //         }
-    //         collection.Add(np);
-    //     } else if (e is Table table) {
-    //         var t = new WTable(doc.MainDocumentPart, table);
-    //         collection.Add(t);
-    //     } else if (e is SectionProperties || e is BookmarkStart || e is BookmarkEnd) {
-    //         ;
-    //     } else {
-    //         throw new System.Exception(e.GetType().ToString());
-    //     }
-    //     i += 1;
-    // }
-
+    protected List<IDecision> Decisions() {
+        List<IDecision> decisions = new List<IDecision>();
+        while (i < elements.Count) {
+            OpenXmlElement e = elements.ElementAt(i);
+            if (IsFirstLineOfAnnex(e))
+                break;
+            int save = i;
+            IDecision decision = Decision();
+            if (decision is null) {
+                i = save;
+                break;
+            }
+            decisions.Add(decision);
+        }
+        return decisions;
+    }
 
     protected IDecision Decision() {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         OpenXmlElement e = elements.ElementAt(i);
-        // if (e is not Paragraph) {
-
-        // }
-        // if (e is not Paragraph || !IsTitledJudgeName(e.InnerText))
-        //     throw new Exception("A decision should start with the name of a Judge.");
         if (!IsTitledJudgeName(e.InnerText))
             return null;
-            // throw new Exception("A decision should start with the name of a Judge.");
         WLine author = new WLine(doc.MainDocumentPart, (Paragraph) e);
         i += 1;
         if (i == elements.Count)
             return null;
-            // throw new Exception("A decision must have contents.");
         List<IDivision> contents = Divisions();
-        // List<IDivision> contents = new List<IDivision>();
-        // while (i < elements.Count) {
-        //     e = elements.ElementAt(i);
-        //     if (e is Paragraph && IsTitledJudgeName(e.InnerText))
-        //         break;
-        //     if ()
-        //         break;
-        //     if (IsFirstLineOfAnnex(e))
-        //         break;
-        //     AddDivision(e, contents);
-        // }
         if (contents is null || contents.Count == 0)
             return null;
         return new Decision { Author = author, Contents = contents };
@@ -357,7 +304,6 @@ abstract class AbstractParser {
 
     private WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
-        // unfiltered = Augmentation.MergeRuns(unfiltered);
         unfiltered = Merger.Merge(unfiltered);
         IInline first = unfiltered.First();
         if (first is not WText t1)
@@ -442,19 +388,13 @@ abstract class AbstractParser {
     /* cross headings */
 
     private List<IDivision> CrossHeadings() {
-        // OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IDivision> crossHeadings = new List<IDivision>();
-        // int save1 = i;
         List<IDivision> intro = ParagraphsUntilCrossHeadingOrAnnex();
         if (intro.Count > 0) {
             IDivision wrapper = new GroupOfParagraphs() { Children = intro };
             crossHeadings.Add(wrapper);
         }
         while (i < elements.Count) {
-            // if (IsSkippable(e)) {
-            //     i += 1;
-            //     continue;
-            // }
             int save = i;
             CrossHeading xHead = CrossHeading();
             if (xHead is null) {
@@ -494,12 +434,14 @@ abstract class AbstractParser {
         if (value) {
             System.Console.Write("This is a CrossHeading: ");
             System.Console.WriteLine(e.InnerText);
+        // } else {
+        //     System.Console.Write("This is not a CrossHeading: ");
+        //     System.Console.WriteLine(e.InnerText);
         }
         return value;
     }
 
     private CrossHeading CrossHeading() {
-        // OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         OpenXmlElement e = elements.ElementAt(i);
         while (IsSkippable(e)) {
             i += 1;
@@ -511,28 +453,13 @@ abstract class AbstractParser {
         i += 1;
         if (i == elements.Count)
             return null;
-            // throw new Exception("A cross heading must have contents.");
 
         List<IDivision> children = ParagraphsUntilCrossHeadingOrAnnex();
-        // List<IDivision> children = new List<IDivision>();
-        // while (i < elements.Count) {
-        //     e = elements.ElementAt(i);
-        //     if (IsSkippable(e)) {
-        //         i += 1;
-        //         continue;
-        //     }
-        //     if (IsFirstLineOfCrossHeading(e))
-        //         break;
-        //     if (IsFirstLineOfAnnex(e))
-        //         break;
-        //     ILeaf para = ParseParagraph();
-        //     if (para is null)
-        //         continue;
-        //     children.Add(para);
-        // }
-        // List<IDivision> children = Paragraphs();
-        if (children.Count == 0)
+        if (children.Count == 0) {
+            System.Console.Write("Abandoning CrossHeading: ");
+            System.Console.WriteLine(e.InnerText);
             return null;
+        }
         return new CrossHeading { Heading = heading, Children = children };
     }
 
@@ -648,7 +575,6 @@ abstract class AbstractParser {
     }
 
     private ILeaf ParseParagraph() {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         OpenXmlElement e = elements.ElementAt(i);
         if (IsSkippable(e)) {
             i += 1;
@@ -657,17 +583,18 @@ abstract class AbstractParser {
         if (e is Paragraph p) {
             i += 1;
             WLine line = new WLine(doc.MainDocumentPart, p);
-            // IFormattedText number = DOCX.Numbering2.GetFormattedNumber1(main, p);
             DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
-            if (info is null)
-                return new WDummyDivision(line);
-            else {
+            if (info is not null) {
                 ParagraphMarkRunProperties pMarkProps = p.ParagraphProperties.ParagraphMarkRunProperties;
                 string styleId = p.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
                 Style style = styleId is null ? null : DOCX.Styles.GetStyle(main, styleId);
                 DOCX.WNumber number = new DOCX.WNumber(main, info.Value.Number, info.Value.Props, pMarkProps, style, p.ParagraphProperties);
                 return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
             }
+            INumber num2 = Fields.RemoveListNum(line);
+            if (num2 is not null)
+                return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+            return new WDummyDivision(line);
         }
         if (e is Table table) {
             i += 1;

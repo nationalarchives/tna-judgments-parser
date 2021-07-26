@@ -5,14 +5,6 @@ using System.Linq;
 
 namespace UK.Gov.Legislation.Judgments {
 
-// public enum CourtCode {
-//     EWCA,
-//     EWHC_Admin,
-//     EWHC_Admin_Planning,
-//     EWHC_Circuit_Commercial,
-//     ET
-// }
-
 public readonly struct Court {
 
     public string Code { get; init; }
@@ -74,6 +66,11 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/the-business-list"
     };
 
+    public static readonly Court EWCOP = new Court {
+        Code = "EWCOP",
+        LongName = "Court of Protection",
+        URL = "https://www.gov.uk/courts-tribunals/court-of-protection"
+    };
 
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
@@ -93,6 +90,8 @@ public readonly struct Courts {
         EWHC_QBD_Circuit_Commercial_Court,
 
         HC_Chancery_BusAndProp_BusinessList,
+
+        EWCOP,
 
         EmploymentTribunal
     };
