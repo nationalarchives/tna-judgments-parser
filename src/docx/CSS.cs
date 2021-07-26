@@ -98,7 +98,12 @@ public class CSS {
             NumberingProperties numProps = s.StyleParagraphProperties?.NumberingProperties;
             if (numProps is null)
                 return null;
-            Level level = Numbering.GetLevel(main, numProps);
+
+            /* sometimes a style specifies a numbering level but inherits its numbering id from its parent style */
+            NumberingId numId = s.GetInheritedProperty(s2 => s2.StyleParagraphProperties?.NumberingProperties?.NumberingId);
+            int ilvl = s.GetInheritedProperty(s2 => s2.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value) ?? 0;
+            Level level = Numbering.GetLevel(main, numId, ilvl);
+            // Level level = Numbering.GetLevel(main, numProps);
             return level?.PreviousParagraphProperties?.Indentation?.Left;
         };
         StringValue left = style.GetInheritedProperty(getter);
@@ -163,6 +168,8 @@ public class CSS {
         string key = "vertical-align";
         string value;
         if (valign.Val is null)
+            value = "baseline";
+        else if (valign.Val.Equals(VerticalPositionValues.Baseline))
             value = "baseline";
         else if (valign.Val.Equals(VerticalPositionValues.Superscript))
             value = "super";

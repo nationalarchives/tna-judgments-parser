@@ -15,6 +15,9 @@ class Merger : Enricher {
             if (last is WHyperlink1 || next is WHyperlink1) {
                 merged.Add(last);
                 last = next;
+            } else if (last is SpecialCharacter || next is SpecialCharacter) {
+                merged.Add(last);
+                last = next;
             } else if (last is WText fText1 && next is WText fText2 && IFormattedText.HaveSameFormatting(fText1, fText2)) {
                 last = new WText(fText1.Text + fText2.Text, fText1.properties);
             // } else if (last is WTab && next is WTab) {
