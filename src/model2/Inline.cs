@@ -90,7 +90,7 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         }
     }
 
-    public string FontName {
+    virtual public string FontName {
         get {
             if (properties is null)
                 return null;
