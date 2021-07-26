@@ -69,10 +69,14 @@ public class WImageRef : IImageRef {
                 Style = style;
         }
     }
-    public WImageRef(MainDocumentPart main, Picture picture) {
-        StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().First().RelationshipId;
-        // OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relId.Value).First().OpenXmlPart;
-        // this.uri = part.Uri;
+    public static WImageRef Make(MainDocumentPart main, Picture picture) {
+        DocumentFormat.OpenXml.Vml.ImageData imageData = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault();
+        if (imageData is null)
+            return null;
+        return new WImageRef(main, picture);
+    }
+    private WImageRef(MainDocumentPart main, Picture picture) {
+        StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault().RelationshipId;
         this.uri = DOCX.Relationships.GetUriForImage(relId, picture);
         string tempStyle = picture.Descendants<DocumentFormat.OpenXml.Vml.Shape>().First().Style?.Value;
         if (!string.IsNullOrEmpty(tempStyle)) {

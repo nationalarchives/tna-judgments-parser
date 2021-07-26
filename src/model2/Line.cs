@@ -12,7 +12,7 @@ class WLine : ILine {
 
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties properties;
-    private readonly IEnumerable<IInline> contents;
+    private IEnumerable<IInline> contents;
 
     internal bool IsFirstLineOfNumberedParagraph { private get; init; }
 
@@ -90,12 +90,9 @@ class WLine : ILine {
         }
     }
 
-    // public string Number() {
-    //     return null;
-    // }
-
     public IEnumerable<IInline> Contents {
         get => contents;
+        set { contents = value; }
     }
 
 }
