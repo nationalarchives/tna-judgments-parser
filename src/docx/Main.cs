@@ -19,6 +19,8 @@ class Main {
             return ((WordprocessingDocument) header.HeaderPart.OpenXmlPackage).MainDocumentPart;
         if (root is Footnotes footnotes)
             return ((WordprocessingDocument) footnotes.FootnotesPart.OpenXmlPackage).MainDocumentPart;
+        if (root is Endnotes endnotes)
+            return ((WordprocessingDocument) endnotes.EndnotesPart.OpenXmlPackage).MainDocumentPart;
         if (root is DocumentFormat.OpenXml.Wordprocessing.Numbering numbering)
             return ((WordprocessingDocument) numbering.NumberingDefinitionsPart.OpenXmlPackage).MainDocumentPart;
         throw new Exception();

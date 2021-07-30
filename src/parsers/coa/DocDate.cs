@@ -26,6 +26,10 @@ class DocDate : Enricher {
         CultureInfo culture = new CultureInfo("en-GB");
         if (line.Count() == 1) {
             IInline inline = line.First();
+            if (inline is WDate wDate) {
+                WDocDate docDate = new WDocDate(wDate);
+                return new IInline[] { docDate };
+            }
             if (inline is WText fText) {
                 Group group = MatchDate(fText.Text);
                 if (group is not null) {

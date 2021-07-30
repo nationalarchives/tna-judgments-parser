@@ -113,4 +113,10 @@ public class WImageRef : IImageRef {
 
 }
 
+class WExternalImage : IExternalImage {
+
+    public string URL { get; init; }
+
+}
+
 }

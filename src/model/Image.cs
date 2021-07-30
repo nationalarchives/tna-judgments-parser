@@ -12,4 +12,10 @@ public interface IImage {
 
 }
 
+interface IExternalImage : IInline {
+
+    string URL { get; }
+
+}
+
 }
