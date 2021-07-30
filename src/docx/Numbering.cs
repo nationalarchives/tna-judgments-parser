@@ -30,6 +30,12 @@ class Numbering {
         return GetNumbering(main, id);
     }
 
+    public static AbstractNum GetAbstractNum(MainDocumentPart main, string name) {
+        return main.NumberingDefinitionsPart.Numbering.ChildElements
+            .OfType<AbstractNum>()
+            .Where(abs => name.Equals(abs.AbstractNumDefinitionName?.Val?.Value, StringComparison.InvariantCultureIgnoreCase))
+            .FirstOrDefault();
+    }
     public static AbstractNum GetAbstractNum(MainDocumentPart main, NumberingInstance numbering) {
         return main.NumberingDefinitionsPart.Numbering.ChildElements
             .OfType<AbstractNum>()
@@ -58,10 +64,22 @@ class Numbering {
     public static Level GetLevel(MainDocumentPart main, NumberingId id, int ilvl) {
         return GetLevel(main, id.Val, ilvl);
     }
+
+    internal static int? GetNumberingIdOrNumberingChangeId(NumberingProperties props) {  // EWCA/Civ/2004/1580
+        if (props.NumberingId?.Val?.Value is not null)
+            return props.NumberingId.Val.Value;
+        if (props.NumberingChange?.Id?.Value is not null)
+            return int.Parse(props.NumberingChange.Id.Value);
+        return null;
+        // return props.NumberingId?.Val?.Value ?? int.Parse(props.NumberingChange.Id);
+    }
+
     public static Level GetLevel(MainDocumentPart main, NumberingProperties props) {
-        NumberingId id = props.NumberingId;
+        int? numId = GetNumberingIdOrNumberingChangeId(props);
+        if (numId is null)
+            return null;
         int ilvl = props?.NumberingLevelReference?.Val?.Value ?? 0;
-        return GetLevel(main, id, ilvl);
+        return GetLevel(main, (int) numId, ilvl);
     }
     public static Level GetOwnLevel(MainDocumentPart main, ParagraphProperties pProps) {
         NumberingProperties props = pProps?.NumberingProperties;

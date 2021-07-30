@@ -152,7 +152,7 @@ interface IFootnote : IInline {
 
     string Marker { get; }
 
-    IEnumerable<ILine> Content { get; }
+    IEnumerable<IBlock> Content { get; }
 
 }
 
@@ -170,12 +170,15 @@ interface ICourtType : IFormattedText { }
 
 interface ICaseNo : IFormattedText { }
 
-interface IDocDate : IInline {
+interface IDate : IInline {
 
     string Date { get; }
 
     IEnumerable<IFormattedText> Contents { get; }
 
+}
+
+interface IDocDate : IDate {
 }
 
 interface IParty : IFormattedText {

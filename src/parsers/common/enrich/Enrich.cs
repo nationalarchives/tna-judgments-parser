@@ -70,6 +70,13 @@ abstract class Enricher {
     //         .Select(e => { if (e is Text) return e.InnerText; if (e is TabChar) return " "; return ""; });
     //     return string.Join("", texts).Trim();
     // }
+
+    internal static string NormalizeInlines(IEnumerable<IInline> line) {
+        IEnumerable<string> texts = line
+            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
+        return string.Join("", texts).Trim();
+    }
+
     protected string NormalizeLine(IEnumerable<IInline> line) {
         IEnumerable<string> texts = line
             .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
