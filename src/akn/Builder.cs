@@ -216,10 +216,14 @@ class Builder {
             AddOrWrapText(parent, fText);
         else if (model is IDocDate docDate)
             AddDocDate(parent, docDate);
+        else if (model is IDate date)
+            AddDate(parent, date);
         else if (model is IFootnote footnote)
             AddFootnote(parent, footnote);
         else if (model is IImageRef imageRef)
             AddImageRef(parent, imageRef);
+        else if (model is IExternalImage eImg)
+            AddExternalImage(parent, eImg);
         else if (model is ILineBreak)
             AddLineBreak(parent);
         else if (model is ITab tab)
@@ -243,6 +247,22 @@ class Builder {
             e.AppendChild(text);
         }
         return e;
+    }
+
+    private void AddDate(XmlElement parent, IDate model) {
+        XmlElement date = doc.CreateElement("date", ns);
+        parent.AppendChild(date);
+        date.SetAttribute("date", model.Date);
+        if (model.Contents.Count() == 1) {
+            IFormattedText fText = model.Contents.First();
+            Dictionary<string, string> styles = fText.GetCSSStyles();
+            if (styles.Count > 0)
+                date.SetAttribute("style", CSS.SerializeInline(styles));
+            XmlText text = doc.CreateTextNode(fText.Text);
+            date.AppendChild(text);
+        } else {
+            AddOrWrapText(date, model.Contents);
+        }
     }
 
     private void AddDocDate(XmlElement parent, IDocDate model) {
@@ -332,6 +352,11 @@ class Builder {
         img.SetAttribute("src", model.Src);
         if (model.Style is not null)
             img.SetAttribute("style", model.Style);
+        parent.AppendChild(img);
+    }
+    private void AddExternalImage(XmlElement parent, IExternalImage model) {
+        XmlElement img = doc.CreateElement("img", ns);
+        img.SetAttribute("src", model.URL);
         parent.AppendChild(img);
     }
 

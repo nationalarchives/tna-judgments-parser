@@ -11,9 +11,9 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 class WFootnote : IFootnote {
 
     private readonly MainDocumentPart main;
-    private readonly FootnoteReference fn;
+    private readonly FootnoteEndnoteReferenceType fn;
 
-    public WFootnote(MainDocumentPart main, FootnoteReference fn) {
+    public WFootnote(MainDocumentPart main, FootnoteEndnoteReferenceType fn) {
         this.main = main;
         this.fn = fn;
     }
@@ -21,16 +21,16 @@ class WFootnote : IFootnote {
     public string Marker {
         get {
             int count = 1;
-            FootnoteReference previous1 = fn.PreviousSibling<FootnoteReference>();
+            FootnoteEndnoteReferenceType previous1 = fn.PreviousSibling<FootnoteEndnoteReferenceType>();
             while (previous1 != null) {
                 count += 1;
-                previous1 = previous1.PreviousSibling<FootnoteReference>();
+                previous1 = previous1.PreviousSibling<FootnoteEndnoteReferenceType>();
             }
             OpenXmlElement parent = fn.Parent;
             while (parent is not null) {
                 OpenXmlElement previous2 = parent.PreviousSibling();
                 while (previous2 is not null) {
-                    count += previous2.Descendants<FootnoteReference>().Count();
+                    count += previous2.Descendants<FootnoteEndnoteReferenceType>().Count();
                     previous2 = previous2.PreviousSibling();
                 }
                 parent = parent.Parent;
@@ -39,12 +39,15 @@ class WFootnote : IFootnote {
         }
     }
 
-    public IEnumerable<UK.Gov.Legislation.Judgments.ILine> Content {
+    public IEnumerable<UK.Gov.Legislation.Judgments.IBlock> Content {
         get {
-            Footnote footnote = main.FootnotesPart.Footnotes.ChildElements.OfType<Footnote>()
-                .Where(f => f.Id == fn.Id).First();
-            return footnote.ChildElements.OfType<Paragraph>()
-                .Select(p => new WLine(main, p));
+            IEnumerable<FootnoteEndnoteType> notes;
+            if (fn is FootnoteReference)
+                notes = main.FootnotesPart.Footnotes.ChildElements.OfType<Footnote>();
+            else
+                notes = main.EndnotesPart.Endnotes.ChildElements.OfType<Endnote>();
+            FootnoteEndnoteType note = notes.Where(f => f.Id == fn.Id).First();
+            return Blocks.ParseBlocks(main, note.ChildElements);
         }
     }
 

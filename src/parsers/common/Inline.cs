@@ -49,6 +49,10 @@ class Inline {
                 withinField.Add(e);
                 continue;
             }
+            if (e is InsertedRun iRun2 && withinField is not null && e.ChildElements.Count == 1 && Fields.IsFieldCode(e.FirstChild)) {    // EWCA/Crim/2004/3049
+                withinField.Add(e.FirstChild);
+                continue;
+            }
             if (e is Hyperlink link) {
                 if (withinField is not null)
                     throw new Exception();
@@ -74,8 +78,10 @@ class Inline {
                 continue;
             }
             if (e is OpenXmlUnknownElement) {
-                if (withinField is not null)
-                    throw new Exception();
+                if (withinField is not null) {
+                    withinField.Add(e);
+                    continue;
+                }
                 if (e.LocalName == "smartTag") {
                     var children = ParseRuns(main, e.ChildElements);
                     parsed.AddRange(children);
@@ -93,6 +99,16 @@ class Inline {
                     parsed.AddRange(children);
                     continue;
                 }
+                throw new Exception();
+            }
+            if (e is PermStart perm) {  // https://docs.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.permstart
+                if (perm.EditorGroup == RangePermissionEditingGroupValues.Everyone) // EWCA/Civ/2014/823
+                    continue;
+                else
+                    throw new Exception();
+            }
+            if (e is PermEnd) {
+                continue;
             }
             throw new Exception();
         }
@@ -130,6 +146,8 @@ class Inline {
             return null;
         if (e is FootnoteReference fn)
             return new WFootnote(main, fn);
+        if (e is EndnoteReference en)
+            return new WFootnote(main, en);
         if (e is Drawing draw)
             return new WImageRef(main, draw);
         if (e is Picture pict)
@@ -146,6 +164,8 @@ class Inline {
         if (e is LastRenderedPageBreak)
             return null;
         if (e is FootnoteReferenceMark)
+            return null;
+        if (e is EndnoteReferenceMark)
             return null;
         if (e is AlternateContent altContent) {
             if (altContent.ChildElements.Count != 2)

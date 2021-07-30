@@ -65,14 +65,17 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
             Underline underline = properties?.Underline;
             if (underline is null)
                 return null;
-            EnumValue<UnderlineValues> val = underline.Val;
-            if (val == null)
-                return false;
-            if (val.Equals(UnderlineValues.Single))
-                return true;
-            if (val.Equals(UnderlineValues.None))
-                return false;
-            throw new Exception();
+            return DOCX.Underline2.Is(underline);
+            // EnumValue<UnderlineValues> val = underline.Val;
+            // if (val == null)
+            //     return false;
+            // if (val.Equals(UnderlineValues.Single))
+            //     return true;
+            // if (val.Equals(UnderlineValues.Thick))
+            //     return true;
+            // if (val.Equals(UnderlineValues.None))
+            //     return false;
+            // throw new Exception();
         }
     }
 
@@ -171,20 +174,43 @@ internal class WCaseNo : WText, ICaseNo {
 
 }
 
+internal class WDate : IDate {
+
+    private readonly DateTime date;
+
+    public WDate(IEnumerable<IFormattedText> contents, DateTime date) {
+        Contents = contents;
+        this.date = date;
+    }
+
+    public IEnumerable<IFormattedText> Contents { get; }
+
+    public string Date {
+        get {
+            return date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);
+        }
+    }
+
+}
+
 internal class WDocDate : IDocDate {
 
     public WDocDate(IEnumerable<IFormattedText> contents, DateTime date) {
         Contents = contents;
-        Date = date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);;
+        Date = date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);
     }
     public WDocDate(IFormattedText text, DateTime date) {
         Contents = new List<IFormattedText>(1) { text };
-        Date = date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);;
+        Date = date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);
     }
     public WDocDate(string text, RunProperties properties, DateTime date) {
         WText wText = new WText(text, properties);
         Contents = new List<IFormattedText>(1) { wText };
-        Date = date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);;
+        Date = date.ToString("s", System.Globalization.CultureInfo.InvariantCulture).Substring(0, 10);
+    }
+    public WDocDate(WDate wDate) {
+        Contents = wDate.Contents;
+        Date = wDate.Date;
     }
 
     public IEnumerable<IFormattedText> Contents { get; }

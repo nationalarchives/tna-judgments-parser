@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -68,12 +69,6 @@ class Fields {
             fieldCode += GetFieldCode(next);
             i += 1;
         }
-        // if (fieldCode == @" FILENAME \* MERGEFORMAT ?$") {
-        //     return Inline.ParseRuns(main, withinField.Skip(i));
-        // }
-        // if (fieldCode == @"^ FILENAME \\\* MERGEFORMAT ?$") {
-        //     return Inline.ParseRuns(main, withinField.Skip(i));
-        // }
         Match match = Regex.Match(fieldCode, "^ FILENAME \\\\\\* MERGEFORMAT ?$");
         if (match.Success) {
             if (i == withinField.Count)
@@ -83,7 +78,6 @@ class Fields {
                 throw new Exception();
             return Inline.ParseRuns(main, withinField.Skip(i + 1));
         }
-        // match = Regex.Match(fieldCode, "^ FILLIN \"(.+?)\" ?$");
         match = Regex.Match(fieldCode, "^ FILLIN ");
         if (!match.Success)
             match = Regex.Match(fieldCode, "^ MERGEFIELD \"(.+?)\" ?$");
@@ -138,7 +132,8 @@ class Fields {
             WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = address };
             return new List<IInline>(1) { hyperlink };
         }
-        match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\r \\h(  \\\* MERGEFORMAT)? $");
+        match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\r( \\p)? \\h(  \\\* MERGEFORMAT)? $");
+        // no \\h in EWCA/Civ/2009/755
         if (match.Success) {
             string rf = match.Groups[1].Value;
             OpenXmlElement root = first;
@@ -149,12 +144,24 @@ class Fields {
                 throw new Exception();
             Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
             DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
+            string aboveBelow = "";
+            if (!string.IsNullOrEmpty(match.Groups[2].Value)) {
+                bool above = true;
+                Paragraph nextPara = first.Ancestors<Paragraph>().First().NextSibling<Paragraph>();
+                while (nextPara is not null) {
+                    if (nextPara == bkmkPara)
+                        above = false;
+                    nextPara = nextPara.NextSibling<Paragraph>();
+                }
+                aboveBelow = above ? " above" : " below";
+            }
             if (i == withinField.Count) {
                 if (info is null)
                     throw new Exception("REF has no content and target has no number");
                 RunProperties rProps = first is Run run ? run.RunProperties : null;
                 string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
-                WText numberInThisFormat = new WText(numWithoutPunc, rProps);
+                string numPlusAboveBelow = numWithoutPunc + aboveBelow;
+                WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
                 return new List<IInline>(1) { numberInThisFormat };
             } else {
                 OpenXmlElement next = withinField[i];
@@ -170,30 +177,20 @@ class Fields {
                 } else {
                     RunProperties rProps = first is Run run ? run.RunProperties : null;
                     string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
-                    WText numberInThisFormat = new WText(numWithoutPunc, rProps);
+                    string numPlusAboveBelow = numWithoutPunc + aboveBelow;
+                    WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
                     return new List<IInline>(1) { numberInThisFormat };
                 }
             }
         }
-        // match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\r \\h $");
-        // if (match.Success) {
-        //     string rf = match.Groups[1].Value;
-        //     OpenXmlElement root = first;
-        //     while (root.Parent is not null)
-        //         root = root.Parent;
-        //     BookmarkStart bkmk = root.Descendants<BookmarkStart>().Where(b => b.Name == rf).First();
-        //     Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
-        //     DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
-        //     RunProperties rProps = first is Run run ? run.RunProperties : null;
-        //     string numWithoutPunc = info.Value.Number.Trim('.', ')');
-        //     WText numberInThisFormat = new WText(numWithoutPunc, rProps);
-        //     return new List<IInline>(1) { numberInThisFormat };
-        // }
         if (fieldCode == "ref PRI,ATE ") { // EWCA/Crim/2010/354
             return Enumerable.Empty<IInline>();
         }
+        if (fieldCode == "ref PRIATE ") { // EWCA/Crim/2006/2899
+            return Enumerable.Empty<IInline>();
+        }
         if (fieldCode == " LISTNUM LegalDefault ") {
-            if (withinField.Count != 1)
+            if (i < withinField.Count)
                 throw new Exception();
             int n = CountPrecedingListNumLegalDefault(first) + 1;
             string num = n.ToString() + ".";
@@ -202,11 +199,32 @@ class Fields {
             INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
             return new List<IInline>(1) { number };
         }
-        if (fieldCode == " FORMTEXT ") {
+        // https://support.microsoft.com/en-us/office/field-codes-listnum-field-557541b1-abb2-4959-a9f2-401639c8ff82
+        match = Regex.Match(fieldCode, @"^ LISTNUM ""([A-Z0-9]+)"" \\l (\d) \\s (\d) $");
+        if (match.Success) {
+            if (withinField.Count != 1)
+                throw new Exception();
+            string name = match.Groups[1].Value;
+            int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
+            int start = int.Parse(match.Groups[3].Value);
+            string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, start, main);
+            // ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
+            RunProperties rProps = ((Run) first).RunProperties;
+            // INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
+            /* not sure why this should be a WText and LISTNUM LegalDefault should be an WNumber2
+            /*  but only example I've seen (EWCA/Crim/2011/143) is followed by a non-breaking space */
+            WText wText = new WText(fNum, rProps);
+            return new List<IInline>(1) { wText };
+        }
+        if (fieldCode == " FORMTEXT " || fieldCode == " FORMTEXT _") {  // EWCA/Crim/2004/3049
+            if (i == withinField.Count)
+                return Enumerable.Empty<IInline>();
             OpenXmlElement next = withinField[i];
             if (!IsFieldSeparater(next))
                 throw new Exception();
             var rest = withinField.Skip(i + 1);
+            if (!rest.Any())
+                throw new Exception();
             return Inline.ParseRuns(main, rest);
         }
         if (fieldCode.StartsWith(" MACROBUTTON ")) {    // EWCA/Crim/2018/2190
@@ -214,6 +232,49 @@ class Fields {
                 throw new Exception();
             return Enumerable.Empty<IInline>();
         }
+        if (fieldCode == "PRIVATE ") { // EWCA/Civ/2003/295
+            return Enumerable.Empty<IInline>();
+        }
+        if (fieldCode == " =SUM(ABOVE) ") {   // EWCA/Crim/2018/542
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+            if (!rest.Any())
+                throw new Exception();
+            return Inline.ParseRuns(main, rest);
+        }
+        if (fieldCode == " DATE \\@ \"dd MMMM yyyy\" ") {
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+            if (!rest.Any())
+                throw new Exception();
+            IEnumerable<IInline> parsed = Inline.ParseRuns(main, rest);
+            if (parsed.All(inline => inline is IFormattedText)) {
+                string content = Enricher.NormalizeInlines(parsed);
+                try {
+                    CultureInfo culture = new CultureInfo("en-GB");
+                    DateTime date = DateTime.Parse(content, culture);
+                    WDate wDate = new WDate(parsed.Cast<IFormattedText>(), date);
+                    return new List<IInline>(1) { wDate };
+                } catch (FormatException) {
+                }
+            }
+            return parsed;
+        }
+        if (fieldCode.StartsWith("tc \"")) {    // EWCA/Civ/2008/875_1
+            return Enumerable.Empty<IInline>();
+        }
+        match = Regex.Match(fieldCode, @"^ INCLUDEPICTURE ""(.+?)"" \\\* MERGEFORMATINET $");   // EWHC/Patents/2008/2127
+        if (match.Success) {
+            throw new Exception("check to see if an image follows the separator");
+            string url = match.Groups[1].Value;
+            WExternalImage image = new WExternalImage() { URL = url };
+            return new List<IInline>(1) { image };
+        }
+        // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();
     }
 

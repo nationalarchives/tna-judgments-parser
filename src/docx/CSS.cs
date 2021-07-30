@@ -23,6 +23,14 @@ public class CSS {
         AddFontFamily(x?.RunFonts, defaultProperties);
         AddFontSize(x?.FontSize?.Val, defaultProperties);
 
+        RunFonts themeRunFonts = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts;
+        // ThemeFontValues? y = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts?.AsciiTheme;
+        if (themeRunFonts.AsciiTheme is not null) {
+            ThemeFontValues themeFont = themeRunFonts.AsciiTheme;
+            string fontName = Themes.GetFontName(main, themeFont);
+            AddFontFamily(fontName, defaultProperties);
+        }
+
         Style defaultParagraphStyle = Styles.GetDefaultParagraphStyle(main);
         AddFontStyle(defaultParagraphStyle, defaultProperties);
         AddFontWeight(defaultParagraphStyle, defaultProperties);
@@ -182,7 +190,9 @@ public class CSS {
 
     internal static string ToFontFamily(string fontName) {
         if (fontName.EndsWith(" (W1)"))
-            return fontName.Substring(0, fontName.Length - 5);
+            fontName = fontName.Substring(0, fontName.Length - 5);
+        if (fontName == "Calibri")
+            return fontName + ", sans-serif";
         if (fontName.Contains(" "))
             return "'" + fontName + "'";
         return fontName;
