@@ -336,11 +336,6 @@ abstract class AbstractParser {
     private bool IsFirstLineOfBigLevel(OpenXmlElement e, string format) {
         if (e is not Paragraph p)
             return false;
-        if (e.InnerText.StartsWith("(i) The ")) {
-            bool junk1 = DOCX.Paragraphs.IsFlushLeft(main, p);
-            string junk2 = NormalizeFirstLineOfBigLevel(e, format);
-            bool junk3 = Regex.IsMatch(junk2, format);
-        }
         if (!DOCX.Paragraphs.IsFlushLeft(main, p))
             return false;
         string text = NormalizeFirstLineOfBigLevel(e, format);

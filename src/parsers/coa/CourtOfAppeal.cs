@@ -21,31 +21,48 @@ class CourtOfAppealParser : AbstractParser {
 
     ISet<string> titles = new HashSet<string>() {
         "Judgment", "JUDGMENT", "J U D G M E N T",
+        "Judgement",
         "Approved Judgment", "Judgment Approved", "JUDGMENT (As Approved)",
         "J U D G M E N T (Approved)", // EWCA/Crim/2017/1012
+        // "J U D G M E N T  (Approved)",
+        "J U D G M E N T (As approved)", // EWCA/Crim/2015/1870
         "J U D G M E N T (As Approved by the Court)",   // EWCA/Crim/2016/681
+        "J U D G M E N T (As approved by the Court)",   // EWCA/Crim/2016/798
+        "Judgment As Approved by the Court",    //  EWCA/Crim/2016/700
+        "JUDGMENT: APPROVED BY THE COURT", // EWHC/Admin/2003/1321
+        "APPROVED CORRECTED JUDGMENT",  // EWHC/Ch/2016/3302
         "Costs Judgment",
         "Judgment Approved by the courtfor handing down",
         "JUDGMENT : APPROVED BY THE COURT FOR HANDING DOWN (SUBJECT TO EDITORIAL CORRECTIONS)",  // EWCA/Civ/2003/494
         "Judgment Approved by the court for handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320
-        "Judgment Approved by the courtfor handing down (subject to editorial corrections)"    // EWCA/Civ/2017/320, line break between court / for
+        "Judgment Approved by the courtfor handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320, line break between court / for
+        "DRAFT JUDGMENT"    // EWCA/Civ/2003/952
     };
 
     protected override List<IBlock> Header() {
         List<IBlock> header = new List<IBlock>();
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
-            string text = e.InnerText.Trim();
+            // string text = e.InnerText.Trim();
+            string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
                 break;
+            if (e is Paragraph p && p.Descendants<SectionProperties>().Any())
+                return header;
             AddBlock(e, header);
         }
         Console.WriteLine("found title: " + elements.ElementAt(i).InnerText);
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
-            if (e is Paragraph && StartsWithTitledJudgeName(e)) {
-                return header;
+            if (e is Paragraph p) {
+                if (StartsWithTitledJudgeName(p))
+                    return header;
+                if (p.Descendants<SectionProperties>().Any())
+                    return header;
             }
+            // if (e is Paragraph && StartsWithTitledJudgeName(e)) {
+            //     return header;
+            // }
             AddBlock(e, header);
         }
         return null;
