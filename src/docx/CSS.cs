@@ -160,12 +160,10 @@ public class CSS {
         string value;
         if (underline.Val is null)
             return;
-        else if (underline.Val.Equals(UnderlineValues.None))
-            value = "none";
-        else if (underline.Val.Equals(UnderlineValues.Single))
+        else if (Underline2.Is(underline))
             value = "underline";
         else
-            throw new Exception();
+            value = "none";
         css[key] = value;
     }
 

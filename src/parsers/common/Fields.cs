@@ -136,9 +136,9 @@ class Fields {
         // no \\h in EWCA/Civ/2009/755
         if (match.Success) {
             string rf = match.Groups[1].Value;
-            OpenXmlElement root = first;
-            while (root.Parent is not null)
-                root = root.Parent;
+            // OpenXmlElement root = first;
+            // while (root.Parent is not null)
+            //     root = root.Parent;
             BookmarkStart bkmk = DOCX.Bookmarks.Get(main, rf);
             if (bkmk is null)
                 throw new Exception();
@@ -182,6 +182,17 @@ class Fields {
                     return new List<IInline>(1) { numberInThisFormat };
                 }
             }
+        }
+        match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\w \\h $");
+        if (match.Success) {
+            string bkmkId = match.Groups[1].Value;
+            BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkId);
+            Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
+            string formattedNumber = DOCX.Numbering2.GetNumberInFullContext(main, bkmkPara);
+            RunProperties rProps = first is Run run ? run.RunProperties : null;
+            WText numberInThisFormat = new WText(formattedNumber, rProps);
+            return new List<IInline>(1) { numberInThisFormat };
+            // throw new Exception();
         }
         if (fieldCode == "ref PRI,ATE ") { // EWCA/Crim/2010/354
             return Enumerable.Empty<IInline>();
@@ -269,10 +280,18 @@ class Fields {
         }
         match = Regex.Match(fieldCode, @"^ INCLUDEPICTURE ""(.+?)"" \\\* MERGEFORMATINET $");   // EWHC/Patents/2008/2127
         if (match.Success) {
-            throw new Exception("check to see if an image follows the separator");
-            string url = match.Groups[1].Value;
-            WExternalImage image = new WExternalImage() { URL = url };
-            return new List<IInline>(1) { image };
+            if (i == withinField.Count) {
+                string url = match.Groups[1].Value;
+                WExternalImage image = new WExternalImage() { URL = url };
+                return new List<IInline>(1) { image };
+            }
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+            if (!remaining.Any())
+                throw new Exception();
+            return Inline.ParseRuns(main, remaining);
         }
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();

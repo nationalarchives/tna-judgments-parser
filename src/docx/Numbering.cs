@@ -59,7 +59,7 @@ class Numbering {
         return abs.ChildElements
             .OfType<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
-            .First();
+            .FirstOrDefault();  // does not exist in EWHC/Ch/2003/2902
     }
     public static Level GetLevel(MainDocumentPart main, NumberingId id, int ilvl) {
         return GetLevel(main, id.Val, ilvl);
