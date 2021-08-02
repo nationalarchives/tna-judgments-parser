@@ -123,78 +123,84 @@ class Numbering2 {
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
         if (match.Success) {
-            int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-            int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-            Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-            Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-            int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-            int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-            int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-            if (ilvl1 < baseIlvl)
-                n1 -= 1;
-            else if (ilvl1 > baseIlvl)
-                throw new Exception();
-            int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-            if (ilvl2 < baseIlvl)
-                n2 -= 1;
-            else if (ilvl2 > baseIlvl)
-                throw new Exception();
-            string num1 = FormatN(n1, lvl1.NumberingFormat);
-            string num2 = FormatN(n2, lvl2.NumberingFormat);
-            return num1 + "." + num2 + ".";
+            // int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
+            // int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
+            // Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
+            // Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
+            // int start1 = lvl1.StartNumberingValue?.Val ?? 1;
+            // int start2 = lvl2.StartNumberingValue?.Val ?? 1;
+            // int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+            // if (ilvl1 < baseIlvl)
+            //     n1 -= 1;
+            // else if (ilvl1 > baseIlvl)
+            //     throw new Exception();
+            // int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+            // if (ilvl2 < baseIlvl)
+            //     n2 -= 1;
+            // else if (ilvl2 > baseIlvl)
+            //     throw new Exception();
+            // string num1 = FormatN(n1, lvl1.NumberingFormat);
+            // string num2 = FormatN(n2, lvl2.NumberingFormat);
+            // return num1 + "." + num2 + ".";
+            TwoCombinator combine = (num1, num2) => { return num1 + "." + num2 + "."; };
+            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");
         if (match.Success) {
-            int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-            int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-            Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-            Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-            int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-            int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-            int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-            if (ilvl1 < baseIlvl)
-                n1 -= 1;
-            else if (ilvl1 > baseIlvl)
-                throw new Exception();
-            int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-            if (ilvl2 < baseIlvl)
-                n2 -= 1;
-            else if (ilvl2 > baseIlvl)
-                throw new Exception();
-            string num1 = FormatN(n1, lvl1.NumberingFormat);
-            string num2 = FormatN(n2, lvl2.NumberingFormat);
-            return num1 + "." + num2;
+            // int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
+            // int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
+            // Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
+            // Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
+            // int start1 = lvl1.StartNumberingValue?.Val ?? 1;
+            // int start2 = lvl2.StartNumberingValue?.Val ?? 1;
+            // int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+            // if (ilvl1 < baseIlvl && n1 > start1)
+            //     n1 -= 1;
+            // else if (ilvl1 > baseIlvl)
+            //     throw new Exception();
+            // int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+            // if (ilvl2 < baseIlvl && n2 > start2)
+            //     n2 -= 1;
+            // else if (ilvl2 > baseIlvl)
+            //     throw new Exception();
+            // string num1 = FormatN(n1, lvl1.NumberingFormat);
+            // string num2 = FormatN(n2, lvl2.NumberingFormat);
+            // return num1 + "." + num2;
+            TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
+            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)$");
         if (match.Success) {
-            int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-            int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-            int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
-            Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-            Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-            Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-            int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-            int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-            int start3 = lvl3.StartNumberingValue?.Val ?? 1;
-            int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-            if (ilvl1 < baseIlvl)
-                n1 -= 1;
-            else if (ilvl1 > baseIlvl)
-                throw new Exception();
-            int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-            if (ilvl2 < baseIlvl)
-                n2 -= 1;
-            else if (ilvl2 > baseIlvl)
-                throw new Exception();
-            int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
-            if (ilvl3 < baseIlvl)
-                n3 -= 1;
-            else if (ilvl3 > baseIlvl)
-                throw new Exception();
-            string num1 = FormatN(n1, lvl1.NumberingFormat);
-            string num2 = FormatN(n2, lvl2.NumberingFormat);
-            string num3 = FormatN(n3, lvl3.NumberingFormat);
-            return num1 + "." + num2 + "." + num3;
+            // int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
+            // int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
+            // int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
+            // Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
+            // Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
+            // Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
+            // int start1 = lvl1.StartNumberingValue?.Val ?? 1;
+            // int start2 = lvl2.StartNumberingValue?.Val ?? 1;
+            // int start3 = lvl3.StartNumberingValue?.Val ?? 1;
+            // int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+            // if (ilvl1 < baseIlvl)
+            //     n1 -= 1;
+            // else if (ilvl1 > baseIlvl)
+            //     throw new Exception();
+            // int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+            // if (ilvl2 < baseIlvl)
+            //     n2 -= 1;
+            // else if (ilvl2 > baseIlvl)
+            //     throw new Exception();
+            // int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
+            // if (ilvl3 < baseIlvl)
+            //     n3 -= 1;
+            // else if (ilvl3 > baseIlvl)
+            //     throw new Exception();
+            // string num1 = FormatN(n1, lvl1.NumberingFormat);
+            // string num2 = FormatN(n2, lvl2.NumberingFormat);
+            // string num3 = FormatN(n3, lvl3.NumberingFormat);
+            // return num1 + "." + num2 + "." + num3;
+            ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3; };
+            return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.$");
         if (match.Success) {
@@ -218,7 +224,7 @@ class Numbering2 {
                 return ".";
             if (format.Val.Value == "•")    // EWCA/Civ/2018/2098
                 return "•";
-            if (format.Val.Value == "o")    // EWCA/Civ/2013/923.
+            if (format.Val.Value == "o")    // EWCA/Civ/2013/923
                 return "◦";
             if (format.Val.Value == "–")    // EWCA/Civ/2013/1015
                 return "–"; // en dash ??
@@ -226,12 +232,41 @@ class Numbering2 {
                 return "•";
             if (format.Val.Value == "")    // EWCA/Civ/2013/11
                 return "•";
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0a0))    // EWHC/Admin/2017/2768
+                return Char.ConvertFromUtf32(0x2219);   // small square "bullet operator"
             if (format.Val.Value == Char.ConvertFromUtf32(0xf02d))    // EWHC/Patents/2008/2127
                 return Char.ConvertFromUtf32(0x2013);   // en dash (maybe it should be bold?)
         }
+        match = Regex.Match(format.Val.Value, @"^'(\d)\.$");    // EWHC/Fam/2015/2971
+        if (match.Success)
+            return format.Val.Value;
         if (format.Val.Value == "")     // EWHC/QB/2018/2066
             return "";
         throw new Exception("unsupported level text: " + format.Val.Value);
+    }
+
+    private delegate string TwoCombinator(string num1, string num2);
+
+    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, TwoCombinator combine) {
+        int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
+        int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
+        Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
+        Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
+        int start1 = lvl1.StartNumberingValue?.Val ?? 1;
+        int start2 = lvl2.StartNumberingValue?.Val ?? 1;
+        int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+        if (ilvl1 < baseIlvl && n1 > start1)
+            n1 -= 1;
+        else if (ilvl1 > baseIlvl)
+            throw new Exception();
+        int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+        if (ilvl2 < baseIlvl && n2 > start2)
+            n2 -= 1;
+        else if (ilvl2 > baseIlvl)
+            throw new Exception();
+        string num1 = FormatN(n1, lvl1.NumberingFormat);
+        string num2 = FormatN(n2, lvl2.NumberingFormat);
+        return combine(num1, num2);
     }
 
     private delegate string ThreeCombinator(string num1, string num2, string num3);
@@ -247,17 +282,17 @@ class Numbering2 {
         int start2 = lvl2.StartNumberingValue?.Val ?? 1;
         int start3 = lvl3.StartNumberingValue?.Val ?? 1;
         int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-        if (ilvl1 < baseIlvl)
+        if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
         int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-        if (ilvl2 < baseIlvl)
+        if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
             throw new Exception();
         int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
-        if (ilvl3 < baseIlvl)
+        if (ilvl3 < baseIlvl && n3 > start3)
             n3 -= 1;
         else if (ilvl3 > baseIlvl)
             throw new Exception();
@@ -283,22 +318,22 @@ class Numbering2 {
         int start3 = lvl3.StartNumberingValue?.Val ?? 1;
         int start4 = lvl4.StartNumberingValue?.Val ?? 1;
         int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-        if (ilvl1 < baseIlvl)
+        if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
         int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-        if (ilvl2 < baseIlvl)
+        if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
             throw new Exception();
         int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
-        if (ilvl3 < baseIlvl)
+        if (ilvl3 < baseIlvl && n3 > start3)
             n3 -= 1;
         else if (ilvl3 > baseIlvl)
             throw new Exception();
         int n4 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl4, start4);
-        if (ilvl4 < baseIlvl)
+        if (ilvl4 < baseIlvl && n4 > start4)
             n4 -= 1;
         else if (ilvl4 > baseIlvl)
             throw new Exception();
@@ -308,7 +343,6 @@ class Numbering2 {
         string num4 = FormatN(n4, lvl4.NumberingFormat);
         return combine(num1, num2, num3, num4);
     }
-
 
 
     private static string FormatN(int n, NumberingFormat format) {
@@ -325,6 +359,8 @@ class Numbering2 {
             return Util.ToLowerRoman(n);
         if (format == NumberFormatValues.UpperRoman)
             return Util.ToUpperRoman(n);
+        if (format == NumberFormatValues.DecimalZero)
+            return n.ToString("D2");
         throw new Exception("unsupported numbering format: " + format.ToString());
     }
 
@@ -412,6 +448,41 @@ class Numbering2 {
         return start + count;
     }
 
+    // for REF \w -- see EWHC/Comm/2018/1368
+    public static string GetNumberInFullContext(MainDocumentPart main, Paragraph paragraph) {
+        NumberingProperties props = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+        int numId = (int) Numbering.GetNumberingIdOrNumberingChangeId(props);
+        int ilvl = props.NumberingLevelReference?.Val?.Value ?? 0;
+        string formatted = Magic2(main, paragraph, numId, ilvl);
+        while (ilvl > 0) {
+            ilvl -= 1;
+            string higherLevel = Magic3(main, paragraph, numId, ilvl);  // assumes number format involves only one level
+            formatted = higherLevel + formatted;
+        }
+        return formatted;
+    }
+    /* gets formatting number of parent level (by subtracting 1 from n) */
+    /* assumes number format involves only one level */
+    private static string Magic3(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
+        NumberingInstance instance = Numbering.GetNumbering(main, numberingId);
+        AbstractNum abstractNum = Numbering.GetAbstractNum(main, instance);
+        Int32Value abstractNumberId = abstractNum.AbstractNumberId;
+        Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
+        LevelText format = baseLevel.LevelText;
+        Match match = Regex.Match(format.Val.Value, "^%(\\d)\\.$");
+        if (match.Success) {
+            int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            if (ilvl != baseIlvl)
+                throw new Exception();
+            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);    // this is redundant
+            int start = lvl.StartNumberingValue?.Val ?? 1;
+            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            n -= 1;
+            string num = FormatN(n, lvl.NumberingFormat);
+            return num + ".";
+        }
+        throw new Exception();
+    }
 }
 
 }
