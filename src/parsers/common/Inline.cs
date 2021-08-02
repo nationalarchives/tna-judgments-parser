@@ -56,6 +56,11 @@ class Inline {
             if (e is Hyperlink link) {
                 if (withinField is not null)
                     throw new Exception();
+                if (link.Id is null && link.Descendants<FootnoteReference>().Any()) {   // EWHC/Admin/2012/914
+                    IEnumerable<IInline> content = ParseRuns(main, link.ChildElements);
+                    parsed.AddRange(content);
+                    continue;
+                }
                 WHyperlink2 link2 = MapHyperlink(main, link);
                 parsed.Add(link2);
                 continue;
@@ -167,22 +172,43 @@ class Inline {
             return null;
         if (e is EndnoteReferenceMark)
             return null;
-        if (e is AlternateContent altContent) {
-            if (altContent.ChildElements.Count != 2)
-                throw new Exception();
-            AlternateContentChoice choice = (AlternateContentChoice) altContent.FirstChild;
-            AlternateContentFallback fallback = (AlternateContentFallback) altContent.ChildElements.ElementAt(1);
-            if (fallback.FirstChild is Picture pict2) {
-                if (pict2.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
-                    return WImageRef.Make(main, pict2);
-                if (pict2.ChildElements.Count == 1 && pict2.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict2.FirstChild.LocalName == "line")
-                    return null;
-            }
-        }
+        if (e is AlternateContent altContent)
+            return MapAlternateContent(main, run, altContent);
+        //     if (altContent.ChildElements.Count != 2)
+        //         throw new Exception();
+        //     AlternateContentChoice choice = (AlternateContentChoice) altContent.FirstChild;
+        //     AlternateContentFallback fallback = (AlternateContentFallback) altContent.ChildElements.ElementAt(1);
+        //     if (fallback.FirstChild is Picture pict2) {
+        //         if (pict2.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
+        //             return WImageRef.Make(main, pict2);
+        //         if (pict2.ChildElements.Count == 1 && pict2.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict2.FirstChild.LocalName == "line")
+        //             return null;
+        //     }
+        // }
         if (e is SymbolChar sym) {  // EWCA/Civ/2013/470
             return SpecialCharacter.Make(sym, run.RunProperties);
         }
         throw new Exception(e.OuterXml);
+    }
+
+    private static IInline MapAlternateContent(MainDocumentPart main, Run run, AlternateContent e) {
+        if (e.ChildElements.Count != 2)
+            throw new Exception();
+        AlternateContentChoice choice = (AlternateContentChoice) e.FirstChild;
+        AlternateContentFallback fallback = (AlternateContentFallback) e.ChildElements.Last();
+        if (choice.ChildElements.Count != 1)
+            throw new Exception();
+        if (fallback.ChildElements.Count != 1)
+            throw new Exception();
+        if (fallback.FirstChild is Picture pict) {
+            if (pict.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
+                return WImageRef.Make(main, pict);
+            if (pict.ChildElements.Count == 1 && pict.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict.FirstChild.LocalName == "line")
+                return null;
+        }
+        // don't know what to do with EWHC/Admin/2011/1403
+        return null;
+        // throw new Exception();
     }
 
 }
