@@ -218,6 +218,8 @@ class Builder {
             AddDocDate(parent, docDate);
         else if (model is IDate date)
             AddDate(parent, date);
+        else if (model is IDateTime time)
+            AddTime(parent, time);
         else if (model is IFootnote footnote)
             AddFootnote(parent, footnote);
         else if (model is IImageRef imageRef)
@@ -262,6 +264,23 @@ class Builder {
             date.AppendChild(text);
         } else {
             AddOrWrapText(date, model.Contents);
+        }
+    }
+
+    private void AddTime(XmlElement parent, IDateTime model) {
+        XmlElement e = doc.CreateElement("time", ns);
+        parent.AppendChild(e);
+        string attr = model.DateTime.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
+        e.SetAttribute("time", attr);
+        if (model.Contents.Count() == 1) {
+            IFormattedText fText = model.Contents.First();
+            Dictionary<string, string> styles = fText.GetCSSStyles();
+            if (styles.Count > 0)
+                e.SetAttribute("style", CSS.SerializeInline(styles));
+            XmlText text = doc.CreateTextNode(fText.Text);
+            e.AppendChild(text);
+        } else {
+            AddOrWrapText(e, model.Contents);
         }
     }
 
