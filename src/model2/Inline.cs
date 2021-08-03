@@ -219,6 +219,14 @@ internal class WDocDate : IDocDate {
 
 }
 
+internal class WDateTime : IDateTime {
+
+    public IEnumerable<IFormattedText> Contents { get; init; }
+
+    public DateTime DateTime { get; init; }
+
+}
+
 internal class WParty : WText, IParty {
 
     public WParty(string text, RunProperties props) : base(text, props) { }

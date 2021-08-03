@@ -54,14 +54,21 @@ class Inline {
                 continue;
             }
             if (e is Hyperlink link) {
-                if (withinField is not null)
-                    throw new Exception();
+                if (withinField is not null) {  // EWHC/Ch/2007/1044
+                    withinField.Add(e);
+                    continue;
+                }
                 if (link.Id is null && link.Descendants<FootnoteReference>().Any()) {   // EWHC/Admin/2012/914
                     IEnumerable<IInline> content = ParseRuns(main, link.ChildElements);
                     parsed.AddRange(content);
                     continue;
                 }
                 WHyperlink2 link2 = MapHyperlink(main, link);
+                if (link2 is null) {
+                    IEnumerable<IInline> content = ParseRuns(main, link.ChildElements);
+                    parsed.AddRange(content);
+                    continue;
+                }
                 parsed.Add(link2);
                 continue;
             }
@@ -74,7 +81,7 @@ class Inline {
                 }
                 continue;
             }
-            if (e is InsertedRun iRun) {    // EWCA/Civ/2004/1580
+            if (e is InsertedRun iRun || (e is OpenXmlUnknownElement && e.LocalName == "ins")) {    // EWCA/Civ/2004/1580, EWHC/Comm/2014/3124
                 var children = ParseRuns(main, e.ChildElements);
                 parsed.AddRange(children);
                 continue;
@@ -124,8 +131,10 @@ class Inline {
         string href;
         if (link.Id is not null)
             href = DOCX.Relationships.GetUriForHyperlink(link).AbsoluteUri;
-        else
+        else if (Uri.IsWellFormedUriString(link.InnerText, UriKind.Absolute))
             href = link.InnerText;
+        else
+            return null;    // EWHC/Ch/2007/1044 contains field codes
         IEnumerable<IInline> contents = ParseRuns(main, link.ChildElements);
         contents = Merger.Merge(contents);
         return new WHyperlink2() { Href = href, Contents = contents };

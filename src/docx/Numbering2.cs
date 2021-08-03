@@ -60,145 +60,93 @@ class Numbering2 {
         }
         match = Regex.Match(format.Val.Value, "^%(\\d)\\.$");
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return num + ".";
+            OneCombinator combine = num => num + ".";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return num + ".";
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)$");
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return "(" + num + ")";
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return "(" + num + ")";
+            OneCombinator combine = num => "(" + num + ")";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^%(\\d)\\)$");
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return num + ")";
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return num + ")";
+            OneCombinator combine = num => num + ")";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\"%(\\d)\\)$");   // EWCA/Civ/2006/939
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return "\"" + num + ")";
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return "\"" + num + ")";
+            OneCombinator combine = num => "\"" + num + ")";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)\\.$"); // EWCA/Civ/2012/1411
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return "(" + num + ").";
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return "(" + num + ").";
+            OneCombinator combine = num => "(" + num + ").";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\.\\)$"); // EWCA/Crim/2005/1986
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return "(" + num + ".)";
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return "(" + num + ".)";
+            OneCombinator combine = num => "(" + num + ".)";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)a\\)$");
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return "(" + num + "a)";
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return "(" + num + "a)";
+            OneCombinator combine = num => "(" + num + "a)";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
         if (match.Success) {
-            // int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-            // int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-            // Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-            // Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-            // int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-            // int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-            // int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-            // if (ilvl1 < baseIlvl)
-            //     n1 -= 1;
-            // else if (ilvl1 > baseIlvl)
-            //     throw new Exception();
-            // int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-            // if (ilvl2 < baseIlvl)
-            //     n2 -= 1;
-            // else if (ilvl2 > baseIlvl)
-            //     throw new Exception();
-            // string num1 = FormatN(n1, lvl1.NumberingFormat);
-            // string num2 = FormatN(n2, lvl2.NumberingFormat);
-            // return num1 + "." + num2 + ".";
             TwoCombinator combine = (num1, num2) => { return num1 + "." + num2 + "."; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");
         if (match.Success) {
-            // int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-            // int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-            // Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-            // Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-            // int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-            // int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-            // int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-            // if (ilvl1 < baseIlvl && n1 > start1)
-            //     n1 -= 1;
-            // else if (ilvl1 > baseIlvl)
-            //     throw new Exception();
-            // int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-            // if (ilvl2 < baseIlvl && n2 > start2)
-            //     n2 -= 1;
-            // else if (ilvl2 > baseIlvl)
-            //     throw new Exception();
-            // string num1 = FormatN(n1, lvl1.NumberingFormat);
-            // string num2 = FormatN(n2, lvl2.NumberingFormat);
-            // return num1 + "." + num2;
             TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)$");
         if (match.Success) {
-            // int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-            // int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-            // int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
-            // Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-            // Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-            // Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-            // int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-            // int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-            // int start3 = lvl3.StartNumberingValue?.Val ?? 1;
-            // int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
-            // if (ilvl1 < baseIlvl)
-            //     n1 -= 1;
-            // else if (ilvl1 > baseIlvl)
-            //     throw new Exception();
-            // int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
-            // if (ilvl2 < baseIlvl)
-            //     n2 -= 1;
-            // else if (ilvl2 > baseIlvl)
-            //     throw new Exception();
-            // int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
-            // if (ilvl3 < baseIlvl)
-            //     n3 -= 1;
-            // else if (ilvl3 > baseIlvl)
-            //     throw new Exception();
-            // string num1 = FormatN(n1, lvl1.NumberingFormat);
-            // string num2 = FormatN(n2, lvl2.NumberingFormat);
-            // string num3 = FormatN(n3, lvl3.NumberingFormat);
-            // return num1 + "." + num2 + "." + num3;
             ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3; };
             return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
         }
@@ -236,13 +184,52 @@ class Numbering2 {
                 return Char.ConvertFromUtf32(0x2219);   // small square "bullet operator"
             if (format.Val.Value == Char.ConvertFromUtf32(0xf02d))    // EWHC/Patents/2008/2127
                 return Char.ConvertFromUtf32(0x2013);   // en dash (maybe it should be bold?)
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0d8))  // EWHC/QB/2010/484
+                return format.Val.Value;
+        }
+        match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)$");    // EWHC/Comm/2015/150
+        if (match.Success) {
+            string prefix = match.Groups[1].Value;
+            int ilvl = int.Parse(match.Groups[2].Value) - 1;
+            OneCombinator combine = (num) => { return prefix + num; };
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
+        }
+        match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d+)([^%]+)$");    // EWHC/Ch/2012/1411
+        if (match.Success) {
+            string prefix = match.Groups[1].Value;
+            int ilvl = int.Parse(match.Groups[2].Value) - 1;
+            string suffix = match.Groups[3].Value;
+            OneCombinator combine = num => prefix + num + suffix;
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
         }
         match = Regex.Match(format.Val.Value, @"^'(\d)\.$");    // EWHC/Fam/2015/2971
         if (match.Success)
             return format.Val.Value;
         if (format.Val.Value == "")     // EWHC/QB/2018/2066
             return "";
+        if (baseLevel.NumberingFormat.Val == NumberFormatValues.None)   // EWHC/QB/2009/406
+            // maybe should check that format.Val.Value doesn't contain a %
+            return format.Val.Value;
+
         throw new Exception("unsupported level text: " + format.Val.Value);
+    }
+
+    private delegate string OneCombinator(string num1);
+
+    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, OneCombinator combine) {
+        int ilvl = int.Parse(match.Groups[1].Value) - 1;
+        Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+        int start = lvl.StartNumberingValue?.Val ?? 1;
+        int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+        string num = FormatN(n, lvl.NumberingFormat);
+        return combine(num);
+    }
+    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
+        Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+        int start = lvl.StartNumberingValue?.Val ?? 1;
+        int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+        string num = FormatN(n, lvl.NumberingFormat);
+        return combine(num);
     }
 
     private delegate string TwoCombinator(string num1, string num2);
@@ -361,6 +348,8 @@ class Numbering2 {
             return Util.ToUpperRoman(n);
         if (format == NumberFormatValues.DecimalZero)
             return n.ToString("D2");
+        if (format == NumberFormatValues.None)  // EWHC/Ch/2015/3490
+            return "";
         throw new Exception("unsupported numbering format: " + format.ToString());
     }
 
