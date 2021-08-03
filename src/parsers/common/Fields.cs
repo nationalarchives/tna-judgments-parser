@@ -107,7 +107,13 @@ class Fields {
             IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
             IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
             string href = match.Groups[1].Value;
-            WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
+            if (Uri.IsWellFormedUriString(href, UriKind.Absolute)) {
+                WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
+                return new List<IInline>(1) { hyperlink };
+            } else {
+                return contents;
+            }
+            // WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
             // OpenXmlElement last = withinField[i+1];
             // if (last is not Run run)
             //     throw new Exception();
@@ -119,7 +125,6 @@ class Fields {
             //     throw new Exception();
             // string href = match.Groups[1].Value;
             // WHyperlink1 hyperlink = new WHyperlink1(wt) { Href = href };
-            return new List<IInline>(1) { hyperlink };
         }
         match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" " + @"\\o" +" \"(.+?)\" ?$");
         if (match.Success) {
@@ -223,7 +228,7 @@ class Fields {
             RunProperties rProps = ((Run) first).RunProperties;
             // INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
             /* not sure why this should be a WText and LISTNUM LegalDefault should be an WNumber2
-            /*  but only example I've seen (EWCA/Crim/2011/143) is followed by a non-breaking space */
+            /* but only example I've seen (EWCA/Crim/2011/143) is followed by a non-breaking space */
             WText wText = new WText(fNum, rProps);
             return new List<IInline>(1) { wText };
         }
@@ -246,16 +251,48 @@ class Fields {
         if (fieldCode == "PRIVATE ") { // EWCA/Civ/2003/295
             return Enumerable.Empty<IInline>();
         }
-        if (fieldCode == " =SUM(ABOVE) ") {   // EWCA/Crim/2018/542
+        if (fieldCode == " =SUM(ABOVE) ") {   // EWCA/Crim/2018/542, EWHC/Ch/2015/164
+            if (i == withinField.Count) {
+                TableCell cell = first.Ancestors<TableCell>().First();
+                string sum = DOCX.Tables.SumAbove(cell);
+                RunProperties rProps = ((Run) first).RunProperties;
+                WText wText = new WText(sum, rProps);
+                return new List<IInline>(1) { wText };
+            } else {
+                OpenXmlElement next = withinField[i];
+                if (!IsFieldSeparater(next))
+                    throw new Exception();
+                IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+                if (!rest.Any())
+                    throw new Exception();
+                return Inline.ParseRuns(main, rest);
+            }
+        }
+        if (fieldCode == " DATE \\@ \"dd MMMM yyyy\" ") {
+            if (i == withinField.Count)
+                throw new Exception();
             OpenXmlElement next = withinField[i];
             if (!IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
             if (!rest.Any())
                 throw new Exception();
-            return Inline.ParseRuns(main, rest);
+            IEnumerable<IInline> parsed = Inline.ParseRuns(main, rest);
+            if (parsed.All(inline => inline is IFormattedText)) {
+                string content = Enricher.NormalizeInlines(parsed);
+                try {
+                    CultureInfo culture = new CultureInfo("en-GB");
+                    DateTime date = DateTime.Parse(content, culture);
+                    WDate wDate = new WDate(parsed.Cast<IFormattedText>(), date);
+                    return new List<IInline>(1) { wDate };
+                } catch (FormatException) {
+                }
+            }
+            return parsed;
         }
-        if (fieldCode == " DATE \\@ \"dd MMMM yyyy\" ") {
+        if (fieldCode == " TIME \\@ \"dddd d MMMM yyyy\" ") { // EWHC/Ch/2005/2793
+            if (i == withinField.Count)
+                throw new Exception();
             OpenXmlElement next = withinField[i];
             if (!IsFieldSeparater(next))
                 throw new Exception();
@@ -293,8 +330,37 @@ class Fields {
                 throw new Exception();
             return Inline.ParseRuns(main, remaining);
         }
+        if (IsSequence(fieldCode))
+            return ParseSequence(main, withinField, i);
+        if (fieldCode.Trim() == "AUTONUM")  // EWHC/Ch/2005/2793
+            return new List<IInline>(1) { Autonum(main, (Run) first) };
+        if (fieldCode == " =179000*0.3 \\# \"£#,##0;(£#,##0)\" ")   // EWHC/Ch/2005/2793
+            return Rest(main, withinField, i);
+        
+        if (fieldCode.Trim() == "PAGE") {   // EWHC/Admin/2003/2369
+            if (!first.Ancestors<Header>().Any())
+                throw new Exception();
+            return Enumerable.Empty<IInline>();
+        }
+        match = Regex.Match(fieldCode, @" PAGEREF [_A-Za-z0-9]+ \\h ");   // EWHC/Ch/2007/1044
+        if (match.Success) {
+            return Enumerable.Empty<IInline>();
+        }
+
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();
+    }
+
+    private static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
+            if (i == withinField.Count)
+                throw new Exception();
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+            if (!remaining.Any())
+                throw new Exception();
+            return Inline.ParseRuns(main, remaining);
     }
 
     private static int CountPrecedingListNumLegalDefault(OpenXmlElement fc) {
@@ -322,6 +388,32 @@ class Fields {
         return null;
 
     }
+
+    /* sequences */
+    /* https://support.microsoft.com/en-us/office/field-codes-seq-sequence-field-062a387b-dfc9-4ef8-8235-29ee113d59be */
+
+    private static bool IsSequence(string fieldCode) {
+        return fieldCode == " SEQ CHAPTER \\h \\r 1";   // EWHC/Admin/2018/288
+    }
+
+    private static IEnumerable<IInline> ParseSequence(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
+        return Enumerable.Empty<IInline>();
+    }
+
+    /* AUTONUM */
+    /* incomplete: will not format correctly */
+    private static INumber Autonum(MainDocumentPart main, Run run) {  // EWHC/Ch/2005/2793
+        Paragraph paragraph = run.Ancestors<Paragraph>().First();
+        int n = 1;
+        Paragraph preceding = paragraph.PreviousSibling<Paragraph>();
+        while (preceding is not null) {
+            if (preceding.Descendants().Where(e => e is FieldCode || e.LocalName == "instrText").Where(e => e.InnerText.Trim() == "AUTONUM").Any())
+                n += 1;
+            preceding = preceding.PreviousSibling<Paragraph>();
+        }
+        return new DOCX.WNumber2(n.ToString(), run.RunProperties, main, paragraph.ParagraphProperties);
+    }
+
 
 }
 

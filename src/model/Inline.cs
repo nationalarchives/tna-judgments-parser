@@ -178,6 +178,14 @@ interface IDate : IInline {
 
 }
 
+interface IDateTime : IInline {
+
+    DateTime DateTime { get; }
+
+    IEnumerable<IFormattedText> Contents { get; }
+
+}
+
 interface IDocDate : IDate {
 }
 
