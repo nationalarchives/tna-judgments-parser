@@ -261,6 +261,8 @@ interface IHyperlink1 : IFormattedText {
 
     string Href { get; }
 
+    string ScreenTip { get; }
+
 }
 
 interface IHyperlink2 : IInline {
@@ -268,6 +270,8 @@ interface IHyperlink2 : IInline {
     string Href { get; }
 
     IEnumerable<IInline> Contents { get; }
+
+    string ScreenTip { get; }
 
 }
 

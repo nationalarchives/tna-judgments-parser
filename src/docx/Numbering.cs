@@ -56,10 +56,17 @@ class Numbering {
             .OfType<AbstractNum>()
             .Where(a => a.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
             .First();
-        return abs.ChildElements
+        level = abs.ChildElements
             .OfType<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
             .FirstOrDefault();  // does not exist in EWHC/Ch/2003/2902
+        if (level is null && abs.NumberingStyleLink is not null) {    // // EWHC/Ch/2012/190
+            string numStyleId = abs.NumberingStyleLink.Val.Value;
+            Style numStyle = Styles.GetStyle(main, StyleValues.Numbering, numStyleId);
+            numberingId = numStyle.StyleParagraphProperties.NumberingProperties.NumberingId.Val.Value;
+            level = GetLevel(main, numberingId, ilvl);
+        }
+        return level;
     }
     public static Level GetLevel(MainDocumentPart main, NumberingId id, int ilvl) {
         return GetLevel(main, id.Val, ilvl);

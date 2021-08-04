@@ -7,9 +7,13 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Inline {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<Parse.Inline>();
 
     public static IEnumerable<IInline> ParseRuns(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
         List<IInline> parsed = new List<IInline>();
@@ -36,8 +40,10 @@ class Inline {
                 continue;
             }
             if (Fields.IsFieldEnd(e)) {
-                if (withinField is null)
-                    throw new Exception();
+                if (withinField is null) {  // EWHC/Comm/2004/999
+                    logger.LogWarning("field end without start in same paragraph");
+                    continue;
+                }
                 IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
                 parsed.AddRange(parsedFieldContents);
                 withinField = null;
@@ -123,6 +129,11 @@ class Inline {
                 continue;
             }
             throw new Exception();
+        }
+        if (withinField is not null) {  // EWHC/Comm/2004/999
+            logger.LogWarning("paragraph end before field end");
+            IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
+            parsed.AddRange(parsedFieldContents);
         }
         return parsed;
     }

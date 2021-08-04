@@ -113,6 +113,8 @@ abstract class AbstractParser {
             return false;
         if (e is Paragraph p && string.IsNullOrWhiteSpace(p.InnerText))
             return true;
+        if (e is PermEnd)
+            return true;
         return false;
     }
 

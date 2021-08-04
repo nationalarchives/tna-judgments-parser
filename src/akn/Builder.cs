@@ -209,7 +209,7 @@ class Builder {
         else if (model is ILawyer lawyer)
             AddLawyer(parent, lawyer);
         else if (model is IHyperlink1 link)
-            AddAndWrapText(parent, "a", link).SetAttribute("href", link.Href);
+            AddHperlink(parent, link);
         else if (model is IHyperlink2 link2)
             AddHperlink(parent, link2);
         else if (model is IFormattedText fText)
@@ -379,9 +379,18 @@ class Builder {
         parent.AppendChild(img);
     }
 
+    private void AddHperlink(XmlElement parent, IHyperlink1 link) {
+        var x = AddAndWrapText(parent, "a", link);
+        x.SetAttribute("href", link.Href);
+        if (link.ScreenTip is not null)
+            x.SetAttribute("title", link.ScreenTip);
+    }
+
     private void AddHperlink(XmlElement parent, IHyperlink2 link) {
         XmlElement a = CreateAndAppend("a", parent);
         a.SetAttribute("href", link.Href);
+        if (link.ScreenTip is not null)
+            a.SetAttribute("title", link.ScreenTip);
         foreach (IInline inline in link.Contents)
             AddInline(a, inline);
     }
