@@ -9,10 +9,13 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Fields {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<Parse.Fields>();
 
     internal static bool IsFieldStart(OpenXmlElement e) {
         if (e is not Run run)
@@ -69,6 +72,7 @@ class Fields {
             fieldCode += GetFieldCode(next);
             i += 1;
         }
+        logger.LogDebug("field code: " + fieldCode);
         Match match = Regex.Match(fieldCode, "^ FILENAME \\\\\\* MERGEFORMAT ?$");
         if (match.Success) {
             if (i == withinField.Count)
@@ -97,7 +101,7 @@ class Fields {
                 throw new Exception();
             return Inline.ParseRuns(main, withinField.Skip(i + 1));
         }
-        match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" ?$");
+        match = Regex.Match(fieldCode, "^ HYPERLINK \"([^ \"]+)\" ?$");
         if (match.Success) {
             // if (i != withinField.Count - 2)
             //     throw new Exception();
@@ -108,97 +112,101 @@ class Fields {
             IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
             string href = match.Groups[1].Value;
             if (Uri.IsWellFormedUriString(href, UriKind.Absolute)) {
+                logger.LogDebug("hyperlink to " + href);
                 WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
                 return new List<IInline>(1) { hyperlink };
             } else {
+                logger.LogWarning("URI is not well-formed: " + href);
                 return contents;
             }
-            // WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
-            // OpenXmlElement last = withinField[i+1];
-            // if (last is not Run run)
-            //     throw new Exception();
-            // IEnumerable<IInline> children = Inline.MapRunChildren(main, run);
-            // if (children.Count() != 1)
-            //     throw new Exception();
-            // IInline firstChild = children.First();
-            // if (firstChild is not WText wt)
-            //     throw new Exception();
-            // string href = match.Groups[1].Value;
-            // WHyperlink1 hyperlink = new WHyperlink1(wt) { Href = href };
         }
-        match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" " + @"\\o" +" \"(.+?)\" ?$");
+        // match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" " + @"\\o" +" \"(.+?)\" ?$");
+        match = Regex.Match(fieldCode, @"^ HYPERLINK ""(.+?)"" \\o ""(.+?)"" ?$");
         if (match.Success) {
-            if (i != withinField.Count)
-                throw new Exception();
-            string address = match.Groups[1].Value;
-            string text = match.Groups[2].Value;
-            RunProperties rProps = first.Ancestors<Run>().FirstOrDefault().Descendants<RunProperties>().FirstOrDefault();
-            WText wText = new WText(text, rProps);
-            WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = address };
-            return new List<IInline>(1) { hyperlink };
-        }
-        match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\r( \\p)? \\h(  \\\* MERGEFORMAT)? $");
-        // no \\h in EWCA/Civ/2009/755
-        if (match.Success) {
-            string rf = match.Groups[1].Value;
-            // OpenXmlElement root = first;
-            // while (root.Parent is not null)
-            //     root = root.Parent;
-            BookmarkStart bkmk = DOCX.Bookmarks.Get(main, rf);
-            if (bkmk is null)
-                throw new Exception();
-            Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
-            DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
-            string aboveBelow = "";
-            if (!string.IsNullOrEmpty(match.Groups[2].Value)) {
-                bool above = true;
-                Paragraph nextPara = first.Ancestors<Paragraph>().First().NextSibling<Paragraph>();
-                while (nextPara is not null) {
-                    if (nextPara == bkmkPara)
-                        above = false;
-                    nextPara = nextPara.NextSibling<Paragraph>();
-                }
-                aboveBelow = above ? " above" : " below";
-            }
+            string href = match.Groups[1].Value;
+            string screenTip = match.Groups[2].Value;
             if (i == withinField.Count) {
-                if (info is null)
-                    throw new Exception("REF has no content and target has no number");
-                RunProperties rProps = first is Run run ? run.RunProperties : null;
-                string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
-                string numPlusAboveBelow = numWithoutPunc + aboveBelow;
-                WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
-                return new List<IInline>(1) { numberInThisFormat };
-            } else {
+                RunProperties rProps = ((Run) first).RunProperties;
+                WText wText = new WText(screenTip, rProps);
+                WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = href };
+                return new List<IInline>(1) { hyperlink };
+            } else {    // EWHC/Comm/2013/67
                 OpenXmlElement next = withinField[i];
-                // while (next.ChildElements.Count == 1 && next.FirstChild is RunProperties) {
-                //     i += 1;
-                //     next = withinField[i];
-                // }
                 if (!IsFieldSeparater(next))
                     throw new Exception();
-                if (info is null) {
-                    IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-                    return Inline.ParseRuns(main, remaining);
-                } else {
-                    RunProperties rProps = first is Run run ? run.RunProperties : null;
-                    string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
-                    string numPlusAboveBelow = numWithoutPunc + aboveBelow;
-                    WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
-                    return new List<IInline>(1) { numberInThisFormat };
-                }
+                IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+                IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
+                WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href, ScreenTip = screenTip };
+                return new List<IInline>(1) { hyperlink };
             }
         }
-        match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\w \\h $");
-        if (match.Success) {
-            string bkmkId = match.Groups[1].Value;
-            BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkId);
-            Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
-            string formattedNumber = DOCX.Numbering2.GetNumberInFullContext(main, bkmkPara);
-            RunProperties rProps = first is Run run ? run.RunProperties : null;
-            WText numberInThisFormat = new WText(formattedNumber, rProps);
-            return new List<IInline>(1) { numberInThisFormat };
-            // throw new Exception();
-        }
+        if (Ref.Is(fieldCode))
+            return Ref.Parse(main, fieldCode, withinField, i);
+        // match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\p)? +\\h(  \\\* MERGEFORMAT)? $");
+        // // no \\r in EWHC/Admin/2015/1873
+        // // no \\h in EWCA/Civ/2009/755
+        // if (match.Success) {
+        //     string rf = match.Groups[1].Value;
+        //     // OpenXmlElement root = first;
+        //     // while (root.Parent is not null)
+        //     //     root = root.Parent;
+        //     BookmarkStart bkmk = DOCX.Bookmarks.Get(main, rf);
+        //     if (bkmk is null)
+        //         throw new Exception();
+        //     Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
+        //     DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
+        //     string aboveBelow = "";
+        //     if (!string.IsNullOrEmpty(match.Groups[2].Value)) {
+        //         bool above = true;
+        //         Paragraph nextPara = first.Ancestors<Paragraph>().First().NextSibling<Paragraph>();
+        //         while (nextPara is not null) {
+        //             if (nextPara == bkmkPara)
+        //                 above = false;
+        //             nextPara = nextPara.NextSibling<Paragraph>();
+        //         }
+        //         aboveBelow = above ? " above" : " below";
+        //     }
+        //     if (i == withinField.Count) {
+        //         if (info is null)
+        //             throw new Exception("REF has no content and target has no number");
+        //         RunProperties rProps = first is Run run ? run.RunProperties : null;
+        //         string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
+        //         string numPlusAboveBelow = numWithoutPunc + aboveBelow;
+        //         WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
+        //         return new List<IInline>(1) { numberInThisFormat };
+        //     } else {
+        //         OpenXmlElement next = withinField[i];
+        //         // while (next.ChildElements.Count == 1 && next.FirstChild is RunProperties) {
+        //         //     i += 1;
+        //         //     next = withinField[i];
+        //         // }
+        //         if (!IsFieldSeparater(next))
+        //             throw new Exception();
+        //         if (info is null) {
+        //             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+        //             return Inline.ParseRuns(main, remaining);
+        //         } else {
+        //             RunProperties rProps = first is Run run ? run.RunProperties : null;
+        //             string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
+        //             string numPlusAboveBelow = numWithoutPunc + aboveBelow;
+        //             WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
+        //             return new List<IInline>(1) { numberInThisFormat };
+        //         }
+        //     }
+        // }
+        // match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\w \\h $");
+        // if (match.Success) {
+        //     string bkmkId = match.Groups[1].Value;
+        //     BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkId);
+        //     Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
+        //     string formattedNumber = DOCX.Numbering2.GetNumberInFullContext(main, bkmkPara);
+        //     RunProperties rProps = first is Run run ? run.RunProperties : null;
+        //     WText numberInThisFormat = new WText(formattedNumber, rProps);
+        //     return new List<IInline>(1) { numberInThisFormat };
+        //     // throw new Exception();
+        // }
+        if (NoteRef.Is(fieldCode))
+            return NoteRef.Parse(main, fieldCode, withinField, i);
         if (fieldCode == "ref PRI,ATE ") { // EWCA/Crim/2010/354
             return Enumerable.Empty<IInline>();
         }
@@ -315,6 +323,9 @@ class Fields {
         if (fieldCode.StartsWith("tc \"")) {    // EWCA/Civ/2008/875_1
             return Enumerable.Empty<IInline>();
         }
+        if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219
+            return Enumerable.Empty<IInline>();
+        }
         match = Regex.Match(fieldCode, @"^ INCLUDEPICTURE ""(.+?)"" \\\* MERGEFORMATINET $");   // EWHC/Patents/2008/2127
         if (match.Success) {
             if (i == withinField.Count) {
@@ -334,6 +345,11 @@ class Fields {
             return ParseSequence(main, withinField, i);
         if (fieldCode.Trim() == "AUTONUM")  // EWHC/Ch/2005/2793
             return new List<IInline>(1) { Autonum(main, (Run) first) };
+        string regex = @"^ AUTONUM +\\\* Arabic *$";
+        match = Regex.Match(fieldCode, regex);   // EWHC/Ch/2007/2841
+        if (match.Success) {
+            return new List<IInline>(1) { Autonum(main, (Run) first, regex) };
+        }
         if (fieldCode == " =179000*0.3 \\# \"£#,##0;(£#,##0)\" ")   // EWHC/Ch/2005/2793
             return Rest(main, withinField, i);
         
@@ -345,6 +361,20 @@ class Fields {
         match = Regex.Match(fieldCode, @" PAGEREF [_A-Za-z0-9]+ \\h ");   // EWHC/Ch/2007/1044
         if (match.Success) {
             return Enumerable.Empty<IInline>();
+        }
+
+        if (fieldCode.Trim() == "QUOTE") {  // EWHC/Comm/2013/2118
+            logger.LogDebug("field code: " + fieldCode);
+            while (i < withinField.Count) {
+                OpenXmlElement next = withinField[i];
+                i += 1;
+                if (IsFieldSeparater(next))
+                    break;
+            }
+            if (i == withinField.Count)
+                logger.LogError("no separator after QUOTE field");
+            IEnumerable<OpenXmlElement> remaining = withinField.Skip(i);
+            return Inline.ParseRuns(main, remaining);
         }
 
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
@@ -411,7 +441,18 @@ class Fields {
                 n += 1;
             preceding = preceding.PreviousSibling<Paragraph>();
         }
-        return new DOCX.WNumber2(n.ToString(), run.RunProperties, main, paragraph.ParagraphProperties);
+        return new DOCX.WNumber2(n.ToString() + ".", run.RunProperties, main, paragraph.ParagraphProperties);
+    }
+    private static INumber Autonum(MainDocumentPart main, Run run, string regex) {  // EWHC/Ch/2007/2841
+        Paragraph paragraph = run.Ancestors<Paragraph>().First();
+        int n = 1;
+        Paragraph preceding = paragraph.PreviousSibling<Paragraph>();
+        while (preceding is not null) {
+            if (preceding.Descendants().Where(e => e is FieldCode || e.LocalName == "instrText").Where(e => Regex.IsMatch(e.InnerText, regex)).Any())
+                n += 1;
+            preceding = preceding.PreviousSibling<Paragraph>();
+        }
+        return new DOCX.WNumber2(n.ToString() + ".", run.RunProperties, main, paragraph.ParagraphProperties);
     }
 
 

@@ -15,6 +15,20 @@ public class FontInfo : IFontInfo {
 
 static class Styles {
 
+    public static Style? GetStyle(DocumentFormat.OpenXml.Wordprocessing.Styles styles, StyleValues type, string id) {
+        return styles.ChildElements
+            .OfType<Style>()
+            .Where(s => s.Type is not null && s.Type == type)
+            .Where(s => s.StyleId?.Value is not null && s.StyleId.Value.Equals(id))
+            .FirstOrDefault();
+    }
+    public static Style? GetStyle(MainDocumentPart main, StyleValues type, string id) {
+        DocumentFormat.OpenXml.Wordprocessing.Styles? styles = main.StyleDefinitionsPart?.Styles;
+        if (styles is null)
+            return null;
+        return GetStyle(styles, type, id);
+    }
+
     public static Style? GetStyle(DocumentFormat.OpenXml.Wordprocessing.Styles styles, string id) {
         return styles.ChildElements
             .OfType<Style>()
