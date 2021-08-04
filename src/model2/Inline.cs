@@ -257,6 +257,8 @@ internal class WHyperlink1 : WText, IHyperlink1 {
 
     public string Href { get; init; }
 
+    public string ScreenTip { get; init; }
+
 }
 
 internal class WHyperlink2 : IHyperlink2 {
@@ -264,6 +266,8 @@ internal class WHyperlink2 : IHyperlink2 {
     public IEnumerable<IInline> Contents { get; init; }
 
     public string Href { get; init; }
+
+    public string ScreenTip { get; init; }
 
 }
 

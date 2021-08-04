@@ -9,9 +9,13 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class CourtOfAppealParser : AbstractParser {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
 
     public static Judgment Parse(WordprocessingDocument doc) {
         return new CourtOfAppealParser(doc).Parse();
@@ -51,7 +55,7 @@ class CourtOfAppealParser : AbstractParser {
                 return header;
             AddBlock(e, header);
         }
-        Console.WriteLine("found title: " + elements.ElementAt(i).InnerText);
+        logger.LogDebug("found title: " + elements.ElementAt(i).InnerText);
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
             if (e is Paragraph p) {
