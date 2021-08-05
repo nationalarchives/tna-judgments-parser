@@ -28,8 +28,11 @@ class Inline {
             if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkEnd")
                 continue;
             if (Fields.IsFieldStart(e)) {
-                if (withinField is not null)
-                    throw new Exception();
+                if (withinField is not null) {
+                    logger.LogWarning("field start before previous ending");
+                    IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
+                    parsed.AddRange(parsedFieldContents);
+                }
                 withinField = new List<OpenXmlElement>();
                 continue;
             }
