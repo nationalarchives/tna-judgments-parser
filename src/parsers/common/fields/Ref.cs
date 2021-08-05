@@ -57,6 +57,12 @@ internal class Ref {
         return above;
     }
 
+    internal static bool BookmarkIsAbove(OpenXmlElement anchor, BookmarkStart bookmark) {
+        Paragraph anchorParagraph = anchor.Ancestors<Paragraph>().First();
+        Paragraph bookmarkParagraph = bookmark.Ancestors<Paragraph>().First();
+        return BookmarkIsAbove(anchorParagraph, bookmarkParagraph);
+    }
+
     private static IEnumerable<IInline> IgnoreFollowing(MainDocumentPart main, string bookmarkName, bool rSwitch, bool pSwitch, bool wSwitch, Run field) {
         BookmarkStart bookmark = DOCX.Bookmarks.Get(main, bookmarkName);
         if (bookmark is null)

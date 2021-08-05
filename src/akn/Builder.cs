@@ -362,8 +362,7 @@ class Builder {
         parent.AppendChild(authorialNote);
         authorialNote.SetAttribute("class", "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
-        foreach (ILine line in fn.Content)
-            this.p(authorialNote, line);
+        blocks(authorialNote, fn.Content);
     }
 
     private void AddImageRef(XmlElement parent, IImageRef model) {

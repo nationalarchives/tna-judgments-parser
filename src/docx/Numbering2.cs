@@ -92,9 +92,14 @@ class Numbering2 {
             OneCombinator combine = num => "(" + num + "a)";
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
+        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");   // EWHC/Admin/2015/3437
+        if (match.Success) {
+            TwoCombinator combine = (num1, num2) => num1 + "." + num2;
+            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
         if (match.Success) {
-            TwoCombinator combine = (num1, num2) => { return num1 + "." + num2 + "."; };
+            TwoCombinator combine = (num1, num2) => num1 + "." + num2 + ".";
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");
@@ -150,6 +155,8 @@ class Numbering2 {
                 return Char.ConvertFromUtf32(0x2013);   // en dash (maybe it should be bold?)
             if (format.Val.Value == Char.ConvertFromUtf32(0xf0d8))  // EWHC/QB/2010/484
                 return format.Val.Value;
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0de))  // EWHC/Ch/2013/3745
+                return Char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
             if (baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
                 return format.Val.Value;
             if (format.Val.Value == Char.ConvertFromUtf32(0xad))    // "soft hyphen" EWHC/Admin/2017/1754
@@ -179,7 +186,7 @@ class Numbering2 {
             // maybe should check that format.Val.Value doesn't contain a %
             return format.Val.Value;
         
-        if (string.IsNullOrWhiteSpace(format.Val.Value))    // ?
+        if (string.IsNullOrWhiteSpace(format.Val.Value))    // EWCA/Civ/2015/1262
             return "";
 
         throw new Exception("unsupported level text: " + format.Val.Value);

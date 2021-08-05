@@ -18,26 +18,26 @@ class WFootnote : IFootnote {
         this.fn = fn;
     }
 
-    public string Marker {
-        get {
-            int count = 1;
-            FootnoteEndnoteReferenceType previous1 = fn.PreviousSibling<FootnoteEndnoteReferenceType>();
-            while (previous1 != null) {
-                count += 1;
-                previous1 = previous1.PreviousSibling<FootnoteEndnoteReferenceType>();
-            }
-            OpenXmlElement parent = fn.Parent;
-            while (parent is not null) {
-                OpenXmlElement previous2 = parent.PreviousSibling();
-                while (previous2 is not null) {
-                    count += previous2.Descendants<FootnoteEndnoteReferenceType>().Count();
-                    previous2 = previous2.PreviousSibling();
-                }
-                parent = parent.Parent;
-            }
-            return count.ToString();
+    public static string GetMarker(FootnoteEndnoteReferenceType fn) {
+        int count = 1;
+        FootnoteEndnoteReferenceType previous1 = fn.PreviousSibling<FootnoteEndnoteReferenceType>();
+        while (previous1 != null) {
+            count += 1;
+            previous1 = previous1.PreviousSibling<FootnoteEndnoteReferenceType>();
         }
+        OpenXmlElement parent = fn.Parent;
+        while (parent is not null) {
+            OpenXmlElement previous2 = parent.PreviousSibling();
+            while (previous2 is not null) {
+                count += previous2.Descendants<FootnoteEndnoteReferenceType>().Count();
+                previous2 = previous2.PreviousSibling();
+            }
+            parent = parent.Parent;
+        }
+        return count.ToString();
     }
+
+    public string Marker { get => GetMarker(fn); }
 
     public IEnumerable<UK.Gov.Legislation.Judgments.IBlock> Content {
         get {
