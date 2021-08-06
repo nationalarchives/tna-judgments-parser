@@ -11,6 +11,8 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using Microsoft.Extensions.Logging;
 
+using UK.Gov.Legislation.Judgments.Parse.Fieldss;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Fields {
@@ -72,7 +74,10 @@ class Fields {
             fieldCode += GetFieldCode(next);
             i += 1;
         }
+        fieldCode = Regex.Replace(" " + fieldCode + " ", @"\s+", " ");
         logger.LogDebug("field code: " + fieldCode);
+        if (Advance.Is(fieldCode))
+            return Advance.Parse(main, fieldCode, withinField.Skip(i));
         Match match = Regex.Match(fieldCode, "^ FILENAME \\\\\\* MERGEFORMAT ?$");
         if (match.Success) {
             if (i == withinField.Count)
@@ -84,9 +89,9 @@ class Fields {
         }
         match = Regex.Match(fieldCode, "^ FILLIN ");
         if (!match.Success)
-            match = Regex.Match(fieldCode, "^ MERGEFIELD \"(.+?)\" ?$");
+            match = Regex.Match(fieldCode, "^ MERGEFIELD \"(.+?)\" $");
         if (!match.Success)
-            match = Regex.Match(fieldCode, "^ MERGEFIELD \"(.+?)\" " + @"\\" + "\\* MERGEFORMAT ?$");
+            match = Regex.Match(fieldCode, "^ MERGEFIELD \"(.+?)\" " + @"\\" + "\\* MERGEFORMAT $");
         if (match.Success) {
             if (i == withinField.Count) {
                 string field = match.Groups[1].Value;
@@ -101,118 +106,59 @@ class Fields {
                 throw new Exception();
             return Inline.ParseRuns(main, withinField.Skip(i + 1));
         }
-        match = Regex.Match(fieldCode, "^ HYPERLINK \"([^ \"]+)\" ?$");
-        if (match.Success) {
-            // if (i != withinField.Count - 2)
-            //     throw new Exception();
-            OpenXmlElement next = withinField[i];
-            if (!IsFieldSeparater(next))
-                throw new Exception();
-            IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
-            IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
-            string href = match.Groups[1].Value;
-            if (Uri.IsWellFormedUriString(href, UriKind.Absolute)) {
-                logger.LogDebug("hyperlink to " + href);
-                WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
-                return new List<IInline>(1) { hyperlink };
-            } else {
-                logger.LogWarning("URI is not well-formed: " + href);
-                return contents;
-            }
-        }
-        // match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" " + @"\\o" +" \"(.+?)\" ?$");
-        match = Regex.Match(fieldCode, @"^ HYPERLINK ""(.+?)"" \\o ""(.+?)"" ?$");
-        if (match.Success) {
-            string href = match.Groups[1].Value;
-            string screenTip = match.Groups[2].Value;
-            if (i == withinField.Count) {
-                RunProperties rProps = ((Run) first).RunProperties;
-                WText wText = new WText(screenTip, rProps);
-                WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = href };
-                return new List<IInline>(1) { hyperlink };
-            } else {    // EWHC/Comm/2013/67
-                OpenXmlElement next = withinField[i];
-                if (!IsFieldSeparater(next))
-                    throw new Exception();
-                IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
-                IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
-                WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href, ScreenTip = screenTip };
-                return new List<IInline>(1) { hyperlink };
-            }
-        }
-        if (Ref.Is(fieldCode))
-            return Ref.Parse(main, fieldCode, withinField, i);
-        // match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\p)? +\\h(  \\\* MERGEFORMAT)? $");
-        // // no \\r in EWHC/Admin/2015/1873
-        // // no \\h in EWCA/Civ/2009/755
+        if (UK.Gov.Legislation.Judgments.Parse.Fieldss.Hyperlink.Is(fieldCode))
+            return UK.Gov.Legislation.Judgments.Parse.Fieldss.Hyperlink.Parse(main, fieldCode, withinField, i);
+        // match = Regex.Match(fieldCode, "^ HYPERLINK \"([^ \"]+)\" $");
         // if (match.Success) {
-        //     string rf = match.Groups[1].Value;
-        //     // OpenXmlElement root = first;
-        //     // while (root.Parent is not null)
-        //     //     root = root.Parent;
-        //     BookmarkStart bkmk = DOCX.Bookmarks.Get(main, rf);
-        //     if (bkmk is null)
+        //     // if (i != withinField.Count - 2)
+        //     //     throw new Exception();
+        //     OpenXmlElement next = withinField[i];
+        //     if (!IsFieldSeparater(next))
         //         throw new Exception();
-        //     Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
-        //     DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bkmkPara);
-        //     string aboveBelow = "";
-        //     if (!string.IsNullOrEmpty(match.Groups[2].Value)) {
-        //         bool above = true;
-        //         Paragraph nextPara = first.Ancestors<Paragraph>().First().NextSibling<Paragraph>();
-        //         while (nextPara is not null) {
-        //             if (nextPara == bkmkPara)
-        //                 above = false;
-        //             nextPara = nextPara.NextSibling<Paragraph>();
-        //         }
-        //         aboveBelow = above ? " above" : " below";
-        //     }
-        //     if (i == withinField.Count) {
-        //         if (info is null)
-        //             throw new Exception("REF has no content and target has no number");
-        //         RunProperties rProps = first is Run run ? run.RunProperties : null;
-        //         string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
-        //         string numPlusAboveBelow = numWithoutPunc + aboveBelow;
-        //         WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
-        //         return new List<IInline>(1) { numberInThisFormat };
+        //     IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+        //     IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
+        //     string href = match.Groups[1].Value;
+        //     if (Uri.IsWellFormedUriString(href, UriKind.Absolute)) {
+        //         logger.LogDebug("hyperlink to " + href);
+        //         WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href };
+        //         return new List<IInline>(1) { hyperlink };
         //     } else {
+        //         logger.LogWarning("URI is not well-formed: " + href);
+        //         return contents;
+        //     }
+        // }
+        // // match = Regex.Match(fieldCode, "^ HYPERLINK \"(.+?)\" " + @"\\o" +" \"(.+?)\" ?$");
+        // match = Regex.Match(fieldCode, @"^ HYPERLINK ""(.+?)"" \\o ""(.+?)"" $");
+        // if (match.Success) {
+        //     string href = match.Groups[1].Value;
+        //     string screenTip = match.Groups[2].Value;
+        //     if (i == withinField.Count) {
+        //         RunProperties rProps = ((Run) first).RunProperties;
+        //         WText wText = new WText(screenTip, rProps);
+        //         WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = href };
+        //         return new List<IInline>(1) { hyperlink };
+        //     } else {    // EWHC/Comm/2013/67
         //         OpenXmlElement next = withinField[i];
-        //         // while (next.ChildElements.Count == 1 && next.FirstChild is RunProperties) {
-        //         //     i += 1;
-        //         //     next = withinField[i];
-        //         // }
         //         if (!IsFieldSeparater(next))
         //             throw new Exception();
-        //         if (info is null) {
-        //             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-        //             return Inline.ParseRuns(main, remaining);
-        //         } else {
-        //             RunProperties rProps = first is Run run ? run.RunProperties : null;
-        //             string numWithoutPunc = info.Value.Number.Trim('.', '(',')');
-        //             string numPlusAboveBelow = numWithoutPunc + aboveBelow;
-        //             WText numberInThisFormat = new WText(numPlusAboveBelow, rProps);
-        //             return new List<IInline>(1) { numberInThisFormat };
-        //         }
+        //         IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+        //         IEnumerable<IInline> contents = Inline.ParseRuns(main, rest);
+        //         WHyperlink2 hyperlink = new WHyperlink2() { Contents = contents, Href = href, ScreenTip = screenTip };
+        //         return new List<IInline>(1) { hyperlink };
         //     }
         // }
-        // match = Regex.Match(fieldCode, @"^ REF ([_A-Za-z0-9]+) \\w \\h $");
-        // if (match.Success) {
-        //     string bkmkId = match.Groups[1].Value;
-        //     BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkId);
-        //     Paragraph bkmkPara = bkmk.Ancestors<Paragraph>().First();
-        //     string formattedNumber = DOCX.Numbering2.GetNumberInFullContext(main, bkmkPara);
-        //     RunProperties rProps = first is Run run ? run.RunProperties : null;
-        //     WText numberInThisFormat = new WText(formattedNumber, rProps);
-        //     return new List<IInline>(1) { numberInThisFormat };
-        //     // throw new Exception();
-        // }
+        if (Ref.Is(fieldCode))
+            return Ref.Parse(main, fieldCode, withinField, i);
         if (NoteRef.Is(fieldCode))
             return NoteRef.Parse(main, fieldCode, withinField, i);
-        if (fieldCode == "ref PRI,ATE ") { // EWCA/Crim/2010/354
+        if (fieldCode == " ref PRI,ATE ")    // EWCA/Crim/2010/354
             return Enumerable.Empty<IInline>();
-        }
-        if (fieldCode == "ref PRIATE ") { // EWCA/Crim/2006/2899
+        if (fieldCode == " ref PRIATE ") // EWCA/Crim/2006/2899
             return Enumerable.Empty<IInline>();
-        }
+        if (fieldCode == " ref PIVATE ") // EWCA/Crim/2007/1035
+            return Enumerable.Empty<IInline>();
+        if (fieldCode == " ref PTE ") // EWCA/Crim/2010/2144
+            return Enumerable.Empty<IInline>();
         if (fieldCode == " LISTNUM LegalDefault ") {
             if (i < withinField.Count)
                 throw new Exception();
@@ -240,7 +186,7 @@ class Fields {
             WText wText = new WText(fNum, rProps);
             return new List<IInline>(1) { wText };
         }
-        if (fieldCode == " FORMTEXT " || fieldCode == " FORMTEXT _") {  // EWCA/Crim/2004/3049
+        if (fieldCode == " FORMTEXT " || fieldCode == " FORMTEXT _ ") {  // EWCA/Crim/2004/3049
             if (i == withinField.Count)
                 return Enumerable.Empty<IInline>();
             OpenXmlElement next = withinField[i];
@@ -256,7 +202,7 @@ class Fields {
                 throw new Exception();
             return Enumerable.Empty<IInline>();
         }
-        if (fieldCode == "PRIVATE ") { // EWCA/Civ/2003/295
+        if (fieldCode == " PRIVATE ") { // EWCA/Civ/2003/295
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode == " =SUM(ABOVE) ") {   // EWCA/Crim/2018/542, EWHC/Ch/2015/164
@@ -320,7 +266,7 @@ class Fields {
             }
             return parsed;
         }
-        if (fieldCode.StartsWith("tc \"")) {    // EWCA/Civ/2008/875_1
+        if (fieldCode.StartsWith(" tc \"")) {    // EWCA/Civ/2008/875_1
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219
@@ -341,9 +287,9 @@ class Fields {
                 throw new Exception();
             return Inline.ParseRuns(main, remaining);
         }
-        if (IsSequence(fieldCode))
-            return ParseSequence(main, withinField, i);
-        if (fieldCode.Trim() == "AUTONUM")  // EWHC/Ch/2005/2793
+        if (Seq.Is(fieldCode))
+            return Seq.Parse(main, fieldCode, withinField.Skip(1));
+        if (fieldCode == " AUTONUM ")  // EWHC/Ch/2005/2793
             return new List<IInline>(1) { Autonum(main, (Run) first) };
         string regex = @"^ AUTONUM +\\\* Arabic *$";
         match = Regex.Match(fieldCode, regex);   // EWHC/Ch/2007/2841
@@ -353,7 +299,7 @@ class Fields {
         if (fieldCode == " =179000*0.3 \\# \"£#,##0;(£#,##0)\" ")   // EWHC/Ch/2005/2793
             return Rest(main, withinField, i);
         
-        if (fieldCode.Trim() == "PAGE") {   // EWHC/Admin/2003/2369
+        if (fieldCode == " PAGE ") {   // EWHC/Admin/2003/2369
             if (!first.Ancestors<Header>().Any())
                 throw new Exception();
             return Enumerable.Empty<IInline>();
@@ -363,8 +309,7 @@ class Fields {
             return Enumerable.Empty<IInline>();
         }
 
-        if (fieldCode.Trim() == "QUOTE") {  // EWHC/Comm/2013/2118
-            logger.LogDebug("field code: " + fieldCode);
+        if (fieldCode == " QUOTE ") {  // EWHC/Comm/2013/2118
             while (i < withinField.Count) {
                 OpenXmlElement next = withinField[i];
                 i += 1;
@@ -377,13 +322,53 @@ class Fields {
             return Inline.ParseRuns(main, remaining);
         }
 
+        match = Regex.Match(fieldCode, @" ASK [_A-Za-z0-9]+ ""[^""]+"" \\\* MERGEFORMAT $"); // EWHC/Admin/2020/287
+        if (match.Success)
+            return Rest(main, withinField, i);
+        if (fieldCode == " ADDIN CiteCheck Marker ")    // EWHC/Comm/2012/3586
+            return RestOptional(main, withinField, i);
+
+
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();
     }
 
+    internal static IEnumerable<IInline> Rest(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
+        if (!rest.Any())
+            throw new Exception();
+        OpenXmlElement first = rest.First();
+        if (!IsFieldSeparater(first))
+            throw new Exception();
+        if (!rest.Skip(1).Any())
+            throw new Exception();
+        return Inline.ParseRuns(main, rest.Skip(1));
+    }
+    internal static IEnumerable<IInline> RestOptional(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
+        if (!rest.Any()) {
+            logger.LogWarning("field code with no text content");
+            return Enumerable.Empty<IInline>();
+        }
+        OpenXmlElement first = rest.First();
+        if (!IsFieldSeparater(first))
+            throw new Exception();
+        if (!rest.Skip(1).Any())
+            throw new Exception();
+        return Inline.ParseRuns(main, rest.Skip(1));
+    }
     private static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
             if (i == withinField.Count)
                 throw new Exception();
+            OpenXmlElement next = withinField[i];
+            if (!IsFieldSeparater(next))
+                throw new Exception();
+            IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+            if (!remaining.Any())
+                throw new Exception();
+            return Inline.ParseRuns(main, remaining);
+    }
+    private static IEnumerable<IInline> RestOptional(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
+            if (i == withinField.Count)
+                return Enumerable.Empty<IInline>();
             OpenXmlElement next = withinField[i];
             if (!IsFieldSeparater(next))
                 throw new Exception();
@@ -417,17 +402,6 @@ class Fields {
         }
         return null;
 
-    }
-
-    /* sequences */
-    /* https://support.microsoft.com/en-us/office/field-codes-seq-sequence-field-062a387b-dfc9-4ef8-8235-29ee113d59be */
-
-    private static bool IsSequence(string fieldCode) {
-        return fieldCode == " SEQ CHAPTER \\h \\r 1";   // EWHC/Admin/2018/288
-    }
-
-    private static IEnumerable<IInline> ParseSequence(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
-        return Enumerable.Empty<IInline>();
     }
 
     /* AUTONUM */
