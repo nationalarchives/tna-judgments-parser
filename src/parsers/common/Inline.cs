@@ -131,6 +131,8 @@ class Inline {
             if (e is PermEnd) {
                 continue;
             }
+            if (e is CommentRangeStart || e is CommentRangeEnd) // EWHC/Comm/2016/869
+                continue;
             throw new Exception();
         }
         if (withinField is not null) {  // EWHC/Comm/2004/999
@@ -197,20 +199,10 @@ class Inline {
             return null;
         if (e is AlternateContent altContent)
             return MapAlternateContent(main, run, altContent);
-        //     if (altContent.ChildElements.Count != 2)
-        //         throw new Exception();
-        //     AlternateContentChoice choice = (AlternateContentChoice) altContent.FirstChild;
-        //     AlternateContentFallback fallback = (AlternateContentFallback) altContent.ChildElements.ElementAt(1);
-        //     if (fallback.FirstChild is Picture pict2) {
-        //         if (pict2.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
-        //             return WImageRef.Make(main, pict2);
-        //         if (pict2.ChildElements.Count == 1 && pict2.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict2.FirstChild.LocalName == "line")
-        //             return null;
-        //     }
-        // }
-        if (e is SymbolChar sym) {  // EWCA/Civ/2013/470
+        if (e is SymbolChar sym)  // EWCA/Civ/2013/470
             return SpecialCharacter.Make(sym, run.RunProperties);
-        }
+        if (e is CommentReference) // EWCA/Civ/2004/55
+            return null;
         throw new Exception(e.OuterXml);
     }
 
@@ -230,7 +222,8 @@ class Inline {
                 return null;
         }
         // don't know what to do with EWHC/Admin/2011/1403
-        return null;
+        // return null;
+        throw new Exception();
         // throw new Exception();
     }
 

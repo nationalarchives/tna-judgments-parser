@@ -8,6 +8,8 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
 readonly struct NumberInfo {
@@ -16,6 +18,8 @@ readonly struct NumberInfo {
 }
 
 class Numbering2 {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<DOCX.Numbering2>();
 
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
         NumberingProperties props = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
@@ -72,6 +76,11 @@ class Numbering2 {
             OneCombinator combine = num => num + ")";
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
+        match = Regex.Match(format.Val.Value, @"^%(\d)\.\)$");   // EWCA/Civ/2013/1686
+        if (match.Success) {
+            OneCombinator combine = num => num + ".)";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        }
         match = Regex.Match(format.Val.Value, "^\"%(\\d)\\)$");   // EWCA/Civ/2006/939
         if (match.Success) {
             OneCombinator combine = num => "\"" + num + ")";
@@ -90,6 +99,13 @@ class Numbering2 {
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)a\\)$");
         if (match.Success) {
             OneCombinator combine = num => "(" + num + "a)";
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        }
+        
+        match = Regex.Match(format.Val.Value, @"^%(\d+)([^%]+)$");   // EWHC/Ch/2017/3634
+        if (match.Success) {
+            string suffix = match.Groups[2].Value;
+            OneCombinator combine = num => num + suffix;
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");   // EWHC/Admin/2015/3437
@@ -157,10 +173,14 @@ class Numbering2 {
                 return format.Val.Value;
             if (format.Val.Value == Char.ConvertFromUtf32(0xf0de))  // EWHC/Ch/2013/3745
                 return Char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
-            if (baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
-                return format.Val.Value;
             if (format.Val.Value == Char.ConvertFromUtf32(0xad))    // "soft hyphen" EWHC/Admin/2017/1754
                 return "-";
+            if (string.IsNullOrEmpty(format.Val.Value)) { // EWCA/Civ/2014/312
+                logger.LogInformation("empty bullet");
+                return "";
+            }
+            if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null && baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
+                return format.Val.Value;
         }
         match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)$");    // EWHC/Comm/2015/150
         if (match.Success) {
@@ -182,12 +202,25 @@ class Numbering2 {
             return format.Val.Value;
         if (format.Val.Value == "")     // EWHC/QB/2018/2066
             return "";
-        if (baseLevel.NumberingFormat.Val == NumberFormatValues.None)   // EWHC/QB/2009/406
+        if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
             // maybe should check that format.Val.Value doesn't contain a %
+            if (format.Val.Value.Contains('%'))
+                throw new Exception();
             return format.Val.Value;
-        
-        if (string.IsNullOrWhiteSpace(format.Val.Value))    // EWCA/Civ/2015/1262
+        }
+
+        if (string.IsNullOrEmpty(format.Val.Value)) {
+            logger.LogInformation("empty number");
             return "";
+        }
+        if (string.IsNullOrWhiteSpace(format.Val.Value)) {    // EWCA/Civ/2015/1262, WHC/Ch/2008/1978
+            logger.LogInformation("whitespace number: \"" + format.Val.Value + "\"");
+            return format.Val.Value;
+        }
+        if (baseLevel.NumberingFormat.Val != NumberFormatValues.Bullet && !format.Val.Value.Contains('#')) {    // EWCA/Civ/2003/1769
+            logger.LogInformation("static number: \"" + format.Val.Value + "\"");
+            return format.Val.Value;
+        }
 
         throw new Exception("unsupported level text: " + format.Val.Value);
     }

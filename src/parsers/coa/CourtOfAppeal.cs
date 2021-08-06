@@ -55,7 +55,10 @@ class CourtOfAppealParser : AbstractParser {
                 return header;
             AddBlock(e, header);
         }
-        logger.LogDebug("found title: " + elements.ElementAt(i).InnerText);
+        if (i < elements.Count)
+            logger.LogInformation("found title: " + elements.ElementAt(i).InnerText);
+        else
+            logger.LogCritical("could not find title");
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
             if (e is Paragraph p) {
