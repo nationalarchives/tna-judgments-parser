@@ -8,12 +8,15 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-
 using Vml = DocumentFormat.OpenXml.Vml;
+
+using Microsoft.Extensions.Logging;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class AbstractParser {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
 
     protected readonly WordprocessingDocument doc;
     protected readonly MainDocumentPart main;
@@ -203,6 +206,7 @@ abstract class AbstractParser {
     protected List<IDecision> Decisions() {
         List<IDecision> decisions = new List<IDecision>();
         while (i < elements.Count) {
+            logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
             if (IsFirstLineOfAnnex(e))
                 break;
@@ -218,6 +222,7 @@ abstract class AbstractParser {
     }
 
     protected IDecision Decision() {
+        logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         if (!IsTitledJudgeName(e.InnerText))
             return null;
@@ -356,9 +361,11 @@ abstract class AbstractParser {
     }
 
     private BigLevel BigLevel(string format, string[] childFormats, string[] ancestorFormats) {
+        logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         while (IsSkippable(e)) {
             i += 1;
+            logger.LogTrace("parsing element " + i);
             e = elements.ElementAt(i);;
         }
         if (!IsFirstLineOfBigLevel(e, format))
@@ -439,9 +446,11 @@ abstract class AbstractParser {
     }
 
     private CrossHeading CrossHeading() {
+        logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         while (IsSkippable(e)) {
             i += 1;
+            logger.LogTrace("parsing element " + i);
             e = elements.ElementAt(i);;
         }
         if (!IsFirstLineOfCrossHeading(e))
@@ -572,6 +581,7 @@ abstract class AbstractParser {
     }
 
     private ILeaf ParseParagraph() {
+        logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         if (IsSkippable(e)) {
             i += 1;

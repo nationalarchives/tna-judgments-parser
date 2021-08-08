@@ -46,6 +46,69 @@ class Numbering2 {
         Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
         LevelText format = baseLevel.LevelText;
 
+        /* None */
+        if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
+            if (!string.IsNullOrEmpty(format.Val.Value)) {  // EWHC/Ch/2014/4092 contains %
+                logger.LogInformation("None number format: " + format.Val.Value);
+            }
+            return "";
+        }
+
+        /* Bullet */
+        if (baseLevel.NumberingFormat.Val == NumberFormatValues.Bullet) {
+            if (format.Val.Value == "-")
+                return "-";
+            if (format.Val.Value == ".")    // EWHC/QB/2018/2066
+                return ".";
+            if (format.Val.Value == "•")    // EWCA/Civ/2018/2098
+                return "•";
+            if (format.Val.Value == "·")    // EWHC/Admin/2012/2542
+                return format.Val.Value;
+            if (format.Val.Value == "o")    // EWCA/Civ/2013/923
+                return "◦";
+            if (format.Val.Value == "–")    // EWCA/Civ/2013/1015
+                return "–"; // en dash ??
+            if (format.Val.Value == "")    // EWHC/QB/2018/2066
+                return "•";
+            if (format.Val.Value == "")    // EWCA/Civ/2013/11
+                return "•";
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0a0))    // EWHC/Admin/2017/2768
+                return Char.ConvertFromUtf32(0x2219);   // small square "bullet operator"
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf02d))    // EWHC/Patents/2008/2127
+                return Char.ConvertFromUtf32(0x2013);   // en dash (maybe it should be bold?)
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0d8))  // EWHC/QB/2010/484
+                return format.Val.Value;
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0de))  // EWHC/Ch/2013/3745
+                return Char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
+            if (format.Val.Value == Char.ConvertFromUtf32(0xad))    // "soft hyphen" EWHC/Admin/2017/1754
+                return "-";
+            if (string.IsNullOrEmpty(format.Val.Value)) { // EWCA/Civ/2014/312
+                logger.LogInformation("empty bullet");
+                return "";
+            }
+            if (string.IsNullOrWhiteSpace(format.Val.Value)) {
+                logger.LogInformation("whitespace bullet: \"" + format.Val.Value + "\"");
+                return format.Val.Value;
+            }
+            if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null && baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
+                return format.Val.Value;
+            throw new Exception("unsupported bullet text: " + format.Val.Value);
+        }
+
+        /* Other */
+        if (string.IsNullOrEmpty(format.Val.Value)) {
+            logger.LogInformation("empty number");
+            return "";
+        }
+        if (string.IsNullOrWhiteSpace(format.Val.Value)) {    // EWCA/Civ/2015/1262, WHC/Ch/2008/1978
+            logger.LogInformation("whitespace number: \"" + format.Val.Value + "\"");
+            return format.Val.Value;
+        }
+        if (!format.Val.Value.Contains('%')) {    // EWCA/Civ/2003/1769
+            logger.LogInformation("static number: \"" + format.Val.Value + "\"");
+            return format.Val.Value;
+        }
+
         Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
         if (match.Success) {
             int ilvl = int.Parse(match.Groups[1].Value) - 1;
@@ -65,7 +128,6 @@ class Numbering2 {
             OneCombinator combine = num => num + ". ";
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
-        // %1. 
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)$");
         if (match.Success) {
             OneCombinator combine = num => "(" + num + ")";
@@ -148,40 +210,7 @@ class Numbering2 {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "."; };
             return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
         }
-        if (baseLevel.NumberingFormat.Val == NumberFormatValues.Bullet) {
-            if (format.Val.Value == "-")
-                return "-";
-            if (format.Val.Value == ".")    // EWHC/QB/2018/2066
-                return ".";
-            if (format.Val.Value == "•")    // EWCA/Civ/2018/2098
-                return "•";
-            if (format.Val.Value == "·")    // EWHC/Admin/2012/2542
-                return format.Val.Value;
-            if (format.Val.Value == "o")    // EWCA/Civ/2013/923
-                return "◦";
-            if (format.Val.Value == "–")    // EWCA/Civ/2013/1015
-                return "–"; // en dash ??
-            if (format.Val.Value == "")    // EWHC/QB/2018/2066
-                return "•";
-            if (format.Val.Value == "")    // EWCA/Civ/2013/11
-                return "•";
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0a0))    // EWHC/Admin/2017/2768
-                return Char.ConvertFromUtf32(0x2219);   // small square "bullet operator"
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf02d))    // EWHC/Patents/2008/2127
-                return Char.ConvertFromUtf32(0x2013);   // en dash (maybe it should be bold?)
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0d8))  // EWHC/QB/2010/484
-                return format.Val.Value;
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0de))  // EWHC/Ch/2013/3745
-                return Char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
-            if (format.Val.Value == Char.ConvertFromUtf32(0xad))    // "soft hyphen" EWHC/Admin/2017/1754
-                return "-";
-            if (string.IsNullOrEmpty(format.Val.Value)) { // EWCA/Civ/2014/312
-                logger.LogInformation("empty bullet");
-                return "";
-            }
-            if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null && baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
-                return format.Val.Value;
-        }
+
         match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)$");    // EWHC/Comm/2015/150
         if (match.Success) {
             string prefix = match.Groups[1].Value;
@@ -196,30 +225,6 @@ class Numbering2 {
             string suffix = match.Groups[3].Value;
             OneCombinator combine = num => prefix + num + suffix;
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^'(\d)\.$");    // EWHC/Fam/2015/2971
-        if (match.Success)
-            return format.Val.Value;
-        if (format.Val.Value == "")     // EWHC/QB/2018/2066
-            return "";
-        if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
-            // maybe should check that format.Val.Value doesn't contain a %
-            if (format.Val.Value.Contains('%'))
-                throw new Exception();
-            return format.Val.Value;
-        }
-
-        if (string.IsNullOrEmpty(format.Val.Value)) {
-            logger.LogInformation("empty number");
-            return "";
-        }
-        if (string.IsNullOrWhiteSpace(format.Val.Value)) {    // EWCA/Civ/2015/1262, WHC/Ch/2008/1978
-            logger.LogInformation("whitespace number: \"" + format.Val.Value + "\"");
-            return format.Val.Value;
-        }
-        if (baseLevel.NumberingFormat.Val != NumberFormatValues.Bullet && !format.Val.Value.Contains('#')) {    // EWCA/Civ/2003/1769
-            logger.LogInformation("static number: \"" + format.Val.Value + "\"");
-            return format.Val.Value;
         }
 
         throw new Exception("unsupported level text: " + format.Val.Value);
@@ -362,6 +367,13 @@ class Numbering2 {
         if (format == NumberFormatValues.None)  // EWHC/Ch/2015/3490
             return "";
         throw new Exception("unsupported numbering format: " + format.ToString());
+    }
+
+    public static string FormatNumber(int numId, int ilvl, int n, MainDocumentPart main) {
+        Level level = Numbering.GetLevel(main, numId, ilvl);
+        NumberFormatValues numFormat = level.NumberingFormat.Val.Value;
+        string lvlText = level.LevelText.Val.Value;
+        return Format(n, numFormat, lvlText);
     }
 
     public static string FormatNumber(string name, int ilvl, int n, MainDocumentPart main) {
