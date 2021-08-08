@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class Ref {
 
-    private static string regex = @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\p)?( \\w)?( \\h)?( \\\* MERGEFORMAT)? $";
+    private static string regex = @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\n)?( \\p)?( \\w)?( \\h)?( \\\* MERGEFORMAT)? $";
 
     internal static bool Is(string fieldCode) {
         return Regex.IsMatch(fieldCode, regex);
@@ -26,9 +26,10 @@ internal class Ref {
             throw new Exception();
         string bookmarkName = match.Groups[1].Value;
         bool rSwitch = !string.IsNullOrEmpty(match.Groups[2].Value);
-        bool pSwitch = !string.IsNullOrEmpty(match.Groups[3].Value);
-        bool wSwitch = !string.IsNullOrEmpty(match.Groups[4].Value);
-        bool hSwitch = !string.IsNullOrEmpty(match.Groups[5].Value);
+        bool nSwitch = !string.IsNullOrEmpty(match.Groups[3].Value);    // EWHC/Patents/2013/2927
+        bool pSwitch = !string.IsNullOrEmpty(match.Groups[4].Value);
+        bool wSwitch = !string.IsNullOrEmpty(match.Groups[5].Value);
+        bool hSwitch = !string.IsNullOrEmpty(match.Groups[6].Value);
 
         if (i == withinField.Count)
             return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
