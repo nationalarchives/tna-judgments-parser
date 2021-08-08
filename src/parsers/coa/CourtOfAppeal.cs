@@ -15,7 +15,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class CourtOfAppealParser : AbstractParser {
 
-    private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
+    private static ILogger logger = Logging.Factory.CreateLogger<Parse.CourtOfAppealParser>();
 
     public static Judgment Parse(WordprocessingDocument doc) {
         return new CourtOfAppealParser(doc).Parse();
@@ -46,6 +46,7 @@ class CourtOfAppealParser : AbstractParser {
     protected override List<IBlock> Header() {
         List<IBlock> header = new List<IBlock>();
         while (i < elements.Count) {
+            logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
             // string text = e.InnerText.Trim();
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
@@ -60,6 +61,7 @@ class CourtOfAppealParser : AbstractParser {
         else
             logger.LogCritical("could not find title");
         while (i < elements.Count) {
+            logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
             if (e is Paragraph p) {
                 if (StartsWithTitledJudgeName(p))

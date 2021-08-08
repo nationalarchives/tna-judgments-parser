@@ -6,6 +6,7 @@ using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using OMML = DocumentFormat.OpenXml.Math;
 
 using Microsoft.Extensions.Logging;
 
@@ -133,6 +134,9 @@ class Inline {
             }
             if (e is CommentRangeStart || e is CommentRangeEnd) // EWHC/Comm/2016/869
                 continue;
+            if (e is OMML.OfficeMath) { // EWHC/Comm/2018/335
+                throw new Exception();
+            }
             throw new Exception();
         }
         if (withinField is not null) {  // EWHC/Comm/2004/999
@@ -198,33 +202,14 @@ class Inline {
         if (e is EndnoteReferenceMark)
             return null;
         if (e is AlternateContent altContent)
-            return MapAlternateContent(main, run, altContent);
+            return AlternateContent2.Map(main, run, altContent);
         if (e is SymbolChar sym)  // EWCA/Civ/2013/470
             return SpecialCharacter.Make(sym, run.RunProperties);
         if (e is CommentReference) // EWCA/Civ/2004/55
             return null;
+        // if (e is PageNumber)    // EWHC/Fam/2006/3743
+        //     return null;
         throw new Exception(e.OuterXml);
-    }
-
-    private static IInline MapAlternateContent(MainDocumentPart main, Run run, AlternateContent e) {
-        if (e.ChildElements.Count != 2)
-            throw new Exception();
-        AlternateContentChoice choice = (AlternateContentChoice) e.FirstChild;
-        AlternateContentFallback fallback = (AlternateContentFallback) e.ChildElements.Last();
-        if (choice.ChildElements.Count != 1)
-            throw new Exception();
-        if (fallback.ChildElements.Count != 1)
-            throw new Exception();
-        if (fallback.FirstChild is Picture pict) {
-            if (pict.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
-                return WImageRef.Make(main, pict);
-            if (pict.ChildElements.Count == 1 && pict.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict.FirstChild.LocalName == "line")
-                return null;
-        }
-        // don't know what to do with EWHC/Admin/2011/1403
-        // return null;
-        throw new Exception();
-        // throw new Exception();
     }
 
 }
