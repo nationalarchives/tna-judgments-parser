@@ -122,6 +122,8 @@ class Fields {
             return Enumerable.Empty<IInline>();
         if (fieldCode == " ref PE ")    // EWCA/Crim/2011/462
             return Enumerable.Empty<IInline>();
+        if (fieldCode == " ref PRVATE ")    // EWCA/Crim/2004/287
+            return Enumerable.Empty<IInline>();
         if (ListNum.Is(fieldCode))
             return ListNum.Parse(main, fieldCode, withinField, i);
         // if (fieldCode == " LISTNUM LegalDefault ") {
