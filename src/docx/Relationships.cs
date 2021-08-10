@@ -7,9 +7,18 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
 class Relationships {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.DOCX.Relationships>();
+
+    public static readonly RelationshipErrorHandler.Rewriter MalformedUriRewriter = (part, id, uri) => {
+        logger.LogError("malformed URI: " + uri);
+        return "http://error?original=" + uri;
+    };
 
     public static Uri GetUriForImage(StringValue relationshipId, OpenXmlElement context) {
         OpenXmlElement root = context;
@@ -27,8 +36,13 @@ class Relationships {
     }
 
     public static Uri GetUriForImage(MainDocumentPart main, StringValue relationshipId) {
-        OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relationshipId.Value).First().OpenXmlPart;
-        return part.Uri;
+        OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relationshipId.Value).FirstOrDefault()?.OpenXmlPart;
+        if (part is not null)
+            return part.Uri;
+        return main.ExternalRelationships.Where(r => r.Id == relationshipId.Value).First().Uri; // EWCA/Civ/2003/1067
+        // if (r is not null)
+        //     return r.Uri;
+        // return main.HyperlinkRelationships.Where(r => r.Id == relationshipId.Value).FirstOrDefault()?.Uri;
     }
 
     public static Uri GetUriForImage(HeaderPart header, StringValue relationshipId) {

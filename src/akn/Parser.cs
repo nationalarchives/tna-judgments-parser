@@ -3,14 +3,34 @@ using System.IO;
 
 using DocumentFormat.OpenXml.Packaging;
 
+using Microsoft.Extensions.Logging;
+
+
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 public class Parser {
 
+    private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.AkomaNtoso.Parser>();
+
     private delegate IJudgment Helper(WordprocessingDocument doc);
 
     private static ILazyBundle Parse(Stream docx, Helper parse) {
-        WordprocessingDocument doc = WordprocessingDocument.Open(docx, false);
+        MemoryStream ms = new MemoryStream();
+        docx.CopyTo(ms);
+        byte[] docx2 = ms.ToArray();
+        MemoryStream stream2 = new MemoryStream();
+        stream2.Write(docx2, 0, docx2.Length);
+        WordprocessingDocument doc;
+        try {
+            doc = WordprocessingDocument.Open(stream2, false);
+        } catch (OpenXmlPackageException) {
+            stream2 = new MemoryStream();
+            stream2.Write(docx2, 0, docx2.Length);
+            var settings = new OpenSettings() {
+                RelationshipErrorHandlerFactory = RelationshipErrorHandler.CreateRewriterFactory(DOCX.Relationships.MalformedUriRewriter)
+            };
+            doc = WordprocessingDocument.Open(stream2, true, settings);
+        }
         IJudgment judgment = parse(doc);
         return new Bundle(doc, judgment);
     }
