@@ -80,8 +80,12 @@ class Numbering2 {
                 return format.Val.Value;
             if (format.Val.Value == Char.ConvertFromUtf32(0xf0de))  // EWHC/Ch/2013/3745
                 return Char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
+            if (format.Val.Value == Char.ConvertFromUtf32(0x2014))    // "em dash"
+                return format.Val.Value;
             if (format.Val.Value == Char.ConvertFromUtf32(0xad))    // "soft hyphen" EWHC/Admin/2017/1754
                 return "-";
+            if (format.Val.Value == "“")    // EWHC/Admin/2017/2461
+                return format.Val.Value;
             if (string.IsNullOrEmpty(format.Val.Value)) { // EWCA/Civ/2014/312
                 logger.LogInformation("empty bullet");
                 return "";
@@ -185,6 +189,15 @@ class Numbering2 {
             TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
+        match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)\.%(\d+)([^%]+)$");
+        if (match.Success) {
+            string prefix = match.Groups[1].Value;
+            int ilvl1 = int.Parse(match.Groups[2].Value) - 1;
+            int ilvl2 = int.Parse(match.Groups[3].Value) - 1;
+            string suffix = match.Groups[4].Value;
+            TwoCombinator combine = (num1, num2) => { return prefix + num1 + "." + num2 + suffix; };
+            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
+        }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)$");
         if (match.Success) {
             ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3; };
@@ -253,6 +266,10 @@ class Numbering2 {
     private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, TwoCombinator combine) {
         int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
         int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
+        return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
+    }
+
+    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl1, int ilvl2, TwoCombinator combine) {
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         int start1 = lvl1.StartNumberingValue?.Val ?? 1;

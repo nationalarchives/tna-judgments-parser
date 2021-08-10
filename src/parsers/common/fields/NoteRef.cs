@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class NoteRef {
 
-    private static string regex = @"^ NOTEREF ([_A-Za-z0-9]+) \\p $";
+    private static string regex = @"^ NOTEREF ([_A-Za-z0-9]+)( \\[hp])+ $";
 
     internal static bool Is(string fieldCode) {
         return Regex.IsMatch(fieldCode, regex);

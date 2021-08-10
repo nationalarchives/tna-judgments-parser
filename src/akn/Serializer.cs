@@ -79,9 +79,24 @@ class Serializer {
 
     private static void Serialize2(XmlNode node, XmlWriter inline) {
         if (node is XmlElement e) {
-            inline.WriteStartElement(e.Name);
-            foreach (XmlAttribute attr in e.Attributes)
-                inline.WriteAttributeString(attr.Name, attr.Value);
+            if (e.Name.Contains(':')) {
+                int i = e.Name.IndexOf(':');
+                string prefix = e.Name.Substring(0, i);
+                string localName = e.Name.Substring(i + 1);
+                inline.WriteStartElement(prefix, localName, node.GetNamespaceOfPrefix(prefix));
+            } else {
+                inline.WriteStartElement(e.Name);
+            }
+            foreach (XmlAttribute attr in e.Attributes) {
+                if (attr.Name.Contains(':')) {
+                    int i = attr.Name.IndexOf(':');
+                    string prefix = attr.Name.Substring(0, i);
+                    string localName = attr.Name.Substring(i + 1);
+                    inline.WriteAttributeString(prefix, localName, attr.GetNamespaceOfPrefix(prefix), attr.Value);
+                } else {
+                    inline.WriteAttributeString(attr.Name, attr.Value);
+                }
+            }
             foreach (XmlNode child in e.ChildNodes)
                 Serialize2(child, inline);
             inline.WriteEndElement();
