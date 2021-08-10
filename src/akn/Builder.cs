@@ -226,6 +226,8 @@ class Builder {
             AddImageRef(parent, imageRef);
         else if (model is IExternalImage eImg)
             AddExternalImage(parent, eImg);
+        else if (model is IMath math)
+            AddMath(parent, math);
         else if (model is ILineBreak)
             AddLineBreak(parent);
         else if (model is ITab tab)
@@ -392,6 +394,14 @@ class Builder {
             a.SetAttribute("title", link.ScreenTip);
         foreach (IInline inline in link.Contents)
             AddInline(a, inline);
+    }
+
+    private void AddMath(XmlElement parent, IMath model) {
+        XmlElement subFlow = CreateAndAppend("subFlow", parent);
+        subFlow.SetAttribute("name", "math");
+        XmlElement foreign = CreateAndAppend("foreign", subFlow);
+        XmlNode math = doc.ImportNode(model.MathML, true);
+        foreign.AppendChild(math);
     }
 
     private void AddLineBreak(XmlElement parent) {

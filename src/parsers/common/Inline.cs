@@ -134,8 +134,10 @@ class Inline {
             }
             if (e is CommentRangeStart || e is CommentRangeEnd) // EWHC/Comm/2016/869
                 continue;
-            if (e is OMML.OfficeMath) { // EWHC/Comm/2018/335
-                throw new Exception();
+            if (e is OMML.OfficeMath omml) { // EWHC/Comm/2018/335
+                IMath mathML = Math2.Parse(main, omml);
+                parsed.Add(mathML);
+                continue;
             }
             throw new Exception();
         }
@@ -168,6 +170,7 @@ class Inline {
     }
 
     private static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
+        logger.LogTrace(e.GetType().Name + " " + e.LocalName);
         if (e is Text text)
             return new WText(text, run.RunProperties);
         if (e is TabChar tab)
@@ -180,6 +183,8 @@ class Inline {
             return null;
         if (e is FootnoteReference fn)
             return new WFootnote(main, fn);
+        if (e is EndnoteReference)
+            logger.LogInformation("endnote reference");
         if (e is EndnoteReference en)
             return new WFootnote(main, en);
         if (e is Drawing draw)
