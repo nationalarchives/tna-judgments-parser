@@ -17,7 +17,7 @@ internal class ListNum {
     // private static string regex = @"^ HYPERLINK ""([^""]+)""( \\l ""([^""]+)"")?( \\o ""([^""]*)"")?( \\t ""([^""]*)"")? $";
 
     internal static bool Is(string fieldCode) {
-        return fieldCode.StartsWith(" LISTNUM ");
+        return fieldCode.StartsWith(" LISTNUM ", StringComparison.InvariantCultureIgnoreCase);
     }
 
     internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, List<OpenXmlElement> withinField, int i) {
@@ -25,8 +25,6 @@ internal class ListNum {
             throw new Exception();
         Run first = (Run) withinField.First();
         if (fieldCode == " LISTNUM LegalDefault ") {
-            // if (i < withinField.Count)
-            //     throw new Exception();
             int n = CountPrecedingListNumLegalDefault(first) + 1;
             string num = n.ToString() + ".";
             ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
@@ -35,7 +33,16 @@ internal class ListNum {
             return new List<IInline>(1) { number };
         }
         Match match;
-        match = Regex.Match(fieldCode, @"^ LISTNUM \\l (\d) $");    // EWHC/Patents/2013/2927
+        match = Regex.Match(fieldCode, @"^ LISTNUM LegalDefault \\l 1 $");    // EWCA/Civ/2015/325
+        if (match.Success) {
+            int n = CountPrecedingListNumLegalDefault(first) + 1;
+            string num = n.ToString() + ".";
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
+            RunProperties rProps = first.RunProperties;
+            INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
+            return new List<IInline>(1) { number };
+        }
+        match = Regex.Match(fieldCode, @"^ LISTNUM \\l (\d) $", RegexOptions.IgnoreCase);    // EWHC/Patents/2013/2927
         if (match.Success) {
             int numId = first.Ancestors<Paragraph>().First().ParagraphProperties.NumberingProperties.NumberingId.Val.Value;
             int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
@@ -44,7 +51,16 @@ internal class ListNum {
             WText wText = new WText(fNum, rProps);
             return new List<IInline>(1) { wText };
         }
-        match = Regex.Match(fieldCode, @"^ LISTNUM ""([A-Z0-9]+)"" \\l (\d) \\s (\d) $");
+        match = Regex.Match(fieldCode, @"^ LISTNUM ""([^""]+)"" \\l (\d) $", RegexOptions.IgnoreCase);  // EWHC/Ch/2004/1835
+        if (match.Success) {
+            string name = match.Groups[1].Value;
+            int ilvl = int.Parse(match.Groups[2].Value) - 1;
+            string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, 1, main);
+            RunProperties rProps = first.RunProperties;
+            WText wText = new WText(fNum, rProps);
+            return new List<IInline>(1) { wText };
+        }
+        match = Regex.Match(fieldCode, @"^ LISTNUM ""([^""]+)"" \\l (\d) \\s (\d) $");
         if (match.Success) {
             string name = match.Groups[1].Value;
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
@@ -64,9 +80,19 @@ internal class ListNum {
     private static int CountPrecedingListNumLegalDefault(OpenXmlElement fc) {
         int count = 0;
         Paragraph previous = fc.Ancestors<Paragraph>().First().PreviousSibling<Paragraph>();
+        Func<FieldCode, bool> f1 = (fc) => {
+            string normal = Fields.Normalize(fc.InnerText);
+            if (normal == " LISTNUM LegalDefault ")
+                return true;
+            if (normal == " LISTNUM LegalDefault \\l 1 ")
+                return true;
+            return false;
+        };
+        Func<Paragraph, bool> f2 = (p) => {
+            return p.Descendants<FieldCode>().Where(f1).Any();
+        };
         while (previous != null) {
-            FieldCode listNum = previous.Descendants<FieldCode>().Where(fc => fc.InnerText.Trim() == "LISTNUM LegalDefault").FirstOrDefault();
-            if (listNum is not null)
+            if (f2(previous))
                 count += 1;
             previous = previous.PreviousSibling<Paragraph>();
         }
