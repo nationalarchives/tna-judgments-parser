@@ -17,7 +17,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Fields {
 
-    private static ILogger logger = Logging.Factory.CreateLogger<Parse.Fields>();
+    internal static ILogger logger = Logging.Factory.CreateLogger<Parse.Fields>();
 
     internal static bool IsFieldStart(OpenXmlElement e) {
         if (e is not Run run)
@@ -54,6 +54,10 @@ class Fields {
         return fieldCodes.First().InnerText;
     }
 
+    internal static string Normalize(string fieldCode) {
+        return Regex.Replace(" " + fieldCode + " ", @"\s+", " ");
+    }
+
     internal static IEnumerable<IInline> ParseFieldContents(MainDocumentPart main, List<OpenXmlElement> withinField) {
         if (withinField.Count == 0)
             return Enumerable.Empty<IInline>();
@@ -74,7 +78,7 @@ class Fields {
             fieldCode += GetFieldCode(next);
             i += 1;
         }
-        fieldCode = Regex.Replace(" " + fieldCode + " ", @"\s+", " ");
+        fieldCode = Normalize(fieldCode);
         logger.LogDebug("field code: " + fieldCode);
         if (Advance.Is(fieldCode))
             return Advance.Parse(main, fieldCode, withinField.Skip(i));
@@ -126,43 +130,21 @@ class Fields {
             return Enumerable.Empty<IInline>();
         if (ListNum.Is(fieldCode))
             return ListNum.Parse(main, fieldCode, withinField, i);
-        // if (fieldCode == " LISTNUM LegalDefault ") {
-        //     if (i < withinField.Count)
-        //         throw new Exception();
-        //     int n = CountPrecedingListNumLegalDefault(first) + 1;
-        //     string num = n.ToString() + ".";
-        //     ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
-        //     RunProperties rProps = ((Run) first).RunProperties;
-        //     INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
-        //     return new List<IInline>(1) { number };
-        // }
-        // // https://support.microsoft.com/en-us/office/field-codes-listnum-field-557541b1-abb2-4959-a9f2-401639c8ff82
-        // match = Regex.Match(fieldCode, @"^ LISTNUM ""([A-Z0-9]+)"" \\l (\d) \\s (\d) $");
-        // if (match.Success) {
-        //     if (withinField.Count != 1)
-        //         throw new Exception();
-        //     string name = match.Groups[1].Value;
-        //     int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
-        //     int start = int.Parse(match.Groups[3].Value);
-        //     string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, start, main);
-        //     // ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
-        //     RunProperties rProps = ((Run) first).RunProperties;
-        //     // INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
-        //     /* not sure why this should be a WText and LISTNUM LegalDefault should be an WNumber2
-        //     /* but only example I've seen (EWCA/Crim/2011/143) is followed by a non-breaking space */
-        //     WText wText = new WText(fNum, rProps);
-        //     return new List<IInline>(1) { wText };
-        // }
         if (fieldCode == " FORMTEXT " || fieldCode == " FORMTEXT _ ") {  // EWCA/Crim/2004/3049
-            if (i == withinField.Count)
-                return Enumerable.Empty<IInline>();
-            OpenXmlElement next = withinField[i];
-            if (!IsFieldSeparater(next))
-                throw new Exception();
-            var rest = withinField.Skip(i + 1);
-            if (!rest.Any())
-                throw new Exception();
-            return Inline.ParseRuns(main, rest);
+            IEnumerable<IInline> rest = RestOptional(main, withinField, i);
+            if (!rest.Any()) {
+                Run previous = first.PreviousSibling<Run>();
+                FieldChar begin = previous
+                    .ChildElements.OfType<FieldChar>()
+                    .Where(chr => chr.FieldCharType == FieldCharValues.Begin)
+                    .First();
+                string x = begin.FormFieldData.
+                    ChildElements.Where(e => e.LocalName == "textInput").First()
+                    .ChildElements.Where(e => e.LocalName == "default").First()
+                    .GetAttribute("val", "http://schemas.openxmlformats.org/wordprocessingml/2006/main").Value;
+                logger.LogWarning("empty form: " + x);
+            }
+            return rest;
         }
         if (fieldCode.StartsWith(" MACROBUTTON ")) {    // EWCA/Crim/2018/2190
             if (i != withinField.Count)
@@ -213,29 +195,7 @@ class Fields {
         }
         if (Time.Is(fieldCode))
             return Time.Parse(main, fieldCode, withinField.Skip(i));
-        // if (fieldCode == " TIME \\@ \"dddd d MMMM yyyy\" ") { // EWHC/Ch/2005/2793, EWCA/Civ/2006/1103
-        //     if (i == withinField.Count)
-        //         throw new Exception();
-        //     OpenXmlElement next = withinField[i];
-        //     if (!IsFieldSeparater(next))
-        //         throw new Exception();
-        //     IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
-        //     if (!rest.Any())
-        //         throw new Exception();
-        //     IEnumerable<IInline> parsed = Inline.ParseRuns(main, rest);
-        //     if (parsed.All(inline => inline is IFormattedText)) {
-        //         string content = Enricher.NormalizeInlines(parsed);
-        //         try {
-        //             CultureInfo culture = new CultureInfo("en-GB");
-        //             DateTime date = DateTime.Parse(content, culture);
-        //             WDate wDate = new WDate(parsed.Cast<IFormattedText>(), date);
-        //             return new List<IInline>(1) { wDate };
-        //         } catch (FormatException) {
-        //         }
-        //     }
-        //     return parsed;
-        // }
-        if (fieldCode.StartsWith(" tc \"")) {    // EWCA/Civ/2008/875_1
+        if (fieldCode.StartsWith(" tc ")) {    // EWCA/Civ/2008/875_1, EWHC/Ch/2010/3727
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219
@@ -265,9 +225,13 @@ class Fields {
         if (match.Success) {
             return new List<IInline>(1) { Autonum(main, (Run) first, regex) };
         }
-        if (fieldCode == " =179000*0.3 \\# \"£#,##0;(£#,##0)\" ")   // EWHC/Ch/2005/2793
-            return Rest(main, withinField, i);
-        
+        match = Regex.Match(fieldCode, @"^ =\d");   // EWHC/Ch/2005/2793, EWHC/Ch/2011/2301
+        if (match.Success) {
+            IEnumerable<IInline> rest = Rest(main, withinField, i);
+            string normal = Enricher.NormalizeInlines(rest);
+            logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
+            return rest;
+        }
         if (fieldCode == " PAGE ") {   // EWHC/Admin/2003/2369
             if (!first.Ancestors<Header>().Any())
                 throw new Exception();
@@ -298,6 +262,8 @@ class Fields {
             return RestOptional(main, withinField, i);
         if (fieldCode.StartsWith(" TA "))   // EWHC/Comm/2005/735
             return Enumerable.Empty<IInline>();
+        if (fieldCode.StartsWith(" SYMBOL "))   // EWHC/Comm/2010/1735
+            return new List<IInline>(1) { Symbol.Parse(main, fieldCode, withinField.Skip(i)) };
 
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();
@@ -321,31 +287,31 @@ class Fields {
         OpenXmlElement first = rest.First();
         if (!IsFieldSeparater(first))
             throw new Exception();
-        if (!rest.Skip(1).Any())
-            throw new Exception();
+        // if (!rest.Skip(1).Any())
+        //     throw new Exception();
         return Inline.ParseRuns(main, rest.Skip(1));
     }
-    private static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
-            if (i == withinField.Count)
-                throw new Exception();
-            OpenXmlElement next = withinField[i];
-            if (!IsFieldSeparater(next))
-                throw new Exception();
-            IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any())
-                throw new Exception();
-            return Inline.ParseRuns(main, remaining);
+    internal static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
+        if (i == withinField.Count)
+            throw new Exception();
+        OpenXmlElement next = withinField[i];
+        if (!IsFieldSeparater(next))
+            throw new Exception();
+        IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+        if (!remaining.Any())
+            throw new Exception();
+        return Inline.ParseRuns(main, remaining);
     }
-    private static IEnumerable<IInline> RestOptional(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
-            if (i == withinField.Count)
-                return Enumerable.Empty<IInline>();
-            OpenXmlElement next = withinField[i];
-            if (!IsFieldSeparater(next))
-                throw new Exception();
-            IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any())
-                throw new Exception();
-            return Inline.ParseRuns(main, remaining);
+    internal static IEnumerable<IInline> RestOptional(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
+        if (i == withinField.Count)
+            return Enumerable.Empty<IInline>();
+        OpenXmlElement next = withinField[i];
+        if (!IsFieldSeparater(next))
+            throw new Exception();
+        IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+        // if (!remaining.Any())
+        //     throw new Exception();
+        return Inline.ParseRuns(main, remaining);
     }
 
     private static int CountPrecedingListNumLegalDefault(OpenXmlElement fc) {
@@ -399,6 +365,14 @@ class Fields {
         return new DOCX.WNumber2(n.ToString() + ".", run.RunProperties, main, paragraph.ParagraphProperties);
     }
 
+    internal static IEnumerable<IInline> ParseSimple(MainDocumentPart main, SimpleField fldSimple) {
+        IEnumerable<IInline> parsed = Inline.ParseRuns(main, fldSimple.ChildElements);
+        string normal = Enricher.NormalizeInlines(parsed);
+        logger.LogWarning("simple field: instr = " + fldSimple.Instruction + "; children = " + normal);
+        if (string.IsNullOrWhiteSpace(normal))
+            logger.LogError("simple field has no child content");
+        return parsed;
+    }
 
 }
 

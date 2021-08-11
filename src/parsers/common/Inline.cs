@@ -139,6 +139,9 @@ class Inline {
                 parsed.Add(mathML);
                 continue;
             }
+            if (e is SimpleField fldSimple) { // EWHC/Admin/2006/983
+                return Fields.ParseSimple(main, fldSimple);
+            }
             throw new Exception();
         }
         if (withinField is not null) {  // EWHC/Comm/2004/999
@@ -155,8 +158,13 @@ class Inline {
             href = DOCX.Relationships.GetUriForHyperlink(link).AbsoluteUri;
         else if (Uri.IsWellFormedUriString(link.InnerText, UriKind.Absolute))
             href = link.InnerText;
-        else
+        else if (link.Anchor is not null) {
+            logger.LogWarning("ignoring internal hyperlink: @anchor = " + link.Anchor);
+            return null;    // EWHC/Ch/2018/2285
+        } else {
+            logger.LogWarning("ignoring hyperlink: InnerText = " + link.InnerText);
             return null;    // EWHC/Ch/2007/1044 contains field codes
+        }
         IEnumerable<IInline> contents = ParseRuns(main, link.ChildElements);
         contents = Merger.Merge(contents);
         return new WHyperlink2() { Href = href, Contents = contents };
@@ -181,6 +189,8 @@ class Inline {
             return new WText(hyphen, run.RunProperties);
         if (e is SoftHyphen soft)
             return null;
+        if (e is FootnoteReference)
+            logger.LogInformation("footnote reference");
         if (e is FootnoteReference fn)
             return new WFootnote(main, fn);
         if (e is EndnoteReference)

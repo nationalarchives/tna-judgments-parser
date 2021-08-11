@@ -174,26 +174,28 @@ class Numbering2 {
             OneCombinator combine = num => num + suffix;
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");   // EWHC/Admin/2015/3437
-        if (match.Success) {
-            TwoCombinator combine = (num1, num2) => num1 + "." + num2;
-            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
-        if (match.Success) {
-            TwoCombinator combine = (num1, num2) => num1 + "." + num2 + ".";
-            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");
-        if (match.Success) {
-            TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
-            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)\.%(\d+)([^%]+)$");
+        // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");   // EWHC/Admin/2015/3437
+        // if (match.Success) {
+        //     TwoCombinator combine = (num1, num2) => num1 + "." + num2;
+        //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        // }
+        // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
+        // if (match.Success) {
+        //     TwoCombinator combine = (num1, num2) => num1 + "." + num2 + ".";
+        //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        // }
+        // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");
+        // if (match.Success) {
+        //     TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
+        //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        // }
+        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)\.%(\d+)([^%]*)$");
         if (match.Success) {
             string prefix = match.Groups[1].Value;
             int ilvl1 = int.Parse(match.Groups[2].Value) - 1;
             int ilvl2 = int.Parse(match.Groups[3].Value) - 1;
+            if (ilvl2 > 9)
+                logger.LogWarning("two-digit numbering level: " + ilvl2);
             string suffix = match.Groups[4].Value;
             TwoCombinator combine = (num1, num2) => { return prefix + num1 + "." + num2 + suffix; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
