@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class NoteRef {
 
-    private static string regex = @"^ NOTEREF ([_A-Za-z0-9]+)( \\[hp])+ $";
+    private static string regex = @"^ NOTEREF ([_A-Za-z0-9]+)( \\[fhp])+ $";
 
     internal static bool Is(string fieldCode) {
         return Regex.IsMatch(fieldCode, regex);
@@ -25,6 +25,7 @@ internal class NoteRef {
         if (!match.Success)
             throw new Exception();
         string bkmkName = match.Groups[1].Value;
+        bool fSwitch = match.Groups[2].Captures.Where(v => v.Value == @" \f").Any();
         /* In EWHC/Ch/2014/1316, the \p switch is present, but the surrounding text includes the word "above" */
         bool pSwitch = false;
         BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkName);

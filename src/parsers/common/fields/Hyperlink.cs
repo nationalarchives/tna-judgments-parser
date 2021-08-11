@@ -8,13 +8,15 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.Parse.Fieldss {
 
 // https://support.microsoft.com/en-us/office/field-codes-hyperlink-field-864f8577-eb2a-4e55-8c90-40631748ef53
 
 internal class Hyperlink {
 
-    private static string regex = @"^ HYPERLINK ""([^""]+)""( \\l ""([^""]+)"")?( \\o ""([^""]*)"")?( \\t ""([^""]*)"")? $";
+    private static string regex = @"^ HYPERLINK( ""([^""]+)"")?( \\l ""([^""]+)"")?( \\o ""([^""]*)"")?( \\t ""([^""]*)"")? $";
 
     internal static bool Is(string fieldCode) {
         return Regex.IsMatch(fieldCode, regex);
@@ -24,10 +26,14 @@ internal class Hyperlink {
         Match match = Regex.Match(fieldCode, regex);
         if (!match.Success)
             throw new Exception();
-        string href = match.Groups[1].Value;
-        string location = match.Groups[3].Value;
-        string screenTip = match.Groups[5].Value;
+        string href = match.Groups[2].Value;
+        string location = match.Groups[4].Value;
+        string screenTip = match.Groups[6].Value;
         // \t switch ???
+        if (string.IsNullOrEmpty(href)) {   // EWHC/Ch/2018/2285
+            Fields.logger.LogWarning("cross-references are not yet supported: " + fieldCode);
+            return Fields.Rest(main, withinField, i);
+        }
         if (string.IsNullOrEmpty(location))
             href += "";
         else if (location.Contains('#'))    // EWHC/Fam/2011/586

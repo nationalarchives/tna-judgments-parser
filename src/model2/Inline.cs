@@ -108,7 +108,7 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         // }
     }
 
-    public float? FontSizePt { get {
+    virtual public float? FontSizePt { get {
         string fontSize = properties?.FontSize?.Val;
         if (fontSize is null)
             return null;
