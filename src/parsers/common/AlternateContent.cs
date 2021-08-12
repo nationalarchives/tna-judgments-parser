@@ -20,26 +20,20 @@ class AlternateContent2 {
             throw new Exception();
         AlternateContentChoice choice = (AlternateContentChoice) e.FirstChild;
         AlternateContentFallback fallback = (AlternateContentFallback) e.ChildElements.Last();
-        if (choice.ChildElements.Count != 1)
-            throw new Exception();
+        Fields.logger.LogInformation("alternate content, choice requires " + choice.Requires);
+        // http://schemas.microsoft.com/office/word/2010/wordprocessingShape
+        if (choice.Requires == "wps")   // EWHC/Fam/2017/3832
+            return MapFallback(main, run, fallback);
+        // http://schemas.microsoft.com/office/word/2010/wordprocessingGroup
+        if (choice.Requires == "wpg")   // WCA/Crim/2017/281
+            return MapFallback(main, run, fallback);
+        throw new Exception();
+    }
+
+    private static IInline MapFallback(MainDocumentPart main, Run run, AlternateContentFallback fallback) {
         if (fallback.ChildElements.Count != 1)
             throw new Exception();
-        if (fallback.FirstChild is Picture pict) {
-            if (pict.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().Any(id => id.RelationshipId is not null))
-                return WImageRef.Make(main, pict);
-            if (pict.ChildElements.Count == 1 && pict.FirstChild.NamespaceUri == "urn:schemas-microsoft-com:vml"  && pict.FirstChild.LocalName == "line")
-                return null;
-        }
-        // EWHC/Fam/2017/3832 contains a textBox
-        // don't know what to do with EWHC/Admin/2011/1403
-        // EWCA/Crim/2017/281
-        // return null;
-        // EWCA/Civ/2018/2026
-        // EWHC/Admin/2011/1403
-        // EWCA/Crim/2012/1799
-        // EWHC/Fam/2015/3440
-        throw new Exception();
-        // throw new Exception();
+        return Inline.MapRunChild(main, run, fallback.FirstChild);
     }
 
 }

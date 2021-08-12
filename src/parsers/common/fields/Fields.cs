@@ -58,6 +58,16 @@ class Fields {
         return Regex.Replace(" " + fieldCode + " ", @"\s+", " ");
     }
 
+    internal static string ExtractRawFieldCode(Paragraph para) {
+        return para.Descendants<FieldCode>().Select(fc => fc.InnerText).Aggregate("", (acc, x) => acc + x);
+        // IEnumerable<string> codes = para.Descendants<FieldCode>().Select(fc => fc.InnerText);
+        // return string.Join("", codes);
+    }
+    internal static string ExtractAndNormalizeFieldCode(Paragraph para) {
+        string raw = ExtractRawFieldCode(para);
+        return Normalize(raw);
+    }
+
     internal static IEnumerable<IInline> ParseFieldContents(MainDocumentPart main, List<OpenXmlElement> withinField) {
         if (withinField.Count == 0)
             return Enumerable.Empty<IInline>();
@@ -128,6 +138,8 @@ class Fields {
             return Enumerable.Empty<IInline>();
         if (fieldCode == " ref PRVATE ")    // EWCA/Crim/2004/287
             return Enumerable.Empty<IInline>();
+        if (fieldCode == " ref RIVATE ")    // EWHC/Admin/2015/1570
+            return Enumerable.Empty<IInline>();
         if (ListNum.Is(fieldCode))
             return ListNum.Parse(main, fieldCode, withinField, i);
         if (fieldCode == " FORMTEXT " || fieldCode == " FORMTEXT _ ") {  // EWCA/Crim/2004/3049
@@ -154,7 +166,7 @@ class Fields {
         if (fieldCode == " PRIVATE ") { // EWCA/Civ/2003/295
             return Enumerable.Empty<IInline>();
         }
-        if (fieldCode == " =SUM(ABOVE) ") {   // EWCA/Crim/2018/542, EWHC/Ch/2015/164
+        if (fieldCode.StartsWith(" =SUM(ABOVE) ")) {   // EWCA/Crim/2018/542, EWHC/Ch/2015/164, EWHC/QB/2010/1112
             if (i == withinField.Count) {
                 TableCell cell = first.Ancestors<TableCell>().First();
                 string sum = DOCX.Tables.SumAbove(cell);
@@ -162,16 +174,17 @@ class Fields {
                 WText wText = new WText(sum, rProps);
                 return new List<IInline>(1) { wText };
             } else {
-                OpenXmlElement next = withinField[i];
-                if (!IsFieldSeparater(next))
-                    throw new Exception();
-                IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
-                if (!rest.Any())
-                    throw new Exception();
-                return Inline.ParseRuns(main, rest);
+                return Rest(main, withinField, i);
+                // OpenXmlElement next = withinField[i];
+                // if (!IsFieldSeparater(next))
+                //     throw new Exception();
+                // IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
+                // if (!rest.Any())
+                //     throw new Exception();
+                // return Inline.ParseRuns(main, rest);
             }
         }
-        if (fieldCode == " DATE \\@ \"dd MMMM yyyy\" ") {
+        if (fieldCode.StartsWith(" DATE ") || fieldCode.StartsWith(" createDATE ")) {   // EWCA/Crim/2015/558, EWCA/Civ/2018/1307
             if (i == withinField.Count)
                 throw new Exception();
             OpenXmlElement next = withinField[i];
@@ -187,8 +200,10 @@ class Fields {
                     CultureInfo culture = new CultureInfo("en-GB");
                     DateTime date = DateTime.Parse(content, culture);
                     WDate wDate = new WDate(parsed.Cast<IFormattedText>(), date);
+                    logger.LogInformation("parsed date: " + content);
                     return new List<IInline>(1) { wDate };
                 } catch (FormatException) {
+                    logger.LogCritical("unrecognizable date: " + content);
                 }
             }
             return parsed;
@@ -264,6 +279,12 @@ class Fields {
             return Enumerable.Empty<IInline>();
         if (fieldCode.StartsWith(" SYMBOL "))   // EWHC/Comm/2010/1735
             return new List<IInline>(1) { Symbol.Parse(main, fieldCode, withinField.Skip(i)) };
+        if (fieldCode.StartsWith(" INCLUDEPICTURE "))   // EWCA/Civ/2004/381
+            return new List<IInline>(1) { IncludedPicture.Parse(main, fieldCode, withinField.Skip(i)) };
+        if (fieldCode.StartsWith(" KEYWORDS ")) // EWHC/Ch/2009/1330
+            return RestOptional(main, withinField, i);
+        if (fieldCode.StartsWith(" SUBJECT ")) // EWHC/Ch/2009/1330
+            return RestOptional(main, withinField, i);
 
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();
@@ -366,12 +387,10 @@ class Fields {
     }
 
     internal static IEnumerable<IInline> ParseSimple(MainDocumentPart main, SimpleField fldSimple) {
-        IEnumerable<IInline> parsed = Inline.ParseRuns(main, fldSimple.ChildElements);
-        string normal = Enricher.NormalizeInlines(parsed);
-        logger.LogWarning("simple field: instr = " + fldSimple.Instruction + "; children = " + normal);
-        if (string.IsNullOrWhiteSpace(normal))
+        logger.LogWarning("simple field: " + fldSimple.Instruction);
+        if (!fldSimple.ChildElements.Any())
             logger.LogError("simple field has no child content");
-        return parsed;
+        return Inline.ParseRuns(main, fldSimple.ChildElements);
     }
 
 }

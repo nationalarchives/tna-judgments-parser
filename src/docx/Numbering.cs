@@ -43,6 +43,23 @@ class Numbering {
             .FirstOrDefault();
     }
 
+    public static Level GetLevelAbstract(MainDocumentPart main, int absNumId, int ilvl) {
+        AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+            .OfType<AbstractNum>()
+            .Where(a => a.AbstractNumberId.Value == absNumId)
+            .First();
+        Level level = abs.ChildElements
+            .OfType<Level>()
+            .Where(l => l.LevelIndex.Value == ilvl)
+            .FirstOrDefault();
+        // if (level is null && abs.NumberingStyleLink is not null) {    // // EWHC/Ch/2012/190
+        //     string numStyleId = abs.NumberingStyleLink.Val.Value;
+        //     Style numStyle = Styles.GetStyle(main, StyleValues.Numbering, numStyleId);
+        //     numberingId = numStyle.StyleParagraphProperties.NumberingProperties.NumberingId.Val.Value;
+        //     level = GetLevel(main, numberingId, ilvl);
+        // }
+        return level;
+    }
     public static Level GetLevel(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = GetNumbering(main, numberingId);
         if (numbering is null)  // this does happen, I think it means that (style) numbering is removed

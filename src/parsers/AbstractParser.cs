@@ -125,7 +125,7 @@ abstract class AbstractParser {
         if (IsSkippable(e)) {
             ;
         } else if (e is Paragraph para) {
-            var np = Blocks.Parse1(doc.MainDocumentPart, para);
+            var np = Blocks.ParseParagraph(doc.MainDocumentPart, para);
             collection.Add(np);
         } else if (e is Table table) {
             var t = new WTable(doc.MainDocumentPart, table);
