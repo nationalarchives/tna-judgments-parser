@@ -17,10 +17,11 @@ static class Themes {
         if (theme == ThemeFontValues.MinorBidi)
             return main.ThemePart?.Theme?.ThemeElements?.FontScheme?.MinorFont?.ChildElements
                 .OfType<SupplementalFont>().Where(font => font.Script == "Arab").First().Typeface;
-        if (theme == ThemeFontValues.MajorBidi) {    // EWHC/Admin/2018/2941
+        if (theme == ThemeFontValues.MajorHighAnsi) // EWHC/Comm/2015/1308
+            return main.ThemePart?.Theme?.ThemeElements?.FontScheme?.MajorFont?.LatinFont.Typeface;
+        if (theme == ThemeFontValues.MajorBidi)    // EWHC/Admin/2018/2941
             return main.ThemePart?.Theme?.ThemeElements?.FontScheme?.MajorFont?.ChildElements
                 .OfType<SupplementalFont>().Where(font => font.Script == "Arab").First().Typeface;
-        }
         throw new Exception();
     }
 

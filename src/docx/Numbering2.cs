@@ -189,15 +189,16 @@ class Numbering2 {
         //     TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
         //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         // }
-        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)\.%(\d+)([^%]*)$");
+        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)([\.\-\(])%(\d+)([^%]*)$");
         if (match.Success) {
             string prefix = match.Groups[1].Value;
             int ilvl1 = int.Parse(match.Groups[2].Value) - 1;
-            int ilvl2 = int.Parse(match.Groups[3].Value) - 1;
+            string middle = match.Groups[3].Value;
+            int ilvl2 = int.Parse(match.Groups[4].Value) - 1;
             if (ilvl2 > 9)
                 logger.LogWarning("two-digit numbering level: " + ilvl2);
-            string suffix = match.Groups[4].Value;
-            TwoCombinator combine = (num1, num2) => { return prefix + num1 + "." + num2 + suffix; };
+            string suffix = match.Groups[5].Value;
+            TwoCombinator combine = (num1, num2) => { return prefix + num1 + middle + num2 + suffix; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)$");
@@ -386,6 +387,13 @@ class Numbering2 {
         if (format == NumberFormatValues.None)  // EWHC/Ch/2015/3490
             return "";
         throw new Exception("unsupported numbering format: " + format.ToString());
+    }
+
+    public static string FormatNumberAbstract(int absNumId, int ilvl, int n, MainDocumentPart main) {
+        Level level = Numbering.GetLevelAbstract(main, absNumId, ilvl);
+        NumberFormatValues numFormat = level.NumberingFormat.Val.Value;
+        string lvlText = level.LevelText.Val.Value;
+        return Format(n, numFormat, lvlText);
     }
 
     public static string FormatNumber(int numId, int ilvl, int n, MainDocumentPart main) {
