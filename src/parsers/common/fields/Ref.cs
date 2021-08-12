@@ -14,22 +14,25 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class Ref {
 
-    private static string regex = @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\n)?( \\p)?( \\w)?( \\h)?( \\\* MERGEFORMAT)? $";
+    // private static string regex = @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\n)?( \\p)?( \\w)?( \\h)?( \\\* MERGEFORMAT)? $";
+    private static string pattern = @"^ REF ([_A-Za-z0-9]+)( \\[hnrpw])*( \\\* MERGEFORMAT)? $";
 
     internal static bool Is(string fieldCode) {
-        return Regex.IsMatch(fieldCode, regex);
+        return fieldCode.StartsWith(" REF ");
     }
 
     internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, List<OpenXmlElement> withinField, int i) {
-        Match match = Regex.Match(fieldCode, regex);
+        Match match = Regex.Match(fieldCode, pattern);
         if (!match.Success)
             throw new Exception();
         string bookmarkName = match.Groups[1].Value;
-        bool rSwitch = !string.IsNullOrEmpty(match.Groups[2].Value);
-        bool nSwitch = !string.IsNullOrEmpty(match.Groups[3].Value);    // EWHC/Patents/2013/2927
-        bool pSwitch = !string.IsNullOrEmpty(match.Groups[4].Value);
-        bool wSwitch = !string.IsNullOrEmpty(match.Groups[5].Value);
-        bool hSwitch = !string.IsNullOrEmpty(match.Groups[6].Value);
+
+        CaptureCollection swtchs = match.Groups[2].Captures;
+        bool rSwitch = swtchs.Where(v => v.Value == @" \r").Any();
+        bool nSwitch = swtchs.Where(v => v.Value == @" \n").Any();  // EWHC/Patents/2013/2927
+        bool pSwitch = swtchs.Where(v => v.Value == @" \p").Any();
+        bool wSwitch = swtchs.Where(v => v.Value == @" \w").Any();
+        bool hSwitch = swtchs.Where(v => v.Value == @" \h").Any();
 
         if (i == withinField.Count)
             return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());

@@ -16,16 +16,18 @@ internal class Blocks {
         .Where(e => e is not SectionProperties)
         .Where(e => e is not BookmarkStart)
         .Where(e => e is not BookmarkEnd)
-        .Select<OpenXmlElement, IBlock>(e => {
-            if (e is Paragraph para)
-                return Parse1(main, para);
-            if (e is Table table)
-                return new WTable(main, table);
-            throw new Exception(e.GetType().ToString());
-        });
+        .Select<OpenXmlElement, IBlock>(e => ParseBlock(main, e));
     }
 
-    internal static IBlock Parse1(MainDocumentPart main, Paragraph paragraph) {
+    internal static IBlock ParseBlock(MainDocumentPart main, OpenXmlElement e) {
+        if (e is Paragraph para)
+            return ParseParagraph(main, para);
+        if (e is Table table)
+            return new WTable(main, table);
+        throw new Exception(e.GetType().ToString());
+    }
+
+    internal static IBlock ParseParagraph(MainDocumentPart main, Paragraph paragraph) {
         string number = DOCX.Numbering2.GetFormattedNumber(main, paragraph)?.Number;
         if (number is null)
             return new WLine(main, paragraph);
