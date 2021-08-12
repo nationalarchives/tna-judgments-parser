@@ -42,7 +42,17 @@ internal class ListNum {
             INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
             return new List<IInline>(1) { number };
         }
-        match = Regex.Match(fieldCode, @"^ LISTNUM \\l (\d) $", RegexOptions.IgnoreCase);    // EWHC/Patents/2013/2927
+        match = Regex.Match(fieldCode, @"^ LISTNUM LegalDefault \\s (\d) $");    // EWHC/Admin/2012/3751
+        if (match.Success) {
+            int start = int.Parse(match.Groups[1].Value);
+            int n = CountPreceding(first, fieldCode) + start;
+            string num = n.ToString() + ".";
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
+            RunProperties rProps = first.RunProperties;
+            INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
+            return new List<IInline>(1) { number };
+        }
+        match = Regex.Match(fieldCode, @"^ LISTNUM \\l (\d) $");    // EWHC/Patents/2013/2927
         if (match.Success) {
             int numId = first.Ancestors<Paragraph>().First().ParagraphProperties.NumberingProperties.NumberingId.Val.Value;
             int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
@@ -51,11 +61,12 @@ internal class ListNum {
             WText wText = new WText(fNum, rProps);
             return new List<IInline>(1) { wText };
         }
-        match = Regex.Match(fieldCode, @"^ LISTNUM ""([^""]+)"" \\l (\d) $", RegexOptions.IgnoreCase);  // EWHC/Ch/2004/1835
+        match = Regex.Match(fieldCode, @"^ listnum ""WP List 1"" \\l (\d) $");  // EWHC/Ch/2004/1835
         if (match.Success) {
-            string name = match.Groups[1].Value;
-            int ilvl = int.Parse(match.Groups[2].Value) - 1;
-            string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, 1, main);
+            int absNumId = 0;
+            int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            int n = CountPreceding(withinField.First(), fieldCode) + 1;
+            string fNum = DOCX.Numbering2.FormatNumberAbstract(absNumId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;
             WText wText = new WText(fNum, rProps);
             return new List<IInline>(1) { wText };
@@ -75,6 +86,18 @@ internal class ListNum {
             return new List<IInline>(1) { wText };
         }
         throw new Exception(fieldCode);
+    }
+
+    private static int CountPreceding(OpenXmlElement anchor, string fieldCode) {
+        int count = 0;
+        Paragraph previous = anchor.Ancestors<Paragraph>().First().PreviousSibling<Paragraph>();
+        while (previous != null) {
+            string fc = Fields.ExtractAndNormalizeFieldCode(previous);
+            if (fieldCode == fc)
+                count += 1;
+            previous = previous.PreviousSibling<Paragraph>();
+        }
+        return count;
     }
 
     private static int CountPrecedingListNumLegalDefault(OpenXmlElement fc) {

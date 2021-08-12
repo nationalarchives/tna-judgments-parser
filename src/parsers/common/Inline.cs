@@ -26,6 +26,8 @@ class Inline {
                 continue;
             if (e is BookmarkStart || e is BookmarkEnd)
                 continue;
+            if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkStart")
+                continue;
             if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkEnd")
                 continue;
             if (Fields.IsFieldStart(e)) {
@@ -177,7 +179,7 @@ class Inline {
             .Where(i => i is not null);
     }
 
-    private static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
+    internal static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
         logger.LogTrace(e.GetType().Name + " " + e.LocalName);
         if (e is Text text)
             return new WText(text, run.RunProperties);
