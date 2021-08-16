@@ -59,6 +59,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/commercial-circuit-court"
     };
 
+    public static readonly Court EWHC_QBD_Chancery = new Court {
+        Code = "EWHC-Chancery",
+        LongName = "Chancery Division of the High Court",
+        ShortName = "Chancery Division",
+        URL = "https://www.gov.uk/courts-tribunals/chancery-division-of-the-high-court"
+    };
+
     public static readonly Court HC_Chancery_BusAndProp_BusinessList = new Court {
         Code = "EWHC-Business",
         LongName = "Business and Property Courts (Chancery Division) (Business List)",
@@ -89,6 +96,7 @@ public readonly struct Courts {
         EWHC_QBD_Admin_Planning,
         EWHC_QBD_Circuit_Commercial_Court,
 
+        EWHC_QBD_Chancery,
         HC_Chancery_BusAndProp_BusinessList,
 
         EWCOP,

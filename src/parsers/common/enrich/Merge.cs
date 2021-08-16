@@ -35,6 +35,37 @@ class Merger : Enricher {
         return Merge(unmerged);
     }
 
+    /* tables */
+
+    private WTable EnrichTable(WTable table) {
+        IEnumerable<WRow> rows = EnrichRows(table.TypedRows);
+        return new WTable(table.Main, rows);
+    }
+
+    private IEnumerable<WRow> EnrichRows(IEnumerable<WRow> rows) {
+        return rows.Select(row => EnrichRow(row));
+    }
+
+    private WRow EnrichRow(WRow row) {
+        IEnumerable<WCell> cells = EnrichCells((IEnumerable<WCell>) row.Cells);
+        return new WRow(row.Main, cells);
+    }
+
+    private IEnumerable<WCell> EnrichCells(IEnumerable<WCell> cells) {
+        return cells.Select(cell => EnrichCell(cell));
+    }
+
+    private WCell EnrichCell(WCell cell) {
+        IEnumerable<IBlock> contents = Enrich(cell.Contents);
+        return new WCell(cell.Main, contents);
+    }
+
+    override protected IBlock Enrich(IBlock block) {
+        if (block is WTable table)
+            return EnrichTable(table);
+        return base.Enrich(block);
+    }
+
 }
 
 }

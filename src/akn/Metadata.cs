@@ -36,6 +36,19 @@ class Metadata {
         XmlElement identification = append(doc, meta, "identification");
         identification.SetAttribute("source", "#tna");
 
+        List<IParty> parties = new List<IParty>();
+        foreach (IBlock block in judgment.Header) {
+            if (block is ILine line)
+                parties.AddRange(line.Contents.OfType<IParty>());
+            if (block is ITable table)
+                foreach (IRow row in table.Rows)
+                    foreach (ICell cell in row.Cells)
+                        foreach (ILine line2 in cell.Contents.OfType<ILine>())
+                            parties.AddRange(line2.Contents.OfType<IParty>());
+        }
+        IParty party1 = parties.FirstOrDefault();
+        IParty party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
+
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
         workThis.SetAttribute("value", compId);
@@ -52,6 +65,10 @@ class Metadata {
         if (caseNumber is not null) {
             XmlElement workNumber = append(doc, work, "FRBRnumber");
             workNumber.SetAttribute("value", caseNumber);
+        }
+        if (party2 is not null) {
+            XmlElement workName = append(doc, work, "FRBRname");
+            workName.SetAttribute("value", party1.Name + " v. " + party2.Name);
         }
 
         XmlElement expression = append(doc, identification, "FRBRExpression");
@@ -100,12 +117,19 @@ class Metadata {
             tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
             tna.SetAttribute("showAs", "The National Archives");
 
-            IEnumerable<IParty> parties = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IParty>();
+            ISet<PartyRole> roles = new HashSet<PartyRole>();
             foreach (IParty party in parties) {
                 XmlElement org = append(doc, references, "TLCPerson");
                 org.SetAttribute("eId", party.Id);
-                org.SetAttribute("href", "/" + party.Id);
+                org.SetAttribute("href", "");
                 org.SetAttribute("showAs", party.Name);
+                roles.Add(party.Role);
+            }
+            foreach (PartyRole role in roles) {
+                XmlElement org = append(doc, references, "TLCRole");
+                org.SetAttribute("eId", Enum.GetName(typeof(PartyRole), role).ToLower());
+                org.SetAttribute("href", "");
+                org.SetAttribute("showAs", Enum.GetName(typeof(PartyRole), role));
             }
 
             IEnumerable<IJudge> judges = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IJudge>();

@@ -170,13 +170,13 @@ class Builder {
     private void AddTable(XmlElement parent, ITable model) {
         XmlElement tableElement = doc.CreateElement("table", ns);
         parent.AppendChild(tableElement);
-        foreach (IRow row in model.Rows()) {
+        foreach (IRow row in model.Rows) {
             XmlElement rowElement = doc.CreateElement("tr", ns);
             tableElement.AppendChild(rowElement);
-            foreach (ICell cell in row.Cells()) {
+            foreach (ICell cell in row.Cells) {
                 XmlElement cellElement = doc.CreateElement("td", ns);
                 rowElement.AppendChild(cellElement);
-                this.blocks(cellElement, cell.Contents());
+                this.blocks(cellElement, cell.Contents);
             }
         }
     }
@@ -306,6 +306,7 @@ class Builder {
         XmlElement party = doc.CreateElement("party", ns);
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);
+        party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
         Dictionary<string, string> styles = model.GetCSSStyles();
         if (styles.Count > 0)
             party.SetAttribute("style", CSS.SerializeInline(styles));

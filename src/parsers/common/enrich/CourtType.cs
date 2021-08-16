@@ -60,6 +60,16 @@ struct Combo2 {
             Re1 = new Regex("^IN THE HIGH COURT \\(DIVISIONAL\\) COURT &$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^COURT OF APPEAL \\(CIVIL DIVISION\\)", RegexOptions.IgnoreCase),
             Court = Courts.CoA_Civil
+        },
+        new Combo2 {
+            Re1 = new Regex("IN THE SUPREME COURT OF JUDICATURE"),
+            Re2 = new Regex("COURT OF APPEAL \\(CIVIL DIVISION\\)"),
+            Court = Courts.CoA_Civil
+        },
+        new Combo2 {
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex("CHANCERY DIVISION"),
+            Court = Courts.EWHC_QBD_Chancery
         }
     };
 

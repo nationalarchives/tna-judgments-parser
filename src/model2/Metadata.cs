@@ -28,8 +28,17 @@ class WMetadata : IMetadata {
 
     public string DocumentId() {
         INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
-        if (cite is not null)
+        if (cite is not null) {
+            Match match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+) \([A-Z][a-z]+\)$");
+            if (match1.Success) {
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+            }
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCA) (Civ|Crim) (\d+)$");
+            if (match1.Success) {
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[4].Value;
+            }
             return cite.Text.Replace("[", "").Replace("]","").Replace("(", "").Replace(")","").Replace(" ","/").ToLower();
+        }
         WCourtType courtType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
         if (courtType is null)
             return null;

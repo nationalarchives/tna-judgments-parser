@@ -10,48 +10,69 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 class WTable : ITable {
 
     private readonly MainDocumentPart main;
-    private readonly Table table;
 
     public WTable(MainDocumentPart main, Table table) {
         this.main = main;
-        this.table = table;
+        this.TypedRows = table.ChildElements.Where(e => e is TableRow).Cast<TableRow>().Select(r => new WRow(main, r));
+    }
+    public WTable(MainDocumentPart main, IEnumerable<WRow> rows) {
+        this.main = main;
+        this.TypedRows = rows;
     }
 
-    public IEnumerable<IRow> Rows() {
-        return table.ChildElements.Where(e => e is TableRow).Cast<TableRow>().Select(r => new WRow(main, r));
-    }
+    public MainDocumentPart Main { get => main; }
+
+    public IEnumerable<IRow> Rows { get => TypedRows; }
+
+    public IEnumerable<WRow> TypedRows { get; private init; }
+
+    // public IEnumerable<WRow> Rows2() {
+    //     return (IEnumerable<WRow>) Rows;
+    // }
+
+    // public IEnumerable<WRow> TypedRows { get => (IEnumerable<WRow>) Rows; }
+
+    // public T Jim<T>() where T : struct {
+    //     return null;
+    // }
 
 }
 
 class WRow : IRow {
 
     private readonly MainDocumentPart main;
-    private readonly TableRow row;
 
     internal WRow(MainDocumentPart main, TableRow row) {
         this.main = main;
-        this.row = row;
+        this.Cells = row.ChildElements.Where(e => e is TableCell).Cast<TableCell>().Select(c => new WCell(main, c));
+    }
+    internal WRow(MainDocumentPart main, IEnumerable<ICell> cells) {
+        this.main = main;
+        this.Cells = cells;
     }
 
-    public IEnumerable<ICell> Cells() {
-        return row.ChildElements.Where(e => e is TableCell).Cast<TableCell>().Select(c => new WCell(main, c));
-    }
+    public MainDocumentPart Main { get => main; }
+
+    public IEnumerable<ICell> Cells { get; private init; }
 
 }
 
 class WCell : ICell {
 
     private readonly MainDocumentPart main;
-    private readonly TableCell cell;
 
     internal WCell(MainDocumentPart main, TableCell cell) {
         this.main = main;
-        this.cell = cell;
+        this.Contents = Blocks.ParseBlocks(main, cell.ChildElements.Where(e => !(e is TableCellProperties)));
+    }
+    internal WCell(MainDocumentPart main, IEnumerable<IBlock> contents) {
+        this.main = main;
+        this.Contents = contents;
     }
 
-    public IEnumerable<IBlock> Contents() {
-        return Blocks.ParseBlocks(main, cell.ChildElements.Where(e => !(e is TableCellProperties)));
-    }
+    public MainDocumentPart Main { get => main; }
+
+    public IEnumerable<IBlock> Contents { get; private init; }
 
 }
 

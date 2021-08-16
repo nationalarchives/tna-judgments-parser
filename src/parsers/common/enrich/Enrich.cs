@@ -45,13 +45,23 @@ abstract class Enricher {
 
     internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) => blocks.Select(Enrich);
 
-    protected IBlock Enrich(IBlock block) {
+    protected virtual IBlock Enrich(IBlock block) {
         if (block is WOldNumberedParagraph np)
             return new WOldNumberedParagraph(np.Number, Enrich(np));
         if (block is WLine line)
             return Enrich(line);
+        // if (block is WTable table)
+        //     return EnrichTable(table);
         return block;
     }
+
+    // protected WTable EnrichTable(WTable table) {
+    //     IEnumerable<WRow> rows = table.TypedRows.Select(row => {
+    //         IEnumerable
+    //     });
+    //     return new WTable(table.Main, rows);
+
+    // }
 
     protected WLine Enrich(WLine line) {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
@@ -77,13 +87,13 @@ abstract class Enricher {
         return string.Join("", texts).Trim();
     }
 
-    protected string NormalizeLine(IEnumerable<IInline> line) {
-        IEnumerable<string> texts = line
-            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-        return string.Join("", texts).Trim();
-    }
-    protected string NormalizeLine(ILine line) {
-        return NormalizeLine(line.Contents);
+    // protected string NormalizeLine(IEnumerable<IInline> line) {
+    //     IEnumerable<string> texts = line
+    //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
+    //     return string.Join("", texts).Trim();
+    // }
+    internal static string NormalizeLine(ILine line) {
+        return NormalizeInlines(line.Contents);
     }
 
 }
