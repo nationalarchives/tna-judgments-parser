@@ -46,9 +46,9 @@ class CaseNo : Enricher {
     //     return line;
     // }
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        Regex re0 = new Regex(@"^\s*Case\s+(No|Number):?\s*(\d+[/\.]\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
-        Regex re1 = new Regex(@"^\s*Case\s+(No|Number):?\s*$", RegexOptions.IgnoreCase);
-        Regex re2 = new Regex(@"^\s*(\d+/\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
+        Regex re0 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
+        Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*$", RegexOptions.IgnoreCase);
+        Regex re2 = new Regex(@"^\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
         List<IInline> enriched = new List<IInline>();
         for (int i = 0; i < line.Count(); i++) {
             IInline inline = line.ElementAt(i);
@@ -77,7 +77,7 @@ class CaseNo : Enricher {
     }
 
     private IEnumerable<IInline> Enrich0(IEnumerable<IInline> line) {
-        Regex re = new Regex(@"^\s*Case\s+(No|Number):?\s*(\d+[/\.]\d{2}(\d{2})?)", RegexOptions.IgnoreCase);
+        Regex re = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
         return line.SelectMany(inline => {
             if (inline is WText text) {
                 Match match = re.Match(text.Text);

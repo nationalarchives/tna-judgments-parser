@@ -233,6 +233,8 @@ internal class WParty : WText, IParty {
 
     public WParty(WText text) : base(text.Text, text.properties) { }
 
+    public PartyRole Role { get; set; }
+
 }
 
 internal class WJudge : WText, IJudge {

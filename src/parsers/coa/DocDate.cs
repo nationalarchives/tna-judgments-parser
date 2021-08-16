@@ -47,14 +47,14 @@ class DocDate : Enricher {
             if (first is WText fText1) {
                 if (second is WText fText2) {
                     if (third is WText fText3) {
-                        string pattern1 = @"^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})$";
+                        string pattern1 = @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? )?(\d{1,2})$";
                         string pattern2 = @"^(st|nd|rd|th)$";
                         string pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
                         Match match1 = Regex.Match(fText1.Text, pattern1);
                         Match match2 = Regex.Match(fText2.Text, pattern2);
                         Match match3 = Regex.Match(fText3.Text, pattern3);
                         if (match1.Success && match2.Success && match3.Success) {
-                            string combined = match1.Groups[2].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
+                            string combined = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
                             DateTime date = DateTime.Parse(combined, culture);
                             return new IInline[] { new WDocDate(line.Cast<WText>(), date) };
                         }
