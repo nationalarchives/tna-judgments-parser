@@ -19,7 +19,7 @@ class LawyerEnricher : Enricher {
                 enriched.Add(block);
                 continue;
             }
-            representation = representation || NormalizeLine(line.Contents).Contains("Representation");
+            representation = representation || NormalizeLine(line).Contains("Representation");
             if (representation)
                 enriched.Add(Enrich(block));
             else

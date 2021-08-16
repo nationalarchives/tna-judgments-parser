@@ -96,6 +96,7 @@ class CourtOfAppealParser : AbstractParser {
         new RemoveTrailingWhitespace(),
         new Merger(),
         new NetrualCitation(),
+        new CaseNo(),
         new CourtType(),
         new DocDate(),
         new PartyEnricher(),
