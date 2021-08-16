@@ -186,8 +186,9 @@ interface IDateTime : IInline {
 
 }
 
-interface IDocDate : IDate {
-}
+interface IDocDate : IDate { }
+
+enum PartyRole { Appellant, Claimant, Defendant, Respondent }
 
 interface IParty : IFormattedText {
 
@@ -199,7 +200,7 @@ interface IParty : IFormattedText {
             text = text.Substring(4);
         if (text.StartsWith("Miss "))
             text = text.Substring(5);
-        Match match = Regex.Match(text, @" \(the “[A-Z][a-z]+”\)$");
+        Match match = Regex.Match(text, @" \(the “[^”]+”\)$");
         if (match.Success)
             text = text.Substring(0, match.Index);
         if (text.EndsWith(" (in administration)"))
@@ -212,8 +213,10 @@ interface IParty : IFormattedText {
     string Id { get {
         string id = Regex.Replace(this.Name, @"\s", "-");
         id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
-        return "party-" + id.ToLower();
+        return id.ToLower();
     } }
+
+    PartyRole Role { get; }
 
 }
 

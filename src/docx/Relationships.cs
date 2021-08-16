@@ -39,6 +39,7 @@ class Relationships {
         OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relationshipId.Value).FirstOrDefault()?.OpenXmlPart;
         if (part is not null)
             return part.Uri;
+        logger.LogCritical("potentially missing image: relationship id = " + relationshipId);
         return main.ExternalRelationships.Where(r => r.Id == relationshipId.Value).First().Uri; // EWCA/Civ/2003/1067
         // if (r is not null)
         //     return r.Uri;
