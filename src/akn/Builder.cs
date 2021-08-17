@@ -204,6 +204,8 @@ class Builder {
             AddAndWrapText(parent, "docketNumber", caseNo);
         else if (model is IParty party)
             AddParty(parent, party);
+        else if (model is IDocTitle docTitle)
+            AddDocTitle(parent, docTitle);
         else if (model is IJudge judge)
             AddJudge(parent, judge);
         else if (model is ILawyer lawyer)
@@ -306,13 +308,25 @@ class Builder {
         XmlElement party = doc.CreateElement("party", ns);
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);
-        party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
+        if (model.Role.HasValue)
+            party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
         Dictionary<string, string> styles = model.GetCSSStyles();
         if (styles.Count > 0)
             party.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
         party.AppendChild(text);
     }
+
+    private void AddDocTitle(XmlElement parent, IDocTitle model) {
+        XmlElement docTitle = doc.CreateElement("docTitle", ns);
+        parent.AppendChild(docTitle);
+        Dictionary<string, string> styles = model.GetCSSStyles();
+        if (styles.Count > 0)
+            docTitle.SetAttribute("style", CSS.SerializeInline(styles));
+        XmlText text = doc.CreateTextNode(model.Text);
+        docTitle.AppendChild(text);
+    }
+
     private void AddJudge(XmlElement parent, IJudge model) {
         XmlElement judge = doc.CreateElement("judge", ns);
         parent.AppendChild(judge);
