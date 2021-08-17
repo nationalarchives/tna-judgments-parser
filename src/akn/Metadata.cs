@@ -48,6 +48,15 @@ class Metadata {
         }
         IParty party1 = parties.FirstOrDefault();
         IParty party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
+        if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
+            party2 = parties.Last();
+        // List<IDocTitle> inTheMatterOf = new List<IDocTitle>();
+        // foreach (IBlock block in judgment.Header) {
+        //     if (block is ILine line)
+        //         foreach (IInline inline in line.Contents)
+        //             if (inline is IDocTitle docTitle)
+        //                 inTheMatterOf.Add(docTitle);
+        IDocTitle docTitle = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocTitle>().FirstOrDefault();
 
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
@@ -69,6 +78,9 @@ class Metadata {
         if (party2 is not null) {
             XmlElement workName = append(doc, work, "FRBRname");
             workName.SetAttribute("value", party1.Name + " v. " + party2.Name);
+        } else if (docTitle is not null) {
+            XmlElement workName = append(doc, work, "FRBRname");
+            workName.SetAttribute("value", docTitle.Text);
         }
 
         XmlElement expression = append(doc, identification, "FRBRExpression");
@@ -117,13 +129,18 @@ class Metadata {
             tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
             tna.SetAttribute("showAs", "The National Archives");
 
+            IDictionary<string, IParty> uniqueParies = new Dictionary<string, IParty>();
+            foreach (IParty party in parties)
+                uniqueParies.TryAdd(party.Id, party);
+
             ISet<PartyRole> roles = new HashSet<PartyRole>();
-            foreach (IParty party in parties) {
+            foreach (IParty party in uniqueParies.Values) {
                 XmlElement org = append(doc, references, "TLCPerson");
                 org.SetAttribute("eId", party.Id);
                 org.SetAttribute("href", "");
                 org.SetAttribute("showAs", party.Name);
-                roles.Add(party.Role);
+                if (party.Role.HasValue)
+                    roles.Add(party.Role.Value);
             }
             foreach (PartyRole role in roles) {
                 XmlElement org = append(doc, references, "TLCRole");
@@ -146,7 +163,6 @@ class Metadata {
                 org.SetAttribute("href", "/" + lawyer.Id);
                 org.SetAttribute("showAs", lawyer.Name);
             }
-
 
         }
 
