@@ -67,6 +67,16 @@ struct Combo2 {
             Court = Courts.CoA_Civil
         },
         new Combo2 {
+            Re1 = new Regex("IN THE SUPREME COURT OF JUDICATURE"),
+            Re2 = new Regex("COURT OF APPEAL \\(CRIMINAL DIVISION\\)"),
+            Court = Courts.CoA_Crim
+        },
+        new Combo2 {
+            Re1 = new Regex("IN THE COURT OF APPEAL"),
+            Re2 = new Regex("CRIMINAL DIVISION"),
+            Court = Courts.CoA_Crim
+        },
+        new Combo2 {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex("CHANCERY DIVISION"),
             Court = Courts.EWHC_QBD_Chancery
