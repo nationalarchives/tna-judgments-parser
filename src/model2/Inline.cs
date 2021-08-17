@@ -233,7 +233,13 @@ internal class WParty : WText, IParty {
 
     public WParty(WText text) : base(text.Text, text.properties) { }
 
-    public PartyRole Role { get; set; }
+    public PartyRole? Role { get; set; }
+
+}
+
+internal class WDocTitle : WText, IDocTitle {
+
+    public WDocTitle(WText text) : base(text.Text, text.properties) { }
 
 }
 

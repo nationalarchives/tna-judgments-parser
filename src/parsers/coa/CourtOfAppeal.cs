@@ -64,10 +64,14 @@ class CourtOfAppealParser : AbstractParser {
             logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
             if (e is Paragraph p) {
-                if (StartsWithTitledJudgeName(p))
-                    return header;
                 if (p.Descendants<SectionProperties>().Any())
                     return header;
+                if (p.Descendants<PageBreakBefore>().Any()) // EWCA/Civ/2004/254
+                    return header;
+                if (StartsWithTitledJudgeName(p))
+                    return header;
+                // if (DOCX.Numbering.HasNumberOrMarker(main, p))  // EWCA/Civ/2004/254
+                //     return header;
             }
             // if (e is Paragraph && StartsWithTitledJudgeName(e)) {
             //     return header;

@@ -95,6 +95,9 @@ abstract class Enricher {
     internal static string NormalizeLine(ILine line) {
         return NormalizeInlines(line.Contents);
     }
+    // public static string NormalizeContent(this ILine line) {
+    //     return NormalizeInlines(line.Contents);
+    // }
 
 }
 

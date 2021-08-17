@@ -188,7 +188,7 @@ interface IDateTime : IInline {
 
 interface IDocDate : IDate { }
 
-enum PartyRole { Appellant, Claimant, Defendant, Respondent }
+enum PartyRole { Appellant, Claimant, Applicant, Defendant, Respondent }
 
 interface IParty : IFormattedText {
 
@@ -207,6 +207,8 @@ interface IParty : IFormattedText {
             text = text.Substring(0, text.Length - 20);
         if (text.EndsWith(" in administration"))
             text = text.Substring(0, text.Length - 18);
+        if (text == "R E G I N A")
+            return "Regina";
         return text;
     } }
 
@@ -216,9 +218,11 @@ interface IParty : IFormattedText {
         return id.ToLower();
     } }
 
-    PartyRole Role { get; }
+    PartyRole? Role { get; }
 
 }
+
+interface IDocTitle : IFormattedText { }
 
 interface IJudge : IFormattedText {
 

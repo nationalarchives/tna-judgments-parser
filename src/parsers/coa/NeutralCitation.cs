@@ -18,7 +18,7 @@ class NetrualCitation : Enricher {
 
     private static Group Match(string text) {
         foreach (string pattern in patterns) {
-            Match match = Regex.Match(text, pattern);
+            Match match = Regex.Match(text, pattern, RegexOptions.IgnoreCase);
             if (match.Success)
                 return match.Groups[2];
         }

@@ -37,7 +37,7 @@ class WMetadata : IMetadata {
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[4].Value;
             }
-            return cite.Text.Replace("[", "").Replace("]","").Replace("(", "").Replace(")","").Replace(" ","/").ToLower();
+            throw new System.Exception();
         }
         WCourtType courtType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
         if (courtType is null)
