@@ -12,6 +12,8 @@ class DocDate : Enricher {
     private static readonly CultureInfo culture = new CultureInfo("en-GB");
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+        if (!line.Any())
+            return Enumerable.Empty<IInline>();
         if (line.Count() == 1)
             return Enrich1(line.First());
         if (line.Count() == 3) {
@@ -45,82 +47,90 @@ class DocDate : Enricher {
                 }
             }
         }
-        if (line.Count() >= 2) {
-            string pattern1 = @"^(On|Date of Judgment):$";
-            string pattern3 = @"^\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
-            IInline last = line.ElementAt(line.Count() - 1);
-            int i = line.Count() - 2;
-            IInline first = line.ElementAt(i);
-            while (i > 0 && first is WTab) {
-                i -= 1;
-                first = line.ElementAt(i);
-            }
-            if (first is WText fText1 && last is WText fText3) {
-                Match match1 = Regex.Match(fText1.Text.Trim(), pattern1);
-                Match match3 = Regex.Match(fText3.Text.Trim(), pattern3);
-                if (match1.Success && match3.Success) {
-                    DateTime date = DateTime.Parse(fText3.Text, culture);
-                    WDocDate docDate =  new WDocDate(new List<WText>(1) { fText3 }, date);
-                    return line.Take(line.Count() - 1).Append(docDate);
-                }
-            }
-        }
-        return line;
+        // if (line.Count() >= 2) {
+            IEnumerable<IInline> leadUp = line.SkipLast(1);
+            IInline last = line.Last();
+            IEnumerable<IInline> rest = Enrich1(last);
+            return leadUp.Concat(rest);
+            // string pattern1 = @"^(On|Date of Judgment):$";
+            // string pattern3 = @"^\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
+            // int i = line.Count() - 2;
+            // IInline first = line.ElementAt(i);
+            // while (i > 0 && first is WTab) {
+            //     i -= 1;
+            //     first = line.ElementAt(i);
+            // }
+            // if (first is WText fText1 && last is WText fText3) {
+            //     Match match1 = Regex.Match(fText1.Text.Trim(), pattern1);
+            //     Match match3 = Regex.Match(fText3.Text.Trim(), pattern3);
+            //     if (match1.Success && match3.Success) {
+            //         DateTime date = DateTime.Parse(fText3.Text, culture);
+            //         WDocDate docDate =  new WDocDate(new List<WText>(1) { fText3 }, date);
+            //         return line.Take(line.Count() - 1).Append(docDate);
+            //     }
+            // }
+        // }
+        // return line;
     }
 
 
     /* one */
 
-    private static readonly string[] datePatterns = {
-        @"^Date: (\d{2}/\d{2}/\d{4})$",
-        @"^Date: (\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4})$"
+    private static readonly string[] cardinalDatePatterns1 = {
+        @"^(\s*Date: )?\d{2}/\d{2}/\d{4}( *)$",
+        @"^(\s*Date: )?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
-    private static readonly string[] wholePatterns1 = {
-        @"^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$"
+    private static readonly string[] ordinalDatePatterns1 = {
+        @"^(\s*Date: )?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
-    private struct Something {
-        internal Group Group { get; init; }
-        internal DateTime DT { get; init; }
-    }
-    private static Something? MatchDate1(string text) {
-        foreach (string pattern in datePatterns) {
-            Match match = Regex.Match(text, pattern);
+
+    private List<IInline> EnrichText(WText fText) {
+        foreach (string pattern in cardinalDatePatterns1) {
+            Match match = Regex.Match(fText.Text, pattern);
             if (match.Success) {
-                Group group = match.Groups[1];
-                DateTime dateTime = DateTime.Parse(group.Value, culture);
-                return new Something() { Group = group, DT = dateTime };
+                // int start = match.Groups[0].Index + match.Groups[1].Length;
+                Group before = match.Groups[1];
+                Group after = match.Groups[match.Groups.Count-1];
+                // string main = fText.Text.Substring(start, after.Index - start);
+                string main = fText.Text.Substring(before.Length, after.Index - before.Length);
+                DateTime dt = DateTime.Parse(main, culture);
+                WDocDate dd = new WDocDate(main, fText.properties, dt);
+                List<IInline> contents = new List<IInline>(3);
+                if (before.Length > 0)
+                    contents.Add(new WText(before.Value, fText.properties));
+                contents.Add(dd);
+                if (after.Length > 0)
+                    contents.Add(new WText(after.Value, fText.properties));
+                return contents;
             }
         }
-        foreach (string pattern in wholePatterns1) {
-            Match match = Regex.Match(text, pattern);
+        foreach (string pattern in ordinalDatePatterns1) {
+            Match match = Regex.Match(fText.Text, pattern);
             if (match.Success) {
-                Group group = match.Groups[0];
-                DateTime dateTime = DateTime.Parse(match.Groups[2].Value + " " + text.Substring(match.Groups[4].Index), culture);
-                return new Something() { Group = group, DT = dateTime };
+                // int start = match.Groups[0].Index + match.Groups[1].Length;
+                Group before = match.Groups[1];
+                Group after = match.Groups[match.Groups.Count-1];
+                string main = fText.Text.Substring(before.Length, after.Index - before.Length);
+                string cardinal = match.Groups[3].Value + " " + fText.Text.Substring(match.Groups[5].Index);
+                DateTime dt = DateTime.Parse(cardinal, culture);
+                WDocDate dd = new WDocDate(main, fText.properties, dt);
+                List<IInline> contents = new List<IInline>(3);
+                if (before.Length > 0)
+                    contents.Add(new WText(before.Value, fText.properties));
+                contents.Add(dd);
+                if (after.Length > 0)
+                    contents.Add(new WText(after.Value, fText.properties));
+                return contents;
             }
         }
-        return null;
+        return new List<IInline>(1) { fText };
     }
 
     private IEnumerable<IInline> Enrich1(IInline inline) {
         if (inline is WDate wDate)
             return new IInline[] { new WDocDate(wDate) };
-        if (inline is WText fText) {
-            Something? group = MatchDate1(fText.Text);
-            if (group is not null) {
-                if (group.Value.Group.Index == 0) {
-                    // DateTime dt = DateTime.Parse(group.Value.Group.Value, culture);
-                    WDocDate docDate = new WDocDate(group.Value.Group.Value, fText.properties, group.Value.DT);
-                    return new IInline[] { docDate };
-                } else {
-                    WText label = new WText(fText.Text.Substring(0, group.Value.Group.Index), fText.properties);
-                    // DateTime dt = DateTime.Parse(group.Value.Group.Value, culture);
-                    WDocDate docDate = new WDocDate(group.Value.Group.Value, fText.properties, group.Value.DT);
-                    return new IInline[] { label, docDate };
-
-                }
-            }
-        }
+        if (inline is WText fText)
+            return EnrichText(fText);
         return new IInline[] { inline };
     }
 

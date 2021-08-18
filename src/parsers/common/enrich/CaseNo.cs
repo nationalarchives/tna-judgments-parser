@@ -22,11 +22,21 @@ class CaseNo : Enricher {
             if (line.Contents.Count() == 1) {
                 IInline first = line.Contents.First();
                 if (first is WText text) {
-                    string pattern = @"^CO/\d+/\d{4}$";
-                    Match match = Regex.Match(text.Text, pattern);
+                    string pattern;
+                    Match match;
+                    pattern = @"^(No: )?([A-Z0-9/]+)$";
+                    match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
-                        WCaseNo caseNo = new WCaseNo(text.Text, text.properties);
-                        IEnumerable<IInline> contents = new List<IInline>(1) { caseNo };
+                        Group label1 = match.Groups[1];
+                        Group caseNo1 = match.Groups[2];
+                        WCaseNo caseNo = new WCaseNo(caseNo1.Value, text.properties);
+                        List<IInline> contents;
+                        if (label1.Length == 0) {
+                            contents = new List<IInline>(1) { caseNo };
+                        } else {
+                            WText label = new WText(label1.Value, text.properties);
+                            contents = new List<IInline>(2) { label, caseNo };
+                        }
                         return new WLine(line, contents);
                     }
                     pattern = @"^No: (\d+ C\d)$";
