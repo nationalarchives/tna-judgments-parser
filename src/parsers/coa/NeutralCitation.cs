@@ -37,11 +37,19 @@ class NetrualCitation : Enricher {
         string before = fText.Text.Substring(0, group.Index);
         string during = group.Value;
         string after = fText.Text.Substring(group.Index + group.Length);
-        IInline[] replacement = {
-            new WText(before, fText.properties),
-            new WNeutralCitation(during, fText.properties),
-            new WText(after, fText.properties)
-        };
+        IInline[] replacement;
+        if (string.IsNullOrEmpty(after)) {
+            replacement = new IInline[] {
+                new WText(before, fText.properties),
+                new WNeutralCitation(during, fText.properties)
+            };
+        } else {
+            replacement = new IInline[] {
+                new WText(before, fText.properties),
+                new WNeutralCitation(during, fText.properties),
+                new WText(after, fText.properties)
+            };
+        }
         return replacement;
     }
 

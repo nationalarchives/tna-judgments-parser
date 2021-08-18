@@ -200,7 +200,10 @@ interface IParty : IFormattedText {
             text = text.Substring(4);
         if (text.StartsWith("Miss "))
             text = text.Substring(5);
-        Match match = Regex.Match(text, @" \(the “[^”]+”\)$");
+        Match match = Regex.Match(text, @"^\(\d+\) ");
+        if (match.Success)
+            text = text.Substring(match.Length);
+        match = Regex.Match(text, @" \(the “[^”]+”\)$");
         if (match.Success)
             text = text.Substring(0, match.Index);
         if (text.EndsWith(" (in administration)"))
@@ -208,7 +211,7 @@ interface IParty : IFormattedText {
         if (text.EndsWith(" in administration"))
             text = text.Substring(0, text.Length - 18);
         if (text == "R E G I N A")
-            return "Regina";
+            return "REGINA";
         return text;
     } }
 
