@@ -24,7 +24,7 @@ class CaseNo : Enricher {
                 if (first is WText text) {
                     string pattern;
                     Match match;
-                    pattern = @"^(No: )?([A-Z0-9/]+)$";
+                    pattern = @"^(No: )?([^ ]+)$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         Group label1 = match.Groups[1];
@@ -39,7 +39,7 @@ class CaseNo : Enricher {
                         }
                         return new WLine(line, contents);
                     }
-                    pattern = @"^No: (\d+ C\d)$";
+                    pattern = @"^No: ([^ ]+ C\d)$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         WText label = new WText(text.Text.Substring(0, match.Groups[1].Index), text.properties);
@@ -90,9 +90,9 @@ class CaseNo : Enricher {
     //     return line;
     // }
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        Regex re0 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
+        Regex re0 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([^ ]+)", RegexOptions.IgnoreCase);
         Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*$", RegexOptions.IgnoreCase);
-        Regex re2 = new Regex(@"^\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
+        Regex re2 = new Regex(@"^\s*([^ ]+)", RegexOptions.IgnoreCase);
         List<IInline> enriched = new List<IInline>();
         for (int i = 0; i < line.Count(); i++) {
             IInline inline = line.ElementAt(i);
