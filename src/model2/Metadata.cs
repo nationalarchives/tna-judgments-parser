@@ -42,6 +42,14 @@ class WMetadata : IMetadata {
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCOP) (\d+)$");
+            if (match1.Success) {
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+            }
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWFC) (\d+)$");
+            if (match1.Success) {
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+            }
             throw new System.Exception();
         }
         WCourtType courtType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();

@@ -29,6 +29,12 @@ class PartyEnricher : Enricher {
                     i += 8;
                     continue;
             }
+            if (IsTenLinePartyBlock(before, i)) {
+                    List<IBlock> enriched10 = EnrichTenLinePartyBlock(before, i);
+                    after.AddRange(enriched10);
+                    i += 10;
+                    continue;
+            }
             if (block is ILine line1 && before.Length - i > 7) {
                 IBlock line2 = before[i+1];
                 IBlock line3 = before[i+2];
@@ -183,6 +189,73 @@ class PartyEnricher : Enricher {
         return after;
     }
 
+    /* ten */
+    private static bool IsTenLinePartyBlock(IBlock[] before, int i) {
+        if (i > before.Length - 10)
+            return false;
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        IBlock line5 = before[i+4];
+        IBlock line6 = before[i+5];
+        IBlock line7 = before[i+6];
+        IBlock line8 = before[i+7];
+        IBlock line9 = before[i+8];
+        IBlock line10 = before[i+9];
+        bool ok1 = IsBeforePartyMarker(line1);
+        bool ok2 = IsBeforePartyMarker2(line2);
+        bool ok3 = IsPartyName(line3);
+        bool ok4 = IsFirstPartyTpye(line4);
+        bool ok5 = IsBetweenPartyMarker(line5);
+        bool ok6 = IsPartyName(line6);
+        bool ok7 = IsPartyName(line7);
+        bool ok8 = IsPartyName(line8);
+        bool ok9 = IsSecondPartyType(line9);
+        bool ok10 = IsAfterPartyMarker(line10);
+        return
+            IsBeforePartyMarker(line1) &&
+            IsBeforePartyMarker2(line2) &&
+            IsPartyName(line3) &&
+            IsFirstPartyTpye(line4) &&
+            IsBetweenPartyMarker(line5) &&
+            IsPartyName(line6) &&
+            IsPartyName(line7) &&
+            IsPartyName(line8) &&
+            IsSecondPartyType(line9) &&
+            IsAfterPartyMarker(line10);
+    }
+    private static List<IBlock> EnrichTenLinePartyBlock(IBlock[] before, int i) {
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        IBlock line5 = before[i+4];
+        IBlock line6 = before[i+5];
+        IBlock line7 = before[i+6];
+        IBlock line8 = before[i+7];
+        IBlock line9 = before[i+8];
+        IBlock line10 = before[i+9];
+        List<IBlock> after = new List<IBlock>(8);
+        after.Add(line1);
+        after.Add(line2);
+        PartyRole role1 = GetFirstPartyRole(line4);
+        WLine party1 = MakeParty(line3, role1);
+        after.Add(party1);
+        after.Add(line4);
+        after.Add(line5);
+        PartyRole role2 = GetSecondPartyRole(line9);
+        WLine party2 = MakeParty(line6, role2);
+        WLine party3 = MakeParty(line7, role2);
+        WLine party4 = MakeParty(line8, role2);
+        after.Add(party2);
+        after.Add(party3);
+        after.Add(party4);
+        after.Add(line9);
+        after.Add(line10);
+        return after;
+    }
+
 
     private static bool IsBeforePartyMarker(IBlock block) {
         if (block is not ILine line)
@@ -199,18 +272,32 @@ class PartyEnricher : Enricher {
     private static bool IsPartyName(IBlock block) {
         if (block is not ILine line)
             return false;
-        if (line.Contents.Count() != 1)
+        if (line.Contents.Count() == 0)
             return false;
         IInline first = line.Contents.First();
-        if (first is not WText)
+        if (first is not WText wText)
             return false;
-        return true;
+        if (line.Contents.Count() == 1)
+            return true;
+        if (line.Contents.Count() == 3) {   // EWHC/Admin/2012/3928
+            IInline second = line.Contents.Skip(1).First();
+            IInline third = line.Contents.Skip(2).First();
+            if (second is not WText wText2)
+                return false;
+            if (third is not WText wText3)
+                return false;
+            if (!string.IsNullOrWhiteSpace(wText2.Text))
+                return false;
+            return Regex.IsMatch(wText3.Text, @"^\(\d\)$");
+        }
+        return false;
     }
     private static WLine MakeParty(IBlock name, PartyRole? role) {
         WLine line = (WLine) name;
         WText text = (WText) line.Contents.First();
         WParty party = new WParty(text) { Role = role };
-        return new WLine(line, new List<WParty>(1) { party });
+        IEnumerable<IInline> contents = line.Contents.Skip(1).Prepend(party);
+        return new WLine(line, contents);
     }
     private static bool IsFirstPartyTpye(IBlock block) {
         ISet<string> firstPartyTypes = new HashSet<string>() { "Claimant", "Claimant/Respondent" };
@@ -341,28 +428,6 @@ class PartyEnricher : Enricher {
             return row;
         second = EnrichCell(second, role.Value);
         return new WRow(row.Main, new List<WCell>(3){ first, second, third });
-        // if (third.Contents.Count() != 1)
-        //     return row;
-        // if (third.Contents.First() is not ILine line3)
-        //     return row;
-        // string three = Enricher.NormalizeLine(line3);
-        // if (three == "Appellant" || three == "Appellants" || three == "Defendant/Appellant") {
-        //     second = EnrichCell(second, PartyRole.Appellant);
-        //     return new WRow(row.Main, new List<WCell>(3){ first, second, third });
-        // }
-        // if (three == "Claimant" || three == "Claimants") {
-        //     second = EnrichCell(second, PartyRole.Claimant);
-        //     return new WRow(row.Main, new List<WCell>(3){ first, second, third });
-        // }
-        // if (three == "Defendant" || three == "Defendants") {
-        //     second = EnrichCell(second, PartyRole.Defendant);
-        //     return new WRow(row.Main, new List<WCell>(3){ first, second, third });
-        // }
-        // if (three == "Respondent" || three == "Respondents" || three == "Claimant/ Respondent") {
-        //     second = EnrichCell(second, PartyRole.Respondent);
-        //     return new WRow(row.Main, new List<WCell>(3){ first, second, third });
-        // }
-        return row;
     }
 
     private static PartyRole? GetPartyRole(WCell cell) {
@@ -380,7 +445,7 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "Appellants", "Defendant/Appellant", "Defendants/Appellants" };
+        ISet<string> types = new HashSet<string>() { "Appellant", "Appellants", "Defendant/Appellant", "Defendants/Appellants", "Appellants/ Claimants" };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
         types = new HashSet<string>() { "Claimant", "Claimants" };
@@ -389,10 +454,10 @@ class PartyEnricher : Enricher {
         types = new HashSet<string>() { "Applicant" };
         if (types.Contains(normalized))
             return PartyRole.Applicant;
-        types = new HashSet<string>() { "Defendant", "Defendants" };
+        types = new HashSet<string>() { "Defendant", "Defendants", "First Defendant", "Second Defendant", "Third Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Defendant;
-        types = new HashSet<string>() { "Respondent", "Respondents", "Claimant/Respondent", "Claimant/ Respondent" };
+        types = new HashSet<string>() { "Respondent", "Respondents", "Claimant/Respondent", "Claimant/ Respondent", "Defendant/ Respondent" };
         if (types.Contains(normalized))
             return PartyRole.Respondent;
         return null;
@@ -412,13 +477,17 @@ class PartyEnricher : Enricher {
         string two = line2.NormalizedContent();
         if (one == "Defendant/" && two.EndsWith("Claimant"))    // EWHC/Ch/2008/2079
             return PartyRole.Defendant;
+        if (one == "Defendant/" && two == "Applicant")    // EWHC/Ch/2017/916
+            return PartyRole.Applicant;
         if (one == "Claimant/" && two == "Respondent")    // EWCA/Civ/2008/183
+            return PartyRole.Respondent;
+        if (one == "Claimants/" && two == "Respondents")    // EWHC/Ch/2017/916
             return PartyRole.Respondent;
         if (one == "Claimant/" && two.EndsWith("Defendant"))    // EWHC/Ch/2008/2079
             return PartyRole.Claimant;
         if (one == "Respondent/" && two.EndsWith("Claimant"))    // EWCA/Civ/2017/97
             return PartyRole.Respondent;
-        if (one == "Appellants/" && two.EndsWith("Defendants & Counterclaimants"))    // EWCA/Civ/2017/97
+        if (one == "Appellants/" && two == "Defendants & Counterclaimants")    // EWCA/Civ/2017/97
             return PartyRole.Appellant;
         return null;
     }
@@ -426,6 +495,15 @@ class PartyEnricher : Enricher {
     private WCell EnrichCell(WCell cell, PartyRole role) {
         IEnumerable<IBlock> contents = cell.Contents.Select(
             block => {
+                if (block is WOldNumberedParagraph np) {    // EWCA/Civ/2015/455
+                    if (np.Contents.Count() != 1)
+                        return np;
+                    IInline first2 = np.Contents.First();
+                    if (first2 is not WText wText2)
+                        return np;
+                    WParty party2 = new WParty(wText2) { Role = role };
+                    return new WOldNumberedParagraph(np, new List<IInline>(1) { party2 });
+                }
                 if (block is not WLine line)
                     return block;
                 if (line.Contents.Count() != 1)

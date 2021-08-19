@@ -80,7 +80,13 @@ struct Combo2 {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex("CHANCERY DIVISION"),
             Court = Courts.EWHC_QBD_Chancery
+        },
+        new Combo2 {
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex("FAMILY DIVISION"),
+            Court = Courts.EWFC
         }
+        
     };
 
 }
@@ -185,17 +191,26 @@ struct Combo1 {
 
     internal static Combo1[] combos = new Combo1[] {
         new Combo1 {
-            Re = new Regex("^IN THE (COURT OF APPEAL \\(CRIMINAL DIVISION\\))$", RegexOptions.IgnoreCase),
+            Re = new Regex("^IN THE (COURT OF APPEAL \\(CRIMINAL DIVISION\\)) *$", RegexOptions.IgnoreCase),
             Court = Courts.CoA_Crim
         },
         new Combo1 {
-            Re = new Regex("^IN THE (COURT OF APPEAL \\(CIVIL DIVISION\\))$", RegexOptions.IgnoreCase),
+            Re = new Regex("^IN THE (COURT OF APPEAL \\(CIVIL DIVISION\\)) *$", RegexOptions.IgnoreCase),
             Court = Courts.CoA_Civil
         },
         new Combo1 {
-            Re = new Regex("^IN THE (COURT OF PROTECTION)$", RegexOptions.IgnoreCase),
+            Re = new Regex("^IN THE (COURT OF PROTECTION) *$", RegexOptions.IgnoreCase),
             Court = Courts.EWCOP
         },
+        new Combo1 {
+            Re = new Regex("^(COURT OF PROTECTION) *$", RegexOptions.IgnoreCase),
+            Court = Courts.EWCOP
+        },
+        new Combo1 {
+            Re = new Regex("^(THE FAMILY COURT) SITTING AT [A-Z]+ *$", RegexOptions.IgnoreCase),
+            Court = Courts.EWFC
+        }
+        
     };
 
 }
