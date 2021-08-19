@@ -79,6 +79,12 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/court-of-protection"
     };
 
+    public static readonly Court EWFC = new Court {
+        Code = "EWFC",
+        LongName = "Family Court",
+        URL = "https://www.gov.uk/courts-tribunals/family-division-of-the-high-court"
+    };
+
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
         LongName = "Employment Tribunal",
@@ -100,6 +106,7 @@ public readonly struct Courts {
         HC_Chancery_BusAndProp_BusinessList,
 
         EWCOP,
+        EWFC,
 
         EmploymentTribunal
     };

@@ -203,6 +203,9 @@ interface IParty : IFormattedText {
         Match match = Regex.Match(text, @"^\(\d+\) ");
         if (match.Success)
             text = text.Substring(match.Length);
+        match = Regex.Match(text, @" \(\d+\)$");
+        if (match.Success)
+            text = text.Substring(0, text.Length - match.Length);
         match = Regex.Match(text, @" \(the “[^”]+”\)$");
         if (match.Success)
             text = text.Substring(0, match.Index);
