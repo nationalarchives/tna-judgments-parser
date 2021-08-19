@@ -92,6 +92,10 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
         Number = number;
         IsFirstLineOfNumberedParagraph = true;
     }
+    internal WOldNumberedParagraph(WOldNumberedParagraph proto, IEnumerable<IInline> contents) : base(proto, contents) {
+        Number = proto.Number;
+        IsFirstLineOfNumberedParagraph = proto.IsFirstLineOfNumberedParagraph;
+    }
 
     public string Number { get; }
 
