@@ -43,6 +43,25 @@ class DocDate : Enricher {
                                 return new IInline[] { before, new WDocDate(within, dt) };
                             }
                         }
+                        /* difference here is only spacing */
+                        pattern2 = @"^(st|nd|rd|th) +$";
+                        pattern3 = @"^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
+                        match2 = Regex.Match(fText2.Text, pattern2);
+                        match3 = Regex.Match(fText3.Text, pattern3);
+                        if (match1.Success && match2.Success && match3.Success) {
+                            string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
+                            DateTime dt = DateTime.Parse(dayMonthYear, culture);
+                            if (match1.Index == 0) {
+                                return new IInline[] { new WDocDate(line.Cast<WText>(), dt) };
+                            } else {
+                                string split1 = fText1.Text.Substring(0, match1.Index);
+                                string split2 = fText1.Text.Substring(match1.Index);
+                                WText before = new WText(split1, fText1.properties);
+                                WText within1 = new WText(split2, fText1.properties);
+                                IFormattedText[] within = { within1, fText2, fText3 };
+                                return new IInline[] { before, new WDocDate(within, dt) };
+                            }
+                        }
                     }
                 }
             }
@@ -77,11 +96,11 @@ class DocDate : Enricher {
     /* one */
 
     private static readonly string[] cardinalDatePatterns1 = {
-        @"^(\s*Date: )?\d{2}/\d{2}/\d{4}( *)$",
-        @"^(\s*Date: )?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        @"^(\s*Date: +)?\d{2}/\d{2}/\d{4}( *)$",
+        @"^(\s*Date: +)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
     private static readonly string[] ordinalDatePatterns1 = {
-        @"^(\s*Date: )?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        @"^(\s*Date: +)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
 
     private List<IInline> EnrichText(WText fText) {
