@@ -47,7 +47,45 @@ class CaseNo : Enricher {
                         IEnumerable<IInline> contents = new List<IInline>(2) { label, caseNo };
                         return new WLine(line, contents);
                     }
+                    pattern = @"^ *([A-Z0-9/]+) *$";
+                    match = Regex.Match(text.Text, pattern);
+                    if (match.Success) {
+                        Group group = match.Groups[1];
+                        int start = group.Index;
+                        int length = group.Length;
+                        List<IInline> contents = new List<IInline>(3);
+                        if (start > 0) {
+                            string s1 = text.Text.Substring(0, start);
+                            WText label1 = new WText(s1, text.properties);
+                            contents.Add(label1);
+                        }
+                        string s2 = group.Value;
+                        WCaseNo caseNo = new WCaseNo(s2, text.properties);
+                        contents.Add(caseNo);
+                        string s3 = text.Text.Substring(start + length);
+                        if (!string.IsNullOrEmpty(s3)) {
+                            WText label2 = new WText(s3, text.properties);
+                            contents.Add(label2);
+                        }
+                        return new WLine(line, contents);
+                    }
                 }
+            }
+        }
+        return base.Enrich(block);
+    }
+
+    protected override IBlock Enrich(IBlock block) {
+        if (block is WLine line && line.Contents.Count() == 1 && line.Contents.First() is WText wText) {
+            Regex[] regexes = {
+                new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase)
+            };
+            foreach (Regex re in regexes) {
+                Match match = re.Match(wText.Text);
+                if (!match.Success)
+                    continue;
+                List<IInline> contents = Split(wText, match.Groups[1]);
+                return new WLine(line, contents);
             }
         }
         return base.Enrich(block);
@@ -63,6 +101,24 @@ class CaseNo : Enricher {
             new WText(before, text.properties),
             wrapper(during, text.properties)
         };
+        if (!string.IsNullOrEmpty(after)) {
+            WText third = new WText(after, text.properties);
+            replacement.Add(third);
+        }
+        return replacement;
+    }
+
+    internal static List<IInline> Split(WText text, Group group) {
+        string before = text.Text.Substring(0, group.Index);
+        string during = group.Value;
+        string after = text.Text.Substring(group.Index + group.Length);
+        List<IInline> replacement = new List<IInline>(3);
+        if (!string.IsNullOrEmpty(before)) {
+            WText first = new WText(before, text.properties);
+            replacement.Add(first);
+        }
+        WCaseNo caseNo = new WCaseNo(during, text.properties);
+        replacement.Add(caseNo);
         if (!string.IsNullOrEmpty(after)) {
             WText third = new WText(after, text.properties);
             replacement.Add(third);
@@ -91,6 +147,7 @@ class CaseNo : Enricher {
     // }
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         Regex re0 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([^ ]+)", RegexOptions.IgnoreCase);
+        // Regex re00 = new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase);
         Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*$", RegexOptions.IgnoreCase);
         Regex re2 = new Regex(@"^\s*([^ ]+)", RegexOptions.IgnoreCase);
         List<IInline> enriched = new List<IInline>();
