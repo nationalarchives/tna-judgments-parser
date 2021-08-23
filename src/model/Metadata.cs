@@ -11,7 +11,7 @@ interface IMetadata {
 
     string Date();
 
-    string CaseNo();
+    IEnumerable<string> CaseNos();
 
     Dictionary<string, Dictionary<string, string>> CSSStyles();
 

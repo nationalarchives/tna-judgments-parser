@@ -12,9 +12,17 @@ class CaseNo : Enricher {
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         if (!blocks.Any())
             return Enumerable.Empty<IBlock>();
-        IBlock first = blocks.First();
-        IEnumerable<IBlock> rest = blocks.Skip(1);
-        return base.Enrich(rest).Prepend(EnrichFirstBlock(first));
+        IBlock rawFirst = blocks.First();
+        IBlock enrichedFirst = EnrichFirstBlock(rawFirst);
+        if (enrichedFirst is WLine line && line.Contents.OfType<ICaseNo>().Any()) {
+            IBlock rawSecond = blocks.Skip(1).First();
+            IBlock enrichedSecond = EnrichFirstBlock(rawSecond);
+            IEnumerable<IBlock> rest = blocks.Skip(2);
+            return rest.Prepend(enrichedSecond).Prepend(enrichedFirst);
+        } else {
+            IEnumerable<IBlock> rest = blocks.Skip(1);
+            return base.Enrich(rest).Prepend(enrichedFirst);
+        }
     }
 
     private IBlock EnrichFirstBlock(IBlock block) {
@@ -67,6 +75,14 @@ class CaseNo : Enricher {
                             WText label2 = new WText(s3, text.properties);
                             contents.Add(label2);
                         }
+                        return new WLine(line, contents);
+                    }
+                    pattern = @"^ *([A-Z0-9/]{10,}), +([A-Z0-9/]{10,}) *$";
+                    match = Regex.Match(text.Text, pattern);
+                    if (match.Success) {
+                        Group g1 = match.Groups[1];
+                        Group g2 = match.Groups[2];
+                        List<IInline> contents = Split(text, g1, g2);
                         return new WLine(line, contents);
                     }
                 }
@@ -124,6 +140,34 @@ class CaseNo : Enricher {
             replacement.Add(third);
         }
         return replacement;
+    }
+
+    internal static List<IInline> Split(WText wText, Group g1, Group g2) {
+        string text = wText.Text;
+        RunProperties props = wText.properties;
+        string s1 = text.Substring(0, g1.Index);
+        string s2 = g1.Value;
+        int start3 = g1.Index + g1.Length;
+        string s3 = text.Substring(start3, g2.Index - start3);
+        string s4 = g2.Value;
+        int start5 = g2.Index + g2.Length;
+        string s5 = text.Substring(start5);
+        List<IInline> contents = new List<IInline>(5);
+        if (!string.IsNullOrEmpty(s1)) {
+            WText label1 = new WText(s1, props);
+            contents.Add(label1);
+        }
+        WCaseNo caseNo1 = new WCaseNo(s2, props);
+        contents.Add(caseNo1);
+        WText label2 = new WText(s3, props);
+        contents.Add(label2);
+        WCaseNo caseNo2 = new WCaseNo(s4, props);
+        contents.Add(caseNo2);
+        if (!string.IsNullOrEmpty(s5)) {
+            WText label3 = new WText(s5, props);
+            contents.Add(label3);
+        }
+        return contents;
     }
 
     // internal override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

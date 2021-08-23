@@ -35,6 +35,13 @@ struct Combo3 {
             Court = Courts.EWHC_QBD_Circuit_Commercial_Court
         },
         new Combo3 {
+            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_TCC
+        },
+        
+        new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \\(ChD\\)", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BUSINESS LIST", RegexOptions.IgnoreCase),
@@ -53,7 +60,7 @@ struct Combo2 {
     internal static Combo2[] combos = new Combo2[] {
         new Combo2 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^(IN THE )?QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new Combo2 {

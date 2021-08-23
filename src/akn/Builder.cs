@@ -202,8 +202,10 @@ class Builder {
             AddAndWrapText(parent, "courtType", caseType);
         else if (model is ICaseNo caseNo)
             AddAndWrapText(parent, "docketNumber", caseNo);
-        else if (model is IParty party)
+        else if (model is IParty1 party)
             AddParty(parent, party);
+        else if (model is IParty2 party2)
+            AddParty2(parent, party2);
         else if (model is IDocTitle docTitle)
             AddDocTitle(parent, docTitle);
         else if (model is IJudge judge)
@@ -304,7 +306,7 @@ class Builder {
         }
     }
 
-    private void AddParty(XmlElement parent, IParty model) {
+    private void AddParty(XmlElement parent, IParty1 model) {
         XmlElement party = doc.CreateElement("party", ns);
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);
@@ -315,6 +317,14 @@ class Builder {
             party.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
         party.AppendChild(text);
+    }
+    private void AddParty2(XmlElement parent, IParty2 model) {
+        XmlElement party = doc.CreateElement("party", ns);
+        parent.AppendChild(party);
+        party.SetAttribute("refersTo", "#" + model.Id);
+        if (model.Role.HasValue)
+            party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
+        AddOrWrapText(party, model.Contents);
     }
 
     private void AddDocTitle(XmlElement parent, IDocTitle model) {

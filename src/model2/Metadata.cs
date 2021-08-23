@@ -56,32 +56,29 @@ class WMetadata : IMetadata {
             }
             throw new System.Exception();
         }
-        WCourtType courtType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
-        if (courtType is null)
-            return null;
-        string caseNo = CaseNo();
-        if (caseNo is null)
-            return null;
-        Match match = Regex.Match(caseNo, @"(\d{5,})[/\.](\d{4})");
-        if (match.Success)
-            return match.Groups[2] + "/" + courtType.Code.ToLower() + "/" + match.Groups[1];
-        match = Regex.Match(caseNo, @"(\d{5,})[/\.](\d\d)");
-        if (match.Success) {
-            int twoDigitYear = int.Parse(match.Groups[2].Value);
-            int fourDigitYear = new CultureInfo("en-GB").Calendar.ToFourDigitYear(twoDigitYear);
-            return fourDigitYear + "/" + courtType.Code.ToLower() + "/" + match.Groups[1];
-        }
+        // WCourtType courtType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
+        // if (courtType is null)
+        //     return null;
+        // string caseNo = CaseNo();
+        // if (caseNo is null)
+        //     return null;
+        // Match match = Regex.Match(caseNo, @"(\d{5,})[/\.](\d{4})");
+        // if (match.Success)
+        //     return match.Groups[2] + "/" + courtType.Code.ToLower() + "/" + match.Groups[1];
+        // match = Regex.Match(caseNo, @"(\d{5,})[/\.](\d\d)");
+        // if (match.Success) {
+        //     int twoDigitYear = int.Parse(match.Groups[2].Value);
+        //     int fourDigitYear = new CultureInfo("en-GB").Calendar.ToFourDigitYear(twoDigitYear);
+        //     return fourDigitYear + "/" + courtType.Code.ToLower() + "/" + match.Groups[1];
+        // }
         return null;
     }
 
-    public string CaseNo() {
-        ICaseNo caseNo = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().FirstOrDefault();
-        if (caseNo is not null)
-            return caseNo.Text;
-        caseNo = judgment.CoverPage?.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().FirstOrDefault();
-        if (caseNo is not null)
-            return caseNo.Text;
-        return null;
+    public IEnumerable<string> CaseNos() {
+        IEnumerable<ICaseNo> caseNos = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>();
+        if (judgment.CoverPage is not null)
+            caseNos = judgment.CoverPage.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().Concat(caseNos);
+        return caseNos.Select(cn => cn.Text);
     }
 
     public string ComponentId() {
