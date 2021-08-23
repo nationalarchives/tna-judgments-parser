@@ -227,13 +227,32 @@ internal class WDateTime : IDateTime {
 
 }
 
-internal class WParty : WText, IParty {
+internal class WParty : WText, IParty1 {
 
     public WParty(string text, RunProperties props) : base(text, props) { }
 
     public WParty(WText text) : base(text.Text, text.properties) { }
 
+    public string Name { get => IParty.GetName(this.Text); }
+
     public PartyRole? Role { get; set; }
+
+}
+
+internal class WParty2 : IParty2 {
+
+    public WParty2(IEnumerable<IFormattedText> contents) {
+        this.Contents = contents;
+    }
+
+    public string Name { get {
+        string text = string.Join("", this.Contents.Select(text => text.Text));
+        return IParty.GetName(text);
+    } }
+
+    public PartyRole? Role { get; set; }
+
+    public IEnumerable<IFormattedText> Contents { get; init; }
 
 }
 

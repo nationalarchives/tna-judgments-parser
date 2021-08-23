@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments {
@@ -105,45 +106,6 @@ interface IFormattedText : IInline {
 
     Dictionary<string, string> GetCSSStyles() {
         return GetCSSStyles(this);
-        // Dictionary<string, string> styles = new Dictionary<string, string>();
-        // if (this.Italic.HasValue)
-        //     styles.Add("font-style", this.Italic.Value ? "italic" : "normal");
-        // if (this.Bold.HasValue)
-        //     styles.Add("font-weight", this.Bold.Value ? "bold" : "normal");
-        // if (this.Underline.HasValue) {
-        //     if (!this.Underline.Value)
-        //         styles.Add("display", "inline-block");
-        //     styles.Add("text-decoration", this.Underline.Value ? "underline" : "none");
-        // }
-        // if (this.SuperSub is not null) {
-        //     string key = "vertical-align";
-        //     string value = this.SuperSub switch {
-        //         SuperSubValues.Superscript => "super",
-        //         SuperSubValues.Subscript => "sub",
-        //         SuperSubValues.Baseline => "baseline",
-        //         _ => throw new Exception()
-        //     };
-        //     styles.Add(key, value);
-        //     if (this.SuperSub == SuperSubValues.Superscript || this.SuperSub == SuperSubValues.Subscript) {
-        //         styles.Add("font-size", "smaller");
-        //     }
-        // }
-        // if (this.FontName is not null) {
-        //     string value = DOCX.CSS.ToFontFamily(this.FontName);
-        //     styles.Add("font-family", value);
-        // }
-        // if (this.FontSizePt is not null) {
-        //     styles["font-size"] = this.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
-        // }
-        // if (this.FontColor is not null) {
-        //     string value = this.FontColor;
-        //     if (value == "auto")
-        //         value = "initial";
-        //     styles.Add("color", value);
-        // }
-        // if (this.BackgroundColor is not null)
-        //     styles.Add("background-color", this.BackgroundColor);
-        // return styles;    
     }
 
 }
@@ -190,10 +152,10 @@ interface IDocDate : IDate { }
 
 enum PartyRole { Appellant, Claimant, Applicant, Defendant, Respondent }
 
-interface IParty : IFormattedText {
+interface IParty : IInline {
 
-    string Name { get {
-        string text = Regex.Replace(this.Text, @"\s+", " ").Trim();
+    static string GetName(string text) {
+        text = Regex.Replace(text, @"\s+", " ").Trim();
         if (text.StartsWith("Mr "))
             text = text.Substring(3);
         if (text.StartsWith("Mrs "))
@@ -216,15 +178,38 @@ interface IParty : IFormattedText {
         if (text == "R E G I N A")
             return "REGINA";
         return text;
-    } }
+    }
 
-    string Id { get {
-        string id = Regex.Replace(this.Name, @"\s", "-");
+    static string MakeId(string name) {
+        string id = Regex.Replace(name, @"\s", "-");
         id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
         return id.ToLower();
+    }
+
+    string Name { get; }
+
+    string Id { get {
+        return IParty.MakeId(this.Name);
     } }
 
     PartyRole? Role { get; }
+
+}
+
+interface IParty1 : IFormattedText, IParty {
+
+    // new string Name { get => IParty.GetName(this.Text); }
+
+}
+
+interface IParty2 : IParty {
+
+    // new string Name { get {
+    //     string text = string.Join("", this.Contents.Select(text => text.Text));
+    //     return IParty1.GetName(text);
+    // } }
+
+    IEnumerable<IFormattedText> Contents { get; }
 
 }
 

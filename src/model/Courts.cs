@@ -73,6 +73,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/the-business-list"
     };
 
+    public static readonly Court EWHC_QBD_TCC = new Court {
+        Code = "EWHC-QBD-TCC",
+        LongName = "Queen's Bench Division of the High Court / Technology and Construction Court",
+        ShortName = "Technology and Construction Court",
+        URL = "https://www.gov.uk/courts-tribunals/technology-and-construction-court"
+    };
+
     public static readonly Court EWCOP = new Court {
         Code = "EWCOP",
         LongName = "Court of Protection",
@@ -104,6 +111,7 @@ public readonly struct Courts {
 
         EWHC_QBD_Chancery,
         HC_Chancery_BusAndProp_BusinessList,
+        EWHC_QBD_TCC,
 
         EWCOP,
         EWFC,
