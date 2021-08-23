@@ -70,8 +70,7 @@ class Metadata {
         workAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
         XmlElement workCountry = append(doc, work, "FRBRcountry");
         workCountry.SetAttribute("value", "GB-UKM");
-        string caseNumber = metadata.CaseNo();
-        if (caseNumber is not null) {
+        foreach (string caseNumber in metadata.CaseNos()) {
             XmlElement workNumber = append(doc, work, "FRBRnumber");
             workNumber.SetAttribute("value", caseNumber);
         }
@@ -204,7 +203,7 @@ class AttachmentMetadata : IComponentMetadata {
 
     public string Date() { return prototype.Date(); }
 
-    public string CaseNo() => null;
+    public IEnumerable<string> CaseNos() => Enumerable.Empty<string>();
 
     public Dictionary<string, Dictionary<string, string>> CSSStyles() => null;
 
