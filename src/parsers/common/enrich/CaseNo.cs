@@ -32,7 +32,7 @@ class CaseNo : Enricher {
                 if (first is WText text) {
                     string pattern;
                     Match match;
-                    pattern = @"^(No: )?([^ ]+)$";
+                    pattern = @"^(No[:\.] )?([^ ]+) *$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         Group label1 = match.Groups[1];
@@ -45,9 +45,14 @@ class CaseNo : Enricher {
                             WText label = new WText(label1.Value, text.properties);
                             contents = new List<IInline>(2) { label, caseNo };
                         }
+                        if (caseNo1.Index + caseNo1.Length < text.Text.Length) {
+                            string after = text.Text.Substring(caseNo1.Index + caseNo1.Length);
+                            WText label2 = new WText(after, text.properties);
+                            contents.Add(label2);
+                        }
                         return new WLine(line, contents);
                     }
-                    pattern = @"^No: ([^ ]+ C\d)$";
+                    pattern = @"^No: ([A-Z0-9/-]+ [A-Z]\d)$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         WText label = new WText(text.Text.Substring(0, match.Groups[1].Index), text.properties);
@@ -55,7 +60,7 @@ class CaseNo : Enricher {
                         IEnumerable<IInline> contents = new List<IInline>(2) { label, caseNo };
                         return new WLine(line, contents);
                     }
-                    pattern = @"^ *([A-Z0-9/]+) *$";
+                    pattern = @"^ *([A-Z0-9/-]+) *$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         Group group = match.Groups[1];
