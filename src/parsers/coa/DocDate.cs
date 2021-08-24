@@ -21,6 +21,9 @@ class DocDate : Enricher {
             IInline second = line.ElementAt(1);
             IInline third = line.ElementAt(2);
             if (first is WText fText1) {
+                /* this needs to be improved, not everyting before the date should be allowed */
+                /* EWCA/Civ/2011/1277 contains 'hearing' */
+                bool real = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
                 if (second is WText fText2) {
                     if (third is WText fText3) {
                         string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? )?(\d{1,2})$";
@@ -40,7 +43,8 @@ class DocDate : Enricher {
                                 WText before = new WText(split1, fText1.properties);
                                 WText within1 = new WText(split2, fText1.properties);
                                 IFormattedText[] within = { within1, fText2, fText3 };
-                                return new IInline[] { before, new WDocDate(within, dt) };
+                                IInline date = real ? new WDocDate(within, dt) : new WDate(within, dt);
+                                return new IInline[] { before, date };
                             }
                         }
                         /* difference here is only spacing */
@@ -59,7 +63,8 @@ class DocDate : Enricher {
                                 WText before = new WText(split1, fText1.properties);
                                 WText within1 = new WText(split2, fText1.properties);
                                 IFormattedText[] within = { within1, fText2, fText3 };
-                                return new IInline[] { before, new WDocDate(within, dt) };
+                                IInline date = real ? new WDocDate(within, dt) : new WDate(within, dt);
+                                return new IInline[] { before, date };
                             }
                         }
                     }
