@@ -90,6 +90,11 @@ struct Combo2 {
         },
         new Combo2 {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex("CHANCERY DIVISION (PROBATE)"),
+            Court = Courts.EWHC_QBD_Chancery
+        },
+        new Combo2 {
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex("FAMILY DIVISION"),
             Court = Courts.EWFC
         }
@@ -101,17 +106,23 @@ struct Combo2 {
 
 class CourtType : Enricher {
 
-    // Regex re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase);
-    // Regex re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase);
-    // Regex re3 = new Regex("^ADMINISTRATIVE COURT$", RegexOptions.IgnoreCase);
-    // Regex re4 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase);
-
+    // this should probably be removed
     private bool Match(Regex regex, IBlock block) {
         if (!(block is WLine line))
             return false;
         if (line.Contents.Count() != 1)
             return false;
         if (!(line.Contents.First() is WText text))
+            return false;
+        return regex.IsMatch(text.Text.Trim());
+    }
+    private bool MatchFirstOfMany(Regex regex, IBlock block) {
+        if (!(block is WLine line))
+            return false;
+        if (line.Contents.Count() < 1)
+            return false;
+        IInline first = line.Contents.First();
+        if (first is not WText text)
             return false;
         return regex.IsMatch(text.Text.Trim());
     }
@@ -141,18 +152,37 @@ class CourtType : Enricher {
 
     private List<IBlock> Match2(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2.combos) {
-            if (Match(combo.Re1, one) && Match(combo.Re2, two)) {
+            // if (Match(combo.Re1, one) && Match(combo.Re2, two)) {
+            //     WLine line1 = (WLine) one;
+            //     WText text1 = (WText) line1.Contents.First();
+            //     WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
+            //     WLine newLine1 = new WLine(line1, new List<IInline>(1) { ct1 });
+            //     WLine line2 = (WLine) two;
+            //     WText text2 = (WText) line2.Contents.First();
+            //     WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
+            //     WLine newLine2 = new WLine(line2, new List<IInline>(1) { ct2 });
+            //     return new List<IBlock>(2) {
+            //         newLine1, newLine2
+            //     };
+            // }
+            if (MatchFirstOfMany(combo.Re1, one) && MatchFirstOfMany(combo.Re2, two)) {
                 WLine line1 = (WLine) one;
                 WText text1 = (WText) line1.Contents.First();
                 WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
-                WLine newLine1 = new WLine(line1, new List<IInline>(1) { ct1 });
+                IEnumerable<IInline> rest1 = line1.Contents.Skip(1);
+                List<IInline> contents1 = new List<IInline>(line1.Contents.Count());
+                contents1.Add(ct1);
+                contents1.AddRange(rest1);
+                WLine newLine1 = new WLine(line1, contents1);
                 WLine line2 = (WLine) two;
                 WText text2 = (WText) line2.Contents.First();
                 WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
-                WLine newLine2 = new WLine(line2, new List<IInline>(1) { ct2 });
-                return new List<IBlock>(2) {
-                    newLine1, newLine2
-                };
+                IEnumerable<IInline> rest2 = line2.Contents.Skip(1);
+                List<IInline> contents2 = new List<IInline>(line2.Contents.Count());
+                contents2.Add(ct2);
+                contents2.AddRange(rest2);
+                WLine newLine2 = new WLine(line2, contents2);
+                return new List<IBlock>(2) { newLine1, newLine2 };
             }
         }
         return null;
@@ -202,7 +232,15 @@ struct Combo1 {
             Court = Courts.CoA_Crim
         },
         new Combo1 {
-            Re = new Regex("^IN THE (COURT OF APPEAL \\(CIVIL DIVISION\\)) *$", RegexOptions.IgnoreCase),
+            Re = new Regex("^(COURT OF APPEAL \\(CRIMINAL DIVISION\\)) *$", RegexOptions.IgnoreCase),
+            Court = Courts.CoA_Crim
+        },
+        new Combo1 {
+            Re = new Regex("^IN THE (COURT OF APPEAL \\(CIVIL DIVISION ?\\)) *$", RegexOptions.IgnoreCase),
+            Court = Courts.CoA_Civil
+        },
+        new Combo1 {
+            Re = new Regex("^(COURT OF APPEAL \\(CIVIL DIVISION\\)) *$", RegexOptions.IgnoreCase),
             Court = Courts.CoA_Civil
         },
         new Combo1 {
