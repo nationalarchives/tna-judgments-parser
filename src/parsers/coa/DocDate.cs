@@ -47,6 +47,38 @@ class DocDate : Enricher {
                                 return new IInline[] { before, date };
                             }
                         }
+                        /* difference here is only spacing */ // EWHC/Fam/2014/1768
+                        pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$";
+                        match1 = Regex.Match(fText1.Text, pattern1);
+                        match2 = Regex.Match(fText2.Text, pattern2);
+                        match3 = Regex.Match(fText3.Text, pattern3);
+                        if (match1.Success && match2.Success && match3.Success) {
+                            string dayMonthYear = match1.Groups[3].Value + fText3.Text;
+                            DateTime dt = DateTime.Parse(dayMonthYear, culture);
+                            List<IInline> everything = new List<IInline>();
+                            if (match1.Index > 0) {
+                                string before1 = fText1.Text.Substring(0, match1.Index);
+                                WText before2 = new WText(before1, fText1.properties);
+                                everything.Add(before2);
+                            }
+                            string within1 = fText1.Text.Substring(match1.Index);
+                            WText within1bis = new WText(within1, fText1.properties);
+                            if (match3.Groups[2].Length == 0) {
+                                IFormattedText[] dateContents = { within1bis, fText2, fText3 };
+                                IInline date = real ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
+                                everything.Add(date);
+                            } else {
+                                string within3 = fText3.Text.Substring(0, match3.Groups[2].Index);
+                                string after1 = fText3.Text.Substring(match3.Groups[2].Index);
+                                WText within3bis = new WText(within3, fText3.properties);
+                                IFormattedText[] dateContents = { within1bis, fText2, within3bis };
+                                IInline date = real ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
+                                everything.Add(date);
+                                WText after1bis = new WText(after1, fText3.properties);
+                                everything.Add(after1bis);
+                            }
+                            return everything;
+                        }
                         /* difference here is only spacing */
                         pattern2 = @"^(st|nd|rd|th) +$";
                         pattern3 = @"^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
@@ -101,11 +133,12 @@ class DocDate : Enricher {
     /* one */
 
     private static readonly string[] cardinalDatePatterns1 = {
-        @"^(\s*Date: +)?\d{2}/\d{2}/\d{4}( *)$",
-        @"^(\s*Date: +)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        @"^(\s*Date: *)?\d{2}/\d{2}/\d{4}( *)$",
+        @"^(\s*Date:? *)?\d{2}\.\d{2}\.\d{4}( *)$",
+        @"^(\s*Date: *)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
     private static readonly string[] ordinalDatePatterns1 = {
-        @"^(\s*Date: +)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
 
     private List<IInline> EnrichText(WText fText) {

@@ -653,7 +653,9 @@ class PartyEnricher : Enricher {
         types = new HashSet<string>() { "Defendant", "Defendants", "First Defendant", "Second Defendant", "Third Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Defendant;
-        types = new HashSet<string>() { "Respondent", "Respondents", "Claimant/Respondent", "Claimant/ Respondent", "Defendant/Respondent", "Defendant/ Respondent" };
+        types = new HashSet<string>() { "Respondent", "Respondents", "Claimant/Respondent", "Claimant/ Respondent", "Defendant/Respondent", "Defendant/ Respondent",
+            "First Respondent", "Second Respondent", "Third Respondent", "Fourth Respondent"
+        };
         if (types.Contains(normalized))
             return PartyRole.Respondent;
         return null;
@@ -728,6 +730,12 @@ class PartyEnricher : Enricher {
             return Regex.IsMatch(normalized, @"^\d(st|nd|rd|th)? Respondent$", RegexOptions.IgnoreCase);
         };
         if (blocks.Cast<ILine>().All(respondent))
+            return PartyRole.Respondent;
+        Func<ILine, bool> respondent2 = (line) => {
+            string normalized = line.NormalizedContent();
+            return Regex.IsMatch(normalized, @"^(First|Second|Third|Fourth) Respondent$", RegexOptions.IgnoreCase);
+        };
+        if (blocks.Cast<ILine>().All(respondent2))
             return PartyRole.Respondent;
         return null;
     }
