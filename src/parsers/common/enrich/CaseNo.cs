@@ -93,23 +93,72 @@ class CaseNo : Enricher {
                 }
             }
         }
-        return base.Enrich(block);
+        return Enrich(block);
     }
 
     protected override IBlock Enrich(IBlock block) {
-        if (block is WLine line && line.Contents.Count() == 1 && line.Contents.First() is WText wText) {
-            Regex[] regexes = {
-                new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase)
-            };
-            foreach (Regex re in regexes) {
-                Match match = re.Match(wText.Text);
-                if (!match.Success)
-                    continue;
-                List<IInline> contents = Split(wText, match.Groups[1]);
-                return new WLine(line, contents);
-            }
+        if (block is not WLine line)
+            return block;
+        return EnrichLine(line);
+        // if (block is WLine line && line.Contents.Count() == 1 && line.Contents.First() is WText wText) {
+        //     Regex[] regexes = {
+        //         new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase)
+        //     };
+        //     foreach (Regex re in regexes) {
+        //         Match match = re.Match(wText.Text);
+        //         if (!match.Success)
+        //             continue;
+        //         List<IInline> contents = Split(wText, match.Groups[1]);
+        //         return new WLine(line, contents);
+        //     }
+        // }
+        // return block;
+    }
+
+    Regex[] loneTextRegexesWithOneGroup = {
+        new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase),
+        new Regex(@"^Case No: ([A-Z]+\d+ [A-Z]\d \d{4})$"),
+        new Regex(@"^Case No: ([A-Z][A-Z0-9]{9,}), \(")
+    };
+
+    private WLine EnrichLine(WLine line) {
+        if (line.Contents.Count() == 1)
+            return EnrichLineWithOneSpan(line);
+        if (line.Contents.Count() == 2)
+            return EnrichLineWithTwoSpans(line);
+        return line;
+    }
+
+    private WLine EnrichLineWithOneSpan(WLine line) {
+        IInline first = line.Contents.First();
+        if (first is not WText text)
+            return line;
+        foreach (Regex re in loneTextRegexesWithOneGroup) {
+            Match match = re.Match(text.Text);
+            if (!match.Success)
+                continue;
+            List<IInline> contents = Split(text, match.Groups[1]);
+            return new WLine(line, contents);
         }
-        return base.Enrich(block);
+        return line;
+    }
+
+    private WLine EnrichLineWithTwoSpans(WLine line) {
+        IInline first = line.Contents.First();
+        IInline second = line.Contents.Skip(1).First();
+        if (first is not WText text1)
+            return line;
+        if (second is not WText text2)
+            return line;
+        Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?[:\.]?\s*$", RegexOptions.IgnoreCase);
+        Regex re2 = new Regex(@"^\s*([^ ]+) *$", RegexOptions.IgnoreCase);
+        Match match1 = re1.Match(text1.Text);
+        Match match2 = re2.Match(text2.Text);
+        if (match1.Success && match2.Success) {
+            IEnumerable<IInline> contents = Split(text2, match2.Groups[1]).Prepend(text1);
+            return new WLine(line, contents);
+        }
+        return line;
     }
 
     internal delegate IFormattedText Wrapper(string text, RunProperties props);
@@ -195,50 +244,53 @@ class CaseNo : Enricher {
     //     return line;
     // }
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        Regex re0 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([^ ]+)", RegexOptions.IgnoreCase);
-        // Regex re00 = new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase);
-        Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*$", RegexOptions.IgnoreCase);
-        Regex re2 = new Regex(@"^\s*([^ ]+)", RegexOptions.IgnoreCase);
-        List<IInline> enriched = new List<IInline>();
-        for (int i = 0; i < line.Count(); i++) {
-            IInline inline = line.ElementAt(i);
-            if (inline is WText text) {
-                Match match = re0.Match(text.Text);
-                if (match.Success) {
-                    Group group = match.Groups[2];
-                    List<IInline> replacement = Split(text, group, (t, props) => new WCaseNo(t, props));
-                    enriched.AddRange(replacement);
-                    continue;
-                }
-                match = re2.Match(text.Text);
-                if (match.Success && i > 0) {
-                    IInline last = line.ElementAt(i - 1);
-                    if (last is WText text0 && re1.IsMatch(text0.Text)) {
-                        Group group = match.Groups[1];
-                        List<IInline> replacement = Split(text, group, (t, props) => new WCaseNo(t, props));
-                        enriched.AddRange(replacement);
-                        continue;
-                    }
-                }
-            }
-            enriched.Add(inline);
-        }
-        return enriched;
+        throw new System.Exception();
     }
+    // protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+    //     Regex re0 = new Regex(@"^\s*Case\s+(No|Number)s?[:\.]?\s*([^ ]+)", RegexOptions.IgnoreCase);
+    //     // Regex re00 = new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase);
+    //     Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?[:\.]?\s*$", RegexOptions.IgnoreCase);
+    //     Regex re2 = new Regex(@"^\s*([^ ]+)", RegexOptions.IgnoreCase);
+    //     List<IInline> enriched = new List<IInline>();
+    //     for (int i = 0; i < line.Count(); i++) {
+    //         IInline inline = line.ElementAt(i);
+    //         if (inline is WText text) {
+    //             Match match = re0.Match(text.Text);
+    //             if (match.Success) {
+    //                 Group group = match.Groups[2];
+    //                 List<IInline> replacement = Split(text, group, (t, props) => new WCaseNo(t, props));
+    //                 enriched.AddRange(replacement);
+    //                 continue;
+    //             }
+    //             match = re2.Match(text.Text);
+    //             if (match.Success && i > 0) {
+    //                 IInline last = line.ElementAt(i - 1);
+    //                 if (last is WText text0 && re1.IsMatch(text0.Text)) {
+    //                     Group group = match.Groups[1];
+    //                     List<IInline> replacement = Split(text, group, (t, props) => new WCaseNo(t, props));
+    //                     enriched.AddRange(replacement);
+    //                     continue;
+    //                 }
+    //             }
+    //         }
+    //         enriched.Add(inline);
+    //     }
+    //     return enriched;
+    // }
 
-    private IEnumerable<IInline> Enrich0(IEnumerable<IInline> line) {
-        Regex re = new Regex(@"^\s*Case\s+(No|Number)s?:?\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
-        return line.SelectMany(inline => {
-            if (inline is WText text) {
-                Match match = re.Match(text.Text);
-                if (match.Success) {
-                    Group group = match.Groups[2];
-                    return Split(text, group, (t, props) => new WCaseNo(t, props));
-                }
-            }
-            return new List<IInline>(1) { inline };
-        });
-    }
+    // private IEnumerable<IInline> Enrich000(IEnumerable<IInline> line) {
+    //     Regex re = new Regex(@"^\s*Case\s+(No|Number)s?[:\.]?\s*([A-Z\d/\.]+)", RegexOptions.IgnoreCase);
+    //     return line.SelectMany(inline => {
+    //         if (inline is WText text) {
+    //             Match match = re.Match(text.Text);
+    //             if (match.Success) {
+    //                 Group group = match.Groups[2];
+    //                 return Split(text, group, (t, props) => new WCaseNo(t, props));
+    //             }
+    //         }
+    //         return new List<IInline>(1) { inline };
+    //     });
+    // }
 
 }
 
