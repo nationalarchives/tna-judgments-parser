@@ -40,7 +40,12 @@ struct Combo3 {
             Re3 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
-        
+        new Combo3 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^PATENTS COURT", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Patents
+        },
         new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \\(ChD\\)", RegexOptions.IgnoreCase),
@@ -84,7 +89,7 @@ struct Combo2 {
             Court = Courts.CoA_Crim
         },
         new Combo2 {
-            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re1 = new Regex("IN THE HIGH COURTS? OF JUSTICE"),
             Re2 = new Regex("CHANCERY DIVISION"),
             Court = Courts.EWHC_QBD_Chancery
         },
@@ -252,10 +257,17 @@ struct Combo1 {
             Court = Courts.EWCOP
         },
         new Combo1 {
+            Re = new Regex("^IN (THE FAMILY COURT) *$", RegexOptions.IgnoreCase),
+            Court = Courts.EWFC
+        },
+        new Combo1 {
             Re = new Regex("^(THE FAMILY COURT) SITTING AT [A-Z]+ *$", RegexOptions.IgnoreCase),
             Court = Courts.EWFC
+        },
+        new Combo1 {
+            Re = new Regex("^IN (THE FAMILY COURT) SITTING AT [A-Z]+ *$", RegexOptions.IgnoreCase),
+            Court = Courts.EWFC
         }
-        
     };
 
 }

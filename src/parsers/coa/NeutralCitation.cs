@@ -9,14 +9,14 @@ class NetrualCitation : Enricher {
 
     private static readonly string[] patterns = {
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|QB|TCC)\))",
+        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))"
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|QB|TCC)\))"
+        @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))"
     };
 
     private static Group Match(string text) {
