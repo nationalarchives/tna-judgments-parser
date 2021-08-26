@@ -14,10 +14,10 @@ class DocDate : Enricher {
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (!line.Any())
             return Enumerable.Empty<IInline>();
+        IInline first = line.First();
         if (line.Count() == 1)
-            return Enrich1(line.First());
+            return Enrich1(first);
         if (line.Count() == 3) {
-            IInline first = line.First();
             IInline second = line.ElementAt(1);
             IInline third = line.ElementAt(2);
             if (first is WText fText1) {
@@ -47,8 +47,8 @@ class DocDate : Enricher {
                                 return new IInline[] { before, date };
                             }
                         }
-                        /* difference here is only spacing */ // EWHC/Fam/2014/1768
-                        pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$";
+                        /* difference here is only spacing */ // EWHC/Fam/2014/1768, EWCA/Civ/2003/1048
+                        pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$";
                         match1 = Regex.Match(fText1.Text, pattern1);
                         match2 = Regex.Match(fText2.Text, pattern2);
                         match3 = Regex.Match(fText3.Text, pattern3);
@@ -103,38 +103,21 @@ class DocDate : Enricher {
                 }
             }
         }
-        // if (line.Count() >= 2) {
-            IEnumerable<IInline> leadUp = line.SkipLast(1);
-            IInline last = line.Last();
-            IEnumerable<IInline> rest = Enrich1(last);
-            return leadUp.Concat(rest);
-            // string pattern1 = @"^(On|Date of Judgment):$";
-            // string pattern3 = @"^\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
-            // int i = line.Count() - 2;
-            // IInline first = line.ElementAt(i);
-            // while (i > 0 && first is WTab) {
-            //     i -= 1;
-            //     first = line.ElementAt(i);
-            // }
-            // if (first is WText fText1 && last is WText fText3) {
-            //     Match match1 = Regex.Match(fText1.Text.Trim(), pattern1);
-            //     Match match3 = Regex.Match(fText3.Text.Trim(), pattern3);
-            //     if (match1.Success && match3.Success) {
-            //         DateTime date = DateTime.Parse(fText3.Text, culture);
-            //         WDocDate docDate =  new WDocDate(new List<WText>(1) { fText3 }, date);
-            //         return line.Take(line.Count() - 1).Append(docDate);
-            //     }
-            // }
-        // }
-        // return line;
+        /* this recursively tries the tail */ /* EWHC/Ch/2013/3866 */
+        IEnumerable<IInline> rest = line.Skip(1);
+        return Enrich(rest).Prepend(first);
+        // IEnumerable<IInline> leadUp = line.SkipLast(1);
+        // IInline last = line.Last();
+        // IEnumerable<IInline> rest = Enrich1(last);
+        // return leadUp.Concat(rest);
     }
 
 
     /* one */
 
     private static readonly string[] cardinalDatePatterns1 = {
-        @"^(\s*Date: *)?\d{2}/\d{2}/\d{4}( *)$",
-        @"^(\s*Date:? *)?\d{2}\.\d{2}\.\d{4}( *)$",
+        @"^(\s*Date: *)?\d{1,2}/\d{1,2}/\d{4}( *)$",
+        @"^(\s*Date:? *)?\d{1,2}\.\d{1,2}\.\d{4}( *)$",
         @"^(\s*Date: *)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
     private static readonly string[] ordinalDatePatterns1 = {
