@@ -9,14 +9,15 @@ class NetrualCitation : Enricher {
 
     private static readonly string[] patterns = {
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))",
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))"
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))"
+        @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))",
+        @"^(\[\d{4}\] EWHC \d+)$"    // is this valid? EWHC/Admin/2004/584
     };
 
     private static Group Match(string text) {
@@ -29,7 +30,7 @@ class NetrualCitation : Enricher {
     }
     private static Group Match2(string text) {
         foreach (string pattern in patterns2) {
-            Match match = Regex.Match(text, pattern);
+            Match match = Regex.Match(text, pattern, RegexOptions.IgnoreCase);
             if (match.Success)
                 return match.Groups[1];
         }
@@ -78,6 +79,24 @@ class NetrualCitation : Enricher {
                         IInline[] replacement = Replace(fText2, group);
                         IEnumerable<IInline> rest = line.Skip(2);
                         return Enumerable.Concat(replacement, rest).Prepend(first);
+                    }
+                }
+                if (fText1.Text == "Neutral Citation Number: [") {  // EWHC/Admin/2004/584
+                    Group group = Match2("[" + fText2.Text);
+                    if (group is not null) {
+                        WText label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);
+                        WNeutralCitation nc = new WNeutralCitation("[" + fText2.Text, fText1.properties);
+                        IEnumerable<IInline> rest = line.Skip(2);
+                        return rest.Prepend(nc).Prepend(label);
+                    }
+                }
+                if (fText1.Text == "Neutral Citation Number" && fText2.Text.StartsWith(": ")) { // EWHC/Comm/2005/279
+                    Group group = Match2(fText2.Text.Substring(2));
+                    if (group is not null) {
+                        WText split = new WText(fText2.Text.Substring(0, 2), fText2.properties);
+                        WNeutralCitation nc = new WNeutralCitation(fText2.Text.Substring(2), fText2.properties);
+                        IEnumerable<IInline> rest = line.Skip(2);
+                        return new List<IInline>(3) { fText1, split, nc }.Concat(rest);
                     }
                 }
             }

@@ -14,15 +14,13 @@ class CaseNo : Enricher {
             return Enumerable.Empty<IBlock>();
         IBlock rawFirst = blocks.First();
         IBlock enrichedFirst = EnrichFirstBlock(rawFirst);
-        if (enrichedFirst is WLine line && line.Contents.OfType<ICaseNo>().Any()) {
-            IBlock rawSecond = blocks.Skip(1).First();
-            IBlock enrichedSecond = EnrichFirstBlock(rawSecond);
-            IEnumerable<IBlock> rest = blocks.Skip(2);
-            return rest.Prepend(enrichedSecond).Prepend(enrichedFirst);
-        } else {
-            IEnumerable<IBlock> rest = blocks.Skip(1);
-            return base.Enrich(rest).Prepend(enrichedFirst);
-        }
+        IEnumerable<IBlock> rest = blocks.Skip(1);
+        if (!rest.Any())
+            return new List<IBlock>(1) { enrichedFirst };
+        IBlock rawSecond = rest.First();
+        IBlock enrichedSecond = EnrichFirstBlock(rawSecond);
+        rest = rest.Skip(1);
+        return base.Enrich(rest).Prepend(enrichedSecond).Prepend(enrichedFirst);
     }
 
     private IBlock EnrichFirstBlock(IBlock block) {
@@ -100,25 +98,16 @@ class CaseNo : Enricher {
         if (block is not WLine line)
             return block;
         return EnrichLine(line);
-        // if (block is WLine line && line.Contents.Count() == 1 && line.Contents.First() is WText wText) {
-        //     Regex[] regexes = {
-        //         new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase)
-        //     };
-        //     foreach (Regex re in regexes) {
-        //         Match match = re.Match(wText.Text);
-        //         if (!match.Success)
-        //             continue;
-        //         List<IInline> contents = Split(wText, match.Groups[1]);
-        //         return new WLine(line, contents);
-        //     }
-        // }
-        // return block;
     }
 
     Regex[] loneTextRegexesWithOneGroup = {
         new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase),
+        new Regex(@"^Case No: +([A-Z0-9][A-Z0-9/-]{7,}) *$", RegexOptions.IgnoreCase),
         new Regex(@"^Case No: ([A-Z]+\d+ [A-Z]\d \d{4})$"),
-        new Regex(@"^Case No: ([A-Z][A-Z0-9]{9,}), \(")
+        new Regex(@"^Case No: [A-Z]{2} [0-9]{2} [A-Z] [0-9]+$"),    // EWHC/Fam/2011/2376
+        new Regex(@"^Case No: ([A-Z][A-Z0-9/-]{7,}), "),
+        new Regex(@"^Claim No\. (\d+ of \d{4})$"),
+        new Regex(@"^Case No: (\d{4} Folio \d+)$")
     };
 
     private WLine EnrichLine(WLine line) {
