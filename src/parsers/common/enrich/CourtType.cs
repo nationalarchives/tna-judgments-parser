@@ -18,7 +18,7 @@ struct Combo3 {
     internal static Combo3[] combos = new Combo3[] {
         new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),   // no apostrophe in EWHC/Admin/2009/573
             Re3 = new Regex("^ADMINISTRATIVE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Admin
         },
@@ -51,6 +51,12 @@ struct Combo3 {
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \\(ChD\\)", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BUSINESS LIST", RegexOptions.IgnoreCase),
             Court = Courts.HC_Chancery_BusAndProp_BusinessList
+        },
+        new Combo3 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^CHANCERY APPEALS \\(ChD\\)", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Chancery
         }
     };
 
