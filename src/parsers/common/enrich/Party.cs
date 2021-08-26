@@ -759,6 +759,8 @@ class PartyEnricher : Enricher {
                 IInline first = line.Contents.First();
                 if (first is not WText wText)
                     return line;
+                if (string.IsNullOrWhiteSpace(wText.Text))
+                    return line;
                 if (wText.Text.StartsWith('(') && wText.Text.EndsWith(')'))
                     return line;
                 if (wText.Text == "- and –")    // EWHC/Fam/2008/1561
