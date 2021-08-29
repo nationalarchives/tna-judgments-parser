@@ -8,8 +8,9 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 class NetrualCitation : Enricher {
 
     private static readonly string[] patterns = {
-        @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
+        @"^Neutral Citation( Number| No)?[:\.]? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))",
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Ch|Comm|Fam|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))"
