@@ -102,7 +102,7 @@ class CaseNo : Enricher {
 
     Regex[] loneTextRegexesWithOneGroup = {
         new Regex(@"^\s*No:?\s*([A-Z0-9/]+)\s*$", RegexOptions.IgnoreCase),
-        new Regex(@"^Case No: +([A-Z0-9][A-Z0-9/-]{7,}) *$", RegexOptions.IgnoreCase),
+        new Regex(@"^Case No[:\.] +([A-Z0-9][A-Z0-9/-]{7,}) *$", RegexOptions.IgnoreCase),
         new Regex(@"^Case No: ([A-Z]+\d+ [A-Z]\d \d{4})$"),
         new Regex(@"^Case No: [A-Z]{2} [0-9]{2} [A-Z] [0-9]+$"),    // EWHC/Fam/2011/2376
         new Regex(@"^Case No: ([A-Z][A-Z0-9/-]{7,}), "),
