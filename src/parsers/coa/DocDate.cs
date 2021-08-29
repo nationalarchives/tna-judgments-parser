@@ -23,7 +23,7 @@ class DocDate : Enricher {
             if (first is WText fText1) {
                 /* this needs to be improved, not everyting before the date should be allowed */
                 /* EWCA/Civ/2011/1277 contains 'hearing' */
-                bool real = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
+                bool isMain = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
                 if (second is WText fText2) {
                     if (third is WText fText3) {
                         string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? )?(\d{1,2})$";
@@ -43,7 +43,7 @@ class DocDate : Enricher {
                                 WText before = new WText(split1, fText1.properties);
                                 WText within1 = new WText(split2, fText1.properties);
                                 IFormattedText[] within = { within1, fText2, fText3 };
-                                IInline date = real ? new WDocDate(within, dt) : new WDate(within, dt);
+                                IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
                                 return new IInline[] { before, date };
                             }
                         }
@@ -65,14 +65,14 @@ class DocDate : Enricher {
                             WText within1bis = new WText(within1, fText1.properties);
                             if (match3.Groups[2].Length == 0) {
                                 IFormattedText[] dateContents = { within1bis, fText2, fText3 };
-                                IInline date = real ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
+                                IInline date = isMain ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
                                 everything.Add(date);
                             } else {
                                 string within3 = fText3.Text.Substring(0, match3.Groups[2].Index);
                                 string after1 = fText3.Text.Substring(match3.Groups[2].Index);
                                 WText within3bis = new WText(within3, fText3.properties);
                                 IFormattedText[] dateContents = { within1bis, fText2, within3bis };
-                                IInline date = real ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
+                                IInline date = isMain ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
                                 everything.Add(date);
                                 WText after1bis = new WText(after1, fText3.properties);
                                 everything.Add(after1bis);
@@ -95,7 +95,7 @@ class DocDate : Enricher {
                                 WText before = new WText(split1, fText1.properties);
                                 WText within1 = new WText(split2, fText1.properties);
                                 IFormattedText[] within = { within1, fText2, fText3 };
-                                IInline date = real ? new WDocDate(within, dt) : new WDate(within, dt);
+                                IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
                                 return new IInline[] { before, date };
                             }
                         }
@@ -104,12 +104,9 @@ class DocDate : Enricher {
             }
         }
         /* this recursively tries the tail */ /* EWHC/Ch/2013/3866 */
+        /* problem is that the isMain variable will be unreliable: EWCA/Civ/2004/1067 */
         IEnumerable<IInline> rest = line.Skip(1);
         return Enrich(rest).Prepend(first);
-        // IEnumerable<IInline> leadUp = line.SkipLast(1);
-        // IInline last = line.Last();
-        // IEnumerable<IInline> rest = Enrich1(last);
-        // return leadUp.Concat(rest);
     }
 
 
