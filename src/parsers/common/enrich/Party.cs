@@ -19,6 +19,12 @@ class PartyEnricher : Enricher {
         List<IBlock> after = new List<IBlock>(before.Length);
         int i = 0;
         while (i < before.Length) {
+            if (IsInTheMatterOf4(before, i)) {
+                    List<IBlock> enriched4 = EnrichInTheMatterOf4(before, i);
+                    after.AddRange(enriched4);
+                    i += 4;
+                    continue;
+            }
             if (IsFiveLinePartyBlock(before, i)) {
                     List<IBlock> enriched5 = EnrichFiveLinePartyBlock(before, i);
                     after.AddRange(enriched5);
@@ -60,6 +66,40 @@ class PartyEnricher : Enricher {
             after.Add(enriched);
             i += 1;
         }
+        return after;
+    }
+
+    private static bool IsInTheMatterOf4(IBlock[] before, int i) {  // EWHC/QB/2017/2921
+        if (i > before.Length - 4)
+            return false;
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        bool ok1 = IsBeforePartyMarker(line1);
+        bool ok2 = IsInTheMatterOf1(line2);
+        bool ok3 = IsInTheMatterOf2(line3);
+        bool ok4 = IsAfterPartyMarker(line4);
+        return
+            IsBeforePartyMarker(line1) &&
+            IsInTheMatterOf1(line2) &&
+            IsInTheMatterOf2(line3) &&
+            IsAfterPartyMarker(line4);
+
+    }
+
+    private static List<IBlock> EnrichInTheMatterOf4(IBlock[] before, int i) {
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        List<IBlock> after = new List<IBlock>(4);
+        after.Add(line1);
+        WLine docTitle1 = MakeDocTitle(line2);
+        WLine docTitle2 = MakeDocTitle(line3);
+        after.Add(docTitle1);
+        after.Add(docTitle2);
+        after.Add(line4);
         return after;
     }
 
@@ -339,6 +379,7 @@ class PartyEnricher : Enricher {
         return after;
     }
 
+    /* */
 
     private static bool IsBeforePartyMarker(IBlock block) {
         if (block is not ILine line)
@@ -362,6 +403,35 @@ class PartyEnricher : Enricher {
             return true;
         return false;
     }
+
+    private static bool IsInTheMatterOf1(IBlock block) {
+        if (block is not WLine line)
+            return false;
+        if (line.Contents.Count() != 1)
+            return false;
+        IInline first = line.Contents.First();
+        if (first is not WText wText)
+            return false;
+        return wText.Text == "IN THE MATTER OF";
+    }
+    private static bool IsInTheMatterOf2(IBlock block) {
+        if (block is not WLine line)
+            return false;
+        if (line.Contents.Count() != 1)
+            return false;
+        IInline first = line.Contents.First();
+        if (first is not WText wText)
+            return false;
+        return true;
+    }
+    private static WLine MakeDocTitle(IBlock block) {
+        WLine line = (WLine) block;
+        WText wText = (WText) line.Contents.First();
+        WDocTitle docTitle = new WDocTitle(wText);
+        List<IInline> contents = new List<IInline>(1) { docTitle };
+        return new WLine(line, contents);
+    }
+
     private static bool IsPartyName(IBlock block) {
         if (block is not ILine line)
             return false;
