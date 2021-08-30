@@ -73,6 +73,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/the-business-list"
     };
 
+    public static readonly Court EWHC_Commercial = new Court {
+        Code = "EWHC-Commercial",
+        LongName = "Business and Property Courts (Commercial Court)",
+        ShortName = "Commercial Court",
+        URL = "https://www.gov.uk/courts-tribunals/commercial-court"
+    };
+
     public static readonly Court EWHC_Chancery_Patents = new Court {
         Code = "EWHC-Patents",
         LongName = "Business and Property Courts (Chancery Division) (Patents Court)",
@@ -118,6 +125,7 @@ public readonly struct Courts {
 
         EWHC_QBD_Chancery,
         HC_Chancery_BusAndProp_BusinessList,
+        EWHC_Commercial,
         EWHC_Chancery_Patents,
         EWHC_QBD_TCC,
 

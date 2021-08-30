@@ -9,10 +9,16 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
-class Main {
+static class Main {
+
+    public static OpenXmlPartRootElement Root(this OpenXmlElement e) {
+        if (e is RunProperties2 rProps)
+            return rProps.Ancestors<OpenXmlPartRootElement>().First();
+        return e.Ancestors<OpenXmlPartRootElement>().First();
+    }
 
     internal static MainDocumentPart Get(OpenXmlElement e) {
-        OpenXmlPartRootElement root = e.Ancestors<OpenXmlPartRootElement>().First();
+        OpenXmlPartRootElement root = e.Root();
         if (root is Document document)
             return document.MainDocumentPart;
         if (root is Header header)
