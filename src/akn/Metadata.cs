@@ -50,13 +50,7 @@ class Metadata {
         IParty party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
         if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
             party2 = parties.Last();
-        // List<IDocTitle> inTheMatterOf = new List<IDocTitle>();
-        // foreach (IBlock block in judgment.Header) {
-        //     if (block is ILine line)
-        //         foreach (IInline inline in line.Contents)
-        //             if (inline is IDocTitle docTitle)
-        //                 inTheMatterOf.Add(docTitle);
-        IDocTitle docTitle = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocTitle>().FirstOrDefault();
+        IEnumerable<IDocTitle> docTitle = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocTitle>();
 
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
@@ -77,9 +71,10 @@ class Metadata {
         if (party2 is not null) {
             XmlElement workName = append(doc, work, "FRBRname");
             workName.SetAttribute("value", party1.Name + " v. " + party2.Name);
-        } else if (docTitle is not null) {
+        } else if (docTitle.Any()) {
             XmlElement workName = append(doc, work, "FRBRname");
-            workName.SetAttribute("value", docTitle.Text);
+            string value = string.Join(" ", docTitle.Select(dt => dt.Text));
+            workName.SetAttribute("value", value);
         }
 
         XmlElement expression = append(doc, identification, "FRBRExpression");
