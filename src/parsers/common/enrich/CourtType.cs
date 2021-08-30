@@ -57,6 +57,12 @@ struct Combo3 {
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),
             Re3 = new Regex("^CHANCERY APPEALS \\(ChD\\)", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Chancery
+        },
+        new Combo3 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND? WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
+            Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Commercial
         }
     };
 

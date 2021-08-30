@@ -93,6 +93,15 @@ class Inline {
                 }
                 continue;
             }
+            if (e is OpenXmlUnknownElement && e.LocalName == "r") {
+                if (withinField is null) {
+                    IEnumerable<IInline> inlines = MapRunChildren(main, (OpenXmlUnknownElement) e);
+                    parsed.AddRange(inlines);
+                } else {
+                    withinField.Add(e);
+                }
+                continue;
+            }
             if (e is InsertedRun iRun || (e is OpenXmlUnknownElement && e.LocalName == "ins")) {    // EWCA/Civ/2004/1580, EWHC/Comm/2014/3124
                 var children = ParseRuns(main, e.ChildElements);
                 parsed.AddRange(children);
@@ -115,14 +124,14 @@ class Inline {
                     continue;
                 if (e.LocalName == "proofErr")   // EWCA/Civ/2017/320
                     continue;
-                if (e.LocalName == "r") {
-                    Run run2 = new Run(e.OuterXml);
-                    e.InsertAfterSelf(run2);
-                    e.Remove();
-                    var children = MapRunChildren(main, run2);
-                    parsed.AddRange(children);
-                    continue;
-                }
+                // if (e.LocalName == "r") {
+                //     Run run2 = new Run(e.OuterXml);
+                //     e.InsertAfterSelf(run2);
+                //     e.Remove();
+                //     var children = MapRunChildren(main, run2);
+                //     parsed.AddRange(children);
+                //     continue;
+                // }
                 throw new Exception();
             }
             if (e is PermStart perm) {  // https://docs.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.permstart
@@ -175,20 +184,37 @@ class Inline {
     internal static IEnumerable<IInline> MapRunChildren(MainDocumentPart main, Run run) {
         return run.ChildElements
             .Where(e => !(e is RunProperties))
-            .Select(e => MapRunChild(main, run, e))
+            .Select(e => MapRunChild(main, run.RunProperties, e))
+            .Where(i => i is not null);
+    }
+    internal static IEnumerable<IInline> MapRunChildren(MainDocumentPart main, OpenXmlUnknownElement run) {
+        OpenXmlElement rPropsRaw = run.ChildElements.Where(e => e.LocalName == "rPr").FirstOrDefault();
+        RunProperties rProps;
+        if (rPropsRaw is null)
+            rProps = null;
+        else {
+            rProps = new RunProperties2(rPropsRaw);
+            // rProps = new RunProperties(rPropsRaw.OuterXml);
+            // rPropsRaw.AppendChild(rProps);
+        }
+        return run.ChildElements
+            .Where(e => e.LocalName != "rPr")
+            .Select(e => MapRunChild(main, rProps, e))
             .Where(i => i is not null);
     }
 
-    internal static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
+    internal static IInline MapRunChild(MainDocumentPart main, RunProperties rProps, OpenXmlElement e) {
         logger.LogTrace(e.GetType().Name + " " + e.LocalName);
         if (e is Text text)
-            return new WText(text, run.RunProperties);
+            return new WText(text, rProps);
+        if (e is OpenXmlElement && e.LocalName == "t")
+            return new WText(e.InnerText, rProps);
         if (e is TabChar tab)
             return new WTab(tab);
         if (e is Break br)
             return new WLineBreak(br);
         if (e is NoBreakHyphen hyphen)
-            return new WText(hyphen, run.RunProperties);
+            return new WText(hyphen, rProps);
         if (e is SoftHyphen soft)
             return null;
         if (e is FootnoteReference)
@@ -219,15 +245,18 @@ class Inline {
         if (e is EndnoteReferenceMark)
             return null;
         if (e is AlternateContent altContent)
-            return AlternateContent2.Map(main, run, altContent);
+            return AlternateContent2.Map(main, rProps, altContent);
         if (e is SymbolChar sym)  // EWCA/Civ/2013/470
-            return SpecialCharacter.Make(sym, run.RunProperties);
+            return SpecialCharacter.Make(sym, rProps);
         if (e is CommentReference) // EWCA/Civ/2004/55
             return null;
         // if (e is PageNumber)    // EWHC/Fam/2006/3743
         //     return null;
         throw new Exception(e.OuterXml);
     }
+    // internal static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
+    //     return MapRunChild(main, run.RunProperties, e);
+    // }
 
 }
 
