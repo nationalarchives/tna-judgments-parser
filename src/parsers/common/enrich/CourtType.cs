@@ -97,7 +97,7 @@ struct Combo2 {
         },
         new Combo2 {
             Re1 = new Regex("IN THE COURT OF APPEAL"),
-            Re2 = new Regex("CRIMINAL DIVISION"),
+            Re2 = new Regex("CRIMINAL +DIVISION"),
             Court = Courts.CoA_Crim
         },
         new Combo2 {
