@@ -165,6 +165,9 @@ interface IParty : IInline {
         Match match = Regex.Match(text, @"^\(\d+\) ");
         if (match.Success)
             text = text.Substring(match.Length);
+        match = Regex.Match(text, @"^\(\d+\)"); // EWCA/Civ/2005/450
+        if (match.Success)
+            text = text.Substring(match.Length);
         match = Regex.Match(text, @" \(\d+\)$");
         if (match.Success)
             text = text.Substring(0, text.Length - match.Length);

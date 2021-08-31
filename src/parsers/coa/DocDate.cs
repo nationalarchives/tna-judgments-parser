@@ -118,7 +118,10 @@ class DocDate : Enricher {
         @"^(\s*Date: *)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
     private static readonly string[] ordinalDatePatterns1 = {
-        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
+    };
+    private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
+        @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$"
     };
 
     private List<IInline> EnrichText(WText fText) {
@@ -157,6 +160,24 @@ class DocDate : Enricher {
                 contents.Add(dd);
                 if (after.Length > 0)
                     contents.Add(new WText(after.Value, fText.properties));
+                return contents;
+            }
+        }
+        foreach (string pattern in ordinalDatePatterns2) {  // error in EWHC/Fam/2010/64
+            Match match = Regex.Match(fText.Text, pattern);
+            if (match.Success) {
+                int start = match.Groups[3].Index;
+                int end = match.Groups[6].Index + match.Groups[6].Length;
+                string before = fText.Text.Substring(0, start);
+                string main = fText.Text.Substring(start, end - start);
+                string after = fText.Text.Substring(end);
+                string cardinal = match.Groups[3].Value + " " + match.Groups[5].Value + " " + match.Groups[6].Value;
+                DateTime dt = DateTime.Parse(cardinal, culture);
+                List<IInline> contents = new List<IInline>(3);
+                contents.Add(new WText(before, fText.properties));
+                contents.Add(new WDocDate(main, fText.properties, dt));
+                if (after.Length > 0)
+                    contents.Add(new WText(after, fText.properties));
                 return contents;
             }
         }
