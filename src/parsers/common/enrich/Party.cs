@@ -272,7 +272,7 @@ class PartyEnricher : Enricher {
         return after;
     }
 
-    private static bool IsEightLinePartyBlock2(IBlock[] before, int i) {    // EWHC/Admin/2009/1638
+    private static bool IsEightLinePartyBlock2(IBlock[] before, int i) {    // EWHC/Admin/2009/1638, EWHC/Admin/2008/2214?
         if (i > before.Length - 8)
             return false;
         IBlock line1 = before[i];
@@ -288,7 +288,7 @@ class PartyEnricher : Enricher {
             IsBeforePartyMarker2(line2) &&
             IsPartyName(line3) &&
             IsFirstPartyTpye(line4) &&
-            IsBetweenPartyMarker(line5) &&
+            (IsBetweenPartyMarker(line5) || IsBetweenPartyMarker2(line5)) &&
             IsPartyName(line6) &&
             IsSecondPartyType(line7) &&
             IsAfterPartyMarker(line8);
@@ -483,6 +483,8 @@ class PartyEnricher : Enricher {
             return false;
         string normalized = line.NormalizedContent();
         if (normalized == "Between:")
+            return true;
+        if (normalized == "BETWEEN:")
             return true;
         if (normalized == "B E T W E E N:")
             return true;
@@ -849,11 +851,15 @@ class PartyEnricher : Enricher {
         }
         Func<ILine, bool> defendant = (line) => {
             string normalized = line.NormalizedContent();
-            if (Regex.IsMatch(normalized, @"^\d(st|nd|rd|th)? Defendant$"))
-                return true;
-            return false;
+            return Regex.IsMatch(normalized, @"^\d(st|nd|rd|th)? Defendant$");
         };
         if (blocks.Cast<ILine>().All(defendant))
+            return PartyRole.Defendant;
+        Func<ILine, bool> defendant2 = (line) => {  // EWHC/Fam/2003/365
+            string normalized = line.NormalizedContent();
+            return Regex.IsMatch(normalized, @"^(First|Second|Third|Fourth) Defendant$", RegexOptions.IgnoreCase);
+        };
+        if (blocks.Cast<ILine>().All(defendant2))
             return PartyRole.Defendant;
         Func<ILine, bool> appellant = (line) => {
             string normalized = line.NormalizedContent();
@@ -898,6 +904,8 @@ class PartyEnricher : Enricher {
                 if (string.IsNullOrWhiteSpace(wText.Text))
                     return line;
                 if (wText.Text.StartsWith('(') && wText.Text.EndsWith(')'))
+                    return line;
+                if (wText.Text.Trim() == "and")    // EWHC/Fam/2003/365
                     return line;
                 if (wText.Text == "- and –")    // EWHC/Fam/2008/1561
                     return line;
