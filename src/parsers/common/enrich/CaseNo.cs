@@ -108,7 +108,12 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}), "),
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$"),
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
-        new Regex(@"^Case No: (\d{4} Folio \d+)$")
+        new Regex(@"^Case No: (\d{4} Folio \d+)$"),
+        new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$") // EWHC/Admin/2008/2214
+    };
+
+    Regex[] loneTextRegexesWithTwoGroups = {
+        new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}) & ([A-Z][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase),
     };
 
     private WLine EnrichLine(WLine line) {
@@ -128,6 +133,13 @@ class CaseNo : Enricher {
             if (!match.Success)
                 continue;
             List<IInline> contents = Split(text, match.Groups[1]);
+            return new WLine(line, contents);
+        }
+        foreach (Regex re in loneTextRegexesWithTwoGroups) {
+            Match match = re.Match(text.Text);
+            if (!match.Success)
+                continue;
+            List<IInline> contents = Split(text, match.Groups[1], match.Groups[2]);
             return new WLine(line, contents);
         }
         return line;
