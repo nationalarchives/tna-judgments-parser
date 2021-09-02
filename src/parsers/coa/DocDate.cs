@@ -124,6 +124,10 @@ class DocDate : Enricher {
         @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$"
     };
 
+    private static readonly string[] doubleCardinalDatePatterns = { // EWCA/Civ/2003/607
+        @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}) and ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4})$"
+    };
+
     private List<IInline> EnrichText(WText fText) {
         foreach (string pattern in cardinalDatePatterns1) {
             Match match = Regex.Match(fText.Text, pattern);
@@ -179,6 +183,21 @@ class DocDate : Enricher {
                 if (after.Length > 0)
                     contents.Add(new WText(after, fText.properties));
                 return contents;
+            }
+        }
+        foreach (string pattern in doubleCardinalDatePatterns) {
+            Match match = Regex.Match(fText.Text, pattern);
+            if (match.Success) {
+                Group first = match.Groups[1];
+                Group second = match.Groups[4];
+                string betweenText = fText.Text.Substring(first.Length, second.Index - first.Length);
+                DateTime firstDate = DateTime.Parse(first.Value, culture);
+                DateTime secondDate = DateTime.Parse(second.Value, culture);
+                return new List<IInline>(3) {
+                    new WDocDate(first.Value, fText.properties, firstDate),
+                    new WText(betweenText, fText.properties),
+                    new WDocDate(second.Value, fText.properties, secondDate)
+                };
             }
         }
         return new List<IInline>(1) { fText };

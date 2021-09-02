@@ -114,6 +114,11 @@ struct Combo2 {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex("FAMILY DIVISION"),
             Court = Courts.EWFC
+        },
+        new Combo2 {    // EWHC/Admin/2008/2214
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex("ADMINISTRATIVE DIVISION"),
+            Court = Courts.EWHC_QBD_Admin
         }
         
     };
