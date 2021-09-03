@@ -61,6 +61,14 @@ class PartyEnricher : Enricher {
                     i += 10;
                     continue;
             }
+            if (IsTenLinePartyBlock2(before, i)) {
+                    List<IBlock> enriched10 = EnrichTenLinePartyBlock2(before, i);
+                    after.AddRange(enriched10);
+                    i += 10;
+                    after.AddRange(before.Skip(i));
+                    return after;
+                    // continue;
+            }
             if (IsTwelveLinePartyBlock(before, i)) {
                     List<IBlock> enriched10 = EnrichTwelveLinePartyBlock(before, i);
                     after.AddRange(enriched10);
@@ -75,7 +83,7 @@ class PartyEnricher : Enricher {
         return after;
     }
 
-    private static bool IsInTheMatterOf4(IBlock[] before, int i) {  // EWHC/QB/2017/2921
+    private static bool IsInTheMatterOf4(IBlock[] before, int i) {  // EWHC/QB/2017/2921, EWHC/Ch/2006/3549
         if (i > before.Length - 4)
             return false;
         IBlock line1 = before[i];
@@ -385,6 +393,72 @@ class PartyEnricher : Enricher {
         return after;
     }
 
+    private static bool IsTenLinePartyBlock2(IBlock[] before, int i) {
+        if (i > before.Length - 10)
+            return false;
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        IBlock line5 = before[i+4];
+        IBlock line6 = before[i+5];
+        IBlock line7 = before[i+6];
+        IBlock line8 = before[i+7];
+        IBlock line9 = before[i+8];
+        IBlock line10 = before[i+9];
+        bool ok1 = IsBeforePartyMarker(line1);
+        bool ok2 = IsPartyName(line2);
+        bool ok3 = IsFirstPartyTpye(line3);
+        bool ok4 = IsBetweenPartyMarker(line4);
+        bool ok5 = IsPartyName(line5);
+        bool ok6 = IsSecondPartyType(line6);
+        bool ok7 = IsBetweenPartyMarker2(line7);
+        bool ok8 = IsPartyName(line8);
+        bool ok9 = IsSecondPartyType(line9);
+        bool ok10 = IsAfterPartyMarker(line10);
+        return
+            IsBeforePartyMarker(line1) &&
+            IsPartyName(line2) &&
+            IsFirstPartyTpye(line3) &&
+            IsBetweenPartyMarker(line4) &&
+            IsPartyName(line5) &&
+            IsSecondPartyType(line6) &&
+            IsBetweenPartyMarker2(line7) &&
+            IsPartyName(line8) &&
+            IsSecondPartyType(line9) &&
+            IsAfterPartyMarker(line10);
+    }
+    private static List<IBlock> EnrichTenLinePartyBlock2(IBlock[] before, int i) {
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        IBlock line5 = before[i+4];
+        IBlock line6 = before[i+5];
+        IBlock line7 = before[i+6];
+        IBlock line8 = before[i+7];
+        IBlock line9 = before[i+8];
+        IBlock line10 = before[i+9];
+        List<IBlock> after = new List<IBlock>(8);
+        after.Add(line1);
+        PartyRole role1 = GetFirstPartyRole(line3);
+        WLine party1 = MakeParty(line2, role1);
+        after.Add(party1);
+        after.Add(line3);
+        after.Add(line4);
+        PartyRole role2 = GetSecondPartyRole(line6);
+        WLine party2 = MakeParty(line5, role2);
+        after.Add(party2);
+        after.Add(line6);
+        after.Add(line7);
+        PartyRole role3 = GetSecondPartyRole(line9);
+        WLine party3 = MakeParty(line8, role3);
+        after.Add(party3);
+        after.Add(line9);
+        after.Add(line10);
+        return after;
+    }
+
     /* twelve */
     private static bool IsTwelveLinePartyBlock(IBlock[] before, int i) {    // EWCA/Civ/2005/450
         if (i > before.Length - 12)
@@ -509,7 +583,7 @@ class PartyEnricher : Enricher {
         IInline first = line.Contents.First();
         if (first is not WText wText)
             return false;
-        return wText.Text == "IN THE MATTER OF";
+        return Regex.IsMatch(wText.Text.Trim(), "IN THE MATTER OF", RegexOptions.IgnoreCase);
     }
     private static bool IsInTheMatterOf2(IBlock block) {
         if (block is not WLine line)
@@ -658,7 +732,7 @@ class PartyEnricher : Enricher {
         return betweenPartyMarkers.Contains(normalized);
     }
     private static bool IsBetweenPartyMarker2(IBlock block) {
-        ISet<string> betweenPartyMarkers = new HashSet<string>() { "- and -" }; // EWHC/Fam/2013/3493
+        ISet<string> betweenPartyMarkers = new HashSet<string>() { "-and-", "- and -" }; // EWHC/Admin/2003/3013, EWHC/Fam/2013/3493
         if (block is not ILine line)
             return false;
         string normalized = line.NormalizedContent();   // doesn't normalize internal spaces
@@ -667,7 +741,9 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsSecondPartyType(string s) {
-        ISet<string> secondPartyTypes = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Appellant", "(DEFENDANT)", "Defendants/Appellants", "Respondent" };
+        ISet<string> secondPartyTypes = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Appellant", "(DEFENDANT)", "Defendants/Appellants", "Respondent",
+            "(FIRST DEFENDANT)", "(SECOND DEFENDANT)"
+        };
         return secondPartyTypes.Contains(s);
     }
     private static bool IsSecondPartyType(IBlock block) {
@@ -681,6 +757,8 @@ class PartyEnricher : Enricher {
             case "Defendant":
             case "Defendants":
             case "(DEFENDANT)":
+            case "(FIRST DEFENDANT)":
+            case "(SECOND DEFENDANT)":
                 return PartyRole.Defendant;
             case "Defendant/Appellant":
             case "Defendants/Appellants":
