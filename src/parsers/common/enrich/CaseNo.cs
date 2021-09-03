@@ -109,7 +109,8 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$"),
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
         new Regex(@"^Case No: (\d{4} Folio \d+)$"),
-        new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$") // EWHC/Admin/2008/2214
+        new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$"), // EWHC/Admin/2008/2214
+        new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,});", RegexOptions.IgnoreCase) // EWHC/Admin/2015/715
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
