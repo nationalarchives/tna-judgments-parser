@@ -117,6 +117,9 @@ class DocDate : Enricher {
         @"^(\s*Date:? *)?\d{1,2}\.\d{1,2}\.\d{4}( *)$",
         @"^(\s*Date: *)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
+    private static readonly string[] twoDigitYearCardinalDatePatterns = {
+        @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"
+    };
     private static readonly string[] ordinalDatePatterns1 = {
         @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
     };
@@ -197,6 +200,29 @@ class DocDate : Enricher {
                     new WDocDate(first.Value, fText.properties, firstDate),
                     new WText(betweenText, fText.properties),
                     new WDocDate(second.Value, fText.properties, secondDate)
+                };
+            }
+        }
+        foreach (string pattern in twoDigitYearCardinalDatePatterns) {
+            Match match = Regex.Match(fText.Text, pattern);
+            if (match.Success) {
+                Group group = match.Groups[1];
+                string label = fText.Text.Substring(0, group.Index);
+                string dateWithTwoDigitYear = group.Value;
+                int i = dateWithTwoDigitYear.LastIndexOf('/');
+                int twoDigitYear = int.Parse(dateWithTwoDigitYear.Substring(i + 1));
+                int thisYear = DateTime.Now.Year;
+                int lastTwoDigitsOfThisYear = thisYear % 100;
+                int century;
+                if (twoDigitYear <= lastTwoDigitsOfThisYear)
+                    century = thisYear / 100;
+                else
+                    century = thisYear / 100 - 1;
+                string dateWithFourDigitYear = dateWithTwoDigitYear.Substring(0, i + 1) + century.ToString() + dateWithTwoDigitYear.Substring(i + 1);
+                DateTime dt = DateTime.Parse(dateWithFourDigitYear, culture);
+                return new List<IInline>(2) {
+                    new WText(label, fText.properties),
+                    new WDocDate(dateWithTwoDigitYear, fText.properties, dt)
                 };
             }
         }

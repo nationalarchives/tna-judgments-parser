@@ -180,6 +180,14 @@ interface IParty : IInline {
             text = text.Substring(0, text.Length - 18);
         if (text == "R E G I N A")
             return "REGINA";
+        if (text.EndsWith(')')) {
+            int i = text.LastIndexOf('(');
+            if (i > 0) {
+                string text2 = text.Substring(0, i).TrimEnd();
+                if (!string.IsNullOrWhiteSpace(text2))
+                    return text2;
+            }
+        }
         return text;
     }
 
