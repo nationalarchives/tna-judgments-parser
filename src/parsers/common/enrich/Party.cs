@@ -23,63 +23,62 @@ class PartyEnricher : Enricher {
                     List<IBlock> enriched4 = EnrichInTheMatterOf4(before, i);
                     after.AddRange(enriched4);
                     i += 4;
-                    continue;
+                    break;
             }
             if (IsFiveLinePartyBlock(before, i)) {
                     List<IBlock> enriched5 = EnrichFiveLinePartyBlock(before, i);
                     after.AddRange(enriched5);
                     i += 5;
-                    continue;
+                    break;
             }
             if (IsSixLinePartyBlock(before, i)) {
                     List<IBlock> enriched6 = EnrichSixLinePartyBlock(before, i);
                     after.AddRange(enriched6);
                     i += 6;
-                    continue;
+                    break;
             }
             if (IsSevenLinePartyBlock(before, i)) {
                     List<IBlock> enriched7 = EnrichSevenLinePartyBlock(before, i);
                     after.AddRange(enriched7);
                     i += 7;
-                    continue;
+                    break;
             }
             if (IsEightLinePartyBlock(before, i)) {
                     List<IBlock> enriched8 = EnrichEightLinePartyBlock(before, i);
                     after.AddRange(enriched8);
                     i += 8;
-                    continue;
+                    break;
             }
             if (IsEightLinePartyBlock2(before, i)) {
                     List<IBlock> enriched8 = EnrichEightLinePartyBlock2(before, i);
                     after.AddRange(enriched8);
                     i += 8;
-                    continue;
+                    break;
             }
             if (IsTenLinePartyBlock(before, i)) {
                     List<IBlock> enriched10 = EnrichTenLinePartyBlock(before, i);
                     after.AddRange(enriched10);
                     i += 10;
-                    continue;
+                    break;
             }
             if (IsTenLinePartyBlock2(before, i)) {
                     List<IBlock> enriched10 = EnrichTenLinePartyBlock2(before, i);
                     after.AddRange(enriched10);
                     i += 10;
-                    after.AddRange(before.Skip(i));
-                    return after;
-                    // continue;
+                    break;
             }
             if (IsTwelveLinePartyBlock(before, i)) {
                     List<IBlock> enriched10 = EnrichTwelveLinePartyBlock(before, i);
                     after.AddRange(enriched10);
                     i += 12;
-                    continue;
+                    break;
             }
             IBlock block = before[i];
             var enriched = EnrichBlock(block);
             after.Add(enriched);
             i += 1;
         }
+        after.AddRange(before.Skip(i));
         return after;
     }
 
@@ -732,7 +731,7 @@ class PartyEnricher : Enricher {
         return betweenPartyMarkers.Contains(normalized);
     }
     private static bool IsBetweenPartyMarker2(IBlock block) {
-        ISet<string> betweenPartyMarkers = new HashSet<string>() { "-and-", "- and -" }; // EWHC/Admin/2003/3013, EWHC/Fam/2013/3493
+        ISet<string> betweenPartyMarkers = new HashSet<string>() { "and", "-and-", "- and -" }; // EWHC/Admin/2003/3013, EWHC/Fam/2013/3493
         if (block is not ILine line)
             return false;
         string normalized = line.NormalizedContent();   // doesn't normalize internal spaces
@@ -742,7 +741,7 @@ class PartyEnricher : Enricher {
 
     private static bool IsSecondPartyType(string s) {
         ISet<string> secondPartyTypes = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Appellant", "(DEFENDANT)", "Defendants/Appellants", "Respondent",
-            "(FIRST DEFENDANT)", "(SECOND DEFENDANT)"
+            "First Defendant", "Second Defendant", "(FIRST DEFENDANT)", "(SECOND DEFENDANT)"
         };
         return secondPartyTypes.Contains(s);
     }
@@ -757,6 +756,8 @@ class PartyEnricher : Enricher {
             case "Defendant":
             case "Defendants":
             case "(DEFENDANT)":
+            case "First Defendant":
+            case "Second Defendant":
             case "(FIRST DEFENDANT)":
             case "(SECOND DEFENDANT)":
                 return PartyRole.Defendant;
@@ -909,6 +910,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Appellant;
         if (one == "Respondent" && two == "Intervener")    // EWCA/Civ/2016/176
             return PartyRole.Respondent;
+        if (one == "Respondents" && two.StartsWith("Respondent"))    // EWHC/Fam/2013/1956
+            return PartyRole.Respondent;
         // if (one == "" && two == "")    // 
         //     return PartyRole.;
         return null;
@@ -981,9 +984,11 @@ class PartyEnricher : Enricher {
                     return line;
                 if (string.IsNullOrWhiteSpace(wText.Text))
                     return line;
-                if (wText.Text.StartsWith('(') && wText.Text.EndsWith(')'))
+                if (wText.Text.TrimStart().StartsWith('(') && wText.Text.TrimEnd().EndsWith(')'))
                     return line;
                 if (wText.Text.Trim() == "and")    // EWHC/Fam/2003/365
+                    return line;
+                if (wText.Text.Trim() == "-and-")    // EWHC/Fam/2013/1956
                     return line;
                 if (wText.Text == "- and –")    // EWHC/Fam/2008/1561
                     return line;

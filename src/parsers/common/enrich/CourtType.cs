@@ -8,6 +8,60 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+struct Combo5 {
+
+    public Regex Re1 { get; init; }
+    public Regex Re2 { get; init; }
+    public Regex Re3 { get; init; }
+    public Regex Re4 { get; init; }
+    public Regex Re5 { get; init; }
+    public Court Court { get; init; }
+
+    internal static Combo5[] combos = new Combo5[] {
+        new Combo5 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re5 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Commercial
+        }
+    };
+
+    public static bool Match(Regex regex, IBlock block) {
+        if (!(block is WLine line))
+            return false;
+        if (line.Contents.Count() != 1)
+            return false;
+        if (!(line.Contents.First() is WText text))
+            return false;
+        return regex.IsMatch(text.Text.Trim());
+    }
+
+    internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+        return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four) && Match(Re5, five);
+    }
+
+    private WLine Transform(IBlock block) {
+        WLine line = (WLine) block;
+        WText text = (WText) line.Contents.First();
+        WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
+        return new WLine(line, new List<IInline>(1) { ct });
+    }
+
+    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+        return new List<ILine>(5) {
+            Transform(one),
+            Transform(two),
+            Transform(three),
+            Transform(four),
+            Transform(five)
+        };
+
+    }
+
+}
+
 struct Combo3 {
 
     public Regex Re1 { get; init; }
@@ -125,128 +179,21 @@ struct Combo2 {
 
 }
 
-
-class CourtType : Enricher {
-
-    // this should probably be removed
-    private bool Match(Regex regex, IBlock block) {
-        if (!(block is WLine line))
-            return false;
-        if (line.Contents.Count() != 1)
-            return false;
-        if (!(line.Contents.First() is WText text))
-            return false;
-        return regex.IsMatch(text.Text.Trim());
-    }
-    private bool MatchFirstOfMany(Regex regex, IBlock block) {
-        if (!(block is WLine line))
-            return false;
-        if (line.Contents.Count() < 1)
-            return false;
-        IInline first = line.Contents.First();
-        if (first is not WText text)
-            return false;
-        return regex.IsMatch(text.Text.Trim());
-    }
-
-    private List<IBlock> Match3(IBlock one, IBlock two, IBlock three) {
-        foreach (Combo3 combo in Combo3.combos) {
-            if (Match(combo.Re1, one) && Match(combo.Re2, two) && Match(combo.Re3, three)) {
-                WLine line1 = (WLine) one;
-                WText text1 = (WText) line1.Contents.First();
-                WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
-                WLine newLine1 = new WLine(line1, new List<IInline>(1) { ct1 });
-                WLine line2 = (WLine) two;
-                WText text2 = (WText) line2.Contents.First();
-                WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
-                WLine newLine2 = new WLine(line2, new List<IInline>(1) { ct2 });
-                WLine line3 = (WLine) three;
-                WText text3 = (WText) line3.Contents.First();
-                WCourtType ct3 = new WCourtType(text3.Text, text3.properties) { Code = combo.Court.Code };
-                WLine newLine3 = new WLine(line3, new List<IInline>(1) { ct3 });
-                return new List<IBlock>(3) {
-                    newLine1, newLine2, newLine3
-                };
-            }
-        }
-        return null;
-    }
-
-    private List<IBlock> Match2(IBlock one, IBlock two) {
-        foreach (Combo2 combo in Combo2.combos) {
-            // if (Match(combo.Re1, one) && Match(combo.Re2, two)) {
-            //     WLine line1 = (WLine) one;
-            //     WText text1 = (WText) line1.Contents.First();
-            //     WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
-            //     WLine newLine1 = new WLine(line1, new List<IInline>(1) { ct1 });
-            //     WLine line2 = (WLine) two;
-            //     WText text2 = (WText) line2.Contents.First();
-            //     WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
-            //     WLine newLine2 = new WLine(line2, new List<IInline>(1) { ct2 });
-            //     return new List<IBlock>(2) {
-            //         newLine1, newLine2
-            //     };
-            // }
-            if (MatchFirstOfMany(combo.Re1, one) && MatchFirstOfMany(combo.Re2, two)) {
-                WLine line1 = (WLine) one;
-                WText text1 = (WText) line1.Contents.First();
-                WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
-                IEnumerable<IInline> rest1 = line1.Contents.Skip(1);
-                List<IInline> contents1 = new List<IInline>(line1.Contents.Count());
-                contents1.Add(ct1);
-                contents1.AddRange(rest1);
-                WLine newLine1 = new WLine(line1, contents1);
-                WLine line2 = (WLine) two;
-                WText text2 = (WText) line2.Contents.First();
-                WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
-                IEnumerable<IInline> rest2 = line2.Contents.Skip(1);
-                List<IInline> contents2 = new List<IInline>(line2.Contents.Count());
-                contents2.Add(ct2);
-                contents2.AddRange(rest2);
-                WLine newLine2 = new WLine(line2, contents2);
-                return new List<IBlock>(2) { newLine1, newLine2 };
-            }
-        }
-        return null;
-    }
-
-    internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
-        List<IBlock> enriched = new List<IBlock>();
-        int i = 0;
-        while (i < blocks.Count() - 2) {
-            IBlock block1 = blocks.ElementAt(i);
-            IBlock block2 = blocks.ElementAt(i + 1);
-            IBlock block3 = blocks.ElementAt(i + 2);
-            List<IBlock> three = Match3(block1, block2, block3);
-            if (three is not null) {
-                enriched.AddRange(three);
-                i += 3;
-                break;
-            }
-            List<IBlock> two = Match2(block1, block2);
-            if (two is not null) {
-                enriched.AddRange(two);
-                i += 2;
-                break;
-            }
-            IBlock before = blocks.ElementAt(i);
-            IBlock after = Enrich(before);
-            enriched.Add(after);
-            i += 1;
-        }
-        while (i < blocks.Count()) {
-            IBlock before = blocks.ElementAt(i);
-            IBlock after = Enrich(before);
-            enriched.Add(after);
-            i += 1;
-        }
-        return enriched;
-    }
-
 struct Combo1 {
 
     public Regex Re { get; init; }
     public Court Court { get; init; }
+
+    internal bool IsMatch(IBlock block) {
+        return Combo5.Match(Re, block);
+    }
+
+    internal WLine Transform(IBlock block) {
+        WLine line = (WLine) block;
+        WText text = (WText) line.Contents.First();
+        WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
+        return new WLine(line, new List<IInline>(1) { ct });
+    }
 
     internal static Combo1[] combos = new Combo1[] {
         new Combo1 {
@@ -288,6 +235,145 @@ struct Combo1 {
     };
 
 }
+
+
+class CourtType : Enricher {
+
+    // this should probably be removed
+    private bool Match(Regex regex, IBlock block) {
+        if (!(block is WLine line))
+            return false;
+        if (line.Contents.Count() != 1)
+            return false;
+        if (!(line.Contents.First() is WText text))
+            return false;
+        return regex.IsMatch(text.Text.Trim());
+    }
+    private bool MatchFirstOfMany(Regex regex, IBlock block) {
+        if (!(block is WLine line))
+            return false;
+        if (line.Contents.Count() < 1)
+            return false;
+        IInline first = line.Contents.First();
+        if (first is not WText text)
+            return false;
+        return regex.IsMatch(text.Text.Trim());
+    }
+
+    private List<ILine> Match5(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+        foreach (Combo5 combo in Combo5.combos)
+            if (combo.Match(one, two, three, four, five))
+                return combo.Transform(one, two, three, four, five);
+        return null;
+    }
+
+    private List<IBlock> Match3(IBlock one, IBlock two, IBlock three) {
+        foreach (Combo3 combo in Combo3.combos) {
+            if (Match(combo.Re1, one) && Match(combo.Re2, two) && Match(combo.Re3, three)) {
+                WLine line1 = (WLine) one;
+                WText text1 = (WText) line1.Contents.First();
+                WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
+                WLine newLine1 = new WLine(line1, new List<IInline>(1) { ct1 });
+                WLine line2 = (WLine) two;
+                WText text2 = (WText) line2.Contents.First();
+                WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
+                WLine newLine2 = new WLine(line2, new List<IInline>(1) { ct2 });
+                WLine line3 = (WLine) three;
+                WText text3 = (WText) line3.Contents.First();
+                WCourtType ct3 = new WCourtType(text3.Text, text3.properties) { Code = combo.Court.Code };
+                WLine newLine3 = new WLine(line3, new List<IInline>(1) { ct3 });
+                return new List<IBlock>(3) {
+                    newLine1, newLine2, newLine3
+                };
+            }
+        }
+        return null;
+    }
+
+    private List<IBlock> Match2(IBlock one, IBlock two) {
+        foreach (Combo2 combo in Combo2.combos) {
+            if (MatchFirstOfMany(combo.Re1, one) && MatchFirstOfMany(combo.Re2, two)) {
+                WLine line1 = (WLine) one;
+                WText text1 = (WText) line1.Contents.First();
+                WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
+                IEnumerable<IInline> rest1 = line1.Contents.Skip(1);
+                List<IInline> contents1 = new List<IInline>(line1.Contents.Count());
+                contents1.Add(ct1);
+                contents1.AddRange(rest1);
+                WLine newLine1 = new WLine(line1, contents1);
+                WLine line2 = (WLine) two;
+                WText text2 = (WText) line2.Contents.First();
+                WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
+                IEnumerable<IInline> rest2 = line2.Contents.Skip(1);
+                List<IInline> contents2 = new List<IInline>(line2.Contents.Count());
+                contents2.Add(ct2);
+                contents2.AddRange(rest2);
+                WLine newLine2 = new WLine(line2, contents2);
+                return new List<IBlock>(2) { newLine1, newLine2 };
+            }
+        }
+        return null;
+    }
+
+    private WLine Match1(IBlock block) {
+        foreach (Combo1 combo in Combo1.combos)
+            if (combo.IsMatch(block))
+                return combo.Transform(block);
+        return null;
+    }
+
+
+    internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        List<IBlock> enriched = new List<IBlock>();
+        int i = 0;
+        while (i < blocks.Count()) {
+            IBlock block1 = blocks.ElementAt(i);
+            if (i < blocks.Count() - 4) {
+                IBlock block2 = blocks.ElementAt(i + 1);
+                IBlock block3 = blocks.ElementAt(i + 2);
+                IBlock block4 = blocks.ElementAt(i + 3);
+                IBlock block5 = blocks.ElementAt(i + 4);
+                List<ILine> five = Match5(block1, block2, block3, block4, block5);
+                if (five is not null) {
+                    enriched.AddRange(five);
+                    i += 5;
+                    break;
+                }
+            }
+            if (i < blocks.Count() - 2) {
+                IBlock block2 = blocks.ElementAt(i + 1);
+                IBlock block3 = blocks.ElementAt(i + 2);
+                List<IBlock> three = Match3(block1, block2, block3);
+                if (three is not null) {
+                    enriched.AddRange(three);
+                    i += 3;
+                    break;
+                }
+            }
+            if (i < blocks.Count() - 1) {
+                IBlock block2 = blocks.ElementAt(i + 1);
+                List<IBlock> two = Match2(block1, block2);
+                if (two is not null) {
+                    enriched.AddRange(two);
+                    i += 2;
+                    break;
+                }
+            }
+            WLine one = Match1(block1);
+            if (one is not null) {
+                enriched.Add(one);
+                i += 1;
+                break;
+            }
+            // IBlock before = blocks.ElementAt(i);
+            // IBlock after = Enrich(before);
+            // enriched.Add(after);
+            enriched.Add(block1);
+            i += 1;
+        }
+        enriched.AddRange(blocks.Skip(i));
+        return enriched;
+    }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         return line.SelectMany(inline => {
