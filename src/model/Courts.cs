@@ -94,6 +94,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/technology-and-construction-court"
     };
 
+    public static readonly Court EWHC_QBD_Costs = new Court {
+        Code = "EWHC-Costs",
+        LongName = "England and Wales High Court (Senior Courts Costs Office)",
+        ShortName = "Senior Courts Costs Office",
+        URL = "https://www.gov.uk/courts-tribunals/senior-courts-costs-office"
+    };
+
     public static readonly Court EWCOP = new Court {
         Code = "EWCOP",
         LongName = "Court of Protection",
@@ -128,6 +135,7 @@ public readonly struct Courts {
         EWHC_Commercial,
         EWHC_Chancery_Patents,
         EWHC_QBD_TCC,
+        EWHC_QBD_Costs,
 
         EWCOP,
         EWFC,
