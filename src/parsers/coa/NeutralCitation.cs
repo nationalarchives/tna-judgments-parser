@@ -14,6 +14,7 @@ class NetrualCitation : Enricher {
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
+        @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))"
     };
     private static readonly string[] patterns2 = {

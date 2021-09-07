@@ -62,6 +62,10 @@ class WMetadata : IMetadata {
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCA) (\d+) \((Civ|Crim)\)$");
+            if (match1.Success) {
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+            }
             match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCA) (\d+) (Civ|Crim)$");
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
