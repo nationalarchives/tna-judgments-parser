@@ -160,11 +160,19 @@ internal class WNeutralCitation : WText, INeutralCitation {
 
 }
 
-internal class WCourtType : WText, ICourtType {
+internal class WCourtType : WText, ICourtType1 {
 
     public WCourtType(string text, RunProperties props) : base(text, props) { }
 
     public string Code { get; init; }
+
+}
+
+internal class WCourtType2 : ICourtType2 {
+
+    public string Code { get; init; }
+
+    public IEnumerable<IFormattedText> Contents { get; init; }
 
 }
 
