@@ -44,16 +44,18 @@ class WRow : IRow {
 
     internal WRow(MainDocumentPart main, TableRow row) {
         this.main = main;
-        this.Cells = row.ChildElements.Where(e => e is TableCell).Cast<TableCell>().Select(c => new WCell(main, c));
+        this.TypedCells = row.ChildElements.Where(e => e is TableCell).Cast<TableCell>().Select(c => new WCell(main, c));
     }
-    internal WRow(MainDocumentPart main, IEnumerable<ICell> cells) {
+    internal WRow(MainDocumentPart main, IEnumerable<WCell> cells) {
         this.main = main;
-        this.Cells = cells;
+        this.TypedCells = cells;
     }
 
     public MainDocumentPart Main { get => main; }
 
-    public IEnumerable<ICell> Cells { get; private init; }
+    public IEnumerable<WCell> TypedCells { get; private init; }
+
+    public IEnumerable<ICell> Cells { get => TypedCells; }
 
 }
 

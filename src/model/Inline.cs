@@ -128,7 +128,20 @@ interface IImageRef : IInline {
 
 interface INeutralCitation : IFormattedText { }
 
-interface ICourtType : IFormattedText { }
+
+interface ICourtType : IInline {
+
+    string Code { get; init; }
+
+}
+interface ICourtType1 : IFormattedText, ICourtType { }
+
+interface ICourtType2 : ICourtType {
+
+    IEnumerable<IFormattedText> Contents { get; init; }
+
+}
+
 
 interface ICaseNo : IFormattedText { }
 
@@ -150,7 +163,7 @@ interface IDateTime : IInline {
 
 interface IDocDate : IDate { }
 
-enum PartyRole { Appellant, Claimant, Applicant, Defendant, Respondent }
+enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent }
 
 interface IParty : IInline {
 
