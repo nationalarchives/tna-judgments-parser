@@ -9,17 +9,57 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class DocDate : Enricher {
 
+    override internal IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        List<IBlock> enriched = new List<IBlock>();
+        bool found = false;
+        foreach (IBlock block in blocks) {
+            if (found) {
+                enriched.Add(block);
+            } else {
+                IBlock e1 = EnrichOrDefault(block);
+                if (e1 is null) {
+                    enriched.Add(block);
+                } else {
+                    enriched.Add(e1);
+                    found = true;
+                }
+            }
+        }
+        return enriched;
+    }
+
+    private IBlock EnrichOrDefault(IBlock block) {
+        if (block is not WLine line)
+            return block;
+        return EnrichOrDefault(line);
+    }
+
+    private WLine EnrichOrDefault(WLine line) {
+        if (!line.Contents.Any())
+            return null;
+        if (line.Contents.Count() == 1)
+            return Enrich1OrDefault(line);
+        if (line.Contents.Count() == 3)
+            return Enrich3OrDefault(line);
+        return null;
+    }
+
     private static readonly CultureInfo culture = new CultureInfo("en-GB");
 
-    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        if (!line.Any())
-            return Enumerable.Empty<IInline>();
-        IInline first = line.First();
-        if (line.Count() == 1)
-            return Enrich1(first);
-        if (line.Count() == 3) {
-            IInline second = line.ElementAt(1);
-            IInline third = line.ElementAt(2);
+    private WLine Enrich1OrDefault(WLine line) {
+        IInline first = line.Contents.First();
+        if (first is not WText text)
+            return null;
+        List<IInline> contents = EnrichText(text);
+        if (contents is null)
+            return null;
+        return new WLine(line, contents);
+    }
+
+    private WLine Enrich3OrDefault(WLine line) {
+        IInline first = line.Contents.First();
+        IInline second = line.Contents.ElementAt(1);
+        IInline third = line.Contents.ElementAt(2);
             if (first is WText fText1) {
                 /* this needs to be improved, not everyting before the date should be allowed */
                 /* EWCA/Civ/2011/1277 contains 'hearing' */
@@ -36,7 +76,8 @@ class DocDate : Enricher {
                             string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
                             DateTime dt = DateTime.Parse(dayMonthYear, culture);
                             if (match1.Index == 0) {
-                                return new IInline[] { new WDocDate(line.Cast<WText>(), dt) };
+                                IEnumerable<IInline> contents = new IInline[] { new WDocDate(line.Contents.Cast<WText>(), dt) };
+                                return new WLine(line, contents);
                             } else {
                                 string split1 = fText1.Text.Substring(0, match1.Index);
                                 string split2 = fText1.Text.Substring(match1.Index);
@@ -44,7 +85,8 @@ class DocDate : Enricher {
                                 WText within1 = new WText(split2, fText1.properties);
                                 IFormattedText[] within = { within1, fText2, fText3 };
                                 IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
-                                return new IInline[] { before, date };
+                                IEnumerable<IInline> contents = new IInline[] { before, date };
+                                return new WLine(line, contents);
                             }
                         }
                         /* difference here is only spacing */ // EWHC/Fam/2014/1768, EWCA/Civ/2003/1048
@@ -77,7 +119,7 @@ class DocDate : Enricher {
                                 WText after1bis = new WText(after1, fText3.properties);
                                 everything.Add(after1bis);
                             }
-                            return everything;
+                            return new WLine(line, everything);
                         }
                         /* difference here is only spacing */
                         pattern2 = @"^(st|nd|rd|th) +$";
@@ -88,7 +130,8 @@ class DocDate : Enricher {
                             string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
                             DateTime dt = DateTime.Parse(dayMonthYear, culture);
                             if (match1.Index == 0) {
-                                return new IInline[] { new WDocDate(line.Cast<WText>(), dt) };
+                                IEnumerable<IInline> contents = new IInline[] { new WDocDate(line.Contents.Cast<WText>(), dt) };
+                                return new WLine(line, contents);
                             } else {
                                 string split1 = fText1.Text.Substring(0, match1.Index);
                                 string split2 = fText1.Text.Substring(match1.Index);
@@ -96,17 +139,19 @@ class DocDate : Enricher {
                                 WText within1 = new WText(split2, fText1.properties);
                                 IFormattedText[] within = { within1, fText2, fText3 };
                                 IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
-                                return new IInline[] { before, date };
+                                IEnumerable<IInline> contents = new IInline[] { before, date };
+                                return new WLine(line, contents);
                             }
                         }
                     }
                 }
             }
-        }
-        /* this recursively tries the tail */ /* EWHC/Ch/2013/3866 */
-        /* problem is that the isMain variable will be unreliable: EWCA/Civ/2004/1067 */
-        IEnumerable<IInline> rest = line.Skip(1);
-        return Enrich(rest).Prepend(first);
+        return null;
+        // }
+        // /* this recursively tries the tail */ /* EWHC/Ch/2013/3866 */
+        // /* problem is that the isMain variable will be unreliable: EWCA/Civ/2004/1067 */
+        // IEnumerable<IInline> rest = line.Skip(1);
+        // return Enrich(rest).Prepend(first);
     }
 
 
@@ -226,7 +271,7 @@ class DocDate : Enricher {
                 };
             }
         }
-        return new List<IInline>(1) { fText };
+        return null;
     }
 
     private IEnumerable<IInline> Enrich1(IInline inline) {
@@ -234,7 +279,11 @@ class DocDate : Enricher {
             return new IInline[] { new WDocDate(wDate) };
         if (inline is WText fText)
             return EnrichText(fText);
-        return new IInline[] { inline };
+        return null;
+    }
+
+    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+        throw new System.NotImplementedException();
     }
 
 }

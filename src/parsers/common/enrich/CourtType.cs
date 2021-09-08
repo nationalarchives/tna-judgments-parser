@@ -11,22 +11,28 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 abstract class Combo {
 
     protected bool Match(Regex regex, IBlock block) {
-        if (!(block is WLine line))
+        if (!(block is ILine line))
             return false;
-        if (line.Contents.Count() != 1)
+        if (line.Contents.Count() == 0)
             return false;
-        if (!(line.Contents.First() is WText text))
+        if (!line.Contents.All(inline => inline is WText))
             return false;
-        return regex.IsMatch(text.Text.Trim());
+        string text = line.NormalizedContent();
+        return regex.IsMatch(text);
     }
 
     public Court Court { get; init; }
 
     protected WLine Transform1(IBlock block) {
         WLine line = (WLine) block;
-        WText text = (WText) line.Contents.First();
-        WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
-        return new WLine(line, new List<IInline>(1) { ct });
+        if (line.Contents.Count() == 1) {
+            WText text = (WText) line.Contents.First();
+            WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
+            return new WLine(line, new List<IInline>(1) { ct });
+        } else {
+            WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Cast<WText>() };
+            return new WLine(line, new List<IInline>(1) { ct });
+        }
     }
 
 }
@@ -284,27 +290,6 @@ class Combo1 : Combo {
 
 class CourtType : Enricher {
 
-    // this should probably be removed
-    // private bool Match(Regex regex, IBlock block) {
-    //     if (!(block is WLine line))
-    //         return false;
-    //     if (line.Contents.Count() != 1)
-    //         return false;
-    //     if (!(line.Contents.First() is WText text))
-    //         return false;
-    //     return regex.IsMatch(text.Text.Trim());
-    // }
-    // private bool MatchFirstOfMany(Regex regex, IBlock block) {
-    //     if (!(block is WLine line))
-    //         return false;
-    //     if (line.Contents.Count() < 1)
-    //         return false;
-    //     IInline first = line.Contents.First();
-    //     if (first is not WText text)
-    //         return false;
-    //     return regex.IsMatch(text.Text.Trim());
-    // }
-
     private List<ILine> Match5(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
         foreach (Combo5 combo in Combo5.combos)
             if (combo.Match(one, two, three, four, five))
@@ -316,25 +301,6 @@ class CourtType : Enricher {
         foreach (Combo3 combo in Combo3.combos)
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
-        // foreach (Combo3 combo in Combo3.combos) {
-        //     if (Match(combo.Re1, one) && Match(combo.Re2, two) && Match(combo.Re3, three)) {
-        //         WLine line1 = (WLine) one;
-        //         WText text1 = (WText) line1.Contents.First();
-        //         WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
-        //         WLine newLine1 = new WLine(line1, new List<IInline>(1) { ct1 });
-        //         WLine line2 = (WLine) two;
-        //         WText text2 = (WText) line2.Contents.First();
-        //         WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
-        //         WLine newLine2 = new WLine(line2, new List<IInline>(1) { ct2 });
-        //         WLine line3 = (WLine) three;
-        //         WText text3 = (WText) line3.Contents.First();
-        //         WCourtType ct3 = new WCourtType(text3.Text, text3.properties) { Code = combo.Court.Code };
-        //         WLine newLine3 = new WLine(line3, new List<IInline>(1) { ct3 });
-        //         return new List<IBlock>(3) {
-        //             newLine1, newLine2, newLine3
-        //         };
-        //     }
-        // }
         return null;
     }
 
@@ -342,27 +308,6 @@ class CourtType : Enricher {
         foreach (Combo2 combo in Combo2.combos)
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
-        // foreach (Combo2 combo in Combo2.combos) {
-        //     if (MatchFirstOfMany(combo.Re1, one) && MatchFirstOfMany(combo.Re2, two)) {
-        //         WLine line1 = (WLine) one;
-        //         WText text1 = (WText) line1.Contents.First();
-        //         WCourtType ct1 = new WCourtType(text1.Text, text1.properties) { Code = combo.Court.Code };
-        //         IEnumerable<IInline> rest1 = line1.Contents.Skip(1);
-        //         List<IInline> contents1 = new List<IInline>(line1.Contents.Count());
-        //         contents1.Add(ct1);
-        //         contents1.AddRange(rest1);
-        //         WLine newLine1 = new WLine(line1, contents1);
-        //         WLine line2 = (WLine) two;
-        //         WText text2 = (WText) line2.Contents.First();
-        //         WCourtType ct2 = new WCourtType(text2.Text, text2.properties) { Code = combo.Court.Code };
-        //         IEnumerable<IInline> rest2 = line2.Contents.Skip(1);
-        //         List<IInline> contents2 = new List<IInline>(line2.Contents.Count());
-        //         contents2.Add(ct2);
-        //         contents2.AddRange(rest2);
-        //         WLine newLine2 = new WLine(line2, contents2);
-        //         return new List<IBlock>(2) { newLine1, newLine2 };
-        //     }
-        // }
         return null;
     }
 
@@ -416,9 +361,6 @@ class CourtType : Enricher {
                 i += 1;
                 break;
             }
-            // IBlock before = blocks.ElementAt(i);
-            // IBlock after = Enrich(before);
-            // enriched.Add(after);
             enriched.Add(block1);
             i += 1;
         }
@@ -428,18 +370,6 @@ class CourtType : Enricher {
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         throw new Exception();
-        // return line.SelectMany(inline => {
-        //     if (inline is WText text) {
-        //         foreach (Combo1 combo in Combo1.combos) {
-        //             Match match = combo.Re.Match(text.Text);
-        //             if (match.Success) {
-        //                 Group group = match.Groups[1];
-        //                 return CaseNo.Split(text, group, (t, props) => new WCourtType(t, props) { Code = combo.Court.Code });
-        //             }
-        //         }
-        //     }
-        //     return new List<IInline>(1) { inline };
-        // });
     }
 
 }

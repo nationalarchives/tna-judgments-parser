@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Builder {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<Builder>();
 
     public static readonly string ns = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
@@ -198,8 +202,10 @@ class Builder {
     private void AddInline(XmlElement parent, IInline model) {
         if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
-        else if (model is ICourtType caseType)
-            AddAndWrapText(parent, "courtType", caseType);
+        else if (model is ICourtType1 courtType1)
+            AddAndWrapText(parent, "courtType", courtType1);
+        else if (model is ICourtType2 courtType2)
+            AddCourtType2(parent, courtType2);
         else if (model is ICaseNo caseNo)
             AddAndWrapText(parent, "docketNumber", caseNo);
         else if (model is IParty1 party)
@@ -249,10 +255,14 @@ class Builder {
         if (styles.Count > 0)
             e.SetAttribute("style", CSS.SerializeInline(styles));
         if (model.IsHidden) {
+            logger.LogInformation("hidden text: " + model.Text);
             e.SetAttribute("class", model.Style is null ? "hidden" : model.Style + " hidden");
         } else {
             XmlText text = doc.CreateTextNode(model.Text);
             e.AppendChild(text);
+        }
+        if (model.BackgroundColor is not null) {
+            logger.LogInformation("text with background color (" + model.BackgroundColor + "): " + model.Text);
         }
         return e;
     }
@@ -304,6 +314,11 @@ class Builder {
         } else {
             AddOrWrapText(docDate, model.Contents);
         }
+    }
+
+    private void AddCourtType2(XmlElement parent, ICourtType2 model) {
+        XmlElement courtType = CreateAndAppend("courtType", parent);
+        AddOrWrapText(courtType, model.Contents);
     }
 
     private void AddParty(XmlElement parent, IParty1 model) {
