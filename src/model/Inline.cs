@@ -59,6 +59,8 @@ interface IFormattedText : IInline {
             return false;
         if (fText1.BackgroundColor != fText2.BackgroundColor)
             return false;
+        if (fText1.IsHidden != fText2.IsHidden)
+            return false;
         return true;
     }
 

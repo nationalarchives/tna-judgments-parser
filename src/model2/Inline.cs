@@ -122,7 +122,7 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
     } }
 
     public string BackgroundColor { get {
-        return properties?.Shading?.Color?.Value;
+        return properties?.Shading?.Fill?.Value;
     } }
 
     public bool IsHidden { get {
