@@ -61,15 +61,19 @@ class Inline {
                 withinField.Add(e);
                 continue;
             }
-            if (e is InsertedRun iRun2 && withinField is not null && e.ChildElements.Count == 1 && Fields.IsFieldCode(e.FirstChild)) {    // EWCA/Crim/2004/3049
-                withinField.Add(e.FirstChild);
+            if (withinField is not null) {
+                withinField.Add(e);
                 continue;
             }
+            // if (e is InsertedRun iRun2 && withinField is not null && e.ChildElements.Count == 1 && Fields.IsFieldCode(e.FirstChild)) {    // EWCA/Crim/2004/3049
+            //     withinField.Add(e.FirstChild);
+            //     continue;
+            // }
             if (e is Hyperlink link) {
-                if (withinField is not null) {  // EWHC/Ch/2007/1044
-                    withinField.Add(e);
-                    continue;
-                }
+                // if (withinField is not null) {  // EWHC/Ch/2007/1044
+                //     withinField.Add(e);
+                //     continue;
+                // }
                 if (link.Id is null && link.Descendants<FootnoteReference>().Any()) {   // EWHC/Admin/2012/914
                     IEnumerable<IInline> content = ParseRuns(main, link.ChildElements);
                     parsed.AddRange(content);
@@ -85,36 +89,40 @@ class Inline {
                 continue;
             }
             if (e is Run run) {
-                if (withinField is null) {
+                // if (withinField is null) {
                     IEnumerable<IInline> inlines = MapRunChildren(main, run);
                     parsed.AddRange(inlines);
-                } else {
-                    withinField.Add(e);
-                }
+                // } else {
+                //     withinField.Add(e);
+                // }
                 continue;
             }
             if (e is OpenXmlUnknownElement && e.LocalName == "r") {
-                if (withinField is null) {
+                // if (withinField is null) {
                     IEnumerable<IInline> inlines = MapRunChildren(main, (OpenXmlUnknownElement) e);
                     parsed.AddRange(inlines);
-                } else {
-                    withinField.Add(e);
-                }
+                // } else {
+                //     withinField.Add(e);
+                // }
                 continue;
             }
-            if (e is InsertedRun iRun || (e is OpenXmlUnknownElement && e.LocalName == "ins")) {    // EWCA/Civ/2004/1580, EWHC/Comm/2014/3124
-                var children = ParseRuns(main, e.ChildElements);
-                parsed.AddRange(children);
+            if (e is InsertedRun iRun || (e is OpenXmlUnknownElement && e.LocalName == "ins")) {    // EWCA/Civ/2004/1580, EWHC/Comm/2014/3124, EWCA/Crim/2004/3049, EWHC/Ch/2008/2961
+                // if (withinField is null) {
+                    var children = ParseRuns(main, e.ChildElements);
+                    parsed.AddRange(children);
+                // } else {
+                //     withinField.Add(e);
+                // }
                 continue;
             }
             if (e is DeletedRun dRun) {    // EWCA/Civ/2004/1580
                 continue;
             }
             if (e is OpenXmlUnknownElement) {
-                if (withinField is not null) {
-                    withinField.Add(e);
-                    continue;
-                }
+                // if (withinField is not null) {
+                //     withinField.Add(e);
+                //     continue;
+                // }
                 if (e.LocalName == "smartTag") {
                     var children = ParseRuns(main, e.ChildElements);
                     parsed.AddRange(children);
@@ -151,7 +159,8 @@ class Inline {
                 continue;
             }
             if (e is SimpleField fldSimple) { // EWHC/Admin/2006/983
-                return Fields.ParseSimple(main, fldSimple);
+                var p = Fields.ParseSimple(main, fldSimple);
+                parsed.AddRange(p);
             }
             throw new Exception();
         }
@@ -165,8 +174,15 @@ class Inline {
 
     private static WHyperlink2 MapHyperlink(MainDocumentPart main, Hyperlink link) {
         string href;
-        if (link.Id is not null)
-            href = DOCX.Relationships.GetUriForHyperlink(link).AbsoluteUri;
+        if (link.Id is not null) {
+            Uri uri = DOCX.Relationships.GetUriForHyperlink(link);
+            if (uri.IsAbsoluteUri) {
+                href = uri.AbsoluteUri;
+            } else {
+                logger.LogWarning("ignoring internal hyperlink: id = " + link.Id);
+                return null;
+            }
+        }
         else if (Uri.IsWellFormedUriString(link.InnerText, UriKind.Absolute))
             href = link.InnerText;
         else if (link.Anchor is not null) {
