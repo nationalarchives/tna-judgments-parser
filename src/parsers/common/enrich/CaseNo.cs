@@ -118,7 +118,7 @@ class CaseNo : Enricher {
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
-        new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}) & ([A-Z][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase),
+        new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}) [&/] ([A-Z][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase)  // EWHC/Ch/2014/4918
     };
 
     private WLine EnrichLine(WLine line) {

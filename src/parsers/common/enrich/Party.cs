@@ -122,6 +122,8 @@ class PartyEnricher : Enricher {
         return after;
     }
 
+    /* five */
+
     private static bool IsFiveLinePartyBlock(IBlock[] before, int i) {
         if (i > before.Length - 5)
             return false;
@@ -153,6 +155,8 @@ class PartyEnricher : Enricher {
         after.Add(line5);
         return after;
     }
+
+    /* six */
 
     private static bool IsSixLinePartyBlock(IBlock[] before, int i) {   // EWHC/Fam/2012/4047
         if (i > before.Length - 6)
@@ -1102,7 +1106,7 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "Appellants", "Defendant/Appellant", "Defendants/Appellants", "Appellants/ Claimants" };
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendants/Appellants", "Appellants/ Claimants" };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
         types = new HashSet<string>() { "Claimant", "Claimants" };
@@ -1114,7 +1118,7 @@ class PartyEnricher : Enricher {
         types = new HashSet<string>() { "Defendant", "Defendants", "First Defendant", "Second Defendant", "Third Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Defendant;
-        types = new HashSet<string>() { "Respondent", "Respondents", "Claimant/Respondent", "Claimant/ Respondent", "Defendant/Respondent", "Defendant/ Respondent", "Petitioner/Respondent",
+        types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents", "Claimant/Respondent", "Claimant/ Respondent", "Defendant/Respondent", "Defendant/ Respondent", "Petitioner/Respondent",
             "First Respondent", "Second Respondent", "Third Respondent", "Fourth Respondent",
             "Respond-ents/ Defendants"  // EWCA/Civ/2015/377
         };

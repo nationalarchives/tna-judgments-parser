@@ -425,23 +425,23 @@ abstract class AbstractParser {
         // System.Console.WriteLine("indent " + indent + " - " + e.InnerText);
         // bool value = indent is null || indent == "0";
         bool value = DOCX.Paragraphs.IsFlushLeft(doc.MainDocumentPart, p);
-        if (e.InnerText == "Essential Factual Background" && !value)
-            throw new Exception();
-        if (e.InnerText == "The Course of the Proceedings at Lewes Crown Court" && !value)
-            throw new Exception();
-        if (e.InnerText == "Grounds of Appeal" && !value)
-            throw new Exception();
-        if (e.InnerText == "Discussion and Conclusions" && !value)
-            throw new Exception();
-        if (e.InnerText == "Disposal" && !value)
-            throw new Exception();
-        if (value) {
-            System.Console.Write("This is a CrossHeading: ");
-            System.Console.WriteLine(e.InnerText);
+        // if (e.InnerText == "Essential Factual Background" && !value)
+        //     throw new Exception();
+        // if (e.InnerText == "The Course of the Proceedings at Lewes Crown Court" && !value)
+        //     throw new Exception();
+        // if (e.InnerText == "Grounds of Appeal" && !value)
+        //     throw new Exception();
+        // if (e.InnerText == "Discussion and Conclusions" && !value)
+        //     throw new Exception();
+        // if (e.InnerText == "Disposal" && !value)
+        //     throw new Exception();
+        // if (value) {
+        //     System.Console.Write("This is a CrossHeading: ");
+        //     System.Console.WriteLine(e.InnerText);
         // } else {
         //     System.Console.Write("This is not a CrossHeading: ");
         //     System.Console.WriteLine(e.InnerText);
-        }
+        // }
         return value;
     }
 

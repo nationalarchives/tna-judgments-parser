@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using DocumentFormat.OpenXml.Wordprocessing;
-
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class Combo {
@@ -15,8 +13,14 @@ abstract class Combo {
             return false;
         if (line.Contents.Count() == 0)
             return false;
-        if (!line.Contents.All(inline => inline is WText))
-            return false;
+        IInline first = line.Contents.First();
+        if (first is IImageRef) {    // EWHC/Comm/2009/2472
+            if (!line.Contents.Skip(1).Where(inline => inline is WText).Any() || !line.Contents.Skip(1).All(inline => inline is WText))
+                return false;
+        } else {
+            if (!line.Contents.All(inline => inline is WText))
+                return false;
+        }
         string text = line.NormalizedContent();
         return regex.IsMatch(text);
     }
@@ -29,6 +33,9 @@ abstract class Combo {
             WText text = (WText) line.Contents.First();
             WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
             return new WLine(line, new List<IInline>(1) { ct });
+        } else if (line.Contents.First() is IImageRef) {
+            WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Skip(1).Cast<WText>() };
+            return new WLine(line, new List<IInline>(2) { line.Contents.First(), ct });
         } else {
             WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Cast<WText>() };
             return new WLine(line, new List<IInline>(1) { ct });
@@ -44,7 +51,6 @@ class Combo5 : Combo {
     public Regex Re3 { get; init; }
     public Regex Re4 { get; init; }
     public Regex Re5 { get; init; }
-    // public Court Court { get; init; }
 
     internal static Combo5[] combos = new Combo5[] {
         new Combo5 {
@@ -60,13 +66,6 @@ class Combo5 : Combo {
     internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four) && Match(Re5, five);
     }
-
-    // private WLine Transform1(IBlock block) {
-    //     WLine line = (WLine) block;
-    //     WText text = (WText) line.Contents.First();
-    //     WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
-    //     return new WLine(line, new List<IInline>(1) { ct });
-    // }
 
     internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
         return new List<ILine>(5) {
@@ -86,7 +85,6 @@ class Combo3 : Combo {
     public Regex Re1 { get; init; }
     public Regex Re2 { get; init; }
     public Regex Re3 { get; init; }
-    // public Court Court { get; init; }
 
     internal static Combo3[] combos = new Combo3[] {
         new Combo3 {
@@ -153,11 +151,46 @@ class Combo3 : Combo {
 
 }
 
+class Combo1_2 : Combo {
+
+    public Regex Re1 { get; init; }
+    public Regex Re2 { get; init; }
+    public Regex Re3 { get; init; }
+
+    internal static Combo1_2[] combos = new Combo1_2[] {
+        new Combo1_2 {
+            Re1 = new Regex(@"^IN THE COURT OF APPEAL$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^ON APPEAL FROM THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),   // no apostrophe in EWHC/Admin/2009/573
+            Re3 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Court = Courts.CoA_Civil
+        }
+    };
+
+    internal bool Match(IBlock one, IBlock two, IBlock three) {
+        return Match(Re1, one) && Match(Re2, two) && Match(Re3, three);
+    }
+
+    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
+        return new List<ILine>(3) {
+            Transform1(one), (ILine) two, (ILine) three
+        };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
+        foreach (Combo1_2 combo in Combo1_2.combos)
+            if (combo.Match(one, two, three))
+                return combo.Transform(one, two, three);
+        return null;
+
+    }
+
+
+}
+
 class Combo2 : Combo {
 
     public Regex Re1 { get; init; }
     public Regex Re2 { get; init; }
-    // public Court Court { get; init; }
 
     internal static Combo2[] combos = new Combo2[] {
         new Combo2 {
@@ -204,6 +237,11 @@ class Combo2 : Combo {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex("ADMINISTRATIVE DIVISION"),
             Court = Courts.EWHC_QBD_Admin
+        },
+        new Combo2 {    // EWHC/Comm/2009/2472
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$"),
+            Re2 = new Regex(@"^COMMERCIAL COURT$"),
+            Court = Courts.EWHC_Commercial
         }
     };
 
@@ -223,18 +261,6 @@ class Combo2 : Combo {
 class Combo1 : Combo {
 
     public Regex Re { get; init; }
-    // public Court Court { get; init; }
-
-    // internal bool IsMatch(IBlock block) {
-    //     return Combo5.Match(Re, block);
-    // }
-
-    // internal WLine Transform(IBlock block) {
-    //     WLine line = (WLine) block;
-    //     WText text = (WText) line.Contents.First();
-    //     WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
-    //     return new WLine(line, new List<IInline>(1) { ct });
-    // }
 
     internal static Combo1[] combos = new Combo1[] {
         new Combo1 {
@@ -340,6 +366,12 @@ class CourtType : Enricher {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 IBlock block3 = blocks.ElementAt(i + 2);
                 List<ILine> three = Match3(block1, block2, block3);
+                if (three is not null) {
+                    enriched.AddRange(three);
+                    i += 3;
+                    break;
+                }
+                three = Combo1_2.MatchAny(block1, block2, block3);
                 if (three is not null) {
                     enriched.AddRange(three);
                     i += 3;

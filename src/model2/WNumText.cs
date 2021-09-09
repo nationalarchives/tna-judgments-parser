@@ -125,9 +125,9 @@ internal class WNumText : IFormattedText {
     } }
 
     public string BackgroundColor { get {
-        StringValue color = props?.Shading?.Color;
+        StringValue color = props?.Shading?.Fill;
         if (color is null)
-            color = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Shading?.Color);
+            color = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Shading?.Fill);
         return color?.Value;
     } }
 
