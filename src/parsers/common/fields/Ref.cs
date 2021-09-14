@@ -14,8 +14,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class Ref {
 
-    // private static string regex = @"^ REF ([_A-Za-z0-9]+)( \\r)?( \\n)?( \\p)?( \\w)?( \\h)?( \\\* MERGEFORMAT)? $";
-    private static string pattern = @"^ REF ([_A-Za-z0-9]+)( \\?[hnrpw])*( \\\* MERGEFORMAT)? $";
+    private static string pattern = @"^ REF ([_A-Za-z0-9]+)( ?\\?[hnrpw])*( \\\* MERGEFORMAT)? $";  // no space before switch in EWHC/Ch/2015/448
 
     internal static bool Is(string fieldCode) {
         return fieldCode.StartsWith(" REF ");

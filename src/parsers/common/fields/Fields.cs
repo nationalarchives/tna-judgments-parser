@@ -42,31 +42,31 @@ class Fields {
             return false;
         if (!e.ChildElements.Any(child => child is FieldCode || child.LocalName == "instrText"))
             return false;
-        if (!e.ChildElements.All(child => child is RunProperties || child is FieldCode))
+        if (!e.ChildElements.All(child => child is RunProperties || child is FieldCode || child.LocalName == "instrText" || child is TabChar))  // tab in EWHC/Ch/2015/448
             throw new Exception();
         return true;
     }
 
-    private static string GetFieldCode(OpenXmlElement e) {
+    internal static string GetFieldCode(OpenXmlElement e) {
         IEnumerable<FieldCode> fieldCodes = e.ChildElements.OfType<FieldCode>();
         if (fieldCodes.Count() != 1)
             throw new Exception();
         return fieldCodes.First().InnerText;
     }
 
-    internal static string Normalize(string fieldCode) {
-        return Regex.Replace(" " + fieldCode + " ", @"\s+", " ");
-    }
+    // internal static string Normalize(string fieldCode) {
+    //     return Regex.Replace(" " + fieldCode + " ", @"\s+", " ");
+    // }
 
-    internal static string ExtractRawFieldCode(Paragraph para) {
-        return para.Descendants<FieldCode>().Select(fc => fc.InnerText).Aggregate("", (acc, x) => acc + x);
-        // IEnumerable<string> codes = para.Descendants<FieldCode>().Select(fc => fc.InnerText);
-        // return string.Join("", codes);
-    }
-    internal static string ExtractAndNormalizeFieldCode(Paragraph para) {
-        string raw = ExtractRawFieldCode(para);
-        return Normalize(raw);
-    }
+    // internal static string ExtractRawFieldCode(Paragraph para) {
+    //     return para.Descendants<FieldCode>().Select(fc => fc.InnerText).Aggregate("", (acc, x) => acc + x);
+    //     // IEnumerable<string> codes = para.Descendants<FieldCode>().Select(fc => fc.InnerText);
+    //     // return string.Join("", codes);
+    // }
+    // internal static string ExtractAndNormalizeFieldCode(Paragraph para) {
+    //     string raw = ExtractRawFieldCode(para);
+    //     return Normalize(raw);
+    // }
 
     internal static IEnumerable<IInline> ParseFieldContents(MainDocumentPart main, List<OpenXmlElement> withinField) {
         if (withinField.Count == 0)
@@ -88,7 +88,7 @@ class Fields {
             fieldCode += GetFieldCode(next);
             i += 1;
         }
-        fieldCode = Normalize(fieldCode);
+        fieldCode = DOCX.Fields.NormalizeFieldCode(fieldCode);
         logger.LogDebug("field code: " + fieldCode);
         if (Advance.Is(fieldCode))
             return Advance.Parse(main, fieldCode, withinField.Skip(i));
