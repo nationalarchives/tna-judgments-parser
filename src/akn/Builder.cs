@@ -212,6 +212,8 @@ class Builder {
             AddParty(parent, party);
         else if (model is IParty2 party2)
             AddParty2(parent, party2);
+        else if (model is IRole role)
+            AddRole(parent, role);
         else if (model is IDocTitle docTitle)
             AddDocTitle(parent, docTitle);
         else if (model is IJudge judge)
@@ -247,8 +249,12 @@ class Builder {
     }
 
     private XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
-        XmlElement e = doc.CreateElement(name, ns);
-        parent.AppendChild(e);
+        XmlElement e = CreateAndAppend(name, parent);
+        TextAndFormatting(e, model);
+        return e;
+    }
+
+    private XmlElement TextAndFormatting(XmlElement e, IFormattedText model) {
         if (model.Style is not null)
             e.SetAttribute("class", model.Style);
         Dictionary<string, string> styles = model.GetCSSStyles();
@@ -340,6 +346,21 @@ class Builder {
         if (model.Role.HasValue)
             party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
         AddOrWrapText(party, model.Contents);
+    }
+
+    private void AddRole(XmlElement parent, IRole model) {
+        XmlElement role = CreateAndAppend("role", parent);
+        role.SetAttribute("refersTo", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
+        if (model.Contents.All(inline => inline is IFormattedText)) {
+            if (model.Contents.Count() == 1) {
+                TextAndFormatting(role, model.Contents.Cast<IFormattedText>().First());
+            } else {
+                AddOrWrapText(role, model.Contents.Cast<IFormattedText>());
+            }
+        } else {
+            foreach (IInline inline in model.Contents)
+                AddInline(role, inline);
+        }
     }
 
     private void AddDocTitle(XmlElement parent, IDocTitle model) {

@@ -135,11 +135,17 @@ class Combo3 : Combo {
             Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Commercial
         },
-        new Combo3 {    // EWHC/Comm/2009/2941
+        new Combo3 {    // EWHC/Comm/2009/2941, EWHC/Comm/2004/2750
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
+            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Commercial
+        },
+        new Combo3 {    // EWHC/Admin/2004/1441
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^DIVISIONAL COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD // ???
         }
     };
 
@@ -199,11 +205,11 @@ class Combo2 : Combo {
     public Regex Re2 { get; init; }
 
     internal static Combo2[] combos = new Combo2[] {
-        // new Combo2 {
-        //     Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-        //     Re2 = new Regex("^(IN THE )?QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
-        //     Court = Courts.EWHC_QBD
-        // },
+        new Combo2 {    // EWHC/QB/2010/389
+            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^(IN THE )?QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
+        },
         new Combo2 {
             Re1 = new Regex("^IN THE HIGH COURT \\(DIVISIONAL\\) COURT &$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^COURT OF APPEAL \\(CIVIL DIVISION\\)", RegexOptions.IgnoreCase),
