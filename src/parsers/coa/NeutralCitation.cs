@@ -10,8 +10,8 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 class NetrualCitation : Enricher {
 
     private static readonly string[] patterns = {
-        @"^ ?Neutral Citation( Number| No)?[:\.]? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^Neutral Citation( Number| No)?:? *(\[\d{4}\] EWHC +\d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
+        @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
+        @"^Neutral [Cc]itation( +[Nn]umber| No)?:? *(\[\d{4}\] EWHC +\d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC))",  // EWHC/Admin/2003/301
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
@@ -47,7 +47,6 @@ class NetrualCitation : Enricher {
         string before = text.Substring(0, group.Index);
         string during = group.Value;
         string after = text.Substring(group.Index + group.Length);
-        IInline[] replacement;
         if (string.IsNullOrEmpty(after))
             return new IInline[] {
                 new WText(before, rProps),
@@ -88,7 +87,7 @@ class NetrualCitation : Enricher {
                         return Enumerable.Concat(replacement, rest).Prepend(first);
                     }
                 }
-                if (fText1.Text == "Neutral Citation Number: [" || fText1.Text == "Neutral Citation Number:  [") {  // EWHC/Admin/2004/584, EWHC/Admin/2014/1564
+                if (fText1.Text == "Neutral Citation Number: [" || fText1.Text == "Neutral Citation Number:  [" || fText1.Text == "Neutral Citation No. [") {  // EWHC/Admin/2004/584, EWHC/Admin/2014/1564, EWHC/Ch/2009/1908
                     Group group = Match2("[" + fText2.Text);
                     if (group is not null) {
                         WText label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);

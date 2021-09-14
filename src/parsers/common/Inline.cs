@@ -35,7 +35,7 @@ class Inline {
             if (Fields.IsFieldStart(e)) {
                 if (withinField is null) {
                     withinField = new List<OpenXmlElement>();
-                } else if (withinField.First() is not null && Fields.IsFieldCode(withinField.First()) && Fields.GetFieldCode(withinField.First()).StartsWith("tc ")) {  // EWHC/Ch/2015/448
+                } else if (withinField.First() is not null && Fields.IsFieldCode(withinField.First()) && (Fields.GetFieldCode(withinField.First()).StartsWith("tc ") || Fields.GetFieldCode(withinField.First()).TrimStart().StartsWith("TOC "))) {  // EWHC/Ch/2015/448, EWHC/Comm/2011/2067
                     logger.LogWarning("field within field");
                     enumerator.MoveNext();
                     e = enumerator.Current;
@@ -170,6 +170,7 @@ class Inline {
             if (e is SimpleField fldSimple) { // EWHC/Admin/2006/983
                 var p = Fields.ParseSimple(main, fldSimple);
                 parsed.AddRange(p);
+                continue;
             }
             throw new Exception();
         }

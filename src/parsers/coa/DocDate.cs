@@ -160,7 +160,8 @@ class DocDate : Enricher {
     private static readonly string[] cardinalDatePatterns1 = {
         @"^(\s*Date: *)?\d{1,2}/\d{1,2}/\d{4}( *)$",
         @"^(\s*Date:? *)?\d{1,2}\.\d{1,2}\.\d{4}( *)$",
-        @"^(\s*Date: *)?\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        /* add other month abbreviations */
+        @"^(\s*Date: *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
     private static readonly string[] twoDigitYearCardinalDatePatterns = {
         @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"

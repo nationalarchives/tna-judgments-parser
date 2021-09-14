@@ -264,6 +264,14 @@ internal class WParty2 : IParty2 {
 
 }
 
+internal class WRole : IRole {
+
+    public IEnumerable<IInline> Contents { get; init; }
+
+    public PartyRole Role { get; init; }
+
+}
+
 internal class WDocTitle : WText, IDocTitle {
 
     public WDocTitle(WText text) : base(text.Text, text.properties) { }
