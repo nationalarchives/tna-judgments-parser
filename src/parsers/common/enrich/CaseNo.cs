@@ -109,16 +109,19 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] ([A-Z]{2} [0-9]{2} [A-Z][0-9]+)$"),    // EWHC/Ch/2004/1487
         new Regex(@"^Case No: ([A-Z]\d / \d{4} / \d+)$"),    // EWCA/Civ/2010/657
         new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}), "),
-        new Regex(@"^Case No[:\.] (\d+ of \d{4})$"),
+        new Regex(@"^Case No[:\.] (\d{4} \d{5,} [A-Z]\d)"),    // EWCA/Crim/2015/1612
+        new Regex(@"^Case No[:\.] (\d+ of \d{4})$", RegexOptions.IgnoreCase),   // EWHC/Ch/2009/1961
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
-        new Regex(@"^Case No: (\d{4} Folio \d+)$"),
+        new Regex(@"^Case No: (\d{4} Folio \d+)$", RegexOptions.IgnoreCase),    // , EWHC/Comm/2012/571
         new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$"), // EWHC/Admin/2008/2214
+        new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase), // EWCA/Civ/2009/651
         new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,});", RegexOptions.IgnoreCase), // EWHC/Admin/2015/715
-        new Regex(@"^Case No\. ([A-Z]\d{4} \d+, SCCO Ref: \d+/\d+) *$") // EWHC/Costs/2010/90172
+        new Regex(@"^Case No\. ([A-Z]\d{4} \d+, SCCO Ref: \d+/\d+) *$"), // EWHC/Costs/2010/90172
+        new Regex(@"^Ref: ([A-Z0-9]{7,}) *$") // EWHC/Ch/2011/3553
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
-        new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}) [&/] ([A-Z][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase)  // EWHC/Ch/2014/4918
+        new Regex(@"^Case No[:\.] ([A-Z0-9/-]{7,}) [&/] ([A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase)  // EWHC/Ch/2014/4918
     };
 
     private WLine EnrichLine(WLine line) {

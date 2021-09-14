@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using DocumentFormat.OpenXml.Wordprocessing;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class NetrualCitation : Enricher {
 
     private static readonly string[] patterns = {
-        @"^Neutral Citation( Number| No)?[:\.]? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^Neutral Citation( Number| No)?:? *(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
+        @"^ ?Neutral Citation( Number| No)?[:\.]? (\[\d{4}\] EWCA (Civ|Crim) \d+)",
+        @"^Neutral Citation( Number| No)?:? *(\[\d{4}\] EWHC +\d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC))",  // EWHC/Admin/2003/301
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
@@ -41,24 +43,25 @@ class NetrualCitation : Enricher {
         return null;
     }
 
-    private static IInline[] Replace(WText fText, Group group) {
-        string before = fText.Text.Substring(0, group.Index);
+    private static IInline[] Replace(string text, Group group, RunProperties rProps) {
+        string before = text.Substring(0, group.Index);
         string during = group.Value;
-        string after = fText.Text.Substring(group.Index + group.Length);
+        string after = text.Substring(group.Index + group.Length);
         IInline[] replacement;
-        if (string.IsNullOrEmpty(after)) {
-            replacement = new IInline[] {
-                new WText(before, fText.properties),
-                new WNeutralCitation(during, fText.properties)
+        if (string.IsNullOrEmpty(after))
+            return new IInline[] {
+                new WText(before, rProps),
+                new WNeutralCitation(during, rProps)
             };
-        } else {
-            replacement = new IInline[] {
-                new WText(before, fText.properties),
-                new WNeutralCitation(during, fText.properties),
-                new WText(after, fText.properties)
-            };
-        }
-        return replacement;
+        return new IInline[] {
+            new WText(before, rProps),
+            new WNeutralCitation(during, rProps),
+            new WText(after, rProps)
+        };
+    }
+
+    private static IInline[] Replace(WText fText, Group group) {
+        return Replace(fText.Text, group, fText.properties);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
@@ -85,7 +88,7 @@ class NetrualCitation : Enricher {
                         return Enumerable.Concat(replacement, rest).Prepend(first);
                     }
                 }
-                if (fText1.Text == "Neutral Citation Number: [") {  // EWHC/Admin/2004/584
+                if (fText1.Text == "Neutral Citation Number: [" || fText1.Text == "Neutral Citation Number:  [") {  // EWHC/Admin/2004/584, EWHC/Admin/2014/1564
                     Group group = Match2("[" + fText2.Text);
                     if (group is not null) {
                         WText label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);
@@ -101,6 +104,16 @@ class NetrualCitation : Enricher {
                         WNeutralCitation nc = new WNeutralCitation(fText2.Text.Substring(2), fText2.properties);
                         IEnumerable<IInline> rest = line.Skip(2);
                         return new List<IInline>(3) { fText1, split, nc }.Concat(rest);
+                    }
+                }
+                if (fText2.Text == ")") {   // EWHC/Ch/2011/3553
+                    string text = fText1.Text + fText2.Text;
+                    Group group = Match(text);
+                    if (group is not null) {
+                        IInline[] replacement = Replace(text, group, fText1.properties);
+                        IEnumerable<IInline> rest = line.Skip(1);
+                        return Enumerable.Concat(replacement, rest);
+
                     }
                 }
             }

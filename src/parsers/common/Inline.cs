@@ -19,7 +19,9 @@ class Inline {
     public static IEnumerable<IInline> ParseRuns(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
         List<IInline> parsed = new List<IInline>();
         List<OpenXmlElement> withinField = null;
-        foreach (OpenXmlElement e in elements) {
+        IEnumerator<OpenXmlElement> enumerator = elements.GetEnumerator();
+        while (enumerator.MoveNext()) {
+            OpenXmlElement e = enumerator.Current;
             if (e is ParagraphProperties)
                 continue;
             if (e is ProofError)
@@ -31,12 +33,19 @@ class Inline {
             if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkEnd")
                 continue;
             if (Fields.IsFieldStart(e)) {
-                if (withinField is not null) {
-                    logger.LogWarning("field start before previous ending");
-                    IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
-                    parsed.AddRange(parsedFieldContents);
+                if (withinField is null) {
+                    withinField = new List<OpenXmlElement>();
+                } else if (withinField.First() is not null && Fields.IsFieldCode(withinField.First()) && Fields.GetFieldCode(withinField.First()).StartsWith("tc ")) {  // EWHC/Ch/2015/448
+                    logger.LogWarning("field within field");
+                    enumerator.MoveNext();
+                    e = enumerator.Current;
+                    while (!Fields.IsFieldEnd(e)) {
+                        enumerator.MoveNext();
+                        e = enumerator.Current;
+                    }
+                } else {
+                    throw new Exception();
                 }
-                withinField = new List<OpenXmlElement>();
                 continue;
             }
             if (Fields.IsFieldSeparater(e)) {
@@ -57,7 +66,7 @@ class Inline {
             }
             if (Fields.IsFieldCode(e)) {
                 if (withinField is null)
-                    throw new Exception();
+                    throw new Exception(e.InnerText);
                 withinField.Add(e);
                 continue;
             }
