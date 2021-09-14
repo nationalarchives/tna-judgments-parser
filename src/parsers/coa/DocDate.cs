@@ -70,7 +70,7 @@ class DocDate : Enricher {
                         string pattern2 = @"^(st|nd|rd|th)$";
                         string pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
                         Match match1 = Regex.Match(fText1.Text, pattern1);
-                        Match match2 = Regex.Match(fText2.Text, pattern2);
+                        Match match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
                         Match match3 = Regex.Match(fText3.Text, pattern3);
                         if (match1.Success && match2.Success && match3.Success) {
                             string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
@@ -92,7 +92,7 @@ class DocDate : Enricher {
                         /* difference here is only spacing */ // EWHC/Fam/2014/1768, EWCA/Civ/2003/1048
                         pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$";
                         match1 = Regex.Match(fText1.Text, pattern1);
-                        match2 = Regex.Match(fText2.Text, pattern2);
+                        match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
                         match3 = Regex.Match(fText3.Text, pattern3);
                         if (match1.Success && match2.Success && match3.Success) {
                             string dayMonthYear = match1.Groups[3].Value + fText3.Text;
@@ -124,7 +124,7 @@ class DocDate : Enricher {
                         /* difference here is only spacing */
                         pattern2 = @"^(st|nd|rd|th) +$";
                         pattern3 = @"^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
-                        match2 = Regex.Match(fText2.Text, pattern2);
+                        match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
                         match3 = Regex.Match(fText3.Text, pattern3);
                         if (match1.Success && match2.Success && match3.Success) {
                             string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
@@ -170,6 +170,9 @@ class DocDate : Enricher {
     };
     private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
         @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$"
+    };
+    private static readonly string[] ordinalDatePatterns3 = {   // EWHC/Admin/2014/1564
+        @"^(\s*Date: *)?(\d{1,2})(st|nd|rd|th) +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
     };
 
     private static readonly string[] doubleCardinalDatePatterns = { // EWCA/Civ/2003/607
@@ -230,6 +233,24 @@ class DocDate : Enricher {
                 contents.Add(new WDocDate(main, fText.properties, dt));
                 if (after.Length > 0)
                     contents.Add(new WText(after, fText.properties));
+                return contents;
+            }
+        }
+        foreach (string pattern in ordinalDatePatterns3) {
+            Match match = Regex.Match(fText.Text, pattern);
+            if (match.Success) {
+                Group before = match.Groups[1];
+                Group after = match.Groups[match.Groups.Count-1];
+                string main = fText.Text.Substring(before.Length, after.Index - before.Length);
+                string cardinal = match.Groups[2].Value + " " + fText.Text.Substring(match.Groups[4].Index);
+                DateTime dt = DateTime.Parse(cardinal, culture);
+                WDocDate dd = new WDocDate(main, fText.properties, dt);
+                List<IInline> contents = new List<IInline>(3);
+                if (before.Length > 0)
+                    contents.Add(new WText(before.Value, fText.properties));
+                contents.Add(dd);
+                if (after.Length > 0)
+                    contents.Add(new WText(after.Value, fText.properties));
                 return contents;
             }
         }

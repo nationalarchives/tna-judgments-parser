@@ -196,8 +196,7 @@ abstract class AbstractParser {
     protected bool StartsWithTitledJudgeName(OpenXmlElement e) {
         if (e is not Paragraph p)
             return false;
-        Paragraph p2 = DOCX.Fields.CloneAndRemoveFieldCodes(p);
-        string text = p2.InnerText;
+        string text = DOCX.Fields.ExtractInnerTextExcludingFieldCodes(p);
         return StartsWithTitledJudgeName(text);
     }
 

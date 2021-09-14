@@ -90,7 +90,7 @@ class Combo3 : Combo {
         new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),   // no apostrophe in EWHC/Admin/2009/573
-            Re3 = new Regex("^ADMINISTRATIVE COURT$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^(THE )?ADMINISTRATIVE COURT$", RegexOptions.IgnoreCase),  // "THE" in EWHC/Admin/2006/1205
             Court = Courts.EWHC_QBD_Admin
         },
         new Combo3 {
@@ -132,6 +132,12 @@ class Combo3 : Combo {
         new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND? WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
+            Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Commercial
+        },
+        new Combo3 {    // EWHC/Comm/2009/2941
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
             Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Commercial
         }
@@ -193,11 +199,11 @@ class Combo2 : Combo {
     public Regex Re2 { get; init; }
 
     internal static Combo2[] combos = new Combo2[] {
-        new Combo2 {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^(IN THE )?QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_QBD
-        },
+        // new Combo2 {
+        //     Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
+        //     Re2 = new Regex("^(IN THE )?QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+        //     Court = Courts.EWHC_QBD
+        // },
         new Combo2 {
             Re1 = new Regex("^IN THE HIGH COURT \\(DIVISIONAL\\) COURT &$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^COURT OF APPEAL \\(CIVIL DIVISION\\)", RegexOptions.IgnoreCase),
