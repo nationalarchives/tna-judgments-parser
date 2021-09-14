@@ -8,6 +8,12 @@ namespace UK.Gov.Legislation.Judgments {
 
 interface IInline { }
 
+interface IInlineContainer : IInline {
+
+    IEnumerable<IInline> Contents { get; init; }
+
+}
+
 enum SuperSubValues { Baseline, Superscript, Subscript }
 
 interface IFontInfo {
@@ -222,22 +228,20 @@ interface IParty : IInline {
 
 }
 
-interface IParty1 : IFormattedText, IParty {
-
-    // new string Name { get => IParty.GetName(this.Text); }
-
-}
+interface IParty1 : IFormattedText, IParty { }
 
 interface IParty2 : IParty {
-
-    // new string Name { get {
-    //     string text = string.Join("", this.Contents.Select(text => text.Text));
-    //     return IParty1.GetName(text);
-    // } }
 
     IEnumerable<IFormattedText> Contents { get; }
 
 }
+
+interface IRole : IInlineContainer {
+
+    PartyRole Role { get; }
+
+}
+
 
 interface IDocTitle : IFormattedText { }
 

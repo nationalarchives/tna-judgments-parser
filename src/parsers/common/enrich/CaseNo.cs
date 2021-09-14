@@ -113,15 +113,18 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$", RegexOptions.IgnoreCase),   // EWHC/Ch/2009/1961
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
         new Regex(@"^Case No: (\d{4} Folio \d+)$", RegexOptions.IgnoreCase),    // , EWHC/Comm/2012/571
+        new Regex(@"^(\d{4} Folio No\. \d+)$"),    // EWHC/Comm/2004/2750
         new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$"), // EWHC/Admin/2008/2214
         new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase), // EWCA/Civ/2009/651
         new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,});", RegexOptions.IgnoreCase), // EWHC/Admin/2015/715
         new Regex(@"^Case No\. ([A-Z]\d{4} \d+, SCCO Ref: \d+/\d+) *$"), // EWHC/Costs/2010/90172
-        new Regex(@"^Ref: ([A-Z0-9]{7,}) *$") // EWHC/Ch/2011/3553
+        new Regex(@"^Ref: ([A-Z0-9]{7,}) *$"), // EWHC/Ch/2011/3553
+        new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$")   // EWHC/Comm/2017/1198
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
-        new Regex(@"^Case No[:\.] ([A-Z0-9/-]{7,}) [&/] ([A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase)  // EWHC/Ch/2014/4918
+        new Regex(@"^Case No[:\.] ([A-Z0-9/-]{7,}) [&/] ([A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase),  // EWHC/Ch/2014/4918
+        new Regex(@"Cases No: (\d{4} FOLIO \d+) and (\d{4} FOLIO \d+)") // EWHC/Comm/2013/2793
     };
 
     private WLine EnrichLine(WLine line) {
