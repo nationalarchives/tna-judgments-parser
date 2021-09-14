@@ -115,12 +115,14 @@ class Numbering2 {
 
         Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
         if (match.Success) {
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            string num = FormatN(n, lvl.NumberingFormat);
-            return num;
+            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+            // int start = lvl.StartNumberingValue?.Val ?? 1;
+            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            // string num = FormatN(n, lvl.NumberingFormat);
+            // return num;
+            OneCombinator combine = num => num ;
+            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.$");
         if (match.Success) {
@@ -250,16 +252,18 @@ class Numbering2 {
 
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, OneCombinator combine) {
         int ilvl = int.Parse(match.Groups[1].Value) - 1;
-        Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-        int start = lvl.StartNumberingValue?.Val ?? 1;
-        int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-        string num = FormatN(n, lvl.NumberingFormat);
-        return combine(num);
+        return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
+        // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+        // int start = lvl.StartNumberingValue?.Val ?? 1;
+        // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+        // string num = FormatN(n, lvl.NumberingFormat);
+        // return combine(num);
     }
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
         int start = lvl.StartNumberingValue?.Val ?? 1;
         int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+        n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);  // EWHC/Ch/2011/3553
         string num = FormatN(n, lvl.NumberingFormat);
         return combine(num);
     }
@@ -428,30 +432,36 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + lvlText);
     }
 
-    private static int GetNForLevel(MainDocumentPart main, Paragraph paragraph, int numberingId, int levelNum, int start) {
-        int count = 0;
-        Paragraph previous = paragraph.PreviousSibling<Paragraph>();
-        while (previous != null) {
-            NumberingProperties prevProps = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
-            if (prevProps is not null) {
-                int? id2 = prevProps.NumberingId?.Val?.Value;
-                if (numberingId.Equals(id2)) {
-                    int level2 = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
-                    if (level2 == levelNum)
-                        count += 1;
-                    if (level2 < levelNum)
-                        break;
-                }
-            }
-            previous = previous.PreviousSibling<Paragraph>();
-        }
-        return start + count;
-    }
+    // private static int GetNForLevel(MainDocumentPart main, Paragraph paragraph, int numberingId, int levelNum, int start) {
+    //     int count = 0;
+    //     Paragraph previous = paragraph.PreviousSibling<Paragraph>();
+    //     while (previous != null) {
+    //         NumberingProperties prevProps = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
+    //         if (prevProps is not null) {
+    //             int? id2 = prevProps.NumberingId?.Val?.Value;
+    //             if (numberingId.Equals(id2)) {
+    //                 int level2 = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
+    //                 if (level2 == levelNum)
+    //                     count += 1;
+    //                 if (level2 < levelNum)
+    //                     break;
+    //             }
+    //         }
+    //         previous = previous.PreviousSibling<Paragraph>();
+    //     }
+    //     return start + count;
+    // }
 
-    private static int GetNForLevelBasedOnAbstractId(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum, int start) {
+    internal static int GetNForLevelBasedOnAbstractId(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum, int start) {
         int count = 0;
         Paragraph previous = paragraph.PreviousSibling<Paragraph>();
         while (previous != null) {
+
+            if (previous.ChildElements.All(child => child is ParagraphProperties)) {  // EWHC/Ch/2011/3553
+                previous = previous.PreviousSibling<Paragraph>();
+                continue;
+            }
+
             NumberingProperties props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
             if (props2 is null) {
                 previous = previous.PreviousSibling<Paragraph>();
