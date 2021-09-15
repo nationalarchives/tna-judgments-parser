@@ -215,14 +215,7 @@ class Inline {
     }
     internal static IEnumerable<IInline> MapRunChildren(MainDocumentPart main, OpenXmlUnknownElement run) {
         OpenXmlElement rPropsRaw = run.ChildElements.Where(e => e.LocalName == "rPr").FirstOrDefault();
-        RunProperties rProps;
-        if (rPropsRaw is null)
-            rProps = null;
-        else {
-            rProps = new RunProperties2(rPropsRaw);
-            // rProps = new RunProperties(rPropsRaw.OuterXml);
-            // rPropsRaw.AppendChild(rProps);
-        }
+        RunProperties rProps = rPropsRaw is null ? null : new RunProperties2(rPropsRaw);
         return run.ChildElements
             .Where(e => e.LocalName != "rPr")
             .Select(e => MapRunChild(main, rProps, e))
@@ -264,7 +257,7 @@ class Inline {
             return null;
         if (e is FieldChar || e is FieldCode)
             return null;
-        if (e is LastRenderedPageBreak)
+        if (e is LastRenderedPageBreak || e.LocalName == "lastRenderedPageBreak")
             return null;
         if (e is FootnoteReferenceMark)
             return null;
