@@ -143,9 +143,9 @@ class Metadata {
             }
             foreach (PartyRole role in roles) {
                 XmlElement org = append(doc, references, "TLCRole");
-                org.SetAttribute("eId", Enum.GetName(typeof(PartyRole), role).ToLower());
+                org.SetAttribute("eId", role.EId());
                 org.SetAttribute("href", "");
-                org.SetAttribute("showAs", Enum.GetName(typeof(PartyRole), role));
+                org.SetAttribute("showAs", role.ShowAs());
             }
 
             IEnumerable<IJudge> judges = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IJudge>();

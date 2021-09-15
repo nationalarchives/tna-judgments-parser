@@ -332,7 +332,7 @@ class Builder {
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);
         if (model.Role.HasValue)
-            party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
+            party.SetAttribute("as", "#" + ((PartyRole) model.Role).EId());
         Dictionary<string, string> styles = model.GetCSSStyles();
         if (styles.Count > 0)
             party.SetAttribute("style", CSS.SerializeInline(styles));
@@ -344,13 +344,13 @@ class Builder {
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);
         if (model.Role.HasValue)
-            party.SetAttribute("as", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
+            party.SetAttribute("as", "#" + ((PartyRole) model.Role).EId());
         AddOrWrapText(party, model.Contents);
     }
 
     private void AddRole(XmlElement parent, IRole model) {
         XmlElement role = CreateAndAppend("role", parent);
-        role.SetAttribute("refersTo", "#" + Enum.GetName(typeof(PartyRole), model.Role).ToLower());
+        role.SetAttribute("refersTo", "#" + ((PartyRole) model.Role).EId());
         if (model.Contents.All(inline => inline is IFormattedText)) {
             if (model.Contents.Count() == 1) {
                 TextAndFormatting(role, model.Contents.Cast<IFormattedText>().First());
