@@ -68,7 +68,7 @@ class DocDate : Enricher {
                     if (third is WText fText3) {
                         string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? )?(\d{1,2})$";
                         string pattern2 = @"^(st|nd|rd|th)$";
-                        string pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
+                        string pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December),? \d{4}$";    // comma after month in EWHC/Admin/2018/2410
                         Match match1 = Regex.Match(fText1.Text, pattern1);
                         Match match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
                         Match match3 = Regex.Match(fText3.Text, pattern3);
