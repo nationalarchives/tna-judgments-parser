@@ -9,7 +9,7 @@ class Logging {
 
     internal static ILoggerFactory Factory = LoggerFactory.Create(builder => { builder
         .AddConsole()
-        .AddFile("judgments.log")
+        .AddFile("logs/judgments.log")
         .SetMinimumLevel(LogLevel.Debug);
     });
 
