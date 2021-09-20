@@ -34,21 +34,21 @@ class WMetadata : IMetadata {
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[4].Value;
             }
-            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) +(\d+) \([A-Z][a-z]+\)$");
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) +(\d+) \(([A-Z][a-z]+)\)$");
             if (match1.Success) {
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
-            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+) [A-Z][a-z]+$"); // EWHC/Admin/2003/301
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+) ([A-Z][a-z]+)$"); // EWHC/Admin/2003/301
             if (match1.Success) {
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
-            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCH) (\d+) \([A-Z][a-z]+\)$"); // EWHC/Admin/2006/2373
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCH) (\d+) \(([A-Z][a-z]+)\)$"); // EWHC/Admin/2006/2373
             if (match1.Success) {
-                return "EWHC".ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+                return "EWHC".ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
-            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+) \([A-Z]+\)$");
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+) \(([A-Z]+)\)$");
             if (match1.Success) {
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
             match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+)$"); // is this valid? EWHC/Admin/2004/584
             if (match1.Success) {
