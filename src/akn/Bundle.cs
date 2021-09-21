@@ -16,6 +16,9 @@ public interface ILazyBundle {
 
 }
 
+
+
+
 internal class Bundle : ILazyBundle {
 
     private readonly WordprocessingDocument doc;
