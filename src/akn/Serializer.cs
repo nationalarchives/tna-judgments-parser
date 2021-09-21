@@ -36,6 +36,7 @@ class Serializer {
                 SerializeElement(e);
             }
         }
+        writer.WriteRaw("\n");
         writer.Close();
     }
 

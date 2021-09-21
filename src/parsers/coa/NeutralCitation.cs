@@ -23,7 +23,7 @@ class NetrualCitation : Enricher {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
         @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
         // @"^(\[\d{4}\] EWHC \d+ (Admin|Ch|Comm|Fam|Pat|QB|TCC))",
-        @"^(\[\d{4}\] EWHC \d+)$"    // is this valid? EWHC/Admin/2004/584
+        // @"^(\[\d{4}\] EWHC \d+)$"    // is this valid? EWHC/Admin/2004/584
     };
 
     private static Group Match(string text) {

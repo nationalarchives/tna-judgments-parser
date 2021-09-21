@@ -1681,6 +1681,8 @@ class PartyEnricher : Enricher {
                         return line;
                     if (trimmed == "And")   // EWHC/Admin/2010/2
                         return line;
+                    if (trimmed == "- and-")    // EWHC/Comm/2016/146
+                        return line;
                     WParty party = new WParty(wText) { Role = role };
                     return new WLine(line, new List<IInline>(1) { party });
                 }
@@ -1707,6 +1709,8 @@ class PartyEnricher : Enricher {
                     if (trimmed == "- and -")
                         return line;
                     if (trimmed == "And")
+                        return line;
+                    if (trimmed == "- and-")
                         return line;
                     WParty party = new WParty(wText1) { Role = role };
                     return new WLine(line, new List<IInline>(2) { party, second });

@@ -29,7 +29,7 @@ class Tables {
             try {
                 double v = parse(above.InnerText);
                 value += v;
-            } catch (FormatException e) {
+            } catch (FormatException) {
                 // System.Console.WriteLine(e);
             }
             row = row.PreviousSibling<TableRow>();
