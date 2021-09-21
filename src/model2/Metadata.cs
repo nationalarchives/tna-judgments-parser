@@ -50,10 +50,10 @@ class WMetadata : IMetadata {
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
             }
-            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+)$"); // is this valid? EWHC/Admin/2004/584
-            if (match1.Success) {
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
-            }
+            // match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+)$"); // is this valid? EWHC/Admin/2004/584
+            // if (match1.Success) {
+            //     return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+            // }
             match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCOP) (\d+)$");
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;

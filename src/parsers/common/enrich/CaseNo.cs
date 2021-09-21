@@ -125,6 +125,7 @@ class CaseNo : Enricher {
     Regex[] loneTextRegexesWithTwoGroups = {
         new Regex(@"^Case No[:\.] ([A-Z0-9/-]{7,}) [&/] ([A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase),  // EWHC/Ch/2014/4918
         new Regex(@"^Case Nos?[:\.] ([A-Z0-9/-]{7,}), ([A-Z0-9/-]{7,}),?$", RegexOptions.IgnoreCase),  // EWCA/Civ/2008/19
+        new Regex(@"^Case Nos: ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]) and ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9])$"), // EWHC/Admin/2013/19
         new Regex(@"Cases No: (\d{4} FOLIO \d+) and (\d{4} FOLIO \d+)") // EWHC/Comm/2013/2793
     };
 
