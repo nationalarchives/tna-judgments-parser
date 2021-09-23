@@ -225,6 +225,11 @@ class Combo2 : Combo {
             Re2 = new Regex("CRIMINAL +DIVISION"),
             Court = Courts.CoA_Crim
         },
+        new Combo2 {    // EWHC/Ch/2008/2029
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex(@"\(Chancery Division\)"),
+            Court = Courts.EWHC_QBD_Chancery
+        },
         new Combo2 {
             Re1 = new Regex("IN THE HIGH COURTS? OF JUSTICE"),
             Re2 = new Regex("CHANCERY DIVISION"),
