@@ -113,13 +113,16 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$", RegexOptions.IgnoreCase),   // EWHC/Ch/2009/1961
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
         new Regex(@"^Case No: (\d{4} Folio \d+) *$", RegexOptions.IgnoreCase),    // , EWHC/Comm/2012/571, EWHC/Comm/2013/3920
+        new Regex(@"^Claim No: (\d{4} Folio \d+)$"),    // EWHC/Comm/2009/3386
         new Regex(@"^(\d{4} Folio No\. \d+)$"),    // EWHC/Comm/2004/2750
         new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$"), // EWHC/Admin/2008/2214
         new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase), // EWCA/Civ/2009/651
         new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,});", RegexOptions.IgnoreCase), // EWHC/Admin/2015/715
         new Regex(@"^Case No\. ([A-Z]\d{4} \d+, SCCO Ref: \d+/\d+) *$"), // EWHC/Costs/2010/90172
         new Regex(@"^Ref: ([A-Z0-9]{7,}) *$"), // EWHC/Ch/2011/3553
-        new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$")   // EWHC/Comm/2017/1198
+        new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$"),   // EWHC/Comm/2017/1198
+        new Regex(@"Case No: ([A-Z]{2}-[0-9]{2}-[A-Z]{2} \d{4})$"),   // EWHC/Ch/2004/2316
+        new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$") // EWHC/Ch/2003/812
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
@@ -130,7 +133,8 @@ class CaseNo : Enricher {
     };
 
     Regex[] loneTextRegexesWithThreeGroups = {
-        new Regex(@"^([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9] \(A\)); ([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9]); ([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9])$")  // EWCA/Civ/2004/122
+        new Regex(@"^([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9] \(A\)); ([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9]); ([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9])$"),  // EWCA/Civ/2004/122
+        new Regex(@"^Case Nos[:\.] ([0-9]{7} [A-Z][0-9]), ([0-9]{7} [A-Z][0-9]), ([0-9]{7} [A-Z][0-9]) *$", RegexOptions.IgnoreCase),  // EWCA/Crim/2010/2638
     };
 
 

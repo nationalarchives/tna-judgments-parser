@@ -38,24 +38,27 @@ class Metadata {
 
         List<IParty> parties = new List<IParty>();
         List<IDocTitle> docTitle = new List<IDocTitle>();
-        foreach (IBlock block in judgment.Header) {
-            if (block is ILine line) {
-                parties.AddRange(line.Contents.OfType<IParty>());
-                docTitle.AddRange(line.Contents.OfType<IDocTitle>());
+        IParty party1 = null;
+        IParty party2 = null;
+        if (includeReferences) {
+            foreach (IBlock block in judgment.Header) {
+                if (block is ILine line) {
+                    parties.AddRange(line.Contents.OfType<IParty>());
+                    docTitle.AddRange(line.Contents.OfType<IDocTitle>());
+                }
+                if (block is ITable table)
+                    foreach (IRow row in table.Rows)
+                        foreach (ICell cell in row.Cells)
+                            foreach (ILine line2 in cell.Contents.OfType<ILine>()) {
+                                parties.AddRange(line2.Contents.OfType<IParty>());
+                                docTitle.AddRange(line2.Contents.OfType<IDocTitle>());
+                            }
             }
-            if (block is ITable table)
-                foreach (IRow row in table.Rows)
-                    foreach (ICell cell in row.Cells)
-                        foreach (ILine line2 in cell.Contents.OfType<ILine>()) {
-                            parties.AddRange(line2.Contents.OfType<IParty>());
-                            docTitle.AddRange(line2.Contents.OfType<IDocTitle>());
-                        }
+            party1 = parties.FirstOrDefault();
+            party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
+            if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
+                party2 = parties.Last();
         }
-        IParty party1 = parties.FirstOrDefault();
-        IParty party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
-        if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
-            party2 = parties.Last();
-        // IEnumerable<IDocTitle> docTitle = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocTitle>();
 
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
