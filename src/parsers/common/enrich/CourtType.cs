@@ -95,19 +95,19 @@ class Combo3 : Combo {
         },
         new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Admin_Planning
         },
         new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^LONDON CIRCUIT COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Circuit_Commercial_Court
         },
         new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
@@ -137,7 +137,7 @@ class Combo3 : Combo {
         },
         new Combo3 {    // EWHC/Comm/2009/2941, EWHC/Comm/2004/2750
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),   // no appostrophe in EWHC/Comm/2003/3161
             Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Commercial
         },

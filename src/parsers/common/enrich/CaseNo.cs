@@ -90,6 +90,17 @@ class CaseNo : Enricher {
                     }
                 }
             }
+            if (line.Contents.Count() == 3) {   // EWHC/Admin/2009/3016
+                IInline first = line.Contents.First();
+                IInline second = line.Contents.Skip(1).First();
+                IInline third = line.Contents.Skip(2).First();
+                if (first is WText wText1 && second is WText wText2 && third is WText wText3) {
+                    if (wText1.Text == "Case No:" && wText2.Text == " " && Regex.IsMatch(wText3.Text, @"^[A-Z][A-Z0-9/-]{5,}[A-Z0-9]$")) {
+                        List<IInline> contents = new List<IInline>(3) { first, second, new WCaseNo(wText3.Text, wText3.properties) };
+                        return new WLine(line, contents);
+                    }
+                }
+            }
         }
         return Enrich(block);
     }

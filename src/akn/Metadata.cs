@@ -72,19 +72,18 @@ class Metadata {
         workAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
         XmlElement workCountry = append(doc, work, "FRBRcountry");
         workCountry.SetAttribute("value", "GB-UKM");
-        foreach (string caseNumber in metadata.CaseNos()) {
+        if (includeReferences) {
             XmlElement workNumber = append(doc, work, "FRBRnumber");
-            workNumber.SetAttribute("value", caseNumber);
+            workNumber.SetAttribute("value", metadata.Number.ToString());
+            if (party2 is not null) {
+                XmlElement workName = append(doc, work, "FRBRname");
+                workName.SetAttribute("value", party1.Name + " v. " + party2.Name);
+            } else if (docTitle.Any()) {
+                XmlElement workName = append(doc, work, "FRBRname");
+                string value = string.Join(" ", docTitle.Select(dt => dt.Text));
+                workName.SetAttribute("value", value);
+            }
         }
-        if (party2 is not null) {
-            XmlElement workName = append(doc, work, "FRBRname");
-            workName.SetAttribute("value", party1.Name + " v. " + party2.Name);
-        } else if (docTitle.Any()) {
-            XmlElement workName = append(doc, work, "FRBRname");
-            string value = string.Join(" ", docTitle.Select(dt => dt.Text));
-            workName.SetAttribute("value", value);
-        }
-
         XmlElement expression = append(doc, identification, "FRBRExpression");
         XmlElement expThis = append(doc, expression, "FRBRthis");
         expThis.SetAttribute("value", compId + "/eng");
@@ -166,17 +165,37 @@ class Metadata {
                 org.SetAttribute("showAs", lawyer.Name);
             }
 
-        }
+            XmlElement proprietary = append(doc, meta, "proprietary");
+            proprietary.SetAttribute("source", docId + "/eng/docx");
+            string ukns = "https:/judgments.gov.uk/";
+            proprietary.SetAttribute("xmlns:uk", ukns);
+            if (court is not null) {
+                XmlElement courtt = doc.CreateElement("court", ukns);
+                proprietary.AppendChild(courtt);
+                courtt.AppendChild(doc.CreateTextNode(((Court) metadata.Court()).Code.ToString()));
+            }
+            if (metadata.Year is not null) {
+                XmlElement year = doc.CreateElement("year", ukns);
+                proprietary.AppendChild(year);
+                year.AppendChild(doc.CreateTextNode(metadata.Year.ToString()));
+            }
+            if (metadata.Number is not null) {
+                XmlElement number = doc.CreateElement("number", ukns);
+                proprietary.AppendChild(number);
+                number.AppendChild(doc.CreateTextNode(metadata.Number.ToString()));
+            }
 
-        Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
-        if (styles is not null) {
-            XmlElement presentation = append(doc, meta, "presentation");
-            presentation.SetAttribute("source", docId + "/eng/docx");
-            XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
-            presentation.AppendChild(style);
-            style.AppendChild(doc.CreateTextNode("\n"));
-            string css = CSS.Serialize(styles);
-            style.AppendChild(doc.CreateTextNode(css));
+            Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
+            if (styles is not null) {
+                XmlElement presentation = append(doc, meta, "presentation");
+                presentation.SetAttribute("source", docId + "/eng/docx");
+                XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
+                presentation.AppendChild(style);
+                style.AppendChild(doc.CreateTextNode("\n"));
+                string css = CSS.Serialize(styles);
+                style.AppendChild(doc.CreateTextNode(css));
+            }
+
         }
 
         return meta;
@@ -197,6 +216,10 @@ class AttachmentMetadata : IComponentMetadata {
     }
 
     public Court? Court() { return prototype.Court(); }
+
+    public int? Year { get => prototype.Year; }
+
+    public int? Number { get => prototype.Number; }
 
     public string DocumentId() { return prototype.DocumentId(); }
 

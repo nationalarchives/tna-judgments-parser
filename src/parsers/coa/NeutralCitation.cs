@@ -21,9 +21,7 @@ class NetrualCitation : Enricher {
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
-        // @"^(\[\d{4}\] EWHC \d+ (Admin|Ch|Comm|Fam|Pat|QB|TCC))",
-        // @"^(\[\d{4}\] EWHC \d+)$"    // is this valid? EWHC/Admin/2004/584
+        @"^(\[\d{4}\] EWHC \d+ \((Admin|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))"
     };
 
     private static Group Match(string text) {
@@ -68,6 +66,8 @@ class NetrualCitation : Enricher {
             IInline first = line.First();
             if (first is WText fText) {
                 Group group = Match(fText.Text);
+                if (group is null)
+                    group = Match2(fText.Text);
                 if (group is not null) {
                     IInline[] replacement = Replace(fText, group);
                     IEnumerable<IInline> rest = line.Skip(1);
