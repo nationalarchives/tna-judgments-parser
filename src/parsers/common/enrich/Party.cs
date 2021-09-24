@@ -689,7 +689,7 @@ class PartyEnricher : Enricher {
             "First Defendant", "Second Defendant", "(FIRST DEFENDANT)", "(SECOND DEFENDANT)",
             "Defendant/Appellant", "Defendants/Appellants", "Appellant/Defendant", "Appellant/First Defendant",
             "Respondent", "Respondents", "(RESPONDENT)", "Defendant/Respondent", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Defendants",
-            "Interested Party", "Interested Parties"
+            "Interested Party", "Interested Parties", "(INTERESTED PARTIES)"
         };
         return secondPartyTypes.Contains(s);
     }
@@ -727,6 +727,7 @@ class PartyEnricher : Enricher {
                 return PartyRole.Respondent;
             case "Interested Party":
             case "Interested Parties":
+            case "(INTERESTED PARTIES)":
                 return PartyRole.InterestedParty;
             default:
                 throw new System.Exception();
