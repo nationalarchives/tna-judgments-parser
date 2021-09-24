@@ -53,9 +53,15 @@ class Serializer {
     }
 
     private void SerializeElement(XmlElement e) {
-        writer.WriteStartElement(e.Name, e.NamespaceURI);
+        if (e.Name == e.LocalName)
+            writer.WriteStartElement(e.Name, e.NamespaceURI);
+        else
+            writer.WriteStartElement(e.Prefix, e.LocalName, e.NamespaceURI);
         foreach (XmlAttribute attr in e.Attributes)
-            writer.WriteAttributeString(attr.Name, attr.Value);
+            if (attr.Name == attr.LocalName)
+                writer.WriteAttributeString(attr.Name, attr.Value);
+            else
+                writer.WriteAttributeString(attr.Prefix, attr.LocalName, null, attr.Value);
         if (blocks.Contains(e.LocalName))
             SerializeFlat(e);
         else if (e.NamespaceURI != ns)

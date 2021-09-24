@@ -7,6 +7,10 @@ interface IMetadata {
 
     Court? Court();
 
+    int? Year { get; }
+
+    int? Number { get; }
+
     string DocumentId();
 
     string Date();
