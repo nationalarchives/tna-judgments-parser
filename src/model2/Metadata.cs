@@ -26,7 +26,29 @@ class WMetadata : IMetadata {
         return Courts.ByCode[code];
     }
 
+    public int? Year { get {
+        string id = DocumentId();
+        if (id is null)
+            return null;
+        return int.Parse(Regex.Match(id, @"/(\d+)/\d+$").Groups[1].Value);
+    } }
+
+    public int? Number { get {
+        string id = DocumentId();
+        if (id is null)
+            return null;
+        return int.Parse(Regex.Match(id, @"/(\d+)$").Groups[1].Value);
+    } }
+
+    private string _id = null;
+    
     public string DocumentId() {
+        if (_id is null)
+            _id = MakeDocumentId();
+        return _id;
+    }
+
+    private string MakeDocumentId() {
         INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
         if (cite is not null) {
             Match match1;
