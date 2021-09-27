@@ -9,6 +9,8 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Metadata {
 
+    public static string ukns = "https:/judgments.gov.uk/";
+
     private static readonly string ns = Builder.ns;
 
     private static XmlElement append(XmlDocument doc, XmlElement parent, string name) {
@@ -167,7 +169,6 @@ class Metadata {
 
             XmlElement proprietary = append(doc, meta, "proprietary");
             proprietary.SetAttribute("source", docId + "/eng/docx");
-            string ukns = "https:/judgments.gov.uk/";
             proprietary.SetAttribute("xmlns:uk", ukns);
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("court", ukns);

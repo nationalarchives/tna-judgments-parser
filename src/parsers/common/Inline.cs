@@ -237,11 +237,11 @@ class Inline {
         if (e is SoftHyphen soft)
             return null;
         if (e is FootnoteReference)
-            logger.LogInformation("footnote reference");
+            logger.LogDebug("footnote reference");
         if (e is FootnoteReference fn)
             return new WFootnote(main, fn);
         if (e is EndnoteReference)
-            logger.LogInformation("endnote reference");
+            logger.LogDebug("endnote reference");
         if (e is EndnoteReference en)
             return new WFootnote(main, en);
         if (e is Drawing draw)
