@@ -49,7 +49,7 @@ class Numbering2 {
         /* None */
         if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
             if (!string.IsNullOrEmpty(format.Val.Value)) {  // EWHC/Ch/2014/4092 contains %
-                logger.LogInformation("None number format: " + format.Val.Value);
+                logger.LogDebug("None number format: " + format.Val.Value);
             }
             return "";
         }
@@ -87,11 +87,11 @@ class Numbering2 {
             if (format.Val.Value == "“")    // EWHC/Admin/2017/2461
                 return format.Val.Value;
             if (string.IsNullOrEmpty(format.Val.Value)) { // EWCA/Civ/2014/312
-                logger.LogInformation("empty bullet");
+                logger.LogDebug("empty bullet");
                 return "";
             }
             if (string.IsNullOrWhiteSpace(format.Val.Value)) {
-                logger.LogInformation("whitespace bullet: \"" + format.Val.Value + "\"");
+                logger.LogDebug("whitespace bullet: \"" + format.Val.Value + "\"");
                 return format.Val.Value;
             }
             if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null && baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
@@ -101,26 +101,20 @@ class Numbering2 {
 
         /* Other */
         if (string.IsNullOrEmpty(format.Val.Value)) {
-            logger.LogInformation("empty number");
+            logger.LogDebug("empty number");
             return "";
         }
         if (string.IsNullOrWhiteSpace(format.Val.Value)) {    // EWCA/Civ/2015/1262, WHC/Ch/2008/1978
-            logger.LogInformation("whitespace number: \"" + format.Val.Value + "\"");
+            logger.LogDebug("whitespace number: \"" + format.Val.Value + "\"");
             return format.Val.Value;
         }
         if (!format.Val.Value.Contains('%')) {    // EWCA/Civ/2003/1769
-            logger.LogInformation("static number: \"" + format.Val.Value + "\"");
+            logger.LogDebug("static number: \"" + format.Val.Value + "\"");
             return format.Val.Value;
         }
 
         Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
         if (match.Success) {
-            // int ilvl = int.Parse(match.Groups[1].Value) - 1;
-            // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-            // int start = lvl.StartNumberingValue?.Val ?? 1;
-            // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-            // string num = FormatN(n, lvl.NumberingFormat);
-            // return num;
             OneCombinator combine = num => num ;
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }

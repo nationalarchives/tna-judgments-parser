@@ -83,8 +83,12 @@ class CaseNo : Enricher {
                     pattern = @"^ *([A-Z0-9/]{10,}), +([A-Z0-9/]{10,}) *$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
-                        // Group g1 = match.Groups[1];
-                        // Group g2 = match.Groups[2];
+                        List<IInline> contents = Split(text, match.Groups);
+                        return new WLine(line, contents);
+                    }
+                    pattern = @"^([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]) & ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9])$"; // EWCA/Civ/2005/210
+                    match = Regex.Match(text.Text, pattern);
+                    if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
                         return new WLine(line, contents);
                     }
@@ -133,7 +137,8 @@ class CaseNo : Enricher {
         new Regex(@"^Ref: ([A-Z0-9]{7,}) *$"), // EWHC/Ch/2011/3553
         new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$"),   // EWHC/Comm/2017/1198
         new Regex(@"Case No: ([A-Z]{2}-[0-9]{2}-[A-Z]{2} \d{4})$"),   // EWHC/Ch/2004/2316
-        new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$") // EWHC/Ch/2003/812
+        new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$"), // EWHC/Ch/2003/812
+        new Regex(@"^Case No: ([A-Z]\d \d{4}/\d+)$") // EWCA/Civ/2006/1319
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {

@@ -48,7 +48,7 @@ public class CSS {
         AddFontSize(defaultCharacterStyle, defaultProperties);
         AddColor(defaultCharacterStyle, defaultProperties);
         AddBackgroundColor(defaultCharacterStyle, defaultProperties);
-        selectors.Add("body", defaultProperties);
+        selectors.Add("judgment", defaultProperties);
 
         IEnumerable<Style> paragraphStyles = styles.ChildElements
             .OfType<Style>()
