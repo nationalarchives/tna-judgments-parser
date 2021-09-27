@@ -955,6 +955,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "1st Respondent" && two == "2nd Respondent") // EWHC/Fam/2017/364
             return PartyRole.Respondent;
+        if (one == "1st Respondent" && two == "2ndRespondent") // EWCA/Civ/2011/1253
+            return PartyRole.Respondent;
         if (one == "First Defendant" && two == "Second Defendant") // EWHC/Admin/2010/2
             return PartyRole.Defendant;
         if (one == "Defendant/Part 20 Claimant" && two == "Part 20 Claimant")    // EWHC/Ch/2003/812
