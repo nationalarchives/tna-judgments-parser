@@ -200,7 +200,7 @@ class Fields {
                     CultureInfo culture = new CultureInfo("en-GB");
                     DateTime date = DateTime.Parse(content, culture);
                     WDate wDate = new WDate(parsed.Cast<IFormattedText>(), date);
-                    logger.LogInformation("parsed date: " + content);
+                    logger.LogDebug("parsed date: " + content);
                     return new List<IInline>(1) { wDate };
                 } catch (FormatException) {
                     logger.LogCritical("unrecognizable date: " + content);

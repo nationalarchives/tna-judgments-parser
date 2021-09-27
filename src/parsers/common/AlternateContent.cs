@@ -20,7 +20,7 @@ class AlternateContent2 {
             throw new Exception();
         AlternateContentChoice choice = (AlternateContentChoice) e.FirstChild;
         AlternateContentFallback fallback = (AlternateContentFallback) e.ChildElements.Last();
-        Fields.logger.LogInformation("alternate content, choice requires " + choice.Requires);
+        Fields.logger.LogDebug("alternate content, choice requires " + choice.Requires);
         // http://schemas.microsoft.com/office/word/2010/wordprocessingShape
         if (choice.Requires == "wps")   // EWHC/Fam/2017/3832
             return MapFallback(main, rprops, fallback);
