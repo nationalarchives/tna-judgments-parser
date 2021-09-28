@@ -92,6 +92,12 @@ class CaseNo : Enricher {
                         List<IInline> contents = Split(text, match.Groups);
                         return new WLine(line, contents);
                     }
+                    pattern = @"^([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]) & ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]\(A\))$"; // EWCA/Civ/2006/829
+                    match = Regex.Match(text.Text, pattern);
+                    if (match.Success) {
+                        List<IInline> contents = Split(text, match.Groups);
+                        return new WLine(line, contents);
+                    }
                 }
             }
             if (line.Contents.Count() == 3) {   // EWHC/Admin/2009/3016
@@ -138,21 +144,24 @@ class CaseNo : Enricher {
         new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$"),   // EWHC/Comm/2017/1198
         new Regex(@"Case No: ([A-Z]{2}-[0-9]{2}-[A-Z]{2} \d{4})$"),   // EWHC/Ch/2004/2316
         new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$"), // EWHC/Ch/2003/812
-        new Regex(@"^Case No: ([A-Z]\d \d{4}/\d+)$") // EWCA/Civ/2006/1319
+        new Regex(@"^Claim No: ([A-Z]{2}-\d{2}-\d+)$"), // EWHC/TCC/2018/751
+        new Regex(@"^Case No: ([A-Z]\d \d{4}/\d+)$"), // EWCA/Civ/2006/1319
+        new Regex(@"^Case No: ([A-Z]{3} \d+/\d{4})$") // EWHC/Admin/2007/233
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
         new Regex(@"^Case No[:\.] ([A-Z0-9/-]{7,}) [&/] ([A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase),  // EWHC/Ch/2014/4918
         new Regex(@"^Case Nos?[:\.] ([A-Z0-9/-]{7,}), ([A-Z0-9/-]{7,}),?$", RegexOptions.IgnoreCase),  // EWCA/Civ/2008/19
         new Regex(@"^Case Nos: ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]) and ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9])$"), // EWHC/Admin/2013/19
-        new Regex(@"Cases No: (\d{4} FOLIO \d+) and (\d{4} FOLIO \d+)") // EWHC/Comm/2013/2793
+        new Regex(@"Cases No: (\d{4} FOLIO \d+) and (\d{4} FOLIO \d+)"), // EWHC/Comm/2013/2793
+        new Regex(@"^Case No: (\d+) and (\d+)$")    // EWCOP/2016/30
     };
 
-    Regex[] loneTextRegexesWithThreeGroups = {
+    Regex[] loneTextRegexesWithMultipleGroups = {
         new Regex(@"^([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9] \(A\)); ([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9]); ([A-Z0-9][A-Z0-9/-]{5,}[A-Z0-9])$"),  // EWCA/Civ/2004/122
         new Regex(@"^Case Nos[:\.] ([0-9]{7} [A-Z][0-9]), ([0-9]{7} [A-Z][0-9]), ([0-9]{7} [A-Z][0-9]) *$", RegexOptions.IgnoreCase),  // EWCA/Crim/2010/2638
+        new Regex(@"^Case No: ([A-Z0-9]{10,}); ([A-Z0-9]{10,}); ([A-Z0-9]{10,}); ([A-Z0-9]{10,}) *$")   // EWCA/Crim/2006/1741
     };
-
 
     private WLine EnrichLine(WLine line) {
         if (line.Contents.Count() == 1)
@@ -180,7 +189,7 @@ class CaseNo : Enricher {
             List<IInline> contents = Split(text, match.Groups);
             return new WLine(line, contents);
         }
-        foreach (Regex re in loneTextRegexesWithThreeGroups) {
+        foreach (Regex re in loneTextRegexesWithMultipleGroups) {
             Match match = re.Match(text.Text);
             if (!match.Success)
                 continue;
@@ -201,6 +210,12 @@ class CaseNo : Enricher {
         Regex re2 = new Regex(@"^\s*([^ ]+) *$", RegexOptions.IgnoreCase);
         Match match1 = re1.Match(text1.Text);
         Match match2 = re2.Match(text2.Text);
+        if (match1.Success && match2.Success) {
+            IEnumerable<IInline> contents = Split(text2, match2.Groups).Prepend(text1);
+            return new WLine(line, contents);
+        }
+        re2 = new Regex(@"^\s*([A-Z0-9]{9,} [A-Z][0-9]) *$");   // EWCA/Crim/2012/2893
+        match2 = re2.Match(text2.Text);
         if (match1.Success && match2.Success) {
             IEnumerable<IInline> contents = Split(text2, match2.Groups).Prepend(text1);
             return new WLine(line, contents);
