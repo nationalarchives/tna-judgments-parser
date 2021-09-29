@@ -267,6 +267,11 @@ class Combo2 : Combo {
             Re2 = new Regex(@"^COMMERCIAL COURT$"),
             Court = Courts.EWHC_QBD_Commercial
         },
+        new Combo2 {    //EWHC/TCC/2012/780
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$"),
+            Re2 = new Regex(@"^QUEEN'S BENCH DIVISION TECHNOLOGY AND CONSTRUCTION COURT$"),
+            Court = Courts.EWHC_QBD_TCC
+        },
         new Combo2 {    // EWHC/Admin/2003/2846, EWHC/Admin/2006/1645
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^DIVISIONAL( COURT)?$", RegexOptions.IgnoreCase),

@@ -129,6 +129,7 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] ([A-Z]{2} [0-9]{2} [A-Z] [0-9]+)$"),    // EWHC/Fam/2011/2376
         new Regex(@"^Case No[:\.] ([A-Z]{2} [0-9]{2} [A-Z][0-9]+)$"),    // EWHC/Ch/2004/1487
         new Regex(@"^Case No: ([A-Z]\d / \d{4} / \d+)$"),    // EWCA/Civ/2010/657
+        new Regex(@"^Case No: ([A-Z]\d/ \d{4} / \d+) *$"), // EWCA/Civ/2010/709
         new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/-]{7,}), "),
         new Regex(@"^Case No[:\.] (\d{4} \d{5,} [A-Z]\d)"),    // EWCA/Crim/2015/1612
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$", RegexOptions.IgnoreCase),   // EWHC/Ch/2009/1961
@@ -142,15 +143,18 @@ class CaseNo : Enricher {
         new Regex(@"^Case No\. ([A-Z]\d{4} \d+, SCCO Ref: \d+/\d+) *$"), // EWHC/Costs/2010/90172
         new Regex(@"^Ref: ([A-Z0-9]{7,}) *$"), // EWHC/Ch/2011/3553
         new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$"),   // EWHC/Comm/2017/1198
+        new Regex(@"^Case No: ([A-Z]{2}-\d{4} - \d+)$"),  // EWHC/Ch/2017/758
         new Regex(@"Case No: ([A-Z]{2}-[0-9]{2}-[A-Z]{2} \d{4})$"),   // EWHC/Ch/2004/2316
         new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$"), // EWHC/Ch/2003/812
         new Regex(@"^Claim No: ([A-Z]{2}-\d{2}-\d+)$"), // EWHC/TCC/2018/751
         new Regex(@"^Case No: ([A-Z]\d \d{4}/\d+)$"), // EWCA/Civ/2006/1319
+        new Regex(@"^Case No: ([A-Z]\d \d{4} \d+)$"), // EWCA/Civ/2015/57
         new Regex(@"^Case No: ([A-Z]{3} \d+/\d{4})$") // EWHC/Admin/2007/233
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
         new Regex(@"^Case No[:\.] ([A-Z0-9/-]{7,}) [&/] ([A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase),  // EWHC/Ch/2014/4918
+        new Regex(@"^Case No: ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]); ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9])$"),    // EWCA/Civ/2011/1059
         new Regex(@"^Case Nos?[:\.] ([A-Z0-9/-]{7,}), ([A-Z0-9/-]{7,}),?$", RegexOptions.IgnoreCase),  // EWCA/Civ/2008/19
         new Regex(@"^Case Nos: ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9]) and ([A-Z0-9][A-Z0-9/-]{7,}[A-Z0-9])$"), // EWHC/Admin/2013/19
         new Regex(@"Cases No: (\d{4} FOLIO \d+) and (\d{4} FOLIO \d+)"), // EWHC/Comm/2013/2793

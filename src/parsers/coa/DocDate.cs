@@ -39,6 +39,8 @@ class DocDate : Enricher {
             return null;
         if (line.Contents.Count() == 1)
             return Enrich1OrDefault(line);
+        if (line.Contents.Count() == 2)
+            return Enrich2OrDefault(line);
         if (line.Contents.Count() == 3)
             return Enrich3OrDefault(line);
         return null;
@@ -54,6 +56,21 @@ class DocDate : Enricher {
         if (contents is null)
             return null;
         return new WLine(line, contents);
+    }
+
+    private WLine Enrich2OrDefault(WLine line) {
+        IInline first = line.Contents.First();
+        IInline second = line.Contents.ElementAt(1);
+        if (first is not WText fText1)
+            return null;
+        if (!Regex.IsMatch(fText1.Text, @"^Date: $"))
+            return null;
+        if (second is not WText fText2)
+            return null;
+        List<IInline> enriched = EnrichText(fText2);
+        if (enriched is null)
+            return null;
+        return new WLine(line, enriched.Prepend(first));
     }
 
     private WLine Enrich3OrDefault(WLine line) {
