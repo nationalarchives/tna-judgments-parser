@@ -91,7 +91,7 @@ class NetrualCitation : Enricher {
                     Group group = Match2("[" + fText2.Text);
                     if (group is not null) {
                         WText label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);
-                        WNeutralCitation nc = new WNeutralCitation("[" + fText2.Text, fText1.properties);
+                        WNeutralCitation nc = new WNeutralCitation("[" + fText2.Text, fText2.properties);
                         IEnumerable<IInline> rest = line.Skip(2);
                         return rest.Prepend(nc).Prepend(label);
                     }
@@ -103,6 +103,15 @@ class NetrualCitation : Enricher {
                         WNeutralCitation nc = new WNeutralCitation(fText2.Text.Substring(2), fText2.properties);
                         IEnumerable<IInline> rest = line.Skip(2);
                         return new List<IInline>(3) { fText1, split, nc }.Concat(rest);
+                    }
+                }
+                if (fText1.Text == "Neutral Citation figure: [") {   // EWHC/Admin/2009/3312
+                    Group group = Match2("[" + fText2.Text);
+                    if (group is not null) {
+                        WText label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);
+                        WNeutralCitation nc = new WNeutralCitation("[" + fText2.Text, fText2.properties);
+                        IEnumerable<IInline> rest = line.Skip(2);
+                        return rest.Prepend(nc).Prepend(label);
                     }
                 }
                 if (fText2.Text == ")") {   // EWHC/Ch/2011/3553
