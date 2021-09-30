@@ -83,9 +83,9 @@ class DocDate : Enricher {
                 bool isMain = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
                 if (second is WText fText2) {
                     if (third is WText fText3) {
-                        string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? )?(\d{1,2})$";
+                        string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +)?(\d{1,2})$";
                         string pattern2 = @"^(st|nd|rd|th)$";
-                        string pattern3 = @"^ (January|February|March|April|May|June|July|August|September|October|November|December),? \d{4}$";    // comma after month in EWHC/Admin/2018/2410
+                        string pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}$";    // comma after month in EWHC/Admin/2018/2410
                         Match match1 = Regex.Match(fText1.Text, pattern1);
                         Match match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
                         Match match3 = Regex.Match(fText3.Text, pattern3);
@@ -139,7 +139,7 @@ class DocDate : Enricher {
                             return new WLine(line, everything);
                         }
                         /* difference here is only spacing */
-                        pattern2 = @"^(st|nd|rd|th) +$";
+                        pattern2 = @"^(st|nd|rd|th)? +$";   // only space in EWHC/TCC/2015/412
                         pattern3 = @"^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
                         match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
                         match3 = Regex.Match(fText3.Text, pattern3);

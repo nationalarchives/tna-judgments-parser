@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,17 +11,48 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 class CaseNo : Enricher {
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
-        if (!blocks.Any())
-            return Enumerable.Empty<IBlock>();
-        IBlock rawFirst = blocks.First();
-        IBlock enrichedFirst = EnrichFirstBlock(rawFirst);
-        IEnumerable<IBlock> rest = blocks.Skip(1);
-        if (!rest.Any())
-            return new List<IBlock>(1) { enrichedFirst };
-        IBlock rawSecond = rest.First();
-        IBlock enrichedSecond = EnrichFirstBlock(rawSecond);
-        rest = rest.Skip(1);
-        return base.Enrich(rest).Prepend(enrichedSecond).Prepend(enrichedFirst);
+        List<IBlock> enriched = new List<IBlock>(blocks.Count());
+        bool found = false;
+        bool unfoundAfterFound = false;
+        IEnumerator<IBlock> enumerator = blocks.GetEnumerator();
+        if (enumerator.MoveNext()) {
+            IBlock block = enumerator.Current;
+            IBlock rich = EnrichFirstBlock(block);
+            enriched.Add(rich);
+            found = !Object.ReferenceEquals(rich, block);
+        }
+        if (!found && enumerator.MoveNext()) {
+            IBlock block = enumerator.Current;
+            IBlock rich = EnrichFirstBlock(block);
+            enriched.Add(rich);
+            found = !Object.ReferenceEquals(rich, block);
+        }
+        while (enumerator.MoveNext()) {
+            IBlock block = enumerator.Current;
+            if (unfoundAfterFound) {
+                enriched.Add(block);
+            } else if (found) {
+                IBlock rich = EnrichFirstBlock(block);
+                enriched.Add(rich);
+                unfoundAfterFound = Object.ReferenceEquals(rich, block);
+            } else {
+                IBlock rich = Enrich(block);
+                enriched.Add(rich);
+                found = !Object.ReferenceEquals(rich, block);
+            }
+        }
+        return enriched;
+        // if (!blocks.Any())
+        //     return Enumerable.Empty<IBlock>();
+        // IBlock rawFirst = blocks.First();
+        // IBlock enrichedFirst = EnrichFirstBlock(rawFirst);
+        // IEnumerable<IBlock> rest = blocks.Skip(1);
+        // if (!rest.Any())
+        //     return new List<IBlock>(1) { enrichedFirst };
+        // IBlock rawSecond = rest.First();
+        // IBlock enrichedSecond = EnrichFirstBlock(rawSecond);
+        // rest = rest.Skip(1);
+        // return base.Enrich(rest).Prepend(enrichedSecond).Prepend(enrichedFirst);
     }
 
     private IBlock EnrichFirstBlock(IBlock block) {
@@ -134,8 +166,10 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] (\d{4} \d{5,} [A-Z]\d)"),    // EWCA/Crim/2015/1612
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$", RegexOptions.IgnoreCase),   // EWHC/Ch/2009/1961
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
+        new Regex(@"^Claim Nos: ([A-Z][A-Z0-9]{8,})$"), //   EWHC/QB/2013/417
         new Regex(@"^Case No: (\d{4} Folio \d+) *$", RegexOptions.IgnoreCase),    // , EWHC/Comm/2012/571, EWHC/Comm/2013/3920
         new Regex(@"^Claim No: (\d{4} Folio \d+)$"),    // EWHC/Comm/2009/3386
+        new Regex(@"^Claim No:(\d{4} Folio \d+)$"),    // EWHC/Comm/2010/3113
         new Regex(@"^(\d{4} Folio No\. \d+)$"),    // EWHC/Comm/2004/2750
         new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$"), // EWHC/Admin/2008/2214
         new Regex(@"^Case Nos[:\.] ([A-Z0-9][A-Z0-9/-]{7,})$", RegexOptions.IgnoreCase), // EWCA/Civ/2009/651
@@ -226,69 +260,6 @@ class CaseNo : Enricher {
         }
         return line;
     }
-
-    // internal delegate IFormattedText Wrapper(string text, RunProperties props);
-
-    // internal static List<IInline> Split(WText text, Group group, Wrapper wrapper) {
-    //     string before = text.Text.Substring(0, group.Index);
-    //     string during = group.Value;
-    //     string after = text.Text.Substring(group.Index + group.Length);
-    //     List<IInline> replacement = new List<IInline>(3) {
-    //         new WText(before, text.properties),
-    //         wrapper(during, text.properties)
-    //     };
-    //     if (!string.IsNullOrEmpty(after)) {
-    //         WText third = new WText(after, text.properties);
-    //         replacement.Add(third);
-    //     }
-    //     return replacement;
-    // }
-
-    // internal static List<IInline> Split(WText text, Group group) {
-    //     string before = text.Text.Substring(0, group.Index);
-    //     string during = group.Value;
-    //     string after = text.Text.Substring(group.Index + group.Length);
-    //     List<IInline> replacement = new List<IInline>(3);
-    //     if (!string.IsNullOrEmpty(before)) {
-    //         WText first = new WText(before, text.properties);
-    //         replacement.Add(first);
-    //     }
-    //     WCaseNo caseNo = new WCaseNo(during, text.properties);
-    //     replacement.Add(caseNo);
-    //     if (!string.IsNullOrEmpty(after)) {
-    //         WText third = new WText(after, text.properties);
-    //         replacement.Add(third);
-    //     }
-    //     return replacement;
-    // }
-
-    // internal static List<IInline> Split(WText wText, Group g1, Group g2) {
-    //     string text = wText.Text;
-    //     RunProperties props = wText.properties;
-    //     string s1 = text.Substring(0, g1.Index);
-    //     string s2 = g1.Value;
-    //     int start3 = g1.Index + g1.Length;
-    //     string s3 = text.Substring(start3, g2.Index - start3);
-    //     string s4 = g2.Value;
-    //     int start5 = g2.Index + g2.Length;
-    //     string s5 = text.Substring(start5);
-    //     List<IInline> contents = new List<IInline>(5);
-    //     if (!string.IsNullOrEmpty(s1)) {
-    //         WText label1 = new WText(s1, props);
-    //         contents.Add(label1);
-    //     }
-    //     WCaseNo caseNo1 = new WCaseNo(s2, props);
-    //     contents.Add(caseNo1);
-    //     WText label2 = new WText(s3, props);
-    //     contents.Add(label2);
-    //     WCaseNo caseNo2 = new WCaseNo(s4, props);
-    //     contents.Add(caseNo2);
-    //     if (!string.IsNullOrEmpty(s5)) {
-    //         WText label3 = new WText(s5, props);
-    //         contents.Add(label3);
-    //     }
-    //     return contents;
-    // }
 
     internal static List<IInline> Split(WText wText, GroupCollection groups) {
         List<IInline> contents = new List<IInline>();
