@@ -146,33 +146,6 @@ class PartyEnricher : Enricher {
             return null;
         enriched.AddRange(firstGroupOfParites);
         i += firstGroupOfParites.Count;
-        // if (!IsPartyName(line))
-        //     return null;
-        // List<IBlock> stack = new List<IBlock>();
-        // stack.Add(line);
-        // i += 1;
-        // while (true) {
-        //     if (i == rest.Length)
-        //         return null;
-        //     line = rest[i];
-        //     if (IsFirstPartyType(line)) {
-        //         PartyRole role1 = GetFirstPartyRole(line);
-        //         foreach (IBlock block in stack) {
-        //             WLine party = MakeParty(block, role1);
-        //             enriched.Add(party);
-        //         }
-        //         enriched.Add(MakeRole(line, role1));
-        //         i += 1;
-        //         break;
-        //     } else if (IsPartyName(line)) {
-        //         stack.Add(line);
-        //         i += 1;
-        //         continue;
-        //     } else {
-        //         return null;
-        //     }
-        // }
-        // stack = null;
         if (i == rest.Length)
             return null;
         line = rest[i];
@@ -191,72 +164,23 @@ class PartyEnricher : Enricher {
             return null;
         enriched.AddRange(secondGroupOfParites);
         i += secondGroupOfParites.Count;
-        // if (!IsPartyName(line))
+        // if (i == rest.Length)
         //     return null;
-        // stack = new List<IBlock>();
-        // stack.Add(line);
-        // i += 1;
-        // while (true) {
-        //     if (i == rest.Length)
-        //         return null;
-        //     line = rest[i];
-        //     if (IsSecondPartyType(line)) {
-        //         PartyRole role2 = GetSecondPartyRole(line);
-        //         foreach (IBlock block in stack) {
-        //             WLine party = MakeParty(block, role2);
-        //             enriched.Add(party);
-        //         }
-        //         enriched.Add(MakeRole(line, role2));
-        //         i += 1;
-        //         break;
-        //     } else if (IsPartyName(line)) {
-        //         stack.Add(line);
-        //         i += 1;
-        //         continue;
-        //     } else {
-        //         return null;
-        //     }
+        // line = rest[i];
+        // if (IsAfterPartyMarker(line)) {
+        //     enriched.Add(line);
+        //     return enriched;
         // }
-        // stack = null;
-        if (i == rest.Length)
-            return null;
-        line = rest[i];
-        if (IsAfterPartyMarker(line)) {
-            enriched.Add(line);
-            return enriched;
-        }
         List<IBlock> thirdGroupOfParites = Magic2(rest[i..]);
-        if (thirdGroupOfParites is null)
-            return null;
-        enriched.AddRange(thirdGroupOfParites);
-        i += thirdGroupOfParites.Count;
-        // if (!IsPartyName(line))
-        //     return null;
-        // stack = new List<IBlock>();
-        // stack.Add(line);
-        // i += 1;
-        // while (true) {
-        //     if (i == rest.Length)
-        //         return null;
-        //     line = rest[i];
-        //     if (IsSecondPartyType(line)) {
-        //         PartyRole role3 = GetSecondPartyRole(line);
-        //         foreach (IBlock block in stack) {
-        //             WLine party = MakeParty(block, role3);
-        //             enriched.Add(party);
-        //         }
-        //         enriched.Add(MakeRole(line, role3));
-        //         i += 1;
-        //         break;
-        //     } else if (IsPartyName(line)) {
-        //         stack.Add(line);
-        //         i += 1;
-        //         continue;
-        //     } else {
-        //         return null;
-        //     }
-        // }
-        // stack = null;
+        if (thirdGroupOfParites is not null) {
+            enriched.AddRange(thirdGroupOfParites);
+            i += thirdGroupOfParites.Count;
+        }
+        List<IBlock> fourthGroupOfParites = Magic2(rest[i..]);
+        if (fourthGroupOfParites is not null) {
+            enriched.AddRange(fourthGroupOfParites);
+            i += fourthGroupOfParites.Count;
+        }
         if (i == rest.Length)
             return null;
         line = rest[i];
@@ -775,7 +699,7 @@ class PartyEnricher : Enricher {
             "Defendant/Appellant", "DEFENDANT/APPELLANT", "Defendants/Appellants", "Appellant/Defendant", "Appellant/First Defendant",
             "Appellant", // EWCA/Civ/2003/1686
             "Respondent", "Respondents", "(RESPONDENT)", "Defendant/Respondent", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Defendants", "Respondents/ Defendants",
-            "Interested Party", "Interested Parties", "(INTERESTED PARTIES)"
+            "Interested Party", "Interested Parties", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party"
         };
         return secondPartyTypes.Contains(s);
     }
@@ -817,6 +741,8 @@ class PartyEnricher : Enricher {
             case "Interested Party":
             case "Interested Parties":
             case "(INTERESTED PARTIES)":
+            case "Second Interested Party":
+            case "Third Interested Party":
                 return PartyRole.InterestedParty;
             default:
                 throw new System.Exception();
