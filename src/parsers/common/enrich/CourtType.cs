@@ -339,6 +339,10 @@ class Combo1 : Combo {
             Court = Courts.EWHC_Family
         },
         new Combo1 {
+            Re = new Regex("^IN THE EAST LONDON FAMILY COURT$"),
+            Court = Courts.EWHC_Family
+        },
+        new Combo1 {
             Re = new Regex(@"IN THE COURTS MARTIAL APPEAL COURT"),
             Court = Courts.CoA_Crim // ???
         }
