@@ -242,16 +242,16 @@ class Combo2 : Combo {
             Re2 = new Regex(@"\(Chancery Division\)"),
             Court = Courts.EWHC_Chancery
         },
-        new Combo2 {
-            Re1 = new Regex("IN THE HIGH COURTS? OF JUSTICE"),
-            Re2 = new Regex("CHANCERY DIVISION"),
-            Court = Courts.EWHC_Chancery
-        },
-        new Combo2 {
-            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
-            Re2 = new Regex("CHANCERY DIVISION (PROBATE)"),
-            Court = Courts.EWHC_Chancery
-        },
+        // new Combo2 {
+        //     Re1 = new Regex("IN THE HIGH COURTS? OF JUSTICE"),
+        //     Re2 = new Regex("CHANCERY DIVISION"),
+        //     Court = Courts.EWHC_Chancery
+        // },
+        // new Combo2 {
+        //     Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+        //     Re2 = new Regex("CHANCERY DIVISION (PROBATE)"),
+        //     Court = Courts.EWHC_Chancery
+        // },
         new Combo2 {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex("FAMILY DIVISION"),
@@ -272,16 +272,16 @@ class Combo2 : Combo {
             Re2 = new Regex(@"^QUEEN'S BENCH DIVISION TECHNOLOGY AND CONSTRUCTION COURT$"),
             Court = Courts.EWHC_QBD_TCC
         },
-        new Combo2 {    // EWHC/Admin/2003/2846, EWHC/Admin/2006/1645
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^DIVISIONAL( COURT)?$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_QBD // ???
-        },
-        new Combo2 {    // EWHC/QB/2010/389
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^(IN THE )?QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase), // no appostrophe in EWHC/QB/2004/447
-            Court = Courts.EWHC_QBD
-        }
+        // new Combo2 {    // EWHC/Admin/2003/2846, EWHC/Admin/2006/1645
+        //     Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+        //     Re2 = new Regex("^DIVISIONAL( COURT)?$", RegexOptions.IgnoreCase),
+        //     Court = Courts.EWHC_QBD // ???
+        // },
+        // new Combo2 {    // EWHC/QB/2010/389
+        //     Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
+        //     Re2 = new Regex("^(IN THE )?QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase), // no appostrophe in EWHC/QB/2004/447
+        //     Court = Courts.EWHC_QBD
+        // }
     };
 
     internal bool Match(IBlock one, IBlock two) {
@@ -328,19 +328,19 @@ class Combo1 : Combo {
         },
         new Combo1 {
             Re = new Regex("^IN (THE FAMILY COURT) *$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_Family
+            Court = Courts.EWFC
         },
         new Combo1 {
             Re = new Regex("^(THE FAMILY COURT) SITTING AT [A-Z]+ *$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_Family
+            Court = Courts.EWFC
         },
         new Combo1 {
             Re = new Regex("^IN (THE FAMILY COURT) SITTING AT [A-Z]+ *$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_Family
+            Court = Courts.EWFC
         },
         new Combo1 {
             Re = new Regex("^IN THE EAST LONDON FAMILY COURT$"),
-            Court = Courts.EWHC_Family
+            Court = Courts.EWFC
         },
         new Combo1 {
             Re = new Regex(@"IN THE COURTS MARTIAL APPEAL COURT"),
