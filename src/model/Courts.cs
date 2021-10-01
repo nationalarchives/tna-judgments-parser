@@ -205,6 +205,12 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/court-of-protection"
     };
 
+    public static readonly Court EWFC = new Court {
+        Code = "EWFC",
+        LongName = "The Family Court",
+        URL = "https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/"
+    };
+
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
         LongName = "The Employment Tribunal",
@@ -239,6 +245,7 @@ public readonly struct Courts {
         EWHC_Chancery_Patents,
         EWHC_SeniorCourtsCosts,
         EWCOP,
+        EWFC,
         EmploymentTribunal
     };
 
@@ -250,44 +257,3 @@ public readonly struct Courts {
 
 }
 
-// public readonly struct Counts
-
-// }
-
-// class CourtsOld {
-
-//     public static readonly ImmutableDictionary<string, Court> courts = new Dictionary<string, Court> {
-
-//         { "UKSC", new Court{
-//             Name = "Supreme Court",
-//             URL = "https://www.supremecourt.uk/" } 
-//         },
-//         { "UKHL", new Court{
-//             Name = "House of Lords",
-//             URL = "https://www.parliament.uk/business/lords/" }
-//         },
-//         { "EWCA-Civ", new Court{ Name = "Court of Appeal (Civil Division)" }
-//         },
-//         { "EWCA-Crim", new Court{ Name = "Court of Appeal (Criminal Division)" }
-//         },
-
-//         { "EWHC-Ch", new Court{ Name = "High Court of Justice (Chancery Division)" }
-//         },
-//         { "EWHC-QB", new Court{ Name = "High Court of Justice (Queen’s Bench Division)" }
-//         },
-//         { "EWHC-Admin", new Court{ Name = "High Court of Justice (Administrative Court)" }
-//         },
-//         { "EWHC-Comm", new Court{ Name = "High Court of Justice (Commercial Court)" }
-//         },
-
-//         {
-//             "ETEW",
-//         }
-
-//         {
-//             "ETS"
-//         }
-        
-//     }.ToImmutableDictionary();
-
-// }
