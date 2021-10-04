@@ -150,11 +150,15 @@ class Fields {
                     .ChildElements.OfType<FieldChar>()
                     .Where(chr => chr.FieldCharType == FieldCharValues.Begin)
                     .First();
-                string x = begin.FormFieldData.
+                var x = begin.FormFieldData.
                     ChildElements.Where(e => e.LocalName == "textInput").First()
-                    .ChildElements.Where(e => e.LocalName == "default").First()
-                    .GetAttribute("val", "http://schemas.openxmlformats.org/wordprocessingml/2006/main").Value;
-                logger.LogWarning("empty form: " + x);
+                    .ChildElements.Where(e => e.LocalName == "default").FirstOrDefault();
+                if (x is null) {
+                    logger.LogWarning("empty form");
+                } else {
+                    string y = x.GetAttribute("val", "http://schemas.openxmlformats.org/wordprocessingml/2006/main").Value;
+                    logger.LogWarning("empty form: " + x);
+                }
             }
             return rest;
         }
