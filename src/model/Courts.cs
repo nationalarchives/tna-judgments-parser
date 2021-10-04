@@ -70,12 +70,12 @@ public readonly struct Courts {
 
     /* The four courts (non-specialist) within the Queen's Bench Division */
 
-    // public static readonly Court EWHC_QBD_General = new Court {
-    //     Code = "",
-    //     LongName = "",
-    //     ShortName = "",
-    //     URL = ""
-    // };
+    public static readonly Court EWHC_QBD_General = new Court {
+        Code = "EWHC-QBD-General",
+        LongName = "The Queen's Bench Division of the High Court",
+        ShortName = "The Queen's Bench Division",
+        URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court"
+    };
     public static readonly Court EWHC_QBD_Administrative = new Court {
         Code = "EWHC-QBD-Admin",
         LongName = "The Administrative Court (Queen's Bench Division)",
@@ -141,10 +141,10 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/the-business-list"
     };
 
-    public static readonly Court EWHC_Chancery_Insolvency = new Court {
-        Code = "EWHC-Chancery-Insolvency",
-        LongName = "The Business and Property Courts (Insolvency List)",
-        ShortName = "The Insolvency List",
+    public static readonly Court EWHC_Chancery_InsolvencyAndCompanies = new Court {
+        Code = "EWHC-Chancery-InsolvencyAndCompanies",
+        LongName = "The Business and Property Courts (Insolvency and Companies List )",
+        ShortName = "The Insolvency and Companies List ",
         URL = "https://www.gov.uk/courts-tribunals/insolvency-list"
     };
 
@@ -190,6 +190,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/patents-court"
     };
 
+    public static readonly Court EWHC_Chancery_Appeals = new Court {
+        Code = "EWHC-Chancery-Appeals",
+        LongName = "The Business and Property Courts (Chancery_Appeals)",
+        ShortName = "The Patents Court",
+        URL = "https://www.gov.uk/courts-tribunals/patents-court"
+    };
+
     /* other */
 
     public static readonly Court EWHC_SeniorCourtsCosts = new Court {
@@ -226,7 +233,7 @@ public readonly struct Courts {
         EWHC_QBD,
         EWHC_Chancery,
         EWHC_Family,
-        // EWHC_QBD_General,
+        EWHC_QBD_General,
         EWHC_QBD_Administrative,
         EWHC_QBD_Planning,
         EWHC_QBD_BusinessAndProperty,
@@ -236,13 +243,14 @@ public readonly struct Courts {
         EWHC_QBD_Commercial_Financial,
         EWHC_QBD_Commercial_Circuit,
         EWHC_Chancery_BusinessList,
-        EWHC_Chancery_Insolvency,
+        EWHC_Chancery_InsolvencyAndCompanies,
         // EWHC_Chancery_Financial,
         // EWHC_Chancery_Competition,
         // EWHC_Chancery_IntellectualProperty,
         // EWHC_Chancery_Revenue,
         // EWHC_Chancery_PropertyTrustsProbate,
         EWHC_Chancery_Patents,
+        EWHC_Chancery_Appeals,
         EWHC_SeniorCourtsCosts,
         EWCOP,
         EWFC,
