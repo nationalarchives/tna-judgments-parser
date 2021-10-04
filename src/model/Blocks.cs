@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments {
 
@@ -36,7 +37,7 @@ interface ILine : IBlock {
     public string NormalizedContent() {
         IEnumerable<string> texts = this.Contents
             .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-        return string.Join("", texts).Trim();
+        return Regex.Replace(string.Join("", texts), @"\s+", " ").Trim();
     }
 
 }
