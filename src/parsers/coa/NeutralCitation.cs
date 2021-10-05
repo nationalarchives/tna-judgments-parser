@@ -11,9 +11,9 @@ class NetrualCitation : Enricher {
 
     private static readonly string[] patterns = {
         @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\] EWHC +\d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|Pat|QB|TCC))",  // EWHC/Admin/2003/301
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
+        @"^Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\] EWHC +\d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\.?\))",    // . in EWHC/Comm/2007/197
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC))",  // EWHC/Admin/2003/301
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
@@ -21,7 +21,7 @@ class NetrualCitation : Enricher {
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^(\[\d{4}\] EWHC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|Pat|QB|TCC)\))",
+        @"^(\[\d{4}\] EWHC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)"    // misspelling in EWCA/Civ/2006/1507
     };
 
