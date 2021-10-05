@@ -949,7 +949,7 @@ class PartyEnricher : Enricher {
         types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Claimant;
-        types = new HashSet<string>() { "Applicant", "Applicants", "Respondent/Applicant", "Applicants/Claimants", "Appellants/ Claimants" };
+        types = new HashSet<string>() { "Applicant", "Applicants", "Respondent/Applicant", "Applicants/Claimants", "Applicant/ Claimant", "Appellants/ Claimants" };
         if (types.Contains(normalized))
             return PartyRole.Applicant;
         types = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Part 20 Claimant", "First Defendant", "Second Defendant", "Third Defendant" };
@@ -1021,6 +1021,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Claimants/" && two == "Appellants") // EWHC/Admin/2016/321
             return PartyRole.Appellant;
+        if (one == "Defendant/" && two == "Respondent") // EWHC/Admin/2015/1639
+            return PartyRole.Respondent;
         if (one == "Defendants/" && two == "Respondents") // EWHC/Admin/2016/321
             return PartyRole.Respondent;
         if (one == "1st Respondent" && two == "2nd Respondent") // EWHC/Fam/2017/364
