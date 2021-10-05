@@ -94,7 +94,7 @@ interface IFormattedText : IInline {
                 styles.Add("font-size", "smaller");
             }
         }
-        if (that.FontName is not null) {
+        if (that.FontName is not null && !string.IsNullOrEmpty(that.FontName)) {
             string value = DOCX.CSS.ToFontFamily(that.FontName);
             styles.Add("font-family", value);
         }
