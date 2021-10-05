@@ -131,6 +131,12 @@ class Combo3 : Combo {
         },
         new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IPEC
+        },
+        new Combo3 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \\(ChD\\)", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BUSINESS LIST", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList

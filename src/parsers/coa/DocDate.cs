@@ -180,6 +180,11 @@ class DocDate : Enricher {
         /* add other month abbreviations */
         @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"   // comma after month in EWHC/Ch/2003/812
     };
+
+    private static readonly string[] cardinalDatePatterns2 = {
+        @"^Date\|: ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$"
+    };
+
     private static readonly string[] twoDigitYearCardinalDatePatterns = {
         @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"
     };
@@ -187,7 +192,7 @@ class DocDate : Enricher {
         @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
     };
     private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
-        @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$"
+        @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$",
     };
     private static readonly string[] ordinalDatePatterns3 = {   // EWHC/Admin/2014/1564
         @"^(\s*Date: *)?(\d{1,2})(st|nd|rd|th) +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
@@ -196,6 +201,26 @@ class DocDate : Enricher {
     private static readonly string[] doubleCardinalDatePatterns = { // EWCA/Civ/2003/607
         @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}) and ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4})$"
     };
+
+    private static List<IInline> Split(WText wText, Group display, Group parse) {
+        List<IInline> contents = new List<IInline>();
+        string text = wText.Text;
+        if (display.Index > 0) {
+            string s = text.Substring(0, display.Index);
+            WText label = new WText(s, wText.properties);
+            contents.Add(label);
+        }
+        DateTime dt = DateTime.Parse(parse.Value, culture);
+        WDocDate docDate = new WDocDate(display.Value, wText.properties, dt);
+        contents.Add(docDate);
+        int end = display.Index + display.Length;
+        if (end < text.Length) {
+            string rest1 = text.Substring(end, text.Length - end);
+            WText rest2 = new WText(rest1, wText.properties);
+            contents.Add(rest2);
+        }
+        return contents;
+    }
 
     private List<IInline> EnrichText(WText fText) {
         foreach (string pattern in cardinalDatePatterns1) {
@@ -216,6 +241,11 @@ class DocDate : Enricher {
                     contents.Add(new WText(after.Value, fText.properties));
                 return contents;
             }
+        }
+        foreach (string pattern in cardinalDatePatterns2) {
+            Match match = Regex.Match(fText.Text, pattern);
+            if (match.Success)
+                return Split(fText, match.Groups[1], match.Groups[3]);
         }
         foreach (string pattern in ordinalDatePatterns1) {
             Match match = Regex.Match(fText.Text, pattern);

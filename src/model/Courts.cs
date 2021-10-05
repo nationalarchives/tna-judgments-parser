@@ -190,6 +190,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/patents-court"
     };
 
+    public static readonly Court EWHC_Chancery_IPEC = new Court {
+        Code = "EWHC-Chancery-IPEC",
+        LongName = "The Business and Property Courts (Intellectual Property Enterprise Court)",
+        ShortName = "The Intellectual Property Enterprise Court",
+        URL = "https://www.gov.uk/courts-tribunals/intellectual-property-enterprise-court"
+    };
+
     public static readonly Court EWHC_Chancery_Appeals = new Court {
         Code = "EWHC-Chancery-Appeals",
         LongName = "The Business and Property Courts (Chancery_Appeals)",
@@ -250,6 +257,7 @@ public readonly struct Courts {
         // EWHC_Chancery_Revenue,
         // EWHC_Chancery_PropertyTrustsProbate,
         EWHC_Chancery_Patents,
+        EWHC_Chancery_IPEC,
         EWHC_Chancery_Appeals,
         EWHC_SeniorCourtsCosts,
         EWCOP,

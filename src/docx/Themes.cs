@@ -22,6 +22,12 @@ static class Themes {
         if (theme == ThemeFontValues.MajorBidi)    // EWHC/Admin/2018/2941
             return main.ThemePart?.Theme?.ThemeElements?.FontScheme?.MajorFont?.ChildElements
                 .OfType<SupplementalFont>().Where(font => font.Script == "Arab").First().Typeface;
+        // if (theme == ThemeFontValues.MinorEastAsia) {
+        //     Console.Write("MinorEastAsia font = ");
+        //     Console.WriteLine(main.ThemePart?.Theme?.ThemeElements?.FontScheme?.MinorFont?.EastAsianFont.Typeface);
+        // }
+        if (theme == ThemeFontValues.MinorEastAsia) // EWCA/Civ/2016/303
+            return main.ThemePart?.Theme?.ThemeElements?.FontScheme?.MinorFont?.EastAsianFont.Typeface;
         throw new Exception();
     }
 

@@ -208,6 +208,8 @@ public class CSS {
     private static void AddFontFamily(StringValue font, Dictionary<string, string> css) {
         if (font is null)
             return;
+        if (string.IsNullOrEmpty(font.Value))
+            return;
         string key = "font-family";
         string value = ToFontFamily(font.Value);
         css[key] = value;
