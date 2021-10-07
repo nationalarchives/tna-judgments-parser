@@ -19,6 +19,12 @@ class PartyEnricher : Enricher {
         List<IBlock> after = new List<IBlock>(before.Length);
         int i = 0;
         while (i < before.Length) {
+            if (IsInTheMatterOf3(before, i)) {
+                List<IBlock> enriched3 = EnrichInTheMatterOf3(before, i);
+                after.AddRange(enriched3);
+                i += 3;
+                break;
+            }
             if (IsInTheMatterOf4(before, i)) {
                 List<IBlock> enriched4 = EnrichInTheMatterOf4(before, i);
                 after.AddRange(enriched4);
@@ -48,6 +54,30 @@ class PartyEnricher : Enricher {
             i += 1;
         }
         after.AddRange(before.Skip(i));
+        return after;
+    }
+
+    private static bool IsInTheMatterOf3(IBlock[] before, int i) {  // EWCA/Civ/2008/1303
+        if (i > before.Length - 3)
+            return false;
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        return
+            IsBeforePartyMarker(line1) &&
+            IsInTheMatterOf1(line2) &&
+            IsAfterPartyMarker(line3);
+    }
+
+    private static List<IBlock> EnrichInTheMatterOf3(IBlock[] before, int i) {
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        List<IBlock> after = new List<IBlock>(3);
+        after.Add(line1);
+        WLine docTitle = MakeDocTitle(line2);
+        after.Add(docTitle);
+        after.Add(line3);
         return after;
     }
 
@@ -403,12 +433,22 @@ class PartyEnricher : Enricher {
     private static bool IsInTheMatterOf1(IBlock block) {
         if (block is not WLine line)
             return false;
-        if (line.Contents.Count() != 1)
-            return false;
-        IInline first = line.Contents.First();
-        if (first is not WText wText)
-            return false;
-        return Regex.IsMatch(wText.Text.Trim(), "IN THE MATTER OF", RegexOptions.IgnoreCase);
+        if (line.Contents.Count() == 1) {
+            IInline first = line.Contents.First();
+            if (first is not WText wText)
+                return false;
+            return Regex.IsMatch(wText.Text.Trim(), "IN THE MATTER OF", RegexOptions.IgnoreCase);
+        }
+        if (line.Contents.Count() == 3) {   // EWCA/Civ/2008/1303
+            IInline first = line.Contents.First();
+            if (first is not WText wText)
+                return false;
+            IInline second = line.Contents.Skip(1).First();
+            if (second is not WLineBreak)
+                return false;
+            return Regex.IsMatch(wText.Text.Trim(), "IN THE MATTER OF", RegexOptions.IgnoreCase);
+        }
+        return false;
     }
     private static bool IsInTheMatterOf2(IBlock block) {
         if (block is not WLine line)
@@ -424,7 +464,7 @@ class PartyEnricher : Enricher {
         WLine line = (WLine) block;
         WText wText = (WText) line.Contents.First();
         WDocTitle docTitle = new WDocTitle(wText);
-        List<IInline> contents = new List<IInline>(1) { docTitle };
+        IEnumerable<IInline> contents = line.Contents.Skip(1).Prepend(docTitle);
         return new WLine(line, contents);
     }
 
@@ -483,7 +523,8 @@ class PartyEnricher : Enricher {
                 return false;
             if (!string.IsNullOrWhiteSpace(wText2.Text))
                 return false;
-            return IFormattedText.HaveSameFormatting(wText1, wText3);    // not really sure why this should matter
+            return true;    // not same formatting in EWHC/Admin/2004/1823
+            // return IFormattedText.HaveSameFormatting(wText1, wText3);    // not really sure why this should matter
         }
         if (line.Contents.Count() == 4) {   // EWHC/Fam/2017/3707
             IInline second = line.Contents.Skip(1).First();
@@ -553,7 +594,7 @@ class PartyEnricher : Enricher {
     }
     private static bool IsFirstPartyType(string s) {
         ISet<string> firstPartyTypes = new HashSet<string>() {
-            "Claimant", "Claimants", "(Claimant)", "(CLAIMANT)", "Claimant/part 20 Defendant",
+            "Claimant", "Claimants", "(Claimant)", "(CLAIMANT)", "(CLAIMANTS)", "Claimant/part 20 Defendant",
             "First Claimant", "Second Claimant",
             "Claimant/Respondent", "CLAIMANT/RESPONDENT", "Respondent/Claimant", "Claimants/Respondents", "CLAIMANTS/RESPONDENTS",
             "Respondent",    // EWCA/Civ/2003/1686
@@ -582,6 +623,7 @@ class PartyEnricher : Enricher {
             case "Claimants":
             case "(Claimant)":
             case "(CLAIMANT)":
+            case "(CLAIMANTS)":
             case "Claimant/part 20 Defendant":
             case "First Claimant":
             case "Second Claimant":
@@ -706,13 +748,13 @@ class PartyEnricher : Enricher {
 
     private static bool IsSecondPartyType(string s) {
         ISet<string> secondPartyTypes = new HashSet<string>() {
-            "Defendant", "Defendants", "(Defendant)", "(DEFENDANT)", "Defendant/Part 20 Claimant",
+            "Defendant", "Defendants", "(Defendant)", "(DEFENDANT)", "(DEFENDANTS)", "Defendant/Part 20 Claimant",
             "First Defendant", "Second Defendant", "(FIRST DEFENDANT)", "(SECOND DEFENDANT)",
             "Applicants/Defendants",
             "Defendant/Appellant", "DEFENDANT/APPELLANT", "Defendants/Appellants", "Appellant/Defendant", "Appellant/First Defendant",
             "Appellant", // EWCA/Civ/2003/1686
             "Respondent", "Respondents", "(RESPONDENT)", "Defendant/Respondent", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Defendants", "Respondents/ Defendants",
-            "Interested Party", "Interested Parties", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party",
+            "Interested Party", "Interested Parties", "(INTERESTED PARTY)", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party",
             "FIRST DEFENDANT’S SOLICITOR/APPELLANT"
         };
         return secondPartyTypes.Contains(s);
@@ -729,6 +771,7 @@ class PartyEnricher : Enricher {
             case "Defendants":
             case "(Defendant)":
             case "(DEFENDANT)":
+            case "(DEFENDANTS)":
             case "Defendant/Part 20 Claimant":
             case "First Defendant":
             case "Second Defendant":
@@ -756,6 +799,7 @@ class PartyEnricher : Enricher {
                 return PartyRole.Respondent;
             case "Interested Party":
             case "Interested Parties":
+            case "(INTERESTED PARTY)":
             case "(INTERESTED PARTIES)":
             case "Second Interested Party":
             case "Third Interested Party":
@@ -943,7 +987,7 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendants/Appellants", "Appellants/ Claimants", "Claimant/Appellant", "Appellant / Claimant" };
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendants/Appellants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant" };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
         types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant" };
@@ -965,7 +1009,7 @@ class PartyEnricher : Enricher {
         types = new HashSet<string>() { "Petitioner" };
         if (types.Contains(normalized))
             return PartyRole.Petitioner;
-        types = new HashSet<string>() { "Interested Party" };
+        types = new HashSet<string>() { "Interested Party", "Interested parties" };
         if (types.Contains(normalized))
             return PartyRole.InterestedParty;
         return null;
@@ -1015,6 +1059,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Appellant/" && two == "Claimant")    // EWHC/Ch/2017/541
             return PartyRole.Appellant;
+        if (one == "Appellant/" && two == "Defendant")    // EWHC/QB/2013/196
+            return PartyRole.Appellant;
         if (one == "Respondent/" && two == "Defendant")    // EWHC/Ch/2017/541
             return PartyRole.Respondent;
         if (one == "Respondent" && two == "Defendant")    // EWCA/Civ/2018/601
@@ -1035,6 +1081,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Defendant;
         if (one == "1st Defendant/Part 20 Claimant" && two == "2nd Defendant/Part 20 Defendant")    // EWHC/QB/2004/1260
             return PartyRole.Defendant;
+        if (one == "Defendant/" && two == "Cross appellant")    // EWHC/QB/2013/652
+            return PartyRole.Defendant; // ??? other role is Appellant
         // if (one == "" && two == "")    // 
         //     return PartyRole.;
         return null;

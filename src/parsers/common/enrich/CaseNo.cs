@@ -172,12 +172,14 @@ class CaseNo : Enricher {
         new Regex(@"^Case No[:\.] ([A-Z][A-Z0-9/\-]{7,}), "),
         new Regex(@"^Case No[:\.] (\d{4} - \d+)$"),    // EWHC/Comm/2007/197
         new Regex(@"^Case No[:\.] (\d{4} \d{5,} [A-Z]\d)"),    // EWCA/Crim/2015/1612
+        new Regex(@"^Case No: (\d{4}/\d{5,} [A-Z]\d)$"),  // EWCA/Crim/2005/1983
         new Regex(@"^Case No[:\.] (\d+ of \d{4})$", RegexOptions.IgnoreCase),   // EWHC/Ch/2009/1961
         new Regex(@"^Claim No[:\.] (\d+ of \d{4})$"),
         new Regex(@"^Claim Nos: ([A-Z][A-Z0-9]{8,})$"), //   EWHC/QB/2013/417
         new Regex(@"^Case No: (\d{4} Folio \d+) *$", RegexOptions.IgnoreCase),    // , EWHC/Comm/2012/571, EWHC/Comm/2013/3920
         new Regex(@"^Claim No: (\d{4} Folio \d+)$"),    // EWHC/Comm/2009/3386
         new Regex(@"^Claim No:(\d{4} Folio \d+)$"),    // EWHC/Comm/2010/3113
+        new Regex(@"^Claim No. (\d{4} Folio \d+)$"),    // EWHC/Comm/2011/894
         new Regex(@"^(\d{4} Folio No\. \d+)$"),    // EWHC/Comm/2004/2750
         new Regex(@"^Case No: (\d{4} FOLIO NO\. \d+)$"),    // EWHC/Admlty/2004/1506
         new Regex(@"^Case No:  ([A-Z]{3} \d{3} OF \d{4})$"), // EWHC/Admin/2008/2214
@@ -186,14 +188,20 @@ class CaseNo : Enricher {
         new Regex(@"^Case No\. ([A-Z]\d{4} \d+, SCCO Ref: \d+/\d+) *$"), // EWHC/Costs/2010/90172
         new Regex(@"^Ref: ([A-Z0-9]{7,}) *$"), // EWHC/Ch/2011/3553
         new Regex(@"Claim No ([A-Z]{2} \d{4} \d+)$"),   // EWHC/Comm/2017/1198
+        new Regex(@"^Claim No: ([A-Z]{2} \d{4}-\d+) $"),    // EWHC/QB/2016/1174
         new Regex(@"^Case No: ([A-Z]{2}-\d{4} - \d+)$"),  // EWHC/Ch/2017/758
         new Regex(@"Case No: ([A-Z]{2}-[0-9]{2}-[A-Z]{2} \d{4})$"),   // EWHC/Ch/2004/2316
         new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$"), // EWHC/Ch/2003/812
         new Regex(@"^Claim No: ([A-Z]{2}-\d{2}-\d+)$"), // EWHC/TCC/2018/751
         new Regex(@"^Case No: ([A-Z]\d \d{4}/\d+)$"), // EWCA/Civ/2006/1319
+        new Regex(@"^Case No: ([A-Z][A-Z] \d{4} \d+)$"), // EWHC/Ch/2003/2497
         new Regex(@"^Case No: ([A-Z]\d \d{4} \d+)$"), // EWCA/Civ/2015/57
         new Regex(@"^Case No: ([A-Z]{3} \d+/\d{4})$"), // EWHC/Admin/2007/233
-        new Regex(@"^Claim No\. ([A-Z0-9]{7,})$") // EWHC/QB/2017/1550
+        new Regex(@"^Claim No\. ([A-Z0-9]{7,})$"), // EWHC/QB/2017/1550
+        new Regex(@"^Case No: (\d{6,} \(Costs\))$"), // EWHC/QB/2007/1406   ???
+
+        new Regex(@"^Case Nos: ([A-Z][0-9] \d{4}/\d+), \d+ and \d+$"), // EWCA/Civ/2008/1303
+        new Regex(@"^Case No: ([A-Z]{2}-\d{2}-\d+),\d+,\d+$") // EWHC/TCC/2009/3212
     };
 
     Regex[] loneTextRegexesWithTwoGroups = {
