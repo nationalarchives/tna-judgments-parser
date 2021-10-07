@@ -178,8 +178,11 @@ class DocDate : Enricher {
         @"^(\s*Date: *)?\d{1,2}/\d{1,2}/\d{4}( *)$",
         @"^(\s*Date:? *)?\d{1,2}\.\d{1,2}\.\d{4}( *)$",
         /* add other month abbreviations */
-        @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"   // comma after month in EWHC/Ch/2003/812
+        @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",   // comma after month in EWHC/Ch/2003/812
+        @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"
     };
+
+    private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369
 
     private static readonly string[] cardinalDatePatterns2 = {
         @"^Date\|: ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$"
@@ -189,7 +192,7 @@ class DocDate : Enricher {
         @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"
     };
     private static readonly string[] ordinalDatePatterns1 = {
-        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
+        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}( *)$"   // comman after month in EWHC/Admin/2007/12
     };
     private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
         @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$",
@@ -339,6 +342,17 @@ class DocDate : Enricher {
                     new WDocDate(dateWithTwoDigitYear, fText.properties, dt)
                 };
             }
+        }
+        Match match1 = Regex.Match(fText.Text, strangeDatePattern1);    // EWHC/QB/2007/369
+        if (match1.Success) {
+            Group group = match1.Groups[1];
+            string label = fText.Text.Substring(0, group.Index);
+            string corrected = group.Value.Replace(" ", "-");
+            DateTime dt = DateTime.Parse(corrected, culture);
+            return new List<IInline>(2) {
+                new WText(label, fText.properties),
+                new WDocDate(group.Value, fText.properties, dt)
+            };
         }
         return null;
     }

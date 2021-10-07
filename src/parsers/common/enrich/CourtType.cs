@@ -177,6 +177,12 @@ class Combo3 : Combo {
             Re3 = new Regex("^DIVISIONAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD // ??? should it be QBD-General?
         },
+        new Combo3 {    // EWHC/QB/2016/1174
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEENS BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^LONDON MERCANTILE COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Commercial_Circuit
+        },
         // new Combo3 {
         //     Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
         //     Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
@@ -201,6 +207,53 @@ class Combo3 : Combo {
             Transform1(two),
             Transform1(three)
         };
+    }
+
+}
+
+class Combo2_1 : Combo {
+
+    public Regex Re1 { get; init; }
+    public Regex Re2 { get; init; }
+    public Regex Re3 { get; init; }
+
+    internal static Combo2_1[] combos = new Combo2_1[] {
+        new Combo2_1 {
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Royal Courts of Justice", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^ON APPEAL FROM", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {  // EWHC/Ch/2016/4063
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Royal Courts of Justice", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
+        }
+    };
+
+    internal bool Match(IBlock one, IBlock two, IBlock three) {
+        return Match(Re1, one) && Match(Re2, two) && Match(Re3, three);
+    }
+
+    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
+        return new List<ILine>(3) {
+            Transform1(one), Transform1(two), (ILine) three
+        };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
+        foreach (Combo1_2 combo in Combo1_2.combos)
+            if (combo.Match(one, two, three))
+                return combo.Transform(one, two, three);
+        return null;
+
     }
 
 }
@@ -349,6 +402,10 @@ class Combo1 : Combo {
             Court = Courts.CoA_Civil
         },
         new Combo1 {
+            Re = new Regex(@"^IN THE HIGHCOURT OF APPEAL \(CIVIL DIVISION\)$", RegexOptions.IgnoreCase),    // EWCA/Civ/2010/393
+            Court = Courts.CoA_Civil
+        },        
+        new Combo1 {
             Re = new Regex("^IN THE (COURT OF PROTECTION) *$", RegexOptions.IgnoreCase),
             Court = Courts.EWCOP
         },
@@ -375,6 +432,10 @@ class Combo1 : Combo {
         new Combo1 {
             Re = new Regex(@"IN THE COURTS MARTIAL APPEAL COURT"),
             Court = Courts.CoA_Crim // ???
+        },
+        new Combo1 {
+            Re = new Regex(@"IN THE SUPREME COURT COSTS OFFICE$"),
+            Court = Courts.EWHC_SeniorCourtsCosts   // ???
         }
     };
 
@@ -402,6 +463,12 @@ class CourtType : Enricher {
 
     private List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
         foreach (Combo3 combo in Combo3.combos)
+            if (combo.Match(one, two, three))
+                return combo.Transform(one, two, three);
+        foreach (Combo2_1 combo in Combo2_1.combos)
+            if (combo.Match(one, two, three))
+                return combo.Transform(one, two, three);
+        foreach (Combo1_2 combo in Combo1_2.combos)
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
         return null;
@@ -448,12 +515,12 @@ class CourtType : Enricher {
                     i += 3;
                     break;
                 }
-                three = Combo1_2.MatchAny(block1, block2, block3);
-                if (three is not null) {
-                    enriched.AddRange(three);
-                    i += 3;
-                    break;
-                }
+                // three = Combo1_2.MatchAny(block1, block2, block3);
+                // if (three is not null) {
+                //     enriched.AddRange(three);
+                //     i += 3;
+                //     break;
+                // }
             }
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);
