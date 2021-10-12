@@ -73,8 +73,10 @@ class Fields {
             return Enumerable.Empty<IInline>();
         // List<IInline> parsed = new List<IInline>();
         OpenXmlElement first = withinField.First();
-        if (!IsFieldCode(first))
-            throw new Exception();
+        if (!IsFieldCode(first)) {  // EWCA/Civ/2003/215
+            logger.LogWarning("field start and end with no code");
+            return Enumerable.Empty<IInline>();
+        }
         string fieldCode = GetFieldCode(first);
         int i = 1;
         while (i < withinField.Count) {

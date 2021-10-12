@@ -143,7 +143,7 @@ public readonly struct Courts {
 
     public static readonly Court EWHC_Chancery_InsolvencyAndCompanies = new Court {
         Code = "EWHC-Chancery-InsolvencyAndCompanies",
-        LongName = "The Business and Property Courts (Insolvency and Companies List )",
+        LongName = "The Business and Property Courts (Insolvency and Companies List)",
         ShortName = "The Insolvency and Companies List ",
         URL = "https://www.gov.uk/courts-tribunals/insolvency-list"
     };
@@ -199,7 +199,7 @@ public readonly struct Courts {
 
     public static readonly Court EWHC_Chancery_Appeals = new Court {
         Code = "EWHC-Chancery-Appeals",
-        LongName = "The Business and Property Courts (Chancery_Appeals)",
+        LongName = "The Business and Property Courts (Chancery Appeals)",
         ShortName = "The Patents Court",
         URL = "https://www.gov.uk/courts-tribunals/patents-court"
     };

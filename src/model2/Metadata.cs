@@ -19,11 +19,19 @@ class WMetadata : IMetadata {
     }
 
     public Court? Court() {
-        WCourtType caseType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
-        string code = caseType?.Code;
-        if (code is null)
-            return null;
-        return Courts.ByCode[code];
+        WCourtType courtType1 = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
+        if (courtType1 is not null) {
+            if (courtType1.Code is null)
+                return null;
+            return Courts.ByCode[courtType1.Code];
+        }
+        WCourtType2 courtType2 = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType2>().FirstOrDefault();
+        if (courtType2 is not null) {
+            if (courtType2.Code is null)
+                return null;
+            return Courts.ByCode[courtType2.Code];
+        }
+        return null;
     }
 
     public int? Year { get {
