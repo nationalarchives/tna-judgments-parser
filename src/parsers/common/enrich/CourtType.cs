@@ -102,7 +102,7 @@ class Combo3 : Combo {
         new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^PLANNING COURT", RegexOptions.IgnoreCase),    // can be followed by city name EWHC/Admin/2018/1753
             Court = Courts.EWHC_QBD_Planning
         },
         new Combo3 {
@@ -127,6 +127,12 @@ class Combo3 : Combo {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
             Re3 = new Regex("^PATENTS COURT", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Patents
+        },
+        new Combo3 {    // EWHC/Patents/2005/1403
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISON$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^\(PATENTS COURT\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Patents
         },
         new Combo3 {
@@ -177,9 +183,9 @@ class Combo3 : Combo {
             Re3 = new Regex("^DIVISIONAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD // ??? should it be QBD-General?
         },
-        new Combo3 {    // EWHC/QB/2016/1174
+        new Combo3 {    // EWHC/QB/2016/1174, EWHC/QB/2017/1748
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^QUEENS BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^LONDON MERCANTILE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
@@ -235,6 +241,24 @@ class Combo2_1 : Combo {
             Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^Royal Courts of Justice", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2013/3098
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^IN AN APPEAL FROM", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Appeals
+        },
+        new Combo2_1 {  // EWHC/Ch/2017/541
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^ON APPEAL FROM", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Appeals
+        },
+        new Combo2_1 {  // EWHC/Ch/2003/2985
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Appeal against the decision of", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Appeals
         }
     };
 
@@ -380,6 +404,35 @@ class Combo2 : Combo {
 
 }
 
+class Combo1_1 : Combo {
+
+    public Regex Re1 { get; init; }
+    public Regex Re2 { get; init; }
+
+    internal static Combo1_1[] combos = new Combo1_1[] {
+    };
+
+    internal bool Match(IBlock one, IBlock two) {
+        return Match(Re1, one) && Match(Re2, two);
+    }
+
+    internal List<ILine> Transform(IBlock one, IBlock two) {
+        return new List<ILine>(2) {
+            Transform1(one), (ILine) two
+        };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two) {
+        foreach (Combo1_1 combo in Combo1_1.combos)
+            if (combo.Match(one, two))
+                return combo.Transform(one, two);
+        return null;
+
+    }
+
+
+}
+
 class Combo1 : Combo {
 
     public Regex Re { get; init; }
@@ -436,6 +489,10 @@ class Combo1 : Combo {
         new Combo1 {
             Re = new Regex(@"IN THE SUPREME COURT COSTS OFFICE$"),
             Court = Courts.EWHC_SeniorCourtsCosts   // ???
+        },
+        new Combo1 {    // EWHC/Ch/2013/2818
+            Re = new Regex(@"^IN THE HIGH COURT OF JUSTICE CHANCERY DIVISION COMPANIES COURT$"),
+            Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
         }
     };
 
@@ -476,6 +533,9 @@ class CourtType : Enricher {
 
     private List<ILine> Match2(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2.combos)
+            if (combo.Match(one, two))
+                return combo.Transform(one, two);
+        foreach (Combo1_1 combo in Combo1_1.combos)
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
         return null;
