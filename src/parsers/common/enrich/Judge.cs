@@ -13,6 +13,8 @@ class Judge : Enricher {
         List<IBlock> enriched = new List<IBlock>(blocks.Count());
         while (blocks.Any()) {
             List<IBlock> magic = Magic(blocks);
+            if (magic is null)
+                magic = Magic2(blocks);
             if (magic is not null) {
                 enriched.AddRange(magic);
                 enriched.AddRange(blocks.Skip(magic.Count));
@@ -31,7 +33,7 @@ class Judge : Enricher {
         IBlock block = blocks.First();
         if (block is not ILine first)
             return null;
-        ISet<string> starts = new HashSet<string> { "Before:", "Before :", "B e f o r e :", "B E F O R E:" };
+        ISet<string> starts = new HashSet<string> { "Before:", "Before :", "B e f o r e :", "B e f o r e:", "B E F O R E:" };
         if (!starts.Contains(first.NormalizedContent()))
             return null;
         List<IBlock> enriched = new List<IBlock>();
@@ -71,10 +73,54 @@ class Judge : Enricher {
         return null;
     }
 
+    private List<IBlock> Magic2(IEnumerable<IBlock> blocks) {
+        blocks = blocks.Take(6);
+        if (!blocks.Any())
+            return null;
+        IBlock block = blocks.First();
+        if (block is not ILine first)
+            return null;
+        ISet<string> starts = new HashSet<string> { "Before", "Before:", "Before :", "B e f o r e :", "B e f o r e:", "B E F O R E:" };
+        if (!starts.Contains(first.NormalizedContent()))
+            return null;
+        List<IBlock> enriched = new List<IBlock>();
+        enriched.Add(block);
+        blocks = blocks.Skip(1);
+        bool found = false;
+        while (blocks.Any()) {
+            block = blocks.First();
+            if (block is not WLine line)
+                return null;
+            if (line.Contents.Count() != 1)
+                return found ? enriched : null;
+            IInline inline = line.Contents.First();
+            if (inline is not WText text)
+                return found ? enriched : null;
+            if (IsAJudgeName(text)) {
+                found = true;
+                WJudge judge = new WJudge(text.Text, text.properties);
+                WLine line2 = new WLine(line, new List<IInline>(1) { judge });
+                enriched.Add(new WLine(line2));
+                blocks = blocks.Skip(1);
+                continue;
+            }
+            return found ? enriched : null;
+        }
+        return found ? enriched : null;
+    }
+
     private bool IsAJudgeName(WText text) {
-        ISet<string> starts = new HashSet<string> { "LORD JUSTICE ", "MR JUSTICE ", "MR. JUSTICE ", "HIS HONOUR JUDGE " };
+        string normalized = Regex.Replace(text.Text, @"\s+", " ").Trim();
+        ISet<string> starts = new HashSet<string> {
+            "LORD JUSTICE ", "THE RIGHT HONOURABLE LORD JUSTICE ",
+            "LADY JUSTICE ",
+            "MR JUSTICE ", "MR. JUSTICE ",
+            "MRS JUSTICE ", "MRS. JUSTICE ",
+            "THE HONOURABLE MR JUSTICE ", "THE HONOURABLE MR. JUSTICE ", "THE HON. MR JUSTICE ", "THE HON MR JUSTICE ",
+            "HIS HONOUR JUDGE "
+            };
         foreach (string start in starts)
-            if (text.Text.StartsWith(start))
+            if (normalized.StartsWith(start))
                 return true;
         return false;
     }

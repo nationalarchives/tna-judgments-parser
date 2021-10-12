@@ -21,7 +21,7 @@ class NetrualCitation : Enricher {
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^(\[\d{4}\] EWHC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",
+        @"^ *(\[\d{4}\] EWHC \d+ \((Admin|Admlty.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)"    // misspelling in EWCA/Civ/2006/1507
     };
 
@@ -42,23 +42,25 @@ class NetrualCitation : Enricher {
         return null;
     }
 
-    private static IInline[] Replace(string text, Group group, RunProperties rProps) {
-        string before = text.Substring(0, group.Index);
-        string during = group.Value;
-        string after = text.Substring(group.Index + group.Length);
-        if (string.IsNullOrEmpty(after))
-            return new IInline[] {
-                new WText(before, rProps),
-                new WNeutralCitation(during, rProps)
-            };
-        return new IInline[] {
-            new WText(before, rProps),
-            new WNeutralCitation(during, rProps),
-            new WText(after, rProps)
-        };
+    private static List<IInline> Replace(string text, Group group, RunProperties rProps) {
+        List<IInline> replacement = new List<IInline>(3);
+        if (group.Index > 0) {
+            string before1 = text.Substring(0, group.Index);
+            WText before2 = new WText(before1, rProps);
+            replacement.Add(before2);
+        }
+        string during1 = group.Value;
+        WNeutralCitation during2 = new WNeutralCitation(during1, rProps);
+        replacement.Add(during2);
+        string after1 = text.Substring(group.Index + group.Length);
+        if (!string.IsNullOrEmpty(after1)) {
+            WText after2 = new WText(after1, rProps);
+            replacement.Add(after2);
+        }
+        return replacement;
     }
 
-    private static IInline[] Replace(WText fText, Group group) {
+    private static List<IInline> Replace(WText fText, Group group) {
         return Replace(fText.Text, group, fText.properties);
     }
 
@@ -70,7 +72,7 @@ class NetrualCitation : Enricher {
                 if (group is null)
                     group = Match2(fText.Text);
                 if (group is not null) {
-                    IInline[] replacement = Replace(fText, group);
+                    List<IInline> replacement = Replace(fText, group);
                     IEnumerable<IInline> rest = line.Skip(1);
                     return Enumerable.Concat(replacement, rest);
                 }
@@ -80,10 +82,10 @@ class NetrualCitation : Enricher {
             IInline first = line.First();
             IInline second = line.Skip(1).First();
             if (first is WText fText1 && second is WText fText2) {
-                if (fText1.Text == "Neutral Citation Number: ") {
+                if (fText1.Text.Trim() == "Neutral Citation Number:") {
                     Group group = Match2(fText2.Text);
                     if (group is not null) {
-                        IInline[] replacement = Replace(fText2, group);
+                        List<IInline> replacement = Replace(fText2, group);
                         IEnumerable<IInline> rest = line.Skip(2);
                         return Enumerable.Concat(replacement, rest).Prepend(first);
                     }
@@ -119,7 +121,7 @@ class NetrualCitation : Enricher {
                     string text = fText1.Text + fText2.Text;
                     Group group = Match(text);
                     if (group is not null) {
-                        IInline[] replacement = Replace(text, group, fText1.properties);
+                        List<IInline> replacement = Replace(text, group, fText1.properties);
                         IEnumerable<IInline> rest = line.Skip(1);
                         return Enumerable.Concat(replacement, rest);
 

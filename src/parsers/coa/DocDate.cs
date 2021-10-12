@@ -30,7 +30,7 @@ class DocDate : Enricher {
 
     private IBlock EnrichOrDefault(IBlock block) {
         if (block is not WLine line)
-            return block;
+            return null;
         return EnrichOrDefault(line);
     }
 
@@ -43,6 +43,8 @@ class DocDate : Enricher {
             return Enrich2OrDefault(line);
         if (line.Contents.Count() == 3)
             return Enrich3OrDefault(line);
+        if (line.Contents.Count() == 4)
+            return Enrich4OrDefault(line);
         return null;
     }
 
@@ -63,7 +65,7 @@ class DocDate : Enricher {
         IInline second = line.Contents.ElementAt(1);
         if (first is not WText fText1)
             return null;
-        if (!Regex.IsMatch(fText1.Text, @"^Date: $"))
+        if (!string.IsNullOrWhiteSpace(fText1.Text) && !Regex.IsMatch(fText1.Text, @"^Date: $"))
             return null;
         if (second is not WText fText2)
             return null;
@@ -77,100 +79,115 @@ class DocDate : Enricher {
         IInline first = line.Contents.First();
         IInline second = line.Contents.ElementAt(1);
         IInline third = line.Contents.ElementAt(2);
-            if (first is WText fText1) {
-                /* this needs to be improved, not everyting before the date should be allowed */
-                /* EWCA/Civ/2011/1277 contains 'hearing' */
-                bool isMain = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
-                if (second is WText fText2) {
-                    if (third is WText fText3) {
-                        string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +)?(\d{1,2})$";
-                        string pattern2 = @"^(st|nd|rd|th)$";
-                        string pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}$";    // comma after month in EWHC/Admin/2018/2410
-                        Match match1 = Regex.Match(fText1.Text, pattern1);
-                        Match match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
-                        Match match3 = Regex.Match(fText3.Text, pattern3);
-                        if (match1.Success && match2.Success && match3.Success) {
-                            string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
-                            DateTime dt = DateTime.Parse(dayMonthYear, culture);
-                            if (match1.Index == 0) {
-                                IEnumerable<IInline> contents = new IInline[] { new WDocDate(line.Contents.Cast<WText>(), dt) };
-                                return new WLine(line, contents);
-                            } else {
-                                string split1 = fText1.Text.Substring(0, match1.Index);
-                                string split2 = fText1.Text.Substring(match1.Index);
-                                WText before = new WText(split1, fText1.properties);
-                                WText within1 = new WText(split2, fText1.properties);
-                                IFormattedText[] within = { within1, fText2, fText3 };
-                                IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
-                                IEnumerable<IInline> contents = new IInline[] { before, date };
-                                return new WLine(line, contents);
-                            }
-                        }
-                        /* difference here is only spacing */ // EWHC/Fam/2014/1768, EWCA/Civ/2003/1048
-                        pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$";
-                        match1 = Regex.Match(fText1.Text, pattern1);
-                        match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
-                        match3 = Regex.Match(fText3.Text, pattern3);
-                        if (match1.Success && match2.Success && match3.Success) {
-                            string dayMonthYear = match1.Groups[3].Value + fText3.Text;
-                            DateTime dt = DateTime.Parse(dayMonthYear, culture);
-                            List<IInline> everything = new List<IInline>();
-                            if (match1.Index > 0) {
-                                string before1 = fText1.Text.Substring(0, match1.Index);
-                                WText before2 = new WText(before1, fText1.properties);
-                                everything.Add(before2);
-                            }
-                            string within1 = fText1.Text.Substring(match1.Index);
-                            WText within1bis = new WText(within1, fText1.properties);
-                            if (match3.Groups[2].Length == 0) {
-                                IFormattedText[] dateContents = { within1bis, fText2, fText3 };
-                                IInline date = isMain ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
-                                everything.Add(date);
-                            } else {
-                                string within3 = fText3.Text.Substring(0, match3.Groups[2].Index);
-                                string after1 = fText3.Text.Substring(match3.Groups[2].Index);
-                                WText within3bis = new WText(within3, fText3.properties);
-                                IFormattedText[] dateContents = { within1bis, fText2, within3bis };
-                                IInline date = isMain ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
-                                everything.Add(date);
-                                WText after1bis = new WText(after1, fText3.properties);
-                                everything.Add(after1bis);
-                            }
-                            return new WLine(line, everything);
-                        }
-                        /* difference here is only spacing */
-                        pattern2 = @"^(st|nd|rd|th)? +$";   // only space in EWHC/TCC/2015/412
-                        pattern3 = @"^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
-                        match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
-                        match3 = Regex.Match(fText3.Text, pattern3);
-                        if (match1.Success && match2.Success && match3.Success) {
-                            string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
-                            DateTime dt = DateTime.Parse(dayMonthYear, culture);
-                            if (match1.Index == 0) {
-                                IEnumerable<IInline> contents = new IInline[] { new WDocDate(line.Contents.Cast<WText>(), dt) };
-                                return new WLine(line, contents);
-                            } else {
-                                string split1 = fText1.Text.Substring(0, match1.Index);
-                                string split2 = fText1.Text.Substring(match1.Index);
-                                WText before = new WText(split1, fText1.properties);
-                                WText within1 = new WText(split2, fText1.properties);
-                                IFormattedText[] within = { within1, fText2, fText3 };
-                                IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
-                                IEnumerable<IInline> contents = new IInline[] { before, date };
-                                return new WLine(line, contents);
-                            }
-                        }
-                    }
-                }
-            }
-        return null;
-        // }
-        // /* this recursively tries the tail */ /* EWHC/Ch/2013/3866 */
-        // /* problem is that the isMain variable will be unreliable: EWCA/Civ/2004/1067 */
-        // IEnumerable<IInline> rest = line.Skip(1);
-        // return Enrich(rest).Prepend(first);
+        if (first is not WText fText1)
+            return null;
+        if (second is not WText fText2)
+            return null;
+        if (third is not WText fText3)
+            return null;
+        bool isMain = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
+        IEnumerable<IInline> enriched = Enrich3OrDefault(fText1, fText2, fText3, isMain);
+        if (enriched is null)
+            return null;
+        return new WLine(line, enriched);
     }
 
+    private IEnumerable<IInline> Enrich3OrDefault(WText fText1, WText fText2, WText fText3, bool isMain) {
+        string pattern1 = @"((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +)?(\d{1,2})$";
+        string pattern2 = @"^(st|nd|rd|th)$";
+        string pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}$";    // comma after month in EWHC/Admin/2018/2410
+        Match match1 = Regex.Match(fText1.Text, pattern1);
+        Match match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
+        Match match3 = Regex.Match(fText3.Text, pattern3);
+        if (match1.Success && match2.Success && match3.Success) {
+            string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
+            DateTime dt = DateTime.Parse(dayMonthYear, culture);
+            if (match1.Index == 0) {
+                return new IInline[] { new WDocDate(new List<IFormattedText>() { fText1, fText2, fText3 }, dt) };
+            } else {
+                string split1 = fText1.Text.Substring(0, match1.Index);
+                string split2 = fText1.Text.Substring(match1.Index);
+                WText before = new WText(split1, fText1.properties);
+                WText within1 = new WText(split2, fText1.properties);
+                IFormattedText[] within = { within1, fText2, fText3 };
+                IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
+                return new IInline[] { before, date };
+            }
+        }
+        /* difference here is only spacing */ // EWHC/Fam/2014/1768, EWCA/Civ/2003/1048
+        pattern3 = @"^ +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$";
+        match1 = Regex.Match(fText1.Text, pattern1);
+        match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
+        match3 = Regex.Match(fText3.Text, pattern3);
+        if (match1.Success && match2.Success && match3.Success) {
+            string dayMonthYear = match1.Groups[3].Value + fText3.Text;
+            DateTime dt = DateTime.Parse(dayMonthYear, culture);
+            List<IInline> everything = new List<IInline>();
+            if (match1.Index > 0) {
+                string before1 = fText1.Text.Substring(0, match1.Index);
+                WText before2 = new WText(before1, fText1.properties);
+                everything.Add(before2);
+            }
+            string within1 = fText1.Text.Substring(match1.Index);
+            WText within1bis = new WText(within1, fText1.properties);
+            if (match3.Groups[2].Length == 0) {
+                IFormattedText[] dateContents = { within1bis, fText2, fText3 };
+                IInline date = isMain ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
+                everything.Add(date);
+            } else {
+                string within3 = fText3.Text.Substring(0, match3.Groups[2].Index);
+                string after1 = fText3.Text.Substring(match3.Groups[2].Index);
+                WText within3bis = new WText(within3, fText3.properties);
+                IFormattedText[] dateContents = { within1bis, fText2, within3bis };
+                IInline date = isMain ? new WDocDate(dateContents, dt) : new WDate(dateContents, dt);
+                everything.Add(date);
+                WText after1bis = new WText(after1, fText3.properties);
+                everything.Add(after1bis);
+            }
+            return everything;
+        }
+        /* difference here is only spacing */
+        pattern2 = @"^(st|nd|rd|th)? +$";   // only space in EWHC/TCC/2015/412
+        pattern3 = @"^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$";
+        match2 = Regex.Match(fText2.Text, pattern2, RegexOptions.IgnoreCase);
+        match3 = Regex.Match(fText3.Text, pattern3);
+        if (match1.Success && match2.Success && match3.Success) {
+            string dayMonthYear = match1.Groups[3].Value + fText3.Text; // exclude day of the week, in case it doesn't match (EWHC/Admin/2018/1074)
+            DateTime dt = DateTime.Parse(dayMonthYear, culture);
+            if (match1.Index == 0) {
+                return new IInline[] { new WDocDate(new List<IFormattedText>() { fText1, fText2, fText3 }, dt) };
+            } else {
+                string split1 = fText1.Text.Substring(0, match1.Index);
+                string split2 = fText1.Text.Substring(match1.Index);
+                WText before = new WText(split1, fText1.properties);
+                WText within1 = new WText(split2, fText1.properties);
+                IFormattedText[] within = { within1, fText2, fText3 };
+                IInline date = isMain ? new WDocDate(within, dt) : new WDate(within, dt);
+                return new IInline[] { before, date };
+            }
+        }
+        return null;
+    }
+
+    private WLine Enrich4OrDefault(WLine line) {
+        IInline first = line.Contents.First();
+        IInline second = line.Contents.ElementAt(1);
+        IInline third = line.Contents.ElementAt(2);
+        IInline fourth = line.Contents.ElementAt(3);
+        if (first is not WText fText1)
+            return null;
+        if (second is not WText fText2)
+            return null;
+        if (third is not WText fText3)
+            return null;
+        if (fourth is not WText fText4)
+            return null;
+        bool isMain = !fText1.Text.Contains("hearing", StringComparison.InvariantCultureIgnoreCase);
+        IEnumerable<IInline> enriched = Enrich3OrDefault(fText2, fText3, fText4, isMain);
+        if (enriched is null)
+            return null;
+        return new WLine(line, enriched.Prepend(first));
+    }
 
     /* one */
 
@@ -185,13 +202,17 @@ class DocDate : Enricher {
     private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369
 
     private static readonly string[] cardinalDatePatterns2 = {
-        @"^Date\|: ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$"
+        @"^Date[\|:]? ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$"
+    };
+
+    private static readonly string[] cardinalDatePatternsUS = {
+        @"^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$"  // EWHC/Ch/2003/2985
     };
 
     private static readonly string[] twoDigitYearCardinalDatePatterns = {
         @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"
     };
-    private static readonly string[] ordinalDatePatterns1 = {
+    private static readonly string[] ordinalDatePatterns1 = {   // 
         @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}( *)$"   // comman after month in EWHC/Admin/2007/12
     };
     private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
@@ -249,6 +270,14 @@ class DocDate : Enricher {
             Match match = Regex.Match(fText.Text, pattern);
             if (match.Success)
                 return Split(fText, match.Groups[1], match.Groups[3]);
+        }
+        foreach (string pattern in cardinalDatePatternsUS) {
+            Match match = Regex.Match(fText.Text, pattern);
+            if (match.Success) {
+                DateTime dt = DateTime.Parse(fText.Text, new CultureInfo("en-US"));
+                WDocDate dd = new WDocDate(fText, dt);
+                return new List<IInline>(1) { dd };
+            }
         }
         foreach (string pattern in ordinalDatePatterns1) {
             Match match = Regex.Match(fText.Text, pattern);
