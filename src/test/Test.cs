@@ -24,6 +24,7 @@ class Tester {
         public bool HasDate { get; set; }
         public bool HasTwoPartiesOrDocTitle { get; set; }
         public string DocumentTitle { get; set; }
+        public bool HasJudge { get; set; }
 
         public bool HasEverything() {
             if (this.SchemaErrors.Count > 0)
@@ -120,6 +121,13 @@ class Tester {
             logger.LogInformation("doc name is " + result.DocumentTitle);
         }
 
+        XmlNodeList judges = akn.SelectNodes("//akn:judge", nsmgr);
+        result.HasJudge = judges.Count > 0;
+        if (result.HasJudge)
+            logger.LogInformation("has at least one judge name");
+        else
+            logger.LogError("does not have at least one judge name");
+
         return result;
     }
 
@@ -157,6 +165,11 @@ class Tester {
             System.Console.WriteLine("✓ has two parties or doc title");
         else
             System.Console.WriteLine("x does not have two parties or doc title");
+
+        if (result.HasJudge)
+            System.Console.WriteLine("✓ has at least one judge name");
+        else
+            System.Console.WriteLine("x does not have at least one judge name");
 
     }
 
