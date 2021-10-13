@@ -664,33 +664,51 @@ class PartyEnricher : Enricher {
     private static bool IsPartyNameAndRole(IBlock block) {
         if (block is not WLine line)
             return false;
-        if (line.Contents.Count() == 3) {
-            IInline first = line.Contents.First();
-            IInline second = line.Contents.Skip(1).First();
-            IInline third = line.Contents.Skip(2).First();
-            if (first is not WText wText1)
+        // if (line.Contents.Count() == 3) {
+        //     IInline first = line.Contents.First();
+        //     IInline second = line.Contents.Skip(1).First();
+        //     IInline third = line.Contents.Skip(2).First();
+        //     if (first is not WText wText1)
+        //         return false;
+        //     if (second is not WTab)
+        //         return false;
+        //     if (third is not WText wText2)
+        //         return false;
+        //     string s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
+        //     if (!IsAnyPartyType(s))
+        //         return false;
+        //     return true;
+        // }
+        // if (line.Contents.Count() == 4) {
+        //     IInline first = line.Contents.First();
+        //     IInline second = line.Contents.Skip(1).First();
+        //     IInline third = line.Contents.Skip(2).First();
+        //     IInline fourth = line.Contents.Skip(3).First();
+        //     if (first is not WTab)
+        //         return false;
+        //     if (second is not WText wText1)
+        //         return false;
+        //     if (third is not WTab)
+        //         return false;
+        //     if (fourth is not WText wText2)
+        //         return false;
+        //     string s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
+        //     if (!IsAnyPartyType(s))
+        //         return false;
+        //     return true;
+        // }
+        if (line.Contents.Count() >= 3) {
+            IEnumerable<IInline> before = line.Contents.SkipLast(3);
+            IInline antiPenult = line.Contents.SkipLast(2).Last();
+            IInline penult = line.Contents.SkipLast(1).Last();
+            IInline last = line.Contents.Last();
+            if (!before.All(i => i is WTab))
                 return false;
-            if (second is not WTab)
+            if (antiPenult is not WText wText1)
                 return false;
-            if (third is not WText wText2)
+            if (penult is not WTab)
                 return false;
-            string s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
-            if (!IsAnyPartyType(s))
-                return false;
-            return true;
-        }
-        if (line.Contents.Count() == 4) {
-            IInline first = line.Contents.First();
-            IInline second = line.Contents.Skip(1).First();
-            IInline third = line.Contents.Skip(2).First();
-            IInline fourth = line.Contents.Skip(3).First();
-            if (first is not WTab)
-                return false;
-            if (second is not WText wText1)
-                return false;
-            if (third is not WTab)
-                return false;
-            if (fourth is not WText wText2)
+            if (last is not WText wText2)
                 return false;
             string s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
             if (!IsAnyPartyType(s))
@@ -701,32 +719,46 @@ class PartyEnricher : Enricher {
     }
     private static WLine MakePartyAndRole(IBlock block) {
         WLine line = (WLine) block;
-        if (line.Contents.Count() == 3) {
-            WText first = (WText) line.Contents.First();
-            WTab second = (WTab) line.Contents.Skip(1).First();
-            WText third = (WText) line.Contents.Skip(2).First();
-            string s = Regex.Replace(third.Text, @"\s+", " ").Trim();
+        // if (line.Contents.Count() == 3) {
+        //     WText first = (WText) line.Contents.First();
+        //     WTab second = (WTab) line.Contents.Skip(1).First();
+        //     WText third = (WText) line.Contents.Skip(2).First();
+        //     string s = Regex.Replace(third.Text, @"\s+", " ").Trim();
+        //     PartyRole role = GetAnyPartyRole(s);
+        //     List<IInline> contents = new List<IInline>(3) {
+        //         new WParty(first.Text, first.properties) { Role = role },
+        //         second,
+        //         new WRole() { Role = role, Contents = new List<IInline>(1) { third } }
+        //     };
+        //     return new WLine(line, contents);
+        // }
+        // if (line.Contents.Count() == 4) {
+        //     WTab first = (WTab) line.Contents.First();
+        //     WText second = (WText) line.Contents.Skip(1).First();
+        //     WTab third = (WTab) line.Contents.Skip(2).First();
+        //     WText fourth = (WText) line.Contents.Skip(3).First();
+        //     string s = Regex.Replace(fourth.Text, @"\s+", " ").Trim();
+        //     PartyRole role = GetAnyPartyRole(s);
+        //     List<IInline> contents = new List<IInline>(4) {
+        //         first,
+        //         new WParty(second.Text, second.properties) { Role = role },
+        //         third,
+        //         new WRole() { Role = role, Contents = new List<IInline>(1) { fourth } }
+        //     };
+        //     return new WLine(line, contents);
+        // }
+        if (line.Contents.Count() >= 3) {
+            IEnumerable<IInline> before = line.Contents.SkipLast(3);
+            WText antiPenult = (WText) line.Contents.SkipLast(2).Last();
+            WTab penult = (WTab) line.Contents.SkipLast(1).Last();
+            WText last = (WText) line.Contents.Last();
+            string s = Regex.Replace(last.Text, @"\s+", " ").Trim();
             PartyRole role = GetAnyPartyRole(s);
-            List<IInline> contents = new List<IInline>(3) {
-                new WParty(first.Text, first.properties) { Role = role },
-                second,
-                new WRole() { Role = role, Contents = new List<IInline>(1) { third } }
-            };
-            return new WLine(line, contents);
-        }
-        if (line.Contents.Count() == 4) {
-            WTab first = (WTab) line.Contents.First();
-            WText second = (WText) line.Contents.Skip(1).First();
-            WTab third = (WTab) line.Contents.Skip(2).First();
-            WText fourth = (WText) line.Contents.Skip(3).First();
-            string s = Regex.Replace(fourth.Text, @"\s+", " ").Trim();
-            PartyRole role = GetAnyPartyRole(s);
-            List<IInline> contents = new List<IInline>(4) {
-                first,
-                new WParty(second.Text, second.properties) { Role = role },
-                third,
-                new WRole() { Role = role, Contents = new List<IInline>(1) { fourth } }
-            };
+            IEnumerable<IInline> contents = before.Concat(new List<IInline>(3) {
+                new WParty(antiPenult.Text, antiPenult.properties) { Role = role },
+                penult,
+                new WRole() { Role = role, Contents = new List<IInline>(1) { last } }
+            });
             return new WLine(line, contents);
         }
         throw new Exception();
@@ -998,19 +1030,21 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant", "Appellant / Third Defendant" };
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant", "Appellant / Third Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
         types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Claimant;
-        types = new HashSet<string>() { "Applicant", "Applicants", "Respondent/Applicant", "Applicants/Claimants", "Applicant/ Claimant", "Appellants/ Claimants" };
+        types = new HashSet<string>() { "Applicant", "Applicants", "Respondent/Applicant", "Applicants/Claimants", "Applicant/ Claimant", "Claimant/Applicant", "Defendant/ Applicant", "1st Applicant", "2nd Applicant" };
         if (types.Contains(normalized))
             return PartyRole.Applicant;
         types = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Part 20 Claimant", "First Defendant", "Second Defendant", "Third Defendant" };
         if (types.Contains(normalized))
             return PartyRole.Defendant;
-        types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents", "Claimant/Respondent", "Claimant/ Respondent", "Claimant / Respondent", "Defendant/Respondent", "Defendant/ Respondent", "Petitioner/Respondent",
+        types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents",
+            "Claimant/Respondent", "Claimant/ Respondent", "Claimant / Respondent", "Clamaints/ Respondents", "Respondent/Claimant",
+            "Defendant/Respondent", "Defendant/ Respondent", "Petitioner/Respondent",
             "First Respondent", "Second Respondent", "Third Respondent", "Fourth Respondent",
             "1st Respondent", "2nd Respondent", "3rd Respondent",   // EWCA/Civ/2012/378
             "Respondents/Defendants", "Respond-ents/ Defendants", "Respondents/ Defendants",  // EWCA/Civ/2015/377, EWHC/QB/2006/582
@@ -1084,6 +1118,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Defendants/" && two == "Respondents") // EWHC/Admin/2016/321
             return PartyRole.Respondent;
+        if (one == "Defendants/" && two == "Appellants") // EWCA/Civ/2004/277
+            return PartyRole.Appellant;
         if (one == "1st Respondent" && two == "2nd Respondent") // EWHC/Fam/2017/364
             return PartyRole.Respondent;
         if (one == "1st Respondent" && two == "2ndRespondent") // EWCA/Civ/2011/1253

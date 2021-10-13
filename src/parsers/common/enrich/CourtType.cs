@@ -171,6 +171,12 @@ class Combo3 : Combo {
             Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial
         },
+        new Combo3 {    // EWHC/Comm/2018/3326
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
+            Re3 = new Regex(@"^COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Commercial
+        },
         new Combo3 {    // EWHC/Comm/2009/2941, EWHC/Comm/2004/2750
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),   // no appostrophe in EWHC/Comm/2003/3161
@@ -240,6 +246,12 @@ class Combo2_1 : Combo {
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^Royal Courts of Justice", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2008/1893
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Before", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
         },
         new Combo2_1 {  // EWHC/Ch/2013/3098
@@ -410,6 +422,11 @@ class Combo1_1 : Combo {
     public Regex Re2 { get; init; }
 
     internal static Combo1_1[] combos = new Combo1_1[] {
+        new Combo1_1 {    // EWHC/Admin/2014/3257
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$"),
+            Re2 = new Regex(@"^Royal Courts of Justice"),
+            Court = Courts.EWHC
+        }
     };
 
     internal bool Match(IBlock one, IBlock two) {
