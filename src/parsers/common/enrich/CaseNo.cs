@@ -131,6 +131,12 @@ class CaseNo : Enricher {
                         List<IInline> contents = Split(text, match.Groups);
                         return new WLine(line, contents);
                     }
+                    pattern = @"^No\. (\d+ of \d{4})$";  // EWHC/Ch/2014/1100
+                    match = Regex.Match(text.Text, pattern);
+                    if (match.Success) {
+                        List<IInline> contents = Split(text, match.Groups);
+                        return new WLine(line, contents);
+                    }
                 }
             }
             if (line.Contents.Count() == 3) {   // EWHC/Admin/2009/3016
@@ -192,6 +198,7 @@ class CaseNo : Enricher {
         new Regex(@"Case No: ([A-Z]{2}-[0-9]{2}-[A-Z]{2} \d{4})$"),   // EWHC/Ch/2004/2316
         new Regex(@"^Claim No\. ([A-Z]{2} [0-9]{2} [A-Z] [0-9]{5})$"), // EWHC/Ch/2003/812
         new Regex(@"^Claim No: ([A-Z]{2}-\d{2}-\d+)$"), // EWHC/TCC/2018/751
+        new Regex(@"^Claim No: ([A-Z]{2}-\d{4}-\d+)$"), // EWHC/Ch/2015/411
         new Regex(@"^Case No: ([A-Z]\d \d{4}/\d+)$"), // EWCA/Civ/2006/1319
         new Regex(@"^Case No: ([A-Z][A-Z] \d{4} \d+)$"), // EWHC/Ch/2003/2497
         new Regex(@"^Case No: ([A-Z]\d \d{4} \d+)$"), // EWCA/Civ/2015/57
@@ -199,6 +206,7 @@ class CaseNo : Enricher {
         new Regex(@"^Claim No\. ([A-Z0-9]{7,})$"), // EWHC/QB/2017/1550
         new Regex(@"^Case No: (\d{6,} \(Costs\))$"), // EWHC/QB/2007/1406   ???
         new Regex(@"^CaseNo\. ([A-Z0-9]{7,})$"),    // EWHC/Fam/2018/2433
+        new Regex(@"^Case number:([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9])$"),    // EWHC/TCC/2004/8
 
         new Regex(@"^Case Nos: ([A-Z][0-9] \d{4}/\d+), \d+ and \d+$"), // EWCA/Civ/2008/1303
         new Regex(@"^Case No: ([A-Z]{2}-\d{2}-\d+),\d+,\d+$") // EWHC/TCC/2009/3212
@@ -211,14 +219,17 @@ class CaseNo : Enricher {
         new Regex(@"^Case Nos: ([A-Z0-9][A-Z0-9/\-]{7,}[A-Z0-9]) and ([A-Z0-9][A-Z0-9/\-]{7,}[A-Z0-9])$"), // EWHC/Admin/2013/19
         new Regex(@"Cases No: (\d{4} FOLIO \d+) and (\d{4} FOLIO \d+)"), // EWHC/Comm/2013/2793
         new Regex(@"Case Numbers: (\d{4} Folio \d+) & (\d{4} Folio \d+)$"), // EWHC/Comm/2010/784
-        new Regex(@"^Case No: (\d+) and (\d+)$")    // EWCOP/2016/30
+        new Regex(@"^Case No: (\d+) and (\d+)$"),    // EWCOP/2016/30
+        new Regex(@"^Case No: ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]) - ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9])$") // EWHC/Ch/2016/2683
         // new Regex(@"Case Nos: ([A-Z][A-Z0-9/]{7,}[A-Z0-9]), ([A-Z][A-Z0-9/]{7,}[A-Z0-9]), ") //
     };
 
     Regex[] loneTextRegexesWithMultipleGroups = {
         new Regex(@"^([A-Z0-9][A-Z0-9/\-]{5,}[A-Z0-9] \(A\)); ([A-Z0-9][A-Z0-9/\-]{5,}[A-Z0-9]); ([A-Z0-9][A-Z0-9/\-]{5,}[A-Z0-9])$"),  // EWCA/Civ/2004/122
         new Regex(@"^Case Nos[:\.] ([0-9]{7} [A-Z][0-9]), ([0-9]{7} [A-Z][0-9]), ([0-9]{7} [A-Z][0-9]) *$", RegexOptions.IgnoreCase),  // EWCA/Crim/2010/2638
-        new Regex(@"^Case No: ([A-Z0-9]{10,}); ([A-Z0-9]{10,}); ([A-Z0-9]{10,}); ([A-Z0-9]{10,}) *$")   // EWCA/Crim/2006/1741
+        new Regex(@"^Case No: ([A-Z0-9]{10,}); ([A-Z0-9]{10,}); ([A-Z0-9]{10,}); ([A-Z0-9]{10,}) *$"),   // EWCA/Crim/2006/1741
+        new Regex(@"^Case No: (\d{7,}), (\d{7,}), (\d{7,})$"),   // EWCA/Crim/2013/1305
+        new Regex(@"^Case Nos: ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9])$")   // EWHC/Admin/2012/2736
     };
 
     private WLine EnrichLine(WLine line) {
@@ -233,28 +244,52 @@ class CaseNo : Enricher {
         IInline first = line.Contents.First();
         if (first is not WText text)
             return line;
+        List<IInline> contents = EnrichOneSpan(text);
+        return new WLine(line, contents);
+        // foreach (Regex re in loneTextRegexesWithOneGroup) {
+        //     Match match = re.Match(text.Text);
+        //     if (!match.Success)
+        //         continue;
+        //     List<IInline> contents = Split(text, match.Groups);
+        //     return new WLine(line, contents);
+        // }
+        // foreach (Regex re in loneTextRegexesWithTwoGroups) {
+        //     Match match = re.Match(text.Text);
+        //     if (!match.Success)
+        //         continue;
+        //     List<IInline> contents = Split(text, match.Groups);
+        //     return new WLine(line, contents);
+        // }
+        // foreach (Regex re in loneTextRegexesWithMultipleGroups) {
+        //     Match match = re.Match(text.Text);
+        //     if (!match.Success)
+        //         continue;
+        //     List<IInline> contents = Split(text, match.Groups);
+        //     return new WLine(line, contents);
+        // }
+        // return line;
+    }
+
+    private List<IInline> EnrichOneSpan(WText text) {
         foreach (Regex re in loneTextRegexesWithOneGroup) {
             Match match = re.Match(text.Text);
             if (!match.Success)
                 continue;
-            List<IInline> contents = Split(text, match.Groups);
-            return new WLine(line, contents);
+            return Split(text, match.Groups);
         }
         foreach (Regex re in loneTextRegexesWithTwoGroups) {
             Match match = re.Match(text.Text);
             if (!match.Success)
                 continue;
-            List<IInline> contents = Split(text, match.Groups);
-            return new WLine(line, contents);
+            return Split(text, match.Groups);
         }
         foreach (Regex re in loneTextRegexesWithMultipleGroups) {
             Match match = re.Match(text.Text);
             if (!match.Success)
                 continue;
-            List<IInline> contents = Split(text, match.Groups);
-            return new WLine(line, contents);
+            return Split(text, match.Groups);
         }
-        return line;
+        return new List<IInline>(1) { text };
     }
 
     private WLine EnrichLineWithTwoSpans(WLine line) {
@@ -264,6 +299,10 @@ class CaseNo : Enricher {
             return line;
         if (second is not WText text2)
             return line;
+        if (string.IsNullOrWhiteSpace(text1.Text)) {
+            IEnumerable<IInline> contents = EnrichOneSpan(text2).Prepend(text1);
+            return new WLine(line, contents);
+        }
         Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?[:\.]?\s*$", RegexOptions.IgnoreCase);
         Regex re2 = new Regex(@"^\s*([^ ]+) *$", RegexOptions.IgnoreCase);
         Match match1 = re1.Match(text1.Text);

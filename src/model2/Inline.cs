@@ -31,6 +31,9 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         this.properties = properties;
         this.text = "-";
     }
+    public static WText MakeHyphen(RunProperties properties) {
+        return new WText("-", properties);
+    }
 
     public string Style {
         get => properties?.RunStyle?.Val;
