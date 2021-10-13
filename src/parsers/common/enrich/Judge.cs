@@ -80,7 +80,7 @@ class Judge : Enricher {
         IBlock block = blocks.First();
         if (block is not ILine first)
             return null;
-        ISet<string> starts = new HashSet<string> { "Before", "Before:", "Before :", "B e f o r e :", "B e f o r e:", "B E F O R E:" };
+        ISet<string> starts = new HashSet<string> { "Before", "Before:", "Before :", "BEFORE:", "B e f o r e :", "B e f o r e:", "B E F O R E:" };
         if (!starts.Contains(first.NormalizedContent()))
             return null;
         List<IBlock> enriched = new List<IBlock>();
@@ -117,7 +117,7 @@ class Judge : Enricher {
             "MR JUSTICE ", "MR. JUSTICE ",
             "MRS JUSTICE ", "MRS. JUSTICE ",
             "THE HONOURABLE MR JUSTICE ", "THE HONOURABLE MR. JUSTICE ", "THE HON. MR JUSTICE ", "THE HON MR JUSTICE ",
-            "HIS HONOUR JUDGE "
+            "HIS HONOUR JUDGE ", "His Honour Judge "
             };
         foreach (string start in starts)
             if (normalized.StartsWith(start))

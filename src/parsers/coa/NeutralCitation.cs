@@ -22,7 +22,8 @@ class NetrualCitation : Enricher {
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
         @"^ *(\[\d{4}\] EWHC \d+ \((Admin|Admlty.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
-        @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)"    // misspelling in EWCA/Civ/2006/1507
+        @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)",    // misspelling in EWCA/Civ/2006/1507
+        @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$" // misspelling in EWHC/Ch/2015/411
     };
 
     private static Group Match(string text) {
