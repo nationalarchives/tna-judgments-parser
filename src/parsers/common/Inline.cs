@@ -234,6 +234,8 @@ class Inline {
             return new WLineBreak(br);
         if (e is NoBreakHyphen hyphen)
             return new WText(hyphen, rProps);
+        if (e.LocalName == "noBreakHyphen") // EWHC/Admin/2007/2606
+            return WText.MakeHyphen(rProps);
         if (e is SoftHyphen soft)
             return null;
         if (e is FootnoteReference)
