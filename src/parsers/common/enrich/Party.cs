@@ -128,7 +128,7 @@ class PartyEnricher : Enricher {
         return
             IsBeforePartyMarker(line1) &&
             IsPartyName(line2) &&
-            IsBetweenPartyMarker(line3) &&
+            (IsBetweenPartyMarker(line3) || IsBetweenPartyMarker2(line3)) &&
             IsPartyName(line4) &&
             IsAfterPartyMarker(line5);
     }
@@ -599,7 +599,7 @@ class PartyEnricher : Enricher {
             "Claimant/Respondent", "CLAIMANT/RESPONDENT", "Respondent/Claimant", "Claimants/Respondents", "CLAIMANTS/RESPONDENTS",
             "Respondent",    // EWCA/Civ/2003/1686
             "Applicant", "Applicants", "Claimant/Applicant", "CLAIMANT/APPELLANT",
-            "Appellant", "(APPELLANT)", "Appellant/Appellant", "Applicant/Appellant", "Appellant/Applicant", "Appellant/Claimant", "Appellants/ Claimants",
+            "Appellant", "(APPELLANT)", "(APPELLANTS)", "Appellant/Appellant", "Applicant/Appellant", "Appellant/Applicant", "Appellant/Claimant", "Appellants/ Claimants",
             "Petitioner"
         };
         return firstPartyTypes.Contains(s);
@@ -642,6 +642,7 @@ class PartyEnricher : Enricher {
                 return PartyRole.Applicant;
             case "Appellant":
             case "(APPELLANT)":
+            case "(APPELLANTS)":
             case "Appellant/Appellant":
             case "Applicant/Appellant":
             case "Appellant/Applicant":
@@ -787,7 +788,8 @@ class PartyEnricher : Enricher {
             "Applicants/Defendants",
             "Defendant/Appellant", "DEFENDANT/APPELLANT", "Defendants/Appellants", "Appellant/Defendant", "Appellant/First Defendant",
             "Appellant", // EWCA/Civ/2003/1686
-            "Respondent", "Respondents", "(RESPONDENT)", "Defendant/Respondent", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Respondents", "Respondents/Defendants", "Respondents/ Defendants",
+            "Respondent", "Respondents", "(RESPONDENT)", "(RESPONDENTS)", "Defendant/Respondent", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Respondents", "Respondents/Defendants", "Respondents/ Defendants",
+            "Respondnet",  // EWHC/Admin/2010/3393
             "First Respondent", "Second Respondent",
             "Interested Party", "Interested Parties", "(INTERESTED PARTY)", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party",
             "FIRST DEFENDANT’S SOLICITOR/APPELLANT"
@@ -830,6 +832,7 @@ class PartyEnricher : Enricher {
             case "Respondent":
             case "Respondents":
             case "(RESPONDENT)":
+            case "(RESPONDENTS)":
             case "Defendant/Respondent":
             case "DEFENDANT/RESPONDENT":
             case "DEFENDANTS/RESPONDENTS":
@@ -839,6 +842,7 @@ class PartyEnricher : Enricher {
             case "Respondents/ Defendants":
             case "First Respondent":
             case "Second Respondent":
+            case "Respondnet":  // EWHC/Admin/2010/3393
                 return PartyRole.Respondent;
             case "Interested Party":
             case "Interested Parties":
@@ -1139,7 +1143,7 @@ class PartyEnricher : Enricher {
 
     private static PartyRole? GetNLinePartyRole(WCell cell) {
         var blocks = cell.Contents.Where(block => !IsEmptyLine(block));
-        if (blocks.Count() < 3)
+        if (blocks.Count() < 2)
             return null;
         if (!blocks.All(block => block is WLine))
             return null;
@@ -1305,37 +1309,82 @@ class PartyEnricher : Enricher {
                 contents.Add(block);
                 continue;
             }
-            if (line.Contents.Count() > 1) {
-                contents.Add(block);
-                continue;
-            }
-            IInline first = line.Contents.First();
-            if (first is not WText wText)
-                return cell;
-            if (string.IsNullOrWhiteSpace(wText.Text)) {
-                contents.Add(block);
-                continue;
-            }
-            string trimmed = wText.Text.Trim();
-            if (trimmed.StartsWith('(') && trimmed.EndsWith(')')) {
-                contents.Add(block);
-                continue;
-            }
-            if (ands.Contains(trimmed)) {
-                andFound = true;
-                contents.Add(block);
-                continue;
-            }
-            if (andFound) {
-                secondPartyFound = true;
-                WParty party = new WParty(wText) { Role = roles.second };
-                WLine newLine = new WLine(line, new List<IInline>(1) { party });
-                contents.Add(newLine);
+            if (line.Contents.Count() == 1) {
+
+                IInline first = line.Contents.First();
+                if (first is not WText wText)
+                    return cell;
+                if (string.IsNullOrWhiteSpace(wText.Text)) {
+                    contents.Add(block);
+                    continue;
+                }
+                string trimmed = wText.Text.Trim();
+                if (trimmed.StartsWith('(') && trimmed.EndsWith(')')) {
+                    contents.Add(block);
+                    continue;
+                }
+                if (ands.Contains(trimmed)) {
+                    andFound = true;
+                    contents.Add(block);
+                    continue;
+                }
+                if (andFound) {
+                    secondPartyFound = true;
+                    WParty party = new WParty(wText) { Role = roles.second };
+                    WLine newLine = new WLine(line, new List<IInline>(1) { party });
+                    contents.Add(newLine);
+                } else {
+                    firstPartyFound = true;
+                    WParty party = new WParty(wText) { Role = roles.first };
+                    WLine newLine = new WLine(line, new List<IInline>(1) { party });
+                    contents.Add(newLine);
+                }
+
+            } else if (line.Contents.Count() == 2) {    // EWHC/Admin/2016/176
+
+                IInline first = line.Contents.First();
+                IInline second = line.Contents.ElementAt(1);
+                if (first is not WText wText1) {
+                    contents.Add(block);
+                    continue;
+                }
+                if (second is not WText wText2) {
+                    contents.Add(block);
+                    continue;
+                }
+                if (!string.IsNullOrWhiteSpace(wText1.Text)) {
+                    contents.Add(block);
+                    continue;
+                }
+                if (string.IsNullOrWhiteSpace(wText2.Text)) {
+                    contents.Add(block);
+                    continue;
+                }
+                string trimmed = wText2.Text.Trim();
+                if (trimmed.StartsWith('(') && trimmed.EndsWith(')')) {
+                    contents.Add(block);
+                    continue;
+                }
+                if (ands.Contains(trimmed)) {
+                    andFound = true;
+                    contents.Add(block);
+                    continue;
+                }
+                if (andFound) {
+                    secondPartyFound = true;
+                    WParty party = new WParty(wText2) { Role = roles.second };
+                    WLine newLine = new WLine(line, new List<IInline>(2) { first, party });
+                    contents.Add(newLine);
+                } else {
+                    firstPartyFound = true;
+                    WParty party = new WParty(wText2) { Role = roles.first };
+                    WLine newLine = new WLine(line, new List<IInline>(2) { first, party });
+                    contents.Add(newLine);
+                }
+
             } else {
-                firstPartyFound = true;
-                WParty party = new WParty(wText) { Role = roles.first };
-                WLine newLine = new WLine(line, new List<IInline>(1) { party });
-                contents.Add(newLine);
+                contents.Add(block);
+                continue;
             }
         }
         if (!firstPartyFound)
