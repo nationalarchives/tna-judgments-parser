@@ -100,9 +100,23 @@ class Judge : Enricher {
                 found = true;
                 WJudge judge = new WJudge(text.Text, text.properties);
                 WLine line2 = new WLine(line, new List<IInline>(1) { judge });
-                enriched.Add(new WLine(line2));
+                enriched.Add(line2);
                 blocks = blocks.Skip(1);
                 continue;
+            }
+            if (IsALawerName(text)) {
+                IBlock next = blocks.Skip(1).FirstOrDefault();
+                if (next is not null)
+                    if (next is WLine line2)
+                        if (line2.Contents.Count() == 1)
+                            if (line2.Contents.First() is WText text2)
+                                if (text2.Text.StartsWith("(sitting as")) {
+                                    found = true;
+                                    WJudge judge = new WJudge(text.Text, text.properties);
+                                    enriched.Add(new WLine(line, new List<IInline>(1) { judge }));
+                                    blocks = blocks.Skip(1);
+                                    continue;
+                                }
             }
             return found ? enriched : null;
         }
@@ -113,16 +127,23 @@ class Judge : Enricher {
         string normalized = Regex.Replace(text.Text, @"\s+", " ").Trim();
         ISet<string> starts = new HashSet<string> {
             "LORD JUSTICE ", "THE RIGHT HONOURABLE LORD JUSTICE ",
+            "(LORD JUSTICE ",
             "LADY JUSTICE ",
             "MR JUSTICE ", "MR. JUSTICE ",
             "MRS JUSTICE ", "MRS. JUSTICE ",
             "THE HONOURABLE MR JUSTICE ", "THE HONOURABLE MR. JUSTICE ", "THE HON. MR JUSTICE ", "THE HON MR JUSTICE ",
-            "HIS HONOUR JUDGE ", "His Honour Judge "
+            "HIS HONOUR JUDGE ", "His Honour Judge ",
+            "SENIOR COSTS JUDGE ",
+            "SIR "
             };
         foreach (string start in starts)
             if (normalized.StartsWith(start))
                 return true;
         return false;
+    }
+
+    private bool IsALawerName(WText text) {
+        return text.Text.EndsWith("Q.C.");
     }
 
     // protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
