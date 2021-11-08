@@ -17,10 +17,16 @@ public readonly struct Court {
 public readonly struct Courts {
 
     public static readonly Court SupremeCourt = new Court() {
-        Code = "UK-Supreme-Court",
+        Code = "UKSC",
         LongName = "The UK Supreme Court",
         ShortName = "Supreme Court",
         URL = "https://www.supremecourt.uk/"
+    };
+
+    public static readonly Court PrivyCouncil = new Court() {
+        Code = "UKPC",
+        LongName = "The Judicial Committee of the Privy Council",
+        URL = "https://www.jcpc.uk/"
     };
 
     public static readonly Court CoA_Crim = new Court {

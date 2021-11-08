@@ -110,7 +110,7 @@ class Judge : Enricher {
                     if (next is WLine line2)
                         if (line2.Contents.Count() == 1)
                             if (line2.Contents.First() is WText text2)
-                                if (text2.Text.StartsWith("(sitting as")) {
+                                if (text2.Text.StartsWith("(sitting as", System.StringComparison.InvariantCultureIgnoreCase) || text2.Text.StartsWith("SITTING AS", System.StringComparison.InvariantCultureIgnoreCase)) {
                                     found = true;
                                     WJudge judge = new WJudge(text.Text, text.properties);
                                     enriched.Add(new WLine(line, new List<IInline>(1) { judge }));
@@ -143,7 +143,7 @@ class Judge : Enricher {
     }
 
     private bool IsALawerName(WText text) {
-        return text.Text.EndsWith("Q.C.");
+        return text.Text.EndsWith(" Q.C.") || text.Text.EndsWith(" QC");
     }
 
     // protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

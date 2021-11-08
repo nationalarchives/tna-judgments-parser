@@ -40,7 +40,17 @@ interface ILine : IBlock {
         return Regex.Replace(string.Join("", texts), @"\s+", " ").Trim();
     }
 
+    public bool IsEmpty() {
+        return this.Contents.All(i => {
+            if (i is IFormattedText t)
+                return string.IsNullOrWhiteSpace(t.Text);
+            return true;
+        });
+    }
+
 }
+
+interface IRestriction : ILine { }
 
 interface IOldNumberedParagraph : ILine {
 

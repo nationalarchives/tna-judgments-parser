@@ -31,6 +31,13 @@ class WMetadata : IMetadata {
                 return null;
             return Courts.ByCode[courtType2.Code];
         }
+        string id = DocumentId();
+        if (id is null)
+            return null;
+        if (id.StartsWith("uksc/"))
+            return Courts.SupremeCourt;
+        if (id.StartsWith("ukpc/"))
+            return Courts.PrivyCouncil;
         return null;
     }
 
@@ -60,6 +67,10 @@ class WMetadata : IMetadata {
         INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
         if (cite is not null) {
             Match match1;
+            match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (UKSC|UKPC) (\d+)$");
+            if (match1.Success) {
+                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
+            }
             match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWCA) (Civ|Crim) (\d+)$");
             if (match1.Success) {
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[4].Value;
