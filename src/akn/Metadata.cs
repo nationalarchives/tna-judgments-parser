@@ -77,13 +77,10 @@ class Metadata {
         if (includeReferences) {
             XmlElement workNumber = append(doc, work, "FRBRnumber");
             workNumber.SetAttribute("value", metadata.Number.ToString());
-            if (party2 is not null) {
+            string caseName = CaseName.Extract(judgment);
+            if (caseName is not null) {
                 XmlElement workName = append(doc, work, "FRBRname");
-                workName.SetAttribute("value", party1.Name + " v. " + party2.Name);
-            } else if (docTitle.Any()) {
-                XmlElement workName = append(doc, work, "FRBRname");
-                string value = string.Join(" ", docTitle.Select(dt => dt.Text));
-                workName.SetAttribute("value", value);
+                workName.SetAttribute("value", caseName);
             }
         }
         XmlElement expression = append(doc, identification, "FRBRExpression");
@@ -167,13 +164,21 @@ class Metadata {
                 org.SetAttribute("showAs", lawyer.Name);
             }
 
+            IEnumerable<ILocation> locations = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ILocation>();
+            foreach (ILocation loc in locations) {
+                XmlElement org = append(doc, references, "TLCLocation");
+                org.SetAttribute("eId", loc.Id);
+                org.SetAttribute("href", "/" + loc.Id);
+                org.SetAttribute("showAs", loc.Name);
+            }
+
             XmlElement proprietary = append(doc, meta, "proprietary");
             proprietary.SetAttribute("source", docId + "/eng/docx");
             proprietary.SetAttribute("xmlns:uk", ukns);
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("court", ukns);
                 proprietary.AppendChild(courtt);
-                courtt.AppendChild(doc.CreateTextNode(((Court) metadata.Court()).Code.ToString()));
+                courtt.AppendChild(doc.CreateTextNode(court.Value.Code.ToString()));
             }
             if (metadata.Year is not null) {
                 XmlElement year = doc.CreateElement("year", ukns);

@@ -75,7 +75,59 @@ class Combo5 : Combo {
             Transform1(four),
             Transform1(five)
         };
+    }
 
+}
+
+class Combo4 : Combo {
+
+    public Regex Re1 { get; init; }
+    public Regex Re2 { get; init; }
+    public Regex Re3 { get; init; }
+    public Regex Re4 { get; init; }
+
+    internal static Combo4[] combos = new Combo4[] {
+        new Combo4 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^LEEDS DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Planning
+        },
+        new Combo4 {    // EWHC/TCC/2018/2802
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_TCC
+        },
+        new Combo4 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_TCC
+        },
+        new Combo4 {    // EWHC/Ch/2014/1553
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^INTELLECTUAL PROPERTY and$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^COMMUNITY TRADE MARK COURT", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IPEC
+        }
+    };
+
+    internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four);
+    }
+
+    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return new List<ILine>(4) {
+            Transform1(one),
+            Transform1(two),
+            Transform1(three),
+            Transform1(four)
+        };
     }
 
 }
@@ -91,6 +143,12 @@ class Combo3 : Combo {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),   // no apostrophe in EWHC/Admin/2009/573
             Re3 = new Regex("^(THE )?ADMINISTRATIVE COURT", RegexOptions.IgnoreCase),  // "THE" in EWHC/Admin/2006/1205, "... AT ..." in EWHC/Admin/2013/733
+            Court = Courts.EWHC_QBD_Administrative
+        },
+        new Combo3 {
+            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^ADMINSTRATIVE COURT", RegexOptions.IgnoreCase),  // spelling mistake in EWHC/Admin/2021/578
             Court = Courts.EWHC_QBD_Administrative
         },
         new Combo3 {
@@ -138,7 +196,7 @@ class Combo3 : Combo {
         new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^INTELLECTUAL PROPERTY( ENTERPRISE COURT)?$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
         },
         new Combo3 {
@@ -207,6 +265,12 @@ class Combo3 : Combo {
             Re3 = new Regex(@"^TECHNOLOGY AND CONSTRUCTION COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
+        new Combo3 {    // EWHC/TCC/2011/3070
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^TECHNOLOGY & CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_TCC
+        },
         new Combo3 {    // EWHC/Costs/2012/90218
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
@@ -238,20 +302,50 @@ class Combo2_1 : Combo {
     internal static Combo2_1[] combos = new Combo2_1[] {
         new Combo2_1 {
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^(The )?Royal Courts of Justice", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new Combo2_1 {
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN'’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^ON APPEAL FROM", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
-        new Combo2_1 {  // EWHC/Ch/2016/4063
+        new Combo2_1 {  // EWHC/QB/2011/3104
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {  // EWHC/QB/2013/2997
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Strand$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {  // EWHC/QB/2011/3068
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^IN THE MATTER OF"),
+            Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {  // EWHC/QB/2014/1972
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^The Combined Court Centre"),
+            Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {  // EWHC/Ch/2016/4063
+            Re1 = new Regex(@"^IN THE HIGH COURTS? OF JUSTICE$", RegexOptions.IgnoreCase),  // S in EWHC/Ch/2009/2692
             Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^Royal Courts of Justice", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2015/274
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^[A-Z][a-z]+ Building, Royal Courts of Justice$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
         },
         new Combo2_1 {  // EWHC/Ch/2008/1893
@@ -264,6 +358,42 @@ class Combo2_1 : Combo {
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^Date", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2013/160, EWHC/Ch/2012/616
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^[A-Z][a-z]+ Building"),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2018/2783
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^\d+ [A-Z][a-z]+ Building"),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2014/1048
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"Building$"),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2016/1996
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2016/243
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^IN THE MATTER OF"),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo2_1 {  // EWHC/Ch/2018/106
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Bristol Civil Justice Centre$"),
             Court = Courts.EWHC_Chancery
         },
         new Combo2_1 {  // EWHC/Ch/2013/3098
@@ -403,11 +533,11 @@ class Combo2 : Combo {
             Re2 = new Regex(@"^QUEEN'S BENCH DIVISION TECHNOLOGY AND CONSTRUCTION COURT$"),
             Court = Courts.EWHC_QBD_TCC
         },
-        // new Combo2 {    // EWHC/Admin/2003/2846, EWHC/Admin/2006/1645
-        //     Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-        //     Re2 = new Regex("^DIVISIONAL( COURT)?$", RegexOptions.IgnoreCase),
-        //     Court = Courts.EWHC_QBD // ???
-        // },
+        new Combo2 {    // EWHC/Admin/2003/2846, EWHC/Admin/2006/1645, EWHC/Admin/2009/995
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^DIVISIONAL( COURT)?$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD // this is risky
+        }
         // new Combo2 {    // EWHC/QB/2010/389
         //     Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
         //     Re2 = new Regex("^(IN THE )?QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase), // no appostrophe in EWHC/QB/2004/447
@@ -547,6 +677,13 @@ class CourtType : Enricher {
         return null;
     }
 
+    private List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
+        foreach (Combo4 combo in Combo4.combos)
+            if (combo.Match(one, two, three, four))
+                return combo.Transform(one, two, three, four);
+        return null;
+    }
+
     private List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
         foreach (Combo3 combo in Combo3.combos)
             if (combo.Match(one, two, three))
@@ -560,7 +697,7 @@ class CourtType : Enricher {
         return null;
     }
 
-    private List<ILine> Match2(IBlock one, IBlock two) {
+    protected virtual List<ILine> Match2(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2.combos)
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
@@ -570,13 +707,12 @@ class CourtType : Enricher {
         return null;
     }
 
-    private List<ILine> Match1(IBlock block) {
+    protected virtual List<ILine> Match1(IBlock block) {
         foreach (Combo1 combo in Combo1.combos)
             if (combo.Match(block))
                 return combo.Transform(block);
         return null;
     }
-
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         List<IBlock> enriched = new List<IBlock>();
@@ -591,7 +727,18 @@ class CourtType : Enricher {
                 List<ILine> five = Match5(block1, block2, block3, block4, block5);
                 if (five is not null) {
                     enriched.AddRange(five);
-                    i += 5;
+                    i += five.Count;
+                    break;
+                }
+            }
+            if (i < blocks.Count() - 3) {
+                IBlock block2 = blocks.ElementAt(i + 1);
+                IBlock block3 = blocks.ElementAt(i + 2);
+                IBlock block4 = blocks.ElementAt(i + 3);
+                List<ILine> four = Match4(block1, block2, block3, block4);
+                if (four is not null) {
+                    enriched.AddRange(four);
+                    i += four.Count;
                     break;
                 }
             }
@@ -601,29 +748,23 @@ class CourtType : Enricher {
                 List<ILine> three = Match3(block1, block2, block3);
                 if (three is not null) {
                     enriched.AddRange(three);
-                    i += 3;
+                    i += three.Count;
                     break;
                 }
-                // three = Combo1_2.MatchAny(block1, block2, block3);
-                // if (three is not null) {
-                //     enriched.AddRange(three);
-                //     i += 3;
-                //     break;
-                // }
             }
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 List<ILine> two = Match2(block1, block2);
                 if (two is not null) {
                     enriched.AddRange(two);
-                    i += 2;
+                    i += two.Count;
                     break;
                 }
             }
             List<ILine> one = Match1(block1);
             if (one is not null) {
                 enriched.AddRange(one);
-                i += 1;
+                i += one.Count;
                 break;
             }
             enriched.Add(block1);
@@ -634,7 +775,7 @@ class CourtType : Enricher {
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        throw new Exception();
+        throw new NotImplementedException();
     }
 
 }

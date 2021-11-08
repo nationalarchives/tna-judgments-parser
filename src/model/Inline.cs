@@ -1,7 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments {
@@ -105,10 +104,18 @@ interface IFormattedText : IInline {
             string value = that.FontColor;
             if (value == "auto")
                 value = "initial";
+            else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
+                value = "#" + value;
             styles.Add("color", value);
         }
-        if (that.BackgroundColor is not null)
+        if (that.BackgroundColor is not null) {
+            string value = that.BackgroundColor;
+            if (value == "auto")
+                value = "initial";
+            else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
+                value = "#" + value;
             styles.Add("background-color", that.BackgroundColor);
+        }
         return styles;    
     }
 
@@ -171,52 +178,17 @@ interface IDateTime : IInline {
 
 interface IDocDate : IDate { }
 
-enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, BeforeTheV, AfterTheV }
+enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, Intervener, BeforeTheV, AfterTheV }
 
 interface IParty : IInline {
-
-    static string GetName(string text) {
-        text = Regex.Replace(text, @"\s+", " ").Trim();
-        if (text.StartsWith("Mr "))
-            text = text.Substring(3);
-        if (text.StartsWith("Mrs "))
-            text = text.Substring(4);
-        if (text.StartsWith("Miss "))
-            text = text.Substring(5);
-        Match match = Regex.Match(text, @"^\(\d+\) ");
-        if (match.Success)
-            text = text.Substring(match.Length);
-        match = Regex.Match(text, @"^\(\d+\)"); // EWCA/Civ/2005/450
-        if (match.Success)
-            text = text.Substring(match.Length);
-        match = Regex.Match(text, @" \(\d+\)$");
-        if (match.Success)
-            text = text.Substring(0, text.Length - match.Length);
-        match = Regex.Match(text, @" \(the “[^”]+”\)$");
-        if (match.Success)
-            text = text.Substring(0, match.Index);
-        if (text.EndsWith(" (in administration)"))
-            text = text.Substring(0, text.Length - 20);
-        if (text.EndsWith(" in administration"))
-            text = text.Substring(0, text.Length - 18);
-        if (text == "R E G I N A")
-            return "REGINA";
-        if (text.EndsWith(')')) {
-            int i = text.LastIndexOf('(');
-            if (i > 0) {
-                string text2 = text.Substring(0, i).TrimEnd();
-                if (!string.IsNullOrWhiteSpace(text2))
-                    return text2;
-            }
-        }
-        return text;
-    }
 
     static string MakeId(string name) {
         string id = Regex.Replace(name, @"\s", "-");
         id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
         return id.ToLower();
     }
+
+    string Text { get; }
 
     string Name { get; }
 
@@ -281,6 +253,21 @@ interface ILawyer : IFormattedText {
         string id = Regex.Replace(this.Name, @"\s", "-");
         id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
         return "lawyer-" + id.ToLower();
+    } }
+
+}
+
+interface ILocation : IFormattedText {
+
+    string Name { get {
+        string text = Regex.Replace(this.Text, @"\s+", " ").Trim();
+        return text;
+    } }
+
+    string Id { get {
+        string id = Regex.Replace(this.Name, @"\s", "-");
+        id = Regex.Replace(id, @"[\.\(\)“”‘’,]+", "");
+        return id.ToLower();
     } }
 
 }
