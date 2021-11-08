@@ -164,6 +164,13 @@ class PartyEnricher : Enricher {
         if (i == rest.Length)
             return null;
         line = rest[i];
+        if (line is ILine inPrivate && inPrivate.NormalizedContent() == "IN PRIVATE") { // EWHC/Admin/2012/2822
+            enriched.Add(line);
+            i += 1;
+            if (i == rest.Length)
+                return null;
+            line = rest[i];
+        }
         if (IsBeforePartyMarker2(line)) {
             enriched.Add(line);
             i += 1;
@@ -406,6 +413,8 @@ class PartyEnricher : Enricher {
             return false;
         string normalized = line.NormalizedContent();
         if (normalized == "Between:")
+            return true;
+        if (normalized == "Between :")
             return true;
         if (normalized == "BETWEEN:")
             return true;
@@ -911,6 +920,8 @@ class PartyEnricher : Enricher {
     }
 
     private WRow EnrichRow(WRow row) {
+        if (row.Cells.Count() == 2)
+            return EnrichRow2(row);
         if (row.Cells.Count() != 3)
             return row;
         WCell first = (WCell) row.Cells.ElementAt(0);
@@ -937,6 +948,19 @@ class PartyEnricher : Enricher {
             return new WRow(row.Main, new List<WCell>(3){ first, second, third });
         }
         return row;
+    }
+
+    private WRow EnrichRow2(WRow row) {
+        WCell first = (WCell) row.Cells.ElementAt(0);
+        WCell second = (WCell) row.Cells.ElementAt(1);
+        if (IsEmptyCell(first))
+            return row;
+        PartyRole? role = GetPartyRole(second);
+        if (role is null)
+            return row;
+        first = EnrichCell(first, role.Value);
+        second = EnrichCellWithPartyRole(second, role.Value);
+        return new WRow(row.Main, new List<WCell>(2){ first, second });
     }
 
     private IEnumerable<WRow> EnrichThreeRowsWithNoRolesOrNull(IEnumerable<WRow> rows) {    // EWCA/Crim/2007/854, EWCA/Crim/2014/465
@@ -1034,7 +1058,8 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant", "Appellant / Third Defendant" };
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
+            "1st Appellant" };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
         types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant" };
@@ -1124,7 +1149,7 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Defendants/" && two == "Appellants") // EWCA/Civ/2004/277
             return PartyRole.Appellant;
-        if (one == "1st Respondent" && two == "2nd Respondent") // EWHC/Fam/2017/364
+        if (one == "1st Respondent" && two == "2nd Respondent") // EWHC/Fam/2017/364, EWHC/Fam/2013/1864?
             return PartyRole.Respondent;
         if (one == "1st Respondent" && two == "2ndRespondent") // EWCA/Civ/2011/1253
             return PartyRole.Respondent;
@@ -1176,7 +1201,7 @@ class PartyEnricher : Enricher {
             return PartyRole.Appellant;
         Func<ILine, bool> respondent = (line) => {
             string normalized = line.NormalizedContent();
-            return Regex.IsMatch(normalized, @"^(\d(st|nd|rd|th)? )?Respondent$", RegexOptions.IgnoreCase); // EWFC/HCJ/2014/34
+            return Regex.IsMatch(normalized, @"^(\d(st|nd|rd|th)? ?)?Respondent$", RegexOptions.IgnoreCase); // EWFC/HCJ/2014/34, no space in EWHC/Fam/2013/1864
         };
         if (blocks.Cast<ILine>().All(respondent))
             return PartyRole.Respondent;
@@ -1205,6 +1230,33 @@ class PartyEnricher : Enricher {
                     return block;
                 if (line.Contents.Count() == 0)
                     return line;
+                Func<IInline, bool> filter = inline => {
+                    if (inline is not WText wText)
+                        return false;
+                    if (string.IsNullOrWhiteSpace(wText.Text))
+                        return false;
+                    string trimmed = wText.Text.Trim();
+                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')') && !trimmed.StartsWith("(on the application of", StringComparison.InvariantCultureIgnoreCase))
+                        return false;
+                    if (trimmed == "and")    // EWHC/Fam/2003/365
+                        return false;
+                    if (trimmed == "-and-")    // EWHC/Fam/2013/1956
+                        return false;
+                    if (trimmed == "- and –")    // EWHC/Fam/2008/1561
+                        return false;
+                    if (trimmed == "- and -")   // EWHC/Fam/2017/364
+                        return false;
+                    if (trimmed == "And")   // EWHC/Admin/2010/2
+                        return false;
+                    if (trimmed == "- and-")    // EWHC/Comm/2016/146
+                        return false;
+                    return true;
+                };
+                IEnumerable<IInline> filtered = line.Contents.Where(filter);
+                if (filtered.Count() == 1) {
+                    IEnumerable<IInline> mapped = line.Contents.Select(inline => filter(inline) ? new WParty((WText) inline) { Role = role } : inline);
+                    return new WLine(line, mapped);
+                }
                 if (line.Contents.Count() == 1) {
                     IInline first = line.Contents.First();
                     if (first is not WText wText)
@@ -1212,7 +1264,7 @@ class PartyEnricher : Enricher {
                     if (string.IsNullOrWhiteSpace(wText.Text))
                         return line;
                     string trimmed = wText.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
+                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')') && !trimmed.StartsWith("(on the application of", StringComparison.InvariantCultureIgnoreCase))
                         return line;
                     if (trimmed == "and")    // EWHC/Fam/2003/365
                         return line;

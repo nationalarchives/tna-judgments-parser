@@ -161,12 +161,13 @@ abstract class AbstractParser {
     private IEnumerable<Regex> titledJudgeNameRegexes = titledJudgeNamePatterns
         .Select(p => new Regex(p));
 
-    protected bool IsTitledJudgeName(OpenXmlElement e) {
+    protected virtual bool IsTitledJudgeName(OpenXmlElement e) {
         if (e is not Paragraph)
             return false;
         return IsTitledJudgeName(e.InnerText);
     }
-    protected bool IsTitledJudgeName(string text) {
+
+    protected virtual bool IsTitledJudgeName(string text) {
         text = Regex.Replace(text, @"\s+", " ").Trim();
         if (text.EndsWith(":"))
             text = text.Substring(0 , text.Length - 1).Trim();
@@ -223,9 +224,9 @@ abstract class AbstractParser {
     protected IDecision Decision() {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
-        if (!IsTitledJudgeName(e.InnerText))
+        if (!IsTitledJudgeName(e))
             return null;
-        WLine author = new WLine(doc.MainDocumentPart, (Paragraph) e);
+        WLine author = new WLine(main, (Paragraph) e);
         i += 1;
         if (i == elements.Count)
             return null;
@@ -259,6 +260,7 @@ abstract class AbstractParser {
     string[] bigLevelNumberingFormats = {
         @"^([A-Z]\.) ",
         @"^(\(\d+\)) ",
+        @"^(\d+\.) ",
         @"^(\([a-z]\)) ",
         @"^(\([ivx]+\)) "
     };
@@ -390,7 +392,7 @@ abstract class AbstractParser {
 
     /* cross headings */
 
-    private List<IDivision> CrossHeadings() {
+    protected List<IDivision> CrossHeadings() {
         List<IDivision> crossHeadings = new List<IDivision>();
         List<IDivision> intro = ParagraphsUntilCrossHeadingOrAnnex();
         if (intro.Count > 0) {
@@ -409,7 +411,7 @@ abstract class AbstractParser {
         return crossHeadings;
     }
 
-    private bool IsFirstLineOfCrossHeading(OpenXmlElement e) {
+    protected virtual bool IsFirstLineOfCrossHeading(OpenXmlElement e) {
         if (e is not Paragraph p)
             return false;
         if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p) && DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is null)
@@ -606,6 +608,13 @@ abstract class AbstractParser {
             i += 1;
             var t = new WTable(doc.MainDocumentPart, table);
             return new WDummyDivision(t);
+        }
+        if (e is SdtBlock) { // "EWHC/Admin/2021/30"
+            DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
+            if (dpg is not null && dpg.Val.Value == "Table of Contents") {
+                i += 1;
+                return null;
+            }
         }
         throw new System.Exception(e.GetType().ToString());
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -235,6 +236,8 @@ public class CSS {
         string value = color.Value;
         if (value == "auto")
             value = "initial";
+        else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
+            value = "#" + value;
         css[key] = value;
     }
 
@@ -244,6 +247,10 @@ public class CSS {
             return;
         string key = "background-color";
         string value = background.Value;
+        if (value == "auto")
+            value = "initial";
+        else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
+            value = "#" + value;
         css[key] = value;
     }
 
@@ -261,7 +268,7 @@ public class CSS {
     }
 
     public static Dictionary<string, string> ParseInline(string css) {
-        return css.Split(";")
+        return css.TrimEnd(';').Split(";")
             .Select(pair => pair.Split(":"))
             .Select(x => new KeyValuePair<string,string>(x[0], x[1]))
             .Distinct(new CSSKeyValueComparer())

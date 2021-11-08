@@ -8,7 +8,7 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Serializer {
 
-    private static readonly ISet<string> blocks = new HashSet<string>{ "p", "num", "heading" };
+    private static readonly ISet<string> blocks = new HashSet<string>{ "p", "block", "num", "heading" };
 
     private static readonly string ns = Builder.ns;
 
