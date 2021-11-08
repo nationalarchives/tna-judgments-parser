@@ -32,6 +32,12 @@ class Tester {
             return this.HasCourtType && this.HasNeutralCitation && this.HasCaseNumber &&
                 this.HasDocumentID && this.HasDate && this.HasTwoPartiesOrDocTitle;
         }
+        public bool Level2ExceptCaseNumber() {
+            if (this.SchemaErrors.Count > 0)
+                return false;
+            return this.HasCourtType && this.HasNeutralCitation &&
+                this.HasDocumentID && this.HasDate && this.HasTwoPartiesOrDocTitle;
+        }
 
     }
 
@@ -65,6 +71,10 @@ class Tester {
 
         XmlNodeList courtType = akn.SelectNodes("//akn:courtType", nsmgr);
         result.HasCourtType = courtType.Count > 0;
+        if (!result.HasCourtType) {
+            XmlNodeList c2 = akn.SelectNodes("//akn:proprietary/*[local-name()='court']", nsmgr);
+            result.HasCourtType = c2.Count > 0;
+        }
         if (result.HasCourtType)
             logger.LogInformation("has court type");
         else

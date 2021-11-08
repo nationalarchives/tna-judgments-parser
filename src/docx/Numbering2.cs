@@ -96,6 +96,10 @@ class Numbering2 {
             }
             if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null && baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
                 return format.Val.Value;
+            if (format.Val.Value == "●")    // "EWHC/Admin/2021/1249"
+                return format.Val.Value;
+            if (format.Val.Value == "*")    // "EWHC/Admin/2021/710"
+                return format.Val.Value;
             throw new Exception("unsupported bullet text: " + format.Val.Value);
         }
 

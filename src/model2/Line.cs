@@ -79,13 +79,15 @@ class WLine : ILine {
     public string FirstLineIndent {
         get {
             float? inches = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, properties);
-            if (inches is null)
-                return null;
+            if (!inches.HasValue)
+                return IsFirstLineOfNumberedParagraph ? "0.5in" : null;
             if (IsFirstLineOfNumberedParagraph && inches < 0.0f)
                 return null;
             // when number and first line indent is 0, default indent is a tab
-            if (IsFirstLineOfNumberedParagraph && inches < 0.25f)
-                return "0.25in";
+            if (IsFirstLineOfNumberedParagraph)
+                inches = inches.Value + 0.5f;
+            // if (IsFirstLineOfNumberedParagraph && inches < 0.5f)
+            //     return "0.5in";
             return inches.Value.ToString("F2") + "in";
         }
     }
@@ -94,6 +96,12 @@ class WLine : ILine {
         get => contents;
         set { contents = value; }
     }
+
+}
+
+class WRestriction : WLine, IRestriction {
+
+    internal WRestriction(WLine line) : base(line) { }
 
 }
 

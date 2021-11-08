@@ -15,18 +15,19 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class CourtOfAppealParser : AbstractParser {
 
-    private static ILogger logger = Logging.Factory.CreateLogger<Parse.CourtOfAppealParser>();
+    private static ILogger logger = Logging.Factory.CreateLogger<CourtOfAppealParser>();
 
     public static Judgment Parse(WordprocessingDocument doc) {
         return new CourtOfAppealParser(doc).Parse();
     }
 
-    private CourtOfAppealParser(WordprocessingDocument doc) : base(doc) { }
+    protected CourtOfAppealParser(WordprocessingDocument doc) : base(doc) { }
 
     ISet<string> titles = new HashSet<string>() {
         "Judgment", "JUDGMENT", "J U D G M E N T",
         "Judgement",
         "Approved Judgment", "Judgment Approved", "JUDGMENT (As Approved)",
+        "APPROVED JUDGMENT",
         "J U D G M E N T (Approved)", // EWCA/Crim/2017/1012
         // "J U D G M E N T  (Approved)",
         "J U D G M E N T (As approved)", // EWCA/Crim/2015/1870
@@ -35,12 +36,14 @@ class CourtOfAppealParser : AbstractParser {
         "Judgment As Approved by the Court",    //  EWCA/Crim/2016/700
         "JUDGMENT: APPROVED BY THE COURT", // EWHC/Admin/2003/1321
         "APPROVED CORRECTED JUDGMENT",  // EWHC/Ch/2016/3302
+        "Final Judgment",   // EWHC/Admin/2021/1234
         "Costs Judgment",
         "Judgment Approved by the courtfor handing down",
         "JUDGMENT : APPROVED BY THE COURT FOR HANDING DOWN (SUBJECT TO EDITORIAL CORRECTIONS)",  // EWCA/Civ/2003/494
         "Judgment Approved by the court for handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320
         "Judgment Approved by the courtfor handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320, line break between court / for
-        "DRAFT JUDGMENT"    // EWCA/Civ/2003/952
+        "DRAFT JUDGMENT",    // EWCA/Civ/2003/952
+        "APPROVED JUDGMENT ON A COSTS ISSUE"    // EWCA/Civ/2021/13
     };
 
     protected override List<IBlock> Header() {
@@ -52,8 +55,8 @@ class CourtOfAppealParser : AbstractParser {
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
                 break;
-            if (e is Paragraph p && p.Descendants<SectionProperties>().Any())
-                return header;
+            // if (e is Paragraph p && p.Descendants<SectionProperties>().Any())
+            //     return header;
             AddBlock(e, header);
         }
         if (i < elements.Count)
@@ -78,7 +81,7 @@ class CourtOfAppealParser : AbstractParser {
         return null;
     }
 
-    protected override  List<IDecision> Body() {
+    protected override List<IDecision> Body() {
         List<IDecision> decisions = Decisions();
         List<IDivision> remainder = ParagraphsUntilEndOfBody();
         if (decisions is null || decisions.Count == 0) {

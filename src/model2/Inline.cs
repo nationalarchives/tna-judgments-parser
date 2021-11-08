@@ -167,6 +167,10 @@ internal class WCourtType : WText, ICourtType1 {
 
     public WCourtType(string text, RunProperties props) : base(text, props) { }
 
+    public WCourtType(WText text, Court court) : base(text.Text, text.properties) {
+        Code = court.Code;
+    }
+
     public string Code { get; init; }
 
 }
@@ -244,7 +248,7 @@ internal class WParty : WText, IParty1 {
 
     public WParty(WText text) : base(text.Text, text.properties) { }
 
-    public string Name { get => IParty.GetName(this.Text); }
+    public string Name { get => Party.MakeName(this.Text); }
 
     public PartyRole? Role { get; set; }
 
@@ -256,10 +260,11 @@ internal class WParty2 : IParty2 {
         this.Contents = contents;
     }
 
-    public string Name { get {
-        string text = string.Join("", this.Contents.Select(text => text.Text));
-        return IParty.GetName(text);
+    public string Text { get {
+        return string.Join("", this.Contents.Select(text => text.Text));
     } }
+
+    public string Name { get => Party.MakeName(this.Text); }
 
     public PartyRole? Role { get; set; }
 
@@ -294,6 +299,12 @@ internal class WLawyer : WText, ILawyer {
     public WLawyer(string text, RunProperties props) : base(text, props) { }
 
     public WLawyer(WText text) : base(text.Text, text.properties) { }
+
+}
+
+internal class WLocation : WText, ILocation {
+
+    public WLocation(string text, RunProperties props) : base(text, props) { }
 
 }
 

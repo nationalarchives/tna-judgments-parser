@@ -63,7 +63,7 @@ abstract class Enricher {
 
     // }
 
-    protected WLine Enrich(WLine line) {
+    protected virtual WLine Enrich(WLine line) {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
         return new WLine(line, enriched);
     }

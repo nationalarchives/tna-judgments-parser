@@ -63,12 +63,15 @@ class DocDate : Enricher {
     private WLine Enrich2OrDefault(WLine line) {
         IInline first = line.Contents.First();
         IInline second = line.Contents.ElementAt(1);
-        if (first is not WText fText1)
-            return null;
-        if (!string.IsNullOrWhiteSpace(fText1.Text) && !Regex.IsMatch(fText1.Text, @"^Date: $"))
-            return null;
         if (second is not WText fText2)
             return null;
+        if (first is WText fText1) {
+            if (!string.IsNullOrWhiteSpace(fText1.Text) && !Regex.IsMatch(fText1.Text, @"^Date: $"))
+                return null;
+        } else if (first is WLineBreak br) {
+        } else {
+            return null;
+        }
         List<IInline> enriched = EnrichText(fText2);
         if (enriched is null)
             return null;
