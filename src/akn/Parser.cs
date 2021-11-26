@@ -35,6 +35,27 @@ public class Parser {
         return new Bundle(doc, judgment);
     }
 
+    private static ILazyBundle Parse2(Stream docx, IOutsideMetadata meta, Func<WordprocessingDocument, IOutsideMetadata, IJudgment> f) {
+        MemoryStream ms = new MemoryStream();
+        docx.CopyTo(ms);
+        byte[] docx2 = ms.ToArray();
+        MemoryStream stream2 = new MemoryStream();
+        stream2.Write(docx2, 0, docx2.Length);
+        WordprocessingDocument doc;
+        try {
+            doc = WordprocessingDocument.Open(stream2, false);
+        } catch (OpenXmlPackageException) {
+            stream2 = new MemoryStream();
+            stream2.Write(docx2, 0, docx2.Length);
+            var settings = new OpenSettings() {
+                RelationshipErrorHandlerFactory = RelationshipErrorHandler.CreateRewriterFactory(DOCX.Relationships.MalformedUriRewriter)
+            };
+            doc = WordprocessingDocument.Open(stream2, true, settings);
+        }
+        IJudgment judgment = f(doc, meta);
+        return new Bundle(doc, judgment);
+    }
+
     public static ILazyBundle ParseSupremeCourtJudgment(Stream docx) {
         Helper parser = UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse;
         return Parse(docx, parser);
@@ -52,6 +73,9 @@ public class Parser {
 
     internal static Func<Stream, ILazyBundle> MakeParser(Helper raw) {
         return (Stream docx) => Parse(docx, raw);
+    }
+    internal static Func<Stream, IOutsideMetadata, ILazyBundle> MakeParser2(Func<WordprocessingDocument, IOutsideMetadata, IJudgment> f) {
+        return (Stream docx, IOutsideMetadata meta) => Parse2(docx, meta, f);
     }
 
 }

@@ -20,8 +20,11 @@ class CourtOfAppealParser : AbstractParser {
     public static Judgment Parse(WordprocessingDocument doc) {
         return new CourtOfAppealParser(doc).Parse();
     }
+    public static Judgment Parse(WordprocessingDocument doc, IOutsideMetadata meta) {
+        return new CourtOfAppealParser(doc, meta).Parse();
+    }
 
-    protected CourtOfAppealParser(WordprocessingDocument doc) : base(doc) { }
+    protected CourtOfAppealParser(WordprocessingDocument doc, IOutsideMetadata meta = null) : base(doc, meta) { }
 
     ISet<string> titles = new HashSet<string>() {
         "Judgment", "JUDGMENT", "J U D G M E N T",
@@ -38,12 +41,14 @@ class CourtOfAppealParser : AbstractParser {
         "APPROVED CORRECTED JUDGMENT",  // EWHC/Ch/2016/3302
         "Final Judgment",   // EWHC/Admin/2021/1234
         "Costs Judgment",
+        "Judgment Approved by the court",   // [2021] EWCA Crim 1786
         "Judgment Approved by the courtfor handing down",
         "JUDGMENT : APPROVED BY THE COURT FOR HANDING DOWN (SUBJECT TO EDITORIAL CORRECTIONS)",  // EWCA/Civ/2003/494
         "Judgment Approved by the court for handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320
         "Judgment Approved by the courtfor handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320, line break between court / for
         "DRAFT JUDGMENT",    // EWCA/Civ/2003/952
-        "APPROVED JUDGMENT ON A COSTS ISSUE"    // EWCA/Civ/2021/13
+        "APPROVED JUDGMENT ON A COSTS ISSUE",    // EWCA/Civ/2021/13
+        "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER" // 
     };
 
     protected override List<IBlock> Header() {

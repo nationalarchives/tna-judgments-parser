@@ -16,6 +16,7 @@ class Tester {
 
         public List<ValidationEventArgs> SchemaErrors { get; set; }
         public bool HasCourtType { get; set; }
+        // public string Court { get; set; }
         public bool HasNeutralCitation { get; set; }
         public string NeutralCitation { get; set; }
         public bool HasCaseNumber { get; set; }
@@ -23,7 +24,7 @@ class Tester {
         public string DocumentId { get; set; }
         public bool HasDate { get; set; }
         public bool HasTwoPartiesOrDocTitle { get; set; }
-        public string DocumentTitle { get; set; }
+        public string CaseName { get; set; }
         public bool HasJudge { get; set; }
 
         public bool HasEverything() {
@@ -71,10 +72,10 @@ class Tester {
 
         XmlNodeList courtType = akn.SelectNodes("//akn:courtType", nsmgr);
         result.HasCourtType = courtType.Count > 0;
-        if (!result.HasCourtType) {
-            XmlNodeList c2 = akn.SelectNodes("//akn:proprietary/*[local-name()='court']", nsmgr);
-            result.HasCourtType = c2.Count > 0;
-        }
+        // if (!result.HasCourtType) {
+        //     XmlElement c2 = (XmlElement) akn.SelectSingleNode("//akn:proprietary/*[local-name()='court']", nsmgr);
+        //     result.Court = c2.InnerText;
+        // }
         if (result.HasCourtType)
             logger.LogInformation("has court type");
         else
@@ -104,9 +105,14 @@ class Tester {
         else
             logger.LogError("does not have document id");
 
-        XmlNodeList date = akn.SelectNodes("//akn:docDate", nsmgr);
-        result.HasDate = date.Count > 0;
-        if (date.Count > 1)
+        XmlNodeList dates = akn.SelectNodes("//akn:docDate", nsmgr);
+        result.HasDate = dates.Count > 0;
+        // if (!result.HasDate) {
+        //     XmlAttribute frbrDate = (XmlAttribute) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRdate/@date", nsmgr);
+        //     if (frbrDate is not null)
+        //         result.HasDate = frbrDate.Value != UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate;
+        // }
+        if (dates.Count > 1)
             logger.LogWarning("has more than one document date");
         else if (result.HasDate)
             logger.LogInformation("has document date");
@@ -120,15 +126,23 @@ class Tester {
             string role = party.GetAttribute("as");
             roles.Add(role);
         }
-        XmlElement docName = (XmlElement) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRname", nsmgr);
-        result.HasTwoPartiesOrDocTitle = roles.Count == 2 || docName is not null;
+        XmlNodeList docTitle = akn.SelectNodes("//akn:docTitle", nsmgr);
+        result.HasTwoPartiesOrDocTitle = roles.Count == 2 || docTitle.Count == 1;
         if (result.HasTwoPartiesOrDocTitle)
             logger.LogInformation("has two parties or doc title");
         else
             logger.LogError("does not have two parties or doc title");
+        // if (docTitle.Count == 1) {
+        //     logger.LogInformation("doc title is " + ((XmlElement) docTitle.Item(0)).InnerText);
+        // }
+        if (docTitle.Count > 1) {
+            logger.LogWarning("has more than one docTitle");
+        }
+
+        XmlElement docName = (XmlElement) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRname", nsmgr);
         if (docName is not null) {
-            result.DocumentTitle = docName.GetAttribute("value");
-            logger.LogInformation("doc name is " + result.DocumentTitle);
+            result.CaseName = docName.GetAttribute("value");
+            logger.LogInformation("case name is " + result.CaseName);
         }
 
         XmlNodeList judges = akn.SelectNodes("//akn:judge", nsmgr);

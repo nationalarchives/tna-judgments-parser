@@ -291,6 +291,11 @@ class Fields {
             return RestOptional(main, withinField, i);
         if (fieldCode.StartsWith(" SUBJECT ")) // EWHC/Ch/2009/1330
             return RestOptional(main, withinField, i);
+        
+        if (fieldCode == " The The FORMTEXT ") {    // this is an error in ____
+            logger.LogWarning("field error: " + fieldCode);
+            return RestOptional(main, withinField, i);
+        }
 
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception();

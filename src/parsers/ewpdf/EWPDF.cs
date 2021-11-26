@@ -19,8 +19,11 @@ class EWPDF : CourtOfAppealParser {
     new public static Judgment Parse(WordprocessingDocument doc) {
         return new EWPDF(doc).Parse();
     }
+    new public static Judgment Parse(WordprocessingDocument doc, IOutsideMetadata meta) {
+        return new EWPDF(doc, meta).Parse();
+    }
 
-    private EWPDF(WordprocessingDocument doc) : base(doc) { }
+    private EWPDF(WordprocessingDocument doc, IOutsideMetadata meta = null) : base(doc, meta) { }
 
     private List<Enricher> headerEnrichers = new List<Enricher>() {
         new RemoveTrailingWhitespace(),

@@ -42,6 +42,7 @@ internal class Hyperlink {
             href += "#" + location;
         if (i == withinField.Count) {
             RunProperties rProps = withinField.OfType<Run>().FirstOrDefault()?.RunProperties;
+            // log?
             WText wText = new WText(screenTip, rProps);
             WHyperlink1 hyperlink = new WHyperlink1(wText) { Href = href };
             return new List<IInline>(1) { hyperlink };

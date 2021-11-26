@@ -667,6 +667,46 @@ class Combo1 : Combo {
 
 }
 
+class Combo1bis {
+
+    private Combo2 Two { get; init; }
+
+    internal static IEnumerable<Combo1bis> combos = Combo2.combos.Select(two => new Combo1bis() { Two = two });
+
+    internal bool Match(IBlock one) {
+        if (one is not WLine line)
+            return false;
+        if (line.Contents.Count() != 3)
+            return false;
+        if (line.Contents.ElementAt(0) is not WText text1)
+            return false;
+        if (line.Contents.ElementAt(1) is not WLineBreak)
+            return false;
+        if (line.Contents.ElementAt(2) is not WText text2)
+            return false;
+        if (!Two.Re1.IsMatch(text1.Text.Trim()))
+            return false;
+        if (!Two.Re2.IsMatch(text2.Text.Trim()))
+            return false;
+        return true;
+    }
+
+    internal List<ILine> Transform(IBlock one) {
+        WLine line = (WLine) one;
+        WText text1 = (WText) line.Contents.ElementAt(0);
+        WLineBreak lineBreak = (WLineBreak) line.Contents.ElementAt(1);
+        WText text2 = (WText) line.Contents.ElementAt(2);
+        IEnumerable<IInline> contents = new List<IInline>(3) {
+            new WCourtType(text1.Text, text1.properties) { Code = Two.Court.Code },
+            lineBreak,
+            new WCourtType(text2.Text, text2.properties) { Code = Two.Court.Code }
+        };
+        return new List<ILine>(1) {
+            new WLine(line, contents)
+        };
+    }
+
+}
 
 class CourtType : Enricher {
 
@@ -709,6 +749,9 @@ class CourtType : Enricher {
 
     protected virtual List<ILine> Match1(IBlock block) {
         foreach (Combo1 combo in Combo1.combos)
+            if (combo.Match(block))
+                return combo.Transform(block);
+        foreach (Combo1bis combo in Combo1bis.combos)
             if (combo.Match(block))
                 return combo.Transform(block);
         return null;

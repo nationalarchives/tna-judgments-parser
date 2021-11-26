@@ -11,13 +11,19 @@ interface IMetadata {
 
     int? Number { get; }
 
+    string Cite { get; }
+
     string DocumentId();
 
     string Date();
 
+    string CaseName { get; }
+
     IEnumerable<string> CaseNos();
 
     Dictionary<string, Dictionary<string, string>> CSSStyles();
+
+    IEnumerable<IExternalAttachment> ExternalAttachments { get; }
 
 }
 
