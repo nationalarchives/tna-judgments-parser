@@ -128,6 +128,16 @@ class NetrualCitation : Enricher {
 
                     }
                 }
+                if (fText1.Text == "[") {   // [2021] EWHC 2776 (QB)
+                    string combined = fText1.Text + fText2.Text;
+                    Group group = Match2(combined);
+                    if (group is not null) {
+                        List<IInline> replacement = Replace(combined, group, fText2.properties);
+                        IEnumerable<IInline> rest = line.Skip(2);
+                        return Enumerable.Concat(replacement, rest);
+
+                    }
+                }
             }
         }
         return line;

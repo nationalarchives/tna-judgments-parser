@@ -19,12 +19,14 @@ abstract class AbstractParser {
     private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
 
     protected readonly WordprocessingDocument doc;
+    protected readonly IOutsideMetadata meta;
     protected readonly MainDocumentPart main;
     protected readonly OpenXmlElementList elements;
     protected int i = 0;
 
-    protected AbstractParser(WordprocessingDocument doc) {
+    protected AbstractParser(WordprocessingDocument doc, IOutsideMetadata meta = null) {
         this.doc = doc;
+        this.meta = meta;
         main = doc.MainDocumentPart;
         elements = main.Document.Body.ChildElements;
     }
@@ -60,7 +62,7 @@ abstract class AbstractParser {
             conclusions = EnrichConclusions(conclusions);
         if (annexes is not null)
             annexes = EnrichAnnexes(annexes);
-        return new Judgment(doc) {
+        return new Judgment(doc, meta) {
             CoverPage = coverPage,
             Header = header,
             Body = body,
@@ -103,7 +105,7 @@ abstract class AbstractParser {
 
     // protected abstract List<IAnnex> Annexes();
 
-    protected static bool IsSkippable(OpenXmlElement e) {
+    internal static bool IsSkippable(OpenXmlElement e) {
         if (e is SectionProperties)
             return true;
         if (e is BookmarkStart || e is BookmarkEnd)

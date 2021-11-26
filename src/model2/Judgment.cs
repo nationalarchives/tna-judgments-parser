@@ -9,9 +9,12 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     private readonly WordprocessingDocument doc;
 
-    public Judgment(WordprocessingDocument doc) {
+    public Judgment(WordprocessingDocument doc, IOutsideMetadata meta = null) {
         this.doc = doc;
-        Metadata = new WMetadata(doc.MainDocumentPart, this);
+        if (meta is null)
+            Metadata = new WMetadata(doc.MainDocumentPart, this);
+        else
+            Metadata = new WMetadata2(doc.MainDocumentPart, this, meta);
     }
 
     public IMetadata Metadata { get; }
@@ -25,6 +28,8 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
     public IEnumerable<IBlock> Conclusions { get; internal set; }
 
     public IEnumerable<IAnnex> Annexes { get; internal set; }
+
+    public IEnumerable<IImage> Images { get => WImage.Get(doc); }
 
     public void Close() {
         doc.Close();
