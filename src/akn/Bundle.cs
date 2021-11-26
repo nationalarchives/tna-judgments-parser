@@ -8,6 +8,8 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 public interface ILazyBundle {
 
+    string URI { get; }
+
     XmlDocument Judgment { get; }
 
     IEnumerable<IImage> Images { get; }
@@ -31,6 +33,8 @@ internal class Bundle : ILazyBundle {
         this.judgment = judgment;
     }
 
+    public string URI { get => judgment.Metadata.DocumentId(); }
+
     public XmlDocument Judgment {
         get {
             if (xml is null)
@@ -39,13 +43,7 @@ internal class Bundle : ILazyBundle {
         }
     }
 
-    public IEnumerable<IImage> Images {
-        get {
-            if (images is null)
-                images = UK.Gov.Legislation.Judgments.Parse.WImage.Get(doc);
-            return images;
-        }
-    }
+    public IEnumerable<IImage> Images { get => judgment.Images; }
 
     public void Close() {
         doc.Close();

@@ -13,6 +13,8 @@ class Metadata {
 
     private static readonly string ns = Builder.ns;
 
+    public static readonly string DummyDate = "1000-01-01";
+
     private static XmlElement append(XmlDocument doc, XmlElement parent, string name) {
         XmlElement e = doc.CreateElement(name, ns);
         parent.AppendChild(e);
@@ -68,7 +70,7 @@ class Metadata {
         XmlElement workURI = append(doc, work, "FRBRuri");
         workURI.SetAttribute("value", docId);
         XmlElement workDate = append(doc, work, "FRBRdate");
-        workDate.SetAttribute("date", date ?? "1000-01-01");
+        workDate.SetAttribute("date", date ?? DummyDate);
         workDate.SetAttribute("name", date is null ? "unknown" : "judgment");
         XmlElement workAuthor = append(doc, work, "FRBRauthor");
         workAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
@@ -77,7 +79,7 @@ class Metadata {
         if (includeReferences) {
             XmlElement workNumber = append(doc, work, "FRBRnumber");
             workNumber.SetAttribute("value", metadata.Number.ToString());
-            string caseName = CaseName.Extract(judgment);
+            string caseName = metadata.CaseName;
             if (caseName is not null) {
                 XmlElement workName = append(doc, work, "FRBRname");
                 workName.SetAttribute("value", caseName);
@@ -190,6 +192,11 @@ class Metadata {
                 proprietary.AppendChild(number);
                 number.AppendChild(doc.CreateTextNode(metadata.Number.ToString()));
             }
+            if (metadata.Cite is not null) {
+                XmlElement cite = doc.CreateElement("cite", ukns);
+                proprietary.AppendChild(cite);
+                cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
+            }
 
             Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
             if (styles is not null) {
@@ -200,6 +207,12 @@ class Metadata {
                 style.AppendChild(doc.CreateTextNode("\n"));
                 string css = CSS.Serialize(styles);
                 style.AppendChild(doc.CreateTextNode(css));
+            }
+
+            foreach (var tuple in judgment.Metadata.ExternalAttachments.Select((attachment, i) => new { i, attachment })) {
+                XmlElement hasAttachment = append(doc, references, "hasAttachment");
+                hasAttachment.SetAttribute("href", "/" + docId + "/attachment/" + ( tuple.i + 1 ) + ".pdf");
+                hasAttachment.SetAttribute("showAs", tuple.attachment.Type);
             }
 
         }
@@ -227,6 +240,8 @@ class AttachmentMetadata : IComponentMetadata {
 
     public int? Number { get => prototype.Number; }
 
+    public string Cite { get => prototype.Cite; }
+
     public string DocumentId() { return prototype.DocumentId(); }
 
     public string ComponentId {
@@ -235,9 +250,13 @@ class AttachmentMetadata : IComponentMetadata {
 
     public string Date() { return prototype.Date(); }
 
+    public string CaseName { get => prototype.CaseName; }
+
     public IEnumerable<string> CaseNos() => Enumerable.Empty<string>();
 
     public Dictionary<string, Dictionary<string, string>> CSSStyles() => null;
+
+    public IEnumerable<IExternalAttachment> ExternalAttachments { get => Enumerable.Empty<IExternalAttachment>(); }
 
 }
 

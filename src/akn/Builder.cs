@@ -80,13 +80,12 @@ class Builder {
     }
 
     private void AddAnnexes(XmlElement main, IJudgment judgment) {
-        if (judgment.Annexes is null)
-            return;
-        if (judgment.Annexes.Count() == 0)
+        IEnumerable<IAnnex> annexes = judgment.Annexes ?? Enumerable.Empty<IAnnex>();
+        if (!annexes.Any())
             return;
         XmlElement attachments = doc.CreateElement("attachments", ns);
         main.AppendChild(attachments);
-        foreach (var annex in judgment.Annexes.Select((value, i) => new { i, value }))
+        foreach (var annex in annexes.Select((value, i) => new { i, value }))
             AddAnnex(attachments, judgment, annex.value, annex.i + 1);
     }
 
@@ -523,8 +522,20 @@ class Builder {
     public static XmlDocument Build(UK.Gov.Legislation.Judgments.IJudgment judgment) {
         Builder akn = new Builder();
         akn.Build1(judgment);
+        AddHash(akn.doc);
         return akn.doc;
     }
+
+    private static void AddHash(XmlDocument akn) {
+        string value = SHA256.Hash(akn);
+        XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
+        nsmgr.AddNamespace("akn", Builder.ns);
+        XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary", nsmgr);
+        XmlElement hash = akn.CreateElement("hash", Metadata.ukns);
+        proprietary.AppendChild(hash);
+        hash.AppendChild(akn.CreateTextNode(value));
+    }
+
 
 }
 

@@ -76,8 +76,8 @@ interface IFormattedText : IInline {
         if (that.Bold.HasValue)
             styles.Add("font-weight", that.Bold.Value ? "bold" : "normal");
         if (that.Underline.HasValue) {
-            if (!that.Underline.Value)
-                styles.Add("display", "inline-block");
+            // if (!that.Underline.Value)
+            //     styles.Add("display", "inline-block");
             styles.Add("text-decoration", that.Underline.Value ? "underline" : "none");
         }
         if (that.SuperSub is not null) {

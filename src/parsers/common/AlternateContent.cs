@@ -27,6 +27,9 @@ class AlternateContent2 {
         // http://schemas.microsoft.com/office/word/2010/wordprocessingGroup
         if (choice.Requires == "wpg")   // WCA/Crim/2017/281
             return MapFallback(main, rprops, fallback);
+        // http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+        if (choice.Requires == "wpi")   // [2021] EWCA Civ 1768
+            return MapFallback(main, rprops, fallback);
         throw new Exception();
     }
 
