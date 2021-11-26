@@ -19,8 +19,11 @@ class SupremeCourtParser : AbstractParser {
     public static Judgment Parse(WordprocessingDocument doc) {
         return new SupremeCourtParser(doc).Parse();
     }
+    public static Judgment Parse(WordprocessingDocument doc, IOutsideMetadata meta) {
+        return new SupremeCourtParser(doc, meta).Parse();
+    }
 
-    private SupremeCourtParser(WordprocessingDocument doc) : base(doc) { }
+    private SupremeCourtParser(WordprocessingDocument doc, IOutsideMetadata meta = null) : base(doc, meta) { }
 
     protected override List<IBlock> Header() {
         List<IBlock> header;
@@ -63,7 +66,7 @@ class SupremeCourtParser : AbstractParser {
     private List<Enricher> headerEnrichers = new List<Enricher>() {
         new RemoveTrailingWhitespace(),
         new Merger(),
-        new UKSC.SealRemover(),
+        // new UKSC.SealRemover(),
         new RestrictionsEnricher(),
         new UKSC.CiteEnricher(),
         new UKSC.DateEnricher(),

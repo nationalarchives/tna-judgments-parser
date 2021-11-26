@@ -901,7 +901,23 @@ class PartyEnricher : Enricher {
     }
 
     private IEnumerable<WRow> EnrichRows(IEnumerable<WRow> rows) {
-        return rows.Select(row => EnrichRow(row));
+        WRow[] before = rows.ToArray();
+        WRow[] after = new WRow[before.Length];
+        for (int i = 0; i < before.Length; i++) {
+            WRow row = before[i];
+            WRow enriched = EnrichRow(row);
+            if (!Object.ReferenceEquals(row, enriched)) {
+                after[i] = enriched;
+                continue;
+            }
+            if (i == before.Length - 1) {
+                after[i] = enriched;
+                continue;
+            }
+            WRow next = before[i+1];
+            after[i] = EnrichRow(row, next);
+        }
+        return after;
     }
 
     private static bool IsEmptyCell(ICell cell) {
@@ -1011,6 +1027,35 @@ class PartyEnricher : Enricher {
         };
     }
 
+    private WRow EnrichRow(WRow row, WRow next) {
+        if (row.Cells.Count() != 3)
+            return row;
+        if (next.Cells.Count() != 3)
+            return row;
+        WCell before = (WCell) row.Cells.ElementAt(0);
+        if (!IsEmptyCell(before))
+            return row;
+        WCell after = (WCell) row.Cells.ElementAt(2);
+        if (!IsEmptyCell(after))
+            return row;
+        if (!IsEmptyCell(next.Cells.ElementAt(0)))
+            return row;
+        if (!IsEmptyCell(next.Cells.ElementAt(1)))
+            return row;
+        WCell partyCell = (WCell) row.Cells.ElementAt(1);
+        WCell roleCell = (WCell) next.Cells.ElementAt(2);
+        if (IsEmptyCell(partyCell))
+            return row;
+        if (IsEmptyCell(roleCell))
+            return row;
+        PartyRole? role = GetPartyRole(roleCell);
+        if (role is not null) {
+            partyCell = EnrichCell(partyCell, role.Value);
+            return new WRow(row.Main, new List<WCell>(3){ before, partyCell, after });
+        }
+        return row;
+    }
+
     private static PartyRole? GetPartyRole(WCell cell) {
         PartyRole? role = GetOneLinePartyRole(cell);
         if (role is not null)
@@ -1059,7 +1104,7 @@ class PartyEnricher : Enricher {
             return null;
         string normalized = line.NormalizedContent();
         ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
-            "1st Appellant" };
+            "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants" };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
         types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant" };
@@ -1163,6 +1208,10 @@ class PartyEnricher : Enricher {
             return PartyRole.Defendant; // ??? other role is Appellant
         // if (one == "" && two == "")    // 
         //     return PartyRole.;
+        if (one == "Applicant/" && two == "Respondent")    // [2021] EWCA Civ 1725
+            return PartyRole.Respondent;
+        // if (one == "Respondent/" && two == "Appellant")    // [2021] EWCA Civ 1725
+        //     return PartyRole.Appellant;
         return null;
     }
 

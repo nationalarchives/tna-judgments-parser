@@ -17,6 +17,8 @@ interface IJudgment {
 
     IEnumerable<IAnnex> Annexes { get; }
 
+    IEnumerable<IImage> Images { get; }
+
 }
 
 interface IDecision {

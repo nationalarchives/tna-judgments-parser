@@ -240,6 +240,7 @@ public readonly struct Courts {
 
     public static readonly Court[] All = {
         SupremeCourt,
+        PrivyCouncil,
         CoA_Crim,
         CoA_Civil,
         EWHC,
