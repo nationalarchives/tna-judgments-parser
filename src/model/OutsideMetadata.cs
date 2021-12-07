@@ -27,6 +27,8 @@ interface IOutsideMetadata {
 
     string Name { get; }
 
+    bool NameTrumps { get; }
+
     IEnumerable<IExternalAttachment> Attachments { get; }
 
 }

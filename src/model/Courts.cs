@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments {
 
@@ -11,6 +12,7 @@ public readonly struct Court {
     public string LongName { get; init; }
     public string ShortName { get; init; }
     public string URL { get; init; }
+    public Regex CitationPattern { get; init; }
 
 }
 
@@ -57,7 +59,8 @@ public readonly struct Courts {
         Code = "EWHC-QBD",
         LongName = "The Queen's Bench Division of the High Court",
         ShortName = "The Queen's Bench Division",
-        URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court"
+        URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(QB\)$")
     };
 
     public static readonly Court EWHC_Chancery = new Court {
@@ -275,6 +278,17 @@ public readonly struct Courts {
     public static readonly ImmutableDictionary<string, Court> ByCode =
         new Dictionary<string, Court>(All.Select(c => new KeyValuePair<string, Court>(c.Code, c)))
         .ToImmutableDictionary();
+    
+    public static Court? ExtractFromCitation(string cite) {
+        cite = Regex.Replace(cite, @"\s+", " ").Trim();
+        foreach (Court court in All) {
+            if (court.CitationPattern is null)
+                continue;
+            if (court.CitationPattern.IsMatch(cite))
+                return court;
+        }
+        return null;
+    }
 
 }
 

@@ -4,6 +4,8 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 
+using DocumentFormat.OpenXml.Packaging;
+
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
@@ -51,7 +53,8 @@ class Program {
     }
 
     private static void Transform(Stream docx, Stream xml, bool log, bool test) {
-        Func<Stream, ILazyBundle> parser = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.ParseCourtOfAppealJudgment;
+        Func<WordprocessingDocument, IJudgment> parse1 = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse;
+        Func<Stream, ILazyBundle> parser = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.MakeParser(parse1);
         ILazyBundle bundle = parser(docx);
         Serializer.Serialize(bundle.Judgment, xml);
         if (test) {

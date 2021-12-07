@@ -1,6 +1,8 @@
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -12,9 +14,7 @@ public class Parser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.AkomaNtoso.Parser>();
 
-    internal delegate IJudgment Helper(WordprocessingDocument doc);
-
-    private static ILazyBundle Parse(Stream docx, Helper parse) {
+    private static ILazyBundle Parse(Stream docx, Func<WordprocessingDocument, IJudgment> f) {
         MemoryStream ms = new MemoryStream();
         docx.CopyTo(ms);
         byte[] docx2 = ms.ToArray();
@@ -31,7 +31,7 @@ public class Parser {
             };
             doc = WordprocessingDocument.Open(stream2, true, settings);
         }
-        IJudgment judgment = parse(doc);
+        IJudgment judgment = f(doc);
         return new Bundle(doc, judgment);
     }
 
@@ -56,26 +56,39 @@ public class Parser {
         return new Bundle(doc, judgment);
     }
 
-    public static ILazyBundle ParseSupremeCourtJudgment(Stream docx) {
-        Helper parser = UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse;
-        return Parse(docx, parser);
+    internal static WordprocessingDocument Read(Stream stream) {
+        MemoryStream ms = new MemoryStream();
+        stream.CopyTo(ms);
+        try {
+            return WordprocessingDocument.Open(ms, false);
+        } catch (OpenXmlPackageException) {
+            ms.Seek(0, SeekOrigin.Begin);
+            var settings = new OpenSettings() {
+                RelationshipErrorHandlerFactory = RelationshipErrorHandler.CreateRewriterFactory(DOCX.Relationships.MalformedUriRewriter)
+            };
+            return WordprocessingDocument.Open(ms, true, settings);
+        }
     }
 
-    public static ILazyBundle ParseCourtOfAppealJudgment(Stream docx) {
-        Helper parser = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse;
-        return Parse(docx, parser);
+    private static ILazyBundle Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<WordprocessingDocument> attachments, Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> f) {
+        IJudgment judgment = f(doc, meta, attachments);
+        return new Bundle(doc, judgment);
     }
 
-    public static ILazyBundle ParseEmploymentTribunalJudgment(Stream docx) {
-        Helper parser = UK.Gov.Legislation.Judgments.Parse.EmploymentTribunalParser.Parse;
-        return Parse(docx, parser);
+    internal static Func<Stream, ILazyBundle> MakeParser(Func<WordprocessingDocument, IJudgment> f) {
+        return (Stream docx) => Parse(docx, f);
     }
 
-    internal static Func<Stream, ILazyBundle> MakeParser(Helper raw) {
-        return (Stream docx) => Parse(docx, raw);
-    }
     internal static Func<Stream, IOutsideMetadata, ILazyBundle> MakeParser2(Func<WordprocessingDocument, IOutsideMetadata, IJudgment> f) {
         return (Stream docx, IOutsideMetadata meta) => Parse2(docx, meta, f);
+    }
+
+    internal static Func<Stream, IOutsideMetadata, IEnumerable<Stream>, ILazyBundle> MakeParser3(Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> f) {
+        return (Stream docx, IOutsideMetadata meta, IEnumerable<Stream> attachments) => {
+            WordprocessingDocument doc = Read(docx);
+            IEnumerable<WordprocessingDocument> attach2 = attachments.Select(Read);
+            return Parse3(doc, meta, attach2, f);
+        };
     }
 
 }

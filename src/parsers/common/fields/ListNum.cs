@@ -103,6 +103,17 @@ internal class ListNum {
             WText wText = new WText(fNum, rProps);
             return new List<IInline>(1) { wText };
         }
+        match = Regex.Match(fieldCode, @"^ LISTNUM ""([^""]+)"" \\l (\d) $");   // EWCA/Civ/2008/1365
+        /* can be combined with previous pattern? */
+        if (match.Success) {
+            string name = match.Groups[1].Value;
+            int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
+            int start = 1;
+            string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, start, main);
+            RunProperties rProps = first.RunProperties;
+            WText wText = new WText(fNum, rProps);
+            return new List<IInline>(1) { wText };
+        }
         throw new Exception(fieldCode);
     }
 

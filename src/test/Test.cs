@@ -70,32 +70,33 @@ class Tester {
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
 
+        XmlNodeList neutralCitation = akn.SelectNodes("//akn:neutralCitation", nsmgr);
+        result.HasNeutralCitation = neutralCitation.Count > 0;
+        if (result.HasNeutralCitation)
+            result.NeutralCitation = neutralCitation[0].InnerText;
+
         XmlNodeList courtType = akn.SelectNodes("//akn:courtType", nsmgr);
         result.HasCourtType = courtType.Count > 0;
-        // if (!result.HasCourtType) {
-        //     XmlElement c2 = (XmlElement) akn.SelectSingleNode("//akn:proprietary/*[local-name()='court']", nsmgr);
-        //     result.Court = c2.InnerText;
-        // }
+        if (!result.HasCourtType && result.HasNeutralCitation) {
+            Court? c2 = Courts.ExtractFromCitation(result.NeutralCitation);
+            result.HasCourtType = c2 is not null;
+        }
         if (result.HasCourtType)
             logger.LogInformation("has court type");
         else
             logger.LogError("does not have court type");
 
-        XmlNodeList neutralCitation = akn.SelectNodes("//akn:neutralCitation", nsmgr);
-        result.HasNeutralCitation = neutralCitation.Count > 0;
         if (result.HasNeutralCitation)
             logger.LogInformation("has neutral citation");
         else
             logger.LogError("does not have neutral citation");
-        if (result.HasNeutralCitation)
-            result.NeutralCitation = neutralCitation[0].InnerText;
 
         XmlNodeList docketNumber = akn.SelectNodes("//akn:docketNumber", nsmgr);
         result.HasCaseNumber = docketNumber.Count > 0;
         if (result.HasCaseNumber)
             logger.LogInformation("has case number");
         else
-            logger.LogError("does not have case number");
+            logger.LogWarning("does not have case number");
 
         XmlAttribute docId = (XmlAttribute) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRthis/@value", nsmgr);
         result.HasDocumentID = !string.IsNullOrEmpty(docId.Value);
@@ -150,7 +151,7 @@ class Tester {
         if (result.HasJudge)
             logger.LogInformation("has at least one judge name");
         else
-            logger.LogError("does not have at least one judge name");
+            logger.LogWarning("does not have at least one judge name");
 
         return result;
     }
