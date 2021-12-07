@@ -84,6 +84,9 @@ class Metadata {
                 XmlElement workName = append(doc, work, "FRBRname");
                 workName.SetAttribute("value", caseName);
             }
+        // } else if (metadata is IComponentMetadata compMeta && compMeta.Name is not null) {
+        //         XmlElement workName = append(doc, work, "FRBRname");
+        //         workName.SetAttribute("value", compMeta.Name);
         }
         XmlElement expression = append(doc, identification, "FRBRExpression");
         XmlElement expThis = append(doc, expression, "FRBRthis");
@@ -198,23 +201,23 @@ class Metadata {
                 cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
             }
 
-            Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
-            if (styles is not null) {
-                XmlElement presentation = append(doc, meta, "presentation");
-                presentation.SetAttribute("source", docId + "/eng/docx");
-                XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
-                presentation.AppendChild(style);
-                style.AppendChild(doc.CreateTextNode("\n"));
-                string css = CSS.Serialize(styles);
-                style.AppendChild(doc.CreateTextNode(css));
-            }
-
             foreach (var tuple in judgment.Metadata.ExternalAttachments.Select((attachment, i) => new { i, attachment })) {
                 XmlElement hasAttachment = append(doc, references, "hasAttachment");
                 hasAttachment.SetAttribute("href", "/" + docId + "/attachment/" + ( tuple.i + 1 ) + ".pdf");
                 hasAttachment.SetAttribute("showAs", tuple.attachment.Type);
             }
 
+        }
+
+        Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
+        if (styles is not null) {
+            XmlElement presentation = append(doc, meta, "presentation");
+            presentation.SetAttribute("source", compId + "/eng/docx");
+            XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
+            presentation.AppendChild(style);
+            style.AppendChild(doc.CreateTextNode("\n"));
+            string css = CSS.Serialize(styles);
+            style.AppendChild(doc.CreateTextNode(css));
         }
 
         return meta;
@@ -234,6 +237,8 @@ class AttachmentMetadata : IComponentMetadata {
         this.n = n;
     }
 
+    // public string Name { get; init; }
+
     public Court? Court() { return prototype.Court(); }
 
     public int? Year { get => prototype.Year; }
@@ -245,7 +250,7 @@ class AttachmentMetadata : IComponentMetadata {
     public string DocumentId() { return prototype.DocumentId(); }
 
     public string ComponentId {
-        get { return prototype.DocumentId() + "/annex/" + n; }
+        get { return prototype.DocumentId() + "/attachment/" + n; }
     }
 
     public string Date() { return prototype.Date(); }
@@ -254,7 +259,9 @@ class AttachmentMetadata : IComponentMetadata {
 
     public IEnumerable<string> CaseNos() => Enumerable.Empty<string>();
 
-    public Dictionary<string, Dictionary<string, string>> CSSStyles() => null;
+    internal Dictionary<string, Dictionary<string, string>> Styles { private get; init; }
+
+    public Dictionary<string, Dictionary<string, string>> CSSStyles() => this.Styles;
 
     public IEnumerable<IExternalAttachment> ExternalAttachments { get => Enumerable.Empty<IExternalAttachment>(); }
 

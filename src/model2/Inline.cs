@@ -148,11 +148,9 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
 
 class WTab : ITab {
 
-    private readonly TabChar tab;
-
-    internal WTab(TabChar tab) {
-        this.tab = tab;
-    }
+    internal WTab(TabChar tab) { }
+    internal WTab(PositionalTab pTab) { }
+    internal WTab(OpenXmlElement e) { }
 
 }
 
@@ -331,6 +329,10 @@ internal class WHyperlink2 : IHyperlink2 {
 internal class WLineBreak : ILineBreak {
 
     internal WLineBreak(Break br) { }
+
+    internal WLineBreak(CarriageReturn cr) { }
+
+    internal WLineBreak(OpenXmlElement e) { }   // should be an unknown br
 
 }
 
