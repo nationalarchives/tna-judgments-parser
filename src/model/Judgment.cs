@@ -17,6 +17,8 @@ interface IJudgment {
 
     IEnumerable<IAnnex> Annexes { get; }
 
+    IEnumerable<IInternalAttachment> InternalAttachments { get; }
+
     IEnumerable<IImage> Images { get; }
 
 }
@@ -34,6 +36,16 @@ interface IAnnex {
     ILine Number { get; }
 
     IEnumerable<IBlock> Contents { get; }
+
+}
+
+interface IInternalAttachment {
+
+    IEnumerable<IBlock> Contents { get; }
+
+    Dictionary<string, Dictionary<string, string>> CSSStyles();
+
+    IEnumerable<IImage> Images { get; }
 
 }
 

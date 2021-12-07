@@ -7,7 +7,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
-class NetrualCitation : Enricher {
+class NetrualCitation : Enricher2 {
 
     private static readonly string[] patterns = {
         @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
@@ -137,6 +137,13 @@ class NetrualCitation : Enricher {
                         return Enumerable.Concat(replacement, rest);
 
                     }
+                }
+            }
+            if (first is WLineBreak && second is WText wText) {
+                Group group = Match(wText.Text);
+                if (group is not null) {
+                    List<IInline> replacement = Replace(wText, group);
+                    return Enumerable.Concat(replacement.Prepend(first), line.Skip(2));
                 }
             }
         }

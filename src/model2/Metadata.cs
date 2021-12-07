@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -31,11 +32,19 @@ class WMetadata : IMetadata {
                 return null;
             return Courts.ByCode[courtType2.Code];
         }
+        string cite = this.Cite;
+        if (cite is not null) {
+            Court? c = UK.Gov.Legislation.Judgments.Courts.ExtractFromCitation(cite);
+            if (c is not null)
+                return c;
+        }
         string id = DocumentId();
         if (id is null)
             return null;
         if (id.StartsWith("uksc/"))
             return Courts.SupremeCourt;
+        if (id.StartsWith("ukpc/"))
+            return Courts.PrivyCouncil;
         if (id.StartsWith("ukpc/"))
             return Courts.PrivyCouncil;
         return null;
@@ -55,8 +64,22 @@ class WMetadata : IMetadata {
         return int.Parse(Regex.Match(id, @"/(\d+)$").Groups[1].Value);
     } }
 
+    private static Func<IBlock, IEnumerable<ILine>> GetLines = (block) => {
+        if (block is ILine line)
+            return new List<ILine>(1) { line };
+        if (block is IOldNumberedParagraph np)
+            return new List<ILine>(1) { np };
+        if (block is ITable table) {
+            var cells = table.Rows.SelectMany(row => row.Cells);
+            var blocks = cells.SelectMany(cell => cell.Contents);
+            return blocks.SelectMany(GetLines);
+        }
+        return Enumerable.Empty<ILine>();
+    };
+
     virtual public string Cite { get {
-        INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
+        INeutralCitation cite = judgment.Header.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
+        // INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
         if (cite is null)
             return null;
         return cite.Text.Trim();
@@ -71,50 +94,51 @@ class WMetadata : IMetadata {
     }
 
     private string MakeDocumentId() {
-        INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
+        // INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
+        string cite = this.Cite;
         if (cite is not null) {
-            string trimmed = cite.Text.Trim();
+            string trimmed = cite.Trim();
             Match match1;
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (UKSC|UKPC) (\d+)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCA) (Civ|Crim) (\d+)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[4].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) +(\d+) \(([A-Z][a-z]+)\.?\)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) (\d+) ([A-Z][a-z]+)$", RegexOptions.IgnoreCase); // EWHC/Admin/2003/301
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCH) (\d+) \(([A-Z][a-z]+)\)$", RegexOptions.IgnoreCase); // EWHC/Admin/2006/2373
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return "EWHC".ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) (\d+) \(([A-Z]+)\)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             // match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+)$"); // is this valid? EWHC/Admin/2004/584
@@ -125,28 +149,28 @@ class WMetadata : IMetadata {
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWFC) (\d+)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCA) (\d+) \((Civ|Crim)\)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCA) (\d+) (Civ|Crim)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite.Text);
+                    throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
             throw new System.Exception();
@@ -170,7 +194,7 @@ class WMetadata : IMetadata {
     }
 
     public IEnumerable<string> CaseNos() {
-        IEnumerable<ICaseNo> caseNos = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>();
+        IEnumerable<ICaseNo> caseNos = judgment.Header.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<ICaseNo>();
         if (judgment.CoverPage is not null)
             caseNos = judgment.CoverPage.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().Concat(caseNos);
         return caseNos.Select(cn => cn.Text);
@@ -181,7 +205,7 @@ class WMetadata : IMetadata {
     }
 
     virtual public string Date() {
-        IDocDate date = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
+        IDocDate date = judgment.Header.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
         if (date is not null)
             return date.Date;
         date = judgment.Conclusions?.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
@@ -195,7 +219,7 @@ class WMetadata : IMetadata {
     } }
 
     public Dictionary<string, Dictionary<string, string>> CSSStyles() {
-        return DOCX.CSS.Extract(main);
+        return DOCX.CSS.Extract(main, "#judgment");
     }
 
     virtual public IEnumerable<IExternalAttachment> ExternalAttachments { get => Enumerable.Empty<IExternalAttachment>(); }

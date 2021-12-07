@@ -32,7 +32,7 @@ internal class Hyperlink {
         // \t switch ???
         if (string.IsNullOrEmpty(href)) {   // EWHC/Ch/2018/2285
             Fields.logger.LogWarning("cross-references are not yet supported: " + fieldCode);
-            return Fields.Rest(main, withinField, i);
+            return Fields.RestOptional(main, withinField, i);   // optional for EWCA/Civ/2009/296
         }
         if (string.IsNullOrEmpty(location))
             href += "";

@@ -29,6 +29,8 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public IEnumerable<IAnnex> Annexes { get; internal set; }
 
+    public IEnumerable<IInternalAttachment> InternalAttachments { get; internal init; }
+
     public IEnumerable<IImage> Images { get => WImage.Get(doc); }
 
     public void Close() {

@@ -31,6 +31,8 @@ interface IComponentMetadata : IMetadata {
 
     string ComponentId { get; }
 
+    // string Name { get; }
+
 }
 
 }

@@ -25,6 +25,18 @@ abstract class Combo {
         return regex.IsMatch(text);
     }
 
+    protected bool MatchFirstRun(Regex regex, IBlock block) {
+        if (!(block is ILine line))
+            return false;
+        if (line.Contents.Count() == 0)
+            return false;
+        IInline first = line.Contents.First();
+        if (first is not WText wText)
+            return false;
+        string text = Regex.Replace(wText.Text, @"\s+", " ").Trim();
+        return regex.IsMatch(text);
+    }
+
     public Court Court { get; init; }
 
     protected WLine Transform1(IBlock block) {
@@ -42,6 +54,13 @@ abstract class Combo {
         }
     }
 
+    protected WLine TransformFirstRun(IBlock block) {
+        WLine line = (WLine) block;
+        WText text = (WText) line.Contents.First();
+        WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
+        IEnumerable<IInline> contents = line.Contents.Skip(1).Prepend(ct);
+        return new WLine(line, contents);
+    }
 }
 
 class Combo5 : Combo {
@@ -284,11 +303,14 @@ class Combo3 : Combo {
     }
 
     internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) {
-            Transform1(one),
-            Transform1(two),
-            Transform1(three)
-        };
+        return new List<ILine>(3) { Transform1(one), Transform1(two), Transform1(three) };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
+        foreach (Combo3 combo in Combo3.combos)
+            if (combo.Match(one, two, three))
+                return combo.Transform(one, two, three);
+        return null;
     }
 
 }
@@ -413,11 +435,29 @@ class Combo2_1 : Combo {
             Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^Appeal against the decision of", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
+        },
+        new Combo2_1 {  // [2021] EWHC 3247 (QB)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^QUEEN’S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^\[\d{4}\] EWHC \d+ \([A-Z]+[a-z]*\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
         }
     };
 
+    private bool Matchish(Regex regex, IBlock block) {
+        if (!(block is ILine line))
+            return false;
+        if (line.Contents.Count() == 0)
+            return false;
+        string text = line.NormalizedContent();
+        return regex.IsMatch(text);
+    }
+
     internal bool Match(IBlock one, IBlock two, IBlock three) {
-        return Match(Re1, one) && Match(Re2, two) && Match(Re3, three);
+        return Match(Re1, one) && Match(Re2, two) && Matchish(Re3, three);
+    }
+    private bool Match2(IBlock one, IBlock two, IBlock three) {
+        return MatchFirstRun(Re1, one) && Match(Re2, two) && Matchish(Re3, three);
     }
 
     internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
@@ -425,11 +465,19 @@ class Combo2_1 : Combo {
             Transform1(one), Transform1(two), (ILine) three
         };
     }
+    private List<ILine> Transform2(IBlock one, IBlock two, IBlock three) {
+        return new List<ILine>(3) {
+            TransformFirstRun(one), Transform1(two), (ILine) three
+        };
+    }
 
     internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
-        foreach (Combo1_2 combo in Combo1_2.combos)
+        foreach (Combo2_1 combo in Combo2_1.combos) {
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
+            if (combo.Match2(one, two, three))
+                return combo.Transform2(one, two, three);
+        }
         return null;
 
     }
@@ -708,7 +756,7 @@ class Combo1bis {
 
 }
 
-class CourtType : Enricher {
+class CourtType : Enricher2 {
 
     private List<ILine> Match5(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
         foreach (Combo5 combo in Combo5.combos)
@@ -725,16 +773,13 @@ class CourtType : Enricher {
     }
 
     private List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
-        foreach (Combo3 combo in Combo3.combos)
-            if (combo.Match(one, two, three))
-                return combo.Transform(one, two, three);
-        foreach (Combo2_1 combo in Combo2_1.combos)
-            if (combo.Match(one, two, three))
-                return combo.Transform(one, two, three);
-        foreach (Combo1_2 combo in Combo1_2.combos)
-            if (combo.Match(one, two, three))
-                return combo.Transform(one, two, three);
-        return null;
+        List<ILine> temp = Combo3.MatchAny(one, two, three);
+        if (temp is not null)
+            return temp;
+        temp = Combo2_1.MatchAny(one, two, three);
+        if (temp is not null)
+            return temp;
+        return Combo1_2.MatchAny(one, two, three);
     }
 
     protected virtual List<ILine> Match2(IBlock one, IBlock two) {
@@ -757,8 +802,70 @@ class CourtType : Enricher {
         return null;
     }
 
+    // internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+    //     List<IBlock> enriched = new List<IBlock>();
+    //     int i = 0;
+    //     while (i < blocks.Count()) {
+    //         IBlock block1 = blocks.ElementAt(i);
+    //         if (i < blocks.Count() - 4) {
+    //             IBlock block2 = blocks.ElementAt(i + 1);
+    //             IBlock block3 = blocks.ElementAt(i + 2);
+    //             IBlock block4 = blocks.ElementAt(i + 3);
+    //             IBlock block5 = blocks.ElementAt(i + 4);
+    //             List<ILine> five = Match5(block1, block2, block3, block4, block5);
+    //             if (five is not null) {
+    //                 enriched.AddRange(five);
+    //                 i += five.Count;
+    //                 break;
+    //             }
+    //         }
+    //         if (i < blocks.Count() - 3) {
+    //             IBlock block2 = blocks.ElementAt(i + 1);
+    //             IBlock block3 = blocks.ElementAt(i + 2);
+    //             IBlock block4 = blocks.ElementAt(i + 3);
+    //             List<ILine> four = Match4(block1, block2, block3, block4);
+    //             if (four is not null) {
+    //                 enriched.AddRange(four);
+    //                 i += four.Count;
+    //                 break;
+    //             }
+    //         }
+    //         if (i < blocks.Count() - 2) {
+    //             IBlock block2 = blocks.ElementAt(i + 1);
+    //             IBlock block3 = blocks.ElementAt(i + 2);
+    //             List<ILine> three = Match3(block1, block2, block3);
+    //             if (three is not null) {
+    //                 enriched.AddRange(three);
+    //                 i += three.Count;
+    //                 break;
+    //             }
+    //         }
+    //         if (i < blocks.Count() - 1) {
+    //             IBlock block2 = blocks.ElementAt(i + 1);
+    //             List<ILine> two = Match2(block1, block2);
+    //             if (two is not null) {
+    //                 enriched.AddRange(two);
+    //                 i += two.Count;
+    //                 break;
+    //             }
+    //         }
+    //         List<ILine> one = Match1(block1);
+    //         if (one is not null) {
+    //             enriched.AddRange(one);
+    //             i += one.Count;
+    //             break;
+    //         }
+    //         if (block1 is WTable table) {
+    //             WTable after = EnrichTable(table);
+    //         }
+    //         enriched.Add(block1);
+    //         i += 1;
+    //     }
+    //     enriched.AddRange(blocks.Skip(i));
+    //     return enriched;
+    // }
+
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
-        List<IBlock> enriched = new List<IBlock>();
         int i = 0;
         while (i < blocks.Count()) {
             IBlock block1 = blocks.ElementAt(i);
@@ -769,9 +876,9 @@ class CourtType : Enricher {
                 IBlock block5 = blocks.ElementAt(i + 4);
                 List<ILine> five = Match5(block1, block2, block3, block4, block5);
                 if (five is not null) {
-                    enriched.AddRange(five);
-                    i += five.Count;
-                    break;
+                    IEnumerable<IBlock> before = blocks.Take(i);
+                    IEnumerable<IBlock> after = blocks.Skip(i + 5);
+                    return Enumerable.Concat(Enumerable.Concat(before, five), after);
                 }
             }
             if (i < blocks.Count() - 3) {
@@ -780,9 +887,9 @@ class CourtType : Enricher {
                 IBlock block4 = blocks.ElementAt(i + 3);
                 List<ILine> four = Match4(block1, block2, block3, block4);
                 if (four is not null) {
-                    enriched.AddRange(four);
-                    i += four.Count;
-                    break;
+                    IEnumerable<IBlock> before = blocks.Take(i);
+                    IEnumerable<IBlock> after = blocks.Skip(i + 4);
+                    return Enumerable.Concat(Enumerable.Concat(before, four), after);
                 }
             }
             if (i < blocks.Count() - 2) {
@@ -790,31 +897,44 @@ class CourtType : Enricher {
                 IBlock block3 = blocks.ElementAt(i + 2);
                 List<ILine> three = Match3(block1, block2, block3);
                 if (three is not null) {
-                    enriched.AddRange(three);
-                    i += three.Count;
-                    break;
+                    IEnumerable<IBlock> before = blocks.Take(i);
+                    IEnumerable<IBlock> after = blocks.Skip(i + 3);
+                    return Enumerable.Concat(Enumerable.Concat(before, three), after);
                 }
             }
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 List<ILine> two = Match2(block1, block2);
                 if (two is not null) {
-                    enriched.AddRange(two);
-                    i += two.Count;
-                    break;
+                    IEnumerable<IBlock> before = blocks.Take(i);
+                    IEnumerable<IBlock> after = blocks.Skip(i + 2);
+                    return Enumerable.Concat(Enumerable.Concat(before, two), after);
                 }
             }
             List<ILine> one = Match1(block1);
             if (one is not null) {
-                enriched.AddRange(one);
-                i += one.Count;
-                break;
+                IEnumerable<IBlock> before = blocks.Take(i);
+                IEnumerable<IBlock> after = blocks.Skip(i + 1);
+                return Enumerable.Concat(Enumerable.Concat(before, one), after);
             }
-            enriched.Add(block1);
+            if (block1 is WTable table) {
+                WTable enriched = EnrichTable(table);
+                if (!object.ReferenceEquals(table, enriched)) {
+                    IEnumerable<IBlock> before = blocks.Take(i);
+                    IEnumerable<IBlock> after = blocks.Skip(i + 1);
+                return Enumerable.Concat(before.Append(enriched), after);
+                }
+            }
             i += 1;
         }
-        enriched.AddRange(blocks.Skip(i));
-        return enriched;
+        return blocks;
+    }
+
+    protected override WCell EnrichCell(WCell cell) {
+        IEnumerable<IBlock> contents = Enrich(cell.Contents);
+        if (object.ReferenceEquals(contents, cell.Contents))
+            return cell;
+        return new WCell(cell.Main, contents);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

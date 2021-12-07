@@ -44,6 +44,8 @@ class WMetadata2 : WMetadata {
     }
 
     override public string CaseName { get {
+        if (meta2.NameTrumps)
+            return meta2.Name;
         return base.CaseName ?? meta2.Name;
     } }
 

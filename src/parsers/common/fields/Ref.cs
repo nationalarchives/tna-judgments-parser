@@ -8,11 +8,15 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 // https://support.microsoft.com/en-us/office/field-codes-ref-field-b2531c23-05d6-4e3b-b54f-aee24447ceb2
 
 internal class Ref {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<Ref>();
 
     private static string pattern = @"^ REF ([_A-Za-z0-9]+)( ?\\?[hnrpw])*( \\\* MERGEFORMAT)? $";  // no space before switch in EWHC/Ch/2015/448
 
@@ -37,13 +41,17 @@ internal class Ref {
             return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
         
         OpenXmlElement next = withinField[i];
+        if (next is InsertedRun && !next.ChildElements.Any()) { // EWCA/Civ/2008/643.rtf
+            i += 1;
+            next = withinField[i];
+        }
         if (!Fields.IsFieldSeparater(next))
             throw new Exception();
         
         try {
             return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
         } catch (Exception) {
-            System.Console.WriteLine("no bookmark for " + bookmarkName);
+            logger.LogWarning("no bookmark for " + bookmarkName);
         }
 
         IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);

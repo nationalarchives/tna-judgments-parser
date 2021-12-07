@@ -19,11 +19,14 @@ class SupremeCourtParser : AbstractParser {
     public static Judgment Parse(WordprocessingDocument doc) {
         return new SupremeCourtParser(doc).Parse();
     }
-    public static Judgment Parse(WordprocessingDocument doc, IOutsideMetadata meta) {
+    public static Judgment Parse2(WordprocessingDocument doc, IOutsideMetadata meta) {
         return new SupremeCourtParser(doc, meta).Parse();
     }
+    public static Judgment Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<WordprocessingDocument> attachments) {
+        return new SupremeCourtParser(doc, meta, attachments).Parse();
+    }
 
-    private SupremeCourtParser(WordprocessingDocument doc, IOutsideMetadata meta = null) : base(doc, meta) { }
+    private SupremeCourtParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) : base(doc, meta, attachments) { }
 
     protected override List<IBlock> Header() {
         List<IBlock> header;
