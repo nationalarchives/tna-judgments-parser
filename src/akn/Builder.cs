@@ -43,7 +43,7 @@ class Builder {
         AddHeader(main, judgment);
         AddBody(main, judgment);
         AddConclusions(main, judgment.Conclusions);
-        AddAnnexes(main, judgment);
+        AddAnnexesAndInternalAttachments(main, judgment);
     }
 
     private void AddCoverPage(XmlElement main, IJudgment judgment) {
@@ -79,14 +79,16 @@ class Builder {
         blocks(container, conclusions);
     }
 
-    private void AddAnnexes(XmlElement main, IJudgment judgment) {
+    private void AddAnnexesAndInternalAttachments(XmlElement main, IJudgment judgment) {
         IEnumerable<IAnnex> annexes = judgment.Annexes ?? Enumerable.Empty<IAnnex>();
-        if (!annexes.Any())
+        if (!annexes.Any() && !judgment.InternalAttachments.Any())
             return;
         XmlElement attachments = doc.CreateElement("attachments", ns);
         main.AppendChild(attachments);
         foreach (var annex in annexes.Select((value, i) => new { i, value }))
             AddAnnex(attachments, judgment, annex.value, annex.i + 1);
+        foreach (var attach in judgment.InternalAttachments.Select((value, i) => new { i, value }))
+            AddInternalAttachment(attachments, judgment, attach.value, annexes.Count() + attach.i + 1);
     }
 
     private void AddAnnex(XmlElement attachments, IJudgment judgment, IAnnex annex, int n) {
@@ -104,6 +106,22 @@ class Builder {
         main.AppendChild(body);
         p(body, annex.Number);
         blocks(body, annex.Contents);
+    }
+
+    private void AddInternalAttachment(XmlElement attachments, IJudgment judgment, IInternalAttachment attach, int n) {
+        XmlElement attachment = doc.CreateElement("attachment", ns);
+        attachments.AppendChild(attachment);
+        XmlElement main = doc.CreateElement("doc", ns);
+        main.SetAttribute("name", "attachment");
+        attachment.AppendChild(main);
+
+        AttachmentMetadata metadata = new AttachmentMetadata(judgment.Metadata, n) { Styles = attach.CSSStyles() };
+        XmlElement meta = Metadata.make(doc, null, metadata, false);
+        main.AppendChild(meta);
+
+        XmlElement body = doc.CreateElement("mainBody", ns);
+        main.AppendChild(body);
+        blocks(body, attach.Contents);
     }
 
     /* structure */

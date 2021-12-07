@@ -285,8 +285,12 @@ class Fields {
             return Enumerable.Empty<IInline>();
         if (fieldCode.StartsWith(" SYMBOL "))   // EWHC/Comm/2010/1735
             return new List<IInline>(1) { Symbol.Parse(main, fieldCode, withinField.Skip(i)) };
-        if (fieldCode.StartsWith(" INCLUDEPICTURE "))   // EWCA/Civ/2004/381
-            return new List<IInline>(1) { IncludedPicture.Parse(main, fieldCode, withinField.Skip(i)) };
+        if (fieldCode.StartsWith(" INCLUDEPICTURE ")) {   // EWCA/Civ/2004/381, EWCA/Civ/2003/1792
+            IInline iPicutre = IncludedPicture.Parse(main, fieldCode, withinField.Skip(i));
+            if (iPicutre is null)
+                return Enumerable.Empty<IInline>();
+            return new List<IInline>(1) { iPicutre };
+        }
         if (fieldCode.StartsWith(" KEYWORDS ")) // EWHC/Ch/2009/1330
             return RestOptional(main, withinField, i);
         if (fieldCode.StartsWith(" SUBJECT ")) // EWHC/Ch/2009/1330

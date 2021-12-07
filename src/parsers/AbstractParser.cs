@@ -20,13 +20,15 @@ abstract class AbstractParser {
 
     protected readonly WordprocessingDocument doc;
     protected readonly IOutsideMetadata meta;
+    private readonly IEnumerable<WordprocessingDocument> attachments;
     protected readonly MainDocumentPart main;
     protected readonly OpenXmlElementList elements;
     protected int i = 0;
 
-    protected AbstractParser(WordprocessingDocument doc, IOutsideMetadata meta = null) {
+    protected AbstractParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) {
         this.doc = doc;
         this.meta = meta;
+        this.attachments = attachments ?? Enumerable.Empty<WordprocessingDocument>();
         main = doc.MainDocumentPart;
         elements = main.Document.Body.ChildElements;
     }
@@ -62,12 +64,14 @@ abstract class AbstractParser {
             conclusions = EnrichConclusions(conclusions);
         if (annexes is not null)
             annexes = EnrichAnnexes(annexes);
+        IEnumerable<IInternalAttachment> attachments = this.attachments.Select((a, i) => FlatParagraphsParser.Parse(a, i + 1));
         return new Judgment(doc, meta) {
             CoverPage = coverPage,
             Header = header,
             Body = body,
             Conclusions = conclusions,
-            Annexes = annexes
+            Annexes = annexes,
+            InternalAttachments = attachments
         };
     }
 
@@ -132,6 +136,13 @@ abstract class AbstractParser {
         } else if (e is Table table) {
             var t = new WTable(doc.MainDocumentPart, table);
             collection.Add(t);
+        // } else if (e is SdtBlock) {
+        //     DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
+        //     if (dpg is null)
+        //         throw new Exception();
+        //     if (dpg.Val.Value != "Table of Contents")
+        //         throw new Exception();
+        //     logger.LogWarning("skipping table of contents");
         } else {
             throw new Exception(e.GetType().ToString());
         }
@@ -611,13 +622,13 @@ abstract class AbstractParser {
             var t = new WTable(doc.MainDocumentPart, table);
             return new WDummyDivision(t);
         }
-        if (e is SdtBlock) { // "EWHC/Admin/2021/30"
-            DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
-            if (dpg is not null && dpg.Val.Value == "Table of Contents") {
-                i += 1;
-                return null;
-            }
-        }
+        // if (e is SdtBlock) { // "EWHC/Admin/2021/30"
+        //     DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
+        //     if (dpg is not null && dpg.Val.Value == "Table of Contents") {
+        //         i += 1;
+        //         return null;
+        //     }
+        // }
         throw new System.Exception(e.GetType().ToString());
     }
 

@@ -20,17 +20,21 @@ class CourtOfAppealParser : AbstractParser {
     public static Judgment Parse(WordprocessingDocument doc) {
         return new CourtOfAppealParser(doc).Parse();
     }
-    public static Judgment Parse(WordprocessingDocument doc, IOutsideMetadata meta) {
+    public static Judgment Parse2(WordprocessingDocument doc, IOutsideMetadata meta) {
         return new CourtOfAppealParser(doc, meta).Parse();
     }
+    public static Judgment Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<WordprocessingDocument> attachments) {
+        return new CourtOfAppealParser(doc, meta, attachments).Parse();
+    }
 
-    protected CourtOfAppealParser(WordprocessingDocument doc, IOutsideMetadata meta = null) : base(doc, meta) { }
+    protected CourtOfAppealParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) : base(doc, meta, attachments) { }
 
     ISet<string> titles = new HashSet<string>() {
         "Judgment", "JUDGMENT", "J U D G M E N T",
         "Judgement",
         "Approved Judgment", "Judgment Approved", "JUDGMENT (As Approved)",
         "APPROVED JUDGMENT",
+        "APPROVED J U D G M E N T",
         "J U D G M E N T (Approved)", // EWCA/Crim/2017/1012
         // "J U D G M E N T  (Approved)",
         "J U D G M E N T (As approved)", // EWCA/Crim/2015/1870

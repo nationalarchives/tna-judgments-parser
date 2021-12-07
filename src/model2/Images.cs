@@ -9,9 +9,13 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DrawingML = DocumentFormat.OpenXml.Drawing;
 
+using Microsoft.Extensions.Logging;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class WImage : IImage {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<WImage>();
 
     private readonly ImagePart part;
 
@@ -39,6 +43,8 @@ class WImage : IImage {
 }
 
 public class WImageRef : IImageRef {
+
+    private static ILogger logger = Logging.Factory.CreateLogger<WImageRef>();
 
     private readonly Uri uri;
 
@@ -71,8 +77,15 @@ public class WImageRef : IImageRef {
     }
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
         DocumentFormat.OpenXml.Vml.ImageData imageData = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault();
-        if (imageData is null)
+        if (imageData is null) {
+            logger.LogWarning("skipping picutre because it has no 'image data'");
             return null;
+        }
+        StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault().RelationshipId;
+        if (relId is null) {
+            logger.LogWarning("skipping picutre because its 'image data' has no relationship");
+            return null;
+        }
         return new WImageRef(main, picture);
     }
     private WImageRef(MainDocumentPart main, Picture picture) {

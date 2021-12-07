@@ -230,8 +230,12 @@ class Inline {
             return new WText(e.InnerText, rProps);
         if (e is TabChar tab)
             return new WTab(tab);
+        if (e is OpenXmlUnknownElement && e.LocalName == "tab")
+            return new WTab(e);
         if (e is Break br)
             return new WLineBreak(br);
+        if (e is OpenXmlUnknownElement && e.LocalName == "br")
+            return new WLineBreak(e);
         if (e is NoBreakHyphen hyphen)
             return new WText(hyphen, rProps);
         if (e.LocalName == "noBreakHyphen") // EWHC/Admin/2007/2606
@@ -271,8 +275,14 @@ class Inline {
             return SpecialCharacter.Make(sym, rProps);
         if (e is CommentReference) // EWCA/Civ/2004/55
             return null;
-        // if (e is PageNumber)    // EWHC/Fam/2006/3743
-        //     return null;
+        if (e is PageNumber)    // EWCA/Civ/2018/2837.pdf
+            return null;
+        if (e is CarriageReturn cr) // EWCA/Civ/2018/2837.pdf
+            return new WLineBreak(cr);
+        if (e is SeparatorMark || e is ContinuationSeparatorMark) // EWCA/Civ/2018/2837.pdf
+            return null;
+        if (e is PositionalTab pTab)    // EWCA/Civ/2018/1825.rtf in header
+            return new WTab(pTab);
         throw new Exception(e.OuterXml);
     }
     // internal static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {

@@ -101,4 +101,72 @@ abstract class Enricher {
 
 }
 
+abstract class Enricher2 : Enricher {
+
+    protected override IBlock Enrich(IBlock block) {
+        if (block is WLine line)
+            return EnrichLine(line);
+        if (block is WTable table)
+            return EnrichTable(table);
+        return block;
+    }
+
+    protected WTable EnrichTable(WTable table) {
+        IEnumerator<WRow> rows = table.TypedRows.GetEnumerator();
+        List<WRow> enriched = new List<WRow>();
+        while (rows.MoveNext()) {
+            WRow before = rows.Current;
+            WRow after = EnrichRow(before);
+            enriched.Add(after);
+            if (!object.ReferenceEquals(before, after)) {
+                while (rows.MoveNext())
+                    enriched.Add(rows.Current);
+                return new WTable(table.Main, enriched);
+            }
+        }
+        return table;
+    }
+
+    private WRow EnrichRow(WRow row) {
+        IEnumerator<WCell> cells = row.TypedCells.GetEnumerator();
+        List<WCell> enriched = new List<WCell>();
+        while (cells.MoveNext()) {
+            WCell before = cells.Current;
+            WCell after = EnrichCell(before);
+            enriched.Add(after);
+            if (!object.ReferenceEquals(before, after)) {
+                while (cells.MoveNext())
+                    enriched.Add(cells.Current);
+                return new WRow(row.Main, enriched);
+            }
+        }
+        return row;
+    }
+
+    protected virtual WCell EnrichCell(WCell cell) {
+        IEnumerator<IBlock> contents = cell.Contents.GetEnumerator();
+        List<IBlock> enriched = new List<IBlock>();
+        while (contents.MoveNext()) {
+            IBlock before = contents.Current;
+            IBlock after = Enrich(before);
+            enriched.Add(after);
+            if (!object.ReferenceEquals(before, after)) {
+                while (contents.MoveNext())
+                    enriched.Add(contents.Current);
+                return new WCell(cell.Main, enriched);
+            }
+        }
+        return cell;
+    }
+
+    private WLine EnrichLine(WLine line) {
+        IEnumerable<IInline> enriched = Enrich(line.Contents);
+        if (object.ReferenceEquals(enriched, line.Contents))
+            return line;
+        return new WLine(line, enriched);
+    }
+
+}
+
+
 }

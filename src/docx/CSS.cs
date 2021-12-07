@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 
 public class CSS {
 
-    public static Dictionary<string, Dictionary<string, string>> Extract(MainDocumentPart main) {
+    public static Dictionary<string, Dictionary<string, string>> Extract(MainDocumentPart main, string rootSelector) {
         Wordprocessing.Styles styles = main.StyleDefinitionsPart.Styles;
         Dictionary<string, Dictionary<string, string>> selectors = new Dictionary<string, Dictionary<string, string>>();
 
@@ -49,7 +49,7 @@ public class CSS {
         AddFontSize(defaultCharacterStyle, defaultProperties);
         AddColor(defaultCharacterStyle, defaultProperties);
         AddBackgroundColor(defaultCharacterStyle, defaultProperties);
-        selectors.Add("judgment", defaultProperties);
+        selectors.Add(rootSelector, defaultProperties);
 
         IEnumerable<Style> paragraphStyles = styles.ChildElements
             .OfType<Style>()
@@ -69,7 +69,7 @@ public class CSS {
             AddColor(style, properties);
             AddBackgroundColor(style, properties);
             if (properties.Count > 0)
-                selectors.Add("." + style.StyleId.Value, properties);
+                selectors.Add(rootSelector + " ." + style.StyleId.Value, properties);
         }
         IEnumerable<Style> characterStyles = styles.ChildElements
             .OfType<Style>()
@@ -85,7 +85,7 @@ public class CSS {
             AddColor(style, properties);
             AddBackgroundColor(style, properties);
             if (properties.Count > 0)
-                selectors.Add("." + style.StyleId.Value, properties);
+                selectors.Add(rootSelector + " ." + style.StyleId.Value, properties);
         }
         return selectors;
     }

@@ -68,9 +68,9 @@ class Numbering2 {
                 return "◦";
             if (format.Val.Value == "–")    // EWCA/Civ/2013/1015
                 return "–"; // en dash ??
-            if (format.Val.Value == "")    // EWHC/QB/2018/2066
+            if (format.Val.Value == "")    // \uf0b7 EWHC/QB/2018/2066
                 return "•";
-            if (format.Val.Value == "")    // EWCA/Civ/2013/11
+            if (format.Val.Value == "")    // \uf0a7 EWCA/Civ/2013/11
                 return "•";
             if (format.Val.Value == Char.ConvertFromUtf32(0xf0a0))    // EWHC/Admin/2017/2768
                 return Char.ConvertFromUtf32(0x2219);   // small square "bullet operator"
@@ -100,7 +100,9 @@ class Numbering2 {
                 return format.Val.Value;
             if (format.Val.Value == "*")    // "EWHC/Admin/2021/710"
                 return format.Val.Value;
-            throw new Exception("unsupported bullet text: " + format.Val.Value);
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf0d5))    // "right arrow?" EWCA/Civ/2004/1294
+                return format.Val.Value;
+            logger.LogWarning("unknown bullet text: " + format.Val.Value);
         }
 
         /* Other */
