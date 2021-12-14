@@ -498,7 +498,7 @@ abstract class AbstractParser {
             }
             if (predicate(e))
                 break;
-            ILeaf para = ParseParagraph();
+            IDivision para = ParseParagraph();
             paragraphs.Add(para);
         }
         return paragraphs;
@@ -526,7 +526,7 @@ abstract class AbstractParser {
                 break;
             if (IsTitledJudgeName(e))
                 break;
-            ILeaf para = ParseParagraph();
+            IDivision para = ParseParagraph();
             if (para is null)
                 continue;
             paragraphs.Add(para);
@@ -561,7 +561,7 @@ abstract class AbstractParser {
                 break;
             if (IsTitledJudgeName(e))
                 break;
-            ILeaf para = ParseParagraph();
+            IDivision para = ParseParagraph();
             if (para is null)
                 continue;
             paragraphs.Add(para);
@@ -586,7 +586,7 @@ abstract class AbstractParser {
                 break;
             if (IsTitledJudgeName(e))
                 break;
-            ILeaf para = ParseParagraph();
+            IDivision para = ParseParagraph();
             if (para is null)
                 continue;
             paragraphs.Add(para);
@@ -594,7 +594,7 @@ abstract class AbstractParser {
         return paragraphs;
     }
 
-    private ILeaf ParseParagraph() {
+    private IDivision ParseParagraph() {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         if (IsSkippable(e)) {
@@ -622,16 +622,13 @@ abstract class AbstractParser {
             var t = new WTable(doc.MainDocumentPart, table);
             return new WDummyDivision(t);
         }
-        // if (e is SdtBlock) { // "EWHC/Admin/2021/30"
-        //     DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
-        //     if (dpg is not null && dpg.Val.Value == "Table of Contents") {
-        //         i += 1;
-        //         return null;
-        //     }
-        // }
+        if (e is SdtBlock sdt) { // "EWHC/Admin/2021/30"
+            i += 1;
+            return Blocks.ParseStructuredDocumentTag2(main, sdt);
+        }
+
         throw new System.Exception(e.GetType().ToString());
     }
-
 
 
     /* annexes */

@@ -31,6 +31,12 @@ class PartyEnricher : Enricher {
                 i += 4;
                 break;
             }
+            if (IsThreeLinePartyBlock(before, i)) {
+                List<IBlock> enriched3 = EnrichThreeLinePartyBlock(before, i);
+                after.AddRange(enriched3);
+                i += 3;
+                break;
+            }
             if (IsFiveLinePartyBlock(before, i)) {
                 List<IBlock> enriched5 = EnrichFiveLinePartyBlock(before, i);
                 after.AddRange(enriched5);
@@ -113,6 +119,42 @@ class PartyEnricher : Enricher {
         after.Add(docTitle2);
         after.Add(line4);
         return after;
+    }
+
+    private static bool IsThreeLinePartyBlock(IBlock[] before, int i) {
+        if (i > before.Length - 4)
+            return false;
+        IBlock block1 = before[i];
+        IBlock block2 = before[i+1];
+        IBlock block3 = before[i+2];
+        IBlock block4 = before[i+3];
+        if (block1 is not ILine line1)
+            return false;
+        if (!IsRegina(line1))
+            return false;
+        if (!IsBetweenPartyMarker(block2))
+            return false;
+        if (!IsPartyName(block3))
+            return false;
+        if (!IsAfterPartyMarker(block4))
+            return false;
+        return true;
+    }
+    private static bool IsRegina(ILine line) {
+        string content = line.NormalizedContent();
+        if (content == "REGINA")
+            return true;
+        return false;
+    }
+    private static List<IBlock> EnrichThreeLinePartyBlock(IBlock[] before, int i) {
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        return new List<IBlock>(3) {
+            MakeParty(line1, PartyRole.BeforeTheV),
+            line2,
+            MakeParty(line3, PartyRole.AfterTheV)
+        };
     }
 
     /* five */
@@ -776,10 +818,14 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsBetweenPartyMarker(IBlock block) {
-        ISet<string> betweenPartyMarkers = new HashSet<string>() { "v", "-v-", "- v -" };
+        ISet<string> betweenPartyMarkers = new HashSet<string>() { "v", "-v-", "- v -",
+            "- v –",   // [2021] EWCA Crim 1412
+            "V" // [2021] EWCA Crim 1413
+        };
         if (block is not ILine line)
             return false;
         string normalized = line.NormalizedContent();
+        var temp = betweenPartyMarkers.Contains(normalized);
         return betweenPartyMarkers.Contains(normalized);
     }
     private static bool IsBetweenPartyMarker2(IBlock block) {
@@ -874,7 +920,16 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsAfterPartyMarker(IBlock block) {
-        return IsBeforePartyMarker(block);
+        if (IsBeforePartyMarker(block))
+            return true;
+        if (block is not ILine line)
+            return false;
+        string content = line.NormalizedContent();
+        if (content.StartsWith("Computer Aided Transcript"))
+            return true;
+        if (content.StartsWith("REPORTING RESTRICTIONS APPLY:"))
+            return true;
+        return false;
     }
 
 
@@ -1109,6 +1164,7 @@ class PartyEnricher : Enricher {
             "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants",
             "Appellant/ Respondent", // [2021] EWCA Civ 1792
             "Claimants/ Appellants",    // [2021] EWCA Civ 1799
+            "Appellant/Applicant",  // [2021] EWCA Crim 1877
         };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
@@ -1159,6 +1215,10 @@ class PartyEnricher : Enricher {
             return null;
         string one = line1.NormalizedContent();
         string two = line2.NormalizedContent();
+        return GetTwoLinePartyRole(one, two);
+    }
+
+    private static PartyRole? GetTwoLinePartyRole(string one, string two) {
         if (one == "Defendant/" && two.EndsWith("Claimant"))    // EWHC/Ch/2008/2079
             return PartyRole.Defendant;
         if (one == "Defendant/" && two == "Applicant")    // EWHC/Ch/2017/916
@@ -1203,6 +1263,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Defendants/" && two == "Appellants") // EWCA/Civ/2004/277
             return PartyRole.Appellant;
+        if (one == "Defendants/" && two == "Applicants") // [2021] EWHC 2684 (Comm)
+            return PartyRole.Applicant;
         if (one == "1st Respondent" && two == "2nd Respondent") // EWHC/Fam/2017/364, EWHC/Fam/2013/1864?
             return PartyRole.Respondent;
         if (one == "1st Respondent" && two == "2ndRespondent") // EWCA/Civ/2011/1253
@@ -1269,6 +1331,14 @@ class PartyEnricher : Enricher {
         };
         if (blocks.Cast<ILine>().All(respondent2))
             return PartyRole.Respondent;
+        // if (blocks.Count() == 4) {
+        //     string one = ((ILine) blocks.First()).NormalizedContent();
+        //     string two = ((ILine) blocks.ElementAt(1)).NormalizedContent();
+        //     string three = ((ILine) blocks.ElementAt(2)).NormalizedContent();
+        //     string four = ((ILine) blocks.ElementAt(3)).NormalizedContent();
+        //     if (string.IsNullOrWhiteSpace(three) && four == "Intervener")
+        //         return GetTwoLinePartyRole(one, two);
+        // }
         return null;
     }
 

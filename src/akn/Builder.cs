@@ -146,6 +146,10 @@ class Builder {
     }
 
     private void AddDivision(XmlElement parent, IDivision div) {
+        if (div is ITableOfContents toc) {
+            AddTableOfContents(parent, toc);
+            return;
+        }
         string name = (div is ILeaf && div.Number is not null) ? "paragraph" : "level";
         XmlElement level = doc.CreateElement(name, ns);
         parent.AppendChild(level);
@@ -164,6 +168,16 @@ class Builder {
             throw new Exception();
         }
     }
+
+    private void AddTableOfContents(XmlElement parent, ITableOfContents toc) {
+        XmlElement level = CreateAndAppend("hcontainer", parent);
+        level.SetAttribute("name", "tableOfContents");
+        XmlElement content = CreateAndAppend("content", level);
+        XmlElement e = CreateAndAppend("toc", content);
+        foreach (ILine item in toc.Contents)
+            Block(e, item, "tocItem");
+    }
+
 
     /* blocks */
 
@@ -185,6 +199,8 @@ class Builder {
                 num.AppendChild(text);
                 // this.blocks(container, np.Contents);
                 this.p(container, np);
+            } else if (block is IRestriction restrict) {
+                AddNamedBlock(parent, restrict, "restriction");
             } else if (block is ILine line) {
                 this.p(parent, line);
             } else if (block is ITable table) {
@@ -239,6 +255,8 @@ class Builder {
         else
             Block(parent, line, "p");
     }
+
+    /* inline */
 
     private void AddInline(XmlElement parent, IInline model) {
         if (model is INeutralCitation cite)

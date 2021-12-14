@@ -101,4 +101,18 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
 
 }
 
+internal class WTableOfContents : ITableOfContents {
+
+    public IFormattedText Number => null;
+
+    public ILine Heading => null;
+
+    public IEnumerable<ILine> Contents { get; internal set; }
+
+    internal WTableOfContents(IEnumerable<WLine> blocks) {
+        Contents = blocks;
+    }
+
+}
+
 }
