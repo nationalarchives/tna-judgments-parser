@@ -17,13 +17,14 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
-        @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))"
+        @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))",
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
         @"^ *(\[\d{4}\] EWHC \d+ \((Admin|Admlty.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)",    // misspelling in EWCA/Civ/2006/1507
-        @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$" // misspelling in EWHC/Ch/2015/411
+        @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
+        @"^NCN: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2021] EWCA Crim 1412
     };
 
     private static Group Match(string text) {
@@ -135,6 +136,21 @@ class NetrualCitation : Enricher2 {
                         List<IInline> replacement = Replace(combined, group, fText2.properties);
                         IEnumerable<IInline> rest = line.Skip(2);
                         return Enumerable.Concat(replacement, rest);
+
+                    }
+                }
+                if (string.IsNullOrWhiteSpace(fText2.Text)) {
+                    IInline third = line.Skip(2).FirstOrDefault();
+                    if (third is not null && third is WText fText3) {
+                        if (fText1.Text == "NCN:") {
+                            Group group = Match2(fText3.Text);
+                            List<IInline> replacement = Replace(fText3.Text, group, fText3.properties);
+                            return Enumerable.Concat(Enumerable.Concat(
+                                line.Take(2),
+                                replacement),
+                                line.Skip(3)
+                            );
+                        }
 
                     }
                 }

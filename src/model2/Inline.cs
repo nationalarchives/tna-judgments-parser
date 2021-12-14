@@ -63,22 +63,12 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         }
     }
 
-    public bool? Underline {
+    public UnderlineValues2? Underline {
         get {
             Underline underline = properties?.Underline;
             if (underline is null)
                 return null;
-            return DOCX.Underline2.Is(underline);
-            // EnumValue<UnderlineValues> val = underline.Val;
-            // if (val == null)
-            //     return false;
-            // if (val.Equals(UnderlineValues.Single))
-            //     return true;
-            // if (val.Equals(UnderlineValues.Thick))
-            //     return true;
-            // if (val.Equals(UnderlineValues.None))
-            //     return false;
-            // throw new Exception();
+            return DOCX.Underline2.Get(underline);
         }
     }
 

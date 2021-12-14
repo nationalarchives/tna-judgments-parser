@@ -54,24 +54,14 @@ internal class WNumText : IFormattedText {
         }
     }
 
-    public bool? Underline {
+    public UnderlineValues2? Underline {
         get {
             Underline underline = props?.Underline;
             if (underline is null)
                 underline = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Underline);
             if (underline is null)
                 return null;
-            return DOCX.Underline2.Is(underline);
-            // EnumValue<UnderlineValues> val = underline.Val;
-            // if (val is null)
-            //     return null;
-            // if (val.Equals(UnderlineValues.None))
-            //     return false;
-            // if (val.Equals(UnderlineValues.Single))
-            //     return true;
-            // if (val.Equals(UnderlineValues.Thick))
-            //     return true;
-            // throw new System.Exception();
+            return DOCX.Underline2.Get(underline);
         }
     }
 

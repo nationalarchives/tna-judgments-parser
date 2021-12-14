@@ -15,6 +15,8 @@ interface IInlineContainer : IInline {
 
 enum SuperSubValues { Baseline, Superscript, Subscript }
 
+enum UnderlineValues2 { None, Solid, Double, Dotted, Dashed, Wavy }
+
 interface IFontInfo {
 
     string Name { get; }
@@ -31,7 +33,7 @@ interface IFormattedText : IInline {
 
     bool? Bold { get; }
 
-    bool? Underline { get; }
+    UnderlineValues2? Underline { get; }
 
     SuperSubValues? SuperSub { get; }
 
@@ -76,9 +78,18 @@ interface IFormattedText : IInline {
         if (that.Bold.HasValue)
             styles.Add("font-weight", that.Bold.Value ? "bold" : "normal");
         if (that.Underline.HasValue) {
-            // if (!that.Underline.Value)
-            //     styles.Add("display", "inline-block");
-            styles.Add("text-decoration", that.Underline.Value ? "underline" : "none");
+            styles.Add("text-decoration-line", (that.Underline.Value == UnderlineValues2.None) ? "none" : "underline");
+            if (that.Underline.Value == UnderlineValues2.Solid) {
+                styles.Add("text-decoration-style", "solid");
+            } else if (that.Underline.Value == UnderlineValues2.Double) {
+                styles.Add("text-decoration-style", "double");
+            } else if (that.Underline.Value == UnderlineValues2.Dotted) {
+                styles.Add("text-decoration-style", "dotted");
+            } else if (that.Underline.Value == UnderlineValues2.Dashed) {
+                styles.Add("text-decoration-style", "dashed");
+            } else if (that.Underline.Value == UnderlineValues2.Wavy) {
+                styles.Add("text-decoration-style", "wavy");
+            }
         }
         if (that.SuperSub is not null) {
             string key = "vertical-align";
