@@ -108,6 +108,7 @@ class CourtOfAppealParser : AbstractParser {
     private List<Enricher> headerEnrichers = new List<Enricher>() {
         new RemoveTrailingWhitespace(),
         new Merger(),
+        new RestrictionsEnricher(),
         new NetrualCitation(),
         new CaseNo(),
         new CourtType(),

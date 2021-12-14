@@ -129,6 +129,12 @@ class Tester {
         }
         XmlNodeList docTitle = akn.SelectNodes("//akn:docTitle", nsmgr);
         result.HasTwoPartiesOrDocTitle = roles.Count == 2 || docTitle.Count == 1;
+
+        XmlElement docName = (XmlElement) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRname", nsmgr);
+
+        if (!result.HasTwoPartiesOrDocTitle)
+            result.HasTwoPartiesOrDocTitle = docName is not null;
+
         if (result.HasTwoPartiesOrDocTitle)
             logger.LogInformation("has two parties or doc title");
         else
@@ -140,7 +146,6 @@ class Tester {
             logger.LogWarning("has more than one docTitle");
         }
 
-        XmlElement docName = (XmlElement) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRname", nsmgr);
         if (docName is not null) {
             result.CaseName = docName.GetAttribute("value");
             logger.LogInformation("case name is " + result.CaseName);

@@ -38,6 +38,8 @@ abstract class Enricher {
             return new GroupOfParagraphs() { Children = Enrich(group.Children) };
         if (div is WNewNumberedParagraph np)
             return new WNewNumberedParagraph(np.Number, Enrich(np.Contents));
+        if (div is WTableOfContents toc)
+            return toc;
         if (div is WDummyDivision dummy)
             return new WDummyDivision(Enrich(dummy.Contents));
         throw new Exception();

@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
@@ -11,6 +12,7 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public Judgment(WordprocessingDocument doc, IOutsideMetadata meta = null) {
         this.doc = doc;
+        // WordprocessingDocumentType type = doc.DocumentType;
         if (meta is null)
             Metadata = new WMetadata(doc.MainDocumentPart, this);
         else

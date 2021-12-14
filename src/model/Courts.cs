@@ -143,6 +143,13 @@ public readonly struct Courts {
 
     /* Courts within the Chancery Division of the High Court -- all are specialist "Business and Property Courts" */
 
+    public static readonly Court EWHC_Chancery_BusinessAndProperty = new Court {
+        Code = "EWHC-Chancery-BusinessAndProperty",
+        LongName = "The Business and Property Courts (Chancery Division)",
+        ShortName = "The Business and Property Courts",
+        URL = "https://www.gov.uk/courts-tribunals/the-business-and-property-courts"
+    };
+
     public static readonly Court EWHC_Chancery_BusinessList = new Court {
         Code = "EWHC-Chancery-Business",
         LongName = "The Business and Property Courts (Business List)",
@@ -157,12 +164,12 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/insolvency-list"
     };
 
-    // public static readonly Court EWHC_Chancery_Financial = new Court {
-    //     Code = "EWHC-Chancery-Financial",
-    //     LongName = "Business and Property Courts (Financial List) (Chancery)",
-    //     ShortName = "Financial List",
-    //     URL = ""    // https://www.gov.uk/courts-tribunals/the-financial-list
-    // };
+    public static readonly Court EWHC_Chancery_Financial = new Court {
+        Code = "EWHC-Chancery-Financial",
+        LongName = "The Business and Property Courts (Financial List)",
+        ShortName = "The Financial List",
+        URL = "https://www.gov.uk/courts-tribunals/the-financial-list"
+    };
 
     // public static readonly Court EWHC_Chancery_Competition = new Court {
     //     Code = "EWHC-Chancery-Competition",
@@ -171,12 +178,12 @@ public readonly struct Courts {
     //     URL = "https://www.gov.uk/courts-tribunals/the-competition-list"
     // };
 
-    // public static readonly Court EWHC_Chancery_IntellectualProperty = new Court {
-    //     Code = "EWHC-Chancery-IntellectualProperty",
-    //     LongName = "Business and Property Courts (Intellectual Property List)",
-    //     ShortName = "Intellectual Property List",
-    //     URL = "https://www.gov.uk/courts-tribunals/the-intellectual-property-list"
-    // };
+    public static readonly Court EWHC_Chancery_IntellectualProperty = new Court {
+        Code = "EWHC-Chancery-IntellectualProperty",
+        LongName = "Business and Property Courts (Intellectual Property List)",
+        ShortName = "Intellectual Property List",
+        URL = "https://www.gov.uk/courts-tribunals/the-intellectual-property-list"
+    };
 
     // public static readonly Court EWHC_Chancery_Revenue = new Court {
     //     Code = "EWHC-Chancery-Revenue",
@@ -259,11 +266,12 @@ public readonly struct Courts {
         EWHC_QBD_TCC,
         EWHC_QBD_Commercial_Financial,
         EWHC_QBD_Commercial_Circuit,
+        EWHC_Chancery_BusinessAndProperty,
         EWHC_Chancery_BusinessList,
         EWHC_Chancery_InsolvencyAndCompanies,
-        // EWHC_Chancery_Financial,
+        EWHC_Chancery_Financial,
         // EWHC_Chancery_Competition,
-        // EWHC_Chancery_IntellectualProperty,
+        EWHC_Chancery_IntellectualProperty,
         // EWHC_Chancery_Revenue,
         // EWHC_Chancery_PropertyTrustsProbate,
         EWHC_Chancery_Patents,

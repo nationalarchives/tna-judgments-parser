@@ -219,8 +219,8 @@ class Fields {
         if (fieldCode.StartsWith(" tc ")) {    // EWCA/Civ/2008/875_1, EWHC/Ch/2010/3727
             return Enumerable.Empty<IInline>();
         }
-        if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219
-            return Enumerable.Empty<IInline>();
+        if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219, EWHC/Admin/2021/30
+            return Rest(main, withinField, i);
         }
         match = Regex.Match(fieldCode, @"^ INCLUDEPICTURE ""(.+?)"" \\\* MERGEFORMATINET $");   // EWHC/Patents/2008/2127
         if (match.Success) {

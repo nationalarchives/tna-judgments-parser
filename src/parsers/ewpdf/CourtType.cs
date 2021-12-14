@@ -7,6 +7,23 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class CourtTypePDF : CourtType {
 
+    private static Combo4[] combo4s = new Combo4[] {
+        new Combo4 {
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^TECHNOLOGY AND CONSTRUCTION COURT \(QBD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_TCC
+        }
+    };
+
+    override protected List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
+        foreach (Combo4 combo in combo4s)
+            if (combo.Match(one, two, three, four))
+                return combo.Transform(one, two, three, four);
+        return base.Match4(one, two, three, four);
+    }
+
     /* two */
 
     override protected List<ILine> Match2(IBlock block1, IBlock block2) {
