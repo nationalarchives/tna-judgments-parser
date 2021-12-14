@@ -90,6 +90,9 @@ class CaseName {
         }
         if (docTitle.Any())
             return string.Join(" ", docTitle.Select(dt => dt.Text));
+        // [2021] EWHC 3099 (Fam)
+        if (party1 is not null && party2 is null && party1.Name.StartsWith("Re ") && party1.Role == PartyRole.Applicant)
+            return party1.Name;
         return null;
     }
 

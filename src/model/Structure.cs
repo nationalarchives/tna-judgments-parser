@@ -44,4 +44,10 @@ interface ILeaf : IDivision {
 
 }
 
+interface ITableOfContents : IDivision {
+
+    IEnumerable<ILine> Contents { get; }
+
+}
+
 }

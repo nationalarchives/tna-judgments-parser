@@ -159,15 +159,32 @@ public class CSS {
         Underline underline = style.GetInheritedProperty(s => s.StyleRunProperties?.Underline);
         if (underline is null)
             return;
-        string key = "text-decoration";
-        string value;
         if (underline.Val is null)
             return;
-        else if (Underline2.Is(underline))
-            value = "underline";
-        else
-            value = "none";
+        string key = "text-decoration-line";
+        string value = (underline.Val.Value == UnderlineValues.None) ? "none" : "underline";
         css[key] = value;
+        if (underline.Val.Value == UnderlineValues.Single) {
+            string key2 = "text-decoration-style";
+            string value2 = "solid";
+            css[key2] = value2;
+        } else if (underline.Val.Value == UnderlineValues.Double) {
+            string key2 = "text-decoration-style";
+            string value2 = "double";
+            css[key2] = value2;
+        } else if (underline.Val.Value == UnderlineValues.Dotted) {
+            string key2 = "text-decoration-style";
+            string value2 = "dotted";
+            css[key2] = value2;
+        } else if (underline.Val.Value == UnderlineValues.Dash) {
+            string key2 = "text-decoration-style";
+            string value2 = "dashed";
+            css[key2] = value2;
+        } else if (underline.Val.Value == UnderlineValues.Wave) {
+            string key2 = "text-decoration-style";
+            string value2 = "wavy";
+            css[key2] = value2;
+        }
     }
 
     private static void AddVerticalAlign(Style style, Dictionary<string, string> css) {

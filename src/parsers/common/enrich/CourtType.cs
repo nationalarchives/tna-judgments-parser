@@ -133,6 +133,20 @@ class Combo4 : Combo {
             Re3 = new Regex("^INTELLECTUAL PROPERTY and$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^COMMUNITY TRADE MARK COURT", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
+        },
+        new Combo4 {    // [2021] EWHC 3295 (Pat)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(CH D\)$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^PATENTS COURT", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Patents
+        },
+        new Combo4 {    // [2021] EWHC 3296 (IPEC)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(ChD\)$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IPEC
         }
     };
 
@@ -146,6 +160,35 @@ class Combo4 : Combo {
             Transform1(two),
             Transform1(three),
             Transform1(four)
+        };
+    }
+
+}
+
+class Combo3_1 : Combo {
+
+    public Regex Re1 { get; init; }
+    public Regex Re2 { get; init; }
+    public Regex Re3 { get; init; }
+    public Regex Re4 { get; init; }
+
+    internal static Combo3_1[] combos = new Combo3_1[] {
+        new Combo3_1 {   // [2021] EWHC 3347 (Ch), [2021] EWHC 3096 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"Rolls Buildings?$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IntellectualProperty
+        }
+    };
+
+    internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four);
+    }
+
+    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return new List<ILine>(4) {
+            Transform1(one), Transform1(two), Transform1(three), (ILine) four
         };
     }
 
@@ -272,6 +315,12 @@ class Combo3 : Combo {
             Re3 = new Regex(@"^LONDON MERCANTILE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
+        new Combo3 {    // [2021] EWHC 3054 (Comm)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^LONDON CIRCUIT COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Commercial_Circuit
+        },
         // new Combo3 {
         //     Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
         //     Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
@@ -295,6 +344,18 @@ class Combo3 : Combo {
             Re2 = new Regex(@"^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^SENIOR COURTS COSTS OFFICE$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_SeniorCourtsCosts
+        },
+        new Combo3 {    // [2021] EWHC 2950 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^FINANCIAL LIST$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Financial
+        },
+        new Combo3 {    // [2021] EWHC 3306 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^IN THE BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^FINANCIAL LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Financial
         }
     };
 
@@ -441,6 +502,12 @@ class Combo2_1 : Combo {
             Re2 = new Regex(@"^QUEEN’S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^\[\d{4}\] EWHC \d+ \([A-Z]+[a-z]*\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
+        },
+        new Combo2_1 {  // [2021] EWHC 3260 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^\[\d{4}\] EWHC \d+ \(Ch\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
         }
     };
 
@@ -765,8 +832,11 @@ class CourtType : Enricher2 {
         return null;
     }
 
-    private List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
+    virtual protected List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
         foreach (Combo4 combo in Combo4.combos)
+            if (combo.Match(one, two, three, four))
+                return combo.Transform(one, two, three, four);
+        foreach (Combo3_1 combo in Combo3_1.combos)
             if (combo.Match(one, two, three, four))
                 return combo.Transform(one, two, three, four);
         return null;

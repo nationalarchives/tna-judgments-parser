@@ -34,6 +34,20 @@ internal class Blocks {
         return new WOldNumberedParagraph(number, main, paragraph);
     }
 
+    internal static IEnumerable<IBlock> ParseStdBlock(MainDocumentPart main, SdtBlock sdt) {
+        return Blocks.ParseBlocks(main, sdt.SdtContentBlock.ChildElements);
+    }
+
+    internal static IDivision ParseStructuredDocumentTag2(MainDocumentPart main, SdtBlock sdt) {
+        var dpg = sdt.Descendants<DocPartGallery>().FirstOrDefault()?.Val?.Value;
+        if (dpg != "Table of Contents")
+            throw new Exception();
+        IEnumerable<IBlock> contents = ParseStdBlock(main, sdt);
+        if (!contents.All(block => block is WLine))
+            throw new Exception();
+        return new WTableOfContents(contents.Cast<WLine>());
+    }
+
 }
 
 }

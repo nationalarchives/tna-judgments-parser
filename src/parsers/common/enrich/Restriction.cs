@@ -15,6 +15,8 @@ class RestrictionsEnricher : Enricher {
         if (!enumerator.MoveNext())
             return blocks;
         IBlock block = enumerator.Current;
+        if (IsTableWithRestriction(block))
+            return blocks.Skip(1).Prepend(EnrichTableWithRestriction(block));
         if (!IsRestriction(block))
             return blocks;
         WRestriction restriction = new WRestriction((WLine) block);
@@ -36,6 +38,9 @@ class RestrictionsEnricher : Enricher {
     private static bool IsRestriction(IBlock block) {
         if (block is not ILine line)
             return false;
+        string content = line.NormalizedContent();
+        if (content.StartsWith("If this Transcript is to be reported or published, there is a requirement to "))
+            return true;
         string color = line.GetCSSStyles().GetValueOrDefault("color");
         if (color is not null && color == "red")
             return true;
@@ -52,6 +57,26 @@ class RestrictionsEnricher : Enricher {
         if (color is not null && color.ToLower() == "#ff0000")
             return true;
         return false;
+    }
+
+    private static bool IsTableWithRestriction(IBlock block) {
+        if (block is not WTable table)
+            return false;
+        IBlock first = table.Rows.FirstOrDefault()?.Cells.FirstOrDefault()?.Contents.FirstOrDefault();
+        return IsRestriction(first);
+    }
+    private static ITable EnrichTableWithRestriction(IBlock block) {
+        WTable table = (WTable) block;
+        WRow firstRow = table.TypedRows.First();
+        WCell firstCell = firstRow.TypedCells.First();
+        WLine firstLine = (WLine) firstCell.Contents.First();
+        WRestriction restriction = new WRestriction(firstLine);
+        return new WTable(table.Main, table.TypedRows.Skip(1).Prepend(
+            new WRow(firstRow.Main, firstRow.TypedCells.Skip(1).Prepend(
+                new WCell(firstCell.Main, firstCell.Contents.Skip(1).Prepend(restriction))
+            ))
+        ));
+
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
