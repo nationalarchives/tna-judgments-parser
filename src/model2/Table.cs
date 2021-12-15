@@ -10,34 +10,36 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class WTable : ITable {
 
-    private readonly MainDocumentPart main;
+    internal MainDocumentPart Main { get; private init; }
 
-    public WTable(MainDocumentPart main, Table table) {
-        this.main = main;
-        this.TypedRows = ParseTableContents(main, table.ChildElements); // table.ChildElements.Where(e => e is TableRow).Cast<TableRow>().Select(r => new WRow(main, r));
-    }
-    public WTable(MainDocumentPart main, IEnumerable<WRow> rows) {
-        this.main = main;
-        this.TypedRows = rows;
-    }
-
-    public MainDocumentPart Main { get => main; }
-
-    public IEnumerable<IRow> Rows { get => TypedRows; }
+    internal TableProperties Properties { get; private init; }
 
     public IEnumerable<WRow> TypedRows { get; private init; }
+    public IEnumerable<IRow> Rows { get => TypedRows; }
 
-    internal static IEnumerable<WRow> ParseTableContents(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
-        return elements.Select(e => ParseTableChild(main, e)).Where(e => e is not null);
+    public WTable(MainDocumentPart main, Table table) {
+        Main = main;
+        Properties = table.ChildElements.OfType<TableProperties>().FirstOrDefault();
+        TypedRows = ParseTableContents(this, table.ChildElements);
     }
 
-    internal static WRow ParseTableChild(MainDocumentPart main, OpenXmlElement e) {
+    public WTable(MainDocumentPart main, TableProperties props, IEnumerable<IRow> rows) {
+        Main = main;
+        Properties = props;
+        TypedRows = rows.Select(row => new WRow(this, row.Cells));
+    }
+
+    internal static IEnumerable<WRow> ParseTableContents(WTable table, IEnumerable<OpenXmlElement> elements) {
+        return elements.Select(e => ParseTableChild(table, e)).Where(e => e is not null);
+    }
+
+    internal static WRow ParseTableChild(WTable table, OpenXmlElement e) {
         if (e is TableProperties)
             return null;
         if (e is TableGrid) // TODO
             return null;
         if (e is TableRow row)
-            return new WRow(main, row);
+            return new WRow(table, row);
         throw new Exception();
     }
 
@@ -45,51 +47,53 @@ class WTable : ITable {
 
 class WRow : IRow {
 
-    private readonly MainDocumentPart main;
+    internal MainDocumentPart Main { get; private init; }
 
-    internal WRow(MainDocumentPart main, TableRow row) {
-        this.main = main;
-        this.TypedCells = ParseRowContents(main, row.ChildElements); // row.ChildElements.Where(e => e is TableCell).Cast<TableCell>().Select(c => new WCell(main, c));
-    }
-    internal WRow(MainDocumentPart main, IEnumerable<WCell> cells) {
-        this.main = main;
-        this.TypedCells = cells;
-    }
-
-    public MainDocumentPart Main { get => main; }
+    internal WTable Table { get; private init; }
 
     public IEnumerable<WCell> TypedCells { get; private init; }
-
     public IEnumerable<ICell> Cells { get => TypedCells; }
 
-    internal static IEnumerable<WCell> ParseRowContents(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
-        return elements.Select(e => ParseRowChild(main, e)).Where(e => e is not null);
+    internal WRow(WTable table, TableRow row) {
+        Main = table.Main;
+        Table = table;
+        TypedCells = ParseRowContents(this, row.ChildElements);
+    }
+    internal WRow(WTable table, IEnumerable<ICell> cells) {
+        Main = table.Main;
+        Table = table;
+        TypedCells = cells.Select(c => new WCell(this, c.Contents));
+
     }
 
-    internal static WCell ParseRowChild(MainDocumentPart main, OpenXmlElement e) {
+    internal static IEnumerable<WCell> ParseRowContents(WRow row, IEnumerable<OpenXmlElement> elements) {
+        return elements.Select(e => ParseRowChild(row, e)).Where(e => e is not null);
+    }
+
+    internal static WCell ParseRowChild(WRow row, OpenXmlElement e) {
         if (e is TableRowProperties)
             return null;
         if (e is TablePropertyExceptions)   // [2021] EWHC 3360 (Ch)
             return null;
         if (e is TableCell cell)
-            return new WCell(main, cell);
+            return new WCell(row, cell);
         if (e is SdtCell sdt)
-            return ParseStdCell(main, sdt);
+            return ParseStdCell(row, sdt);
         if (e is BookmarkStart || e is BookmarkEnd)
             return null;
         throw new Exception();
     }
 
-    internal static WCell ParseStdCell(MainDocumentPart main, SdtCell sdt) {
+    internal static WCell ParseStdCell(WRow row, SdtCell sdt) {
         var content = sdt.SdtContentCell;
         OpenXmlElementList children = content.ChildElements;
         if (children.Count != 1)
             throw new Exception();
         OpenXmlElement child = children.First();
         if (child is TableCell cell)
-            return new WCell(main, cell);
+            return new WCell(row, cell);
         if (child is SdtCell std2)
-            return ParseStdCell(main, std2);
+            return ParseStdCell(row, std2);
         throw new Exception();
     }
 
@@ -97,33 +101,62 @@ class WRow : IRow {
 
 class WCell : ICell {
 
-    private readonly MainDocumentPart main;
+    internal MainDocumentPart Main { get; private init; }
 
-    internal WCell(MainDocumentPart main, TableCell cell) {
-        this.main = main;
-        this.Contents = ParseCellContents(main, cell.ChildElements);
-    }
-    internal WCell(MainDocumentPart main, IEnumerable<IBlock> contents) {
-        this.main = main;
-        this.Contents = contents;
-    }
+    internal WTable Table { get => Row.Table; }
 
-    public MainDocumentPart Main { get => main; }
+    internal WRow Row { get; private init; }
 
     public IEnumerable<IBlock> Contents { get; private init; }
 
-    internal static IEnumerable<IBlock> ParseCellContents(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
-        return elements.SelectMany(e => ParseCellChild(main, e));
+    internal WCell(WRow row, TableCell cell) {
+        Main = row.Main;
+        Row = row;
+        Contents = ParseCellContents(this, cell.ChildElements);
+    }
+    internal WCell(WRow row, IEnumerable<IBlock> contents) {
+        Main = row.Main;
+        Row = row;
+        Contents = contents;
     }
 
-    internal static IEnumerable<IBlock> ParseCellChild(MainDocumentPart main, OpenXmlElement e) {
+    public CellBorderStyle BorderTopStyle {
+        get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
+    public float? BorderTopWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
+    public CellBorderStyle BorderRightStyle {
+        get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    }
+    public float? BorderRightWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    }
+    public CellBorderStyle BorderBottomStyle {
+        get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
+    public float? BorderBottomWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
+    public CellBorderStyle BorderLeftStyle {
+        get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    }
+    public float? BorderLeftWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    }
+
+    internal static IEnumerable<IBlock> ParseCellContents(WCell cell, IEnumerable<OpenXmlElement> elements) {
+        return elements.SelectMany(e => ParseCellChild(cell, e));
+    }
+
+    internal static IEnumerable<IBlock> ParseCellChild(WCell cell, OpenXmlElement e) {
         if (e is TableCellProperties)
             return Enumerable.Empty<IBlock>();
         if (e is BookmarkStart || e is BookmarkEnd)
             return Enumerable.Empty<IBlock>();
         if (e is SdtBlock sdt)
-            return Blocks.ParseStdBlock(main, sdt);
-        return new List<IBlock>(1) { Blocks.ParseBlock(main, e) };
+            return Blocks.ParseStdBlock(cell.Main, sdt);
+        return new List<IBlock>(1) { Blocks.ParseBlock(cell.Main, e) };
     }
 
 }

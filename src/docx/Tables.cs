@@ -52,6 +52,26 @@ class Tables {
         return format(sum);
     }
 
+    internal static CellBorderStyle ExtractBorderStyle(BorderType border) {
+        var x = border?.Val ?? BorderValues.None;
+        if (x == BorderValues.None)
+            return CellBorderStyle.None;
+        if (x == BorderValues.Dotted)
+            return CellBorderStyle.Dotted;
+        if (x == BorderValues.Dashed)
+            return CellBorderStyle.Dashed;
+        if (x == BorderValues.Double)
+            return CellBorderStyle.Double;
+        return CellBorderStyle.Solid;
+    }
+
+    internal static float? ExtractBorderWidthPt(BorderType border) {
+        var size = border?.Size;
+        if (size is null)
+            return null;
+        return size / 8f;
+    }
+
 }
 
 }

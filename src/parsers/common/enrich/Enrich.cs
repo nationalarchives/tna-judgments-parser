@@ -123,7 +123,7 @@ abstract class Enricher2 : Enricher {
             if (!object.ReferenceEquals(before, after)) {
                 while (rows.MoveNext())
                     enriched.Add(rows.Current);
-                return new WTable(table.Main, enriched);
+                return new WTable(table.Main, table.Properties, enriched);
             }
         }
         return table;
@@ -139,7 +139,7 @@ abstract class Enricher2 : Enricher {
             if (!object.ReferenceEquals(before, after)) {
                 while (cells.MoveNext())
                     enriched.Add(cells.Current);
-                return new WRow(row.Main, enriched);
+                return new WRow(row.Table, enriched);
             }
         }
         return row;
@@ -155,7 +155,7 @@ abstract class Enricher2 : Enricher {
             if (!object.ReferenceEquals(before, after)) {
                 while (contents.MoveNext())
                     enriched.Add(contents.Current);
-                return new WCell(cell.Main, enriched);
+                return new WCell(cell.Row, enriched);
             }
         }
         return cell;
