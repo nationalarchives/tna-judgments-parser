@@ -39,7 +39,7 @@ class Merger : Enricher {
 
     private WTable EnrichTable(WTable table) {
         IEnumerable<WRow> rows = EnrichRows(table.TypedRows);
-        return new WTable(table.Main, rows);
+        return new WTable(table.Main, table.Properties, rows);
     }
 
     private IEnumerable<WRow> EnrichRows(IEnumerable<WRow> rows) {
@@ -48,7 +48,7 @@ class Merger : Enricher {
 
     private WRow EnrichRow(WRow row) {
         IEnumerable<WCell> cells = EnrichCells((IEnumerable<WCell>) row.Cells);
-        return new WRow(row.Main, cells);
+        return new WRow(row.Table, cells);
     }
 
     private IEnumerable<WCell> EnrichCells(IEnumerable<WCell> cells) {
@@ -57,7 +57,7 @@ class Merger : Enricher {
 
     private WCell EnrichCell(WCell cell) {
         IEnumerable<IBlock> contents = Enrich(cell.Contents);
-        return new WCell(cell.Main, contents);
+        return new WCell(cell.Row, contents);
     }
 
     override protected IBlock Enrich(IBlock block) {
