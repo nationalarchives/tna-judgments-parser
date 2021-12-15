@@ -41,6 +41,8 @@ class RestrictionsEnricher : Enricher {
         string content = line.NormalizedContent();
         if (content.StartsWith("If this Transcript is to be reported or published, there is a requirement to "))
             return true;
+        if (content.StartsWith("WARNING: reporting restrictions may apply to the contents transcribed in this document"))
+            return true;
         string color = line.GetCSSStyles().GetValueOrDefault("color");
         if (color is not null && color == "red")
             return true;
@@ -71,12 +73,11 @@ class RestrictionsEnricher : Enricher {
         WCell firstCell = firstRow.TypedCells.First();
         WLine firstLine = (WLine) firstCell.Contents.First();
         WRestriction restriction = new WRestriction(firstLine);
-        return new WTable(table.Main, table.TypedRows.Skip(1).Prepend(
-            new WRow(firstRow.Main, firstRow.TypedCells.Skip(1).Prepend(
-                new WCell(firstCell.Main, firstCell.Contents.Skip(1).Prepend(restriction))
+        return new WTable(table.Main, table.Properties, table.TypedRows.Skip(1).Prepend(
+            new WRow(firstRow.Table, firstRow.TypedCells.Skip(1).Prepend(
+                new WCell(firstCell.Row, firstCell.Contents.Skip(1).Prepend(restriction))
             ))
         ));
-
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

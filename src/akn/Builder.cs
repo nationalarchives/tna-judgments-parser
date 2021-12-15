@@ -214,15 +214,18 @@ class Builder {
     }
 
     private void AddTable(XmlElement parent, ITable model) {
-        XmlElement tableElement = doc.CreateElement("table", ns);
-        parent.AppendChild(tableElement);
+        XmlElement table = doc.CreateElement("table", ns);
+        parent.AppendChild(table);
         foreach (IRow row in model.Rows) {
-            XmlElement rowElement = doc.CreateElement("tr", ns);
-            tableElement.AppendChild(rowElement);
+            XmlElement tr = doc.CreateElement("tr", ns);
+            table.AppendChild(tr);
             foreach (ICell cell in row.Cells) {
-                XmlElement cellElement = doc.CreateElement("td", ns);
-                rowElement.AppendChild(cellElement);
-                this.blocks(cellElement, cell.Contents);
+                XmlElement td = doc.CreateElement("td", ns);
+                Dictionary<string, string> styles = cell.GetCSSStyles();
+                if (styles.Any())
+                    td.SetAttribute("style", CSS.SerializeInline(styles));
+                tr.AppendChild(td);
+                this.blocks(td, cell.Contents);
             }
         }
     }

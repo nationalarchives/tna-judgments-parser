@@ -10,7 +10,7 @@ interface INumber : IFormattedText {
     string FirstLineIndent { get; }
 
     static Dictionary<string, string> GetCSSStyles(INumber that) {
-        Dictionary<string, string> styles = IFormattedText.GetCSSStyles(that);
+        Dictionary<string, string> styles = CSS.GetCSSStyles(that);
         if (that.LeftIndent is not null)
             styles.Add("margin-left", that.LeftIndent);
         if (that.FirstLineIndent is not null)

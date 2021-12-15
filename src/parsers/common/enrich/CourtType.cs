@@ -1004,7 +1004,7 @@ class CourtType : Enricher2 {
         IEnumerable<IBlock> contents = Enrich(cell.Contents);
         if (object.ReferenceEquals(contents, cell.Contents))
             return cell;
-        return new WCell(cell.Main, contents);
+        return new WCell(cell.Row, contents);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
