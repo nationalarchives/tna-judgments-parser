@@ -71,67 +71,8 @@ interface IFormattedText : IInline {
         return true;
     }
 
-    static Dictionary<string, string> GetCSSStyles(IFormattedText that) {
-        Dictionary<string, string> styles = new Dictionary<string, string>();
-        if (that.Italic.HasValue)
-            styles.Add("font-style", that.Italic.Value ? "italic" : "normal");
-        if (that.Bold.HasValue)
-            styles.Add("font-weight", that.Bold.Value ? "bold" : "normal");
-        if (that.Underline.HasValue) {
-            styles.Add("text-decoration-line", (that.Underline.Value == UnderlineValues2.None) ? "none" : "underline");
-            if (that.Underline.Value == UnderlineValues2.Solid) {
-                styles.Add("text-decoration-style", "solid");
-            } else if (that.Underline.Value == UnderlineValues2.Double) {
-                styles.Add("text-decoration-style", "double");
-            } else if (that.Underline.Value == UnderlineValues2.Dotted) {
-                styles.Add("text-decoration-style", "dotted");
-            } else if (that.Underline.Value == UnderlineValues2.Dashed) {
-                styles.Add("text-decoration-style", "dashed");
-            } else if (that.Underline.Value == UnderlineValues2.Wavy) {
-                styles.Add("text-decoration-style", "wavy");
-            }
-        }
-        if (that.SuperSub is not null) {
-            string key = "vertical-align";
-            string value = that.SuperSub switch {
-                SuperSubValues.Superscript => "super",
-                SuperSubValues.Subscript => "sub",
-                SuperSubValues.Baseline => "baseline",
-                _ => throw new Exception()
-            };
-            styles.Add(key, value);
-            if (that.SuperSub == SuperSubValues.Superscript || that.SuperSub == SuperSubValues.Subscript) {
-                styles.Add("font-size", "smaller");
-            }
-        }
-        if (that.FontName is not null && !string.IsNullOrEmpty(that.FontName)) {
-            string value = DOCX.CSS.ToFontFamily(that.FontName);
-            styles.Add("font-family", value);
-        }
-        if (that.FontSizePt is not null) {
-            styles["font-size"] = that.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
-        }
-        if (that.FontColor is not null) {
-            string value = that.FontColor;
-            if (value == "auto")
-                value = "initial";
-            else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
-                value = "#" + value;
-            styles.Add("color", value);
-        }
-        if (that.BackgroundColor is not null) {
-            string value = that.BackgroundColor;
-            if (value == "auto")
-                value = "initial";
-            else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
-                value = "#" + value;
-            styles.Add("background-color", that.BackgroundColor);
-        }
-        return styles;    
-    }
-
     Dictionary<string, string> GetCSSStyles() {
-        return GetCSSStyles(this);
+        return CSS.GetCSSStyles(this);
     }
 
 }
