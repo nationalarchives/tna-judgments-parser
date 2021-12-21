@@ -16,13 +16,16 @@ class Tester {
 
         public List<ValidationEventArgs> SchemaErrors { get; set; }
         public bool HasCourtType { get; set; }
-        // public string Court { get; set; }
+        public string Court { get; set; }
+        public int? Year { get; set; }
+        public int? CaseNumber { get; set; }
         public bool HasNeutralCitation { get; set; }
         public string NeutralCitation { get; set; }
         public bool HasCaseNumber { get; set; }
         public bool HasDocumentID { get; set; }
         public string DocumentId { get; set; }
         public bool HasDate { get; set; }
+        public string DocumentDate { get; set; }
         public bool HasTwoPartiesOrDocTitle { get; set; }
         public string CaseName { get; set; }
         public bool HasJudge { get; set; }
@@ -69,6 +72,7 @@ class Tester {
 
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
+        nsmgr.AddNamespace("uk", Metadata.ukns);
 
         XmlNodeList neutralCitation = akn.SelectNodes("//akn:neutralCitation", nsmgr);
         result.HasNeutralCitation = neutralCitation.Count > 0;
@@ -90,6 +94,13 @@ class Tester {
             logger.LogInformation("has neutral citation");
         else
             logger.LogError("does not have neutral citation");
+        
+        XmlElement court = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:court", nsmgr);
+        result.Court = court?.InnerText;
+        XmlElement year = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:year", nsmgr);
+        result.Year = (year is null) ? null : int.Parse(year.InnerText);
+        XmlElement number = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:number", nsmgr);
+        result.CaseNumber = (number is null) ? null : int.Parse(number.InnerText);
 
         XmlNodeList docketNumber = akn.SelectNodes("//akn:docketNumber", nsmgr);
         result.HasCaseNumber = docketNumber.Count > 0;
@@ -119,6 +130,7 @@ class Tester {
             logger.LogInformation("has document date");
         else
             logger.LogError("does not have document date");
+        result.DocumentDate = (dates.Count == 0) ? null : ((XmlElement) dates.Item(0)).GetAttribute("date");
 
         XmlNodeList parties = akn.SelectNodes("//akn:party", nsmgr);
         ISet<string> roles = new HashSet<string>();

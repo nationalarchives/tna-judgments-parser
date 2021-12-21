@@ -37,6 +37,12 @@ class PartyEnricher : Enricher {
                 i += 3;
                 break;
             }
+            if (IsFourtLinePartyBlock(before, i)) {
+                List<IBlock> enriched4 = EnrichFourLinePartyBlock(before, i);
+                after.AddRange(enriched4);
+                i += 4;
+                break;
+            }
             if (IsFiveLinePartyBlock(before, i)) {
                 List<IBlock> enriched5 = EnrichFiveLinePartyBlock(before, i);
                 after.AddRange(enriched5);
@@ -122,6 +128,15 @@ class PartyEnricher : Enricher {
         return after;
     }
 
+    /* three and four */
+
+    private static bool IsRegina(ILine line) {
+        string content = line.NormalizedContent();
+        if (content == "REGINA")
+            return true;
+        return false;
+    }
+
     private static bool IsThreeLinePartyBlock(IBlock[] before, int i) {
         if (i > before.Length - 4)
             return false;
@@ -141,12 +156,6 @@ class PartyEnricher : Enricher {
             return false;
         return true;
     }
-    private static bool IsRegina(ILine line) {
-        string content = line.NormalizedContent();
-        if (content == "REGINA")
-            return true;
-        return false;
-    }
     private static List<IBlock> EnrichThreeLinePartyBlock(IBlock[] before, int i) {
         IBlock line1 = before[i];
         IBlock line2 = before[i+1];
@@ -155,6 +164,41 @@ class PartyEnricher : Enricher {
             MakeParty(line1, PartyRole.BeforeTheV),
             line2,
             MakeParty(line3, PartyRole.AfterTheV)
+        };
+    }
+
+    private static bool IsFourtLinePartyBlock(IBlock[] before, int i) {
+        if (i > before.Length - 5)
+            return false;
+        IBlock block1 = before[i];
+        IBlock block2 = before[i+1];
+        IBlock block3 = before[i+2];
+        IBlock block4 = before[i+3];
+        IBlock block5 = before[i+4];
+        if (block1 is not ILine line1)
+            return false;
+        if (!IsRegina(line1))
+            return false;
+        if (!IsBetweenPartyMarker(block2))
+            return false;
+        if (!IsPartyName(block3))
+            return false;
+        if (!IsPartyName(block4))
+            return false;
+        if (!IsAfterPartyMarker(block5))
+            return false;
+        return true;
+    }
+    private static List<IBlock> EnrichFourLinePartyBlock(IBlock[] before, int i) {
+        IBlock line1 = before[i];
+        IBlock line2 = before[i+1];
+        IBlock line3 = before[i+2];
+        IBlock line4 = before[i+3];
+        return new List<IBlock>(3) {
+            MakeParty(line1, PartyRole.BeforeTheV),
+            line2,
+            MakeParty(line3, PartyRole.AfterTheV),
+            MakeParty(line4, PartyRole.AfterTheV)
         };
     }
 
@@ -1161,7 +1205,7 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
             "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants",
             "Appellant/ Respondent", // [2021] EWCA Civ 1792
             "Claimants/ Appellants",    // [2021] EWCA Civ 1799
@@ -1180,7 +1224,7 @@ class PartyEnricher : Enricher {
             return PartyRole.Defendant;
         types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents",
             "Claimant/Respondent", "Claimant/ Respondent", "Claimant / Respondent", "Clamaints/ Respondents", "Respondent/Claimant",
-            "Defendant/Respondent", "Defendant/ Respondent", "Petitioner/Respondent",
+            "Defendant/Respondent", "Defendant/ Respondent", "Defendant / Respondent", "Defendants/Respondents", "Petitioner/Respondent",
             "First Respondent", "Second Respondent", "Third Respondent", "Fourth Respondent",
             "1st Respondent", "2nd Respondent", "3rd Respondent",   // EWCA/Civ/2012/378
             "Respondents/Defendants", "Respond-ents/ Defendants", "Respondents/ Defendants",  // EWCA/Civ/2015/377, EWHC/QB/2006/582
@@ -1282,8 +1326,8 @@ class PartyEnricher : Enricher {
         //     return PartyRole.;
         if (one == "Applicant/" && two == "Respondent")    // [2021] EWCA Civ 1725
             return PartyRole.Respondent;
-        // if (one == "Respondent/" && two == "Appellant")    // [2021] EWCA Civ 1725
-        //     return PartyRole.Appellant;
+        if (one == "Appellant/" && two == "Respondent")    // [2020] EWHC 3409 (QB)
+            return PartyRole.Respondent;
         return null;
     }
 
