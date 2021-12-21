@@ -22,6 +22,7 @@ class Serializer {
         XmlWriterSettings settings = new XmlWriterSettings();
         settings.OmitXmlDeclaration = false;
         settings.Indent = true;
+        // settings.IndentChars = ("\t");
         settings.ConformanceLevel = ConformanceLevel.Document;
         writer = XmlWriter.Create(stream, settings);
     }

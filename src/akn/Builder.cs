@@ -388,7 +388,8 @@ class Builder {
 
     private void AddCourtType2(XmlElement parent, ICourtType2 model) {
         XmlElement courtType = CreateAndAppend("courtType", parent);
-        AddOrWrapText(courtType, model.Contents);
+        foreach (IInline inline in model.Contents)
+            AddInline(courtType, inline);
     }
 
     private void AddParty(XmlElement parent, IParty1 model) {
