@@ -40,24 +40,13 @@ class Metadata {
         XmlElement identification = append(doc, meta, "identification");
         identification.SetAttribute("source", "#tna");
 
-        List<IParty> parties = new List<IParty>();
-        List<IDocTitle> docTitle = new List<IDocTitle>();
+        IEnumerable<IParty> parties = new List<IParty>();
+        IEnumerable<IDocTitle> docTitle = new List<IDocTitle>();
         IParty party1 = null;
         IParty party2 = null;
         if (includeReferences) {
-            foreach (IBlock block in judgment.Header) {
-                if (block is ILine line) {
-                    parties.AddRange(line.Contents.OfType<IParty>());
-                    docTitle.AddRange(line.Contents.OfType<IDocTitle>());
-                }
-                if (block is ITable table)
-                    foreach (IRow row in table.Rows)
-                        foreach (ICell cell in row.Cells)
-                            foreach (ILine line2 in cell.Contents.OfType<ILine>()) {
-                                parties.AddRange(line2.Contents.OfType<IParty>());
-                                docTitle.AddRange(line2.Contents.OfType<IDocTitle>());
-                            }
-            }
+            parties = Util.Descendants<IParty>(judgment.Header);
+            docTitle = Util.Descendants<IDocTitle>(judgment.Header);
             party1 = parties.FirstOrDefault();
             party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
             if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
@@ -154,7 +143,7 @@ class Metadata {
                 org.SetAttribute("showAs", role.ShowAs());
             }
 
-            IEnumerable<IJudge> judges = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<IJudge>();
+            IEnumerable<IJudge> judges = Util.Descendants<IJudge>(judgment.Header);
             foreach (IJudge judge in judges) {
                 XmlElement org = append(doc, references, "TLCPerson");
                 org.SetAttribute("eId", judge.Id);
@@ -162,14 +151,14 @@ class Metadata {
                 org.SetAttribute("showAs", judge.Name);
             }
 
-            foreach (ILawyer lawyer in judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ILawyer>()) {
+            foreach (ILawyer lawyer in Util.Descendants<ILawyer>(judgment.Header)) {
                 XmlElement org = append(doc, references, "TLCPerson");
                 org.SetAttribute("eId", lawyer.Id);
                 org.SetAttribute("href", "/" + lawyer.Id);
                 org.SetAttribute("showAs", lawyer.Name);
             }
 
-            IEnumerable<ILocation> locations = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<ILocation>();
+            IEnumerable<ILocation> locations = Util.Descendants<ILocation>(judgment.Header);
             foreach (ILocation loc in locations) {
                 XmlElement org = append(doc, references, "TLCLocation");
                 org.SetAttribute("eId", loc.Id);

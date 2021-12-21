@@ -20,13 +20,13 @@ class WMetadata : IMetadata {
     }
 
     virtual public Court? Court() {
-        WCourtType courtType1 = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
+        WCourtType courtType1 = Util.Descendants<WCourtType>(judgment.Header).FirstOrDefault();
         if (courtType1 is not null) {
             if (courtType1.Code is null)
                 return null;
             return Courts.ByCode[courtType1.Code];
         }
-        WCourtType2 courtType2 = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType2>().FirstOrDefault();
+        WCourtType2 courtType2 = Util.Descendants<WCourtType2>(judgment.Header).FirstOrDefault();
         if (courtType2 is not null) {
             if (courtType2.Code is null)
                 return null;
@@ -64,22 +64,8 @@ class WMetadata : IMetadata {
         return int.Parse(Regex.Match(id, @"/(\d+)$").Groups[1].Value);
     } }
 
-    private static Func<IBlock, IEnumerable<ILine>> GetLines = (block) => {
-        if (block is ILine line)
-            return new List<ILine>(1) { line };
-        if (block is IOldNumberedParagraph np)
-            return new List<ILine>(1) { np };
-        if (block is ITable table) {
-            var cells = table.Rows.SelectMany(row => row.Cells);
-            var blocks = cells.SelectMany(cell => cell.Contents);
-            return blocks.SelectMany(GetLines);
-        }
-        return Enumerable.Empty<ILine>();
-    };
-
     virtual public string Cite { get {
-        INeutralCitation cite = judgment.Header.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
-        // INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
+        INeutralCitation cite = Util.Descendants<INeutralCitation>(judgment.Header).FirstOrDefault();
         if (cite is null)
             return null;
         return cite.Text.Trim();
@@ -94,10 +80,9 @@ class WMetadata : IMetadata {
     }
 
     private string MakeDocumentId() {
-        // INeutralCitation cite = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<INeutralCitation>().FirstOrDefault();
         string cite = this.Cite;
         if (cite is not null) {
-            string trimmed = cite.Trim();
+            string trimmed = Regex.Replace(cite, @"\s+", " ").Trim();
             Match match1;
             match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (UKSC|UKPC) (\d+)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
@@ -194,7 +179,7 @@ class WMetadata : IMetadata {
     }
 
     public IEnumerable<string> CaseNos() {
-        IEnumerable<ICaseNo> caseNos = judgment.Header.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<ICaseNo>();
+        IEnumerable<ICaseNo> caseNos = Util.Descendants<ICaseNo>(judgment.Header);
         if (judgment.CoverPage is not null)
             caseNos = judgment.CoverPage.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().Concat(caseNos);
         return caseNos.Select(cn => cn.Text);
@@ -205,7 +190,7 @@ class WMetadata : IMetadata {
     }
 
     virtual public string Date() {
-        IDocDate date = judgment.Header.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
+        IDocDate date = Util.Descendants<IDocDate>(judgment.Header).FirstOrDefault();
         if (date is not null)
             return date.Date;
         date = judgment.Conclusions?.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();

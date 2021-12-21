@@ -105,7 +105,7 @@ interface ICourtType1 : IFormattedText, ICourtType { }
 
 interface ICourtType2 : ICourtType {
 
-    IEnumerable<IFormattedText> Contents { get; init; }
+    IEnumerable<IInline> Contents { get; init; }
 
 }
 

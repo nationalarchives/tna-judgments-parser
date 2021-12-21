@@ -167,7 +167,7 @@ internal class WCourtType2 : ICourtType2 {
 
     public string Code { get; init; }
 
-    public IEnumerable<IFormattedText> Contents { get; init; }
+    public IEnumerable<IInline> Contents { get; init; }
 
 }
 

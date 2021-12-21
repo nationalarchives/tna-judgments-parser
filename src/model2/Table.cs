@@ -40,6 +40,8 @@ class WTable : ITable {
             return null;
         if (e is TableRow row)
             return new WRow(table, row);
+        if (e is BookmarkStart || e is BookmarkEnd)
+            return null;
         throw new Exception();
     }
 

@@ -11,7 +11,7 @@ class NetrualCitation : Enricher2 {
 
     private static readonly string[] patterns = {
         @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\] EWHC +\d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\.?\))",    // . in EWHC/Comm/2007/197
+        @"^Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\] EWHC +\d+ +\((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\.?\))",    // . in EWHC/Comm/2007/197
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC))",  // EWHC/Admin/2003/301
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCOP \d+)",
@@ -25,6 +25,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)",    // misspelling in EWCA/Civ/2006/1507
         @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
         @"^NCN: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2021] EWCA Crim 1412
+        @"(\[\d{4}\] EWFC \d+)"
     };
 
     private static Group Match(string text) {
@@ -66,6 +67,13 @@ class NetrualCitation : Enricher2 {
         return Replace(fText.Text, group, fText.properties);
     }
 
+    private IEnumerable<T> Concat3<T>(IEnumerable<T> one, IEnumerable<T> two, IEnumerable<T> three) {
+        return Enumerable.Concat(Enumerable.Concat(one, two), three);
+    }
+    private IEnumerable<T> Concat3<T>(T one, IEnumerable<T> two, IEnumerable<T> three) {
+        return Enumerable.Concat(two.Prepend(one), three);
+    }
+
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (line.Count() > 0) {
             IInline first = line.First();
@@ -77,6 +85,17 @@ class NetrualCitation : Enricher2 {
                     List<IInline> replacement = Replace(fText, group);
                     IEnumerable<IInline> rest = line.Skip(1);
                     return Enumerable.Concat(replacement, rest);
+                }
+            }
+            IInline last = line.Last();
+            if (last is WText fText2) {
+                Group group = Match(fText2.Text);
+                if (group is null)
+                    group = Match2(fText2.Text);
+                if (group is not null) {
+                    IEnumerable<IInline> before = line.SkipLast(1);
+                    List<IInline> replacement = Replace(fText2, group);
+                    return Enumerable.Concat(before, replacement);
                 }
             }
         }
@@ -141,25 +160,23 @@ class NetrualCitation : Enricher2 {
                 }
                 if (string.IsNullOrWhiteSpace(fText2.Text)) {
                     IInline third = line.Skip(2).FirstOrDefault();
-                    if (third is not null && third is WText fText3) {
-                        if (fText1.Text == "NCN:") {
+                    if (third is WText fText3) {
+                        ISet<string> prefixes = new HashSet<string>() { "Neutral Citation Number:", "NCN:" };
+                        if (prefixes.Contains(fText1.Text)) {
                             Group group = Match2(fText3.Text);
-                            List<IInline> replacement = Replace(fText3.Text, group, fText3.properties);
-                            return Enumerable.Concat(Enumerable.Concat(
-                                line.Take(2),
-                                replacement),
-                                line.Skip(3)
-                            );
+                            if (group is not null) {
+                                List<IInline> replacement = Replace(fText3.Text, group, fText3.properties);
+                                return Concat3(line.Take(2), replacement, line.Skip(3));
+                            }
                         }
-
                     }
                 }
             }
-            if (first is WLineBreak && second is WText wText) {
+            if ((first is WImageRef || first is WLineBreak) && second is WText wText) {
                 Group group = Match(wText.Text);
                 if (group is not null) {
                     List<IInline> replacement = Replace(wText, group);
-                    return Enumerable.Concat(replacement.Prepend(first), line.Skip(2));
+                    return Concat3(first, replacement, line.Skip(2));
                 }
             }
         }
