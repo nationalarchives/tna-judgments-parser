@@ -216,8 +216,8 @@ public readonly struct Courts {
     public static readonly Court EWHC_Chancery_Appeals = new Court {
         Code = "EWHC-Chancery-Appeals",
         LongName = "The Business and Property Courts (Chancery Appeals)",
-        ShortName = "The Patents Court",
-        URL = "https://www.gov.uk/courts-tribunals/patents-court"
+        ShortName = "Chancery Appeals",
+        URL = "https://www.gov.uk/courts-tribunals/chancery-division-of-the-high-court"
     };
 
     /* other */

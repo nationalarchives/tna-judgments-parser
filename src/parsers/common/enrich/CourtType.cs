@@ -15,7 +15,10 @@ abstract class Combo {
             return false;
         IInline first = line.Contents.First();
         if (first is IImageRef) {    // EWHC/Comm/2009/2472
-            if (!line.Contents.Skip(1).Where(inline => inline is WText).Any() || !line.Contents.Skip(1).All(inline => inline is WText))
+            if (!line.Contents.Skip(1).All(inline => inline is WText))
+                return false;
+        } else if (first is ILineBreak) {
+            if (!line.Contents.Skip(1).All(inline => inline is WText))
                 return false;
         } else {
             if (!line.Contents.All(inline => inline is WText))
@@ -37,6 +40,21 @@ abstract class Combo {
         return regex.IsMatch(text);
     }
 
+    protected bool MatchThirdRun(Regex regex, IBlock block) {
+        if (!(block is ILine line))
+            return false;
+        if (line.Contents.Count() < 3)
+            return false;
+        IInline second = line.Contents.ElementAt(1);
+        IInline third = line.Contents.ElementAt(2);
+        if (second is not WLineBreak)
+            return false;
+        if (third is not WText wText)
+            return false;
+        string text = Regex.Replace(wText.Text, @"\s+", " ").Trim();
+        return regex.IsMatch(text);
+    }
+
     public Court Court { get; init; }
 
     protected WLine Transform1(IBlock block) {
@@ -46,6 +64,9 @@ abstract class Combo {
             WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
             return new WLine(line, new List<IInline>(1) { ct });
         } else if (line.Contents.First() is IImageRef) {
+            WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Skip(1).Cast<WText>() };
+            return new WLine(line, new List<IInline>(2) { line.Contents.First(), ct });
+        } else if (line.Contents.First() is ILineBreak) {
             WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Skip(1).Cast<WText>() };
             return new WLine(line, new List<IInline>(2) { line.Contents.First(), ct });
         } else {
@@ -61,6 +82,15 @@ abstract class Combo {
         IEnumerable<IInline> contents = line.Contents.Skip(1).Prepend(ct);
         return new WLine(line, contents);
     }
+
+    protected WLine TransformFirstThreeRuns(IBlock block) {
+        WLine line = (WLine) block;
+        IEnumerable<IInline> text = line.Contents.Take(3);
+        WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = text };
+        IEnumerable<IInline> contents = line.Contents.Skip(3).Prepend(ct);
+        return new WLine(line, contents);
+    }
+
 }
 
 class Combo5 : Combo {
@@ -94,6 +124,13 @@ class Combo5 : Combo {
             Transform1(four),
             Transform1(five)
         };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+        foreach (Combo5 combo in Combo5.combos)
+            if (combo.Match(one, two, three, four, five))
+                return combo.Transform(one, two, three, four, five);
+        return null;
     }
 
 }
@@ -137,23 +174,50 @@ class Combo4 : Combo {
         new Combo4 {    // [2021] EWHC 3295 (Pat)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(CH D\)$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"^PATENTS COURT", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Patents
         },
         new Combo4 {    // [2021] EWHC 3296 (IPEC)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(ChD\)$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
+        },
+        new Combo4 {    // [2021] EWHC 2842 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
+        },
+        new Combo4 {    // [2021] EWHC 2972 (TCC)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^TECHNOLOGY AND CONSTRUCTION COURT \(QBD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_TCC
+        },
+        new Combo4 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Commercial
+        },
+        new Combo4 {    // [2021] EWHC 3432 (CH)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^BUSINESS LIST \(LONDON\)$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_BusinessList
         }
     };
 
     internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four);
     }
-
     internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
         return new List<ILine>(4) {
             Transform1(one),
@@ -161,6 +225,25 @@ class Combo4 : Combo {
             Transform1(three),
             Transform1(four)
         };
+    }
+
+    internal bool Match2(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two) && MatchFirstRun(Re3, three) && MatchFirstRun(Re4, four);
+    }
+    internal List<ILine> Transform2(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return new List<ILine>(4) {
+            TransformFirstRun(one), TransformFirstRun(two), TransformFirstRun(three), TransformFirstRun(four)
+        };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four) {
+        foreach (Combo4 combo in Combo4.combos)
+            if (combo.Match(one, two, three, four))
+                return combo.Transform(one, two, three, four);
+        foreach (Combo4 combo in Combo4.combos)
+            if (combo.Match2(one, two, three, four))
+                return combo.Transform2(one, two, three, four);
+        return null;
     }
 
 }
@@ -179,17 +262,31 @@ class Combo3_1 : Combo {
             Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"Rolls Buildings?$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IntellectualProperty
-        }
+        },
+        new Combo3_1 {   // [2021] EWHC 3385 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY? COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),  // no "Y" in [2021] EWHC 3385 (Ch)
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^Royal Courts of Justice$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IntellectualProperty
+        },
     };
 
-    internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
+    private bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
+    private List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
         return new List<ILine>(4) {
             Transform1(one), Transform1(two), Transform1(three), (ILine) four
         };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four) {
+        foreach (Combo3_1 combo in Combo3_1.combos)
+            if (combo.Match(one, two, three, four))
+                return combo.Transform(one, two, three, four);
+        return null;
     }
 
 }
@@ -277,6 +374,12 @@ class Combo3 : Combo {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),
             Re3 = new Regex("^CHANCERY APPEALS \\(ChD\\)", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Appeals
+        },
+        new Combo3 {    // [2021] EWHC 3416 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS & PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^CHANCERY APPEALS$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
         new Combo3 {
@@ -497,6 +600,12 @@ class Combo2_1 : Combo {
             Re3 = new Regex(@"^Appeal against the decision of", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
+        new Combo2_1 {  // [2021] EWHC 3418 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \(ChD\)$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^ON APPEAL FROM", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Appeals
+        },
         new Combo2_1 {  // [2021] EWHC 3247 (QB)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^QUEEN’S BENCH DIVISION$", RegexOptions.IgnoreCase),
@@ -663,12 +772,24 @@ class Combo2 : Combo {
     internal bool Match(IBlock one, IBlock two) {
         return Match(Re1, one) && Match(Re2, two);
     }
-
     internal List<ILine> Transform(IBlock one, IBlock two) {
-        return new List<ILine>(2) {
-            Transform1(one),
-            Transform1(two)
-        };
+        return new List<ILine>(2) { Transform1(one), Transform1(two) };
+    }
+    internal static List<ILine> MatchAny(IBlock one, IBlock two) {
+        foreach (Combo2 combo in Combo2.combos)
+            if (combo.Match(one, two))
+                return combo.Transform(one, two);
+        return null;
+    }
+
+    internal bool Match1(IBlock block) {
+        return MatchFirstRun(Re1, block) && MatchThirdRun(Re2, block);
+    }
+    internal static List<ILine> MatchAny1(IBlock block) {
+        foreach (Combo2 combo in Combo2.combos)
+            if (combo.Match1(block))
+                return new List<ILine>(1) { combo.TransformFirstThreeRuns(block) };
+        return null;
     }
 
 }
@@ -691,9 +812,7 @@ class Combo1_1 : Combo {
     }
 
     internal List<ILine> Transform(IBlock one, IBlock two) {
-        return new List<ILine>(2) {
-            Transform1(one), (ILine) two
-        };
+        return new List<ILine>(2) { Transform1(one), (ILine) two };
     }
 
     internal static List<ILine> MatchAny(IBlock one, IBlock two) {
@@ -701,9 +820,7 @@ class Combo1_1 : Combo {
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
         return null;
-
     }
-
 
 }
 
@@ -745,6 +862,10 @@ class Combo1 : Combo {
             Court = Courts.EWFC
         },
         new Combo1 {
+            Re = new Regex("^IN THE FAMILY COURT AT [A-Z]+$", RegexOptions.IgnoreCase),
+            Court = Courts.EWFC
+        },
+        new Combo1 {
             Re = new Regex("^(THE FAMILY COURT) SITTING AT [A-Z]+ *$", RegexOptions.IgnoreCase),
             Court = Courts.EWFC
         },
@@ -767,6 +888,10 @@ class Combo1 : Combo {
         new Combo1 {    // EWHC/Ch/2013/2818
             Re = new Regex(@"^IN THE HIGH COURT OF JUSTICE CHANCERY DIVISION COMPANIES COURT$"),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
+        },
+        new Combo1 {    // [2021] EWHC 3411 (Fam)
+            Re = new Regex(@"^IN THE HIGH COURT OF JUSTICE FAMILY DIVISION$"),
+            Court = Courts.EWHC_Family
         }
     };
 
@@ -775,9 +900,14 @@ class Combo1 : Combo {
     }
 
     internal List<ILine> Transform(IBlock one) {
-        return new List<ILine>(1) {
-            Transform1(one)
-        };
+        return new List<ILine>(1) { Transform1(one) };
+    }
+
+    internal static List<ILine> MatchAny(IBlock one) {
+        foreach (Combo1 combo in Combo1.combos)
+            if (combo.Match(one))
+                return combo.Transform(one);
+        return null;
     }
 
 }
@@ -821,119 +951,36 @@ class Combo1bis {
         };
     }
 
+    internal static List<ILine> MatchAny(IBlock one) {
+        foreach (Combo1bis combo in Combo1bis.combos)
+            if (combo.Match(one))
+                return combo.Transform(one);
+        return null;
+    }
+
 }
 
 class CourtType : Enricher2 {
 
     private List<ILine> Match5(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
-        foreach (Combo5 combo in Combo5.combos)
-            if (combo.Match(one, two, three, four, five))
-                return combo.Transform(one, two, three, four, five);
-        return null;
+        return Combo5.MatchAny(one, two, three, four, five);
     }
 
     virtual protected List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
-        foreach (Combo4 combo in Combo4.combos)
-            if (combo.Match(one, two, three, four))
-                return combo.Transform(one, two, three, four);
-        foreach (Combo3_1 combo in Combo3_1.combos)
-            if (combo.Match(one, two, three, four))
-                return combo.Transform(one, two, three, four);
-        return null;
+        return Combo4.MatchAny(one, two, three, four) ?? Combo3_1.MatchAny(one, two, three, four);
     }
 
     private List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
-        List<ILine> temp = Combo3.MatchAny(one, two, three);
-        if (temp is not null)
-            return temp;
-        temp = Combo2_1.MatchAny(one, two, three);
-        if (temp is not null)
-            return temp;
-        return Combo1_2.MatchAny(one, two, three);
+        return Combo3.MatchAny(one, two, three) ?? Combo2_1.MatchAny(one, two, three) ?? Combo1_2.MatchAny(one, two, three);
     }
 
     protected virtual List<ILine> Match2(IBlock one, IBlock two) {
-        foreach (Combo2 combo in Combo2.combos)
-            if (combo.Match(one, two))
-                return combo.Transform(one, two);
-        foreach (Combo1_1 combo in Combo1_1.combos)
-            if (combo.Match(one, two))
-                return combo.Transform(one, two);
-        return null;
+        return Combo2.MatchAny(one, two) ?? Combo1_1.MatchAny(one, two);
     }
 
     protected virtual List<ILine> Match1(IBlock block) {
-        foreach (Combo1 combo in Combo1.combos)
-            if (combo.Match(block))
-                return combo.Transform(block);
-        foreach (Combo1bis combo in Combo1bis.combos)
-            if (combo.Match(block))
-                return combo.Transform(block);
-        return null;
+        return Combo1.MatchAny(block) ?? Combo1bis.MatchAny(block) ?? Combo2.MatchAny1(block);
     }
-
-    // internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
-    //     List<IBlock> enriched = new List<IBlock>();
-    //     int i = 0;
-    //     while (i < blocks.Count()) {
-    //         IBlock block1 = blocks.ElementAt(i);
-    //         if (i < blocks.Count() - 4) {
-    //             IBlock block2 = blocks.ElementAt(i + 1);
-    //             IBlock block3 = blocks.ElementAt(i + 2);
-    //             IBlock block4 = blocks.ElementAt(i + 3);
-    //             IBlock block5 = blocks.ElementAt(i + 4);
-    //             List<ILine> five = Match5(block1, block2, block3, block4, block5);
-    //             if (five is not null) {
-    //                 enriched.AddRange(five);
-    //                 i += five.Count;
-    //                 break;
-    //             }
-    //         }
-    //         if (i < blocks.Count() - 3) {
-    //             IBlock block2 = blocks.ElementAt(i + 1);
-    //             IBlock block3 = blocks.ElementAt(i + 2);
-    //             IBlock block4 = blocks.ElementAt(i + 3);
-    //             List<ILine> four = Match4(block1, block2, block3, block4);
-    //             if (four is not null) {
-    //                 enriched.AddRange(four);
-    //                 i += four.Count;
-    //                 break;
-    //             }
-    //         }
-    //         if (i < blocks.Count() - 2) {
-    //             IBlock block2 = blocks.ElementAt(i + 1);
-    //             IBlock block3 = blocks.ElementAt(i + 2);
-    //             List<ILine> three = Match3(block1, block2, block3);
-    //             if (three is not null) {
-    //                 enriched.AddRange(three);
-    //                 i += three.Count;
-    //                 break;
-    //             }
-    //         }
-    //         if (i < blocks.Count() - 1) {
-    //             IBlock block2 = blocks.ElementAt(i + 1);
-    //             List<ILine> two = Match2(block1, block2);
-    //             if (two is not null) {
-    //                 enriched.AddRange(two);
-    //                 i += two.Count;
-    //                 break;
-    //             }
-    //         }
-    //         List<ILine> one = Match1(block1);
-    //         if (one is not null) {
-    //             enriched.AddRange(one);
-    //             i += one.Count;
-    //             break;
-    //         }
-    //         if (block1 is WTable table) {
-    //             WTable after = EnrichTable(table);
-    //         }
-    //         enriched.Add(block1);
-    //         i += 1;
-    //     }
-    //     enriched.AddRange(blocks.Skip(i));
-    //     return enriched;
-    // }
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         int i = 0;
