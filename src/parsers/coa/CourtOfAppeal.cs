@@ -44,6 +44,7 @@ class CourtOfAppealParser : AbstractParser {
         "JUDGMENT: APPROVED BY THE COURT", // EWHC/Admin/2003/1321
         "APPROVED CORRECTED JUDGMENT",  // EWHC/Ch/2016/3302
         "Final Judgment",   // EWHC/Admin/2021/1234
+        "Final Approved Judgment",  // [2021] EWHC 3455 (QB)
         "Costs Judgment",
         "Judgment Approved by the court",   // [2021] EWCA Crim 1786
         "Judgment Approved by the courtfor handing down",
@@ -52,7 +53,7 @@ class CourtOfAppealParser : AbstractParser {
         "Judgment Approved by the courtfor handing down (subject to editorial corrections)",    // EWCA/Civ/2017/320, line break between court / for
         "DRAFT JUDGMENT",    // EWCA/Civ/2003/952
         "APPROVED JUDGMENT ON A COSTS ISSUE",    // EWCA/Civ/2021/13
-        "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER" // 
+        "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER" //
     };
 
     protected override List<IBlock> Header() {

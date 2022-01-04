@@ -452,6 +452,32 @@ class Numbering2 {
     //     return start + count;
     // }
 
+    private enum CountingAction { Skip, Count, Stop }
+
+    private static CountingAction ShouldCount(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum) {
+        if (paragraph.ChildElements.All(child => child is ParagraphProperties))
+            return CountingAction.Skip;
+        NumberingProperties props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+        if (props2 is null)
+            return CountingAction.Skip;
+        int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
+        if (numberingId2 is null)
+            return CountingAction.Skip;
+        NumberingInstance numbering2 = Numbering.GetNumbering(main, (int) numberingId2);
+        if (numbering2 is null)
+            return CountingAction.Skip;
+        AbstractNum abstractNum2 = Numbering.GetAbstractNum(main, numbering2);
+        int abstractNumId2 = abstractNum2.AbstractNumberId;
+        if (abstractNumId.Equals(abstractNumId2)) {
+            int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
+            if (level2 == levelNum)
+                return CountingAction.Count;
+            if (level2 < levelNum)
+                return CountingAction.Stop;
+        }
+        return CountingAction.Skip;
+    }
+
     internal static int GetNForLevelBasedOnAbstractId(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum, int start) {
         int count = 0;
         Paragraph previous = paragraph.PreviousSibling<Paragraph>();
@@ -494,7 +520,67 @@ class Numbering2 {
             }
             previous = previous.PreviousSibling<Paragraph>();
         }
+        if (paragraph.Parent is TableCell cell)
+            count += CountUpToButNotIncluding(main, cell, abstractNumId, levelNum);
         return start + count;
+    }
+
+    private static int CountUpToAndIncluding(MainDocumentPart main, OpenXmlElement e, int abstractNumId, int levelNum) {
+        if (e is null)
+            return 0;
+        if (e is Paragraph p)
+            return CountUpToAndIncluding(main, p, abstractNumId, levelNum);
+        if (e is Table t)
+            return CountUpToAndIncluding(main, t, abstractNumId, levelNum);
+        throw new Exception();
+    }
+
+    private static int CountUpToAndIncluding(MainDocumentPart main, Paragraph p, int abstractNumId, int levelNum) {
+        CountingAction x = ShouldCount(main, p, abstractNumId, levelNum);
+        if (x == CountingAction.Stop)
+            return 0;
+        int count = (x == CountingAction.Count) ? 1 : 0;
+        OpenXmlElement previous = p.PreviousSibling();
+        return count + CountUpToAndIncluding(main, previous, abstractNumId, levelNum);
+    }
+
+    private static int CountUpToButNotIncluding(MainDocumentPart main, TableCell cell, int abstractNumId, int levelNum) {
+        TableCell previous = cell.PreviousSibling<TableCell>();
+        if (previous is not null)
+            return CountUpToAndIncluding(main, previous, abstractNumId, levelNum);
+        TableRow previousRow = cell.Parent.PreviousSibling<TableRow>();
+        if (previousRow is not null)
+            return CountUpToAndIncluding(main, previousRow, abstractNumId, levelNum);
+        OpenXmlElement previousBlock = cell.Parent.Parent.PreviousSibling();
+        return CountUpToAndIncluding(main, previousBlock, abstractNumId, levelNum);
+    }
+
+    private static int CountUpToAndIncluding(MainDocumentPart main, TableCell cell, int abstractNumId, int levelNum) {
+        int count = 0;
+        foreach (var child in cell.ChildElements.Reverse()) {
+            if (child is Paragraph p) {
+                CountingAction x = ShouldCount(main, p, abstractNumId, levelNum);
+                if (x == CountingAction.Count)
+                    count += 1;
+                if (x == CountingAction.Stop)
+                    return count;
+            }
+        }
+        return count + CountUpToButNotIncluding(main, cell, abstractNumId, levelNum);
+    }
+
+    private static int CountUpToAndIncluding(MainDocumentPart main, TableRow row, int abstractNumId, int levelNum) {
+        TableCell last = row.ChildElements.OfType<TableCell>().LastOrDefault();
+        if (last is not null)
+            return CountUpToAndIncluding(main, last, abstractNumId, levelNum);
+        return CountUpToAndIncluding(main, row.PreviousSibling(), abstractNumId, levelNum);
+    }
+
+    private static int CountUpToAndIncluding(MainDocumentPart main, Table table, int abstractNumId, int levelNum) {
+        TableRow last = table.ChildElements.OfType<TableRow>().LastOrDefault();
+        if (last is not null)
+            return CountUpToAndIncluding(main, last, abstractNumId, levelNum);
+        return CountUpToAndIncluding(main, table.PreviousSibling(), abstractNumId, levelNum);
     }
 
     // for REF \w -- see EWHC/Comm/2018/1368

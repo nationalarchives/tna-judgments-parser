@@ -42,7 +42,10 @@ public class Party {
         match = Regex.Match(text, @"^The Queen \(on the application of ([A-Z][A-Z0-9 ,]*)\)$", RegexOptions.IgnoreCase);
         if (match.Success)
             return match.Groups[1].Value + " (R on the application of)";
-            
+
+        match = Regex.Match(text, @"^[A-Z]+ \(a child, by");
+        if (match.Success)
+            return text.Substring(0, text.IndexOf('(')) + "(a child)";
         // if (text.EndsWith(')')) {
         //     int i = text.LastIndexOf('(');
         //     if (i > 0) {

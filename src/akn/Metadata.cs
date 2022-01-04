@@ -168,7 +168,7 @@ class Metadata {
 
             XmlElement proprietary = append(doc, meta, "proprietary");
             proprietary.SetAttribute("source", docId + "/eng/docx");
-            proprietary.SetAttribute("xmlns:uk", ukns);
+            // proprietary.SetAttribute("xmlns:uk", ukns);
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("court", ukns);
                 proprietary.AppendChild(courtt);

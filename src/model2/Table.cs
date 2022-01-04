@@ -13,19 +13,26 @@ class WTable : ITable {
     internal MainDocumentPart Main { get; private init; }
 
     internal TableProperties Properties { get; private init; }
+    internal TableGrid Grid { get; private init; }
 
     public IEnumerable<WRow> TypedRows { get; private init; }
     public IEnumerable<IRow> Rows { get => TypedRows; }
 
+    public List<float> ColumnWidthsIns {
+        get => DOCX.Tables.GetColumnWidthsIns(Grid);
+    }
+
     public WTable(MainDocumentPart main, Table table) {
         Main = main;
         Properties = table.ChildElements.OfType<TableProperties>().FirstOrDefault();
+        Grid = table.ChildElements.OfType<TableGrid>().FirstOrDefault();
         TypedRows = ParseTableContents(this, table.ChildElements);
     }
 
-    public WTable(MainDocumentPart main, TableProperties props, IEnumerable<IRow> rows) {
+    public WTable(MainDocumentPart main, TableProperties props, TableGrid grid, IEnumerable<IRow> rows) {
         Main = main;
         Properties = props;
+        Grid = grid;
         TypedRows = rows.Select(row => new WRow(this, row.Cells));
     }
 
@@ -122,29 +129,44 @@ class WCell : ICell {
         Contents = contents;
     }
 
+    public float? BorderTopWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
     public CellBorderStyle BorderTopStyle {
         get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideHorizontalBorder);
     }
-    public float? BorderTopWidthPt {
-        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    public string BorderTopColor {
+        get => DOCX.Tables.ExtractBorderColor(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
+
+    public float? BorderRightWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideVerticalBorder);
     }
     public CellBorderStyle BorderRightStyle {
         get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideVerticalBorder);
     }
-    public float? BorderRightWidthPt {
-        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    public string BorderRightColor {
+        get => DOCX.Tables.ExtractBorderColor(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    }
+
+    public float? BorderBottomWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideHorizontalBorder);
     }
     public CellBorderStyle BorderBottomStyle {
         get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideHorizontalBorder);
     }
-    public float? BorderBottomWidthPt {
-        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    public string BorderBottomColor {
+        get => DOCX.Tables.ExtractBorderColor(Table.Properties?.TableBorders?.InsideHorizontalBorder);
+    }
+
+    public float? BorderLeftWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideVerticalBorder);
     }
     public CellBorderStyle BorderLeftStyle {
         get => DOCX.Tables.ExtractBorderStyle(Table.Properties?.TableBorders?.InsideVerticalBorder);
     }
-    public float? BorderLeftWidthPt {
-        get => DOCX.Tables.ExtractBorderWidthPt(Table.Properties?.TableBorders?.InsideVerticalBorder);
+    public string BorderLeftColor {
+        get => DOCX.Tables.ExtractBorderColor(Table.Properties?.TableBorders?.InsideVerticalBorder);
     }
 
     internal static IEnumerable<IBlock> ParseCellContents(WCell cell, IEnumerable<OpenXmlElement> elements) {

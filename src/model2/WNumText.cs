@@ -184,22 +184,33 @@ internal class WNumber2 : ParseNS.WText, INumber {
         this.pProps = pProps;
     }
 
+    // override public string Style {
+    //     get {
+    //         var x = base.Style;
+    //         if (string.IsNullOrEmpty(x))
+    //             return "inline";
+    //         else
+    //             return x + " inline";
+    //     }
+    // }
+
     public string LeftIndent {
+        // we don't want a value here for EWHC/Admin/2013/2744.rtf
         get {
-            float? inches = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, pProps);
-            if (inches is null)
+            // float? inches = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, pProps);
+            // if (inches is null)
                 return null;
-            return inches.Value.ToString("F2") + "in";
+            // return inches.Value.ToString("F2") + "in";
         }
     }
     public string FirstLineIndent {
         get {
-            float? inches = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, pProps);
-            if (inches is null)
+            // float? inches = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, pProps);
+            // if (inches is null)
                 return null;
-            if (inches == 0.0f)
-                return null;
-            return inches.Value.ToString("F2") + "in";
+            // if (inches == 0.0f)
+            //     return null;
+            // return inches.Value.ToString("F2") + "in";
         }
     }
 

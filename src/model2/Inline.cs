@@ -244,19 +244,19 @@ internal class WParty : WText, IParty1 {
 
 internal class WParty2 : IParty2 {
 
-    public WParty2(IEnumerable<IFormattedText> contents) {
+    public WParty2(IEnumerable<ITextOrWhitespace> contents) {
         this.Contents = contents;
     }
 
     public string Text { get {
-        return string.Join("", this.Contents.Select(text => text.Text));
+        return string.Join("", this.Contents.Select(inline => inline is IFormattedText text ? text.Text : " "));
     } }
 
     public string Name { get => Party.MakeName(this.Text); }
 
     public PartyRole? Role { get; set; }
 
-    public IEnumerable<IFormattedText> Contents { get; init; }
+    public IEnumerable<ITextOrWhitespace> Contents { get; init; }
 
 }
 
@@ -317,6 +317,8 @@ internal class WHyperlink2 : IHyperlink2 {
 }
 
 internal class WLineBreak : ILineBreak {
+
+    internal WLineBreak() { }
 
     internal WLineBreak(Break br) { }
 
