@@ -39,7 +39,7 @@ class Merger : Enricher {
 
     private WTable EnrichTable(WTable table) {
         IEnumerable<WRow> rows = EnrichRows(table.TypedRows);
-        return new WTable(table.Main, table.Properties, rows);
+        return new WTable(table.Main, table.Properties, table.Grid, rows);
     }
 
     private IEnumerable<WRow> EnrichRows(IEnumerable<WRow> rows) {

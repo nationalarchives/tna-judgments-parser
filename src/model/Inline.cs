@@ -13,6 +13,8 @@ interface IInlineContainer : IInline {
 
 }
 
+interface ITextOrWhitespace : IInline { }
+
 enum SuperSubValues { Baseline, Superscript, Subscript }
 
 enum UnderlineValues2 { None, Solid, Double, Dotted, Dashed, Wavy }
@@ -25,7 +27,7 @@ interface IFontInfo {
 
 }
 
-interface IFormattedText : IInline {
+interface IFormattedText : ITextOrWhitespace {
 
     string Style { get; }
     
@@ -156,7 +158,7 @@ interface IParty1 : IFormattedText, IParty { }
 
 interface IParty2 : IParty {
 
-    IEnumerable<IFormattedText> Contents { get; }
+    IEnumerable<ITextOrWhitespace> Contents { get; }
 
 }
 
@@ -242,8 +244,8 @@ interface IHyperlink2 : IInline {
 
 }
 
-interface ILineBreak : IInline { }
+interface ILineBreak : ITextOrWhitespace { }
 
-interface ITab : IInline { }
+interface ITab : ITextOrWhitespace { }
 
 }

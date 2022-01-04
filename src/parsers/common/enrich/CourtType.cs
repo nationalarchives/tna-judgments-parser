@@ -146,6 +146,13 @@ class Combo4 : Combo {
         new Combo4 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^ADMINISTRATIVE COURT", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Planning
+        },
+        new Combo4 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^LEEDS DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Planning
@@ -270,6 +277,13 @@ class Combo3_1 : Combo {
             Re4 = new Regex(@"^Royal Courts of Justice$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IntellectualProperty
         },
+        new Combo3_1 {   // [2021] EWHC 3502 (QB)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^ROYAL COURTS OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^Queen['’]s Bench Division$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^Neutral Citation Number", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD
+        },
     };
 
     private bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
@@ -357,6 +371,18 @@ class Combo3 : Combo {
             Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
             Re3 = new Regex("^INTELLECTUAL PROPERTY( ENTERPRISE COURT)?$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
+        },
+        new Combo3 {
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IPEC
+        },
+        new Combo3 {
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS & PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROERTY LIST \(ChD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_IntellectualProperty
         },
         new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),

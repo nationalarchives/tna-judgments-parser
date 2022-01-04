@@ -60,7 +60,7 @@ class DocDate : Enricher {
         return new WLine(line, contents);
     }
 
-    private WLine Enrich2OrDefault(WLine line) {
+    virtual protected WLine Enrich2OrDefault(WLine line) {
         IInline first = line.Contents.First();
         IInline second = line.Contents.ElementAt(1);
         if (second is not WText fText2)
@@ -199,7 +199,8 @@ class DocDate : Enricher {
         @"^(\s*Date:? *)?\d{1,2}\.\d{1,2}\.\d{4}( *)$",
         /* add other month abbreviations */
         @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",   // comma after month in EWHC/Ch/2003/812
-        @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"
+        @"^(\s*Date ?:? *)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
+        @"^(\s+)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"
     };
 
     private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369
@@ -249,7 +250,7 @@ class DocDate : Enricher {
         return contents;
     }
 
-    private List<IInline> EnrichText(WText fText) {
+    protected List<IInline> EnrichText(WText fText) {
         foreach (string pattern in cardinalDatePatterns1) {
             Match match = Regex.Match(fText.Text, pattern);
             if (match.Success) {

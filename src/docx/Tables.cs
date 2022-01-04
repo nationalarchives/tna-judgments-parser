@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -52,6 +53,13 @@ class Tables {
         return format(sum);
     }
 
+    internal static float? ExtractBorderWidthPt(BorderType border) {
+        var size = border?.Size;
+        if (size is null)
+            return null;
+        return size / 8f;
+    }
+
     internal static CellBorderStyle ExtractBorderStyle(BorderType border) {
         var x = border?.Val ?? BorderValues.None;
         if (x == BorderValues.None)
@@ -65,11 +73,16 @@ class Tables {
         return CellBorderStyle.Solid;
     }
 
-    internal static float? ExtractBorderWidthPt(BorderType border) {
-        var size = border?.Size;
-        if (size is null)
-            return null;
-        return size / 8f;
+    internal static string ExtractBorderColor(BorderType border) {
+        return border?.Color?.Value;
+    }
+
+    internal static List<float> GetColumnWidthsIns(TableGrid grid) {
+        return grid.ChildElements.OfType<GridColumn>()
+            .Select(c => c.Width)
+            .Where(w => w.HasValue)
+            .Select(w => float.Parse(w) / 1440f)
+            .ToList();
     }
 
 }
