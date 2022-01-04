@@ -32,6 +32,7 @@ class Builder {
     private void Build1(IJudgment judgment) {
 
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
+        akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
 
         XmlElement main = CreateAndAppend("judgment", akomaNtoso);
         main.SetAttribute("name", "judgment");
@@ -216,6 +217,13 @@ class Builder {
     private void AddTable(XmlElement parent, ITable model) {
         XmlElement table = doc.CreateElement("table", ns);
         parent.AppendChild(table);
+        List<float> columnWidths = model.ColumnWidthsIns;
+        if (columnWidths.Any()) {
+            // table.SetAttribute("xmlns:uk", Metadata.ukns);
+            IEnumerable<string> s = columnWidths.Select(w => w.ToString("F2") + "in");
+            string s2 = string.Join(" ", s);
+            table.SetAttribute("widths", Metadata.ukns, s2);
+        }
         foreach (IRow row in model.Rows) {
             XmlElement tr = doc.CreateElement("tr", ns);
             table.AppendChild(tr);
@@ -410,7 +418,8 @@ class Builder {
         party.SetAttribute("refersTo", "#" + model.Id);
         if (model.Role.HasValue)
             party.SetAttribute("as", "#" + ((PartyRole) model.Role).EId());
-        AddOrWrapText(party, model.Contents);
+        foreach (var inline in model.Contents)
+            AddInline(party, inline);
     }
 
     private void AddRole(XmlElement parent, IRole model) {

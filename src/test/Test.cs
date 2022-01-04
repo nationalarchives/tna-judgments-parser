@@ -85,18 +85,19 @@ class Tester {
             Court? c2 = Courts.ExtractFromCitation(result.NeutralCitation);
             result.HasCourtType = c2 is not null;
         }
+        XmlElement court = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:court", nsmgr);
+        result.Court = court?.InnerText;
+
         if (result.HasCourtType)
-            logger.LogInformation("has court type");
+            logger.LogInformation("has court type: " + result.Court);
         else
             logger.LogError("does not have court type");
 
         if (result.HasNeutralCitation)
-            logger.LogInformation("has neutral citation");
+            logger.LogInformation("has neutral citation: " + result.NeutralCitation);
         else
             logger.LogError("does not have neutral citation");
         
-        XmlElement court = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:court", nsmgr);
-        result.Court = court?.InnerText;
         XmlElement year = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:year", nsmgr);
         result.Year = (year is null) ? null : int.Parse(year.InnerText);
         XmlElement number = (XmlElement) akn.SelectSingleNode("//akn:meta/akn:proprietary/uk:number", nsmgr);
@@ -113,7 +114,7 @@ class Tester {
         result.HasDocumentID = !string.IsNullOrEmpty(docId.Value);
         result.DocumentId = docId?.Value;
         if (result.HasDocumentID)
-            logger.LogInformation("has document id");
+            logger.LogInformation("has document id: " + result.DocumentId);
         else
             logger.LogError("does not have document id");
 

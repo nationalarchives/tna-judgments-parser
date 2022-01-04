@@ -62,7 +62,7 @@ class CSS {
                 value = "initial";
             else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
                 value = "#" + value;
-            styles.Add("background-color", inline.BackgroundColor);
+            styles.Add("background-color", value);
         }
         return styles;
     }
@@ -86,9 +86,9 @@ class CSS {
             styles.Add("border-style", string.Join(" ", borderStyles2));
 
         float top = cell.BorderTopWidthPt ?? 0;
-        float right = cell.BorderTopWidthPt ?? 0;
-        float bottom = cell.BorderTopWidthPt ?? 0;
-        float left = cell.BorderTopWidthPt ?? 0;
+        float right = cell.BorderRightWidthPt ?? 0;
+        float bottom = cell.BorderBottomWidthPt ?? 0;
+        float left = cell.BorderLeftWidthPt ?? 0;
         List<float> borderWidths;
         if (left != right)
             borderWidths = new List<float>(4) { top, right, bottom, left };
@@ -103,6 +103,32 @@ class CSS {
         IEnumerable<string> borderWidths2 = borderWidths.Select(w => w + "pt");
         if (borderWidths2.Any())
             styles.Add("border-width", string.Join(" ", borderWidths2));
+
+        string topC = cell.BorderTopColor ?? "auto";
+        string rightC = cell.BorderRightColor ?? "auto";
+        string bottomC = cell.BorderBottomColor ?? "auto";
+        string leftC = cell.BorderLeftColor ?? "auto";
+        IEnumerable<string> borderColors;
+        if (leftC != rightC)
+            borderColors = new List<string>(4) { topC, rightC, bottomC, leftC };
+        else if (bottomC != topC)
+            borderColors = new List<string>(3) { topC, rightC, bottomC };
+        else if (rightC != topC)
+            borderColors = new List<string>(2) { topC, rightC };
+        else if (topC != "auto")
+            borderColors = new List<string>(1) { topC };
+        else
+            borderColors = new List<string>(0);
+        borderColors = borderColors.Select(c => {
+            if (c == "auto")
+                return "initial";
+            if (Regex.IsMatch(c, @"^[A-F0-9]{6}$"))
+                return "#" + c;
+            return c;
+        });
+        if (borderColors.Any())
+            styles.Add("border-color", string.Join(" ", borderColors));
+
         return styles;
     }
 

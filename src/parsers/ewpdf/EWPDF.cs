@@ -34,7 +34,7 @@ class EWPDF : CourtOfAppealParser {
         new NetrualCitation(),
         new CaseNo(),
         new CourtTypePDF(),
-        new DocDate(),
+        new DocDatePDF(),
         new PartyEnricher(),
         new Judge(),
         new LawyerEnricher()

@@ -73,7 +73,7 @@ class RestrictionsEnricher : Enricher {
         WCell firstCell = firstRow.TypedCells.First();
         WLine firstLine = (WLine) firstCell.Contents.First();
         WRestriction restriction = new WRestriction(firstLine);
-        return new WTable(table.Main, table.Properties, table.TypedRows.Skip(1).Prepend(
+        return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
             new WRow(firstRow.Table, firstRow.TypedCells.Skip(1).Prepend(
                 new WCell(firstCell.Row, firstCell.Contents.Skip(1).Prepend(restriction))
             ))
