@@ -7,6 +7,8 @@ interface ITable : IBlock {
 
     IEnumerable<IRow> Rows { get; }
 
+    List<float> ColumnWidthsIns { get; }
+
 }
 
 interface IRow {
@@ -21,18 +23,21 @@ interface ICell {
 
     IEnumerable<IBlock> Contents { get; }
 
-   // string BorderTopColor { get; }
-    CellBorderStyle BorderTopStyle { get; }
     float? BorderTopWidthPt { get; }
-    // string BorderRightColor { get; }
-    CellBorderStyle BorderRightStyle { get; }
+    CellBorderStyle BorderTopStyle { get; }
+    string BorderTopColor { get; }
+
     float? BorderRightWidthPt { get; }
-    // string BorderBottomColor { get; }
-    CellBorderStyle BorderBottomStyle { get; }
+    CellBorderStyle BorderRightStyle { get; }
+    string BorderRightColor { get; }
+
     float? BorderBottomWidthPt { get; }
-    // string BorderLeftColor { get; }
-    CellBorderStyle BorderLeftStyle { get; }
+    CellBorderStyle BorderBottomStyle { get; }
+    string BorderBottomColor { get; }
+
     float? BorderLeftWidthPt { get; }
+    CellBorderStyle BorderLeftStyle { get; }
+    string BorderLeftColor { get; }
 
     Dictionary<string, string> GetCSSStyles() {
         return CSS.GetCSSStyles(this);

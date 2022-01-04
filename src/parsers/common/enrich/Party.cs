@@ -588,6 +588,8 @@ class PartyEnricher : Enricher {
             return false;
         if (line.Contents.Count() == 0)
             return false;
+        if (line.Contents.All(inline => inline is WText) && line.Contents.Cast<WText>().Any(wText => !string.IsNullOrWhiteSpace(wText.Text)))
+            return true;
         IInline first = line.Contents.First();
         if (line.Contents.Count() == 1) {
             if (first is not WText wText1)
@@ -645,6 +647,11 @@ class PartyEnricher : Enricher {
         if (line.Contents.Count() == 1) {
             WText text = (WText) line.Contents.First();
             WParty party = new WParty(text) { Role = role };
+            IEnumerable<IInline> contents = new List<IInline>(1) { party };
+            return new WLine(line, contents);
+        }
+        if (line.Contents.All(inline => inline is WText) && line.Contents.Cast<WText>().Any(wText => !string.IsNullOrWhiteSpace(wText.Text))) {
+            WParty2 party = new WParty2(line.Contents.Cast<WText>()) { Role = role };
             IEnumerable<IInline> contents = new List<IInline>(1) { party };
             return new WLine(line, contents);
         }
@@ -999,7 +1006,7 @@ class PartyEnricher : Enricher {
             rows = EnrichThreeRowsWithNoRolesOrNull(table.TypedRows);
         if (rows is null)
             rows = EnrichRows(table.TypedRows);
-        return new WTable(table.Main, table.Properties, rows);
+        return new WTable(table.Main, table.Properties, table.Grid, rows);
     }
 
     private IEnumerable<WRow> EnrichRows(IEnumerable<WRow> rows) {
@@ -1205,7 +1212,7 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Defendants/Appellants/", "Appellant/ Defendant", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
             "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants",
             "Appellant/ Respondent", // [2021] EWCA Civ 1792
             "Claimants/ Appellants",    // [2021] EWCA Civ 1799
@@ -1223,7 +1230,7 @@ class PartyEnricher : Enricher {
         if (types.Contains(normalized))
             return PartyRole.Defendant;
         types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents",
-            "Claimant/Respondent", "Claimant/ Respondent", "Claimant / Respondent", "Clamaints/ Respondents", "Respondent/Claimant",
+            "Claimant/Respondent", "Claimant/ Respondent", "Claimant / Respondent", "Clamaints/ Respondents", "Respondent/Claimant", "Respondent/ Claimant",
             "Defendant/Respondent", "Defendant/ Respondent", "Defendant / Respondent", "Defendants/Respondents", "Petitioner/Respondent",
             "First Respondent", "Second Respondent", "Third Respondent", "Fourth Respondent",
             "1st Respondent", "2nd Respondent", "3rd Respondent",   // EWCA/Civ/2012/378
@@ -1294,11 +1301,15 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Appellant/" && two == "Claimant")    // EWHC/Ch/2017/541
             return PartyRole.Appellant;
+        if (one == "Appellant" && two == "/Claimant")    // [2021] EWHC 3453 (QB)
+            return PartyRole.Appellant;
         if (one == "Appellant/" && two == "Defendant")    // EWHC/QB/2013/196
             return PartyRole.Appellant;
         if (one == "Respondent/" && two == "Defendant")    // EWHC/Ch/2017/541
             return PartyRole.Respondent;
         if (one == "Respondent" && two == "Defendant")    // EWCA/Civ/2018/601
+            return PartyRole.Respondent;
+        if (one == "1st Respondent" && two == "/Defendant")    // [2021] EWHC 3453 (QB)
             return PartyRole.Respondent;
         if (one == "Claimants/" && two == "Appellants") // EWHC/Admin/2016/321
             return PartyRole.Appellant;
@@ -1322,7 +1333,7 @@ class PartyEnricher : Enricher {
             return PartyRole.Defendant;
         if (one == "Defendant/" && two == "Cross appellant")    // EWHC/QB/2013/652
             return PartyRole.Defendant; // ??? other role is Appellant
-        // if (one == "" && two == "")    // 
+        // if (one == "" && two == "")    //
         //     return PartyRole.;
         if (one == "Applicant/" && two == "Respondent")    // [2021] EWCA Civ 1725
             return PartyRole.Respondent;
@@ -1430,6 +1441,18 @@ class PartyEnricher : Enricher {
                     IEnumerable<IInline> mapped = line.Contents.Select(inline => filter(inline) ? new WParty((WText) inline) { Role = role } : inline);
                     return new WLine(line, mapped);
                 }
+                if (line.Contents.Any(inline => inline is WText wt && Regex.IsMatch(wt.Text, @"^\(\d+\) ")) && line.Contents.All(inline => inline is WLineBreak || inline is WText wt && (string.IsNullOrEmpty(wt.Text) || Regex.IsMatch(wt.Text, @"^\(\d+\) ")))) {
+                    IEnumerable<IInline> mapped = line.Contents.Select(inline => {
+                        if (inline is WText wt) {
+                            if (string.IsNullOrEmpty(wt.Text))
+                                return inline;
+                            return new WParty(wt) { Role = role };
+                        }
+                        return inline;
+                    });
+                    return new WLine(line, mapped);
+                }
+                /* these should be rewritten so they do nothing if their conditions aren't met (instead of returning) */
                 if (line.Contents.Count() == 1) {
                     IInline first = line.Contents.First();
                     if (first is not WText wText)
@@ -1482,6 +1505,18 @@ class PartyEnricher : Enricher {
                         return line;
                     WParty party = new WParty(wText1) { Role = role };
                     return new WLine(line, new List<IInline>(2) { party, second });
+                }
+                if (line.Contents.Count() == 3) {   // [2021] EWCA Civ 1876
+                    IInline first = line.Contents.First();
+                    IInline second = line.Contents.Skip(1).First();
+                    IInline third = line.Contents.Skip(2).First();
+                    if (first is WText wText1)
+                        if (second is WLineBreak)
+                            if (third is WText)
+                                if (wText1.Text == "SECRETARY OF STATE ") {
+                                    WParty2 party = new WParty2(line.Contents.Cast<ITextOrWhitespace>()) { Role = role };
+                                    return new WLine(line, new List<IInline>(1) { party });
+                                }
                 }
                 if (line.Contents.Count() == 3) {   // EWHC/Ch/2018/2498
                     IInline first = line.Contents.First();

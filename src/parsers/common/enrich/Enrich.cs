@@ -123,7 +123,7 @@ abstract class Enricher2 : Enricher {
             if (!object.ReferenceEquals(before, after)) {
                 while (rows.MoveNext())
                     enriched.Add(rows.Current);
-                return new WTable(table.Main, table.Properties, enriched);
+                return new WTable(table.Main, table.Properties, table.Grid, enriched);
             }
         }
         return table;

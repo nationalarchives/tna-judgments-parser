@@ -92,6 +92,8 @@ class Fields {
         }
         fieldCode = DOCX.Fields.NormalizeFieldCode(fieldCode);
         logger.LogDebug("field code: " + fieldCode);
+        if (string.IsNullOrWhiteSpace(fieldCode))    // [2021] EWFC 89
+            return Enumerable.Empty<IInline>();
         if (Advance.Is(fieldCode))
             return Advance.Parse(main, fieldCode, withinField.Skip(i));
         Match match = Regex.Match(fieldCode, "^ FILENAME \\\\\\* MERGEFORMAT ?$");
@@ -373,7 +375,6 @@ class Fields {
             return firstNumber;
         }
         return null;
-
     }
 
     /* AUTONUM */
