@@ -13,7 +13,7 @@ class WMetadata2 : WMetadata {
 
     private readonly IOutsideMetadata meta2;
 
-    internal WMetadata2(MainDocumentPart main, Judgment judgment, IOutsideMetadata meta2) : base(main, judgment) {
+    internal WMetadata2(MainDocumentPart main, Judgment judgment, IOutsideMetadata meta2) : base(main, judgment, meta2 is null ? Enumerable.Empty<IExternalAttachment>() : meta2.Attachments) {
         this.meta2 = meta2;
     }
 
@@ -48,8 +48,6 @@ class WMetadata2 : WMetadata {
             return meta2.Name;
         return base.CaseName ?? meta2.Name;
     } }
-
-    override public IEnumerable<IExternalAttachment> ExternalAttachments { get => meta2.Attachments; }
 
 }
 
