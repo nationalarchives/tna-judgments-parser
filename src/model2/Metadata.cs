@@ -17,6 +17,12 @@ class WMetadata : IMetadata {
     internal WMetadata(MainDocumentPart main, Judgment judgment) {
         this.main = main;
         this.judgment = judgment;
+        ExternalAttachments = Enumerable.Empty<IExternalAttachment>();
+    }
+    protected WMetadata(MainDocumentPart main, Judgment judgment, IEnumerable<IExternalAttachment> attachments) {
+        this.main = main;
+        this.judgment = judgment;
+        ExternalAttachments = attachments;
     }
 
     virtual public Court? Court() {
@@ -207,7 +213,7 @@ class WMetadata : IMetadata {
         return DOCX.CSS.Extract(main, "#judgment");
     }
 
-    virtual public IEnumerable<IExternalAttachment> ExternalAttachments { get => Enumerable.Empty<IExternalAttachment>(); }
+    public IEnumerable<IExternalAttachment> ExternalAttachments { get; init; }
 
 }
 

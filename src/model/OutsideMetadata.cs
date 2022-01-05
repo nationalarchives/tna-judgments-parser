@@ -15,11 +15,11 @@ interface IOutsideMetadata {
 
     bool IdTrumps { get; }
 
-    Court Court { get; }
+    Court? Court { get; }
 
-    int Year { get; }
+    int? Year { get; }
 
-    int Number { get; }
+    int? Number { get; }
 
     string Cite { get; }
 
