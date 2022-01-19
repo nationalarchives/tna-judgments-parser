@@ -238,12 +238,12 @@ class PartyEnricher : Enricher {
 
     /* multi-line */
 
-    private static List<IBlock> EnrichMultiLinePartyBockOrNull(IBlock[] rest) {
+    private static List<IBlock> EnrichMultiLinePartyBockOrNull(IBlock[] rest, bool successive = false) {
         if (rest.Length == 0)
             return null;
         int i = 0;
         IBlock line = rest[i];
-        if (!IsBeforePartyMarker(line) && !IsBeforePartyMarker2(line))
+        if (!IsBeforePartyMarker(line) && !IsBeforePartyMarker2(line) && !(successive && IsBeforePartyMarker3(line)))
             return null;
         List<IBlock> enriched = new List<IBlock>();
         enriched.Add(line);
@@ -280,8 +280,6 @@ class PartyEnricher : Enricher {
             if (i == rest.Length)
                 return null;
             line = rest[i];
-        // } else {
-        //     return null;
         }
         List<IBlock> secondGroupOfParites = Magic2(rest[i..]);
         if (secondGroupOfParites is null)
@@ -291,10 +289,7 @@ class PartyEnricher : Enricher {
         if (i == rest.Length)
             return null;
         line = rest[i];
-        // if (IsAfterPartyMarker(line)) {
-        //     enriched.Add(line);
-        //     return enriched;
-        // }
+
         if (IsBetweenPartyMarker2(line)) {
             enriched.Add(line);
             i += 1;
@@ -319,6 +314,13 @@ class PartyEnricher : Enricher {
             enriched.Add(line);
             return enriched;
         }
+
+        List<IBlock> another = EnrichMultiLinePartyBockOrNull(rest[i..], true);
+        if (another is not null) {
+            enriched.AddRange(another);
+            return enriched;
+        }
+
         return null;
     }
 
@@ -512,6 +514,15 @@ class PartyEnricher : Enricher {
         return false;
     }
 
+    private static bool IsBeforePartyMarker3(IBlock block) {
+        if (block is not ILine line)
+            return false;
+        string normalized = line.NormalizedContent();
+        if (normalized == "AND BETWEEN:")
+            return true;
+        return false;
+    }
+
     private static bool IsInTheMatterOfSomething(IBlock block) {
         if (block is not WLine line)
             return false;
@@ -590,6 +601,8 @@ class PartyEnricher : Enricher {
             return false;
         if (line.Contents.All(inline => inline is WText) && line.Contents.Cast<WText>().Any(wText => !string.IsNullOrWhiteSpace(wText.Text)))
             return true;
+        if (line.Contents.All(inline => inline is ITextOrWhitespace) && line.Contents.Any(inline => inline is WText wText && !string.IsNullOrWhiteSpace(wText.Text)))
+            return true;
         IInline first = line.Contents.First();
         if (line.Contents.Count() == 1) {
             if (first is not WText wText1)
@@ -655,6 +668,13 @@ class PartyEnricher : Enricher {
             IEnumerable<IInline> contents = new List<IInline>(1) { party };
             return new WLine(line, contents);
         }
+        if (line.Contents.All(inline => inline is ITextOrWhitespace) && line.Contents.Any(inline => inline is WText wText && !string.IsNullOrWhiteSpace(wText.Text))) {
+            IEnumerable<IInline> before = line.Contents.TakeWhile(inline => inline is not IFormattedText);
+            IEnumerable<IInline> main = line.Contents.Skip(before.Count());
+            WParty2 party = new WParty2(main.Cast<ITextOrWhitespace>()) { Role = role };
+            IEnumerable<IInline> contents = before.Append(party);
+            return new WLine(line, contents);
+        }
         if (line.Contents.Count() == 2) {
             IInline first = line.Contents.First();
             WText second = (WText) line.Contents.Skip(1).First();
@@ -701,7 +721,7 @@ class PartyEnricher : Enricher {
             "First Claimant", "Second Claimant",
             "Claimant/Respondent", "Claimant/ Respondent", "CLAIMANT/RESPONDENT", "Respondent/Claimant", "Claimants/Respondents", "CLAIMANTS/RESPONDENTS",
             "Respondent",    // EWCA/Civ/2003/1686
-            "Applicant", "Applicants", "Claimant/Applicant", "CLAIMANT/APPELLANT",
+            "Applicant", "Applicants", "Claimant/Applicant", "Claimant/Appellant", "CLAIMANT/APPELLANT",
             "Appellant", "(APPELLANT)", "(APPELLANTS)", "Appellant/Appellant", "Applicant/Appellant", "Appellant/Applicant", "Appellant/Claimant", "Appellants/ Claimants",
             "Petitioner"
         };
@@ -742,7 +762,6 @@ class PartyEnricher : Enricher {
             case "Applicant":
             case "Applicants":
             case "Claimant/Applicant":
-            case "CLAIMANT/APPELLANT":
                 return PartyRole.Applicant;
             case "Appellant":
             case "(APPELLANT)":
@@ -752,6 +771,8 @@ class PartyEnricher : Enricher {
             case "Appellant/Applicant":
             case "Appellant/Claimant":
             case "Appellants/ Claimants":
+            case "Claimant/Appellant":
+            case "CLAIMANT/APPELLANT":
                 return PartyRole.Appellant;
             case "Petitioner":
                 return PartyRole.Petitioner;
@@ -881,10 +902,10 @@ class PartyEnricher : Enricher {
         return betweenPartyMarkers.Contains(normalized);
     }
     private static bool IsBetweenPartyMarker2(IBlock block) {
-        ISet<string> betweenPartyMarkers = new HashSet<string>() { "and", "-and-", "- and -", "--and--" }; // EWHC/Admin/2003/3013, EWHC/Fam/2013/3493, EWHC/Fam/2012/4047, EWCA/Civ/2013/1506
+        ISet<string> betweenPartyMarkers = new HashSet<string>() { "and", "-and-", "- and -", "--and--", "and –" }; // EWHC/Admin/2003/3013, EWHC/Fam/2013/3493, EWHC/Fam/2012/4047, EWCA/Civ/2013/1506
         if (block is not ILine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent().ToLower();
         return betweenPartyMarkers.Contains(normalized);
     }
 
@@ -900,7 +921,7 @@ class PartyEnricher : Enricher {
             "Respondnet",  // EWHC/Admin/2010/3393
             "First Respondent", "Second Respondent",
             "Interested Party", "Interested Parties", "(INTERESTED PARTY)", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party",
-            "FIRST DEFENDANT’S SOLICITOR/APPELLANT"
+            "FIRST DEFENDANT’S SOLICITOR/APPELLANT", "Third Party/Appellant"
         };
         return secondPartyTypes.Contains(s);
     }
@@ -937,6 +958,7 @@ class PartyEnricher : Enricher {
             case "Appellant/First Defendant":
             case "Appellant":
             case "FIRST DEFENDANT’S SOLICITOR/APPELLANT":   // EWCA/Civ/2006/1032
+            case "Third Party/Appellant":   // [2022] EWHC 34 (Ch)
                 return PartyRole.Appellant;
             case "Respondent":
             case "Respondents":
@@ -981,6 +1003,8 @@ class PartyEnricher : Enricher {
             return true;
         if (content.StartsWith("REPORTING RESTRICTIONS APPLY:"))
             return true;
+        // if (content == "AND BETWEEN:")
+        //     return true;
         return false;
     }
 
@@ -1231,7 +1255,7 @@ class PartyEnricher : Enricher {
             return PartyRole.Defendant;
         types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents",
             "Claimant/Respondent", "Claimant/ Respondent", "Claimant / Respondent", "Clamaints/ Respondents", "Respondent/Claimant", "Respondent/ Claimant",
-            "Defendant/Respondent", "Defendant/ Respondent", "Defendant / Respondent", "Defendants/Respondents", "Petitioner/Respondent",
+            "Defendant/Respondent", "Defendant/ Respondent", "Defendant / Respondent", "Defendants/Respondents", "Defendants/ Respondents", "Petitioner/Respondent",
             "First Respondent", "Second Respondent", "Third Respondent", "Fourth Respondent",
             "1st Respondent", "2nd Respondent", "3rd Respondent",   // EWCA/Civ/2012/378
             "Respondents/Defendants", "Respond-ents/ Defendants", "Respondents/ Defendants",  // EWCA/Civ/2015/377, EWHC/QB/2006/582
@@ -1339,6 +1363,8 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Appellant/" && two == "Respondent")    // [2020] EWHC 3409 (QB)
             return PartyRole.Respondent;
+        if (one == "Respondent/" && two == "Appellant")    // [2021] EWCA Civ 1961
+            return PartyRole.Appellant;
         return null;
     }
 

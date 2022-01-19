@@ -44,6 +44,17 @@ class Inline {
                         e = enumerator.Current;
                     }
                 } else {
+                    if (enumerator.MoveNext()) {    // field within field is empty: [2022] EWHC 41 (TCC)
+                        OpenXmlElement e2 = enumerator.Current;
+                        if (e2 is Run && e2.ChildElements.Count == 1 && e2.ChildElements.First() is FieldCode fc && string.IsNullOrWhiteSpace(fc.InnerText)) {
+                            if (enumerator.MoveNext()) {
+                                OpenXmlElement e3 = enumerator.Current;
+                                if (Fields.IsFieldEnd(e3)) {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
                     throw new Exception();
                 }
                 continue;

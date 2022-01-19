@@ -175,8 +175,11 @@ class Builder {
         level.SetAttribute("name", "tableOfContents");
         XmlElement content = CreateAndAppend("content", level);
         XmlElement e = CreateAndAppend("toc", content);
-        foreach (ILine item in toc.Contents)
-            Block(e, item, "tocItem");
+        foreach (ILine item in toc.Contents) {
+            var tocItem = Block(e, item, "tocItem");
+            tocItem.SetAttribute("level", "0");
+            tocItem.SetAttribute("href", "#");
+        }
     }
 
 
@@ -238,7 +241,7 @@ class Builder {
         }
     }
 
-    private void Block(XmlElement parent, ILine line, string name) {
+    private XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
@@ -248,6 +251,7 @@ class Builder {
             block.SetAttribute("style", CSS.SerializeInline(styles));
         foreach (IInline inline in line.Contents)
             AddInline(block, inline);
+        return block;
     }
     private void AddNamedBlock(XmlElement parent, ILine line, string name) {
         XmlElement block = CreateAndAppend("block", parent);
