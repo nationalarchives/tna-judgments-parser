@@ -321,7 +321,7 @@ class PartyEnricher : Enricher {
             return enriched;
         }
 
-        return null;
+        return enriched;
     }
 
     private static List<IBlock> EnrichMultiLinePartyBockOrNull2(IBlock[] rest) {    // EWHC/Admin/2018/3311
