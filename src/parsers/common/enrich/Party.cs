@@ -721,7 +721,7 @@ class PartyEnricher : Enricher {
             "First Claimant", "Second Claimant",
             "Claimant/Respondent", "Claimant/ Respondent", "CLAIMANT/RESPONDENT", "Respondent/Claimant", "Claimants/Respondents", "CLAIMANTS/RESPONDENTS",
             "Respondent",    // EWCA/Civ/2003/1686
-            "Applicant", "Applicants", "Claimant/Applicant", "Claimant/Appellant", "CLAIMANT/APPELLANT",
+            "Applicant", "Applicants", "Claimant/Applicant", "Claimant/Appellant", "Claimants/Appellants", "CLAIMANT/APPELLANT",
             "Appellant", "(APPELLANT)", "(APPELLANTS)", "Appellant/Appellant", "Applicant/Appellant", "Appellant/Applicant", "Appellant/Claimant", "Appellants/ Claimants",
             "Petitioner"
         };
@@ -772,6 +772,7 @@ class PartyEnricher : Enricher {
             case "Appellant/Claimant":
             case "Appellants/ Claimants":
             case "Claimant/Appellant":
+            case "Claimants/Appellants":
             case "CLAIMANT/APPELLANT":
                 return PartyRole.Appellant;
             case "Petitioner":
@@ -891,22 +892,16 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsBetweenPartyMarker(IBlock block) {
-        ISet<string> betweenPartyMarkers = new HashSet<string>() { "v", "-v-", "- v -",
-            "- v –",   // [2021] EWCA Crim 1412
-            "V" // [2021] EWCA Crim 1413
-        };
         if (block is not ILine line)
             return false;
         string normalized = line.NormalizedContent();
-        var temp = betweenPartyMarkers.Contains(normalized);
-        return betweenPartyMarkers.Contains(normalized);
+        return IsV(normalized);
     }
     private static bool IsBetweenPartyMarker2(IBlock block) {
-        ISet<string> betweenPartyMarkers = new HashSet<string>() { "and", "-and-", "- and -", "--and--", "and –" }; // EWHC/Admin/2003/3013, EWHC/Fam/2013/3493, EWHC/Fam/2012/4047, EWCA/Civ/2013/1506
         if (block is not ILine line)
             return false;
-        string normalized = line.NormalizedContent().ToLower();
-        return betweenPartyMarkers.Contains(normalized);
+        string normalized = line.NormalizedContent();
+        return IsAnd(normalized);
     }
 
     private static bool IsSecondPartyType(string s) {
@@ -917,11 +912,12 @@ class PartyEnricher : Enricher {
             "Applicants/Defendants",
             "Defendant/Appellant", "DEFENDANT/APPELLANT", "Defendants/Appellants", "Defendants / Appellants", "Appellant/Defendant", "Appellant/First Defendant",
             "Appellant", // EWCA/Civ/2003/1686
-            "Respondent", "Respondents", "(RESPONDENT)", "(RESPONDENTS)", "Defendant/Respondent", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Respondents", "Respondents/Defendants", "Respondents/ Defendants",
+            "Respondent", "Respondents", "(RESPONDENT)", "(RESPONDENTS)", "Defendant/Respondent", "Defendants/Respondents", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Respondents", "Respondents/Defendants", "Respondents/ Defendants",
             "Respondnet",  // EWHC/Admin/2010/3393
             "First Respondent", "Second Respondent",
             "Interested Party", "Interested Parties", "(INTERESTED PARTY)", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party",
-            "FIRST DEFENDANT’S SOLICITOR/APPELLANT", "Third Party/Appellant"
+            "FIRST DEFENDANT’S SOLICITOR/APPELLANT", "Third Party/Appellant",
+            "Intervener", "Interveners"
         };
         return secondPartyTypes.Contains(s);
     }
@@ -965,6 +961,7 @@ class PartyEnricher : Enricher {
             case "(RESPONDENT)":
             case "(RESPONDENTS)":
             case "Defendant/Respondent":
+            case "Defendants/Respondents":
             case "DEFENDANT/RESPONDENT":
             case "DEFENDANTS/RESPONDENTS":
             case "Respondent/Respondent":
@@ -982,6 +979,9 @@ class PartyEnricher : Enricher {
             case "Second Interested Party":
             case "Third Interested Party":
                 return PartyRole.InterestedParty;
+            case "Intervener":
+            case "Interveners":
+                return PartyRole.Intervener;
             default:
                 throw new System.Exception();
         }
@@ -1448,17 +1448,7 @@ class PartyEnricher : Enricher {
                     string trimmed = wText.Text.Trim();
                     if (trimmed.StartsWith('(') && trimmed.EndsWith(')') && !trimmed.StartsWith("(on the application of", StringComparison.InvariantCultureIgnoreCase))
                         return false;
-                    if (trimmed == "and")    // EWHC/Fam/2003/365
-                        return false;
-                    if (trimmed == "-and-")    // EWHC/Fam/2013/1956
-                        return false;
-                    if (trimmed == "- and –")    // EWHC/Fam/2008/1561
-                        return false;
-                    if (trimmed == "- and -")   // EWHC/Fam/2017/364
-                        return false;
-                    if (trimmed == "And")   // EWHC/Admin/2010/2
-                        return false;
-                    if (trimmed == "- and-")    // EWHC/Comm/2016/146
+                    if (IsAnd(trimmed))
                         return false;
                     return true;
                 };
@@ -1488,17 +1478,7 @@ class PartyEnricher : Enricher {
                     string trimmed = wText.Text.Trim();
                     if (trimmed.StartsWith('(') && trimmed.EndsWith(')') && !trimmed.StartsWith("(on the application of", StringComparison.InvariantCultureIgnoreCase))
                         return line;
-                    if (trimmed == "and")    // EWHC/Fam/2003/365
-                        return line;
-                    if (trimmed == "-and-")    // EWHC/Fam/2013/1956
-                        return line;
-                    if (trimmed == "- and –")    // EWHC/Fam/2008/1561
-                        return line;
-                    if (trimmed == "- and -")   // EWHC/Fam/2017/364
-                        return line;
-                    if (trimmed == "And")   // EWHC/Admin/2010/2
-                        return line;
-                    if (trimmed == "- and-")    // EWHC/Comm/2016/146
+                    if (IsAnd(trimmed))
                         return line;
                     WParty party = new WParty(wText) { Role = role };
                     return new WLine(line, new List<IInline>(1) { party });
@@ -1517,17 +1497,7 @@ class PartyEnricher : Enricher {
                     string trimmed = wText1.Text.Trim();
                     if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
                         return line;
-                    if (trimmed == "and")
-                        return line;
-                    if (trimmed == "-and-")
-                        return line;
-                    if (trimmed == "- and –")
-                        return line;
-                    if (trimmed == "- and -")
-                        return line;
-                    if (trimmed == "And")
-                        return line;
-                    if (trimmed == "- and-")
+                    if (IsAnd(trimmed))
                         return line;
                     WParty party = new WParty(wText1) { Role = role };
                     return new WLine(line, new List<IInline>(2) { party, second });
@@ -1559,17 +1529,7 @@ class PartyEnricher : Enricher {
                     string trimmed = wText3.Text.Trim();
                     if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
                         return line;
-                    if (trimmed == "and")
-                        return line;
-                    if (trimmed == "-and-")
-                        return line;
-                    if (trimmed == "- and –")
-                        return line;
-                    if (trimmed == "- and -")
-                        return line;
-                    if (trimmed == "And")
-                        return line;
-                    if (trimmed == "- and-")
+                    if (IsAnd(trimmed))
                         return line;
                     WParty party = new WParty(wText3) { Role = role };
                     return new WLine(line, new List<IInline>(3) { first, second, party });
@@ -1580,14 +1540,20 @@ class PartyEnricher : Enricher {
         return new WCell(cell.Row, contents);
     }
 
+    private static bool IsV(string s) {
+        char[] trim = { ' ', '-', '–' };
+        return s.Trim(trim).ToLower() == "v";
+    }
+    private static bool IsAnd(string s) {
+        char[] trim = { ' ', '-', '–' };
+        return s.Trim(trim).ToLower() == "and";
+    }
+
     private WCell EnrichPartyNamesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles) {
         List<IBlock> contents = new List<IBlock>(cell.Contents.Count());
         bool firstPartyFound = false;
         bool andFound = false;
         bool secondPartyFound = false;
-        ISet<string> ands = new HashSet<string>() {
-            "and", "-and-", "- and –", "- and -", "And", "- and-"
-        };
         foreach (IBlock block in cell.Contents) {
             if (block is not WLine line)
                 return cell;
@@ -1609,7 +1575,7 @@ class PartyEnricher : Enricher {
                     contents.Add(block);
                     continue;
                 }
-                if (ands.Contains(trimmed)) {
+                if (IsAnd(trimmed)) {
                     andFound = true;
                     contents.Add(block);
                     continue;
@@ -1651,7 +1617,7 @@ class PartyEnricher : Enricher {
                     contents.Add(block);
                     continue;
                 }
-                if (ands.Contains(trimmed)) {
+                if (IsAnd(trimmed)) {
                     andFound = true;
                     contents.Add(block);
                     continue;
