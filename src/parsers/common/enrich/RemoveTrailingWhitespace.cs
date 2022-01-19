@@ -9,6 +9,8 @@ class RemoveTrailingWhitespace : Enricher {
     private static bool IsWhitespace(IInline inline) {
         if (inline is WTab)
             return true;
+        if (inline is WLineBreak)
+            return true;
         if (inline is WText wt)
             return string.IsNullOrWhiteSpace(wt.Text);
         return false;
