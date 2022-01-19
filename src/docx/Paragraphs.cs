@@ -43,28 +43,25 @@ static class Paragraphs {
     public static StringValue GetLeftIndentWithNumberingAndStyleInDXA(MainDocumentPart main, ParagraphProperties props) {
         if (props is null)
             return null;
-        StringValue left = props.Indentation?.Left;
+        StringValue left;
+
+        left = props.Indentation?.Left;
         if (left is not null)
             return left;
+
         left = Numbering.GetOwnLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Left;
         if (left is not null)
             return left;
-        Style style = Styles.GetStyle(main, props);
-        if (style is null)
-            style = Styles.GetDefaultParagraphStyle(main);
+
+        Style style = Styles.GetStyle(main, props) ?? Styles.GetDefaultParagraphStyle(main);
         left = style?.StyleParagraphProperties?.Indentation?.Left;
         if (left is not null)
             return left;
 
-        NumberingId numberingId = props?.NumberingProperties?.NumberingId;
-        if (numberingId is not null) {
-            NumberingInstance numberingInstance = Numbering.GetNumbering(main, numberingId);
-            if (numberingInstance is null)
-                return null;
-        }
         left = Numbering.GetStyleLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Left;
         if (left is not null)
             return left;
+
         return null;
     }
     public static float? GetLeftIndentWithNumberingAndStyleInInches(MainDocumentPart main, ParagraphProperties props) {
@@ -114,7 +111,22 @@ static class Paragraphs {
             return null;
         Indentation indentation;
 
+        indentation = pProps.Indentation;
+        if (indentation?.Hanging is not null)
+            return "-" + indentation.Hanging.Value;
+        if (indentation?.FirstLine is not null)
+            return indentation.FirstLine.Value;
+
         indentation = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Indentation;
+        if (indentation?.Hanging is not null)
+            return "-" + indentation.Hanging.Value;
+        if (indentation?.FirstLine is not null)
+            return indentation.FirstLine.Value;
+
+        Style style = Styles.GetStyle(main, pProps);
+        if (style is null)
+            style = Styles.GetDefaultParagraphStyle(main);
+        indentation = style?.StyleParagraphProperties?.Indentation;
         if (indentation?.Hanging is not null)
             return "-" + indentation.Hanging.Value;
         if (indentation?.FirstLine is not null)
@@ -129,22 +141,10 @@ static class Paragraphs {
         //     if (numberingInstance is not null) {
         //     }
         // }
+        // if (pProps?.NumberingProperties?.NumberingId is null)
+        //     indentation = null;
+        // else
         indentation = Numbering.GetStyleLevel(main, pProps)?.PreviousParagraphProperties?.Indentation;
-        if (indentation?.Hanging is not null)
-            return "-" + indentation.Hanging.Value;
-        if (indentation?.FirstLine is not null)
-            return indentation.FirstLine.Value;
-
-        indentation = pProps.Indentation;
-        if (indentation?.Hanging is not null)
-            return "-" + indentation.Hanging.Value;
-        if (indentation?.FirstLine is not null)
-            return indentation.FirstLine.Value;
-
-        Style style = Styles.GetStyle(main, pProps);
-        if (style is null)
-            style = Styles.GetDefaultParagraphStyle(main);
-        indentation = style?.StyleParagraphProperties?.Indentation;
         if (indentation?.Hanging is not null)
             return "-" + indentation.Hanging.Value;
         if (indentation?.FirstLine is not null)
@@ -183,6 +183,23 @@ static class Paragraphs {
         if (x is null)
             return null;
         return x.Position / 1440f;
+    }
+
+    public static float? GetNumTab(MainDocumentPart main, ParagraphProperties pProps) {
+        var x = pProps?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
+        if (x is not null)
+            return x.Position / 1440f;
+        x = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
+        if (x is not null)
+            return x.Position / 1440f;
+        x = Numbering.GetStyleLevel(main, pProps)?.PreviousParagraphProperties?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
+        if (x is not null)
+            return x.Position / 1440f;
+        Style style = Styles.GetStyle(main, pProps) ?? Styles.GetDefaultParagraphStyle(main);
+        x = style?.StyleParagraphProperties?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
+        if (x is not null)
+            return x.Position / 1440f;
+        return null;
     }
 
 }
