@@ -95,7 +95,7 @@ class WMetadata : IMetadata {
                     throw new System.Exception(cite);
                 return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
             }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) +(\d+) \(([A-Z][a-z]+)\.?\)$", RegexOptions.IgnoreCase);
+            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) +\[?(\d+)\]? \(([A-Z][a-z]+)\.?\)$", RegexOptions.IgnoreCase);
             if (match1.Success) {
                 string num = match1.Groups[3].Value.TrimStart('0');
                 if (string.IsNullOrEmpty(num))
