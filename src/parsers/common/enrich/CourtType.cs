@@ -1120,7 +1120,7 @@ class CourtType : Enricher2 {
             }
             i += 1;
         }
-        return blocks;
+        return CourtType2.Enrich(blocks);
     }
 
     protected override WCell EnrichCell(WCell cell) {
