@@ -44,15 +44,6 @@ class WMetadata : IMetadata {
             if (c is not null)
                 return c;
         }
-        string id = DocumentId();
-        if (id is null)
-            return null;
-        if (id.StartsWith("uksc/"))
-            return Courts.SupremeCourt;
-        if (id.StartsWith("ukpc/"))
-            return Courts.PrivyCouncil;
-        if (id.StartsWith("ukpc/"))
-            return Courts.PrivyCouncil;
         return null;
     }
 

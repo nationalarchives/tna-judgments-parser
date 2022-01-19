@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -15,28 +16,33 @@ class WLine : ILine {
     private IEnumerable<IInline> contents;
 
     internal bool IsFirstLineOfNumberedParagraph { get; init; }
+    private Paragraph Paragraph { get; init; }
 
     public WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
         this.main = main;
         this.properties = properties;
         this.contents = contents;
+        Paragraph = null;
     }
     public WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
         this.contents = Inline.ParseRuns(main, paragraph.ChildElements);
+        Paragraph = paragraph;
     }
     public WLine(WLine prototype, IEnumerable<IInline> contents) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
+        Paragraph = prototype.Paragraph;
     }
     internal WLine(WLine prototype) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = prototype.contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
+        Paragraph = prototype.Paragraph;
     }
 
     public string Style {
@@ -79,101 +85,65 @@ class WLine : ILine {
             return inches.ToString("F2") + "in";
         }
     }
+
+    private float? CalculateMinNumberWidth() {
+        if (Paragraph is null)
+            return null;
+        var info = DOCX.Numbering2.GetFormattedNumber(this.main, Paragraph);
+        if (info is null)
+            return null;
+        string num = info.Value.Number.TrimEnd('.');
+        return num.Length * 0.125f;
+    }
+
     public float? FirstLineIndentInches {
         get {
-            float? relative = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, properties);
+            float? relative1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties);
             if (!IsFirstLineOfNumberedParagraph)
-                return relative;
-            const float min = 0.5f;
-            if (!relative.HasValue)
-                return null;    // ewhc/fam/2021/3004
-            float? firstTab = DOCX.Paragraphs.GetFirstTab(main, properties);
-            if (!firstTab.HasValue) {
-                if (relative.Value < 0.0f && Math.Abs(relative.Value) < min)
-                    return 0.0f;    // ewhc/qb/2021/3437
-                    // this is more accurate but might it make large numbers difficult to read?
-                return relative.Value + min;
+                return relative1;
+
+            float relative = relative1 ?? 0;
+
+            float? minNumWidth = CalculateMinNumberWidth();
+
+            if (relative < 0) {
+                var abs = Math.Abs(relative);
+                if (minNumWidth.HasValue && minNumWidth.Value > abs)
+                    return minNumWidth.Value - abs;
+                return null;
             }
+
             float leftIndent = this.LeftIndentInches ?? 0f;
-            float hardFirst = leftIndent + relative.Value;
+            float defaultTab;
+            if (leftIndent == 0) {
+                defaultTab = 0.5f;
+            } if (leftIndent > 0) {
+                defaultTab = (float) ((Math.Floor(leftIndent * 2) + 1) / 2 - leftIndent);
+            } else {
+                defaultTab = (float) ((Math.Floor(Math.Abs(leftIndent) * 2) + 1) / 2 - Math.Abs(leftIndent));
+            }
+            if (minNumWidth.HasValue && minNumWidth.Value > defaultTab)
+                defaultTab = minNumWidth.Value;
+
+            float? firstTab = DOCX.Paragraphs.GetFirstTab(main, properties); // this is absolute not relative
+            if (!firstTab.HasValue)
+                return relative + defaultTab;
+            float hardFirst = leftIndent + relative;
             float firstTabRelative = firstTab.Value - hardFirst;
-            if (firstTabRelative > min)
-                return relative.Value + min;
-            // if (firstTabRelative.Value > Math.Abs(relative.Value))
-            //     return relative.Value + min;
-            return relative.Value + firstTabRelative;
+            if (firstTabRelative > defaultTab)
+                return relative + defaultTab;
+            if (minNumWidth.HasValue && minNumWidth.Value > firstTabRelative)   // necessary?
+                return relative + minNumWidth.Value;
+            return relative + firstTabRelative;
         }
     }
-    // public float? FirstLineIndentInches {
-    //     get {
-    //         float? relative = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, properties);
-    //         if (!relative.HasValue)
-    //             return null;
-    //         // if (IsFirstLineOfNumberedParagraph && relativeFirst.HasValue)
-    //         //     System.Console.WriteLine("first line indent is " + x);
-    //         // if (IsFirstLineOfNumberedParagraph && x.HasValue && x.Value == 0f)
-    //         //     System.Console.WriteLine("first line indent is 0");
-    //         // if (IsFirstLineOfNumberedParagraph && x.HasValue && x.Value < 0f)
-    //         //     System.Console.WriteLine("first line indent is negative");
-    //         if (IsFirstLineOfNumberedParagraph && relative.Value > 0f && relative.Value < 0.5f) {
-    //             // *** the reason to add a value when there is none can be seen in EWHC/Admin/2020/602.pdf
-    //             System.Console.WriteLine("first line indent is small");
-    //             return 0.5f;
-    //         }
-    //         if (IsFirstLineOfNumberedParagraph && relative.Value < 0f && relative.Value > -0.1f) {
-    //             // *** the reason to add a value when there is none can be seen in EWHC/Admin/2020/602.pdf
-    //             System.Console.WriteLine("first line indent is small");
-    //             return 0.5f;
-    //         }
-    //         if (IsFirstLineOfNumberedParagraph && relative.HasValue && relative.Value > 0.5f) {
-    //             System.Console.WriteLine("first line indent is big");
-    //             return relative.Value - 0.5f;
-    //         }
-    //         if (IsFirstLineOfNumberedParagraph && relative.HasValue && relative.Value < -0.5f) {
-    //             System.Console.WriteLine("first line indent is big and negative");
-    //             // EWHC/Admin/2013/3527.rtf
-    //             float leftIndent = this.LeftIndentInches ?? 0f;
-    //             float hardFirst = leftIndent + relative.Value;
-    //             float? firstTab = DOCX.Paragraphs.GetFirstTab(main, properties);
-    //             float? firstTabRelative = firstTab is null ? null : firstTab - hardFirst;
-    //             float y;
-    //             if (!firstTabRelative.HasValue)
-    //                 y = relative.Value + 0.5f;
-    //             else if (firstTabRelative.Value > Math.Abs(relative.Value))
-    //                 y = relative.Value + 0.5f;
-    //             else
-    //                 y = relative.Value + firstTabRelative.Value;
-    //             return y;
-    //         }
-    //         if (IsFirstLineOfNumberedParagraph)
-    //             return null;
-    //         return relative;
-    //     }
-    // }
+
     public string FirstLineIndent {
         get {
             float? inches = this.FirstLineIndentInches;
             if (!inches.HasValue)
                 return null;
             return inches.Value.ToString("F2") + "in";
-
-            // !!! maybe the key is that Old numbered paragraphs are different
-
-            // if negative and small, all is ok EWCA/Crim/2007/1005
-
-            // *** the reason to add a value when there is none can be seen in EWHC/Admin/2020/602.pdf
-
-            // float? inches = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, properties);
-            // if (!inches.HasValue)
-            //     return IsFirstLineOfNumberedParagraph ? "0.5in" : null;
-            // if (IsFirstLineOfNumberedParagraph && inches < 0.0f)
-            //     return null;
-            // // when number and first line indent is 0, default indent is a tab
-            // if (IsFirstLineOfNumberedParagraph)
-            //     inches = inches.Value + 0.5f;
-            // // if (IsFirstLineOfNumberedParagraph && inches < 0.5f)
-            // //     return "0.5in";
-            // return inches.Value.ToString("F2") + "in";
         }
     }
 

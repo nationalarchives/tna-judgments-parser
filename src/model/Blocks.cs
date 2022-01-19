@@ -34,10 +34,15 @@ interface ILine : IBlock {
         return styles;
     }
 
-    public string NormalizedContent() {
+    public string TextContent() {
         IEnumerable<string> texts = this.Contents
             .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-        return Regex.Replace(string.Join("", texts), @"\s+", " ").Trim();
+        return string.Join("", texts);
+    }
+
+    public string NormalizedContent() {
+        string text = TextContent();
+        return Regex.Replace(text, @"\s+", " ").Trim();
     }
 
     public bool IsEmpty() {

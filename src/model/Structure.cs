@@ -6,8 +6,19 @@ namespace UK.Gov.Legislation.Judgments {
 
 interface INumber : IFormattedText {
 
+    float? LeftIndentInches { get; }
     string LeftIndent { get; }
     string FirstLineIndent { get; }
+
+    static void Alt(INumber that) {
+        var x = 2f;
+        var li = that.LeftIndentInches ?? 0f;
+        float width = x + li - 0.125f;
+        Dictionary<string, string> styles = CSS.GetCSSStyles(that);
+        styles.Add("margin-left", (-x).ToString("F0") + "in");
+        styles.Add("width", width.ToString("F3") + "in");
+        styles.Add("text-align", "right");
+    }
 
     static Dictionary<string, string> GetCSSStyles(INumber that) {
         Dictionary<string, string> styles = CSS.GetCSSStyles(that);

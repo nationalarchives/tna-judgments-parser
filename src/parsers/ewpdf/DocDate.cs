@@ -6,7 +6,6 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class DocDatePDF : DocDate {
 
-
     override protected WLine Enrich2OrDefault(WLine line) {
         WLine super = base.Enrich2OrDefault(line);
         if (super is not null)
@@ -17,7 +16,7 @@ class DocDatePDF : DocDate {
             return null;
         if (second is not WText fText2)
             return null;
-        if (fText2.Text != "  Before: ")
+        if (fText2.Text.Trim() != "Before:")
             return null;
         List<IInline> enriched = EnrichText(fText1);
         if (enriched is null)

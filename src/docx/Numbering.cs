@@ -103,7 +103,7 @@ class Numbering {
         if (numId is null)
             return null;
         int ilvl = props?.NumberingLevelReference?.Val?.Value ?? 0;
-        return GetLevel(main, (int) numId, ilvl);
+        return GetLevel(main, numId.Value, ilvl);
     }
     public static Level GetOwnLevel(MainDocumentPart main, ParagraphProperties pProps) {
         NumberingProperties props = pProps?.NumberingProperties;

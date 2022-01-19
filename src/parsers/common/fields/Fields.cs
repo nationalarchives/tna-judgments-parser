@@ -298,7 +298,7 @@ class Fields {
         if (fieldCode.StartsWith(" SUBJECT ")) // EWHC/Ch/2009/1330
             return RestOptional(main, withinField, i);
         
-        if (fieldCode == " The The FORMTEXT ") {    // this is an error in ____
+        if (fieldCode == " The FORMTEXT " || fieldCode == " The The FORMTEXT ") {    // [2022] EWCA Crim 6, error in ____
             logger.LogWarning("field error: " + fieldCode);
             return RestOptional(main, withinField, i);
         }

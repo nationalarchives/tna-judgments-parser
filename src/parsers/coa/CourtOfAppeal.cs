@@ -65,8 +65,12 @@ class CourtOfAppealParser : AbstractParser {
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
                 break;
-            // if (e is Paragraph p && p.Descendants<SectionProperties>().Any())
-            //     return header;
+            Predicate<SectionProperties> isNewSection = (sectPr) => {
+                return sectPr.ChildElements.OfType<PageNumberType>().Where(pgNumType => pgNumType.Start.HasValue).Any();
+            };
+            // [2022] EWFC 1
+            if (e is Paragraph p && p.Descendants<SectionProperties>().Where(sectPr => isNewSection(sectPr)).Any())
+                return header;
             AddBlock(e, header);
         }
         if (i < elements.Count)
