@@ -8,7 +8,7 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Serializer {
 
-    private static readonly ISet<string> blocks = new HashSet<string>{ "p", "block", "num", "heading" };
+    private static readonly ISet<string> blocks = new HashSet<string>{ "p", "block", "num", "heading", "tocItem" };
 
     private static readonly string ns = Builder.ns;
 
@@ -54,8 +54,8 @@ class Serializer {
     }
 
     private void SerializeElement(XmlElement e) {
-        if (e.Name == e.LocalName)
-            writer.WriteStartElement(e.Name, e.NamespaceURI);
+        if (e.NamespaceURI == Metadata.ukns)
+            writer.WriteStartElement("uk", e.LocalName, e.NamespaceURI);
         else
             writer.WriteStartElement(e.Prefix, e.LocalName, e.NamespaceURI);
         foreach (XmlAttribute attr in e.Attributes)

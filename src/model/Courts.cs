@@ -22,13 +22,15 @@ public readonly struct Courts {
         Code = "UKSC",
         LongName = "The UK Supreme Court",
         ShortName = "Supreme Court",
-        URL = "https://www.supremecourt.uk/"
+        URL = "https://www.supremecourt.uk/",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKSC \d+$")
     };
 
     public static readonly Court PrivyCouncil = new Court() {
         Code = "UKPC",
         LongName = "The Judicial Committee of the Privy Council",
-        URL = "https://www.jcpc.uk/"
+        URL = "https://www.jcpc.uk/",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKPC \d+$")
     };
 
     public static readonly Court CoA_Crim = new Court {

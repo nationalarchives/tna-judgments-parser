@@ -90,7 +90,6 @@ internal class WNumText : IFormattedText {
             value = DOCX.Themes.GetFontName(DOCX.Main.Get(pMarkFont), pMarkFont.AsciiTheme);
         if (value is null && pMarkFont?.Ascii is not null)
             value = pMarkFont.Ascii.Value;
-        // string value = props?.RunFonts?.Ascii?.Value;
         if (value is null && style is not null)
             value = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.RunFonts?.Ascii?.Value);
         return value;
@@ -98,6 +97,8 @@ internal class WNumText : IFormattedText {
 
     public float? FontSizePt { get {
         string fontSize = props?.FontSize?.Val?.Value;
+        if (fontSize is null)
+            fontSize = props2?.ChildElements.OfType<FontSize>().FirstOrDefault()?.Val?.Value;    // [2021] EWCA Crim 927
         if (fontSize is null)
             fontSize = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.FontSize?.Val?.Value);
         if (fontSize is null)
@@ -109,8 +110,6 @@ internal class WNumText : IFormattedText {
         Color color = props?.Color;
         if (color is null)
             color = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Color);
-        // if (color?.Val?.Value == "auto")
-        //     return "black";
         return color?.Val?.Value;
     } }
 
@@ -149,6 +148,8 @@ internal class WNumber : WNumText, INumber {
         this.pProps = pProps;
     }
 
+    public float? LeftIndentInches { get => DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps); }
+
     public string LeftIndent {
         get {
             float? inches = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
@@ -167,10 +168,6 @@ internal class WNumber : WNumText, INumber {
             return inches.Value.ToString("F2") + "in";
         }
     }
-
-    // public Dictionary<string, string> GetCSSStyles() {
-    //    return INumber.GetCSSStyles(this);
-    // }
 
 }
 
@@ -193,6 +190,8 @@ internal class WNumber2 : ParseNS.WText, INumber {
     //             return x + " inline";
     //     }
     // }
+
+    public float? LeftIndentInches { get => DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, pProps); }
 
     public string LeftIndent {
         // we don't want a value here for EWHC/Admin/2013/2744.rtf

@@ -9,7 +9,7 @@ namespace UK.Gov.Legislation.Judgments.Parse.UKSC {
 class CiteEnricher : Enricher {
 
     private static string[] patterns = {
-        @"^(\[\d{4}\] (UKSC|UKPC) \d+) *$",
+        @"^ *(\[\d{4}\] (UKSC|UKPC) \d+) *$",
     };
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
@@ -56,6 +56,40 @@ class CiteEnricher : Enricher {
         }
         if (found)
             return contents;
+        if (line.Count() == 3) {
+            IInline one = line.ElementAt(0);
+            IInline two = line.ElementAt(1);
+            IInline three = line.ElementAt(2);
+            if (one is not WText wText1)
+                return line;
+            if (two is not WText wText2)
+                return line;
+            if (three is not WText wText3)
+                return line;
+            if (wText2.Text != " ")
+                return line;
+            if (!IFormattedText.HaveSameFormatting(wText1, wText3))
+                return line;
+            string combined = wText1.Text + wText2.Text + wText3.Text;
+            foreach (string pattern in patterns) {
+                Match match = Regex.Match(combined, pattern);
+                if (match.Success) {
+                    Group group = match.Groups[1];
+                    List<IInline> contents2 = new List<IInline>(3) { };
+                    if (group.Index > 0) {
+                        WText before = new WText(combined.Substring(0, group.Index), wText1.properties);
+                        contents2.Add(before);
+                    }
+                    WNeutralCitation nc = new WNeutralCitation(group.Value, wText1.properties);
+                    contents2.Add(nc);
+                    if (combined.Length > group.Index + group.Length) {
+                        WText after = new WText(combined.Substring(group.Index + group.Length), wText3.properties);
+                        contents2.Add(after);
+                    }
+                    return contents2;
+                }
+            }
+        }
         return line;
     }
 
@@ -65,10 +99,16 @@ class CiteEnricher : Enricher {
         foreach (string pattern in patterns) {
             Match match = Regex.Match(wText.Text, pattern);
             if (match.Success) {
-                WNeutralCitation nc = new WNeutralCitation(match.Groups[1].Value, wText.properties);
-                List<IInline> contents = new List<IInline>(2) { nc };
-                if (wText.Text.Length > match.Groups[1].Index + match.Groups[1].Length) {
-                    WText after = new WText(wText.Text.Substring(match.Groups[1].Index + match.Groups[1].Length), wText.properties);
+                Group group = match.Groups[1];
+                List<IInline> contents = new List<IInline>(3) { };
+                if (group.Index > 0) {
+                    WText before = new WText(wText.Text.Substring(0, group.Index), wText.properties);
+                    contents.Add(before);
+                }
+                WNeutralCitation nc = new WNeutralCitation(group.Value, wText.properties);
+                contents.Add(nc);
+                if (wText.Text.Length > group.Index + group.Length) {
+                    WText after = new WText(wText.Text.Substring(group.Index + group.Length), wText.properties);
                     contents.Add(after);
                 }
                 return contents;

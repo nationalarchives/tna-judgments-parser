@@ -18,23 +18,30 @@ class PartyEnricher : Enricher {
                 continue;
             if (!enumerator.MoveNext())
                 break;
-            if (enumerator.Current is not WLine title)
-                break;
-            while (((ILine)title).IsEmpty()) {
-                contents.Add(title);
+            while (enumerator.Current is ILine line && line.IsEmpty()) {
+                contents.Add(line);
                 if (!enumerator.MoveNext())
                     return blocks;
-                if (enumerator.Current is not WLine)
-                    return blocks;
-                title = (WLine) enumerator.Current;
             }
-            WLine enriched = Enrich(title);
-            if (Object.ReferenceEquals(enriched, title))
-                break;
-            contents.Add(enriched);
-            while (enumerator.MoveNext())
-                contents.Add(enumerator.Current);
-            return contents;
+            if (enumerator.Current is WLine title) {
+                WLine enriched = Enrich(title);
+                if (Object.ReferenceEquals(enriched, title))
+                    break;
+                contents.Add(enriched);
+                while (enumerator.MoveNext())
+                    contents.Add(enumerator.Current);
+                return contents;
+            } else if (enumerator.Current is WTable table) {
+                WTable enriched = EnrichTable(table);
+                if (Object.ReferenceEquals(enriched, table))
+                    break;
+                contents.Add(enriched);
+                while (enumerator.MoveNext())
+                    contents.Add(enumerator.Current);
+                return contents;
+            } else {
+                return blocks;
+            }
         }
         return blocks;
     }
@@ -90,7 +97,7 @@ class PartyEnricher : Enricher {
         IInline third = enumerator.Current;
         if (third is not WText text3)
             return line;
-        Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9 ]*?) \(([A-Z][a-z]+)\)");
+        Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9, ]*?) \(([A-Z][a-z]+)\)");
         if (!match2.Success)
             return line;
         PartyRole? role2 = ParseRole(match2.Groups[2].Value);
@@ -135,6 +142,28 @@ class PartyEnricher : Enricher {
                 return PartyRole.Respondent;
         }
         return null;
+    }
+
+    private WTable EnrichTable(WTable table) {
+        if (!table.TypedRows.Any())
+            return table;
+        WRow row1 = table.TypedRows.First();
+        if (row1.TypedCells.Count() != 1)
+            return table;
+        WCell cell = row1.TypedCells.First();
+        if (!cell.Contents.Any())
+            return table;
+        IBlock block = cell.Contents.First();
+        if (block is not WLine line)
+            return table;
+        WLine enriched = Enrich(line);
+        if (Object.ReferenceEquals(enriched, line.Contents))
+            return table;
+        return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
+            new WRow(row1.Table, row1.TypedCells.Skip(1).Prepend(
+                new WCell(cell.Row, cell.Contents.Skip(1).Prepend(enriched))
+            ))
+        ));
     }
 
 }
