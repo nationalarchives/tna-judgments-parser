@@ -64,6 +64,39 @@ abstract class Combo {
         return regex.IsMatch(text);
     }
 
+    protected bool MatchFirstAndThirdRuns(IBlock block, Regex re1, Regex re2) {
+        if (!(block is ILine line))
+            return false;
+        if (line.Contents.Count() < 3)
+            return false;
+        IInline first = line.Contents.ElementAt(0);
+        IInline second = line.Contents.ElementAt(1);
+        IInline third = line.Contents.ElementAt(2);
+        if (first is not WText wText1)
+            return false;
+        if (second is not WLineBreak)
+            return false;
+        if (third is not WText wText2)
+            return false;
+        string text1 = Regex.Replace(wText1.Text, @"\s+", " ").Trim();
+        if (!re1.IsMatch(text1))
+            return false;
+        string text2 = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
+        if (!re2.IsMatch(text2))
+            return false;
+        return true;
+    }
+    protected WLine TransformFirstAndThirdRuns(IBlock block) {
+        WLine line = (WLine) block;
+        WText first = (WText) line.Contents.ElementAt(0);
+        WLineBreak second = (WLineBreak) line.Contents.ElementAt(1);
+        WText third = (WText) line.Contents.ElementAt(2);
+        WCourtType ct1 = new WCourtType(first.Text, first.properties) { Code = this.Court.Code };
+        WCourtType ct3 = new WCourtType(third.Text, third.properties) { Code = this.Court.Code };
+        IEnumerable<IInline> contents = line.Contents.Skip(3).Prepend(ct3).Prepend(second).Prepend(ct1);
+        return new WLine(line, contents);
+    }
+
     public Court Court { get; init; }
 
     protected WLine Transform1(IBlock block) {
@@ -550,6 +583,12 @@ class Combo3 : Combo {
         foreach (Combo3 combo in Combo3.combos)
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
+        return null;
+    }
+    internal static List<ILine> MatchAny2(IBlock one, IBlock two) {
+        foreach (Combo3 combo in Combo3.combos)
+            if (combo.Match(combo.Re1, one) && combo.MatchFirstAndThirdRuns(two, combo.Re2, combo.Re3))
+                return new List<ILine>(2) { combo.Transform1(one), combo.TransformFirstAndThirdRuns(two) };
         return null;
     }
 
@@ -1051,7 +1090,7 @@ class CourtType : Enricher2 {
     }
 
     protected virtual List<ILine> Match2(IBlock one, IBlock two) {
-        return Combo2.MatchAny(one, two) ?? Combo1_1.MatchAny(one, two);
+        return Combo2.MatchAny(one, two) ?? Combo1_1.MatchAny(one, two) ?? Combo3.MatchAny2(one, two);
     }
 
     protected virtual List<ILine> Match1(IBlock block) {
