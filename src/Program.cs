@@ -4,12 +4,10 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 
-using DocumentFormat.OpenXml.Packaging;
-
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.AkomaNtoso;
+using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 class Program {
 
@@ -44,7 +42,7 @@ class Program {
         FileStream docx = input.OpenRead();
         Stream xml;
         if (output is null)
-            xml = System.Console.OpenStandardOutput();
+            xml = Console.OpenStandardOutput();
         else
             xml = output.OpenWrite();
         Transform(docx, xml, log, test);
@@ -53,15 +51,23 @@ class Program {
     }
 
     private static void Transform(Stream docx, Stream xml, bool log, bool test) {
-        Func<WordprocessingDocument, IJudgment> parse1 = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse;
-        Func<Stream, ILazyBundle> parser = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.MakeParser(parse1);
-        ILazyBundle bundle = parser(docx);
-        Serializer.Serialize(bundle.Judgment, xml);
-        if (test) {
-            Tester.Result result = Tester.Test(bundle.Judgment);
-            if (!log) Tester.Print(result);
-        }
-        bundle.Close();
+        MemoryStream ms = new MemoryStream();
+        docx.CopyTo(ms);
+        Api.Request request = new Api.Request() { Content = ms.ToArray() };
+        Api.Response response = Api.Parser.Parse(request);
+        using StreamWriter writer = new StreamWriter(xml, System.Text.Encoding.UTF8);
+        writer.Write(response.Xml);
+        writer.Flush();
+        if (test)
+            Print(response.Meta);
+    }
+
+    private static void Print(Api.Meta meta) {
+        Console.WriteLine($"The judgment's uri is { meta.Uri }");
+        Console.WriteLine($"The court is { meta.Court }");
+        Console.WriteLine($"The case citation is { meta.Cite }");
+        Console.WriteLine($"The judgment date is { meta.Date }");
+        Console.WriteLine($"The case name is { meta.Name }");
     }
 
 }
