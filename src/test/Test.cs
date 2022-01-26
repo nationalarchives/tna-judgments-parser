@@ -8,7 +8,8 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 using Microsoft.Extensions.Logging;
-
+using System.Reflection;
+using System.IO;
 
 class Tester {
 
@@ -49,8 +50,17 @@ class Tester {
 
     static XmlSchemaSet schema = new XmlSchemaSet();
     static Tester() {
-        schema.Add(Builder.ns, "src/akn/akomantoso30.xsd");
-        schema.Add("http://www.w3.org/XML/1998/namespace", "src/akn/xml.xsd");
+        var assembly = Assembly.GetExecutingAssembly();
+        using (Stream stream = assembly.GetManifestResourceStream("akn.akomantoso30.xsd")) {
+            using (XmlReader reader = XmlReader.Create(stream)) {
+                schema.Add(Builder.ns, reader);
+            }
+        }
+        using (Stream stream = assembly.GetManifestResourceStream("akn.xml.xsd")) {
+            using (XmlReader reader = XmlReader.Create(stream)) {
+                schema.Add("http://www.w3.org/XML/1998/namespace", reader);
+            }
+        }
     }
 
     public static List<ValidationEventArgs> Validate(XmlDocument akn) {
