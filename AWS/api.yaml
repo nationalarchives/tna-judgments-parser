@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
    title: Judgments Parser
-   version: '0.1'
+   version: '0.1.1'
 
 servers:
    - url: https://parse.judgments.tna.jurisdatum.com
@@ -28,6 +28,18 @@ paths:
                            type: string
                            enum:
                               - SC
+                        attachments:
+                           type: array
+                           items:
+                              type: object
+                              properties:
+                                 content:
+                                    type: string
+                                    format: byte
+                                 filenname:
+                                    type: string
+                              required:
+                                 - content
                      required:
                         - content
          responses:
@@ -66,3 +78,33 @@ paths:
                                     content:
                                        type: string
                                        format: byte
+            '400':
+               description: Bad request
+               content:
+                  application/json:
+                     schema:
+                        type: object
+                        properties:
+                           status:
+                              type: integer
+                           error:
+                              type: string
+                           message:
+                              type: string
+                           stack:
+                              type: string
+            '500':
+               description: Parse error
+               content:
+                  application/json:
+                     schema:
+                        type: object
+                        properties:
+                           status:
+                              type: integer
+                           error:
+                              type: string
+                           message:
+                              type: string
+                           stack:
+                              type: string
