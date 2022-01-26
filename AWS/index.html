@@ -1,0 +1,167 @@
+<html>
+<head>
+	<title>Judgments Parser</title>
+</head>
+
+<body style="position:relative;margin:1cm 1in">
+
+<h1>Parse UK judgments</h1>
+
+<p>
+	<span>Judgment:</span>
+	<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="judgment" style="width:33%">
+	<label>
+		<span>Hint: </span>
+		<select id="hint">
+			<option value="">none</option>
+			<option value="SC">SC</option>
+		</select>
+	</label>
+</p>
+
+<p>
+	<span>Attachment?</span>
+	<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
+</p>
+
+<p>
+	<button onClick="handleClick()" id="button">Parse</button>
+	<span id="status" style="padding-left:1em"></span>
+</p>
+
+<hr>
+
+<div id="result" style="display:flex"></div>
+
+<script>
+
+const hint = document.getElementById('hint');
+const button = document.getElementById('button');
+const status = document.getElementById('status');
+const result = document.getElementById('result');
+
+async function handleClick() {
+	status.innerText = '';
+	result.innerText = '';
+	const payload = await readFile('judgment');
+	if (!payload) {
+		status.innerText = 'no file selected';
+		return;
+	}
+	const attachment = await readFile('attachment');
+	if (attachment)
+		payload['attachments'] = [ attachment ];
+	status.innerText = 'parsing...';
+	try {
+		const response = await parse(payload);
+		status.innerText = '';
+		display(response);
+	} catch(e) {
+		status.innerText = e;
+		return;
+	}
+}
+
+function readFile(id) {
+	const input = document.getElementById(id);
+	return new Promise(resolve => {
+		const files = input.files;
+		if (!files)
+			resolve();
+		const file = files[0];
+		if (!file)
+			resolve();
+		const reader = new FileReader();
+		reader.onload = function(e) {
+			const base64 = e.target.result.split(',',2)[1];
+			resolve({ content: base64, filename: file.name });
+		};
+		reader.readAsDataURL(file);
+	});
+}
+
+function parse(payload) {
+	const url = 'https://parse.judgments.tna.jurisdatum.com/';
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (this.readyState !== XMLHttpRequest.DONE)
+				return;
+			if (this.status !== 200) {
+				reject(this.responseText);
+				return;
+			}
+			const response = JSON.parse(this.responseText);
+			resolve(response);
+		}
+		xhr.send(JSON.stringify(payload));
+	});
+}
+
+function base64toTypedArray(base64) {
+	const byteCharacters = atob(base64);
+	const byteNumbers = new Array(byteCharacters.length);
+	for (let i = 0; i < byteCharacters.length; i++)
+		byteNumbers[i] = byteCharacters.charCodeAt(i);
+	return new Uint8Array(byteNumbers);
+}
+
+function display(response) {
+
+	const left = document.createElement('div');
+	left.setAttribute('style', "flex-basis:50%");
+	document.getElementById('result').appendChild(left);
+	const label1 = document.createElement('div');
+	label1.innerText = "Metadata:";
+	left.appendChild(label1);
+	const table = document.createElement('table');
+	left.appendChild(table);
+	const tbody = document.createElement('tbody');
+	table.appendChild(tbody);
+	Object.entries(response['meta']).forEach(function(prop) {
+		var key = prop[0];
+		var value = prop[1];
+		var tr = document.createElement('tr');
+		var td1 = document.createElement('td');
+		td1.innerText = key;
+		var td2 = document.createElement('td');
+		td2.innerText = value;
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tbody.appendChild(tr);
+	});
+
+	const right = document.createElement('div');
+	document.getElementById('result').appendChild(right);
+
+	const label2 = document.createElement('div');
+	label2.innerText = "Files:";
+	right.appendChild(label2);
+	const list = document.createElement('ul');
+	list.setAttribute('style', "margin-top:0;padding-left:1em");
+	right.appendChild(list);
+	const li1 = document.createElement('li');
+	list.appendChild(li1);
+	const a1 = document.createElement('a');
+	a1.innerText = 'judgment.xml';
+	const url = URL.createObjectURL(new Blob([ response['xml'] ], { type: 'application/xml' }));
+	a1.setAttribute('href', url);
+	a1.setAttribute('target', '_blank');
+	li1.appendChild(a1);
+	response['images'].forEach(image => {
+		const li = document.createElement('li');
+		list.appendChild(li);
+		const a = document.createElement('a');
+		a.innerText = image['name'];
+		const url = URL.createObjectURL(new Blob([ base64toTypedArray(image['content']) ], { type: image['type'] }));
+		a.setAttribute('href', url);
+		a.setAttribute('target', '_blank');
+		li.appendChild(a);
+	});
+}
+</script>
+
+</body>
+</html>
