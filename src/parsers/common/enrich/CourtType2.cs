@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -41,22 +42,33 @@ class CourtType2 {
         return regex.IsMatch(text);
     }
 
+    static List<Func<IBlock, IBlock, IBlock, WNeutralCitation, List<ILine>>> functions = new List<Func<IBlock, IBlock, IBlock, WNeutralCitation, List<ILine>>>() {
+        (one, two, three, nc) => {
+            var re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase);
+            var re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase);
+            var re3 = new Regex(@"\d+(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$", RegexOptions.IgnoreCase);
+            if (!Match(re1, one))
+                return null;
+            if (!Match(re2, two))
+                return null;
+            if (!Match(re3, three))
+                return null;
+            Court court;
+            if (nc.Text.Contains("(Ch)"))
+                court = Courts.EWHC_Chancery_BusinessAndProperty;
+            else
+                return null;
+            return new List<ILine>(3) { Transform1(one, court), Transform1(two, court), (ILine) three };
+        }
+    };
+
     private static List<ILine> Match3(IBlock one, IBlock two, IBlock three, WNeutralCitation nc) {
-        var re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase);
-        var re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase);
-        var re3 = new Regex(@"\d+(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$", RegexOptions.IgnoreCase);
-        if (!Match(re1, one))
-            return null;
-        if (!Match(re2, two))
-            return null;
-        if (!Match(re3, three))
-            return null;
-        Court court;
-        if (nc.Text.Contains("(Ch)"))
-            court = Courts.EWHC_Chancery_BusinessAndProperty;
-        else
-            return null;
-        return new List<ILine>(3) { Transform1(one, court), Transform1(two, court), (ILine) three };
+        foreach (var function in functions) {
+            var result = function(one, two, three, nc);
+            if (result is not null)
+                return result;
+        }
+        return null;
     }
 
     private static WLine Transform1(IBlock block, Court court) {
