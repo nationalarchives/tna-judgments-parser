@@ -7,6 +7,22 @@
     <StartupObject>Program</StartupObject>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src/**/*.cs" />
+    <EmbeddedResource Include="src/akn/akomantoso30.xsd">
+      <LogicalName>akn.akomantoso30.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/akn/xml.xsd">
+      <LogicalName>akn.xml.xsd</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.13.0" />
   </ItemGroup>

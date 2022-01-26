@@ -19,14 +19,11 @@ public interface ILazyBundle {
 }
 
 
-
-
 internal class Bundle : ILazyBundle {
 
     private readonly WordprocessingDocument doc;
     private readonly IJudgment judgment;
     private XmlDocument xml;
-    private IEnumerable<IImage> images;
 
     internal Bundle(WordprocessingDocument doc, IJudgment judgment) {
         this.doc = doc;
