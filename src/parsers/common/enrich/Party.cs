@@ -1232,11 +1232,45 @@ class PartyEnricher : Enricher {
         return GetOneLinePartyRole(block);
     }
 
+    // private static PartyRole? GetPartyRole(string s) {
+    //     if (!s.Contains('/'))
+    //         return GetPartyRole1(s);
+    //     string[] split = s.Split('/', 2);
+    //     return GetPartyRole2(split[0], split[1]);
+    // }
+    // private static PartyRole? GetPartyRole1(string s) {
+    //     s = s.Trim().TrimEnd('/').ToLower();
+    //     if (s == "appellant" || s == "appellants")
+    //         return PartyRole.Appellant;
+    //     if (s == "applicant" || s == "applicants")
+    //         return PartyRole.Applicant;
+    //     if (s == "claimant" || s == "claimants")
+    //         return PartyRole.Claimant;
+    //     if (s == "defendant" || s == "defendants")
+    //         return PartyRole.Defendant;
+    //     if (s == "petitioner" || s == "petitioners")
+    //         return PartyRole.Petitioner;
+    //     if (s == "respondent" || s == "respondents")
+    //         return PartyRole.Respondent;
+    //     if (s == "interested party" || s == "interested parties")
+    //         return PartyRole.InterestedParty;
+    //     if (s == "intervener" || s == "interveners")
+    //         return PartyRole.Intervener;
+    //     return null;
+    // }
+    // private static PartyRole? GetPartyRole2(string s1, string s2) {
+    //     PartyRole? role1 = GetPartyRole1(s1);
+    //     PartyRole? role2 = GetPartyRole1(s2);
+    //     if (role1 is null || role2 is null)
+    //         return null;
+    //     return null;
+    // }
+
     private static PartyRole? GetOneLinePartyRole(IBlock block) {
         if (block is not ILine line)
             return null;
         string normalized = line.NormalizedContent();
-        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Defendants/Appellants/", "Appellant/ Defendant", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
+        ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants / Defendants", "Defendants/Appellants/", "Appellant/ Defendant", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
             "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants",
             "Appellant/ Respondent", // [2021] EWCA Civ 1792
             "Claimants/ Appellants",    // [2021] EWCA Civ 1799
@@ -1262,7 +1296,7 @@ class PartyEnricher : Enricher {
             "Respondent/Defendants", "Respondent / Defendant",
             "Respondents Second and Third/ Defendants",  // EWCA/Civ/2004/1249
             "Respondent/Petitioner", // [2021] EWCA Civ 1792
-            "Respondents/Claimants",
+            "Respondents/Claimants", "Respondents / Claimants"
         };
         if (types.Contains(normalized))
             return PartyRole.Respondent;
