@@ -1,0 +1,68 @@
+openapi: 3.0.0
+
+info:
+   title: Judgments Parser
+   version: '0.1'
+
+servers:
+   - url: https://parse.judgments.tna.jurisdatum.com
+
+paths:
+   /:
+      post:
+         summary: Parse a judgment in .docx format to LegalDocML
+         requestBody:
+            description: The content of the .docx file and other info about it
+            required: true
+            content:
+               application/json:
+                  schema:
+                     type: object
+                     properties:
+                        content:
+                           type: string
+                           format: byte
+                        filename:
+                           type: string
+                        hint:
+                           type: string
+                           enum:
+                              - SC
+                     required:
+                        - content
+         responses:
+            '200':
+               description: Successful parse, even if not all metadata values were recognized
+               content:
+                  application/json:
+                     schema:
+                        type: object
+                        properties:
+                           xml:
+                              type: string
+                           meta:
+                              type: object
+                              properties:
+                                 uri:
+                                    type: string
+                                 court:
+                                    type: string
+                                 cite:
+                                    type: string
+                                 date:
+                                    type: string
+                                    format: date
+                                 name:
+                                    type: string
+                           images:
+                              type: array
+                              items:
+                                 type: object
+                                 properties:
+                                    name:
+                                       type: string
+                                    type:
+                                       type: string
+                                    content:
+                                       type: string
+                                       format: byte
