@@ -119,7 +119,9 @@ class Numbering {
     }
 
     public static Level GetLevel(MainDocumentPart main, Style style) {
-        NumberingProperties props = style?.StyleParagraphProperties?.NumberingProperties;
+        if (style is null)
+            return null;
+        NumberingProperties props = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
         if (props is null)
             return null;
         return GetLevel(main, props);
@@ -167,7 +169,8 @@ class Numbering {
             ParagraphStyleId styleId = paragraph.ParagraphProperties?.ParagraphStyleId;
             if (styleId is not null) {
                 Style style = Styles.GetStyle(main, styleId);
-                props = style?.StyleParagraphProperties?.NumberingProperties;
+                if (style is not null)
+                    props = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
             }
         }
         return props;
