@@ -1,6 +1,11 @@
 <html>
 <head>
 	<title>Judgments Parser</title>
+	<style>
+details > p { margin-left: 2em }
+input[name='name'] { width: 64ch }
+input:invalid { background-color: pink }
+	</style>
 </head>
 
 <body style="position:relative;margin:1cm 1in">
@@ -22,6 +27,75 @@
 <p>
 	<span>Attachment?</span>
 	<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
+</p>
+
+<p>
+	<details>
+		<summary>Add (override) metadata</summary>
+		<p>
+			<label>
+				<span>Court</span>
+				<select id="court">
+					<option value=""></option>
+					<option value="UKSC">Supreme Court</option>
+					<option value="UKPC">JC of the Privy Council</option>
+					<optgroup label="Court of Appeal">
+						<option value="EWCA-Criminal">Court of Appeal (Crim)</option>
+						<option value="EWCA-Civil">Court of Appeal (Civil)</option>
+					</optgroup>
+					<optgroup label="High Court">
+						<option value="EWHC">High Court of Justice</option>
+						<optgroup label="Queen's Bench Division">
+							<option value="EWHC-QBD">Queen's Bench Division</option>
+							<option value="EWHC-QBD-Admin">Administrative Court</option>
+							<option value="EWHC-QBD-Planning">Planning Court</option>
+							<option value="EWHC-QBD-BusinessAndProperty">Business &amp; Propty Cts</option>
+							<option value="EWHC-QBD-Commercial">Commercial Court</option>
+							<option value="EWHC-QBD-Admiralty">Admiralty Court</option>
+							<option value="EWHC-QBD-TCC">Tech &amp; Construction</option>
+							<option value="EWHC-QBD-Commercial-Financial">Financial List</option>
+							<option value="EWHC-QBD-Commercial-Circuit">Circuit Commercial Ct</option>
+						</optgroup>
+						<optgroup label="Chancery Division">
+							<option value="EWHC-Chancery">Chancery Division</option>
+							<option value="EWHC-Chancery-BusinessAndProperty">Business &amp; Property</option>
+							<option value="EWHC-Chancery-Business">Business List</option>
+							<option value="EWHC-Chancery-Financial">Financial List</option>
+							<option value="EWHC-Chancery-IntellectualProperty">IP List</option>
+							<option value="EWHC-Chancery-InsolvencyAndCompanies">Insolvency &amp; Companies</option>
+							<option value="EWHC-Chancery-Patents">Patents Court</option>
+							<option value="EWHC-Chancery-IPEC">Intellectual Propty Ent.</option>
+							<option value="EWHC-Chancery-Appeals">Chancery Appeals</option>
+						</optgroup>
+						<optgroup label="Family Division">
+							<option value="EWHC-Family">Family Division</option>
+						</optgroup>
+						<option value="EWHC-SeniorCourtsCosts">Snr Courts Costs Office</option>
+					</optgroup>
+					<option value="EWCOP">Court of Protection</option>
+					<option value="EWFC">Family Court</option>
+				  </select>
+			</label>
+		</p>
+		<p>
+			<label>
+				<span>Cite</span>
+				<input type="text" id="cite" pattern="(\[\d{4}\] (UKSC|UKPC|EWFC|EWCOP) \d+)|(\[\d{4}\] EWCA (Civ|Crim) \d+)|(\[\d{4}\] EWHC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))">
+			</label>
+		</p>
+		<p>
+			<label>
+				<span>Date</span>
+				<input type="date" id="date">
+			</label>
+		</p>
+		<p>
+			<label>
+				<span>Name</span>
+				<input type="text" id="name">
+			</label>
+		</p>
+	</details>
 </p>
 
 <p>
@@ -51,6 +125,9 @@ async function handleClick() {
 	const attachment = await readFile('attachment');
 	if (attachment)
 		payload['attachments'] = [ attachment ];
+	const metadata = getMetadata();
+	if (metadata)
+		payload['meta'] = metadata;
 	status.innerText = 'parsing...';
 	try {
 		const response = await parse(payload);
@@ -78,6 +155,24 @@ function readFile(id) {
 		};
 		reader.readAsDataURL(file);
 	});
+}
+
+function getMetadata() {
+	const court = document.getElementById('court');
+	const cite = document.getElementById('cite');
+	const date = document.getElementById('date');
+	const name = document.getElementById('name').value.trim();
+	const meta = {};
+	if (court.value)
+		meta['court'] = court.value;
+	if (cite.value && cite.checkValidity())
+		meta['cite'] = cite.value;
+	if (date.value)
+		meta['date'] = date.value;
+	if (name)
+		meta['name'] = name;
+	if (Object.keys(meta).length)
+		return meta;
 }
 
 function parse(payload) {

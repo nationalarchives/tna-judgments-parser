@@ -7,7 +7,7 @@ using System.Xml;
 using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.AkomaNtoso;
+using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
@@ -17,17 +17,17 @@ public class Parser {
 
     public static Response Parse(Request request) {
 
-        Func<Stream, IOutsideMetadata, IEnumerable<Stream>, ILazyBundle> parse = MakeParser(request.Hint);
+        Func<Stream, IOutsideMetadata, IEnumerable<Stream>, AkN.ILazyBundle> parse = MakeParser(request.Hint);
 
         Stream input = new MemoryStream(request.Content);
         IOutsideMetadata meta1 = (request.Meta is null) ? null : new MetaWrapper() { Meta = request.Meta };
         IEnumerable<Stream> attachments = (request.Attachments is null) ? Enumerable.Empty<Stream>() : request.Attachments.Select(a => new MemoryStream(a.Content));
 
-        ILazyBundle bundle = parse(input, meta1, attachments);
+        AkN.ILazyBundle bundle = parse(input, meta1, attachments);
 
         string xml = SerializeXml(bundle.Judgment);
-        Tester.Result test = Tester.Test(bundle.Judgment);
-        Meta meta2 = ConvertTestResult(test);
+        AkN.Meta internalMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
+        Meta meta2 = ConvertInternalMetadata(internalMetadata);
         List<Image> images = bundle.Images.Select(i => ConvertImage(i)).ToList();
 
         bundle.Close();
@@ -40,7 +40,7 @@ public class Parser {
         };
     }
 
-    private static Func<Stream, IOutsideMetadata, IEnumerable<Stream>, ILazyBundle> MakeParser(Hint? hint) {
+    private static Func<Stream, IOutsideMetadata, IEnumerable<Stream>, AkN.ILazyBundle> MakeParser(Hint? hint) {
         Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> parse;
         if (!hint.HasValue)
             parse = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3;
@@ -53,17 +53,17 @@ public class Parser {
 
     internal static string SerializeXml(XmlDocument judgment) {
         using MemoryStream memStrm = new MemoryStream();
-        Serializer.Serialize(judgment, memStrm);
+        AkN.Serializer.Serialize(judgment, memStrm);
         return System.Text.Encoding.UTF8.GetString(memStrm.ToArray());
     }
 
-    internal static Meta ConvertTestResult(Tester.Result result) {
+    internal static Meta ConvertInternalMetadata(UK.Gov.Legislation.Judgments.AkomaNtoso.Meta meta) {
         return new Meta() {
-            Uri = result.DocumentId,
-            Court = result.Court,
-            Cite = result.NeutralCitation,
-            Date = result.DocumentDate,
-            Name = result.CaseName
+            Uri = meta.WorkUri,
+            Court = meta.UKCourt,
+            Cite = meta.UKCite,
+            Date = meta.WorkDate,
+            Name = meta.WorkName
         };
     }
 
