@@ -65,6 +65,34 @@ internal class WNumText : IFormattedText {
         }
     }
 
+    public bool? Uppercase {
+        get {
+            Caps caps = props?.Caps;
+            if (caps == null)
+                caps = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Caps);
+            if (caps == null)
+                return null;
+            OnOffValue val = caps.Val;
+            if (val == null)
+                return true;
+            return val.Value;
+        }
+    }
+
+    public bool? SmallCaps {
+        get {
+            SmallCaps caps = props?.SmallCaps;
+            if (caps == null)
+                caps = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.SmallCaps);
+            if (caps == null)
+                return null;
+            OnOffValue val = caps.Val;
+            if (val == null)
+                return true;
+            return val.Value;
+        }
+    }
+
     public SuperSubValues? SuperSub {
         get {
             VerticalTextAlignment valign = props?.VerticalTextAlignment;
