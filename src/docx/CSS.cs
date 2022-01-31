@@ -36,6 +36,8 @@ public class CSS {
         AddFontStyle(defaultParagraphStyle, defaultProperties);
         AddFontWeight(defaultParagraphStyle, defaultProperties);
         AddTextDecoration(defaultParagraphStyle, defaultProperties);
+        AddTextTransform(defaultParagraphStyle, defaultProperties);
+        AddFontVariant(defaultParagraphStyle, defaultProperties);
         AddFontFamily(defaultParagraphStyle, defaultProperties);
         AddFontSize(defaultParagraphStyle, defaultProperties);
         AddColor(defaultParagraphStyle, defaultProperties);
@@ -45,6 +47,8 @@ public class CSS {
         AddFontStyle(defaultCharacterStyle, defaultProperties);
         AddFontWeight(defaultCharacterStyle, defaultProperties);
         AddTextDecoration(defaultCharacterStyle, defaultProperties);
+        AddTextTransform(defaultCharacterStyle, defaultProperties);
+        AddFontVariant(defaultCharacterStyle, defaultProperties);
         AddFontFamily(defaultCharacterStyle, defaultProperties);
         AddFontSize(defaultCharacterStyle, defaultProperties);
         AddColor(defaultCharacterStyle, defaultProperties);
@@ -63,6 +67,8 @@ public class CSS {
             AddFontStyle(style, properties);
             AddFontWeight(style, properties);
             AddTextDecoration(style, properties);
+            AddTextTransform(style, properties);
+            AddFontVariant(style, properties);
             AddVerticalAlign(style, properties);
             AddFontFamily(style, properties);
             AddFontSize(style, properties);
@@ -79,6 +85,8 @@ public class CSS {
             AddFontStyle(style, properties);
             AddFontWeight(style, properties);
             AddTextDecoration(style, properties);
+            AddTextTransform(style, properties);
+            AddFontVariant(style, properties);
             AddVerticalAlign(style, properties);
             AddFontFamily(style, properties);
             AddFontSize(style, properties);
@@ -185,6 +193,26 @@ public class CSS {
             string value2 = "wavy";
             css[key2] = value2;
         }
+    }
+
+    private static void AddTextTransform(Style style, Dictionary<string, string> css) {
+        Caps caps = style.GetInheritedProperty(s => s.StyleRunProperties?.Caps);
+        if (caps is null)
+            return;
+        string key = "text-transform";
+        OnOffValue isUppercase = caps.Val ?? OnOffValue.FromBoolean(true);
+        string value = isUppercase ? "uppercase" : "none";
+        css[key] = value;
+    }
+
+    private static void AddFontVariant(Style style, Dictionary<string, string> css) {
+        SmallCaps caps = style.GetInheritedProperty(s => s.StyleRunProperties?.SmallCaps);
+        if (caps is null)
+            return;
+        string key = "font-variant";
+        OnOffValue isSmallCaps = caps.Val ?? OnOffValue.FromBoolean(true);
+        string value = isSmallCaps ? "small-caps" : "normal";
+        css[key] = value;
     }
 
     private static void AddVerticalAlign(Style style, Dictionary<string, string> css) {

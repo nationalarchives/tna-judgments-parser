@@ -72,6 +72,30 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         }
     }
 
+    public bool? Uppercase {
+        get {
+            Caps caps = properties?.Caps;
+            if (caps is null)
+                return null;
+            OnOffValue val = caps.Val;
+            if (val == null)
+                return true;
+            return val.Value;
+        }
+    }
+
+    public bool? SmallCaps {
+        get {
+            SmallCaps caps = properties?.SmallCaps;
+            if (caps is null)
+                return null;
+            OnOffValue val = caps.Val;
+            if (val == null)
+                return true;
+            return val.Value;
+        }
+    }
+
     public SuperSubValues? SuperSub {
         get {
             VerticalTextAlignment valign = properties?.VerticalTextAlignment;

@@ -37,6 +37,10 @@ interface IFormattedText : ITextOrWhitespace {
 
     UnderlineValues2? Underline { get; }
 
+    bool? Uppercase { get; }
+
+    bool? SmallCaps { get; }
+
     SuperSubValues? SuperSub { get; }
 
     string FontName { get; }
@@ -57,6 +61,10 @@ interface IFormattedText : ITextOrWhitespace {
         if (fText1.Bold != fText2.Bold)
             return false;
         if (fText1.Underline != fText2.Underline)
+            return false;
+        if (fText1.Uppercase != fText2.Uppercase)
+            return false;
+        if (fText1.SmallCaps != fText2.SmallCaps)
             return false;
         if (fText1.SuperSub != fText2.SuperSub)
             return false;
