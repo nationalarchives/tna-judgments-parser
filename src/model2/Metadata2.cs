@@ -51,4 +51,42 @@ class WMetadata2 : WMetadata {
 
 }
 
+class WMetadata3 : WMetadata {
+
+    private readonly IOutsideMetadata outside;
+
+    internal WMetadata3(MainDocumentPart main, Judgment judgment, IOutsideMetadata outside) : base(main, judgment, outside is null ? Enumerable.Empty<IExternalAttachment>() : outside.Attachments) {
+        this.outside = outside;
+    }
+
+    override public Court? Court() {
+        return outside.Court ?? base.Court();
+    }
+
+    override public int? Year { get {
+        return outside.Year ?? base.Year;
+    } }
+
+    override public int? Number { get {
+        return outside.Number ?? base.Number;
+    } }
+
+    override public string Cite { get {
+        return outside.Cite ?? base.Cite;
+    } }
+
+    override public string DocumentId() {
+        return outside.Id ?? base.DocumentId();
+    }
+
+    override public string Date() {
+        return outside.Date ?? base.Date();
+    }
+
+    override public string CaseName { get {
+        return outside.Name ?? base.CaseName;
+    } }
+
+}
+
 }
