@@ -28,6 +28,10 @@ class CSS {
                 styles.Add("text-decoration-style", "wavy");
             }
         }
+        if (inline.Uppercase.HasValue)
+            styles.Add("text-transform", inline.Uppercase.Value ? "uppercase" : "none");
+        if (inline.SmallCaps.HasValue)
+            styles.Add("font-variant", inline.SmallCaps.Value ? "small-caps" : "normal");
         if (inline.SuperSub is not null) {
             string key = "vertical-align";
             string value = inline.SuperSub switch {
