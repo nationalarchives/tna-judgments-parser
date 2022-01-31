@@ -11,11 +11,13 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     private readonly WordprocessingDocument doc;
 
-    public Judgment(WordprocessingDocument doc, IOutsideMetadata meta = null) {
+    public Judgment(WordprocessingDocument doc, IOutsideMetadata meta = null, bool metadataTrumps = true) {
         this.doc = doc;
         // WordprocessingDocumentType type = doc.DocumentType;
         if (meta is null)
             Metadata = new WMetadata(doc.MainDocumentPart, this);
+        else if (metadataTrumps)
+            Metadata = new WMetadata3(doc.MainDocumentPart, this, meta);
         else
             Metadata = new WMetadata2(doc.MainDocumentPart, this, meta);
     }
