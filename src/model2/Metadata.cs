@@ -51,128 +51,36 @@ class WMetadata : IMetadata {
         string id = DocumentId();
         if (id is null)
             return null;
-        return int.Parse(Regex.Match(id, @"/(\d+)/\d+$").Groups[1].Value);
+        return Citations.YearFromURI(id);
     } }
 
     virtual public int? Number { get {
         string id = DocumentId();
         if (id is null)
             return null;
-        return int.Parse(Regex.Match(id, @"/(\d+)$").Groups[1].Value);
+        return Citations.NumberFromURI(id);
     } }
 
+    private string _cite = null;
+
     virtual public string Cite { get {
+        if (_cite is not null)
+            return _cite;
         INeutralCitation cite = Util.Descendants<INeutralCitation>(judgment.Header).FirstOrDefault();
         if (cite is null)
             return null;
-        return cite.Text.Trim();
+        _cite = Citations.Normalize(cite.Text);
+        return _cite;
     } }
 
     private string _id = null;
     
     virtual public string DocumentId() {
-        if (_id is null)
-            _id = MakeDocumentId();
+        if (_id is not null)
+            return _id;
+        if (Cite is not null)
+            _id = Citations.MakeURI(Cite);
         return _id;
-    }
-
-    private string MakeDocumentId() {
-        string cite = this.Cite;
-        if (cite is not null) {
-            string trimmed = Regex.Replace(cite, @"\s+", " ").Trim();
-            Match match1;
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (UKSC|UKPC) (\d+)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCA) (Civ|Crim) (\d+)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[4].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[3].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) +\[?(\d+)\]? \(([A-Z][a-z]+)\.?\)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) (\d+) ([A-Z][a-z]+)$", RegexOptions.IgnoreCase); // EWHC/Admin/2003/301
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCH) (\d+) \(([A-Z][a-z]+)\)$", RegexOptions.IgnoreCase); // EWHC/Admin/2006/2373
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return "EWHC".ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWHC) (\d+) \(([A-Z]+)\)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            // match1 = Regex.Match(cite.Text, @"^\[(\d{4})\] (EWHC) (\d+)$"); // is this valid? EWHC/Admin/2004/584
-            // if (match1.Success) {
-            //     return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + match1.Groups[3].Value;
-            // }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCOP) (\d+)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWFC) (\d+)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCA) (\d+) \((Civ|Crim)\)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            match1 = Regex.Match(trimmed, @"^\[(\d{4})\] (EWCA) (\d+) (Civ|Crim)$", RegexOptions.IgnoreCase);
-            if (match1.Success) {
-                string num = match1.Groups[3].Value.TrimStart('0');
-                if (string.IsNullOrEmpty(num))
-                    throw new System.Exception(cite);
-                return match1.Groups[2].Value.ToLower() + "/" + match1.Groups[4].Value.ToLower() + "/" + match1.Groups[1].Value + "/" + num;
-            }
-            throw new System.Exception();
-        }
-        // WCourtType courtType = judgment.Header.OfType<ILine>().SelectMany(line => line.Contents).OfType<WCourtType>().FirstOrDefault();
-        // if (courtType is null)
-        //     return null;
-        // string caseNo = CaseNo();
-        // if (caseNo is null)
-        //     return null;
-        // Match match = Regex.Match(caseNo, @"(\d{5,})[/\.](\d{4})");
-        // if (match.Success)
-        //     return match.Groups[2] + "/" + courtType.Code.ToLower() + "/" + match.Groups[1];
-        // match = Regex.Match(caseNo, @"(\d{5,})[/\.](\d\d)");
-        // if (match.Success) {
-        //     int twoDigitYear = int.Parse(match.Groups[2].Value);
-        //     int fourDigitYear = new CultureInfo("en-GB").Calendar.ToFourDigitYear(twoDigitYear);
-        //     return fourDigitYear + "/" + courtType.Code.ToLower() + "/" + match.Groups[1];
-        // }
-        return null;
     }
 
     public IEnumerable<string> CaseNos() {
