@@ -97,35 +97,19 @@ class PartyEnricher : Enricher {
         IInline third = enumerator.Current;
         if (third is not WText text3)
             return line;
-        Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9, ]*?) \(([A-Z][a-z]+)\)");
+        Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9, ]*?)( \(by [A-Za-z0-9, ]+\))? \(([A-Z][a-z]+)\)");
         if (!match2.Success)
             return line;
-        PartyRole? role2 = ParseRole(match2.Groups[2].Value);
+        PartyRole? role2 = ParseRole(match2.Groups[3].Value);
         if (!role2.HasValue)
             return line;
         contents.Add(new WText(" ", text3.properties));
         contents.Add(new WParty(match2.Groups[1].Value, text3.properties) { Role = role2 });
+        if (match2.Groups[2].Length > 0)
+            contents.Add(new WText(match2.Groups[2].Value, text3.properties));
         contents.Add(new WText(" (", text3.properties));
-        contents.Add(new WRole() { Contents = new List<IInline>(1) { new WText(match2.Groups[2].Value, text3.properties) }, Role = role2.Value });
-        contents.Add(new WText(text3.Text.Substring(match2.Groups[2].Index + match2.Groups[2].Length), text3.properties));
-
-        // if (!enumerator.MoveNext())
-        //     return line;
-        // IInline fourth = enumerator.Current;
-        // if (third is not WText text3)
-        //     return line;
-        // if (fourth is not WText text4)
-        //     return line;
-        // Match match2 = Regex.Match(text.Text, @"^ \(([A-Za-z])\)$");
-        // if (!match2.Success)
-        //     return line;
-        // PartyRole? role2 = ParseRole(match2.Groups[1].Value);
-        // if (!role2.HasValue)
-        //     return line;
-        // contents.Add(new WParty(text3) { Role = role2 });
-        // contents.Add(new WText(" (", text.properties));
-        // contents.Add(new WRole() { Contents = new List<IInline>(1) { new WText(match2.Groups[1].Value, text.properties) }, Role = role1.Value });
-        // contents.Add(new WText(")", text.properties));
+        contents.Add(new WRole() { Contents = new List<IInline>(1) { new WText(match2.Groups[3].Value, text3.properties) }, Role = role2.Value });
+        contents.Add(new WText(text3.Text.Substring(match2.Groups[3].Index + match2.Groups[3].Length), text3.properties));
         
         if (enumerator.MoveNext())
             return line;

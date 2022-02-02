@@ -501,15 +501,8 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return false;
         string normalized = line.NormalizedContent();
-        if (normalized == "Between:")
-            return true;
-        if (normalized == "Between :")
-            return true;
-        if (normalized == "BETWEEN:")
-            return true;
-        if (normalized == "B E T W E E N:")
-            return true;
-        if (normalized == "B E T W E E N :")    // EWHC/Fam/2012/4047
+        normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':');
+        if (normalized.Equals("BETWEEN", StringComparison.InvariantCultureIgnoreCase))
             return true;
         return false;
     }
@@ -518,7 +511,8 @@ class PartyEnricher : Enricher {
         if (block is not ILine line)
             return false;
         string normalized = line.NormalizedContent();
-        if (normalized == "AND BETWEEN:")
+        normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':');
+        if (normalized.Equals("AND BETWEEN", StringComparison.InvariantCultureIgnoreCase))
             return true;
         return false;
     }
@@ -1273,7 +1267,7 @@ class PartyEnricher : Enricher {
         ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants / Defendants", "Defendants/Appellants/", "Appellant/ Defendant", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
             "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants",
             "Appellant/ Respondent", // [2021] EWCA Civ 1792
-            "Claimants/ Appellants",    // [2021] EWCA Civ 1799
+            "Claimants/ Appellants", "Claimants/Appellants",    // [2021] EWCA Civ 1799
             "Appellant/Applicant",  // [2021] EWCA Crim 1877
         };
         if (types.Contains(normalized))
@@ -1296,7 +1290,8 @@ class PartyEnricher : Enricher {
             "Respondent/Defendants", "Respondent / Defendant",
             "Respondents Second and Third/ Defendants",  // EWCA/Civ/2004/1249
             "Respondent/Petitioner", // [2021] EWCA Civ 1792
-            "Respondents/Claimants", "Respondents / Claimants"
+            "Respondents/Claimants", "Respondents / Claimants",
+            "Respondent/ First Defendant"
         };
         if (types.Contains(normalized))
             return PartyRole.Respondent;
