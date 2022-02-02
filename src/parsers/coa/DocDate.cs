@@ -216,8 +216,8 @@ class DocDate : Enricher {
     private static readonly string[] twoDigitYearCardinalDatePatterns = {
         @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"
     };
-    private static readonly string[] ordinalDatePatterns1 = {   // 
-        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}( *)$"   // comman after month in EWHC/Admin/2007/12
+    private static readonly string[] ordinalDatePatterns1 = {   // space before comma in [2021] EWHC 3592 (Fam)
+        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) ?,? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}( *)$"   // comman after month in EWHC/Admin/2007/12
     };
     private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
         @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$",
