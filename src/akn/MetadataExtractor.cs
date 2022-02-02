@@ -23,9 +23,15 @@ public class MetadataExtractor {
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(judgment.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         nsmgr.AddNamespace("uk", Metadata.ukns);
+        string uri = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRthis/@value", nsmgr)?.Value;
+        if (string.IsNullOrEmpty(uri))
+            uri = null;
+        string date = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRdate/@date", nsmgr)?.Value;
+        if (date == Metadata.DummyDate)
+            date = null;
         return new Meta() {
-            WorkUri = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRthis/@value", nsmgr)?.Value,
-            WorkDate = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRdate/@date", nsmgr)?.Value,
+            WorkUri = uri,
+            WorkDate = date,
             WorkName = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRname/@value", nsmgr)?.Value,
             UKCourt = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:court", nsmgr)?.InnerText,
             UKCite = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:cite", nsmgr)?.InnerText
