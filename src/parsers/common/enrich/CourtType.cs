@@ -28,7 +28,7 @@ abstract class Combo {
         return regex.IsMatch(text);
     }
 
-    protected bool MatchFirstRun(Regex regex, IBlock block) {
+    protected static bool MatchFirstRun(Regex regex, IBlock block) {
         if (!(block is ILine line))
             return false;
         if (line.Contents.Count() == 0)
@@ -256,11 +256,11 @@ class Combo4 : Combo {
             Re4 = new Regex(@"^CHANCERY APPEALS$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
-        new Combo4 {    // [2021] EWHC 2972 (TCC)
+        new Combo4 {    // [2021] EWHC 2972 (TCC), [2021] EWHC 3595 (TCC)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re4 = new Regex(@"^TECHNOLOGY AND CONSTRUCTION COURT \(QBD\)$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS?$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^TECHNOLOGY (AND|&) CONSTRUCTION COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
         new Combo4 {
@@ -283,6 +283,13 @@ class Combo4 : Combo {
             Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"^BUSINESS LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList
+        },
+        new Combo4 {    // [2021] EWHC 1988 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS (AND|&) PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^INSOLVENCY AND COMPANIES COURT LIST$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
         }
     };
 
@@ -417,6 +424,12 @@ class Combo3 : Combo {
             Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BIRMINGHAM DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_General
+        },
+        new Combo3 {    // [2022] EWHC 157 (Comm)
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_BusinessAndProperty
         },
         new Combo3 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
@@ -894,6 +907,9 @@ class Combo2 : Combo {
         foreach (Combo2 combo in Combo2.combos)
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
+        foreach (Combo2 combo in Combo2.combos)
+            if (MatchFirstRun(combo.Re1, one) && MatchFirstRun(combo.Re2, two))
+                return new List<ILine>(2) { combo.TransformFirstRun(one), combo.TransformFirstRun(two) };
         return null;
     }
 
