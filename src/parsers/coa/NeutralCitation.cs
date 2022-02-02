@@ -26,6 +26,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)",    // misspelling in EWCA/Civ/2006/1507
         @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
         @"^NCN: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2021] EWCA Crim 1412
+        @"^NCN No: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2022] EWCA Crim 39
         @"(\[\d{4}\] EWFC \d+)"
     };
 
