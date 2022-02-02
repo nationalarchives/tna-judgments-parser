@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using DocumentFormat.OpenXml.Packaging;
-
+using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -15,7 +15,12 @@ public enum Hint { SC }
 
 public class Parser {
 
+    private static ILogger Logger = Logging.Factory.CreateLogger<Parser>();
+
     public static Response Parse(Request request) {
+
+        if (request.Filename is not null)
+            Logger.LogInformation($"parsing { request.Filename }");
 
         Func<Stream, IOutsideMetadata, IEnumerable<Stream>, AkN.ILazyBundle> parse = MakeParser(request.Hint);
 
@@ -28,6 +33,7 @@ public class Parser {
         string xml = SerializeXml(bundle.Judgment);
         AkN.Meta internalMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
         Meta meta2 = ConvertInternalMetadata(internalMetadata);
+        Log(meta2);
         List<Image> images = bundle.Images.Select(i => ConvertImage(i)).ToList();
 
         bundle.Close();
@@ -75,6 +81,29 @@ public class Parser {
             Type = image.ContentType,
             Content = memStream.ToArray()
         };
+    }
+
+    internal static void Log(Api.Meta meta) {
+        if (meta.Uri is null)
+            Logger.LogWarning(@"The judgment's uri is null");
+        else
+            Logger.LogInformation($"The judgment's uri is { meta.Uri }");
+        if (meta.Court is null)
+            Logger.LogWarning(@"The court is null");
+        else
+            Logger.LogInformation($"The court is { meta.Court }");
+        if (meta.Cite is null)
+            Logger.LogWarning(@"The case citation is null");
+        else
+            Logger.LogInformation($"The case citation is { meta.Cite }");
+        if (meta.Date is null)
+            Logger.LogWarning(@"The judgment date is null");
+        else
+            Logger.LogInformation($"The judgment date is { meta.Date }");
+        if (meta.Name is null)
+            Logger.LogWarning(@"The case name is null");
+        else
+            Logger.LogInformation($"The case name is { meta.Name }");
     }
 
 }
