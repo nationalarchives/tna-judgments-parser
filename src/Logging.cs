@@ -19,11 +19,14 @@ class Logging {
         });
     }
 
-    internal static void SetConsole() {
+    internal static void SetConsole(LogLevel level) {
         Factory = Factory = LoggerFactory.Create(builder => { builder
             .AddConsole()
-            .SetMinimumLevel(LogLevel.Information);
+            .SetMinimumLevel(level);
         });
+    }
+    internal static void SetConsole() {
+        SetConsole(LogLevel.Information);
     }
 
     internal static void SetFile(FileInfo file) {
