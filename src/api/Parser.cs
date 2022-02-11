@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+
 using DocumentFormat.OpenXml.Packaging;
+
 using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -69,11 +72,12 @@ public class Parser {
             Court = meta.UKCourt,
             Cite = meta.UKCite,
             Date = meta.WorkDate,
-            Name = meta.WorkName
+            Name = meta.WorkName,
+            Attachments = meta.ExternalAttachments.Select(a => new ExternalAttachment() { Name = a.ShowAs, Link = a.Href })
         };
     }
 
-    private static Image ConvertImage(IImage image) {
+    internal static Image ConvertImage(IImage image) {
         using var memStream = new MemoryStream();
         image.Content().CopyTo(memStream);
         return new Image() {
