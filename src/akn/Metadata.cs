@@ -190,9 +190,11 @@ class Metadata {
                 cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
             }
 
+            if (judgment.Metadata.ExternalAttachments is not null)
             foreach (var tuple in judgment.Metadata.ExternalAttachments.Select((attachment, i) => new { i, attachment })) {
                 XmlElement hasAttachment = append(doc, references, "hasAttachment");
-                hasAttachment.SetAttribute("href", "/" + docId + "/attachment/" + ( tuple.i + 1 ) + ".pdf");
+                var href = tuple.attachment.Link ?? "/" + docId + "/attachment/" + ( tuple.i + 1 ) + ".pdf";
+                hasAttachment.SetAttribute("href", href);
                 hasAttachment.SetAttribute("showAs", tuple.attachment.Type);
             }
 

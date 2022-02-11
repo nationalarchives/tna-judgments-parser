@@ -7,6 +7,8 @@ interface IExternalAttachment {
 
     string Type { get; }
 
+    string Link { get; }
+
 }
 
 interface IOutsideMetadata {
