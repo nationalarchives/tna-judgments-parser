@@ -719,7 +719,9 @@ class PartyEnricher : Enricher {
             "Appellant", "(APPELLANT)", "(APPELLANTS)", "Appellant/Appellant", "Applicant/Appellant", "Appellant/Applicant", "Appellant/Claimant", "Appellants/ Claimants",
             "Petitioner"
         };
-        return firstPartyTypes.Contains(s);
+        if (firstPartyTypes.Contains(s))
+            return true;
+        return GetPartyRole(s) is not null;
     }
     private static bool IsFirstPartyType(IBlock block) {
         if (block is not ILine line)
@@ -772,7 +774,7 @@ class PartyEnricher : Enricher {
             case "Petitioner":
                 return PartyRole.Petitioner;
             default:
-                throw new System.Exception();
+                return GetPartyRole(s).Value;
         }
     }
     private static PartyRole GetFirstPartyRole(IBlock block) {
@@ -913,7 +915,9 @@ class PartyEnricher : Enricher {
             "FIRST DEFENDANT’S SOLICITOR/APPELLANT", "Third Party/Appellant",
             "Intervener", "Interveners"
         };
-        return secondPartyTypes.Contains(s);
+        if (secondPartyTypes.Contains(s))
+            return true;
+        return GetPartyRole(s) is not null;
     }
     private static bool IsSecondPartyType(IBlock block) {
         if (block is not ILine line)
@@ -977,7 +981,7 @@ class PartyEnricher : Enricher {
             case "Interveners":
                 return PartyRole.Intervener;
             default:
-                throw new System.Exception();
+                return GetPartyRole(s).Value;
         }
     }
     private static PartyRole GetSecondPartyRole(IBlock block) {
@@ -1226,40 +1230,6 @@ class PartyEnricher : Enricher {
         return GetOneLinePartyRole(block);
     }
 
-    // private static PartyRole? GetPartyRole(string s) {
-    //     if (!s.Contains('/'))
-    //         return GetPartyRole1(s);
-    //     string[] split = s.Split('/', 2);
-    //     return GetPartyRole2(split[0], split[1]);
-    // }
-    // private static PartyRole? GetPartyRole1(string s) {
-    //     s = s.Trim().TrimEnd('/').ToLower();
-    //     if (s == "appellant" || s == "appellants")
-    //         return PartyRole.Appellant;
-    //     if (s == "applicant" || s == "applicants")
-    //         return PartyRole.Applicant;
-    //     if (s == "claimant" || s == "claimants")
-    //         return PartyRole.Claimant;
-    //     if (s == "defendant" || s == "defendants")
-    //         return PartyRole.Defendant;
-    //     if (s == "petitioner" || s == "petitioners")
-    //         return PartyRole.Petitioner;
-    //     if (s == "respondent" || s == "respondents")
-    //         return PartyRole.Respondent;
-    //     if (s == "interested party" || s == "interested parties")
-    //         return PartyRole.InterestedParty;
-    //     if (s == "intervener" || s == "interveners")
-    //         return PartyRole.Intervener;
-    //     return null;
-    // }
-    // private static PartyRole? GetPartyRole2(string s1, string s2) {
-    //     PartyRole? role1 = GetPartyRole1(s1);
-    //     PartyRole? role2 = GetPartyRole1(s2);
-    //     if (role1 is null || role2 is null)
-    //         return null;
-    //     return null;
-    // }
-
     private static PartyRole? GetOneLinePartyRole(IBlock block) {
         if (block is not ILine line)
             return null;
@@ -1301,7 +1271,7 @@ class PartyEnricher : Enricher {
         types = new HashSet<string>() { "Interested Party", "Interested parties" };
         if (types.Contains(normalized))
             return PartyRole.InterestedParty;
-        return null;
+        return GetPartyRole(normalized);
     }
 
     private static PartyRole? GetTwoLinePartyRole(WCell cell) {
@@ -1394,7 +1364,7 @@ class PartyEnricher : Enricher {
             return PartyRole.Respondent;
         if (one == "Respondent/" && two == "Appellant")    // [2021] EWCA Civ 1961
             return PartyRole.Appellant;
-        return null;
+        return GetPartyRole2(one, two);
     }
 
     private static PartyRole? GetNLinePartyRole(WCell cell) {
@@ -1729,6 +1699,75 @@ class PartyEnricher : Enricher {
             return new WLine((WLine) line, contents);
         }
         return line;
+    }
+
+    /* new methods */
+
+    private static PartyRole? GetPartyRole(string s) {
+        if (s.Contains('/')) {
+            var (one, two) = s.Split('/', 2) switch { var x => (x[0], x[1]) };
+            if (!string.IsNullOrWhiteSpace(one) && !string.IsNullOrWhiteSpace(two)) // not if at beginning or end of line
+                return GetPartyRole2(one, two);
+        }
+        if (s.Contains(" and ")) {
+            var (one, two) = s.Split(" and ", 2) switch { var x => (x[0], x[1]) };
+            if (!string.IsNullOrWhiteSpace(one) && !string.IsNullOrWhiteSpace(two))
+                return GetPartyRole2(one, two);
+        }
+        return GetPartyRole1(s);
+    }
+
+    private static PartyRole? GetPartyRole1(string s) {
+        s = Regex.Replace(s, @"\s+", " ").Trim(new char[] { ' ', '/', '(', ')' });
+        if (s.StartsWith("Part 20 ", StringComparison.InvariantCultureIgnoreCase))
+            s = s.Substring(8);
+        if (s.Equals("Third Party", StringComparison.InvariantCultureIgnoreCase))
+            return PartyRole.ThirdParty;
+        ISet<string> starts = new HashSet<string>() {
+            "1st ", "2nd ", "3rd ", "4th ", "5th ", "6th ",
+            "First ", "Second ", "Third ", "Fourth ", "Fifth ", "Sixth ",
+            "Inquiry "  // [2022] EWHC 189 (Pat)
+        };
+        foreach (string start in starts) {
+            if (s.StartsWith(start, StringComparison.InvariantCultureIgnoreCase)) {
+                s = s.Substring(s.IndexOf(' ') + 1);
+                break;
+            }
+        }
+        s = s.ToLower();
+        if (s == "appellant" || s == "appellants")
+            return PartyRole.Appellant;
+        if (s == "applicant" || s == "applicants")
+            return PartyRole.Applicant;
+        if (s == "claimant" || s == "claimants")
+            return PartyRole.Claimant;
+        if (s == "defendant" || s == "defendants")
+            return PartyRole.Defendant;
+        if (s == "petitioner" || s == "petitioners")
+            return PartyRole.Petitioner;
+        if (s == "respondent" || s == "respondents")
+            return PartyRole.Respondent;
+        if (s == "interested party" || s == "interested parties")
+            return PartyRole.InterestedParty;
+        if (s == "intervener" || s == "interveners")
+            return PartyRole.Intervener;
+        return null;
+    }
+
+    private static PartyRole? GetPartyRole2(string s1, string s2) {
+        PartyRole? role1 = GetPartyRole(s1);
+        PartyRole? role2 = GetPartyRole(s2);
+        if (role1 is null || role2 is null)
+            return null;
+        if (role1 == PartyRole.Appellant || role2 == PartyRole.Appellant)
+            return PartyRole.Appellant;
+        if (role1 == PartyRole.Respondent || role2 == PartyRole.Respondent)
+            return PartyRole.Respondent;
+        if (role1 == PartyRole.Claimant && role2 == PartyRole.Defendant)    // [2022] EWCA Civ 102
+            return PartyRole.Claimant;
+        if (role1 == PartyRole.Defendant& role2 == PartyRole.Applicant)   // [2019] EWHC 3963 (QB)
+            return PartyRole.Applicant;
+        return null;
     }
 
 }
