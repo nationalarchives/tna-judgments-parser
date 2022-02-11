@@ -97,7 +97,7 @@ class PartyEnricher : Enricher {
         IInline third = enumerator.Current;
         if (third is not WText text3)
             return line;
-        Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9, ]*?)( \(by [A-Za-z0-9, ]+\))? \(([A-Z][a-z]+)\)");
+        Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9, ’]*?)( \(by [A-Za-z0-9, ]+\))? \(([A-Z][a-z]+)\)");
         if (!match2.Success)
             return line;
         PartyRole? role2 = ParseRole(match2.Groups[3].Value);
@@ -111,9 +111,18 @@ class PartyEnricher : Enricher {
         contents.Add(new WRole() { Contents = new List<IInline>(1) { new WText(match2.Groups[3].Value, text3.properties) }, Role = role2.Value });
         contents.Add(new WText(text3.Text.Substring(match2.Groups[3].Index + match2.Groups[3].Length), text3.properties));
         
-        if (enumerator.MoveNext())
+        if (!enumerator.MoveNext())
+            return contents;
+
+        IInline following = enumerator.Current;
+        if (following is ILineBreak) {
+            contents.Add(following);
+            while (enumerator.MoveNext())
+                contents.Add(enumerator.Current);
+            return contents;
+        } else {
             return line;
-        return contents;
+        }
     }
 
     private PartyRole? ParseRole(string text) {

@@ -206,7 +206,8 @@ class DocDate : Enricher {
     private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369
 
     private static readonly string[] cardinalDatePatterns2 = {
-        @"^Date[\|:]? ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$"
+        @"^Date[\|:]? ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$",
+        @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),\s(\d{1,2}\s(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}))$"   // strange whitespace characters in [2019] EWHC 3963 (QB)
     };
 
     private static readonly string[] cardinalDatePatternsUS = {

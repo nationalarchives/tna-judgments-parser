@@ -90,6 +90,8 @@ class CourtOfAppealParser : AbstractParser {
                     return header;
                 if (StartsWithTitledJudgeName(p))
                     return header;
+                if (IsFirstLineOfBigLevel(p))   // [2022] EWHC 207 (Ch)
+                    return header;
             }
             AddBlock(e, header);
         }

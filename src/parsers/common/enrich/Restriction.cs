@@ -12,37 +12,41 @@ class RestrictionsEnricher : Enricher {
             return blocks;
         List<IBlock> contents = new List<IBlock>();
         IEnumerator<IBlock> enumerator = blocks.GetEnumerator();
-        if (!enumerator.MoveNext())
-            return blocks;
-        IBlock block = enumerator.Current;
-        if (IsTableWithRestriction(block))
-            return blocks.Skip(1).Prepend(EnrichTableWithRestriction(block));
-        if (!IsRestriction(block))
-            return blocks;
-        WRestriction restriction = new WRestriction((WLine) block);
-        contents.Add(restriction);
+        bool found = false;
+        bool skipped = false;
         while (enumerator.MoveNext()) {
-            block = enumerator.Current;
-            if (!IsRestriction(block)) {
-                contents.Add(block);
-                break;
+            IBlock block = enumerator.Current;
+            if (IsRestriction(block)) {
+                found = true;
+                WRestriction restriction = new WRestriction((WLine) block);
+                contents.Add(restriction);
+                continue;
             }
-            restriction = new WRestriction((WLine) block);
-            contents.Add(restriction);
+            if (!skipped && IsTopRestriction(block)) {
+                found = true;
+                WRestriction restriction = new WRestriction((WLine) block);
+                contents.Add(restriction);
+                continue;
+            }
+            if (IsTableWithRestriction(block)) {
+                found = true;
+                var enriched = EnrichTableWithRestriction(block);
+                contents.Add(enriched);
+                continue;
+            }
+            contents.Add(block);
+            skipped = true;
         }
-        while (enumerator.MoveNext())
-            contents.Add(enumerator.Current);
-        return contents;
+        if (found)
+            return contents;
+        return blocks;
     }
 
-    private static bool IsRestriction(IBlock block) {
+    private static bool IsTopRestriction(IBlock block) {
+        if (IsRestriction(block))
+            return true;
         if (block is not ILine line)
             return false;
-        string content = line.NormalizedContent();
-        if (content.StartsWith("If this Transcript is to be reported or published, there is a requirement to "))
-            return true;
-        if (content.StartsWith("WARNING: reporting restrictions may apply to the contents transcribed in this document"))
-            return true;
         string color = line.GetCSSStyles().GetValueOrDefault("color");
         if (color is not null && color == "red")
             return true;
@@ -57,6 +61,17 @@ class RestrictionsEnricher : Enricher {
         if (color is not null && color == "red")
             return true;
         if (color is not null && color.ToLower() == "#ff0000")
+            return true;
+        return false;
+    }
+
+    private static bool IsRestriction(IBlock block) {
+        if (block is not ILine line)
+            return false;
+        string content = line.NormalizedContent();
+        if (content.StartsWith("If this Transcript is to be reported or published, there is a requirement to "))
+            return true;
+        if (content.StartsWith("WARNING: reporting restrictions may apply to the contents transcribed in this document"))
             return true;
         return false;
     }

@@ -94,9 +94,9 @@ class WRow : IRow {
     }
 
     internal static WCell ParseStdCell(WRow row, SdtCell sdt) {
-        var content = sdt.SdtContentCell;
-        OpenXmlElementList children = content.ChildElements;
-        if (children.Count != 1)
+        SdtContentCell content = sdt.SdtContentCell;
+        IEnumerable<OpenXmlElement> children = content.ChildElements.Where(e => e is not BookmarkStart && e is not BookmarkEnd);    // [2022] EWHC 205 (QB)
+        if (children.Count() != 1)
             throw new Exception();
         OpenXmlElement child = children.First();
         if (child is TableCell cell)
