@@ -78,7 +78,21 @@ internal class MetaWrapper : IOutsideMetadata {
 
     public bool NameTrumps => Meta.Name is not null;
 
-    public IEnumerable<IExternalAttachment> Attachments => Enumerable.Empty<IExternalAttachment>();
+    public IEnumerable<IExternalAttachment> Attachments => Meta.Attachments?.Select(a => new ExternalAttachmentWrapper(a) );
+
+}
+
+internal class ExternalAttachmentWrapper : IExternalAttachment {
+
+    private ExternalAttachment Attachment { get; init; }
+
+    internal ExternalAttachmentWrapper(ExternalAttachment attachment) {
+        Attachment = attachment;
+    }
+
+    public string Type => Attachment.Name;
+
+    public string Link => Attachment.Link;
 
 }
 

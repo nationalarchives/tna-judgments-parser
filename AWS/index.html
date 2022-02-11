@@ -95,6 +95,17 @@ input:invalid { background-color: pink }
 				<input type="text" id="name">
 			</label>
 		</p>
+		<p>
+			<span>External Attachment:</span>
+			<label>
+				<span>Name</span>
+				<input type="text" id="ext-attach-name" placeholder="e.g., Press Summary">
+			</label>
+			<label>
+				<span>Link</span>
+				<input type="text" id="ext-attach-link" placeholder="(optional)">
+			</label>
+		</p>
 	</details>
 </p>
 
@@ -162,6 +173,8 @@ function getMetadata() {
 	const cite = document.getElementById('cite');
 	const date = document.getElementById('date');
 	const name = document.getElementById('name').value.trim();
+	const extAttachName = document.getElementById('ext-attach-name').value.trim();
+	const extAttachLink = document.getElementById('ext-attach-link').value.trim() || null;
 	const meta = {};
 	if (court.value)
 		meta['court'] = court.value;
@@ -171,6 +184,8 @@ function getMetadata() {
 		meta['date'] = date.value;
 	if (name)
 		meta['name'] = name;
+	if (extAttachName)
+		meta['attachments'] = [ { name: extAttachName, link: extAttachLink } ]
 	if (Object.keys(meta).length)
 		return meta;
 }
@@ -217,6 +232,8 @@ function display(response) {
 	table.appendChild(tbody);
 	Object.entries(response['meta']).forEach(function(prop) {
 		var key = prop[0];
+		if (key === 'attachments')
+			return;
 		var value = prop[1];
 		var tr = document.createElement('tr');
 		var td1 = document.createElement('td');
@@ -227,6 +244,22 @@ function display(response) {
 		tr.appendChild(td2);
 		tbody.appendChild(tr);
 	});
+	if (response['meta']['attachments'] && response['meta']['attachments'].length) {
+		let tr = document.createElement('tr');
+		let td1 = document.createElement('td');
+		td1.style.verticalAlign = 'top';
+		td1.innerText = 'ext attach';
+		let td2 = document.createElement('td');
+		let s = '<ul style="padding-left:1.5em">';
+		response['meta']['attachments'].forEach(a => {
+			s += `<li>${ a.name } (${ a.link })</li>`;
+		});
+		s += '</ul>';
+		td2.innerHTML = s;
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tbody.appendChild(tr);
+	}
 
 	const right = document.createElement('div');
 	document.getElementById('result').appendChild(right);
