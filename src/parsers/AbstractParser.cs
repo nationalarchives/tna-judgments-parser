@@ -367,6 +367,9 @@ abstract class AbstractParser {
         }
         return false;
     }
+    protected bool IsFirstLineOfBigLevel(OpenXmlElement e) {
+        return IsFirstLineOfBigLevel(e, bigLevelNumberingFormats);
+    }
     private bool IsFirstLineOfBigLevel(OpenXmlElement e, string[] formats) {
         foreach (string format in formats)
             if (IsFirstLineOfBigLevel(e, format))
