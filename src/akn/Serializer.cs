@@ -19,11 +19,13 @@ class Serializer {
     private readonly XmlWriter writer;
 
     private Serializer(Stream stream) {
-        XmlWriterSettings settings = new XmlWriterSettings();
-        settings.OmitXmlDeclaration = false;
-        settings.Indent = true;
+        XmlWriterSettings settings = new XmlWriterSettings() {
+            OmitXmlDeclaration = false,
+            Indent = true,
+            Encoding = new UTF8Encoding(false),
+            ConformanceLevel = ConformanceLevel.Document
+        };
         // settings.IndentChars = ("\t");
-        settings.ConformanceLevel = ConformanceLevel.Document;
         writer = XmlWriter.Create(stream, settings);
     }
 
@@ -73,6 +75,7 @@ class Serializer {
         XmlWriterSettings settings = new XmlWriterSettings();
         settings.OmitXmlDeclaration = true;
         settings.Indent = false;
+        // settings.Encoding = new UTF8Encoding(false);
         settings.ConformanceLevel = ConformanceLevel.Fragment;
         StringBuilder builder = new StringBuilder();
         XmlWriter inline = XmlWriter.Create(builder, settings);
