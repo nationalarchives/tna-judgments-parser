@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
    title: Judgments Parser
-   version: '0.1.1'
+   version: '0.1.2'
 
 servers:
    - url: https://parse.judgments.tna.jurisdatum.com
@@ -40,6 +40,27 @@ paths:
                                     type: string
                               required:
                                  - content
+                        meta:
+                           type: object
+                           properties:
+                              uri:
+                                 type: string
+                              court:
+                                 type: string
+                              cite:
+                                 type: string
+                              date:
+                                 type: string
+                                 format: date
+                              name:
+                                 type: string
+                              attachments:
+                                 type: object
+                                 properties:
+                                    name:
+                                       type: string
+                                    link:
+                                       type: string
                      required:
                         - content
          responses:
@@ -66,6 +87,13 @@ paths:
                                     format: date
                                  name:
                                     type: string
+                                 attachments:
+                                    type: object
+                                    properties:
+                                       name:
+                                          type: string
+                                       link:
+                                          type: string
                            images:
                               type: array
                               items:
