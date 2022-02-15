@@ -20,6 +20,9 @@
     <EmbeddedResource Include="../src/akn/xml.xsd">
       <LogicalName>akn.xml.xsd</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="../src/parsers/common/omml2mml.xsl">
+      <LogicalName>math.omml2mml.xsl</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
