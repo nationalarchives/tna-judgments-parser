@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
    title: Judgments Parser
-   version: '0.1.2'
+   version: '0.2.0'
 
 servers:
    - url: https://parse.judgments.tna.jurisdatum.com
@@ -27,7 +27,9 @@ paths:
                         hint:
                            type: string
                            enum:
-                              - SC
+                              - UKSC
+                              - EWCA
+                              - EWHC
                         attachments:
                            type: array
                            items:

@@ -10,6 +10,10 @@ input:invalid { background-color: pink }
 
 <body style="position:relative;margin:1cm 1in">
 
+<p style="position:absolute;right:0">
+	<a href="/api.yaml">API spec</a>
+</p>
+
 <h1>Parse UK judgments</h1>
 
 <p>
@@ -19,7 +23,9 @@ input:invalid { background-color: pink }
 		<span>Hint: </span>
 		<select id="hint">
 			<option value="">none</option>
-			<option value="SC">SC</option>
+			<option value="UKSC">UKSC</option>
+			<option value="EWCA">EWCA</option>
+			<option value="EWHC">EWHC</option>
 		</select>
 	</label>
 </p>
@@ -133,6 +139,8 @@ async function handleClick() {
 		status.innerText = 'no file selected';
 		return;
 	}
+	if (hint.value)
+		payload['hint'] = hint.value;
 	const attachment = await readFile('attachment');
 	if (attachment)
 		payload['attachments'] = [ attachment ];
