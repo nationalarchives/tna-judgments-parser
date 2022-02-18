@@ -1,20 +1,19 @@
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
-
-using DocumentFormat.OpenXml.Packaging;
 
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
+using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<byte[]>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
+
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
-public enum Hint { SC }
+public enum Hint { UKSC, EWCA, EWHC }
 
 public class Parser {
 
@@ -25,22 +24,20 @@ public class Parser {
         if (request.Filename is not null)
             Logger.LogInformation($"parsing { request.Filename }");
 
-        Func<Stream, IOutsideMetadata, IEnumerable<Stream>, AkN.ILazyBundle> parse = MakeParser(request.Hint);
+        ParseFunction parse = GetParser(request.Hint);
 
-        Stream input = new MemoryStream(request.Content);
         IOutsideMetadata meta1 = (request.Meta is null) ? null : new MetaWrapper() { Meta = request.Meta };
-        IEnumerable<Stream> attachments = (request.Attachments is null) ? Enumerable.Empty<Stream>() : request.Attachments.Select(a => new MemoryStream(a.Content));
+        IEnumerable<byte[]> attachments = (request.Attachments is null) ? Enumerable.Empty<byte[]>() : request.Attachments.Select(a => a.Content);
 
-        AkN.ILazyBundle bundle = parse(input, meta1, attachments);
+        AkN.ILazyBundle bundle = parse(request.Content, meta1, attachments);
 
         string xml = SerializeXml(bundle.Judgment);
-        AkN.Meta internalMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
-        Meta meta2 = ConvertInternalMetadata(internalMetadata);
+        AkN.Meta aknMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
+        Meta meta2 = ConvertInternalMetadata(aknMetadata);
         Log(meta2);
         List<Image> images = bundle.Images.Select(i => ConvertImage(i)).ToList();
 
         bundle.Close();
-        input.Close();
 
         return new Response() {
             Xml = xml,
@@ -49,15 +46,61 @@ public class Parser {
         };
     }
 
-    private static Func<Stream, IOutsideMetadata, IEnumerable<Stream>, AkN.ILazyBundle> MakeParser(Hint? hint) {
-        Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> parse;
+    private static ParseFunction EWCAParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3);
+    private static ParseFunction UKSCParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3);
+    private static ParseFunction EWCAParserPDF = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.EWPDF.Parse3);
+
+    private static ParseFunction ALL = Combine(new List<ParseFunction>(3) { EWCAParser, UKSCParser, EWCAParserPDF });
+    private static ParseFunction EWCACombined = Combine(new List<ParseFunction>(2) { EWCAParser, EWCAParserPDF });
+
+    private static ParseFunction GetParser(Hint? hint) {
         if (!hint.HasValue)
-            parse = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3;
-        else if (hint.Value == Hint.SC)
-            parse = UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3;
-        else
-            parse = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3;
-        return UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.MakeParser3(parse);
+            return ALL;
+        if (hint.Value == Hint.UKSC)
+            return UKSCParser;
+        return EWCACombined;
+    }
+
+    internal static ParseFunction Combine(List<ParseFunction> parsers) {
+        if (!parsers.Any())
+            return null;
+        if (parsers.Count == 1)
+            return parsers.First();
+        return (byte[] docx, IOutsideMetadata meta, IEnumerable<byte[]> attachments) => {
+            AkN.ILazyBundle bestBundle = null;
+            int bestScore = -1;
+            foreach (ParseFunction parse in parsers) {
+                AkN.ILazyBundle bundle = parse(docx, meta, attachments);
+                Meta meta2 = Parser.ConvertInternalMetadata(AkN.MetadataExtractor.Extract(bundle.Judgment));
+                int score = Score(meta2);
+                if (score == PerfectScore)
+                    return bundle;
+                if (score > bestScore) {
+                    if (bestBundle is not null)
+                        bestBundle.Close();
+                    bestBundle = bundle;
+                    bestScore = score;
+                }
+            }
+            return bestBundle;
+        };
+    }
+
+    private static int PerfectScore = 5;
+
+    private static int Score(Meta meta) {
+        int score = 0;
+        if (meta.Uri is not null)
+            score += 1;
+        if (meta.Court is not null)
+            score += 1;
+        if (meta.Cite is not null)
+            score += 1;
+        if (meta.Date is not null)
+            score += 1;
+        if (meta.Name is not null)
+            score += 1;
+        return score;
     }
 
     internal static string SerializeXml(XmlDocument judgment) {
