@@ -69,6 +69,18 @@ public class Parser {
             return WordprocessingDocument.Open(ms, true, settings);
         }
     }
+    internal static WordprocessingDocument Read(byte[] docx) {
+        MemoryStream ms = new MemoryStream(docx);
+        try {
+            return WordprocessingDocument.Open(ms, false);
+        } catch (OpenXmlPackageException) {
+            ms.Seek(0, SeekOrigin.Begin);
+            var settings = new OpenSettings() {
+                RelationshipErrorHandlerFactory = RelationshipErrorHandler.CreateRewriterFactory(DOCX.Relationships.MalformedUriRewriter)
+            };
+            return WordprocessingDocument.Open(ms, true, settings);
+        }
+    }
 
     private static ILazyBundle Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<WordprocessingDocument> attachments, Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> f) {
         IJudgment judgment = f(doc, meta, attachments);
@@ -85,6 +97,13 @@ public class Parser {
 
     internal static Func<Stream, IOutsideMetadata, IEnumerable<Stream>, ILazyBundle> MakeParser3(Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> f) {
         return (Stream docx, IOutsideMetadata meta, IEnumerable<Stream> attachments) => {
+            WordprocessingDocument doc = Read(docx);
+            IEnumerable<WordprocessingDocument> attach2 = attachments.Select(Read);
+            return Parse3(doc, meta, attach2, f);
+        };
+    }
+    internal static Func<byte[], IOutsideMetadata, IEnumerable<byte[]>, ILazyBundle> MakeParser4(Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<WordprocessingDocument>, IJudgment> f) {
+        return (byte[] docx, IOutsideMetadata meta, IEnumerable<byte[]> attachments) => {
             WordprocessingDocument doc = Read(docx);
             IEnumerable<WordprocessingDocument> attach2 = attachments.Select(Read);
             return Parse3(doc, meta, attach2, f);

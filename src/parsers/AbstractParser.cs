@@ -34,6 +34,7 @@ abstract class AbstractParser {
     }
 
     protected Judgment Parse() {
+        logger.LogDebug($"invoking parser { this.GetType().FullName }");
         int save = i;
         IEnumerable<IBlock> coverPage = CoverPage();
         if (coverPage is null)
@@ -51,8 +52,8 @@ abstract class AbstractParser {
             i = save;
         IEnumerable<IAnnex> annexes = Annexes();
         if (i != doc.MainDocumentPart.Document.Body.ChildElements.Count) {
-            System.Console.WriteLine("parsing did not complete: " + i);
-            System.Console.WriteLine(doc.MainDocumentPart.Document.Body.ChildElements.ElementAt(i).InnerText);
+            logger.LogDebug("parsing did not complete: " + i);
+            logger.LogTrace(doc.MainDocumentPart.Document.Body.ChildElements.ElementAt(i).InnerText);
             throw new Exception();
         }
         if (coverPage is not null)
@@ -254,16 +255,16 @@ abstract class AbstractParser {
         List<IDivision> bigLevels = BigLevels();
         if (bigLevels is not null && bigLevels.Count > 1)
             return bigLevels;
-        System.Console.WriteLine("rolling back big-levels at index " + i + ": ");
+        logger.LogDebug("rolling back big-levels at index " + i + ": ");
         if (i < elements.Count)
-            System.Console.WriteLine(elements.ElementAt(i).OuterXml);
+            logger.LogTrace(elements.ElementAt(i).OuterXml);
         i = save;
         List<IDivision> xHeads = CrossHeadings();
         if (xHeads is not null && xHeads.Count > 1)
             return xHeads;
-        System.Console.WriteLine("rolling back cross-headings at index " + i + ": ");
+        logger.LogDebug("rolling back cross-headings at index " + i + ": ");
         if (i < elements.Count)
-            System.Console.WriteLine(elements.ElementAt(i).OuterXml);
+            logger.LogTrace(elements.ElementAt(i).OuterXml);
         i = save;
         return ParagraphsUntilAnnex();
     }
@@ -361,8 +362,8 @@ abstract class AbstractParser {
             return false;
         string text = NormalizeFirstLineOfBigLevel(e, format);
         if (Regex.IsMatch(text, format)) {
-            System.Console.Write("This is a BigLevel: ");
-            System.Console.WriteLine(e.InnerText);
+            logger.LogDebug("This is a BigLevel: ");
+            logger.LogTrace(e.InnerText);
             return true;
         }
         return false;
@@ -479,8 +480,8 @@ abstract class AbstractParser {
 
         List<IDivision> children = ParagraphsUntilCrossHeadingOrAnnex();
         if (children.Count == 0) {
-            System.Console.Write("Abandoning CrossHeading: ");
-            System.Console.WriteLine(e.InnerText);
+            logger.LogDebug("Abandoning CrossHeading: ");
+            logger.LogTrace(e.InnerText);
             return null;
         }
         return new CrossHeading { Heading = heading, Children = children };
