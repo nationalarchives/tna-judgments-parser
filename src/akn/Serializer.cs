@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
-class Serializer {
+public class Serializer {
 
     private static readonly ISet<string> blocks = new HashSet<string>{ "p", "block", "num", "heading", "tocItem" };
 

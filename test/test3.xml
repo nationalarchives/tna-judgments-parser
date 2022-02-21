@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https:/judgments.gov.uk/" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="uksc/2021/12" />
+          <FRBRuri value="uksc/2021/12" />
+          <FRBRdate date="2021-04-23" name="judgment" />
+          <FRBRauthor href="#uksc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="12" />
+          <FRBRname value="Burnett or Grant v International Insurance Company of Hanover Ltd" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="uksc/2021/12/eng" />
+          <FRBRuri value="uksc/2021/12/eng" />
+          <FRBRdate date="2021-04-23" name="judgment" />
+          <FRBRauthor href="#uksc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="uksc/2021/12/eng/akn" />
+          <FRBRuri value="uksc/2021/12/eng/akn" />
+          <FRBRdate date="2022-02-04T16:15:17" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The UK Supreme Court" shortForm="Supreme Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCPerson eId="burnett-or-grant" href="" showAs="Burnett or Grant" />
+        <TLCPerson eId="international-insurance-company-of-hanover-ltd" href="" showAs="International Insurance Company of Hanover Ltd" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+      </references>
+      <proprietary source="uksc/2021/12/eng/docx">
+        <uk:court>UKSC</uk:court>
+        <uk:year>2021</uk:year>
+        <uk:number>12</uk:number>
+        <uk:cite>[2021] UKSC 12</uk:cite>
+        <uk:hash>45f81b52757f8b95cba6e0a91a4f32fd69edf065f4f913902ff3d62e8179e429</uk:hash>
+      </proprietary>
+      <presentation source="uksc/2021/12/eng/docx">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .ParaHeading { font-style: italic; font-size: 13pt; }
+#judgment .Title1 { text-align: center; margin-left: 1.00in; font-weight: bold; font-size: 13pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 13pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.00in; font-size: 13pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.49in; font-size: 13pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 0.98in; font-size: 13pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.48in; font-size: 13pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 1.97in; font-size: 13pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.46in; font-size: 13pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 2.95in; font-size: 13pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.45in; font-size: 13pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 3.94in; font-size: 13pt; }
+#judgment .Caveat { text-align: justify; font-weight: bold; font-size: 10pt; }
+#judgment .Quote { text-align: justify; margin-left: 0.50in; margin-right: 0.50in; font-size: 13pt; }
+#judgment .NewSpeech { font-style: normal; font-weight: bold; text-transform: uppercase; font-size: 13pt; }
+#judgment .WorkingDate { text-align: right; font-weight: bold; font-size: 18pt; }
+#judgment .PageNumber { font-size: 10pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .QuoteChar { font-size: 13pt; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p class="Header" />
+    </coverPage>
+    <header>
+      <p><img src="image1.png" style="width:1.3756944444444446in;height:1.3756944444444446in;" /></p>
+      <p style="text-align:right"><span style="font-weight:bold">Easter Term</span></p>
+      <p style="text-align:right"><neutralCitation style="font-weight:bold">[2021] UKSC 12</neutralCitation></p>
+      <p style="text-align:right"><span style="font-style:italic">On appeal from: [2019] CSIH 9</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-size:20pt">JUDGMENT</span></p>
+      <table uk:widths="6.23in">
+        <tr>
+          <td>
+            <p class="Title1" style="margin-left:0.06in"><party refersTo="#burnett-or-grant" as="#respondent" style="font-size:20pt">Burnett or Grant</party><span style="font-size:20pt"> (</span><role refersTo="#respondent" style="font-size:20pt">Respondent</role><span style="font-size:20pt">) </span><span style="font-style:italic;font-size:20pt">v</span><span style="font-size:20pt" /><party refersTo="#international-insurance-company-of-hanover-ltd" as="#appellant" style="font-size:20pt">International Insurance Company of Hanover Ltd</party><span style="font-size:20pt"> (</span><role refersTo="#appellant" style="font-size:20pt">Appellant</role><span style="font-size:20pt">) (Scotland)</span></p>
+            <p />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+            <p style="text-align:center"><span style="font-weight:bold;font-size:14pt">before </span></p>
+            <p style="text-align:center" />
+            <p style="text-align:center"><span style="font-weight:bold;font-size:17pt">Lord Reed, President</span></p>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:17pt">Lord Briggs</span></p>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:17pt">Lord Hamblen</span></p>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:17pt">Lord Leggatt</span></p>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:17pt">Lord Burrows</span></p>
+            <p style="text-align:center" />
+            <p style="text-align:center" />
+            <p style="text-align:center" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:18pt">JUDGMENT GIVEN ON</span></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center"><docDate date="2021-04-23" style="font-weight:bold;font-size:18pt">23 April 2021</docDate></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center;margin-left:4.00in;text-indent:-4.00in" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:justify" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:15pt">Heard on 8 February 2021</span></p>
+          </td>
+        </tr>
+      </table>
+      <table uk:widths="1.95in 2.00in 1.97in">
+        <tr>
+          <td>
+            <p style="text-align:center"><span style="font-style:italic">Appellant</span></p>
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-style:italic">Respondent</span></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center">Kenneth McBrearty QC</p>
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:center">Robert Milligan QC</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center">Robin Cleland</p>
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:center">Robert Weir QC</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:center">James Hastie</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center">(Instructed by Clyde &amp; Co (Scotland) LLP (Edinburgh))</p>
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:center">(Instructed by Lefevres (Edinburgh))</p>
+          </td>
+        </tr>
+      </table>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p class="NewSpeech">LORD HAMBLEN: (<span style="text-transform:none">with whom Lord Reed, Lord Briggs, Lord Leggatt and Lord Burrows agree)</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In the early hours of 9 August 2013, Craig Grant was killed as a result of an assault on him by Jonas Marcius (the first defender), a door steward employed by Prospect Security Ltd (the second defender) to work at the Tonik Bar in Aberdeen, operated by its tenant, Blu Inns Ltd (the third defender).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The respondent (“Mrs Grant”) is Mr Grant’s widow. In March 2016 she commenced proceedings claiming damages against the defenders as his widow and in respect of their son, as qualifying relatives under the Damages (Scotland) Act 2011.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The appellant (the fourth defender) (“the insurer”) insured the second defender under a policy covering, among other risks, public liability. The second defender is in liquidation. Mrs Grant claims that the insurer would be liable to indemnify the second defender in respect of its vicarious liability for the wrongful acts of their employee, Mr Marcius, and that the right to be indemnified was transferred to and vested in her under the Third Party (Rights against Insurers) Act 2010 (“the 2010 Act”).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The second defender did not enter appearance and Mrs Grant abandoned the action against the first and third defenders, leaving in issue only her claim against the insurer. That claim succeeded before the Lord Ordinary and the insurer’s reclaiming motion (appeal) was refused by the First Division of the Inner House of the Court of Session. The insurer now appeals to this court.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The central issue on the appeal is whether the insurer is entitled to rely on an exclusion under the policy of “liability arising out of deliberate acts” of an employee.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">The background facts</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The facts are taken from the Joint Minute of Admissions agreed for the purpose of the proceedings below and the Statement of Facts agreed for this appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">On the evening of 8 August 2013, Mr Grant went to the Tonik Bar in the Galleria Shopping Mall in Aberdeen. He was intoxicated as the result of both alcohol and cocaine and, having purchased a drink and taken it to a table, he fell asleep.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Mr Marcius woke Mr Grant up and, together with two other door stewards, Mr Hauley and Mr Morley, ejected him from the premises. Once outside, Mr Grant became involved in an altercation with the door stewards and hit out at Mr Hauley, who responded by punching or attempting to punch him. Mr Morley telephoned the police requesting their assistance. Mr Marcius took hold of Mr Grant around his shoulder or neck and he was wrestled to the ground. He applied a neck hold on Mr Grant and the other door stewards assisted in restraining him. The neck hold was applied for up to three minutes, and Mr Marcius was seen to lean on Mr Grant with all of his weight and put as much pressure on his windpipe as possible. Mr Grant continued to resist by kicking out for a short period of time, but he was then seen to turn blue and began to choke and cough. On the arrival of the police at the scene, Mr Grant was motionless and was pronounced dead shortly afterwards. The cause of death was mechanical asphyxia, caused by the application of the neck hold by Mr Marcius.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Mr Marcius stood trial at the High Court in Aberdeen for the murder of Mr Grant. Evidence was led at trial to the effect that Mr Marcius had undergone training in minimising conflict, avoiding violence and on acceptable methods of restraint; that the neck hold applied to Mr Grant was not taught as an acceptable method of restraint; that such a neck hold is considered so dangerous that it is not demonstrated in a classroom setting; and that in applying the neck hold, Mr Marcius ignored his training. The jury did not accept that Mr Marcius had asphyxiated Mr Grant or caused his death and he was only convicted of assaulting Mr Grant, by seizing him on the neck, forcing him to the ground, placing him in a neck hold and restricting his breathing. The trial judge, Lady Wolffe, accepted that Mr Marcius’ actions were badly executed, not badly motivated. A non-custodial sentence was imposed consisting of a Community Payback Order with an unpaid work requirement of 250 hours.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">It is agreed that Mr Marcius did not intend to kill Mr Grant.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">The policy</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The second defender was insured by the insurer under a one-year policy which commenced on 27 November 2012 (“the policy”). Cover was provided under eight different sections: Public/Products Liability; Inefficacy and Contractual Liability; Products Inefficacy; Wrongful Arrest; Loss of Keys; Financial Loss; Employers Liability, and Fidelity Guarantee. Each section had its own excess and limit of liability.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The policy describes the second defender’s business as being “Manned Guarding and Door Security Contractors”. The annual premium is £2,875.55. The number of “door supervisor” employees is recorded as 57, with annual wages totalling £287,438.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In respect of public liability, the policy coverage is stated in the following terms:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“The INSURERS will indemnify the INSURED against all sums which the INSURED shall become legally liable to pay as compensatory damages and claimant’s costs and expenses arising out of accidental</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.50in"><span style="color:#2B2B2B">(a)</span><marker name="tab" /><span style="font-weight:bold;color:#2B2B2B">INJURY </span><span style="color:#2B2B2B">to any person</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.50in"><span style="color:#2B2B2B">(b)</span><marker name="tab" /><span style="color:#2B2B2B">physical loss of or physical damage to material property</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.50in"><span style="color:#2B2B2B">(c)</span><marker name="tab" /><span style="color:#2B2B2B">obstruction trespass nuisance or interference with any right of way light air or </span><span style="font-weight:bold;color:#2B2B2B">water</span><span style="color:#2B2B2B" />…”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">“INJURY” is defined as “bodily injury death illness disease or shock causing bodily injury”.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">There are a number of policy exclusions. Clause 14, so far as relevant, provides:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“DELIBERATE ACTS</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">Liability arising out of deliberate acts wilful default or neglect by the INSURED any DIRECTOR PARTNER or EMPLOYEE of the INSURED other than as set out in Extension 1 (if such Extension is operative) and Extension 2 (if such Extension is operative).”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Extension 1 relates to Efficacy and Contractual Liability and Extension 2 to Products Efficacy.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Liability arising from or out of wrongful arrest is excluded by clause 20, but is then included by extension 3 which, so far as relevant, provides:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“All the Extensions are subject to all other terms conditions and Exclusions of the Policy</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">3<marker name="tab" />WRONGFUL ARREST</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">The INSURERS will indemnify the INSURED in respect of all sums which the INSURED shall become legally liable to pay as compensatory damages arising from or out of WRONGFUL ARREST committed or alleged to have been committed by the INSURED any DIRECTOR PARTNER or EMPLOYEE of the INSURED …”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Wrongful arrest is defined as:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“any unlawful physical restraint by one person on the liberty of another and includes:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.50in">(1)<marker name="tab" />assault and battery committed or alleged to have been committed at the time of making or attempting to make an arrest or in resisting an overt attempt to escape by a person under arrest before such person has been or could be placed in the custody of the police or an officer of the court …”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The Schedule to the policy provides that the limit of liability in respect of public liability is £5m, while that for wrongful arrest is £100,000.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">20.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The policy is governed by English law. It has not been suggested that there is any difference between Scottish law and English law in relation to the issues on the appeal.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">The proceedings below</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The proceedings will be described using Scottish law terminology with the English law equivalent in brackets.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The insurer sought absolvitor (dismissal) on the basis that it was not liable to indemnify the second defender under the policy as Mr Marcius’ actions fell within the clause 14 exception of “deliberate acts”. In the alternative, it was argued that, if it was obliged to indemnify, its liability was limited to £100,000 as Mr Marcius’ actions fell within the definition of “Wrongful Arrest”.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The action proceeded to a Proof before Answer (trial with questions of law reserved for determination) before the Lord Ordinary (Lord Uist). The parties produced a Joint Minute of Admissions setting out the relevant evidence which was agreed. On 5 April 2018, the Lord Ordinary issued an opinion (judgment) in which he concluded that the insurer was obliged to indemnify the second defender in respect of their liability to the pursuer (claimant) arising out of the death of Mr Grant and that the second defenders’ right to indemnity had been transferred to and vested in the pursuer (the claimant - Mrs Grant) under sections 1 and 3 of the 2010 Act. Decree of declarator (a declaration) was granted to that effect in terms of the pursuer’s first conclusion (remedy sought in the pleadings).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The Lord Ordinary held that the clause 14 exclusion “applies only when the outcome giving rise to liability, namely death, was the intended objective”. There was no such intention, nor was it pleaded and so the exclusion did not apply. He also held that the wrongful arrest extension was irrelevant as no such action had been brought.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">25.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The appellant reclaimed (appealed) the interlocutor (order) of the Lord Ordinary. The reclaiming motion (appeal) was heard by the First Division of the Inner House (The Lord President (Lord Carloway), Lord Brodie and Lord Drummond Young) on 31 October 2018. On 22 February 2019, the First Division refused (dismissed) the reclaiming motion. All three of their lordships gave opinions (judgments).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In relation to the proper construction of the clause 14 exclusion, The Lord President, Lord Carloway, held as follows at para 23:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“… the phrase ‘deliberate acts’ in the policy is intended to cover acts which involve the insured, or his employees, doing something with the deliberate <span style="color:#000000">intention of bringing about a particular objective, notably the creation of liabilities for losses covered by the policy</span><span style="color:#505050">. </span><span style="color:#2A2A2A">Seen in this light, the exclusionary phrase does not cover a deliberate act of an employee, intended as one of restraint, which ‘accidentally’ causes injury or death to the person restrained. For the exclusion to operate, the employee must have deliberately intended to cause the death of, or at least serious injury to, the deceased. That is not the situation in this case</span><span style="color:#171717">.”</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber">Lord Brodie agreed with this construction, observing at para 53 that:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“… It appears to me that that construction gives full weight to the ordinary meaning of the various words in the expression ‘liability arising out of deliberate acts’. It avoids absurdity without the need to read in words which do not appear in the text. It is commercially sensible in that it provides cover against risks incidental to the insured’s business while being consistent with ‘a basic rule of insurance law<span style="color:#515151">’, </span>namely<span style="color:#515151">, </span>‘that a contract of insurance does not cover an assured against his deliberate or wilful infliction of loss, at any rate in the absence of express stipulate or necessary implication’: <span style="font-style:italic">Charlton v</span><span /><span style="font-style:italic">Fish</span><span style="font-style:italic;color:#515151">e</span><span style="font-style:italic">r </span>[2002] QB 578, para 51 ...”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber">Lord Drummond Young held as follows at para 63:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“… In my opinion the application of exclusion 14 should be confined to cases of that nature, where there is a deliberate decision to use excessive force to cause injury. Exclusion 14 is not intended to deal with the case where a door steward attempts to restrain a customer or would-be customer but in doing so negligently, or even recklessly, goes beyond a reasonable level of force. The use of the word ‘deliberate’ in the exclusion indicates that the employee’s act should be intended to cause the type of harm suffered by the victim. Even if that harm results from a deliberate act of the employee, such as punch or choke hold, unless the harm suffered was of the general nature intended by the employee, it cannot be said that the liability for that harm arose out of the ‘deliberate’ act of the employee.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">27.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">All three of their lordships held that there had been no deliberate act on the facts. They also all held the wrongful arrest extension to be inapplicable.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">The Issues</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The issues on the appeal are as follows:</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:13pt;margin-left:0.49in">(1)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.49in;text-indent:0.38in">Was the death of Mr Grant brought about by a deliberate act of Mr Marcius within the terms of clause 14 of the policy, with the effect that the insurer’s liability to indemnify Mrs Grant is excluded?</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:13pt;margin-left:0.49in">(2)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.49in;text-indent:0.38in">Was the death of Mr Grant brought about by Mr Marcius’ wrongful arrest of him under the terms of Extension 3 of the policy, with the effect that the insurer’s liability to indemnify Mrs Grant is limited to £100,000?</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">Issue (1) - Was the death of Mr Grant brought about by a deliberate act of Mr Marcius within the terms of clause 14 of the policy?</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaHeading" style="margin-left:0.50in">Principles of interpretation</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The parties were agreed that the policy, like any other contract, is to be interpreted in accordance with the principles discussed and set out by Lord Hodge in <span style="font-style:italic">Wood v Capita Insurance Services Ltd</span> [2017] UKSC 24; [2017] AC 1173, paras 10-13. The policy is to be interpreted objectively by asking what a reasonable person, with all the background knowledge which would reasonably have been available to the parties when they entered into the contract, would have understood the language of the contract to mean. This involves a consideration of the words used in their documentary, factual and commercial context. This approach applies equally to exclusion clauses. The doctrine of interpretation contra proferentem is only relevant in a case of genuine ambiguity or real doubt as to the meaning of the words used - see <span style="font-style:italic">Impact Funding Solutions Ltd v Barrington Support Services Ltd</span> [2016] UKSC 57; [2017] AC 73, paras 6-7 per Lord Hodge.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading">The context</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">30.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The scope of an insuring clause in a public liability policy covering “accidental” injury was considered in the Court of Appeal decision in <span style="font-style:italic">Hawley v Luminar Leisure Ltd</span> [2006] EWCA Civ 18; [2006] PIQR P17, a case involving similar facts. It concerned a nightclub doorman who had punched the claimant, causing him to fall, fracture his skull and suffer permanent serious brain damage. The doorman was convicted of causing grievous bodily harm. The issue under the public liability policy of the doorman’s employer was whether the liability arose from “accidental bodily injury to any person”. The court held that it did because whether the injury was “accidental” was to be considered from the perspective of the assured - ie the employer rather than the doorman. It follows that, leaving aside the clause 14 exclusion, the policy in this case would cover deliberate acts by an employee which were “accidental” from the perspective of his or her employer.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">31.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Another relevant aspect of context is that the policy is provided in respect of the second defender’s business of “Manned Guarding and Door Security Contractors”. There is a clear risk that door stewards will use a degree of force in carrying out their duties and that vicarious liability for their tortious acts may result. That is a public liability which is inherently likely to arise in connection with such a business. As observed in <span style="font-style:italic">Hawley</span> at para 108: “one of the most fundamental concepts underlying the policy was that the insured would be covered for damages which it had to pay owing to its vicarious liability for its employees’ torts. Thus, it can be said with real force that one would not expect the underwriters to be able to invoke [the employer’s] vicarious liability for its doormen as a ground for avoiding, as opposed to<span style="font-style:italic" />accepting, liability under the policy.” This was a contextual matter stressed by all three members of the First Division - Lord Carloway at para 19; Lord Brodie at para 51 and Lord Drummond Young at para 62. As Lord Carloway stated at para 19:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in"><span style="font-family:TimesNewRomanPSMT">“</span>Although some purely accidental incidents might occur as a result of carelessness, the public liability cover which would obviously be required was that which would deal with incidents at the doors of bars. These would commonly involve acts preventing persons entering, or removing them from, the premises; all of which would be almost bound to involve deliberate physical acts of one kind or another.<span style="font-family:TimesNewRomanPSMT">”</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">32.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The insurer accepts that this is a relevant part of the context and that vicarious liability for negligent acts of door stewards which cause injury would be covered, since otherwise the policy would be stripped of much of its content. It submits that it does not follow, however, that there should be or is coverage for all injuries deliberately inflicted by door staff.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">33.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The insurer also accepts that, since negligence is covered, “deliberate acts” cannot simply mean any act which the door steward intended to carry out. Many negligent acts will be deliberately carried out in the sense that a person intended them, albeit they may not have intended the consequences of those acts. In this case, for example, Mr Marcius clearly intended to apply the neck hold, but it is accepted by the insurer that that is not the relevant “act”.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">34.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Against that background, the critical issue dividing the parties is what is meant by “deliberate acts”. The insurer’s case is that it means acts which are intended to cause injury, or acts which are carried out recklessly as to whether they will cause injury. Mrs Grant’s case is that it means acts which are intended to cause the specific injury which results, in this case death, or at least serious injury, but that on any view it does not include reckless acts.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading">Intention to injure</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In the present case we are concerned with liability for “injury” arising out of “deliberate acts”. If, as is common ground, it is not the act which gives rise to the injury that has to be deliberate, the most natural interpretation of the clause is that it is the act of causing injury which must be deliberate.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">36.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The terms of the policy do not provide any support for an interpretation which draws distinctions between different kinds of injury, or between serious and less serious injuries. The insured peril is liability arising out of accidental “injury” and this means all kinds of “bodily injury” without differentiation.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">37.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">An interpretation that focuses on the specific injury intended also leads to unsatisfactory and arbitrary results, such that it is most unlikely to reflect the parties’ intentions. For example, let it be supposed that a doorman punches a man in the face with the intention of breaking his nose. If he succeeds in doing so the exclusion applies. If, on the other hand, the man falls over and suffers more serious injury, as in <span style="font-style:italic">Hawley</span>, the exclusion would be inapplicable. Equally, if he only succeeds in inflicting a lesser injury, such as bruising, the exclusion would be inapplicable. There is no commercial or other logic in excluding precision injuries in this way. Why should the parties choose to make coverage depend on the happenstance of whether a targeted injury does or does not result? This is largely a matter of chance. There are, moreover, real difficulties in identifying and establishing the requisite intention for these purposes. In many cases there will not be an intention to cause a specific injury. A more rational and workable distinction might be between an intention to cause really serious injury or a lesser injury, but there is no support in the policy for drawing distinctions of this kind, and, in any event, it begs definitional questions.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">38.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Some support can be found in the policy for the drawing of a distinction between the different types of injury identified in the injury definition clause - ie “bodily injury death illness disease or shock causing bodily injury”. Doing so, however, still leads to difficulties and arbitrary results. For example, in relation to shock causing bodily injury, is the requisite intention to cause shock causing the specific injury which results, even though that injury may well be unforeseeable? In relation to death, while one can well understand why the act of murder should be excluded, if the relevant intent was to cause really serious injury rather than to kill then the exclusion would not apply, even though under English law it would still be murder. Equally, one can well understand why attempted murder should be excluded, but since that requires an intention to kill but no resulting death, the exclusion would not apply.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">39.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">All these considerations provide strong support for the view that the relevant intention relates to the liability covered under the policy, namely “injury”. The same would apply to the other types of liability covered, such as for “physical damage” or “nuisance”. The application of the exclusion does not depend on the particular type or extent of damage or nuisance intended. As in the case of “injury”, it is sufficient if the causing of the damage or nuisance was deliberate.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">40.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Robert Milligan QC for Mrs Grant submitted that the insurer’s interpretation meant that the policy would lack meaningful and effective content. He pointed out that it is in the nature of the door supervising business that door stewards will, on occasion, find themselves on the wrong side of the line and incur a liability where they have intended some <span style="font-family:TimesNewRomanPSMT">minor injury, such as by gripping a customer’s shoulder hard. The likely consequence is the exclusion of multiple liabilities arising through the door stewards’ handling of customers.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">41.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in"><span style="font-family:TimesNewRomanPSMT">In oral argument, Mr Milligan acknowledged that this submission is stronger in relation to the suggested exclusion of reckless as well as intentional acts. While physical handling of customers and the use of force may be a part of door supervising, there is no necessity for that to involve an intention to injure. Moreover, realistically, liability under the policy is only likely to arise where an injury of some seriousness which is worth suing for has been suffered.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Mr Milligan also relied on the decision of the Supreme Court of South Australia in <span style="font-style:italic">Clayton v Mutual Community General Insurance Pty Ltd</span> (1995) 64 SASR 353. In that case a house insurance policy included an exclusion of “loss or damage caused by the deliberate or intentional acts committed by you”. The claimant’s husband committed suicide by deliberately igniting petrol fumes in a motor car, in the carport which formed part of the insured premises. The fire destroyed the car, damaged the carport and spread to the house itself causing extensive damage. The trial judge held that cover was excluded because the igniting of the fumes resulting in fire was a deliberate and intentional<span style="font-style:italic" />act and it caused the loss. This decision was reversed on appeal. The court held that the exclusion only applied if there was intention to cause damage to the insured premises, which there was not. Mr Milligan relied in particular on King CJ’s statement at para 13 that:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“I consider that the act contemplated by the phrase ‘deliberate and intentional act’ is the act of causing <span style="font-style:italic">the</span> damage. There must be a deliberate or intentional causing of <span style="font-style:italic">the</span> damage to the insured premises.” (Emphasis added)</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber">Just as the requisite intent in that case was the causing of “the” damage rather than merely damage, so Mr Milligan submitted in this case it is the causing of “the” injury rather than merely injury. Quite apart from the fact that the <span style="font-style:italic">Clayton</span> case involved a different type of policy and different policy wording, however, Mr Milligan reads far too much into this paragraph. In the context of a house insurance policy, it is entirely understandable that the intent should relate to damage to the insured premises rather than the act which gave rise to that damage or damage to any other property. Equally, in the context of a policy covering public liability for “injury”, it is understandable that the intention should relate to injury rather than the act which gave rise to that injury, as the insurer accepts. Moreover, there was no suggestion in the <span style="font-style:italic">Clayton</span> case that a distinction should be drawn between different types or extent of damage to the insured premises.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">43.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Mr Milligan further submitted that it makes commercial sense and accords with “social justice” for the insurance coverage of an employer of door stewards under a public liability policy to match the scope of the employer’s vicarious liability for his employee’s acts, which will generally include deliberate wrongdoing, unless committed for personal reasons. It was not, however, suggested that there was any regulatory requirement for there to be such insurance cover and whether or not that was the coverage obtained by the second defender in this case must depend on the wording in fact agreed rather than pre-supposition.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Finally, Mr Milligan had a fallback argument that the relevant “deliberate act” was the neck hold committed with the intention to cause serious injury. It was said that <span style="font-family:TimesNewRomanPSMT">“liability arising out of deliberate acts” addresses acts which the employee performs where the liability bears a relationship of proportionality to the employee’s </span>intention. Where the injury is death, the exclusion will only be triggered where the intention is one to cause serious injury. It was not, however, explained how this interpretation derives from the wording of the policy. The policy draws no distinction between injuries of differing seriousness nor does it require or refer to proportionality. Whilst one can understand an interpretation embracing an act causing “injury” or an act causing the “injury”, there is simply no foundation in the policy wording for it to embrace an act causing “serious injury”, an expression found nowhere in the policy.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">45.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">For all these reasons, I would accept the insurer’s argument that, in the context of the present case, “deliberate acts” in clause 14 of the policy means acts which are intended to cause injury.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading">Recklessness</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">46.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Kenneth McBrearty QC for the insurer submitted that “deliberate”, which qualifies “acts”, and “wilful”, which qualifies “neglect or default” should be interpreted as synonymous. He suggested that “neglect or default” referred to omissions and that the intention was to qualify both acts and omissions in the same way. The language used simply reflected the fact that in normal usage “deliberate” is the more natural adjective to describe a positive act, while “wilful” is more apt to describe an omission. He then relied on authorities in which “wilful” has been held to include recklessness to support a case that the same meaning should be given to “deliberate” in the context of clause 14. Both should therefore be interpreted as meaning an intention to cause injury, or recklessness as to whether injury will be caused.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">47.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In support of his submission that “wilful” may include recklessness, Mr McBrearty relied on the Court of Appeal’s decision in <span style="font-style:italic">CP (a child) v Royal London Mutual Insurance Co Ltd</span> [2006] 1 CLC 576. That case concerned a fire which had been started by an 11 year old boy who had set fire to paper in a den he had built in the derelict part of a mill building. The fire caused extensive damage to the building and the issue was whether the claim under an insurance policy for accidental damage to property was excluded by an exemption from liability for claims and liabilities arising from “wilful, malicious or criminal acts”. In considering the meaning of “wilful” in the context of this clause in the policy, Tuckey LJ stated as follows at para 16:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Obviously if the act is deliberate and intended to cause damage of the kind in question it will be within the exclusion. It will be wilful, as the judge held, and might also be malicious or criminal. But for an act to be wilful I do not think it is necessary to go as far as this. It will be enough to show that the insured was reckless as to the consequences of his act. Recklessness has been variously defined but if someone does something knowing that it is risky or not caring whether it is risky or not he is acting recklessly. Put more precisely for present purposes if the insured is aware that what he is about to do risks damage of the kind which gives rise to the claim or does not care whether there is such a risk or not, he will act recklessly if he goes ahead and does it. I think such conduct was intended to be included in the exclusion and I would equate a reckless act with a wilful act for this purpose. This approach focuses upon the state of the insured’s mind when he does the act rather than its intended consequences. Defined in this way the exclusion does not require the insured to intend to cause damage of the kind in question.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">48.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Mr McBrearty also relied on cases which have considered the meaning of “wilful neglect or default” in other contexts. <span style="font-style:italic">In re City Equitable Fire Insurance Co Ltd</span> [1925] 1 Ch 407 concerned whether company directors were excused from liability for the consequences of a fellow director’s fraud by reason of a provision in the articles of association under which they would only be so liable if the director’s act or omissions occurred by or through their own wilful neglect or default. At first instance, Romer J, whose decision was upheld by the Court of Appeal, interpreted this provision as follows, at p 434:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“An act, or an omission to do an act, is wilful where the person of whom we are speaking knows what he is doing and intends to do what he is doing. But if that act or omission amounts to a breach of his duty, and therefore to negligence, is the person guilty of wilful negligence? In my opinion that question must be answered in the negative unless he knows that he is committing, and intends to commit, a breach of his duty, or is recklessly careless in the sense of not caring whether his act or omission is or is not a breach of duty.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">49.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">This dictum of Romer J was applied in a different context by Donaldson J in <span style="font-style:italic">Kenyon Son &amp; Craven Ltd v</span><span /><span style="font-style:italic">Baxter Hoare &amp; Co Ltd</span> [1971] 1 Lloyd’s Rep 232, 236 (exclusion clause in a bailee warehouse company’s terms of business). Donaldson J’s decision was followed by Bingham J in <span style="font-style:italic">Swiss Bank Corpn v Brink’s-Mat Ltd</span> [1986] 2 Lloyd’s Rep 79, 93 (also a case involving an exclusion clause of a bailee warehouse company).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">50.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">While Mr McBrearty acknowledged that the context is different in the present case, he submitted that the same interpretation of “wilful default or neglect” was appropriate and that the same approach then logically applies to the interpretation of “deliberate”.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">51.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">I would reject the insurer’s case on a number of grounds.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">52.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">First, the starting point is the natural meaning of “deliberate” acts. This connotes consciously performing an act intending its consequences. It involves a different state of mind to recklessness. For reasons already stated, the relevant act in this case is that of causing injury, so its natural meaning in the present context is carrying out an act intending to cause injury.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">53.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Secondly, while the natural meaning of wilful includes deliberate, wilful is capable of having a wider meaning, depending on the context. This was a point made by Tuckey LJ in the <span style="font-style:italic">CP</span> case at para 13:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“13.<marker name="tab" />The legal dictionaries show that wilful is used in many contexts. One can safely say that it always means deliberate and that it will take any further meaning from the word or words which it qualifies and its context but beyond that one cannot go.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">54.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Thirdly, as the <span style="font-style:italic">City Equitable</span> case illustrates and Romer J explains, one context in which wilful may well have a wider meaning is where it relates to a breach of duty. “Default or neglect” in clause 14 is apt to refer to a breach of duty rather than merely omissions; indeed “default” must be so referring. This is the most plausible explanation of the use of the adjective “wilful”. An “act” is not the counterpart to a breach of duty and so there is no basis for Mr McBrearty’s supposedly “logical” submission that “deliberate” and “wilful” must have the same meaning.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">55.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Fourthly, Mr McBrearty has not been able to show us any case in which “deliberate” has been held to include recklessness.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">56.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Fifthly, if, exceptionally if not uniquely, deliberate was intended to include recklessness, one would expect it to be made clear what that means in this context. As is well known, and the cases we have been referred to illustrate, recklessness may be defined in various different ways and the policy provides no clue as to what it should be taken to mean in relation to “deliberate acts”.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">57.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Sixthly, if, as the insurer contends, clause 14 excludes reckless acts causing injury, it would seriously circumscribe the cover provided, for the reasons given by Mr Milligan and by all three judges of the First Division. The consequence of accepting the insurer’s argument that “acts” in clause 14 refers to the act of causing injury, rather than the specific injury resulting, is that an exemption of reckless acts would lead to a very wide and commercially unlikely exclusion, given the nature of the second defender’s business.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading">Application of clause 14 to the facts</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">58.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Mr McBrearty contended that the nature of the assault of which Mr Marcius was convicted shows that it was carried out with intention to injure. He emphasised in particular the manifestly dangerous nature of the neck hold; the length of time for which it was applied; the weight and pressure exerted and its apparent effect on Mr Grant. The difficulty for the insurer, however, is that there was no finding by the courts below of intention to injure, or even of recklessness. It is not for the Supreme Court to find facts.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">59.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">The conviction for assault does not establish any intention beyond an intention to perform the act of assault, namely the neck hold. This is clearly explained in the case of <span style="font-style:italic">Lord</span><span /><span style="font-style:italic">Advocate’s Reference (No 2 of 1992)</span> 1993 JC 43. In that case a man was charged with assault with intent to rob when he entered a shop holding out an imitation gun and said words to the effect: “Get the money out of the till and lay on the floor”. He claimed that this was a joke and the issue on appeal to the High Court of Justiciary was whether this evidence was relevant to the necessary intent for his actions to amount to an assault. It was held that it was not and that the necessary intent was established by the fact that the act of assault was deliberate. Lord Cowie stated at p 51B-D as follows:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“The point is a short one and it depends upon what is meant by the words ‘evil intent’ insofar as they form an essential element in the crime of assault. In my opinion the meaning of the words in the context of this offence is not to be obtained from a wide review of the circumstances surrounding the incident but is to be derived directly from the quality of the act, in the first place, and, in the second place, whether that act was committed deliberately as opposed to carelessly, recklessly or negligently. It is the quality of the act itself, assuming that there was no justification for it, which must be considered in deciding whether it was evil … Having established that the act is an evil one, all that is then required to constitute the crime of assault is that that act was done deliberately and not carelessly, recklessly or negligently.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber">Lord Sutherland’s judgment was to similar effect, stating at p 53A-B as follows:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“If … a person deliberately performs an act which would in itself be criminal then both the <span style="font-style:italic">actus reus</span> and the <span style="font-style:italic">mens rea</span> coexist and a crime has been committed. The pointing of a gun at a shop assistant accompanied by words such as those used by the pannel would undoubtedly constitute the <span style="font-style:italic">actus reus</span> of the crime of assault and if these things are done deliberately and intentionally, as they were done here, the <span style="font-style:italic">mens rea</span> is also, in my opinion, established.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">60.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Lady Wolffe’s sentencing remarks similarly provide no support for the insurer’s case on intention to injure. To the contrary she found that: “It was said on your behalf that what you did was badly executed, not badly motivated … I accept what was said on your behalf in this regard.” This was consistent with the evidence that Mr Marcius gave at his police interview, also referred to by Lady Wolffe, that “you believed you were acting in defence of your fellow door stewards and to minimise the danger you felt Mr Grant posed to others.”</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">61.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Not only is there no express or implied finding of intention to injure, but Lady Wolffe’s conclusion that what was done was not “badly motivated” is inconsistent with there being such an intention.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">62.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">It follows that the insurer is not able to establish that the clause 14 exception applies on the facts as found.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">63.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">For completeness, I would add that the same conclusion would follow even if “deliberate acts” included recklessness. There is no finding of recklessness and as Lord Carloway observed at para 24 in relation to Lady Wolffe’s sentencing remarks:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“The description of the first defender’s acts as badly executed, rather than badly motivated points away from their amounting to recklessness.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaHeading">Conclusion on Issue (1)</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">64.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">Although I accept the insurer’s argument that “deliberate acts” in clause 14 of the policy means an act carried out with an intention to injure, the insurer is unable to establish that there was such an intention on the facts. I reject the argument that “deliberate acts” includes recklessness and, if it did, that it would make any difference on the facts as found. It follows that clause 14 does not apply.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">Issue (2) - Was the death of Mr Grant brought about by Mr Marcius’ wrongful arrest of him under the terms of Extension 3 of the policy?</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">65.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In light of my conclusion that clause 14 does not apply, the insurer has no defence to the claim made under the main insuring clause and the appeal must therefore be dismissed.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">66.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">In these circumstances it is not necessary to determine whether a claim might lie under Extension 3. I agree, however, with the reasoning and conclusion of the First Division on this issue. In particular, the losses claimed do not relate to wrongful arrest and the factual basis for such a claim is not made out.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-style:normal;font-weight:bold">Conclusion</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.00in">67.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.00in;text-indent:0.50in">For all the reasons outlined above I would dismiss the appeal.</p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
