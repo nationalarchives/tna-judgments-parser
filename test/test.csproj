@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>0.1</Version>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../judgments.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+    <EmbeddedResource Include="./test1.docx">
+      <LogicalName>test1.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test1.xml">
+      <LogicalName>test1.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test2.docx">
+      <LogicalName>test2.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test2.xml">
+      <LogicalName>test2.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test3.docx">
+      <LogicalName>test3.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test3.xml">
+      <LogicalName>test3.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test4.docx">
+      <LogicalName>test4.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test4.xml">
+      <LogicalName>test4.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test5.docx">
+      <LogicalName>test5.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test5.xml">
+      <LogicalName>test5.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test6.docx">
+      <LogicalName>test6.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test6.xml">
+      <LogicalName>test6.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test7.docx">
+      <LogicalName>test7.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test7.xml">
+      <LogicalName>test7.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test8.docx">
+      <LogicalName>test8.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test8.xml">
+      <LogicalName>test8.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test9.docx">
+      <LogicalName>test9.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test9.xml">
+      <LogicalName>test9.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test10.docx">
+      <LogicalName>test10.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test10.xml">
+      <LogicalName>test10.xml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
