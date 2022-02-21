@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -28,40 +26,26 @@ class SupremeCourtParser : AbstractParser {
 
     private SupremeCourtParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) : base(doc, meta, attachments) { }
 
+    /* second page break or first page break if first break is followed by a 'speech' */
     protected override List<IBlock> Header() {
-        List<IBlock> header;
-        // int save = i;
-        header = CollectToSecondSectionBreak();
-        // if (header is null) {
-        //     i = save;
-        //     header = CollectToFirstSectionBreak();
-        // }
-        return header;
-    }
-
-    // private List<IBlock> CollectToFirstSectionBreak() {
-    //     List<IBlock> header = new List<IBlock>();
-    //     while (i < elements.Count) {
-    //         logger.LogTrace("parsing element " + i);
-    //         OpenXmlElement e = elements.ElementAt(i);
-    //         AddBlock(e, header);
-    //         if (e.Descendants<SectionProperties>().Any())
-    //             return header;
-    //     }
-    //     return null;
-    // }
-    private List<IBlock> CollectToSecondSectionBreak() {
-        bool firstSectionBreakFound = false;
         List<IBlock> header = new List<IBlock>();
+        bool firstPageBreakFound = false;
         while (i < elements.Count) {
             logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
-            AddBlock(e, header);
-            if (e.Descendants<SectionProperties>().Any())
-                if (firstSectionBreakFound)
+            AddBlock(e, header);    // increments i
+            if (Util.IsSectionOrPageBreak(e)) {
+                if (firstPageBreakFound)
                     return header;
-                else
-                    firstSectionBreakFound = true;
+                while (i < elements.Count && IsSkippable(elements.ElementAt(i)))
+                    i += 1;
+                if (i == elements.Count)
+                    return null;
+                OpenXmlElement next = elements.ElementAt(i);
+                if (IsTitledJudgeName(next))
+                    return header;
+                firstPageBreakFound = true;
+            }
         }
         return null;
     }
@@ -100,9 +84,14 @@ class SupremeCourtParser : AbstractParser {
         if (e is not Paragraph p)
             return false;
         Style style = DOCX.Styles.GetStyle(main, p);
-        if (style?.StyleName?.Val?.Value is null)
+        if (style?.StyleName?.Val?.Value == "NewSpeech")
+            return true;
+        string text = Util.NormalizeSpace(e.InnerText);
+        if (text.Split().Length > 3)
             return false;
-        if (style.StyleName.Val.Value == "NewSpeech")
+        if (text.StartsWith("LORD ", StringComparison.InvariantCultureIgnoreCase))
+            return true;
+        if (text.StartsWith("LADY ", StringComparison.InvariantCultureIgnoreCase))
             return true;
         return false;
     }

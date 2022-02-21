@@ -23,10 +23,10 @@ class SHA256 {
 
     private static string RemoveMetadata(XmlDocument akn) {
         XslCompiledTransform transform = new XslCompiledTransform();
-        var stringReader = new StringReader(xslt);
-        XmlReader xsltReader = XmlReader.Create(stringReader);
+        using var stringReader = new StringReader(xslt);
+        using var xsltReader = XmlReader.Create(stringReader);
         transform.Load(xsltReader);
-        XmlReader aknReader = new XmlNodeReader(akn);
+        using var aknReader = new XmlNodeReader(akn);
         var textWriter = new StringWriter();
         transform.Transform(aknReader, null, textWriter);
         textWriter.Close(); // necessary

@@ -88,8 +88,20 @@ class CaseName {
                     return combined + " (" + location.First().Text + ")";
             return combined;
         }
-        if (docTitle.Any())
-            return string.Join(" ", docTitle.Select(dt => dt.Text.Trim()));
+        if (docTitle.Any()) {
+            List<string> forName = new List<string>() { Util.NormalizeSpace(docTitle.First().Text) };
+            foreach (IDocTitle item in docTitle.Skip(1)) {
+                string normalized = Util.NormalizeSpace(item.Text);
+                if (normalized.StartsWith("In the matter of ", StringComparison.InvariantCultureIgnoreCase))
+                    break;
+                if (normalized.StartsWith("Re ", StringComparison.InvariantCultureIgnoreCase))
+                    break;
+                if (normalized.StartsWith("Re: ", StringComparison.InvariantCultureIgnoreCase))
+                    break;
+                forName.Add(normalized);
+            }
+            return string.Join(" ", forName);
+        }
         // [2021] EWHC 3099 (Fam)
         if (party1 is not null && party2 is null && party1.Name.StartsWith("Re ") && party1.Role == PartyRole.Applicant)
             return party1.Name;
