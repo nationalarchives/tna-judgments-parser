@@ -5,7 +5,15 @@ using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments {
 
-interface IBlock { }
+interface IBlock {
+
+    bool IsEmptyLine() {
+        if (this is not ILine line)
+            return false;
+        return line.IsEmpty();
+    }
+
+}
 
 enum AlignmentValues { Left, Right, Center, Justify }
 
@@ -34,18 +42,26 @@ interface ILine : IBlock {
         return styles;
     }
 
-    public string TextContent() {
+    string TextContent() {
         IEnumerable<string> texts = this.Contents
-            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
+            .Select(i => {
+                if (i is IFormattedText t)
+                    return (t.Uppercase.HasValue && t.Uppercase.Value) ? t.Text.ToUpper() : t.Text;
+                if (i is ITab)
+                    return " ";
+                return "";
+            });
         return string.Join("", texts);
     }
 
-    public string NormalizedContent() {
+    string NormalizedContent() {
         string text = TextContent();
         return Regex.Replace(text, @"\s+", " ").Trim();
     }
 
-    public bool IsEmpty() {
+    bool IsEmpty() {
+        if (!this.Contents.Any())
+            return true;
         return this.Contents.All(i => {
             if (i is IFormattedText t)
                 return string.IsNullOrWhiteSpace(t.Text);
