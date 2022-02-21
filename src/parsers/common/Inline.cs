@@ -35,29 +35,49 @@ class Inline {
             if (Fields.IsFieldStart(e)) {
                 if (withinField is null) {
                     withinField = new List<OpenXmlElement>();
-                } else if (withinField.First() is not null && Fields.IsFieldCode(withinField.First()) && (Fields.GetFieldCode(withinField.First()).StartsWith("tc ") || Fields.GetFieldCode(withinField.First()).TrimStart().StartsWith("TOC "))) {  // EWHC/Ch/2015/448, EWHC/Comm/2011/2067
-                    logger.LogWarning("field within field");
-                    enumerator.MoveNext();
-                    e = enumerator.Current;
-                    while (!Fields.IsFieldEnd(e)) {
-                        enumerator.MoveNext();
-                        e = enumerator.Current;
-                    }
-                } else {
-                    if (enumerator.MoveNext()) {    // field within field is empty: [2022] EWHC 41 (TCC)
-                        OpenXmlElement e2 = enumerator.Current;
-                        if (e2 is Run && e2.ChildElements.Count == 1 && e2.ChildElements.First() is FieldCode fc && string.IsNullOrWhiteSpace(fc.InnerText)) {
-                            if (enumerator.MoveNext()) {
-                                OpenXmlElement e3 = enumerator.Current;
-                                if (Fields.IsFieldEnd(e3)) {
-                                    continue;
-                                }
-                            }
+                    continue;
+                }
+                logger.LogDebug("field within field");
+                string fc1;
+                if (withinField.FirstOrDefault() is not null && Fields.IsFieldCode(withinField.First()))
+                    fc1 = Fields.GetFieldCode(withinField.First()).TrimStart();
+                else
+                    fc1 = null;
+                if (fc1 is not null && (fc1.StartsWith("tc ") || fc1.StartsWith("TOC "))) { // EWHC/Ch/2015/448, EWHC/Comm/2011/2067
+                    logger.LogDebug("skipping inner field because it's within a TOC entry");
+                    while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current))
+                        ;
+                    continue;
+                }
+                if (fc1 is not null && fc1.StartsWith("INCLUDEPICTURE ")) {  // [2020] UKSC 49
+                    logger.LogDebug("skipping inner field because it's within an INCLUDEPICTURE entry");
+                    int starts = 1;
+                    while (enumerator.MoveNext()) {
+                        if (Fields.IsFieldStart(enumerator.Current))
+                            starts += 1;
+                        if (Fields.IsFieldEnd(enumerator.Current)) {
+                            starts -= 1;
+                            if (starts == 0) break;
                         }
+                    }
+                    continue;
+                }
+                if (!enumerator.MoveNext())
+                    throw new Exception();
+                if (!Fields.IsFieldCode(enumerator.Current))
+                    throw new Exception();
+                string fc2 = Fields.GetFieldCode(enumerator.Current).TrimStart();
+                if (string.IsNullOrWhiteSpace(fc2)) {   // field within field is empty: [2022] EWHC 41 (TCC)
+                    if (!enumerator.MoveNext())
+                        continue;
+                    var e3 = enumerator.Current;
+                    if (Fields.IsFieldEnd(enumerator.Current)) {
+                        logger.LogDebug("skipping inner field because it's empty");
+                        continue;
                     }
                     throw new Exception();
                 }
-                continue;
+                throw new Exception();
             }
             if (Fields.IsFieldSeparater(e)) {
                 if (withinField is null)

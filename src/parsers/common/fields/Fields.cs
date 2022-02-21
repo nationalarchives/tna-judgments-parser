@@ -222,7 +222,7 @@ class Fields {
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219, EWHC/Admin/2021/30
-            return Rest(main, withinField, i);
+            return RestOptional(main, withinField, i);  //
         }
         match = Regex.Match(fieldCode, @"^ INCLUDEPICTURE ""(.+?)"" \\\* MERGEFORMATINET $");   // EWHC/Patents/2008/2127
         if (match.Success) {
@@ -235,8 +235,11 @@ class Fields {
             if (!IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any())
-                throw new Exception();
+            if (!remaining.Any()) { // [2020] UKSC 49
+                string url = match.Groups[1].Value;
+                WExternalImage image = new WExternalImage() { URL = url };
+                return new List<IInline>(1) { image };
+            }
             return Inline.ParseRuns(main, remaining);
         }
         if (Seq.Is(fieldCode))
@@ -347,8 +350,6 @@ class Fields {
         if (!IsFieldSeparater(next))
             throw new Exception();
         IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-        // if (!remaining.Any())
-        //     throw new Exception();
         return Inline.ParseRuns(main, remaining);
     }
 

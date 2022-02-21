@@ -40,19 +40,6 @@ class Metadata {
         XmlElement identification = append(doc, meta, "identification");
         identification.SetAttribute("source", "#tna");
 
-        IEnumerable<IParty> parties = new List<IParty>();
-        IEnumerable<IDocTitle> docTitle = new List<IDocTitle>();
-        IParty party1 = null;
-        IParty party2 = null;
-        if (includeReferences) {
-            parties = Util.Descendants<IParty>(judgment.Header);
-            docTitle = Util.Descendants<IDocTitle>(judgment.Header);
-            party1 = parties.FirstOrDefault();
-            party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
-            if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
-                party2 = parties.Last();
-        }
-
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
         workThis.SetAttribute("value", compId);
@@ -110,12 +97,12 @@ class Metadata {
             references.SetAttribute("source", "#tna");
 
             if (court is not null) {
-                XmlElement org = append(doc, references, "TLCOrganization");
-                org.SetAttribute("eId", court?.Code.ToLower());
-                org.SetAttribute("href", court?.URL);
-                org.SetAttribute("showAs", court?.LongName);
+                XmlElement tldOrg = append(doc, references, "TLCOrganization");
+                tldOrg.SetAttribute("eId", court?.Code.ToLower());
+                tldOrg.SetAttribute("href", court?.URL);
+                tldOrg.SetAttribute("showAs", court?.LongName);
                 if (court?.ShortName is not null)
-                    org.SetAttribute("shortForm", court?.ShortName);
+                    tldOrg.SetAttribute("shortForm", court?.ShortName);
             }
 
             XmlElement tna = append(doc, references, "TLCOrganization");
@@ -123,24 +110,25 @@ class Metadata {
             tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
             tna.SetAttribute("showAs", "The National Archives");
 
-            IDictionary<string, IParty> uniqueParies = new Dictionary<string, IParty>();
+            IEnumerable<IParty> parties = Util.Descendants<IParty>(judgment.Header);
+            IDictionary<string, IParty> uniqueParties = new Dictionary<string, IParty>();
             foreach (IParty party in parties)
-                uniqueParies.TryAdd(party.Id, party);
-
+                uniqueParties.TryAdd(party.Id, party);
+            foreach (IParty party in uniqueParties.Values) {
+                XmlElement tlcPerson = append(doc, references, "TLCPerson");
+                tlcPerson.SetAttribute("eId", party.Id);
+                tlcPerson.SetAttribute("href", "");
+                tlcPerson.SetAttribute("showAs", party.Name);
+            }
             ISet<PartyRole> roles = new HashSet<PartyRole>();
-            foreach (IParty party in uniqueParies.Values) {
-                XmlElement org = append(doc, references, "TLCPerson");
-                org.SetAttribute("eId", party.Id);
-                org.SetAttribute("href", "");
-                org.SetAttribute("showAs", party.Name);
+            foreach (IParty party in parties)
                 if (party.Role.HasValue)
                     roles.Add(party.Role.Value);
-            }
             foreach (PartyRole role in roles) {
-                XmlElement org = append(doc, references, "TLCRole");
-                org.SetAttribute("eId", role.EId());
-                org.SetAttribute("href", "");
-                org.SetAttribute("showAs", role.ShowAs());
+                XmlElement tlcRole = append(doc, references, "TLCRole");
+                tlcRole.SetAttribute("eId", role.EId());
+                tlcRole.SetAttribute("href", "");
+                tlcRole.SetAttribute("showAs", role.ShowAs());
             }
 
             IEnumerable<IJudge> judges = Util.Descendants<IJudge>(judgment.Header);
@@ -152,23 +140,22 @@ class Metadata {
             }
 
             foreach (ILawyer lawyer in Util.Descendants<ILawyer>(judgment.Header)) {
-                XmlElement org = append(doc, references, "TLCPerson");
-                org.SetAttribute("eId", lawyer.Id);
-                org.SetAttribute("href", "/" + lawyer.Id);
-                org.SetAttribute("showAs", lawyer.Name);
+                XmlElement tlcPerson = append(doc, references, "TLCPerson");
+                tlcPerson.SetAttribute("eId", lawyer.Id);
+                tlcPerson.SetAttribute("href", "/" + lawyer.Id);
+                tlcPerson.SetAttribute("showAs", lawyer.Name);
             }
 
             IEnumerable<ILocation> locations = Util.Descendants<ILocation>(judgment.Header);
             foreach (ILocation loc in locations) {
-                XmlElement org = append(doc, references, "TLCLocation");
-                org.SetAttribute("eId", loc.Id);
-                org.SetAttribute("href", "/" + loc.Id);
-                org.SetAttribute("showAs", loc.Name);
+                XmlElement tlcLocation = append(doc, references, "TLCLocation");
+                tlcLocation.SetAttribute("eId", loc.Id);
+                tlcLocation.SetAttribute("href", "/" + loc.Id);
+                tlcLocation.SetAttribute("showAs", loc.Name);
             }
 
             XmlElement proprietary = append(doc, meta, "proprietary");
             proprietary.SetAttribute("source", docId + "/eng/docx");
-            // proprietary.SetAttribute("xmlns:uk", ukns);
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("court", ukns);
                 proprietary.AppendChild(courtt);

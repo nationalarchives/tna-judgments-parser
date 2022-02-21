@@ -56,10 +56,11 @@ class CiteEnricher : Enricher {
         }
         if (found)
             return contents;
-        if (line.Count() == 3) {
-            IInline one = line.ElementAt(0);
-            IInline two = line.ElementAt(1);
-            IInline three = line.ElementAt(2);
+        contents = null;
+        if (line.Count() >= 3) {
+            IInline one = line.SkipLast(2).Last();
+            IInline two = line.SkipLast(1).Last();
+            IInline three = line.Last();
             if (one is not WText wText1)
                 return line;
             if (two is not WText wText2)
@@ -86,7 +87,7 @@ class CiteEnricher : Enricher {
                         WText after = new WText(combined.Substring(group.Index + group.Length), wText3.properties);
                         contents2.Add(after);
                     }
-                    return contents2;
+                    return Enumerable.Concat(line.SkipLast(3), contents2);
                 }
             }
         }
