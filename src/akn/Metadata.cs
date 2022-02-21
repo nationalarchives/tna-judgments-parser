@@ -9,7 +9,7 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Metadata {
 
-    public static string ukns = "https:/judgments.gov.uk/";
+    public static string ukns = "https://caselaw.nationalarchives.gov.uk/akn";
 
     private static readonly string ns = Builder.ns;
 
