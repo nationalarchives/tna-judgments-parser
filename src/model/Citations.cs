@@ -51,7 +51,7 @@ internal class Citations {
         return null;
     }
 
-    private static string[] ExtractURIComponents(string normalized) {
+    private static string[] ExtractUriComponents(string normalized) {
         Match match;
         match = Regex.Match(normalized, @"^\[(\d{4})\] (UKSC|UKPC) (\d+)$");
         if (match.Success)
@@ -68,19 +68,19 @@ internal class Citations {
         return null;
     }
 
-    internal static string MakeURI(string normalized) {
-        string[] components = ExtractURIComponents(normalized);
+    internal static string MakeUriComponent(string normalized) {
+        string[] components = ExtractUriComponents(normalized);
         if (components is null)
             return null;
         return string.Join('/', components).ToLower();
     }
 
-    internal static int YearFromURI(string uri) {
+    internal static int YearFromUriComponent(string uri) {
         string year = Regex.Match(uri, @"/(\d+)/\d+$").Groups[1].Value;
         return int.Parse(year);
     }
 
-    internal static int NumberFromURI(string uri) {
+    internal static int NumberFromUriComponent(string uri) {
         string num = Regex.Match(uri, @"/(\d+)$").Groups[1].Value;
         return int.Parse(num);
     }
