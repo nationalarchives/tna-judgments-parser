@@ -13,9 +13,9 @@ interface IExternalAttachment {
 
 interface IOutsideMetadata {
 
-    string Id { get; }
+    string ShortUriComponent { get; }
 
-    bool IdTrumps { get; }
+    bool UriTrumps { get; }
 
     Court? Court { get; }
 

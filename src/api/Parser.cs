@@ -24,6 +24,9 @@ public class Parser {
         if (request.Filename is not null)
             Logger.LogInformation($"parsing { request.Filename }");
 
+        // if (request.Meta?.Uri is not null && !URI.IsValidURIOrComponent(request.Meta.Uri))
+        //     throw new System.Exception();
+
         ParseFunction parse = GetParser(request.Hint);
 
         IOutsideMetadata meta1 = (request.Meta is null) ? null : new MetaWrapper() { Meta = request.Meta };
