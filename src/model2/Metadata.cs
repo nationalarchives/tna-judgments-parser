@@ -48,17 +48,15 @@ class WMetadata : IMetadata {
     }
 
     virtual public int? Year { get {
-        string id = DocumentId();
-        if (id is null)
+        if (ShortUriComponent is null)
             return null;
-        return Citations.YearFromURI(id);
+        return Citations.YearFromUriComponent(ShortUriComponent);
     } }
 
     virtual public int? Number { get {
-        string id = DocumentId();
-        if (id is null)
+        if (ShortUriComponent is null)
             return null;
-        return Citations.NumberFromURI(id);
+        return Citations.NumberFromUriComponent(ShortUriComponent);
     } }
 
     private string _cite = null;
@@ -75,23 +73,30 @@ class WMetadata : IMetadata {
 
     private string _id = null;
     
-    virtual public string DocumentId() {
+    virtual public string ShortUriComponent { get {
         if (_id is not null)
             return _id;
         if (Cite is not null)
-            _id = Citations.MakeURI(Cite);
+            _id = Citations.MakeUriComponent(Cite);
         return _id;
-    }
+    } }
+
+    public string Domain = "https://caselaw.nationalarchives.gov.uk/";
+
+    public string WorkThis { get => Domain + "id/" + ShortUriComponent; }
+    public string WorkURI { get => WorkThis; }
+
+    public string ExpressionThis { get => Domain + ShortUriComponent; }
+    public string ExpressionUri { get => ExpressionThis; }
+
+    public string ManifestationThis { get => ExpressionThis + "/data.xml"; }
+    public string ManifestationUri { get => ManifestationThis; }
 
     public IEnumerable<string> CaseNos() {
         IEnumerable<ICaseNo> caseNos = Util.Descendants<ICaseNo>(judgment.Header);
         if (judgment.CoverPage is not null)
             caseNos = judgment.CoverPage.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().Concat(caseNos);
         return caseNos.Select(cn => cn.Text);
-    }
-
-    public string ComponentId() {
-        return DocumentId();
     }
 
     virtual public string Date() {

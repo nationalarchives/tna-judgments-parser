@@ -33,11 +33,11 @@ class WMetadata2 : WMetadata {
         return base.Cite ?? meta2.Cite;
     } }
 
-    override public string DocumentId() {
-        if (meta2.IdTrumps)
-            return meta2.Id;
-        return base.DocumentId() ?? meta2.Id;
-    }
+    override public string ShortUriComponent { get {
+        if (meta2.UriTrumps)
+            return meta2.ShortUriComponent;
+        return base.ShortUriComponent ?? meta2.ShortUriComponent;
+    } }
 
     override public string Date() {
         return base.Date() ?? meta2.Date;
@@ -75,9 +75,7 @@ class WMetadata3 : WMetadata {
         return outside.Cite ?? base.Cite;
     } }
 
-    override public string DocumentId() {
-        return outside.Id ?? base.DocumentId();
-    }
+    override public string ShortUriComponent { get => outside.ShortUriComponent ?? base.ShortUriComponent; }
 
     override public string Date() {
         return outside.Date ?? base.Date();

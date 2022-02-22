@@ -8,7 +8,7 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 public interface ILazyBundle {
 
-    string URI { get; }
+    string ShortUriComponent { get; }
 
     XmlDocument Judgment { get; }
 
@@ -30,7 +30,7 @@ internal class Bundle : ILazyBundle {
         this.judgment = judgment;
     }
 
-    public string URI { get => judgment.Metadata.DocumentId(); }
+    public string ShortUriComponent { get => judgment.Metadata.ShortUriComponent; }
 
     public XmlDocument Judgment {
         get {

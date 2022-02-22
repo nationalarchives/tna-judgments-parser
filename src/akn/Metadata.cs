@@ -29,10 +29,7 @@ class Metadata {
 
     public static XmlElement make(XmlDocument doc, IJudgment judgment, IMetadata metadata, bool includeReferences) {
 
-        string docId = metadata.DocumentId();
-        string compId = metadata is IComponentMetadata c ? c.ComponentId : docId;
         string date = metadata.Date();
-
         Court? court = metadata.Court();
 
         XmlElement meta = doc.CreateElement("meta", ns);
@@ -42,9 +39,9 @@ class Metadata {
 
         XmlElement work = append(doc, identification, "FRBRWork");
         XmlElement workThis = append(doc, work, "FRBRthis");
-        workThis.SetAttribute("value", compId);
+        workThis.SetAttribute("value", metadata.WorkThis);
         XmlElement workURI = append(doc, work, "FRBRuri");
-        workURI.SetAttribute("value", docId);
+        workURI.SetAttribute("value", metadata.WorkURI);
         XmlElement workDate = append(doc, work, "FRBRdate");
         workDate.SetAttribute("date", date ?? DummyDate);
         workDate.SetAttribute("name", date is null ? "unknown" : "judgment");
@@ -60,15 +57,12 @@ class Metadata {
                 XmlElement workName = append(doc, work, "FRBRname");
                 workName.SetAttribute("value", caseName);
             }
-        // } else if (metadata is IComponentMetadata compMeta && compMeta.Name is not null) {
-        //         XmlElement workName = append(doc, work, "FRBRname");
-        //         workName.SetAttribute("value", compMeta.Name);
         }
         XmlElement expression = append(doc, identification, "FRBRExpression");
         XmlElement expThis = append(doc, expression, "FRBRthis");
-        expThis.SetAttribute("value", compId + "/eng");
+        expThis.SetAttribute("value", metadata.ExpressionThis);
         XmlElement expURI = append(doc, expression, "FRBRuri");
-        expURI.SetAttribute("value", docId + "/eng");
+        expURI.SetAttribute("value", metadata.ExpressionUri);
         XmlElement expDate = append(doc, expression, "FRBRdate");
         expDate.SetAttribute("date", date ?? "1000-01-01");
         expDate.SetAttribute("name", date is null ? "unknown" : "judgment");
@@ -81,9 +75,9 @@ class Metadata {
 
         XmlElement manifestation = append(doc, identification, "FRBRManifestation");
         XmlElement maniThis = append(doc, manifestation, "FRBRthis");
-        maniThis.SetAttribute("value", compId + "/eng/akn");
+        maniThis.SetAttribute("value", metadata.ManifestationThis);
         XmlElement maniURI = append(doc, manifestation, "FRBRuri");
-        maniURI.SetAttribute("value", docId + "/eng/akn");
+        maniURI.SetAttribute("value", metadata.ManifestationUri);
         XmlElement maniDate = append(doc, manifestation, "FRBRdate");
         maniDate.SetAttribute("date", DateTime.UtcNow.ToString("s"));   // , System.Globalization.CultureInfo.InvariantCulture
         maniDate.SetAttribute("name", "transform");
@@ -155,7 +149,7 @@ class Metadata {
             }
 
             XmlElement proprietary = append(doc, meta, "proprietary");
-            proprietary.SetAttribute("source", docId + "/eng/docx");
+            proprietary.SetAttribute("source", "#");
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("court", ukns);
                 proprietary.AppendChild(courtt);
@@ -180,7 +174,7 @@ class Metadata {
             if (judgment.Metadata.ExternalAttachments is not null)
             foreach (var tuple in judgment.Metadata.ExternalAttachments.Select((attachment, i) => new { i, attachment })) {
                 XmlElement hasAttachment = append(doc, references, "hasAttachment");
-                var href = tuple.attachment.Link ?? "/" + docId + "/attachment/" + ( tuple.i + 1 ) + ".pdf";
+                var href = tuple.attachment.Link ?? "/" + metadata.ShortUriComponent + "/attachment/" + ( tuple.i + 1 ) + ".pdf";
                 hasAttachment.SetAttribute("href", href);
                 hasAttachment.SetAttribute("showAs", tuple.attachment.Type);
             }
@@ -190,7 +184,7 @@ class Metadata {
         Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles();
         if (styles is not null) {
             XmlElement presentation = append(doc, meta, "presentation");
-            presentation.SetAttribute("source", compId + "/eng/docx");
+            presentation.SetAttribute("source", "#");
             XmlElement style = doc.CreateElement("style", "http://www.w3.org/1999/xhtml");
             presentation.AppendChild(style);
             style.AppendChild(doc.CreateTextNode("\n"));
@@ -203,19 +197,16 @@ class Metadata {
 
 }
 
-class AttachmentMetadata : IComponentMetadata {
+class AttachmentMetadata : IMetadata {
 
     private readonly IMetadata prototype;
 
     private readonly int n;
 
     internal AttachmentMetadata(IMetadata prototype, int n) {
-
         this.prototype = prototype;
         this.n = n;
     }
-
-    // public string Name { get; init; }
 
     public Court? Court() { return prototype.Court(); }
 
@@ -225,11 +216,18 @@ class AttachmentMetadata : IComponentMetadata {
 
     public string Cite { get => prototype.Cite; }
 
-    public string DocumentId() { return prototype.DocumentId(); }
+    private string Extension { get =>  "/attachment/" + n; }
 
-    public string ComponentId {
-        get { return prototype.DocumentId() + "/attachment/" + n; }
-    }
+    public string ShortUriComponent { get => prototype.ShortUriComponent + Extension; }
+
+    public string WorkThis { get => prototype.WorkURI + Extension; }
+    public string WorkURI { get => prototype.WorkURI; }
+
+    public string ExpressionThis { get => prototype.ExpressionUri + Extension; }
+    public string ExpressionUri { get => prototype.ExpressionUri; }
+
+    public string ManifestationThis { get => prototype.ExpressionUri + Extension + "/data.xml"; }
+    public string ManifestationUri { get => prototype.ManifestationUri; }
 
     public string Date() { return prototype.Date(); }
 
