@@ -11,9 +11,9 @@ internal class MetaWrapper : IOutsideMetadata {
 
     internal Meta Meta { get; init; }
 
-    public string Id => Meta.Uri;
+    public string ShortUriComponent => URI.ExtractShortURIComponent(Meta.Uri);
 
-    public bool IdTrumps => Meta.Uri is not null;
+    public bool UriTrumps => Meta.Uri is not null;
 
     public Court? Court { get {
         if (Meta.Court is null)
