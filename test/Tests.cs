@@ -39,9 +39,30 @@ public class Tests {
         Assert.Equal(expected, actual);
     }
 
+    [Theory]
+    [InlineData(11,"order")]
+    public void TestWithAttachment(int i, string name) {
+        var main = ReadDocx(i, "main");
+        var attach = ReadDocx(i, name);
+        List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach } };
+        var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
+        var expected = ReadXml(i);
+        Assert.NotEqual(expected, actual);
+        actual = RemoveManifestationDate(actual);
+        expected = RemoveManifestationDate(expected);
+        Assert.Equal(expected, actual);
+    }
+
     private byte[] ReadDocx(int i) {
         var assembly = Assembly.GetExecutingAssembly();
         using Stream stream = assembly.GetManifestResourceStream($"test{i}.docx");
+        MemoryStream ms = new MemoryStream();
+        stream.CopyTo(ms);
+        return ms.ToArray();
+    }
+    private byte[] ReadDocx(int i, string name) {
+        var assembly = Assembly.GetExecutingAssembly();
+        using Stream stream = assembly.GetManifestResourceStream($"test{i}-{name}.docx");
         MemoryStream ms = new MemoryStream();
         stream.CopyTo(ms);
         return ms.ToArray();
