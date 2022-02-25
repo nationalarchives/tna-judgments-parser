@@ -88,8 +88,8 @@ class Builder {
         main.AppendChild(attachments);
         foreach (var annex in annexes.Select((value, i) => new { i, value }))
             AddAnnex(attachments, judgment, annex.value, annex.i + 1);
-        foreach (var attach in judgment.InternalAttachments.Select((value, i) => new { i, value }))
-            AddInternalAttachment(attachments, judgment, attach.value, annexes.Count() + attach.i + 1);
+        foreach (var attach in judgment.InternalAttachments)
+            AddInternalAttachment(attachments, judgment, attach);
     }
 
     private void AddAnnex(XmlElement attachments, IJudgment judgment, IAnnex annex, int n) {
@@ -99,7 +99,7 @@ class Builder {
         main.SetAttribute("name", "annex");
         attachment.AppendChild(main);
 
-        AttachmentMetadata metadata = new AttachmentMetadata(judgment.Metadata, n);
+        AttachmentMetadata metadata = new AttachmentMetadata(AttachmentType.Annex, judgment.Metadata, n);
         XmlElement meta = Metadata.make(doc, null, metadata, false);
         main.AppendChild(meta);
 
@@ -109,14 +109,14 @@ class Builder {
         blocks(body, annex.Contents);
     }
 
-    private void AddInternalAttachment(XmlElement attachments, IJudgment judgment, IInternalAttachment attach, int n) {
+    private void AddInternalAttachment(XmlElement attachments, IJudgment judgment, IInternalAttachment attach) {
         XmlElement attachment = doc.CreateElement("attachment", ns);
         attachments.AppendChild(attachment);
         XmlElement main = doc.CreateElement("doc", ns);
-        main.SetAttribute("name", "attachment");
+        main.SetAttribute("name", Enum.GetName(typeof(AttachmentType), attach.Type).ToLower());
         attachment.AppendChild(main);
 
-        AttachmentMetadata metadata = new AttachmentMetadata(judgment.Metadata, n) { Styles = attach.CSSStyles() };
+        AttachmentMetadata metadata = new AttachmentMetadata(attach.Type, judgment.Metadata, attach.Number) { Styles = attach.CSSStyles() };
         XmlElement meta = Metadata.make(doc, null, metadata, false);
         main.AppendChild(meta);
 

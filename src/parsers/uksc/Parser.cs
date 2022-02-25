@@ -8,6 +8,8 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using Microsoft.Extensions.Logging;
 
+using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class SupremeCourtParser : AbstractParser {
@@ -20,11 +22,11 @@ class SupremeCourtParser : AbstractParser {
     public static Judgment Parse2(WordprocessingDocument doc, IOutsideMetadata meta) {
         return new SupremeCourtParser(doc, meta).Parse();
     }
-    public static Judgment Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<WordprocessingDocument> attachments) {
+    public static Judgment Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<AttachmentPair> attachments) {
         return new SupremeCourtParser(doc, meta, attachments).Parse();
     }
 
-    private SupremeCourtParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) : base(doc, meta, attachments) { }
+    private SupremeCourtParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) : base(doc, meta, attachments) { }
 
     /* second page break or first page break if first break is followed by a 'speech' */
     protected override List<IBlock> Header() {

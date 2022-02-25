@@ -12,6 +12,7 @@ To invoke the parser programatically, clients should use the classes in the [UK.
     - Filename (optional), a string, the name of .docx file containing the judgment
     - Attachments (optional), an array of [Attachment](./src/api/Request.cs) objects, having the following properties:
         - Content (required), a byte array, the content of the attachment, in .docx format
+        - Type (required), an [enum](./src/api/Request.cs), with the following possibe values: Order
         - Filename (optional), a string, the name of .docx file containing the attachment
     - Meta (optional), a [Meta](./src/api/Meta.cs) object, with the following properties:
         - Court (optional), a string, the identifier of the court

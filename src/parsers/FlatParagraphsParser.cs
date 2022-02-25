@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +12,10 @@ using Microsoft.Extensions.Logging;
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Attachment : IInternalAttachment {
+
+    public AttachmentType Type { get; init; }
+
+    public int Number { get; init; }
 
     public IEnumerable<IBlock> Contents { get; init; }
 
@@ -26,13 +31,12 @@ class FlatParagraphsParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<FlatParagraphsParser>();
 
-    internal static IInternalAttachment Parse(WordprocessingDocument doc, int n) {
+    internal static IInternalAttachment Parse(WordprocessingDocument doc, AttachmentType type, int n) {
         var contents = doc.MainDocumentPart.Document.Body.ChildElements.Select(e => ParseParagraph(doc, e)).Where(p => p is not null);
         contents = new Merger().Enrich(contents);
-        var styles = DOCX.CSS.Extract(doc.MainDocumentPart, "#attachment" + n);
+        var styles = DOCX.CSS.Extract(doc.MainDocumentPart, "#" + Enum.GetName(typeof(AttachmentType), type).ToLower() + n);
         var images = WImage.Get(doc);
-        return new Attachment() { Contents = contents, Styles = styles, Images = images };
-        // return new UK.Gov.Legislation.Judgments.Parse.Attachment() { Contents = contents };
+        return new Attachment() { Type = type, Number = n, Contents = contents, Styles = styles, Images = images };
     }
 
     private static IBlock ParseParagraph(WordprocessingDocument doc, OpenXmlElement e) {
