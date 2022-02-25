@@ -49,14 +49,14 @@ The parser can also be invoked from the command line, as follows:
 
 So, for example, the following command will parse the included test document and direct the output to the console:
 
-    dotnet run --input test.docx
+    dotnet run --input test/test1.docx
 
 To direct the output to a file, use the `--output` option, like so:
 
-    dotnet run --input test.docx --output test.xml
+    dotnet run --input test/test1.docx --output something.xml
 
 If the `--log` option is used, the parser will log its progress to the specified file. For example:
 
-    dotnet run --input test.docx --output test.xml --log log.txt
+    dotnet run --input test/test1.docx --output something.xml --log log.txt
 
 And if the `--test` option is used, the parser will perform a few tests and display the results either in the console or, if logging is enabled, to the log file.
