@@ -109,7 +109,7 @@ class WMetadata : IMetadata {
         return null;
     }
 
-    virtual public string CaseName { get {
+    virtual public string Name { get {
         return UK.Gov.Legislation.Judgments.CaseName.Extract(judgment);
     } }
 

@@ -44,7 +44,15 @@ public class Tests {
     public void TestWithAttachment(int i, string name) {
         var main = ReadDocx(i, "main");
         var attach = ReadDocx(i, name);
-        List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach } };
+        Api.AttachmentType type;
+        switch (name) {
+            case "order":
+                type = Api.AttachmentType.Order;
+                break;
+            default:
+                throw new System.Exception();
+        }
+        List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach, Type = type } };
         var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
         var expected = ReadXml(i);
         Assert.NotEqual(expected, actual);
