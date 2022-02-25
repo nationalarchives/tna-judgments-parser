@@ -52,12 +52,12 @@ class Metadata {
         if (includeReferences) {
             XmlElement workNumber = append(doc, work, "FRBRnumber");
             workNumber.SetAttribute("value", metadata.Number.ToString());
-            string caseName = metadata.CaseName;
-            if (caseName is not null) {
-                XmlElement workName = append(doc, work, "FRBRname");
-                workName.SetAttribute("value", caseName);
-            }
         }
+        if (metadata.Name is not null) {
+            XmlElement workName = append(doc, work, "FRBRname");
+            workName.SetAttribute("value", metadata.Name);
+        }
+
         XmlElement expression = append(doc, identification, "FRBRExpression");
         XmlElement expThis = append(doc, expression, "FRBRthis");
         expThis.SetAttribute("value", metadata.ExpressionThis);
@@ -199,11 +199,14 @@ class Metadata {
 
 class AttachmentMetadata : IMetadata {
 
+    AttachmentType Type { get; init;}
+
     private readonly IMetadata prototype;
 
     private readonly int n;
 
-    internal AttachmentMetadata(IMetadata prototype, int n) {
+    internal AttachmentMetadata(AttachmentType type, IMetadata prototype, int n) {
+        Type = type;
         this.prototype = prototype;
         this.n = n;
     }
@@ -216,7 +219,7 @@ class AttachmentMetadata : IMetadata {
 
     public string Cite { get => prototype.Cite; }
 
-    private string Extension { get =>  "/attachment/" + n; }
+    private string Extension { get =>  "/" + Name.ToLower() + "/" + n; }
 
     public string ShortUriComponent { get => prototype.ShortUriComponent + Extension; }
 
@@ -231,7 +234,7 @@ class AttachmentMetadata : IMetadata {
 
     public string Date() { return prototype.Date(); }
 
-    public string CaseName { get => prototype.CaseName; }
+    public string Name { get => Enum.GetName(typeof(AttachmentType), Type); }
 
     public IEnumerable<string> CaseNos() => Enumerable.Empty<string>();
 

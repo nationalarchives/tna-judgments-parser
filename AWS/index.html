@@ -33,6 +33,12 @@ input:invalid { background-color: pink }
 <p>
 	<span>Attachment?</span>
 	<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
+	<label>
+		<span>Type: </span>
+		<select id="attachment-type">
+			<option value="order">order</option>
+		</select>
+	</label>
 </p>
 
 <p>
@@ -127,6 +133,7 @@ input:invalid { background-color: pink }
 <script>
 
 const hint = document.getElementById('hint');
+const attachmentType = document.getElementById('attachment-type');
 const button = document.getElementById('button');
 const status = document.getElementById('status');
 const result = document.getElementById('result');
@@ -142,8 +149,10 @@ async function handleClick() {
 	if (hint.value)
 		payload['hint'] = hint.value;
 	const attachment = await readFile('attachment');
-	if (attachment)
+	if (attachment) {
+		attachment['type'] = attachmentType.value
 		payload['attachments'] = [ attachment ];
+	}
 	const metadata = getMetadata();
 	if (metadata)
 		payload['meta'] = metadata;

@@ -41,6 +41,19 @@ class Util {
         return Regex.Replace(s, @"\s+", " ").Trim();
     }
 
+    internal static List<Tuple<Tuple<T, AttachmentType>, int>> NumberAttachments<T>(IEnumerable<Tuple<T, AttachmentType>> attachments) {
+        Dictionary<AttachmentType, int> dict = new Dictionary<AttachmentType, int>();
+        List<Tuple<Tuple<T, AttachmentType>, int>> list = new List<Tuple<Tuple<T, AttachmentType>, int>>();
+        foreach (var attach in attachments) {
+            if (!dict.ContainsKey(attach.Item2))
+                dict.Add(attach.Item2, 0);
+            dict[attach.Item2] = dict[attach.Item2] + 1;
+            var tuple = new Tuple<Tuple<T, AttachmentType>, int>(attach, dict[attach.Item2]);
+            list.Add(tuple);
+        }
+        return list;
+    }
+
 }
 
 }

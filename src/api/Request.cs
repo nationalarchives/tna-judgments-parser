@@ -26,11 +26,16 @@ public class Request {
 
 }
 
+public enum AttachmentType { Order }
+
 public class Attachment {
 
     public string Filename { get; set; }
 
     public byte[] Content { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public AttachmentType Type { get; set; }
 
 }
 

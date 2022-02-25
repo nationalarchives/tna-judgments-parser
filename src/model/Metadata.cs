@@ -26,7 +26,7 @@ interface IMetadata {
 
     string Date();
 
-    string CaseName { get; }
+    string Name { get; }
 
     IEnumerable<string> CaseNos();
 

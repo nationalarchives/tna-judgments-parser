@@ -9,7 +9,8 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
-using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<byte[]>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
+using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
+using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
@@ -30,7 +31,7 @@ public class Parser {
         ParseFunction parse = GetParser(request.Hint);
 
         IOutsideMetadata meta1 = (request.Meta is null) ? null : new MetaWrapper() { Meta = request.Meta };
-        IEnumerable<byte[]> attachments = (request.Attachments is null) ? Enumerable.Empty<byte[]>() : request.Attachments.Select(a => a.Content);
+        IEnumerable<AttachmentPair> attachments = (request.Attachments is null) ? Enumerable.Empty<AttachmentPair>() : request.Attachments.Select(a => ConvertAttachment(a));
 
         AkN.ILazyBundle bundle = parse(request.Content, meta1, attachments);
 
@@ -69,7 +70,7 @@ public class Parser {
             return null;
         if (parsers.Count == 1)
             return parsers.First();
-        return (byte[] docx, IOutsideMetadata meta, IEnumerable<byte[]> attachments) => {
+        return (byte[] docx, IOutsideMetadata meta, IEnumerable<AttachmentPair> attachments) => {
             AkN.ILazyBundle bestBundle = null;
             int bestScore = -1;
             foreach (ParseFunction parse in parsers) {
@@ -131,6 +132,17 @@ public class Parser {
             Type = image.ContentType,
             Content = memStream.ToArray()
         };
+    }
+
+    internal static AttachmentPair ConvertAttachment(Attachment a) {
+        var content = a.Content;
+        var type1 = a.Type;
+        UK.Gov.Legislation.Judgments.AttachmentType type2;
+        if (type1 == Api.AttachmentType.Order)
+            type2 = UK.Gov.Legislation.Judgments.AttachmentType.Order;
+        else
+            throw new System.Exception();
+        return new System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>(content, type2);
     }
 
     internal static void Log(Api.Meta meta) {

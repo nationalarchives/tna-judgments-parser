@@ -39,7 +39,13 @@ interface IAnnex {
 
 }
 
+enum AttachmentType { Annex, Order }
+
 interface IInternalAttachment {
+
+    AttachmentType Type { get; }
+
+    int Number { get; }
 
     IEnumerable<IBlock> Contents { get; }
 
