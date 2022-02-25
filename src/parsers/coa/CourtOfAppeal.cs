@@ -1,7 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -10,6 +9,8 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using Microsoft.Extensions.Logging;
+
+using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -23,11 +24,11 @@ class CourtOfAppealParser : AbstractParser {
     public static Judgment Parse2(WordprocessingDocument doc, IOutsideMetadata meta) {
         return new CourtOfAppealParser(doc, meta).Parse();
     }
-    public static Judgment Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<WordprocessingDocument> attachments) {
+    public static Judgment Parse3(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<AttachmentPair> attachments) {
         return new CourtOfAppealParser(doc, meta, attachments).Parse();
     }
 
-    protected CourtOfAppealParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) : base(doc, meta, attachments) { }
+    protected CourtOfAppealParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) : base(doc, meta, attachments) { }
 
     ISet<string> titles = new HashSet<string>() {
         "Judgment", "JUDGMENT", "J U D G M E N T",

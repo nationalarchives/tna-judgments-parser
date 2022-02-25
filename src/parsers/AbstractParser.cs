@@ -12,6 +12,8 @@ using Vml = DocumentFormat.OpenXml.Vml;
 
 using Microsoft.Extensions.Logging;
 
+using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class AbstractParser {
@@ -20,15 +22,15 @@ abstract class AbstractParser {
 
     protected readonly WordprocessingDocument doc;
     protected readonly IOutsideMetadata meta;
-    private readonly IEnumerable<WordprocessingDocument> attachments;
+    private readonly IEnumerable<AttachmentPair> attachments;
     protected readonly MainDocumentPart main;
     protected readonly OpenXmlElementList elements;
     protected int i = 0;
 
-    protected AbstractParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<WordprocessingDocument> attachments = null) {
+    protected AbstractParser(WordprocessingDocument doc, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) {
         this.doc = doc;
         this.meta = meta;
-        this.attachments = attachments ?? Enumerable.Empty<WordprocessingDocument>();
+        this.attachments = attachments ?? Enumerable.Empty<AttachmentPair>();
         main = doc.MainDocumentPart;
         elements = main.Document.Body.ChildElements;
     }
@@ -65,7 +67,8 @@ abstract class AbstractParser {
             conclusions = EnrichConclusions(conclusions);
         if (annexes is not null)
             annexes = EnrichAnnexes(annexes);
-        IEnumerable<IInternalAttachment> attachments = this.attachments.Select((a, i) => FlatParagraphsParser.Parse(a, i + 1));
+
+        IEnumerable<IInternalAttachment> attachments = Util.NumberAttachments<WordprocessingDocument>(this.attachments).Select(tup => FlatParagraphsParser.Parse(tup.Item1.Item1, tup.Item1.Item2, tup.Item2));
         return new Judgment(doc, meta) {
             CoverPage = coverPage,
             Header = header,

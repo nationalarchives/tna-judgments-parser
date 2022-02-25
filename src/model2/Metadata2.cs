@@ -43,10 +43,10 @@ class WMetadata2 : WMetadata {
         return base.Date() ?? meta2.Date;
     }
 
-    override public string CaseName { get {
+    override public string Name { get {
         if (meta2.NameTrumps)
             return meta2.Name;
-        return base.CaseName ?? meta2.Name;
+        return base.Name ?? meta2.Name;
     } }
 
 }
@@ -81,8 +81,8 @@ class WMetadata3 : WMetadata {
         return outside.Date ?? base.Date();
     }
 
-    override public string CaseName { get {
-        return outside.Name ?? base.CaseName;
+    override public string Name { get {
+        return outside.Name ?? base.Name;
     } }
 
 }
