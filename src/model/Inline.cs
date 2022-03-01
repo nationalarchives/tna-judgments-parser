@@ -140,7 +140,7 @@ interface IDateTime : IInline {
 
 interface IDocDate : IDate { }
 
-enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, ThirdParty, Intervener, BeforeTheV, AfterTheV }
+enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, ThirdParty, Intervener, RequestedPerson, RequestingState, BeforeTheV, AfterTheV }
 
 interface IParty : IInline {
 
