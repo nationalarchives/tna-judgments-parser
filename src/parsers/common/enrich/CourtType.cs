@@ -315,6 +315,13 @@ class Combo4 : Combo {
             Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial
         },
+        new Combo4 {    // [2022] EWHC 245 (Comm)
+            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Commercial
+        },
         new Combo4 {    // [2021] EWHC 3432 (CH)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),

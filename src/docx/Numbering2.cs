@@ -528,6 +528,8 @@ class Numbering2 {
     private static int CountUpToAndIncluding(MainDocumentPart main, OpenXmlElement e, int abstractNumId, int levelNum) {
         if (e is null)
             return 0;
+        if (e is BookmarkStart || e is BookmarkEnd) // EWCA/Civ/2004/1020.rtf, EWCA/Civ/2007/1211.rtf
+            return CountUpToAndIncluding(main, e.PreviousSibling(), abstractNumId, levelNum);
         if (e is Paragraph p)
             return CountUpToAndIncluding(main, p, abstractNumId, levelNum);
         if (e is Table t)

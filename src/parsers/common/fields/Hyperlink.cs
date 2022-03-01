@@ -48,6 +48,9 @@ internal class Hyperlink {
             return new List<IInline>(1) { hyperlink };
         } else {
             OpenXmlElement next = withinField[i];
+            if (next is InsertedRun && !next.ChildElements.Any()) { // EWCA/Civ/2017/8.rtf
+                next = withinField[++i];
+            }
             if (!Fields.IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
