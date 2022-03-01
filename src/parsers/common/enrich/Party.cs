@@ -649,11 +649,26 @@ class PartyEnricher : Enricher {
         }
         return false;
     }
+
+    private static IEnumerable<IInline> MakeOrSplitParty(string text, RunProperties props, PartyRole role) {
+        if (text.StartsWith("(1)") && text.Contains("(2)")) { // ewhc/admin/2022/273
+            int i = text.IndexOf("(2)");
+            string text1 = text.Substring(0, i);
+            string text2 = text.Substring(i);
+            WParty party1 = new WParty(text1, props) { Role = role };
+            WParty party2 = new WParty(text2, props) { Role = role };
+            return new List<IInline>(2) { party1, party2 };
+        }
+        WParty party = new WParty(text, props) { Role = role };
+        return new List<IInline>(1) { party };
+    }
+
     private static WLine MakeParty(IBlock name, PartyRole? role) {
         WLine line = (WLine) name;
         if (line.Contents.Count() == 1) {
             WText text = (WText) line.Contents.First();
             WParty party = new WParty(text) { Role = role };
+            // use MakeOrSplitParty
             IEnumerable<IInline> contents = new List<IInline>(1) { party };
             return new WLine(line, contents);
         }
@@ -1453,7 +1468,8 @@ class PartyEnricher : Enricher {
                 };
                 IEnumerable<IInline> filtered = line.Contents.Where(filter);
                 if (filtered.Count() == 1) {
-                    IEnumerable<IInline> mapped = line.Contents.Select(inline => filter(inline) ? new WParty((WText) inline) { Role = role } : inline);
+                    // IEnumerable<IInline> mapped = line.Contents.Select(inline => filter(inline) ? new WParty((WText) inline) { Role = role } : inline);
+                    IEnumerable<IInline> mapped = line.Contents.SelectMany(inline => filter(inline) ? MakeOrSplitParty(((WText) inline).Text, ((WText) inline).properties, role) : new List<IInline>(1) { inline });
                     return new WLine(line, mapped);
                 }
                 if (line.Contents.Any(inline => inline is WText wt && Regex.IsMatch(wt.Text, @"^\(\d+\) ")) && line.Contents.All(inline => inline is WLineBreak || inline is WText wt && (string.IsNullOrEmpty(wt.Text) || Regex.IsMatch(wt.Text, @"^\(\d+\) ")))) {
@@ -1751,6 +1767,10 @@ class PartyEnricher : Enricher {
             return PartyRole.InterestedParty;
         if (s == "intervener" || s == "interveners")
             return PartyRole.Intervener;
+        if (s == "requested person" || s == "requested persons")    // [2022] EWHC 273 (Admin)
+            return PartyRole.RequestedPerson;
+        if (s == "requesting state")
+            return PartyRole.RequestingState;
         return null;
     }
 
