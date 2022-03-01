@@ -121,6 +121,9 @@ class PartyEnricher : Enricher {
         IEnumerable<IInline> try2 = EnrichWithLineBreaksOrNull(line);
         if (try2 is not null)
             return try2;
+        IEnumerable<IInline> try3 = EnrichWithTwoPartiesAndOneRoleOrNull(line);
+        if (try3 is not null)
+            return try3;
         List<IInline> contents = new List<IInline>(line.Count());
         IEnumerator<IInline> enumerator = line.GetEnumerator();
         if (!enumerator.MoveNext())
@@ -128,18 +131,6 @@ class PartyEnricher : Enricher {
         IInline first = enumerator.Current;
         if (first is not WText text1)
             return line;
-        // Match match1 = Regex.Match(text1.Text, @"^([A-Z0-9][A-Za-z0-9,\./ ’]*?)( \([A-Za-z ]+\))? \(([A-Z][a-z]+)\) $");
-        // if (!match1.Success)
-        //     return line;
-        // PartyRole? role1 = ParseRole(match1.Groups[3].Value);
-        // if (!role1.HasValue)
-        //     return line;
-        // contents.Add(new WParty(match1.Groups[1].Value, text1.properties) { Role = role1 });
-        // if (match1.Groups[2].Length > 0)
-        //     contents.Add(new WText(match1.Groups[2].Value, text1.properties));
-        // contents.Add(new WText(" (", text1.properties));
-        // contents.Add(new WRole() { Contents = new List<IInline>(1) { new WText(match1.Groups[3].Value, text1.properties) }, Role = role1.Value });
-        // contents.Add(new WText(") ", text1.properties));
         IEnumerable<IInline> enriched1 = EnrichOnePartyAndRoleOrNull(text1);
         if (enriched1 is null)
             return line;
@@ -159,19 +150,6 @@ class PartyEnricher : Enricher {
         IInline third = enumerator.Current;
         if (third is not WText text3)
             return line;
-        // Match match2 = Regex.Match(text3.Text, @"^ ([A-Z0-9][A-Za-z0-9,\./ ’]*?)( \([A-Za-z0-9, ]+\))? \(([A-Z][a-z]+)\)");
-        // if (!match2.Success)
-        //     return line;
-        // PartyRole? role2 = ParseRole(match2.Groups[3].Value);
-        // if (!role2.HasValue)
-        //     return line;
-        // contents.Add(new WText(" ", text3.properties));
-        // contents.Add(new WParty(match2.Groups[1].Value, text3.properties) { Role = role2 });
-        // if (match2.Groups[2].Length > 0)
-        //     contents.Add(new WText(match2.Groups[2].Value, text3.properties));
-        // contents.Add(new WText(" (", text3.properties));
-        // contents.Add(new WRole() { Contents = new List<IInline>(1) { new WText(match2.Groups[3].Value, text3.properties) }, Role = role2.Value });
-        // contents.Add(new WText(text3.Text.Substring(match2.Groups[3].Index + match2.Groups[3].Length), text3.properties));
         IEnumerable<IInline> enriched3 = EnrichOnePartyAndRoleOrNull(text3);
         if (enriched3 is null)
             return line;
@@ -279,6 +257,41 @@ class PartyEnricher : Enricher {
         contents.Add(new WParty(match2.Groups[1].Value, text3.properties) { Role = PartyRole.AfterTheV });
         if (match2.Groups[1].Index + match2.Groups[1].Length < text3.Text.Length)
             contents.Add(new WText(text3.Text.Substring(match2.Groups[1].Index + match2.Groups[1].Length), text3.properties));
+        return contents;
+    }
+
+    private IEnumerable<IInline> EnrichWithTwoPartiesAndOneRoleOrNull(IEnumerable<IInline> line) {
+        if (line.Count() != 3)
+            return null;
+        if (line.ElementAt(0) is not WText text1)
+            return null;
+        if (line.ElementAt(1) is not WText text2)
+            return null;
+        if (line.ElementAt(2) is not WText text3)
+            return null;
+        Match match1 = Regex.Match(text1.Text, @"^([A-Z0-9][A-Za-z0-9,\./ ’]*?) $");
+        if (!match1.Success)
+            return null;
+        if (text2.Text != "v")
+            return null;
+        IEnumerable<IInline> enriched3 = EnrichOnePartyAndRoleOrNull(text3);
+        if (enriched3 is null)
+            return null;
+
+        PartyRole role2 = enriched3.OfType<WRole>().First().Role;
+        PartyRole role1;
+        if (role2 == PartyRole.Respondent)
+            role1 = PartyRole.Appellant;
+        else if (role2 == PartyRole.Appellant)
+            role1 = PartyRole.Respondent;
+        else
+            return null;
+
+        List<IInline> contents = new List<IInline>();
+        contents.Add(new WParty(match1.Groups[1].Value, text1.properties) { Role = role1});
+        contents.Add(new WText(" ", text1.properties));
+        contents.Add(text2);
+        contents.AddRange(enriched3);
         return contents;
     }
 

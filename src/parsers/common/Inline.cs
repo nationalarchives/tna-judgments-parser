@@ -77,6 +77,30 @@ class Inline {
                     }
                     throw new Exception();
                 }
+                if (fc1 == "FORMTEXT " && fc2 == "FORMTEXT ") { // EWCA/Civ/2015/40.rtf
+                    logger.LogDebug("FORMTEXT within FORMTEXT");
+                    int starts = 1;
+                    while (enumerator.MoveNext()) {
+                        if (Fields.IsFieldStart(enumerator.Current))
+                            starts += 1;
+                        if (Fields.IsFieldCode(enumerator.Current)) {
+                            string fc3 = Fields.GetFieldCode(enumerator.Current).TrimStart();
+                            logger.LogDebug(fc3.TrimEnd() + " within FORMTEXT within FORMTEXT");
+                            if (fc3 == "FORMTEXT ")
+                                continue;
+                            else
+                                throw new Exception(fc3);
+                        }
+                        if (Fields.IsFieldSeparater(enumerator.Current))
+                            continue;
+                        if (Fields.IsFieldEnd(enumerator.Current)) {
+                            starts -= 1;
+                            if (starts == 0) break;
+                        }
+                        withinField.Add(enumerator.Current);
+                    }
+                    continue;
+                }
                 throw new Exception();
             }
             if (Fields.IsFieldSeparater(e)) {

@@ -183,14 +183,12 @@ class Fields {
                 return new List<IInline>(1) { wText };
             } else {
                 return Rest(main, withinField, i);
-                // OpenXmlElement next = withinField[i];
-                // if (!IsFieldSeparater(next))
-                //     throw new Exception();
-                // IEnumerable<OpenXmlElement> rest = withinField.Skip(i + 1);
-                // if (!rest.Any())
-                //     throw new Exception();
-                // return Inline.ParseRuns(main, rest);
             }
+        }
+        if (fieldCode == " =sum(left) ") {  // EWCA/Civ/2016/138.rtf
+            if (i == withinField.Count)
+                logger.LogWarning("skipping SUM field because no alternative is provided");
+            return RestOptional(main, withinField, i);
         }
         if (fieldCode.StartsWith(" DATE ") || fieldCode.StartsWith(" createDATE ")) {   // EWCA/Crim/2015/558, EWCA/Civ/2018/1307
             if (i == withinField.Count)

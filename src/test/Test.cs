@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -10,6 +9,8 @@ using UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 using System.IO;
+
+using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 class Tester {
 
@@ -23,8 +24,9 @@ class Tester {
         public bool HasNeutralCitation { get; set; }
         public string NeutralCitation { get; set; }
         public bool HasCaseNumber { get; set; }
-        public bool HasDocumentID { get; set; }
-        public string DocumentId { get; set; }
+        public bool HasUri { get; set; }
+        public string LongUri { get; set; }
+        public string ShortUriComponent { get; set; }
         public bool HasDate { get; set; }
         public string DocumentDate { get; set; }
         public bool HasTwoPartiesOrDocTitle { get; set; }
@@ -35,13 +37,13 @@ class Tester {
             if (this.SchemaErrors.Count > 0)
                 return false;
             return this.HasCourtType && this.HasNeutralCitation && this.HasCaseNumber &&
-                this.HasDocumentID && this.HasDate && this.HasTwoPartiesOrDocTitle;
+                this.HasUri && this.HasDate && this.HasTwoPartiesOrDocTitle;
         }
         public bool Level2ExceptCaseNumber() {
             if (this.SchemaErrors.Count > 0)
                 return false;
             return this.HasCourtType && this.HasNeutralCitation &&
-                this.HasDocumentID && this.HasDate && this.HasTwoPartiesOrDocTitle;
+                this.HasUri && this.HasDate && this.HasTwoPartiesOrDocTitle;
         }
 
     }
@@ -120,13 +122,16 @@ class Tester {
         else
             logger.LogWarning("does not have case number");
 
-        XmlAttribute docId = (XmlAttribute) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRthis/@value", nsmgr);
-        result.HasDocumentID = !string.IsNullOrEmpty(docId.Value);
-        result.DocumentId = docId?.Value;
-        if (result.HasDocumentID)
-            logger.LogInformation("has document id: " + result.DocumentId);
+        XmlAttribute workThis = (XmlAttribute) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRthis/@value", nsmgr);
+        result.HasUri = !string.IsNullOrEmpty(workThis.Value);
+        if (result.HasUri) {
+            result.LongUri = workThis.Value;
+            result.ShortUriComponent = Api.URI.ExtractShortURIComponent(result.LongUri);
+        }
+        if (result.HasUri)
+            logger.LogInformation("has uri: " + result.LongUri);
         else
-            logger.LogError("does not have document id");
+            logger.LogError("does not have uri");
 
         XmlNodeList dates = akn.SelectNodes("//akn:docDate", nsmgr);
         result.HasDate = dates.Count > 0;
@@ -204,10 +209,10 @@ class Tester {
         else
             System.Console.WriteLine("x does not have case number");
 
-        if (result.HasDocumentID)
-            System.Console.WriteLine("✓ has document id");
+        if (result.HasUri)
+            System.Console.WriteLine("✓ has document uri");
         else
-            System.Console.WriteLine("x does not have document id");
+            System.Console.WriteLine("x does not have uri");
 
         if (result.HasDate)
             System.Console.WriteLine("✓ has document date");

@@ -14,7 +14,7 @@ internal class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] { match.Groups[2].Value.ToUpper() } { num }";
         }
-        match = Regex.Match(cite, @"^\[(\d{4})\] (EWCA) (Civ|Crim) (\d+)$", RegexOptions.IgnoreCase);
+        match = Regex.Match(cite, @"^\[(\d{4})[\]\[] (EWCA) (Civ|Crim) (\d+)$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string sub = match.Groups[3].Value.Substring(0,1).ToUpper() + match.Groups[3].Value.Substring(1).ToLower();
             string num = match.Groups[4].Value.TrimStart('0');

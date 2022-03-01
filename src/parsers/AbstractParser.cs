@@ -140,13 +140,9 @@ abstract class AbstractParser {
         } else if (e is Table table) {
             var t = new WTable(doc.MainDocumentPart, table);
             collection.Add(t);
-        // } else if (e is SdtBlock) {
-        //     DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
-        //     if (dpg is null)
-        //         throw new Exception();
-        //     if (dpg.Val.Value != "Table of Contents")
-        //         throw new Exception();
-        //     logger.LogWarning("skipping table of contents");
+        } else if (e is SdtBlock sdt) { // EWCA/Civ/2018/1536.pdf
+            var blocks = Blocks.ParseStdBlock(main, sdt);
+            collection.AddRange(blocks);
         } else {
             throw new Exception(e.GetType().ToString());
         }
