@@ -60,6 +60,8 @@ class Relationships {
             relationships = header.HeaderPart.HyperlinkRelationships;
         else if (root is Footnotes footnotes)
             relationships = footnotes.FootnotesPart.HyperlinkRelationships;
+        else if (root is Endnotes endnotes)
+            relationships = endnotes.EndnotesPart.HyperlinkRelationships;
         else
             throw new Exception();
         return relationships.Where(r => r.Id == relationshipId).First().Uri;
