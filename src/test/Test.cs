@@ -123,11 +123,9 @@ class Tester {
             logger.LogWarning("does not have case number");
 
         XmlAttribute workThis = (XmlAttribute) akn.SelectSingleNode("//akn:FRBRWork/akn:FRBRthis/@value", nsmgr);
-        result.HasUri = !string.IsNullOrEmpty(workThis.Value);
-        if (result.HasUri) {
-            result.LongUri = workThis.Value;
-            result.ShortUriComponent = Api.URI.ExtractShortURIComponent(result.LongUri);
-        }
+        result.LongUri = workThis.Value;
+        result.ShortUriComponent = Api.URI.ExtractShortURIComponent(result.LongUri);
+        result.HasUri = !string.IsNullOrEmpty(result.ShortUriComponent);
         if (result.HasUri)
             logger.LogInformation("has uri: " + result.LongUri);
         else
