@@ -30,10 +30,10 @@ class Numbering2 {
             return null;
         // there may be no numbering instance that corresponds to this id, in which case Magic2 returns null
         int ilvl = props.NumberingLevelReference?.Val?.Value ?? 0;
-        string magic = Magic2(main, paragraph, (int) numId, ilvl);
+        string magic = Magic2(main, paragraph, numId.Value, ilvl);
         if (magic is null)
             return null;
-        Level level = Numbering.GetLevel(main, (int) numId, ilvl);
+        Level level = Numbering.GetLevel(main, numId.Value, ilvl);
         return new NumberInfo() { Number = magic, Props = level.NumberingSymbolRunProperties };
     }
 
@@ -432,32 +432,16 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + lvlText);
     }
 
-    // private static int GetNForLevel(MainDocumentPart main, Paragraph paragraph, int numberingId, int levelNum, int start) {
-    //     int count = 0;
-    //     Paragraph previous = paragraph.PreviousSibling<Paragraph>();
-    //     while (previous != null) {
-    //         NumberingProperties prevProps = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
-    //         if (prevProps is not null) {
-    //             int? id2 = prevProps.NumberingId?.Val?.Value;
-    //             if (numberingId.Equals(id2)) {
-    //                 int level2 = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
-    //                 if (level2 == levelNum)
-    //                     count += 1;
-    //                 if (level2 < levelNum)
-    //                     break;
-    //             }
-    //         }
-    //         previous = previous.PreviousSibling<Paragraph>();
-    //     }
-    //     return start + count;
-    // }
-
     private enum CountingAction { Skip, Count, Stop }
 
     private static CountingAction ShouldCount(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum) {
-        if (paragraph.ChildElements.All(child => child is ParagraphProperties))
-            return CountingAction.Skip;
-        NumberingProperties props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+        NumberingProperties props2;
+        if (paragraph.ChildElements.All(child => child is ParagraphProperties)) {   // EWHC/Ch/2011/3553 ?? && paragraph.ChildElements.OfType<ParagraphProperties>().First().SectionProperties is not null
+            props2 = paragraph.ParagraphProperties?.NumberingProperties;    // ukut/iac/2021/130
+        } else {
+            props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+        }
+
         if (props2 is null)
             return CountingAction.Skip;
         int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
@@ -480,109 +464,20 @@ class Numbering2 {
 
     internal static int GetNForLevelBasedOnAbstractId(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum, int start) {
         int count = 0;
-        Paragraph previous = paragraph.PreviousSibling<Paragraph>();
-        while (previous != null) {
-
-            if (previous.ChildElements.All(child => child is ParagraphProperties)) {  // EWHC/Ch/2011/3553
-                previous = previous.PreviousSibling<Paragraph>();
-                continue;
-            }
-
-            NumberingProperties props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, previous);
-            if (props2 is null) {
-                previous = previous.PreviousSibling<Paragraph>();
-                continue;
-            }
-            // if (props2.NumberingId?.Val?.Value is null) {
-            //     previous = previous.PreviousSibling<Paragraph>();
-            //     continue;
-            // }
-            int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
-            if (numberingId2 is null) {
-                previous = previous.PreviousSibling<Paragraph>();
-                continue;
-            }
-            NumberingInstance numbering2 = Numbering.GetNumbering(main, (int) numberingId2);
-            if (numbering2 is null) {
-                previous = previous.PreviousSibling<Paragraph>();
-                continue;
-            }
-            AbstractNum abstractNum2 = Numbering.GetAbstractNum(main, numbering2);
-            // if (abstractNum2?.AbstractNumberId is null)
-            //     continue;
-            int abstractNumId2 = abstractNum2.AbstractNumberId;
-            if (abstractNumId.Equals(abstractNumId2)) {
-                int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
-                if (level2 == levelNum)
-                    count += 1;
-                if (level2 < levelNum)
-                    break;
-            }
-            previous = previous.PreviousSibling<Paragraph>();
+        IEnumerator<Paragraph> previous = paragraph.GetRoot()
+            .Descendants<Paragraph>()
+            .Reverse()
+            .SkipWhile(e => !object.ReferenceEquals(e, paragraph))
+            .Skip(1)
+            .GetEnumerator();
+        while (previous.MoveNext()) {
+            CountingAction a = ShouldCount(main, previous.Current, abstractNumId, levelNum);
+            if (a == CountingAction.Stop)
+                break;
+            if (a == CountingAction.Count)
+                count += 1;
         }
-        if (paragraph.Parent is TableCell cell)
-            count += CountUpToButNotIncluding(main, cell, abstractNumId, levelNum);
         return start + count;
-    }
-
-    private static int CountUpToAndIncluding(MainDocumentPart main, OpenXmlElement e, int abstractNumId, int levelNum) {
-        if (e is null)
-            return 0;
-        if (e is BookmarkStart || e is BookmarkEnd) // EWCA/Civ/2004/1020.rtf, EWCA/Civ/2007/1211.rtf
-            return CountUpToAndIncluding(main, e.PreviousSibling(), abstractNumId, levelNum);
-        if (e is Paragraph p)
-            return CountUpToAndIncluding(main, p, abstractNumId, levelNum);
-        if (e is Table t)
-            return CountUpToAndIncluding(main, t, abstractNumId, levelNum);
-        throw new Exception();
-    }
-
-    private static int CountUpToAndIncluding(MainDocumentPart main, Paragraph p, int abstractNumId, int levelNum) {
-        CountingAction x = ShouldCount(main, p, abstractNumId, levelNum);
-        if (x == CountingAction.Stop)
-            return 0;
-        int count = (x == CountingAction.Count) ? 1 : 0;
-        OpenXmlElement previous = p.PreviousSibling();
-        return count + CountUpToAndIncluding(main, previous, abstractNumId, levelNum);
-    }
-
-    private static int CountUpToButNotIncluding(MainDocumentPart main, TableCell cell, int abstractNumId, int levelNum) {
-        TableCell previous = cell.PreviousSibling<TableCell>();
-        if (previous is not null)
-            return CountUpToAndIncluding(main, previous, abstractNumId, levelNum);
-        TableRow previousRow = cell.Parent.PreviousSibling<TableRow>();
-        if (previousRow is not null)
-            return CountUpToAndIncluding(main, previousRow, abstractNumId, levelNum);
-        OpenXmlElement previousBlock = cell.Parent.Parent.PreviousSibling();
-        return CountUpToAndIncluding(main, previousBlock, abstractNumId, levelNum);
-    }
-
-    private static int CountUpToAndIncluding(MainDocumentPart main, TableCell cell, int abstractNumId, int levelNum) {
-        int count = 0;
-        foreach (var child in cell.ChildElements.Reverse()) {
-            if (child is Paragraph p) {
-                CountingAction x = ShouldCount(main, p, abstractNumId, levelNum);
-                if (x == CountingAction.Count)
-                    count += 1;
-                if (x == CountingAction.Stop)
-                    return count;
-            }
-        }
-        return count + CountUpToButNotIncluding(main, cell, abstractNumId, levelNum);
-    }
-
-    private static int CountUpToAndIncluding(MainDocumentPart main, TableRow row, int abstractNumId, int levelNum) {
-        TableCell last = row.ChildElements.OfType<TableCell>().LastOrDefault();
-        if (last is not null)
-            return CountUpToAndIncluding(main, last, abstractNumId, levelNum);
-        return CountUpToAndIncluding(main, row.PreviousSibling(), abstractNumId, levelNum);
-    }
-
-    private static int CountUpToAndIncluding(MainDocumentPart main, Table table, int abstractNumId, int levelNum) {
-        TableRow last = table.ChildElements.OfType<TableRow>().LastOrDefault();
-        if (last is not null)
-            return CountUpToAndIncluding(main, last, abstractNumId, levelNum);
-        return CountUpToAndIncluding(main, table.PreviousSibling(), abstractNumId, levelNum);
     }
 
     // for REF \w -- see EWHC/Comm/2018/1368
