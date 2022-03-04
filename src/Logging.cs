@@ -11,31 +11,28 @@ class Logging {
 
     internal static ILoggerFactory Factory = LoggerFactory.Create(builder => { builder.SetMinimumLevel(LogLevel.None); });
 
-    internal static void SetConsoleAndFile() {
-        Factory = Factory = LoggerFactory.Create(builder => { builder
+    internal static void SetConsoleAndFile(LogLevel level = LogLevel.Debug) {
+        Factory = LoggerFactory.Create(builder => { builder
             .AddConsole()
             .AddFile("logs/judgments.log")
-            .SetMinimumLevel(LogLevel.Debug);
+            .SetMinimumLevel(level);
         });
     }
 
     internal static void SetConsole(LogLevel level) {
-        Factory = Factory = LoggerFactory.Create(builder => { builder
+        Factory = LoggerFactory.Create(builder => { builder
             .AddConsole()
             .SetMinimumLevel(level);
         });
     }
-    internal static void SetConsole() {
-        SetConsole(LogLevel.Information);
-    }
 
-    internal static void SetFile(FileInfo file) {
+    internal static void SetFile(FileInfo file, LogLevel level = LogLevel.Information) {
         if (file is null)
-            Factory = Factory = LoggerFactory.Create(builder => { builder.SetMinimumLevel(LogLevel.None); });
+            Factory = LoggerFactory.Create(builder => { builder.SetMinimumLevel(LogLevel.None); });
         else
-            Factory = Factory = LoggerFactory.Create(builder => { builder
+            Factory = LoggerFactory.Create(builder => { builder
                 .AddFile(file.FullName)
-                .SetMinimumLevel(LogLevel.Information);
+                .SetMinimumLevel(level);
         });
     }
 
