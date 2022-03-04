@@ -29,6 +29,7 @@ public class Tests {
 
     [Theory]
     [MemberData(nameof(indices))]
+    [InlineData(12)]
     public void Test(int i) {
         var docx = ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
