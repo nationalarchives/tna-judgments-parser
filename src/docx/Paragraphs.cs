@@ -9,15 +9,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 
 static class Paragraphs {
 
-    public static Document GetRoot(this Paragraph para) {
-        return (Document) para.Ancestors<Document>().First();
-    }
-
-    public static MainDocumentPart GetMain(this Paragraph para) {
-        Document root = para.GetRoot();
-        return root.MainDocumentPart;
-    }
-
     public static StringValue GetLeftIndentWithStyleButNotNumberingInDXA(MainDocumentPart main, ParagraphProperties props) {
         if (props is null)
             return null;

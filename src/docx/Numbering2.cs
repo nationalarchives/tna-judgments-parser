@@ -464,7 +464,7 @@ class Numbering2 {
 
     internal static int GetNForLevelBasedOnAbstractId(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum, int start) {
         int count = 0;
-        IEnumerator<Paragraph> previous = paragraph.GetRoot()
+        IEnumerator<Paragraph> previous = paragraph.Root()
             .Descendants<Paragraph>()
             .Reverse()
             .SkipWhile(e => !object.ReferenceEquals(e, paragraph))
