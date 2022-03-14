@@ -152,6 +152,10 @@ class WLine : ILine {
         set { contents = value; }
     }
 
+    public string NormalizedContent() {
+        return ILine.NormalizeContent(this);
+    }
+
 }
 
 class WRestriction : WLine, IRestriction {

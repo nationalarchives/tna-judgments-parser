@@ -158,6 +158,12 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         }
     }
 
+    internal Tuple<WText, WText> Split(int i) {
+        var first = text.Substring(0, i);
+        var second = text.Substring(i);
+        return new Tuple<WText, WText>( new WText(first, properties), new WText(second, properties) );
+    }
+
 }
 
 class WTab : ITab {
@@ -244,6 +250,10 @@ internal class WDocDate : IDocDate {
     public IEnumerable<IFormattedText> Contents { get; }
 
     public string Date { get; }
+
+    public string Name { get; init; } = "judgment";
+
+    public int Priority { get; init; } = 0;
 
 }
 

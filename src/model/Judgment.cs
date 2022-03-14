@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 namespace UK.Gov.Legislation.Judgments {
 
+enum JudgmentType { Judgment, Decision }
+
 interface IJudgment {
+
+    JudgmentType Type { get; }
 
     IMetadata Metadata { get; }
 

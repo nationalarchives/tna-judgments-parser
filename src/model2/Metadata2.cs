@@ -39,9 +39,9 @@ class WMetadata2 : WMetadata {
         return base.ShortUriComponent ?? meta2.ShortUriComponent;
     } }
 
-    override public string Date() {
-        return base.Date() ?? meta2.Date;
-    }
+    override public INamedDate Date { get {
+        return base.Date ?? new WNamedDate(){ Date = meta2.Date, Name = "judgment" };
+    } }
 
     override public string Name { get {
         if (meta2.NameTrumps)
@@ -77,9 +77,11 @@ class WMetadata3 : WMetadata {
 
     override public string ShortUriComponent { get => outside.ShortUriComponent ?? base.ShortUriComponent; }
 
-    override public string Date() {
-        return outside.Date ?? base.Date();
-    }
+    override public INamedDate Date { get {
+        if (outside.Date is null)
+            return base.Date;
+        return new WNamedDate(){ Date = outside.Date, Name = "judgment" };
+    } }
 
     override public string Name { get {
         return outside.Name ?? base.Name;

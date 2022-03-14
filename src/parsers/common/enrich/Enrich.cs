@@ -22,14 +22,14 @@ abstract class Enricher {
 
 
 
-    internal IEnumerable<IDecision> Enrich(IEnumerable<IDecision> body) {
+    internal virtual IEnumerable<IDecision> Enrich(IEnumerable<IDecision> body) {
         return body.Select(d => new Decision { Author = (d.Author is null) ? null : Enrich((WLine) d.Author), Contents = Enrich(d.Contents) });
     }
 
     internal IEnumerable<IDivision> Enrich(IEnumerable<IDivision> divs) {
         return divs.Select(div => Enrich(div));
     }
-    internal IDivision Enrich(IDivision div) {
+    internal virtual IDivision Enrich(IDivision div) {
         if (div is BigLevel big)
             return new BigLevel() { Number = big.Number, Heading = big.Heading, Children = Enrich(big.Children) };
         if (div is CrossHeading xhead)
@@ -67,6 +67,8 @@ abstract class Enricher {
 
     protected virtual WLine Enrich(WLine line) {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
+        if (object.ReferenceEquals(enriched, line.Contents))
+            return line;
         return new WLine(line, enriched);
     }
 

@@ -33,6 +33,36 @@ class Util {
         return e.Descendants<Break>().Where(br => br.Type?.Value == BreakValues.Page).Any();
     }
 
+    private static IEnumerable<IBlock> GetBlocksFromDecision(IDecision dec) {
+        return dec.Contents.SelectMany(GetBlocksFromDivision);
+    }
+    private static IEnumerable<IBlock> GetBlocksFromDivision(IDivision div) {
+        if (div is ILeaf leaf)
+            return leaf.Contents;
+        if (div is IBranch branch)
+            return branch.Children.SelectMany(GetBlocksFromDivision);
+        throw new Exception();
+    }
+
+    public static IEnumerable<T> Descendants<T>(IJudgment judgment) {
+        return Enumerable.Concat(
+            Enumerable.Concat(
+                Descendants<T>(judgment.Header),
+                Descendants<T>(judgment.Body)
+            ),
+            Descendants<T>(judgment.Conclusions)
+        );
+    }
+
+    public static IEnumerable<T> Descendants<T>(IEnumerable<IDecision> decisions) {
+        return decisions.SelectMany(GetBlocksFromDecision)
+            .SelectMany(GetLines)
+            .SelectMany(line => line.Contents)
+            .OfType<T>();
+    }
+    public static IEnumerable<T> Descendants<T>(IEnumerable<IDivision> divisions) {
+        return divisions.SelectMany(GetBlocksFromDivision).SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
+    }
     public static IEnumerable<T> Descendants<T>(IEnumerable<IBlock> blocks) {
         return blocks.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
     }

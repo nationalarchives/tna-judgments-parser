@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2021-12-15" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewhc-qbd-planning" href="https://www.gov.uk/courts-tribunals/planning-court" showAs="The Planning Court (Queen's Bench Division)" shortForm="The Planning Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="the-queen" href="" showAs="THE QUEEN" />
         <TLCPerson eId="on-the-application-of" href="" showAs="on the application of" />
         <TLCPerson eId="london-borough-of-hillingdon" href="" showAs="LONDON BOROUGH OF HILLINGDON" />
@@ -47,6 +51,7 @@
         <uk:year>2021</uk:year>
         <uk:number>3387</uk:number>
         <uk:cite>[2021] EWHC 3387 (Admin)</uk:cite>
+        <uk:parser/>
         <uk:hash>f5670bbc721217ddffdbc2cca3baae9b2dbf744ae050894f6c22902453eecb4c</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -90,12 +95,12 @@
       <p style="text-align:center"><img src="image1.png" style="width:1.0597222222222222in;height:1.05in;" /></p>
       <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2021] EWHC 3387 (Admin)</neutralCitation></p>
       <p class="CoverText">Case No: <docketNumber>CO/1683/2021</docketNumber></p>
-      <p class="CoverMain"><courtType>IN THE HIGH COURT OF JUSTICE</courtType></p>
-      <p><courtType style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN’S BENCH DIVISION</courtType></p>
-      <p><courtType style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">PLANNING COURT</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-qbd-planning">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-qbd-planning" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN’S BENCH DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-qbd-planning" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">PLANNING COURT</courtType></p>
       <p class="CoverText">Royal Courts of Justice</p>
       <p class="CoverText">Strand, London, WC2A 2LL</p>
-      <p class="CoverText">Date: <docDate date="2021-12-15">15 December 2021</docDate></p>
+      <p class="CoverText">Date: <docDate date="2021-12-15" refersTo="#judgment">15 December 2021</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mrs-justice-lang-dbe">MRS JUSTICE LANG DBE</judge></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>

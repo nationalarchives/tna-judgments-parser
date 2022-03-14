@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="../version.targets" />
+
   <PropertyGroup>
-    <Version>0.2</Version>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
@@ -88,6 +89,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="./test12.xml">
       <LogicalName>test12.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test13.docx">
+      <LogicalName>test13.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test13.xml">
+      <LogicalName>test13.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test14.docx">
+      <LogicalName>test14.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test14.xml">
+      <LogicalName>test14.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test15.docx">
+      <LogicalName>test15.docx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="./test15.xml">
+      <LogicalName>test15.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 

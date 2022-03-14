@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2021-11-10" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The UK Supreme Court" shortForm="Supreme Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="lloyd" href="" showAs="Lloyd" />
         <TLCPerson eId="google-llc" href="" showAs="Google LLC" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
@@ -45,6 +49,7 @@
         <uk:year>2021</uk:year>
         <uk:number>50</uk:number>
         <uk:cite>[2021] UKSC 50</uk:cite>
+        <uk:parser/>
         <uk:hash>ed865f2db49c89de0d02aba0e5c9165873cacd8c57f1020b14f16c63209556f6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -102,7 +107,7 @@
       <p class="JudgmentTitle">JUDGMENT</p>
       <p class="JudgmentDetail1"><party refersTo="#lloyd" as="#respondent">Lloyd</party> (<role refersTo="#respondent">Respondent</role>) <span style="font-style:italic">v</span><span /><party refersTo="#google-llc" as="#appellant">Google LLC</party> (<role refersTo="#appellant">Appellant</role>)</p>
       <p class="JudgmentJudges"><span style="font-weight:normal">before</span><br /><br /><judge refersTo="#judge-lord-reed-president">Lord Reed, President</judge><br /><judge refersTo="#judge-lady-arden">Lady Arden</judge><br /><judge refersTo="#judge-lord-sales">Lord Sales</judge><br /><judge refersTo="#judge-lord-leggatt">Lord Leggatt</judge><br /><judge refersTo="#judge-lord-burrows">Lord Burrows</judge></p>
-      <p class="JudgmentJudges">JUDGMENT GIVEN ON<br /><docDate date="2021-11-10">10 November 2021</docDate><br /><br />Heard on 28 and 29 April 2021</p>
+      <p class="JudgmentJudges">JUDGMENT GIVEN ON<br /><docDate date="2021-11-10" refersTo="#judgment">10 November 2021</docDate><br /><br />Heard on 28 and 29 April 2021</p>
       <p class="JudgmentAppRespInt"><span style="font-style:italic">Appellant</span><br />Antony White QC<br />Edward Craven<br />(Instructed by Pinsent Masons LLP (London))</p>
       <p class="JudgmentAppRespInt"><span style="font-style:italic">Respondent</span></p>
       <p class="JudgmentAppRespInt">Hugh Tomlinson QC</p>

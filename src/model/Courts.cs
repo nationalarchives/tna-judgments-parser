@@ -243,6 +243,27 @@ public readonly struct Courts {
         URL = "https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/"
     };
 
+    public static readonly Court UpperTribunal_AdministrativeAppealsChamber = new Court {
+        Code = "UKUT-AAC",
+        LongName = "United Kingdom Upper Tribunal (Administrative Appeals Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber"
+    };
+    public static readonly Court UpperTribunal_ImmigrationAndAsylumChamber = new Court {
+        Code = "UKUT-IAC",
+        LongName = "United Kingdom Upper Tribunal (Immigration and Asylum Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber"
+    };
+    public static readonly Court UpperTribunal_LandsChamber = new Court {
+        Code = "UKUT-LC",
+        LongName = "United Kingdom Upper Tribunal (Lands Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber"
+    };
+    public static readonly Court UpperTribunal_TaxAndChanceryChamber = new Court {
+        Code = "UKUT-TCC",
+        LongName = "United Kingdom Upper Tribunal (Tax and Chancery Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber"
+    };
+
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
         LongName = "The Employment Tribunal",
@@ -282,6 +303,11 @@ public readonly struct Courts {
         EWHC_SeniorCourtsCosts,
         EWCOP,
         EWFC,
+
+        UpperTribunal_AdministrativeAppealsChamber,
+        UpperTribunal_ImmigrationAndAsylumChamber,
+        UpperTribunal_LandsChamber,
+        UpperTribunal_TaxAndChanceryChamber,
         EmploymentTribunal
     };
 

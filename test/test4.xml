@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-01-20" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewhc-qbd" href="https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court" showAs="The Queen's Bench Division of the High Court" shortForm="The Queen's Bench Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="natasha-palmer" href="" showAs="NATASHA PALMER" />
         <TLCPerson eId="mr-seferif-mantas" href="" showAs="MR SEFERIF MANTAS" />
         <TLCPerson eId="liverpool-victoria-insurance-company-limited" href="" showAs="LIVERPOOL VICTORIA INSURANCE COMPANY LIMITED" />
@@ -41,6 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>90</uk:number>
         <uk:cite>[2022] EWHC 90 (QB)</uk:cite>
+        <uk:parser/>
         <uk:hash>24c6667882b34ccf6227936b271b52c24a17246439e084cc3b19e27cc630a186</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -103,11 +108,11 @@
       <p style="text-align:center"><img src="image1.png" style="width:1.0597222222222222in;height:1.05in;" /></p>
       <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWHC 90 (QB)</neutralCitation></p>
       <p class="CoverText">Claim No QB- 2017- 001637</p>
-      <p class="CoverMain"><courtType>IN THE HIGH COURT OF JUSTICE</courtType></p>
-      <p><courtType style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN’S BENCH DIVISION</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-qbd">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-qbd" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN’S BENCH DIVISION</courtType></p>
       <p class="CoverText">Royal Courts of Justice</p>
       <p class="CoverText">Strand, London, WC2A 2LL</p>
-      <p class="CoverText">Date:  <docDate date="2022-01-20">Thursday 20 January 2022</docDate></p>
+      <p class="CoverText">Date:  <docDate date="2022-01-20" refersTo="#judgment">Thursday 20 January 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
       <p class="CoverMain" style="text-align:center">ANTHONY METZER Q.C</p>
       <p class="CoverMain" style="text-align:center">(SITTING AS A DEPUTY HIGH COURT JUDGE)</p>
