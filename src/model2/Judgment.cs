@@ -22,6 +22,8 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
             Metadata = new WMetadata2(doc.MainDocumentPart, this, meta);
     }
 
+    public JudgmentType Type { get; init; } = JudgmentType.Judgment;
+
     public IMetadata Metadata { get; }
 
     public IEnumerable<IBlock> CoverPage { get; internal set; }

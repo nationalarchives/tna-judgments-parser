@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2021-04-23" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The UK Supreme Court" shortForm="Supreme Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="burnett-or-grant" href="" showAs="Burnett or Grant" />
         <TLCPerson eId="international-insurance-company-of-hanover-ltd" href="" showAs="International Insurance Company of Hanover Ltd" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
@@ -40,6 +44,7 @@
         <uk:year>2021</uk:year>
         <uk:number>12</uk:number>
         <uk:cite>[2021] UKSC 12</uk:cite>
+        <uk:parser/>
         <uk:hash>45f81b52757f8b95cba6e0a91a4f32fd69edf065f4f913902ff3d62e8179e429</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -118,7 +123,7 @@
         </tr>
         <tr>
           <td>
-            <p style="text-align:center"><docDate date="2021-04-23" style="font-weight:bold;font-size:18pt">23 April 2021</docDate></p>
+            <p style="text-align:center"><docDate date="2021-04-23" refersTo="#judgment" style="font-weight:bold;font-size:18pt">23 April 2021</docDate></p>
           </td>
         </tr>
         <tr>

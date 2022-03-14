@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-01-14" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewca-civil" href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division" showAs="The Court of Appeal of England and Wales (Civil Division)" shortForm="Court of Appeal Criminal Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="philip-parr" href="" showAs="PHILIP PARR" />
         <TLCPerson eId="msr-partners-llp-formerly-moore-stephens-llp" href="" showAs="MSR PARTNERS LLP (FORMERLY MOORE STEPHENS LLP)" />
         <TLCPerson eId="simon-gallagher" href="" showAs="SIMON GALLAGHER" />
@@ -49,6 +53,7 @@
         <uk:year>2022</uk:year>
         <uk:number>24</uk:number>
         <uk:cite>[2022] EWCA Civ 24</uk:cite>
+        <uk:parser/>
         <uk:hash>807758ad32b24ca1368be87184e5153c1ccdfbcf71dbfe08fc8665fe6f864496</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -98,13 +103,13 @@
       <p style="text-align:center"><img src="image1.png" style="width:1.0597222222222222in;height:1.05in;" /></p>
       <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWCA Civ 24</neutralCitation></p>
       <p class="CoverText">Case No: <docketNumber>A2/2021/1372</docketNumber></p>
-      <p class="CoverMain"><courtType>IN THE COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewca-civil">IN THE COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
       <p class="CoverMain">ON APPEAL FROM THE EMPLOYMENT APPEAL TRIBUNAL</p>
       <p class="CoverMain">MATHEW GULLICK QC</p>
       <p class="CoverMain">UKEAT/0238/20/OO</p>
       <p class="CoverText">Royal Courts of Justice</p>
       <p class="CoverText">Strand, London, WC2A 2LL</p>
-      <p class="CoverText">Date: <docDate date="2022-01-14">14/01/2022</docDate></p>
+      <p class="CoverText">Date: <docDate date="2022-01-14" refersTo="#judgment">14/01/2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before :</span></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-bean">LORD JUSTICE BEAN</judge></p>
       <p class="CoverMain" style="text-align:center">LORD JUSTICE LEWIS<br /><span style="font-weight:normal;text-decoration-line:none">and</span></p>

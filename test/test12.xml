@@ -7,7 +7,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/ch/2011/3553" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/ch/2011/3553" />
           <FRBRdate date="2011-11-11" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewhc-chancery" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="3553" />
           <FRBRname value="HARRY FITZHUGH v ANTHONY FITZHUGH" />
@@ -16,7 +16,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2011/3553" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2011/3553" />
           <FRBRdate date="2011-11-11" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewhc-chancery" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
@@ -27,8 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2011-11-11" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
+        <TLCOrganization eId="ewhc-chancery" href="https://www.gov.uk/courts-tribunals/chancery-division-of-the-high-court" showAs="The Chancery Division of the High Court" shortForm="The Chancery Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="harry-fitzhugh" href="" showAs="HARRY FITZHUGH" />
         <TLCPerson eId="anthony-fitzhugh" href="" showAs="ANTHONY FITZHUGH" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
@@ -36,9 +41,11 @@
         <TLCPerson eId="judge-the-honourable-mr-justice-morgan" href="/judge-the-honourable-mr-justice-morgan" showAs="THE HONOURABLE MR JUSTICE MORGAN" />
       </references>
       <proprietary source="#">
+        <uk:court>EWHC-Chancery</uk:court>
         <uk:year>2011</uk:year>
         <uk:number>3553</uk:number>
         <uk:cite>[2011] EWHC 3553 (Ch)</uk:cite>
+        <uk:parser/>
         <uk:hash>b64e399f2e3ac3dc346c776629d4f6a34edaaec5d42809c26485cbb166825e08</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -54,13 +61,13 @@
     <header>
       <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid">Ref: </span><docketNumber style="text-decoration-line:underline;text-decoration-style:solid">9BM30477</docketNumber></p>
       <p><span style="text-decoration-line:underline;text-decoration-style:solid">NEUTRAL CITATION NUMBER </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid">[2011] EWHC 3553 (Ch)</neutralCitation>)</p>
-      <p><span style="text-decoration-line:underline;text-decoration-style:solid">IN THE HIGH COURT OF JUSTICE</span></p>
-      <p>(<span style="text-decoration-line:underline;text-decoration-style:solid">CHANCERY DIVISION</span>)</p>
+      <p><courtType refersTo="#ewhc-chancery" style="text-decoration-line:underline;text-decoration-style:solid">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-chancery">(<span style="text-decoration-line:underline;text-decoration-style:solid">CHANCERY DIVISION</span>)</courtType></p>
       <p style="text-align:right">Birmingham District Registry</p>
       <p style="text-align:right">The Priory Courts</p>
       <p style="text-align:right">Bull Street</p>
       <p style="text-align:right">Birmingham</p>
-      <p style="text-align:right"><docDate date="2011-11-11">11<span style="vertical-align:super;font-size:smaller">th</span> November 2011</docDate></p>
+      <p style="text-align:right"><docDate date="2011-11-11" refersTo="#judgment">11<span style="vertical-align:super;font-size:smaller">th</span> November 2011</docDate></p>
       <p style="text-align:center">Before</p>
       <p style="text-align:center"><judge refersTo="#judge-the-honourable-mr-justice-morgan">THE HONOURABLE MR JUSTICE MORGAN</judge></p>
       <p style="text-align:center"> - - - - - - - - - - - - - -</p>

@@ -9,6 +9,14 @@ using DocumentFormat.OpenXml.Packaging;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+class WNamedDate : INamedDate {
+
+    public string Date { get; internal init; }
+
+    public string Name { get; internal init; }
+
+}
+
 class WMetadata : IMetadata {
 
     private readonly MainDocumentPart main;
@@ -99,15 +107,10 @@ class WMetadata : IMetadata {
         return caseNos.Select(cn => cn.Text);
     }
 
-    virtual public string Date() {
-        IDocDate date = Util.Descendants<IDocDate>(judgment.Header).FirstOrDefault();
-        if (date is not null)
-            return date.Date;
-        date = judgment.Conclusions?.OfType<ILine>().SelectMany(line => line.Contents).OfType<IDocDate>().FirstOrDefault();
-        if (date is not null)
-            return date.Date;
-        return null;
-    }
+    virtual public INamedDate Date { get {
+        IEnumerable<IDocDate> dates = Util.Descendants<IDocDate>(judgment);
+        return dates.OrderByDescending<IDocDate, int>(dd => dd.Priority).FirstOrDefault();
+    } }
 
     virtual public string Name { get {
         return UK.Gov.Legislation.Judgments.CaseName.Extract(judgment);

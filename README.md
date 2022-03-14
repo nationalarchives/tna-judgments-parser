@@ -23,7 +23,7 @@ To invoke the parser programatically, clients should use the classes in the [UK.
         - Attachments (optional), an array of [ExternalAttachment](./src/api/Meta.cs) objects, having the following properties:
             - Name (required), a string, the name of the attachment for display
             - Link (optional), a string, a URL for the attachment
-    - Hint (optional), an [enum](./src/api/Parser.cs), with the following possibe values: UKSC, UKCA, UKHC. If present, the parser will attempt to parse a judgment only of the specified type.
+    - Hint (optional), an [enum](./src/api/Parser.cs), with the following possibe values: UKSC, UKCA, UKHC, UKUT. If present, the parser will attempt to parse a judgment only of the specified type.
 2. Pass it to the Parse method in the [Parser](./src/api/Parser.cs) class,
 3. Receive a [Response](./src/api/Response.cs) object, which will have the following properties:
     - Xml, a string, the judgment in LegalDocML

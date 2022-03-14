@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2005-05-11" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewca-civil" href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division" showAs="The Court of Appeal of England and Wales (Civil Division)" shortForm="Court of Appeal Criminal Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="london-borough-of-merton" href="" showAs="LONDON BOROUGH OF MERTON" />
         <TLCPerson eId="sonia-jane-richards" href="" showAs="SONIA JANE RICHARDS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -43,6 +47,7 @@
         <uk:year>2005</uk:year>
         <uk:number>639</uk:number>
         <uk:cite>[2005] EWCA Civ 639</uk:cite>
+        <uk:parser/>
         <uk:hash>8492b1b7cff99adbb832a9e221637dfbff88a195e4c35032591aea326f1fd969</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -92,14 +97,14 @@
     <header>
       <p class="Normal7" style="margin-right:0.01in"><docketNumber style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">B2/2004/2060</docketNumber></p>
       <p class="0Style" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Neutral Citation Number: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">[2005] EWCA Civ 639</neutralCitation></p>
-      <p class="0Style" style="margin-right:0.01in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE SUPREME COURT OF JUDICATURE</courtType></p>
-      <p class="0Style" style="margin-right:0.01in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewca-civil" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE SUPREME COURT OF JUDICATURE</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewca-civil" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
       <p class="0Style" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">ON APPEAL FROM CENTRAL LONDON COUNTY COURT</span></p>
       <p class="0Style" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">(</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">MR RECORDER LUBA QC</span><span style="font-family:'Times New Roman'">)</span></p>
       <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Royal Courts of Justice</span></p>
       <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Strand</span></p>
       <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">London, WC2</span></p>
-      <p class="Normal7" style="margin-right:0.01in"><docDate date="2005-05-11" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Wednesday, 11th May 2005</docDate></p>
+      <p class="Normal7" style="margin-right:0.01in"><docDate date="2005-05-11" refersTo="#judgment" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Wednesday, 11th May 2005</docDate></p>
       <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">B E F O R E:</span></p>
       <p class="Normal8" style="margin-right:0.01in"><judge refersTo="#judge-lord-justice-pill" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">LORD JUSTICE PILL</judge></p>
       <p class="Normal8" style="margin-right:0.01in"><judge refersTo="#judge-lord-justice-chadwick" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">LORD JUSTICE CHADWICK</judge></p>

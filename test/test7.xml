@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2014-11-10" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukpc" href="https://www.jcpc.uk/" showAs="The Judicial Committee of the Privy Council" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="sheikh-mohamed-ali-alhamrani-and-others" href="" showAs="Sheikh Mohamed Ali Alhamrani and others" />
         <TLCPerson eId="sheikh-abdullah-ali-alhamrani" href="" showAs="Sheikh Abdullah Ali Alhamrani" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -40,6 +44,7 @@
         <uk:year>2014</uk:year>
         <uk:number>37</uk:number>
         <uk:cite>[2014] UKPC 37</uk:cite>
+        <uk:parser/>
         <uk:hash>148bacf0740b950202935fa95d3ba9099fafc83c0ce89ff5c7c0d6ade052f7c5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -132,7 +137,7 @@
         </tr>
         <tr>
           <td>
-            <p style="text-align:center;margin-left:4.00in;text-indent:-4.00in"><docDate date="2014-11-10" style="font-weight:bold;font-size:18pt">10 November 2014</docDate></p>
+            <p style="text-align:center;margin-left:4.00in;text-indent:-4.00in"><docDate date="2014-11-10" refersTo="#judgment" style="font-weight:bold;font-size:18pt">10 November 2014</docDate></p>
           </td>
         </tr>
         <tr>
