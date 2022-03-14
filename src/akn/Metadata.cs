@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Reflection;
 using System.Xml;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
@@ -14,6 +14,28 @@ class Metadata {
     private static readonly string ns = Builder.ns;
 
     public static readonly string DummyDate = "1000-01-01";
+
+    public static string GetParserVersion() {
+        Assembly assembly = Assembly.GetAssembly(typeof(Metadata));
+        AssemblyInformationalVersionAttribute version = assembly
+            .GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false).FirstOrDefault() as AssemblyInformationalVersionAttribute;
+        if (version is null)
+            return null;
+        return version.InformationalVersion;
+    }
+
+    private static string MakeCourtId(string code) {
+        return code?.ToLower();
+    }
+    internal static string MakeCourtId(Court? court) {
+        return MakeCourtId(court?.Code);
+    }
+    internal static string MakeCourtId(ICourtType court) {
+        return MakeCourtId(court.Code);
+    }
+    internal static string MakeDateId(INamedDate date) {
+        return date?.Name.ToLower();
+    }
 
     private static XmlElement append(XmlDocument doc, XmlElement parent, string name) {
         XmlElement e = doc.CreateElement(name, ns);
@@ -29,7 +51,7 @@ class Metadata {
 
     public static XmlElement make(XmlDocument doc, IJudgment judgment, IMetadata metadata, bool includeReferences) {
 
-        string date = metadata.Date();
+        INamedDate mainDate = metadata.Date;
         Court? court = metadata.Court();
 
         XmlElement meta = doc.CreateElement("meta", ns);
@@ -43,10 +65,10 @@ class Metadata {
         XmlElement workURI = append(doc, work, "FRBRuri");
         workURI.SetAttribute("value", metadata.WorkURI);
         XmlElement workDate = append(doc, work, "FRBRdate");
-        workDate.SetAttribute("date", date ?? DummyDate);
-        workDate.SetAttribute("name", date is null ? "unknown" : "judgment");
+        workDate.SetAttribute("date", mainDate?.Date ?? DummyDate);
+        workDate.SetAttribute("name", mainDate is null ? "dummy" : mainDate.Name);
         XmlElement workAuthor = append(doc, work, "FRBRauthor");
-        workAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
+        workAuthor.SetAttribute("href", "#" + MakeCourtId(court));
         XmlElement workCountry = append(doc, work, "FRBRcountry");
         workCountry.SetAttribute("value", "GB-UKM");
         if (includeReferences) {
@@ -64,10 +86,10 @@ class Metadata {
         XmlElement expURI = append(doc, expression, "FRBRuri");
         expURI.SetAttribute("value", metadata.ExpressionUri);
         XmlElement expDate = append(doc, expression, "FRBRdate");
-        expDate.SetAttribute("date", date ?? "1000-01-01");
-        expDate.SetAttribute("name", date is null ? "unknown" : "judgment");
+        expDate.SetAttribute("date", mainDate?.Date ?? DummyDate);
+        expDate.SetAttribute("name", mainDate is null ? "dummy" : mainDate.Name);
         XmlElement expAuthor = append(doc, expression, "FRBRauthor");
-        expAuthor.SetAttribute("href", "#" + court?.Code?.ToLower());
+        expAuthor.SetAttribute("href", "#" + MakeCourtId(court));
         // XmlElement expAuthoritative = append(doc, expression, "FRBRauthoritative");
         // expAuthoritative.SetAttribute("value", "true");
         XmlElement expLanguage = append(doc, expression, "FRBRlanguage");
@@ -87,22 +109,50 @@ class Metadata {
         maniFormat.SetAttribute("value", "application/xml");
 
         if (includeReferences) {
+
+            IEnumerable<IDocDate> allDocDates = Util.Descendants<IDocDate>(judgment);
+
+            IEnumerable<IDocDate> uniqueDocDates = allDocDates
+                .GroupBy(date => ((IDate)date).Date).Select(x => x.First())
+                .OrderBy(date => ((IDate)date).Date);
+            if (uniqueDocDates.Any()) {
+                XmlElement lifecycle = append(doc, meta, "lifecycle");
+                lifecycle.SetAttribute("source", "#");
+                foreach (IDocDate d in uniqueDocDates) {
+                    XmlElement eventRef = append(doc, lifecycle, "eventRef");
+                    eventRef.SetAttribute("date", ((IDate)d).Date);
+                    eventRef.SetAttribute("refersTo", "#" + MakeDateId(d));
+                    eventRef.SetAttribute("source", "#");
+                }
+            }
+            IEnumerable<IDocDate> uniqueDocDateNames = allDocDates
+                .Where(date => !string.IsNullOrEmpty(date.Name))
+                .GroupBy(date => date.Name).Select(x => x.First())
+                .OrderBy(date => ((IDate)date).Date);
+
             XmlElement references = append(doc, meta, "references");
             references.SetAttribute("source", "#tna");
 
             if (court is not null) {
                 XmlElement tldOrg = append(doc, references, "TLCOrganization");
-                tldOrg.SetAttribute("eId", court?.Code.ToLower());
-                tldOrg.SetAttribute("href", court?.URL);
-                tldOrg.SetAttribute("showAs", court?.LongName);
-                if (court?.ShortName is not null)
-                    tldOrg.SetAttribute("shortForm", court?.ShortName);
+                tldOrg.SetAttribute("eId", MakeCourtId(court));
+                tldOrg.SetAttribute("href", court.Value.URL);
+                tldOrg.SetAttribute("showAs", court.Value.LongName);
+                if (court.Value.ShortName is not null)
+                    tldOrg.SetAttribute("shortForm", court.Value.ShortName);
             }
 
             XmlElement tna = append(doc, references, "TLCOrganization");
             tna.SetAttribute("eId", "tna");
             tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
             tna.SetAttribute("showAs", "The National Archives");
+
+            foreach (IDocDate d in uniqueDocDateNames) {
+                XmlElement tlcEvent = append(doc, references, "TLCEvent");
+                tlcEvent.SetAttribute("eId", MakeDateId(d));
+                tlcEvent.SetAttribute("href", "#");
+                tlcEvent.SetAttribute("showAs", d.Name);
+            }
 
             IEnumerable<IParty> parties = Util.Descendants<IParty>(judgment.Header);
             IDictionary<string, IParty> uniqueParties = new Dictionary<string, IParty>();
@@ -127,10 +177,10 @@ class Metadata {
 
             IEnumerable<IJudge> judges = Util.Descendants<IJudge>(judgment.Header);
             foreach (IJudge judge in judges) {
-                XmlElement org = append(doc, references, "TLCPerson");
-                org.SetAttribute("eId", judge.Id);
-                org.SetAttribute("href", "/" + judge.Id);
-                org.SetAttribute("showAs", judge.Name);
+                XmlElement tlcPerson = append(doc, references, "TLCPerson");
+                tlcPerson.SetAttribute("eId", judge.Id);
+                tlcPerson.SetAttribute("href", "/" + judge.Id);
+                tlcPerson.SetAttribute("showAs", judge.Name);
             }
 
             foreach (ILawyer lawyer in Util.Descendants<ILawyer>(judgment.Header)) {
@@ -150,6 +200,7 @@ class Metadata {
 
             XmlElement proprietary = append(doc, meta, "proprietary");
             proprietary.SetAttribute("source", "#");
+
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("court", ukns);
                 proprietary.AppendChild(courtt);
@@ -169,6 +220,11 @@ class Metadata {
                 XmlElement cite = doc.CreateElement("cite", ukns);
                 proprietary.AppendChild(cite);
                 cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
+            }
+            if (true) {
+                XmlElement parser = doc.CreateElement("parser", ukns);
+                proprietary.AppendChild(parser);
+                parser.AppendChild(doc.CreateTextNode(GetParserVersion()));
             }
 
             if (judgment.Metadata.ExternalAttachments is not null)
@@ -232,7 +288,7 @@ class AttachmentMetadata : IMetadata {
     public string ManifestationThis { get => prototype.ExpressionUri + Extension + "/data.xml"; }
     public string ManifestationUri { get => prototype.ManifestationUri; }
 
-    public string Date() { return prototype.Date(); }
+    public INamedDate Date { get => prototype.Date; }
 
     public string Name { get => Enum.GetName(typeof(AttachmentType), Type); }
 

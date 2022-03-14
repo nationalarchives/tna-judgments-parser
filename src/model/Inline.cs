@@ -138,7 +138,11 @@ interface IDateTime : IInline {
 
 }
 
-interface IDocDate : IDate { }
+interface IDocDate : IDate, INamedDate {
+
+    int Priority { get; }
+
+}
 
 enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, ThirdParty, Intervener, RequestedPerson, RequestingState, BeforeTheV, AfterTheV }
 

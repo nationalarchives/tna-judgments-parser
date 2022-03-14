@@ -30,13 +30,16 @@ public class Tests {
     [Theory]
     [MemberData(nameof(indices))]
     [InlineData(12)]
+    [InlineData(13)]
+    [InlineData(14)]
+    [InlineData(15)]
     public void Test(int i) {
         var docx = ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
         var expected = ReadXml(i);
         Assert.NotEqual(expected, actual);
-        actual = RemoveManifestationDate(actual);
-        expected = RemoveManifestationDate(expected);
+        actual = RemoveSomeMetadata(actual);
+        expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
     }
 
@@ -57,8 +60,8 @@ public class Tests {
         var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
         var expected = ReadXml(i);
         Assert.NotEqual(expected, actual);
-        actual = RemoveManifestationDate(actual);
-        expected = RemoveManifestationDate(expected);
+        actual = RemoveSomeMetadata(actual);
+        expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
     }
 
@@ -84,8 +87,9 @@ public class Tests {
     }
 
     private static string xslt = @"<?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0'>
+<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://caselaw.nationalarchives.gov.uk/akn'>
   <xsl:template match='akn:FRBRManifestation/akn:FRBRdate/@date'/>
+  <xsl:template match='uk:parser/text()'/>
   <xsl:template match='@*|node()'>
     <xsl:copy>
       <xsl:apply-templates select='@*|node()'/>
@@ -93,7 +97,7 @@ public class Tests {
   </xsl:template>
 </xsl:stylesheet>";
 
-    private string RemoveManifestationDate(string akn) {
+    private string RemoveSomeMetadata(string akn) {
         XmlDocument doc = new XmlDocument();
         doc.LoadXml(akn);
         XmlDocument removed = RemoveManifestationDate(doc);

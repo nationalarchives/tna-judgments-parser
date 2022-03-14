@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2021-09-23" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewca-criminal" href="https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division" showAs="The Court of Appeal of England and Wales (Criminal Division)" shortForm="Court of Appeal Criminal Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="regina" href="" showAs="REGINA" />
         <TLCPerson eId="nathan-oloyowang" href="" showAs="NATHAN OLOYOWANG" />
         <TLCRole eId="before-the-v" href="" showAs="Before The V" />
@@ -40,6 +44,7 @@
         <uk:year>2021</uk:year>
         <uk:number>1412</uk:number>
         <uk:cite>[2021] EWCA Crim 1412</uk:cite>
+        <uk:parser/>
         <uk:hash>94785c86f6e567aed1a2927e2970118b6ccdad1a08256ec0ff530f9008270b7d</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -83,8 +88,8 @@
         <tr>
           <td>
             <p />
-            <p style="margin-left:-0.07in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">IN THE COURT OF APPEAL</courtType></p>
-            <p style="margin-left:-0.07in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">CRIMINAL DIVISION</courtType></p>
+            <p style="margin-left:-0.07in"><courtType refersTo="#ewca-criminal" style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">IN THE COURT OF APPEAL</courtType></p>
+            <p style="margin-left:-0.07in"><courtType refersTo="#ewca-criminal" style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">CRIMINAL DIVISION</courtType></p>
             <p style="margin-left:-0.07in" />
             <p style="margin-left:-0.07in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">Case No: 2021/01379/B1</span></p>
             <p style="margin-left:-0.07in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">NCN: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">[2021] EWCA Crim 1412</neutralCitation></p>
@@ -98,7 +103,7 @@
       <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">The Strand</span></p>
       <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">London</span></p>
       <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">WC2A 2LL</span></p>
-      <p style="text-align:right"><docDate date="2021-09-23"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">Thursday  23</span><span style="text-decoration-line:underline;text-decoration-style:solid;vertical-align:super;font-size:11pt">rd</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">  September  2021</span></docDate></p>
+      <p style="text-align:right"><docDate date="2021-09-23" refersTo="#judgment"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">Thursday  23</span><span style="text-decoration-line:underline;text-decoration-style:solid;vertical-align:super;font-size:11pt">rd</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">  September  2021</span></docDate></p>
       <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">LORD  JUSTICE  SINGH</span></p>
       <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">MR  JUSTICE  HOLGATE</span></p>
       <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">MR  JUSTICE  JULIAN  KNOWLES</span></p>

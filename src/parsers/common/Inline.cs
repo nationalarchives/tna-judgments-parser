@@ -278,7 +278,7 @@ class Inline {
     }
 
     internal static IInline MapRunChild(MainDocumentPart main, RunProperties rProps, OpenXmlElement e) {
-        logger.LogTrace(e.GetType().Name + " " + e.LocalName);
+        logger.LogTrace($"parsing element: type = { e.GetType().Name }, name = { e.LocalName }");
         if (e is Text text)
             return new WText(text, rProps);
         if (e is OpenXmlElement && e.LocalName == "t")

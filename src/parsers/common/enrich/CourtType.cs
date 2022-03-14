@@ -9,9 +9,9 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 abstract class Combo {
 
     protected bool Match(Regex regex, IBlock block) {
-        if (!(block is ILine line))
+        if (block is not ILine line)
             return false;
-        if (line.Contents.Count() == 0)
+        if (!line.Contents.Any())
             return false;
         IInline first = line.Contents.First();
         if (first is IImageRef) {    // EWHC/Comm/2009/2472
@@ -747,9 +747,9 @@ class Combo2_1 : Combo {
             Re3 = new Regex(@"Building$"),
             Court = Courts.EWHC_Chancery
         },
-        new Combo2_1 {  // EWHC/Ch/2016/1996
+        new Combo2_1 {  // EWHC/Ch/2016/1996, ewhc/ch/2011/3553
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^\(?CHANCERY DIVISION\)?$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
         },

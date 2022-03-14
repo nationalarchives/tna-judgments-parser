@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 namespace UK.Gov.Legislation.Judgments {
 
+interface INamedDate {
+
+    string Date { get; }
+
+    string Name { get; }
+
+}
+
 interface IMetadata {
 
     Court? Court();
@@ -24,7 +32,7 @@ interface IMetadata {
     string ManifestationThis { get; }
     string ManifestationUri { get; }
 
-    string Date();
+    INamedDate Date { get; }
 
     string Name { get; }
 
