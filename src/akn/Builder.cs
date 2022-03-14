@@ -35,7 +35,7 @@ class Builder {
         akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
 
         XmlElement main = CreateAndAppend("judgment", akomaNtoso);
-        main.SetAttribute("name", "judgment");
+        main.SetAttribute("name", Enum.GetName(typeof(JudgmentType), judgment.Type).ToLower());
 
         XmlElement meta = Metadata.make(doc, judgment, judgment.Metadata, true);
         main.AppendChild(meta);
@@ -277,7 +277,7 @@ class Builder {
         if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
         else if (model is ICourtType1 courtType1)
-            AddAndWrapText(parent, "courtType", courtType1);
+            AddCourtType1(parent, courtType1);
         else if (model is ICourtType2 courtType2)
             AddCourtType2(parent, courtType2);
         else if (model is ICaseNo caseNo)
@@ -385,7 +385,8 @@ class Builder {
     private void AddDocDate(XmlElement parent, IDocDate model) {
         XmlElement docDate = doc.CreateElement("docDate", ns);
         parent.AppendChild(docDate);
-        docDate.SetAttribute("date", model.Date);
+        docDate.SetAttribute("date", ((IDate)model).Date);
+        docDate.SetAttribute("refersTo", "#" + Metadata.MakeDateId(model));
         if (model.Contents.Count() == 1) {
             IFormattedText fText = model.Contents.First();
             Dictionary<string, string> styles = fText.GetCSSStyles();
@@ -398,8 +399,14 @@ class Builder {
         }
     }
 
+    private void AddCourtType1(XmlElement parent, ICourtType1 model) {
+        XmlElement courtType = CreateAndAppend("courtType", parent);
+        courtType.SetAttribute("refersTo", "#" + Metadata.MakeCourtId(model));
+        TextAndFormatting(courtType, model);
+    }
     private void AddCourtType2(XmlElement parent, ICourtType2 model) {
         XmlElement courtType = CreateAndAppend("courtType", parent);
+        courtType.SetAttribute("refersTo", "#" + Metadata.MakeCourtId(model));
         foreach (IInline inline in model.Contents)
             AddInline(courtType, inline);
     }

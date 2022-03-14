@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2003-10-14" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewhc-qbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (Queen's Bench Division)" shortForm="The Administrative Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="the-queen-on-the-application-of" href="" showAs="THE QUEEN ON THE APPLICATION OF" />
         <TLCPerson eId="vivan-mary-jones" href="" showAs="VIVAN MARY JONES" />
         <TLCPerson eId="guildford-crown-court" href="" showAs="GUILDFORD CROWN COURT" />
@@ -43,6 +47,7 @@
         <uk:year>2003</uk:year>
         <uk:number>2527</uk:number>
         <uk:cite>[2003] EWHC 2527 (Admin)</uk:cite>
+        <uk:parser/>
         <uk:hash>5087e861b011f40f67dfb2e7a49e8f65b4702ce1e35758095ab5913fedfa5983</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -93,13 +98,13 @@
     <header>
       <p class="Normal7" style="margin-right:0.01in"><docketNumber style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">C0/1892/2003</docketNumber><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'" /></p>
       <p class="0Style" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Neutral Citation Number: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">[2003] EWHC 2527 (Admin)</neutralCitation></p>
-      <p class="0Style" style="margin-right:0.01in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE HIGH COURT OF JUSTICE</courtType></p>
-      <p class="0Style" style="margin-right:0.01in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">QUEEN'S BENCH DIVISION</courtType></p>
-      <p class="0Style" style="margin-right:0.01in"><courtType style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">ADMINISTRATIVE COURT</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewhc-qbd-admin" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewhc-qbd-admin" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">QUEEN'S BENCH DIVISION</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewhc-qbd-admin" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">ADMINISTRATIVE COURT</courtType></p>
       <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Royal Courts of Justice</span></p>
       <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Strand</span></p>
       <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">London WC2</span></p>
-      <p class="Normal7" style="margin-right:0.01in"><docDate date="2003-10-14" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Tuesday, 14 October 2003</docDate></p>
+      <p class="Normal7" style="margin-right:0.01in"><docDate date="2003-10-14" refersTo="#judgment" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Tuesday, 14 October 2003</docDate></p>
       <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">B E F O R E:</span></p>
       <p class="Normal8" style="margin-right:0.01in"><judge refersTo="#judge-lord-justice-brooke" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">LORD JUSTICE BROOKE</judge></p>
       <p class="Normal8" style="margin-right:0.01in"><judge refersTo="#judge-mr-justice-sullivan" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">MR JUSTICE SULLIVAN</judge></p>

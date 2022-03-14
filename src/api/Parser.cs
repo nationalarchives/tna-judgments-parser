@@ -14,7 +14,7 @@ using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideM
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
-public enum Hint { UKSC, EWCA, EWHC }
+public enum Hint { UKSC, EWCA, EWHC, UKUT }
 
 public class Parser {
 
@@ -53,8 +53,9 @@ public class Parser {
     private static ParseFunction EWCAParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3);
     private static ParseFunction UKSCParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3);
     private static ParseFunction EWCAParserPDF = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.EWPDF.Parse3);
+    private static ParseFunction UKUTParser = AkN.Parser.MakeParser4(UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT.Parser.Parse);
 
-    private static ParseFunction ALL = Combine(new List<ParseFunction>(3) { EWCAParser, UKSCParser, EWCAParserPDF });
+    private static ParseFunction ALL = Combine(new List<ParseFunction>(4) { EWCAParser, UKSCParser, UKUTParser, EWCAParserPDF });
     private static ParseFunction EWCACombined = Combine(new List<ParseFunction>(2) { EWCAParser, EWCAParserPDF });
 
     private static ParseFunction GetParser(Hint? hint) {
@@ -62,6 +63,8 @@ public class Parser {
             return ALL;
         if (hint.Value == Hint.UKSC)
             return UKSCParser;
+        if (hint.Value == Hint.UKUT)
+            return UKUTParser;
         return EWCACombined;
     }
 
@@ -146,7 +149,7 @@ public class Parser {
     }
 
     internal static void Log(Api.Meta meta) {
-        if (meta.Uri is null)
+        if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
             Logger.LogWarning(@"The judgment's uri is null");
         else
             Logger.LogInformation($"The judgment's uri is { meta.Uri }");

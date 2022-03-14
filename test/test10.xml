@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2010-03-10" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewhc-qbd-commercial" href="https://www.gov.uk/courts-tribunals/commercial-court" showAs="The Business and Property Courts (Commercial Court)" shortForm="The Commercial Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="shell-egypt-west-manzala-gmbh" href="" showAs="SHELL EGYPT WEST MANZALA GMBH" />
         <TLCPerson eId="shell-egypt-west-qantara-gmbh" href="" showAs="SHELL EGYPT WEST QANTARA GMBH" />
         <TLCPerson eId="dana-gas-egypt-limited" href="" showAs="DANA GAS EGYPT LIMITED" />
@@ -42,6 +46,7 @@
         <uk:year>2010</uk:year>
         <uk:number>465</uk:number>
         <uk:cite>[2010] EWHC 465 (Comm)</uk:cite>
+        <uk:parser/>
         <uk:hash>8e3b493fd77f5aa46a4835df964a9d19d96ecae447e1c8a4b227fcf02e7547bd</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -85,15 +90,15 @@
     <header>
       <p class="CoverText">Case No: <docketNumber>2009 Folio 462</docketNumber></p>
       <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2010] EWHC 465 (Comm)</neutralCitation></p>
-      <p class="CoverMain"><courtType>IN THE HIGH COURT OF JUSTICE</courtType></p>
-      <p><courtType style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN'S BENCH DIVISION</courtType></p>
-      <p><courtType style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-qbd-commercial">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-qbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN'S BENCH DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-qbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT</courtType></p>
       <p><docTitle style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">IN THE MATTER OF AN ARBITRATION CLAIM</docTitle></p>
       <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">AND </span></p>
       <p><docTitle style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">IN THE MATTER OF AN ARBITRATION</docTitle></p>
       <p class="CoverText">Royal Courts of Justice</p>
       <p class="CoverText">Strand, London, WC2A 2LL</p>
-      <p class="CoverText">Date: <docDate date="2010-03-10">10 March 2010</docDate></p>
+      <p class="CoverText">Date: <docDate date="2010-03-10" refersTo="#judgment">10 March 2010</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-the-hon-mr-justice-tomlinson">THE HON. MR JUSTICE TOMLINSON</judge></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>

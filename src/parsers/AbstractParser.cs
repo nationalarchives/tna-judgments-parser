@@ -35,7 +35,7 @@ abstract class AbstractParser {
         elements = main.Document.Body.ChildElements;
     }
 
-    protected Judgment Parse() {
+    protected Judgment Parse(JudgmentType type = JudgmentType.Judgment) {
         logger.LogDebug($"invoking parser { this.GetType().FullName }");
         int save = i;
         IEnumerable<IBlock> coverPage = CoverPage();
@@ -70,6 +70,7 @@ abstract class AbstractParser {
 
         IEnumerable<IInternalAttachment> attachments = Util.NumberAttachments<WordprocessingDocument>(this.attachments).Select(tup => FlatParagraphsParser.Parse(tup.Item1.Item1, tup.Item1.Item2, tup.Item2));
         return new Judgment(doc, meta) {
+            Type = type,
             CoverPage = coverPage,
             Header = header,
             Body = body,
@@ -326,12 +327,13 @@ abstract class AbstractParser {
     private WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
         unfiltered = Merger.Merge(unfiltered);
+        unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak);
         IInline first = unfiltered.First();
         if (first is not WText t1)
             throw new Exception();
-        Match match = Regex.Match(t1.Text, format);
+        Match match = Regex.Match(t1.Text.TrimStart(), format); // TrimStart for 00356_ukut_iac_2019_ms_belgium.doc
         if (match.Success) {
-            string rest = t1.Text.Substring(match.Length).TrimStart();
+            string rest = t1.Text.TrimStart().Substring(match.Length).TrimStart();
             if (string.IsNullOrEmpty(rest)) {
                 return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1));
             } else {
@@ -349,6 +351,19 @@ abstract class AbstractParser {
                 return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
             } else {
                 throw new Exception();
+            }
+        }
+        if (unfiltered.Skip(1).FirstOrDefault() is WText t2bis) {  // 00356_ukut_iac_2019_ms_belgium.doc
+            string combined = t1.Text + t2bis.Text;
+            match = Regex.Match(combined, format);
+            if (match.Success) {
+                string rest = combined.Substring(match.Length).TrimStart();
+                if (string.IsNullOrEmpty(rest)) {
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
+                } else {
+                    WText prepend = new WText(rest, t2bis.properties);
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
+                }
             }
         }
         throw new Exception();
@@ -520,7 +535,7 @@ abstract class AbstractParser {
         return ParagraphsUntil(predicate);
     }
 
-    protected List<IDivision> ParagraphsUntilAnnex() {
+    protected virtual List<IDivision> ParagraphsUntilAnnex() {
         OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IDivision> paragraphs = new List<IDivision>();
         while (i < elements.Count) {
@@ -597,7 +612,7 @@ abstract class AbstractParser {
         return paragraphs;
     }
 
-    private IDivision ParseParagraph() {
+    protected IDivision ParseParagraph() {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         if (IsSkippable(e)) {
@@ -638,7 +653,7 @@ abstract class AbstractParser {
 
     private readonly Regex annexPattern = new Regex(@"^\s*ANNEX\s+\d+\s*$");
 
-    protected bool IsFirstLineOfAnnex(OpenXmlElement e) {
+    protected virtual bool IsFirstLineOfAnnex(OpenXmlElement e) {
         return annexPattern.IsMatch(e.InnerText);
     }
 

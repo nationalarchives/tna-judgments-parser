@@ -54,9 +54,12 @@ interface ILine : IBlock {
         return string.Join("", texts);
     }
 
-    string NormalizedContent() {
-        string text = TextContent();
+    static string NormalizeContent(ILine line) {
+        string text = line.TextContent();
         return Regex.Replace(text, @"\s+", " ").Trim();
+    }
+    string NormalizedContent() {
+        return NormalizeContent(this);
     }
 
     bool IsEmpty() {

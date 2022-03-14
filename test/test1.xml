@@ -27,9 +27,13 @@
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2003-04-15" refersTo="#judgment" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ewca-civil" href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division" showAs="The Court of Appeal of England and Wales (Civil Division)" shortForm="Court of Appeal Criminal Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="the-queen-on-the-application-of-b" href="" showAs="THE QUEEN ON THE APPLICATION OF “B”" />
         <TLCPerson eId="ashworth-hospital-authority" href="" showAs="ASHWORTH HOSPITAL AUTHORITY" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -43,6 +47,7 @@
         <uk:year>2003</uk:year>
         <uk:number>547</uk:number>
         <uk:cite>[2003] EWCA Civ 547</uk:cite>
+        <uk:parser/>
         <uk:hash>a020d234b3560337ab9a83cfad08a235ba8d19a4f3d1ad84803678e25f7c981e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -91,13 +96,13 @@
     <header>
       <p class="CoverText">Case No: <docketNumber>C3/2002/1463</docketNumber></p>
       <p> Neutral Citation No: <neutralCitation>[2003] EWCA Civ 547</neutralCitation></p>
-      <p class="CoverMain"><courtType>IN THE SUPREME COURT OF JUDICATURE</courtType></p>
-      <p class="CoverMain"><courtType>COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewca-civil">IN THE SUPREME COURT OF JUDICATURE</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewca-civil">COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
       <p class="CoverMain">ON APPEAL FROM ADMINISTRATIVE COURT</p>
       <p class="CoverMain">(Sir Richard Tucker)</p>
       <p class="CoverText">Royal Courts of Justice</p>
       <p class="CoverText">Strand, London, WC2A 2LL</p>
-      <p class="CoverText">Date: <docDate date="2003-04-15">15<span style="vertical-align:super;font-size:smaller">TH</span> April 2003</docDate></p>
+      <p class="CoverText">Date: <docDate date="2003-04-15" refersTo="#judgment">15<span style="vertical-align:super;font-size:smaller">TH</span> April 2003</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before :</span></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-simon-brown">LORD JUSTICE SIMON BROWN</judge></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-dyson">LORD JUSTICE DYSON</judge></p>
