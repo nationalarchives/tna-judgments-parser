@@ -34,6 +34,7 @@ class CourtOfAppealParser : AbstractParser {
         "Judgment", "JUDGMENT", "J U D G M E N T",
         "Judgement",
         "Approved Judgment", "Judgment Approved", "JUDGMENT (As Approved)", "Approved judgment",
+        "Approved Judgement",   // [2022] EWHC 544 (Comm)
         "APPROVED JUDGMENT",
         "APPROVED J U D G M E N T",
         "J U D G M E N T (Approved)", // EWCA/Crim/2017/1012

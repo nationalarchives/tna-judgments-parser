@@ -16,6 +16,13 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 class AlternateContent2 {
 
     internal static IInline Map(MainDocumentPart main, RunProperties rprops, AlternateContent e) {
+        if (e.ChildElements.Count == 1) {
+            AlternateContentChoice choice1 = (AlternateContentChoice) e.FirstChild;
+            if (choice1.Requires == "wpi") {
+                Fields.logger.LogWarning("skipping 'wpi' content because no fallback");
+                return null;
+            }
+        }
         if (e.ChildElements.Count != 2)
             throw new Exception();
         AlternateContentChoice choice = (AlternateContentChoice) e.FirstChild;
