@@ -37,7 +37,7 @@ class PartyEnricher : Enricher {
                 i += 3;
                 break;
             }
-            if (IsFourtLinePartyBlock(before, i)) {
+            if (IsFourLinePartyBlock(before, i)) {
                 List<IBlock> enriched4 = EnrichFourLinePartyBlock(before, i);
                 after.AddRange(enriched4);
                 i += 4;
@@ -134,6 +134,8 @@ class PartyEnricher : Enricher {
         string content = line.NormalizedContent();
         if (content == "REGINA")
             return true;
+        if (content == "R E G I N A")
+            return true;
         return false;
     }
 
@@ -167,7 +169,7 @@ class PartyEnricher : Enricher {
         };
     }
 
-    private static bool IsFourtLinePartyBlock(IBlock[] before, int i) {
+    private static bool IsFourLinePartyBlock(IBlock[] before, int i) {
         if (i > before.Length - 5)
             return false;
         IBlock block1 = before[i];
