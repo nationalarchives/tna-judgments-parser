@@ -41,6 +41,8 @@ class Util {
             return leaf.Contents;
         if (div is IBranch branch)
             return branch.Children.SelectMany(GetBlocksFromDivision);
+        if (div is ITableOfContents toc)
+            return toc.Contents;
         throw new Exception();
     }
 
