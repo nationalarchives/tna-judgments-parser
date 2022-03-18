@@ -31,7 +31,7 @@ class Numbering2 {
         // there may be no numbering instance that corresponds to this id, in which case Magic2 returns null
         int ilvl = props.NumberingLevelReference?.Val?.Value ?? 0;
         string magic = Magic2(main, paragraph, numId.Value, ilvl);
-        if (magic is null)
+        if (string.IsNullOrEmpty(magic))
             return null;
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
         return new NumberInfo() { Number = magic, Props = level.NumberingSymbolRunProperties };

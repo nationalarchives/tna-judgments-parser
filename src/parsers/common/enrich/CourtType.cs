@@ -322,10 +322,10 @@ class Combo4 : Combo {
             Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial
         },
-        new Combo4 {    // [2022] EWHC 544 (Comm)
+        new Combo4 {    // [2022] EWHC 544 (Comm), [2022] EWHC 586 (Comm)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS?$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"^COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial
         },
@@ -413,6 +413,13 @@ class Combo3_1 : Combo {
             Re3 = new Regex(@"^Queen['’]s Bench Division$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"^Neutral Citation Number", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
+        },
+        new Combo3_1 {   // [2022] EWHC 421 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^7 Rolls Buildings$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery
         },
     };
 
