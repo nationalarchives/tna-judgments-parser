@@ -20,7 +20,7 @@ public class Request {
 
     private static JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 
-    internal static Request FromJson(string json) {
+    public static Request FromJson(string json) {
         return JsonSerializer.Deserialize<Request>(json, options);
     }
 

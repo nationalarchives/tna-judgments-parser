@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.0.3
 
 info:
    title: Judgments Parser
-   version: '0.3.0'
+   version: '0.4.0'
 
 servers:
    - url: https://parse.judgments.tna.jurisdatum.com
@@ -12,135 +12,201 @@ paths:
       post:
          summary: Parse a judgment in .docx format to LegalDocML
          requestBody:
-            description: The content of the .docx file and other info about it
-            required: true
-            content:
-               application/json:
-                  schema:
-                     type: object
-                     properties:
-                        content:
-                           type: string
-                           format: byte
-                        filename:
-                           type: string
-                        hint:
-                           type: string
-                           enum:
-                              - UKSC
-                              - EWCA
-                              - EWHC
-                              - UKUT
-                        attachments:
-                           type: array
-                           items:
-                              type: object
-                              properties:
-                                 content:
-                                    type: string
-                                    format: byte
-                                 filenname:
-                                    type: string
-                                 type:
-                                    type: string
-                                    enum:
-                                       - order
-                              required:
-                                 - content
-                                 - type
-                        meta:
-                           type: object
-                           properties:
-                              uri:
-                                 type: string
-                              court:
-                                 type: string
-                              cite:
-                                 type: string
-                              date:
-                                 type: string
-                                 format: date
-                              name:
-                                 type: string
-                              attachments:
-                                 type: object
-                                 properties:
-                                    name:
-                                       type: string
-                                    link:
-                                       type: string
-                     required:
-                        - content
+            $ref: '#/components/requestBodies/ParseRequest'
          responses:
             '200':
-               description: Successful parse, even if not all metadata values were recognized
-               content:
-                  application/json:
-                     schema:
+               $ref: '#/components/responses/Success'
+            '400':
+               $ref: '#/components/responses/BadRequest'
+            '500':
+               $ref: '#/components/responses/ParseError'
+   /async:
+      post:
+         summary: Parse a judgment in .docx format to LegalDocML asynchronously
+         requestBody:
+            $ref: '#/components/requestBodies/ParseRequest'
+         responses:
+            '202':
+               $ref: '#/components/responses/Accepted'
+            '400':
+               $ref: '#/components/responses/BadRequest'
+            '500':
+               $ref: '#/components/responses/QueueError'
+   /async/{token}:
+      get:
+         summary: Retrieve the result of an asynchronous parse request
+         parameters:
+            - $ref: '#/components/parameters/Token'
+         responses:
+            '200':
+               $ref: '#/components/responses/Success'
+            '202':
+               $ref: '#/components/responses/Accepted'
+            '404':
+               $ref: '#/components/responses/NotFound'
+            '500':
+               $ref: '#/components/responses/ParseError'
+
+components:
+   parameters:
+      Token:
+         name: token
+         in: path
+         description: UUID returned in POST response
+         required: true
+         schema:
+            type: string
+            format: uuid
+   requestBodies:
+      ParseRequest:
+         description: The content of the .docx file and other info about it
+         required: true
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     content:
+                        type: string
+                        format: byte
+                     filename:
+                        type: string
+                     hint:
+                        type: string
+                        enum:
+                           - UKSC
+                           - EWCA
+                           - EWHC
+                           - UKUT
+                     attachments:
+                        type: array
+                        items:
+                           type: object
+                           properties:
+                              content:
+                                 type: string
+                                 format: byte
+                              filenname:
+                                 type: string
+                              type:
+                                 type: string
+                                 enum:
+                                    - order
+                           required:
+                              - content
+                              - type
+                     meta:
                         type: object
                         properties:
-                           xml:
+                           uri:
                               type: string
-                           meta:
+                           court:
+                              type: string
+                           cite:
+                              type: string
+                           date:
+                              type: string
+                              format: date
+                           name:
+                              type: string
+                           attachments:
                               type: object
                               properties:
-                                 uri:
-                                    type: string
-                                 court:
-                                    type: string
-                                 cite:
-                                    type: string
-                                 date:
-                                    type: string
-                                    format: date
                                  name:
                                     type: string
-                                 attachments:
-                                    type: object
-                                    properties:
-                                       name:
-                                          type: string
-                                       link:
-                                          type: string
-                           images:
-                              type: array
-                              items:
-                                 type: object
-                                 properties:
-                                    name:
-                                       type: string
-                                    type:
-                                       type: string
-                                    content:
-                                       type: string
-                                       format: byte
-            '400':
-               description: Bad request
-               content:
-                  application/json:
-                     schema:
+                                 link:
+                                    type: string
+                  required:
+                     - content
+   responses:
+      Success:
+         description: Successful parse, even if not all metadata values were recognized
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     xml:
+                        type: string
+                     meta:
                         type: object
                         properties:
-                           status:
-                              type: integer
-                           error:
+                           uri:
                               type: string
-                           message:
+                           court:
                               type: string
-                           stack:
+                           cite:
                               type: string
-            '500':
-               description: Parse error
-               content:
-                  application/json:
-                     schema:
-                        type: object
-                        properties:
-                           status:
-                              type: integer
-                           error:
+                           date:
                               type: string
-                           message:
+                              format: date
+                           name:
                               type: string
-                           stack:
-                              type: string
+                           attachments:
+                              type: object
+                              properties:
+                                 name:
+                                    type: string
+                                 link:
+                                    type: string
+                     images:
+                        type: array
+                        items:
+                           type: object
+                           properties:
+                              name:
+                                 type: string
+                              type:
+                                 type: string
+                              content:
+                                 type: string
+                                 format: byte
+      Accepted:
+         description: The asynchronous parse request is being processed
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     token:
+                        type: string
+                        format: uuid
+      BadRequest:
+         description: Malformed request syntax
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     status:
+                        type: integer
+                     message:
+                        type: string
+      NotFound:
+         description: No request had been make for the given token
+         content:
+            text/plain:
+               schema:
+                  type: string
+      ParseError:
+         description: The parser encountered an error parsing the document
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     status:
+                        type: integer
+                     message:
+                        type: string
+      QueueError:
+         description: The asynchronous request was well formed but there was an error enqueuing it
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     status:
+                        type: integer
+                     message:
+                        type: string

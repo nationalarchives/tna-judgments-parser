@@ -14,7 +14,7 @@ public class Response {
 
     private static JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-    internal string ToJson() {
+    public string ToJson() {
         return JsonSerializer.Serialize(this, options);
     }
 
