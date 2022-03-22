@@ -11,32 +11,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.13.0" />
+    <ProjectReference Include="../judgments.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="../src/**/*.cs" Exclude="../src/Program.cs" />
-    <EmbeddedResource Include="../src/akn/akomantoso30.xsd">
-      <LogicalName>akn.akomantoso30.xsd</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="../src/akn/xml.xsd">
-      <LogicalName>akn.xml.xsd</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="../src/parsers/common/omml2mml.xsl">
-      <LogicalName>math.omml2mml.xsl</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
-  </ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+ </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="2.1.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.2.0" />
     <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.4.0" />
+    <PackageReference Include="AWSSDK.Lambda" Version="3.7.10.3" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.8.10" />
   </ItemGroup>
 
 </Project>
