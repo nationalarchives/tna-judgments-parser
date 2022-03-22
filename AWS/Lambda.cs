@@ -29,7 +29,7 @@ public class Lambda {
         return OK(response);
     }
 
-    private APIGatewayProxyResponse OK(Response response) {
+    internal static APIGatewayProxyResponse OK(Response response) {
         return new APIGatewayProxyResponse() {
             StatusCode = 200,
             Headers = new Dictionary<string, string>(1) { { "Content-Type", "application/json" } },
@@ -37,7 +37,7 @@ public class Lambda {
         };
     }
 
-    private APIGatewayProxyResponse Error(int status, string message) {
+    internal static APIGatewayProxyResponse Error(int status, string message) {
         Dictionary<string, object> response = new() {
             { "status", status },
             { "message", message }
@@ -49,7 +49,7 @@ public class Lambda {
         };
     }
 
-    private APIGatewayProxyResponse Error(int status, Exception e) {
+    internal static APIGatewayProxyResponse Error(int status, Exception e) {
         Dictionary<string, object> response = new() {
             { "status", status },
             { "error", e.GetType().Name },

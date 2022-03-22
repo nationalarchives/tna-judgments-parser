@@ -32,14 +32,19 @@ input:invalid { background-color: pink }
 </p>
 
 <p>
-	<span>Attachment?</span>
-	<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
-	<label>
-		<span>Type: </span>
-		<select id="attachment-type">
-			<option value="order">order</option>
-		</select>
-	</label>
+	<details>
+		<summary>Add attachment</summary>
+		<p>
+			<span>Attachment</span>
+			<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
+			<label>
+				<span>Type: </span>
+				<select id="attachment-type">
+					<option value="order">order</option>
+				</select>
+			</label>
+		</p>
+	</details>
 </p>
 
 <p>
@@ -124,6 +129,7 @@ input:invalid { background-color: pink }
 
 <p>
 	<button onClick="handleClick()" id="button">Parse</button>
+	<button onClick="handleClick2()" id="button2">Parse Async</button>
 	<span id="status" style="padding-left:1em"></span>
 </p>
 
@@ -162,6 +168,34 @@ async function handleClick() {
 		const response = await parse(payload);
 		status.innerText = '';
 		display(response);
+	} catch(e) {
+		status.innerText = e;
+		return;
+	}
+}
+
+async function handleClick2() {
+	status.innerText = '';
+	result.innerText = '';
+	const payload = await readFile('judgment');
+	if (!payload) {
+		status.innerText = 'no file selected';
+		return;
+	}
+	if (hint.value)
+		payload['hint'] = hint.value;
+	const attachment = await readFile('attachment');
+	if (attachment) {
+		attachment['type'] = attachmentType.value
+		payload['attachments'] = [ attachment ];
+	}
+	const metadata = getMetadata();
+	if (metadata)
+		payload['meta'] = metadata;
+	status.innerText = 'parsing...';
+	try {
+		const token = await parseAsync(payload);
+		setTimeout(() => { waitForResult(token); }, 5000);
 	} catch(e) {
 		status.innerText = e;
 		return;
@@ -225,6 +259,56 @@ function parse(payload) {
 			resolve(response);
 		}
 		xhr.send(JSON.stringify(payload));
+	});
+}
+
+function parseAsync(payload) {
+	const url = 'https://parse.judgments.tna.jurisdatum.com/async';
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (this.readyState !== XMLHttpRequest.DONE)
+				return;
+			if (this.status !== 202) {
+				reject(this.responseText);
+				return;
+			}
+			const response = JSON.parse(this.responseText);
+			resolve(response.token);
+		}
+		xhr.send(JSON.stringify(payload));
+	});
+}
+
+async function waitForResult(token) {
+	const response = await checkResult(token);
+	if (response.status === 200) {
+		status.innerText = '';
+		display(JSON.parse(response.text));
+	} else if (response.status === 202) {
+		setTimeout(() => { waitForResult(token); }, 10000);
+	} else {
+		status.innerText = response.text;
+	}
+}
+
+async function checkResult(token) {
+	const url = 'https://parse.judgments.tna.jurisdatum.com/async/' + token;
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", url, true);
+		xhr.onreadystatechange = function() {
+			if (this.readyState !== XMLHttpRequest.DONE)
+				return;
+			const response = {
+				status: this.status,
+				text: this.responseText
+			};
+			resolve(response);
+		}
+		xhr.send();
 	});
 }
 
