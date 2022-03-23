@@ -5,6 +5,7 @@
 details > p { margin-left: 2em }
 input[name='name'] { width: 64ch }
 input:invalid { background-color: pink }
+td:first-child { vertical-align: top }
 	</style>
 </head>
 
@@ -19,7 +20,7 @@ input:invalid { background-color: pink }
 <p>
 	<span>Judgment:</span>
 	<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="judgment" style="width:33%">
-	<label>
+	<label style="padding-left:2em">
 		<span>Hint: </span>
 		<select id="hint">
 			<option value="">none</option>
@@ -37,7 +38,7 @@ input:invalid { background-color: pink }
 		<p>
 			<span>Attachment</span>
 			<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
-			<label>
+			<label style="padding-left:2em">
 				<span>Type: </span>
 				<select id="attachment-type">
 					<option value="order">order</option>
@@ -380,6 +381,7 @@ function display(response) {
 	a1.setAttribute('href', url);
 	a1.setAttribute('target', '_blank');
 	li1.appendChild(a1);
+
 	response['images'].forEach(image => {
 		const li = document.createElement('li');
 		list.appendChild(li);
@@ -389,6 +391,36 @@ function display(response) {
 		a.setAttribute('href', url);
 		a.setAttribute('target', '_blank');
 		li.appendChild(a);
+	});
+
+	fetchPreview(response['xml']).then((html) => {
+		li1.appendChild(document.createTextNode(' ('));
+		const a2 = document.createElement('a');
+		a2.innerText = 'HTML preview';
+		a2.setAttribute('href', URL.createObjectURL(new Blob([ html ], { type: 'text/html' })));
+		a2.setAttribute('target', '_blank');
+		li1.appendChild(a2);
+		li1.appendChild(document.createTextNode(')'));
+	});
+
+}
+
+function fetchPreview(xml) {
+	const url = 'https://parse.judgments.tna.jurisdatum.com/akn2html';
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-Type", "application/xml");
+		xhr.onreadystatechange = function() {
+			if (this.readyState !== XMLHttpRequest.DONE)
+				return;
+			if (this.status !== 200) {
+				reject(this.responseText);
+				return;
+			}
+			resolve(this.responseText);
+		}
+		xhr.send(xml);
 	});
 }
 </script>
