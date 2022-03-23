@@ -16,12 +16,9 @@ class Metadata {
     public static readonly string DummyDate = "1000-01-01";
 
     public static string GetParserVersion() {
-        Assembly assembly = Assembly.GetAssembly(typeof(Metadata));
-        AssemblyInformationalVersionAttribute version = assembly
+        AssemblyInformationalVersionAttribute version = Assembly.GetCallingAssembly()
             .GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false).FirstOrDefault() as AssemblyInformationalVersionAttribute;
-        if (version is null)
-            return null;
-        return version.InformationalVersion;
+        return version?.InformationalVersion;
     }
 
     private static string MakeCourtId(string code) {
