@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 using Amazon.Lambda;
 using Amazon.Lambda.APIGatewayEvents;
@@ -13,11 +14,15 @@ using Amazon.Lambda.Model;
 using Amazon.S3;
 using Amazon.S3.Model;
 
+using UK.Gov.Legislation.Judgments;
+
 // [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
 public class LambdaAsync {
+
+    private static ILogger logger;
 
     private static readonly string AccessKeyId;
     private static readonly string SecretAccessKey;
@@ -26,6 +31,8 @@ public class LambdaAsync {
     public static readonly string Bucket;
 
     static LambdaAsync() {
+        Logging.SetConsole(LogLevel.Debug);
+        logger = Logging.Factory.CreateLogger<LambdaAsync>();
         IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).Build();
         AccessKeyId = config["AWS:AccessKeyId"];
         SecretAccessKey = config["AWS:SecretAccessKey"];
@@ -39,20 +46,28 @@ public class LambdaAsync {
     }
 
     public APIGatewayProxyResponse Post(APIGatewayProxyRequest gateway) {
+        logger.LogInformation("received request");
         Request request;
         try {
             request = Request.FromJson(gateway.Body);
         } catch (Exception e) {
+            logger.LogInformation("request is invalid");
             return Lambda.Error(400, e);
         }
-        if (request.Content is null)
+        if (request.Content is null) {
+            logger.LogInformation("content is null");
             return Lambda.Error(400, "'content' cannot be null");
+        }
         string guid = Guid.NewGuid().ToString();
+        logger.LogInformation($"GUID = { guid }");
         InvokeResponse response = QueueParse(guid, request);
-        if (response.StatusCode != 202)
+        if (response.StatusCode != 202) {
+            logger.LogError("error queuing function");
             return Lambda.Error(500, "error queuing function");
+        }
         APIGatewayProxyResponse accepted = Accepted(guid);
         SaveApiResponse(guid, accepted);
+        logger.LogInformation("queuing was successful");
         return accepted;
     }
 
@@ -70,10 +85,14 @@ public class LambdaAsync {
     }
 
     public void DoParse(RequestWithGuid request) {
+        logger.LogInformation("received request");
+        logger.LogInformation($"GUID = { request.Guid }");
         try {
             Response response = Parser.Parse(request);
+            logger.LogInformation("parse was successful");
             SaveOK(request.Guid, response);
         } catch (Exception e) {
+            logger.LogError("parse error", e);
             SaveError(request.Guid, 500, e);
         }
     }
