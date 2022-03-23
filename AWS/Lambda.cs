@@ -5,27 +5,44 @@ using System.Text.Json;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
+using Microsoft.Extensions.Logging;
+
+using UK.Gov.Legislation.Judgments;
+
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
 public class Lambda {
 
+    private static ILogger logger;
+
+    static Lambda() {
+        Logging.SetConsole(LogLevel.Debug);
+        logger = Logging.Factory.CreateLogger<Lambda>();
+    }
+
     public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest gateway) {
+        logger.LogInformation("received request");
         Request request;
         try {
             request = Request.FromJson(gateway.Body);
         } catch (Exception e) {
+            logger.LogInformation("request is invalid");
             return Error(400, e);
         }
-        if (request.Content is null)
+        if (request.Content is null) {
+            logger.LogInformation("content is null");
             return Error(400, "'content' cannot be null");
+        }
         Response response;
         try {
             response = Parser.Parse(request);
         } catch (Exception e) {
+            logger.LogError("parse error", e);
             return Error(500, e);
         }
+        logger.LogInformation("parse was successful");
         return OK(response);
     }
 
