@@ -138,6 +138,7 @@ td:first-child { vertical-align: top }
 
 <div id="result" style="display:flex"></div>
 
+<script type="text/javascript" src="/jszip.min.js"></script>
 <script>
 
 const hint = document.getElementById('hint');
@@ -401,6 +402,27 @@ function display(response) {
 		a2.setAttribute('target', '_blank');
 		li1.appendChild(a2);
 		li1.appendChild(document.createTextNode(')'));
+	});
+
+	const zip = new JSZip();
+	zip.file("metadata.json", JSON.stringify(response['meta'], null, 2));
+	zip.file("judgment.xml", response['xml']);
+	response['images'].forEach(image => {
+		zip.file(image['name'], image['content'], {base64: true});
+	});
+	zip.generateAsync({type:'blob'}).then(function(content) {
+		var name = response['meta']['uri'].substring(43);
+		if (name)
+			name = name.replace(/\//g,'_') + '.zip';
+		else
+			name = 'judgment.zip'
+		const div = document.createElement('p');
+		right.appendChild(div);
+		const a3 = document.createElement('a');
+		a3.innerText = 'download .zip bundle';
+		a3.setAttribute('href', URL.createObjectURL(content));
+		a3.setAttribute('download', name);
+		div.appendChild(a3);
 	});
 
 }
