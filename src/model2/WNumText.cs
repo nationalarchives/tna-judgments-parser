@@ -1,5 +1,5 @@
 
-using System.Collections.Generic;
+using System;
 using System.Linq;
 
 using DocumentFormat.OpenXml;
@@ -15,95 +15,111 @@ internal class WNumText : IFormattedText {
     private readonly NumberingSymbolRunProperties props;
     private readonly ParagraphMarkRunProperties props2;
     private readonly Style style;
-    private readonly string text;
 
-    public WNumText(string text, NumberingSymbolRunProperties props, ParagraphMarkRunProperties props2, Style style) {
-        this.props = props;
-        this.props2 = props2;
-        this.style = style;
-        this.text = text;
+    public WNumText(MainDocumentPart main, DOCX.NumberInfo info, Paragraph paragraph) {
+        this.props = info.Props;
+        this.props2 = paragraph.ParagraphProperties?.ParagraphMarkRunProperties;
+        string styleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
+        this.style = styleId is null ? null : DOCX.Styles.GetStyle(main, styleId);
+        Text = info.Number;
     }
 
     public string Style => null;
 
+    private T Get3<T>(Func<NumberingSymbolRunProperties,T> getter1, Func<StyleRunProperties,T> getter2) {
+        T prop = default(T);
+        if (props is not null)
+            prop = getter1(props);
+        if (prop is null && props2 is not null)
+            prop = props2.ChildElements.OfType<T>().FirstOrDefault();
+        if (prop is null && style is not null)
+            prop = Styles.GetStyleProperty(this.style, s => s.StyleRunProperties is null ? default(T) : getter2(s.StyleRunProperties));
+        return prop;
+    }
+
+    private string GetHps3<T>(Func<NumberingSymbolRunProperties,T> getter1, Func<StyleRunProperties,T> getter2) where T : HpsMeasureType {
+        string prop = null;
+        if (props is not null)
+            prop = getter1(props)?.Val?.Value;
+        if (prop is null && props2 is not null)
+            prop = props2.ChildElements.OfType<T>().FirstOrDefault()?.Val?.Value;
+        if (prop is null && style is not null)
+            prop = Styles.GetStyleProperty(this.style, s => s.StyleRunProperties is null ? null : getter2(s.StyleRunProperties))?.Val?.Value;
+        return prop;
+    }
+
+    /* some properties don't depend on the ParagraphMarkRunProperties */
+    private T Get2<T>(Func<NumberingSymbolRunProperties,T> getter1, Func<StyleRunProperties,T> getter2) {
+        T prop = default(T);
+        if (props is not null)
+            prop = getter1(props);
+        if (prop is null && style is not null)
+            prop = Styles.GetStyleProperty(this.style, s => s.StyleRunProperties is null ? default(T) : getter2(s.StyleRunProperties));
+        return prop;
+    }
+
     public bool? Italic {
         get {
-            Italic italic = props?.Italic;
-            if (italic == null)
-                italic = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Italic);
-            if (italic == null)
-                return null;
-            OnOffValue val = italic.Val;
-            if (val == null)
-                return true;
-            return val.Value;
+            Italic italic = Get3<Italic>(x => x.Italic, x => x.Italic);
+            return DOCX.Util.OnOffToBool(italic);
         }
     }
 
     public bool? Bold {
         get {
-            Bold bold = props?.Bold;
-            if (bold == null)
-                bold = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Bold);
-            if (bold == null)
-                return null;
-            OnOffValue val = bold.Val;
-            if (val == null)
-                return true;
-            return val.Value;
+            Bold bold = Get3<Bold>(x => x.Bold, x => x.Bold);
+            return DOCX.Util.OnOffToBool(bold);
         }
     }
 
     public UnderlineValues2? Underline {
         get {
-            Underline underline = props?.Underline;
-            if (underline is null)
-                underline = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Underline);
-            if (underline is null)
-                return null;
+            Underline underline = Get2<Underline>(x => x.Underline, x => x.Underline);
             return DOCX.Underline2.Get(underline);
         }
     }
 
     public bool? Uppercase {
         get {
-            Caps caps = props?.Caps;
-            if (caps == null)
-                caps = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Caps);
-            if (caps == null)
-                return null;
-            OnOffValue val = caps.Val;
-            if (val == null)
-                return true;
-            return val.Value;
+            Caps caps = Get3<Caps>(x => x.Caps, x => x.Caps);
+            return DOCX.Util.OnOffToBool(caps);
+        }
+    }
+
+    public StrikethroughValue? Strikethrough {
+        get {
+            Strike single = Get3<Strike>(x => x.Strike, x => x.Strike);
+            if (single is not null) {
+                if (single.Val is null)
+                    return  StrikethroughValue.Single;
+                return single.Val.Value ? StrikethroughValue.Single : StrikethroughValue.None;
+            }
+            DoubleStrike dbl = Get3<DoubleStrike>(x => x.DoubleStrike, x => x.DoubleStrike);
+            if (dbl is not null) {
+                if (dbl.Val is null)
+                    return  StrikethroughValue.Double;
+                return dbl.Val.Value ? StrikethroughValue.Double : StrikethroughValue.None;
+            }
+            return null;
         }
     }
 
     public bool? SmallCaps {
         get {
-            SmallCaps caps = props?.SmallCaps;
-            if (caps == null)
-                caps = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.SmallCaps);
-            if (caps == null)
-                return null;
-            OnOffValue val = caps.Val;
-            if (val == null)
-                return true;
-            return val.Value;
+            SmallCaps caps = Get3<SmallCaps>(x => x.SmallCaps, x => x.SmallCaps);
+            return DOCX.Util.OnOffToBool(caps);
         }
     }
 
     public SuperSubValues? SuperSub {
         get {
-            VerticalTextAlignment valign = props?.VerticalTextAlignment;
-            if (valign is null)
-                valign = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.VerticalTextAlignment);
+            VerticalTextAlignment valign = Get3<VerticalTextAlignment>(x => x.VerticalTextAlignment, x => x.VerticalTextAlignment);
             if (valign is null)
                 return null;
             EnumValue<VerticalPositionValues> val = valign.Val;
-            if (val.Equals(VerticalPositionValues.Superscript))
+            if (val == VerticalPositionValues.Superscript)
                 return SuperSubValues.Superscript;
-            if (val.Equals(VerticalPositionValues.Subscript))
+            if (val == VerticalPositionValues.Subscript)
                 return SuperSubValues.Subscript;
             return SuperSubValues.Baseline;
         }
@@ -124,32 +140,24 @@ internal class WNumText : IFormattedText {
     } }
 
     public float? FontSizePt { get {
-        string fontSize = props?.FontSize?.Val?.Value;
-        if (fontSize is null)
-            fontSize = props2?.ChildElements.OfType<FontSize>().FirstOrDefault()?.Val?.Value;    // [2021] EWCA Crim 927
-        if (fontSize is null)
-            fontSize = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.FontSize?.Val?.Value);
+        string fontSize = GetHps3<FontSize>(x => x.FontSize, x => x.FontSize);
         if (fontSize is null)
             return null;
         return float.Parse(fontSize) / 2f;
     } }
 
     public string FontColor { get {
-        Color color = props?.Color;
-        if (color is null)
-            color = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Color);
+        Color color = Get3<Color>(x => x.Color, x => x.Color);
         return color?.Val?.Value;
     } }
 
     public string BackgroundColor { get {
-        StringValue color = props?.Shading?.Fill;
-        if (color is null)
-            color = Styles.GetStyleProperty(style, s => s.StyleRunProperties?.Shading?.Fill);
+        StringValue color = Get3<StringValue>(x => x.Shading?.Fill, x => x.Shading?.Fill);
         return color?.Value;
     } }
 
     public bool IsHidden { get {
-        Vanish vanish = props?.Vanish;
+        Vanish vanish = Get3<Vanish>(x => x.Vanish, x => x.Vanish);
         if (vanish is null)
             return false;
         OnOffValue val = vanish.Val;
@@ -158,11 +166,7 @@ internal class WNumText : IFormattedText {
         return val.Value;
     } }
 
-    public string Text {
-        get {
-            return text;
-        }
-    }
+    public string Text { get; private init; }
 
 }
 
@@ -171,9 +175,9 @@ internal class WNumber : WNumText, INumber {
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties pProps;
 
-    public WNumber(MainDocumentPart main, string text, NumberingSymbolRunProperties props, ParagraphMarkRunProperties props2, Style style, ParagraphProperties pProps) : base(text, props, props2, style) {
+    public WNumber(MainDocumentPart main, DOCX.NumberInfo info, Paragraph paragraph) : base(main, info, paragraph) {
         this.main = main;
-        this.pProps = pProps;
+        this.pProps = paragraph.ParagraphProperties;
     }
 
     public float? LeftIndentInches { get => DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps); }

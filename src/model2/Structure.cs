@@ -84,20 +84,20 @@ internal class WDummyDivision : ILeaf {
 
 internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
 
-    internal WOldNumberedParagraph(string number, MainDocumentPart main, Paragraph paragraph) : base(main, paragraph) {
-        Number = number;
+    internal WOldNumberedParagraph(DOCX.NumberInfo info, MainDocumentPart main, Paragraph paragraph) : base(main, paragraph) {
+        Number = new DOCX.WNumber(main, info, paragraph);
         IsFirstLineOfNumberedParagraph = true;
     }
-    internal WOldNumberedParagraph(string number, WLine line) : base(line) {
+    internal WOldNumberedParagraph(IFormattedText number, WLine proto) : base(proto, proto.Contents) {
         Number = number;
-        IsFirstLineOfNumberedParagraph = true;
+        IsFirstLineOfNumberedParagraph = proto.IsFirstLineOfNumberedParagraph;
     }
     internal WOldNumberedParagraph(WOldNumberedParagraph proto, IEnumerable<IInline> contents) : base(proto, contents) {
         Number = proto.Number;
         IsFirstLineOfNumberedParagraph = proto.IsFirstLineOfNumberedParagraph;
     }
 
-    public string Number { get; }
+    public IFormattedText Number { get; }
 
 }
 

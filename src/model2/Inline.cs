@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
@@ -82,6 +80,20 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
                 return true;
             return val.Value;
         }
+    }
+
+    public static StrikethroughValue? GetStrikethrough(RunProperties props) {
+        var single = DOCX.Util.OnOffToBool(props?.Strike);
+        if (single.HasValue)
+            return single.Value ? StrikethroughValue.Single : StrikethroughValue.None;
+        var dbl = DOCX.Util.OnOffToBool(props?.DoubleStrike);
+        if (dbl.HasValue)
+            return dbl.Value ? StrikethroughValue.Double : StrikethroughValue.None;
+        return null;
+    }
+
+    public StrikethroughValue? Strikethrough {
+        get => GetStrikethrough(properties);
     }
 
     public bool? SmallCaps {

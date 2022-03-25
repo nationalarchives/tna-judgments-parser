@@ -19,6 +19,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 class Underline2 {
 
     public static UnderlineValues2? Get(Underline underline) {
+        if (underline is null)
+            return null;
         EnumValue<UnderlineValues> val = underline.Val;
         if (val == null)
             return null;
