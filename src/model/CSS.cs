@@ -14,19 +14,41 @@ class CSS {
             styles.Add("font-style", inline.Italic.Value ? "italic" : "normal");
         if (inline.Bold.HasValue)
             styles.Add("font-weight", inline.Bold.Value ? "bold" : "normal");
+        List<string> textDecorationLineValues = new List<string>(2);
+        string textDecorationStyleValue = null;
         if (inline.Underline.HasValue) {
-            styles.Add("text-decoration-line", (inline.Underline.Value == UnderlineValues2.None) ? "none" : "underline");
-            if (inline.Underline.Value == UnderlineValues2.Solid) {
-                styles.Add("text-decoration-style", "solid");
-            } else if (inline.Underline.Value == UnderlineValues2.Double) {
-                styles.Add("text-decoration-style", "double");
-            } else if (inline.Underline.Value == UnderlineValues2.Dotted) {
-                styles.Add("text-decoration-style", "dotted");
-            } else if (inline.Underline.Value == UnderlineValues2.Dashed) {
-                styles.Add("text-decoration-style", "dashed");
-            } else if (inline.Underline.Value == UnderlineValues2.Wavy) {
-                styles.Add("text-decoration-style", "wavy");
+            textDecorationLineValues.Add(inline.Underline.Value == UnderlineValues2.None ? "none" : "underline");
+            if (inline.Underline.Value == UnderlineValues2.None)
+                textDecorationStyleValue = null;
+            else if (inline.Underline.Value == UnderlineValues2.Solid)
+                textDecorationStyleValue = "solid";
+            else if (inline.Underline.Value == UnderlineValues2.Double)
+                textDecorationStyleValue = "double";
+            else if (inline.Underline.Value == UnderlineValues2.Dotted)
+                textDecorationStyleValue = "dotted";
+            else if (inline.Underline.Value == UnderlineValues2.Dashed)
+                textDecorationStyleValue = "dashed";
+            else if (inline.Underline.Value == UnderlineValues2.Wavy)
+                textDecorationStyleValue = "wavy";
+            else
+                throw new Exception();
+        }
+        if (inline.Strikethrough.HasValue) {
+            if (inline.Strikethrough.Value == StrikethroughValue.None) {
+            } else if (inline.Strikethrough.Value == StrikethroughValue.Single) {
+                textDecorationLineValues.Add("line-through");
+                // textDecorationStyleValue = textDecorationStyleValue ?? "solid";
+            } else if (inline.Strikethrough.Value == StrikethroughValue.Double) {
+                textDecorationLineValues.Add("line-through");
+                textDecorationStyleValue = textDecorationStyleValue ?? "double";
+            } else {
+                throw new Exception();
             }
+        }
+        if (textDecorationLineValues.Any()) {
+            styles.Add("text-decoration-line", string.Join(' ', textDecorationLineValues));
+            if (textDecorationStyleValue is not null)
+                styles.Add("text-decoration-style", textDecorationStyleValue);
         }
         if (inline.Uppercase.HasValue)
             styles.Add("text-transform", inline.Uppercase.Value ? "uppercase" : "none");

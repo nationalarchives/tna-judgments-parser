@@ -197,11 +197,8 @@ class Builder {
             if (block is IOldNumberedParagraph np) {
                 XmlElement container = doc.CreateElement("blockContainer", ns);
                 parent.AppendChild(container);
-                XmlElement num = doc.CreateElement("num", ns);
-                container.AppendChild(num);
-                XmlText text = doc.CreateTextNode(np.Number);
-                num.AppendChild(text);
-                // this.blocks(container, np.Contents);
+                if (np.Number is not null)
+                    AddAndWrapText(container, "num", np.Number);
                 this.p(container, np);
             } else if (block is IRestriction restrict) {
                 AddNamedBlock(parent, restrict, "restriction");
