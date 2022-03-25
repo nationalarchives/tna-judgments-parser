@@ -44,18 +44,13 @@ class FlatParagraphsParser {
         if (AbstractParser.IsSkippable(e))
             return null;
         if (e is Paragraph p) {
-            WLine line = new WLine(main, p);
             DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
-            if (info is not null) {
-                // ParagraphMarkRunProperties pMarkProps = p.ParagraphProperties.ParagraphMarkRunProperties;
-                // string styleId = p.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
-                // Style style = styleId is null ? null : DOCX.Styles.GetStyle(main, styleId);
-                // DOCX.WNumber number = new DOCX.WNumber(main, info.Value.Number, info.Value.Props, pMarkProps, style, p.ParagraphProperties);
-                return new WOldNumberedParagraph(info.Value.Number, line);
-            }
+            if (info is not null)
+                return new WOldNumberedParagraph(info.Value, main, p);
+            WLine line = new WLine(main, p);
             INumber num2 = Fields.RemoveListNum(line);
             if (num2 is not null)
-                return new WOldNumberedParagraph(num2.Text, line);
+                return new WOldNumberedParagraph(num2, line);
             return line;
         }
         if (e is Table table)

@@ -19,6 +19,8 @@ enum SuperSubValues { Baseline, Superscript, Subscript }
 
 enum UnderlineValues2 { None, Solid, Double, Dotted, Dashed, Wavy }
 
+enum StrikethroughValue { None, Single, Double }
+
 interface IFontInfo {
 
     string Name { get; }
@@ -38,6 +40,8 @@ interface IFormattedText : ITextOrWhitespace {
     UnderlineValues2? Underline { get; }
 
     bool? Uppercase { get; }
+
+    StrikethroughValue? Strikethrough { get; }
 
     bool? SmallCaps { get; }
 
@@ -63,6 +67,8 @@ interface IFormattedText : ITextOrWhitespace {
         if (fText1.Underline != fText2.Underline)
             return false;
         if (fText1.Uppercase != fText2.Uppercase)
+            return false;
+        if (fText1.Strikethrough != fText2.Strikethrough)
             return false;
         if (fText1.SmallCaps != fText2.SmallCaps)
             return false;

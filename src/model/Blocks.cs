@@ -78,7 +78,7 @@ interface IRestriction : ILine { }
 
 interface IOldNumberedParagraph : ILine {
 
-    string Number { get; }
+    IFormattedText Number { get; }
 
 }
 
