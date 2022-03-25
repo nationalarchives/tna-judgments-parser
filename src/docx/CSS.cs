@@ -165,33 +165,41 @@ public class CSS {
 
     private static void AddTextDecoration(Style style, Dictionary<string, string> css) {
         Underline underline = style.GetInheritedProperty(s => s.StyleRunProperties?.Underline);
-        if (underline is null)
-            return;
-        if (underline.Val is null)
+        Strike singleStrike = style.GetInheritedProperty(s => s.StyleRunProperties?.Strike);
+        DoubleStrike doubleStrike = style.GetInheritedProperty(s => s.StyleRunProperties?.DoubleStrike);
+        List<string> lineValues = new List<string>(2);
+        string styleValue = null;
+        if (underline?.Val is not null) {
+            string lineValue = (underline.Val.Value == UnderlineValues.None) ? "none" : "underline";
+            lineValues.Add(lineValue);
+            if (underline.Val.Value == UnderlineValues.Single) {
+                styleValue = "solid";
+            } else if (underline.Val.Value == UnderlineValues.Double) {
+                styleValue = "double";
+            } else if (underline.Val.Value == UnderlineValues.Dotted) {
+                styleValue = "dotted";
+            } else if (underline.Val.Value == UnderlineValues.Dash) {
+                styleValue = "dashed";
+            } else if (underline.Val.Value == UnderlineValues.Wave) {
+                styleValue = "wavy";
+            }
+        }
+        if (singleStrike is not null && singleStrike.Val.HasValue && singleStrike.Val.Value) {
+            string lineValue = "line-through";
+            lineValues.Add(lineValue);
+            // styleValue =  styleValue ?? "solid";
+        } else if (doubleStrike is not null && doubleStrike.Val.HasValue && doubleStrike.Val.Value) {
+            string lineValue = "line-through";
+            lineValues.Add(lineValue);
+            styleValue =  styleValue ?? "double";
+        }
+        if (!lineValues.Any())
             return;
         string key = "text-decoration-line";
-        string value = (underline.Val.Value == UnderlineValues.None) ? "none" : "underline";
-        css[key] = value;
-        if (underline.Val.Value == UnderlineValues.Single) {
+        css[key] = string.Join(' ', lineValues);
+        if (styleValue is not null) {
             string key2 = "text-decoration-style";
-            string value2 = "solid";
-            css[key2] = value2;
-        } else if (underline.Val.Value == UnderlineValues.Double) {
-            string key2 = "text-decoration-style";
-            string value2 = "double";
-            css[key2] = value2;
-        } else if (underline.Val.Value == UnderlineValues.Dotted) {
-            string key2 = "text-decoration-style";
-            string value2 = "dotted";
-            css[key2] = value2;
-        } else if (underline.Val.Value == UnderlineValues.Dash) {
-            string key2 = "text-decoration-style";
-            string value2 = "dashed";
-            css[key2] = value2;
-        } else if (underline.Val.Value == UnderlineValues.Wave) {
-            string key2 = "text-decoration-style";
-            string value2 = "wavy";
-            css[key2] = value2;
+            css[key2] = styleValue;
         }
     }
 

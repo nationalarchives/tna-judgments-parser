@@ -2,6 +2,7 @@
 using System;
 
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
@@ -64,6 +65,15 @@ class Util {
         if (dxa is null)
             return null;
         return Util.DxaToInches(dxa.Value);
+    }
+
+    internal static bool? OnOffToBool(OnOffType onOff) {
+        if (onOff is null)
+            return null;
+        OnOffValue val = onOff.Val;
+        if (val == null)
+            return true;
+        return val.Value;
     }
 
 }

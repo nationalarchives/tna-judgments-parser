@@ -28,10 +28,10 @@ internal class Blocks {
     }
 
     internal static IBlock ParseParagraph(MainDocumentPart main, Paragraph paragraph) {
-        string number = DOCX.Numbering2.GetFormattedNumber(main, paragraph)?.Number;
+        DOCX.NumberInfo? number = DOCX.Numbering2.GetFormattedNumber(main, paragraph);
         if (number is null)
             return new WLine(main, paragraph);
-        return new WOldNumberedParagraph(number, main, paragraph);
+        return new WOldNumberedParagraph(number.Value, main, paragraph);
     }
 
     internal static IEnumerable<IBlock> ParseStdBlock(MainDocumentPart main, SdtBlock sdt) {
