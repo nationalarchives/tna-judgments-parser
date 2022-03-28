@@ -15,13 +15,16 @@ namespace UK.Gov.NationalArchives.Judgments.Api {
 
 public class Lambda {
 
+    internal static readonly ILoggerFactory LoggerFactory;
     private static ILogger logger;
 
     static Lambda() {
         Logging.SetConsole(LogLevel.Debug);
-        logger = Logging.Factory.CreateLogger<Lambda>();
+        LoggerFactory = Logging.Factory;
+        logger = LoggerFactory.CreateLogger<Lambda>();
     }
 
+    /* judgments-parse */
     public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest gateway) {
         logger.LogInformation("received request");
         Request request;

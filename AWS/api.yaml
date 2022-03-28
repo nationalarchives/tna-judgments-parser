@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
    title: Judgments Parser
-   version: '0.4.0'
+   version: '0.5.0'
 
 servers:
    - url: https://parse.judgments.tna.jurisdatum.com
@@ -17,9 +17,11 @@ paths:
             '200':
                $ref: '#/components/responses/Success'
             '400':
-               $ref: '#/components/responses/BadRequest'
+               description: The parse request was not well formed
+               $ref: '#/components/responses/Error'
             '500':
-               $ref: '#/components/responses/ParseError'
+               description: The parser encountered an error while parsing the document
+               $ref: '#/components/responses/Error'
    /async:
       post:
          summary: Parse a judgment in .docx format to LegalDocML asynchronously
@@ -27,25 +29,77 @@ paths:
             $ref: '#/components/requestBodies/ParseRequest'
          responses:
             '202':
+               description: Parsing has begun
                $ref: '#/components/responses/Accepted'
             '400':
-               $ref: '#/components/responses/BadRequest'
+               description: The parse request was not well formed
+               $ref: '#/components/responses/Error'
+            '413':
+               description: The parse request was too large
+               $ref: '#/components/responses/Error'
             '500':
-               $ref: '#/components/responses/QueueError'
+               description: The asynchronous request was well formed but there was an error enqueuing it
+               $ref: '#/components/responses/Error'
    /async/{token}:
       get:
          summary: Retrieve the result of an asynchronous parse request
          parameters:
-            - $ref: '#/components/parameters/Token'
+            - description: The token received from the /async endpoint
+              $ref: '#/components/parameters/Token'
          responses:
             '200':
                $ref: '#/components/responses/Success'
             '202':
+               description: Parsing is not yet complete
                $ref: '#/components/responses/Accepted'
             '404':
                $ref: '#/components/responses/NotFound'
             '500':
-               $ref: '#/components/responses/ParseError'
+               $ref: '#/components/responses/Error'
+   /upload:
+      get:
+         summary: Get a token and a signed URL to upload a large request (> 10MB)
+         responses:
+            '200':
+               $ref: '#/components/responses/URL'
+            '500':
+               $ref: '#/components/responses/Error'
+   /large:
+      post:
+         summary: Trigger the asynchronous parsing of a large request that has been uploaded using a signed URL received from the /upload endpoint
+         requestBody:
+            description: The token received from the /upload endpoint
+            $ref: '#/components/requestBodies/Token'
+         responses:
+            '202':
+               description: Parsing has begun
+               $ref: '#/components/responses/Accepted'
+            '400':
+               description: The token was missing or empty
+               $ref: '#/components/responses/Error'
+            '500':
+               description: There was an error enqueuing the request
+               $ref: '#/components/responses/Error'
+   /large/{token}:
+      get:
+         summary: Retrieve the result of a large asynchronous parse request
+         parameters:
+            - description: The token received from the /upload endpoint
+              $ref: '#/components/parameters/Token'
+         responses:
+            '200':
+               $ref: '#/components/responses/Success'
+            '202':
+               description: Parsing is not yet complete
+               $ref: '#/components/responses/Accepted'
+            '400':
+               description: The uploaded parse request was not well formed
+               $ref: '#/components/responses/Error'
+            '404':
+               $ref: '#/components/responses/NotFound'
+            '500':
+               description: The parser encountered an error while parsing the document
+               $ref: '#/components/responses/Error'
 
 components:
    parameters:
@@ -118,6 +172,19 @@ components:
                                     type: string
                   required:
                      - content
+      Token:
+         description: A token
+         required: true
+         content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                     token:
+                        type: string
+                        format: uuid
+                  required:
+                     - token
    responses:
       Success:
          description: Successful parse, even if not all metadata values were recognized
@@ -171,36 +238,27 @@ components:
                      token:
                         type: string
                         format: uuid
-      BadRequest:
-         description: Malformed request syntax
+      URL:
+         description: A token and a signed URL
          content:
             application/json:
                schema:
                   type: object
                   properties:
-                     status:
-                        type: integer
-                     message:
+                     token:
                         type: string
+                        format: uuid
+                     url:
+                        type: string
+                        format: uri
       NotFound:
          description: No request had been make for the given token
          content:
             text/plain:
                schema:
                   type: string
-      ParseError:
-         description: The parser encountered an error parsing the document
-         content:
-            application/json:
-               schema:
-                  type: object
-                  properties:
-                     status:
-                        type: integer
-                     message:
-                        type: string
-      QueueError:
-         description: The asynchronous request was well formed but there was an error enqueuing it
+      Error:
+         description: An error occurred
          content:
             application/json:
                schema:
