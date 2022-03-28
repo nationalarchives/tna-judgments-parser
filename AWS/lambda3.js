@@ -7,7 +7,7 @@ exports.handler = async (event) => {
         Key: guid
     };
     try {
-        const json = (await (s3.getObject(params).promise())).Body.toString('utf-8')
+        const json = (await (s3.getObject(params).promise())).Body.toString('utf-8');
         return JSON.parse(json);
     } catch (e) {
         return {
@@ -17,6 +17,6 @@ exports.handler = async (event) => {
             },
             isBase64Encoded: false,
             body: "not found"
-        }
+        };
     }
 };
