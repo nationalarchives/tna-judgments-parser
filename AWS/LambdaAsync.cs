@@ -26,13 +26,12 @@ public class LambdaAsync {
 
     private static readonly string AccessKeyId;
     private static readonly string SecretAccessKey;
-    public static readonly Amazon.RegionEndpoint Region;
-    public static readonly string AsyncFunctionName;
-    public static readonly string Bucket;
+    private static readonly Amazon.RegionEndpoint Region;
+    private static readonly string AsyncFunctionName;
+    internal static readonly string Bucket;
 
     static LambdaAsync() {
-        Logging.SetConsole(LogLevel.Debug);
-        logger = Logging.Factory.CreateLogger<LambdaAsync>();
+        logger = Lambda.LoggerFactory.CreateLogger<LambdaAsync>();
         IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).Build();
         AccessKeyId = config["AWS:AccessKeyId"];
         SecretAccessKey = config["AWS:SecretAccessKey"];
@@ -45,6 +44,7 @@ public class LambdaAsync {
         Bucket = config["AWS:Bucket"];
     }
 
+    /* judgments-parse-async1 */
     public APIGatewayProxyResponse Post(APIGatewayProxyRequest gateway) {
         logger.LogInformation("received request");
         Request request;
@@ -60,7 +60,27 @@ public class LambdaAsync {
         }
         string guid = Guid.NewGuid().ToString();
         logger.LogInformation($"GUID = { guid }");
-        InvokeResponse response = QueueParse(guid, request);
+        InvokeResponse response;
+        try {
+            response = QueueParse(guid, request);
+        } catch (AggregateException e) {
+            logger.LogError("error queuing function", e.InnerException);
+            if (e.InnerException is AmazonLambdaException le) {
+                logger.LogError($"status code { le.StatusCode }");
+                if (le.StatusCode == System.Net.HttpStatusCode.RequestEntityTooLarge)
+                    return Lambda.Error(413, "Request Entity Too Large");
+                return Lambda.Error(500, le);
+            }
+            return Lambda.Error(500, e.InnerException);
+        } catch (Exception e) {
+            logger.LogError("error queuing function", e);
+            return Lambda.Error(500, e);
+        }
+        // if (response.StatusCode == 413) {
+        //     logger.LogError("request entity too large");
+        //     return Lambda.Error(413, "request entity too large");
+        // }
+        logger.LogInformation($"InvokeResponse status = { response.StatusCode }");
         if (response.StatusCode != 202) {
             logger.LogError("error queuing function");
             return Lambda.Error(500, "error queuing function");
@@ -71,7 +91,7 @@ public class LambdaAsync {
         return accepted;
     }
 
-    private InvokeResponse QueueParse(string guid, Request request) {
+    private static InvokeResponse QueueParse(string guid, Request request) {
         AmazonLambdaClient lambda = new AmazonLambdaClient(AccessKeyId, SecretAccessKey, Region);
         RequestWithGuid request2 = RequestWithGuid.Make(guid, request);
         string payload = JsonSerializer.Serialize(request2);
@@ -84,20 +104,23 @@ public class LambdaAsync {
         return task.Result;
     }
 
+    /* judgments-parse-async2 */
     public void DoParse(RequestWithGuid request) {
         logger.LogInformation("received request");
         logger.LogInformation($"GUID = { request.Guid }");
+        Response response;
         try {
-            Response response = Parser.Parse(request);
-            logger.LogInformation("parse was successful");
-            SaveOK(request.Guid, response);
+            response = Parser.Parse(request);
         } catch (Exception e) {
             logger.LogError("parse error", e);
             SaveError(request.Guid, 500, e);
+            return;
         }
+        logger.LogInformation("parse was successful");
+        SaveOK(request.Guid, response);
     }
 
-    private APIGatewayProxyResponse Accepted(string guid) {
+    internal static APIGatewayProxyResponse Accepted(string guid) {
         Dictionary<string, object> response = new() {
             { "token", guid }
         };
