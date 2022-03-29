@@ -44,6 +44,7 @@ a:hover { text-decoration: underline }
 				<span>Type: </span>
 				<select id="attachment-type">
 					<option value="order">order</option>
+					<option value="appendix">appendix</option>
 				</select>
 			</label>
 		</p>
@@ -484,6 +485,8 @@ function display(response) {
 		var td1 = document.createElement('td');
 		td1.innerText = key;
 		var td2 = document.createElement('td');
+		if (!value)
+			td2.style.backgroundColor = 'pink';
 		td2.innerText = value;
 		tr.appendChild(td1);
 		tr.appendChild(td2);

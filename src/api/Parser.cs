@@ -152,6 +152,8 @@ public class Parser {
         UK.Gov.Legislation.Judgments.AttachmentType type2;
         if (type1 == Api.AttachmentType.Order)
             type2 = UK.Gov.Legislation.Judgments.AttachmentType.Order;
+        else if (type1 == Api.AttachmentType.Appendix)
+            type2 = UK.Gov.Legislation.Judgments.AttachmentType.Appendix;
         else
             throw new System.Exception();
         return new System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>(content, type2);

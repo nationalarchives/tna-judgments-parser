@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
    title: Judgments Parser
-   version: '0.5.0'
+   version: '0.5.1'
 
 servers:
    - url: https://parse.judgments.tna.jurisdatum.com
@@ -146,6 +146,7 @@ components:
                                  type: string
                                  enum:
                                     - order
+                                    - appendix
                            required:
                               - content
                               - type
