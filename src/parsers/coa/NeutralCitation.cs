@@ -29,6 +29,7 @@ class NetrualCitation : Enricher2 {
         @"^NCN No: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2022] EWCA Crim 39
         @"(\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation Number: (\[\d{4}\[ EWCA (Civ|Crim) \d+)",   // [2018[ EWCA Civ 1744
+        @"^(\[\d{4}\] EWCOP \d+)$", //[2021] EWCOP 67
     };
 
     private static Group Match(string text) {
