@@ -264,6 +264,13 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber"
     };
 
+    public static readonly Court FirstTierTribunal_Tax = new Court {
+        Code = "UKFTT-TC",
+        LongName = "United Kingdom First-tier Tribunal (Tax)",
+        URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(TC\)$")
+    };
+
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
         LongName = "The Employment Tribunal",
@@ -308,6 +315,8 @@ public readonly struct Courts {
         UpperTribunal_ImmigrationAndAsylumChamber,
         UpperTribunal_LandsChamber,
         UpperTribunal_TaxAndChanceryChamber,
+        FirstTierTribunal_Tax,
+
         EmploymentTribunal
     };
 

@@ -1053,7 +1053,7 @@ class Combo1 : Combo {
         new Combo1 {
             Re = new Regex(@"^IN THE HIGHCOURT OF APPEAL \(CIVIL DIVISION\)$", RegexOptions.IgnoreCase),    // EWCA/Civ/2010/393
             Court = Courts.CoA_Civil
-        },        
+        },
         new Combo1 {
             Re = new Regex("^IN THE (COURT OF PROTECTION) *$", RegexOptions.IgnoreCase),
             Court = Courts.EWCOP
