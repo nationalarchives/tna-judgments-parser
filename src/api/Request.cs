@@ -26,7 +26,7 @@ public class Request {
 
 }
 
-public enum AttachmentType { Order }
+public enum AttachmentType { Order, Appendix }
 
 public class Attachment {
 
