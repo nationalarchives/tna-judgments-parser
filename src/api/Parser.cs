@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Schema;
 
 using Microsoft.Extensions.Logging;
 
@@ -16,17 +17,21 @@ namespace UK.Gov.NationalArchives.Judgments.Api {
 
 public enum Hint { UKSC, EWCA, EWHC, UKUT }
 
+public class InvalidAkNException : System.Exception {
+
+    public InvalidAkNException(ValidationEventArgs cause) : base(cause.Message, cause.Exception) { }
+}
+
 public class Parser {
 
     private static ILogger Logger = Logging.Factory.CreateLogger<Parser>();
+    private static AkN.Validator validator = new AkN.Validator();
 
+    /// <exception cref="InvalidAkNException"></exception>
     public static Response Parse(Request request) {
 
         if (request.Filename is not null)
             Logger.LogInformation($"parsing { request.Filename }");
-
-        // if (request.Meta?.Uri is not null && !URI.IsValidURIOrComponent(request.Meta.Uri))
-        //     throw new System.Exception();
 
         ParseFunction parse = GetParser(request.Hint);
 
@@ -34,6 +39,10 @@ public class Parser {
         IEnumerable<AttachmentPair> attachments = (request.Attachments is null) ? Enumerable.Empty<AttachmentPair>() : request.Attachments.Select(a => ConvertAttachment(a));
 
         AkN.ILazyBundle bundle = parse(request.Content, meta1, attachments);
+
+        List<ValidationEventArgs> errors = validator.Validate(bundle.Judgment);
+        if (errors.Any())
+            throw new InvalidAkNException(errors.First());
 
         string xml = SerializeXml(bundle.Judgment);
         AkN.Meta aknMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
