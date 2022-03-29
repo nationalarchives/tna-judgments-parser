@@ -43,7 +43,7 @@ interface IAnnex {
 
 }
 
-enum AttachmentType { Annex, Order }
+enum AttachmentType { Annex, Order, Appendix }
 
 interface IInternalAttachment {
 
