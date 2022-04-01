@@ -26,9 +26,10 @@ public class Validator {
     }
 
     public List<ValidationEventArgs> Validate(XmlDocument akn) {
-        akn.Schemas = Schemas;
+        XmlDocument copy = (XmlDocument) akn.CloneNode(true);
+        copy.Schemas = Schemas;
         List<ValidationEventArgs> errors = new List<ValidationEventArgs>();
-        akn.Validate((sender, e) => errors.Add(e));
+        copy.Validate((sender, e) => errors.Add(e));    // modifies the DOM
         return errors;
     }
 
