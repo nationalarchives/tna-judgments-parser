@@ -1097,6 +1097,10 @@ class Combo1 : Combo {
         new Combo1 {    // [2021] EWHC 3411 (Fam)
             Re = new Regex(@"^IN THE HIGH COURT OF JUSTICE FAMILY DIVISION$"),
             Court = Courts.EWHC_Family
+        },
+        new Combo1 {
+            Re = new Regex(@"^EMPLOYMENT APPEAL TRIBUNAL$"),
+            Court = Courts.EmploymentAppealTribunal
         }
     };
 
