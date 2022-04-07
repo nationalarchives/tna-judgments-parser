@@ -14,7 +14,7 @@ public class Logging {
     public static void SetConsoleAndFile(FileInfo file, LogLevel level = LogLevel.Information) {
         Factory = LoggerFactory.Create(builder => { builder
             .AddConsole()
-            .AddFile(file.FullName)
+            .AddFile(file.FullName, level)
             .SetMinimumLevel(level);
         });
     }
