@@ -34,24 +34,18 @@ a:hover { text-decoration: underline }
 	</label>
 </p>
 
-<p>
-	<details>
-		<summary>Add attachment</summary>
-		<p>
-			<span>Attachment</span>
-			<input type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" id="attachment" style="width:33%">
-			<label style="padding-left:2em">
-				<span>Type: </span>
-				<select id="attachment-type">
-					<option value="order">order</option>
-					<option value="appendix">appendix</option>
-				</select>
-			</label>
-		</p>
-	</details>
-</p>
+<div id="attachments-container">
+	<p>Attachments</p>
+	<ul id="attachment-list" style="list-style-type:none">
+	</ul>
+	<ul style="list-style-type:none">
+		<li>
+			<button onClick="addAttachment()">Add Attachment</button>
+		</li>
+	</ul>
+</div>
 
-<p>
+<div>
 	<details>
 		<summary>Add (override) metadata</summary>
 		<p>
@@ -137,7 +131,7 @@ a:hover { text-decoration: underline }
 			</label>
 		</p>
 	</details>
-</p>
+</div>
 
 <p>
 	<button onClick="handleClick()" id="button">Parse</button>
@@ -159,24 +153,45 @@ const button = document.getElementById('button');
 const status = document.getElementById('status');
 const result = document.getElementById('result');
 
+const attachments = [];
+
+async function addAttachment() {
+	const li = document.createElement('li');
+	const input = document.createElement('input');
+	input.setAttribute('type', 'file');
+	input.setAttribute('accept', "application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx");
+	input.style.width = "33%";
+	li.appendChild(input);
+	const span = document.createElement('span');
+	span.innerText = "Type: ";
+	li.appendChild(span);
+	const select = document.createElement('select');
+	select.innerHTML = '<option value="order">order</option><option value="appendix">appendix</option>';
+	li.appendChild(select);
+
+	const data = { input: input, select: select };
+	attachments.push(data);
+
+	const button = document.createElement('button');
+	button.innerText = "Remove";
+	button.style.display = 'inline-block';
+	button.style.marginLeft = '1ch';
+	button.addEventListener('click', function() {
+		attachments.splice(attachments.indexOf(data), 1);
+		document.getElementById('attachment-list').removeChild(li);
+	}, false);
+	li.appendChild(button);
+	document.getElementById('attachment-list').appendChild(li);
+}
+
 async function handleClick() {
 	status.innerText = '';
 	result.innerText = '';
-	const payload = await readFile('judgment');
+	const payload = await assemblePayload();
 	if (!payload) {
 		status.innerText = 'no file selected';
 		return;
 	}
-	if (hint.value)
-		payload['hint'] = hint.value;
-	const attachment = await readFile('attachment');
-	if (attachment) {
-		attachment['type'] = attachmentType.value
-		payload['attachments'] = [ attachment ];
-	}
-	const metadata = getMetadata();
-	if (metadata)
-		payload['meta'] = metadata;
 	status.innerText = 'parsing...';
 	try {
 		const response = await parse(payload);
@@ -191,21 +206,11 @@ async function handleClick() {
 async function handleClick2() {
 	status.innerText = '';
 	result.innerText = '';
-	const payload = await readFile('judgment');
+	const payload = await assemblePayload();
 	if (!payload) {
 		status.innerText = 'no file selected';
 		return;
 	}
-	if (hint.value)
-		payload['hint'] = hint.value;
-	const attachment = await readFile('attachment');
-	if (attachment) {
-		attachment['type'] = attachmentType.value
-		payload['attachments'] = [ attachment ];
-	}
-	const metadata = getMetadata();
-	if (metadata)
-		payload['meta'] = metadata;
 	status.innerText = 'parsing...';
 	try {
 		const token = await parseAsync(payload);
@@ -222,11 +227,7 @@ async function assemblePayload() {
 		return;
 	if (hint.value)
 		payload['hint'] = hint.value;
-	const attachment = await readFile('attachment');
-	if (attachment) {
-		attachment['type'] = attachmentType.value
-		payload['attachments'] = [ attachment ];
-	}
+	payload['attachments'] = await assembleAttachments();
 	const metadata = getMetadata();
 	if (metadata)
 		payload['meta'] = metadata;
@@ -244,7 +245,6 @@ async function handleClick3() {
 	try {
 		status.innerText = 'uploading...';
 		const [ token, signedUrl ] = await getTokenAndSignedUrlForUpload();
-		// console.log(token, signedUrl);
 		await uploadToS3(signedUrl, payload);
 		status.innerText = 'parsing...';
 		await triggerParseFromS3(token);
@@ -254,8 +254,7 @@ async function handleClick3() {
 	}
 }
 
-function readFile(id) {
-	const input = document.getElementById(id);
+function readFileInput(input) {
 	return new Promise(resolve => {
 		const files = input.files;
 		if (!files)
@@ -270,6 +269,22 @@ function readFile(id) {
 		};
 		reader.readAsDataURL(file);
 	});
+}
+function readFile(id) {
+	const input = document.getElementById(id);
+	return readFileInput(input);
+}
+
+async function assembleAttachments() {
+	const attachmentsWithFile = attachments.filter(a => a.input.files && a.input.files[0]);
+	const promises = attachmentsWithFile.map(a => new Promise(resolve => {
+		readFileInput(a.input).then(data => {
+			if (data)
+				data.type = a.select.value;
+			resolve(data);
+		});
+	}));
+	return Promise.all(promises);
 }
 
 function getMetadata() {
