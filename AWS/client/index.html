@@ -546,14 +546,26 @@ function display(response) {
 		li.appendChild(a);
 	});
 
+	const sublist = document.createElement('ul');
+	li1.appendChild(sublist);
+	const subli1 = document.createElement('li');
+	sublist.appendChild(subli1);
+	const subli2 = document.createElement('li');
+	sublist.appendChild(subli2);
+
 	fetchPreview(response['xml']).then((html) => {
-		li1.appendChild(document.createTextNode(' ('));
 		const a2 = document.createElement('a');
-		a2.innerText = 'HTML preview';
+		a2.innerText = "view Jim's old HTML";
 		a2.setAttribute('href', URL.createObjectURL(new Blob([ html ], { type: 'text/html' })));
 		a2.setAttribute('target', '_blank');
-		li1.appendChild(a2);
-		li1.appendChild(document.createTextNode(')'));
+		subli2.appendChild(a2);
+	});
+	fetchPreview2(response['xml']).then((html) => {
+		const a2 = document.createElement('a');
+		a2.innerText = 'preview website HTML';
+		a2.setAttribute('href', URL.createObjectURL(new Blob([ html ], { type: 'text/html' })));
+		a2.setAttribute('target', '_blank');
+		subli1.appendChild(a2);
 	});
 
 	const zip = new JSZip();
@@ -612,6 +624,25 @@ function fetchPreview(xml) {
 		xhr.send(xml);
 	});
 }
+function fetchPreview2(xml) {
+	const url = 'https://parse.judgments.tna.jurisdatum.com/akn2html2';
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-Type", "application/xml");
+		xhr.onreadystatechange = function() {
+			if (this.readyState !== XMLHttpRequest.DONE)
+				return;
+			if (this.status !== 200) {
+				reject(this.responseText);
+				return;
+			}
+			resolve(this.responseText);
+		};
+		xhr.send(xml);
+	});
+}
+
 </script>
 
 </body>
