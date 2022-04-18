@@ -51,9 +51,13 @@ So, for example, the following command will parse the included test document and
 
     dotnet run --input test/test1.docx
 
-To direct the output to a file, use the `--output` option, like so:
+To direct the XML output to a file, use the `--output` option, like so:
 
     dotnet run --input test/test1.docx --output something.xml
+
+To save the XML and all of the embedded images to a .zip file, use the `--output-zip` option, like so:
+
+    dotnet run --input test/test1.docx --output-zip something.zip
 
 If the `--log` option is used, the parser will log its progress to the specified file. For example:
 
