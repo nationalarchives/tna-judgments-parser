@@ -1,8 +1,12 @@
 
 using System;
+using System.IO;
+using System.IO.Compression;
+using System.Text;
+using System.Text.Json;
+
 using System.CommandLine;
 using System.CommandLine.Invocation;
-using System.IO;
 
 using Microsoft.Extensions.Logging;
 
@@ -17,49 +21,56 @@ class Program {
         command = new RootCommand {
             new Option<FileInfo>("--input", description: "the .docx file") { ArgumentHelpName = "file",  IsRequired = true },
             new Option<FileInfo>("--output", description: "the .xml file") { ArgumentHelpName = "file" },
+            new Option<FileInfo>("--output-zip", description: "the .zip file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
             new Option<bool>("--test", description: "whether to test the result")
         };
-        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, bool>(Transform);
+        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool>(Transform);
     }
 
     static int Main(string[] args) {
         return command.InvokeAsync(args).Result;
     }
 
-    static void Transform(FileInfo input, FileInfo output, FileInfo log, bool test) {
+    static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test) {
         if (log is not null) {
-            Logging.SetFile(log);
+            Logging.SetFile(log, LogLevel.Debug);
             ILogger logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
-            Transform(input, output, true, test);
-        } else {
-            Transform(input, output, false, test);
         }
-    }
-
-    private static void Transform(FileInfo input, FileInfo output, bool log, bool test) {
-        FileStream docx = input.OpenRead();
-        Stream xml;
-        if (output is null)
-            xml = Console.OpenStandardOutput();
-        else
-            xml = output.OpenWrite();
-        Transform(docx, xml, log, test);
-        xml.Close();
-        docx.Close();
-    }
-
-    private static void Transform(Stream docx, Stream xml, bool log, bool test) {
-        MemoryStream ms = new MemoryStream();
-        docx.CopyTo(ms);
-        Api.Request request = new Api.Request() { Content = ms.ToArray() };
+        byte[] docx = File.ReadAllBytes(input.FullName);
+        Api.Request request = new Api.Request { Content = docx };
         Api.Response response = Api.Parser.Parse(request);
-        using StreamWriter writer = new StreamWriter(xml, System.Text.Encoding.UTF8);
-        writer.Write(response.Xml);
-        writer.Flush();
+        if (outputZip is not null)
+            SaveZip(response, outputZip);
+        else if (output is not null)
+            File.WriteAllText(output.FullName, response.Xml);
+        else
+            Console.WriteLine(response.Xml);
         if (test)
             Print(response.Meta);
+    }
+
+    private static void SaveZip(Api.Response response, FileInfo file) {
+        using var stream = new FileStream(file.FullName, FileMode.Create);
+        using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
+        var entry = archive.CreateEntry("judgment.xml");
+        using (var zip = entry.Open()) {
+            byte[] bytes = Encoding.UTF8.GetBytes(response.Xml);
+            zip.Write(bytes, 0, bytes.Length);
+        }
+        entry = archive.CreateEntry("meta.json");
+        using (var zip = entry.Open()) {
+            JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            string json = JsonSerializer.Serialize(response.Meta, options);
+            byte[] bytes = Encoding.UTF8.GetBytes(json);
+            zip.Write(bytes, 0, bytes.Length);
+        }
+        foreach (var image in response.Images) {
+            entry = archive.CreateEntry(image.Name);
+            using (var zip = entry.Open())
+                zip.Write(image.Content, 0, image.Content.Length);
+        }
     }
 
     private static void Print(Api.Meta meta) {
