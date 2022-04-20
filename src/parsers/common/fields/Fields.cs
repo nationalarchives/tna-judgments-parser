@@ -185,6 +185,11 @@ class Fields {
                 return Rest(main, withinField, i);
             }
         }
+        if (fieldCode.StartsWith(" =SUM(ABOVE)")) { // Miles v Forster - Approved Judgment - 19th January 2022 v.1.docx
+            if (i == withinField.Count)
+                logger.LogWarning("skipping SUM field because no alternative is provided");
+            return RestOptional(main, withinField, i);
+        }
         if (fieldCode == " =sum(left) ") {  // EWCA/Civ/2016/138.rtf
             if (i == withinField.Count)
                 logger.LogWarning("skipping SUM field because no alternative is provided");
