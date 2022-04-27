@@ -17,6 +17,8 @@ class Citation : FirstMatch2 {
             return line;
         Match match = Regex.Match(wText.Text, @"(\[?\d{4}[\]\[] UKUT \d+ ?\((AAC|IAC|LC|TCC)\)) *$");
         if (!match.Success)
+            match = Regex.Match(wText.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ ?\((TC)\)) *$");
+        if (!match.Success)
             return line;
         List<IInline> enriched = Helper.SplitOnGroup(wText, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
         return Enumerable.Concat(line.SkipLast(1), enriched);

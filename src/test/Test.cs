@@ -33,6 +33,8 @@ class Tester {
         public string CaseName { get; set; }
         public bool HasJudge { get; set; }
 
+        public bool HeaderIsNotEmpty { get; set; }
+
         public bool HasEverything() {
             if (this.SchemaErrors.Count > 0)
                 return false;
@@ -183,6 +185,9 @@ class Tester {
             logger.LogInformation("has at least one judge name");
         else
             logger.LogWarning("does not have at least one judge name");
+
+        XmlNodeList headerParagraphs = akn.SelectNodes("/akn:akomaNtoso/akn:judgment/akn:header/*", nsmgr);
+        result.HeaderIsNotEmpty = headerParagraphs.Count > 0;
 
         return result;
     }

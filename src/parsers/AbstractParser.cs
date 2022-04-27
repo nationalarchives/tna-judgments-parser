@@ -395,7 +395,7 @@ abstract class AbstractParser {
     private BigLevel BigLevel(string format, string[] childFormats, string[] ancestorFormats) {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
-        while (IsSkippable(e)) {
+        while (IsSkippable(e) && i < elements.Count - 1) {
             i += 1;
             logger.LogTrace("parsing element " + i);
             e = elements.ElementAt(i);;
