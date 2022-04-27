@@ -25,6 +25,11 @@ class CourtType : AbstractCourtType {
                 Re1 = new Regex(@"^(IN THE )?UPPER TRIBUNAL$", RegexOptions.IgnoreCase),
                 Re2 = new Regex(@"^\(?ADMINISTRATIVE APPEALS CHAMBER\)?$", RegexOptions.IgnoreCase),
                 Court = Courts.UpperTribunal_TaxAndChanceryChamber
+            },
+            new Combo2 {
+                Re1 = new Regex(@"^FIRST-TIER TRIBUNAL$", RegexOptions.IgnoreCase),
+                Re2 = new Regex(@"^TAX CHAMBER$", RegexOptions.IgnoreCase),
+                Court = Courts.FirstTierTribunal_Tax
             }
         };
     }
@@ -32,8 +37,16 @@ class CourtType : AbstractCourtType {
     protected override IEnumerable<Combo1> Combo1s() {
         return new List<Combo1>(1) {
             new Combo1 {
+                Re = new Regex(@"^(IN THE )?UPPER TRIBUNAL \(IMMIGRATION (AND|&) ASYLUM CHAMBER\)$", RegexOptions.IgnoreCase),
+                Court = Courts.UpperTribunal_ImmigrationAndAsylumChamber
+            },
+            new Combo1 {
                 Re = new Regex(@"^(IN THE )?UPPER TRIBUNAL \(LANDS CHAMBER\)$", RegexOptions.IgnoreCase),
                 Court = Courts.UpperTribunal_LandsChamber
+            },
+            new Combo1 {
+                Re = new Regex(@"^FIRST-TIER TRIBUNAL TAX CHAMBER$", RegexOptions.IgnoreCase),
+                Court = Courts.FirstTierTribunal_Tax
             }
         };
     }
