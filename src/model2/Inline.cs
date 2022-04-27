@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -166,7 +165,7 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
 
     public string Text {
         get {
-            return text;
+            return text.Replace('\uF020', ' '); // sometimes introduced by PDF to Word conversion
         }
     }
 

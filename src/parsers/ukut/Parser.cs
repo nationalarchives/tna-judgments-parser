@@ -35,6 +35,7 @@ class Parser : AbstractParser {
         "DECISION AND REASONS ON ERROR OF LAW",
         "DECISION AND REMITTAL",
         "DECISION AND DIRECTIONS",
+        "DECISION in PRINCIPLE",
 
         // "Decision: the application for judicial review is refused",
 
@@ -48,10 +49,17 @@ class Parser : AbstractParser {
         "APPROVED JUDGMENT"
     };
 
+    Regex[] titles2 = new Regex[] {
+        new Regex(@"\d+ DECISION")
+    };
+
     protected bool IsTitleParagraph(OpenXmlElement e) {
         string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
         foreach (string title in titles)
             if (text.Equals(title, StringComparison.InvariantCultureIgnoreCase))
+                return true;
+        foreach (Regex title in titles2)
+            if (title.IsMatch(text))
                 return true;
         return false;
     }
@@ -126,7 +134,18 @@ class Parser : AbstractParser {
         while (i < elements.Count) {
             logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
-            if (e.InnerText == "Introduction" || e.InnerText == "INTRODUCTION")
+            string trimmed = e.InnerText.Trim();
+            if (trimmed == "Introduction" || trimmed == "INTRODUCTION")
+                return header;
+            if (trimmed == "DECISION Introduction")
+                return header;
+            if (trimmed == "DECISION INTRODUCTION AND SUMMARY")
+                return header;
+            if (trimmed == "INTRODUCTION AND OVERVIEW")
+                return header;
+            if (trimmed == "DIRECTIONS") // [2018] UKFTT 709 (TC)
+                return header;
+            if (trimmed == "IT IS DIRECTED that")   // ukftt/tc/2018/249
                 return header;
             AddBlock(e, header);
         }
@@ -134,11 +153,13 @@ class Parser : AbstractParser {
     }
     private List<IBlock> Header4() {
         List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count) {
+        while (i < elements.Count - 10) {
             logger.LogTrace("parsing element " + i);
             OpenXmlElement e = elements.ElementAt(i);
             AddBlock(e, header);
             if (Util.IsSectionBreak(e))
+                return header;
+            if (Regex.IsMatch(e.InnerText, @"© CROWN COPYRIGHT \d{4}"))
                 return header;
         }
         return null;
@@ -150,6 +171,7 @@ class Parser : AbstractParser {
         new UKUT.CourtType(),
         new UKUT.Citation(),
         new UKUT.CourtType2(),
+        new UKUT.CaseNo(),
         new UKUT.Date1(),
         new PartyEnricher()
     };
