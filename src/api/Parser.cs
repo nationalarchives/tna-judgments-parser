@@ -127,7 +127,7 @@ public class Parser {
 
     internal static Meta ConvertInternalMetadata(UK.Gov.Legislation.Judgments.AkomaNtoso.Meta meta) {
         return new Meta() {
-            Uri = meta.WorkUri,
+            Uri = URI.IsEmpty(meta.WorkUri) ? null : meta.WorkUri,
             Court = meta.UKCourt,
             Cite = meta.UKCite,
             Date = meta.WorkDate,
