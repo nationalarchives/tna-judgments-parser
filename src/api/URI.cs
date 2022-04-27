@@ -5,7 +5,7 @@ namespace UK.Gov.NationalArchives.Judgments.Api {
 
 class URI {
 
-    static string Domain = "https://caselaw.nationalarchives.gov.uk/";
+    internal static string Domain = "https://caselaw.nationalarchives.gov.uk/";
 
     // public static bool IsValidURIOrComponent(string uri) {
     //     string component = ExtractShortURIComponent(uri);
@@ -29,7 +29,14 @@ class URI {
             uri = uri.Substring(3);
         if (uri.EndsWith("/data.xml"))
             uri = uri.Substring(0, uri.Length - 9);
+        if (uri == "")
+            return null;
         return uri;
+    }
+
+    internal static bool IsEmpty(string uri) {
+        string shortened = ExtractShortURIComponent(uri);
+        return string.IsNullOrEmpty(shortened);
     }
 
 }
