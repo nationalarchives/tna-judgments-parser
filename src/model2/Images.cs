@@ -85,7 +85,7 @@ public class WImageRef : IImageRef {
             logger.LogWarning("skipping picutre because it has no 'image data'");
             return null;
         }
-        StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault().RelationshipId;
+        StringValue relId = imageData.RelationshipId;
         if (relId is null) {
             logger.LogWarning("skipping picutre because its 'image data' has no relationship");
             return null;
@@ -93,6 +93,9 @@ public class WImageRef : IImageRef {
         return new WImageRef(main, picture);
     }
     private WImageRef(MainDocumentPart main, Picture picture) {
+        var data = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>();
+        if (data.Skip(1).Any())
+            logger.LogWarning("picutre contains more than one image data");
         StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault().RelationshipId;
         this.uri = DOCX.Relationships.GetUriForImage(relId, picture);
         string tempStyle = picture.Descendants<DocumentFormat.OpenXml.Vml.Shape>().First().Style?.Value;
