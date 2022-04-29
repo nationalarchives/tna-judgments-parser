@@ -79,9 +79,14 @@ class WLine : ILine {
     }
     public string RightIndent {
         get {
-            if (properties?.Indentation?.Right is null)
+            if (properties is null)
                 return null;
-            float inches = float.Parse(properties.Indentation.Right.Value) / 1440f;
+            string right = properties.Indentation?.Right?.Value;
+            if (right is null)
+                right = properties.Indentation?.End?.Value;
+            if (right is null)
+                return null;
+            float inches = DOCX.Util.DxaToInches(right);
             return inches.ToString("F2") + "in";
         }
     }

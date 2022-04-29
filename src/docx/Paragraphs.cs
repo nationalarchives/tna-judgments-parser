@@ -39,8 +39,14 @@ static class Paragraphs {
         left = props.Indentation?.Left;
         if (left is not null)
             return left;
+        left = props.Indentation?.Start;
+        if (left is not null)
+            return left;
 
         left = Numbering.GetOwnLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Left;
+        if (left is not null)
+            return left;
+        left = Numbering.GetOwnLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Start;
         if (left is not null)
             return left;
 
@@ -48,8 +54,14 @@ static class Paragraphs {
         left = style?.StyleParagraphProperties?.Indentation?.Left;
         if (left is not null)
             return left;
+        left = style?.StyleParagraphProperties?.Indentation?.Start;
+        if (left is not null)
+            return left;
 
         left = Numbering.GetStyleLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Left;
+        if (left is not null)
+            return left;
+        left = Numbering.GetStyleLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Start;
         if (left is not null)
             return left;
 
