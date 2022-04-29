@@ -8,7 +8,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 
-class CaseNo : Enricher {
+class CaseNo : FirstMatch {
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (!line.Any())
