@@ -59,6 +59,10 @@ class Util {
     }
 
     internal static float DxaToInches(string dxa) {
+        if (dxa.EndsWith("pt")) {
+            string pt = dxa.Substring(0, dxa.Length - 2);
+            return float.Parse(pt) / 72f;
+        }
         return float.Parse(dxa) / 1440f;
     }
     internal static float? DxaToInches(StringValue dxa) {
