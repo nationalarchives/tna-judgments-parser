@@ -37,14 +37,19 @@ class Date0 {
             return line;
         if (line.Contents.Last() is not WText wText)
             return line;
-        string pattern = @"(\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}) *$";
+        string pattern = @"(^| )(\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}) *$";
         Match match = Regex.Match(wText.Text, pattern);
         if (!match.Success)
             return line;
-        Group group = match.Groups[1];
-        DateTime date = DateTime.Parse(group.Value, culture);
+        Group group = match.Groups[2];
+        DateTime date;
+        try {
+            date = DateTime.Parse(group.Value, culture);
+        } catch (FormatException) { // if day is 0
+            return line;
+        }
         Func<string, RunProperties, IInline> constructor = (text, props) => new WDocDate(text, props, date) { Name = name, Priority = priority };
-        List<IInline> enriched = Helper.SplitOnGroup(wText, match.Groups[1], constructor);
+        List<IInline> enriched = Helper.SplitOnGroup(wText, match.Groups[2], constructor);
         return new WLine(line, Enumerable.Concat(line.Contents.SkipLast(1), enriched));
     }
 
