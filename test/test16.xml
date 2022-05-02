@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/621/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/621/data.xml" />
-          <FRBRdate date="2022-03-24T22:33:11" name="transform" />
+          <FRBRdate date="2022-05-01T16:13:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -51,7 +51,7 @@
         <uk:year>2022</uk:year>
         <uk:number>621</uk:number>
         <uk:cite>[2022] EWHC 621 (Ch)</uk:cite>
-        <uk:parser>0.4.3</uk:parser>
+        <uk:parser>0.5.8</uk:parser>
         <uk:hash>292cf6d77753e5f4759bd88a6e937b94b61fed53fc1d3efc6c7aee590aa2e33e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -110,12 +110,18 @@
 #judgment .Heading3Char { text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .Heading4Char { font-style: italic; font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .mandelbrotrefrag { }
+#judgment .outputecliaff { }
+#judgment .PageNumber { }
+#judgment .searchword { }
 #judgment .TitleChar { font-size: 28pt; }
 #judgment .QuoteChar { font-style: italic; font-family: 'Times New Roman'; font-size: 12pt; color: #404040; }
 #judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
 #judgment .BodyText2Char { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .Strong { font-weight: bold; }
 #judgment .BodyTextIndentChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
 </style>
       </presentation>
     </meta>
@@ -263,7 +269,7 @@
         </level>
         <level>
           <content>
-            <table uk:widths="2.66in 2.61in">
+            <table class="TableGrid" uk:widths="2.66in 2.61in">
               <tr>
                 <td>
                   <p style="text-align:justify">Introduction</p>
