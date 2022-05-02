@@ -60,15 +60,19 @@ class Tables {
         return size / 8f;
     }
 
-    internal static CellBorderStyle ExtractBorderStyle(BorderType border) {
-        var x = border?.Val ?? BorderValues.None;
-        if (x == BorderValues.None)
+    internal static CellBorderStyle? ExtractBorderStyle(BorderType border) {
+        var style = border?.Val;
+        if (style is null)
+            return null;
+        if (style == BorderValues.Nil)
             return CellBorderStyle.None;
-        if (x == BorderValues.Dotted)
+        if (style == BorderValues.None)
+            return CellBorderStyle.None;
+        if (style == BorderValues.Dotted)
             return CellBorderStyle.Dotted;
-        if (x == BorderValues.Dashed)
+        if (style == BorderValues.Dashed)
             return CellBorderStyle.Dashed;
-        if (x == BorderValues.Double)
+        if (style == BorderValues.Double)
             return CellBorderStyle.Double;
         return CellBorderStyle.Solid;
     }

@@ -3,7 +3,31 @@ using System.Collections.Generic;
 
 namespace UK.Gov.Legislation.Judgments {
 
+enum CellBorderStyle { None, Solid, Dotted, Dashed, Double }
+
+interface IBordered {
+
+    float? BorderTopWidthPt { get; }
+    CellBorderStyle? BorderTopStyle { get; }
+    string BorderTopColor { get; }
+
+    float? BorderRightWidthPt { get; }
+    CellBorderStyle? BorderRightStyle { get; }
+    string BorderRightColor { get; }
+
+    float? BorderBottomWidthPt { get; }
+    CellBorderStyle? BorderBottomStyle { get; }
+    string BorderBottomColor { get; }
+
+    float? BorderLeftWidthPt { get; }
+    CellBorderStyle? BorderLeftStyle { get; }
+    string BorderLeftColor { get; }
+
+}
+
 interface ITable : IBlock {
+
+    string Style { get; }
 
     IEnumerable<IRow> Rows { get; }
 
@@ -17,27 +41,21 @@ interface IRow {
 
 }
 
-enum CellBorderStyle { None, Solid, Dotted, Dashed, Double }
+enum VerticalMerge { Start, Continuation }
 
-interface ICell {
+enum VerticalAlignment { Top, Middle, Bottom }
+
+interface ICell : IBordered {
 
     IEnumerable<IBlock> Contents { get; }
 
-    float? BorderTopWidthPt { get; }
-    CellBorderStyle BorderTopStyle { get; }
-    string BorderTopColor { get; }
+    int? ColSpan { get; }
 
-    float? BorderRightWidthPt { get; }
-    CellBorderStyle BorderRightStyle { get; }
-    string BorderRightColor { get; }
+    VerticalMerge? VMerge { get; }
 
-    float? BorderBottomWidthPt { get; }
-    CellBorderStyle BorderBottomStyle { get; }
-    string BorderBottomColor { get; }
+    VerticalAlignment? VAlignment { get; }
 
-    float? BorderLeftWidthPt { get; }
-    CellBorderStyle BorderLeftStyle { get; }
-    string BorderLeftColor { get; }
+    string BackgroundColor { get; }
 
     Dictionary<string, string> GetCSSStyles() {
         return CSS.GetCSSStyles(this);

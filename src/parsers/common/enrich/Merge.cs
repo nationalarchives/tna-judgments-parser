@@ -58,7 +58,7 @@ class Merger : Enricher {
 
     private WCell EnrichCell(WCell cell) {
         IEnumerable<IBlock> contents = Enrich(cell.Contents);
-        return new WCell(cell.Row, contents);
+        return new WCell(cell.Row, cell.Props, contents);
     }
 
     override protected IBlock Enrich(IBlock block) {

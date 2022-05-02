@@ -36,11 +36,13 @@ public class Tests {
     [InlineData(16)]
     [InlineData(17)]
     [InlineData(18)]
+    [InlineData(19)]
+    [InlineData(20)]
     public void Test(int i) {
         var docx = ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
         var expected = ReadXml(i);
-        Assert.NotEqual(expected, actual);
+        // Assert.NotEqual(expected, actual);
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
@@ -62,7 +64,7 @@ public class Tests {
         List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach, Type = type } };
         var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
         var expected = ReadXml(i);
-        Assert.NotEqual(expected, actual);
+        // Assert.NotEqual(expected, actual);
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
@@ -101,18 +103,11 @@ public class Tests {
 </xsl:stylesheet>";
 
     private string RemoveSomeMetadata(string akn) {
-        XmlDocument doc = new XmlDocument();
-        doc.LoadXml(akn);
-        XmlDocument removed = RemoveManifestationDate(doc);
-        return Serialize(removed);
-    }
-
-    private XmlDocument RemoveManifestationDate(XmlDocument akn) {
-        using XmlReader aknReader = new XmlNodeReader(akn);
-        XmlDocument destination = new XmlDocument();
-        using XmlWriter writer = destination.CreateNavigator().AppendChild();
-        Transform.Transform(aknReader, writer);
-        return destination;
+        using XmlReader reader = XmlReader.Create(new StringReader(akn));
+        using StringWriter sWriter = new StringWriter();
+        using XmlWriter xWriter = XmlWriter.Create(sWriter);
+        Transform.Transform(reader, xWriter);
+        return sWriter.ToString();
     }
 
     private string Serialize(XmlDocument judgment) {

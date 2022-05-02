@@ -23,23 +23,31 @@ class Program {
             new Option<FileInfo>("--output", description: "the .xml file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--output-zip", description: "the .zip file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
-            new Option<bool>("--test", description: "whether to test the result")
+            new Option<bool>("--test", description: "whether to test the result"),
+            new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" }
         };
-        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool>(Transform);
+        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool, FileInfo>(Transform);
     }
 
     static int Main(string[] args) {
         return command.InvokeAsync(args).Result;
     }
 
-    static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test) {
+    static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
         if (log is not null) {
             Logging.SetFile(log, LogLevel.Debug);
             ILogger logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
-        Api.Request request = new Api.Request { Content = docx };
+        Api.Request request;
+        if (attachment is null) {
+            request = new Api.Request { Content = docx };
+        } else {
+            byte[] docxA = File.ReadAllBytes(attachment.FullName);
+            Api.Attachment a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
+            request = new Api.Request { Content = docx, Attachments = new Api.Attachment[] { a } };
+        }
         Api.Response response = Api.Parser.Parse(request);
         if (outputZip is not null)
             SaveZip(response, outputZip);
