@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/26/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/26/data.xml" />
-          <FRBRdate date="2022-03-09T17:40:44" name="transform" />
+          <FRBRdate date="2022-05-01T15:41:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>26</uk:number>
         <uk:cite>[2022] UKUT 26 (LC)</uk:cite>
-        <uk:parser/>
+        <uk:parser>0.5.8</uk:parser>
         <uk:hash>7f18683aca948563abcfd9338a69ec531aba0474dc945261e46954bab481693f</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -105,8 +105,12 @@
 #judgment .FootnoteTextChar { font-family: 'Times New Roman'; font-size: 10pt; }
 #judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
 #judgment .QuoteChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .PageNumber { }
 #judgment .BodyTextChar { font-family: Calibri, sans-serif; font-size: 11pt; }
 #judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+#judgment .PlainTable3 { }
 </style>
       </presentation>
     </meta>
@@ -126,7 +130,7 @@
       <p style="text-align:center"><span style="font-weight:bold">-and-</span></p>
       <p style="text-align:center"><party refersTo="#the-royal-borough-of-greenwich" as="#respondent" style="font-weight:bold;text-transform:uppercase">the royal borough of greenwich</party></p>
       <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondent</role></p>
-      <table uk:widths="1.08in 4.24in 0.92in">
+      <table class="PlainTable3" uk:widths="1.08in 4.24in 0.92in">
         <tr>
           <td>
             <p style="text-align:center;margin-right:-0.02in" />

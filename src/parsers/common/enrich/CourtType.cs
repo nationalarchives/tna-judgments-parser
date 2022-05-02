@@ -480,6 +480,12 @@ class Combo3 : Combo {
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
         new Combo3 {
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^LONDON CIRCUIT COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_QBD_Commercial_Circuit
+        },
+        new Combo3 {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
@@ -523,8 +529,8 @@ class Combo3 : Combo {
         },
         new Combo3 {
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex(@"^BUSINESS & PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^INTELLECTUAL PROERTY LIST \(ChD\)$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IntellectualProperty
         },
         new Combo3 {
@@ -1277,7 +1283,7 @@ class CourtType : Enricher2 {
         IEnumerable<IBlock> contents = Enrich(cell.Contents);
         if (object.ReferenceEquals(contents, cell.Contents))
             return cell;
-        return new WCell(cell.Row, contents);
+        return new WCell(cell.Row, cell.Props, contents);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

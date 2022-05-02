@@ -490,7 +490,7 @@ class PartyEnricher : Enricher {
                     IEnumerable<IBlock> rest = cell.Contents.Skip(1).Select(block => block is WLine wLine ? Enrich(wLine) : block);
                     return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
                         new WRow(row1.Table, row1.TypedCells.Skip(1).Prepend(
-                            new WCell(cell.Row, rest.Prepend(enriched))
+                            new WCell(cell.Row, cell.Props, rest.Prepend(enriched))
                         ))
                     ));
                 }
@@ -512,7 +512,7 @@ class PartyEnricher : Enricher {
             IEnumerable<IBlock> rest = cell.Contents.Skip(3);
             return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
                 new WRow(row1.Table, row1.TypedCells.Skip(1).Prepend(
-                    new WCell(cell.Row, Enumerable.Concat(enriched, rest))
+                    new WCell(cell.Row, cell.Props, Enumerable.Concat(enriched, rest))
                 ))
             ));
         }

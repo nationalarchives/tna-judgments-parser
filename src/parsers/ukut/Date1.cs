@@ -131,7 +131,7 @@ class Date1 : FirstMatch {
         WLine enriched = EnrichLineInTableCell(line, name, priority);
         if (object.ReferenceEquals(enriched, line))
             return cell;
-        return new WCell(cell.Row, cell.Contents.Skip(1).Prepend(enriched));
+        return new WCell(cell.Row, cell.Props, cell.Contents.Skip(1).Prepend(enriched));
     }
     private WCell EnrichSecondLineOfCellWithDate(WCell cell, string name, int priority) {
         if (cell.Contents.Count() < 2)
@@ -142,7 +142,7 @@ class Date1 : FirstMatch {
         WLine enriched = EnrichLineInTableCell(line, name, priority);
         if (object.ReferenceEquals(enriched, line))
             return cell;
-        return new WCell(cell.Row, Enumerable.Concat(
+        return new WCell(cell.Row, cell.Props, Enumerable.Concat(
             new List<IBlock>(2) { cell.Contents.First(), enriched },
             cell.Contents.Skip(2)
         ));

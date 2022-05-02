@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/crim/2021/1412/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/crim/2021/1412/data.xml" />
-          <FRBRdate date="2022-01-03T22:51:33" name="transform" />
+          <FRBRdate date="2022-05-01T16:16:41" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2021</uk:year>
         <uk:number>1412</uk:number>
         <uk:cite>[2021] EWCA Crim 1412</uk:cite>
-        <uk:parser/>
+        <uk:parser>0.5.8</uk:parser>
         <uk:hash>94785c86f6e567aed1a2927e2970118b6ccdad1a08256ec0ff530f9008270b7d</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -66,6 +66,7 @@
 #judgment .HeaderChar { font-size: 12pt; }
 #judgment .FooterChar { font-size: 12pt; }
 #judgment .CommentReference { font-size: 8pt; }
+#judgment .CommentTextChar { }
 #judgment .CommentSubjectChar { font-weight: bold; }
 </style>
       </presentation>
@@ -73,12 +74,12 @@
     <header>
       <table uk:widths="6.26in">
         <tr>
-          <td style="border-style:solid;border-width:0.5pt">
+          <td style="border:0.5pt solid">
             <block name="restriction"><span style="font-weight:bold;font-size:10pt">WARNING: reporting restrictions may apply to the contents transcribed in this document, particularly if the case concerned a sexual offence or involved a child. Reporting restrictions prohibit the publication of the applicable information to the public or any section of the public, in writing, in a broadcast or by means of the internet, including social media. Anyone who receives a copy of this transcript is responsible in law for making sure that applicable restrictions are not breached. A person who breaches a reporting restriction is liable to a fine and/or imprisonment. For guidance on whether reporting restrictions apply, and to what information, ask at the court office or take legal advice.</span></block>
           </td>
         </tr>
         <tr>
-          <td style="border-style:solid;border-width:0.5pt">
+          <td style="border:0.5pt solid">
             <p><span style="font-weight:bold;font-size:10pt">This Transcript is Crown Copyright.  It may not be reproduced in whole or in part other than in accordance with relevant licence or with the express consent of the Authority.  All rights are reserved.</span></p>
           </td>
         </tr>

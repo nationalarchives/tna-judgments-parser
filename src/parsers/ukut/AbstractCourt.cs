@@ -63,7 +63,7 @@ abstract class AbstractCourtType : Enricher2 {
         IEnumerable<IBlock> contents = Enrich(cell.Contents);
         if (object.ReferenceEquals(contents, cell.Contents))
             return cell;
-        return new WCell(cell.Row, contents);
+        return new WCell(cell.Row, cell.Props, contents);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

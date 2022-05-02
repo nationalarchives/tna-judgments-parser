@@ -216,25 +216,57 @@ class Builder {
 
     private void AddTable(XmlElement parent, ITable model) {
         XmlElement table = doc.CreateElement("table", ns);
+        if (model.Style is not null)
+            table.SetAttribute("class", model.Style);
         parent.AppendChild(table);
         List<float> columnWidths = model.ColumnWidthsIns;
         if (columnWidths.Any()) {
-            // table.SetAttribute("xmlns:uk", Metadata.ukns);
             IEnumerable<string> s = columnWidths.Select(w => w.ToString("F2") + "in");
             string s2 = string.Join(" ", s);
             table.SetAttribute("widths", Metadata.ukns, s2);
         }
-        foreach (IRow row in model.Rows) {
+        List<ICell> mergedContentsHandled = new List<ICell>();
+        List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
+        int iRow = 0;
+        foreach (List<ICell> row in rows) {
             XmlElement tr = doc.CreateElement("tr", ns);
             table.AppendChild(tr);
-            foreach (ICell cell in row.Cells) {
+            int iCell = 0;
+            foreach (ICell cell in row) {
+                if (cell.VMerge == VerticalMerge.Continuation) {
+                    logger.LogDebug("skipping merged cell");
+                    bool found = mergedContentsHandled.Remove(cell);
+                    if (!found)
+                        throw new Exception();
+                    iCell += 1;
+                    continue;
+                }
                 XmlElement td = doc.CreateElement("td", ns);
+                if (cell.ColSpan is not null)
+                    td.SetAttribute("colspan", cell.ColSpan.ToString());
                 Dictionary<string, string> styles = cell.GetCSSStyles();
                 if (styles.Any())
                     td.SetAttribute("style", CSS.SerializeInline(styles));
                 tr.AppendChild(td);
                 this.blocks(td, cell.Contents);
+                if (cell.VMerge == VerticalMerge.Start) {
+                    IEnumerable<ICell> merged = rows.Skip(iRow + 1)
+                        .Select(r => r.Skip(iCell).First())
+                        .TakeWhile(c => c.VMerge == VerticalMerge.Continuation);
+                    td.SetAttribute("rowspan", (merged.Count() + 1).ToString());
+                    foreach (ICell c in merged) {
+                        this.blocks(td, c.Contents);
+                        logger.LogDebug("handling merged cell");
+                        mergedContentsHandled.Add(c);
+                    }
+                }
+                iCell += 1;
             }
+            iRow += 1;
+        }
+        if (mergedContentsHandled.Any()) {
+            logger.LogCritical("error handling merged cells");
+            throw new Exception();
         }
     }
 
