@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2003/547/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2003/547/data.xml" />
-          <FRBRdate date="2022-02-17T22:05:38" name="transform" />
+          <FRBRdate date="2022-05-01T15:02:01" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2003</uk:year>
         <uk:number>547</uk:number>
         <uk:cite>[2003] EWCA Civ 547</uk:cite>
-        <uk:parser/>
+        <uk:parser>0.5.8</uk:parser>
         <uk:hash>a020d234b3560337ab9a83cfad08a235ba8d19a4f3d1ad84803678e25f7c981e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -82,6 +82,7 @@
 #judgment .Heading6Char { font-weight: bold; }
 #judgment .Heading7Char { font-size: 12pt; }
 #judgment .Heading8Char { font-style: italic; font-size: 12pt; }
+#judgment .Heading9Char { }
 #judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .PageNumber { font-size: 10pt; }
@@ -112,35 +113,35 @@
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
       <table uk:widths="0.91in 4.31in 1.00in">
         <tr>
-          <td>
+          <td style="border-style:none">
             <p />
           </td>
-          <td>
+          <td style="border-style:none">
             <p style="text-align:center"><party refersTo="#the-queen-on-the-application-of-b" as="#appellant" style="font-weight:bold">THE QUEEN ON THE APPLICATION OF “B”</party></p>
           </td>
-          <td>
+          <td style="border-style:none">
             <p class="CoverMain" style="text-align:center"><role refersTo="#appellant">Appellant</role></p>
           </td>
         </tr>
         <tr>
-          <td>
+          <td style="border-style:none">
             <p />
           </td>
-          <td>
+          <td style="border-style:none">
             <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
           </td>
-          <td>
+          <td style="border-style:none">
             <p style="text-align:right" />
           </td>
         </tr>
         <tr>
-          <td>
+          <td style="border-style:none">
             <p />
           </td>
-          <td>
+          <td style="border-style:none">
             <p style="text-align:center"><party refersTo="#ashworth-hospital-authority" as="#respondent" style="font-weight:bold">ASHWORTH HOSPITAL AUTHORITY</party></p>
           </td>
-          <td>
+          <td style="border-style:none">
             <p class="CoverMain" style="text-align:center"><role refersTo="#respondent">Respondent</role></p>
           </td>
         </tr>
@@ -998,7 +999,7 @@
         </paragraph>
         <level>
           <content>
-            <p class="Heading"><span /><span style="font-weight:bold">Lord Justice Simon Brown:</span></p>
+            <p class="Heading"><span> </span><span style="font-weight:bold">Lord Justice Simon Brown:</span></p>
           </content>
         </level>
         <paragraph>

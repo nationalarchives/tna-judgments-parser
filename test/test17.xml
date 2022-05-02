@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/eat/2022/36/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/eat/2022/36/data.xml" />
-          <FRBRdate date="2022-04-01T14:46:20" name="transform" />
+          <FRBRdate date="2022-05-01T16:14:23" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>36</uk:number>
         <uk:cite>[2022] EAT 36</uk:cite>
-        <uk:parser>0.5.4</uk:parser>
+        <uk:parser>0.5.8</uk:parser>
         <uk:hash>ccaa94a4b1840803928abfc9b8285dbb33e2879ad69148a8f3f85fd29097df95</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -53,6 +53,10 @@
 #judgment { font-size: 11pt; font-family: 'Times New Roman'; }
 #judgment .Heading5 { font-weight: bold; font-family: 'Times New Roman'; font-size: 10pt; }
 #judgment .BodyText { margin-left: 0.35in; font-family: Algerian; font-size: 12pt; }
+#judgment .ListParagraph { }
+#judgment .TableParagraph { }
+#judgment .Header { }
+#judgment .Footer { }
 #judgment .text { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .NormalWeb { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .legclearfix { font-family: 'Times New Roman'; font-size: 12pt; }
@@ -60,8 +64,15 @@
 #judgment .BalloonText { font-family: 'Segoe UI'; font-size: 9pt; }
 #judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
 #judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+#judgment .HeaderChar { }
+#judgment .FooterChar { }
 #judgment .Heading5Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 10pt; }
+#judgment .legds { }
+#judgment .legchangedelimiter { }
+#judgment .legsubstitution { }
 #judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
 </style>
       </presentation>
     </meta>

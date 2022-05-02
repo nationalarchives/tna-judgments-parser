@@ -81,7 +81,7 @@ abstract class FirstMatch2 : FirstMatch {
             if (!object.ReferenceEquals(before, after)) {
                 while (contents.MoveNext())
                     enriched.Add(contents.Current);
-                return new WCell(cell.Row, enriched);
+                return new WCell(cell.Row, cell.Props, enriched);
             }
         }
         return cell;

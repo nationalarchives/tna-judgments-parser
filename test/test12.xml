@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <judgment name="judgment">
     <meta>
@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2011/3553/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2011/3553/data.xml" />
-          <FRBRdate date="2021-12-01T12:44:45" name="transform" />
+          <FRBRdate date="2022-05-01T15:40:57" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2011</uk:year>
         <uk:number>3553</uk:number>
         <uk:cite>[2011] EWHC 3553 (Ch)</uk:cite>
-        <uk:parser/>
+        <uk:parser>0.5.8</uk:parser>
         <uk:hash>b64e399f2e3ac3dc346c776629d4f6a34edaaec5d42809c26485cbb166825e08</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -55,6 +55,7 @@
 #judgment .WPBodyText { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .Level1 { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .1-1 { margin-left: 0.50in; font-family: 'Sakkal Majalla'; font-size: 12pt; }
+#judgment .FootnoteReference { }
 </style>
       </presentation>
     </meta>

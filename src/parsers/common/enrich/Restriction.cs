@@ -90,7 +90,7 @@ class RestrictionsEnricher : Enricher {
         WRestriction restriction = new WRestriction(firstLine);
         return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
             new WRow(firstRow.Table, firstRow.TypedCells.Skip(1).Prepend(
-                new WCell(firstCell.Row, firstCell.Contents.Skip(1).Prepend(restriction))
+                new WCell(firstCell.Row, firstCell.Props, firstCell.Contents.Skip(1).Prepend(restriction))
             ))
         ));
     }

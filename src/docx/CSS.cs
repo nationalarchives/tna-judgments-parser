@@ -74,7 +74,8 @@ public class CSS {
             AddFontSize(style, properties);
             AddColor(style, properties);
             AddBackgroundColor(style, properties);
-            if (properties.Count > 0)
+            bool isDefault = style.Default?.Value ?? false;
+            if (!isDefault || properties.Count > 0)
                 selectors.Add(rootSelector + " ." + style.StyleId.Value, properties);
         }
         IEnumerable<Style> characterStyles = styles.ChildElements
@@ -92,8 +93,20 @@ public class CSS {
             AddFontSize(style, properties);
             AddColor(style, properties);
             AddBackgroundColor(style, properties);
-            if (properties.Count > 0)
+            bool isDefault = style.Default?.Value ?? false;
+            if (!isDefault || properties.Count > 0)
                 selectors.Add(rootSelector + " ." + style.StyleId.Value, properties);
+        }
+        IEnumerable<Style> tableStyles = styles.ChildElements.OfType<Style>()
+            .Where(p => p.Type.Equals(StyleValues.Table));
+        foreach (Style style in tableStyles) {
+            bool isDefault = style.Default?.Value ?? false;
+            if (!isDefault)
+                selectors.Add(rootSelector + " ." + style.StyleId.Value, new Dictionary<string, string>());
+            Dictionary<string, string> cellProps = new Dictionary<string, string>();
+            AddInternalBorderStyles(style, cellProps);
+            if (cellProps.Count > 0)
+                selectors.Add(rootSelector + " ." + style.StyleId.Value + " td", cellProps);
         }
         return selectors;
     }
@@ -305,6 +318,28 @@ public class CSS {
         else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
             value = "#" + value;
         css[key] = value;
+    }
+
+    internal static void AddInternalBorderStyles(Style style, Dictionary<string, string> props) {
+        List<float?> widths = new List<float?>(4) {
+            DOCX.Tables.ExtractBorderWidthPt(style.StyleTableProperties?.TableBorders?.InsideHorizontalBorder),
+            DOCX.Tables.ExtractBorderWidthPt(style.StyleTableProperties?.TableBorders?.InsideVerticalBorder),
+            DOCX.Tables.ExtractBorderWidthPt(style.StyleTableProperties?.TableBorders?.InsideHorizontalBorder),
+            DOCX.Tables.ExtractBorderWidthPt(style.StyleTableProperties?.TableBorders?.InsideVerticalBorder)
+        };
+        List<CellBorderStyle?> styles = new List<CellBorderStyle?>(4) {
+            DOCX.Tables.ExtractBorderStyle(style.StyleTableProperties?.TableBorders?.InsideHorizontalBorder),
+            DOCX.Tables.ExtractBorderStyle(style.StyleTableProperties?.TableBorders?.InsideVerticalBorder),
+            DOCX.Tables.ExtractBorderStyle(style.StyleTableProperties?.TableBorders?.InsideHorizontalBorder),
+            DOCX.Tables.ExtractBorderStyle(style.StyleTableProperties?.TableBorders?.InsideVerticalBorder)
+        };
+        List<string> colors = new List<string>(4) {
+            DOCX.Tables.ExtractBorderColor(style.StyleTableProperties?.TableBorders?.InsideHorizontalBorder),
+            DOCX.Tables.ExtractBorderColor(style.StyleTableProperties?.TableBorders?.InsideVerticalBorder),
+            DOCX.Tables.ExtractBorderColor(style.StyleTableProperties?.TableBorders?.InsideHorizontalBorder),
+            DOCX.Tables.ExtractBorderColor(style.StyleTableProperties?.TableBorders?.InsideVerticalBorder)
+        };
+        UK.Gov.Legislation.Judgments.CSS.AddBorders(widths, styles, colors, props);
     }
 
     public static string SerializeInline(Dictionary<string, string> properties) {
