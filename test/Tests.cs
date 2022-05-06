@@ -15,8 +15,6 @@ namespace UK.Gov.NationalArchives.CaseLaw {
 
 public class Tests {
 
-    private static int N = 10;
-
     private XslCompiledTransform Transform = new XslCompiledTransform();
 
     public Tests() {
@@ -25,19 +23,12 @@ public class Tests {
         Transform.Load(xsltReader);
     }
 
-    public static IEnumerable<object[]> indices = Enumerable.Range(1, N).Select(i => new object[] { i });
+    public static IEnumerable<object[]> indices = Enumerable.Concat(
+        Enumerable.Range(1, 10), Enumerable.Range(12, 9)
+    ).Select(i => new object[] { i });
 
     [Theory]
     [MemberData(nameof(indices))]
-    [InlineData(12)]
-    [InlineData(13)]
-    [InlineData(14)]
-    [InlineData(15)]
-    [InlineData(16)]
-    [InlineData(17)]
-    [InlineData(18)]
-    [InlineData(19)]
-    [InlineData(20)]
     public void Test(int i) {
         var docx = ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
