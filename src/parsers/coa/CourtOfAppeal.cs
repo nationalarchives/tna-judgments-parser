@@ -64,6 +64,17 @@ class CourtOfAppealParser : AbstractParser {
     };
 
     protected override List<IBlock> Header() {
+        int save = i;
+        List<IBlock> header = Header1();
+        if (header is not null)
+            return header;
+        i = save;
+        header = Header2();
+        if (header is not null)
+            return header;
+        return null;
+    }
+    private List<IBlock> Header1() {
         List<IBlock> header = new List<IBlock>();
         while (i < elements.Count) {
             logger.LogTrace("parsing element " + i);
@@ -98,6 +109,20 @@ class CourtOfAppealParser : AbstractParser {
                     return header;
                 if (IsFirstLineOfBigLevel(p))   // [2022] EWHC 207 (Ch)
                     return header;
+            }
+            AddBlock(e, header);
+        }
+        return null;
+    }
+    private List<IBlock> Header2() {
+        List<IBlock> header = new List<IBlock>();
+        while (i < elements.Count) {
+            logger.LogTrace("parsing element " + i);
+            OpenXmlElement e = elements.ElementAt(i);
+            string trimmed = e.InnerText.Trim();
+            if (trimmed == "Introduction" || trimmed == "INTRODUCTION") {
+                logger.LogDebug("ending header at " + trimmed);
+                return header;
             }
             AddBlock(e, header);
         }
