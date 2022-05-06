@@ -17,7 +17,7 @@ class RemoveTrailingWhitespace : Enricher {
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        while (line.Count() > 0 && IsWhitespace(line.Last()))
+        while (line.Any() && IsWhitespace(line.Last()))
             line = line.SkipLast(1);
         return line;
     }

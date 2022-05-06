@@ -1,10 +1,11 @@
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
-
+using DocumentFormat.OpenXml.Packaging;
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
@@ -12,6 +13,9 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
 using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
+
+using AttachmentPair1 = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+using ParseFunction1 = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.IJudgment>;
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
@@ -61,62 +65,35 @@ public class Parser {
 
     private static ParseFunction EWCAParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3);
     private static ParseFunction UKSCParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3);
-    private static ParseFunction EWCAParserPDF = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.EWPDF.Parse3);
     private static ParseFunction UKUTParser = AkN.Parser.MakeParser4(UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT.Parser.Parse);
-
-    private static ParseFunction ALL = Combine(new List<ParseFunction>(4) { EWCAParser, UKSCParser, UKUTParser, EWCAParserPDF });
-    private static ParseFunction EWCACombined = Combine(new List<ParseFunction>(2) { EWCAParser, EWCAParserPDF });
 
     private static ParseFunction GetParser(Hint? hint) {
         if (!hint.HasValue)
-            return ALL;
+            return Combined;
         if (hint.Value == Hint.UKSC)
             return UKSCParser;
         if (hint.Value == Hint.UKUT)
             return UKUTParser;
-        return EWCACombined;
+        return EWCAParser;
     }
 
-    internal static ParseFunction Combine(List<ParseFunction> parsers) {
-        if (!parsers.Any())
-            return null;
-        if (parsers.Count == 1)
-            return parsers.First();
-        return (byte[] docx, IOutsideMetadata meta, IEnumerable<AttachmentPair> attachments) => {
-            AkN.ILazyBundle bestBundle = null;
-            int bestScore = -1;
-            foreach (ParseFunction parse in parsers) {
-                AkN.ILazyBundle bundle = parse(docx, meta, attachments);
-                Meta meta2 = Parser.ConvertInternalMetadata(AkN.MetadataExtractor.Extract(bundle.Judgment));
-                int score = Score(meta2);
-                if (score == PerfectScore)
-                    return bundle;
-                if (score > bestScore) {
-                    if (bestBundle is not null)
-                        bestBundle.Close();
-                    bestBundle = bundle;
-                    bestScore = score;
-                }
-            }
-            return bestBundle;
+    private static AkN.ILazyBundle Combined(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+        WordprocessingDocument doc = AkN.Parser.Read(docx);
+        IEnumerable<AttachmentPair1> attach2 = AkN.Parser.ConvertAttachments(attachments);
+        ParseFunction1 first = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3;
+        List<ParseFunction1> others = new List<ParseFunction1>(2) {
+            UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3,
+            UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT.Parser.Parse
         };
-    }
-
-    private static int PerfectScore = 5;
-
-    private static int Score(Meta meta) {
-        int score = 0;
-        if (meta.Uri is not null)
-            score += 1;
-        if (meta.Court is not null)
-            score += 1;
-        if (meta.Cite is not null)
-            score += 1;
-        if (meta.Date is not null)
-            score += 1;
-        if (meta.Name is not null)
-            score += 1;
-        return score;
+        IJudgment judgment1 = first(doc, meta, attach2);
+        if (judgment1.Metadata.Court() is not null || judgment1.Metadata.Cite is not null)
+            return new AkN.Bundle(doc, judgment1);
+        foreach (var other in others) {
+            IJudgment judgment2 = other(doc, meta, attach2);
+            if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
+                return new AkN.Bundle(doc, judgment2);
+        }
+        return new AkN.Bundle(doc, judgment1);
     }
 
     internal static string SerializeXml(XmlDocument judgment) {
