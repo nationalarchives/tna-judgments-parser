@@ -22,7 +22,7 @@ class NetrualCitation : Enricher2 {
     };
     private static readonly string[] patterns2 = {
         @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^ *(\[\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
+        @"^ *(\[?\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
         @"^\s(\[\d{4}\] EWHC \d+ \(Admin\))",  // non-space in [2022] EWHC 307 (Admin)
         @"^(\[\d{4}\] EWHC \[\d+\] \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\))$",    // [2021] EWHC [3505] (IPEC)
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)",    // misspelling in EWCA/Civ/2006/1507

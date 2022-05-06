@@ -114,10 +114,14 @@ public class Parser {
     //         return Parse3(doc, meta, attach2, f);
     //     };
     // }
+    internal static IEnumerable<AttachmentPair> ConvertAttachments(IEnumerable<AttachmentPair2> attachments) {
+        return attachments.Select(a => new System.Tuple<WordprocessingDocument, AttachmentType>(Read(a.Item1), a.Item2));
+    }
+
     internal static Func<byte[], IOutsideMetadata, IEnumerable<AttachmentPair2>, ILazyBundle> MakeParser4(Func<WordprocessingDocument, IOutsideMetadata, IEnumerable<AttachmentPair>, IJudgment> f) {
         return (byte[] docx, IOutsideMetadata meta, IEnumerable<AttachmentPair2> attachments) => {
             WordprocessingDocument doc = Read(docx);
-            IEnumerable<AttachmentPair> attach2 = attachments.Select(a => new System.Tuple<WordprocessingDocument, AttachmentType>(Read(a.Item1), a.Item2));
+            IEnumerable<AttachmentPair> attach2 = ConvertAttachments(attachments);
             return Parse3(doc, meta, attach2, f);
         };
     }
