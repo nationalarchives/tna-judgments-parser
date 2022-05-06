@@ -145,6 +145,7 @@ a:hover { text-decoration: underline }
 <div id="result" style="display:flex"></div>
 
 <script type="text/javascript" src="/jszip.min.js"></script>
+<script type="text/javascript" src="/tarball.js"></script>
 <script>
 
 const hint = document.getElementById('hint');
@@ -590,7 +591,7 @@ function display(response) {
 		zip.file(image['name'], image['content'], {base64: true});
 	});
 	zip.generateAsync({type:'blob'}).then(function(content) {
-		var name = response['meta']['uri'].substring(43);
+		var name = (response['meta']['uri'] || '').substring(43);
 		if (name)
 			name = name.replace(/\//g,'_') + '.zip';
 		else
@@ -604,7 +605,7 @@ function display(response) {
 		div.appendChild(a3);
 	});
 	(function() {
-		var name = response['meta']['uri'].substring(43);
+		var name = (response['meta']['uri'] || '').substring(43);
 		if (name)
 			name = name.replace(/\//g,'_') + '.json';
 		else
@@ -618,7 +619,37 @@ function display(response) {
 		a.setAttribute('download', name);
 		p.appendChild(a);
 	})();
-
+	(function() {
+		const meta2 = {
+			parameters: {
+				TRE: {
+					xml: 'judgment.xml',
+					metadata: 'metadata.json',
+					images: response['images'].map(i => i.name)
+				},
+				PARSER: response['meta']
+			}
+		};
+		const writer = new tarball.TarWriter();
+		writer.addTextFile('judgment.xml', response['xml']);
+		writer.addTextFile('metadata.json', JSON.stringify(meta2, null, 2));
+		response['images'].forEach(i => writer.addFileArrayBuffer(i.name, base64toTypedArray(i.content)));
+		writer.write().then((blob) => {
+			var name = (response['meta']['uri'] || '').substring(43);
+			if (name)
+				name = name.replace(/\//g,'_') + '.tar';
+			else
+				name = 'bundle.tar'
+			const p = document.createElement('p');
+			right.appendChild(p);
+			const a = document.createElement('a');
+			a.innerText = 'download .tar bundle';
+			const url = URL.createObjectURL(blob);
+			a.setAttribute('href', url);
+			a.setAttribute('download', name);
+			p.appendChild(a);
+		});
+	})();
 }
 
 function fetchPreview(xml) {
