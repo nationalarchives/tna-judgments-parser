@@ -64,22 +64,19 @@ class CourtOfAppealParser : AbstractParser {
     };
 
     protected override List<IBlock> Header() {
-        int save = i;
-        List<IBlock> header = Header1();
-        if (header is not null)
-            return header;
-        i = save;
-        header = Header2();
-        if (header is not null)
-            return header;
-        return null;
+        List<OpenXmlElement> header1 = Header1();
+        if (header1 is null)
+            header1 = Header2();
+        if (header1 is null)
+            return null;
+        List<IBlock> header2 = new List<IBlock>(header1.Count);
+        foreach (var e in header1)
+            AddBlock(e, header2);
+        return header2;
     }
-    private List<IBlock> Header1() {
-        List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
-            // string text = e.InnerText.Trim();
+    private List<OpenXmlElement> Header1() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
                 break;
@@ -89,15 +86,13 @@ class CourtOfAppealParser : AbstractParser {
             // [2022] EWFC 1
             if (e is Paragraph p && p.Descendants<SectionProperties>().Where(sectPr => isNewSection(sectPr)).Any())
                 return header;
-            AddBlock(e, header);
+            header.Add(e);
         }
-        if (i < elements.Count)
-            logger.LogInformation("found title: " + elements.ElementAt(i).InnerText);
+        if (i + header.Count < elements.Count)
+            logger.LogInformation("found title: " + header.Last().InnerText);
         else
             logger.LogCritical("could not find title");
-        while (i < elements.Count) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
+        foreach (var e in elements.Skip(i + header.Count)) {
             if (e is Paragraph p) {
                 if (p.Descendants<SectionProperties>().Any())
                     return header;
@@ -110,21 +105,19 @@ class CourtOfAppealParser : AbstractParser {
                 if (IsFirstLineOfBigLevel(p))   // [2022] EWHC 207 (Ch)
                     return header;
             }
-            AddBlock(e, header);
+            header.Add(e);
         }
         return null;
     }
-    private List<IBlock> Header2() {
-        List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
+    private List<OpenXmlElement> Header2() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
             string trimmed = e.InnerText.Trim();
             if (trimmed == "Introduction" || trimmed == "INTRODUCTION") {
                 logger.LogDebug("ending header at " + trimmed);
                 return header;
             }
-            AddBlock(e, header);
+            header.Add(e);
         }
         return null;
     }
