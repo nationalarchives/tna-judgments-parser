@@ -146,6 +146,7 @@ a:hover { text-decoration: underline }
 
 <script type="text/javascript" src="/jszip.min.js"></script>
 <script type="text/javascript" src="/tarball.js"></script>
+<script type="text/javascript" src="/pako_deflate.min.js"></script>
 <script>
 
 const hint = document.getElementById('hint');
@@ -635,19 +636,23 @@ function display(response) {
 		writer.addTextFile('metadata.json', JSON.stringify(meta2, null, 2));
 		response['images'].forEach(i => writer.addFileArrayBuffer(i.name, base64toTypedArray(i.content)));
 		writer.write().then((blob) => {
-			var name = (response['meta']['uri'] || '').substring(43);
-			if (name)
-				name = name.replace(/\//g,'_') + '.tar';
-			else
-				name = 'bundle.tar'
-			const p = document.createElement('p');
-			right.appendChild(p);
-			const a = document.createElement('a');
-			a.innerText = 'download .tar bundle';
-			const url = URL.createObjectURL(blob);
-			a.setAttribute('href', url);
-			a.setAttribute('download', name);
-			p.appendChild(a);
+			blob.arrayBuffer().then(buffer => {
+				const tar = new Uint8Array(buffer);
+				const gz = pako.gzip(tar);
+				var name = (response['meta']['uri'] || '').substring(43);
+				if (name)
+					name = name.replace(/\//g,'_') + '.tar.gz';
+				else
+					name = 'bundle.tar.gz'
+				const p = document.createElement('p');
+				right.appendChild(p);
+				const a = document.createElement('a');
+				a.innerText = 'download .tar.gz bundle';
+				const url = URL.createObjectURL(new Blob([ gz ], { type: 'application/gzip' }));
+				a.setAttribute('href', url);
+				a.setAttribute('download', name);
+				p.appendChild(a);
+			});
 		});
 	})();
 }
