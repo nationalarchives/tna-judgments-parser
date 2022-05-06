@@ -73,30 +73,24 @@ class Parser : AbstractParser {
     }
 
     protected override List<IBlock> Header() {
-        int save = i;
-        List<IBlock> header = Header1();
-        if (header is not null)
-            return header;
-        i = save;
-        header = Header2();
-        if (header is not null)
-            return header;
-        i = save;
-        header = Header3();
-        if (header is not null)
-            return header;
-        i = save;
-        header = Header4();
-        if (header is not null)
-            return header;
-        return null;
+        List<OpenXmlElement> header1 = Header1();
+        if (header1 is null)
+            header1 = Header2();
+        if (header1 is null)
+            header1 = Header3();
+        if (header1 is null)
+            header1 = Header4();
+        if (header1 is null)
+            return null;
+        List<IBlock> header2 = new List<IBlock>(header1.Count);
+        foreach (var e in header1)
+            AddBlock(e, header2);
+        return header2;
     }
-    private List<IBlock> Header1() {
-        List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
-            AddBlock(e, header);
+    private List<OpenXmlElement> Header1() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
+            header.Add(e);
             if (IsTitleParagraph(e))
                 return header;
             if (e is Table table) {
@@ -107,21 +101,19 @@ class Parser : AbstractParser {
         }
         return null;
     }
-    private List<IBlock> Header2() {
-        List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
-            AddBlock(e, header);
+    private List<OpenXmlElement> Header2() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        var enumerator = elements.Skip(i).GetEnumerator();
+        while (enumerator.MoveNext()) {
+            var e = enumerator.Current;
+            header.Add(e);
             if (Regex.Replace(e.InnerText, @"\s+", " ").Trim() == "J U D G M E N T") {
-                if (i < elements.Count) {
-                    OpenXmlElement next = elements.ElementAt(i);
-                    if (IsSkippable(next) && i < elements.Count) {
-                        i += 1;
-                        next = elements.ElementAt(i);
-                    }
+                if (enumerator.MoveNext()) {
+                    OpenXmlElement next = enumerator.Current;
+                    if (IsSkippable(next) && enumerator.MoveNext())
+                        next = enumerator.Current;
                     if (next is Paragraph && IsDashedOrSolidLine(next)) {
-                        AddBlock(next, header);
+                        header.Add(next);
                         return header;
                     }
                 }
@@ -129,11 +121,9 @@ class Parser : AbstractParser {
         }
         return null;
     }
-    private List<IBlock> Header3() {
-        List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
+    private List<OpenXmlElement> Header3() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
             string trimmed = e.InnerText.Trim();
             if (trimmed == "Introduction" || trimmed == "INTRODUCTION")
                 return header;
@@ -147,16 +137,14 @@ class Parser : AbstractParser {
                 return header;
             if (trimmed == "IT IS DIRECTED that")   // ukftt/tc/2018/249
                 return header;
-            AddBlock(e, header);
+            header.Add(e);
         }
         return null;
     }
-    private List<IBlock> Header4() {
-        List<IBlock> header = new List<IBlock>();
-        while (i < elements.Count - 10) {
-            logger.LogTrace("parsing element " + i);
-            OpenXmlElement e = elements.ElementAt(i);
-            AddBlock(e, header);
+    private List<OpenXmlElement> Header4() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i).SkipLast(10)) {
+            header.Add(e);
             if (Util.IsSectionBreak(e))
                 return header;
             if (Regex.IsMatch(e.InnerText, @"© CROWN COPYRIGHT \d{4}"))
