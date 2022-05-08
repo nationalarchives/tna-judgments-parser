@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2021/116/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2021/116/data.xml" />
-          <FRBRdate date="2022-05-01T15:41:20" name="transform" />
+          <FRBRdate date="2022-05-06T22:29:38" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -48,7 +48,7 @@
         <uk:year>2021</uk:year>
         <uk:number>116</uk:number>
         <uk:cite>[2021] UKUT 116 (IAC)</uk:cite>
-        <uk:parser>0.5.8</uk:parser>
+        <uk:parser>0.5.10</uk:parser>
         <uk:hash>cbcfe835bf32594c2480cd9504bbd0475181acd877d6d93f47e1fa81ec2fad68</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -62,7 +62,7 @@
 #judgment .PageNumber { }
 #judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
 #judgment .TableGrid { }
-#judgment .TableGrid td { border: 0.5pt solid; }
+#judgment .TableGrid td { border: 0.5pt solid initial; }
 </style>
       </presentation>
     </meta>
@@ -77,18 +77,18 @@
       <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua';color:#000000">THE IMMIGRATION ACTS</span></p>
       <table uk:widths="3.42in 3.42in">
         <tr>
-          <td>
+          <td style="background-color:initial">
             <p style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua'">Heard at Field House</span></p>
           </td>
-          <td>
+          <td style="background-color:initial">
             <p style="text-align:right"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Decision &amp; Reasons Promulgated</span></p>
           </td>
         </tr>
         <tr>
-          <td>
+          <td style="background-color:initial">
             <p style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua'">On 10 February and </span><docDate date="2021-03-24" refersTo="#hearing" style="font-weight:bold;font-family:'Book Antiqua'">24 March 2021</docDate></p>
           </td>
-          <td>
+          <td style="background-color:initial">
             <p style="text-align:right"><span style="font-weight:bold;font-family:'Book Antiqua'">16 April 2021</span></p>
           </td>
         </tr>

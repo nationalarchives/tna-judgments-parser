@@ -144,8 +144,6 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
     } }
 
     public string FontColor { get {
-        // if (properties?.Color?.Val?.Value == "auto")
-        //     return "black";
         return properties?.Color?.Val?.Value;
     } }
 
