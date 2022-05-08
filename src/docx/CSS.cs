@@ -299,11 +299,7 @@ public class CSS {
         if (color is null)
             return;
         string key = "color";
-        string value = color.Value;
-        if (value == "auto")
-            value = "initial";
-        else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
-            value = "#" + value;
+        string value = UK.Gov.Legislation.Judgments.CSS.ConvertColor(color.Value);
         css[key] = value;
     }
 
@@ -312,11 +308,7 @@ public class CSS {
         if (background is null)
             return;
         string key = "background-color";
-        string value = background.Value;
-        if (value == "auto")
-            value = "initial";
-        else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
-            value = "#" + value;
+        string value = UK.Gov.Legislation.Judgments.CSS.ConvertColor(background.Value);
         css[key] = value;
     }
 

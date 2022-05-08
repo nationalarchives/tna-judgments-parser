@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/621/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/621/data.xml" />
-          <FRBRdate date="2022-05-01T16:13:47" name="transform" />
+          <FRBRdate date="2022-05-06T22:31:00" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -51,7 +51,7 @@
         <uk:year>2022</uk:year>
         <uk:number>621</uk:number>
         <uk:cite>[2022] EWHC 621 (Ch)</uk:cite>
-        <uk:parser>0.5.8</uk:parser>
+        <uk:parser>0.5.10</uk:parser>
         <uk:hash>292cf6d77753e5f4759bd88a6e937b94b61fed53fc1d3efc6c7aee590aa2e33e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -121,7 +121,7 @@
 #judgment .Strong { font-weight: bold; }
 #judgment .BodyTextIndentChar { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .TableGrid { }
-#judgment .TableGrid td { border: 0.5pt solid; }
+#judgment .TableGrid td { border: 0.5pt solid initial; }
 </style>
       </presentation>
     </meta>
