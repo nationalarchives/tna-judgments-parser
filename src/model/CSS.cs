@@ -75,19 +75,11 @@ class CSS {
             styles["font-size"] = inline.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
         }
         if (inline.FontColor is not null) {
-            string value = inline.FontColor;
-            if (value == "auto")
-                value = "initial";
-            else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
-                value = "#" + value;
+            string value = ConvertColor(inline.FontColor);
             styles.Add("color", value);
         }
         if (inline.BackgroundColor is not null) {
-            string value = inline.BackgroundColor;
-            if (value == "auto")
-                value = "initial";
-            else if (Regex.IsMatch(value, @"^[A-F0-9]{6}$"))
-                value = "#" + value;
+            string value = ConvertColor(inline.BackgroundColor);
             styles.Add("background-color", value);
         }
         return styles;
@@ -133,12 +125,10 @@ class CSS {
         if (widths.Count == 1 && styles.Count == 1 && colors.Count == 1) {
             string width = ConvertPoints(widths[0]);
             string style = ConvertEnum<CellBorderStyle>(styles[0]);
-            string color = ConvertColor(colors[0]); // can be null
+            string color = ConvertColor(colors[0]);
             string value;
             if (styles[0] == CellBorderStyle.None) {
                 value = style;
-            } else if (color is null) {
-                value = width + " " + style;
             } else {
                 value = width + " " + style + " " + color;
             }
@@ -195,7 +185,7 @@ class CSS {
     private static void AddBorderColors(List<string> borderColors, Dictionary<string, string> styles) {
         if (!borderColors.Any())
             return;
-        if (borderColors.Any(c => c is null || ConvertColor(c) is null)) {
+        if (borderColors.Any(c => c is null)) {
             AddColor("border-top-color", borderColors[0], styles);
             if (borderColors.Count > 1) // should be unnecessary
                 AddColor("border-right-color", borderColors[1], styles);
@@ -230,11 +220,11 @@ class CSS {
         var value = ConvertEnum<T>(e);
         css.Add(key, value);
     }
-    private static string ConvertColor(string color) {
+    internal static string ConvertColor(string color) {
         if (color is null)
             return null;
         if (color == "auto")
-            return null;
+            return "initial";
         if (Regex.IsMatch(color, @"^[A-F0-9]{6}$"))
             return "#" + color;
         return color;
@@ -243,8 +233,8 @@ class CSS {
         if (color is null)
             return;
         string value = ConvertColor(color);
-        if (value is null)
-            return;
+        // if (value is null)
+        //     return;
         css.Add(key, value);
     }
 
