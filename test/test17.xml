@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/eat/2022/36/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/eat/2022/36/data.xml" />
-          <FRBRdate date="2022-05-01T16:14:23" name="transform" />
+          <FRBRdate date="2022-05-06T22:31:05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>36</uk:number>
         <uk:cite>[2022] EAT 36</uk:cite>
-        <uk:parser>0.5.8</uk:parser>
+        <uk:parser>0.5.10</uk:parser>
         <uk:hash>ccaa94a4b1840803928abfc9b8285dbb33e2879ad69148a8f3f85fd29097df95</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -72,7 +72,7 @@
 #judgment .legsubstitution { }
 #judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
 #judgment .TableGrid { }
-#judgment .TableGrid td { border: 0.5pt solid; }
+#judgment .TableGrid td { border: 0.5pt solid initial; }
 </style>
       </presentation>
     </meta>
