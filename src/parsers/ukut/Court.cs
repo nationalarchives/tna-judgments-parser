@@ -10,7 +10,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 class CourtType : AbstractCourtType {
 
     protected override IEnumerable<Combo2> Combo2s() {
-        return new List<Combo2>(2) {
+        return new List<Combo2>(4) {
             new Combo2 {
                 Re1 = new Regex(@"^(IN THE )?UPPER TRIBUNAL$", RegexOptions.IgnoreCase),
                 Re2 = new Regex(@"^\(?IMMIGRATION (AND|&) ASYLUM CHAMBER\)?$", RegexOptions.IgnoreCase),
