@@ -47,7 +47,7 @@ class CourtOfAppealParser : AbstractParser {
         "APPROVED CORRECTED JUDGMENT",  // EWHC/Ch/2016/3302
         "Final Judgment",   // EWHC/Admin/2021/1234
         "Final Approved Judgment",  // [2021] EWHC 3455 (QB)
-        "Costs Judgment",
+        "Costs Judgment", "COSTS JUDGMENT",
         "Judgment Approved by the court",   // [2021] EWCA Crim 1786
         "Judgment Approved by the courtfor handing down",
         "JUDGMENT : APPROVED BY THE COURT FOR HANDING DOWN (SUBJECT TO EDITORIAL CORRECTIONS)",  // EWCA/Civ/2003/494
@@ -60,6 +60,7 @@ class CourtOfAppealParser : AbstractParser {
         "Approved Consequentials Judgment", // [2022] EWHC 629 (Ch)
 
         /* EAT */
+        "TRANSCRIPT OF ORAL JUDGMENT",
         "TRANSRIPT OF ORAL JUDGMENT"
     };
 

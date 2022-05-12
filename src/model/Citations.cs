@@ -55,7 +55,7 @@ internal class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] UKUT { num } ({ sub })";
         }
-        match = Regex.Match(cite, @"^\[(\d{4})\] (EAT) (\d+)$", RegexOptions.IgnoreCase);
+        match = Regex.Match(cite, @"^\[?(\d{4})\]? (EAT) (\d+)$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[3].Value.TrimStart('0');
             if (!string.IsNullOrEmpty(num))

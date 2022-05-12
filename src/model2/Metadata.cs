@@ -73,6 +73,8 @@ class WMetadata : IMetadata {
         if (_cite is not null)
             return _cite;
         INeutralCitation cite = Util.Descendants<INeutralCitation>(judgment.Header).FirstOrDefault();
+        if (cite is null && judgment.CoverPage is not null)
+            cite = Util.Descendants<INeutralCitation>(judgment.CoverPage).FirstOrDefault();
         if (cite is null)
             return null;
         _cite = Citations.Normalize(cite.Text);
