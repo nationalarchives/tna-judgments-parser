@@ -153,6 +153,12 @@ class Parser : AbstractParser {
         return null;
     }
 
+    private List<Enricher> coverPageEnrichers = new List<Enricher>() {
+        new RemoveTrailingWhitespace(),
+        new Merger(),
+        new UKUT.Citation()
+    };
+
     private List<Enricher> headerEnrichers = new List<Enricher>() {
         new RemoveTrailingWhitespace(),
         new Merger(),
@@ -163,6 +169,10 @@ class Parser : AbstractParser {
         new UKUT.Date1(),
         new PartyEnricher()
     };
+
+    protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage) {
+        return Enricher.Enrich(coverPage, coverPageEnrichers);
+    }
 
     protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {
         return Enricher.Enrich(header, headerEnrichers);
