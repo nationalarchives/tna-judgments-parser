@@ -198,7 +198,7 @@ async function handleClick() {
 	try {
 		const response = await parse(payload);
 		status.innerText = '';
-		display(response);
+		display(response, payload);
 	} catch(e) {
 		status.innerText = e;
 		return;
@@ -216,7 +216,7 @@ async function handleClick2() {
 	status.innerText = 'parsing...';
 	try {
 		const token = await parseAsync(payload);
-		setTimeout(() => { waitForResult(token); }, 5000);
+		setTimeout(() => { waitForResult(token, payload); }, 5000);
 	} catch(e) {
 		status.innerText = e;
 		return;
@@ -250,7 +250,7 @@ async function handleClick3() {
 		await uploadToS3(signedUrl, payload);
 		status.innerText = 'parsing...';
 		await triggerParseFromS3(token);
-		setTimeout(() => { waitForLargeResult(token); }, 5000);
+		setTimeout(() => { waitForLargeResult(token, payload); }, 5000);
 	} catch(e) {
 		status.innerText = e;
 	}
@@ -351,13 +351,13 @@ function parseAsync(payload) {
 	});
 }
 
-async function waitForResult(token) {
+async function waitForResult(token, payload) {
 	const response = await checkResult(token);
 	if (response.status === 200) {
 		status.innerText = '';
-		display(JSON.parse(response.text));
+		display(JSON.parse(response.text), payload);
 	} else if (response.status === 202) {
-		setTimeout(() => { waitForResult(token); }, 10000);
+		setTimeout(() => { waitForResult(token, payload); }, 10000);
 	} else {
 		status.innerText = response.text;
 	}
@@ -444,7 +444,7 @@ async function triggerParseFromS3(token) {
 	});
 }
 
-async function waitForLargeResult(token) {
+async function waitForLargeResult(token, payload) {
 	const response = await checkLargeResult(token);
 	if (response.status === 200) {
 		status.innerText = 'downloading...';
@@ -458,14 +458,14 @@ async function waitForLargeResult(token) {
 			if (this.status === 200) {
 				status.innerText = '';
 				let x = JSON.parse(this.responseText);
-				display(x);
+				display(x, payload);
 			} else {
 				status.innerText = this.responseText;
 			}
 		};
 		xhr.send();
 	} else if (response.status === 202) {
-		setTimeout(() => { waitForLargeResult(token); }, 10000);
+		setTimeout(() => { waitForLargeResult(token, payload); }, 10000);
 	} else {
 		status.innerText = response.text;
 	}
@@ -489,7 +489,7 @@ async function checkLargeResult(token) {
 	});
 }
 
-function display(response) {
+function display(response, payload) {
 
 	const left = document.createElement('div');
 	left.setAttribute('style', "flex-basis:50%");
@@ -624,14 +624,19 @@ function display(response) {
 		const meta2 = {
 			parameters: {
 				TRE: {
-					xml: 'judgment.xml',
-					metadata: 'metadata.json',
-					images: response['images'].map(i => i.name)
+					reference: null,
+					payload: {
+						filename: payload.filename,
+						xml: 'judgment.xml',
+						metadata: 'metadata.json',
+						images: response['images'].map(i => i.name)
+					}
 				},
 				PARSER: response['meta']
 			}
 		};
 		const writer = new tarball.TarWriter();
+		writer.addFileArrayBuffer(payload.filename, base64toTypedArray(payload.content))
 		writer.addTextFile('judgment.xml', response['xml']);
 		writer.addTextFile('metadata.json', JSON.stringify(meta2, null, 2));
 		response['images'].forEach(i => writer.addFileArrayBuffer(i.name, base64toTypedArray(i.content)));
