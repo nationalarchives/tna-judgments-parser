@@ -88,12 +88,35 @@ public class Parser {
         IJudgment judgment1 = first(doc, meta, attach2);
         if (judgment1.Metadata.Court() is not null || judgment1.Metadata.Cite is not null)
             return new AkN.Bundle(doc, judgment1);
+        int score1 = Score(judgment1);
         foreach (var other in others) {
             IJudgment judgment2 = other(doc, meta, attach2);
             if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
                 return new AkN.Bundle(doc, judgment2);
+            int score2 = Score(judgment2);
+            if (score2 > score1) {
+                judgment1 = judgment2;
+                score1 = score2;
+            }
         }
         return new AkN.Bundle(doc, judgment1);
+    }
+
+    private static int Score(IJudgment judgment) {
+        int score = 0;
+        if (judgment.Header is not null && judgment.Header.Any())
+            score += 2;
+        if (judgment.Metadata.ShortUriComponent is not null)
+            score += 1;
+        if (judgment.Metadata.Court() is not null)
+            score += 1;
+        if (judgment.Metadata.Cite is not null)
+            score += 1;
+        if (judgment.Metadata.Date is not null)
+            score += 1;
+        if (judgment.Metadata.Name is not null)
+            score += 1;
+        return score;
     }
 
     internal static string SerializeXml(XmlDocument judgment) {
