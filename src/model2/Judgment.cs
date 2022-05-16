@@ -38,7 +38,18 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public IEnumerable<IInternalAttachment> InternalAttachments { get; internal init; }
 
-    public IEnumerable<IImage> Images { get => WImage.Get(doc); }
+    IEnumerable<IImage> _images;
+
+    public IEnumerable<IImage> Images {
+        get {
+            if (_images is null)
+                _images = WImage.Get(doc);
+            return _images;
+        }
+        set {
+            _images = value;
+        }
+    }
 
     public void Close() {
         doc.Close();

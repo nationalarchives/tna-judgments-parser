@@ -62,6 +62,7 @@ public class WImageRef : IImageRef {
         // this.uri = part.Uri;
         DrawingML.Extents ext = drawing.Descendants().OfType<DrawingML.Extents>().FirstOrDefault();
         if (ext is not null) {
+            // string style = "";
             List<string> styles = new List<string>(2);
             Int64Value cx = ext.Cx;
             if (cx.HasValue) {
@@ -127,8 +128,17 @@ public class WImageRef : IImageRef {
         Style = tempStyle;
     }
 
+    private string _src;
+
     public string Src {
-        get => Path.GetFileName(uri.ToString());
+        get {
+            if (_src is null)
+                _src = Path.GetFileName(uri.ToString());
+            return _src;
+        }
+        set {
+            _src = value;
+        }
     }
 
     public string Style { get; }
