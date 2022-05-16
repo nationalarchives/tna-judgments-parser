@@ -28,6 +28,7 @@ internal class Bundle : ILazyBundle {
     internal Bundle(WordprocessingDocument doc, IJudgment judgment) {
         this.doc = doc;
         this.judgment = judgment;
+        ImageConverter.ConvertImages(judgment);
     }
 
     public string ShortUriComponent { get => judgment.Metadata.ShortUriComponent; }
