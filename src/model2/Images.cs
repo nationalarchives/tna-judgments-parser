@@ -62,21 +62,23 @@ public class WImageRef : IImageRef {
         // this.uri = part.Uri;
         DrawingML.Extents ext = drawing.Descendants().OfType<DrawingML.Extents>().FirstOrDefault();
         if (ext is not null) {
-            string style = "";
+            List<string> styles = new List<string>(2);
             Int64Value cx = ext.Cx;
             if (cx.HasValue) {
                 double widthInEMU = System.Convert.ToDouble(cx.Value);
-                double widthInInches = widthInEMU / 914400d;
-                style += "width:" + widthInInches + "in;";
+                // double widthInInches = widthInEMU / 914400d;
+                double widthInPoints = widthInEMU / 12700d;
+                styles.Add("width:" + widthInPoints.ToString("F2").TrimEnd('0').TrimEnd('.') + "pt");
             }
             Int64Value cy = ext.Cy;
             if (cy.HasValue) {
                 double heightInEMU = System.Convert.ToDouble(cy.Value);
-                double heightInInches = heightInEMU / 914400d;
-                style += "height:" + heightInInches + "in;";
+                // double heightInInches = heightInEMU / 914400d;
+                double heightInPoints = heightInEMU / 12700d;
+                styles.Add("height:" + heightInPoints.ToString("F2").TrimEnd('0').TrimEnd('.') + "pt");
             }
-            if (!string.IsNullOrEmpty(style))
-                Style = style;
+            if (styles.Any())
+                Style = string.Join(';', styles);
         }
     }
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
