@@ -23,7 +23,7 @@ interface IJudgment {
 
     IEnumerable<IInternalAttachment> InternalAttachments { get; }
 
-    IEnumerable<IImage> Images { get; }
+    IEnumerable<IImage> Images { get; set; }
 
 }
 

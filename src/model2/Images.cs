@@ -127,8 +127,17 @@ public class WImageRef : IImageRef {
         Style = tempStyle;
     }
 
+    private string _src;
+
     public string Src {
-        get => Path.GetFileName(uri.ToString());
+        get {
+            if (_src is null)
+                _src = Path.GetFileName(uri.ToString());
+            return _src;
+        }
+        set {
+            _src = value;
+        }
     }
 
     public string Style { get; }
