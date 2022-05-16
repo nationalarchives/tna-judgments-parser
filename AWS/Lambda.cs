@@ -42,7 +42,7 @@ public class Lambda {
         try {
             response = Parser.Parse(request);
         } catch (Exception e) {
-            logger.LogError("parse error", e);
+            logger.LogError(e, "parse error");
             return Error(500, e);
         }
         logger.LogInformation("parse was successful");

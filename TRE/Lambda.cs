@@ -55,7 +55,7 @@ public class Lambda {
         try {
             docx = http.GetByteArrayAsync(request.Inputs.DocumentUrl).Result;
         } catch (Exception e) {
-            logger.LogError("read error", e);
+            logger.LogError(e, "read error");
             return Response.Error("error reading .docx file");
         }
         List<string> errors = new List<string>();
@@ -66,7 +66,7 @@ public class Lambda {
                     byte[] content = http.GetByteArrayAsync(url).Result;
                     attachments.Add(new Api.Attachment { Content = content });
                 } catch (Exception e) {
-                    logger.LogError("read error", e);
+                    logger.LogError(e, "read error");
                     errors.Add("error reading attachment");
                 }
             }
@@ -75,7 +75,7 @@ public class Lambda {
         try {
             response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments });
         } catch (Exception e) {
-            logger.LogError("parse error", e);
+            logger.LogError(e, "parse error");
             errors.Add("error parsing document");
             return Response.Errors(errors);
         }
@@ -83,7 +83,7 @@ public class Lambda {
         try {
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, xmlFilename, Encoding.UTF8.GetBytes(response.Xml), "application/xml");
         } catch (Exception e) {
-            logger.LogError("error saving xml", e);
+            logger.LogError(e, "error saving xml");
             errors.Add("error saving xml");
             xmlFilename = null;
         }
@@ -92,7 +92,7 @@ public class Lambda {
             byte[] metadata = JsonSerializer.SerializeToUtf8Bytes(response.Meta, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, metadataFilename, metadata, "application/json");
         } catch (Exception e) {
-            logger.LogError("error saving metadata", e);
+            logger.LogError(e, "error saving metadata");
             errors.Add("error saving metadata");
             metadataFilename = null;
         }
@@ -102,7 +102,7 @@ public class Lambda {
                 Save(inputs.S3Bucket, inputs.S3OutputPrefix, image.Name, image.Content, image.Type);
                 imageFilenames.Add(image.Name);
             } catch (Exception e) {
-                logger.LogError("error saving image " + image.Name, e);
+                logger.LogError(e, "error saving image { name }", image.Name);
                 errors.Add("error saving image " + image.Name);
             }
         }
@@ -113,7 +113,6 @@ public class Lambda {
             // File.WriteAllText(logFile, string.Empty);
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, logFilename, log, "text/plain");
         } catch (Exception e) {
-            logger.LogError("error saving log file", e);
             errors.Add("error saving log file");
             logFilename = null;
         }
