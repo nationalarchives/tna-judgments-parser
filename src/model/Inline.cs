@@ -103,7 +103,7 @@ interface IFootnote : IInline {
 
 interface IImageRef : IInline {
 
-    string Src { get; }
+    string Src { get; set; }
 
     string Style { get; }
 
