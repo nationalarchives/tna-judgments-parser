@@ -16,7 +16,7 @@ class Relationships {
     private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.DOCX.Relationships>();
 
     public static readonly RelationshipErrorHandler.Rewriter MalformedUriRewriter = (part, id, uri) => {
-        logger.LogError("malformed URI: " + uri);
+        logger.LogError("malformed URI: { uri }", uri);
         return "http://error?original=" + uri;
     };
 
