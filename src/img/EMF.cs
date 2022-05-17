@@ -14,7 +14,7 @@ class EMF {
 
     private static ILogger logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<EMF>();
 
-    internal static Image Convert(Stream emf) {
+    internal static Tuple<ImageType, byte[]> Convert(Stream emf) {
         using MemoryStream ms = new MemoryStream();
         emf.CopyTo(ms);
         ms.Position = 0;
@@ -59,9 +59,11 @@ class EMF {
         }
     }
 
+internal enum ImageType { BMP }
+
 interface EmfRecord {
 
-    Image Convert();
+    Tuple<ImageType, byte[]> Convert();
 
 }
 
@@ -125,22 +127,28 @@ struct EmfStretchDIBits : EmfRecord {
         if (_body is null) {
             int start = 72 + (int) HeaderSize;
             _body = new byte[Data.Length - start];
-            Array.Copy (Data, start, _body, 0, _body.Length);
+            Array.Copy(Data, start, _body, 0, _body.Length);
         }
         return _body;
     } }
 
-    public Image Convert() {
+    public Tuple<ImageType, byte[]> Convert() {
+        const int EmfOffset = 72;
         if (Header.Compression == 0) {
-            int stride = 4 * Header.Width;
-            PixelFormat format = PixelFormat.Format32bppRgb;    // https://docs.microsoft.com/en-us/dotnet/api/system.drawing.imaging.pixelformat?view=dotnet-plat-ext-6.0
-            format = PixelFormat.Format24bppRgb;
-            var handle = System.Runtime.InteropServices.GCHandle.Alloc(Body, System.Runtime.InteropServices.GCHandleType.Pinned);
-            IntPtr ptr = System.Runtime.InteropServices.Marshal.UnsafeAddrOfPinnedArrayElement(Body, 0);
-            Bitmap bmp = new Bitmap(Header.Width, Header.Height, stride, format, ptr);
-            bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
-            handle.Free();
-            return bmp;
+            const int FileHeaderSize = 14;
+            byte[] bmp = new byte[FileHeaderSize + Data.Length - EmfOffset];
+            bmp[0] = 0x42;
+            bmp[1] = 0x4D;
+            UInt32 size = System.Convert.ToUInt32(bmp.Length);
+            Array.Copy(BitConverter.GetBytes(size), 0, bmp, 2, 4);
+            // bmp[6] = 0;
+            // bmp[7] = 0;
+            // bmp[8] = 0;
+            // bmp[9] = 0;
+            UInt32 pixelDataOffset = FileHeaderSize + HeaderSize;
+            Array.Copy(BitConverter.GetBytes(pixelDataOffset), 0, bmp, 10, 4);
+            Array.Copy(Data, EmfOffset, bmp, FileHeaderSize, Data.Length - EmfOffset);
+            return new Tuple<ImageType, byte[]>(ImageType.BMP, bmp);
         }
         logger.LogWarning($"unhandled compression type { Header.Compression }");
         return null;
