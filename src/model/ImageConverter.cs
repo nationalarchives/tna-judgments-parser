@@ -1,7 +1,5 @@
 
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
@@ -18,29 +16,27 @@ class ImageConverter {
     internal static void ConvertImages(IJudgment jugdment) {
         List<IImage> images = new List<IImage>();
         foreach (IImage image in jugdment.Images) {
-            logger.LogDebug($"image { image.Name }");
-            if (!image.Name.EndsWith(".emf") && !image.Name.EndsWith(".wmf")) {
+            logger.LogDebug("image { name }", image.Name);
+            if (!image.Name.EndsWith(".emf")) {
                 images.Add(image);
                 continue;
             }
-            Image converted = null;
+            System.Tuple<EMF.ImageType, byte[]> converted = null;
             if (image.Name.EndsWith(".emf"))
                 converted = EMF.Convert(image.Content());
 
             if (converted is null) {
-                logger.LogDebug($"{ image.Name } not converted");
+                logger.LogDebug("{ name } not converted", image.Name);
                 images.Add(image);
                 continue;
             }
-            logger.LogDebug($"{ image.Name } converted to { converted.GetType().Name }");
-            if (converted is Bitmap) {
+            logger.LogDebug("{ name } converted to { type }", image.Name, converted.GetType().Name);
+            if (converted.Item1 == EMF.ImageType.BMP) {
                 string newName = image.Name + ".bmp";
                 foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
                     iRef.Src = newName;
                 }
-                MemoryStream ms = new MemoryStream();
-                converted.Save(ms, ImageFormat.Bmp);
-                var converted2 = new ConvertedImage { Name = newName, ContentType = "image/bmp", Data = ms.ToArray() };
+                var converted2 = new ConvertedImage { Name = newName, ContentType = "image/bmp", Data = converted.Item2 };
                 images.Add(converted2);
                 continue;
             }
