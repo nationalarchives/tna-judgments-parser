@@ -1,8 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
@@ -23,22 +21,21 @@ class EMF {
         while (ms.Position < ms.Length) {
             const int RECORD_HEADER_BYTES = 8;
             byte[] header1 = reader.ReadBytes(RECORD_HEADER_BYTES);
-            EmfPlusRecordType type = (EmfPlusRecordType) BitConverter.ToUInt32(header1, 0);
-            logger.LogDebug($"emf record of type { type }");
+            UInt32 emfPlusRecordType = BitConverter.ToUInt32(header1, 0);
+            logger.LogDebug("emf record of type { type }", emfPlusRecordType);
             UInt32 length = BitConverter.ToUInt32(header1, 4);
             byte[] data = reader.ReadBytes(((int) length) - RECORD_HEADER_BYTES);
-            switch (type) {
-                case EmfPlusRecordType.EmfHeader:
-                case EmfPlusRecordType.EndOfFile:
-                case EmfPlusRecordType.EmfEof:
+            switch (emfPlusRecordType) {
+                case 1: // EmfPlusRecordType.EmfHeader:
+                case 14:    // EmfPlusRecordType.EmfEof
+                case 16386: // EmfPlusRecordType.EndOfFile
                     continue;
-                case EmfPlusRecordType.EmfStretchDIBits:
-                    logger.LogInformation($"EMF record type { type }");
+                case 81:    // EmfPlusRecordType.EmfStretchDIBits
                     EmfStretchDIBits record = new EmfStretchDIBits { Data = data };
                     records.Add(record);
                     break;
                 default:
-                    logger.LogWarning($"unhandled EMF record type { type }");
+                    logger.LogWarning("unhandled EMF record type { type }", emfPlusRecordType);
                     break;
             }
         }
