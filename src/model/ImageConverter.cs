@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,7 @@ class ImageConverter {
                 images.Add(image);
                 continue;
             }
-            logger.LogDebug("{ name } converted to { type }", image.Name, converted.GetType().Name);
+            logger.LogDebug("{ name } converted to { type }", image.Name, Enum.GetName(typeof(EMF.ImageType), converted.Item1));
             if (converted.Item1 == EMF.ImageType.BMP) {
                 string newName = image.Name + ".bmp";
                 foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
