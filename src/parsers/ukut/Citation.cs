@@ -10,6 +10,10 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 
 class Citation : FirstMatch2 {
 
+    internal Citation() {
+        Limit = 10;
+    }
+
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (!line.Any())
             return line;
