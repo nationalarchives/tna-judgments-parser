@@ -8,22 +8,24 @@ using Microsoft.Extensions.Logging;
 
 namespace UK.Gov.NationalArchives.Imaging {
 
+// https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-emf/91c257d7-c39d-4a36-9b1f-63e3f73d30ca
+// https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-emf/e0137630-f3ad-492c-bde9-e68866e255ba
 class EMF {
 
     private static ILogger logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<EMF>();
 
-    internal static Tuple<ImageType, byte[]> Convert(Stream emf) {
+    internal static Tuple<WMF.ImageType, byte[]> Convert(Stream emf) {
         using MemoryStream ms = new MemoryStream();
         emf.CopyTo(ms);
         ms.Position = 0;
         using BinaryReader reader = new BinaryReader(ms);
-        List<EmfRecord> records = new List<EmfRecord>(1);
+        List<EmfBitmapRecord> records = new List<EmfBitmapRecord>(1);
         while (ms.Position < ms.Length) {
             const int RECORD_HEADER_BYTES = 8;
             byte[] header1 = reader.ReadBytes(RECORD_HEADER_BYTES);
             UInt32 emfPlusRecordType = BitConverter.ToUInt32(header1, 0);
-            logger.LogDebug("emf record of type { type }", emfPlusRecordType);
             UInt32 length = BitConverter.ToUInt32(header1, 4);
+            logger.LogDebug("emf record of type { type } ({ length } bytes)", emfPlusRecordType, length);
             byte[] data = reader.ReadBytes(((int) length) - RECORD_HEADER_BYTES);
             switch (emfPlusRecordType) {
                 case 1: // EmfPlusRecordType.EmfHeader:
@@ -48,29 +50,21 @@ class EMF {
             return null;
         }
         try {
-            return records.First().Convert();
+            return records.First().DIB.Convert();
         } catch (Exception e) {
-            logger.LogError("error converting bitmap EMF record");
-            logger.LogError("{e}", e);
+            logger.LogError(e, "error converting bitmap EMF record");
             return null;
         }
     }
 
-internal enum ImageType { BMP }
+internal interface EmfBitmapRecord {
 
-interface EmfRecord {
+    WMF.DeviceIndependentBitmap DIB { get; }
 
-    Tuple<ImageType, byte[]> Convert();
-
-}
-
-// https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-wmf/4e588f70-bd92-4a6f-b77f-35d0feaf7a57
-enum Compression {
-    UncompressedRGB = 0
 }
 
 // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-emf/89c0d808-0dea-413f-be40-2e9e51fa36ac
-struct EmfStretchDIBits : EmfRecord {
+struct EmfStretchDIBits : EmfBitmapRecord {
 
     internal byte[] Data { get; init; }
 
@@ -110,64 +104,7 @@ struct EmfStretchDIBits : EmfRecord {
 
     internal Int32 cyDest => BitConverter.ToInt32(Data, 68);
 
-    internal UInt32 HeaderSize => BitConverter.ToUInt32(Data, 72);
-
-    internal BitmapInfoHeader Header { get {
-        if (HeaderSize == 40)
-            return new BitmapInfoHeader { Data = Data };
-        throw new Exception();
-    } }
-
-    private byte[] _body;
-
-    internal byte[] Body { get {
-        if (_body is null) {
-            int start = 72 + (int) HeaderSize;
-            _body = new byte[Data.Length - start];
-            Array.Copy(Data, start, _body, 0, _body.Length);
-        }
-        return _body;
-    } }
-
-    public Tuple<ImageType, byte[]> Convert() {
-        const int EmfOffset = 72;
-        if (Header.Compression == 0) {
-            const int FileHeaderSize = 14;
-            byte[] bmp = new byte[FileHeaderSize + Data.Length - EmfOffset];
-            bmp[0] = 0x42;
-            bmp[1] = 0x4D;
-            UInt32 size = System.Convert.ToUInt32(bmp.Length);
-            Array.Copy(BitConverter.GetBytes(size), 0, bmp, 2, 4);
-            // bmp[6] = 0;
-            // bmp[7] = 0;
-            // bmp[8] = 0;
-            // bmp[9] = 0;
-            UInt32 pixelDataOffset = FileHeaderSize + HeaderSize;
-            Array.Copy(BitConverter.GetBytes(pixelDataOffset), 0, bmp, 10, 4);
-            Array.Copy(Data, EmfOffset, bmp, FileHeaderSize, Data.Length - EmfOffset);
-            return new Tuple<ImageType, byte[]>(ImageType.BMP, bmp);
-        }
-        logger.LogWarning($"unhandled compression type { Header.Compression }");
-        return null;
-    }
-
-}
-
-struct BitmapInfoHeader {
-
-    internal byte[] Data { get; init; }
-
-    internal Int32 Width => BitConverter.ToInt32(Data, 76);
-
-    internal Int32 Height => BitConverter.ToInt32(Data, 80);
-
-    internal UInt16 Planes => BitConverter.ToUInt16(Data, 84);
-
-    // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-wmf/792153f4-1e99-4ec8-93cf-d171a5f33903
-    internal UInt16 BitCount => BitConverter.ToUInt16(Data, 86);
-
-    // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-wmf/4e588f70-bd92-4a6f-b77f-35d0feaf7a57
-    internal Compression Compression => (Compression) BitConverter.ToUInt32(Data, 88);
+    public WMF.DeviceIndependentBitmap DIB => new WMF.DeviceIndependentBitmap { Offset = 72, Data = Data };
 
 }
 
