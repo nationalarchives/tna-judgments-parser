@@ -18,21 +18,23 @@ class ImageConverter {
         List<IImage> images = new List<IImage>();
         foreach (IImage image in jugdment.Images) {
             logger.LogDebug("image { name }", image.Name);
-            if (!image.Name.EndsWith(".emf")) {
+            if (!image.Name.EndsWith(".emf") && !image.Name.EndsWith(".wmf")) {
                 images.Add(image);
                 continue;
             }
-            System.Tuple<EMF.ImageType, byte[]> converted = null;
+            System.Tuple<WMF.ImageType, byte[]> converted = null;
             if (image.Name.EndsWith(".emf"))
                 converted = EMF.Convert(image.Content());
+            else if (image.Name.EndsWith(".wmf"))
+                converted = WMF.Convert(image.Content());
 
             if (converted is null) {
                 logger.LogDebug("{ name } not converted", image.Name);
                 images.Add(image);
                 continue;
             }
-            logger.LogDebug("{ name } converted to { type }", image.Name, Enum.GetName(typeof(EMF.ImageType), converted.Item1));
-            if (converted.Item1 == EMF.ImageType.BMP) {
+            logger.LogDebug("{ name } converted to { type }", image.Name, Enum.GetName(typeof(WMF.ImageType), converted.Item1));
+            if (converted.Item1 == WMF.ImageType.BMP) {
                 string newName = image.Name + ".bmp";
                 foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
                     iRef.Src = newName;
