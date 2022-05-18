@@ -10,8 +10,9 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers {
 abstract class AbstractCourtType : Enricher2 {
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        const int limit = 10;
         int i = 0;
-        while (i < blocks.Count()) {
+        while (i < blocks.Count() && i < limit) {
             IBlock block1 = blocks.ElementAt(i);
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);

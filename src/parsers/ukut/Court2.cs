@@ -18,8 +18,9 @@ class CourtType2 : Enricher {
         WNeutralCitation nc = Util.Descendants<WNeutralCitation>(blocks).FirstOrDefault();
         if (nc is null)
             return blocks;
+        const int limit = 10;
         int i = 0;
-        while (i < blocks.Count()) {
+        while (i < blocks.Count() && i < limit) {
             IBlock block1 = blocks.ElementAt(i);
             List<ILine> one = Match1(block1, nc);
             if (one is not null) {
