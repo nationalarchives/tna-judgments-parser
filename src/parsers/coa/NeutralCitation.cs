@@ -9,6 +9,13 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class NetrualCitation : Enricher2 {
 
+    internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        return Enumerable.Concat(
+            blocks.Take(10).Select(Enrich),
+            blocks.Skip(10)
+        );
+    }
+
     private static readonly string[] patterns = {
         @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
         @"^Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\]? EWHC +\d+ +\((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\.?\))",    // . in EWHC/Comm/2007/197

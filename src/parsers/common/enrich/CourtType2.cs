@@ -12,8 +12,9 @@ class CourtType2 {
         WNeutralCitation nc = Util.Descendants<WNeutralCitation>(blocks).FirstOrDefault();
         if (nc is null)
             return blocks;
+        const int limit = 10;
         int i = 0;
-        while (i < blocks.Count()) {
+        while (i < blocks.Count() && i < limit) {
             IBlock block1 = blocks.ElementAt(i);
             if (i < blocks.Count() - 2) {
                 IBlock block2 = blocks.ElementAt(i + 1);

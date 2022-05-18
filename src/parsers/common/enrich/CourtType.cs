@@ -1202,8 +1202,9 @@ class CourtType : Enricher2 {
     }
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        const int limit = 10;
         int i = 0;
-        while (i < blocks.Count()) {
+        while (i < blocks.Count() && i < limit) {
             IBlock block1 = blocks.ElementAt(i);
             if (i < blocks.Count() - 5) {
                 IBlock block2 = blocks.ElementAt(i + 1);

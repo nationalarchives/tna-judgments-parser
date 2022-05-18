@@ -9,19 +9,24 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 
 abstract class FirstMatch : Enricher {
 
+    protected int? Limit;
+
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         var enumerator = blocks.GetEnumerator();
         List<IBlock> contents = new List<IBlock>(blocks.Count());
+        int i = 0;
         while (enumerator.MoveNext()) {
             IBlock block = enumerator.Current;
             IBlock enrichecd = Enrich(block);
             contents.Add(enrichecd);
-            if (object.ReferenceEquals(enrichecd, block))
-                continue;
-             while (enumerator.MoveNext())
-                contents.Add(enumerator.Current);
-            break;
+            if (!object.ReferenceEquals(enrichecd, block))
+                break;
+            if (Limit.HasValue && i >= Limit.Value)
+                return blocks;
+            i += 1;
         }
+        while (enumerator.MoveNext())
+            contents.Add(enumerator.Current);
         return contents;
     }
 
