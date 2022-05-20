@@ -653,6 +653,12 @@ class Combo3 : Combo {
             Re2 = new Regex(@"^IN THE BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^FINANCIAL LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Financial
+        },
+        new Combo3 {    // [2022] EHWC 950 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^(IN THE )?BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^PROPERTY, TRUSTS (AND|&) PROBATE LIST \(ChD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_PropertyTrustsProbate
         }
     };
 

@@ -28,7 +28,7 @@ internal class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] { match.Groups[2].Value.ToUpper() } { sub } { num }";
         }
-        match = Regex.Match(cite, @"^\[?(\d{4})\]? (EWHC|EWCH) \[?(\d+)\]? \(?(Admin|Admlty|Ch|Comm|Costs|Fam|Pat)\)?$", RegexOptions.IgnoreCase);
+        match = Regex.Match(cite, @"^\[?(\d{4})\]? (EWHC|EWCH|EHWC) \[?(\d+)\]? \(?(Admin|Admlty|Ch|Comm|Costs|Fam|Pat)\)?$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[3].Value.TrimStart('0');
             string sub = match.Groups[4].Value.Substring(0,1).ToUpper() + match.Groups[4].Value.Substring(1).ToLower();
