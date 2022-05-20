@@ -182,8 +182,8 @@ public readonly struct Courts {
 
     public static readonly Court EWHC_Chancery_IntellectualProperty = new Court {
         Code = "EWHC-Chancery-IntellectualProperty",
-        LongName = "Business and Property Courts (Intellectual Property List)",
-        ShortName = "Intellectual Property List",
+        LongName = "The Business and Property Courts (Intellectual Property List)",
+        ShortName = "The Intellectual Property List",
         URL = "https://www.gov.uk/courts-tribunals/the-intellectual-property-list"
     };
 
@@ -194,12 +194,12 @@ public readonly struct Courts {
     //     URL = "https://www.gov.uk/courts-tribunals/the-revenue-list"
     // };
 
-    // public static readonly Court EWHC_Chancery_PropertyTrustsProbate = new Court {
-    //     Code = "EWHC-Chancery-PropertyTrustsProbate",
-    //     LongName = "Business and Property Courts (Property, Trusts and Probate List)",
-    //     ShortName = "Property, Trusts and Probate List",
-    //     URL = ""
-    // };
+    public static readonly Court EWHC_Chancery_PropertyTrustsProbate = new Court {
+        Code = "EWHC-Chancery-PropertyTrustsProbate",
+        LongName = "The Business and Property Courts (Property, Trusts and Probate List)",
+        ShortName = "The Property, Trusts and Probate List",
+        URL = "https://www.gov.uk/courts-tribunals/the-property-trusts-and-probate-list"
+    };
 
     public static readonly Court EWHC_Chancery_Patents = new Court {
         Code = "EWHC-Chancery-Patents",
@@ -310,7 +310,7 @@ public readonly struct Courts {
         // EWHC_Chancery_Competition,
         EWHC_Chancery_IntellectualProperty,
         // EWHC_Chancery_Revenue,
-        // EWHC_Chancery_PropertyTrustsProbate,
+        EWHC_Chancery_PropertyTrustsProbate,
         EWHC_Chancery_Patents,
         EWHC_Chancery_IPEC,
         EWHC_Chancery_Appeals,
