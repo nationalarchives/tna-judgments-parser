@@ -230,9 +230,7 @@ class WCell : ICell {
             return Enumerable.Empty<IBlock>();
         if (e is BookmarkStart || e is BookmarkEnd)
             return Enumerable.Empty<IBlock>();
-        if (e is SdtBlock sdt)
-            return Blocks.ParseStdBlock(cell.Main, sdt);
-        return new List<IBlock>(1) { Blocks.ParseBlock(cell.Main, e) };
+        return Blocks.ParseBlock(cell.Main, e);
     }
 
 }
