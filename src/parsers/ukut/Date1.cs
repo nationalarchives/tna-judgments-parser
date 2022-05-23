@@ -20,6 +20,8 @@ class Date1 : FirstMatch {
 
     private WLine EnrichLineOutsideTable(WLine line) {
         string text = line.NormalizedContent();
+        if (text.StartsWith("Date of Decision ") || text.StartsWith("Date of Decision: "))
+            return Date0.Enrich(line, "decision", 1);
         if (text.StartsWith("Hearing date ") || text.StartsWith("Hearing date: "))
             return Date0.Enrich(line, "hearing", 0);
         if (text.StartsWith("Heard on ") || text.StartsWith("Heard on: "))

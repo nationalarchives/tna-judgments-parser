@@ -670,13 +670,21 @@ class Combo3 : Combo {
         return new List<ILine>(3) { Transform1(one), Transform1(two), Transform1(three) };
     }
 
+    internal bool MatchFirstRun(IBlock one, IBlock two, IBlock three) {
+        return MatchFirstRun(Re1, one) && Match(Re2, two) && Match(Re3, three);
+    }
+
+    internal List<ILine> TransformFirstRun(IBlock one, IBlock two, IBlock three) {
+        return new List<ILine>(3) { TransformFirstRun(one), Transform1(two), Transform1(three) };
+    }
+
     internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
         foreach (Combo3 combo in Combo3.combos)
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
         foreach (Combo3 combo in Combo3.combos)
-            if (MatchFirstRun(combo.Re1, one) && combo.Match(combo.Re2, two) && combo.Match(combo.Re3, three))
-                return new List<ILine>(3) { combo.TransformFirstRun(one), combo.Transform1(two), combo.Transform1(three) };
+            if (combo.MatchFirstRun(one, two, three))
+                return combo.TransformFirstRun(one, two, three);
         return null;
     }
     internal static List<ILine> MatchAny2(IBlock one, IBlock two) {
