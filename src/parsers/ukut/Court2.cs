@@ -41,6 +41,8 @@ class CourtType2 : Enricher {
             court = Courts.UpperTribunal_LandsChamber;
         else if (nc.Text.EndsWith("(TCC)"))
             court = Courts.UpperTribunal_TaxAndChanceryChamber;
+        else if (nc.Text.EndsWith("(ACC)"))
+            court = Courts.UpperTribunal_AdministrativeAppealsChamber;
         else
             return null;
         Combo1 combo = new Combo1 {
