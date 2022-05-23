@@ -16,14 +16,16 @@ internal class Blocks {
         .Where(e => e is not SectionProperties)
         .Where(e => e is not BookmarkStart)
         .Where(e => e is not BookmarkEnd)
-        .Select<OpenXmlElement, IBlock>(e => ParseBlock(main, e));
+        .SelectMany<OpenXmlElement, IBlock>(e => ParseBlock(main, e));
     }
 
-    internal static IBlock ParseBlock(MainDocumentPart main, OpenXmlElement e) {
+    internal static IEnumerable<IBlock> ParseBlock(MainDocumentPart main, OpenXmlElement e) {
         if (e is Paragraph para)
-            return ParseParagraph(main, para);
+            return new List<IBlock>(1) { ParseParagraph(main, para) };
         if (e is Table table)
-            return new WTable(main, table);
+            return new List<IBlock>(1) { new WTable(main, table) };
+        if (e is SdtBlock sdt)
+            return ParseStdBlock(main, sdt);
         throw new Exception(e.GetType().ToString());
     }
 
