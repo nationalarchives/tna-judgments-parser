@@ -29,7 +29,9 @@ class Citation : FirstMatch2 {
         if (line.First() is WText first) {
             Match match = Regex.Match(first.Text, @"^Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
             if (!match.Success)
-                match = Regex.Match(first.Text, @"UT Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+                match = Regex.Match(first.Text, @"^UT Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+            if (!match.Success)
+                match = Regex.Match(first.Text, @"^NCN: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
             if (match.Success) {
                 List<IInline> enriched = Helper.SplitOnGroup(first, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(enriched, line.Skip(1));

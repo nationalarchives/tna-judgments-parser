@@ -37,6 +37,8 @@ class Parser : AbstractParser {
         "DECISION AND DIRECTIONS",
         "DECISION in PRINCIPLE",
 
+        "DECISION OF THE UPPER TRIBUNAL",
+
         // "Decision: the application for judicial review is refused",
 
         "DETERMINATION AND REASONS",

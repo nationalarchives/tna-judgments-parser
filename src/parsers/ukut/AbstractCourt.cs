@@ -14,6 +14,16 @@ abstract class AbstractCourtType : Enricher2 {
         int i = 0;
         while (i < blocks.Count() && i < limit) {
             IBlock block1 = blocks.ElementAt(i);
+            if (i < blocks.Count() - 2) {
+                IBlock block2 = blocks.ElementAt(i + 1);
+                IBlock block3 = blocks.ElementAt(i + 2);
+                List<ILine> three = Match3(block1, block2, block3);
+                if (three is not null) {
+                    IEnumerable<IBlock> before = blocks.Take(i);
+                    IEnumerable<IBlock> after = blocks.Skip(i + 3);
+                    return Enumerable.Concat(Enumerable.Concat(before, three), after);
+                }
+            }
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 List<ILine> two = Match2(block1, block2);
@@ -42,9 +52,21 @@ abstract class AbstractCourtType : Enricher2 {
         return blocks;
     }
 
+    protected abstract IEnumerable<Combo3> Combo3s();
+
     protected abstract IEnumerable<Combo2> Combo2s();
 
     protected abstract IEnumerable<Combo1> Combo1s();
+
+    protected List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
+        foreach (Combo3 combo in Combo3s()) {
+            if (combo.Match(one, two, three))
+                return combo.Transform(one, two, three);
+            if (combo.MatchFirstRun(one, two, three))
+                return combo.TransformFirstRun(one, two, three);
+        }
+        return null;
+    }
 
     protected List<ILine> Match2(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2s())
