@@ -349,6 +349,13 @@ class Combo4 : Combo {
             Re3 = new Regex(@"^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
             Re4 = new Regex(@"^INSOLVENCY AND COMPANIES COURT LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
+        },
+        new Combo4 {    // [2022] EWHC (Ch) 1104
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^COMPANIES COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
         }
     };
 
