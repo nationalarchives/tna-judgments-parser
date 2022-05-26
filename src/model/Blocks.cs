@@ -42,8 +42,8 @@ interface ILine : IBlock {
         return styles;
     }
 
-    string TextContent() {
-        IEnumerable<string> texts = this.Contents
+    static string TextContent(IEnumerable<IInline> contents) {
+        IEnumerable<string> texts = contents
             .Select(i => {
                 if (i is IFormattedText t)
                     return (t.Uppercase.HasValue && t.Uppercase.Value) ? t.Text.ToUpper() : t.Text;
@@ -52,6 +52,10 @@ interface ILine : IBlock {
                 return "";
             });
         return string.Join("", texts);
+    }
+
+    string TextContent() {
+        return TextContent(this.Contents);
     }
 
     static string NormalizeContent(ILine line) {
