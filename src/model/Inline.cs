@@ -111,6 +111,14 @@ interface IImageRef : IInline {
 
 interface INeutralCitation : IFormattedText { }
 
+interface INeutralCitation2 : IInline {
+
+    IEnumerable<IFormattedText> Contents { get; init; }
+
+    string Text { get; }
+
+}
+
 
 interface ICourtType : IInline {
 

@@ -75,9 +75,15 @@ class WMetadata : IMetadata {
         INeutralCitation cite = Util.Descendants<INeutralCitation>(judgment.Header).FirstOrDefault();
         if (cite is null && judgment.CoverPage is not null)
             cite = Util.Descendants<INeutralCitation>(judgment.CoverPage).FirstOrDefault();
-        if (cite is null)
-            return null;
-        _cite = Citations.Normalize(cite.Text);
+        if (cite is not null) {
+            _cite = Citations.Normalize(cite.Text);
+            return _cite;
+        }
+        INeutralCitation2 cite2 = Util.Descendants<INeutralCitation2>(judgment.Header).FirstOrDefault();
+        if (cite2 is null && judgment.CoverPage is not null)
+            cite2 = Util.Descendants<INeutralCitation2>(judgment.CoverPage).FirstOrDefault();
+        if (cite2 is not null)
+            _cite = Citations.Normalize(cite2.Text);
         return _cite;
     } }
 
