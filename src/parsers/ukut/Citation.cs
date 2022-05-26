@@ -36,6 +36,16 @@ class Citation : FirstMatch2 {
                 List<IInline> enriched = Helper.SplitOnGroup(first, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(enriched, line.Skip(1));
             }
+            if (line.Skip(1).Any() && line.Skip(1).All(i => i is WText)) {
+                string all = ILine.TextContent(line);
+                match = Regex.Match(first.Text, @"^(Neutral Citation: )\[\d{4}\]");
+                bool match2 = Regex.IsMatch(all, @"^Neutral Citation: \[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\)$");
+                if (match.Success && match2) {
+                    System.Tuple<WText, WText> split = first.Split(match.Groups[1].Length);
+                    WNeutralCitation2 ncn = new WNeutralCitation2 { Contents = line.Skip(1).Cast<WText>().Prepend(split.Item2) };
+                    return new List<IInline>(2) { split.Item1, ncn };
+                }
+            }
         }
         return line;
     }
