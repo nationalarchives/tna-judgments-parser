@@ -305,7 +305,11 @@ class Builder {
     private void AddInline(XmlElement parent, IInline model) {
         if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
-        else if (model is ICourtType1 courtType1)
+        else if (model is INeutralCitation2 cite2) {
+            XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
+            foreach (IInline inline in cite2.Contents)
+                AddInline(ncn2, inline);
+        } else if (model is ICourtType1 courtType1)
             AddCourtType1(parent, courtType1);
         else if (model is ICourtType2 courtType2)
             AddCourtType2(parent, courtType2);

@@ -190,6 +190,14 @@ internal class WNeutralCitation : WText, INeutralCitation {
 
 }
 
+internal class WNeutralCitation2 : INeutralCitation2 {
+
+    public IEnumerable<IFormattedText> Contents { get; init; }
+
+    public String Text => ILine.TextContent(Contents);
+
+}
+
 
 internal class WCourtType : WText, ICourtType1 {
 
