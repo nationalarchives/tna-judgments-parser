@@ -66,17 +66,13 @@ public class WImageRef : IImageRef {
             List<string> styles = new List<string>(2);
             Int64Value cx = ext.Cx;
             if (cx.HasValue) {
-                double widthInEMU = System.Convert.ToDouble(cx.Value);
-                // double widthInInches = widthInEMU / 914400d;
-                double widthInPoints = widthInEMU / 12700d;
-                styles.Add("width:" + widthInPoints.ToString("F2").TrimEnd('0').TrimEnd('.') + "pt");
+                double widthInPoints = cx.Value / 12700d;
+                styles.Add("width:" + CSS.ConvertSize(widthInPoints, "pt"));
             }
             Int64Value cy = ext.Cy;
             if (cy.HasValue) {
-                double heightInEMU = System.Convert.ToDouble(cy.Value);
-                // double heightInInches = heightInEMU / 914400d;
-                double heightInPoints = heightInEMU / 12700d;
-                styles.Add("height:" + heightInPoints.ToString("F2").TrimEnd('0').TrimEnd('.') + "pt");
+                double heightInPoints = cy.Value / 12700d;
+                styles.Add("height:" + CSS.ConvertSize(heightInPoints, "pt"));
             }
             if (styles.Any())
                 Style = string.Join(';', styles);

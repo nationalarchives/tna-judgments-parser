@@ -10,6 +10,8 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Wordprocessing = DocumentFormat.OpenXml.Wordprocessing;
 
+using CSS2 = UK.Gov.Legislation.Judgments.CSS;
+
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
 public class CSS {
@@ -143,7 +145,7 @@ public class CSS {
             return;
         string key = "margin-left";
         float inches = float.Parse(left.Value) / 1440f;
-        string value = inches.ToString("F2") + "in";
+        string value = CSS2.ConvertSize(inches, "in");
         css[key] = value;
     }
 
@@ -153,7 +155,7 @@ public class CSS {
             return;
         string key = "margin-right";
         float inches = float.Parse(right.Value) / 1440f;
-        string value = inches.ToString("F2") + "in";
+        string value = CSS2.ConvertSize(inches, "in");
         css[key] = value;
     }
 
@@ -290,7 +292,7 @@ public class CSS {
         if (fontSize is null)
             return;
         string key = "font-size";
-        string value = (int.Parse(fontSize.Value) / 2) + "pt";
+        string value = CSS2.ConvertSize(int.Parse(fontSize.Value) / 2f, "F1", "pt");
         css[key] = value;
     }
 
