@@ -9,16 +9,33 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 
 static class Paragraphs {
 
+    public static StringValue GetLeftIndentWithoutNumberingOrStyleInDXA(MainDocumentPart main, ParagraphProperties props) {
+        return props?.Indentation?.Left ?? props?.Indentation?.Start;
+    }
+    public static float? GetLeftIndentWithoutNumberingOrStyleInInches(MainDocumentPart main, ParagraphProperties props) {
+        StringValue dxa = GetLeftIndentWithoutNumberingOrStyleInDXA(main, props);
+        return Util.DxaToInches(dxa);
+    }
+
     public static StringValue GetLeftIndentWithStyleButNotNumberingInDXA(MainDocumentPart main, ParagraphProperties props) {
         if (props is null)
             return null;
-        StringValue left = props.Indentation?.Left;
+        StringValue left;
+        left = props.Indentation?.Left;
+        if (left is not null)
+            return left;
+        left = props.Indentation?.Start;
         if (left is not null)
             return left;
         Style style = Styles.GetStyle(main, props);
-        if (style is null)
-            style = Styles.GetDefaultParagraphStyle(main);
+        left = style?.GetInheritedProperty(s => s.StyleParagraphProperties?.Indentation?.Left ?? s.StyleParagraphProperties?.Indentation?.Start);
+        if (left is not null)
+            return left;
+        style = Styles.GetDefaultParagraphStyle(main);
         left = style?.StyleParagraphProperties?.Indentation?.Left;
+        if (left is not null)
+            return left;
+        left = style?.StyleParagraphProperties?.Indentation?.Start;
         if (left is not null)
             return left;
         return null;
@@ -50,11 +67,8 @@ static class Paragraphs {
         if (left is not null)
             return left;
 
-        Style style = Styles.GetStyle(main, props) ?? Styles.GetDefaultParagraphStyle(main);
-        left = style?.StyleParagraphProperties?.Indentation?.Left;
-        if (left is not null)
-            return left;
-        left = style?.StyleParagraphProperties?.Indentation?.Start;
+        Style style = Styles.GetStyle(main, props);
+        left = style?.GetInheritedProperty(s => s.StyleParagraphProperties?.Indentation?.Left ?? s.StyleParagraphProperties?.Indentation?.Start);
         if (left is not null)
             return left;
 
@@ -62,6 +76,14 @@ static class Paragraphs {
         if (left is not null)
             return left;
         left = Numbering.GetStyleLevel(main, props)?.PreviousParagraphProperties?.Indentation?.Start;
+        if (left is not null)
+            return left;
+
+        style = Styles.GetDefaultParagraphStyle(main);
+        left = style?.StyleParagraphProperties?.Indentation?.Left;
+        if (left is not null)
+            return left;
+        left = style?.StyleParagraphProperties?.Indentation?.Start;
         if (left is not null)
             return left;
 
@@ -95,8 +117,12 @@ static class Paragraphs {
         if (indentation?.FirstLine is not null)
             return indentation.FirstLine.Value;
         Style style = Styles.GetStyle(main, pProps);
-        if (style is null)
-            style = Styles.GetDefaultParagraphStyle(main);
+        indentation = style?.GetInheritedProperty(s => s.StyleParagraphProperties?.Indentation);
+        if (indentation?.Hanging is not null)
+            return "-" + indentation.Hanging.Value;
+        if (indentation?.FirstLine is not null)
+            return indentation.FirstLine.Value;
+        style = Styles.GetDefaultParagraphStyle(main);
         indentation = style?.StyleParagraphProperties?.Indentation;
         if (indentation?.Hanging is not null)
             return "-" + indentation.Hanging.Value;
@@ -127,9 +153,7 @@ static class Paragraphs {
             return indentation.FirstLine.Value;
 
         Style style = Styles.GetStyle(main, pProps);
-        if (style is null)
-            style = Styles.GetDefaultParagraphStyle(main);
-        indentation = style?.StyleParagraphProperties?.Indentation;
+        indentation = style?.GetInheritedProperty(s => s.StyleParagraphProperties?.Indentation);
         if (indentation?.Hanging is not null)
             return "-" + indentation.Hanging.Value;
         if (indentation?.FirstLine is not null)
@@ -148,6 +172,13 @@ static class Paragraphs {
         //     indentation = null;
         // else
         indentation = Numbering.GetStyleLevel(main, pProps)?.PreviousParagraphProperties?.Indentation;
+        if (indentation?.Hanging is not null)
+            return "-" + indentation.Hanging.Value;
+        if (indentation?.FirstLine is not null)
+            return indentation.FirstLine.Value;
+
+        style = Styles.GetDefaultParagraphStyle(main);
+        indentation = style?.StyleParagraphProperties?.Indentation;
         if (indentation?.Hanging is not null)
             return "-" + indentation.Hanging.Value;
         if (indentation?.FirstLine is not null)

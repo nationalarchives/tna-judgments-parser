@@ -67,14 +67,19 @@ class WLine : ILine {
     }
 
     public float? LeftIndentInches {
-        get => DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
+        get {
+            if (!IsFirstLineOfNumberedParagraph)
+                return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, properties);
+            else
+                return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
+        }
     }
     public string LeftIndent {
         get {
-            float? inches = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
+            float? inches = this.LeftIndentInches;
             if (inches is null)
                 return null;
-            return inches.Value.ToString("F2") + "in";
+            return CSS.ConvertSize(inches, "in");
         }
     }
     public string RightIndent {
@@ -87,7 +92,7 @@ class WLine : ILine {
             if (right is null)
                 return null;
             float inches = DOCX.Util.DxaToInches(right);
-            return inches.ToString("F2") + "in";
+            return CSS.ConvertSize(inches, "in");
         }
     }
 
@@ -103,11 +108,10 @@ class WLine : ILine {
 
     public float? FirstLineIndentInches {
         get {
-            float? relative1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties);
             if (!IsFirstLineOfNumberedParagraph)
-                return relative1;
+                return DOCX.Paragraphs.GetFirstLineIndentWithoutNumberingOrStyleInInches(main, properties);
 
-            float relative = relative1 ?? 0;
+            float relative = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties) ?? 0;
 
             float? minNumWidth = CalculateMinNumberWidth();
 
@@ -148,7 +152,7 @@ class WLine : ILine {
             float? inches = this.FirstLineIndentInches;
             if (!inches.HasValue)
                 return null;
-            return inches.Value.ToString("F2") + "in";
+            return CSS.ConvertSize(inches, "in");
         }
     }
 

@@ -248,6 +248,32 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + format.Val.Value);
     }
 
+    private static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
+        NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
+        Level level = numbering.Descendants<Level>()
+            .Where(l => l.LevelIndex.Value == ilvl)
+            .FirstOrDefault();
+        if (level?.StartNumberingValue?.Val is not null)
+            return level.StartNumberingValue.Val;
+        LevelOverride lvlOver = numbering.ChildElements
+            .OfType<LevelOverride>()
+            .Where(l => l.LevelIndex.Value == ilvl)
+            .FirstOrDefault();
+        if (lvlOver?.StartOverrideNumberingValue?.Val is not null)
+            return lvlOver.StartOverrideNumberingValue.Val;
+        AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+            .OfType<AbstractNum>()
+            .Where(a => a.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
+            .First();
+        level = abs.ChildElements
+            .OfType<Level>()
+            .Where(l => l.LevelIndex.Value == ilvl)
+            .FirstOrDefault();  // does not exist in EWHC/Ch/2003/2902
+        if (level?.StartNumberingValue?.Val is not null)
+            return level.StartNumberingValue.Val;
+        return 1;
+    }
+
     private delegate string OneCombinator(string num1);
 
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, OneCombinator combine) {
@@ -261,7 +287,7 @@ class Numbering2 {
     }
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-        int start = lvl.StartNumberingValue?.Val ?? 1;
+        int start = GetStart(main, numberingId, ilvl);
         int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
         n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);  // EWHC/Ch/2011/3553
         string num = FormatN(n, lvl.NumberingFormat);
@@ -279,8 +305,8 @@ class Numbering2 {
     private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl1, int ilvl2, TwoCombinator combine) {
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-        int start2 = lvl2.StartNumberingValue?.Val ?? 1;
+        int start1 = GetStart(main, numberingId, ilvl1);
+        int start2 = GetStart(main, numberingId, ilvl2);
         int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
@@ -305,9 +331,9 @@ class Numbering2 {
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-        int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-        int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-        int start3 = lvl3.StartNumberingValue?.Val ?? 1;
+        int start1 = GetStart(main, numberingId, ilvl1);
+        int start2 = GetStart(main, numberingId, ilvl2);
+        int start3 = GetStart(main, numberingId, ilvl3);
         int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
@@ -340,10 +366,10 @@ class Numbering2 {
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
         Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
-        int start1 = lvl1.StartNumberingValue?.Val ?? 1;
-        int start2 = lvl2.StartNumberingValue?.Val ?? 1;
-        int start3 = lvl3.StartNumberingValue?.Val ?? 1;
-        int start4 = lvl4.StartNumberingValue?.Val ?? 1;
+        int start1 = GetStart(main, numberingId, ilvl1);
+        int start2 = GetStart(main, numberingId, ilvl2);
+        int start3 = GetStart(main, numberingId, ilvl3);
+        int start4 = GetStart(main, numberingId, ilvl4);
         int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
