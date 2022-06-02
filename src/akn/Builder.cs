@@ -6,6 +6,8 @@ using System.Xml;
 
 using Microsoft.Extensions.Logging;
 
+using CSS2 = UK.Gov.Legislation.Judgments.CSS;
+
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Builder {
@@ -221,7 +223,7 @@ class Builder {
         parent.AppendChild(table);
         List<float> columnWidths = model.ColumnWidthsIns;
         if (columnWidths.Any()) {
-            IEnumerable<string> s = columnWidths.Select(w => w.ToString("F2") + "in");
+            IEnumerable<string> s = columnWidths.Select(w => CSS2.ConvertSize(w, "in"));
             string s2 = string.Join(" ", s);
             table.SetAttribute("widths", Metadata.ukns, s2);
         }

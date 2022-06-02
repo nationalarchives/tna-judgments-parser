@@ -72,7 +72,7 @@ class CSS {
             styles.Add("font-family", value);
         }
         if (inline.FontSizePt is not null) {
-            styles["font-size"] = inline.FontSizePt + "pt"; // Add or replace, b/c of Super/SubScript
+            styles["font-size"] = ConvertSize(inline.FontSizePt, "F1", "pt"); // Add or replace, b/c of Super/SubScript
         }
         if (inline.FontColor is not null) {
             string value = ConvertColor(inline.FontColor);
@@ -198,10 +198,17 @@ class CSS {
         }
     }
 
-    private static string ConvertPoints(float? size) {
+    public static string ConvertSize(double? size, string format, string unit) {
         if (size is null)
             return null;
-        return size.Value.ToString("F2").TrimEnd('0').TrimEnd('.') + "pt";
+        return size.Value.ToString(format).TrimEnd('0').TrimEnd('.') + unit;
+    }
+    public static string ConvertSize(double? size, string unit) {
+        return ConvertSize(size, "F2", unit);
+    }
+
+    private static string ConvertPoints(float? size) {
+        return ConvertSize(size, "pt");
     }
     private static void AddPoints(string key, float? size, Dictionary<string, string> css) {
         if (size is null)

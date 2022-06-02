@@ -7,6 +7,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using ParseNS = UK.Gov.Legislation.Judgments.Parse;
+using JudgmentsNS = UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
@@ -185,9 +186,7 @@ internal class WNumber : WNumText, INumber {
     public string LeftIndent {
         get {
             float? inches = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
-            if (inches is null)
-                return null;
-            return inches.Value.ToString("F2") + "in";
+            return JudgmentsNS.CSS.ConvertSize(inches, "in");
         }
     }
     public string FirstLineIndent {
@@ -195,9 +194,7 @@ internal class WNumber : WNumText, INumber {
             float? inches = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, pProps);
             if (inches is null)
                 return null;
-            if (inches == 0.0f)
-                return null;
-            return inches.Value.ToString("F2") + "in";
+            return JudgmentsNS.CSS.ConvertSize(inches, "in");
         }
     }
 

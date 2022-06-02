@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/26/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/26/data.xml" />
-          <FRBRdate date="2022-05-16T15:41:26" name="transform" />
+          <FRBRdate date="2022-06-02T12:28:33" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>26</uk:number>
         <uk:cite>[2022] UKUT 26 (LC)</uk:cite>
-        <uk:parser>0.5.11</uk:parser>
+        <uk:parser>0.6.2</uk:parser>
         <uk:hash>7f18683aca948563abcfd9338a69ec531aba0474dc945261e46954bab481693f</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -53,19 +53,19 @@
 #judgment { font-family: 'Times New Roman'; font-size: 12pt; }
 #judgment .Normal { font-size: 12pt; }
 #judgment .Heading1 { text-align: justify; font-weight: bold; font-size: 12pt; }
-#judgment .Heading2 { text-align: justify; margin-left: 0.50in; font-style: italic; font-weight: bold; font-size: 12pt; }
-#judgment .Heading3 { margin-left: 1.00in; font-weight: bold; font-size: 12pt; }
+#judgment .Heading2 { text-align: justify; margin-left: 0.5in; font-style: italic; font-weight: bold; font-size: 12pt; }
+#judgment .Heading3 { margin-left: 1in; font-weight: bold; font-size: 12pt; }
 #judgment .Heading4 { margin-left: 1.48in; font-style: italic; font-weight: bold; font-size: 12pt; }
-#judgment .Heading5 { margin-left: 2.50in; font-family: Arial; font-size: 11pt; }
+#judgment .Heading5 { margin-left: 2.5in; font-family: Arial; font-size: 11pt; }
 #judgment .Normal2 { text-align: justify; font-size: 12pt; }
-#judgment .Consult { text-align: justify; margin-left: 0.50in; font-family: Arial; font-size: 12pt; }
-#judgment .Consult2 { text-align: justify; margin-left: 0.50in; font-family: Arial; font-size: 10pt; }
+#judgment .Consult { text-align: justify; margin-left: 0.5in; font-family: Arial; font-size: 12pt; }
+#judgment .Consult2 { text-align: justify; margin-left: 0.5in; font-family: Arial; font-size: 10pt; }
 #judgment .Footer { font-size: 12pt; }
 #judgment .Header { font-size: 12pt; }
-#judgment .Norm18space { margin-left: 0.50in; font-size: 12pt; }
+#judgment .Norm18space { margin-left: 0.5in; font-size: 12pt; }
 #judgment .NormalBk { font-family: 'Book Antiqua'; font-size: 12pt; }
-#judgment .NormQuote { text-align: justify; margin-left: 0.50in; font-size: 12pt; }
-#judgment .ORDNOQUO { text-align: justify; margin-left: 1.00in; margin-right: 0.40in; font-size: 12pt; }
+#judgment .NormQuote { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ORDNOQUO { text-align: justify; margin-left: 1in; margin-right: 0.4in; font-size: 12pt; }
 #judgment .ORDINNOSPACE { text-align: justify; font-size: 12pt; }
 #judgment .ORDINARY { text-align: justify; font-size: 12pt; }
 #judgment .Title { text-align: center; font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: Arial; font-size: 16pt; }
@@ -77,9 +77,9 @@
 #judgment .eMailBlock { text-align: center; font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: Arial; font-size: 13pt; }
 #judgment .FootnoteText { font-size: 10pt; }
 #judgment .Heading { font-size: 12pt; }
-#judgment .ListParagraph { margin-left: 0.50in; font-size: 12pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
 #judgment .ParaHeading { font-size: 12pt; }
-#judgment .ParaLevel1 { text-align: justify; margin-left: 0.50in; font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
 #judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
 #judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
 #judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
@@ -89,7 +89,7 @@
 #judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
 #judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
 #judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
-#judgment .Quote { text-align: justify; margin-left: 1.00in; margin-right: 1.00in; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
 #judgment .BodyText { font-family: Calibri, sans-serif; font-size: 11pt; }
 #judgment .Default { font-family: Arial; font-size: 12pt; color: #000000; }
 #judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
@@ -115,9 +115,9 @@
       </presentation>
     </meta>
     <header>
-      <p style="text-align:center;margin-left:6.30in;margin-right:-0.03in;text-indent:-6.30in"><courtType refersTo="#ukut-lc" style="font-weight:bold">UPPER TRIBUNAL (LANDS CHAMBER)</courtType></p>
-      <p style="text-align:center;margin-left:6.30in;margin-right:-0.03in;text-indent:-6.30in"><img src="image1.png" style="width:72pt;height:60.75pt" /></p>
-      <p style="text-align:right;margin-left:6.30in;margin-right:-0.03in;text-indent:-6.30in"><span style="font-weight:bold">UT Neutral citation number: </span><neutralCitation style="font-weight:bold">[2022] UKUT 26 (LC)</neutralCitation></p>
+      <p style="text-align:center;margin-left:6.3in;margin-right:-0.03in;text-indent:-6.3in"><courtType refersTo="#ukut-lc" style="font-weight:bold">UPPER TRIBUNAL (LANDS CHAMBER)</courtType></p>
+      <p style="text-align:center;margin-left:6.3in;margin-right:-0.03in;text-indent:-6.3in"><img src="image1.png" style="width:72pt;height:60.75pt" /></p>
+      <p style="text-align:right;margin-left:6.3in;margin-right:-0.03in;text-indent:-6.3in"><span style="font-weight:bold">UT Neutral citation number: </span><neutralCitation style="font-weight:bold">[2022] UKUT 26 (LC)</neutralCitation></p>
       <p style="text-align:right;margin-right:-0.03in"><span style="font-weight:bold">UTLC Case Numbers: LC-2021-353</span></p>
       <p style="text-align:center;margin-right:-0.02in"><span style="font-weight:bold">TRIBUNALS, COURTS AND ENFORCEMENT ACT 2007</span></p>
       <p style="text-align:justify;margin-right:-0.02in"><span style="font-style:italic;font-weight:bold">HOUSING – CIVIL PENALTY – joint landlords – whether joints landlords are a person in control of or managing an HMO – whether only one civil penalty may be imposed on two joint landlords – sections 72, 249A and 263, Housing Act 2004 – appeal dismissed</span></p>
@@ -441,17 +441,17 @@
           </paragraph>
           <level>
             <content>
-              <p class="Normal2" style="margin-left:4.00in">Martin Rodger QC, </p>
+              <p class="Normal2" style="margin-left:4in">Martin Rodger QC, </p>
             </content>
           </level>
           <level>
             <content>
-              <p class="Normal2" style="margin-left:4.00in">Deputy Chamber President</p>
+              <p class="Normal2" style="margin-left:4in">Deputy Chamber President</p>
             </content>
           </level>
           <level>
             <content>
-              <p class="Normal2" style="margin-left:4.00in"><docDate date="2022-02-01" refersTo="#decision">1 February 2022</docDate></p>
+              <p class="Normal2" style="margin-left:4in"><docDate date="2022-02-01" refersTo="#decision">1 February 2022</docDate></p>
             </content>
           </level>
           <level>
