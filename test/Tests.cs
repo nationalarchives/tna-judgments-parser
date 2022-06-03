@@ -107,6 +107,26 @@ public class Tests {
         return System.Text.Encoding.UTF8.GetString(memStrm.ToArray());
     }
 
+    [Theory]
+    [InlineData(28)]
+    public void TestWithImages(int i) {
+        var docx = ReadDocx(i);
+        Api.Response response = Api.Parser.Parse(new Api.Request(){ Content = docx });
+        var actualXml = response.Xml;
+        var expectedXml = ReadXml(i);
+        actualXml = RemoveSomeMetadata(actualXml);
+        expectedXml = RemoveSomeMetadata(expectedXml);
+        Assert.Equal(expectedXml, actualXml);
+        var assembly = Assembly.GetExecutingAssembly();
+        foreach (var actual in response.Images) {
+            using Stream stream = assembly.GetManifestResourceStream($"test{ i }-{ actual.Name }");
+            using MemoryStream ms = new MemoryStream();
+            stream.CopyTo(ms);
+            byte[] expected = ms.ToArray();
+            Assert.Equal(expected, actual.Content);
+        }
+    }
+
 }
 
 }

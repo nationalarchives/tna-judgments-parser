@@ -11,6 +11,8 @@ using DrawingML = DocumentFormat.OpenXml.Drawing;
 
 using Microsoft.Extensions.Logging;
 
+using Imaging = UK.Gov.NationalArchives.Imaging;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class WImage : IImage {
@@ -77,6 +79,17 @@ public class WImageRef : IImageRef {
             if (styles.Any())
                 Style = string.Join(';', styles);
         }
+        DrawingML.SourceRectangle srcRect = drawing.Descendants().OfType<DrawingML.SourceRectangle>()
+            .Where(sr => sr.Top is not null && sr.Right is not null && sr.Bottom is not null && sr.Left is not null)
+            .FirstOrDefault();
+        if (srcRect is not null) {
+            const double denom = 100000d;
+            double top = srcRect.Top.Value / denom;
+            double right = srcRect.Right.Value / denom;
+            double bottom = srcRect.Bottom.Value / denom;
+            double left = srcRect.Left.Value / denom;
+            Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
+        }
     }
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
         DocumentFormat.OpenXml.Vml.ImageData imageData = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault();
@@ -138,6 +151,8 @@ public class WImageRef : IImageRef {
     }
 
     public string Style { get; }
+
+    public Imaging.Inset? Crop { get; private set; }
 
 }
 
