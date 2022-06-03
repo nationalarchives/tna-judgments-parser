@@ -25,7 +25,7 @@ class EMF {
             byte[] header1 = reader.ReadBytes(RECORD_HEADER_BYTES);
             UInt32 emfPlusRecordType = BitConverter.ToUInt32(header1, 0);
             UInt32 length = BitConverter.ToUInt32(header1, 4);
-            logger.LogDebug("emf record of type { type } ({ length } bytes)", emfPlusRecordType, length);
+            logger.LogDebug("emf record of type {type} ({length} bytes)", emfPlusRecordType, length);
             byte[] data = reader.ReadBytes(((int) length) - RECORD_HEADER_BYTES);
             switch (emfPlusRecordType) {
                 case 1: // EmfPlusRecordType.EmfHeader:
@@ -37,7 +37,7 @@ class EMF {
                     records.Add(record);
                     break;
                 default:
-                    logger.LogWarning("unhandled EMF record type { type }", emfPlusRecordType);
+                    logger.LogWarning("unhandled EMF record type {type}", emfPlusRecordType);
                     break;
             }
         }
