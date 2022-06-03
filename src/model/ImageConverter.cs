@@ -22,7 +22,7 @@ class ImageConverter {
     private static void ConvertEmfFiles(IJudgment jugdment) {
         List<IImage> images = new List<IImage>();
         foreach (IImage image in jugdment.Images) {
-            logger.LogDebug("image { name }", image.Name);
+            // logger.LogDebug("image {name}", image.Name);
             if (!image.Name.EndsWith(".emf") && !image.Name.EndsWith(".wmf")) {
                 images.Add(image);
                 continue;
@@ -34,11 +34,11 @@ class ImageConverter {
                 converted = WMF.Convert(image.Content());
 
             if (converted is null) {
-                logger.LogDebug("{ name } not converted", image.Name);
+                logger.LogDebug("{name} not converted", image.Name);
                 images.Add(image);
                 continue;
             }
-            logger.LogDebug("{ name } converted to { type }", image.Name, Enum.GetName(typeof(WMF.ImageType), converted.Item1));
+            logger.LogInformation("{name} converted to {type}", image.Name, Enum.GetName(typeof(WMF.ImageType), converted.Item1));
             if (converted.Item1 == WMF.ImageType.BMP) {
                 string newName = image.Name + ".bmp";
                 foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
@@ -65,7 +65,7 @@ class ImageConverter {
         foreach (IImage image in jugdment.Images) {
             var allRefs = Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name);
             if (!allRefs.Any()) {
-                logger.LogWarning("removing image { name }", image.Name);
+                logger.LogWarning("removing image {0}", image.Name);
                 continue;
             }
             var uncroppedRefs = allRefs.Where(r => r.Crop is null);
@@ -76,7 +76,7 @@ class ImageConverter {
             foreach (var croppedRef in croppedRefs) {
                 n += 1;
                 string croppedSrc = MakeCroppedSrc(croppedRef.Src, n);
-                logger.LogInformation("cropping { src } to ({ top },{ right },{ bottom },{ left })", croppedSrc, croppedRef.Crop.Value.Top, croppedRef.Crop.Value.Right, croppedRef.Crop.Value.Bottom, croppedRef.Crop.Value.Left);
+                logger.LogInformation("cropping {0} to ({1}, {2}, {3}, {4})", croppedRef.Src, croppedRef.Crop.Value.Top, croppedRef.Crop.Value.Right, croppedRef.Crop.Value.Bottom, croppedRef.Crop.Value.Left);
                 croppedRef.Src = croppedSrc;
                 var converted = new ConvertedImage {
                     Name = croppedSrc,
