@@ -31,7 +31,7 @@ internal class WMF {
             MetaPlaceable placeable = new MetaPlaceable { Data = reader.ReadBytes(MetaPlaceable.Size) };
         }
         MetaHeader header = new MetaHeader { Data = reader.ReadBytes(MetaHeader.Size) };
-        logger.LogDebug("wmf file of type { type }", header.Type);
+        logger.LogDebug("wmf file of type {type}", header.Type);
 
         List<WmfBitmatRecord> records = new List<WmfBitmatRecord>(1);
 
@@ -40,13 +40,13 @@ internal class WMF {
             UInt32 size = BitConverter.ToUInt32(beginning, 0);
             UInt16 type = BitConverter.ToUInt16(beginning, 4);
             byte[] rest = reader.ReadBytes((int) size * 2 - 6);
-            logger.LogDebug("wmf record of type { type } ({ size } bytes)", type.ToString("X"), size * 2);
+            logger.LogDebug("wmf record of type {type} ({size} bytes)", type.ToString("X"), size * 2);
             if (type == 0xF43) {    // META_STRETCHDIB
                 MetaStretchDIB r = new MetaStretchDIB { Data = rest };
                 records.Add(r);
                 continue;
             }
-            logger.LogWarning("unhandled WMF record type { type }", type.ToString("X"));
+            logger.LogWarning("unhandled WMF record type {type}", type.ToString("X"));
         }
         if (!records.Any()) {
             logger.LogWarning("no WMF bitmap records");
@@ -170,7 +170,7 @@ internal struct DeviceIndependentBitmap {
             Array.Copy(Data, Offset, bmp, FileHeaderSize, Data.Length - Offset);
             return new Tuple<ImageType, byte[]>(ImageType.BMP, bmp);
         }
-        logger.LogWarning("unhandled compression type { x }", Header.Compression);
+        logger.LogWarning("unhandled compression type {0}", Header.Compression);
         return null;
     }
 
