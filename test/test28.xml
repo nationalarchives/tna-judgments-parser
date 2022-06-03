@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/qb/2022/1199" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/qb/2022/1199" />
+          <FRBRdate date="2022-05-16" name="judgment" />
+          <FRBRauthor href="#ewhc-qbd" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="1199" />
+          <FRBRname value="CLEARCOURSE PARTNERSHIP ACQUIRECO LIMITED v MANOJ JETHWA" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199" />
+          <FRBRdate date="2022-05-16" name="judgment" />
+          <FRBRauthor href="#ewhc-qbd" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199/data.xml" />
+          <FRBRdate date="2022-06-03T14:32:20" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-05-16" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-qbd" href="https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court" showAs="The Queen's Bench Division of the High Court" shortForm="The Queen's Bench Division" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="clearcourse-partnership-acquireco-limited" href="" showAs="CLEARCOURSE PARTNERSHIP ACQUIRECO LIMITED" />
+        <TLCPerson eId="gerard-john-gualtieri" href="" showAs="GERARD JOHN GUALTIERI" />
+        <TLCPerson eId="joshua-barrett-rowe" href="" showAs="JOSHUA BARRETT ROWE" />
+        <TLCPerson eId="manoj-jethwa" href="" showAs="MANOJ JETHWA" />
+        <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-the-honourable-mr-justice-saini" href="/judge-the-honourable-mr-justice-saini" showAs="THE HONOURABLE MR JUSTICE SAINI" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-QBD</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>1199</uk:number>
+        <uk:cite>[2022] EWHC 1199 (QB)</uk:cite>
+        <uk:parser>0.7.0</uk:parser>
+        <uk:hash>3711e3a04086f49deb18d4ebbb01a29844464ceabc9d835623e8dad2f485fac5</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .NoSpacing { font-size: 11pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 11pt; }
+#judgment .NormalWeb { font-size: 12pt; }
+#judgment .HeaderChar { font-family: Univers; font-size: 12pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0563C1; }
+#judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p class="Header" />
+    </coverPage>
+    <header>
+      <p class="CoverText" style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWHC 1199 (QB)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>QB-2022-001077</docketNumber></p>
+      <p class="CoverMain">IN THE HIGH COURT OF JUSTICE</p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">QUEEN'S BENCH DIVISION</span></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">MEDIA AND COMMUNICATIONS LIST</span></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2022-05-16" refersTo="#judgment">16/05/2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-the-honourable-mr-justice-saini">THE HONOURABLE MR JUSTICE SAINI</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <blockContainer>
+              <num style="font-weight:bold;margin-left:0.5in;text-indent:-0.25in">(1)</num>
+              <p style="text-align:center;margin-left:0.5in;text-indent:0.12in"><party refersTo="#clearcourse-partnership-acquireco-limited" as="#claimant" style="font-weight:bold">CLEARCOURSE PARTNERSHIP ACQUIRECO LIMITED</party></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-weight:bold;margin-left:0.5in;text-indent:-0.25in">(2)</num>
+              <p style="text-align:center;margin-left:0.5in;text-indent:0.12in"><party refersTo="#gerard-john-gualtieri" as="#claimant" style="font-weight:bold">GERARD JOHN GUALTIERI</party></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-weight:bold;margin-left:0.5in;text-indent:-0.25in">(3)</num>
+              <p style="text-align:center;margin-left:0.5in;text-indent:0.12in"><party refersTo="#joshua-barrett-rowe" as="#claimant" style="font-weight:bold">JOSHUA BARRETT ROWE</party></p>
+            </blockContainer>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#claimant">Claimants</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+            <p style="text-align:center"><party refersTo="#manoj-jethwa" as="#defendant" style="font-weight:bold">MANOJ JETHWA</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right"><role refersTo="#defendant">Defendant</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Alexandra Marzec </span>and <span style="font-weight:bold">Gervase De Wilde </span>(instructed by<span style="font-weight:bold"> Gibson &amp; Co Solicitors Limited</span>) for the <span style="font-weight:bold">Claimants</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">James Harris (</span>instructed via<span style="font-weight:bold"> Direct Access) </span>for the <span style="font-weight:bold">Defendant</span></p>
+      <p style="text-align:center">Hearing date: 12 May 2022</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center">I direct that pursuant to CPR PD 39A para 6.1 no official shorthand note shall be taken of this Judgment and that copies of this version as handed down may be treated as authentic.</p>
+      <p style="text-align:center">.............................</p>
+      <p style="text-align:center">THE HONOURABLE MR JUSTICE SAINI</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p><span style="font-weight:bold">MR JUSTICE SAINI :</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-indent:0.5in">This judgment is in 6 main parts with an annexe as follows:</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">I.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">Overview -</span><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">paras. [1]-[7]</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">II.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">The Facts -</span><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">paras. [8]-[30]</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">III.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">The Claim and Defence -</span><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">paras. [31]-[35]</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">IV.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">The Law -</span><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">paras. [36]-[42]</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">V.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">Analysis -</span><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">paras. [43]-[55]</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">VI.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">Conclusion - </span><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">paras. [56]-[58].</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">Annexe: this is a confidential annexe which contains, in part, the information which is the subject of the claim. The restriction on disclosure will remain in place pending trial or further order.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">I.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Overview</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">1.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">These proceedings concern claims for breach of confidence, misuse of private information and data protection legislation in an unusual context. At a high level, the context may be described as follows. The complaint is of alleged improper threats made by a commercial counterparty (the Defendant) to disclose the content of private conversations between representatives of the other side to negotiations (the Claimants) which were overheard by the Defendant (from another room) in the course of a business acquisition meeting. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">2.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Following a without notice hearing, Stacey J granted an interim non-disclosure order restraining disclosure of such private conversation (and any recordings of them) on 1 April 2022 (“the INDO”).  This is my judgment on the return day. The Claimants seek continuation of the INDO. The Defendant opposes that and argues that the INDO should never have been granted.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">3.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Unfortunately, a transcript of the without notice hearing before Stacey J was not available at the hearing before me but I did have the Claimants’ solicitor’s note of the hearing, which is reasonably detailed but does not always clearly distinguish between Counsel’s submission and what was said by the Judge. The INDO was continued by a consent order made by Nicklin J on 11 April 2022, pending the contested hearing before me on 12 May 2022.  Pursuant to Nicklin J’s further directions, the parties have served pleadings (in addition to a number of additional witness statements). As often happens, the discipline of having to plead their cases has caused the parties to focus more clearly on their detailed legal and factual positions. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">4.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Before Stacey J, an anonymisation order was made with matching restrictions on access to court documents. With the agreement of the parties, I discharged that order at the start of the hearing given that it was no longer justifiable or necessary.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">5.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">For reasons set out below, I have decided to continue the injunction until trial or further order but on modified terms which differ from the terms sought by the Claimants in the draft order presented to me. I have concerns about the lack of clarity in the language of the restraints and that is related to the rather odd factual position in this case, where the Claimants cannot with precision identify the confidential information in issue. I referred to these concerns at the start of the hearing and invited submissions as to the potential modification to the scope of the injunction. Counsel for the Claimants accepted my suggestion as to how the injunction might be modified but Counsel for the Defendant, as he was entitled to do, maintained a root and branch opposition to any form of relief. The Defendant also declined to give any form of undertaking (despite having agreed in correspondence not to disclose anything to any third party).</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">6.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">I will begin with an outline of the facts. This case is at an early stage and a range of important factual issues are in dispute. Nothing I say represents any form of concluded finding but I will need to form a view as to the merits of the claims given that the enhanced test in relation to an INDO has to be applied. Section 12(3) of the Human Rights Act 1998 is engaged and the Claimants need to show more than merely the standard “serious issue to be tried” and need to satisfy me they are “more likely than not” to succeed: </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Cream Holdings v Banerjee</span><span style="font-family:'Times New Roman';font-size:12pt"> [2005] 1 AC 252 at [22].</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">7.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">As appears below, there is a substantial underlying commercial dispute between the parties which is not of direct relevance but I will need to refer to it to provide context. I should record that Counsel for the Defendant forcefully submitted that the current injunction proceedings are in effect no more than a tactical step and oppressive act in that overall dispute. I cannot form any view as to that matter. I can only proceed on the basis of the evidence and arguments before me in relation to the INDO.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">II.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:1in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Facts</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Parties </span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">8.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The First Claimant is a technology business which acquires and integrates software businesses involved in payment processing. The Second Claimant (GG) is the Chief Executive Officer of the First Claimant. The Third Claimant (JR) is a Director of the First Claimant and its Head of Mergers and Acquisitions. The Defendant (D) works in the Financial Technology Sector. Before 30 September 2020, he was part-owner and the Chief Executive Officer of a company in the same sector as the First Claimant, E-Novations (London) Limited ("the Target"). The First Claimant bought the Target pursuant to a Share Purchase Agreement (“SPA”) dated 30 September 2020. </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ListParagraph"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">13 August 2020: the meeting and the overheard conversations</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">9.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">In the course of the negotiations that concluded with the SPA, GG and JR (on behalf of the First Claimant) and D held an in-person meeting at the offices of the Target in Loughton on 13 August 2020. The major issue was the price of the Target within the context of a proposed transaction on the basis of a multiple of EBITDA. Within the Loughton offices there is a standard CCTV system that makes audio-visual recordings of events in those offices. There is a conflict of evidence as to how conspicuous that system was and what GG and JR knew (or should have appreciated) about such recording. The photographic evidence before me shows that entrants to the building are given a notice of CCTV recording, as is now commonplace (a sign says “CCTV in operation”). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">10.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The meeting room was also equipped with a corner ceiling “bubble” CCTV camera which D says would have been visible to anyone in that room. GG and JR say they did not notice this camera. It is however clear to me that any suggestion that CCTV recording in that room was “covert” cannot be correct.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">11.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The negotiating meeting was attended by GG, JR and D. At some point during the meeting (probably at around 2.30pm) it is agreed that D left GG and JR alone in the meeting room. It is not clear for how long D was away. It may have been for a very short while because there is some evidence he was going to his office (right next door to the meeting room) just to collect some papers. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">12.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">While D was out of the meeting room, GG and JR say they had what is described as an “unguarded and candid” private conversation in relation to the negotiation, including their plans for EN and their ongoing negotiating strategy. I will return to the broad subject-matter of what they say they discussed but they cannot now recall with any precision the detail. That is not surprising given that these were oral discussions some 20 months ago. In their pleaded case, supported by the witness statements, their private conversation is said to be on the following 4 broad topics (I will call these “the four areas” below):</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote">“(i) the progress of the Purchase Negotiations generally, and at the August Meeting; (ii) the Second and Third Claimants' strategy for the remainder of the August Meeting and the Purchase Negotiations; (iii) the First Claimant's plans for the future of the Target and associated commercially sensitive information; and (iv) the Second and Third Claimants' impressions of the Defendant, his negotiating strategy, his lack of fitness to remain as Chief Executive Officer of the Target in the event that the Purchase Negotiations were successful, and the associated possibility that the Defendant might be fired if the Target was acquired by the First Claimant”.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">13.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">On D’s evidence, when he left the meeting room leaving GG and JR alone, he “could clearly hear” what they were saying through the wall of his adjoining room. What he says he heard them say is in the confidential annexe.  This is text I have taken from the Defence (para. 8) and I will refer to the first matter in the annexe as “Item A” and the second as “Item B”. While there is some overlap between these items and the four areas that the Claimants say were the subject of private conversations between GG and JR, Items A and B are much more limited. D argues that these matters are not confidential. For their part, the Claimants deny Items A and B were comments made by either GG or JR.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">14.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">In his evidence, D says he did not wish to set out in writing what may not have been intended to be heard by him and “which the Second and Third Defendants were not tactful enough to say quietly”. He says that “with due regard to whether I may simply have been too sensitive I found what I heard rather disturbing”. On his own evidence, D’s actions when he heard these matters were somewhat strange. He said that on an “impulse which I cannot logically explain, probably because it was all I could do, I pressed the screenshot button on the visual recording system”. That screenshot is in evidence before me (and appears below when I set out the alleged threat).  His evidence is that there was no recorded soundtrack of what GG and JR were saying, although “…what the Second and Third Defendants had said was said loud enough for me with unaided hearing to hear through the partition wall”.  He adds that he was “frankly embarrassed to have heard” what was said but said nothing to GG and JR because part of the intended share purchase agreement was that he work with the Claimants after the purchase, and he wanted relations to be good.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">15.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">On the evidence before me the screenshot seems to have been taken from a livestream of the CCTV footage from the meeting room available on D’s office computer. He must have taken positive steps to call up and view, and to take a photo of GG and JR.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">A dispute arises</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">16.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Following the meeting and the execution of the SPA, a commercial dispute arose between CC and D concerning performance of the SPA. Negotiations to settle that dispute took place in early 2022 and the dispute was the subject of a letter of claim from the First Claimant to D dated 3 March 2022. There are, putting matters neutrally, substantial financial disputes and intellectual property ownership disputes between the parties. In these proceedings, D has made a Counterclaim, as I outline below, in respect of certain aspects of that dispute.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ListParagraph"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">3 March 2022: settlement discussions</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">17.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">On 3 March 2022, GG and D spoke to try to resolve the dispute. There is a major conflict of evidence as to what took place on that day. GG says that there was an in-person meeting at the First Claimant’s offices in East Cheap, London. GG’s evidence is that at that meeting D made an improved offer; and that he (GG) phoned D to accept that offer in principle that same evening, but that the agreement later broke down over the details.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">18.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">By contrast, in his evidence D does not refer to the in-person meeting but does refer to the telephone conversation between himself and GG.  D states that in the course of that conversation GG was aggressive at first but tried to sweeten the conversation by suggesting a meeting over a glass of wine; by this time “it was clear that relations had broken down”. D says he recalled what GG and JR had said on 13 August 2020 and that he reminded GG of this. D adds that GG denied that he and JR had even been alone in a meeting room at the Target’s offices on 13 August 2020; and “by way of showing that his denial was factually untrue”, D thought to use the screenshot.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">19.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The Claimants’ case is that this untrue and implausible version of events is asserted in order to try to explain away the threat he made a month later, on 30 March 2022.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ListParagraph"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">30 March 2022: alleged threat</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">20.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">It is agreed that after the exchanges of 3 March 2022 the settlement negotiations continued, and that nearly a month later, on 30 March 2022, the Claimants sent D an offer which was stated to be an ultimatum: either he accepted the offer by 1 April 2022 or legal proceedings would begin. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">21.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt"> D responded to this ultimatum by text message explaining he was “out of the country”. He then sent a further message sending the screenshot he had taken some 19 months earlier, on 30 August 2020 (of GG and JR in the meeting room); and a further text below the screenshot stating, “You should know this doesn’t do you any favours. Whilst I walked out and what you both say should be interest for social” [sic]. GG responded stating that D should take legal advice before making such threats. D responded: “It’s all done and you should also think”.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">22.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">In order to put the alleged threat into some context, I reproduce below the exact terms of the exchange and photograph which are in evidence before me:</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">23.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in"><img src="image2.crop1.png" style="width:339.75pt;height:653.35pt" /></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">24.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The Claimants say that the combination of the photograph and accompanying messages indicated to them that D had covertly filmed and recorded GG and JR talking privately in that meeting room, whilst he was out of the room and that he regarded what they said as showing them in a bad light. They say D’s texts threaten to release the recording onto social media to embarrass JR and GG (and it is to be noted, they say, that D did not deny in his texts that he was making a threat). They argue that the commercial context of the threat strongly implied that D would carry out this threat unless the Claimants offered a resolution to the commercial dispute that was more favourable to him than what was currently on offer. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">25.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">D contests this. He links the communication with the 3 March 2022 call with GG where he referred to a photo and says “…subsequently I did find the photo and sent the Second Claimant a copy of the screen shot”, together with the message I have set out above in paragraph 21.  His evidence is that did not mean that he intended to put the photo on any social or other media, but this was instead a reference to GG’s proposal of a social meeting, which in the context of their awkward and difficult relationship, would have been either pointless, or a total charade, or possibly have made matters even worse. In short, D says this was not an attempt at blackmail. It was a response to hypocrisy. It was also emphasised on D’s behalf that the screenshot image has not been sent to any third party.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">26.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Although I need to return to the alleged threat below, I should for convenience break the narrative at this stage and state my own conclusions (which are necessarily provisional) as to the facts. I consider the Claimants are likely to establish the following at trial: </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">(i)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">D was making some form of threat of disclosure of something adverse to the Claimants. This may not have been on social media but would have been disclosure to a third party of material which was embarrassing or commercially sensitive. Otherwise, the threat would be empty.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">(ii)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">The material which was the subject of this threat of disclosure was things said between GG and JR at the 13 August 2020 meeting while D was out of the room. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">(iii)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:1in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">The purpose of showing the photo was to suggest some form of evidential basis for, or recording of, the discussion which it was threatened to be revealed. It was a way of making the threat appear cogent and serious.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">27.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The Claimants made their without notice application and the INDO was granted by Stacey J on 1 April 2022.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">28.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Following service of the INDO on D, D wrote to GG by email dated 6 April 2022. He said his text message of 30 March 2022 “had no clarity and easy to interpret” [sic]. He stated that “for clarity and peace of mind, I respect our confidentiality and that will never break, and I can confirm that it’s the only picture I have, there is no video or audio recording”. He apologised to GG.  This attitude is somewhat different to the more combative approach taken in his evidence.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">29.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">On 12 April 2022, the Claimants wrote to D asking him a series of questions as to his legal and factual position. These questions were put to D to enable the Claimants to plead their Particulars of Claim taking into account D’s position, as would be usual in a claim following pre-action correspondence. They included asking D how he came to have a screenshot of the meeting and whether he recorded the meeting on 13 August 2022 or listened to the private discussions between GG and JR at the meeting; and the legal basis for his processing of GG’s and JR’s personal data in the screenshot and/or recording. D failed to provide any of the information asked for before 22 April 2022. Particulars of Claim were duly served on 22 April 2022.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">30.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">On the same day, D served a witness statement that set out his case in response to the injunction application. There was an issue as to whether D failed to comply with paragraph 8 of the INDO (requiring disclosure of those to whom the information had been provided by D). By the date of the hearing before me, there was no issue in this regard, and I say nothing further about that matter. There has been compliance.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">III.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:1in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Claim and Defence</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">31.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The claims made by the Claimants are for breach of confidence, misuse of private information and breach of the GDPR and (from 1 January 2021), the UKGDPR. The GDPR claim concerns the screenshot alone. The Claimants, for the purposes of the hearing before me, did not press the argument that D had made recordings of the meeting. D has said in both his witness statements and Defence (confirmed by a statement of truth) that there are no audio or visual recordings beyond the single screenshot.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">32.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The Claimants submit that, on the evidence before the Court, they would be more likely than not to succeed at trial on a claim for misuse of private information, breach of confidence, and breach of statutory duty pursuant to the GDPR. They argue that the information as to the contents of private discussions in the course of business negotiations is obviously private and derives from private and confidential circumstances, and in the circumstances of this case there is a real risk of unlawful disclosure. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">33.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">In his Defence, D takes a number of points:</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(i)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">that GG and JR gave “implied consent” to being recorded;</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(ii)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.25in"><span style="font-family:'Times New Roman';font-size:12pt">that what GG and JR said when in private was not “in a private meeting” because they made “simply casual comments”;</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(iii)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.38in"><span style="font-family:'Times New Roman';font-size:12pt">that D “did not listen to what was being said until he heard remarks disparaging of himself”;</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(iv)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.25in"><span style="font-family:'Times New Roman';font-size:12pt">GG and JR, to the best of D’s recollection, spoke only words set out in paragraph 8 of the Defence (which I have set out in the confidential annexe, Items A and B);</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(v)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">that the comments made by GG and JR in private were not private and confidential information;</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(vi)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.25in"><span style="font-family:'Times New Roman';font-size:12pt">that D never made a threat to disclose “to the world at large” any of the material he had heard through the wall.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">34.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">These points were forcefully developed in the submissions of Counsel for D. He also emphasised, rightly in my judgment, the lack of clarity as to the nature of the confidential information in issue. He argued that not only is the injunction too vague but also that the Claimants have failed to show confidentiality of the material they seek to protect (specifically Item A and Item B), or detriment if that material was disclosed. It was also argued that the screenshot is anodyne. He also submitted on behalf of D that there was no risk of disclosure.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">35.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">D has pleaded a Counterclaim in respect of an alleged failure by the First Claimant to comply with the earn-out provisions of the SPA, claiming a sum of £7,128,000 plus interest. There is an issue as to whether there is distinct dispute resolution mechanism in the SPA governing this dispute. That is not a matter before me.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;margin-left:1in;text-indent:-0.5in">IV.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Law</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">36.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">As to breach of confidence, the ingredients of such a claim were not in dispute. I was referred to the helpful summary in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Toulson &amp; Phipps on Confidentiality </span><span style="font-family:'Times New Roman';font-size:12pt">(4th Ed.) at para. 2-002. In short, the Claimants need to establish that the content of the oral discussions between GG and JR had the necessary quality of confidence, that D came to know of what was being said in circumstances importing an obligation of confidence, and that there has been unauthorized use or a threat to use that information. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">37.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Given the focus of the arguments, I will address the second ingredient first. As to whether information has been imparted in circumstances importing an obligation of confidence, I must approach that question objectively and by reference to a reasonable person standing in the position of the recipient. As explained in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">The Law of Privacy and the Media</span><span style="font-family:'Times New Roman';font-size:12pt"> at para 4.20, “imparting” in the context of the second element of the tort should not be read restrictively, so that a duty can arise even if the communication of the information was made “accidentally, or merely from acquisition”. A duty of confidence arises when confidential information comes to the knowledge of a person in circumstances where he has notice, or is held to have agreed, that the information is confidential, with the effect that it would be just in all the circumstances that he should be precluded from disclosing the information to others. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">38.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">As a matter of principle, there is no reason why a person overhearing a private discussion through a window or wall, and who is aware of the context and private nature of the discussion, should not come under a duty of confidence. The fact that he makes no specific effort to eavesdrop is not determinative in this regard. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">39.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Returning to the first ingredient (does the information have the necessary quality of confidence), for the purposes of a claim in breach of confidence, it is not necessary for a claimant to identify which particular document is or is not confidential or does or does not contain confidential information: </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Imerman v Tchenguiz</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> [2010] EWCA Civ 908 at [78]. However, that is subject to the cardinal rule as to clarity in the terms of an injunction and the need for confidential information to be clearly identified: see </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#000000">Toulson</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> at para. 4-008. In a case such as the present, I consider a claimant should be entitled (where the information cannot be precisely recalled because it was orally communicated) to identify the subject-matter of the information. I will return to this issue below.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">40.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The relevant principles relating to the familiar “two stage test” to determine whether there has been a misuse of private information were summarised by the Supreme Court in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">ZXC v Bloomberg LP</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#000000"> </span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">[2022] UKSC 5; [2022] 2 W.L.R. 424 at [45]-[62]. At the first stage the Court determines whether the claimant has a reasonable expectation of privacy in relation to the information in question; if so, at the second stage, the Court balances the claimant’s privacy right against the rights of others, most commonly the defendant’s right to freedom of expression. At [60] the Supreme Court in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#000000">ZXC</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> referred to the test for a reasonable expectation of privacy derived from </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Murray v Express Newspapers Plc</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> [2008] EWCA Civ 446; [2009] Ch. 481, observing: </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">“50. As stated in Murray at para 36, the question whether there is a reasonable expectation of privacy is a broad one, which takes account of all the circumstances of the case". Such circumstances are likely to include, but are not limited to, the circumstances identified at para 36 in Murray -the so-called Murray factors". These are: (1) the attributes of the claimant; (2) the nature of the activity in which the claimant was engaged; (3) the place at which it was happening; (4) the nature and purpose of the intrusion; (5) the absence of consent and whether it was known or could be inferred; (6) the effect on the claimant; and (7) the circumstances in which and the purposes for which the information came into the hands of the publisher.”</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">41.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">When considering the second stage and the right to freedom of expression of the defendant, it has been said that “blackmail represents a misuse of free speech rights”: </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">LJY v Persons Unknown</span><span style="font-family:'Times New Roman';font-size:12pt"> [2017] EWHC 3230 at [29].</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">42.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">For the purposes of the General Data Protection Regulation (EU) 2016//679 (“the GDPR”) and the UK GDPR (which came into effect on 1 January 2021) which is, so far as material, in the same terms, personal data and data processing are defined in Article 4. There is no issue that personal data is in issue and processing has taken place. Article 5 UKGDPR requires that personal data shall be processed in accordance with the data protection principles, and these include at Article 5(1)(a) that personal data shall be “processed lawfully, fairly and in a transparent manner in relation to the data subject (‘lawfulness, fairness and transparency’)” and at Article 5(1)(b) that they shall be “collected for specified, explicit and legitimate purposes”. In order for processing to be lawful, one of the criteria at Article 6 must apply. These include, as relevant, at Article 6(1)(a) that “the data subject has given consent to the processing of his or her personal data for one or more specific purposes” or at Article 6(1)(f) that “processing is necessary for the purposes of the legitimate interests pursued by the controller or by a third party”. </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">V.</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Analysis</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ListParagraph" style="text-align:justify"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Breach of confidence</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">43.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Although GG and JR cannot now recall the precise details of what they discussed between themselves (beyond the subject-matter - the four areas), in my judgment a reasonable person in D’s shoes would appreciate that a conversation held behind closed doors, between individuals on the opposite side to him in a business negotiation on these subjects, was both private and confidential. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">44.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Further, I am satisfied that the subject-matter (the four areas) of these conversations was such as to attract confidentiality. I note that D does not deny that he heard them discussing business matters; indeed he pleads in paragraph 8 of the Defence that they did so. Upon the evidence, I cannot conclude that GG and JR were simply making “</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">casual comments</span><span style="font-family:'Times New Roman';font-size:12pt">”, if that means comments of a trivial or anodyne nature such as are not worthy of protection. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">45.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">I consider that the Claimants have sufficiently defined the confidential information in their pleading (even if the terms of the injunction they seek are not appropriate: see my discussion below). I am satisfied they are likely to succeed at trial in showing that the four areas were discussed by them and D heard what they said.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">46.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">I note that D alleges in his Defence that he “did not listen to what was being said until he heard remarks disparaging of himself”. I find that difficult to follow: if D was not listening he would not have heard what was said about him. Furthermore, it is apparent from D’s own case that whilst GG and JR were alone in the meeting room D must have gone to a computer screen showing a livestream of the CCTV and deliberately viewed them. Unless he was viewing a screen showing the two of them, he could not have made the “screenshot”. I consider it likely he was watching them on screen at the same time as listening to them through the wall; as he states in his first witness statement, he “could clearly hear what the Second and Third Claimants were saying”, although he denies using the audio function of the CCTV livestream to listen to them electronically.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">47.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Whether or not D was actively eavesdropping, the duty of confidence does not arise only when a person actively seeks out private and confidential information. A duty of confidence may arise when a person has notice that the information they receive is of a confidential nature, and D knew that GG and JR were having a private discussion. In the context of the commercial negotiations taking place on 13 August 2020, it would in my judgment be obvious to D that what was being discussed between GG and JR (when he had left) was private and confidential insofar as it extended to aspects of the proposed transaction and commercial intentions and future plans for the Target.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">48.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">I am also satisfied that disclosure of the contents of their private discussions is likely to be detrimental to them and to the First Claimant. This is so whether or not the information is relayed accurately or truthfully. I cannot see any public interest in the disclosure of information as to GG’s and JR’s private discussions. There is, however, an important public interest in protecting the confidentiality of private and commercially sensitive conversations. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">49.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">In my judgment, the nature of the threat of disclosure has not changed since the hearing before Stacey J, at which the judge accepted that the text messages sent by D were reasonably to be understood as making a threat. The threat remains real. D has refused to give an undertaking in relation to information about the contents of GG/JR’s private discussions, even in the modified form I suggested at the hearing. I cannot at an interim stage decide whether the threat of disclosure was to be via social media (that is certainly an available reading) but that does not seem to me to matter given that I consider any reading indicates a threatened disclosure to third parties.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">50.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The Claimants are likely to succeed on the breach of confidence claim.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ListParagraph"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Misuse of private information</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">51.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">As to misuse of private information, a person in the shoes of GG and JR would regard their conversation, behind closed doors, as giving rise to a reasonable expectation of privacy.  At the second stage of the inquiry, the disclosure of the private information on the four areas does not make any contribution to a debate of general interest, nor is there any other realistic justification for it. The claim in misuse of private information is more likely than not to succeed at trial.  Further, although I need to weigh the freedom of expression rights of D against these privacy rights, D’s rights in these circumstances are limited. </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify;text-indent:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">GDPR </span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">52.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The screenshot contains GG’s and JR’s personal data. That specific data has been compiled and retained without their consent or on the basis of any other legitimate interest of D’s. The Claimants rely on the fact that pursuant to Article 4(11) UKGDPR any consent must be by way of a “freely given, specific, informed and unambiguous indication of the data subject’s wishes by which he or she, by a statement or by a clear affirmative action, signifies agreement to the processing of personal data relating to him or her”. D did not obtain and has not purported to obtain such consent to processing GG and JR’s personal data in the form he stored it via the screenshot. The general CCTV warning does not assist in showing GG and JR consented to this distinct private and personal copying and storage by D of their images. The data protection claim is likely to succeed at trial.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Scope of the injunction</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">53.</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The draft terms of the injunction sought at the return day were framed in terms that the D was to be restrained from disclosing:</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(1)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">Any information or purported information concerning the contents of any private conversations between the Second and Third Claimant on 13 August 2020 at the offices of E-Novations, Unit 14, York House, Langston Road, Loughton, Essex. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in;text-indent:-0.25in">(2)</num>
+          <content>
+            <p class="NoSpacing" style="text-align:justify;margin-left:0.75in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">Any personal data relating to the Second and/or Third Claimant compiled or created or made by the Defendant on 13 August 2020, including visual images of the Second and/or Third Claimant attending the offices of E-Novations, Unit 14, York House, Langston Road, Loughton, Essex. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">54.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The argument before me focussed on the first limb. The second limb was not controversial as regards scope. As I said at the outset of the hearing, I provisionally considered that as drafted this restraint was too vague. It is a cardinal rule that a defendant should know with certainty what he is and is not allowed to do. I do not consider the term “private conversations” without any further and more precise identification of subject-matter to be sufficiently certain. It suffers from being both too broad (apt to cover something like a discussion of the weather - which is not worthy of protection) but also too vague for the court to police.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">55.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Although GG and JR cannot recall precisely what they said they did identify (as I have set out above) the four areas of their private discussions. I am satisfied that a modified form of injunction confined to the four areas will be sufficiently certain and would also exclude obviously non-confidential matters. The injunction should track the language I have set out at [12] above. I consider Items A and B to fall within these restrictions, but for the avoidance of any doubt, they should be the subject of an express provision in the order.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify;margin-left:0.11in;text-indent:0.39in"><span style="font-weight:bold">VI.</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Conclusion</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">56.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">I am satisfied that in respect of each of the causes of action in issue the Claimants are more likely than not (within the </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Cream Holdings</span><span style="font-family:'Times New Roman';font-size:12pt"> test) to succeed at trial in relation to injunctive relief. I also have an overall discretion to exercise in deciding to grant or withhold interim relief. On the facts, the discretion falls to be exercised to restrain publication.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">57.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">On the evidence currently before the Court, I consider D has thus far conducted himself in a way that is unattractive. Even if D could not help but overhear what was being said by GG and JR when they believed they were alone, for reasons D cannot explain (“</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">an impulse which I cannot logically explain</span><span style="font-family:'Times New Roman';font-size:12pt">”), he took a souvenir of that surveillance by way of a screenshot of a CCTV livestream.  He then kept this souvenir on his mobile phone for a period of some 19 months and sought to use the screenshot as some form pressure point in negotiations over performance of the SPA, by sending a text that, on an objective construction, threatened the use/release of GG and JR’s private conversation. I consider that on the evidence before me the screenshot was used to add credence to the claim that he knew the content of the private discussions. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">58.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Finally, insofar as the information D says he overheard is relevant to his legal claims, I will direct, as agreed by the Claimants, that the injunction has a “carve out” allowing such use. </span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

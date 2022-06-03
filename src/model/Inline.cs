@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+using Imaging = UK.Gov.NationalArchives.Imaging;
+
 namespace UK.Gov.Legislation.Judgments {
 
 interface IInline { }
@@ -106,6 +108,8 @@ interface IImageRef : IInline {
     string Src { get; set; }
 
     string Style { get; }
+
+    Imaging.Inset? Crop { get; }
 
 }
 
