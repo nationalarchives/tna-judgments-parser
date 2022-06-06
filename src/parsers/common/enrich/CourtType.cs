@@ -502,7 +502,7 @@ class Combo3 : Combo {
             Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BIRMINGHAM DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_QBD_General
+            Court = Courts.EWHC_QBD
         },
         new Combo3 {    // [2022] EWHC 157 (Comm)
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
