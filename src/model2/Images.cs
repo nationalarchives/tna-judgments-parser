@@ -51,8 +51,13 @@ public class WImageRef : IImageRef {
     private readonly Uri uri;
 
     public WImageRef(MainDocumentPart main, Drawing drawing) {
-        StringValue relId = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().First().Embed;
-        this.uri = DOCX.Relationships.GetUriForImage(relId, drawing);
+        DocumentFormat.OpenXml.Drawing.Blip blip = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().FirstOrDefault();
+        if (blip is null) {
+            logger.LogWarning("unable to prepresent drawing");
+            logger.LogWarning(drawing.OuterXml);
+        } else {
+            this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
+        }
 
         // for alt text
         // var props = drawing.Descendants().OfType<DrawingML.Wordprocessing.DocProperties>().FirstOrDefault();
@@ -141,7 +146,7 @@ public class WImageRef : IImageRef {
 
     public string Src {
         get {
-            if (_src is null)
+            if (_src is null && uri is not null)
                 _src = Path.GetFileName(uri.ToString());
             return _src;
         }

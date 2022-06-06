@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.NationalArchives.Imaging;
+using Imaging = UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Judgments {
 
@@ -40,11 +41,13 @@ class ImageConverter {
             }
             logger.LogInformation("{name} converted to {type}", image.Name, Enum.GetName(typeof(WMF.ImageType), converted.Item1));
             if (converted.Item1 == WMF.ImageType.BMP) {
-                string newName = image.Name + ".bmp";
+                logger.LogInformation("converting .bmp to .png");
+                byte[] png = Imaging.Convert.ConvertToPng(converted.Item2);
+                string newName = image.Name + ".png";
                 foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
                     iRef.Src = newName;
                 }
-                var converted2 = new ConvertedImage { Name = newName, ContentType = "image/bmp", Data = converted.Item2 };
+                var converted2 = new ConvertedImage { Name = newName, ContentType = "image/png", Data = png };
                 images.Add(converted2);
                 continue;
             }
