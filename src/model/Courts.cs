@@ -81,12 +81,12 @@ public readonly struct Courts {
 
     /* The four courts (non-specialist) within the Queen's Bench Division */
 
-    public static readonly Court EWHC_QBD_General = new Court {
-        Code = "EWHC-QBD-General",
-        LongName = "The Queen's Bench Division of the High Court",
-        ShortName = "The Queen's Bench Division",
-        URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court"
-    };
+    // public static readonly Court EWHC_QBD_General = new Court {
+    //     Code = "EWHC-QBD-General",
+    //     LongName = "The Queen's Bench Division of the High Court",
+    //     ShortName = "The Queen's Bench Division",
+    //     URL = "https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court"
+    // };
     public static readonly Court EWHC_QBD_Administrative = new Court {
         Code = "EWHC-QBD-Admin",
         LongName = "The Administrative Court (Queen's Bench Division)",
@@ -103,7 +103,7 @@ public readonly struct Courts {
         Code = "EWHC-QBD-BusinessAndProperty",
         LongName = "The Business and Property Courts (Queen's Bench Division)",
         ShortName = "The Business and Property Courts",
-        URL = ""
+        URL = "https://www.gov.uk/courts-tribunals/the-business-and-property-courts"
     };
 
     /* "Specialist" Business and Property Courts within the Queen's Bench Division */
@@ -133,7 +133,7 @@ public readonly struct Courts {
         Code = "EWHC-QBD-Commercial-Financial",
         LongName = "The Business and Property Courts (The Financial List) (QBD)",
         ShortName = "The Financial List",
-        URL = ""
+        URL = "https://www.gov.uk/courts-tribunals/the-financial-list"
     };
 
     public static readonly Court EWHC_QBD_Commercial_Circuit = new Court {
@@ -294,7 +294,7 @@ public readonly struct Courts {
         EWHC_QBD,
         EWHC_Chancery,
         EWHC_Family,
-        EWHC_QBD_General,
+        // EWHC_QBD_General,
         EWHC_QBD_Administrative,
         EWHC_QBD_Planning,
         EWHC_QBD_BusinessAndProperty,
