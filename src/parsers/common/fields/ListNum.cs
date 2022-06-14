@@ -63,7 +63,7 @@ internal class ListNum {
 
             NumberingInstance numbering = DOCX.Numbering.GetNumbering(main, numId);
             AbstractNum absNum = DOCX.Numbering.GetAbstractNum(main, numbering);
-            n += DOCX.Numbering2.GetNForLevelBasedOnAbstractId(main, p, absNum.AbstractNumberId.Value, ilvl, 0);
+            n += DOCX.Numbering2.CalculateN(main, p, numId, absNum.AbstractNumberId.Value, ilvl) - 1;
 
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;

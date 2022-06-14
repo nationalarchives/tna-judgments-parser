@@ -53,7 +53,7 @@ public class WImageRef : IImageRef {
     public WImageRef(MainDocumentPart main, Drawing drawing) {
         DocumentFormat.OpenXml.Drawing.Blip blip = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().FirstOrDefault();
         if (blip is null) {
-            logger.LogWarning("unable to prepresent drawing");
+            logger.LogWarning("unable to represent drawing");
             logger.LogWarning(drawing.OuterXml);
         } else {
             this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
