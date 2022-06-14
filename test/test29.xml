@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukut/aac/2022/59" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukut/aac/2022/59" />
+          <FRBRdate date="2022-03-01" name="decision" />
+          <FRBRauthor href="#ukut-tcc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="59" />
+          <FRBRname value="MW v Secretary of State for Work and Pensions" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59" />
+          <FRBRdate date="2022-03-01" name="decision" />
+          <FRBRauthor href="#ukut-tcc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59/data.xml" />
+          <FRBRdate date="2022-06-13T16:12:47" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-03-01" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukut-tcc" href="https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber" showAs="United Kingdom Upper Tribunal (Tax and Chancery Chamber)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="mw" href="" showAs="MW" />
+        <TLCPerson eId="secretary-of-state-for-work-and-pensions" href="" showAs="Secretary of State for Work and Pensions" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKUT-TCC</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>59</uk:number>
+        <uk:cite>[2022] UKUT 59 (AAC)</uk:cite>
+        <uk:parser>0.7.1</uk:parser>
+        <uk:hash>678a9a582612abb5b3e6331dcac0971b9466e50e69073b66ba7e0502c80aa756</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { text-align: justify; font-size: 12pt; }
+#judgment .Heading3 { text-align: left; font-style: italic; font-family: 'Century Schoolbook'; font-size: 12pt; }
+#judgment .Header { text-align: justify; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-size: 12pt; }
+#judgment .numbered0 { text-align: justify; font-family: 'Century Schoolbook'; font-size: 12pt; }
+#judgment .Default { font-size: 12pt; color: #000000; }
+#judgment .Numbered { text-align: justify; margin-left: 0in; font-family: 'Century Schoolbook'; font-size: 12pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .PageNumber { }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .FooterChar { font-size: 12pt; }
+#judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p style="text-align:right"><span style="font-style:italic;font-family:Arial">MW v SSWP (IS)</span></p>
+      <p style="text-align:right"><span style="font-style:italic;font-family:Arial;font-size:11pt"> </span><neutralCitation style="font-family:Arial">[2022] UKUT 59 (AAC)</neutralCitation></p>
+      <p class="Header" style="text-align:center"><img src="image1.png" style="width:81.85pt;height:72pt" /></p>
+    </coverPage>
+    <header>
+      <p><courtType refersTo="#ukut-tcc" style="font-weight:bold;font-family:Arial">IN THE UPPER TRIBUNAL                                         </courtType><marker name="tab" /><span style="font-weight:bold;font-family:Arial">Appeal No.</span><span style="font-family:Arial"> </span><span style="font-weight:bold;font-family:Arial">CIS/222/2021</span></p>
+      <p><courtType refersTo="#ukut-tcc" style="font-weight:bold;font-family:Arial">ADMINISTRATIVE APPEALS CHAMBER</courtType></p>
+      <p><span style="font-family:Arial">On appeal from the First-tier Tribunal (Social Entitlement Chamber)</span></p>
+      <p><span style="font-weight:bold;font-family:Arial">Between:</span></p>
+      <p style="text-align:center"><party refersTo="#mw" as="#appellant" style="font-weight:bold;font-family:Arial">MW</party></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="font-family:Arial">Appellant</role></p>
+      <p style="text-align:center"><span style="font-family:Arial">and</span></p>
+      <p style="text-align:center"><party refersTo="#secretary-of-state-for-work-and-pensions" as="#respondent" style="font-weight:bold;font-family:Arial">Secretary of State for Work and Pensions</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-family:Arial">Respondent</role></p>
+      <p><span style="font-weight:bold;font-family:Arial">Before: Deputy Upper Tribunal Judge Rowland</span></p>
+      <p><span style="font-family:Arial">Decision date:</span><marker name="tab" /><span style="font-family:Arial">1 March 2022</span></p>
+      <p><span style="font-family:Arial">Decided on consideration of the papers</span></p>
+      <p><span style="font-weight:bold;font-family:Arial">Representation:</span></p>
+      <p><span style="font-family:Arial">Appellant:</span><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">Sharon Tilt, Dudley Welfare Rights Service</span></p>
+      <p><span style="font-family:Arial">Respondent:</span><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">Kym Cardona, Department for Work and Pensions</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading><span style="font-weight:bold;font-family:Arial">The claimant’s appeal is allowed.</span><span style="font-family:Arial">  The decision of the First-tier Tribunal made on 8 April 2020 was made in error of law.  Under section 12(2)(a) and (b)(ii) of the Tribunals, Courts and Enforcement Act 2007, I set that decision aside and remake it as follows:</span></heading>
+          <level>
+            <content>
+              <p style="margin-left:0.5in"><span style="font-family:Arial">The claimant is entitled to income support from 23 July 2018 on the basis that she satisfies the condition of paragraph 4(b) of Schedule 1B to the Income Support General Regulations 1987.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="margin-left:0.5in"><span style="font-family:Arial">Payments of income support made in respect of the period from 23 July 2018 to 19 September 2018 are to be treated as having been paid on account of benefit awarded under this decision.</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading><span style="font-family:Arial">All further questions arising as a result of this decision are to be determined by the Secretary of State, against whose decisions there will be separate rights of appeal to the First-tier Tribunal. </span></heading>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">REASONS FOR DECISION</span></p>
+            </content>
+          </level>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">This is an appeal, brought by the claimant with permission given by the First-tier Tribunal, against a decision of the First-tier Tribunal given on 8 April 2020, whereby it decided that the claimant was not entitled to income support from 20 September 2018.  It arises against the background of the transition from the old array of income-related social security benefits, including income support, to universal credit and, less importantly, also against the background of the transition from disability living allowance to personal independence payment.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-style:italic;font-family:Arial">The facts</span></heading>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">2.</span><marker name="tab" /><span style="font-family:Arial"> The claimant was caring for a friend of hers who was not a member of her household but who was in receipt of the care component of disability living allowance at either the middle or the highest rate.  The claimant herself had been in receipt of both carer’s allowance and income support.  Entitlement to carer’s allowance does, and entitlement to income support may, depend on a person’s entitlement to another benefit, although a mere underlying entitlement may not be enough.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">3.</span><marker name="tab" /><span style="font-family:Arial">Section 70(1) of the Social Security Contributions and Benefits Act 1992 makes it a condition of entitlement to a carer’s allowance that the claimant “is engaged in caring for a severely disabled person”, and subsection (2) provides –</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“In this section, “severely disabled person” means a person in respect of whom there is </span><span style="font-style:italic;font-family:Arial">payable</span><span style="font-family:Arial"> either … a disability living allowance by virtue of entitlement to the care component at the highest or middle rate or personal independence payment by virtue of entitlement to the daily living component at the standard or enhanced rate …” (my emphasis).</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">4.</span><marker name="tab" /><span style="font-family:Arial">Paragraph 4(a)(i) and (b) of Schedule 1B to the Income Support (General) Regulations 1987 (SI 1987/1967) prescribes as categories of person entitled to income support –</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“</span><span style="font-weight:bold;font-family:Arial">4.</span><span style="font-family:Arial">  A person (the carer)—</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:1.18in;text-indent:-0.39in"><span style="font-family:Arial">(a)</span><marker name="tab" /><span style="font-family:Arial">who is regularly and substantially engaged in caring for another person if—</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:1.58in;text-indent:-0.39in"><span style="font-family:Arial">(i)</span><marker name="tab" /><span style="font-family:Arial">the person being cared for is </span><span style="font-style:italic;font-family:Arial">in receipt of</span><span style="font-family:Arial"> … the daily living component of personal independence payment at the standard or enhanced rate in accordance with section 78(3) of the 2012 Act; or </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:1.47in;text-indent:-0.39in"><marker name="tab" /><span style="font-family:Arial">…; </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:1.18in;text-indent:-0.39in"><span style="font-family:Arial">(b) </span><marker name="tab" /><span style="font-family:Arial">who is engaged in caring for another person and who is </span><span style="font-style:italic;font-family:Arial">both entitled to, and in receipt of,</span><span style="font-family:Arial"> a carer’s allowance or would be in receipt of that allowance but for the application of a restriction under section 6B or 7 of the Social Security Fraud Act 2001 (loss of benefit provisions)”</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><marker name="tab" /><span style="font-family:Arial">(my emphases).</span></p>
+            </content>
+          </level>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">The claimant’s friend’s entitlement to disability living allowance came to an end with effect from 18 July 2018 and, although he was awarded the enhanced rate of the mobility component of personal independence payment from that date, he was not awarded the daily living component of that benefit and consequently the claimant’s entitlement to carer’s allowance was terminated with effect from 23 July 2018.  On 15 August 2018, it was also decided by way of supersession that her entitlement to income support would terminate with effect from 20 September 2018 (after the end of the eight-week “run-on” period – see paragraph 5 of Schedule 1B to the Income Support Regulations).  Her friend challenged the personal independence payment decision and was ultimately successful on 8 July 2019, when the First-tier Tribunal awarded the standard rate of the daily living component from 18 July 2018, as well as the enhanced rate of the mobility component.  Meanwhile, the claimant had not claimed universal credit but had relied on child tax credits and child benefit as her income.</span></p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">6.</span><marker name="tab" /><span style="font-family:Arial">On 9 July 2019, the day after the First-tier Tribunal’s decision, the claimant contacted the Department and asked for her income support award to be reinstated in the light of the award of the daily living component of personal independence payment to her friend.  She was advised that her claim had been correctly “closed down” and that she should claim universal credit.  It appears that no formal decision was made or issued then.  On 22 July 2019, she applied for the reinstatement of her carer’s allowance, which, by a decision dated 30 August 2019, was duly re-awarded with effect from 23 July 2018.  On 6 September 2019, she again contacted the Department to seek reinstatement of her income support award and was again advised to claim universal credit without, apparently, any formal decision being made or issued.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">7.</span><marker name="tab" /><span style="font-family:Arial">On 4 December 2019, Ms Sharon Tilt of Dudley Welfare Rights Service wrote to the Department explicitly asking for a revision of the decision of 15 August 2018 to terminate the claimant’s award of income support.  This resulted in the issuing of a “mandatory reconsideration notice” on 21 January 2020. which seems to have followed a two-stage process in which a decision-maker first decided on 7 January 2020 both that there had been no error in the decision of 15 August 2018 and that the claimant had not had any entitlement to income support since then and then another decision-maker reconsidered that decision but reached the same conclusion.  That process may have been required by the Department’s internal procedures, but it appears that only the one decision of 21 January 2020 was actually issued.  In any event, the claimant appealed against that decision with the assistance of Ms Tilt.  The appeal was received by the First-tier Tribunal on 11 February 2020 and, despite the onset of the Covid-19 pandemic, was impressively heard by telephone only eight weeks later, on 8 April 2020.</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-style:italic;font-family:Arial">The arguments and the First-tier Tribunal’s decision</span></heading>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">8.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">The grounds of appeal to the First-tier Tribunal were expressed as though the appeal was against the refusal on 21 January 2020 to revise the decision of 15 August 2018, rather than being simply against the latter decision.  This may have been a result of the mandatory reconsideration notice having referred to the “decision” of 7 January 2020 as well as the decision of 15 August 2018.  The grounds of appeal emphasised that the application for revision had been intended to be a late application under regulation 3(1) of the Social Security and Child Support (Decisions and Appeals) Regulations 1999 (SI 1999/991) “on any ground” and it was argued that the claimant’s friend’s successful appeal against the personal independence payment decision had the effect that “the decision to refuse PIP ceased to exist” and also that the reinstatement of carer’s allowance meant that the claimant had satisfied the conditions for entitlement to income support throughout the period since her award had been terminated.  Thus, it was submitted, the awards of personal independence payment and carer’s allowance were not changes of circumstances that precluded, in the light of regulation 3(9)(a), a revision under regulation 3(1).</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">9.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">The Secretary of State’s response did correctly identify the decision of 15 August 2018 as being the one under appeal, but it also addressed the claimant’s arguments.  It was submitted that the Secretary of State could not have revised the decision of 15 August 2018 under regulation 3(1) of the 1999 Regulations because that decision had been correct at the time it was made and regulation 3(9)(a) precluded revision under regulation 3(1) on the ground of a change of circumstances since the original decision was made.  It was submitted that regulation 3(7) did not apply because there was no subsisting award of income support from 20 September 2018 and that, although the claimant would have been able to make a new claim for income support that would (by virtue of regulation 6(19) to (22) of the Social Security (Claims and Payments) Regulations 1987 (SI 1987/1968)) have been effective from 20 September 2018 had universal credit not been introduced in the area where she lived, universal credit had been introduced in that area and she had been precluded from making a new claim for income support by virtue of article 7(1)(a) of the Welfare Reform Act 2012 (Commencement No.23) Order 2015 (SI 2015/634).</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">10.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">Ms Tilt replied in a written submission dated 31 March 2020.  She reiterated her point that regulation 3(9)(a) did not apply, arguing that the First-tier Tribunal’s decision to “set aside” the Secretary of State’s decision that the claimant’s friend was not entitled to the daily living component of personal independence payment had the effect of rendering the decision made on 15 August 2018 as if “it never occurred” so that the claimant satisfied the condition of entitlement “as at the effective date of the decision she is appealing against”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">11.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">The First-tier Tribunal dismissed the appeal and pointed out in its statement of reasons that there was no appeal against a refusal to revise a decision.  However, for reasons that I will consider below, the judge concluded that “the issue before me is whether or not the decision dated 15/8/2018 that the appellant is not entitled to IS after 19/9/2018 is correct”.  She then said –</span></p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“30.</span><marker name="tab" /><span style="font-family:Arial">The tribunal finds that the respondent correctly made a decision on the 15/8/2018 that the appellant was not entitled to IS after 19/9/2018.  As the appellant was no longer entitled to IS the respondent correctly closed the claim.  The appellant and her representative accept that the appellant was not entitled to IS at the date of the decision made on 15/8/2019.”</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-family:Arial">The appeal was therefore dismissed, it being recorded that the claimant and Ms Tilt had accepted that the claimant had not been entitled to claim income support in September 2019 but could have claimed universal credit.</span></heading>
+          <paragraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0in;text-indent:0in">12.</num>
+            <content>
+              <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">When applying for permission to appeal, Ms Tilt acknowledged that there was no right of appeal against a refusal to revise a decision and suggested that perhaps the focus should have been on section 12(8)(b) of the Social Security Act 1998 rather than regulation 3(9)(a) of the 1999 Regulations.  Permission to appeal was given by the First-tier Tribunal.  Regrettably, the process of obtaining permission to appeal to the Upper Tribunal and the proceedings within the Upper Tribunal have been rather slower than the initial proceedings before the First-tier Tribunal.</span></p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">13.</span><marker name="tab" /><span style="font-family:Arial">The Secretary of State opposes the appeal.  Her representative first submits that the First-tier Tribunal ought to have addressed the issue raised by the claimant as to whether the Secretary of State should have revised the decision of 15 August 2018.  This submission appears to be made on the basis that the First-tier Tribunal erred in viewing the appeal to be against the decision not to revise the original decision.  However, the Tribunal did not make that mistake.  In any event, it is argued that the Tribunal reached the correct conclusion substantially for the reasons suggested in the Secretary of State’s submission to the First-tier Tribunal.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">14.</span><marker name="tab" /><span style="font-family:Arial"> In her reply, Ms Tilt has gone back to the question whether there had been a change of circumstances for the purposes of regulation 3(9)(a) of the 1999 Regulations and argues that the decision of the First-tier Tribunal of 8 September 2019 allowing the claimant’s friend’s appeal and awarding him the daily living component of personal independence payment from 20 July 2018 was merely evidence of his entitlement from that date and did not itself amount to a change of circumstances.  She refers to CH/3935/2007, in which Mr Commissioner Jacobs referred to his earlier decisions in R(DLA) 2/01 and R(DLA) 3/01.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">15.</span><marker name="tab" /><span style="font-family:Arial">Neither party has requested an oral hearing and, as the issues in this appeal are ones of pure law, I am satisfied that it can properly be determined on the papers.</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-style:italic;font-family:Arial">Discussion – jurisdiction</span></heading>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">16.</span><marker name="tab" /><span style="font-family:Arial">The first question that arises is whether the First-tier Tribunal had jurisdiction to consider the claimant’s appeal at all.  It is now common ground that the appeal before the First-tier Tribunal could not have been against the decision of 21 January 2020 and could only have been against the decision dated 15 August 2018.  That is because, as the First-tier Tribunal obviously understood, section 12 of the Social Security Act 1998 makes provision for appeals against decisions on claims under section 8 and against decisions on supersession (including refusals to supersede) under section 10, but not against decisions on revision (including refusals to revise) under section 9.  (Strictly speaking, the power to revise a decision is conferred by section 9(1) of the 1998 Act and regulation 3 of the 1999 Regulations merely prescribes the cases or circumstances in which the power may be exercised.)  </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">17.</span><marker name="tab" /><span style="font-family:Arial">The appeal was received on 11 February 2020, almost 18 months after 15 August 2018.  In the absence of any decision to revise or not revise the decision being challenged, the basic time limit for an appeal is, by virtue of rule 22(2)(d)(ii) of, and paragraph 5(a) of Schedule 1 to, the Tribunal Procedure (First-tier Tribunal) (Social Entitlement Chamber) Rules 2008 (SI 2008/2685), one month from the date of the decision being challenged.  However, the First-tier Tribunal took the view that “a decision not to revise extends the time for appealing against the decision that has not been revised” (paragraph 28 of its statement of reasons).  That is generally so, not due to the effect of section 9(5) of the 1998 Act (which applies to revisions but not to refusals to revise), but due to the effect of rule 22(2)(d).  </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">18.</span><marker name="tab" /><span style="font-family:Arial">If “mandatory reconsideration applies” (see rule 22(9)), the time limit is one month from the date on which the mandatory reconsideration notice containing the refusal to revise is sent to the claimant (rule 22(2)(d)(i)).  In other cases where there has been a refusal to revise under regulation 3(1) of the 1999 Regulations, the time limit is, similarly, one month from the date on which notice of the refusal to revise is sent to the claimant (rule 22(2)(d)(ii) and paragraph 5(c)(ii) of Schedule 1).  Time may be extended, but not by more than 12 months, and such an extension is treated as having been given if the Secretary of State does not object (rules 5(3)(a) and 22(5) and (8)).  Unsurprisingly, there is a similar “absolute time limit” of 13 months when applying for revision under regulation 3(1) of the 1999 Regulations.  The basic one month for making an application under regulation 3(1) may be extended under regulation 4 to not more than 13 months.  </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">19.</span><marker name="tab" /><span style="font-family:Arial">The fact that a mandatory reconsideration notice was issued in this case implies that “mandatory reconsideration” did apply so that, under regulation 3ZA(2) of the 1999 Regulations, the claimant had a right of appeal to the First-tier Tribunal against the decision of 15 August 2018 only if the Secretary of State had “considered on an application whether to revise the decision”.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">20.</span><marker name="tab" /><span style="font-family:Arial">However, as appears to have been acknowledged by Ms Tilt before the First-tier Tribunal (see paragraph 25 of its statement of reasons), her letter of 4 December 2019 was written more than 13 months after 15 August 2018.  Accordingly, it was not an effective application under regulation 3(1) and, if mandatory reconsideration had not applied, could not have extended the time for appealing – see R(IS) 15/04 at [29] to [32].  Similarly, as mandatory reconsideration did apply, there was no right of appeal insofar as the application had been made under regulation 3(1) because, where an application for revision is rejected because it was made after that absolute time limit, the application has not been “considered” for the purpose of regulation 3ZA(2) of the 1999 Regulations (</span><span style="font-style:italic;font-family:Arial">PH v Secretary of State for Work and Pensions (DLA)</span><span style="font-family:Arial"> [2018] UKUT 404 (AAC); [2019] AACR 14) and, furthermore, the reasoning in R(IS) 15/04 – </span><span style="font-style:italic;font-family:Arial">i.e.</span><span style="font-family:Arial">, that there had been no effective application for revision and thus no jurisdiction to make a revision decision, including a refusal to revise – applies even if the Secretary of State did not actually notice that the application was out-of-time.  </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">21.</span><marker name="tab" /><span style="font-family:Arial">On the other hand, an application for revision may be out-of-time for the purpose of regulation 3(1) but be within time insofar as reliance is placed on other powers of revision under regulation 3 in respect of which there is no time limit and so, as is apparent from </span><span style="font-style:italic;font-family:Arial">PH</span><span style="font-family:Arial">, a refusal, or failure, to revise under such other powers does always extend the time for appealing where mandatory reconsideration applies.  The Upper Tribunal said –</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“12.</span><marker name="tab" /><span style="font-family:Arial">…  What is important is the substance of the request. The tribunal is not bound by parties’ classification as “any ground” or “any time”. Further, if an “any time” request advances no arguable case of official error and is spurious, there may be scope for the tribunal to find there has been no properly constituted “application to revise” for official error within the meaning of Regulation 3ZA of the 1999 Regulations, so there is no jurisdiction to hear an appeal, by application of Section 12(3A) of the 1998 Act (cp </span><span style="font-style:italic;font-family:Arial">Wood v SSWP</span><span style="font-family:Arial"> [2003] EWCA Civ 53). But in appropriate cases, tribunals will have jurisdiction to hear appeals, even if an application for mandatory reconsideration on the basis of official error was made more than 13 months after the original decision.”</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-family:Arial">Despite the Upper Tribunal’s use of the word “spurious”, it seems to me that the finality of decisions would be undermined if time were to be extended where the ground of revision was not actually made out (see R(IB) 2/04 at [40]).  (As I may have said before, I cannot help thinking that this legislation would be a lot less confusing if at least most of the prescribed cases and circumstances in which a decision may be revised other than those within paragraphs (1), (3), (4A) and, perhaps, (8) were, instead, made grounds for supersession and/or for making a supersession effective from the date from which the decision being superseded had been effective.)  </span></heading>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">22.</span><marker name="tab" /><span style="font-family:Arial">The problem from the claimant’s point of view is that, as Ms Tilt rightly concedes, there were no grounds for revision in this case if revision under regulation 3(1) was not appropriate.  I am therefore satisfied that, if Ms Tilt’s letter of 4 December 2019 is taken as the application for revision, the First-tier Tribunal had no jurisdiction to hear the claimant’s appeal.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">23.</span><marker name="tab" /><span style="font-family:Arial">However, this jurisdictional point has not been taken by the Secretary of State and it was open to the Secretary of State and the First-tier Tribunal to treat the claimant as having made the application when the she contacted the Department on 9 July or 6 September 2019, within the 13-month absolute time limit.  I am satisfied that that would have been appropriate, there being no requirement that an application for revision be in writing.  On that basis, I accept that the First-tier Tribunal did have jurisdiction to consider the case advanced by Ms Tilt.</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-style:italic;font-family:Arial">Discussion – the substantive issue</span></heading>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">24.</span><marker name="tab" /><span style="font-family:Arial">The substantive issue between the parties is really a very narrow one.  It is common ground that, as the First-tier Tribunal actually decided, the case before the First-tier Tribunal was an appeal against the decision of 15 August 2018.  Ms Tilt was right to accept in her application for permission to appeal that section 12(8)(b) of the 1998 Act was therefore important, rather than regulation 3(9)(a) of the 1999 Regulations.  The question whether the Secretary of State had had power to revise the decision under appeal was strictly irrelevant (except in relation to the jurisdictional point mentioned above).  However, although expressed in different language, section 12(8)(b) of the 1998 Act has the same practical effect in relation to appeals as regulation 3(9)(a) of the 1999 Regulations has in respect of revisions under regulation 3(1), which is to prohibit account being taken of any change of circumstance since the decision being challenged.  Section 12(8)(b) provides that, in deciding an appeal under that section, the First-tier Tribunal –</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“shall not take into account any circumstances not obtaining at the time when the decision appealed against was made”.</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Numbered"><span style="font-family:Arial">Regulation 3(9)(b) provides that the power of revision under regulation 3(1) shall not apply in respect of –</span></heading>
+          <level>
+            <content>
+              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“a relevant change of circumstances which occurred since the decision had effect …”.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">25.</span><marker name="tab" /><span style="font-family:Arial">The argument that Ms Tilt has raised in relation to regulation 3(9)(a) ought therefore to be considered in relation to section 12(8)(b).  Neither the Secretary of State nor the First-tier Tribunal has done that, which I suspect is simply because they did not understand the argument, although it may have been because they thought that it was too obviously wrong to require a reasoned rejection.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">26.</span><marker name="tab" /><span style="font-family:Arial">However, as I understand it, the point that Ms Tilt was trying to make was that the making of a decision that a claimant is entitled to a benefit over a specific period of time is not itself a material change of circumstances for the purposes of section 12(8)(b) and regulation 3(9)(a) in a case like this; rather, the decision is declaratory of a state of affairs that is to be taken as always having existed throughout that period.  The beginning (and end, if any) of that period would have marked a material change of circumstances, but the making of the decision itself would not have been such a change.  Thus, although, the decision of 15 August 2018 had appeared to be correct at the time it was made, it was shown both by the decision of the First-tier Tribunal given on 8 July 2019, awarding the claimant’s friend the daily living component of personal independence payment from 18 July 2018, and by the decision of the Secretary of State given on 30 August 2019, re-awarding the claimant carer’s allowance from 23 July 2018, to have been wrong when it was made.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">27.</span><marker name="tab" /><span style="font-family:Arial">Insofar as a decision is concerned with entitlement, that must be the correct approach.  It was made clear by the Court of Appeal in </span><span style="font-style:italic;font-family:Arial">Reilly v Secretary of State for Work and Pensions</span><span style="font-family:Arial"> [2016] EWCA Civ 413; [2017] Q.B. 257; [2017] AACR 14 at [137] that this is the way that retrospective legislation works and it seems to me that a retrospective decision as to entitlement made by either the Secretary of State or a tribunal must operate in the same way.  Indeed, this must apply not only to decisions as to a claimant’s underlying entitlement but also to decisions as to whether a benefit is “payable”, which is the term used where a claimant has not only an underlying “entitlement” but also an entitlement to receive payments.  The term “payable” is clearly used in that sense in section 70(2) of the 1992 Act in relation to carer’s allowance (see paragraph 3, above).  The most obvious situation in which a claimant might have an underlying entitlement to personal independence payment but that benefit may cease to be payable is where he or she has been residing in a care home or hospital for a prolonged period of time.  </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">28.</span><marker name="tab" /><span style="font-family:Arial">However, in paragraph 4(a)(i) and (b) of Schedule 1B to the Income Support Regulations (see paragraph 4, above), the phrase used in contrast to “entitled to” is “in receipt of”.  It must therefore be considered whether, given that income support is an income-related benefit and the term is used throughout those Regulations, that term must be construed literally so that the claimant and her friend must be taken not to have been in receipt of, respectively, carer’s allowance and personal independence payment from 23 July 2018 until payments were reinstated a year later, even though arrears were then presumably paid.   </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">29.</span><marker name="tab" /><span style="font-family:Arial">Regulation 31(2) of the 1987 Income Support Regulations provides that certain benefits, not including carer’s allowance or personal independence payment, “shall be treated as paid on any day in respect of which it is payable”, which might at first sight suggest that, being “in receipt of” carer’s allowance or personal independence payment is not to be equated to those benefits being “payable”.  However, the omission of personal independence payment in that provision is explicable because that benefit is always disregarded as income (see paragraphs 6 and 9 of Schedule 9) and, in any event, the point of regulation 31(2) is to ensure that the mentioned benefits are treated as having been payable on a daily basis, rather than weekly or four-weekly.  It therefore does not assist in the present case and I have not derived any assistance from other provisions of the 1987 Income Support Regulations either.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">30.</span><marker name="tab" /><span style="font-family:Arial">On the other hand, a compelling reason for treating the words “in receipt of” as equivalent to “payable” is that, were it otherwise, there would, contrary to the Secretary of State’s submission, have been no way of paying arrears of income support to a claimant in the present claimant’s position, even before the introduction of universal credit.  If the decision of the tribunal awarding the daily living component of personal independence payment to the claimant’s friend with effect from 18 July 2018 and the decision of the Secretary of State awarding carer’s allowance to the claimant from 23 July 2018 did not have the effect that the claimant’s friend and she were to be regarded as having been in receipt of those benefits from those dates onwards, there would have been no basis for awarding the claimant income support in respect of any period before, at the earliest, 8 July 2019, because neither of the conditions of entitlement under paragraph 4(a) and (b) would have been satisfied from any earlier date.  Regulation 6(19) to (21) of the 1987 Claims and Payments Regulations would have allowed a claim in the absence of article 7(1)(a) of the Welfare Reform Act 2012 (Commencement No.23) Order 2015, but the claim could not have been successful in respect of any date before 8 July 2019.  That would plainly have been unfair and would have undermined what is obviously the intended effect of regulation 6(19) and (21).  I am therefore satisfied that the words “in receipt of” in paragraph 4 of Schedule 1 to the 1987 Income Support Regulations are not to be given their literal meaning but are to be read as “entitled to receive payments of”.  Such entitlement may be conferred by a decision made retrospectively.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">31.</span><marker name="tab" /><span style="font-family:Arial">I therefore accept Ms Tilt’s submission and am satisfied that the First-tier Tribunal ought to have allowed the appeal before it and determined that, in the light of the tribunal’s decision of 8 July 2019 and the Secretary of State’s decision of 30 August 2019, the claimant had continued to satisfy the conditions of paragraph 4(b) of Schedule 1B to the 1987 Income Support Regulations from 23 July 2018.  It follows that the conditions of paragraph 5 of Schedule 1B were not satisfied from then until 19 September 2018, although benefit paid in respect of that latter period should be treated as having been paid on account.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">32.</span><marker name="tab" /><span style="font-family:Arial">That is not to say that the Secretary of State was wrong to argue that making a new claim after the First-tier Tribunal’s decision of 8 July 2019 would have been the normal way of obtaining income support in a case like this before universal credit was introduced.  It is not in dispute that the Secretary of State’s submission to the First-tier Tribunal correctly summarised the effect of the legislation apart from regulation 3(1) of the 1999 Regulations.  Moreover, there are obvious reasons why provision for making claims following decisions of tribunals in respect of “qualifying benefits” should have been made.  One is that it avoids any difficulty there might otherwise be with the time limits for bringing an appeal or applying for a revision.  Another is that it ensures that the claimant completes a new form that elicits evidence as to his or her circumstances relevant to other conditions of entitlement, so that any change in such circumstances between the removal of a qualifying benefit and its reinstatement is not overlooked.  </span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">33.</span><marker name="tab" /><span style="font-family:Arial">However, the fact that adequate provision for new claims was made in regulation 6(19) to (21) of the 1987 Claims and Payments Regulations and that equivalent provision was made in regulation 3(7) of the 1999 Regulations for cases where a claimant already had a subsisting award of income support, does not remove any right to apply for revision under regulation 3(1) of the 1999 Regulations or to appeal that might exist as an alternative way of obtaining a remedy.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">34.</span><marker name="tab" /><span style="font-family:Arial">It follows that the Secretary of State was wrong to advise the claimant on 9 July 2019 and 6 September 2019 that she could claim universal credit, without also advising her that she could instead make a late (but not irredeemably late) application for revision under regulation 3(1) of the decision of 15 August 2018 ending her entitlement to income support.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Numbered"><span style="font-family:Arial">35.</span><marker name="tab" /><span style="font-family:Arial">For these reasons, this appeal is allowed.</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:right"><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-weight:bold;font-family:Arial">Mark Rowland</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:right"><marker name="tab" /><span style="font-weight:bold;font-family:Arial">Deputy Judge of the Upper Tribunal</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:right"><span style="font-family:Arial">Signed on the original on </span><docDate date="2022-03-01" refersTo="#decision" style="font-family:Arial">1 March 2022</docDate></p>
+            </content>
+          </level>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
