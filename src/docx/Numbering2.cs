@@ -279,17 +279,11 @@ class Numbering2 {
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, OneCombinator combine) {
         int ilvl = int.Parse(match.Groups[1].Value) - 1;
         return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
-        // Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-        // int start = lvl.StartNumberingValue?.Val ?? 1;
-        // int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-        // string num = FormatN(n, lvl.NumberingFormat);
-        // return combine(num);
     }
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-        int start = GetStart(main, numberingId, ilvl);
-        int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
-        n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);  // EWHC/Ch/2011/3553
+        int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
+        n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);
         string num = FormatN(n, lvl.NumberingFormat);
         return combine(num);
     }
@@ -307,12 +301,12 @@ class Numbering2 {
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         int start1 = GetStart(main, numberingId, ilvl1);
         int start2 = GetStart(main, numberingId, ilvl2);
-        int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
@@ -334,17 +328,17 @@ class Numbering2 {
         int start1 = GetStart(main, numberingId, ilvl1);
         int start2 = GetStart(main, numberingId, ilvl2);
         int start3 = GetStart(main, numberingId, ilvl3);
-        int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
             throw new Exception();
-        int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
+        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3);
         if (ilvl3 < baseIlvl && n3 > start3)
             n3 -= 1;
         else if (ilvl3 > baseIlvl)
@@ -370,22 +364,22 @@ class Numbering2 {
         int start2 = GetStart(main, numberingId, ilvl2);
         int start3 = GetStart(main, numberingId, ilvl3);
         int start4 = GetStart(main, numberingId, ilvl4);
-        int n1 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl1, start1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl2, start2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
             throw new Exception();
-        int n3 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl3, start3);
+        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3);
         if (ilvl3 < baseIlvl && n3 > start3)
             n3 -= 1;
         else if (ilvl3 > baseIlvl)
             throw new Exception();
-        int n4 = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl4, start4);
+        int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4);
         if (ilvl4 < baseIlvl && n4 > start4)
             n4 -= 1;
         else if (ilvl4 > baseIlvl)
@@ -458,7 +452,7 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + lvlText);
     }
 
-    private enum CountingAction { Skip, Count, Stop }
+    private enum CountingAction { Skip, Count, Stop, Override }
 
     private static CountingAction ShouldCount(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum) {
         NumberingProperties props2;
@@ -473,22 +467,64 @@ class Numbering2 {
         int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
         if (numberingId2 is null)
             return CountingAction.Skip;
-        NumberingInstance numbering2 = Numbering.GetNumbering(main, (int) numberingId2);
+        NumberingInstance numbering2 = Numbering.GetNumbering(main, numberingId2.Value);
         if (numbering2 is null)
             return CountingAction.Skip;
         AbstractNum abstractNum2 = Numbering.GetAbstractNum(main, numbering2);
         int abstractNumId2 = abstractNum2.AbstractNumberId;
-        if (abstractNumId.Equals(abstractNumId2)) {
-            int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
-            if (level2 == levelNum)
-                return CountingAction.Count;
-            if (level2 < levelNum)
-                return CountingAction.Stop;
-        }
-        return CountingAction.Skip;
+        if (abstractNumId2 != abstractNumId)
+            return CountingAction.Skip;
+        int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
+        if (level2 < levelNum)
+            return CountingAction.Stop;
+        if (level2 > levelNum)
+            return CountingAction.Skip;
+
+        NumberingInstance ownNumbering =  Numbering.GetNumbering(main, paragraph);
+        LevelOverride lvlOver = ownNumbering?.ChildElements
+            .OfType<LevelOverride>()
+            .Where(l => l.LevelIndex.Value == levelNum)
+            .FirstOrDefault();
+        if (lvlOver?.StartOverrideNumberingValue?.Val is not null)
+            return CountingAction.Override;
+        else
+            return CountingAction.Count;
+    }
+    private static CountingAction ShouldCountWhenHasNumOverride(MainDocumentPart main, Paragraph paragraph, int numberingId, int levelNum) {
+        NumberingProperties props2;
+        if (paragraph.ChildElements.All(child => child is ParagraphProperties))
+            props2 = paragraph.ParagraphProperties?.NumberingProperties;
+        else
+            props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+        if (props2 is null)
+            return CountingAction.Skip;
+        int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
+        if (numberingId2 is null)
+            return CountingAction.Skip;
+        if (numberingId2 != numberingId)
+            return CountingAction.Skip;
+        int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
+        if (level2 < levelNum)
+            return CountingAction.Stop;
+        if (level2 > levelNum)
+            return CountingAction.Skip;
+        return CountingAction.Count;
     }
 
-    internal static int GetNForLevelBasedOnAbstractId(MainDocumentPart main, Paragraph paragraph, int abstractNumId, int levelNum, int start) {
+    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
+        int? start = null;
+        bool hasNumOverride;
+        CountingAction a1 = ShouldCount(main, paragraph, abstractNumId, levelNum);
+        if (a1 == CountingAction.Override) {
+            hasNumOverride = true;
+            LevelOverride lvlOver = Numbering.GetNumbering(main, paragraph).ChildElements
+                .OfType<LevelOverride>()
+                .Where(l => l.LevelIndex.Value == levelNum)
+                .First();
+                start = lvlOver.StartOverrideNumberingValue.Val;
+        } else {
+             hasNumOverride = false;
+        }
         int count = 0;
         IEnumerator<Paragraph> previous = paragraph.Root()
             .Descendants<Paragraph>()
@@ -497,13 +533,31 @@ class Numbering2 {
             .Skip(1)
             .GetEnumerator();
         while (previous.MoveNext()) {
-            CountingAction a = ShouldCount(main, previous.Current, abstractNumId, levelNum);
+            CountingAction a;
+            if (hasNumOverride)
+                a = ShouldCountWhenHasNumOverride(main, previous.Current, numberingId, levelNum);
+            else
+                a = ShouldCount(main, previous.Current, abstractNumId, levelNum);
             if (a == CountingAction.Stop)
                 break;
             if (a == CountingAction.Count)
                 count += 1;
+            if (a == CountingAction.Override) {
+                if (start is null) {
+                    LevelOverride lvlOver = Numbering.GetNumbering(main, previous.Current).ChildElements
+                        .OfType<LevelOverride>()
+                        .Where(l => l.LevelIndex.Value == levelNum)
+                        .First();
+                    start = lvlOver.StartOverrideNumberingValue.Val;
+                    hasNumOverride = true;
+                } else {
+                    count += 1;
+                }
+            }
         }
-        return start + count;
+        if (start is null)
+            start = GetStart(main, numberingId, levelNum);
+        return start.Value + count;
     }
 
     // for REF \w -- see EWHC/Comm/2018/1368
@@ -534,7 +588,7 @@ class Numbering2 {
                 throw new Exception();
             Level lvl = Numbering.GetLevel(main, numberingId, ilvl);    // this is redundant
             int start = lvl.StartNumberingValue?.Val ?? 1;
-            int n = GetNForLevelBasedOnAbstractId(main, paragraph, abstractNumberId, ilvl, start);
+            int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
             n -= 1;
             string num = FormatN(n, lvl.NumberingFormat);
             return num + ".";
