@@ -64,14 +64,21 @@ abstract class AbstractCourtType : Enricher2 {
                 return combo.Transform(one, two, three);
             if (combo.MatchFirstRun(one, two, three))
                 return combo.TransformFirstRun(one, two, three);
+            if (combo.MatchTwoFirstRuns(one, two, three))
+                return combo.TransformTwoFirstRuns(one, two, three);
         }
         return null;
     }
 
     protected List<ILine> Match2(IBlock one, IBlock two) {
-        foreach (Combo2 combo in Combo2s())
+        foreach (Combo2 combo in Combo2s()) {
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
+            if (combo.MatchFirstRun(one, two))
+                return combo.TransformFirstRun(one, two);
+            if (combo.MatchTwoFirstRuns(one, two))
+                return combo.TransformTwoFirstRuns(one, two);
+        }
         return null;
     }
 

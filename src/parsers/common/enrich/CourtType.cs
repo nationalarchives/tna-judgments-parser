@@ -680,9 +680,15 @@ class Combo3 : Combo {
     internal bool MatchFirstRun(IBlock one, IBlock two, IBlock three) {
         return MatchFirstRun(Re1, one) && Match(Re2, two) && Match(Re3, three);
     }
-
     internal List<ILine> TransformFirstRun(IBlock one, IBlock two, IBlock three) {
         return new List<ILine>(3) { TransformFirstRun(one), Transform1(two), Transform1(three) };
+    }
+
+    internal bool MatchTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
+        return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two) && Match(Re3, three);
+    }
+    internal List<ILine> TransformTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
+        return new List<ILine>(3) { TransformFirstRun(one), TransformFirstRun(two), Transform1(three) };
     }
 
     internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
@@ -1004,6 +1010,21 @@ class Combo2 : Combo {
     internal List<ILine> Transform(IBlock one, IBlock two) {
         return new List<ILine>(2) { Transform1(one), Transform1(two) };
     }
+
+    internal bool MatchFirstRun(IBlock one, IBlock two) {
+        return MatchFirstRun(Re1, one) && Match(Re2, two);
+    }
+    internal List<ILine> TransformFirstRun(IBlock one, IBlock two) {
+        return new List<ILine>(3) { TransformFirstRun(one), Transform1(two) };
+    }
+
+    internal bool MatchTwoFirstRuns(IBlock one, IBlock two) {
+        return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two);
+    }
+    internal List<ILine> TransformTwoFirstRuns(IBlock one, IBlock two) {
+        return new List<ILine>(3) { TransformFirstRun(one), TransformFirstRun(two) };
+    }
+
     internal static List<ILine> MatchAny(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2.combos)
             if (combo.Match(one, two))
