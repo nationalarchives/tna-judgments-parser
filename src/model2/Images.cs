@@ -85,14 +85,14 @@ public class WImageRef : IImageRef {
                 Style = string.Join(';', styles);
         }
         DrawingML.SourceRectangle srcRect = drawing.Descendants().OfType<DrawingML.SourceRectangle>()
-            .Where(sr => sr.Top is not null && sr.Right is not null && sr.Bottom is not null && sr.Left is not null)
+            .Where(sr => sr.Top is not null || sr.Right is not null || sr.Bottom is not null || sr.Left is not null)
             .FirstOrDefault();
         if (srcRect is not null) {
             const double denom = 100000d;
-            double top = srcRect.Top.Value / denom;
-            double right = srcRect.Right.Value / denom;
-            double bottom = srcRect.Bottom.Value / denom;
-            double left = srcRect.Left.Value / denom;
+            double top = srcRect.Top is not null ? srcRect.Top.Value / denom : 0.0d;
+            double right = srcRect.Right is not null ? srcRect.Right.Value / denom : 0.0d;
+            double bottom = srcRect.Bottom is not null ? srcRect.Bottom.Value / denom : 0.0d;
+            double left = srcRect.Left is not null ? srcRect.Left.Value / denom : 0.0d;
             Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
         }
     }
