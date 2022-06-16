@@ -35,7 +35,7 @@ internal class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] { "EWHC" } { num } ({ sub })";
         }
-        match = Regex.Match(cite, @"^\[(\d{4})\] (EWHC|EWCH) \[?(\d+)\]? \(?(IPEC|QB|TCC)\)?$", RegexOptions.IgnoreCase);
+        match = Regex.Match(cite, @"^\[(\d{4})\] (EWHC|EWCH) \[?(\d+)\]? \(?(IPEC|QB|SCCO|TCC)\)?$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[3].Value.TrimStart('0');
             string sub = match.Groups[4].Value.ToUpper();
@@ -79,7 +79,7 @@ internal class Citations {
         match = Regex.Match(normalized, @"^\[(\d{4})\] (EWCA) (Civ|Crim) (\d+)$");
         if (match.Success) 
             return new string[] { match.Groups[2].Value, match.Groups[3].Value, match.Groups[1].Value, match.Groups[4].Value };
-        match = Regex.Match(normalized, @"^\[(\d{4})\] (EWHC) (\d+) \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|TCC)\)$");
+        match = Regex.Match(normalized, @"^\[(\d{4})\] (EWHC) (\d+) \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value };
         match = Regex.Match(normalized, @"^\[(\d{4})\] (EWFC|EWCOP) (\d+)$");
