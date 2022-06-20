@@ -53,9 +53,9 @@ abstract class AbstractParser {
         if (conclusions is null)
             i = save;
         IEnumerable<IAnnex> annexes = Annexes();
-        if (i != doc.MainDocumentPart.Document.Body.ChildElements.Count) {
+        if (i != elements.Count) {
             logger.LogDebug("parsing did not complete: " + i);
-            logger.LogTrace(doc.MainDocumentPart.Document.Body.ChildElements.ElementAt(i).InnerText);
+            logger.LogTrace(elements.ElementAt(i).InnerText);
             throw new Exception();
         }
         if (coverPage is not null)
@@ -376,7 +376,7 @@ abstract class AbstractParser {
             return false;
         string text = NormalizeFirstLineOfBigLevel(e, format);
         if (Regex.IsMatch(text, format)) {
-            logger.LogDebug("This is a BigLevel: ");
+            logger.LogTrace("This is a BigLevel: ");
             logger.LogTrace(e.InnerText);
             return true;
         }
@@ -506,7 +506,6 @@ abstract class AbstractParser {
     public delegate bool StopParsingParagraphs(OpenXmlElement e);
 
     protected List<IDivision> ParagraphsUntil(StopParsingParagraphs predicate) {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IDivision> paragraphs = new List<IDivision>();
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
@@ -536,7 +535,6 @@ abstract class AbstractParser {
     }
 
     protected virtual List<IDivision> ParagraphsUntilAnnex() {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IDivision> paragraphs = new List<IDivision>();
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
@@ -565,7 +563,6 @@ abstract class AbstractParser {
 
 
     private List<IDivision> ParagraphsUntilCrossHeadingOrAnnex() {
-        // OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IDivision> paragraphs = new List<IDivision>();
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
@@ -588,7 +585,6 @@ abstract class AbstractParser {
     }
 
     private List<IDivision> ParagraphsUntilBigLevelOrAnnex(string format, string[] ancestorFormats) {
-        // OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IDivision> paragraphs = new List<IDivision>();
         while (i < elements.Count) {
             OpenXmlElement e = elements.ElementAt(i);
@@ -655,7 +651,6 @@ abstract class AbstractParser {
     }
 
     private List<IAnnex> Annexes() {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         List<IAnnex> annexes = new List<IAnnex>();
         while (i < elements.Count) {
             int save = i;
@@ -670,7 +665,6 @@ abstract class AbstractParser {
     }
 
     private Annex Annex() {
-        OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
         OpenXmlElement e = elements.ElementAt(i);
         if (!IsFirstLineOfAnnex(e))
             return null;
