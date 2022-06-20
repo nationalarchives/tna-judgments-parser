@@ -277,6 +277,12 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax",
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(TC\)$")
     };
+    public static readonly Court FirstTierTribunal_GRC = new Court {
+        Code = "UKFTT-GRC",
+        LongName = "United Kingdom First-tier Tribunal (General Regulatory Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(GRC\)$")
+    };
 
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
@@ -326,6 +332,7 @@ public readonly struct Courts {
         EmploymentAppealTribunal,
 
         FirstTierTribunal_Tax,
+        FirstTierTribunal_GRC,
 
         EmploymentTribunal
     };
