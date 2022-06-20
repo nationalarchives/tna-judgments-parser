@@ -87,11 +87,11 @@ public class WImageRef : IImageRef {
             .Where(sr => sr.Top is not null || sr.Right is not null || sr.Bottom is not null || sr.Left is not null)
             .FirstOrDefault();
         if (srcRect is not null) {
-            const double denom = 100000d;
-            double top = srcRect.Top is not null ? srcRect.Top.Value / denom : 0.0d;
-            double right = srcRect.Right is not null ? srcRect.Right.Value / denom : 0.0d;
-            double bottom = srcRect.Bottom is not null ? srcRect.Bottom.Value / denom : 0.0d;
-            double left = srcRect.Left is not null ? srcRect.Left.Value / denom : 0.0d;
+            logger.LogInformation("found source rectangle for {0} ({1}, {2}, {3}, {4})",  this.uri, srcRect.Top, srcRect.Right, srcRect.Bottom, srcRect.Left);
+            double top = CropValue(srcRect.Top);
+            double right = CropValue(srcRect.Right);
+            double bottom = CropValue(srcRect.Bottom);
+            double left = CropValue(srcRect.Left);
             Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
         }
     }
@@ -157,6 +157,16 @@ public class WImageRef : IImageRef {
     public string Style { get; }
 
     public Imaging.Inset? Crop { get; private set; }
+
+    private static double CropValue(Int32Value value) {
+        if (value is null)
+            return 0.0d;
+        if (value < 0) {
+            logger.LogWarning("negative crop value: {0}", value.Value);
+            return 0.0d;
+        }
+        return value.Value / 100000d;
+    }
 
 }
 
