@@ -27,6 +27,8 @@ class SpecialCharacter : WText {
 
     internal static SpecialCharacter Make(SymbolChar sym, RunProperties rProps) {
         char ch = (char) Int16.Parse(sym.Char, NumberStyles.AllowHexSpecifier);
+        if (ch == 0x1E && sym.Font == "Arial Unicode MS")
+            return new SpecialCharacter("-", rProps, new StringValue());
         string text = ch.ToString();
         return new SpecialCharacter(text, rProps, sym.Font);
     }
