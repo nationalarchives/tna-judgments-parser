@@ -139,6 +139,8 @@ class Parser : AbstractParser {
                 return header;
             if (trimmed == "IT IS DIRECTED that")   // ukftt/tc/2018/249
                 return header;
+            if (trimmed == "REASONS")   // [2022] UKFTT 00152 (GRC)
+                return header;
             header.Add(e);
         }
         return null;
