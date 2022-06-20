@@ -61,7 +61,7 @@ internal class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] { match.Groups[2].Value.ToUpper() } { num }";
         }
-        match = Regex.Match(cite, @"^\[(\d{4})\] UKFTT (\d+) \((TC)\)$", RegexOptions.IgnoreCase);
+        match = Regex.Match(cite, @"^\[(\d{4})\] UKFTT (\d+) \((TC|GRC)\)$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[2].Value.TrimStart('0');
             string sub = match.Groups[3].Value.ToUpper();
@@ -91,7 +91,7 @@ internal class Citations {
         match = Regex.Match(normalized, @"^\[(\d{4})\] (EAT) (\d+)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[1].Value, match.Groups[3].Value };
-        match = Regex.Match(normalized, @"^\[(\d{4})\] (UKFTT) (\d+) \((TC)\)$");
+        match = Regex.Match(normalized, @"^\[(\d{4})\] (UKFTT) (\d+) \((TC|GRC)\)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value };
         return null;
