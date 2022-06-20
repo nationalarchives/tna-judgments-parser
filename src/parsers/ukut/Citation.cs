@@ -20,7 +20,7 @@ class Citation : FirstMatch2 {
         if (line.Last() is WText last) {
             Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ ?\((AAC|IAC|LC|TCC)\)) *$");
             if (!match.Success)
-                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ ?\((TC)\)) *$");
+                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ ?\((TC|GRC)\)) *$");
             if (match.Success) {
                 List<IInline> enriched = Helper.SplitOnGroup(last, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(line.SkipLast(1), enriched);
