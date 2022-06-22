@@ -29,7 +29,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EAT \d+)"
     };
     private static readonly string[] patterns2 = {
-        @"^(\[\d{4}\] EWCA (Civ|Crim) \d+)",
+        @"^\s*(\[\d{4}\] EWCA (Civ|Crim) \d+)", // \s matches non-breaking space in [2022] EWCA Crim 733
         @"^ *(\[?\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
         @"^\s(\[\d{4}\] EWHC \d+ \(Admin\))",  // non-space in [2022] EWHC 307 (Admin)
         @"^(\[\d{4}\] EWHC \[\d+\] \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\))$",    // [2021] EWHC [3505] (IPEC)
