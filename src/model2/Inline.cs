@@ -163,7 +163,7 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
 
     public string Text {
         get {
-            return text.Replace('\uF020', ' '); // sometimes introduced by PDF to Word conversion
+            return text.Replace('\uF020', ' '); // .Replace('\u00A0', ' ')
         }
     }
 
