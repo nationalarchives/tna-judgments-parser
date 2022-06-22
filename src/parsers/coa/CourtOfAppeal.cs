@@ -65,6 +65,10 @@ class CourtOfAppealParser : AbstractParser {
         "TRANSRIPT OF ORAL JUDGMENT"
     };
 
+    ISet<string> rawTitles = new HashSet<string>() {
+        "A P P R O V E D  J U D G M E N T" // [2022] EWCA Crim 381 (has two spaces between words)
+    };
+
     protected override List<IBlock> Header() {
         List<OpenXmlElement> header1 = Header1();
         if (header1 is null)
@@ -81,6 +85,8 @@ class CourtOfAppealParser : AbstractParser {
         foreach (var e in elements.Skip(i)) {
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
+                break;
+            if (rawTitles.Contains(e.InnerText))
                 break;
             Predicate<SectionProperties> isNewSection = (sectPr) => {
                 return sectPr.ChildElements.OfType<PageNumberType>().Where(pgNumType => pgNumType.Start.HasValue).Any();
