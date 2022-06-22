@@ -543,15 +543,14 @@ class Numbering2 {
             if (a == CountingAction.Count)
                 count += 1;
             if (a == CountingAction.Override) {
+                count += 1;
                 if (start is null) {
                     LevelOverride lvlOver = Numbering.GetNumbering(main, previous.Current).ChildElements
                         .OfType<LevelOverride>()
                         .Where(l => l.LevelIndex.Value == levelNum)
                         .First();
                     start = lvlOver.StartOverrideNumberingValue.Val;
-                    hasNumOverride = true;
-                } else {
-                    count += 1;
+                    return start.Value + count;
                 }
             }
         }
