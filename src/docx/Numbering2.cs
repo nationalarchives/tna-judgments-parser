@@ -485,7 +485,7 @@ class Numbering2 {
             .OfType<LevelOverride>()
             .Where(l => l.LevelIndex.Value == levelNum)
             .FirstOrDefault();
-        if (lvlOver?.StartOverrideNumberingValue?.Val is not null)
+        if (lvlOver?.StartOverrideNumberingValue?.Val is not null && lvlOver.StartOverrideNumberingValue.Val > 1)
             return CountingAction.Override;
         else
             return CountingAction.Count;
@@ -495,7 +495,7 @@ class Numbering2 {
         if (paragraph.ChildElements.All(child => child is ParagraphProperties))
             props2 = paragraph.ParagraphProperties?.NumberingProperties;
         else
-            props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+            props2 = paragraph.ParagraphProperties?.NumberingProperties;    // don't consider style numbering here, unlike above
         if (props2 is null)
             return CountingAction.Skip;
         int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
@@ -550,7 +550,7 @@ class Numbering2 {
                         .Where(l => l.LevelIndex.Value == levelNum)
                         .First();
                     start = lvlOver.StartOverrideNumberingValue.Val;
-                    return start.Value + count;
+                    hasNumOverride = true;
                 }
             }
         }
