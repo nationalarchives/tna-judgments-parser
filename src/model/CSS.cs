@@ -85,18 +85,22 @@ class CSS {
         return styles;
     }
 
-    internal static Dictionary<string, string> GetCSSStyles(ICell cell) {
-        Dictionary<string, string> styles = new Dictionary<string, string>();
+    internal static void AddBorderStyles(IBordered thing, Dictionary<string, string> styles) {
         List<float?> borderWidths = new List<float?>(4) {
-            cell.BorderTopWidthPt, cell.BorderRightWidthPt, cell.BorderBottomWidthPt, cell.BorderLeftWidthPt
+            thing.BorderTopWidthPt, thing.BorderRightWidthPt, thing.BorderBottomWidthPt, thing.BorderLeftWidthPt
         };
         List<CellBorderStyle?> borderStyles = new List<CellBorderStyle?>(4) {
-            cell.BorderTopStyle, cell.BorderRightStyle, cell.BorderBottomStyle, cell.BorderLeftStyle
+            thing.BorderTopStyle, thing.BorderRightStyle, thing.BorderBottomStyle, thing.BorderLeftStyle
         };
         List<string> borderColors = new List<string>(4) {
-            cell.BorderTopColor, cell.BorderRightColor, cell.BorderBottomColor, cell.BorderLeftColor
+            thing.BorderTopColor, thing.BorderRightColor, thing.BorderBottomColor, thing.BorderLeftColor
         };
         AddBorders(borderWidths, borderStyles, borderColors, styles);
+    }
+
+    internal static Dictionary<string, string> GetCSSStyles(ICell cell) {
+        Dictionary<string, string> styles = new Dictionary<string, string>();
+        AddBorderStyles(cell, styles);
         if (cell.BackgroundColor is not null)
             AddColor("background-color", cell.BackgroundColor, styles);
         if (cell.VAlignment is not null)
@@ -129,6 +133,8 @@ class CSS {
             string value;
             if (styles[0] == CellBorderStyle.None) {
                 value = style;
+            } else if (color == "initial") {
+                value = width + " " + style;
             } else {
                 value = width + " " + style + " " + color;
             }

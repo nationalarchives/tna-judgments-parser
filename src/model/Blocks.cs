@@ -17,7 +17,7 @@ interface IBlock {
 
 enum AlignmentValues { Left, Right, Center, Justify }
 
-interface ILine : IBlock {
+interface ILine : IBlock, IBordered {
 
     string Style { get; }
 
@@ -39,6 +39,7 @@ interface ILine : IBlock {
             styles.Add("margin-right", this.RightIndent);
         if (this.FirstLineIndent is not null)
             styles.Add("text-indent", this.FirstLineIndent);
+        CSS.AddBorderStyles(this, styles);
         return styles;
     }
 
