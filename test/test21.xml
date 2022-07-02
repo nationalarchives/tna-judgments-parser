@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/121/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/121/data.xml" />
-          <FRBRdate date="2022-06-02T12:28:39" name="transform" />
+          <FRBRdate date="2022-07-02T19:22:54" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>121</uk:number>
         <uk:cite>[2022] UKUT 121 (LC)</uk:cite>
-        <uk:parser>0.6.2</uk:parser>
+        <uk:parser>0.7.6</uk:parser>
         <uk:hash>4684bfd014fadda75dc2bd683fb4edf8df0f42656a2ac85013bb3dfb14ca512e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -111,7 +111,7 @@
 #judgment .BodyTextChar { font-family: Calibri, sans-serif; font-size: 11pt; }
 #judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
 #judgment .TableGrid { }
-#judgment .TableGrid td { border: 0.5pt solid initial; }
+#judgment .TableGrid td { border: 0.5pt solid; }
 #judgment .PlainTable3 { }
 </style>
       </presentation>
