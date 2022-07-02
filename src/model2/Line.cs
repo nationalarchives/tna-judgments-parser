@@ -156,6 +156,46 @@ class WLine : ILine {
         }
     }
 
+    public float? BorderTopWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(properties?.ParagraphBorders?.TopBorder);
+    }
+    public CellBorderStyle? BorderTopStyle {
+        get => DOCX.Tables.ExtractBorderStyle(properties?.ParagraphBorders?.TopBorder);
+    }
+    public string BorderTopColor {
+        get => DOCX.Tables.ExtractBorderColor(properties?.ParagraphBorders?.TopBorder);
+    }
+
+    public float? BorderRightWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(properties?.ParagraphBorders?.RightBorder);
+    }
+    public CellBorderStyle? BorderRightStyle {
+        get => DOCX.Tables.ExtractBorderStyle(properties?.ParagraphBorders?.RightBorder);
+    }
+    public string BorderRightColor {
+        get => DOCX.Tables.ExtractBorderColor(properties?.ParagraphBorders?.RightBorder);
+    }
+
+    public float? BorderBottomWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(properties?.ParagraphBorders?.BottomBorder);
+    }
+    public CellBorderStyle? BorderBottomStyle {
+        get => DOCX.Tables.ExtractBorderStyle(properties?.ParagraphBorders?.BottomBorder);
+    }
+    public string BorderBottomColor {
+        get => DOCX.Tables.ExtractBorderColor(properties?.ParagraphBorders?.BottomBorder);
+    }
+
+    public float? BorderLeftWidthPt {
+        get => DOCX.Tables.ExtractBorderWidthPt(properties?.ParagraphBorders?.LeftBorder);
+    }
+    public CellBorderStyle? BorderLeftStyle {
+        get => DOCX.Tables.ExtractBorderStyle(properties?.ParagraphBorders?.LeftBorder);
+    }
+    public string BorderLeftColor {
+        get => DOCX.Tables.ExtractBorderColor(properties?.ParagraphBorders?.LeftBorder);
+    }
+
     public IEnumerable<IInline> Contents {
         get => contents;
         set { contents = value; }

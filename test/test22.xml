@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144/data.xml" />
-          <FRBRdate date="2022-06-02T12:31:20" name="transform" />
+          <FRBRdate date="2022-07-02T19:23:25" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>144</uk:number>
         <uk:cite>[2022] UKFTT 144 (TC)</uk:cite>
-        <uk:parser>0.6.2</uk:parser>
+        <uk:parser>0.7.6</uk:parser>
         <uk:hash>b3f4e010e2ad46e92028a981b89038e61d88298f2fa1d790ffb78c5971a16a72</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -101,7 +101,7 @@
 #judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0563C1; }
 #judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
 #judgment .TableGrid { }
-#judgment .TableGrid td { border: 0.5pt solid initial; }
+#judgment .TableGrid td { border: 0.5pt solid; }
 </style>
       </presentation>
     </meta>
