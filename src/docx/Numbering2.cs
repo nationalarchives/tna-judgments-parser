@@ -480,29 +480,26 @@ class Numbering2 {
         if (level2 > levelNum)
             return CountingAction.Skip;
 
-        NumberingInstance ownNumbering =  Numbering.GetNumbering(main, paragraph);
+        NumberingInstance ownNumbering = Numbering.GetNumbering(main, paragraph);
         LevelOverride lvlOver = ownNumbering?.ChildElements
             .OfType<LevelOverride>()
             .Where(l => l.LevelIndex.Value == levelNum)
             .FirstOrDefault();
-        if (lvlOver?.StartOverrideNumberingValue?.Val is not null && lvlOver.StartOverrideNumberingValue.Val > 1)
+        if (lvlOver?.StartOverrideNumberingValue?.Val is not null)
             return CountingAction.Override;
         else
             return CountingAction.Count;
     }
+
     private static CountingAction ShouldCountWhenHasNumOverride(MainDocumentPart main, Paragraph paragraph, int numberingId, int levelNum) {
-        NumberingProperties props2;
-        if (paragraph.ChildElements.All(child => child is ParagraphProperties))
-            props2 = paragraph.ParagraphProperties?.NumberingProperties;
-        else
-            props2 = paragraph.ParagraphProperties?.NumberingProperties;    // don't consider style numbering here, unlike above
+        NumberingProperties props2 = paragraph.ParagraphProperties?.NumberingProperties;    // don't consider style numbering here, unlike above
         if (props2 is null)
-            return CountingAction.Skip;
+            return ShouldCountWhenHasNumOverride2(main, paragraph, numberingId, levelNum);
         int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
         if (numberingId2 is null)
-            return CountingAction.Skip;
+            return ShouldCountWhenHasNumOverride2(main, paragraph, numberingId, levelNum);
         if (numberingId2 != numberingId)
-            return CountingAction.Skip;
+            return ShouldCountWhenHasNumOverride2(main, paragraph, numberingId, levelNum);
         int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
         if (level2 < levelNum)
             return CountingAction.Stop;
@@ -511,31 +508,97 @@ class Numbering2 {
         return CountingAction.Count;
     }
 
+    private static IEnumerable<Paragraph> GetPreviousParagraphs(Paragraph paragraph) {
+        return paragraph.Root()
+            .Descendants<Paragraph>()
+            .Reverse()
+            .SkipWhile(e => !object.ReferenceEquals(e, paragraph))
+            .Skip(1);
+    }
+
+    private static CountingAction ShouldCountWhenHasNumOverride2(MainDocumentPart main, Paragraph paragraph, int numberingId, int levelNum) {
+        NumberingInstance num1 = Numbering.GetNumbering(main, numberingId);
+        if (num1.AbstractNumId is null)
+            return CountingAction.Skip;
+        // if (num1.AbstractNumId.Val is null)
+        //     return CountingAction.Skip;
+        if (!num1.AbstractNumId.Val.HasValue)
+            return CountingAction.Skip;
+        int abstractNumId1 = num1.AbstractNumId.Val.Value;
+
+        NumberingProperties props2 = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
+        if (props2 is null)
+            return CountingAction.Skip;
+        int? numberingId2 = Numbering.GetNumberingIdOrNumberingChangeId(props2);
+        if (numberingId2 is null)
+            return CountingAction.Skip;
+        NumberingInstance numbering2 = Numbering.GetNumbering(main, numberingId2.Value);
+        if (numbering2 is null)
+            return CountingAction.Skip;
+        AbstractNum abstractNum2 = Numbering.GetAbstractNum(main, numbering2);
+        int abstractNumId2 = abstractNum2.AbstractNumberId;
+        if (abstractNumId2 != abstractNumId1)
+            return CountingAction.Skip;
+
+        int ilvl2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
+        if (ilvl2 != levelNum)
+            return CountingAction.Skip;
+
+        IEnumerable<Paragraph> previous = GetPreviousParagraphs(paragraph);
+        System.Func<Paragraph, Boolean> f = (p) => {
+            NumberingProperties ownProps = p.ParagraphProperties?.NumberingProperties;
+            if (ownProps is null)
+                return false;
+            int? ownNumId = Numbering.GetNumberingIdOrNumberingChangeId(ownProps);
+            if (ownNumId is null)
+                return false;
+            NumberingInstance ownNumbering = Numbering.GetNumbering(main, ownNumId.Value);
+            if (ownNumbering is null)
+                return false;
+            AbstractNumId ownAbsId = ownNumbering.AbstractNumId;
+            if (ownAbsId is null)
+                return false;
+            if (!ownAbsId.Val.HasValue)
+                return false;
+            if (ownAbsId.Val.Value != abstractNumId1)
+                return false;
+            LevelOverride lvlOver = ownNumbering.ChildElements
+                .OfType<LevelOverride>()
+                .Where(l => l.LevelIndex.Value == levelNum)
+                .FirstOrDefault();
+            if (lvlOver is null)
+                return false;
+            if (lvlOver?.StartOverrideNumberingValue?.Val is null)
+                return false;
+            return true;
+        };
+        if (previous.Any(f))
+            return CountingAction.Count;
+        return CountingAction.Skip;
+    }
+
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
         int? start = null;
         bool hasNumOverride;
+        int relevantNumberingId = numberingId;
         CountingAction a1 = ShouldCount(main, paragraph, abstractNumId, levelNum);
         if (a1 == CountingAction.Override) {
             hasNumOverride = true;
+            // relevantNumberindId =  Numbering.GetNumbering(main, paragraph).NumberID; // no need
             LevelOverride lvlOver = Numbering.GetNumbering(main, paragraph).ChildElements
                 .OfType<LevelOverride>()
                 .Where(l => l.LevelIndex.Value == levelNum)
                 .First();
-                start = lvlOver.StartOverrideNumberingValue.Val;
+            start = lvlOver.StartOverrideNumberingValue.Val;
         } else {
              hasNumOverride = false;
         }
         int count = 0;
-        IEnumerator<Paragraph> previous = paragraph.Root()
-            .Descendants<Paragraph>()
-            .Reverse()
-            .SkipWhile(e => !object.ReferenceEquals(e, paragraph))
-            .Skip(1)
-            .GetEnumerator();
+        IEnumerator<Paragraph> previous = GetPreviousParagraphs(paragraph).GetEnumerator();
         while (previous.MoveNext()) {
             CountingAction a;
             if (hasNumOverride)
-                a = ShouldCountWhenHasNumOverride(main, previous.Current, numberingId, levelNum);
+                a = ShouldCountWhenHasNumOverride(main, previous.Current, relevantNumberingId, levelNum);
             else
                 a = ShouldCount(main, previous.Current, abstractNumId, levelNum);
             if (a == CountingAction.Stop)
@@ -545,6 +608,7 @@ class Numbering2 {
             if (a == CountingAction.Override) {
                 count += 1;
                 if (start is null) {
+                    relevantNumberingId =  Numbering.GetNumbering(main, previous.Current).NumberID;
                     LevelOverride lvlOver = Numbering.GetNumbering(main, previous.Current).ChildElements
                         .OfType<LevelOverride>()
                         .Where(l => l.LevelIndex.Value == levelNum)
