@@ -163,6 +163,16 @@ class Numbering {
         return !format.Equals(NumberFormatValues.None);
     }
 
+    // internal static NumberingProperties GetStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
+    //     ParagraphStyleId styleId = paragraph.ParagraphProperties?.ParagraphStyleId;
+    //     if (styleId is null)
+    //         return null;
+    //     Style style = Styles.GetStyle(main, styleId);
+    //     if (style is null)
+    //         return null;
+    //     return Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
+    // }
+
     internal static NumberingProperties GetNumberingPropertiesOrStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
         NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
         if (props is null) {
