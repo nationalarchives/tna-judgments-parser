@@ -314,7 +314,7 @@ abstract class AbstractParser {
         return string.Join("", texts).Trim();
     }
 
-    private WText GetNumberFromFirstLineOfBigLevel(OpenXmlElement e, string format) {
+    protected WText GetNumberFromFirstLineOfBigLevel(OpenXmlElement e, string format) {
         string text = NormalizeFirstLineOfBigLevel(e, format);
         Match match = Regex.Match(text, format);
         if (!match.Success)
@@ -324,7 +324,7 @@ abstract class AbstractParser {
         return new WText(number, rPr);
     }
 
-    private WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
+    protected WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
         unfiltered = Merger.Merge(unfiltered);
         unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak);
@@ -608,7 +608,7 @@ abstract class AbstractParser {
         return paragraphs;
     }
 
-    protected IDivision ParseParagraph() {
+    protected virtual IDivision ParseParagraph() {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
         if (IsSkippable(e)) {
