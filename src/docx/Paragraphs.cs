@@ -51,6 +51,10 @@ static class Paragraphs {
     public static StringValue GetLeftIndentWithNumberingAndStyleInDXA(MainDocumentPart main, ParagraphProperties props) {
         if (props is null)
             return null;
+
+        if (props.NumberingProperties?.NumberingId?.Val?.Value == 0)
+            return GetLeftIndentWithStyleButNotNumberingInDXA(main, props);
+
         StringValue left;
 
         left = props.Indentation?.Left;
@@ -138,6 +142,10 @@ static class Paragraphs {
     public static StringValue GetFirstLineIndentWithNumberingAndStyleInDXA(MainDocumentPart main, ParagraphProperties pProps) {
         if (pProps is null)
             return null;
+
+        if (pProps.NumberingProperties?.NumberingId?.Val?.Value == 0)
+            return GetFirstLineIndentWithStyleButNotNumberingInDXA(main, pProps);
+
         Indentation indentation;
 
         indentation = pProps.Indentation;
