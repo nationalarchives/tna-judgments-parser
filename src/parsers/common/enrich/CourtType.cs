@@ -301,6 +301,13 @@ class Combo4 : Combo {
             Re4 = new Regex(@"^CHANCERY APPEALS$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
+        new Combo4 {
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re4 = new Regex(@"^CHANCERY APPEALS \(ChD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_Appeals
+        },
         new Combo4 {    // [2021] EWHC 2972 (TCC), [2021] EWHC 3595 (TCC)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS?$", RegexOptions.IgnoreCase),
