@@ -17,6 +17,7 @@ class ImageConverter {
 
     internal static void ConvertImages(IJudgment jugdment) {
         ConvertEmfFiles(jugdment);
+        ConvertTiffFiles(jugdment);
         CropImages(jugdment);
     }
 
@@ -52,6 +53,26 @@ class ImageConverter {
                 continue;
             }
             throw new System.Exception();
+        }
+        jugdment.Images = images;
+    }
+
+    private static void ConvertTiffFiles(IJudgment jugdment) {
+        if (!jugdment.Images.Any(image => image.ContentType == "image/tiff"))
+            return;
+        List<IImage> images = new List<IImage>();
+        foreach (IImage image in jugdment.Images) {
+            if (image.ContentType != "image/tiff") {
+                images.Add(image);
+                continue;
+            }
+            byte[] png = Imaging.Convert.ConvertToPng(image.Content());
+            string newName = image.Name + ".png";
+            foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
+                iRef.Src = newName;
+            }
+            var converted = new ConvertedImage { Name = newName, ContentType = "image/png", Data = png };
+            images.Add(converted);
         }
         jugdment.Images = images;
     }
