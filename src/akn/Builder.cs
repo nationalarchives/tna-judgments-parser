@@ -16,16 +16,16 @@ class Builder {
 
     public static readonly string ns = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
-    private readonly XmlDocument doc;
+    protected readonly XmlDocument doc;
 
-    private Builder() {
+    protected Builder() {
         doc = new XmlDocument();
     }
 
     private XmlElement CreateElement(string name) {
         return doc.CreateElement(name, ns);
     }
-    private XmlElement CreateAndAppend(string name, XmlNode parent) {
+    protected XmlElement CreateAndAppend(string name, XmlNode parent) {
         XmlElement e = CreateElement(name);
         parent.AppendChild(e);
         return e;
@@ -143,17 +143,20 @@ class Builder {
         AddDivisions(decision, model.Contents);
     }
 
-    private void AddDivisions(XmlElement parent, IEnumerable<IDivision> divisions) {
+    protected void AddDivisions(XmlElement parent, IEnumerable<IDivision> divisions) {
         foreach (IDivision division in divisions)
             AddDivision(parent, division);
     }
 
-    private void AddDivision(XmlElement parent, IDivision div) {
+    protected virtual void AddDivision(XmlElement parent, IDivision div) {
         if (div is ITableOfContents toc) {
             AddTableOfContents(parent, toc);
             return;
         }
         string name = (div is ILeaf && div.Number is not null) ? "paragraph" : "level";
+        AddDivision(parent, div, name);
+    }
+    protected void AddDivision(XmlElement parent, IDivision div, string name) {
         XmlElement level = doc.CreateElement(name, ns);
         parent.AppendChild(level);
         if (div.Number is not null) {
@@ -194,7 +197,7 @@ class Builder {
     //     blocks(container, model.Contents);
     // }
 
-    private void blocks(XmlElement parent, IEnumerable<IBlock> blocks) {
+    protected void blocks(XmlElement parent, IEnumerable<IBlock> blocks) {
         foreach (IBlock block in blocks) {
             if (block is IOldNumberedParagraph np) {
                 XmlElement container = doc.CreateElement("blockContainer", ns);
@@ -304,7 +307,7 @@ class Builder {
 
     /* inline */
 
-    private void AddInline(XmlElement parent, IInline model) {
+    protected virtual void AddInline(XmlElement parent, IInline model) {
         if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
         else if (model is INeutralCitation2 cite2) {
