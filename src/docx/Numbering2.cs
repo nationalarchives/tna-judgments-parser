@@ -499,7 +499,7 @@ class Numbering2 {
         if (numberingId2 is null)
             return ShouldCountWhenHasNumOverride2(main, paragraph, numberingId, levelNum);
         if (numberingId2 != numberingId)
-            return ShouldCountWhenHasNumOverride2(main, paragraph, numberingId, levelNum);
+            return CountingAction.Skip;
         int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
         if (level2 < levelNum)
             return CountingAction.Stop;
@@ -541,6 +541,8 @@ class Numbering2 {
             return CountingAction.Skip;
 
         int ilvl2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
+        // if (ilvl2 < levelNum)
+        //     return CountingAction.Stop;
         if (ilvl2 != levelNum)
             return CountingAction.Skip;
 
