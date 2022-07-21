@@ -554,6 +554,8 @@ class Numbering2 {
             int? ownNumId = Numbering.GetNumberingIdOrNumberingChangeId(ownProps);
             if (ownNumId is null)
                 return false;
+            if (ownNumId != numberingId)
+                return false;
             NumberingInstance ownNumbering = Numbering.GetNumbering(main, ownNumId.Value);
             if (ownNumbering is null)
                 return false;
@@ -564,6 +566,9 @@ class Numbering2 {
                 return false;
             if (ownAbsId.Val.Value != abstractNumId1)
                 return false;
+            // int ownLevel = ownProps.NumberingLevelReference?.Val?.Value ?? 0;
+            // if (ownLevel != levelNum)
+            //     return false;
             LevelOverride lvlOver = ownNumbering.ChildElements
                 .OfType<LevelOverride>()
                 .Where(l => l.LevelIndex.Value == levelNum)
