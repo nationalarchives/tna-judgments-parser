@@ -1705,7 +1705,7 @@ class PartyEnricher : Enricher {
         return new WCell(cell.Row, cell.Props, new List<IBlock>(1) { line });
     }
 
-    private ILine EnrichLine(ILine line) {
+    protected override ILine EnrichLine(ILine line) {
         if (line.Contents.Count() != 1)
             return line;
         IInline first = line.Contents.First();
