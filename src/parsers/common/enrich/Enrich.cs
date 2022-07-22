@@ -39,7 +39,7 @@ abstract class Enricher {
         if (div is WNewNumberedParagraph np)
             return new WNewNumberedParagraph(np.Number, Enrich(np.Contents));
         if (div is WTableOfContents toc)
-            return toc;
+            return new WTableOfContents(EnrichLines(toc.Contents));
         if (div is WDummyDivision dummy)
             return new WDummyDivision(Enrich(dummy.Contents));
         throw new Exception();
@@ -64,6 +64,14 @@ abstract class Enricher {
     //     return new WTable(table.Main, rows);
 
     // }
+
+    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichLine);
+
+    protected virtual ILine EnrichLine(ILine line) {
+        if (line is WLine wLine)
+            return Enrich(wLine);
+        return line;
+    }
 
     protected virtual WLine Enrich(WLine line) {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
