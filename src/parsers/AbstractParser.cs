@@ -344,10 +344,10 @@ abstract class AbstractParser {
         match = Regex.Match(t1.Text + " ", format + @"$");
         if (match.Success) {
             IInline second = unfiltered.Skip(1).FirstOrDefault();
-            if (second is not null && second is WText t2) {
+            if (second is WText t2) {
                 WText prepend = new WText(t2.Text.TrimStart(), t2.properties);
                 return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
-            } else if (second is not null && second is WTab tab) {
+            } else if (second is WTab) {
                 return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
             } else {
                 throw new Exception();
@@ -364,6 +364,12 @@ abstract class AbstractParser {
                     WText prepend = new WText(rest, t2bis.properties);
                     return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
                 }
+            }
+            match = Regex.Match(combined + " ", format + @"$");
+            if (match.Success) {
+                IInline third = unfiltered.Skip(2).FirstOrDefault();
+                if (third is WTab)  // [2022] UKSC 21
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
             }
         }
         throw new Exception();
