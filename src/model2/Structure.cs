@@ -109,7 +109,7 @@ internal class WTableOfContents : ITableOfContents {
 
     public IEnumerable<ILine> Contents { get; internal set; }
 
-    internal WTableOfContents(IEnumerable<WLine> blocks) {
+    internal WTableOfContents(IEnumerable<ILine> blocks) {
         Contents = blocks;
     }
 
