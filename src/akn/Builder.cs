@@ -235,7 +235,6 @@ class Builder {
         int iRow = 0;
         foreach (List<ICell> row in rows) {
             XmlElement tr = doc.CreateElement("tr", ns);
-            table.AppendChild(tr);
             int iCell = 0;
             foreach (ICell cell in row) {
                 if (cell.VMerge == VerticalMerge.Continuation) {
@@ -267,8 +266,11 @@ class Builder {
                 }
                 iCell += 1;
             }
+            if (tr.HasChildNodes)   // some rows might contain nothing but merged cells
+                table.AppendChild(tr);
             iRow += 1;
         }
+
         if (mergedContentsHandled.Any()) {
             logger.LogCritical("error handling merged cells");
             throw new Exception();
