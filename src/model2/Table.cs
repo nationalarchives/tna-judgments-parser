@@ -230,7 +230,8 @@ class WCell : ICell {
             return Enumerable.Empty<IBlock>();
         if (e is BookmarkStart || e is BookmarkEnd)
             return Enumerable.Empty<IBlock>();
-        return Blocks.ParseBlock(cell.Main, e);
+        return Blocks.ParseBlock(cell.Main, e)
+            .Where(b => b is not WOldNumberedParagraph np || np.Contents.Any());
     }
 
 }
