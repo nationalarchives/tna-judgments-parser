@@ -100,6 +100,7 @@ class WLine : ILine {
                 return DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, properties);
             else
                 return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
+            return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, properties);
         }
     }
     public string LeftIndent {
@@ -268,5 +269,11 @@ class WRestriction : WLine, IRestriction {
     internal WRestriction(WRestriction proto, IEnumerable<IInline> contents) : base(proto, contents) { }
 
 }
+
+// class WHeading : WLine {
+
+//     internal WHeading(WLine proto) : base(proto) { }
+
+// }
 
 }
