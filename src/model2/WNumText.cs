@@ -11,7 +11,7 @@ using JudgmentsNS = UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
-internal class WNumText : IFormattedText {
+abstract internal class WNumText : IFormattedText {
 
     private readonly NumberingSymbolRunProperties props;
     private readonly ParagraphMarkRunProperties props2;
@@ -176,24 +176,28 @@ internal class WNumber : WNumText, INumber {
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties pProps;
 
+    internal bool IsNumberOfParagraphWithHeading { get; set; }
+
     public WNumber(MainDocumentPart main, DOCX.NumberInfo info, Paragraph paragraph) : base(main, info, paragraph) {
         this.main = main;
         this.pProps = paragraph.ParagraphProperties;
     }
 
-    public float? LeftIndentInches { get => DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps); }
+    public float? LeftIndentInches {
+        get {
+            if (IsNumberOfParagraphWithHeading)
+                return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, pProps);
+            else
+                return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
+        }
+    }
 
     public string LeftIndent {
-        get {
-            float? inches = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
-            return JudgmentsNS.CSS.ConvertSize(inches, "in");
-        }
+        get => JudgmentsNS.CSS.ConvertSize(LeftIndentInches, "in");
     }
     public string FirstLineIndent {
         get {
             float? inches = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, pProps);
-            if (inches is null)
-                return null;
             return JudgmentsNS.CSS.ConvertSize(inches, "in");
         }
     }
