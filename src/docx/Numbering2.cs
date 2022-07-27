@@ -477,8 +477,34 @@ class Numbering2 {
         int level2 = props2.NumberingLevelReference?.Val?.Value ?? 0;
         if (level2 < levelNum)
             return CountingAction.Stop;
-        if (level2 > levelNum)
-            return CountingAction.Skip;
+        if (level2 > levelNum) {
+            // here we want to return Count, if this one has no proper parent or sibling, that is, if levelNum is 1 and there are no previous level 0 or 1
+
+            bool hasPriorParentOrSibling = GetPreviousParagraphs(paragraph).Any(prev => {
+                NumberingProperties otherProps = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, prev);
+                // NumberingProperties otherProps = prev.ParagraphProperties?.NumberingProperties;
+                if (otherProps is null)
+                    return false;
+                int? otherNumId = Numbering.GetNumberingIdOrNumberingChangeId(otherProps);
+                // int? otherNumId = otherProps.NumberingId?.Val?.Value;
+                if (otherNumId is null)
+                    return false;
+                // if (otherNumId != numberingId2)
+                //     return false;
+                NumberingInstance otherNumbering = Numbering.GetNumbering(main, otherNumId.Value);
+                if (otherNumbering is null)
+                    return false;
+                AbstractNum otherAbstractNum = Numbering.GetAbstractNum(main, otherNumbering);
+                if (otherAbstractNum is null)
+                    return false;
+                int otherAbstractNumId = otherAbstractNum.AbstractNumberId;
+                if (otherAbstractNumId != abstractNumId)
+                    return false;
+                int otherLevel = otherProps.NumberingLevelReference?.Val?.Value ?? 0;
+                return otherLevel <= level2;
+            });
+            return hasPriorParentOrSibling ? CountingAction.Skip : CountingAction.Count;
+        }
 
         NumberingInstance ownNumbering = Numbering.GetNumbering(main, paragraph);
         LevelOverride lvlOver = ownNumbering?.ChildElements
