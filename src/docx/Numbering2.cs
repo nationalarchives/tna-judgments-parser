@@ -611,6 +611,10 @@ class Numbering2 {
     }
 
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
+        return CalculateNTopDown(main, paragraph, numberingId, abstractNumId, levelNum);
+    }
+
+    internal static int CalculateNBottomUp(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
         int? start = null;
         bool hasNumOverride;
         int relevantNumberingId = numberingId;
@@ -654,6 +658,82 @@ class Numbering2 {
         if (start is null)
             start = GetStart(main, numberingId, levelNum);
         return start.Value + count;
+    }
+
+    private static int? GetStartOverride(MainDocumentPart main, int numberingId, int ilvl) {
+        NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
+        return GetStartOverride(numbering, ilvl);
+    }
+    private static int? GetStartOverride(NumberingInstance numbering, int ilvl) {
+        return numbering?.ChildElements.OfType<LevelOverride>()
+            .Where(l => l.LevelIndex.Value == ilvl)
+            .FirstOrDefault()?.StartOverrideNumberingValue?.Val?.Value;
+    }
+
+    internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl) {
+        int? start = null;
+        int numIdOfStartOverride = -1;
+        int count = 0;
+        foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
+            NumberingProperties prevProps;
+            if (prev.ChildElements.All(child => child is ParagraphProperties))   // EWHC/Ch/2011/3553 ?? && paragraph.ChildElements.OfType<ParagraphProperties>().First().SectionProperties is not null
+                prevProps = prev.ParagraphProperties?.NumberingProperties;    // ukut/iac/2021/130
+            else
+                prevProps = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, prev);
+            if (prevProps is null)
+                continue;
+            int? prevNumId = Numbering.GetNumberingIdOrNumberingChangeId(prevProps);
+            if (prevNumId is null)
+                continue;
+            // if (prevNumId == 0)
+            //     continue;
+            NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
+            if (prevNumbering is null)
+                continue;
+            AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
+            int prevAbsNumId = prevAbsNum.AbstractNumberId;
+            if (prevAbsNumId != abstractNumId)
+                continue;
+            int prevIlvl = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
+            if (prevIlvl < ilvl) {
+                count = 0;
+                continue;
+            }
+            if (prevIlvl > ilvl) {
+                if (count == 0) // test35
+                    count += 1;
+                continue;
+            }
+            if (start is null) {
+                int? prevOver = GetStartOverride(prevNumbering, ilvl);
+                if (prevOver.HasValue) {
+                    start = prevOver.Value;
+                    numIdOfStartOverride = prevNumId.Value;
+                    count = 0;
+                }
+            } else if (prevNumId != numIdOfStartOverride) {
+                int? prevOver = GetStartOverride(prevNumbering, ilvl);
+                if (prevOver.HasValue) {
+                    start = prevOver.Value;
+                    numIdOfStartOverride = prevNumId.Value;
+                    count = 0;
+                }
+            }
+            count += 1;
+        }
+        if (start is null) {    //  || numberingId != numIdOfStartOverride
+            start = GetStart(main, numberingId, ilvl);
+            int? over = GetStartOverride(main, numberingId, ilvl);
+            if (over.HasValue)
+                count = 0;
+        } else if (numberingId != numIdOfStartOverride) {
+            int? over = GetStartOverride(main, numberingId, ilvl);
+            if (over.HasValue) {
+                start = GetStart(main, numberingId, ilvl);
+                count = 0;
+            }
+        }
+        return count + start.Value;
     }
 
     // for REF \w -- see EWHC/Comm/2018/1368
