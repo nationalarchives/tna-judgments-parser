@@ -16,18 +16,13 @@ class Numbering {
             .Where(n => n.NumberID.Equals(id))
             .FirstOrDefault();
     }
-    public static NumberingInstance GetNumbering(MainDocumentPart main, NumberingId id) {
-        return main.NumberingDefinitionsPart.Numbering.ChildElements
-            .OfType<NumberingInstance>()
-            .Where(n => n.NumberID.Equals(id.Val))
-            .FirstOrDefault();
-    }
 
+    [Obsolete]
     public static NumberingInstance GetNumbering(MainDocumentPart main, Paragraph paragraph) {
-        NumberingId id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId;
-        if (id is null)
+        int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        if (!id.HasValue)
             return null;
-        return GetNumbering(main, id);
+        return GetNumbering(main, id.Value);
     }
 
     public static AbstractNum GetAbstractNum(MainDocumentPart main, string name) {
@@ -52,12 +47,6 @@ class Numbering {
             .OfType<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
             .FirstOrDefault();
-        // if (level is null && abs.NumberingStyleLink is not null) {    // // EWHC/Ch/2012/190
-        //     string numStyleId = abs.NumberingStyleLink.Val.Value;
-        //     Style numStyle = Styles.GetStyle(main, StyleValues.Numbering, numStyleId);
-        //     numberingId = numStyle.StyleParagraphProperties.NumberingProperties.NumberingId.Val.Value;
-        //     level = GetLevel(main, numberingId, ilvl);
-        // }
         return level;
     }
     public static Level GetLevel(MainDocumentPart main, int numberingId, int ilvl) {
@@ -85,9 +74,6 @@ class Numbering {
         }
         return level;
     }
-    public static Level GetLevel(MainDocumentPart main, NumberingId id, int ilvl) {
-        return GetLevel(main, id.Val, ilvl);
-    }
 
     internal static int? GetNumberingIdOrNumberingChangeId(NumberingProperties props) {  // EWCA/Civ/2004/1580
         if (props.NumberingId?.Val?.Value is not null)
@@ -95,17 +81,16 @@ class Numbering {
         if (props.NumberingChange?.Id?.Value is not null)
             return int.Parse(props.NumberingChange.Id.Value);
         return null;
-        // return props.NumberingId?.Val?.Value ?? int.Parse(props.NumberingChange.Id);
     }
 
-    public static Level GetLevel(MainDocumentPart main, NumberingProperties props) {
+    private static Level GetLevel(MainDocumentPart main, NumberingProperties props) {
         int? numId = GetNumberingIdOrNumberingChangeId(props);
         if (numId is null)
             return null;
         int ilvl = props?.NumberingLevelReference?.Val?.Value ?? 0;
         return GetLevel(main, numId.Value, ilvl);
     }
-    public static Level GetOwnLevel(MainDocumentPart main, ParagraphProperties pProps) {
+    internal static Level GetOwnLevel(MainDocumentPart main, ParagraphProperties pProps) {
         NumberingProperties props = pProps?.NumberingProperties;
         if (props is null)
             return null;
@@ -118,15 +103,18 @@ class Numbering {
         return GetOwnLevel(main, pProps);
     }
 
-    public static Level GetLevel(MainDocumentPart main, Style style) {
+    private static Level GetLevel(MainDocumentPart main, Style style) {
         if (style is null)
             return null;
-        NumberingProperties props = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
-        if (props is null)
+        int? id = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+        if (!id.HasValue)
             return null;
-        return GetLevel(main, props);
+        NumberingProperties props = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
+        /* can's use Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value) */
+        int ilvl = props?.NumberingLevelReference?.Val?.Value ?? 0;
+        return GetLevel(main, id.Value, ilvl);
     }
-    public static Level GetStyleLevel(MainDocumentPart main, ParagraphProperties pProps) {
+    internal static Level GetStyleLevel(MainDocumentPart main, ParagraphProperties pProps) {
         ParagraphStyleId styleId = pProps.ParagraphStyleId;
         if (styleId is null)
             return null;
@@ -140,17 +128,11 @@ class Numbering {
         return GetStyleLevel(main, pProps);
     }
 
-    public static Level GetLevelOrStyleLevel(MainDocumentPart main, ParagraphProperties pProps) {
-        NumberingProperties numProps = pProps?.NumberingProperties;
-        if (pProps is null)
-            return GetStyleLevel(main, pProps);
-        return GetLevel(main, numProps);
-    }
     public static Level GetLevelOrStyleLevel(MainDocumentPart main, Paragraph paragraph) {
-        NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
-        if (props is null)
-            return GetStyleLevel(main, paragraph);
-        return GetLevel(main, props);
+        (int? numId, int ilvl) = GetNumberingIdAndIlvl(main, paragraph);
+        if (!numId.HasValue)
+            return null;
+        return GetLevel(main, numId.Value, ilvl);
     }
 
     public static bool HasNumberOrMarker(MainDocumentPart main, Paragraph paragraph) {
@@ -163,16 +145,7 @@ class Numbering {
         return !format.Equals(NumberFormatValues.None);
     }
 
-    // internal static NumberingProperties GetStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
-    //     ParagraphStyleId styleId = paragraph.ParagraphProperties?.ParagraphStyleId;
-    //     if (styleId is null)
-    //         return null;
-    //     Style style = Styles.GetStyle(main, styleId);
-    //     if (style is null)
-    //         return null;
-    //     return Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
-    // }
-
+    [Obsolete("dangerous, prefer method below")]
     internal static NumberingProperties GetNumberingPropertiesOrStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
         NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
         if (props is null) {
@@ -184,6 +157,21 @@ class Numbering {
             }
         }
         return props;
+    }
+
+    internal static Tuple<int?, int> GetNumberingIdAndIlvl(MainDocumentPart main, Paragraph paragraph) {
+        int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        if (!id.HasValue && paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value is not null)
+            id = int.Parse(paragraph.ParagraphProperties.NumberingProperties.NumberingChange.Id.Value);
+        int? ilvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
+        if (!id.HasValue || !ilvl.HasValue) {
+            Style style = Styles.GetStyle(main, paragraph);
+            if (!id.HasValue)
+                id = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            if (!ilvl.HasValue)
+                ilvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
+        }
+        return new Tuple<int?, int>(id, ilvl ?? 0);
     }
 
 }

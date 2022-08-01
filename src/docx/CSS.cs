@@ -132,11 +132,11 @@ public class CSS {
                 return null;
 
             /* sometimes a style specifies a numbering level but inherits its numbering id from its parent style */
-            NumberingId numId = s.GetInheritedProperty(s2 => s2.StyleParagraphProperties?.NumberingProperties?.NumberingId);
-            if (numId is null)
+            int? numId = s.GetInheritedProperty(s2 => s2.StyleParagraphProperties?.NumberingProperties?.NumberingId)?.Val?.Value;
+            if (!numId.HasValue)
                 return null;
             int ilvl = s.GetInheritedProperty(s2 => s2.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value) ?? 0;
-            Level level = Numbering.GetLevel(main, numId, ilvl);
+            Level level = Numbering.GetLevel(main, numId.Value, ilvl);
             // Level level = Numbering.GetLevel(main, numProps);
             return level?.PreviousParagraphProperties?.Indentation?.Left;
         };

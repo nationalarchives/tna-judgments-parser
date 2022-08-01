@@ -451,11 +451,13 @@ abstract class AbstractParser {
     protected virtual bool IsFirstLineOfCrossHeading(OpenXmlElement e) {
         if (e is not Paragraph p)
             return false;
-        if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p) && DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is null)
+        bool hasNumberOrMarker = DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p);
+        object formattedNumber = DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p);
+        if (hasNumberOrMarker && formattedNumber is null)
             throw new Exception();
-        if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p))
+        if (hasNumberOrMarker)
             return false;
-        if (DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is not null)
+        if (formattedNumber is not null)
             throw new Exception();
         if (IsFirstLineOfBigLevel(e, bigLevelNumberingFormats))
             return false;
