@@ -22,14 +22,9 @@ class Numbering2 {
     private static ILogger logger = Logging.Factory.CreateLogger<DOCX.Numbering2>();
 
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
-        NumberingProperties props = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, paragraph);
-        if (props is null)
+        (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
+        if (!numId.HasValue)
             return null;
-        int? numId = Numbering.GetNumberingIdOrNumberingChangeId(props);
-        if (numId is null)
-            return null;
-        // there may be no numbering instance that corresponds to this id, in which case Magic2 returns null
-        int ilvl = props.NumberingLevelReference?.Val?.Value ?? 0;
         string magic = Magic2(main, paragraph, numId.Value, ilvl);
         if (string.IsNullOrEmpty(magic))
             return null;
@@ -675,17 +670,13 @@ class Numbering2 {
         int numIdOfStartOverride = -1;
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
-            NumberingProperties prevProps;
-            if (prev.ChildElements.All(child => child is ParagraphProperties))   // EWHC/Ch/2011/3553 ?? && paragraph.ChildElements.OfType<ParagraphProperties>().First().SectionProperties is not null
-                prevProps = prev.ParagraphProperties?.NumberingProperties;    // ukut/iac/2021/130
-            else
-                prevProps = Numbering.GetNumberingPropertiesOrStyleNumberingProperties(main, prev);
-            if (prevProps is null)
+            bool noContent = prev.ChildElements.Any(child => child is ParagraphProperties) && prev.ChildElements.All(child => child is ParagraphProperties);
+            if (noContent)
                 continue;
-            int? prevNumId = Numbering.GetNumberingIdOrNumberingChangeId(prevProps);
-            if (prevNumId is null)
+            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
+            if (!prevNumId.HasValue)
                 continue;
-            // if (prevNumId == 0)
+            // if (prevNumId.Value == 0)
             //     continue;
             NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
             if (prevNumbering is null)
@@ -694,7 +685,6 @@ class Numbering2 {
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
             if (prevAbsNumId != abstractNumId)
                 continue;
-            int prevIlvl = prevProps.NumberingLevelReference?.Val?.Value ?? 0;
             if (prevIlvl < ilvl) {
                 count = 0;
                 continue;

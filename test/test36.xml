@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/226" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/226" />
+          <FRBRdate date="2022-05-24" name="hearing" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="226" />
+          <FRBRname value="THE TOWARDS ZERO FOUNDAITON v THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226" />
+          <FRBRdate date="2022-05-24" name="hearing" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226/data.xml" />
+          <FRBRdate date="2022-07-29T15:55:05" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-05-24" refersTo="#hearing" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCPerson eId="the-towards-zero-foundaiton" href="" showAs="THE TOWARDS ZERO FOUNDAITON" />
+        <TLCPerson eId="formerly-global-new-car-assessment-programme" href="" showAs="(formerly GLOBAL NEW CAR ASSESSMENT PROGRAMME)" />
+        <TLCPerson eId="the-commissioners-for-her-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-TC</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>226</uk:number>
+        <uk:cite>[2022] UKFTT 226 (TC)</uk:cite>
+        <uk:parser>0.7.12</uk:parser>
+        <uk:hash>2d4805fd4176f1888b378d56759b8a87d27bf8571bcce77368f3c3c5d963163a</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Header { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1 { text-align: justify; font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Taxbodytext1 { text-align: justify; margin-left: 0in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2 { text-align: justify; margin-left: 0.39in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3 { text-align: justify; margin-left: 0.79in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4 { text-align: justify; margin-left: 1.18in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2 { text-align: justify; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3 { text-align: justify; font-style: italic; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4 { text-align: justify; font-style: italic; font-weight: normal; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxquotation { text-align: justify; margin-left: 0.79in; margin-right: 0.76in; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5 { text-align: justify; margin-left: 1.58in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeading { text-align: center; font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Revision { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1Char { font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; }
+#judgment .Taxbodytext1Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3Char { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4Char { font-style: italic; font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxquotationChar { font-family: 'Times New Roman'; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeadingChar { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p class="Header" />
+    </coverPage>
+    <header>
+      <p><img src="image1.png" style="width:82.49pt;height:72pt" /></p>
+      <p style="text-align:left">Neutral Citation: <neutralCitation>[2022] UKFTT 00226 (TC)</neutralCitation></p>
+      <p style="text-align:right">Case Number: TC08547</p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">FIRST-TIER TRIBUNAL</courtType></p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">TAX CHAMBER</courtType></p>
+      <p style="text-align:right;margin-left:3.05in">Taylor House, London</p>
+      <p style="text-align:right">Appeal reference: TC/2018/07239</p>
+      <p><span style="font-style:italic">VAT: charitable body undertaking paid for and free crash tests – whether all activities were economic/business – yes – whether input tax should be adjusted as attributable to non-business – no – ALLOWED</span></p>
+      <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span>23 and <docDate date="2022-05-24" refersTo="#hearing">24 May 2022</docDate></p>
+      <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>22 July 2022</p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE AMANDA BROWN QC</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">MARK BUFFERY</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
+      <p style="text-align:center"><party refersTo="#the-towards-zero-foundaiton" as="#appellant" style="font-weight:bold">THE TOWARDS ZERO FOUNDAITON</party></p>
+      <p style="text-align:center"><party refersTo="#formerly-global-new-car-assessment-programme" as="#appellant" style="font-weight:bold">(formerly GLOBAL NEW CAR ASSESSMENT PROGRAMME)</party></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>
+      <p style="text-align:center"><span style="font-weight:bold">and</span></p>
+      <p style="text-align:center"><party refersTo="#the-commissioners-for-her-majestys-revenue-and-customs" as="#respondent" style="font-weight:bold">THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondents</role></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Representation:</span></p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Appellant:<marker name="tab" />Mr L Allen, barrister of Miscon de Reya</p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Respondents: <marker name="tab" />Ms O Donovan litigator of HM Revenue and Customs’ Solicitor’s Office</p>
+      <p style="text-align:center"><span style="font-weight:bold">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading class="Taxheading1">Introduction</heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">This appeal concerns:</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">A ruling issued by HM Revenue &amp; Customs (<span style="font-weight:bold">HMRC</span>) on 29 September 20217 that safety tests carried out by The Towards Zero Foundation (<span style="font-weight:bold">Appellant</span>) for which no charge was made represented a non-business activity; and </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">assessments for prescribed accounting periods 08/14 to 05/18 dated 26 July 2018 in the total sum of £152,311 in respect of residual input tax considered to be properly attributable to the non-business activity and thereby overclaimed by the Appellant.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">Background</heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">2.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Appellant was established as a charity in 2012.  Its primary objective is to achieve zero road traffic fatalities principally through the operation of New Car Assessment Programmes (<span style="font-weight:bold">NCAP</span>).</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">3.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The first NCAP was established in 1979 in the US as a collaboration between governmental bodies with a view to improving car safety.  The NCAP gives manufacturers the opportunity to independently evidence how well the cars they produce perform beyond legislative safety standards.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">4.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In 1997 Euro NCAP was established as a multi stakeholder non-profit making entity in Belgium.  The Appellant was established with a view to seeding and establishing NCAPs regionally across the globe.  At all times material to this appeal there are NCAPs fully established in China, Australia, Japan, Korea, Malaysia (ASEAC).</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In summary, in each jurisdiction where a NCAP is to be established the Appellant will purchase and crash test individual models of car manufactured for sale in that jurisdiction.  The initial testing is undertaken on vehicles purchased by the Appellant by way of a “mystery shopping” exercise; both the purchases and the testing is funded by the Appellant.  The results of the tests (usually giving rise to substandard or unsatisfactory outcomes) are published and socialised. These results inform and influence customer buying behaviour which in turn drives manufacturers to improve the safety features.  Having improved safety in this way the manufactures proactively seek (and pay for) further testing, utilising the improved ratings in the market.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC began enquiries into the Appellant’s VAT recovery as part of a broader charitable sector exercise to establish whether the Appellant was appropriately restricting input tax attributable to non-business activities.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">7.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There was no dispute between the parties that the testing undertaken and paid for by the manufacturers was a business activity involving the making of taxable supplies giving rise to input tax recovery.  However, HMRC considered that the initial testing funded by the Appellant represented a non-business activity to which residual input tax (incurred in connection with the Appellant’s activities generally and as a whole) should, in part, be attributed.  They raised the assessments by reference to the information available on the basis that there should be a 40% restriction on general overhead input tax recovery.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">8.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Appellant disputes that it is engaged in any non-business activity and the validity of the assessments.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">Findings of fact</heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">9.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Tribunal was provided with a significant volume of documents the vast majority of which were not directly referenced by either party.  David Ward (president of the Appellant) provided three witness statements and gave oral testimony.  HMRC cross examined Mr Ward but such cross examination was limited to the evidence as it pertained to the quantum and timing of the assessments and not the substantive evidence regarding the operations of the Appellant.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">10.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">From the documents and witness evidence the Tribunal finds the following facts relevant to the determination of the dispute between the parties:</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The NCAP was originally established and continues to have the objective of carrying out vehicle crash tests which are more stringent than those required by regulation and to make the results of those tests publicly available with a view to encouraging a market for safety.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">NCAPs have been established both exclusively through governmental support or as multi-party initiatives between public authorities and consumer advocacy groups.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(3)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The effect of NCAPs has been to improve vehicle safety in the jurisdictions in which they are established.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Initially through the use of philanthropic donations, the Appellant provides financial and technical support in order to initiate pilot NCAPs in new jurisdictions.  In the period covered by the appeal NCAPs have been seeded in south-east Asia, Latin America, India and South Africa.  New jurisdictions for establishment of a programme are identified by the Appellant by reference to road fatality statistics.  The Appellant funds local NCAPs in relation to the initial purchase of vehicles to be tested.  </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(5)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">In the start up phase for an NCAP it is necessary to test vehicles without manufacturer support as the independence of the testing programme is critical in order to establish consumer credibility.   These initial tests are funded by the Appellant.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(6)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The testing programme typically involves a number of crash tests on a particular model of car through which forward and side impact to the vehicle is monitored.  The tests use instrumented dummies to measure the crash forces that can lead to injury.  The testing facilities used by the Appellant are not located in the UK.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(7)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The early phase of testing frequently exposes that the vehicles manufactured in an economy with historically low car (or certainly new car) ownership, perform poorly.  It is often the case that in these emerging markets the vehicles manufactured do not meet the minimum safety standards set by the United Nations.  As a consequence it is rarely in the manufacturers’ interests to obtain the first baseline safety assessment.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(8)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The Appellant generates publicity of the results though social media, news coverage, trade press etc. (examples of which were available to the Tribunal).  Informed customers look to purchase the safest vehicles they can afford to buy by reference to the data produced and disseminated by the Appellant and thereby drive manufacturers to improve the safety standard of the models available at each price point.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(9)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">After a number of test phases manufacturer performance improves as vehicle models incorporate increasing effective safety features as standard.  Manufacturers then proactively seek and make payment for the testing of these improved models.  In essence the manufacturers want to show the market that safety has been improved deriving commercial advantage from that improvement.  Such manufacturers will use the improved ratings in their own marketing of the vehicles.  By way of example the Renault Kwid when originally launched in India in 2016 received a zero-star rating, however, when the revised model was launched in 2018 it had 4 air bags, Renault paid for a safety test thereby credentialising the improvement in safety.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(10)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">As the market sophistication increases the NCAP star ratings for vehicles are used by the manufacturers in promotion of the vehicles.  They are also a feature in independent evaluation of vehicles, for example <span style="font-style:italic">Which? </span>And <span style="font-style:italic">What Car</span> magazines include the Euro NCAP ratings in all vehicle reviews. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(11)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">The aim of the Appellant is for each jurisdictional NCAP to ultimately become self-funding through manufacturer testing fees and for the NCAP to then  operate independently from the Appellant.  This method of establishment is proving successful.  By 2018, Safer Cars for India, had awarded its first 5-star rating for a car and manufacturer funded testing was commonplace.  In parallel the Indian Government improved the regulated safety environment mandating the minimum UN crash test standards.  Similarly, for Latin America by 2019 83% of the testing undertaken had become manufacturer funded.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(12)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">In a jurisdiction with an established and mature programme of manufacturer funded testing, non-manufacturer requested testing will periodically continue to be undertaken to maintain independence, particularly in weakly regulated markets and to ensure that under-performing models are still rated.  100% manufacturer funded testing will therefore never be the aim of an established NCAP.  For the autonomous NCAPs the “free” tests are undertaken for the benefit of the programme as a whole and the cost is met as a general cost of providing the taxable supplies of manufacturer funded tests.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(13)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">For the jurisdictions under establishment in the periods covered by the assessment (south-east Asia, Latin America, India and South Africa) it is the Appellant which has made supplies of testing to the manufacturers who have paid for such tests.  The income generated from such testing has increased year on year and it is not disputed that such income is consideration for a supply of taxable services (albeit that the place of supply of such services is that of the manufacturer in question and not the UK).</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(14)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">The majority of the costs incurred by the Appellant are non-UK costs i.e. the cost of purchasing the vehicles to be tested and the conduct of the tests are non-UK costs, and no UK VAT is incurred in connection with them.  However, as the Appellant is established in and operated from the UK it incurs input tax in connection with its overhead running costs, particularly marketing and consultancy costs.  It is the recovery of these costs which are at issue in this appeal.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">Legislation</heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">11.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Article 2(1) Principal VAT Directive (<span style="font-weight:bold">PVD</span>) provides that “the supply of goods for a consideration within the territory of a Member State by a taxable person action as such” shall be subject to VAT.  </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">12.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">“Taxable person” is defined in Article 9 PVD as “any person who, independently, carries out in any place any economic activity, whatever the purpose or results of that activity”.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">13.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Sections 4 and 5 Value Added Taxes Act 1994 (<span style="font-weight:bold">VATA</span>) provide the domestic implementation of Articles 2 and 9 though the language adopted replaces economic activity with “business”.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">14.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Articles 168 PVD and the domestic implementation in section 26 provides for a taxable person to credit as input tax in respect of so much of the VAT it incurs on supplies made to it as is attributable to taxable supplies made by it.</p>
+            </content>
+          </paragraph>
+        </level>
+      </decision>
+    </judgmentBody>
+    <conclusions>
+      <p class="Taxheading1">Relevant case law</p>
+      <p class="Taxheading2">Wakefield College</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">15.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The case of <span style="font-style:italic">Wakefield College v HMRC </span>[2018] EWCA Civ 952 provides the latest authoritative test by reference to which the question as to whether an activity constitutes a business or economic activity is determined.  In that judgment the Court of Appeal considered the relevant case law of the Court of Justice of the European Union (<span style="font-weight:bold">CJEU</span>).</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">16.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">From <span style="font-style:italic">Wakefield </span>it is clear that in order to carry on a business or economic activity a trader must make supplies for a consideration (Article 2) with the purpose of obtaining income therefrom (Article 9).</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">17.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Article 9 limb of the analysis is to be determined by reference to all of the objective circumstances and is “a wide-ranging, not a narrow, enquiry” (paragraph [55] of <span style="font-style:italic">Wakefield</span>).</p>
+      </blockContainer>
+      <p class="Taxheading2">Ghent Coal</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">18.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-style:italic">Belgium v Ghent Coal Terminal NV </span>C-37/95<span style="font-style:italic"> </span>concerned the question of recovery of input tax incurred in the investment phase of establishing a coal terminal.  In the period 1981 – 83 work was carried out on land but in March 1983 Ghent Coal was required to exchange the land and never used original site.  It was not disputed that the investment would have been used in taxable transactions but for the unforeseen circumstances which arose.  However, the tax authorities demanded repayment of the VAT recovered on the grounds that the goods and services in question had never been actually used in making taxable supplies.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">19.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Court determined that a taxable person is entitled to recover VAT on costs incurred which are used or which were intended to be used in making taxable supplies in the course or furtherance of the business/economic activity.  The fact that the business intention could not be fulfilled did not preclude a right of recovery.</p>
+      </blockContainer>
+      <p class="Taxheading2">Sveda</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">20.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-style:italic">Sveda UAB v Valstybine˙ mokescˇiu˛inspekcija prie Lietuvos Respublikos finansu˛ ministerijos </span>C-126/14 concerned recovery of input tax incurred by Sveda on costs incurred in connection with the construction of a “Baltic mythology recreational/discovery path”.  The path was substantially funded by the ministry of agriculture and Sveda was required to provide public access free of charge to the path.  Sveda intended to carry out the independent economic activity of offering the sale of food and souvenirs to path users.  Input tax on the construction costs were denied by the Lithuanian tax authorities on the basis that such costs were properly attributed to non-economic activities (i.e. the free access to path users) and not directly linked to the economic activities of food and souvenir sales.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">21.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The CJEU held that the construction costs in question formed part of the general overheads of the economic activity to be carried on by Sveda.  The path was intended to attract visitors and encourage them to buy the foods and services offered by Sveda and as such the necessary direct and immediate link between the costs and the intended taxable supplies was established (see paragraphs [28] – [29] of the judgment).</p>
+      </blockContainer>
+      <p class="Taxheading1">Parties submissions</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">22.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Appellant contends that it is engaged exclusively in business activities, namely the provision of manufacturer funded testing and that the testing of vehicles from its own resources represents a necessary investment for the establishment of that business activity.  As such all residual input tax incurred is attributed to its taxable business activities and fully recoverable.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">23.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">By reference to the unchallenged evidence of Mr Ward, and drawing a parallel to the circumstances in <span style="font-style:italic">Ghent Coal</span>, the Appellant submitted that the “free” testing needed to be undertaken so as to create a market for manufacturer funded testing.  The period of investment, on the evidence, was up to 3 – 4 years in which a series of crash tests needed to be conducted at the Appellant’s cost in order to establish the base line for safety improvements and to establish the consumer impetus for manufacturers to make the necessary improvements in safety features for newer models and to want to proactively seek testing to establish and leverage that improvement.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">24.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It was denied that the charitable/philanthropic objective of improving road safety so as to reduce and ultimately eliminate safety related road fatalities had the effect that the activities undertaken were for a non-business purpose.  The Appellant submitted that it was predominantly involved in making taxable supplies for consideration relying on HMRC’s own assessment that 60% of the input tax was attributed to the manufacturer funded tests.  The Appellant also disputes that any contention that its articles of association preclude it undertaking a permanent trading activity represents a basis for contending that the non-manufacturer funded tests are a non-business activity.  They point out that HMRC accept that the manufacturer funded tests are a business activity.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">25.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Appellant contended that there was a direct link between the self-funded tests and the manufacturer funded testing such that there is a single business activity.  The Appellant reinforced that it was only as a consequence of the non-manufacturer funded testing and the promotion of the poor results that manufacturers proceed to buying the testing services.  Principal reliance was placed by the Appellant on the CJEU judgment in <span style="font-style:italic">Sveda</span> in this regard.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">26.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Appellant also drew a parallel to the analysis adopted by the Tribunal in <span style="font-style:italic">Durham Cathedral v HMRC </span>[2016] UKFTT 750 (TC) which concerned input tax incurred in connection with the repair and maintenance of a bridge leading to the cathedral.  In that case the taxpayer undertook both economic/business and non-economic activities from the cathedral building to which the bridge provided access.  The bridge provided access to the peninsula on which the cathedral was stood but users of the bridge may, or may not, access the cathedral and only some of those who accessed the cathedral would be the recipient of taxable supplies.  HMRC had denied input tax recovery for the works on the basis that they were attributable to the non-business activities of that taxpayer. The FTT determined that whilst there was no direct and immediate link to any particular taxable supply the costs represented a component of both the non-business and business activities carried on and a proportion of the costs were recoverable.  However, the Appellant contended that in its case there was no non-business activity undertaken (for the reasons set out above) and accordingly, the input tax on general overheads was fully recoverable.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">27.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC contend that the Appellant is engaged in both business and non-business activities and, as such, pursuant to section 26 VATA the residual input tax incurred should, in part, be irrecoverable.  This is on the basis that as the non-manufacturer funded tests are, by their nature, provided for free, those tests cannot represent a supply for consideration and are not therefore supplies capable of representing a business activity applying the <span style="font-style:italic">Wakefield </span>tests.  Further, the purpose for which the tests are carried out are in order to meet the Appellant’s charitable/philanthropic objectives.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">28.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On the basis that the Appellant is engaged in activities which are both economic and non-economic in nature HMRC submit that input tax on overheads is required to be restricted.</p>
+      </blockContainer>
+      <p class="Taxheading1">Discussion</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">29.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There is no dispute that certain of the crash tests undertaken by the Appellant are provided for no consideration and thus do not represent supplies of services made for consideration (the position for the established NCAPs is likely to be different with the price paid by manufacturers also potentially representing consideration for the “free” tests undertaken for the credibility and benefit of the programme as a whole).  Thus, for the Appellant taken in isolation, the provision of “free” tests cannot represent a business activity of the Appellant.  In isolation this “free” testing does not meet with <span style="font-style:italic">Wakefield</span> test.  However, and despite the Tribunal having raised the application of <span style="font-style:italic">Wakefield</span>, the dispute cannot be determined by reference to the application of the <span style="font-style:italic">Wakefield</span> analysis as, on reflection, that analysis is properly focused on whether any charges made by a taxpayer, firstly represent consideration (in the sense of representing a reciprocal payment for the provision of goods/services) and secondly whether the receipt of the charges represents income or remuneration in the sense of constituting a business activity and are thereby subject to a charge to output tax.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">30.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In this case the critical question is whether the “free” testing represents an independent activity at all and if they do represent an independent activity whether the input tax incurred in connection with general overhead expenditure should be attributed to that activity.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">31.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On the basis of the uncontested evidence of Mr Ward, as supported by the documentary material available, it is clear that manufacturers would not proactively seek to have vehicles tested without an initial unfavourable baseline assessment.  Manufactures work within the legal and regulatory framework in each jurisdiction and, presumably, aim to manufacture the most competitively priced vehicles at each price point.  It is not until consumers and/or regulators/legislators demand a higher safety standard at each relevant price point that manufacturers design vehicles to meet that higher standard.  Once improvements have been made the manufacturers then wish to proactively demonstrate that improvement by obtaining a higher test result which they can then use to credentialise the vehicle.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">32.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Through the purchase and testing of new entrant vehicles in each market jurisdiction the Appellant can establish a baseline of safety for vehicle production in that market.  This is an investment it makes with the underlying objective of driving better vehicle safety, but which forms the foundation from which to make taxable supplies of testing.   In this regard, the position is materially indistinguishable from that in <span style="font-style:italic">Sveda</span>.  The testing costs represent a necessary precursor to making taxable supplies and are directly.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">33.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As such the Appellant is not engaged in any separate non-business activity and all general overhead input tax must therefore be exclusively attributed to the only activity carried on, namely the business activity of making taxable supplies of crash testing to manufacturers.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">34.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">That this conclusion is correct is reinforced by reference to the Court of Appeal judgment in <span style="font-style:italic">HMRC v Associated Newspapers Ltd </span>[2017] EWCA Civ 54.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">35.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Associated Newspapers case concerned (in part) the recovery of input tax incurred by the taxpayer in connection with a promotion scheme pursuant to which the taxpayer bought in retail gift vouchers and provided them for free to readers meeting the conditions of the promotion scheme.  In a second limb to the dispute HMRC contended that if input tax was to be recovered in connection with the purchase of the voucher output tax was due when they were given away.  The Court of Appeal (upholding the Upper Tribunal) determined (as contended by the taxpayer) that the evidence had established that despite the fact that the vouchers were given away the input tax incurred on their purchase was a general overhead cost of and directly linked to the supply of newspapers.   Despite there being a causal link between the purchase of the voucher and it being given away there was nevertheless an economic link between the cost of the voucher and the distribution of the newspapers.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">36.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Court further held that no output tax charge was due on the free provision of the voucher.  The Court rejected HMRC’s contention that to permit input tax recovery without an associated output tax charge breached the principle of fiscal neutrality on the basis that the input tax was recoverable on the basis that it was an overhead of the business of supplying newspapers and the free provision of the vouchers was “fiscally irrelevant” to the right of deduction.  As the vouchers were given away for a business purpose they did not otherwise fall within the charge to output tax where goods/services are put to private/non-business purposes.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">37.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Similarly, in the present case, the Tribunal considers that the provision of free testing is an inherent and integral part of the Appellant’s business activity giving rise and as such there is no basis on which to restrict input tax.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">38.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The above conclusion is not affected by the restriction in the Appellant’s articles of association precluding it from engaging in a trading activity.  That is a standard article for a charity and concerns its direct tax status.  Charities are no precluded from being engaged in a business activity for VAT purposes by reference to such a clause.  Had there been any force in that argument it would also have vitiated HMRC’s accepted position on the manufacturer funded testing.</p>
+      </blockContainer>
+      <p class="Taxheading1">Disposition</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">39.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">For the reasons set out above the Tribunal determines that there is no separate activity associated with the “free” provision of testing services and all input tax incurred is attributable to the accepted business activity of testing supplied to manufacturers.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">40.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Accordingly, the assessments should be set aside, and the appeal allowed.</p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">41.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">However, as a postscript, the Tribunal notes on the basis of the case law established in <span style="font-style:italic">Van Boekel v HMC&amp;E </span>[1981] STC 290 and <span style="font-style:italic">Pegasus Bird Ltd v HMC&amp;E </span>[2004] EWCA Civ 1015 there is no basis on which to conclude that had there been a justified basis for the assessment that the assessment would not have been made to best judgment.  There was no evidence given by the Appellant as to what the assessment should be in the event that the input tax was not fully recoverable and hence the assessments would have stood.</p>
+      </blockContainer>
+      <p class="Taxheading1">Right to apply for permission to appeal</p>
+      <blockContainer>
+        <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">42.</num>
+        <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">This document contains full findings of fact and reasons for the decision.  Any party dissatisfied with this decision has a right to apply for permission to appeal against it pursuant to Rule 39 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009.  The application must be received by this Tribunal not later than 56 days after this decision is sent to that party.  The parties are referred to “Guidance to accompany a Decision from the First-tier Tribunal (Tax Chamber)” which accompanies and forms part of this decision notice.</p>
+      </blockContainer>
+      <p style="text-align:center"><span style="font-weight:bold">AMANDA BROWN QC</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Release date: 22 JULY 2022</span></p>
+    </conclusions>
+  </judgment>
+</akomaNtoso>
