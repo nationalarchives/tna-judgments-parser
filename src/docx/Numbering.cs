@@ -17,13 +17,13 @@ class Numbering {
             .FirstOrDefault();
     }
 
-    [Obsolete]
-    public static NumberingInstance GetNumbering(MainDocumentPart main, Paragraph paragraph) {
-        int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-        if (!id.HasValue)
-            return null;
-        return GetNumbering(main, id.Value);
-    }
+    // [Obsolete]
+    // public static NumberingInstance GetNumbering(MainDocumentPart main, Paragraph paragraph) {
+    //     int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+    //     if (!id.HasValue)
+    //         return null;
+    //     return GetNumbering(main, id.Value);
+    // }
 
     public static AbstractNum GetAbstractNum(MainDocumentPart main, string name) {
         return main.NumberingDefinitionsPart.Numbering.ChildElements
@@ -145,19 +145,19 @@ class Numbering {
         return !format.Equals(NumberFormatValues.None);
     }
 
-    [Obsolete("dangerous, prefer method below")]
-    internal static NumberingProperties GetNumberingPropertiesOrStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
-        NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
-        if (props is null) {
-            ParagraphStyleId styleId = paragraph.ParagraphProperties?.ParagraphStyleId;
-            if (styleId is not null) {
-                Style style = Styles.GetStyle(main, styleId);
-                if (style is not null)
-                    props = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
-            }
-        }
-        return props;
-    }
+    // [Obsolete("dangerous, prefer method below")]
+    // internal static NumberingProperties GetNumberingPropertiesOrStyleNumberingProperties(MainDocumentPart main, Paragraph paragraph) {
+    //     NumberingProperties props = paragraph.ParagraphProperties?.NumberingProperties;
+    //     if (props is null) {
+    //         ParagraphStyleId styleId = paragraph.ParagraphProperties?.ParagraphStyleId;
+    //         if (styleId is not null) {
+    //             Style style = Styles.GetStyle(main, styleId);
+    //             if (style is not null)
+    //                 props = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties);
+    //         }
+    //     }
+    //     return props;
+    // }
 
     internal static Tuple<int?, int> GetNumberingIdAndIlvl(MainDocumentPart main, Paragraph paragraph) {
         int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
