@@ -8,9 +8,13 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class BigLevel : IBranch {
 
+    public string Name => null;
+
     public IFormattedText Number { get; internal set; }
 
     public ILine Heading { get; internal set; }
+
+    public IEnumerable<IBlock> Intro => null;
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
@@ -18,9 +22,13 @@ internal class BigLevel : IBranch {
 
 internal class CrossHeading : IBranch {
 
+    public string Name => null;
+
     public IFormattedText Number => null;
 
     public ILine Heading { get; internal set; }
+
+    public IEnumerable<IBlock> Intro => null;
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
@@ -28,15 +36,21 @@ internal class CrossHeading : IBranch {
 
 internal class GroupOfParagraphs : IBranch {
 
+    public string Name => null;
+
     public IFormattedText Number => null;
 
     public ILine Heading => null;
+
+    public IEnumerable<IBlock> Intro => null;
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
 }
 
 internal class WNewNumberedParagraph : ILeaf {
+
+    public string Name => "paragraph";
 
     internal WNewNumberedParagraph(IFormattedText number, IEnumerable<IBlock> blocks) {
         Number = number;
@@ -48,14 +62,6 @@ internal class WNewNumberedParagraph : ILeaf {
         Number = number;
         Contents = new List<IBlock>(1) { block };
     }
-    // internal WNewNumberedParagraph(string number, RunProperties numProps, IEnumerable<IBlock> blocks) {
-    //     Number = new WText(number, numProps);
-    //     Contents = blocks;
-    // }
-    // internal WNewNumberedParagraph(string number, RunProperties numProps, IBlock block) {
-    //     Number = new WText(number, numProps);
-    //     Contents = new List<IBlock>(1) { block };
-    // }
 
     public IFormattedText Number { get; internal set; }
 
@@ -73,6 +79,8 @@ internal class WDummyDivision : ILeaf {
     internal WDummyDivision(IBlock block) {
         Contents = new List<IBlock>(1) { block };
     }
+
+    public string Name => null;
 
     public IFormattedText Number => null;
 
@@ -102,6 +110,8 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
 }
 
 internal class WTableOfContents : ITableOfContents {
+
+    public string Name => null;
 
     public IFormattedText Number => null;
 

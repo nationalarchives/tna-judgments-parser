@@ -1,5 +1,4 @@
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -624,17 +623,7 @@ abstract class AbstractParser {
             return null;
         }
         if (e is Paragraph p) {
-            i += 1;
-            WLine line = new WLine(doc.MainDocumentPart, p);
-            DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
-            if (info is not null) {
-                DOCX.WNumber number = new DOCX.WNumber(main, info.Value, p);
-                return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-            }
-            INumber num2 = Fields.RemoveListNum(line);
-            if (num2 is not null)
-                return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-            return new WDummyDivision(line);
+            return ParseParagraphAndSubparagraphs(p);
         }
         if (e is Table table) {
             i += 1;
@@ -649,6 +638,91 @@ abstract class AbstractParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
+    private IDivision ParseParagraphAndSubparagraphs(Paragraph p) {
+        ILeaf div = ParseSimpleParagraph(p);
+        if (i == elements.Count)
+            return div;
+        if (div.Heading is not null)
+            return div;
+        if (div.Contents.Count() != 1)
+            return div;
+        if (div.Contents.First() is not WLine)
+            return div;
+
+        float left1 = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
+        float firstLine1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
+        float indent1 = firstLine1 > 0 ? left1 : left1 + firstLine1;
+        // float left2 = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, p.ParagraphProperties) ?? 0.0f;
+        // float firstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, p.ParagraphProperties) ?? 0.0f;
+        // float indent2 = firstLine2 > 0 ? left2 : left2 + firstLine2;
+
+        List<IBlock> intro = new List<IBlock>();
+        intro.AddRange(div.Contents);
+        List<IDivision> subparagraphs = new List<IDivision>();
+
+        while (i < elements.Count) {
+            OpenXmlElement next = elements.ElementAt(i);
+            if (IsSkippable(next)) {
+                i += 1;
+                continue;
+            }
+            if (next is Table table) {
+                if (subparagraphs.Any())
+                    break;
+                intro.Add(new WTable(doc.MainDocumentPart, table));
+                i += 1;
+                continue;
+            }
+            if (next is SdtBlock sdt) { // "EWHC/Admin/2021/30"
+                if (subparagraphs.Any())
+                    break;
+                intro.AddRange(Blocks.ParseStdBlock(main, sdt));
+                i += 1;
+                continue;
+            }
+            if (next is Paragraph nextPara) {
+                float nextLeft1 = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
+                float nextFirstLine1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
+                float nextIndent1 = nextFirstLine1 > 0 ? nextLeft1 : nextLeft1 + nextFirstLine1;
+                if (nextIndent1 <= indent1)
+                    break;
+                // float nextLeft2 = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
+                // float nextFirstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
+                // float nextIndent2 = nextFirstLine2 > 0 ? nextLeft2 : nextLeft2 + nextFirstLine2;
+
+                IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara);
+                if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
+                } else if (subparagraph is IBranch subbranch) {
+                    subparagraph = new BranchSubparagraph { Intro = subbranch.Intro, Children = subbranch.Children };
+                } else {
+                    subparagraph = new LeafSubparagraph { Contents = (subparagraph as ILeaf).Contents };
+                }
+                subparagraphs.Add(subparagraph);
+                continue;
+            }
+
+            throw new System.Exception(next.GetType().ToString());
+        }
+        if (subparagraphs.Any())
+            return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs };
+        if (intro.Count == div.Contents.Count())
+            return div;
+        return new WNewNumberedParagraph(div.Number, intro);
+    }
+
+    private ILeaf ParseSimpleParagraph(Paragraph p) {
+        i += 1;
+        WLine line = new WLine(doc.MainDocumentPart, p);
+        DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
+        if (info is not null) {
+            DOCX.WNumber number = new DOCX.WNumber(main, info.Value, p);
+            return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+        }
+        INumber num2 = Fields.RemoveListNum(line);
+        if (num2 is not null)
+            return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+        return new WDummyDivision(line);
+    }
 
     /* annexes */
 
