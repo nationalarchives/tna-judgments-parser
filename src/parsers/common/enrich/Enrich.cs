@@ -27,8 +27,16 @@ abstract class Enricher {
     }
 
     internal IEnumerable<IDivision> Enrich(IEnumerable<IDivision> divs) {
-        return divs.Select(div => Enrich(div));
+        List<IDivision> enriched = new List<IDivision>(divs.Count());
+        bool changed = false;
+        foreach (IDivision div in divs) {
+            IDivision enriched1 = Enrich(div);
+            enriched.Add(enriched1);
+            changed = changed || !Object.ReferenceEquals(enriched1, div);
+        }
+        return changed ? enriched : divs;
     }
+
     internal virtual IDivision Enrich(IDivision div) {
         if (div is BigLevel big)
             return new BigLevel() { Number = big.Number, Heading = big.Heading, Children = Enrich(big.Children) };
@@ -42,10 +50,46 @@ abstract class Enricher {
             return new WTableOfContents(EnrichLines(toc.Contents));
         if (div is WDummyDivision dummy)
             return new WDummyDivision(Enrich(dummy.Contents));
+        if (div is BranchParagraph bp)
+            return EnrichBranchParagraph(bp);
+        if (div is BranchSubparagraph bsp)
+            return EnrichBranchSubparagraph(bsp);
+        if (div is LeafSubparagraph lsp)
+            return EnrichLeafSubparagraph(lsp);
         throw new Exception();
     }
 
-    internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) => blocks.Select(Enrich);
+    private BranchParagraph EnrichBranchParagraph(BranchParagraph para) {
+        IEnumerable<IBlock> enrichedIntro = para.Intro is null ? null : Enrich(para.Intro);
+        IEnumerable<IDivision> enrichedChildren = Enrich(para.Children);
+        if (Object.ReferenceEquals(enrichedIntro, para.Intro) && Object.ReferenceEquals(enrichedChildren, para.Children))
+            return para;
+        return new BranchParagraph { Intro = enrichedIntro, Children = enrichedChildren };
+    }
+    private BranchSubparagraph EnrichBranchSubparagraph(BranchSubparagraph para) {
+        IEnumerable<IBlock> enrichedIntro = para.Intro is null ? null : Enrich(para.Intro);
+        IEnumerable<IDivision> enrichedChildren = Enrich(para.Children);
+        if (Object.ReferenceEquals(enrichedIntro, para.Intro) && Object.ReferenceEquals(enrichedChildren, para.Children))
+            return para;
+        return new BranchSubparagraph { Intro = enrichedIntro, Children = enrichedChildren };
+    }
+    private LeafSubparagraph EnrichLeafSubparagraph(LeafSubparagraph lsp) {
+        IEnumerable<IBlock> enrichedContents = Enrich(lsp.Contents);
+        if (Object.ReferenceEquals(enrichedContents, lsp.Contents))
+            return lsp;
+        return new LeafSubparagraph { Contents = enrichedContents };
+    }
+
+    internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        List<IBlock> enriched = new List<IBlock>(blocks.Count());
+        bool changed = false;
+        foreach (IBlock block in blocks) {
+            IBlock enriched1 = Enrich(block);
+            enriched.Add(enriched1);
+            changed = changed || !Object.ReferenceEquals(enriched1, block);
+        }
+        return changed ? enriched : blocks;
+    }
 
     protected virtual IBlock Enrich(IBlock block) {
         if (block is WOldNumberedParagraph np)
