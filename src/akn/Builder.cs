@@ -153,10 +153,7 @@ class Builder {
             AddTableOfContents(parent, toc);
             return;
         }
-        string name = (div is ILeaf && div.Number is not null) ? "paragraph" : "level";
-        AddDivision(parent, div, name);
-    }
-    protected void AddDivision(XmlElement parent, IDivision div, string name) {
+        string name = div.Name ?? "level";
         XmlElement level = doc.CreateElement(name, ns);
         parent.AppendChild(level);
         if (div.Number is not null) {
@@ -165,6 +162,10 @@ class Builder {
         if (div.Heading is not null)
             Block(level, div.Heading, "heading");
         if (div is IBranch branch) {
+            if (branch.Intro is not null && branch.Intro.Any()) {
+                XmlElement intro = CreateAndAppend("intro", level);
+                blocks(intro, branch.Intro);
+            }
             AddDivisions(level, branch.Children);
         } else if (div is ILeaf leaf) {
             XmlElement content = doc.CreateElement("content", ns);

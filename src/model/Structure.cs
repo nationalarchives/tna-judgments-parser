@@ -37,6 +37,8 @@ interface INumber : IFormattedText {
 
 interface IDivision {
 
+    string Name { get; }
+
     IFormattedText? Number { get; }
 
     ILine? Heading { get; }
@@ -44,6 +46,8 @@ interface IDivision {
 }
 
 interface IBranch : IDivision {
+
+    IEnumerable<IBlock> Intro { get; }
 
     IEnumerable<IDivision> Children { get; }
 
