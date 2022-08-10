@@ -64,20 +64,20 @@ abstract class Enricher {
         IEnumerable<IDivision> enrichedChildren = Enrich(para.Children);
         if (Object.ReferenceEquals(enrichedIntro, para.Intro) && Object.ReferenceEquals(enrichedChildren, para.Children))
             return para;
-        return new BranchParagraph { Intro = enrichedIntro, Children = enrichedChildren };
+        return new BranchParagraph { Number = para.Number, Intro = enrichedIntro, Children = enrichedChildren };
     }
     private BranchSubparagraph EnrichBranchSubparagraph(BranchSubparagraph para) {
         IEnumerable<IBlock> enrichedIntro = para.Intro is null ? null : Enrich(para.Intro);
         IEnumerable<IDivision> enrichedChildren = Enrich(para.Children);
         if (Object.ReferenceEquals(enrichedIntro, para.Intro) && Object.ReferenceEquals(enrichedChildren, para.Children))
             return para;
-        return new BranchSubparagraph { Intro = enrichedIntro, Children = enrichedChildren };
+        return new BranchSubparagraph { Number = para.Number, Intro = enrichedIntro, Children = enrichedChildren };
     }
-    private LeafSubparagraph EnrichLeafSubparagraph(LeafSubparagraph lsp) {
-        IEnumerable<IBlock> enrichedContents = Enrich(lsp.Contents);
-        if (Object.ReferenceEquals(enrichedContents, lsp.Contents))
-            return lsp;
-        return new LeafSubparagraph { Contents = enrichedContents };
+    private LeafSubparagraph EnrichLeafSubparagraph(LeafSubparagraph para) {
+        IEnumerable<IBlock> enrichedContents = Enrich(para.Contents);
+        if (Object.ReferenceEquals(enrichedContents, para.Contents))
+            return para;
+        return new LeafSubparagraph { Number = para.Number, Contents = enrichedContents };
     }
 
     internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
