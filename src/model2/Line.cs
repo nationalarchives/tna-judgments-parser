@@ -15,7 +15,7 @@ class WLine : ILine {
     private readonly ParagraphProperties properties;
     private IEnumerable<IInline> contents;
 
-    internal bool IsFirstLineOfNumberedParagraph { get; init; }
+    internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
 
     public WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
