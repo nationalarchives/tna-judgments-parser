@@ -693,9 +693,9 @@ abstract class AbstractParser {
                 IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara);
                 if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
                 } else if (subparagraph is IBranch subbranch) {
-                    subparagraph = new BranchSubparagraph { Intro = subbranch.Intro, Children = subbranch.Children };
+                    subparagraph = new BranchSubparagraph { Number = subparagraph.Number, Intro = subbranch.Intro, Children = subbranch.Children };
                 } else {
-                    subparagraph = new LeafSubparagraph { Contents = (subparagraph as ILeaf).Contents };
+                    subparagraph = new LeafSubparagraph { Number = subparagraph.Number, Contents = (subparagraph as ILeaf).Contents };
                 }
                 subparagraphs.Add(subparagraph);
                 continue;
@@ -721,6 +721,13 @@ abstract class AbstractParser {
         INumber num2 = Fields.RemoveListNum(line);
         if (num2 is not null)
             return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+        string format = @"^(“?\d+\.?) ";
+        WText num3 = GetNumberFromFirstLineOfBigLevel(p, format);
+        if (num3 is not null) {
+            WLine line1 = RemoveNumberFromFirstLineOfBigLevel(p, format);
+            line1.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(num3, line1);
+        }
         return new WDummyDivision(line);
     }
 
