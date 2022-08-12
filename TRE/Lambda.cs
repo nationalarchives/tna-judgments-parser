@@ -112,7 +112,7 @@ public class Lambda {
             byte[] log = File.ReadAllBytes(logFile);
             // File.WriteAllText(logFile, string.Empty);
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, logFilename, log, "text/plain");
-        } catch (Exception e) {
+        } catch (Exception) {
             errors.Add("error saving log file");
             logFilename = null;
         }
