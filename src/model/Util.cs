@@ -49,7 +49,10 @@ class Util {
     public static IEnumerable<T> Descendants<T>(IJudgment judgment) {
         return Enumerable.Concat(
             Enumerable.Concat(
-                Descendants<T>(judgment.Header),
+                judgment.CoverPage is null ? Descendants<T>(judgment.Header) : Enumerable.Concat(
+                    Descendants<T>(judgment.CoverPage),
+                    Descendants<T>(judgment.Header)
+                ),
                 Descendants<T>(judgment.Body)
             ),
             Descendants<T>(judgment.Conclusions)
