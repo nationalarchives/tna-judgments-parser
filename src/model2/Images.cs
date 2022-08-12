@@ -8,6 +8,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DrawingML = DocumentFormat.OpenXml.Drawing;
+using Vml = DocumentFormat.OpenXml.Vml;
 
 using Microsoft.Extensions.Logging;
 
@@ -96,25 +97,32 @@ public class WImageRef : IImageRef {
         }
     }
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
-        DocumentFormat.OpenXml.Vml.ImageData imageData = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault();
-        if (imageData is null) {
+        IEnumerable<Vml.ImageData> data = picture.Descendants<Vml.ImageData>();
+        if (!data.Any()) {
             logger.LogWarning("skipping picutre because it has no 'image data'");
             return null;
         }
-        StringValue relId = imageData.RelationshipId;
+        if (data.Skip(1).Any())
+            logger.LogWarning("picutre contains more than one image data");
+        Vml.ImageData datum = data.First();
+        string relId = datum.RelationshipId?.Value;
         if (relId is null) {
             logger.LogWarning("skipping picutre because its 'image data' has no relationship");
             return null;
         }
-        return new WImageRef(main, picture);
+        return new WImageRef(main, picture, datum, relId);
     }
-    private WImageRef(MainDocumentPart main, Picture picture) {
-        var data = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>();
-        if (data.Skip(1).Any())
-            logger.LogWarning("picutre contains more than one image data");
-        StringValue relId = picture.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().FirstOrDefault().RelationshipId;
+    private WImageRef(MainDocumentPart main, Picture picture, Vml.ImageData data, string relId) {
         this.uri = DOCX.Relationships.GetUriForImage(relId, picture);
-        string tempStyle = picture.Descendants<DocumentFormat.OpenXml.Vml.Shape>().First().Style?.Value;
+        if (data.CropTop is not null || data.CropRight is not null || data.CropBottom is not null || data.CropLeft is not null) {   // e.g., ukut/aac/2022/207
+            logger.LogInformation("found crop rectangle for {0} ({1}, {2}, {3}, {4})",  this.uri, data.CropTop, data.CropRight, data.CropBottom, data.CropLeft);
+            double top = CropValue(data.CropTop);
+            double right = CropValue(data.CropRight);
+            double bottom = CropValue(data.CropBottom);
+            double left = CropValue(data.CropLeft);
+            Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
+        }
+        string tempStyle = picture.Descendants<Vml.Shape>().FirstOrDefault().Style?.Value;
         if (!string.IsNullOrEmpty(tempStyle)) {
             Dictionary<string, string> parsed = DOCX.CSS.ParseInline(tempStyle);
             Dictionary<string, string> filtered = parsed
@@ -124,12 +132,9 @@ public class WImageRef : IImageRef {
         }
         Style = tempStyle;
     }
-    public WImageRef(MainDocumentPart main, DocumentFormat.OpenXml.Vml.Shape shape) {
-        StringValue relId = shape.Descendants<DocumentFormat.OpenXml.Vml.ImageData>().First().RelationshipId;
-        // OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relId.Value).First().OpenXmlPart;
-        // this.uri = part.Uri;
+    public WImageRef(MainDocumentPart main, Vml.Shape shape) {
+        StringValue relId = shape.Descendants<Vml.ImageData>().First().RelationshipId;
         this.uri = DOCX.Relationships.GetUriForImage(relId, shape);
-        // Style = shape.Style?.Value;
         string tempStyle = shape.Style?.Value;
         if (!string.IsNullOrEmpty(tempStyle)) {
             Dictionary<string, string> parsed = DOCX.CSS.ParseInline(tempStyle);
@@ -159,13 +164,31 @@ public class WImageRef : IImageRef {
     public Imaging.Inset? Crop { get; private set; }
 
     private static double CropValue(Int32Value value) {
-        if (value is null)
+        if (value?.Value is null)
             return 0.0d;
-        if (value < 0) {
+        if (value.Value < 0) {
             logger.LogWarning("negative crop value: {0}", value.Value);
             return 0.0d;
         }
         return value.Value / 100000d;
+    }
+    private static double CropValue(StringValue value) {
+        if (value?.Value is null)
+            return 0.0d;
+        int v;
+        try {
+            v = Int32.Parse(value.Value.TrimEnd('f'));
+        } catch (FormatException) {
+            logger.LogError("error parsing crop value: {0}", value.Value);
+            return 0.0d;
+        }
+        if (v < 0) {
+            logger.LogWarning("negative crop value: {0}", value.Value);
+            return 0.0d;
+        }
+        if (value.Value.EndsWith('f'))
+            return v / 100000d * 1.5;   // this is just some reverse engineering
+        return v / 100000d;
     }
 
 }
