@@ -721,7 +721,7 @@ abstract class AbstractParser {
         INumber num2 = Fields.RemoveListNum(line);
         if (num2 is not null)
             return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-        string format = @"^(“?\d+\.?) ";
+        string format = @"^(“?\d+\.?) (?!(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))";
         WText num3 = GetNumberFromFirstLineOfBigLevel(p, format);
         if (num3 is not null) {
             WLine line1 = RemoveNumberFromFirstLineOfBigLevel(p, format);
