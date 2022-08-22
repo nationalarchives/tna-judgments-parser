@@ -82,6 +82,18 @@ class Date2 : Enricher {
             return new GroupOfParagraphs() {
                 Children = children
             };
+        if (branch is BranchParagraph bp)
+            return new BranchParagraph {
+                Number = bp.Number,
+                Intro = bp.Intro,
+                Children = children
+            };
+        if (branch is BranchSubparagraph bsp)
+            return new BranchSubparagraph {
+                Number = bsp.Number,
+                Intro = bsp.Intro,
+                Children = children
+            };
         throw new NotImplementedException();
     }
 
@@ -111,6 +123,8 @@ class Date2 : Enricher {
             return new WNewNumberedParagraph(np.Number, enriched);
         if (leaf is WDummyDivision dd)
             return new WDummyDivision(enriched);
+        if (leaf is LeafSubparagraph sp)
+            return new LeafSubparagraph { Number = sp.Number, Contents = enriched };
         throw new NotImplementedException();
     }
 
