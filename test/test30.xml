@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/1148/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/1148/data.xml" />
-          <FRBRdate date="2022-06-16T00:40:03" name="transform" />
+          <FRBRdate date="2022-08-22T17:30:46" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,7 +39,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1148</uk:number>
         <uk:cite>[2022] EWHC 1148 (SCCO)</uk:cite>
-        <uk:parser>0.7.2</uk:parser>
+        <uk:parser>0.8.0</uk:parser>
         <uk:hash>42852cd524ee910c775b29a415114e971f7b2d238ef16439765f848807bcf06e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -154,15 +154,15 @@
         </paragraph>
         <paragraph>
           <num style="margin-left:0.5in;text-indent:-0.5in">4.</num>
-          <content>
+          <intro>
             <p style="text-align:justify;margin-left:0.5in">Mr Fraser did not dispute that he possessed the batons and nor was it the defendant’s case that they did not amount to offensive weapons. As the prosecution’s opening note said, at paragraph 29:</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote">“The issue in the case is primarily whether the Defendant had a reasonable excuse for having the items in the circumstances that he had them on 27 October 2019. So, we are not concerned why he might have purchased or possessed the items generally, but whether on that specific occasion in public he had a reasonable excuse for having them out with him. The defendant states he was transporting them home in his car from his mother’s address.”</p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="Quote">“The issue in the case is primarily whether the Defendant had a reasonable excuse for having the items in the circumstances that he had them on 27 October 2019. So, we are not concerned why he might have purchased or possessed the items generally, but whether on that specific occasion in public he had a reasonable excuse for having them out with him. The defendant states he was transporting them home in his car from his mother’s address.”</p>
-          </content>
-        </level>
         <paragraph>
           <num style="margin-left:0.5in;text-indent:-0.5in">5.</num>
           <content>
@@ -249,15 +249,15 @@
         </paragraph>
         <paragraph>
           <num style="margin-left:0.5in;text-indent:-0.5in">19.</num>
-          <content>
+          <intro>
             <p style="text-align:justify;margin-left:0.5in">For some considerable time, the allowance of images under the 2013 Regulations was something of an all or nothing affair. Either the images were considered to be sufficiently important that they were all part of the PPE or they were too peripheral for any of them to be allowed. That position changed when the Senior Costs Judge, Andrew Gordon-Saker, gave his decision in the case of <span style="text-decoration-line:underline;text-decoration-style:solid">R v Sereika</span> on 12 December 2018. In that case he said, at paragraph 16:</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“In this particular case, the exercise of that discretion is not easy. On the one hand the prosecution chose to serve this evidence as an exhibit. Given the nature of the defence, that the phone was used by others, it is not difficult to conclude the solicitors would have wished to look for photographs indicating that use. On the other hand, it is unlikely that the vast majority of those photographs would have been relevant to that task. It would seem unlikely that the solicitors would have looked in detail at each of the 20,608 images served on disc. Most will have required a glance or less.”</p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“In this particular case, the exercise of that discretion is not easy. On the one hand the prosecution chose to serve this evidence as an exhibit. Given the nature of the defence, that the phone was used by others, it is not difficult to conclude the solicitors would have wished to look for photographs indicating that use. On the other hand, it is unlikely that the vast majority of those photographs would have been relevant to that task. It would seem unlikely that the solicitors would have looked in detail at each of the 20,608 images served on disc. Most will have required a glance or less.”</p>
-          </content>
-        </level>
         <paragraph>
           <num style="margin-left:0.5in;text-indent:-0.5in">20.</num>
           <content>
@@ -266,20 +266,22 @@
         </paragraph>
         <paragraph>
           <num style="margin-left:0.5in;text-indent:-0.5in">21.</num>
-          <content>
+          <intro>
             <p style="text-align:justify;margin-left:0.5in">The Senior Costs Judge continued in <span style="text-decoration-line:underline;text-decoration-style:solid">Sereika</span>:</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <num>“17.</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;text-indent:0.5in">In short, it is clear that the evidence on the phone was central to the case against Sereika and his assertion that others had used the phone was central to his defence. The solicitors were required to consider the phone evidence carefully. However, much of the evidence on the phone would not require consideration.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:italic">18.</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It seems to me that in these circumstances there is no reason why a Determining Officer (or costs judge on appeal) should not take a broad approach and conclude that as only a proportion of the images may be of real relevance to the case, only that proportion should be included in the page count. Inevitably that will be nothing more than “rough justice, in the sense of being compounded of much sensible approximation”: per Russell LJ in <span style="font-style:italic">In re Eastwood</span> [1974] 3 WLR 454 at 458. But that is the nature of the assessment of costs.”</p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="Quote">“17.<marker name="tab" />In short, it is clear that the evidence on the phone was central to the case against Sereika and his assertion that others had used the phone was central to his defence. The solicitors were required to consider the phone evidence carefully. However, much of the evidence on the phone would not require consideration.</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="Quote">18.<marker name="tab" />It seems to me that in these circumstances there is no reason why a Determining Officer (or costs judge on appeal) should not take a broad approach and conclude that as only a proportion of the images may be of real relevance to the case, only that proportion should be included in the page count. Inevitably that will be nothing more than “rough justice, in the sense of being compounded of much sensible approximation”: per Russell LJ in <span style="font-style:italic">In re Eastwood</span> [1974] 3 WLR 454 at 458. But that is the nature of the assessment of costs.”</p>
-          </content>
-        </level>
         <paragraph>
           <num style="margin-left:0.5in;text-indent:-0.5in">22.</num>
           <content>

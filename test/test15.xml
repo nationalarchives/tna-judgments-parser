@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/tcc/2021/133/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/tcc/2021/133/data.xml" />
-          <FRBRdate date="2022-06-03T18:25:52" name="transform" />
+          <FRBRdate date="2022-08-22T17:28:49" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2021</uk:year>
         <uk:number>133</uk:number>
         <uk:cite>[2021] UKUT 133 (TCC)</uk:cite>
-        <uk:parser>0.7.0</uk:parser>
+        <uk:parser>0.8.0</uk:parser>
         <uk:hash>aa45fe95407c0bf080be8034643be5edef49d0c89829f826faeef02f072c6a87</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -211,21 +211,21 @@
           </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">5.</num>
-            <content>
+            <intro>
               <p class="Bodytexttax1" style="text-indent:0.5in">The assessments were made by HMRC under section 850C ITTOIA by way of two closure notices, each dated 31 March 2017, in which the partnership statements of the LLPs were amended with the result that:</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">£18,088,195 of profits from AAM were reallocated to the Appellant giving rise to total profits chargeable to income tax in his hands of £18,103,962; and</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">£1,372,510 of profits from AF were reallocated to the Appellant giving rise to total profits chargeable to income tax in his hands of £1,434,315.</p>
-            </content>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">£18,088,195 of profits from AAM were reallocated to the Appellant giving rise to total profits chargeable to income tax in his hands of £18,103,962; and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">£1,372,510 of profits from AF were reallocated to the Appellant giving rise to total profits chargeable to income tax in his hands of £1,434,315.</p>
+              </content>
+            </subparagraph>
           </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">6.</num>
@@ -285,96 +285,96 @@
               <p class="Bodytexttax1" style="text-indent:0.5in">Section 850 is expressly made subject to “sections 850A to 850D”. For the purposes of this appeal, the critical section is section 850C, although the parties did make reference to a number of other provisions of ITTOIA. So far as is material, section 850C provides: </p>
             </content>
           </paragraph>
-          <level>
-            <content>
+          <paragraph>
+            <intro>
               <p style="text-align:justify"><span style="font-size:11pt">“(1)</span><marker name="tab" /><span style="font-size:11pt">Subsections (4) and (5) apply if –</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">for a period of account (“the relevant period of account”) – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i)</span><marker name="tab" /><span style="font-size:11pt">the calculation under section 849 in relation to an individual partner (“A”) (see subsection (6)) produces a profit for the firm, and </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">A’s share of that profit determined under section 850 or 850A (“A’s profit share”) is a profit or is neither a profit nor a loss, </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b)</span><marker name="tab" /><span style="font-size:11pt">a non-individual partner (“B”) (see subsection (6)) has a share of the profit for the firm mentioned in paragraph (a)(i) (“B’s profit share”) which is a profit (see subsection (7)), and</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c) condition X or Y is met. </span></p>
-            </content>
-          </level>
+            </intro>
+            <subparagraph>
+              <intro>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">for a period of account (“the relevant period of account”) – </span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i)</span><marker name="tab" /><span style="font-size:11pt">the calculation under section 849 in relation to an individual partner (“A”) (see subsection (6)) produces a profit for the firm, and </span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">A’s share of that profit determined under section 850 or 850A (“A’s profit share”) is a profit or is neither a profit nor a loss, </span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b)</span><marker name="tab" /><span style="font-size:11pt">a non-individual partner (“B”) (see subsection (6)) has a share of the profit for the firm mentioned in paragraph (a)(i) (“B’s profit share”) which is a profit (see subsection (7)), and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c) condition X or Y is met. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
           <level>
             <content>
               <p style="text-align:justify"><span style="font-size:11pt">(2)</span><marker name="tab" /><span style="font-size:11pt">Condition X is that…</span></p>
             </content>
           </level>
-          <level>
-            <content>
+          <paragraph>
+            <intro>
               <p style="text-align:justify"><span style="font-size:11pt">(3)</span><marker name="tab" /><span style="font-size:11pt">Condition Y is that –</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">B’s profit share exceeds the appropriate notional profit (see subsections (10) to (17)),</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">A has the power to enjoy B’s profit share (“A’s power to enjoy”) (see subsections (18) to (21)), and</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c)</span><marker name="tab" /><span style="font-size:11pt">it is reasonable to suppose that –</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i) </span><marker name="tab" /><span style="font-size:11pt">the whole or any part of B’s profit share is attributable to A’s power to enjoy, and</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">both A’s profit share and the relevant tax amount (see subsection 9) are lower than they would have been in the absence of A’s power to enjoy.</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">B’s profit share exceeds the appropriate notional profit (see subsections (10) to (17)),</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">A has the power to enjoy B’s profit share (“A’s power to enjoy”) (see subsections (18) to (21)), and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c)</span><marker name="tab" /><span style="font-size:11pt">it is reasonable to suppose that –</span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i) </span><marker name="tab" /><span style="font-size:11pt">the whole or any part of B’s profit share is attributable to A’s power to enjoy, and</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">both A’s profit share and the relevant tax amount (see subsection 9) are lower than they would have been in the absence of A’s power to enjoy.</span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </paragraph>
+          <paragraph>
+            <intro>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(4)</span><marker name="tab" /><span style="font-size:11pt">A’s profit share is increased by so much of the amount of B’s profit share as, it is reasonable to suppose, is attributable to – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">A’s deferred profit, or</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">A’s power to enjoy, </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">as determined on a just and reasonable basis.</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">But any increase by virtue of paragraph (b) is not to exceed the amount of the excess mentioned in subsection (3)(a) after deducting from that amount any increase by virtue of paragraph (a). </span></p>
-            </content>
-          </level>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">A’s deferred profit, or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">A’s power to enjoy, </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">as determined on a just and reasonable basis.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">But any increase by virtue of paragraph (b) is not to exceed the amount of the excess mentioned in subsection (3)(a) after deducting from that amount any increase by virtue of paragraph (a). </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
           <level>
             <content>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(5)</span><marker name="tab" /><span style="font-size:11pt">… </span></p>
@@ -405,81 +405,81 @@
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(10) </span><marker name="tab" /><span style="font-size:11pt">“The appropriate notional profit” is the sum of the appropriate notional return on capital and the appropriate notional consideration for services.</span></p>
             </content>
           </level>
-          <level>
-            <content>
+          <paragraph>
+            <intro>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(11)</span><marker name="tab" /><span style="font-size:11pt">“The appropriate notional return on capital” is – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a) </span><marker name="tab" /><span style="font-size:11pt">the return which B would receive for the relevant period of account in respect of B’s contribution to the firm were the return to be calculated on the basis mentioned in subsection (12), less</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">any return actually received for the relevant period of account in respect of B’s contribution to the firm which is not included in B’s profit share.</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a) </span><marker name="tab" /><span style="font-size:11pt">the return which B would receive for the relevant period of account in respect of B’s contribution to the firm were the return to be calculated on the basis mentioned in subsection (12), less</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">any return actually received for the relevant period of account in respect of B’s contribution to the firm which is not included in B’s profit share.</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph>
+            <intro>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(12)</span><marker name="tab" /><span style="font-size:11pt">The return mentioned in subsection (11)(a) is to be calculated on the basis that it is a return which is –</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a) </span><marker name="tab" /><span style="font-size:11pt">by reference to the time value of an amount of money equal to B’s contribution to the firm, and</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">at a rate which (in all the circumstances) is a commercial rate of interest. </span></p>
-            </content>
-          </level>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a) </span><marker name="tab" /><span style="font-size:11pt">by reference to the time value of an amount of money equal to B’s contribution to the firm, and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">at a rate which (in all the circumstances) is a commercial rate of interest. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
           <level>
             <content>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(13)</span><marker name="tab" /><span style="font-size:11pt">For the purposes of subsections (11) and (12) B’s contribution to the firm is amount A determined under section 108 of ITA 2007 (meaning of “contribution to the LLP”).</span></p>
             </content>
           </level>
-          <level>
-            <content>
+          <paragraph>
+            <intro>
               <p style="text-align:justify"><span style="font-size:11pt">(14)</span><marker name="tab" /><span style="font-size:11pt">That section is to be applied – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">reading references to the individual as references to B and references to the LLP as references to the firm, and</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">with the omission of – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i)</span><marker name="tab" /><span style="font-size:11pt">subsections (5)(b) and (9), and</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">in subsection (6) the words from “but” to the end. </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">reading references to the individual as references to B and references to the LLP as references to the firm, and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">with the omission of – </span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i)</span><marker name="tab" /><span style="font-size:11pt">subsections (5)(b) and (9), and</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">in subsection (6) the words from “but” to the end. </span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </paragraph>
+          <paragraph>
+            <intro>
               <p style="text-align:justify"><span style="font-size:11pt">(15)</span><marker name="tab" /><span style="font-size:11pt">“The appropriate notional consideration for services” is – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">the amount which B would receive in consideration for any services provided to the firm by B during the relevant period of account were the consideration to be calculated on the basis mentioned in subsection (16), less</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">any amount actually received in consideration for any such services which is not included in B’s profit share. </span></p>
-            </content>
-          </level>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">the amount which B would receive in consideration for any services provided to the firm by B during the relevant period of account were the consideration to be calculated on the basis mentioned in subsection (16), less</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">any amount actually received in consideration for any such services which is not included in B’s profit share. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
           <level>
             <content>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(16)</span><marker name="tab" /><span style="font-size:11pt">The consideration mentioned in subsection 15(a) is to be calculated on the basis that B is not a partner in the firm and is acting at arm’s length from the firm.</span></p>
@@ -490,71 +490,71 @@
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(17) </span><marker name="tab" /><span style="font-size:11pt">Any services, the provision of which involves any partner in the firm in addition to B, are to be ignored for the purposes of subsection (15).</span></p>
             </content>
           </level>
-          <level>
-            <content>
+          <paragraph>
+            <intro>
               <p style="text-align:justify"><span style="font-size:11pt">(18) </span><marker name="tab" /><span style="font-size:11pt">A has the power to enjoy B’s profit share if – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">A is connected with B by virtue of a provision of section 993 of ITA 2007 (meaning of “connected” persons) other than subsection (4) of that section,</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">A is a party to arrangements the main purpose, or one of the main purposes, of which is to secure that an amount included in B's profit share – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i)</span><marker name="tab" /><span style="font-size:11pt">is charged to corporation tax rather than income tax, or </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">is otherwise subject to the provisions of the Corporation Tax Acts rather than the provisions of the Income Tax Acts, or </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c) </span><marker name="tab" /><span style="font-size:11pt">any of the enjoyment conditions (see subsection (20)) is met in relation to B’s profit share or any part of B’s profit share. </span></p>
-            </content>
-          </level>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a)</span><marker name="tab" /><span style="font-size:11pt">A is connected with B by virtue of a provision of section 993 of ITA 2007 (meaning of “connected” persons) other than subsection (4) of that section,</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">A is a party to arrangements the main purpose, or one of the main purposes, of which is to secure that an amount included in B's profit share – </span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(i)</span><marker name="tab" /><span style="font-size:11pt">is charged to corporation tax rather than income tax, or </span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-size:11pt">(ii) </span><marker name="tab" /><span style="font-size:11pt">is otherwise subject to the provisions of the Corporation Tax Acts rather than the provisions of the Income Tax Acts, or </span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c) </span><marker name="tab" /><span style="font-size:11pt">any of the enjoyment conditions (see subsection (20)) is met in relation to B’s profit share or any part of B’s profit share. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
           <level>
             <content>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(19)</span><marker name="tab" /><span style="font-size:11pt">In subsection (18)(b) “arrangements” includes any agreement, understanding, scheme, transaction or series of transactions (whether or not legally enforceable). </span></p>
             </content>
           </level>
-          <level>
-            <content>
+          <paragraph>
+            <intro>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(20) </span><marker name="tab" /><span style="font-size:11pt">The enjoyment conditions are – </span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a) </span><marker name="tab" /><span style="font-size:11pt">B’s profit share, or the part, is in fact so dealt with by any person as to be calculated at some time to enure for the benefit of A, whether in the form of income or not;</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">the receipt or accrual of B’s profit share, or the part, by or to B operates to increase the value to A of any assets held by, or for the benefit of, A;</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c) </span><marker name="tab" /><span style="font-size:11pt">A receives or is entitled to receive at any time any benefit provided or to be provided (directly or indirectly) out of B’s profit share or the part;</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(d) </span><marker name="tab" /><span style="font-size:11pt">A may become entitled to the beneficial enjoyment of B’s profit share, or the part, if one or more powers are exercised or successively exercised by any person;</span></p>
-            </content>
-          </level>
-          <level>
-            <content>
-              <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(e) </span><marker name="tab" /><span style="font-size:11pt">A is able in any manner to control (directly or indirectly) the application of B’s profit share or the part. </span></p>
-            </content>
-          </level>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(a) </span><marker name="tab" /><span style="font-size:11pt">B’s profit share, or the part, is in fact so dealt with by any person as to be calculated at some time to enure for the benefit of A, whether in the form of income or not;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(b) </span><marker name="tab" /><span style="font-size:11pt">the receipt or accrual of B’s profit share, or the part, by or to B operates to increase the value to A of any assets held by, or for the benefit of, A;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(c) </span><marker name="tab" /><span style="font-size:11pt">A receives or is entitled to receive at any time any benefit provided or to be provided (directly or indirectly) out of B’s profit share or the part;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(d) </span><marker name="tab" /><span style="font-size:11pt">A may become entitled to the beneficial enjoyment of B’s profit share, or the part, if one or more powers are exercised or successively exercised by any person;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(e) </span><marker name="tab" /><span style="font-size:11pt">A is able in any manner to control (directly or indirectly) the application of B’s profit share or the part. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
           <level>
             <content>
               <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">(21) </span><marker name="tab" /><span style="font-size:11pt">In subsection (2) references to A include any person connected with A apart from B</span><span style="font-style:italic;font-size:11pt">.</span><span style="font-size:11pt">”</span></p>
@@ -589,81 +589,91 @@
                 <p class="Bodytexttax1" style="text-indent:0.5in">The background facts were stated by the FTT at [7] to [16] of the Decision. They are set out below:</p>
               </content>
             </paragraph>
-            <level>
+            <paragraph>
+              <num style="font-size:11pt">“7.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">“7.</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski is a successful investment adviser in London. Having managed funds for other people, in 2005 he set up his own equity fund, the Alken Fund, a Luxembourg SICAV (an open-ended vehicle).</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">Mr Walewski is a successful investment adviser in London. Having managed funds for other people, in 2005 he set up his own equity fund, the Alken Fund, a Luxembourg SICAV (an open-ended vehicle).</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">8.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">8.</span><marker name="tab" /><span style="font-size:11pt">That fund was managed by AAM in the UK which was set up on 5 July 2005. Trade execution was carried out by AF which was set up on 19 November 2010. AAM was a member of AF until 5 December 2011.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">That fund was managed by AAM in the UK which was set up on 5 July 2005. Trade execution was carried out by AF which was set up on 19 November 2010. AAM was a member of AF until 5 December 2011.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">9.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">9.</span><marker name="tab" /><span style="font-size:11pt">For the relevant years, AAM’s total profits were £19,040,069. AF’s total profits were £3,165,813.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">For the relevant years, AAM’s total profits were £19,040,069. AF’s total profits were £3,165,813.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">10.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">10.</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski was a partner in AM and AF and also set up a company, W Ltd, in June 2006 which was a partner of both AAM and AF. Mr Walewski was W Ltd’s only director. Mr Walewski became an employee of W Ltd on 1 April 2007. W Ltd had no other employees or directors.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">Mr Walewski was a partner in AM and AF and also set up a company, W Ltd, in June 2006 which was a partner of both AAM and AF. Mr Walewski was W Ltd’s only director. Mr Walewski became an employee of W Ltd on 1 April 2007. W Ltd had no other employees or directors.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">11.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">11.</span><marker name="tab" /><span style="font-size:11pt">AAM was a partner in AF until 5 July 2011 and was its managing member. AF’s only other member was Mr Walewski. W Ltd took over AM’s partnership interest in AF on 5 July 2011.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">AAM was a partner in AF until 5 July 2011 and was its managing member. AF’s only other member was Mr Walewski. W Ltd took over AM’s partnership interest in AF on 5 July 2011.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">12.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">12.</span><marker name="tab" /><span style="font-size:11pt">AAM and AF had other employees as well as Mr Walewski and clients other than the Alken Fund, but that fund generated more than 80% of AAM’s income for the 2014-15 tax year and Mr Walewski was the only member of AAM’s management committee.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">AAM and AF had other employees as well as Mr Walewski and clients other than the Alken Fund, but that fund generated more than 80% of AAM’s income for the 2014-15 tax year and Mr Walewski was the only member of AAM’s management committee.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">13.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">13.</span><marker name="tab" /><span style="font-size:11pt">The “mixed partnership” rules are anti-avoidance rules which were introduced in April 2014 having effect for tax years starting from 6 April 2014. They apply to LLPs such as AAM and AF if the partnership includes both individual and non-individual members.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The “mixed partnership” rules are anti-avoidance rules which were introduced in April 2014 having effect for tax years starting from 6 April 2014. They apply to LLPs such as AAM and AF if the partnership includes both individual and non-individual members.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">14.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">14.</span><marker name="tab" /><span style="font-size:11pt">The shares in W Ltd are held by an offshore company Molinos Capital Limited in the British Virgin Islands. Shares in that company are held by a trust, the Kleber Trust, in which Mr Walewski’s children are named beneficiaries.</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The shares in W Ltd are held by an offshore company Molinos Capital Limited in the British Virgin Islands. Shares in that company are held by a trust, the Kleber Trust, in which Mr Walewski’s children are named beneficiaries.</span></p>
               </content>
-            </level>
-            <level>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">15.</num>
+              <intro>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">During the relevant tax year 2014-15, Mr Walewski’s role and involvement in AAM, AF and W Ltd changed:</span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(1)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski retired as a partner from AAM on 31 July 2014.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(2)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski’s capital contribution to AAM was taken over by W Ltd effective from 1 August 2014, although no actual repayment was made to Mr Walewski until 24 November 2014.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(3)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski became an employee of AAM for the two months from 1 August to 30 September 2014.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(4)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski resigned as an employee of W Ltd at the end of September 2014. Mr Walewski remained as a director of W Ltd.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(5)</span><marker name="tab" /><span style="font-size:11pt">On 29 November 2014 the business of AAM and AAF were incorporated and Mr Walewski became a director of both of those entities.</span></p>
+                </content>
+              </subparagraph>
+            </paragraph>
+            <paragraph>
+              <num style="font-size:11pt">16.</num>
               <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">15.</span><marker name="tab" /><span style="font-size:11pt">During the relevant tax year 2014-15, Mr Walewski’s role and involvement in AAM, AF and W Ltd changed:</span></p>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The profit allocations with which we are concerned were made on 24 March 2015 for AAM and 28 October 2015 for AF and represented profits for the 2014-15 tax year during which (i) W Ltd was a partner in AAM and AF (until their incorporation in November 2014) and (ii) Mr Walewski was also a partner, in AAM (from April 2014 until July 2014), and in AF (from April 2014 until November 2014).”</span></p>
               </content>
-            </level>
-            <level>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(1)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski retired as a partner from AAM on 31 July 2014.</span></p>
-              </content>
-            </level>
-            <level>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(2)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski’s capital contribution to AAM was taken over by W Ltd effective from 1 August 2014, although no actual repayment was made to Mr Walewski until 24 November 2014.</span></p>
-              </content>
-            </level>
-            <level>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(3)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski became an employee of AAM for the two months from 1 August to 30 September 2014.</span></p>
-              </content>
-            </level>
-            <level>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(4)</span><marker name="tab" /><span style="font-size:11pt">Mr Walewski resigned as an employee of W Ltd at the end of September 2014. Mr Walewski remained as a director of W Ltd.</span></p>
-              </content>
-            </level>
-            <level>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:-0.5in"><span style="font-size:11pt">(5)</span><marker name="tab" /><span style="font-size:11pt">On 29 November 2014 the business of AAM and AAF were incorporated and Mr Walewski became a director of both of those entities.</span></p>
-              </content>
-            </level>
-            <level>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-size:11pt">16.</span><marker name="tab" /><span style="font-size:11pt">The profit allocations with which we are concerned were made on 24 March 2015 for AAM and 28 October 2015 for AF and represented profits for the 2014-15 tax year during which (i) W Ltd was a partner in AAM and AF (until their incorporation in November 2014) and (ii) Mr Walewski was also a partner, in AAM (from April 2014 until July 2014), and in AF (from April 2014 until November 2014).”</span></p>
-              </content>
-            </level>
+            </paragraph>
           </level>
           <level>
             <num style="font-weight:bold">(3)</num>
@@ -687,27 +697,27 @@
             </paragraph>
             <paragraph>
               <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">20.</num>
-              <content>
+              <intro>
                 <p class="Bodytexttax1" style="text-indent:0.5in">As to these:</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">Condition (a). </span>During the relevant period of account, from 6 April 2014, “A” (as the statute refers to persons like the Appellant) was calculated to receive a profit from the firms, AAM and AF, within the meaning of section 850C(1)(a).</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">Condition (b). </span>In addition, “B” (as the statute refers to persons in the position of W Ltd) had a share of the profit from the firms (the LLPs), so that section 850C(1)(b) was satisfied.  </p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">Condition (c). </span>Condition X or Y must also be met. In this case condition Y was relied upon by HMRC. It will be necessary to consider condition Y is greater detail. Condition X is immaterial for present purposes.</p>
-              </content>
+              </intro>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">Condition (a). </span>During the relevant period of account, from 6 April 2014, “A” (as the statute refers to persons like the Appellant) was calculated to receive a profit from the firms, AAM and AF, within the meaning of section 850C(1)(a).</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">Condition (b). </span>In addition, “B” (as the statute refers to persons in the position of W Ltd) had a share of the profit from the firms (the LLPs), so that section 850C(1)(b) was satisfied.  </p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">Condition (c). </span>Condition X or Y must also be met. In this case condition Y was relied upon by HMRC. It will be necessary to consider condition Y is greater detail. Condition X is immaterial for present purposes.</p>
+                </content>
+              </subparagraph>
             </paragraph>
             <level>
               <content>
@@ -716,33 +726,33 @@
             </level>
             <paragraph>
               <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">21.</num>
-              <content>
+              <intro>
                 <p class="Bodytexttax1" style="text-indent:0.5in">The nature of condition Y is specified in section 850C(3). The subsection provides four requirements which must be satisfied in order for HMRC to increase the Appellant’s profit share. These requirements are as follow:</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The first requirement (“Y(1)”). </span>B’s profit share – that is, the profit share of W Ltd – must exceed the “appropriate notional profit”: section 850C(3)(a).</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The second requirement (“Y(2)”).</span> A – that is, the Appellant – must have the power to enjoy B’s (W Ltd’s) profit share: section 850C(3)(b).</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The third requirement (“Y3”).</span> It is reasonable to suppose that the whole or any part of B’s profit share is attributable to A’s power to enjoy: section 850C(3)(c)(i).</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(4)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The fourth requirement (“Y4”).</span> Both A’s profit share and the relevant tax amount (being, essentially, the tax that would be paid otherwise than by virtue of section 850C) are lower than they would have been in the absence of A’s power to enjoy: section 850(3)(c)(ii).</p>
-              </content>
+              </intro>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The first requirement (“Y(1)”). </span>B’s profit share – that is, the profit share of W Ltd – must exceed the “appropriate notional profit”: section 850C(3)(a).</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The second requirement (“Y(2)”).</span> A – that is, the Appellant – must have the power to enjoy B’s (W Ltd’s) profit share: section 850C(3)(b).</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The third requirement (“Y3”).</span> It is reasonable to suppose that the whole or any part of B’s profit share is attributable to A’s power to enjoy: section 850C(3)(c)(i).</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(4)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in"><span style="font-style:italic">The fourth requirement (“Y4”).</span> Both A’s profit share and the relevant tax amount (being, essentially, the tax that would be paid otherwise than by virtue of section 850C) are lower than they would have been in the absence of A’s power to enjoy: section 850(3)(c)(ii).</p>
+                </content>
+              </subparagraph>
             </paragraph>
             <level>
               <content>
@@ -773,27 +783,27 @@
             <heading class="Bodytexttax1"><span style="font-weight:bold">The FTT’s consideration and the grounds of appeal</span></heading>
             <paragraph>
               <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">25.</num>
-              <content>
+              <intro>
                 <p class="Bodytexttax1" style="text-indent:0.5in">As we have described, and for the reasons given in the Decision, the FTT dismissed the Appellant’s appeal against the closure notices, and found  the adjustments pursuant to section 850C(4) to be proper. More specifically:</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Conditions (a) and (b) were not in issue before the FTT, and are not relevant for the purposes of this appeal. It was common ground that those conditions were met.</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">As to condition (c), this turned on whether the various requirements of condition Y were met. These requirements – as described – are in essence fourfold, comprising Y(1), Y(2), Y(3) and Y(4). The FTT found those requirements to be met.</p>
-              </content>
-            </paragraph>
-            <paragraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
-              <content>
-                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Accordingly, the FTT proceeded to a consideration of section 850C(4) and found that the adjustments made to the profit shares of the Appellant and W Ltd by HMRC in the closure notices to be just and reasonable.</p>
-              </content>
+              </intro>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Conditions (a) and (b) were not in issue before the FTT, and are not relevant for the purposes of this appeal. It was common ground that those conditions were met.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">As to condition (c), this turned on whether the various requirements of condition Y were met. These requirements – as described – are in essence fourfold, comprising Y(1), Y(2), Y(3) and Y(4). The FTT found those requirements to be met.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
+                <content>
+                  <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Accordingly, the FTT proceeded to a consideration of section 850C(4) and found that the adjustments made to the profit shares of the Appellant and W Ltd by HMRC in the closure notices to be just and reasonable.</p>
+                </content>
+              </subparagraph>
             </paragraph>
             <paragraph>
               <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">26.</num>
@@ -843,33 +853,33 @@
           </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">32.</num>
-            <content>
+            <intro>
               <p class="Bodytexttax1" style="text-indent:0.5in">We accordingly reject Ground 1. It represents both a misunderstanding and misinterpretation of section 850C, is contrary to the clear language of the provision, not supported by any authority and inconsistent with the statutory scheme under section 850C. More specifically:</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">The construction contended for would involve doing violence to the clear language of section 850C and/or inserting further words. On its face, section 850C does not have the meaning for which the Appellant contends. </p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Section 850C applies “for a period of account” (see subsection (1)(a)). Absent any words of limitation, it applies if the various conditions are met at any point in the period of account. As a matter of construction, there is no requirement that A be a partner for more than a moment of time within the relevant period of account for the purposes of section 850C, so long as A receives a share of some profit (see subsection (1)(a)(ii)). </p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">This is consistent with the scheme of the legislation: section 850(1) (allocating a firm’s share of profits (or losses) between partners) is subject to section 850C. Section 850A applies for a “period of account”. It is therefore consistent for section 850C to apply for that same period of account, in this case from 6 April 2014 until the dissolution of the partnership on 29 November 2014.</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(4)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">This approach is also consistent with the scheme of section 850C itself, which is concerned with the inappropriate diversion of profit shares. The intended purpose of the section is to reallocate profits of a partnership to an individual partner where the requirements of the section are met, and to impose <span style="text-decoration-line:underline;text-decoration-style:solid">additional</span> requirements not present in the statutory wording and not necessary for its operation is not permissible.</p>
-            </content>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">The construction contended for would involve doing violence to the clear language of section 850C and/or inserting further words. On its face, section 850C does not have the meaning for which the Appellant contends. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Section 850C applies “for a period of account” (see subsection (1)(a)). Absent any words of limitation, it applies if the various conditions are met at any point in the period of account. As a matter of construction, there is no requirement that A be a partner for more than a moment of time within the relevant period of account for the purposes of section 850C, so long as A receives a share of some profit (see subsection (1)(a)(ii)). </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">This is consistent with the scheme of the legislation: section 850(1) (allocating a firm’s share of profits (or losses) between partners) is subject to section 850C. Section 850A applies for a “period of account”. It is therefore consistent for section 850C to apply for that same period of account, in this case from 6 April 2014 until the dissolution of the partnership on 29 November 2014.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(4)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">This approach is also consistent with the scheme of section 850C itself, which is concerned with the inappropriate diversion of profit shares. The intended purpose of the section is to reallocate profits of a partnership to an individual partner where the requirements of the section are met, and to impose <span style="text-decoration-line:underline;text-decoration-style:solid">additional</span> requirements not present in the statutory wording and not necessary for its operation is not permissible.</p>
+              </content>
+            </subparagraph>
           </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">33.</num>
@@ -899,21 +909,24 @@
               <p class="Bodytexttax1" style="text-indent:0.5in">It is appropriate to set out the relevant paragraphs of the Decision:</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-size:11pt">“170.</num>
             <content>
-              <p class="Bodytexttax1" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-size:11pt">“170.</span><marker name="tab" /><span style="font-size:11pt">Our overall conclusion, based on these findings of fact, is that Mr Walewski's work for W Ltd, AAM and AF was fungible; it is not possible on the basis of any evidence which we saw, to separate his role into discrete components; his work for one was his work for each and all of those entities. Mr Tsatsaris described Mr Walewski's roles for the three entities as “very interlinked”, we think they were more than interlinked, we think Mr Walewski was essentially playing only a single role, but for the benefit of all three entities.</span></p>
+              <p class="Bodytexttax1" style="margin-left:0.39in"><span style="font-size:11pt">Our overall conclusion, based on these findings of fact, is that Mr Walewski's work for W Ltd, AAM and AF was fungible; it is not possible on the basis of any evidence which we saw, to separate his role into discrete components; his work for one was his work for each and all of those entities. Mr Tsatsaris described Mr Walewski's roles for the three entities as “very interlinked”, we think they were more than interlinked, we think Mr Walewski was essentially playing only a single role, but for the benefit of all three entities.</span></p>
             </content>
-          </level>
-          <level>
+          </paragraph>
+          <paragraph>
+            <num style="font-size:11pt">171.</num>
             <content>
-              <p class="Bodytexttax1" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-size:11pt">171. </span><marker name="tab" /><span style="font-size:11pt">Mr Walewski was described as '”wearing a number of hats”, again, in our view this does not do justice to the truly fungible nature of his activities for these entities, all of whose decisions and strategies began and ended with Mr Walewski, as the only director and employee of W Ltd, as a member of AAM and only member of its management committee and as an employee and member of AF.</span></p>
+              <p class="Bodytexttax1" style="margin-left:0.39in"><marker name="tab" /><span style="font-size:11pt">Mr Walewski was described as '”wearing a number of hats”, again, in our view this does not do justice to the truly fungible nature of his activities for these entities, all of whose decisions and strategies began and ended with Mr Walewski, as the only director and employee of W Ltd, as a member of AAM and only member of its management committee and as an employee and member of AF.</span></p>
             </content>
-          </level>
-          <level>
+          </paragraph>
+          <paragraph>
+            <num style="font-size:11pt">172.</num>
             <content>
-              <p class="Bodytexttax1" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-size:11pt">172. </span><marker name="tab" /><span style="font-size:11pt">There was no commercial, physical or temporal separation of Mr Walewski's activities. A more accurate description of Mr Walewski would be to say that he wore one hat in many places. The entity on whose behalf he wore that hat was essentially irrelevant.”</span></p>
+              <p class="Bodytexttax1" style="margin-left:0.39in"><marker name="tab" /><span style="font-size:11pt">There was no commercial, physical or temporal separation of Mr Walewski's activities. A more accurate description of Mr Walewski would be to say that he wore one hat in many places. The entity on whose behalf he wore that hat was essentially irrelevant.”</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">37.</num>
             <content>
@@ -946,27 +959,27 @@
           </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">42.</num>
-            <content>
+            <intro>
               <p class="Bodytexttax1" style="text-indent:0.5in">In this case, the FTT came to three key conclusions when determining that section 850C(3) was satisfied and when considering the application of section 850C(4):</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Each of W Ltd, AAM and AF were creatures of the Appellant who controlled them: Decision at [198].</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">None of the profits allocated to W Ltd can be said to have been earned by that entity through the Appellant’s activities or services provided as an employee (Decision at [200] and [202]). In other words, all of its profits were excess profits.</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
-            <content>
-              <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">All of W Ltd’s profits were attributable to the Appellant’s power to enjoy (Decision at [205]).  </p>
-            </content>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(1)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">Each of W Ltd, AAM and AF were creatures of the Appellant who controlled them: Decision at [198].</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(2)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">None of the profits allocated to W Ltd can be said to have been earned by that entity through the Appellant’s activities or services provided as an employee (Decision at [200] and [202]). In other words, all of its profits were excess profits.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.75in">(3)</num>
+              <content>
+                <p class="Bodytexttax2" style="margin-left:0.75in;text-indent:0.38in">All of W Ltd’s profits were attributable to the Appellant’s power to enjoy (Decision at [205]).  </p>
+              </content>
+            </subparagraph>
           </paragraph>
           <paragraph>
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:initial">43.</num>
