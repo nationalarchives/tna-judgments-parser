@@ -37,6 +37,13 @@ class AlternateContent2 {
         // http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
         if (choice.Requires == "wpi")   // [2021] EWCA Civ 1768
             return MapFallback(main, rprops, fallback);
+        // https://docs.microsoft.com/en-us/openspecs/office_standards/ms-docx/c2aa01cb-206d-4875-afef-5feabb8f124d
+        if (choice.Requires == "w16se") {
+            string ns = "http://schemas.microsoft.com/office/word/2015/wordml/symex";
+            OpenXmlElement symEx = choice.ChildElements.FirstOrDefault();
+            if (symEx is not null && symEx.LocalName == "symEx" && symEx.NamespaceUri == ns && !choice.ChildElements.Skip(1).Any())
+                return SpecialCharacter.MakeSymEx(symEx, rprops);
+        }
         throw new Exception();
     }
 
