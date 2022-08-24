@@ -256,8 +256,8 @@ class Builder {
                 this.blocks(td, cell.Contents);
                 if (cell.VMerge == VerticalMerge.Start) {
                     IEnumerable<ICell> merged = rows.Skip(iRow + 1)
-                        .Select(r => r.Skip(iCell).First())
-                        .TakeWhile(c => c.VMerge == VerticalMerge.Continuation);
+                        .Select(r => r.Skip(iCell).FirstOrDefault())    // can be null, e.g., in ukut/aac/2022/122
+                        .TakeWhile(c => c is not null && c.VMerge == VerticalMerge.Continuation);
                     td.SetAttribute("rowspan", (merged.Count() + 1).ToString());
                     foreach (ICell c in merged) {
                         this.blocks(td, c.Contents);
