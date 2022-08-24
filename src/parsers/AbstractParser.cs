@@ -326,7 +326,7 @@ abstract class AbstractParser {
     protected WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
         unfiltered = Merger.Merge(unfiltered);
-        unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab);
+        unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab || (inline is WText wText && string.IsNullOrWhiteSpace(wText.Text)));
         IInline first = unfiltered.First();
         if (first is not WText t1)
             throw new Exception();
