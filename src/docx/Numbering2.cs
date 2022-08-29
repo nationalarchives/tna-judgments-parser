@@ -296,7 +296,7 @@ class Numbering2 {
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         int start1 = GetStart(main, numberingId, ilvl1);
         int start2 = GetStart(main, numberingId, ilvl2);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, isParent: true);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
@@ -323,12 +323,12 @@ class Numbering2 {
         int start1 = GetStart(main, numberingId, ilvl1);
         int start2 = GetStart(main, numberingId, ilvl2);
         int start3 = GetStart(main, numberingId, ilvl3);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, isParent: true);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, isParent: true);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
@@ -359,17 +359,17 @@ class Numbering2 {
         int start2 = GetStart(main, numberingId, ilvl2);
         int start3 = GetStart(main, numberingId, ilvl3);
         int start4 = GetStart(main, numberingId, ilvl4);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, isParent: true);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, isParent: true);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
             throw new Exception();
-        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3);
+        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, isParent: true);
         if (ilvl3 < baseIlvl && n3 > start3)
             n3 -= 1;
         else if (ilvl3 > baseIlvl)
@@ -605,8 +605,8 @@ class Numbering2 {
     //     return CountingAction.Skip;
     // }
 
-    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
-        return CalculateNTopDown(main, paragraph, numberingId, abstractNumId, levelNum);
+    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum, bool isParent = false) {
+        return CalculateNTopDown(main, paragraph, numberingId, abstractNumId, levelNum, isParent);
     }
 
     // internal static int CalculateNBottomUp(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
@@ -665,10 +665,11 @@ class Numbering2 {
             .FirstOrDefault()?.StartOverrideNumberingValue?.Val?.Value;
     }
 
-    internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl) {
+    internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isParent) {
         int? start = null;
         int numIdOfStartOverride = -1;
         int count = 0;
+        bool flag = false;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
             bool noContent = prev.ChildElements.Any(child => child is ParagraphProperties) && prev.ChildElements.All(child => child is ParagraphProperties);
             if (noContent)
@@ -685,6 +686,11 @@ class Numbering2 {
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
             if (prevAbsNumId != abstractNumId)
                 continue;
+
+            // ignore style numbering
+            if (prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value == numberingId) {
+                flag = true;
+            }
             if (prevIlvl < ilvl) {
                 count = 0;
                 continue;
@@ -694,19 +700,22 @@ class Numbering2 {
                     count += 1;
                 continue;
             }
+
             if (start is null) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
                 if (prevOver.HasValue) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    count = 0;
+                    if (!flag)
+                        count = 0;
                 }
             } else if (prevNumId != numIdOfStartOverride) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
                 if (prevOver.HasValue) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    count = 0;
+                    if (!flag)
+                        count = 0;
                 }
             }
             count += 1;
@@ -714,13 +723,14 @@ class Numbering2 {
         if (start is null) {    //  || numberingId != numIdOfStartOverride
             start = GetStart(main, numberingId, ilvl);
             int? over = GetStartOverride(main, numberingId, ilvl);
-            if (over.HasValue)
+            if (!isParent && !flag && over.HasValue)
                 count = 0;
         } else if (numberingId != numIdOfStartOverride) {
             int? over = GetStartOverride(main, numberingId, ilvl);
             if (over.HasValue) {
                 start = GetStart(main, numberingId, ilvl);
-                count = 0;
+                if (!isParent && !flag)
+                    count = 0;
             }
         }
         return count + start.Value;
