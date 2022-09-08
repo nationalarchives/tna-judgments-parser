@@ -687,8 +687,9 @@ class Numbering2 {
             if (prevAbsNumId != abstractNumId)
                 continue;
 
-            // ignore style numbering
-            if (prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value == numberingId)
+                int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+            int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            if (prevNumIdWithoutStyle == numberingId)
                 prevContainsNumId = true;
 
             if (prevIlvl < ilvl) {
@@ -698,6 +699,10 @@ class Numbering2 {
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
+                if (start is null && prevNumIdOfStyle is not null && prevNumIdOfStyle.Value != prevNumId.Value) {
+                    start = 1;
+                    numIdOfStartOverride = -2;
+                }
                 continue;
             }
 
@@ -709,7 +714,7 @@ class Numbering2 {
                     if (!prevContainsNumId)
                         count = 0;
                 }
-            } else if (prevNumId != numIdOfStartOverride) {
+            } else if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
                 if (prevOver.HasValue) {
                     start = prevOver.Value;
@@ -726,7 +731,7 @@ class Numbering2 {
             bool isParent = ilvl < (paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
             if (!isParent && !prevContainsNumId && over.HasValue)
                 count = 0;
-        } else if (numberingId != numIdOfStartOverride) {
+        } else if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {
             int? over = GetStartOverride(main, numberingId, ilvl);
             if (over.HasValue) {
                 start = GetStart(main, numberingId, ilvl);
