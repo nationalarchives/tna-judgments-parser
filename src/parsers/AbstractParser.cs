@@ -124,8 +124,12 @@ abstract class AbstractParser {
             return false;
         if (e.Descendants().OfType<Vml.Shape>().Any())
             return false;
-        if (e is Paragraph p && string.IsNullOrWhiteSpace(p.InnerText))
-            return true;
+        if (e is Paragraph p) {
+            if (DOCX.Numbering2.HasOwnNumber(p))
+                return false;
+            if (string.IsNullOrWhiteSpace(p.InnerText))
+                return true;
+        }
         if (e is PermEnd)
             return true;
         return false;
