@@ -21,6 +21,11 @@ class Numbering2 {
 
     private static ILogger logger = Logging.Factory.CreateLogger<DOCX.Numbering2>();
 
+    public static bool HasOwnNumber(Paragraph paragraph) {
+        int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        return numId.HasValue && numId.Value != 0;
+    }
+
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
         if (!numId.HasValue)
@@ -672,7 +677,7 @@ class Numbering2 {
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
             bool noContent = prev.ChildElements.Any(child => child is ParagraphProperties) && prev.ChildElements.All(child => child is ParagraphProperties);
-            if (noContent)
+            if (noContent && !HasOwnNumber(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
@@ -687,7 +692,7 @@ class Numbering2 {
             if (prevAbsNumId != abstractNumId)
                 continue;
 
-                int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+            int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
             int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
             if (prevNumIdWithoutStyle == numberingId)
                 prevContainsNumId = true;
