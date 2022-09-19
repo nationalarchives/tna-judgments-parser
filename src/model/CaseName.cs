@@ -41,13 +41,13 @@ class CaseName {
         
         if (party2 is not null) {
             string name1 = party1.Name;
-            if (Regex.IsMatch(name1, @"^THE QUEEN \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(name1, @"^THE (KING|QUEEN) \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Skip(1).FirstOrDefault();
                 if (next1 is not null && next1.Role == party1.Role) {
                     name1 = next1.Name + " (R on the application of)";
                 }
             }
-            if (Regex.IsMatch(name1, @"^THE QUEEN$", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(name1, @"^THE (KING|QUEEN)$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Skip(1).FirstOrDefault();
                 if (next1 is not null && next1.Role == party1.Role) {
                     string next1normalized = Regex.Replace(next1.Text, @"\s+", " ").Trim();
@@ -76,7 +76,7 @@ class CaseName {
                 }
             }
             string name2 = party2.Name;
-            if (Regex.IsMatch(name2, @"^THE QUEEN \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(name2, @"^THE (KING|QUEEN) \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Where(p => p.Role == party2.Role).Skip(1).FirstOrDefault();
                 if (next1 is not null) {
                     name2 = next1.Name + " (R on the application of)";
