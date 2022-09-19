@@ -141,6 +141,16 @@ abstract class Combo {
         return new WLine(line, contents);
     }
 
+    protected static Regex ConvertQueensToKings(Regex re) {
+        return new Regex(re.ToString().Replace("Queen", "King").Replace("QUEEN", "KING").Replace("QBD", "KBD"), re.Options);
+    }
+    protected static Court ConvertQueensToKings(Court court) {
+        string code = court.Code.Replace("-QBD", "-KBD");
+        return Courts.ByCode[code];
+    }
+
+    protected abstract Combo ConvertQueensToKings();
+
 }
 
 class Combo6 : Combo {
@@ -186,6 +196,24 @@ class Combo6 : Combo {
         return null;
     }
 
+    override protected Combo6 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return new Combo6 {
+            Re1 = this.Re1,
+            Re2 = this.Re2,
+            Re3 = this.Re3,
+            Re4 = this.Re4,
+            Re5 = ConvertQueensToKings(this.Re5),
+            Re6 = this.Re6,
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo6() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
+    }
+
 }
 
 class Combo5 : Combo {
@@ -226,6 +254,23 @@ class Combo5 : Combo {
             if (combo.Match(one, two, three, four, five))
                 return combo.Transform(one, two, three, four, five);
         return null;
+    }
+
+    override protected Combo5 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return new Combo5 {
+            Re1 = this.Re1,
+            Re2 = this.Re2,
+            Re3 = this.Re3,
+            Re4 = ConvertQueensToKings(this.Re4),
+            Re5 = this.Re5,
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo5() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -397,6 +442,22 @@ class Combo4 : Combo {
         return null;
     }
 
+    override protected Combo4 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo4 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Re3 = ConvertQueensToKings(this.Re3),
+            Re4 = ConvertQueensToKings(this.Re4),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo4() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
+    }
+
 }
 
 class Combo3_1 : Combo {
@@ -452,6 +513,22 @@ class Combo3_1 : Combo {
             if (combo.Match(one, two, three, four))
                 return combo.Transform(one, two, three, four);
         return null;
+    }
+
+    override protected Combo3_1 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo3_1 {
+            Re1 = this.Re1,
+            Re2 = this.Re2,
+            Re3 = ConvertQueensToKings(this.Re3),
+            Re4 = ConvertQueensToKings(this.Re4),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo3_1() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -596,12 +673,13 @@ class Combo3 : Combo {
             Re3 = new Regex(@"^APPEALS \(CH D\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
-        new Combo3 {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND? WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
-            Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_QBD_Commercial
-        },
+        // no distinction between KB and QB
+        // new Combo3 {
+        //     Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+        //     Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND? WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
+        //     Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+        //     Court = Courts.EWHC_QBD_Commercial
+        // },
         new Combo3 {    // EWHC/Comm/2018/3326
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
@@ -712,6 +790,21 @@ class Combo3 : Combo {
             if (combo.Match(combo.Re1, one) && combo.MatchFirstAndThirdRuns(two, combo.Re2, combo.Re3))
                 return new List<ILine>(2) { combo.Transform1(one), combo.TransformFirstAndThirdRuns(two) };
         return null;
+    }
+
+    override protected Combo3 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo3 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Re3 = ConvertQueensToKings(this.Re3),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo3() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -895,6 +988,21 @@ class Combo2_1 : Combo {
 
     }
 
+    override protected Combo2_1 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo2_1 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Re3 = this.Re3,
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo2_1() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
+    }
+
 }
 
 class Combo1_2 : Combo {
@@ -927,9 +1035,17 @@ class Combo1_2 : Combo {
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
         return null;
-
     }
 
+    override protected Combo1_2 ConvertQueensToKings() {
+        if (this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return null;
+    }
+    // static Combo1_2() {
+    //     var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+    //     combos = combos.Concat(kings).ToArray();
+    // }
 
 }
 
@@ -1052,6 +1168,20 @@ class Combo2 : Combo {
         return null;
     }
 
+    override protected Combo2 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo2 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo2() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
+    }
+
 }
 
 class Combo1_1 : Combo {
@@ -1081,6 +1211,16 @@ class Combo1_1 : Combo {
                 return combo.Transform(one, two);
         return null;
     }
+
+    override protected Combo1_1 ConvertQueensToKings() {
+        if (this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return null;
+    }
+    // static Combo1_1() {
+    //     var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+    //     combos = combos.Concat(kings).ToArray();
+    // }
 
 }
 
@@ -1173,6 +1313,16 @@ class Combo1 : Combo {
                 return combo.Transform(one);
         return null;
     }
+
+    override protected Combo1 ConvertQueensToKings() {
+        if (this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return null;
+    }
+    // static Combo1() {
+    //     var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+    //     combos = combos.Concat(kings).ToArray();
+    // }
 
 }
 

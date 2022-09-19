@@ -130,8 +130,12 @@ class PartyEnricher : Enricher {
 
     /* three and four */
 
-    private static bool IsRegina(ILine line) {
+    private static bool IsRexOrRegina(ILine line) {
         string content = line.NormalizedContent();
+        if (content == "REX")
+            return true;
+        if (content == "R E X")
+            return true;
         if (content == "REGINA")
             return true;
         if (content == "R E G I N A")
@@ -148,7 +152,7 @@ class PartyEnricher : Enricher {
         IBlock block4 = before[i+3];
         if (block1 is not ILine line1)
             return false;
-        if (!IsRegina(line1))
+        if (!IsRexOrRegina(line1))
             return false;
         if (!IsBetweenPartyMarker(block2))
             return false;
@@ -179,7 +183,7 @@ class PartyEnricher : Enricher {
         IBlock block5 = before[i+4];
         if (block1 is not ILine line1)
             return false;
-        if (!IsRegina(line1))
+        if (!IsRexOrRegina(line1))
             return false;
         if (!IsBetweenPartyMarker(block2))
             return false;
