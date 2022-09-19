@@ -83,7 +83,8 @@ class CourtTypePDF : CourtType {
     }
 
     IDictionary<string, Court> threes = new Dictionary<string, Court>() {
-        { @"^(IN THE HIGH COURT OF JUSTICE) (QUEEN[’']?S BENCH DIVISION) (ADMINISTRATIVE COURT)$", Courts.EWHC_QBD_Administrative }
+        { @"^(IN THE HIGH COURT OF JUSTICE) (QUEEN[’']?S BENCH DIVISION) (ADMINISTRATIVE COURT)$", Courts.EWHC_QBD_Administrative },
+        { @"^(IN THE HIGH COURT OF JUSTICE) (KING[’']?S BENCH DIVISION) (ADMINISTRATIVE COURT)$", Courts.EWHC_KBD_Administrative }
     };
 
     private List<ILine> Split1(IEnumerable<IInline> filtered, WLine prototype) {
