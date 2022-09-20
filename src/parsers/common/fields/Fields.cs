@@ -166,10 +166,9 @@ class Fields {
             }
             return rest;
         }
-        if (fieldCode.StartsWith(" MACROBUTTON ")) {    // EWCA/Crim/2018/2190
-            if (i != withinField.Count)
-                throw new Exception();
-            return Enumerable.Empty<IInline>();
+        if (fieldCode.StartsWith(" MACROBUTTON")) {    // EWCA/Crim/2018/2190, [2022] EWCA Civ 1242
+            logger.LogWarning("skipping MACROBUTTON field");
+            return RestOptional(main, withinField, i);
         }
         if (fieldCode == " PRIVATE ") { // EWCA/Civ/2003/295
             return Enumerable.Empty<IInline>();
