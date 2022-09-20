@@ -374,6 +374,17 @@ abstract class AbstractParser {
                 if (third is WTab)  // [2022] UKSC 21
                     return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
             }
+            if (unfiltered.Skip(2).FirstOrDefault() is WText t3) {  // [2022] EWHC 2360 (KB)
+                string combined3 = t1.Text + t2bis.Text + t3.Text;
+                match = Regex.Match(combined3, format);
+                string rest = combined3.Substring(match.Length).TrimStart();
+                if (string.IsNullOrEmpty(rest)) {
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
+                } else {
+                    WText prepend = new WText(rest, t3.properties);
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3).Prepend(prepend));
+                }
+            }
         }
         throw new Exception();
     }
