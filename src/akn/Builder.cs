@@ -10,7 +10,7 @@ using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
-class Builder {
+abstract class Builder {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Builder>();
 
@@ -31,7 +31,7 @@ class Builder {
         return e;
     }
 
-    private void Build1(IJudgment judgment) {
+    protected void Build1(IJudgment judgment) {
 
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
         akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
@@ -148,6 +148,8 @@ class Builder {
             AddDivision(parent, division);
     }
 
+    abstract protected string MakeDivisionId(IDivision div);
+
     protected virtual void AddDivision(XmlElement parent, IDivision div) {
         if (div is ITableOfContents toc) {
             AddTableOfContents(parent, toc);
@@ -155,6 +157,9 @@ class Builder {
         }
         string name = div.Name ?? "level";
         XmlElement level = doc.CreateElement(name, ns);
+        string eId = MakeDivisionId(div);
+        if (eId is not null)
+            level.SetAttribute("eId", eId);
         parent.AppendChild(level);
         if (div.Number is not null) {
             XmlElement num = AddAndWrapText(level, "num", div.Number);
@@ -618,16 +623,7 @@ class Builder {
         parent.AppendChild(tab);
     }
 
-    /* public */
-
-    public static XmlDocument Build(UK.Gov.Legislation.Judgments.IJudgment judgment) {
-        Builder akn = new Builder();
-        akn.Build1(judgment);
-        AddHash(akn.doc);
-        return akn.doc;
-    }
-
-    private static void AddHash(XmlDocument akn) {
+    protected static void AddHash(XmlDocument akn) {
         string value = SHA256.Hash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
@@ -636,7 +632,6 @@ class Builder {
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
     }
-
 
 }
 
