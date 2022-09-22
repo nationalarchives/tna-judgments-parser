@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 
 using DocumentFormat.OpenXml.Packaging;
+using UK.Gov.NationalArchives.CaseLaw;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
@@ -36,7 +37,7 @@ internal class Bundle : ILazyBundle {
     public XmlDocument Judgment {
         get {
             if (xml is null)
-                xml = Builder.Build(judgment);
+                xml = JudgmentBuilder.Build(judgment);
             return xml;
         }
     }
