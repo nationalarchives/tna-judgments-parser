@@ -67,17 +67,18 @@ internal class ListNum {
 
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;
-            WText wText = new WText(fNum, rProps);
-            return new List<IInline>(1) { wText };
+            INumber number = new DOCX.WNumber2(fNum, rProps, main, p.ParagraphProperties);
+            return new List<IInline>(1) { number };
         }
         match = Regex.Match(fieldCode, @"^ LISTNUM \\l (\d) $");    // EWHC/Patents/2013/2927
         if (match.Success) {
-            int numId = first.Ancestors<Paragraph>().First().ParagraphProperties.NumberingProperties.NumberingId.Val.Value;
+            Paragraph p = first.Ancestors<Paragraph>().First();
+            int numId = p.ParagraphProperties.NumberingProperties.NumberingId.Val.Value;
             int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, 1, main);
             RunProperties rProps = first.RunProperties;
-            WText wText = new WText(fNum, rProps);
-            return new List<IInline>(1) { wText };
+            INumber number = new DOCX.WNumber2(fNum, rProps, main, p.ParagraphProperties);
+            return new List<IInline>(1) { number };
         }
         match = Regex.Match(fieldCode, @"^ listnum ""WP List 1"" \\l (\d) $");  // EWHC/Ch/2004/1835
         if (match.Success) {
@@ -85,9 +86,10 @@ internal class ListNum {
             int ilvl = int.Parse(match.Groups[1].Value) - 1;
             int n = CountPreceding(withinField.First(), fieldCode) + 1;
             string fNum = DOCX.Numbering2.FormatNumberAbstract(absNumId, ilvl, n, main);
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
             RunProperties rProps = first.RunProperties;
-            WText wText = new WText(fNum, rProps);
-            return new List<IInline>(1) { wText };
+            INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
+            return new List<IInline>(1) { number };
         }
         match = Regex.Match(fieldCode, @"^ LISTNUM ""([^""]+)"" \\l (\d) \\s (\d) $");
         if (match.Success) {
@@ -95,13 +97,10 @@ internal class ListNum {
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
             int start = int.Parse(match.Groups[3].Value);
             string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, start, main);
-            // ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
             RunProperties rProps = first.RunProperties;
-            // INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
-            /* not sure why this should be a WText and LISTNUM LegalDefault should be an WNumber2
-            /* but only example I've seen (EWCA/Crim/2011/143) is followed by a non-breaking space */
-            WText wText = new WText(fNum, rProps);
-            return new List<IInline>(1) { wText };
+            INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
+            return new List<IInline>(1) { number };
         }
         match = Regex.Match(fieldCode, @"^ LISTNUM ""([^""]+)"" \\l (\d) $");   // EWCA/Civ/2008/1365
         /* can be combined with previous pattern? */
@@ -110,9 +109,10 @@ internal class ListNum {
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
             int start = 1;
             string fNum = DOCX.Numbering2.FormatNumber(name, ilvl, start, main);
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
             RunProperties rProps = first.RunProperties;
-            WText wText = new WText(fNum, rProps);
-            return new List<IInline>(1) { wText };
+            INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
+            return new List<IInline>(1) { number };
         }
         throw new Exception(fieldCode);
     }
