@@ -663,11 +663,11 @@ abstract class AbstractParser {
             return div;
         if (div.Contents.First() is not WLine)
             return div;
+        
+        float marginOfError = 0.05f;
 
         float left1 = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
         float firstLine1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
-        left1 = (float) Math.Round(left1, 2);
-        firstLine1 = (float) Math.Round(firstLine1, 2);
         float indent1 = firstLine1 > 0 ? left1 : left1 + firstLine1;
         // float left2 = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, p.ParagraphProperties) ?? 0.0f;
         // float firstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, p.ParagraphProperties) ?? 0.0f;
@@ -700,10 +700,8 @@ abstract class AbstractParser {
             if (next is Paragraph nextPara) {
                 float nextLeft1 = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
                 float nextFirstLine1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
-                nextLeft1 = (float) Math.Round(nextLeft1, 2);   // see test 23
-                nextFirstLine1 = (float) Math.Round(nextFirstLine1, 2);
                 float nextIndent1 = nextFirstLine1 > 0 ? nextLeft1 : nextLeft1 + nextFirstLine1;
-                if (nextIndent1 <= indent1)
+                if (nextIndent1 - marginOfError <= indent1)
                     break;
                 // float nextLeft2 = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
                 // float nextFirstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
