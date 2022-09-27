@@ -1,9 +1,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Linq;
 
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -52,8 +51,11 @@ class WLine : ILine {
     public AlignmentValues? Alignment {
         get {
             Justification just = properties?.Justification;
-            if (just is null)
+            if (just is null) {
+                if (contents.Any() && !contents.Skip(1).Any() && contents.First() is IMath)
+                    return AlignmentValues.Center;
                 return null;
+            }
             if (just.Val.Equals(JustificationValues.Left))
                 return AlignmentValues.Left;
             if (just.Val.Equals(JustificationValues.Right))
