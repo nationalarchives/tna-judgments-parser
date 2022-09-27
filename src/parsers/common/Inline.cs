@@ -217,6 +217,11 @@ class Inline {
             }
             if (e is CommentRangeStart || e is CommentRangeEnd) // EWHC/Comm/2016/869
                 continue;
+            if (e is OMML.Paragraph oMathPara) { // [2022] EWHC 2363 (Pat)
+                var children = ParseRuns(main, e.ChildElements);
+                parsed.AddRange(children);
+                continue;
+            }
             if (e is OMML.OfficeMath omml) { // EWHC/Comm/2018/335
                 IMath mathML = Math2.Parse(main, omml);
                 parsed.Add(mathML);
