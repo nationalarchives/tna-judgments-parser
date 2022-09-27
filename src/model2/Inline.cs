@@ -144,11 +144,19 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
     } }
 
     public string FontColor { get {
-        return properties?.Color?.Val?.Value;
+        string color = properties?.Color?.Val?.Value;
+        if (color is not null)
+            return color;
+        return properties?.Shading?.Color?.Value;
     } }
 
     public string BackgroundColor { get {
-        return properties?.Shading?.Fill?.Value;
+        HighlightColorValues? highlight = properties?.Highlight?.Val?.Value;
+        if (!highlight.HasValue)
+            return properties?.Shading?.Fill?.Value;
+        if (highlight == HighlightColorValues.None)
+            return null;
+        return highlight.ToString().ToLower();
     } }
 
     public bool IsHidden { get {

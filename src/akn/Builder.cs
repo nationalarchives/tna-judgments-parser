@@ -376,7 +376,7 @@ abstract class Builder {
         return e;
     }
 
-    private XmlElement TextAndFormatting(XmlElement e, IFormattedText model) {
+    private void TextAndFormatting(XmlElement e, IFormattedText model) {
         if (model.Style is not null)
             e.SetAttribute("class", model.Style);
         Dictionary<string, string> styles = model.GetCSSStyles();
@@ -385,14 +385,37 @@ abstract class Builder {
         if (model.IsHidden) {
             logger.LogInformation("hidden text: " + model.Text);
             e.SetAttribute("class", model.Style is null ? "hidden" : model.Style + " hidden");
-        } else {
-            XmlText text = doc.CreateTextNode(model.Text);
-            e.AppendChild(text);
+            return;
         }
         if (model.BackgroundColor is not null && model.BackgroundColor != "auto") {
             logger.LogInformation("text with background color (" + model.BackgroundColor + "): " + model.Text);
         }
-        return e;
+        TextWithoutFormatting(e, model);
+    }
+
+    static bool IsRedacted(IFormattedText fText) {
+        string bc = fText.BackgroundColor;
+        if (bc is null)
+            return false;
+        if (bc.ToLower() != "black" && bc != "#000000")
+            return false;
+        string fc = fText.FontColor;
+        if (fc is null)
+            return true;
+        if (fc.ToLower() == "black" || fc == "#000000")
+            return true;
+        // other colors?
+        return true;
+    }
+    static string ReplaceRedacted(string text) {
+        return new string('x', text.Length);
+    }
+
+    private void TextWithoutFormatting(XmlElement parent, IFormattedText model) {
+        // string content = IsRedacted(model) ? ReplaceRedacted(model.Text) : model.Text;
+        // XmlText text = doc.CreateTextNode(content);
+        XmlText text = doc.CreateTextNode(model.Text);
+        parent.AppendChild(text);
     }
 
     private void AddDate(XmlElement parent, IDate model) {
@@ -553,16 +576,12 @@ abstract class Builder {
             AddAndWrapText(parent, "span", fText);
             return;
         }
-        XmlText text = doc.CreateTextNode(fText.Text);
         Dictionary<string, string> styles = fText.GetCSSStyles();
         if (styles.Count > 0) {
-            XmlElement span = doc.CreateElement("span", ns);
-            parent.AppendChild(span);
-            span.SetAttribute("style", CSS.SerializeInline(styles));
-            span.AppendChild(text);
-        } else {
-            parent.AppendChild(text);
+            AddAndWrapText(parent, "span", fText);
+            return;
         }
+        TextWithoutFormatting(parent, fText);
     }
 
     private void AddFootnote(XmlElement parent, IFootnote fn) {
