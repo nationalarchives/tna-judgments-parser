@@ -771,8 +771,8 @@ abstract class AbstractParser {
     protected virtual bool IsFirstLineOfAnnex(OpenXmlElement e) {
         if (Regex.IsMatch(e.InnerText, @"^\s*ANNEX\s+\d+\s*$", RegexOptions.IgnoreCase))
             return true;
-        // if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s*$", RegexOptions.IgnoreCase))
-        //     return true;
+        if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s*$", RegexOptions.IgnoreCase))
+            return true;
         // if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s+No\.?\s*\d+\s*$", RegexOptions.IgnoreCase))
         //     return true;
         return false;
