@@ -186,6 +186,7 @@ class Parser : AbstractParser {
         List<IDivision> contents = Divisions();
         if (contents is null || contents.Count == 0)
             return null;
+        contents.AddRange(ParagraphsUntilEndOfDecision());
         Decision decision = new Decision { Author = null, Contents = contents };
         return new List<IDecision>(1) { decision };
     }
@@ -200,6 +201,11 @@ class Parser : AbstractParser {
         return Enricher.Enrich(enriched, new List<Enricher>(1) { new UKUT.Date2() });
     }
 
+    override protected bool IsFirstLineOfConclusions(OpenXmlElement e) {
+        if (e.InnerText.StartsWith("Signed: "))
+            return true;
+        return false;
+    }
 
     override protected List<IDivision> ParagraphsUntilAnnex() {
         OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;
