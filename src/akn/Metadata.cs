@@ -272,7 +272,7 @@ class AttachmentMetadata : IMetadata {
 
     public string Cite { get => prototype.Cite; }
 
-    private string Extension { get =>  "/" + Name.ToLower() + "/" + n; }
+    private string Extension { get =>  "/" + Enum.GetName(typeof(AttachmentType), Type).ToLower() + "/" + n; }
 
     public string ShortUriComponent { get => prototype.ShortUriComponent + Extension; }
 
@@ -287,7 +287,7 @@ class AttachmentMetadata : IMetadata {
 
     public INamedDate Date { get => prototype.Date; }
 
-    public string Name { get => Enum.GetName(typeof(AttachmentType), Type); }
+    public string Name { get => null; }
 
     public IEnumerable<string> CaseNos() => Enumerable.Empty<string>();
 
