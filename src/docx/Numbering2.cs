@@ -716,8 +716,10 @@ class Numbering2 {
                 if (prevOver.HasValue) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    if (!prevContainsNumId)
+                    if (prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue)
                         count = 0;
+                    // if (!prevContainsNumId)
+                    //     count = 0;
                 }
             } else if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
