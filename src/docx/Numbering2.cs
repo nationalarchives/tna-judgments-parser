@@ -724,8 +724,7 @@ class Numbering2 {
                 if (prevOver.HasValue) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    if (!prevContainsNumId)
-                        count = 0;
+                    count = 0;
                 }
             }
             count += 1;

@@ -238,6 +238,10 @@ abstract class AbstractParser {
         return decisions;
     }
 
+    protected bool IsFirstLineOfDecision(OpenXmlElement e) {
+        return IsTitledJudgeName(e);
+    }
+
     protected IDecision Decision() {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
@@ -250,7 +254,21 @@ abstract class AbstractParser {
         List<IDivision> contents = Divisions();
         if (contents is null || contents.Count == 0)
             return null;
+        contents.AddRange(ParagraphsUntilEndOfDecision());
         return new Decision { Author = author, Contents = contents };
+    }
+
+    protected List<IDivision> ParagraphsUntilEndOfDecision() {
+        StopParsingParagraphs stop = e => {
+            if (IsFirstLineOfDecision(e))
+                return true;
+            if (IsFirstLineOfConclusions(e))
+                return true;
+            if (IsFirstLineOfAnnex(e))
+                return true;
+            return false;
+        };
+        return ParagraphsUntil(stop);
     }
 
     protected List<IDivision> Divisions() {
@@ -269,7 +287,7 @@ abstract class AbstractParser {
         if (i < elements.Count)
             logger.LogTrace(elements.ElementAt(i).OuterXml);
         i = save;
-        return ParagraphsUntilAnnex();
+        return ParagraphsUntilEndOfDecision();
     }
 
     /* numbered big levels */
@@ -548,9 +566,9 @@ abstract class AbstractParser {
     protected List<IDivision> ParagraphsUntilEndOfBody() {
         StopParsingParagraphs predicate = e => {
             if (IsFirstLineOfConclusions(e))
-                return true;;
+                return true;
             if (IsFirstLineOfAnnex(e))
-                return true;;
+                return true;
             return false;
         };
         return ParagraphsUntil(predicate);
