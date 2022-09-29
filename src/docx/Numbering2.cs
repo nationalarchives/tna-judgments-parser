@@ -698,6 +698,10 @@ class Numbering2 {
                 prevContainsNumId = true;
 
             if (prevIlvl < ilvl) {
+                if (start is not null && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2 && prevNumId.Value == numberingId) {
+                    start = null;
+                    numIdOfStartOverride = -1;
+                }
                 count = 0;
                 continue;
             }
