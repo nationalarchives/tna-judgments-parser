@@ -14,26 +14,15 @@ class CaseName {
 
         Court? court = judgment.Metadata.Court();
 
-        List<IParty> parties = new List<IParty>();
-        List<IDocTitle> docTitle = new List<IDocTitle>();
-        List<ILocation> location = new List<ILocation>();
+        IEnumerable<IParty> parties = Enumerable.Concat(
+            Util.Descendants<IParty>(judgment.CoverPage),
+            Util.Descendants<IParty>(judgment.Header)
+        );
+        IEnumerable<IDocTitle> docTitle = Util.Descendants<IDocTitle>(judgment.Header);
+        IEnumerable<ILocation> location = Util.Descendants<ILocation>(judgment.Header);
+
         IParty party1 = null;
         IParty party2 = null;
-        foreach (IBlock block in judgment.Header) {
-            if (block is ILine line) {
-                parties.AddRange(line.Contents.OfType<IParty>());
-                docTitle.AddRange(line.Contents.OfType<IDocTitle>());
-                location.AddRange(line.Contents.OfType<ILocation>());
-            }
-            if (block is ITable table)
-                foreach (IRow row in table.Rows)
-                    foreach (ICell cell in row.Cells)
-                        foreach (ILine line2 in cell.Contents.OfType<ILine>()) {
-                            parties.AddRange(line2.Contents.OfType<IParty>());
-                            docTitle.AddRange(line2.Contents.OfType<IDocTitle>());
-                            location.AddRange(line2.Contents.OfType<ILocation>());
-                        }
-        }
         party1 = parties.FirstOrDefault();
         party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
         if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
