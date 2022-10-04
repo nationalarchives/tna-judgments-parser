@@ -404,6 +404,28 @@ abstract class AbstractParser {
                 }
             }
         }
+        return RemoveNumberFromFirstLineOfBigLevel4(format, t1, unfiltered.Skip(1), e.ParagraphProperties);
+    }
+
+    private WLine RemoveNumberFromFirstLineOfBigLevel4(string format, WText t1, IEnumerable<IInline> rest, ParagraphProperties pProps) {
+        string t1Text = t1.Text.TrimStart();
+        if (rest.FirstOrDefault() is WTab) {    // ewhc/ch/2022/2462
+            t1Text += " ";
+            rest = rest.Skip(1);
+        }
+        if (rest.FirstOrDefault() is WText t2) {
+            string combined = t1Text + t2.Text;
+            Match match = Regex.Match(combined, format);
+            if (match.Success) {
+                string leftOver = combined.Substring(match.Length).TrimStart();
+                if (string.IsNullOrEmpty(leftOver)) {
+                    return new WLine(main, pProps, rest.Skip(1));
+                } else {
+                    WText prepend = new WText(leftOver, t2.properties);
+                    return new WLine(main, pProps, rest.Skip(1).Prepend(prepend));
+                }
+            }
+        }
         throw new Exception();
     }
 
