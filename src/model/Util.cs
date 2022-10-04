@@ -49,7 +49,7 @@ class Util {
     public static IEnumerable<T> Descendants<T>(IJudgment judgment) {
         return Enumerable.Concat(
             Enumerable.Concat(
-                judgment.CoverPage is null ? Descendants<T>(judgment.Header) : Enumerable.Concat(
+                Enumerable.Concat(
                     Descendants<T>(judgment.CoverPage),
                     Descendants<T>(judgment.Header)
                 ),
@@ -69,6 +69,8 @@ class Util {
         return divisions.SelectMany(GetBlocksFromDivision).SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
     }
     public static IEnumerable<T> Descendants<T>(IEnumerable<IBlock> blocks) {
+        if (blocks is null)
+            return Enumerable.Empty<T>();
         return blocks.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
     }
 
