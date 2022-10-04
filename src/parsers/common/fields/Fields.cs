@@ -220,7 +220,7 @@ class Fields {
         }
         if (Time.Is(fieldCode))
             return Time.Parse(main, fieldCode, withinField.Skip(i));
-        if (fieldCode.StartsWith(" tc ")) {    // EWCA/Civ/2008/875_1, EWHC/Ch/2010/3727
+        if (fieldCode.StartsWith(" tc ", StringComparison.InvariantCultureIgnoreCase)) {    // EWCA/Civ/2008/875_1, EWHC/Ch/2010/3727, UTAAC/2010/V 3024 2010-00.doc
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219, EWHC/Admin/2021/30
