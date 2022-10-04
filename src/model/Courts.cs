@@ -266,29 +266,33 @@ public readonly struct Courts {
     public static readonly Court UpperTribunal_AdministrativeAppealsChamber = new Court {
         Code = "UKUT-AAC",
         LongName = "United Kingdom Upper Tribunal (Administrative Appeals Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(AAC\)$")
     };
     public static readonly Court UpperTribunal_ImmigrationAndAsylumChamber = new Court {
         Code = "UKUT-IAC",
         LongName = "United Kingdom Upper Tribunal (Immigration and Asylum Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(IAC\)$")
     };
     public static readonly Court UpperTribunal_LandsChamber = new Court {
         Code = "UKUT-LC",
         LongName = "United Kingdom Upper Tribunal (Lands Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(LC\)$")
     };
     public static readonly Court UpperTribunal_TaxAndChanceryChamber = new Court {
         Code = "UKUT-TCC",
         LongName = "United Kingdom Upper Tribunal (Tax and Chancery Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(TCC\)$")
     };
 
     public static readonly Court EmploymentAppealTribunal = new Court {
         Code = "EAT",
         LongName = "Employment Appeal Tribunal",
         URL = "https://www.gov.uk/courts-tribunals/employment-appeal-tribunal",
-        CitationPattern = new Regex(@"$\[\d{4}\] EAT \d+$")
+        CitationPattern = new Regex(@"^\[\d{4}\] EAT \d+$")
     };
 
     public static readonly Court FirstTierTribunal_Tax = new Court {
