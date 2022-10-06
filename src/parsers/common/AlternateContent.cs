@@ -44,6 +44,13 @@ class AlternateContent2 {
             if (symEx is not null && symEx.LocalName == "symEx" && symEx.NamespaceUri == ns && !choice.ChildElements.Skip(1).Any())
                 return SpecialCharacter.MakeSymEx(symEx, rprops);
         }
+        // https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.vml?view=openxml-2.8.1
+        if (choice.Requires == "v") {
+            if (choice.FirstChild is Picture pict)
+                return WImageRef.Make(main, pict);
+            if (fallback.FirstChild is Drawing drawing)
+                return new WImageRef(main, drawing);
+        }
         throw new Exception();
     }
 
