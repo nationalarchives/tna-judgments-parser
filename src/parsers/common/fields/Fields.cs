@@ -260,9 +260,9 @@ class Fields {
             logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
             return rest;
         }
-        if (fieldCode == " PAGE ") {   // EWHC/Admin/2003/2369
-            if (!first.Ancestors<Header>().Any())
-                throw new Exception();
+        if (fieldCode.StartsWith(" PAGE ")) {   // EWHC/Admin/2003/2369, [2022] EWHC 2576 (Fam)
+            string rest = ILine.TextContent(RestOptional(main, withinField, i));
+            logger.LogDebug("ignoring PAGE field: " + rest);
             return Enumerable.Empty<IInline>();
         }
         match = Regex.Match(fieldCode, @" PAGEREF [_A-Za-z0-9]+ \\h ");   // EWHC/Ch/2007/1044
