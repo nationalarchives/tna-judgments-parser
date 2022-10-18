@@ -301,7 +301,7 @@ class Numbering2 {
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         int start1 = GetStart(main, numberingId, ilvl1);
         int start2 = GetStart(main, numberingId, ilvl2);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
@@ -328,12 +328,12 @@ class Numbering2 {
         int start1 = GetStart(main, numberingId, ilvl1);
         int start2 = GetStart(main, numberingId, ilvl2);
         int start3 = GetStart(main, numberingId, ilvl3);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
@@ -364,17 +364,17 @@ class Numbering2 {
         int start2 = GetStart(main, numberingId, ilvl2);
         int start3 = GetStart(main, numberingId, ilvl3);
         int start4 = GetStart(main, numberingId, ilvl4);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
         if (ilvl1 < baseIlvl && n1 > start1)
             n1 -= 1;
         else if (ilvl1 > baseIlvl)
             throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
         if (ilvl2 < baseIlvl && n2 > start2)
             n2 -= 1;
         else if (ilvl2 > baseIlvl)
             throw new Exception();
-        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3);
+        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, true);
         if (ilvl3 < baseIlvl && n3 > start3)
             n3 -= 1;
         else if (ilvl3 > baseIlvl)
@@ -610,8 +610,9 @@ class Numbering2 {
     //     return CountingAction.Skip;
     // }
 
-    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
-        return CalculateNTopDown(main, paragraph, numberingId, abstractNumId, levelNum);
+    /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
+    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum, bool isHigher = false) {
+        return CalculateNTopDown(main, paragraph, numberingId, abstractNumId, levelNum, isHigher);
     }
 
     // internal static int CalculateNBottomUp(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int levelNum) {
@@ -670,7 +671,7 @@ class Numbering2 {
             .FirstOrDefault()?.StartOverrideNumberingValue?.Val?.Value;
     }
 
-    internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl) {
+    internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher) {
         int? start = null;
         int numIdOfStartOverride = -1;
         bool prevContainsNumId = false;
@@ -735,6 +736,15 @@ class Numbering2 {
             }
             count += 1;
         }
+
+        if (isHigher && start is null) {   // ewhc/ch/2022/2578
+            int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            if (thisNumIdOfStyle is not null && thisNumIdOfStyle.Value != numberingId) {
+                start = 1;
+                numIdOfStartOverride = -2;
+            }
+        }
+
         if (start is null) {    //  || numberingId != numIdOfStartOverride
             start = GetStart(main, numberingId, ilvl);
             int? over = GetStartOverride(main, numberingId, ilvl);
