@@ -184,8 +184,8 @@ class Parser : AbstractParser {
 
     protected override List<IDecision> Body() {
         List<IDivision> contents = Divisions();
-        if (contents is null || contents.Count == 0)
-            return null;
+        if (contents is null)
+            contents = new List<IDivision>();
         contents.AddRange(ParagraphsUntilEndOfDecision());
         Decision decision = new Decision { Author = null, Contents = contents };
         return new List<IDecision>(1) { decision };
