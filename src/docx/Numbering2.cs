@@ -709,7 +709,7 @@ class Numbering2 {
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
-                if (start is null && prevNumIdOfStyle is not null && prevNumIdOfStyle.Value != prevNumId.Value) {
+                if (!isHigher && start is null && prevNumIdOfStyle is not null && prevNumIdOfStyle.Value != prevNumId.Value) {
                     start = 1;
                     numIdOfStartOverride = -2;
                 }
@@ -735,14 +735,6 @@ class Numbering2 {
                 }
             }
             count += 1;
-        }
-
-        if (isHigher && start is null) {   // ewhc/ch/2022/2578
-            int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-            if (thisNumIdOfStyle is not null && thisNumIdOfStyle.Value != numberingId) {
-                start = 1;
-                numIdOfStartOverride = -2;
-            }
         }
 
         if (start is null) {    //  || numberingId != numIdOfStartOverride
