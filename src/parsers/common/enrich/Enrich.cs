@@ -193,7 +193,7 @@ abstract class Enricher2 : Enricher {
             if (!object.ReferenceEquals(before, after)) {
                 while (cells.MoveNext())
                     enriched.Add(cells.Current);
-                return new WRow(row.Table, enriched);
+                return new WRow(row.Table, row.Properties, enriched);
             }
         }
         return row;
