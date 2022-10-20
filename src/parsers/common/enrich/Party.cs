@@ -1101,19 +1101,19 @@ class PartyEnricher : Enricher {
         if (role is not null) {
             second = EnrichCell(second, role.Value);
             third = EnrichCellWithPartyRole(third, (PartyRole) role);
-            return new WRow(row.Table, new List<WCell>(3){ first, second, third });
+            return new WRow(row.Table, row.Properties, new List<WCell>(3){ first, second, third });
         }
         // if (!IsEmptyCell(third))
         //     return row;
         if (IsInTheMatterOfSomething(second)) {
             second = EnrichInTheMatterOfSomething(second);
-            return new WRow(row.Table, new List<WCell>(3){ first, second, third });
+            return new WRow(row.Table, row.Properties, new List<WCell>(3){ first, second, third });
         }
         (PartyRole first, PartyRole second)? twoRoles = GetTwoDifferentRoles(third);
         if (twoRoles is not null) {
             second = EnrichPartyNamesWithTwoRoles(second, twoRoles.Value);
             third = EnrichPartyTypesWithTwoRoles(third, twoRoles.Value);
-            return new WRow(row.Table, new List<WCell>(3){ first, second, third });
+            return new WRow(row.Table, row.Properties, new List<WCell>(3){ first, second, third });
         }
         return row;
     }
@@ -1128,7 +1128,7 @@ class PartyEnricher : Enricher {
             return row;
         first = EnrichCell(first, role.Value);
         second = EnrichCellWithPartyRole(second, role.Value);
-        return new WRow(row.Table, new List<WCell>(2){ first, second });
+        return new WRow(row.Table, row.Properties, new List<WCell>(2){ first, second });
     }
 
     private IEnumerable<WRow> EnrichThreeRowsWithNoRolesOrNull(IEnumerable<WRow> rows) {    // EWCA/Crim/2007/854, EWCA/Crim/2014/465
@@ -1169,11 +1169,11 @@ class PartyEnricher : Enricher {
         WCell newMiddle1 = new WCell(middle1.Row, middle1.Props, middle1.Contents.Cast<WLine>().Select(line => IsEmptyLine(line) ? line : MakeParty(line, PartyRole.BeforeTheV)));
         WCell newMiddle3 = new WCell(middle3.Row, middle3.Props, middle3.Contents.Cast<WLine>().Select(line => IsEmptyLine(line) ? line : MakeParty(line, PartyRole.AfterTheV)));
         return new List<WRow>(3) {
-            new WRow(first.Table, new List<WCell>(3) {
+            new WRow(first.Table, first.Properties, new List<WCell>(3) {
                 first.TypedCells.First(), newMiddle1, first.TypedCells.Last()
             }),
             second,
-            new WRow(third.Table, new List<WCell>(3) {
+            new WRow(third.Table, third.Properties, new List<WCell>(3) {
                 third.TypedCells.First(), newMiddle3, third.TypedCells.Last()
             })
         };
@@ -1203,7 +1203,7 @@ class PartyEnricher : Enricher {
         PartyRole? role = GetPartyRole(roleCell);
         if (role is not null) {
             partyCell = EnrichCell(partyCell, role.Value);
-            return new WRow(row.Table, new List<WCell>(3){ before, partyCell, after });
+            return new WRow(row.Table, row.Properties, new List<WCell>(3){ before, partyCell, after });
         }
         return row;
     }
