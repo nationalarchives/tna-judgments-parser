@@ -74,6 +74,8 @@ class CourtOfAppealParser : AbstractParser {
         if (header1 is null)
             header1 = Header2();
         if (header1 is null)
+            header1 = Header3();
+        if (header1 is null)
             return null;
         List<IBlock> header2 = new List<IBlock>(header1.Count);
         foreach (var e in header1)
@@ -126,6 +128,17 @@ class CourtOfAppealParser : AbstractParser {
                 return header;
             }
             header.Add(e);
+        }
+        return null;
+    }
+    private List<OpenXmlElement> Header3() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
+            header.Add(e);
+            if (Util.IsSectionBreak(e))
+                return header;
+            if (Regex.IsMatch(e.InnerText, @"© CROWN COPYRIGHT \d{4}"))
+                return header;
         }
         return null;
     }
