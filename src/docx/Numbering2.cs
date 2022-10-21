@@ -1,6 +1,5 @@
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -672,6 +671,8 @@ class Numbering2 {
     }
 
     internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher) {
+        int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        // int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
         int? start = null;
         int numIdOfStartOverride = -1;
         bool prevContainsNumId = false;
@@ -702,6 +703,10 @@ class Numbering2 {
                 if (start is not null && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2 && prevNumId.Value == numberingId) {
                     start = null;
                     numIdOfStartOverride = -1;
+                }
+                else if (!thisNumIdWithoutStyle.HasValue && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2 && prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue && prevNumIdWithoutStyle.Value != prevNumIdOfStyle.Value) {
+                    start = 1;
+                    numIdOfStartOverride = -2;
                 }
                 count = 0;
                 continue;
