@@ -37,8 +37,7 @@ class CourtOfAppealParser : AbstractParser {
         "Approved Judgement",   // [2022] EWHC 544 (Comm)
         "APPROVED JUDGMENT", "APPROVED JUDGEMENT",
         "APPROVED J U D G M E N T",
-        "J U D G M E N T (Approved)", // EWCA/Crim/2017/1012
-        // "J U D G M E N T  (Approved)",
+        "JUDGMENT (Approved)", "J U D G M E N T (Approved)",
         "J U D G M E N T (As approved)", // EWCA/Crim/2015/1870
         "J U D G M E N T (As Approved by the Court)",   // EWCA/Crim/2016/681
         "J U D G M E N T (As approved by the Court)",   // EWCA/Crim/2016/798
