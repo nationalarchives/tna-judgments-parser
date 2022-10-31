@@ -1,13 +1,38 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Judgments {
 
-interface IInline { }
+interface IInline {
+
+    static bool IsEmpty(IInline i) {
+        if (i is IFormattedText t)
+            return string.IsNullOrWhiteSpace(t.Text);
+        if (i is ITab)
+            return true;
+        if (i is ILineBreak)
+            return true;
+        if (i is IInlineContainer container)
+            return container.Contents.All(IInline.IsEmpty);
+        if (i is INeutralCitation2 ncn)
+            return ncn.Contents.All(IInline.IsEmpty);
+        if (i is ICourtType2 court)
+            return court.Contents.All(IInline.IsEmpty);
+        if (i is IDate date)
+            return date.Contents.All(IInline.IsEmpty);
+        if (i is IDateTime time)
+            return time.Contents.All(IInline.IsEmpty);
+        if (i is IParty2 party)
+            return party.Contents.All(IInline.IsEmpty);
+        return false;
+    }
+
+}
 
 interface IInlineContainer : IInline {
 
