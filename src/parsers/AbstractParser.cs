@@ -83,7 +83,8 @@ abstract class AbstractParser {
         Header header = DOCX.Headers.GetFirst(main);
         if (header is null)
             return null;
-        return Blocks.ParseBlocks(main, header.ChildElements);
+        return Blocks.ParseBlocks(main, header.ChildElements)
+            .Where(block => block is not ILine line || !line.IsEmpty());
     }
 
     protected abstract List<IBlock> Header();
