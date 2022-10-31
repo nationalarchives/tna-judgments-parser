@@ -70,11 +70,7 @@ interface ILine : IBlock, IBordered {
     bool IsEmpty() {
         if (!this.Contents.Any())
             return true;
-        return this.Contents.All(i => {
-            if (i is IFormattedText t)
-                return string.IsNullOrWhiteSpace(t.Text);
-            return true;
-        });
+        return this.Contents.All(IInline.IsEmpty);
     }
 
 }
