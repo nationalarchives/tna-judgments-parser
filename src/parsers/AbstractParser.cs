@@ -781,9 +781,13 @@ abstract class AbstractParser {
         string format = @"^(“?\d+\.?) (?!(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))";
         WText num3 = GetNumberFromFirstLineOfBigLevel(p, format);
         if (num3 is not null) {
-            WLine line1 = RemoveNumberFromFirstLineOfBigLevel(p, format);
-            line1.IsFirstLineOfNumberedParagraph = true;
-            return new WNewNumberedParagraph(num3, line1);
+            try {
+                WLine line1 = RemoveNumberFromFirstLineOfBigLevel(p, format);
+                line1.IsFirstLineOfNumberedParagraph = true;
+                return new WNewNumberedParagraph(num3, line1);
+            } catch (Exception) {   // [2022] EAT 165
+                logger.LogWarning("unable to extract number from pagraph: " + p.InnerText);
+            }
         }
         return new WDummyDivision(line);
     }
