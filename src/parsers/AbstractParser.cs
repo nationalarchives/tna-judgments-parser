@@ -196,11 +196,11 @@ abstract class AbstractParser {
     }
 
     private static readonly string[] titledJudgeNamePatterns2 = {
-        @"^MRS?\.? JUSTICE( [A-Z]+)+: ",
-        @"^(LORD|LADY|MRS?) JUSTICE( [A-Z]+)+: ",
-        @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?: ",
-        @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+: ",
-        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge: "
+        @"^MRS?\.? JUSTICE( [A-Z]+)+:",
+        @"^(LORD|LADY|MRS?) JUSTICE( [A-Z]+)+:",
+        @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?:",
+        @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+:",
+        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge:"
     };
     private IEnumerable<Regex> titledJudgeNameRegexes2 = titledJudgeNamePatterns2
         .Select(p => new Regex(p));
