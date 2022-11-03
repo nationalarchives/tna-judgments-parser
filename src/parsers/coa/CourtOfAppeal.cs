@@ -84,18 +84,12 @@ class CourtOfAppealParser : AbstractParser {
     private List<OpenXmlElement> Header1() {
         List<OpenXmlElement> header = new List<OpenXmlElement>();
         foreach (var e in elements.Skip(i)) {
+            header.Add(e);
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
                 break;
             if (rawTitles.Contains(e.InnerText))
                 break;
-            Predicate<SectionProperties> isNewSection = (sectPr) => {
-                return sectPr.ChildElements.OfType<PageNumberType>().Where(pgNumType => pgNumType.Start.HasValue).Any();
-            };
-            // [2022] EWFC 1
-            if (e is Paragraph p && p.Descendants<SectionProperties>().Where(sectPr => isNewSection(sectPr)).Any())
-                return header;
-            header.Add(e);
         }
         if (i + header.Count < elements.Count)
             logger.LogInformation("found title: " + header.Last().InnerText);
