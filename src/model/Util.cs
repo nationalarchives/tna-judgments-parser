@@ -47,16 +47,15 @@ class Util {
     }
 
     public static IEnumerable<T> Descendants<T>(IJudgment judgment) {
-        return Enumerable.Concat(
-            Enumerable.Concat(
-                Enumerable.Concat(
-                    Descendants<T>(judgment.CoverPage),
-                    Descendants<T>(judgment.Header)
-                ),
-                Descendants<T>(judgment.Body)
-            ),
-            Descendants<T>(judgment.Conclusions)
-        );
+        var listOfLists = new List<IEnumerable<T>> {
+            Descendants<T>(judgment.CoverPage),
+            Descendants<T>(judgment.Header),
+            Descendants<T>(judgment.Body),
+            Descendants<T>(judgment.Conclusions),
+            Descendants<T>(judgment.Annexes.SelectMany(a => a.Contents)),
+            Descendants<T>(judgment.InternalAttachments.SelectMany(a => a.Contents))
+        };
+        return listOfLists.SelectMany(x => x);
     }
 
     public static IEnumerable<T> Descendants<T>(IEnumerable<IDecision> decisions) {
