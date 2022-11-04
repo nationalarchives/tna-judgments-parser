@@ -121,6 +121,8 @@ class CourtOfAppealParser : AbstractParser {
                 return header;
             }
             header.Add(e);
+            if (trimmed.StartsWith("Approved Ruling on "))
+                return header;
         }
         return null;
     }
