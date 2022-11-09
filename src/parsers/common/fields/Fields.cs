@@ -265,7 +265,9 @@ class Fields {
             logger.LogDebug("ignoring PAGE field: " + rest);
             return Enumerable.Empty<IInline>();
         }
-        if (fieldCode == " NUMPAGES ")  // [2022] EWFC 125
+        if (fieldCode.StartsWith(" NUMPAGES "))  // [2022] EWFC 125, [2022] EWHC 2794 (Fam)
+            return RestOptional(main, withinField, i);
+        if (fieldCode.StartsWith(" NUMWORDS "))  // [2022] EWHC 2794 (Fam)
             return RestOptional(main, withinField, i);
         match = Regex.Match(fieldCode, @" PAGEREF [_A-Za-z0-9]+ \\h ");   // EWHC/Ch/2007/1044
         if (match.Success) {
