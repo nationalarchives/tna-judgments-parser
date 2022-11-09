@@ -86,8 +86,9 @@ class ImageConverter {
 
     private static void CropImages(IJudgment jugdment) {
         List<IImage> images = new List<IImage>();
+        var allRefsWithAnyName = Util.Descendants<IImageRef>(jugdment);
         foreach (IImage image in jugdment.Images) {
-            var allRefs = Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name);
+            var allRefs = allRefsWithAnyName.Where(r => r.Src == image.Name);
             if (!allRefs.Any()) {
                 logger.LogWarning("removing image {0}", image.Name);
                 continue;
