@@ -40,7 +40,10 @@ class Util {
         if (div is ILeaf leaf)
             return leaf.Contents;
         if (div is IBranch branch)
-            return branch.Children.SelectMany(GetBlocksFromDivision);
+            return Enumerable.Concat<IBlock>(
+                branch.Intro ?? Enumerable.Empty<IBlock>(),
+                branch.Children.SelectMany(GetBlocksFromDivision)
+            );
         if (div is ITableOfContents toc)
             return toc.Contents;
         throw new Exception();
