@@ -86,14 +86,19 @@ public class Parser {
             UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT.Parser.Parse
         };
         IJudgment judgment1 = first(doc, meta, attach2);
-        if (judgment1.Metadata.Court() is not null || judgment1.Metadata.Cite is not null)
-            return new AkN.Bundle(doc, judgment1);
+        // if (judgment1.Metadata.Court() is not null || judgment1.Metadata.Cite is not null)
+        //     return new AkN.Bundle(doc, judgment1);
+        // above doesn't work for [2022] UKUT 300 (IAC)
         int score1 = Score(judgment1);
+        if (score1 == PerfectScore)
+            return new AkN.Bundle(doc, judgment1);
         foreach (var other in others) {
             IJudgment judgment2 = other(doc, meta, attach2);
-            if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
-                return new AkN.Bundle(doc, judgment2);
+            // if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
+            //     return new AkN.Bundle(doc, judgment2);
             int score2 = Score(judgment2);
+            if (score2 == PerfectScore)
+                return new AkN.Bundle(doc, judgment2);
             if (score2 > score1) {
                 judgment1 = judgment2;
                 score1 = score2;
@@ -101,6 +106,8 @@ public class Parser {
         }
         return new AkN.Bundle(doc, judgment1);
     }
+
+    private static int PerfectScore = 7;
 
     private static int Score(IJudgment judgment) {
         int score = 0;
