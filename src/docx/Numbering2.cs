@@ -671,6 +671,12 @@ class Numbering2 {
     }
 
     internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher) {
+        if (paragraph.InnerText.StartsWith("Such a notice must be given within")) {
+
+        }
+        if (paragraph.InnerText.StartsWith("Paragraph 13 is the Interpretation paragraph and")) {
+
+        }
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         // int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
         int? start = null;
@@ -715,8 +721,10 @@ class Numbering2 {
                 if (count == 0) // test35
                     count += 1;
                 if (!isHigher && start is null && prevNumIdOfStyle is not null && prevNumIdOfStyle.Value != prevNumId.Value) {
-                    start = 1;
-                    numIdOfStartOverride = -2;
+                    if (!(prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value)) {    // test47
+                        start = 1;
+                        numIdOfStartOverride = -2;
+                    }
                 }
                 continue;
             }
