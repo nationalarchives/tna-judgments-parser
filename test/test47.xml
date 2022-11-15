@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/413" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/413" />
+          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="413" />
+          <FRBRname value="DAVID OAKES v THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/413" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/413" />
+          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/413/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/413/data.xml" />
+          <FRBRdate date="2022-11-15T18:23:42" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCPerson eId="david-oakes" href="" showAs="DAVID OAKES" />
+        <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-TC</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>413</uk:number>
+        <uk:cite>[2022] UKFTT 413 (TC)</uk:cite>
+        <uk:parser>0.10.15</uk:parser>
+        <uk:hash>b5031326d6933eb120d481eabd38f28c09184645b73293823f3f5755ba62dfe3</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Header { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1 { text-align: justify; font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Taxbodytext1 { text-align: justify; margin-left: 0in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2 { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3 { text-align: justify; margin-left: 0.79in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4 { text-align: justify; margin-left: 1.18in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2 { text-align: justify; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3 { text-align: justify; font-style: italic; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4 { text-align: justify; font-style: italic; font-weight: normal; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxquotation { text-align: justify; margin-left: 0.79in; margin-right: 0.76in; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5 { text-align: justify; margin-left: 1.58in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeading { text-align: center; font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .ListParagraph { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1Char { font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; }
+#judgment .Taxbodytext1Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3Char { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4Char { font-style: italic; font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxquotationChar { font-family: 'Times New Roman'; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeadingChar { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p><img src="image1.png" style="width:82.49pt;height:72pt" /></p>
+      <p style="text-align:left">Neutral Citation: <neutralCitation>[2022] UKFTT 00413 (TC)</neutralCitation></p>
+      <p style="text-align:right">Case Number: TC08637</p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">FIRST-TIER TRIBUNAL</courtType></p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">TAX CHAMBER</courtType></p>
+      <p style="text-align:right;margin-left:3.05in">In public by remote video hearing</p>
+      <p style="text-align:right">Appeal reference: TC/2020/03506</p>
+      <p style="text-align:right">TC/2020/03507</p>
+      <p><span style="font-style:italic">INCOME TAX AND VAT – application to bring late appeals – whether notices sent or received – reliance on agent – application allowed in part</span></p>
+      <p style="text-align:right;margin-left:2.95in"><span style="font-weight:bold">Heard on: </span>15 March 2022 and 11 October 2022 with additional submissions received on </p>
+      <p style="text-align:right;margin-left:2.95in">7 November 2022</p>
+      <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>10 November 2022</p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE NIGEL POPPLEWELL</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">MRS NORAH CLARKE</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
+      <p style="text-align:center"><party refersTo="#david-oakes" as="#appellant" style="font-weight:bold">DAVID OAKES</party></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>
+      <p style="text-align:center"><span style="font-weight:bold">and</span></p>
+      <p style="text-align:center"><party refersTo="#the-commissioners-for-his-majestys-revenue-and-customs" as="#respondent" style="font-weight:bold">THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondents</role></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Representation:</span></p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Appellant:<marker name="tab" />Michael Avient of counsel instructed by inTax Ltd</p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Respondents: <marker name="tab" />Helen Davies litigator of HM Revenue and Customs’ Solicitor’s Office</p>
+      <p style="text-align:center"><span style="font-weight:bold">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold">INTRODUCTION</span></heading>
+          <paragraph eId="para_1">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">This decision relates to an application by the appellant for permission from the tribunal to make late appeals against a variety of amendments and notices relating to both income tax and VAT. We describe those appealable matters in relation to income tax as the “</span><span style="font-weight:bold;font-family:'Times New Roman'">income tax matters</span><span style="font-family:'Times New Roman'">”, and the appealable matters in respect of VAT as the “</span><span style="font-weight:bold;font-family:'Times New Roman'">VAT matters</span><span style="font-family:'Times New Roman'">”. The income tax matters, and the VAT matters are collectively described as the “</span><span style="font-weight:bold;font-family:'Times New Roman'">appealable matters</span><span style="font-family:'Times New Roman'">”. Originally there were over 50 appealable matters , but by the time of the hearing, these had been whittled down to those detailed in Appendix 1.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">2.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The appealable matters arise out of enquiries commenced in respect of VAT, by HMRC in 2013, and in respect of income tax by HMRC in March 2017.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">3.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In a nutshell, the appellant’s position as regards the VAT matters is that notification of them was never sent by HMRC nor received by him. Even if he was on notice of those matters by dint of their inclusion in the bankruptcy petition of 11 June 2018 (the “</span><span style="font-weight:bold;font-family:'Times New Roman'">bankruptcy petition</span><span style="font-family:'Times New Roman'">”) there was insufficient detail of the VAT matters in the bankruptcy petition to enable him to make an appeal, and HMRC did not provide him with the requisite detail notwithstanding repeated requests for it. Once he had sufficient detail, he made an appeal. This was on 28 September 2020. HMRC’s position as regards the VAT matters is that the relevant notices were both sent and received by the appellant or his agent. Even if that was not the case, there was sufficient detail in the bankruptcy petition to enable the appellant to make an appeal, and indeed that is what the appellant’s current representative did as regards some but not all of the appealable matters, on 28 September 2020. There is no evidence of the appellant’s former agent asking for detailed information over and above that set out in the bankruptcy petition between the date of that petition, and the date of the limited appeal on 28 September 2020.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">4.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">As regards the appellant’s position concerning the income tax matters, it is slightly different. The appellant accepts that the relevant notices were served by HMRC and received by himself or his agent, but that agent employed two individuals who, for reasons unknown to anyone, simply failed to action those notices. This was against their office policy, and the individuals have been dismissed. The appellant’s position regarding the information in the bankruptcy petition is the same as his position in respect of the VAT matters. HMRC’s position too is the same as regards the information in the bankruptcy petition, and the fact that the appellant could readily have brought an appeal immediately following the bankruptcy petition but did not do so, on a limited basis, until 28 September 2020. And the behaviour of the appellant’s agent’s employees was nothing more than failure to comply with office procedure. The failings of that agent should be imputed to the appellant.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">For the reasons given in more detail later in this decision, we have dismissed the appellant’s application for permission to bring his appeals out of time.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman'">THE LAW</span></heading>
+          <paragraph eId="para_6">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">There was no dispute about the applicable legislation which is set out in Appendix 2.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">7.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Nor was there any dispute about the essential case law which is relevant to this application.</span><span style="font-family:'Times New Roman';color:#000000"> In considering whether to admit a late appeal to the FTT, the Upper Tribunal in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Martland v HMRC </span><span style="font-family:'Times New Roman';color:#000000">[2018] UKUT 178 (TCC) (“</span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman';color:#000000">Martland</span><span style="font-family:'Times New Roman';color:#000000">”) considered that the approach to applications for relief from sanctions under CPR rule 3.9 should apply to applications for permission to appeal to the FTT outside the relevant statutory limit. The Upper Tribunal went on to say: </span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';color:#000000">“44.</num>
+              <intro>
+                <p style="margin-left:0.39in;text-indent:0in"><span style="font-family:'Times New Roman';color:#000000">When the FTT is considering applications for permission to appeal out of time, therefore, it must be remembered that the starting point is that permission should not be granted unless the FTT is satisfied on balance that it should be. In considering that question, we consider the FTT can usefully follow the three-stage process set out in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Denton</span><span style="font-family:'Times New Roman';color:#000000">: </span></p>
+              </intro>
+              <subparagraph>
+                <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(1)</num>
+                <content>
+                  <p style="margin-left:0.79in;margin-right:0.05in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Establish the length of the delay. If it was very short (which would, in the absence of unusual circumstances, equate to the breach being “neither serious nor significant”), then the FTT “is unlikely to need to spend much time on the second and third stages” – though this should not be taken to mean that applications can be granted for very short delays without even moving on to a consideration of those stages. </span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(2)</num>
+                <content>
+                  <p style="margin-left:0.79in;margin-right:0.05in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">The reason (or reasons) why the default occurred should be established. </span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(3)</num>
+                <content>
+                  <p style="margin-left:0.79in;margin-right:0.05in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">The FTT can then move onto its evaluation of “all the circumstances of the case”. This will involve a balancing exercise which will essentially assess the merits of the reason(s) given for the delay and the prejudice which would be caused to both parties by granting or refusing permission. </span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';color:#000000">45.</num>
+              <content>
+                <p style="margin-left:0.39in;margin-right:0.04in;text-indent:0in"><span style="font-family:'Times New Roman';color:#000000">That balancing exercise should take into account the particular importance of the need for litigation to be conducted efficiently and at proportionate cost, and for statutory time limits to be respected. By approaching matters in this way, it can readily be seen that, to the extent they are relevant in the circumstances of the particular case, all the factors raised in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Aberdeen </span><span style="font-family:'Times New Roman';color:#000000">and </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Data Select </span><span style="font-family:'Times New Roman';color:#000000">will be covered, without the need to refer back explicitly to those cases and attempt to structure the FTT’s deliberations artificially by reference to those factors. The FTT’s role is to exercise judicial discretion taking account of all relevant factors, not to follow a checklist. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_46">
+            <num style="font-family:'Times New Roman'">46.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">In doing so, the FTT can have regard to any obvious strength or weakness of the applicant’s case; this goes to the question of prejudice – there is obviously much greater prejudice for an applicant to lose the opportunity of putting forward a really strong case than a very weak one. It is important however that this should not descend into a detailed analysis of the underlying merits of the appeal……”</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman'">THE EVIDENCE AND FINDINGS OF FACT</span></heading>
+          <paragraph eId="para_8">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">8.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were provided with a significant bundle of documents and a lesser supplementary bundle. The appellant tendered a witness statement and gave oral evidence on which he was cross examined. Further oral evidence was given by Mr Matthew Bailey the managing director of Howards chartered accountants (“</span><span style="font-weight:bold;font-family:'Times New Roman'">Howards</span><span style="font-family:'Times New Roman'">”) who were the appellant’s former tax advisers. From this evidence we find the following:</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-style:italic;font-family:'Times New Roman'">Service of notices</span></heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The documents included copies of the appealable matters. Those copies include the correct address of the appellant and Howards (where copies have been copied to Howards).</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The appellant’s witness statement indicated that he was unaware of the imposition of penalties by HMRC. Nor was he aware of any notification of the VAT matters. Even if the notices had been sent to him, he did not receive them. Yet in his oral testimony, the appellant accepted that, for example, he received a letter dated 14 July 2017 from HMRC dealing with his VAT position and passed this letter on to Howards. Furthermore, the appellant emailed HMRC on 26 June 2017 as regards VAT and was able to say “I am just finishing getting all the VAT invoices together…” This was in response to an email from HMRC indicating that they had “not received any response to my schedule 36 notices request for purchase invoices”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(3)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">Mr Bailey’s witness statement indicated that he was aware of and dealt with the enquiry made by HMRC into the VAT position of the appellant but was not aware of an enquiry into the appellant’s self-assessment tax return which commenced in 2017. He goes on to say that had he been aware of that enquiry he would have corresponded with HMRC as he was already doing that in respect of the VAT enquiry. In his second witness statement, however, he corrected this, and indicated that during his preparation for the hearing on 15 March 2022, letters from HMRC to Howards relating to the income tax self-assessment enquiry were identified and brought to his attention.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">In his oral evidence Mr Bailey said that this was restricted to HMRC’s letter of 10 March 2017 opening the enquiry, Howard’s letter to HMRC of 24 November 2017 and HMRC’s letter to the appellant dated 27 October 2017 (dealing with the closure notice and the possibility of imposing penalties). It is also clear from the oral evidence of the appellant that Mr Bailey was aware of the letter sent to the appellant by HMRC on 14 July 2017, against which there was no appeal right, but his oral evidence was that he had not seen any of the VAT matters.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext2"><span style="font-style:italic;font-family:'Times New Roman'">Howards’ employees</span></heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(5)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">At the relevant time, Howards employed two individuals, Paul Hodson and Kelly Bird. It was Mr Bailey’s oral evidence that these individuals were tasked with the day-to-day management of the appellant’s tax affairs. Howards had been instructed by the appellant as regards these affairs since around July 2016.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(6)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The documentary evidence shows that there was a telephone conversation between Paul and HMRC’s officer, Mr Thomas, on 5 June 2017 in which the former explained to the latter that he had asked for business records from the appellant in order to comply with the information requests. Mr Thomas indicated that the deadline for sending information had passed and that the appellant will be charged a £300 penalty. To avoid further penalties, all of the requested information should be sent as soon as possible.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(7)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">A further conversation between the same parties took place on 11 June 2017, again dealing with the information, Mr Thomas indicated that the requested information had not been received. A further conversation about business records took place on 17 January 2018 between the same individuals. It was also Mr Bailey’s evidence that the letter of 24 November 2017 had been written by Paul.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(8)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">In his first witness statement, Mr Bailey suggests that one reason that Paul had sent this letter was because he intended to acquire the appellant as a client of a business that he, Paul, was setting up in competition with Howards. He also speculated that this might be the reason why there is no correspondence on the file and why he had no knowledge of the income tax enquiry. As mentioned above, this is corrected in his second witness statement, on the basis that whilst he had no personal knowledge, there was correspondence on Howards’ files which appears never to have been actioned.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(9)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">In his oral evidence, Mr Bailey said that Paul had not been authorised to deal with the matters referred to and discussed in the telephone conversation which should have been dealt with by Mr Bailey. Mr Bailey was not aware of the telephone conversations. Nor was he aware of Paul’s letter to HMRC on 24 November 2017 which, responding to a letter from HMRC, should have been dealt with by either Mr Bailey or a fellow director. This was Howards’ policy, something of which the employees would have been aware.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext2"><span style="font-style:italic;font-family:'Times New Roman'">The bankruptcy petition</span></heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(10)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The bankruptcy petition is a creditors bankruptcy petition for failure to comply with a statutory demand for a liquidated sum. It is stamped 11 June 2018, but the hearing date appears to be 31 June 2018 and the petition was issued at 10.23 on that date. It was brought by HMRC who applied for a bankruptcy order against the appellant who, HMRC claimed, was indebted to them in the sum of £200,844. The particulars of this debt are listed over two pages. There are approximately 50 entries which are itemised under a number of headings, for example self-assessed payments on account, penalties, national insurance contributions, taxes act penalties for failure to comply with schedule 36 FA 2008, VAT due under sections 25 and 73 VAT act 1994 and surcharges under section 76 of that act. These detailed figures are identified against years/periods ended.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(11)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Neither party took us through the figures in the bankruptcy petition. But it seems to us that it includes those matters identified at 1 (1) (2), 2(1), 3(2) (b) and (c) set out in Appendix 1.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext2"><span style="font-style:italic;font-family:'Times New Roman'">inTax</span></heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(12)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">inTax were instructed on or around mid-September 2020. They were appointed to assist in resolving the dispute between HMRC and the appellant. Mr Oakes’ and Mr Bailey’s oral evidence was that this was because they were frustrated with HMRC and their failure to engage with them in a meaningful way.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(13)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">On 28 September 2020, inTax sent two letters to HMRC. The first was an appeal against a number of the appealable matters. It does not include all of them, just 18 of them. The second letter asks for information in order to enable inTax to undertake a full review of the dispute. It indicates that inTax had reviewed “the papers and it is clear that there is information missing the means neither the client nor Mr Bailey were capable of agreeing with HMRC’s position”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(14)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The appeal was notified to the tribunal on 29 September 2020 and given appeal number 2020/03506.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(15)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In a further letter to HMRC dated 16 November 2020, inTax sought further information from HMRC. Whilst that letter refers to previous correspondence between Howards and HMRC, it does not record that there had been any correspondence between June 2018 and the date of that letter.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(16)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In an email of 11 March 2022 from inTax to HMRC, inTax made further formal appeals against, amongst other things, the 2015/2016 self-assessment return amendment of £24,835.59, the schedule 24 FA 2007 penalty in relation to that amendment, and certain schedule 36 FA 2008 penalties.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(17)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In directions given by the tribunal on 19 March 2021, the tribunal ordered HMRC to send to inTax, not later than 9 April 2021, copies of the notices/decisions listed in inTax’s letter to HMRC dated 28 September 2020.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext2"><span style="font-style:italic;font-family:'Times New Roman'">Communications between the parties between June 2018 and September 2020</span></heading>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(18)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We could find no evidence of written communication in the bundles, other than set out below as regards the letter of 21 September 2020, dealing with requests for further information between the appellant, Howards, and those HMRC officers dealing with the appealable matters between the date of the bankruptcy petition, and the date on which inTax wrote to HMRC on 28 September 2020. </span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(19)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The only letter to which our attention was drawn was a letter dated 21 September 2020 from Howards to Judge Barber of the High Court. It records that on 2 July 2020 and on 28 July 2020 Howards had requested a detailed breakdown of the “credits” allocated against the appellant’s Government Gateway account (which details all transactions relating to open tax matters). It records that a response had been received from an HMRC officer, and although that letter states that copy emails are “attached for ease of reference”, no such emails were included in our bundle. It also records that on 3 July 2020, HMRC replied to Howards’ requests in respect of the strike out of the “first petition and the “credits” allocated amounting to circa pounds 250 k”. Reference is made in this letter to HMRC’s “original petition (“petition 1-2014”) for £250 k”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(20)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">That letter goes on to record that “HM Revenue &amp; Customs only supplied my firm with a copy of the second petition on 23 July 2020”.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext2"><span style="font-weight:bold;font-family:'Times New Roman'">DISCUSSION</span></heading>
+          <paragraph eId="para_9">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">9.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The parties agree that the burden of establishing that we should grant permission to the appellant to make his appeals late, lies with the appellant.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">10.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The parties also agree that </span><span style="font-style:italic;font-family:'Times New Roman'">Martland </span><span style="font-family:'Times New Roman'">provides the appropriate framework within which we should consider the application. This requires us to establish the length of the delay between the date on which the appealable matters were notified to the appellant or his agent and the date of the appeals, and to consider whether that delay is serious or significant. We then need to go on to consider the reasons for that delay. And finally we must undertake an evaluation of all the circumstances, balancing the merits of the reasons for the delay with the prejudice to be caused to both parties. At this final evaluation stage, we must be conscious that time limits should be respected, and the need for litigation to be conducted efficiently and at proportionate cost. And we can also consider any obvious strengths and weaknesses of each party’s position in the underlying appeal.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">11.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Both Mr Avient and and Ms Davies made clear and helpful submissions, both written and oral, couched by reference to the three stage </span><span style="font-style:italic;font-family:'Times New Roman'">Martland</span><span style="font-family:'Times New Roman'"> test set out above, which we have carefully considered in reaching our conclusions. However, we have not found it necessary to refer to each and every argument advanced by them on behalf of the parties.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext2"><span style="font-style:italic;font-family:'Times New Roman'">Submissions</span></heading>
+          <paragraph eId="para_12">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">12.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In summary Mr Avient submitted:</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The appellant could not bring any appeals against notices of which he was unaware. Under s7 Interpretation Act 1978, which applies to all of the appealable matters, HMRC must show that</span><span style="font-family:'Times New Roman';color:#000000"> “unless the contrary intention appears, the service is deemed to be effected by properly addressing, pre-paying and posting a letter containing the document and, unless the contrary is proved, to have been effected at the time at which the letter would be delivered in the ordinary course of post”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">HMRC have simply pointed to copies of correspondence on their files, which is replicated in the bundles, as evidence that the appealable matters were properly addressed, prepaid, and posted. That is not evidence of those facts. HMRC have not come up to proof on this point.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(3)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">Even if they have, the appellant’s evidence is that he never received any of the VAT matters, even though he might have received communications regarding the VAT enquiries, for example. The same is true of Howards as regards the VAT matters.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">There could, therefore, be no serious and significant delay before notification of the appealable matters. The earliest that there was some indication of the appealable matters was in the bankruptcy petition in June 2018.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(5)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">However, where  appealable matters had been notified, he accepts that the delay is serious and significant. </span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(6)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">As regards reasons for delay in respect of the VAT matters, there was no notification until the bankruptcy petition. Since then, the appellant and Howards have made repeated requests for clarification of how the petitioned debt arose, but “HMRC only provided full details of the decisions in a letter of 7 April 2021…….”</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(7)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">Any delay, therefore, which took place after the date of the bankruptcy petition arises because of HMRC’s failure to provide this information. In deciding whether this is a good reason for the delay, case law suggests this could be a very significant factor. If HMRC had provided copies of the decisions immediately after the bankruptcy petition, the appellant would have appealed immediately. This is evidenced by the fact that once he knew of the bankruptcy petition, he did everything he could to discover the decisions on which it was based  and where appropriate appealed them.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(8)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">As regards reasons for delay in respect of the income tax matters, he repeats his assertions regarding HMRC’s failure to provide details following the bankruptcy petition. But he also submits that there is another reason for the delay, namely the acts and omissions of the two employees of Howards. He accepts the general principle that in most cases, in considering applications to permit a late appeal “…failings by a litigant’s advisers should be regarded as failings of the litigant”, (</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">The Commissioners for Her Majesty’s Revenue and Customs v Muhammed Hafeez Katib </span><span style="font-family:'Times New Roman';color:#000000">[2019] UKUT 0189 (TCC)) at (49) (“</span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman';color:#000000">Katib</span><span style="font-family:'Times New Roman';color:#000000">”). </span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(9)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">But he distinguishes</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000"> Katib </span><span style="font-family:'Times New Roman';color:#000000">from the circumstances of the appellant in this appeal. In </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Katib</span><span style="font-family:'Times New Roman';color:#000000"> the adviser was incompetent whereas in this instance Howards were themselves the victim of the employee’s improper behaviour. They were in an exceptional position. No one is quite sure of the employees’ motives but it might have been to secure work from the appellant in ignorance of Howards. The employees chose for their own reasons to effectively work outside the firm’s procedures. So, the failings of Howards should not be attributed to the appellant. In any event, the employees’ behaviour is a good reason for the delay.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(10)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">At</span><span style="font-family:'Times New Roman';color:#000000"> the final evaluation stage, HMRC might suffer prejudice but it is of their own making. It could have been avoided had they provided the information requested by the appellant and Howards. It is clear that HMRC do not believe that the appellant or Howards failed to receive the appealable matters. The default lies with HMRC. HMRC have not discharged their burden of establishing proper service of the appealable matters on the appellant or his agent. Evidence of prompt action following the bankruptcy petition can be seen in Howards’ letter of 21 September 2020 and inTax’s letter of 16 November 2020. Prejudice to the appellant will be suffered because he will be made bankrupt. </span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(11)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">A</span><span style="font-family:'Times New Roman'">s</span><span style="font-family:'Times New Roman';color:#000000"> far as the strengths and weaknesses of the underlying case are concerned, the VAT matters are based on speculation, incomplete information, and the income tax matters reflect excessive assessments. The appellant has a reasonable excuse for the penalties.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">13.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">In summary Ms Davies submits:</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">The delays in bringing the appeals is serious and significant as regards all appealable matters. In respect of the VAT matters, those relating to the assessments and inaccuracy penalties are over 1,000 days late, whilst those relating to the schedule 36 FA 2008 penalties are between 1,200 and 1,500 days late if it is accepted that an appeal was made against them 28 September 2020. As regards the income tax matters, those related to the closure notice and inaccuracy penalties are approximately 1,000 days late, while the appeals relating to the schedule 36 FA 2008 penalties are just over 1,000 days late.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">The copies of the appealable matters on HMRC’s file and replicated in the bundle are sufficient evidence to discharge the burden of proof of having made effective service. There is no need to produce a witness statement from the officer who was responsible for their production and dissemination. The documents speak for themselves.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(3)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">It is inconceivable that all of the appealable matters, correctly addressed to the appellant at his home address, went astray. There is no evidence of non-delivery. In her view the appellant received them but simply failed to action them. This reflects HMRC’s experience of the appellant’s previous behaviour and reflects a disregard for his tax affairs in general.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">In any event, it is clear from the evidence (and the evidence of both the appellant and Mr Bailey has changed considerably over the course of the hearing, as has their case regarding receipt of the appealable matters) that both the appellant and Mr Bailey were in receipt of some of the appealable matters. The appellant and Mr Bailey have unreliable recollections of what they did and didn’t see in respect of the appealable matters and that evidence is not reliable. Furthermore, Howards’ records of their contacts with HMRC in respect of the appellant’s tax affairs is incomplete.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(5)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">The behaviour of the two employees is not so extraordinary as to take it outside the general </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Katib </span><span style="font-family:'Times New Roman';color:#000000">principle. It was simply a failure to comply with office procedure. And the failures by Howards to bring a timely appeal, or act upon the information that they had received either from HMRC or from the appellant or which was set out in the bankruptcy petition, should be attributed to the appellant.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(6)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">And with effect from their knowledge of the bankruptcy petition in or around June 2018, they were in possession of more than sufficient knowledge to make an appeal. Indeed, when inTax made its appeal on 28 September 2020, it was in possession of no more information than had been available to Howards as set out in the bankruptcy petition. If, she asks rhetorically, inTax were able to make an appeal on 28 September 2020, why could Howards have not made an appeal shortly after they became aware of the bankruptcy petition, albeit on a protective basis pending receipt of detailed information.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(7)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">There is no evidence that, as asserted by the appellant, either he or Howards made diligent attempts to seek further information about the basis of the tax debt identified in the bankruptcy petition, between June 2018 and September 2020. There are no documents in the bundle evidencing this. It is simply, therefore, not true to say that the delay in bringing the appeal until September 2020 was caused by HMRC’s failure to provide information in response to requests for it from the appellant or Howards.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(8)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">This is notwithstanding submissions that there was such communication (see for example paragraph 85 of the appellant’s skeleton argument, and paragraph 19 of Mr Avient’s speaking notes (“Despite repeated requests for clarification of how the petitioned debt arose, HMRC only provided full details of the decisions in a letter of 7 April 2021…….”).</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(9)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">And also notwithstanding that in the appellant’s witness statement, he states that in September 2020 “after been very frustrated with HMRC and its failure to engage with us in a meaningful way [Howards appointed inTax]….”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(10)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">As regards the final evaluation stage, the balance of prejudice weighs in favour of HMRC, and the application should be dismissed. There is no justification for any assertion that the delay was caused by HMRC’s failure to provide information.</span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(11)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">The underlying appeal is a weak one given that the closure notices were based on the appellant’s own VAT figures. </span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(12)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">HMRC will also be prejudiced in that their officers involved in the income tax and VAT enquiries may no longer be with HMRC, and their memories will not be as acute as would have been the case had a timely appeal been made. She accepts that bankruptcy is a serious consequence, but as in the case of </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">DeSilva</span><span style="font-family:'Times New Roman';color:#000000"> </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">(De Silva v Revenue and Customs Commissioners</span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#000000"> </span><span style="font-family:'Times New Roman';color:#000000">[2021] UKUT (TCC) this could have been avoided had the appellant made a timely appeal and attended to his tax affairs with proper diligence. </span></p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(13)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Statutory time limits should be respected. Extending those time limits should be the exception. They should not be extended in the case of this appellant.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <content>
+            <p class="Taxbodytext2"><span style="font-style:italic;font-family:'Times New Roman'">Martland discussion</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-style:italic">Length of delay</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_14">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">14.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The first of the <span style="font-style:italic">Martland</span> tests is to determine the length of the delay in bringing the appeals and whether that delay is serious or significant. It is clear to us that the length of delay, is tested from the date on which the appealable notices were issued, is both serious and significant. As submitted by Ms Davies, the delays are in the region of 1,000 days at least. However, Mr Avient submits that time should not start on the date on which the notices were issued, but only when they were received by the appellant, since to be valid notices they had to be validly notified. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">15.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">His primary position is that HMRC have not established that the appealable matters were validly notified to the appellant in the first place. All they have provided, as evidence, are copies of the appealable matters and covering letters. This does not satisfy the first limb of section 7 Interpretation Act 1978. We disagree. This is not a case where HMRC have simply produced a computer printout and asked us to infer from that that it must have been sent to an appellant. HMRC have provided copies of the appealable matters and covering letters, all of which the appellant had accepted in evidence have been correctly addressed. HMRC have not produced an officer to speak to the system that they adopt towards putting these letters into envelopes and ensuring that those envelopes are prepaid, but the presumption of regularity has not been displaced by the appellant in this case. There is no evidence of “return to sender”.We find that it is more likely than not that the copies of the documents which have been produced to us were put into prepaid envelopes and, having been correctly addressed, sent to the appellant. And, where copies were sent to Howards, they were sent to Howards.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">16.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Having found as a fact that the appealable matters were served on the appellant or Howards, we must consider whether the appellant’s assertion that he did not receive them is proof of that fact. As regards the VAT matters, there appears to be a distinction between those matters which were sent by email, which the appellant accepts that he received, and those which were sent by post, of which appellant denies receipt. Mr Avient submits that this is a logical distinction. Ms Davies points out that the appellant’s evidence on this is confused; at one point he accepted that he had received the penalty notices, but not received the income tax or VAT assessments. But the appellant appeared to deny this in re-examination. We accept that there is evidence to show that the appellant had passed emails he had received from HMRC to Howards, and that he had passed a letter from HMRC to them. On the basis of this we are prepared to accept that had he received the VAT matters he would have sent them to Howards. And the fact that Howards received none is evidence that the appellant had not received them in the first place. We are, therefore, prepared to accept his evidence that he did not receive the VAT matters.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">17.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">But this is to be distinguished from the income tax matters which we find were validly notified to Howards at or around the date on which they were sent to that firm. So the delay in respect of the income tax matters is clearly serious and significant.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">18.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">However, even if the appealable matters were not received by the appellant or Howards at or around the date on which they were sent as set out in the copy documents in the bundle, it is clear to us that since the date of the bankruptcy petition, in June 2018, both the appellant and Howards have known, clearly, that HMRC had assessed the appellant to tax and penalties.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">19.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In Howards’ letter dated 21 September 2020, referred to at [8(19)] above, Howards  suggest that they only received a copy of the bankruptcy petition on 23 July 2020. We believe this to be a typo, and the date was 23 July 2018. We say this on the basis that the appellant’s case is that HMRC were continuously dilatory in responding to repeated requests for clarification of the matters set out in the bankruptcy petition between 2018 and 2020, and because of that inTax were instructed, in September 2020, to resolve the position. If the bankruptcy petition been received only in July 2020, this submission would fall away since it seems to us that HMRC could not have been over dilatory between July 2020 and September 2020. Furthermore, the letter itself refers to a letter of 2 July 2020 requesting a breakdown of credits, which could not have been sent had the bankruptcy petition only come to Howards’ attention 3 weeks later on 23 July 2020. We find as a fact that the bankruptcy petition came to Howards’ attention on 23 July 2018.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">20.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">So since that date, it had been clear to Howards that HMRC had assessed the appellant to tax and visited penalty notices on the appellant in respect of those matters identified in the bankruptcy petition. If therefore we take the date as starting on 23 July 2018 and ending on the date of the earliest appeal on 28 September 2020, the delay is still over 2 years. This is serious and significant, and we do not believe that the appellant would argue to the contrary.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-style:italic">Reasons for the delay</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_21">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">21.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Turning now to the reasons for the delay, Mr Avient submits that one good reason is that the appellant never received the VAT notices. And we accept that that is a good reason for not bringing a timely appeal. But as we say above, the appellant was on notice on and from 23 July 2018 that HMRC had assessed those VAT matters which were set out in the bankruptcy petition.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">22.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Avient draws a distinction between the VAT matters on one hand and the income tax matters on the other. He accepts that the income tax matters had been notified to the appellant by dint of valid service on and receipt by Howards. But although the general rule is that failings by an agent should be attributed to a taxpayer as set out in <span style="font-style:italic">Katib</span>, that should not apply here because the individual employees at Howards choose to work outside the firm’s procedures meaning that Howards was as much a victim as was the appellant, and that, in these circumstances, the failings by Howards should not be attributed to the appellant.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">23.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Regrettably for the appellant, we do not agree that this is a good reason. The evidence shows, as submitted by Ms Davies, that these employees simply failed to comply with office procedure. They might have done so in a significant way, and the consequences of that failure, on the appellant, might be dramatic. But it is not such rogue behaviour as to take the attribution of Howards’ failings to the appellant outside the <span style="font-style:italic">Katib</span> principle. Simply failing to comply with office procedure, in this case escalating the matters up to a director, rather than dealing with them oneself, is simply a breach of office protocol for which, we accept, an employer might be dismissed. But it is not such a frolic of their own as to enable us to say that there was such a fundamental breach of Howards’ duty to the appellant as to, effectively, mean that they were not properly acting as agent. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">24.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is our view that in the same way that an agent’s failings are attributed to a taxpayer, the failings by that agent’s employees are attributed to that agent. Indeed in many cases where a large firm is appointed agent, and time limits are missed it is highly likely that the failure is due to a failure by an employee.  It would not seem right to us that if, for example, KPMG were appointed agent with its huge numbers of employees, a taxpayer could say that the attribution principle does not apply because one of the employees had not complied with office procedure..  Unless the behaviour of the employee is so exceptionally egregious or vindictive that management could not be expected to police it, and it falls far outside the ambit of  behaviour expected of an employee, failures by the employee should be attributed to the employer. And the employees’ failings in this case are not in that category. The employees might have been negligent or even irresponsible, but in our view that negligence or irresponsibility must be attributed to Howards. This might sound harsh, but in our view it is up to the appellant to take this up with Howards, rather than something which exonerates the appellant from the consequences of the behaviour of Howards’ former employees.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">25.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In any case, this behaviour applies only in respect of periods before Howards received a copy of the bankruptcy petition. The appellant’s position as regards delays since then is that they did not understand the matters set out in the petition as there was insufficient detail in it, and despite repeated requests for clarification and detail, HMRC did not supply it. One reason for the delay, therefore, was HMRC’s failure to supply that information, and case law suggests that this is a significant factor that can be taken into account when considering the reasons for delay.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">26.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">This is clearly a compelling point. If the appellant can clearly show that it was not possible to determine the appealable decisions from the bankruptcy petition and that HMRC had not supplied information, despite repeated repeated requests for it, to clarify the position, then that could indeed, potentially, be a good reason for the failure to make a timely appeal after receipt of the bankruptcy petition.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">27.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">But there is very little, if any, evidence, to support the submission that HMRC, despite repeated requests, failed to supply information which was sought by Howards. Given it is such an important point to the appellant, we would have thought that any communications between Howards and HMRC following receipt of the bankruptcy petition, would have been included in the bundle of documents provided to us. Not only was nothing supplied in the original bundle, but only two pieces of correspondence were included in the supplemental bundle which could provide such evidence. The first is Howards’ letter on 21 September 2020, the second is inTax’s letter of 16 November 2020.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">28.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The former  refers to two letters dated 2 July 2020 and 28 July 2020 in which Howards had asked for information about the credits which HMRC had given the appellant against his tax liabilities. But neither letter was included in the bundle. Nor were the emails which were attached to the letter of 21 September 2020 “for ease of reference”. We simply have no idea what they said, nor when they were dated.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">29.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As regards the latter, there is a reference to HMRC having consistently said in correspondence with Howards that the “balance of £24,835.59 was also based on a submitted return.” But there is no such correspondence in the bundle, and we simply don’t know when this correspondence between Howards and HMRC took place. We are being asked to infer that it took place between July 2018 and September 2020, but this is an inference which we are not able to make. It may simply be a reflection of the letters of 2 July 2020 and 28 July 2020 and responses to those letters.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">30.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As far as these are concerned, this is clearly not the “repeated requests” that, it is submitted, were made throughout the period from receipt of the bankruptcy petition in July 2018, and the instruction of inTax in September 2020.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">31.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We have no evidence of communications between Howards and HMRC during a period of two years between July 2018 and July 2020.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">32.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It was both the appellant’s and Mr Bailey’s evidence that there had been repeated requests for information. But we do not attribute much weight to these assertions. It is our view that the appellant’s assertions are based on information provided to him by Mr Bailey. And Mr Bailey’s recollection of the events surrounding receipt of the appealable matters, and the fact that in reviewing the files for the hearing and finding only three items, yet it was apparent from the evidence that Howards had been supplied with other documents, suggest that he did not have a particularly firm handle on the actions which Howards were undertaking on the appellant’s behalf. Furthermore, as mentioned above, Mr Bailey has not produced any of the asserted correspondence, nor indeed was the letter of 21 September 2020 put to him, so that he could explain, in more detail, the nature of the correspondence referred to in it.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">33.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In our view the appellant has not discharged the evidential burden to support his submission that the delay in bringing the appeal was as a result of HMRC’s failure to provide information despite repeated requests to do so following receipt of the bankruptcy petition in July 2018.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">34.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">More fundamental, however, is the fact that when inTax made an appeal on 28 September 2020 they had obtained no more information from HMRC than was available in the bankruptcy petition. On the appellant’s case, no additional information had been provided (even if there had been the asserted repeated requests for it which) over and above that set out in the bankruptcy petition.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">35.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is the appellant’s case that this information was insufficient to bring an appeal. Yet inTax were able to do so. So why, Ms Davies asks rhetorically, were Howards not able to do so shortly after they received the bankruptcy petition. And we agree with her. As we say above, and although we were not addressed on the point, it seems to us reasonably clear that some of the significant appealable amounts were clearly set out in the bankruptcy petition.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">36.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Avient suggests that the appellant is in an impossible position because HMRC have not accepted that the appeal made on 28 September 2020 was necessarily a valid appeal. The logic is that therefore even if the appellant had made a protective appeal in July or August 2018, it would not necessarily have been accepted by HMRC. But it would have made it a great deal easier for the appellant to argue that he had made a timely appeal since he had made it (even if there was then a dispute about its validity) very shortly after he received notice of the extent of the appealable decisions set out in the bankruptcy petition.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">37.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We do accept that to the extent that the appealeable matters were not apparent from the bankruptcy petition (and only became apparent following correspondence between HMRC and inTax in the Autumn 2020 and the Spring of 2021, and subsequent directions made by the tribunal) then that is a good reason for the appeal not having been brought until details had been either supplied voluntarily by HMRC or supplied pursuant to a direction by the tribunal. But where the appealable matters were apparent from the bankruptcy petition, we do not think that the justification for the late appeal, namely that there was insufficient detail from the bankruptcy petition to enable the appellant to make an appeal, is valid. In simple terms, if inTax could do it in September 2020, Howards could have done it in August 2018.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">38.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">And a failure by Howards to do this must be attributed to the appellant.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-style:italic">Evaluation of all the circumstances</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_39">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">39.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">  We now turn to the third stage of the Martland test, namely a final evaluation of all the circumstances balancing the merits of the reasons, with the prejudice which would be caused to either party in granting or rejecting the application. We remind ourselves that when undertaking this exercise, we must be conscious that time limits should be respected, litigation should be conducted efficiently, and that we can consider any obvious strengths and weaknesses of the parties respective positions as regards the underlying appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">40.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As regards the last of these, we heard submissions that, on the one hand, the appellant’s case was very weak, on the other that it was strong. But there was little substantive evidence to support these respective assertions. We have, therefore, not set much store by those competing positions.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">41.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In our view the delay in bringing the appeals is serious and significant, and no good reasons have been given for that delay since July 2018. The appellant, therefore, needs to demonstrate that the prejudice to him in failing to allow the application spectacularly outweighs these deficiencies and any prejudice to HMRC in granting the application. We regret, for him, that he has not achieved this.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">42.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We accept that there will be prejudice in that the bankruptcy petition which is currently suspended pending the outcome of these appeals, is likely to be actioned. We do not know precisely what the consequences of this are, but they are likely to be detrimental to the appellant. However, as was said in <span style="font-style:italic">Katib, </span>(where one of the consequences of the appellant losing his application to bring a late appeal was the loss of his house) such consequence is simply one of the results of bringing a late appeal which is avoidable if a timely appeal is brought. Suffering hardship is a common feature which could be argued by a large number of appellants. And, as in <span style="font-style:italic">Katib</span>, we do not think that this is something of such significant prejudice that it outweighs the serious and substantial delay in bringing the appeal and the lack of good reasons for that.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">43.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC will suffer prejudice in that, as submitted by Ms Davies, the officers who will be required to review the files and give evidence at the substantive appeal may no longer be employed by HMRC or, if they are, their memories will have undoubtedly faded with the years.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">44.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We have also reviewed the arguments raised by Mr Avient that the rogue behaviour of the two employees is a “freestanding” good reason for the late appeal in respect of the income tax matters, whether or not that behaviour takes the situation outside the <span style="font-style:italic">Katib</span> principle that failure by an adviser is attributed to the taxpayer. We have dealt with this above. Whilst we appreciate the point, we do not think that failure to comply with office procedures is sufficient to displace the general rule that failure by an adviser should be attributed to a taxpayer and does not outweigh the principle that time limits should be respected.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">45.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The presumption is that whilst each case must be determined on its merits, permission to appeal late should not be granted. We accept that this does not depend on there being exceptional circumstances. But in light of the fact that the delay in bringing the appeal is serious and significant, and the reasons for that are not good ones, they are not outweighed by the prejudice caused by rejecting the appellant’s application.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">46.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">However, as mentioned above, it is our view that this applies only in respect of the income tax matters and those VAT appealable matters which were apparent to the appellant from the bankruptcy petition. As regards the income tax appealable matters, it is clear from the correspondence that Howards had received copies of the closure notice and penalty assessment referred to in paragraph 1 of Appendix 1, and the penalty notices set out in paragraph 3 (3) of Appendix 1. As regards those VAT appealable matters which were not apparent from the bankruptcy petition, and details of which were only disclosed following inTax’s letter of 28 September 2020, we accept that notwithstanding serious and significant delays, there are good reasons for those delays (namely the appellant was not aware of those appealable matters). </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold">DECISION</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_47">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">47.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We therefore reject the appellant’s application for permission to bring a late appeal in respect of the income tax matters.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">48.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We also reject the appellant’s application for permission to bring a late appeal in respect of the VAT matters, save to the extent that those matters were not set out in the bankruptcy petition. To the extent that they were not so set out, we grant the appellant’s application for permission to bring a late appeal in respect of those matters, out of time.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">49.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We Direct that following release of this decision, the parties shall discuss, in good faith, which of the VAT matters were, or were not, set out in the bankruptcy petition. If the parties have failed to agree on this within 56 days from the date of release of this decision, then either party may refer the matter to the tribunal for determination.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman'">RIGHT TO APPLY FOR PERMISSION TO APPEAL</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_50">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">50.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">This document contains full findings of fact and reasons for the decision.  Any party dissatisfied with this decision has a right to apply for permission to appeal against it pursuant to Rule 39 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009.  The application must be received by this Tribunal not later than 56 days after this decision is sent to that party.  The parties are referred to “Guidance to accompany a Decision from the First-tier Tribunal (Tax Chamber)” which accompanies and forms part of this decision notice.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">NIGEL POPPLEWELL</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">Release date: 10</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">TH</span><span style="font-weight:bold"> NOVEMBER 2022</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">Appendix 1 </span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0in;text-indent:0in">1.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Income tax </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(1)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">HMRC’s closure notice dated 22 February 2018 amending Mr Oakes’s self assessment for the year ended 5 April 2016 to increase the tax due by £24,835.59.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(2)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The penalty assessment dated 14 February 2018 for an inaccurate return for the year ended 5 April 2016 in the amount of £17,384.91. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0in;text-indent:0in">2.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">VAT </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(1)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">Notice of VAT assessments dated 4 August 2017 for the four quarters 09/14 to 06/15 resulting in a total amount due of £13,697. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(2)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">The penalty assessment dated 17 October 2017 in respect of all four quarters for inaccurate returns for a total amount of £3,081.82.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0in;text-indent:0in">3.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0in;margin-right:0.39in;text-indent:0.39in">Penalties under Sch 36, FA 2008</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(1)</num>
+          <intro>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">VAT notice to provide information dated 8 January 2016: </span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(a)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Notice dated 25 February 2016 in the amount of £300.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(b)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:Arial;color:#000000"> </span><span style="font-family:'Times New Roman';color:#000000">Notice dated 26 April 2016 in the amount of £450.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(2)</num>
+          <intro>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">VAT notice to provide information dated 25 January 2017: </span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(a)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Notice of penalty dated 27 February 2017 in the amount of £300.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(b)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Notice of daily penalty dated 4 April 2017 in the amount of £1,020 for the period 28 February 2017 to 3 April 2017.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(c)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Notice of daily penalty dated 5 May 2017 in the amount of £1,800 for the period 5 April 2017 to 5 May 2017.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">(3)</num>
+          <intro>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman';color:#000000">Income tax notice to provide information dated 28 April 2017: </span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(a)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Notice of penalty dated 9 June 2017 in the amount of £300.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(b)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Notice of daily penalty dated 20 July 2017 in the amount of £760 and covering the period 10 June 2017 to 18 July 2017.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">APPENDIX 2</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:left"><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">Statutory Provisions – Appeals and Late Appeals </span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:left"><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Income Tax</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p><span style="font-family:'Times New Roman';color:#000000">An appeal may be brought by a taxpayer against an amendment made by a closure notice under s 28A TMA 1970 on completion of an enquiry by HMRC into a self-assessment return (s 31(1)(b) TMA 1970). </span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">1.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Such a notice must be given within 30 days of the date on which the closure notice was given (s 31A(1)(b) and (3)(a)). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">2.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">The notice of appeal must state the grounds of appeal (s 31A (5). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">3.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">A notice of appeal may be given outside of 30 days (i.e. late) where either: </span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(i)</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">HMRC agree; or </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(ii)</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Where HMRC do not agree, the tribunal gives permission. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">(s 49(2) TMA 1970) </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">4.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Where notice of appeal has been given to HMRC, in the absence of a review by HMRC, the taxpayer may notify the appeal to the Tribunal (s 49D TMA 1970). </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:left"><span style="font-style:italic;font-family:'Times New Roman';color:#000000">VAT</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">5.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">A notice to be served or made on any person may be served by post in a letter addressed to that person or his VAT representative at the usual residence or place of business (s 98 VATA 1994). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">6.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">It is provided in s 7 of the Interpretation Act 1978 that: </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">Where an Act authorises or requires any document to be served by post (whether the expression “serve” or the expression “give” or “send” or any other expression is used) then, unless the contrary intention appears, the service is deemed to be effected by properly addressing, pre-paying and posting a letter containing the document and, unless the contrary is proved, to have been effected at the time at which the letter would be delivered in the ordinary course of post.  </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">7.</num>
+          <content>
+            <p class="Taxbodytext1" style="text-align:left;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">An appeal to the Tribunal may be brought by a person with respect to an assessment to VAT under s 83 VATA 1994 (s 83(1)(p) VATA 1994). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">8.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">HMRC must offer a review of the assessment where an appeal can be made to the Tribunal (s 83A VATA 1994). Such an offer must be made at the same time as the assessment. </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">9.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">An offer of a review by HMRC may not be accepted if an appeal under s 83G VATA 1994 has already been made (s 83C(2) VATA 1994). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">10.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Where no HMRC review of the decision is required following </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#000000">notification</span><span style="font-family:'Times New Roman';color:#000000"> of the decision (s 83A(1) VATA 1994) (emphasis added), an appeal is to be made before the end of 30 days beginning with the date of the document </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#000000">notifying</span><span style="font-family:'Times New Roman';color:#000000"> the decision to which the appeal relates (s 83G(1) VATA 1994) (emphasis added).  However, an appeal may be made after 30 days if the Tribunal gives permission to do so (s 83G(6)). </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:left"><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Penalties – Income Tax and VAT</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">11.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">HMRC may charge a penalty in respect of a careless or deliberate inaccuracy contained in the following documents where there is an understatement of a liability to tax: </span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(i)</num>
+            <content>
+              <p class="Taxbodytext4" style="margin-left:0.39in;text-indent:0.38in">A self-assessment return; and</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(ii)</num>
+            <content>
+              <p class="Taxbodytext4" style="margin-left:0.39in;text-indent:0.5in"> A VAT return. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">(para 1, Sch 24, FA 2007) </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">12.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">A person may appeal against the decision to impose a penalty (para 15, Sch 24, FA 2007).</span><span style="font-weight:bold;font-family:'Times New Roman';color:#000000"> </span><span style="font-family:'Times New Roman';color:#000000">Such an appeal will be treated in the same way as an appeal against an assessment to the tax concerned. (para 16, Sch 24 FA 2007) (SA 10). </span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:left"><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Penalties – Sch 36 FA 2008</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">13.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">A person is liable to a penalty of £300 if they fail to comply with an information notice issued under Sch 36 FA 2008 (para 39, Sch 36, FA 2008). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">14.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Where the failure continues, the person may be liable to further penalties not exceeding £60 for each subsequent day of failure (para 40, Sch 36, FA 2008). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">15.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Where a person is liable to a penalty, HMRC must</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#000000"> </span><span style="font-family:'Times New Roman';color:#000000">notify the person (para 46(1) Sch 36 FA 2008).</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">16.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">The person has a right to appeal the decision to impose a penalty (para 47, Sch 36 FA 2008) and notice of appeal must be given within 30 days beginning with the date on which the notification was issued (para 48, Sch 36 FA 2008). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">17.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Otherwise than stated in the Sch 36 provisions, the provisions in TMA 1970 in respect of appeals are to have effect (para 5, Sch 36 FA 2008). </span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">18.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">The provisions in s 115 TMA 1970 provide that a notice may be sent, served or delivered by post to the usual place of residence or business</span><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">.</span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
