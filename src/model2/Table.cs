@@ -35,7 +35,7 @@ class WTable : ITable {
         Properties = props;
         Grid = grid;
         Style = Properties?.TableStyle?.Val?.Value;
-        TypedRows = rows.Select(row => new WRow(this, row.Properties, row.TypedCells));
+        TypedRows = rows.Select(row => new WRow(this, row.TablePropertyExceptions, row.Properties, row.TypedCells));
     }
 
     internal static IEnumerable<WRow> ParseTableContents(WTable table, IEnumerable<OpenXmlElement> elements) {
@@ -63,8 +63,15 @@ class WRow : IRow {
     internal MainDocumentPart Main { get; private init; }
 
     internal WTable Table { get; private init; }
+    internal TablePropertyExceptions TablePropertyExceptions { get; private init; }
 
-    internal TablePropertyExceptions Properties { get; private init; }
+    internal TableRowProperties Properties { get; private init; }
+    public bool IsHeader { get {
+        var tblHeader = Properties?.ChildElements.OfType<TableHeader>().FirstOrDefault();
+        if (tblHeader is null)
+            return false;
+        return DOCX.Util.OnOffToBool(tblHeader.Val) ?? true;
+    } }
 
     public IEnumerable<WCell> TypedCells { get; private init; }
     public IEnumerable<ICell> Cells { get => TypedCells; }
@@ -72,13 +79,15 @@ class WRow : IRow {
     internal WRow(WTable table, TableRow row) {
         Main = table.Main;
         Table = table;
-        Properties = row.TablePropertyExceptions;
+        TablePropertyExceptions = row.TablePropertyExceptions;
+        Properties = row.TableRowProperties;
         TypedCells = ParseRowContents(this, row.ChildElements);
     }
-    internal WRow(WTable table, TablePropertyExceptions properties, IEnumerable<WCell> cells) {
+    internal WRow(WTable table, TablePropertyExceptions exceptions, TableRowProperties props, IEnumerable<WCell> cells) {
         Main = table.Main;
         Table = table;
-        Properties = properties;
+        TablePropertyExceptions = exceptions;
+        Properties = props;
         TypedCells = cells.Select(c => new WCell(this, c.Props, c.Contents));
     }
 
@@ -159,7 +168,7 @@ class WCell : ICell {
         get  {
             BorderType border = Props?.TableCellBorders?.TopBorder;
             if (border is null)
-                border = Row.Properties?.TableBorders?.InsideHorizontalBorder;
+                border = Row.TablePropertyExceptions?.TableBorders?.InsideHorizontalBorder;
             if (border is null)
                 border = Table.Properties?.TableBorders?.InsideHorizontalBorder;
             return border;
@@ -179,7 +188,7 @@ class WCell : ICell {
         get  {
             BorderType border = Props?.TableCellBorders?.RightBorder;
             if (border is null)
-                border = Row.Properties?.TableBorders?.InsideVerticalBorder;
+                border = Row.TablePropertyExceptions?.TableBorders?.InsideVerticalBorder;
             if (border is null)
                 border = Table.Properties?.TableBorders?.InsideVerticalBorder;
             return border;
@@ -199,7 +208,7 @@ class WCell : ICell {
         get  {
             BorderType border = Props?.TableCellBorders?.BottomBorder;
             if (border is null)
-                border = Row.Properties?.TableBorders?.InsideHorizontalBorder;
+                border = Row.TablePropertyExceptions?.TableBorders?.InsideHorizontalBorder;
             if (border is null)
                 border = Table.Properties?.TableBorders?.InsideHorizontalBorder;
             return border;
@@ -219,7 +228,7 @@ class WCell : ICell {
         get  {
             BorderType border = Props?.TableCellBorders?.LeftBorder;
             if (border is null)
-                border = Row.Properties?.TableBorders?.InsideVerticalBorder;
+                border = Row.TablePropertyExceptions?.TableBorders?.InsideVerticalBorder;
             if (border is null)
                 border = Table.Properties?.TableBorders?.InsideVerticalBorder;
             return border;
