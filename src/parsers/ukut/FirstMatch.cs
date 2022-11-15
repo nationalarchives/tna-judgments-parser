@@ -70,7 +70,7 @@ abstract class FirstMatch2 : FirstMatch {
             if (!object.ReferenceEquals(before, after)) {
                 while (cells.MoveNext())
                     enriched.Add(cells.Current);
-                return new WRow(row.Table, row.Properties, enriched);
+                return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
             }
         }
         return row;

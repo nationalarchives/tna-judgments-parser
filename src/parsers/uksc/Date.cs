@@ -165,7 +165,7 @@ class DateEnricher : Enricher {
             return EnrichLine(line);
         });
 
-        return new WRow(row.Table, row.Properties, new List<WCell>(1) {
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, new List<WCell>(1) {
             new WCell(row, cell.Props, newContents)
         });
     }
