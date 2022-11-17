@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <judgment name="decision">
+  <judgment name="judgment">
     <meta>
       <identification source="#tna">
         <FRBRWork>
-          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/" />
-          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/" />
-          <FRBRdate date="2022-08-11" name="decision" />
-          <FRBRauthor href="#" />
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/scco/2022/2231" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/scco/2022/2231" />
+          <FRBRdate date="2022-08-11" name="judgment" />
+          <FRBRauthor href="#ewhc-seniorcourtscosts" />
           <FRBRcountry value="GB-UKM" />
-          <FRBRnumber value="" />
+          <FRBRnumber value="2231" />
         </FRBRWork>
         <FRBRExpression>
-          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/" />
-          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/" />
-          <FRBRdate date="2022-08-11" name="decision" />
-          <FRBRauthor href="#" />
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231" />
+          <FRBRdate date="2022-08-11" name="judgment" />
+          <FRBRauthor href="#ewhc-seniorcourtscosts" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
-          <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2022-09-22T16:21:50" name="transform" />
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
+          <FRBRdate date="2022-11-17T21:18:22" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
       <lifecycle source="#">
-        <eventRef date="2022-08-11" refersTo="#decision" source="#" />
+        <eventRef date="2022-08-11" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
+        <TLCOrganization eId="ewhc-seniorcourtscosts" href="https://www.gov.uk/courts-tribunals/senior-courts-costs-office" showAs="The England and Wales High Court (Senior Courts Costs Office)" shortForm="The Senior Courts Costs Office" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
-        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
       </references>
       <proprietary source="#">
-        <uk:parser>0.10.0</uk:parser>
+        <uk:court>EWHC-SeniorCourtsCosts</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>2231</uk:number>
+        <uk:cite>[2022] EWHC 2231 (SCCO)</uk:cite>
+        <uk:parser>0.10.16</uk:parser>
         <uk:hash>36304c21d62fafa39524c8a67e8b61758e76ebe771ba97e9069e8608ae3519fc</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -48,104 +53,29 @@
 </style>
       </presentation>
     </meta>
-    <header />
+    <header>
+      <p class="CoverText" style="text-align:center"><img src="image1.png" style="width:76.5pt;height:75.75pt" /></p>
+      <p class="CoverText">Neutral Citation No. <neutralCitation>[2022] EWHC 2231 (SCCO)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>T20217026</docketNumber></p>
+      <p class="CoverText">SCCO Reference: SC-2022-CRI-000074</p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-seniorcourtscosts">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-seniorcourtscosts" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">SENIOR COURTS COSTS OFFICE</courtType></p>
+      <p class="CoverText">Thomas More Building</p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2022-08-11" refersTo="#judgment">11 August 2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
+      <p class="CoverMain" style="text-align:center">COSTS JUDGE LEONARD</p>
+      <p class="CoverDesc"><span style="font-size:12pt">REGINA </span></p>
+      <p class="CoverDesc"><span style="font-size:12pt">v </span></p>
+      <p class="CoverDesc"><span style="font-size:12pt">JARIR</span></p>
+      <p class="CoverDesc"><span style="font-size:12pt">Judgment on Appeal under Regulation 29 of the Criminal Legal Aid (Remuneration) Regulations 2013</span></p>
+      <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">Appellant: </span><span style="font-size:12pt">M&amp;A Solicitors</span></p>
+      <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">This Appeal has been dismissed for the reasons set out below.</span></p>
+      <p style="text-align:center">COSTS JUDGE LEONARD</p>
+    </header>
     <judgmentBody>
       <decision>
-        <level>
-          <content>
-            <p class="CoverText" style="text-align:center"><img src="image1.png" style="width:76.5pt;height:75.75pt" /></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">Neutral Citation No. [2022] EWHC 2231 (SCCO)</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">Case No: T20217026</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">SCCO Reference: SC-2022-CRI-000074</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverMain">IN THE HIGH COURT OF JUSTICE</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">SENIOR COURTS COSTS OFFICE</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">Thomas More Building</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">Royal Courts of Justice</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">London, WC2A 2LL</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverText">Date: <docDate date="2022-08-11" refersTo="#decision">11 August 2022</docDate></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverMain" style="text-align:center">COSTS JUDGE LEONARD</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverDesc"><span style="font-size:12pt">REGINA </span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverDesc"><span style="font-size:12pt">v </span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverDesc"><span style="font-size:12pt">JARIR</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverDesc"><span style="font-size:12pt">Judgment on Appeal under Regulation 29 of the Criminal Legal Aid (Remuneration) Regulations 2013</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">Appellant: </span><span style="font-size:12pt">M&amp;A Solicitors</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">This Appeal has been dismissed for the reasons set out below.</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p style="text-align:center">COSTS JUDGE LEONARD</p>
-          </content>
-        </level>
         <paragraph eId="para_1">
           <num style="margin-left:0.5in;text-indent:-0.5in">1.</num>
           <content>
