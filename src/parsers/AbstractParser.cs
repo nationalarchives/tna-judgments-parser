@@ -800,6 +800,8 @@ abstract class AbstractParser {
             return true;
         if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s*$", RegexOptions.IgnoreCase))
             return true;
+        if (Regex.IsMatch(e.InnerText, @"^\s*-\sANNEX\s-\s*$", RegexOptions.IgnoreCase))
+            return true;
         // if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s+No\.?\s*\d+\s*$", RegexOptions.IgnoreCase))
         //     return true;
         return false;

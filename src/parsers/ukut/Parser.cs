@@ -36,16 +36,9 @@ class Parser : AbstractParser {
         "DECISION AND REMITTAL",
         "DECISION AND DIRECTIONS",
         "DECISION in PRINCIPLE",
-
         "DECISION OF THE UPPER TRIBUNAL",
 
-        // "Decision: the application for judicial review is refused",
-
         "DETERMINATION AND REASONS",
-
-        // "FINDINGS OF THE UPPER TRIBUNAL EXERCISING ITS HAMID JURISDICTION",
-
-        // "REASONS FOR DECISION",
 
         "JUDGMENT",
         "APPROVED JUDGMENT"
@@ -95,6 +88,8 @@ class Parser : AbstractParser {
             header.Add(e);
             if (IsTitleParagraph(e))
                 return header;
+            if (IsFirstLineOfAnnex(e))  // [2022] UKFTT 00416 (GRC)
+                return null;
             if (e is Table table) {
                 var last = table.Descendants<Paragraph>().Where(p => !string.IsNullOrWhiteSpace(p.InnerText)).LastOrDefault();
                 if (last is not null && IsTitleParagraph(last))
