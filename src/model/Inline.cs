@@ -87,6 +87,8 @@ interface IFormattedText : ITextOrWhitespace {
     string Text { get; }
 
     static bool HaveSameFormatting(IFormattedText fText1, IFormattedText fText2) {
+        if (fText1.Style != fText2.Style)
+            return false;
         if (fText1.Italic != fText2.Italic)
             return false;
         if (fText1.Bold != fText2.Bold)
