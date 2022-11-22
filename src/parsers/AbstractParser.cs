@@ -329,15 +329,15 @@ abstract class AbstractParser {
         return bigLevels;
     }
 
-    private string NormalizeFirstLineOfBigLevel(OpenXmlElement e, string format) {
+    private string NormalizeParagraph(Paragraph e) {
         IEnumerable<string> texts = e.Descendants()
             .Where(e => e is Text || e is TabChar)
             .Select(e => { if (e is Text) return e.InnerText; if (e is TabChar) return " "; return ""; });
         return string.Join("", texts).Trim();
     }
 
-    protected WText GetNumberFromFirstLineOfBigLevel(OpenXmlElement e, string format) {
-        string text = NormalizeFirstLineOfBigLevel(e, format);
+    protected WText GetNumberFromParagraph(Paragraph e, string format) {
+        string text = NormalizeParagraph(e);
         Match match = Regex.Match(text, format);
         if (!match.Success)
             return null;
@@ -346,7 +346,7 @@ abstract class AbstractParser {
         return new WText(number, rPr);
     }
 
-    protected WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
+    protected WLine RemoveNumberFromParagraph(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
         unfiltered = Merger.Merge(unfiltered);
         unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab || (inline is WText wText && string.IsNullOrWhiteSpace(wText.Text)));
@@ -435,7 +435,7 @@ abstract class AbstractParser {
             return false;
         if (!DOCX.Paragraphs.IsFlushLeft(main, p))
             return false;
-        string text = NormalizeFirstLineOfBigLevel(e, format);
+        string text = NormalizeParagraph(p);
         if (Regex.IsMatch(text, format)) {
             logger.LogTrace("This is a BigLevel: ");
             logger.LogTrace(e.InnerText);
@@ -464,8 +464,8 @@ abstract class AbstractParser {
         if (!IsFirstLineOfBigLevel(e, format))
             return null;
         Paragraph p = (Paragraph) e;
-        WText number = GetNumberFromFirstLineOfBigLevel(p, format);
-        WLine heading = RemoveNumberFromFirstLineOfBigLevel(p, format);
+        WText number = GetNumberFromParagraph(p, format);
+        WLine heading = RemoveNumberFromParagraph(p, format);
         // WLine heading = new WLine(doc.MainDocumentPart, (Paragraph) e);
         i += 1;
         int save = i;
@@ -694,8 +694,8 @@ abstract class AbstractParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
-    private IDivision ParseParagraphAndSubparagraphs(Paragraph p) {
-        ILeaf div = ParseSimpleParagraph(p);
+    private IDivision ParseParagraphAndSubparagraphs(Paragraph p, bool sub = false) {
+        ILeaf div = ParseSimpleParagraph(p, sub);
         if (i == elements.Count)
             return div;
         if (div.Heading is not null)
@@ -748,7 +748,7 @@ abstract class AbstractParser {
                 // float nextFirstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
                 // float nextIndent2 = nextFirstLine2 > 0 ? nextLeft2 : nextLeft2 + nextFirstLine2;
 
-                IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara);
+                IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara, true);
                 if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
                 } else if (subparagraph is IBranch subbranch) {
                     subparagraph = new BranchSubparagraph { Number = subparagraph.Number, Intro = subbranch.Intro, Children = subbranch.Children };
@@ -768,7 +768,7 @@ abstract class AbstractParser {
         return new WNewNumberedParagraph(div.Number, intro);
     }
 
-    private ILeaf ParseSimpleParagraph(Paragraph p) {
+    private ILeaf ParseSimpleParagraph(Paragraph p, bool sub) {
         i += 1;
         WLine line = new WLine(doc.MainDocumentPart, p);
         DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
@@ -779,15 +779,23 @@ abstract class AbstractParser {
         INumber num2 = Fields.RemoveListNum(line);
         if (num2 is not null)
             return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-        string format = @"^(“?\d+\.?) (?!(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))";
-        WText num3 = GetNumberFromFirstLineOfBigLevel(p, format);
-        if (num3 is not null) {
+        string format1 = @"^(“?\d+\.?) (?!(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))";
+        string[] formats;
+        if (sub)
+            formats = new string[] { format1, @"^(“?\d+\(\d+\)) ", @"^(“?\(\d+\)) " };
+        else
+            formats = new string[] { format1 };
+        foreach (string format in formats) {
+            WText num3 = GetNumberFromParagraph(p, format);
+            if (num3 is null)
+                continue;
             try {
-                WLine line1 = RemoveNumberFromFirstLineOfBigLevel(p, format);
+                WLine line1 = RemoveNumberFromParagraph(p, format);
                 line1.IsFirstLineOfNumberedParagraph = true;
                 return new WNewNumberedParagraph(num3, line1);
             } catch (Exception) {   // [2022] EAT 165
                 logger.LogWarning("unable to extract number from pagraph: " + p.InnerText);
+                break;
             }
         }
         return new WDummyDivision(line);
