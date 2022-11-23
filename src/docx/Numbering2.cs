@@ -227,6 +227,11 @@ class Numbering2 {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "."; };
             return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
         }
+        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)\.%(\d)(\.)?$");
+        if (match.Success) {
+            FiveCombinator combine = (num1, num2, num3, num4, num5) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "." + num5 + match.Groups[6].Value; };
+            return Five(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+        }
 
         match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)$");    // EWHC/Comm/2015/150
         if (match.Success) {
@@ -390,6 +395,56 @@ class Numbering2 {
         return combine(num1, num2, num3, num4);
     }
 
+    private delegate string FiveCombinator(string num1, string num2, string num3, string num4, string num5);
+
+    private static string Five(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, FiveCombinator combine) {
+        int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
+        int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
+        int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
+        int ilvl4 = int.Parse(match.Groups[4].Value) - 1;
+        int ilvl5 = int.Parse(match.Groups[5].Value) - 1;
+        Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
+        Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
+        Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
+        Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
+        Level lvl5 = Numbering.GetLevel(main, numberingId, ilvl5);
+        int start1 = GetStart(main, numberingId, ilvl1);
+        int start2 = GetStart(main, numberingId, ilvl2);
+        int start3 = GetStart(main, numberingId, ilvl3);
+        int start4 = GetStart(main, numberingId, ilvl4);
+        int start5 = GetStart(main, numberingId, ilvl5);
+        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
+        if (ilvl1 < baseIlvl && n1 > start1)
+            n1 -= 1;
+        else if (ilvl1 > baseIlvl)
+            throw new Exception();
+        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
+        if (ilvl2 < baseIlvl && n2 > start2)
+            n2 -= 1;
+        else if (ilvl2 > baseIlvl)
+            throw new Exception();
+        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, true);
+        if (ilvl3 < baseIlvl && n3 > start3)
+            n3 -= 1;
+        else if (ilvl3 > baseIlvl)
+            throw new Exception();
+        int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4);
+        if (ilvl4 < baseIlvl && n4 > start4)
+            n4 -= 1;
+        else if (ilvl4 > baseIlvl)
+            throw new Exception();
+        int n5 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl5);
+        if (ilvl5 < baseIlvl && n5 > start5)
+            n5 -= 1;
+        else if (ilvl5 > baseIlvl)
+            throw new Exception();
+        string num1 = FormatN(n1, lvl1.NumberingFormat);
+        string num2 = FormatN(n2, lvl2.NumberingFormat);
+        string num3 = FormatN(n3, lvl3.NumberingFormat);
+        string num4 = FormatN(n4, lvl4.NumberingFormat);
+        string num5 = FormatN(n5, lvl5.NumberingFormat);
+        return combine(num1, num2, num3, num4, num5);
+    }
 
     private static string FormatN(int n, NumberingFormat format) {
         return FormatN(n, format.Val.Value);
