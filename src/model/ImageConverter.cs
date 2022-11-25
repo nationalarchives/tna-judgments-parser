@@ -43,7 +43,14 @@ class ImageConverter {
             logger.LogInformation("{name} converted to {type}", image.Name, Enum.GetName(typeof(WMF.ImageType), converted.Item1));
             if (converted.Item1 == WMF.ImageType.BMP) {
                 logger.LogInformation("converting .bmp to .png");
-                byte[] png = Imaging.Convert.ConvertToPng(converted.Item2);
+                byte[] png;
+                try {
+                    png = Imaging.Convert.ConvertToPng(converted.Item2);
+                } catch (Exception e) {
+                    logger.LogWarning("cannot further convert {0} from .bmp to .png: {1}", image.Name, e.Message);
+                    images.Add(image);
+                    continue;
+                }
                 string newName = image.Name + ".png";
                 foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
                     iRef.Src = newName;
