@@ -782,7 +782,7 @@ abstract class AbstractParser {
         string format1 = @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))";
         string[] formats;
         if (sub)
-            formats = new string[] { format1, @"^(“?\d+\(\d+\)) ", @"^(“?\(\d+\)) " };
+            formats = new string[] { format1, @"^(“?\d+\(\d+\)) ", @"^(“?\(\d+\)) ", @"^(“?[a-z]\.) ", @"^(“?[ivx]+\.) " };
         else
             formats = new string[] { format1 };
         foreach (string format in formats) {
