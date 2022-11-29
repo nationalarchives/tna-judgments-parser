@@ -779,7 +779,7 @@ abstract class AbstractParser {
         INumber num2 = Fields.RemoveListNum(line);
         if (num2 is not null)
             return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-        string format1 = @"^(“?\d+\.?) (?!(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))";
+        string format1 = @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))";
         string[] formats;
         if (sub)
             formats = new string[] { format1, @"^(“?\d+\(\d+\)) ", @"^(“?\(\d+\)) " };
