@@ -82,7 +82,7 @@ class Date0 {
             return line;
         string pattern1 = @"\d{1,2}$";
         string pattern2 = @"^(st|nd|rd|th)$";
-        string pattern3 = @" (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}$";
+        string pattern3 = @"^ (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}$";
         Match match1 = Regex.Match(wText1.Text, pattern1);
         if (!match1.Success)
             return line;
