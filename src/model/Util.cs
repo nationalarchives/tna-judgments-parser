@@ -37,13 +37,22 @@ class Util {
         return dec.Contents.SelectMany(GetBlocksFromDivision);
     }
     private static IEnumerable<IBlock> GetBlocksFromDivision(IDivision div) {
-        if (div is ILeaf leaf)
-            return leaf.Contents;
-        if (div is IBranch branch)
+        if (div is ILeaf leaf) {
+            if (leaf.Heading is null)
+                return leaf.Contents;
+            return leaf.Contents.Prepend(leaf.Heading);
+        }
+        if (div is IBranch branch) {
+            List<IBlock> blocks = new List<IBlock>();
+            if (branch.Heading is not null)
+                blocks.Add(branch.Heading);
+            if (branch.Intro is not null)
+                blocks.AddRange(branch.Intro);
             return Enumerable.Concat<IBlock>(
-                branch.Intro ?? Enumerable.Empty<IBlock>(),
+                blocks,
                 branch.Children.SelectMany(GetBlocksFromDivision)
             );
+        }
         if (div is ITableOfContents toc)
             return toc.Contents;
         throw new Exception();
