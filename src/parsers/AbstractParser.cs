@@ -506,6 +506,10 @@ abstract class AbstractParser {
     protected virtual bool IsFirstLineOfCrossHeading(OpenXmlElement e) {
         if (e is not Paragraph p)
             return false;
+        if (e.Descendants<Drawing>().Any())
+            return false;
+        if (e.Descendants<Picture>().Any())
+            return false;
         bool hasNumberOrMarker = DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p);
         object formattedNumber = DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p);
         if (hasNumberOrMarker && formattedNumber is null)
@@ -516,28 +520,7 @@ abstract class AbstractParser {
             throw new Exception();
         if (IsFirstLineOfBigLevel(e, bigLevelNumberingFormats))
             return false;
-        // StringValue indent = Util.GetLeftIndent(doc.MainDocumentPart, p);
-        // System.Console.WriteLine("indent " + indent + " - " + e.InnerText);
-        // bool value = indent is null || indent == "0";
-        bool value = DOCX.Paragraphs.IsFlushLeft(doc.MainDocumentPart, p);
-        // if (e.InnerText == "Essential Factual Background" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "The Course of the Proceedings at Lewes Crown Court" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "Grounds of Appeal" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "Discussion and Conclusions" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "Disposal" && !value)
-        //     throw new Exception();
-        // if (value) {
-        //     System.Console.Write("This is a CrossHeading: ");
-        //     System.Console.WriteLine(e.InnerText);
-        // } else {
-        //     System.Console.Write("This is not a CrossHeading: ");
-        //     System.Console.WriteLine(e.InnerText);
-        // }
-        return value;
+        return DOCX.Paragraphs.IsFlushLeft(doc.MainDocumentPart, p);
     }
 
     private CrossHeading CrossHeading() {
