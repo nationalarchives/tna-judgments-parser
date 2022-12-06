@@ -726,12 +726,6 @@ class Numbering2 {
     }
 
     internal static int CalculateNTopDown(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher) {
-        if (paragraph.InnerText.StartsWith("Such a notice must be given within")) {
-
-        }
-        if (paragraph.InnerText.StartsWith("Paragraph 13 is the Interpretation paragraph and")) {
-
-        }
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         // int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
         int? start = null;
@@ -750,6 +744,10 @@ class Numbering2 {
             NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
             if (prevNumbering is null)
                 continue;
+
+            if (prevIlvl < ilvl)    // even if prevAbsNumId != abstractNumId
+                prevContainsNumId = false;
+
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
             if (prevAbsNumId != abstractNumId)
@@ -757,8 +755,6 @@ class Numbering2 {
 
             int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
             int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-            if (prevNumIdWithoutStyle == numberingId)
-                prevContainsNumId = true;
 
             if (prevIlvl < ilvl) {
                 if (start is not null && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2 && prevNumId.Value == numberingId) {
@@ -769,6 +765,8 @@ class Numbering2 {
                     start = 1;
                     numIdOfStartOverride = -2;
                 }
+                if (prevNumIdWithoutStyle == numberingId)
+                    prevContainsNumId = true;
                 count = 0;
                 continue;
             }
@@ -781,6 +779,8 @@ class Numbering2 {
                         numIdOfStartOverride = -2;
                     }
                 }
+                if (prevNumIdWithoutStyle == numberingId)
+                    prevContainsNumId = true;
                 continue;
             }
 
@@ -791,8 +791,11 @@ class Numbering2 {
                     numIdOfStartOverride = prevNumId.Value;
                     if (prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue)
                         count = 0;
-                    // if (!prevContainsNumId)
+                    // bool prevIsParent = ilvl < (prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
+                    // if (!prevIsParent && !prevContainsNumId)
                     //     count = 0;
+                    if (!prevContainsNumId)
+                        count = 0;
                 }
             } else if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
@@ -802,6 +805,8 @@ class Numbering2 {
                     count = 0;
                 }
             }
+            if (prevNumIdWithoutStyle == numberingId)
+                prevContainsNumId = true;
             count += 1;
         }
 
