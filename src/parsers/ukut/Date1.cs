@@ -102,7 +102,7 @@ class Date1 : FirstMatch {
         WCell enriched = EnrichCellWithDate(cell, "hearing", 0);
         if (object.ReferenceEquals(enriched, cell))
             return row;
-        return new WRow(row.Table, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
     }
     private WRow EnrichSecondLineOfFirstCellWithHearingDate(WRow row) {
         if (!row.Cells.Any())
@@ -111,7 +111,7 @@ class Date1 : FirstMatch {
         WCell enriched = EnrichSecondLineOfCellWithDate(cell, "hearing", 0);
         if (object.ReferenceEquals(enriched, cell))
             return row;
-        return new WRow(row.Table, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
     }
 
     private WRow EnrichRowWithDecisionDate(WRow row) {
@@ -121,7 +121,7 @@ class Date1 : FirstMatch {
         WCell enriched = EnrichCellWithDate(cell, "decision", 1);
         if (object.ReferenceEquals(enriched, cell))
             return row;
-        return new WRow(row.Table, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
     }
 
     private WCell EnrichCellWithDate(WCell cell, string name, int priority) {

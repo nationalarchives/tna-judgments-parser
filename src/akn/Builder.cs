@@ -240,6 +240,7 @@ abstract class Builder {
         List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
         int iRow = 0;
         foreach (List<ICell> row in rows) {
+            bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
             XmlElement tr = doc.CreateElement("tr", ns);
             int iCell = 0;
             foreach (ICell cell in row) {
@@ -251,7 +252,7 @@ abstract class Builder {
                     iCell += 1;
                     continue;
                 }
-                XmlElement td = doc.CreateElement("td", ns);
+                XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
                 if (cell.ColSpan is not null)
                     td.SetAttribute("colspan", cell.ColSpan.ToString());
                 Dictionary<string, string> styles = cell.GetCSSStyles();

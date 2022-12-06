@@ -80,6 +80,13 @@ class Util {
         return val.Value;
     }
 
+    internal static bool? OnOffToBool(EnumValue<OnOffOnlyValues> onOff) {
+        if (onOff is null || !onOff.HasValue)
+            return null;
+        OnOffOnlyValues val = onOff.Value;
+        return val == OnOffOnlyValues.On;
+    }
+
 }
 
 }
