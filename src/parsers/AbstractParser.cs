@@ -677,6 +677,18 @@ abstract class AbstractParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
+    private float GetEffectiveIndent(Paragraph p) {
+        float leftMargin = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
+        float firstLine = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
+        float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
+        // if (new WLine(main, p).Contents.FirstOrDefault() is WTab) {
+        //     float? nextTab = DOCX.Paragraphs.GetFirstTab(main, p.ParagraphProperties);
+        //     if (nextTab.HasValue)
+        //         indent += nextTab.Value;
+        // }
+        return indent;
+    }
+
     private IDivision ParseParagraphAndSubparagraphs(Paragraph p, bool sub = false) {
         ILeaf div = ParseSimpleParagraph(p, sub);
         if (i == elements.Count)
@@ -688,14 +700,8 @@ abstract class AbstractParser {
         if (div.Contents.First() is not WLine)
             return div;
         
-        float marginOfError = 0.05f;
-
-        float left1 = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
-        float firstLine1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
-        float indent1 = firstLine1 > 0 ? left1 : left1 + firstLine1;
-        // float left2 = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, p.ParagraphProperties) ?? 0.0f;
-        // float firstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, p.ParagraphProperties) ?? 0.0f;
-        // float indent2 = firstLine2 > 0 ? left2 : left2 + firstLine2;
+        const float marginOfError = 0.05f;
+        float indent1 = GetEffectiveIndent(p);
 
         List<IBlock> intro = new List<IBlock>();
         intro.AddRange(div.Contents);
@@ -722,14 +728,9 @@ abstract class AbstractParser {
                 continue;
             }
             if (next is Paragraph nextPara) {
-                float nextLeft1 = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
-                float nextFirstLine1 = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
-                float nextIndent1 = nextFirstLine1 > 0 ? nextLeft1 : nextLeft1 + nextFirstLine1;
+                float nextIndent1 = GetEffectiveIndent(nextPara);
                 if (nextIndent1 - marginOfError <= indent1)
                     break;
-                // float nextLeft2 = DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
-                // float nextFirstLine2 = DOCX.Paragraphs.GetFirstLineIndentWithStyleButNotNumberingInInches(main, nextPara.ParagraphProperties) ?? 0.0f;
-                // float nextIndent2 = nextFirstLine2 > 0 ? nextLeft2 : nextLeft2 + nextFirstLine2;
 
                 IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara, true);
                 if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
