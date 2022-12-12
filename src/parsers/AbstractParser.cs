@@ -732,7 +732,12 @@ abstract class AbstractParser {
                 if (nextIndent1 - marginOfError <= indent1)
                     break;
 
+                int save = i;
                 IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara, true);
+                if (!sub && div.Number is null && subparagraph.Number is not null && Regex.IsMatch(subparagraph.Number.Text, @"^\d+\.$")) {
+                    i = save;
+                    break;
+                }
                 if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
                 } else if (subparagraph is IBranch subbranch) {
                     subparagraph = new BranchSubparagraph { Number = subparagraph.Number, Intro = subbranch.Intro, Children = subbranch.Children };
