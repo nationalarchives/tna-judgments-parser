@@ -45,6 +45,7 @@ class Parser : AbstractParser {
     };
 
     Regex[] titles2 = new Regex[] {
+        new Regex(@"Ruling on [a-z]+", RegexOptions.IgnoreCase),
         new Regex(@"\d+ DECISION")
     };
 
