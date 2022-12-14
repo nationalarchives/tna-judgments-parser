@@ -26,7 +26,7 @@ internal class ListNum {
         Run first = (Run) withinField.First();
         if (fieldCode == " LISTNUM LegalDefault ") {
             Paragraph p = first.Ancestors<Paragraph>().First();
-            int n = CountPrecedingParagraphsWithListNumLegalDefault(p) + 1;
+            int n = CountPrecedingParagraphsWithListNumLegalDefault(p, 1) + 1;
             string num = n.ToString() + ".";
             ParagraphProperties pProps = p.ParagraphProperties;
             RunProperties rProps = first.RunProperties;
@@ -34,11 +34,16 @@ internal class ListNum {
             return new List<IInline>(1) { number };
         }
         Match match;
-        match = Regex.Match(fieldCode, @"^ LISTNUM LegalDefault \\l 1 $");    // EWCA/Civ/2015/325
+        match = Regex.Match(fieldCode, @"^ LISTNUM LegalDefault \\l (\d) $");    // EWCA/Civ/2015/325, [2022] EWHC 3114 (Admin) [test 49]
         if (match.Success) {
+            int l = int.Parse(match.Groups[1].Value);
             Paragraph p = first.Ancestors<Paragraph>().First();
-            int n = CountPrecedingParagraphsWithListNumLegalDefault(p) + 1;
+            int n = CountPrecedingParagraphsWithListNumLegalDefault(p, l) + 1;
             string num = n.ToString() + ".";
+            for (int lAbove = l - 1; lAbove > 0; lAbove--) { // [2022] EWHC 3114 (Admin)
+                int nAbove = CountPrecedingParagraphsWithListNumLegalDefault(p, lAbove) + 1;
+                num = nAbove.ToString() + "." + num;
+            }
             ParagraphProperties pProps = p.ParagraphProperties;
             RunProperties rProps = first.RunProperties;
             INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
@@ -54,7 +59,7 @@ internal class ListNum {
             INumber number = new DOCX.WNumber2(num, rProps, main, pProps);
             return new List<IInline>(1) { number };
         }
-        match = Regex.Match(fieldCode, @"^ LISTNUM (\d) \\l (\d) $");    // EWHC/Ch/2011/3553
+        match = Regex.Match(fieldCode, @"^ LISTNUM (\d) \\l (\d) $");    // EWHC/Ch/2011/3553 (test 12)
         if (match.Success) {
             int numId = int.Parse(match.Groups[1].Value);
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
@@ -83,9 +88,20 @@ internal class ListNum {
         match = Regex.Match(fieldCode, @"^ listnum ""WP List 1"" \\l (\d) $");  // EWHC/Ch/2004/1835
         if (match.Success) {
             int absNumId = 0;
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;
+            int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
             int n = CountPreceding(withinField.First(), fieldCode) + 1;
             string fNum = DOCX.Numbering2.FormatNumberAbstract(absNumId, ilvl, n, main);
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
+            RunProperties rProps = first.RunProperties;
+            INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
+            return new List<IInline>(1) { number };
+        }
+        match = Regex.Match(fieldCode, @"^ LISTNUM ""SEQ1"" \\l (\d) \\s (\d) $");  // [2022] EWHC 3114 (Admin) [test 49]
+        if (match.Success) {
+            int l = int.Parse(match.Groups[1].Value);
+            int s = int.Parse(match.Groups[2].Value);
+            int n = CountPreceding(withinField.First(), fieldCode) + s;
+            string fNum = FormatNNumberDefault(l, n);
             ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
             RunProperties rProps = first.RunProperties;
             INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
@@ -134,12 +150,13 @@ internal class ListNum {
     //     return count;
     }
 
-    private static int CountPrecedingParagraphsWithListNumLegalDefault(Paragraph p) {
+    private static int CountPrecedingParagraphsWithListNumLegalDefault(Paragraph p, int l) {
+        string test = " LISTNUM LegalDefault \\l " + l + " ";
         Func<Paragraph, bool> predicate = (p) => {
             string fc = DOCX.Fields.ExtractAndNormalizeFieldCode(p);
-            if (fc == " LISTNUM LegalDefault ")
+            if (fc == test)
                 return true;
-            if (fc == " LISTNUM LegalDefault \\l 1 ")
+            if (l == 1 && fc == " LISTNUM LegalDefault ")
                 return true;
             return false;
         };
@@ -177,6 +194,50 @@ internal class ListNum {
     //     }
     //     return count;
     // }
+
+    private static string FormatNNumberDefault(int l, int n) {
+        if (l == 1)
+            return n + ")";
+        if (l == 2)
+            return DOCX.Util.ToLowerLetter(n) + ")";
+        if (l == 3)
+            return DOCX.Util.ToLowerRoman(n) + ")";
+        if (l == 4)
+            return "(" + n + ")";
+        if (l == 5)
+            return "(" + DOCX.Util.ToLowerLetter(n) + ")";
+        if (l == 6)
+            return "(" + DOCX.Util.ToLowerRoman(n) + ")";
+        if (l == 7)
+            return n + ".";
+        if (l == 8)
+            return DOCX.Util.ToLowerLetter(n) + ".";
+        if (l == 9)
+            return DOCX.Util.ToLowerRoman(n) + ".";
+        throw new Exception();
+    }
+
+    private static string FormatNOutlineDefault(int l, int n) {
+        if (l == 1)
+            return DOCX.Util.ToUpperRoman(n) + ".";
+        if (l == 2)
+            return DOCX.Util.ToUpperLetter(n) + ".";
+        if (l == 3)
+            return n + ".";
+        if (l == 4)
+            return DOCX.Util.ToLowerLetter(n) + ")";
+        if (l == 5)
+            return "(" + n + ")";
+        if (l == 6)
+            return "(" + DOCX.Util.ToLowerLetter(n) + ")";
+        if (l == 7)
+            return "(" + DOCX.Util.ToLowerRoman(n) + ")";
+        if (l == 8)
+            return "(" + DOCX.Util.ToLowerLetter(n) + ")";
+        if (l == 9)
+            return "(" + DOCX.Util.ToLowerRoman(n) + ")";
+        throw new Exception();
+    }
 
 }
 
