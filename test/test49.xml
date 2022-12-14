@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admin/2022/3114" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admin/2022/3114" />
+          <FRBRdate date="2022-12-14" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd-admin" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="3114" />
+          <FRBRname value="ANTONIA ILIA v APPEAL COURT IN ATHENS, GREECE" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/3114" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/3114" />
+          <FRBRdate date="2022-12-14" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd-admin" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/3114/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/3114/data.xml" />
+          <FRBRdate date="2022-12-14T15:08:37" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-12-14" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (King's Bench Division)" shortForm="The Administrative Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="antonia-ilia" href="" showAs="ANTONIA ILIA" />
+        <TLCPerson eId="appeal-court-in-athens-greece" href="" showAs="APPEAL COURT IN ATHENS, GREECE" />
+        <TLCRole eId="applicant" href="" showAs="Applicant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-mr-justice-julian-knowles" href="/judge-mr-justice-julian-knowles" showAs="MR JUSTICE JULIAN KNOWLES" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-KBD-Admin</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>3114</uk:number>
+        <uk:cite>[2022] EWHC 3114 (Admin)</uk:cite>
+        <uk:parser>0.11.7</uk:parser>
+        <uk:hash>a19fb0825013f0a292b3b54f4041051448e770bc043ed0796ca46acebddf4c24</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading2 { font-weight: bold; font-family: 'Book Antiqua'; font-size: 11pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .N1 { text-align: justify; margin-left: 0in; font-size: 10.5pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .N2 { text-align: justify; margin-left: 0in; font-size: 10.5pt; }
+#judgment .N3 { text-align: justify; margin-left: 0.51in; font-size: 10.5pt; }
+#judgment .N1legal { text-align: justify; font-size: 10.5pt; }
+#judgment .N4 { text-align: justify; margin-left: 0.79in; font-size: 10.5pt; }
+#judgment .N5 { text-align: justify; margin-left: 1.18in; font-size: 10.5pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-family: 'Book Antiqua'; font-size: 11pt; }
+#judgment .FootnoteText { font-family: 'Book Antiqua'; font-size: 10pt; }
+#judgment .xmsonormal { font-size: 12pt; }
+#judgment .N2Char { font-size: 10.5pt; }
+#judgment .N3Char { font-size: 10.5pt; }
+#judgment .N4Char { font-size: 10.5pt; }
+#judgment .Heading2Char { font-weight: bold; font-family: 'Book Antiqua'; font-size: 11pt; }
+#judgment .Heading1Char { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3Char { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .FootnoteTextChar { font-family: 'Book Antiqua'; }
+#judgment .FootnoteReference { vertical-align: super; }
+#judgment .coitalic { }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.5pt;height:75.75pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWHC 3114 (Admin)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>CO/0653/2012</docketNumber></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-admin">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-admin" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">KING’S BENCH DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-admin" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">ADMINISTRATIVE COURT</courtType></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2022-12-14" refersTo="#judgment">14/12/2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-justice-julian-knowles">MR JUSTICE JULIAN KNOWLES</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+            <p style="text-align:center"><party refersTo="#antonia-ilia" as="#applicant" style="font-weight:bold">ANTONIA ILIA</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right"><role refersTo="#applicant">Applicant </role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center;margin-right:0.07in" />
+            <p style="text-align:center;margin-right:0.07in"><party refersTo="#appeal-court-in-athens-greece" as="#respondent" style="font-weight:bold">APPEAL COURT IN ATHENS, GREECE</party></p>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent">Respondent</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Muthupandi Ganesan </span>(instructed by<span style="font-weight:bold"> Mordi &amp; Co</span>) for the <span style="font-weight:bold">Applicant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">James Stansfeld and Robbie Stern</span> (instructed by <span style="font-weight:bold">CPS</span>) for the <span style="font-weight:bold">Respondent</span></p>
+      <p style="text-align:center">Hearing dates: <span style="font-weight:bold">22 November 2022</span></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center">This judgment was handed down remotely at 10.30am on 14 December 2022 by circulation to the parties or their representatives by e-mail and by release to the National Archives.</p>
+      <p style="text-align:center">.............................</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p><span style="font-weight:bold">Mr Justice Julian Knowles:</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p><span style="font-weight:bold">Introduction </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">This is an application to re-open an extradition appeal, pursuant to Crim PR r 50.27.  This provides:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="N1legal" style="margin-left:1.18in;margin-right:0.65in;text-indent:0in"><span style="font-size:12pt">“</span><span style="font-size:12pt">1.1.</span><span style="font-size:12pt">—</span><span style="font-size:12pt">a)</span><span style="font-size:12pt"> This rule applies where a party wants the High Court to reopen a decision of that court which determines an appeal or an application for permission to appeal.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(1)</num>
+            <content>
+              <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">Such a party must—</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(a)</num>
+            <content>
+              <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">apply in writing for permission to reopen that decision, as soon as practicable after becoming aware of the grounds for doing so; and</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(b)</num>
+            <content>
+              <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">serve the application on the High Court officer and every other party.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(2)</num>
+            <content>
+              <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">The application must—</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(a)</num>
+            <content>
+              <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">specify the decision which the applicant wants the court to reopen; and</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(b)</num>
+            <content>
+              <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">give reasons why—</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="N4" style="margin-left:1.18in;margin-right:0.65in"><span style="font-size:12pt">(i) it is necessary for the court to reopen that decision in order to avoid real injustice,</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="N4" style="margin-left:1.18in;margin-right:0.65in"><span style="font-size:12pt">(ii) the circumstances are exceptional and make it appropriate to reopen the decision, and</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="N4" style="margin-left:1.18in;margin-right:0.65in"><span style="font-size:12pt">(iii) there is no alternative effective remedy.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:1.18in;text-indent:0in">(3)</num>
+            <content>
+              <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">The court must not give permission to reopen a decision unless each other party has had an opportunity to make representations.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">This case has a lengthy history.  The Applicant’s extradition to Greece was ordered as long ago as 2012.  Since then there have been two substantive hearings in the Divisional Court (in 2014 (Rafferty LJ and Underhill LJ) and 2015 (Aikens LJ and Nicol J), reported at [2014] EWHC 2372 (Admin) and [2015] EWHC 547 (Admin) respectively), and one application to re-open the appeal in 2019, which was refused on the papers by Nicol J.    This is therefore the second application to re-open the extradition appeal. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">I will refer to the two Divisional Court judgments as ‘the First Judgment’ and ‘the Second Judgment’ respectively. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">For the full history of the extradition proceedings up until March 2015 (when the Second Judgment was handed down), including the numerous delays and interlocutory hearings, the reader is referred to those two decisions.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">There have also been parallel asylum proceedings.  Asylum was refused by the Secretary of State, and the Applicant’s appeal to the First-tier Tribunal was refused, as was an appeal to the Upper Tribunal.  There is currently an application for permission to appeal to the Court of Appeal before that Tribunal, which was lodged earlier this month.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Applicant was, until her dismissal for misconduct in July 2005, a judge of the First Instance Court in Athens. A few days before her dismissal she came to this country and settled under a false identity. She was arrested at her home in Sussex on 15 May 2011.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Taking matters shortly, the Applicant’s extradition was originally concerned with five European arrest warrants (EAWs) issued by the Greek judicial authorities (being the public prosecutors in Athens and Piraeus).  EAWs 1-4  related to alleged misconduct in the Applicant’s role as a judge, for which she was sentenced in her absence to varying terms of imprisonment. EAW5 contained accusation and conviction elements, relating to a series of offences over the period 2000–2004, in which the Applicant was said to have corruptly abused her position as a judge and otherwise acted improperly. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Extradition was ordered by District Judge Purdy at Westminster Magistrates’ Court on 16 January 2012.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Applicant appealed, and Rafferty and Underhill LJJ gave judgment on 14 June 2014. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">As recorded in that judgment at [13], during the appeal proceedings, and shortly prior to the judgment, the four conviction EAWs were withdrawn and the order of the district judge in relation to those EAWs was quashed. That left the Court to consider the Applicant’s appeal under EAW5 only. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Court allowed the Applicant’s appeal against twelve ‘breach of duty’ offences in that warrant on the ground that they were not extradition offences under s 10 and s 65 of the Extradition Act 2003 (EA 2003). The Court dismissed all the remaining grounds of appeal, save for two, which were left undecided: (a) whether the conditions in the prison in which the Applicant would be detained were so poor/overcrowded that extradition would be contrary to her rights under Article 3 of the European Convention on Human Rights (ECHR); and (b) whether (in relation to the conviction part of EAW 5) extradition would constitute a disproportionate interference with the Applicant’s rights under Article 8 of the ECHR, having regard to the short sentence of imprisonment (24 days) to which the Applicant would be subject for the conviction offences following the ‘falling away’ of a number of offences and having regard to other periods which served to be deducted from the original sentence (see at [38] and the Second Judgment, [7]).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In the Second Judgment, on 6 March 2015, Aikens LJ and Nicol J gave judgment on the remaining issues, having heard live expert evidence and full argument on Article 3 ECHR. The Court was satisfied that there were no substantial grounds for concluding that there was a real risk that the Applicant’s Article 3 ECHR rights would be infringed.  That was principally because there was an assurance from Greece that if she were to be extradited, she would be detained in the New Branch of the Independent Women's Prison Establishment at Korydallos.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">As to Article 8 ECHCR, the Court noted that ‘there is no family life to consider nor are there any interests of minor children to take into account’ ([73]-[76]). The appeal was therefore dismissed on both grounds. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">As I have said, the First and Second Judgments set out in great detail the delays in the extradition process which, even then, had occurred.   I need not point out that one of the principal purposes of the EAW scheme was to reduce the delays which had bedevilled previous extradition regimes, even in relation to EU states which are also signatories to the ECHR (like Greece). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Appellant was due to be extradited in December 2016 (the immigration proceedings then having ended), but she failed to attend the agreed meeting point with Sussex Police. When contacted by police officers, the Applicant claimed that she was sick, unable to travel and that she had obtained a sick note from her doctor.  There were then proceedings in the magistrates’ court about whether she was too ill to travel.  Her claim was apparently not backed up by her doctor, who had refused to sign a sick note to that effect. The district judge said he could not be certain of the position, but gave a strong warning to the Applicant that there should be no further sick notes or attempts to avoid extradition. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The next date for removal was 19 January 2017. On this date, the Applicant obtained a note from the doctor at Heathrow Airport who deemed her unfit to fly after she claimed she was suffering from vertigo. In the interim, the Applicant lodged an application for judicial review of the decision to extradite her (this was refused) and, as I understand it, she made an application to re-open the immigration proceedings.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">On 12 July 2019, the Applicant made her first attempt to reopen the extradition appeal. That application was advanced on the basis that a new Greek Penal Code had come into force on 1 July 2019, changing the conduct for which her extradition was sought (on the accusation part of EAW 5) from ‘felony’ offences to ‘misdemeanour’ offences. She submitted that this reform rendered the offences time barred, such that she could no longer be prosecuted for those offences. In the circumstances, she submitted that it would be disproportionate to extradite her to serve 24 or so days on the conviction matter. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">A written response to the application (dated 8 August 2019) was provided by the Respondent and was supported by Further Information (FI). The FI confirmed that the introduction of the new Penal Code; however, the Penal Code had only partial effect on the conduct contained in the EAW. All but one of the accusation offences were now time barred, having been transformed into ‘misdemeanours’. However, the Applicant could still be prosecuted for the one offence unaffected by the changes, the offence of money laundering. As to the conviction matter of (originally) 80 months, whilst this was also impacted by the new Penal Code, it did not become time barred until 12 November 2019. At the time of the application, therefore, the Applicant still had to serve the remaining 24 days of that sentence and would be liable to serve any sentence on the one outstanding accusation matter in the event she were convicted of it. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The application to re-open was refused by Nicol J on 12 August 2019 on the papers.  He held that the one outstanding accusation matter was serious and could potentially lead to a further custodial penalty in addition to the outstanding 24 days. In any event, he did not consider that the impact of the new Penal Code amounted to ‘real injustice’ or <span style="font-style:italic">‘</span>exceptional circumstances’ within the meaning of Crim PR r 50.27. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The order for the Applicant’s extradition therefore still stood, although her removal remained barred until the conclusion of her immigration proceedings. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">According to the Applicant, on 28 June 2021, the First-tier Tribunal refused her asylum claim. On 19 October 2021, she was granted permission to appeal to the Upper Tribunal. On 21 September 2022, the Upper Tribunal refused her appeal.  As I have said, there is an outstanding out-of-time application for permission to appeal to the Court of Appeal which is currently under consideration by the Upper Tribunal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">At the beginning of this month (November 2022), moves were again afoot to finally extradite the Applicant to Greece. On 4 November 2022, the NCA applied for a direction to extend the required period for extradition pursuant to s 36(3)(b) of the EA 2003. The application was granted by the court on 7 November 2022. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The s 36 order was served on the Applicant’s solicitors.  On the same day, those solicitors notified the court in correspondence that they intended to make an application to reopen the extradition appeal.  On 9 November 2022, the court made it clear that a formal application would have to be made to reopen the appeal and stay removal, and that it was not sufficient to put the court informally on notice. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Because of a lack of clarity about whether, given the immigration proceedings, the Applicant could in fact be removed, or whether it was prevented by s 39, the matter was put before me as ‘immediates judge’ on 11 November 2022. I ordered a hearing at which all parties should attend, so that some clarity could be brought to the situation, and I gave other directions should the Applicant intend to apply to re-open the appeal.  Shortly afterwards, the Applicant filed this second application to re-open the extradition appeal, to which the Respondent replied. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">According to Further Information from Greece dated 21 November 2022, the Applicant was sentenced to 13 years imprisonment for the outstanding matter on 8 February 2022, ie, the matter which had originally been an accusation matter.  This related to money laundering. The FI stated:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">“In respect of judgment no. 4519/20-10-2008, Ms. ILIA has been convicted for the offences related to the said judgment, in thirteen (13) years of custodial sentence by virtue of judgment no. 252/2022 dated 08-02-2022 of the Five-Member Appeal Court of Athens, which was rendered following an appeal lodged against the decision no. 1312/2020 dated 06-03-2020 rendered by the First (A’) Three-Member Appeal Court of Athens for felonies. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">Ms. ILIA was informed that the trial would take place. Consequently, she appointed lawyer Mr loannis GIATRAS by a special power of attorney document issued on 21-01-2019 and signed by her at the Consular Office of Greece in London. Her lawyer represented and defended her during the trial hearing.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Hence, the matter which was still an accusation matter when Nicol J last considered the case in 2019, has now become a conviction matter with a lengthy period of imprisonment to serve. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">Submissions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">On behalf of the Applicant, Mr Ganesan (for whose submissions I am grateful) advanced two principal bases on which he said the appeal should be re-opened: (a) the fact that, as he submitted, the Applicant had now been convicted in her absence.  He said this was unfair, and a breach of Article 6 of the ECHR.  He also relied on s 20 of the EA 2003.   He also said there had been an abuse of process because the Greek authorities had not notified the English authorities (presumably the CPS) of this development; and (b) he also relied on expert evidence concerning prison conditions and said it showed a real risk of a violation of Article 3 through overcrowding, including at the prison where the assurance indicated the Applicant would be detained if extradited.  Other points made in writing (but not substantively developed orally in any depth) relate to specialty and the Applicant’s mental health</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">On behalf of the Respondent, Mr Stansfeld submitted that: (a) the Applicant was represented by a lawyer at her trial, and so was not ‘absent’: <span style="font-style:italic">Cretu v Local Court of Suceava, Romania</span> [2016] 1 WLR 3344, [34(iii)]; (b) the new evidence about prison conditions did not establish any risk of an Article 3 violation, and in any event the very high threshold in CPR r 50.27 was not satisfied. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">Discussion</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In the written submissions an issue was canvassed about whether the Applicant was liable (subject to this application) to be removed, or whether her extradition was barred by s 39 of the EA 2003 by reason of her outstanding application to the Upper Tribunal for permission to appeal in the asylum proceedings.  In general terms, s 39 provides where an extradition order has been made, but a person has claimed asylum, the person must not be extradited before the asylum claim has been ‘finally determined’. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Mr Stansfeld’s position, on behalf of the Respondent, is that the Applicant’s asylum claim has indeed been ‘finally determined’, notwithstanding her outstanding permission application, and therefore that if this extradition application fails, there is no bar to her extradition.   However, it appears that the NCA, which is responsible for arranging removals, takes a different view, and considers that her extradition <span style="font-style:italic">is</span> currently barred by s 39 unless and until the Upper Tribunal (and, if permission is granted, the Court of Appeal) rules.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">It seems to me that this issue will need to be determined, if it does ever need to be, should the extradition proceedings conclude and should the NCA make removal arrangements before the Upper Tribunal has decided the Applicant’s application for permission (or before the immigration proceedings have otherwise come to an end). I decline to decide what, at the moment, is an academic issue, given the NCA’s stance.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Turning to the merits of the application before me, I begin by observing that it is well-recognised that the remedy provided for in Crim PR r 50.27 is only to be rarely, or sparingly, exercised: <span style="font-style:italic">Taylor v HMP Wandsworth and others</span> [2009] EWHC 1020 (Admin), [30]. There needs to be ‘truly exceptional circumstances’:  <span style="font-style:italic">Gawryluk v District Court of Lomza and Bialystok (Poland)</span> [2020] EWHC 3679 (Admin), [15].    The policy reason for this restrictive approach is the need for finality in litigation (and especially in extradition cases). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">33.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Government of the</span><span> </span><span style="font-style:italic">United States v Bowen</span> [2015] EWHC 1873 (Admin), Burnett LJ (as he then was) emphasised the narrow scope of Crim PR r. 17.27, the relevant precursor provision. In particular, he held that: </p>
+          </intro>
+          <subparagraph>
+            <num>“9.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">… The jurisdiction is not designed to allow a disappointed party to the appeal to reconsider his arguments, material and evidence and come back to the court to have another go. Furthermore, we would emphasise the importance of finality in extradition cases by noting the observations of Lord Thomas in <span style="font-style:italic">Abu Hamza v Government of the United States</span> [2012] EWHC 2736 (Admin) at [21] and [22], namely that there is an overwhelming public interest in both the proper functioning of extradition arrangements and in honouring extradition treaties, as well as there being an equally high importance in the finality of litigation. Finality of litigation is particularly important in extradition cases: ‘because of the public interest in an efficient process, the need to adhere to international obligations and to avoid a recurrence of the delays which have so disfigured the extradition process in the past and to which successive appeals over time can subject it’.” </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">34.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Seprey-Hozo v Law Court of Miercurea Ciuc, Romania</span> [2016] 4 WLR 181, Cranston J (applying <span style="font-style:italic">Bowen</span>) clarified that proof of ‘injustice’ is not in itself sufficient to reopen an appeal. What is required is a nexus between reopening the appeal and the prevention of that injustice: </p>
+          </intro>
+          <subparagraph>
+            <num style="color:initial;background-color:#FFFFFF">“20.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="color:initial;background-color:#FFFFFF">Just assume that an extradited appellant, who has exhausted all appeals in this jurisdiction, is unquestionably being held in prison conditions violating Article 3 and that is in breach of an assurance given by the authorities in the requesting state. I can well accept that would be a real injustice. However, CrPR 50.27(3)(b) requires not only that there be a real injustice as a consideration to reopening an extradition appeal, but that it is necessary for the court to reopen the appeal </span><span class="coitalic" style="color:initial;background-color:#FFFFFF">in order to avoid</span><span style="color:initial;background-color:#FFFFFF"> a real injustice. To my mind that requires consideration of whether reopening the appeal will provide a practical remedy for the injustice in that appellant's case.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">It seems to me that the Applicant has not come close to surmounting the high threshold for reopening the appeal established by these authorities. The application fails to demonstrate either that reopening the appeal is ‘necessary to avoid real injustice’ or that the circumstances are ‘exceptional and make it appropriate to reopen the decision’.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">36.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">I also accept as a general point that the Applicant’s attempt to reopen her appeal at this stage should be approached with considerable caution.  I note that in her original extradition hearing, the district judge held that the Applicant’s evidence displayed ‘a high degree of manipulation’, also refusing to accept that she had ‘a rational fear of reprisal from Greek Government, judicial or business interests’. Those findings were recorded in the First Judgment (at [78]). The Court was unpersuaded by the Applicant’s case on extraneous considerations, saying, ‘there is nothing about the terms of the charges themselves, or the subsequent history of the proceedings, that suggests a political motivation on the part of the prosecutor or that the charges have been fabricated’ (at [77])<span style="font-style:italic">; </span>and as to fair trial rights: <span style="font-style:italic">‘</span>[t]here is no reliable evidence that the Court of Appeal in Athens will not hear the Appellant's case fairly and impartially’<span style="font-style:italic"> </span>([80]).   There was also the Applicant’s failed attempt to persuade a doctor to provide a sick note so she could avoid extradition.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">37.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">There is nothing in the Applicant’s first point that matters have somehow changed because she now stands convicted of the matter which was formerly an accusation matter as of February 2022.  Even though she herself was physically absent, she was not absent from her trial as a matter of law, because she was represented by a lawyer acting on her instructions, as the recent Further Information from Greece makes clear.  The matter is put beyond doubt by <span style="font-style:italic">Cretu</span>, [34(iii)], where Burnett LJ said:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">“(iii) An accused who has instructed (‘mandated’) a lawyer to represent him in the trial is not, for the purposes of section 20, absent from his trial, however he may have become aware of it;”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">38.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Applicant said her lawyer did not actively participate.  That may be so, but that is between her and him.  I do not know what his instructions were.  The fact is she was represented.   There is also the point, having regard to the question of injustice in Crim PR r 50.27, that the Applicant has waited nine months, and until virtually the eve of extradition, before seeking to re-open on the basis of her conviction.  There is no good reason for that delay.   I am tempted to conclude, as Mr Stansfeld submitted, that the matter was deliberately held back until the final moment so as to frustrate extradition (again).  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">39.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">For the avoidance of doubt, whilst I was writing this judgment, the Applicant’s solicitors sent a translation of the decision of the five-member Athens Court of Appeal of 8 February 2022 with an email saying, ‘The Appellant states that the translated document is said to highlight the inaccuracy of the further information supplied by the Greek Authorities on the 21<span style="vertical-align:super;font-size:smaller">st</span> November 2022 in respect of the s 20 Extradition Act.’  The document says that the Applicant was represented by a lawyer on the five judge appeal, Mr Ioannis Giatras, who said he would represent the Applicant and ‘when the request was rejected, he resigned of the defence duties.’  I cannot readily see why or how this is inconsistent with the Further Information.   </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">40.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Mr Ganesan tried to frame this argument in the alternative as an abuse of process argument, but with respect to him, this takes the case no further.  There is no abuse of process here and there was no real attempt by the Applicant, as the authorities require, to specifically particularise what the alleged abuse was. An issuing judicial authority is not required to provide a running commentary on the prosecution process to the executing judicial authority, save perhaps where the EAW is withdrawn or otherwise falls away, so as to remove the basis for extradition entirely.   That is not the case here. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">41.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Any reliance on <span style="font-style:italic">Zakrzewski v Polish Issuing Judicial Authority</span> [2013] 1 WLR 324 does not assist the Applicant. That judgment concerns the steps a judicial authority should take during <span style="font-style:italic">extant</span> proceedings to ensure that a warrant remains accurate and extradition is ordered on the correct basis. Further, the remedy, a residual abuse of process jurisdiction, only arises where ‘the error or omission is material to the operation of the statutory scheme’. The Applicant has not demonstrated any such materiality. When she was convicted in February 2022 the extradition proceedings had come to an end.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In relation to prison conditions, it seems to me, as Mr Stansfeld submitted, that the starting point in considering this issue is the Second Judgment of Aikens LJ and Nicol J on 6 March 2015. That judgment records at [24], [27] and [57] the assurance and information provided to the Court about the detention of the Applicant, which was ultimately accepted by the Court, which heard live evidence from Professors Tsitelikis and Koulouris on behalf of the Applicant. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The application to reopen on this ground is predicated upon changes to the Greek penal estate and developments in respect of Korydallos Prison. The Respondent accepts that following the dismissal of the Applicant’s appeal, the Divisional Court in <span style="font-style:italic">Marku v Nafplion Court of Appeal, Greece</span> [2016] EWHC 1801 (Admin), found that Korydallos <span style="font-style:italic">Men’s</span> Prison gave rise to a real risk of an Article 3 violation because of the overcrowding, understaffing and consequential risk of violence. The Court did not consider the women’s prison.  In his new report for this application, Professor Koulouris does deal with the women’s prison (Korydallos II). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Applicant has not identified any court decision since the Second Judgment, in which there has been a court finding that that prison gives rise to the risk of an Article 3 violation. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">45.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Further, it seems to me that the new report of Professor Koulouris, dated 17 November 2022, does not provide a basis for concluding that the position has deteriorated in respect of that prison such that there are exceptional circumstances that justify reopening the appeal, or that absent reopening the appeal the Applicant would suffer a real injustice. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">46.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Even<span style="font-weight:bold"> </span>assuming, for present purposes only, that Professor Koulouris is correct to calculate at [52] that the overall space for women within the cells is 585m<span style="vertical-align:super;font-size:smaller">2</span>, and there are 126 spaces for women, that equates to 4.64m<span style="vertical-align:super;font-size:smaller">2</span> of personal space per woman. Thus, even if the prison reaches the highest overcrowding identified in Professor Koulouris’ Table 4 of 186 prisoners, the average space would be 3.1m<span style="vertical-align:super;font-size:smaller">2</span> of personal space, still just above the threshold in <span style="font-style:italic;color:#000000">Muršić v Croatia</span><span style="color:#000000">, (7334/13, 20 October 2016, ECtHR (GC)) and </span><span style="font-style:italic;color:#000000">Grecu v </span><span style="font-style:italic">Cornetu Court (Romania)</span> [2017] EWHC 1427 (Admin).  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">47.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In any event, and I think contrary to the impression given by Professor Koulouris in the bold font at p46, the figures in Table 4 include men and transgender women; thus, the capacity figure for the whole area of this prison must be considered, identified at [52] of his report as 849.23m<span style="vertical-align:super;font-size:smaller">2</span>, with a capacity of 174 prisoners. Thus, in July 2022 with 186 prisoners detained across the prison, the average space per prisoner was 4.5m<span style="vertical-align:super;font-size:smaller">2</span>. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Whilst Professor Koulouris raises the possibility that on certain days due to an influx of prisoners, space in a cell may drop below the 3m<span style="vertical-align:super;font-size:smaller">2</span> threshold, there is nothing that indicates that that is either long term or a permanent issue. The Divisional Court in the Applicant’s case placed weight on the fact that under the regime inmates are outside their cells for most of the day (see [68]). In<span style="font-style:italic;color:#000000"> Muršić</span><span style="color:#000000">, the Court accepted that short and minor reductions in the available space can rebut any presumption of an Article 3 violation, as can time spent outside the cells. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">49.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Further, whilst Professor Koulouris raises concerns about the sufficiency of the staffing, there is no suggestion that the prison is lawless or violent or the staff do not have sufficient control, such as to give rise to an article 3 violation. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">50.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">For these reasons, the Applicant has failed to demonstrate that she faces a real injustice, or there are exceptional circumstances that justify reopening her appeal to enable her to re-litigate the issue under Article 3 ECHR. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">51.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">I can deal briefly with other points. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">52.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In relation to Article 8, there is nothing in this point for the reasons given in the Second Judgment, which remain valid.  The time that has passed since extradition was ordered was down to the Applicant, who has sought to delay extradition for as long as possible including by running, unsuccessfully, parallel asylum proceedings.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">53.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">I accept as a general proposition that delay can weigh in the Article 8 balance.  However, that general proposition has little or no application in circumstances where <span style="font-style:italic">extradition has been ordered. </span>In delay cases, where extradition is in the balance, the diminution of public interest reflects the fact that the prosecuting agencies have shown a lack of urgency in bringing the requested person to justice (cf. <span style="font-style:italic">H(H) H(H) v Italy</span><span> </span><span style="font-style:italic">Deputy Prosecutor of the Italian Republic, Genoa</span> [2013] 1 AC 338; at [46] <span style="font-style:italic">per </span>Lady Hale and [91] <span style="font-style:italic">per </span>Lord Hope). That is clearly not on all fours with the case like the present, where the prosecuting authorities have acted diligently and removal is then delayed due to the workings of the asylum process at the instigation of the Applicant. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">54.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">There is nothing, either, in the specialty point.    Article 27 of the EAW Framework Decision contains speciality protection which will serve to protect the Applicant.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">55.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Finally, the Applicant’s suggested mental health problems do not come close to establishing oppression under s 25 of the EA 2003 so as to prevent or delay extradition.    It is to be presumed that Greece will be able to provide her with any medical treatment she requires, and I am sure that her resourceful lawyers will ensure that her medical records go with her to Greece. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">56.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Overall, this application is in part a repetition of matters which have already been raised.  She has once already unsuccessfully attempted to avail herself of the Court’s jurisdiction to reopen. Even where elements of her application relate to more recent developments (for example, her conviction in absence in 2020), it is notable that she has waited until the likely exhaustion of her asylum claim to challenge the outcome of her extradition proceedings.   I note what Ouseley J said about the interplay between extradition and asylum in <span style="font-style:italic">R (Troitino) v National Crime Agency </span>[2017] EWHC 931 (Admin):</p>
+          </intro>
+          <subparagraph>
+            <num>“56.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">Any contention by a claimant that a document or action rejected by the SSHD as constituting an asylum claim must be tested and resolved swiftly, if there is an extradition background and not left to languish in uncertainty in the appeal process, whether for tactical purposes or not. The Magistrate’' Court and Divisional Court must be kept fully informed as to the precise position with any actual or purported asylum claim. The human rights bars in ss21 and 21A, and the extraneous consideration bar in s13 of the 2003 Act should be fully presented and resolved in the extradition proceedings. They should not be reserved for any asylum claim nor should the extradition proceedings be adjourned to await the outcome of the asylum proceedings, unless very good reason to the contrary is shown. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>57.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">The extradition courts and the FtT and UTIAC should be astute to prevent any abuse of their procedures. Where the human rights issues have been resolved in the extradition proceedings, or where no bars were raised, it is difficult to see on what basis those issues should be reconsidered, let alone determined differently, in FtT or UTIAC proceedings, or why, if the human rights basis for an asylum claim has been disposed of in extradition proceedings, the empty husk of an asylum claim should not be disposed of rapidly by the Tribunal [emphasis added].” </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:-1.18in"><span style="font-weight:bold">Conclusion</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_57">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">57.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">I consider that this present application is simply another attempt by the Applicant to frustrate the extradition order made a decade ago.   It comes nowhere near meeting the necessary high threshold. This application is accordingly refused. </p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
