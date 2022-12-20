@@ -182,6 +182,12 @@ class Inline {
             if (e is DeletedRun dRun) {    // EWCA/Civ/2004/1580
                 continue;
             }
+            if (e is SdtRun stdRun) {   // [2022] EWHC 3214 (Admin)
+                var children = stdRun.ChildElements.OfType<SdtContentRun>()
+                    .SelectMany(cr => cr.ChildElements);
+                parsed.AddRange(ParseRuns(main, children));
+                continue;
+            }
             if (e is OpenXmlUnknownElement) {
                 // if (withinField is not null) {
                 //     withinField.Add(e);
