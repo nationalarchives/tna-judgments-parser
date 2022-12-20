@@ -85,12 +85,11 @@ internal class ListNum {
             INumber number = new DOCX.WNumber2(fNum, rProps, main, p.ParagraphProperties);
             return new List<IInline>(1) { number };
         }
-        match = Regex.Match(fieldCode, @"^ listnum ""WP List 1"" \\l (\d) $");  // EWHC/Ch/2004/1835
+        match = Regex.Match(fieldCode, @"^ listnum ""WP List \d"" \\l (\d) $");  // EWHC/Ch/2004/1835, [2022] EWHC 3185 (Admin)
         if (match.Success) {
-            int absNumId = 0;
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
+            int l = int.Parse(match.Groups[1].Value);
             int n = CountPreceding(withinField.First(), fieldCode) + 1;
-            string fNum = DOCX.Numbering2.FormatNumberAbstract(absNumId, ilvl, n, main);
+            string fNum = FormatNNumberDefault(l, n);
             ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
             RunProperties rProps = first.RunProperties;
             INumber number = new DOCX.WNumber2(fNum, rProps, main, pProps);
