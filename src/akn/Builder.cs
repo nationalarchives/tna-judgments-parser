@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml;
 
 using Microsoft.Extensions.Logging;
-
+using UK.Gov.NationalArchives.CaseLaw.Parse.UKSC;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
@@ -387,7 +387,11 @@ abstract class Builder {
     /* inline */
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
-        if (model is INeutralCitation cite)
+        if (model is WDocType docType) {
+            XmlElement courtType = CreateAndAppend("docType", parent);
+            foreach (IInline inline in docType.Contents)
+                AddInline(courtType, inline);
+        } else if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
         else if (model is INeutralCitation2 cite2) {
             XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
@@ -717,7 +721,7 @@ abstract class Builder {
         string value = SHA256.Hash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
-        XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary", nsmgr);
+        XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);
         XmlElement hash = akn.CreateElement("hash", Metadata.ukns);
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
