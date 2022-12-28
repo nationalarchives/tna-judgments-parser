@@ -19,7 +19,7 @@ public class Lambda {
     private static ILogger logger;
 
     static Lambda() {
-        Logging.SetConsole(LogLevel.Debug);
+        Logging.SetConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
         LoggerFactory = Logging.Factory;
         logger = LoggerFactory.CreateLogger<Lambda>();
     }

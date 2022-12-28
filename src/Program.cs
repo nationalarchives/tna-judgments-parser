@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 
 using System.CommandLine;
-using System.CommandLine.Invocation;
+using System.CommandLine.NamingConventionBinder;
 
 using Microsoft.Extensions.Logging;
 
