@@ -224,7 +224,11 @@ static class Paragraphs {
         var x = pProps?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value != TabStopValues.Clear).OrderBy(t => t.Position).FirstOrDefault();
         if (x is null)
             return null;
-        return x.Position / 1440f;
+        try {
+            return x.Position / 1440f;
+        } catch (System.FormatException) { // spec says it should always be an integer, but in some documents it's not
+            return DOCX.Util.DxaToInches(x.Position.InnerText);
+        }
     }
 
     public static float? GetNumTab(MainDocumentPart main, ParagraphProperties pProps) {
