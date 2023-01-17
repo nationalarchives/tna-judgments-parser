@@ -95,6 +95,7 @@ public class WImageRef : IImageRef {
             double left = CropValue(srcRect.Left);
             Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
         }
+        Rotate = GetRotation(drawing);
     }
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
         IEnumerable<Vml.ImageData> data = picture.Descendants<Vml.ImageData>();
@@ -131,6 +132,7 @@ public class WImageRef : IImageRef {
             tempStyle = DOCX.CSS.SerializeInline(filtered);
         }
         Style = tempStyle;
+        Rotate = GetRotation(picture);
     }
     public WImageRef(MainDocumentPart main, Vml.Shape shape) {
         StringValue relId = shape.Descendants<Vml.ImageData>().First().RelationshipId;
@@ -190,6 +192,20 @@ public class WImageRef : IImageRef {
             return v / 100000d * 1.5;   // this is just some reverse engineering
         return v / 100000d;
     }
+
+    public int? Rotate { get; private set; }
+
+    private int? GetRotation(OpenXmlElement ancestor) {
+        DrawingML.Transform2D xfrm = ancestor.Descendants().OfType<DrawingML.Transform2D>().FirstOrDefault();
+        if (xfrm is null)
+            return null;
+        if (xfrm.Rotation is null)
+            return null;
+        if (!xfrm.Rotation.HasValue)
+            return null;
+        return xfrm.Rotation.Value / 60000;
+    }
+
 
 }
 
