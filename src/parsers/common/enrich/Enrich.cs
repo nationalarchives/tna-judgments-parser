@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class Enricher {
@@ -219,6 +216,10 @@ abstract class Enricher2 : Enricher {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
         if (object.ReferenceEquals(enriched, line.Contents))
             return line;
+        if (line is WOldNumberedParagraph np)
+            return new WOldNumberedParagraph(np, enriched);
+        if (line is WRestriction restrict)
+            return new WRestriction(restrict, enriched);
         return new WLine(line, enriched);
     }
 

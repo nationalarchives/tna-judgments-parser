@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -68,6 +69,12 @@ class WLine : ILine {
         }
     }
 
+    internal float? LeftIndentWithNumber {
+        get {
+            return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
+        }
+    }
+
     public float? LeftIndentInches {
         get {
             if (!IsFirstLineOfNumberedParagraph)
@@ -106,6 +113,10 @@ class WLine : ILine {
             return null;
         string num = info.Value.Number.TrimEnd('.');
         return num.Length * 0.125f;
+    }
+
+    internal float? FirstLineIndentWithNumber {
+        get => DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties);
     }
 
     public float? FirstLineIndentInches {
@@ -203,8 +214,22 @@ class WLine : ILine {
         set { contents = value; }
     }
 
-    public string NormalizedContent() {
-        return ILine.NormalizeContent(this);
+    private string _textContent;
+    virtual public string TextContent {
+        get {
+            if (_textContent is null)
+                _textContent = string.Join("", contents.Select(IInline.GetText));
+            return _textContent;
+        }
+    }
+
+    private string _normalized;
+    public string NormalizedContent {
+        get {
+            if (_normalized is null)
+                _normalized = Regex.Replace(TextContent, @"\s+", " ").Trim();
+            return _normalized;
+        }
     }
 
 }
@@ -212,6 +237,8 @@ class WLine : ILine {
 class WRestriction : WLine, IRestriction {
 
     internal WRestriction(WLine line) : base(line) { }
+
+    internal WRestriction(WRestriction proto, IEnumerable<IInline> contents) : base(proto, contents) { }
 
 }
 
