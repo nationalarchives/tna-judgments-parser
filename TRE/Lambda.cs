@@ -26,7 +26,7 @@ public class Lambda {
 
     static Lambda() {
         string logFile = Path.GetTempPath() + "log-{Date}.txt";
-        UK.Gov.Legislation.Judgments.Logging.SetConsoleAndFile(new FileInfo(logFile), LogLevel.Debug);
+        UK.Gov.Legislation.Judgments.Logging.SetConsoleAndFile(new FileInfo(logFile), Microsoft.Extensions.Logging.LogLevel.Debug);
         logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<Lambda>();
     }
 

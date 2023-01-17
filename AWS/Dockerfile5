@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/dotnet:5.0
+FROM public.ecr.aws/lambda/dotnet:7
 
 WORKDIR /var/task
 
