@@ -30,6 +30,17 @@ class Mutate {
         using var image = Image.Load(source, out format);
         Rectangle rect = ToRect(inset, image.Width, image.Height);
         image.Mutate(img => img.Crop(rect));
+        return ToByteArray(image, format);
+    }
+
+    internal static byte[] Rotate(byte[] data, int angle) {
+        IImageFormat format;
+        using var image = Image.Load(data, out format);
+        image.Mutate(img => img.Rotate(angle));
+        return ToByteArray(image, format);
+    }
+
+    private static byte[] ToByteArray(Image image, IImageFormat format) {
         using var stream = new MemoryStream();
         image.Save(stream, format);
         return stream.ToArray();
