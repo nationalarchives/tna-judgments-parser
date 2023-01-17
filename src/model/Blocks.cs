@@ -43,6 +43,7 @@ interface ILine : IBlock, IBordered {
         return styles;
     }
 
+    [System.Obsolete]
     static string TextContent(IEnumerable<IInline> contents) {
         IEnumerable<string> texts = contents
             .Select(i => {
@@ -55,14 +56,17 @@ interface ILine : IBlock, IBordered {
         return string.Join("", texts);
     }
 
+    [System.Obsolete]
     string TextContent() {
         return TextContent(this.Contents);
     }
 
+    [System.Obsolete]
     static string NormalizeContent(ILine line) {
         string text = line.TextContent();
         return Regex.Replace(text, @"\s+", " ").Trim();
     }
+    [System.Obsolete]
     string NormalizedContent() {
         return NormalizeContent(this);
     }
