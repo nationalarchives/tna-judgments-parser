@@ -110,7 +110,7 @@ class Date0 {
     internal static WLine EnrichWholeLine(WLine line, string name, int priority) {
         if (!line.Contents.All(inline => inline is WText))
             return line;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         string pattern = @"^\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}$";
         Match match = Regex.Match(normalized, pattern);
         if (!match.Success)

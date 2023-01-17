@@ -67,6 +67,10 @@ class Merger : Enricher {
         return base.Enrich(block);
     }
 
+    public IBlock Enrich1(IBlock block) {
+        return Enrich(block);
+    }
+
 }
 
 }

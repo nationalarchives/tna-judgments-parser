@@ -16,6 +16,7 @@ using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideM
 
 using AttachmentPair1 = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
 using ParseFunction1 = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.IJudgment>;
+using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.IJudgment>;
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
@@ -69,7 +70,7 @@ public class Parser {
 
     private static ParseFunction GetParser(Hint? hint) {
         if (!hint.HasValue)
-            return Combined;
+            return OptimizedCombined;
         if (hint.Value == Hint.UKSC)
             return UKSCParser;
         if (hint.Value == Hint.UKUT)
@@ -94,6 +95,37 @@ public class Parser {
             return new AkN.Bundle(doc, judgment1);
         foreach (var other in others) {
             IJudgment judgment2 = other(doc, meta, attach2);
+            // if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
+            //     return new AkN.Bundle(doc, judgment2);
+            int score2 = Score(judgment2);
+            if (score2 == PerfectScore)
+                return new AkN.Bundle(doc, judgment2);
+            if (score2 > score1) {
+                judgment1 = judgment2;
+                score1 = score2;
+            }
+        }
+        return new AkN.Bundle(doc, judgment1);
+    }
+
+    private static AkN.ILazyBundle OptimizedCombined(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+        WordprocessingDocument doc = AkN.Parser.Read(docx);
+        UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument preParsed = new UK.Gov.NationalArchives.CaseLaw.Parse.PreParser().Parse(doc);
+        IEnumerable<AttachmentPair1> attach2 = AkN.Parser.ConvertAttachments(attachments);
+        OptimizedParseFunction first = UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedEWHCParser.Parse;
+        List<OptimizedParseFunction> others = new List<OptimizedParseFunction>(2) {
+            UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedUKSCParser.Parse,
+            UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedUKUTParser.Parse
+        };
+        IJudgment judgment1 = first(doc, preParsed, meta, attach2);
+        // if (judgment1.Metadata.Court() is not null || judgment1.Metadata.Cite is not null)
+        //     return new AkN.Bundle(doc, judgment1);
+        // above doesn't work for [2022] UKUT 300 (IAC)
+        int score1 = Score(judgment1);
+        if (score1 == PerfectScore)
+            return new AkN.Bundle(doc, judgment1);
+        foreach (var other in others) {
+            IJudgment judgment2 = other(doc, preParsed, meta, attach2);
             // if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
             //     return new AkN.Bundle(doc, judgment2);
             int score2 = Score(judgment2);

@@ -107,6 +107,15 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
 
     public IFormattedText Number { get; }
 
+    private string _textContent;
+    override public string TextContent {
+        get {
+            if (_textContent is null)
+                _textContent = Number.Text + " " + base.TextContent;
+            return _textContent;
+        }
+    }
+
 }
 
 internal class WTableOfContents : ITableOfContents {
