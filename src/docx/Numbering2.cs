@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -523,6 +524,7 @@ class Numbering2 {
         int? start = null;
         int numIdOfStartOverride = -1;
         bool prevContainsNumId = false;
+        HashSet<int> prevEncounteredNumIds = new HashSet<int>();
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
             bool noContent = prev.ChildElements.Any(child => child is ParagraphProperties) && prev.ChildElements.All(child => child is ParagraphProperties);
@@ -539,6 +541,8 @@ class Numbering2 {
 
             if (prevIlvl < ilvl)    // even if prevAbsNumId != abstractNumId
                 prevContainsNumId = false;
+            if (prevIlvl < ilvl)
+                prevEncounteredNumIds.Remove(prevNumId.Value);
 
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
@@ -559,6 +563,8 @@ class Numbering2 {
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
+                if (prevNumIdWithoutStyle == numberingId)
+                    prevEncounteredNumIds.Add(numberingId);
                 count = 0;
                 continue;
             }
@@ -573,6 +579,9 @@ class Numbering2 {
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
+                if (prevNumIdWithoutStyle == numberingId)
+                    prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
+
                 continue;
             }
 
@@ -599,6 +608,19 @@ class Numbering2 {
             }
             if (prevNumIdWithoutStyle == numberingId)
                 prevContainsNumId = true;
+            if (prevNumIdWithoutStyle == numberingId)
+                prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
+
+            // [2023] UKFTT 00045 (TC)
+            var prevOverridesStyleNumId = prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue && !thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numberingId;
+            if (prevOverridesStyleNumId && ilvl > 0) {
+                // this is similar to code below
+                int? over = GetStartOverride(main, prevNumIdWithoutStyle.Value, ilvl);
+                bool isParent = ilvl < (prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
+                if (!isParent && !prevEncounteredNumIds.Contains(prevNumIdWithoutStyle.Value) && over.HasValue)
+                    continue;
+            }
+
             count += 1;
         }
 
