@@ -191,14 +191,12 @@ class Numbering2 {
         //     TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
         //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         // }
-        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)([\.\-\(])%(\d+)([^%]*)$");
+        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)([^%]*)%(\d)([^%]*)$");
         if (match.Success) {
             string prefix = match.Groups[1].Value;
             int ilvl1 = int.Parse(match.Groups[2].Value) - 1;
             string middle = match.Groups[3].Value;
             int ilvl2 = int.Parse(match.Groups[4].Value) - 1;
-            if (ilvl2 > 9)
-                logger.LogWarning("two-digit numbering level: " + ilvl2);
             string suffix = match.Groups[5].Value;
             TwoCombinator combine = (num1, num2) => { return prefix + num1 + middle + num2 + suffix; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
