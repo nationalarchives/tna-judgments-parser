@@ -61,7 +61,7 @@ class Judge : Enricher {
                 found = true;
                 WJudge judge = new WJudge(text.Text, text.properties);
                 WLine line2 = new WLine(line, new List<IInline>(1) { judge });
-                enriched.Add(new WLine(line2));
+                enriched.Add(line2);
                 blocks = blocks.Skip(1);
                 continue;
             }
