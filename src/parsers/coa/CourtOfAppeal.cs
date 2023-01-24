@@ -68,6 +68,11 @@ class CourtOfAppealParser : AbstractParser {
         "A P P R O V E D  J U D G M E N T" // [2022] EWCA Crim 381 (has two spaces between words)
     };
 
+    Regex[] titleRegexes = new Regex[] {
+        new Regex(@"^Judgement of [A-Z][a-z]+ [A-Z][a-z]+ KC$"), // [2022] EWFC 172
+        new Regex(@"^© CROWN COPYRIGHT \d{4}$")
+    };
+
     protected override List<IBlock> Header() {
         List<OpenXmlElement> header1 = Header1();
         if (header1 is null)
@@ -134,8 +139,9 @@ class CourtOfAppealParser : AbstractParser {
             header.Add(e);
             if (Util.IsSectionOrPageBreak(e))
                 return header;
-            if (Regex.IsMatch(e.InnerText, @"© CROWN COPYRIGHT \d{4}"))
-                return header;
+            foreach (Regex regex in titleRegexes)
+                if (regex.IsMatch(e.InnerText))
+                    return header;
         }
         return null;
     }
