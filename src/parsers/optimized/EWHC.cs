@@ -63,6 +63,11 @@ class OptimizedEWHCParser : OptimizedParser {
         "A P P R O V E D  J U D G M E N T" // [2022] EWCA Crim 381 (has two spaces between words)
     };
 
+    Regex[] titleRegexes = new Regex[] {
+        new Regex(@"^Judgement of [A-Z][a-z]+ [A-Z][a-z]+ KC$"), // [2022] EWFC 172
+        new Regex(@"^© CROWN COPYRIGHT \d{4}$")
+    };
+
     protected override List<IBlock> Header() {
         List<IBlock> header = Header1();
         if (header is null)
@@ -129,8 +134,11 @@ class OptimizedEWHCParser : OptimizedParser {
             header.Add(b.Block);
             if (b.LineBreakBefore)
                 return header;
-            if (b.Block is WLine line && Regex.IsMatch(line.TextContent, @"© CROWN COPYRIGHT \d{4}"))
-                return header;
+            if (b.Block is not WLine line)
+                continue;
+            foreach (Regex regex in titleRegexes)
+                if (regex.IsMatch(line.NormalizedContent))
+                    return header;
         }
         return null;
     }
