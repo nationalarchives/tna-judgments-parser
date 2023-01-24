@@ -62,6 +62,11 @@ class RestrictionsEnricher : Enricher {
             return true;
         if (color is not null && color.ToLower() == "#ff0000")
             return true;
+        string content = ILine.NormalizeContent(line);
+        if (content == "IN CONFIDENCE")
+            return true;
+        if (content.StartsWith("This Judgment was delivered in private."))
+            return true;
         return false;
     }
 
