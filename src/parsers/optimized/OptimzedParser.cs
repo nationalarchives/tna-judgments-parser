@@ -412,6 +412,8 @@ abstract class OptimizedParser {
     protected virtual bool IsFirstLineOfCrossHeading(IBlock block) {
         if (block is not WLine line)
             return false;
+        if (line is WOldNumberedParagraph)
+            return false;
         if (line.Contents.OfType<WImageRef>().Any())
             return false;
         if (IsFirstLineOfBigLevel(block))
