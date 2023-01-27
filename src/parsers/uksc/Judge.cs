@@ -29,10 +29,7 @@ class JudgeEnricher : Enricher {
     protected override WLine Enrich(WLine line) {
         if (line.Style != "JudgmentJudges")
             return line;
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (Object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
+        return base.Enrich(line);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {

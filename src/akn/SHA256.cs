@@ -1,7 +1,4 @@
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using Crypto = System.Security.Cryptography;
 using System.Text;
@@ -9,11 +6,9 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Xsl;
 
-using Microsoft.Extensions.Logging;
-
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
-class SHA256 {
+public class SHA256 {
 
     private static string xslt = @"<?xml version='1.0'?>
     <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' version='1.0'>
@@ -21,7 +16,7 @@ class SHA256 {
         <xsl:template match='akn:meta'/>
     </xsl:stylesheet>";
 
-    private static string RemoveMetadata(XmlDocument akn) {
+    public static string RemoveMetadata(XmlDocument akn) {
         XslCompiledTransform transform = new XslCompiledTransform();
         using var stringReader = new StringReader(xslt);
         using var xsltReader = XmlReader.Create(stringReader);

@@ -82,8 +82,10 @@ class PreParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
+    private static readonly string PlainNumberFormat = @"^“?\d+$";
     internal static readonly string[] NumberFormats = {
-        @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))",
+        // @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))",
+        @"^(“?\d+\.) ",
         @"^(“?[A-Z]\.) ",
         @"^(“?\(\d+\)) ",
         @"^(“?\([a-z]\)) ",
@@ -99,8 +101,21 @@ class PreParser {
         INumber num2 = Fields.RemoveListNum(line);
         if (num2 is not null)
             return new WOldNumberedParagraph(num2, line);
+
+        WText plainNum = GetPlainNumberFromParagraph(p);
+        if (plainNum is not null) {
+            try {
+                WLine removed = RemovePlainNumberFromParagraph(main, p);
+                removed.IsFirstLineOfNumberedParagraph = true;
+                return new WOldNumberedParagraph(plainNum, removed);
+            } catch (System.Exception) {
+                return line;
+            }
+        }
+
+        string normalized = NormalizeParagraph(p);
         foreach (string format in NumberFormats) {
-            WText num = GetNumberFromParagraph(p, format);
+            WText num = GetNumberFromParagraph(p, format, normalized);
             if (num is null)
                 continue;
             try {
@@ -116,6 +131,7 @@ class PreParser {
 
     /* */
 
+    // this might be unnecessary; e.InnerText might work
     private static string NormalizeParagraph(Paragraph e) {
         IEnumerable<string> texts = e.Descendants()
             .Where(e => e is Text || e is TabChar)
@@ -123,8 +139,8 @@ class PreParser {
         return string.Join("", texts).Trim();
     }
 
-    private static WText GetNumberFromParagraph(Paragraph e, string format) {
-        string text = NormalizeParagraph(e);
+    /// text is normalized
+    private static WText GetNumberFromParagraph(Paragraph e, string format, string text) {
         Match match = Regex.Match(text, format);
         if (!match.Success)
             return null;
@@ -144,10 +160,10 @@ class PreParser {
         if (match.Success) {
             string rest = t1.Text.TrimStart().Substring(match.Length).TrimStart();
             if (string.IsNullOrEmpty(rest)) {
-                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1));
+                return new WLine(main, e, unfiltered.Skip(1));
             } else {
                 WText prepend = new WText(rest, t1.properties);
-                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(1).Prepend(prepend));
+                return new WLine(main, e, unfiltered.Skip(1).Prepend(prepend));
             }
         }
         match = Regex.Match(t1.Text + " ", format + @"$");
@@ -155,9 +171,9 @@ class PreParser {
             IInline second = unfiltered.Skip(1).FirstOrDefault();
             if (second is WText t2) {
                 WText prepend = new WText(t2.Text.TrimStart(), t2.properties);
-                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
+                return new WLine(main, e, unfiltered.Skip(2).Prepend(prepend));
             } else if (second is WTab) {
-                return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
+                return new WLine(main, e, unfiltered.Skip(2));
             } else {
                 throw new Exception();
             }
@@ -168,34 +184,34 @@ class PreParser {
             if (match.Success) {
                 string rest = combined.Substring(match.Length).TrimStart();
                 if (string.IsNullOrEmpty(rest)) {
-                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2));
+                    return new WLine(main, e, unfiltered.Skip(2));
                 } else {
                     WText prepend = new WText(rest, t2bis.properties);
-                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
+                    return new WLine(main, e, unfiltered.Skip(2).Prepend(prepend));
                 }
             }
             match = Regex.Match(combined + " ", format + @"$");
             if (match.Success) {
                 IInline third = unfiltered.Skip(2).FirstOrDefault();
                 if (third is WTab)  // [2022] UKSC 21
-                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
+                    return new WLine(main, e, unfiltered.Skip(3));
             }
             if (unfiltered.Skip(2).FirstOrDefault() is WText t3) {  // [2022] EWHC 2360 (KB)
                 string combined3 = t1.Text + t2bis.Text + t3.Text;
                 match = Regex.Match(combined3, format);
                 string rest = combined3.Substring(match.Length).TrimStart();
                 if (string.IsNullOrEmpty(rest)) {
-                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
+                    return new WLine(main, e, unfiltered.Skip(3));
                 } else {
                     WText prepend = new WText(rest, t3.properties);
-                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3).Prepend(prepend));
+                    return new WLine(main, e, unfiltered.Skip(3).Prepend(prepend));
                 }
             }
         }
-        return NextFunction(main, format, t1, unfiltered.Skip(1), e.ParagraphProperties);
+        return NextFunction(main, format, t1, unfiltered.Skip(1), e);
     }
 
-    private static WLine NextFunction(MainDocumentPart main, string format, WText t1, IEnumerable<IInline> rest, ParagraphProperties pProps) {
+    private static WLine NextFunction(MainDocumentPart main, string format, WText t1, IEnumerable<IInline> rest, Paragraph p) {
         string t1Text = t1.Text.TrimStart();
         if (rest.FirstOrDefault() is WTab) {    // ewhc/ch/2022/2462
             t1Text += " ";
@@ -207,14 +223,34 @@ class PreParser {
             if (match.Success) {
                 string leftOver = combined.Substring(match.Length).TrimStart();
                 if (string.IsNullOrEmpty(leftOver)) {
-                    return new WLine(main, pProps, rest.Skip(1));
+                    return new WLine(main, p, rest.Skip(1));
                 } else {
                     WText prepend = new WText(leftOver, t2.properties);
-                    return new WLine(main, pProps, rest.Skip(1).Prepend(prepend));
+                    return new WLine(main, p, rest.Skip(1).Prepend(prepend));
                 }
             }
         }
         throw new Exception();
+    }
+
+    /* */
+
+    private static WText GetPlainNumberFromParagraph(Paragraph e) {
+        IEnumerable<OpenXmlElement> texts = e.ChildElements.Where(e => e is Text || e is TabChar);
+        if (texts.FirstOrDefault() is not Text text)
+            return null;
+        if (texts.Skip(1).FirstOrDefault() is not TabChar)
+            return null;
+        Match match = Regex.Match(text.InnerText, PlainNumberFormat);
+        if (!match.Success)
+            return null;
+        string number = match.Value;
+        RunProperties rPr = e.Descendants<RunProperties>().FirstOrDefault();
+        return new WText(number, rPr);
+    }
+
+    protected static WLine RemovePlainNumberFromParagraph(MainDocumentPart main, Paragraph p) {
+        return RemoveNumberFromParagraph(main, p, PlainNumberFormat);
     }
 
 }

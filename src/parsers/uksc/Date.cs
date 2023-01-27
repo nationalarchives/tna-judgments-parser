@@ -59,13 +59,6 @@ class DateEnricher : Enricher {
         return block;
     }
 
-    protected override WLine Enrich(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (Object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
-    }
-
     private static readonly CultureInfo culture = new CultureInfo("en-GB");
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
@@ -171,6 +164,8 @@ class DateEnricher : Enricher {
     }
 
     private static WLine EnrichLine(WLine line) {
+        if (line is WOldNumberedParagraph)
+            return line;
         if (line.Contents.Count() == 1)
             return EnrichLine1(line);
         if (line.Contents.Count() >= 3)

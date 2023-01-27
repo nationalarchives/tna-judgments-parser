@@ -48,10 +48,7 @@ class LocationEnricher : Enricher {
     protected override WLine Enrich(WLine line) {
         if (line.Style != "JudgmentDetail1")
             return line;
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (Object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
+        return base.Enrich(line);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
