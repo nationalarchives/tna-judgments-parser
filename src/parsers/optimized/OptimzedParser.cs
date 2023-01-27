@@ -373,7 +373,7 @@ abstract class OptimizedParser {
             return null;
 
         IFormattedText number = np.Number;
-        WLine heading = new WLine(np);
+        WLine heading = WLine.RemoveNumber(np);
         i += 1;
         int save = i;
         List<IDivision> children;
@@ -632,7 +632,7 @@ abstract class OptimizedParser {
     private ILeaf ParseSimpleParagraph(ILine line, bool sub) {
         i += 1;
         if (line is WOldNumberedParagraph np)
-            return new WNewNumberedParagraph(np.Number, new WLine(np, np.Contents));
+            return new WNewNumberedParagraph(np.Number, WLine.RemoveNumber(np));
         return new WDummyDivision(line);
     }
 

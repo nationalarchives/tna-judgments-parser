@@ -89,12 +89,8 @@ abstract class Enricher {
     }
 
     protected virtual IBlock Enrich(IBlock block) {
-        if (block is WOldNumberedParagraph np)
-            return new WOldNumberedParagraph(np.Number, Enrich(np));
         if (block is WLine line)
             return Enrich(line);
-        // if (block is WTable table)
-        //     return EnrichTable(table);
         return block;
     }
 
@@ -118,7 +114,7 @@ abstract class Enricher {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
         if (object.ReferenceEquals(enriched, line.Contents))
             return line;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     abstract protected IEnumerable<IInline> Enrich(IEnumerable<IInline> line);
@@ -134,6 +130,7 @@ abstract class Enricher {
     //     return string.Join("", texts).Trim();
     // }
 
+    [Obsolete]
     internal static string NormalizeInlines(IEnumerable<IInline> line) {
         IEnumerable<string> texts = line
             .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
@@ -145,6 +142,7 @@ abstract class Enricher {
     //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
     //     return string.Join("", texts).Trim();
     // }
+    [Obsolete]
     internal static string NormalizeLine(ILine line) {
         return NormalizeInlines(line.Contents);
     }
@@ -210,17 +208,6 @@ abstract class Enricher2 : Enricher {
             }
         }
         return cell;
-    }
-
-    private WLine EnrichLine(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        if (line is WOldNumberedParagraph np)
-            return new WOldNumberedParagraph(np, enriched);
-        if (line is WRestriction restrict)
-            return new WRestriction(restrict, enriched);
-        return new WLine(line, enriched);
     }
 
 }
