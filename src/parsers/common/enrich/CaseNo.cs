@@ -249,6 +249,8 @@ class CaseNo : Enricher {
     };
 
     private WLine EnrichLine(WLine line) {
+        if (line is WOldNumberedParagraph)
+            return line;
         if (line.Contents.Count() == 1)
             return EnrichLineWithOneSpan(line);
         if (line.Contents.Count() == 2)

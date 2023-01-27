@@ -572,7 +572,7 @@ class PartyEnricher : Enricher {
         WText wText = (WText) line.Contents.First();
         WDocTitle docTitle = new WDocTitle(wText);
         IEnumerable<IInline> contents = line.Contents.Skip(1).Prepend(docTitle);
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
     private static bool IsPartyName(IBlock block) {
@@ -676,19 +676,19 @@ class PartyEnricher : Enricher {
             WParty party = new WParty(text) { Role = role };
             // use MakeOrSplitParty
             IEnumerable<IInline> contents = new List<IInline>(1) { party };
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         if (line.Contents.All(inline => inline is WText) && line.Contents.Cast<WText>().Any(wText => !string.IsNullOrWhiteSpace(wText.Text))) {
             WParty2 party = new WParty2(line.Contents.Cast<WText>()) { Role = role };
             IEnumerable<IInline> contents = new List<IInline>(1) { party };
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         if (line.Contents.All(inline => inline is ITextOrWhitespace) && line.Contents.Any(inline => inline is WText wText && !string.IsNullOrWhiteSpace(wText.Text))) {
             IEnumerable<IInline> before = line.Contents.TakeWhile(inline => inline is not IFormattedText);
             IEnumerable<IInline> main = line.Contents.Skip(before.Count());
             WParty2 party = new WParty2(main.Cast<ITextOrWhitespace>()) { Role = role };
             IEnumerable<IInline> contents = before.Append(party);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         if (line.Contents.Count() == 2) {
             IInline first = line.Contents.First();
@@ -696,30 +696,30 @@ class PartyEnricher : Enricher {
             if (string.IsNullOrWhiteSpace(second.Text)) {
                 WParty party = new WParty((WText) first) { Role = role };
                 IEnumerable<IInline> contents = new List<IInline>(2) { party, second };
-                return new WLine(line, contents);
+                return WLine.Make(line, contents);
             } else {
                 WParty party = new WParty(second) { Role = role };
                 IEnumerable<IInline> contents = new List<IInline>(2) { first, party };
-                return new WLine(line, contents);
+                return WLine.Make(line, contents);
             }
         }
         if (line.Contents.Count() == 3) {
             WParty2 party = new WParty2(line.Contents.Cast<IFormattedText>()) { Role = role };
             IEnumerable<IInline> contents = new List<IInline>(1) { party };
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         if (line.Contents.Count() == 4) {
             WTab first = (WTab) line.Contents.First();
             WParty2 party = new WParty2(line.Contents.Skip(1).Cast<IFormattedText>()) { Role = role };
             IEnumerable<IInline> contents = new List<IInline>(2) { first, party };
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         throw new Exception();
     }
 
     private static WLine MakeRole(IBlock block, PartyRole role) {
         WLine line = (WLine) block;
-        return new WLine(line, new List<IInline>(1) { new WRole() { Role = role, Contents = line.Contents } });
+        return WLine.Make(line, new List<IInline>(1) { new WRole() { Role = role, Contents = line.Contents } });
     }
 
     private static bool IsAnyPartyType(string s) {
@@ -903,7 +903,7 @@ class PartyEnricher : Enricher {
                 penult,
                 new WRole() { Role = role, Contents = new List<IInline>(1) { last } }
             });
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         throw new Exception();
     }
@@ -1240,7 +1240,7 @@ class PartyEnricher : Enricher {
 
     private static WCell EnrichCellWithPartyRole(WCell cell, PartyRole role) {
         return new WCell(cell.Row, cell.Props, cell.Contents.Cast<WLine>()
-            .Select(line => IsEmptyLine(line) ? line : new WLine(line, new List<IInline>(1) { new WRole() { Role = role, Contents = line.Contents } })));
+            .Select(line => IsEmptyLine(line) ? line : WLine.Make(line, new List<IInline>(1) { new WRole() { Role = role, Contents = line.Contents } })));
     }
 
     private static PartyRole? GetOneLinePartyRole(WCell cell) {
@@ -1476,7 +1476,7 @@ class PartyEnricher : Enricher {
                 if (filtered.Count() == 1) {
                     // IEnumerable<IInline> mapped = line.Contents.Select(inline => filter(inline) ? new WParty((WText) inline) { Role = role } : inline);
                     IEnumerable<IInline> mapped = line.Contents.SelectMany(inline => filter(inline) ? MakeOrSplitParty(((WText) inline).Text, ((WText) inline).properties, role) : new List<IInline>(1) { inline });
-                    return new WLine(line, mapped);
+                    return WLine.Make(line, mapped);
                 }
                 if (line.Contents.Any(inline => inline is WText wt && Regex.IsMatch(wt.Text, @"^\(\d+\) ")) && line.Contents.All(inline => inline is WLineBreak || inline is WText wt && (string.IsNullOrEmpty(wt.Text) || Regex.IsMatch(wt.Text, @"^\(\d+\) ")))) {
                     IEnumerable<IInline> mapped = line.Contents.Select(inline => {
@@ -1487,7 +1487,7 @@ class PartyEnricher : Enricher {
                         }
                         return inline;
                     });
-                    return new WLine(line, mapped);
+                    return WLine.Make(line, mapped);
                 }
                 /* these should be rewritten so they do nothing if their conditions aren't met (instead of returning) */
                 if (line.Contents.Count() == 1) {
@@ -1502,7 +1502,7 @@ class PartyEnricher : Enricher {
                     if (IsAnd(trimmed))
                         return line;
                     WParty party = new WParty(wText) { Role = role };
-                    return new WLine(line, new List<IInline>(1) { party });
+                    return WLine.Make(line, new List<IInline>(1) { party });
                 }
                 if (line.Contents.Count() == 2) {
                     IInline first = line.Contents.First();
@@ -1521,7 +1521,7 @@ class PartyEnricher : Enricher {
                     if (IsAnd(trimmed))
                         return line;
                     WParty party = new WParty(wText1) { Role = role };
-                    return new WLine(line, new List<IInline>(2) { party, second });
+                    return WLine.Make(line, new List<IInline>(2) { party, second });
                 }
                 if (line.Contents.Count() == 3) {   // [2021] EWCA Civ 1876
                     IInline first = line.Contents.First();
@@ -1532,7 +1532,7 @@ class PartyEnricher : Enricher {
                             if (third is WText)
                                 if (wText1.Text == "SECRETARY OF STATE ") {
                                     WParty2 party = new WParty2(line.Contents.Cast<ITextOrWhitespace>()) { Role = role };
-                                    return new WLine(line, new List<IInline>(1) { party });
+                                    return WLine.Make(line, new List<IInline>(1) { party });
                                 }
                 }
                 if (line.Contents.Count() == 3) {   // EWHC/Ch/2018/2498
@@ -1553,7 +1553,7 @@ class PartyEnricher : Enricher {
                     if (IsAnd(trimmed))
                         return line;
                     WParty party = new WParty(wText3) { Role = role };
-                    return new WLine(line, new List<IInline>(3) { first, second, party });
+                    return WLine.Make(line, new List<IInline>(3) { first, second, party });
                 }
                 return line;
             }
@@ -1604,12 +1604,12 @@ class PartyEnricher : Enricher {
                 if (andFound) {
                     secondPartyFound = true;
                     WParty party = new WParty(wText) { Role = roles.second };
-                    WLine newLine = new WLine(line, new List<IInline>(1) { party });
+                    WLine newLine = WLine.Make(line, new List<IInline>(1) { party });
                     contents.Add(newLine);
                 } else {
                     firstPartyFound = true;
                     WParty party = new WParty(wText) { Role = roles.first };
-                    WLine newLine = new WLine(line, new List<IInline>(1) { party });
+                    WLine newLine = WLine.Make(line, new List<IInline>(1) { party });
                     contents.Add(newLine);
                 }
 
@@ -1646,12 +1646,12 @@ class PartyEnricher : Enricher {
                 if (andFound) {
                     secondPartyFound = true;
                     WParty party = new WParty(wText2) { Role = roles.second };
-                    WLine newLine = new WLine(line, new List<IInline>(2) { first, party });
+                    WLine newLine = WLine.Make(line, new List<IInline>(2) { first, party });
                     contents.Add(newLine);
                 } else {
                     firstPartyFound = true;
                     WParty party = new WParty(wText2) { Role = roles.first };
-                    WLine newLine = new WLine(line, new List<IInline>(2) { first, party });
+                    WLine newLine = WLine.Make(line, new List<IInline>(2) { first, party });
                     contents.Add(newLine);
                 }
 
@@ -1683,12 +1683,12 @@ class PartyEnricher : Enricher {
                 return cell;
             if (emptyAfterFirstFound) {
                 WRole role = new WRole() { Contents = line.Contents, Role = roles.second };
-                WLine newLine = new WLine(line, new List<IInline>(1) { role });
+                WLine newLine = WLine.Make(line, new List<IInline>(1) { role });
                 contents.Add(newLine);
             } else {
                 firstPartyFound = true;
                 WRole role = new WRole() { Contents = line.Contents, Role = roles.first };
-                WLine newLine = new WLine(line, new List<IInline>(1) { role });
+                WLine newLine = WLine.Make(line, new List<IInline>(1) { role });
                 contents.Add(newLine);
             }
         }
@@ -1718,7 +1718,7 @@ class PartyEnricher : Enricher {
         if (text.Text.StartsWith("IN THE MATTER OF ", StringComparison.InvariantCultureIgnoreCase)) {
             WDocTitle docTitle = new WDocTitle(text);
             List<IInline> contents = new List<IInline>(1) { docTitle };
-            return new WLine((WLine) line, contents);
+            return WLine.Make((WLine) line, contents);
         }
         return line;
     }
