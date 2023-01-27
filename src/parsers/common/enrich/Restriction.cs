@@ -66,9 +66,9 @@ class RestrictionsEnricher : Enricher {
     }
 
     private static bool IsRestriction(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string content = line.NormalizedContent();
+        string content = line.NormalizedContent;
         if (content.StartsWith("If this Transcript is to be reported or published, there is a requirement to "))
             return true;
         if (content.StartsWith("WARNING: reporting restrictions may apply to the contents transcribed in this document"))

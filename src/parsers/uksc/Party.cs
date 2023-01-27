@@ -103,13 +103,6 @@ class PartyEnricher : Enricher {
         return false;
     }
 
-    protected override WLine Enrich(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (Object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
-    }
-
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (!line.Any())
             return line;

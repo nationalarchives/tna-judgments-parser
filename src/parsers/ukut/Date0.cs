@@ -50,7 +50,7 @@ class Date0 {
         }
         Func<string, RunProperties, IInline> constructor = (text, props) => new WDocDate(text, props, date) { Name = name, Priority = priority };
         List<IInline> enriched = Helper.SplitOnGroup(wText, match.Groups[2], constructor);
-        return new WLine(line, Enumerable.Concat(line.Contents.SkipLast(1), enriched));
+        return WLine.Make(line, Enumerable.Concat(line.Contents.SkipLast(1), enriched));
     }
 
     internal static WLine EnrichLast2(WLine line, string name, int priority) {
@@ -67,7 +67,7 @@ class Date0 {
             return line;
         DateTime date = DateTime.Parse(match.Value, culture);
         WDocDate docDate = new WDocDate(line.Contents.TakeLast(2).Cast<WText>(), date) { Name = name, Priority = priority };
-        return new WLine(line, line.Contents.SkipLast(2).Append(docDate));
+        return WLine.Make(line, line.Contents.SkipLast(2).Append(docDate));
     }
 
     internal static WLine EnrichLast3(WLine line, string name, int priority) {
@@ -104,7 +104,7 @@ class Date0 {
             WDocDate docDate = new WDocDate(contents, date) { Name = name, Priority = priority };
             replacement = new List<IInline>(2) { split.Item1, docDate };
         }
-        return new WLine(line, Enumerable.Concat(line.Contents.SkipLast(3), replacement));
+        return WLine.Make(line, Enumerable.Concat(line.Contents.SkipLast(3), replacement));
     }
 
     internal static WLine EnrichWholeLine(WLine line, string name, int priority) {
@@ -118,7 +118,7 @@ class Date0 {
         DateTime date = DateTime.Parse(normalized, culture);
         WDocDate docDate = new WDocDate(line.Contents.Cast<WText>(), date) { Name = name, Priority = priority };
         List<IInline> contents = new List<IInline>(1) { docDate };
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
 }

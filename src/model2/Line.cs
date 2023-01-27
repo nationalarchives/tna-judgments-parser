@@ -18,31 +18,56 @@ class WLine : ILine {
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
 
-    public WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
+    [Obsolete]
+    internal WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
         this.main = main;
         this.properties = properties;
         this.contents = contents;
         Paragraph = null;
     }
-    public WLine(MainDocumentPart main, Paragraph paragraph) {
+    internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
         this.contents = Inline.ParseRuns(main, paragraph.ChildElements);
         Paragraph = paragraph;
     }
-    public WLine(WLine prototype, IEnumerable<IInline> contents) {
+    internal WLine(MainDocumentPart main, Paragraph paragraph, IEnumerable<IInline> contents) {
+        this.main = main;
+        this.properties = paragraph.ParagraphProperties;
+        this.contents = contents;
+        Paragraph = paragraph;
+    }
+
+    [Obsolete]
+    internal WLine(WLine prototype, IEnumerable<IInline> contents) {
+        // if (prototype.GetType().IsSubclassOf(typeof(WLine))) {
+        // }
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
     }
+    [Obsolete]
     internal WLine(WLine prototype) {
+        // if (prototype.GetType().IsSubclassOf(typeof(WLine))) {
+        // }
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = prototype.contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
+    }
+
+    public static WLine Make(WLine prototype, IEnumerable<IInline> contents) {
+        if (prototype is WOldNumberedParagraph np)
+            return new WOldNumberedParagraph(np, contents);
+        if (prototype is WRestriction restrict)
+            return new WRestriction(restrict, contents);
+        return new WLine(prototype, contents);
+    }
+    public static WLine RemoveNumber(WOldNumberedParagraph np) {
+        return new WLine(np, np.Contents);
     }
 
     public string Style {
