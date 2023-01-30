@@ -243,7 +243,7 @@ class WLine : ILine {
     virtual public string TextContent {
         get {
             if (_textContent is null)
-                _textContent = string.Join("", contents.Select(IInline.GetText));
+                _textContent = IInline.ToString(contents);
             return _textContent;
         }
     }

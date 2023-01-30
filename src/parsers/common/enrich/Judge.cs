@@ -31,10 +31,10 @@ class Judge : Enricher {
         if (!blocks.Any())
             return null;
         IBlock block = blocks.First();
-        if (block is not ILine first)
+        if (block is not WLine first)
             return null;
         ISet<string> starts = new HashSet<string> { "Before:", "Before :", "B e f o r e :", "B e f o r e:", "B E F O R E:" };
-        if (!starts.Contains(first.NormalizedContent()))
+        if (!starts.Contains(first.NormalizedContent))
             return null;
         List<IBlock> enriched = new List<IBlock>();
         enriched.Add(block);
@@ -60,7 +60,7 @@ class Judge : Enricher {
             if (IsAJudgeName(text)) {
                 found = true;
                 WJudge judge = new WJudge(text.Text, text.properties);
-                WLine line2 = new WLine(line, new List<IInline>(1) { judge });
+                WLine line2 = WLine.Make(line, new List<IInline>(1) { judge });
                 enriched.Add(line2);
                 blocks = blocks.Skip(1);
                 continue;
@@ -78,10 +78,10 @@ class Judge : Enricher {
         if (!blocks.Any())
             return null;
         IBlock block = blocks.First();
-        if (block is not ILine first)
+        if (block is not WLine first)
             return null;
         ISet<string> starts = new HashSet<string> { "Before", "Before:", "Before :", "BEFORE:", "B e f o r e :", "B e f o r e:", "B E F O R E:" };
-        if (!starts.Contains(first.NormalizedContent()))
+        if (!starts.Contains(first.NormalizedContent))
             return null;
         List<IBlock> enriched = new List<IBlock>();
         enriched.Add(block);
@@ -99,7 +99,7 @@ class Judge : Enricher {
             if (IsAJudgeName(text)) {
                 found = true;
                 WJudge judge = new WJudge(text.Text, text.properties);
-                WLine line2 = new WLine(line, new List<IInline>(1) { judge });
+                WLine line2 = WLine.Make(line, new List<IInline>(1) { judge });
                 enriched.Add(line2);
                 blocks = blocks.Skip(1);
                 continue;
@@ -113,7 +113,7 @@ class Judge : Enricher {
                                 if (text2.Text.StartsWith("(sitting as", System.StringComparison.InvariantCultureIgnoreCase) || text2.Text.StartsWith("SITTING AS", System.StringComparison.InvariantCultureIgnoreCase)) {
                                     found = true;
                                     WJudge judge = new WJudge(text.Text, text.properties);
-                                    enriched.Add(new WLine(line, new List<IInline>(1) { judge }));
+                                    enriched.Add(WLine.Make(line, new List<IInline>(1) { judge }));
                                     blocks = blocks.Skip(1);
                                     continue;
                                 }

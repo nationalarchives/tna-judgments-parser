@@ -54,6 +54,10 @@ interface IInline {
         return "";
     }
 
+    static string ToString(IEnumerable<IInline> inlines) {
+        return string.Join("", inlines.Select(GetText));
+    }
+
 }
 
 interface IInlineContainer : IInline {
