@@ -90,7 +90,7 @@ class NetrualCitation : Enricher2 {
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        if (line.Count() > 0) {
+        if (line.Any()) {
             IInline first = line.First();
             if (first is WText fText) {
                 Group group = Match(fText.Text);
@@ -193,6 +193,19 @@ class NetrualCitation : Enricher2 {
                     List<IInline> replacement = Replace(wText, group);
                     return Concat3(first, replacement, line.Skip(2));
                 }
+            }
+        }
+        if (line.Count() == 3) {
+            IInline first = line.First();
+            IInline second = line.Skip(1).First();
+            IInline third = line.Last();
+            if (first is WText fText1 && second is WText fText2 && third is WText fText3) {
+                string text = IInline.ToString(line);
+                Group group = Match(text);
+                if (group is null)
+                    group = Match2(text);
+                if (group is not null)
+                    return Replace(text, group, fText1.properties); // this won't preserve all run formatting
             }
         }
         return line;
