@@ -17,7 +17,7 @@ abstract class AbstractCourtType : Enricher2 {
             if (i < blocks.Count() - 2) {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 IBlock block3 = blocks.ElementAt(i + 2);
-                List<ILine> three = Match3(block1, block2, block3);
+                List<WLine> three = Match3(block1, block2, block3);
                 if (three is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 3);
@@ -26,14 +26,14 @@ abstract class AbstractCourtType : Enricher2 {
             }
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);
-                List<ILine> two = Match2(block1, block2);
+                List<WLine> two = Match2(block1, block2);
                 if (two is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 2);
                     return Enumerable.Concat(Enumerable.Concat(before, two), after);
                 }
             }
-            List<ILine> one = Match1(block1);
+            List<WLine> one = Match1(block1);
             if (one is not null) {
                 IEnumerable<IBlock> before = blocks.Take(i);
                 IEnumerable<IBlock> after = blocks.Skip(i + 1);
@@ -58,7 +58,7 @@ abstract class AbstractCourtType : Enricher2 {
 
     protected abstract IEnumerable<Combo1> Combo1s();
 
-    protected List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
+    protected List<WLine> Match3(IBlock one, IBlock two, IBlock three) {
         foreach (Combo3 combo in Combo3s()) {
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
@@ -70,7 +70,7 @@ abstract class AbstractCourtType : Enricher2 {
         return null;
     }
 
-    protected List<ILine> Match2(IBlock one, IBlock two) {
+    protected List<WLine> Match2(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2s()) {
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
@@ -82,7 +82,7 @@ abstract class AbstractCourtType : Enricher2 {
         return null;
     }
 
-    protected List<ILine> Match1(IBlock block) {
+    protected List<WLine> Match1(IBlock block) {
         foreach (Combo1 combo in Combo1s())
             if (combo.Match(block))
                 return combo.Transform(block);

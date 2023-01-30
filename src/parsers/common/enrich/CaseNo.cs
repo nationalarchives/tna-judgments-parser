@@ -76,7 +76,7 @@ class CaseNo : Enricher {
                             WText label2 = new WText(after, text.properties);
                             contents.Add(label2);
                         }
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^No: ([A-Z0-9/-]+ [A-Z]\d)$";
                     match = Regex.Match(text.Text, pattern);
@@ -84,7 +84,7 @@ class CaseNo : Enricher {
                         WText label = new WText(text.Text.Substring(0, match.Groups[1].Index), text.properties);
                         WCaseNo caseNo = new WCaseNo(text.Text.Substring(match.Groups[1].Index), text.properties);
                         IEnumerable<IInline> contents = new List<IInline>(2) { label, caseNo };
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^ *([A-Z0-9/-]+) *$";
                     match = Regex.Match(text.Text, pattern);
@@ -106,43 +106,43 @@ class CaseNo : Enricher {
                             WText label2 = new WText(s3, text.properties);
                             contents.Add(label2);
                         }
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^ *([A-Z0-9/]{10,}), +([A-Z0-9/]{10,}) *$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^([A-Z0-9][A-Z0-9/\-]{7,}[A-Z0-9]) & ([A-Z0-9][A-Z0-9/\-]{7,}[A-Z0-9])$"; // EWCA/Civ/2005/210
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^([A-Z0-9][A-Z0-9/\-]{7,}[A-Z0-9]) & ([A-Z0-9][A-Z0-9/\-]{7,}[A-Z0-9]\(A\))$"; // EWCA/Civ/2006/829
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^([A-Z0-9][A-Z0-9/]{7,}[A-Z0-9]), ([A-Z0-9][A-Z0-9/]{7,}[A-Z0-9]) & ([A-Z0-9][A-Z0-9/]{7,}[A-Z0-9])$"; // EWCA/Civ/2008/1082
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^([A-Z]{2} \d{4} \d{5,})$";
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                     pattern = @"^No\. (\d+ of \d{4})$";  // EWHC/Ch/2014/1100
                     match = Regex.Match(text.Text, pattern);
                     if (match.Success) {
                         List<IInline> contents = Split(text, match.Groups);
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                 }
             }
@@ -153,7 +153,7 @@ class CaseNo : Enricher {
                 if (first is WText wText1 && second is WText wText2 && third is WText wText3) {
                     if (wText1.Text == "Case No:" && wText2.Text == " " && Regex.IsMatch(wText3.Text, @"^[A-Z][A-Z0-9/-]{5,}[A-Z0-9]$")) {
                         List<IInline> contents = new List<IInline>(3) { first, second, new WCaseNo(wText3.Text, wText3.properties) };
-                        return new WLine(line, contents);
+                        return WLine.Make(line, contents);
                     }
                 }
             }
@@ -164,7 +164,7 @@ class CaseNo : Enricher {
     protected override IBlock Enrich(IBlock block) {
         if (block is not WLine line)
             return block;
-        return EnrichLine(line);
+        return Enrich(line);
     }
 
     Regex[] loneTextRegexesWithOneGroup = {
@@ -248,7 +248,7 @@ class CaseNo : Enricher {
         new Regex(@"^Case Nos: ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9]), ([A-Z0-9][A-Z0-9\/\-]+[A-Z0-9])$")   // EWHC/Admin/2012/2736
     };
 
-    private WLine EnrichLine(WLine line) {
+    protected override WLine Enrich(WLine line) {
         if (line is WOldNumberedParagraph)
             return line;
         if (line.Contents.Count() == 1)
@@ -265,7 +265,7 @@ class CaseNo : Enricher {
         List<IInline> contents = EnrichOneSpanOrNull(text);
         if (contents is null)
             return line;
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
     private List<IInline> EnrichOneSpanOrNull(WText text) {
@@ -302,7 +302,7 @@ class CaseNo : Enricher {
             if (contents is null)
                 return line;
             contents = contents.Prepend(text1);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         Regex re1 = new Regex(@"^\s*Case\s+(No|Number)s?[:\.]?\s*$", RegexOptions.IgnoreCase);
         Regex re2 = new Regex(@"^\s*([^ ]+) *$", RegexOptions.IgnoreCase);
@@ -310,13 +310,13 @@ class CaseNo : Enricher {
         Match match2 = re2.Match(text2.Text);
         if (match1.Success && match2.Success) {
             IEnumerable<IInline> contents = Split(text2, match2.Groups).Prepend(text1);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         re2 = new Regex(@"^\s*([A-Z0-9]{9,} [A-Z][0-9]) *$");   // EWCA/Crim/2012/2893
         match2 = re2.Match(text2.Text);
         if (match1.Success && match2.Success) {
             IEnumerable<IInline> contents = Split(text2, match2.Groups).Prepend(text1);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         re1 = new Regex(@"^Case $", RegexOptions.IgnoreCase);
         re2 = new Regex(@"^No\. (\d{4} FOLIO \d+)$", RegexOptions.IgnoreCase);
@@ -324,7 +324,7 @@ class CaseNo : Enricher {
         match2 = re2.Match(text2.Text);
         if (match1.Success && match2.Success) {
             IEnumerable<IInline> contents = Split(text2, match2.Groups).Prepend(text1);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
         return line;
     }

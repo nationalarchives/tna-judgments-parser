@@ -15,11 +15,11 @@ class LawyerEnricher : Enricher {
         List<IBlock> enriched = new List<IBlock>(blocks.Count());
         bool representation = false;
         foreach (IBlock block in blocks) {
-            if (!(block is ILine line)) {
+            if (!(block is WLine line)) {
                 enriched.Add(block);
                 continue;
             }
-            representation = representation || NormalizeLine(line).Contains("Representation");
+            representation = representation || line.TextContent.Contains("Representation");
             if (representation)
                 enriched.Add(Enrich(block));
             else
