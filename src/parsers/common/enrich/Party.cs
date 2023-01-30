@@ -130,8 +130,8 @@ class PartyEnricher : Enricher {
 
     /* three and four */
 
-    private static bool IsRexOrRegina(ILine line) {
-        string content = line.NormalizedContent();
+    private static bool IsRexOrRegina(WLine line) {
+        string content = line.NormalizedContent;
         if (content == "REX")
             return true;
         if (content == "R E X")
@@ -150,7 +150,7 @@ class PartyEnricher : Enricher {
         IBlock block2 = before[i+1];
         IBlock block3 = before[i+2];
         IBlock block4 = before[i+3];
-        if (block1 is not ILine line1)
+        if (block1 is not WLine line1)
             return false;
         if (!IsRexOrRegina(line1))
             return false;
@@ -181,7 +181,7 @@ class PartyEnricher : Enricher {
         IBlock block3 = before[i+2];
         IBlock block4 = before[i+3];
         IBlock block5 = before[i+4];
-        if (block1 is not ILine line1)
+        if (block1 is not WLine line1)
             return false;
         if (!IsRexOrRegina(line1))
             return false;
@@ -257,7 +257,7 @@ class PartyEnricher : Enricher {
         if (i == rest.Length)
             return null;
         line = rest[i];
-        if (line is ILine inPrivate && inPrivate.NormalizedContent() == "IN PRIVATE") { // EWHC/Admin/2012/2822
+        if (line is WLine inPrivate && inPrivate.NormalizedContent == "IN PRIVATE") { // EWHC/Admin/2012/2822
             enriched.Add(line);
             i += 1;
             if (i == rest.Length)
@@ -492,9 +492,9 @@ class PartyEnricher : Enricher {
     /* */
 
     private static bool IsBeforePartyMarker(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         if (Regex.IsMatch(normalized, @"^-( -)+$"))
             return true;
         if (Regex.IsMatch(normalized, @"^-+$"))
@@ -504,9 +504,9 @@ class PartyEnricher : Enricher {
         return false;
     }
     private static bool IsBeforePartyMarker2(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':');
         if (normalized.Equals("BETWEEN", StringComparison.InvariantCultureIgnoreCase))
             return true;
@@ -514,9 +514,9 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsBeforePartyMarker3(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':');
         if (normalized.Equals("AND BETWEEN", StringComparison.InvariantCultureIgnoreCase))
             return true;
@@ -595,7 +595,7 @@ class PartyEnricher : Enricher {
         //         return false;
         //     return IsPartyName(np.Contents.First());
         // }
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
         if (line.Contents.Count() == 0)
             return false;
@@ -745,9 +745,9 @@ class PartyEnricher : Enricher {
         return GetPartyRole(s) is not null;
     }
     private static bool IsFirstPartyType(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         return IsFirstPartyType(normalized);
     }
     private static PartyRole GetAnyPartyRole(string s) {
@@ -799,9 +799,9 @@ class PartyEnricher : Enricher {
         }
     }
     private static PartyRole GetFirstPartyRole(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             throw new System.Exception();
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         return GetFirstPartyRole(normalized);
     }
 
@@ -909,15 +909,15 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsBetweenPartyMarker(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         return IsV(normalized);
     }
     private static bool IsBetweenPartyMarker2(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         return IsAnd(normalized);
     }
 
@@ -941,9 +941,9 @@ class PartyEnricher : Enricher {
         return GetPartyRole(s) is not null;
     }
     private static bool IsSecondPartyType(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         return IsSecondPartyType(normalized);
     }
     private static PartyRole GetSecondPartyRole(string s) {
@@ -1006,18 +1006,18 @@ class PartyEnricher : Enricher {
         }
     }
     private static PartyRole GetSecondPartyRole(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             throw new System.Exception();
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         return GetSecondPartyRole(normalized);
     }
 
     private static bool IsAfterPartyMarker(IBlock block) {
         if (IsBeforePartyMarker(block))
             return true;
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string content = line.NormalizedContent();
+        string content = line.NormalizedContent;
         if (content.StartsWith("Computer Aided Transcript"))
             return true;
         if (content.StartsWith("REPORTING RESTRICTIONS APPLY:"))
@@ -1031,8 +1031,8 @@ class PartyEnricher : Enricher {
     private IBlock EnrichBlock(IBlock block) {
         if (block is WTable table)
             return EnrichTable(table);
-        if (block is ILine line)
-            return EnrichLine(line);
+        if (block is WLine line)
+            return Enrich(line);
         return block;
     }
 
@@ -1073,18 +1073,18 @@ class PartyEnricher : Enricher {
     }
 
     private static bool IsEmptyCell(ICell cell) {
-        return cell.Contents.All(block => block is ILine line && IsEmptyLine(line));
+        return cell.Contents.All(block => block is WLine line && IsEmptyLine(line));
     }
     private static bool IsEmptyCell(WCell cell) {
-        return cell.Contents.All(block => block is ILine line && IsEmptyLine(line));
+        return cell.Contents.All(block => block is WLine line && IsEmptyLine(line));
     }
     private static bool IsEmptyLine(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
         return IsEmptyLine(line);
     }
-    private static bool IsEmptyLine(ILine line) {
-        return string.IsNullOrWhiteSpace(line.NormalizedContent());
+    private static bool IsEmptyLine(WLine line) {
+        return string.IsNullOrWhiteSpace(line.NormalizedContent);
     }
 
     private WRow EnrichRow(WRow row) {
@@ -1252,9 +1252,9 @@ class PartyEnricher : Enricher {
     }
 
     private static PartyRole? GetOneLinePartyRole(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return null;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         ISet<string> types = new HashSet<string>() { "Appellant", "APPELLANT", "Appellants", "Defendant/Appellant", "Defendant/ Appellant", "Defendants/Appellants", "Appellants / Defendants", "Defendants/Appellants/", "Appellant/ Defendant", "Appellants/Claimants", "Appellants/ Claimants", "Claimant/Appellant", "Claimant/ Appellant", "Claimant / Appellant", "Appellant / Claimant", "Appellant / Third Defendant",
             "1st Appellant", "Respondent/Appellant", "Defendants/ Appellants",
             "Appellant/ Respondent", // [2021] EWCA Civ 1792
@@ -1304,13 +1304,13 @@ class PartyEnricher : Enricher {
         if (lines.Count() != 2)
             return null;
         IBlock block1 = lines.First();
-        if (block1 is not ILine line1)
+        if (block1 is not WLine line1)
             return null;
         IBlock block2 = lines.Last();
-        if (block2 is not ILine line2)
+        if (block2 is not WLine line2)
             return null;
-        string one = line1.NormalizedContent();
-        string two = line2.NormalizedContent();
+        string one = line1.NormalizedContent;
+        string two = line2.NormalizedContent;
         return GetTwoLinePartyRole(one, two);
     }
 
@@ -1395,49 +1395,49 @@ class PartyEnricher : Enricher {
         if (!blocks.All(block => block is WLine))
             return null;
         if (blocks.Count() == 3) {
-            string one = ((ILine) blocks.First()).NormalizedContent();
-            string two = ((ILine) blocks.Skip(1).First()).NormalizedContent();
-            string three = ((ILine) blocks.Skip(2).First()).NormalizedContent();
+            string one = ((WLine) blocks.First()).NormalizedContent;
+            string two = ((WLine) blocks.Skip(1).First()).NormalizedContent;
+            string three = ((WLine) blocks.Skip(2).First()).NormalizedContent;
             if (one == "Defendants" && two == "Part 20 Claimant/" && three == "Appellant")
                 return PartyRole.Appellant;
             if (one == "Respondents" && two == "Appellant" && three == "Respondent")    // EWCA/Civ/2010/180
                 return PartyRole.Respondent;
         }
-        Func<ILine, bool> defendant = (line) => {
-            string normalized = line.NormalizedContent();
+        Func<WLine, bool> defendant = (line) => {
+            string normalized = line.NormalizedContent;
             return Regex.IsMatch(normalized, @"^\d(st|nd|rd|th)? Defendant$");
         };
-        if (blocks.Cast<ILine>().All(defendant))
+        if (blocks.Cast<WLine>().All(defendant))
             return PartyRole.Defendant;
-        Func<ILine, bool> defendant2 = (line) => {  // EWHC/Fam/2003/365
-            string normalized = line.NormalizedContent();
+        Func<WLine, bool> defendant2 = (line) => {  // EWHC/Fam/2003/365
+            string normalized = line.NormalizedContent;
             return Regex.IsMatch(normalized, @"^(First|Second|Third|Fourth) Defendant$", RegexOptions.IgnoreCase);
         };
-        if (blocks.Cast<ILine>().All(defendant2))
+        if (blocks.Cast<WLine>().All(defendant2))
             return PartyRole.Defendant;
-        Func<ILine, bool> appellant = (line) => {
-            string normalized = line.NormalizedContent();
+        Func<WLine, bool> appellant = (line) => {
+            string normalized = line.NormalizedContent;
             return Regex.IsMatch(normalized, @"^\d(st|nd|rd|th)? Appellant$", RegexOptions.IgnoreCase);
         };
-        if (blocks.Cast<ILine>().All(appellant))
+        if (blocks.Cast<WLine>().All(appellant))
             return PartyRole.Appellant;
-        Func<ILine, bool> respondent = (line) => {
-            string normalized = line.NormalizedContent();
+        Func<WLine, bool> respondent = (line) => {
+            string normalized = line.NormalizedContent;
             return Regex.IsMatch(normalized, @"^(\d(st|nd|rd|th)? ?)?Respondent$", RegexOptions.IgnoreCase); // EWFC/HCJ/2014/34, no space in EWHC/Fam/2013/1864
         };
-        if (blocks.Cast<ILine>().All(respondent))
+        if (blocks.Cast<WLine>().All(respondent))
             return PartyRole.Respondent;
-        Func<ILine, bool> respondent2 = (line) => {
-            string normalized = line.NormalizedContent();
+        Func<WLine, bool> respondent2 = (line) => {
+            string normalized = line.NormalizedContent;
             return Regex.IsMatch(normalized, @"^(First|Second|Third|Fourth) Respondent$", RegexOptions.IgnoreCase);
         };
-        if (blocks.Cast<ILine>().All(respondent2))
+        if (blocks.Cast<WLine>().All(respondent2))
             return PartyRole.Respondent;
         // if (blocks.Count() == 4) {
-        //     string one = ((ILine) blocks.First()).NormalizedContent();
-        //     string two = ((ILine) blocks.ElementAt(1)).NormalizedContent();
-        //     string three = ((ILine) blocks.ElementAt(2)).NormalizedContent();
-        //     string four = ((ILine) blocks.ElementAt(3)).NormalizedContent();
+        //     string one = ((WLine) blocks.First()).NormalizedContent();
+        //     string two = ((WLine) blocks.ElementAt(1)).NormalizedContent();
+        //     string three = ((WLine) blocks.ElementAt(2)).NormalizedContent();
+        //     string four = ((WLine) blocks.ElementAt(3)).NormalizedContent();
         //     if (string.IsNullOrWhiteSpace(three) && four == "Intervener")
         //         return GetTwoLinePartyRole(one, two);
         // }
@@ -1709,7 +1709,7 @@ class PartyEnricher : Enricher {
         return new WCell(cell.Row, cell.Props, new List<IBlock>(1) { line });
     }
 
-    protected override ILine EnrichLine(ILine line) {
+    protected override WLine Enrich(WLine line) {
         if (line.Contents.Count() != 1)
             return line;
         IInline first = line.Contents.First();
