@@ -102,9 +102,9 @@ abstract class Enricher {
 
     // }
 
-    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichLine);
+    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichILine);
 
-    protected virtual ILine EnrichLine(ILine line) {
+    private ILine EnrichILine(ILine line) {
         if (line is WLine wLine)
             return Enrich(wLine);
         return line;
@@ -156,7 +156,7 @@ abstract class Enricher2 : Enricher {
 
     protected override IBlock Enrich(IBlock block) {
         if (block is WLine line)
-            return EnrichLine(line);
+            return Enrich(line);
         if (block is WTable table)
             return EnrichTable(table);
         return block;

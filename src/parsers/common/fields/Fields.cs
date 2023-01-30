@@ -256,13 +256,13 @@ class Fields {
         match = Regex.Match(fieldCode, @"^ =\d");   // EWHC/Ch/2005/2793, EWHC/Ch/2011/2301
         if (match.Success) {
             IEnumerable<IInline> rest = Rest(main, withinField, i);
-            string normal = Enricher.NormalizeInlines(rest);
-            logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
+            // string normal = Enricher.NormalizeInlines(rest);
+            // logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
             return rest;
         }
         if (fieldCode.StartsWith(" PAGE ")) {   // EWHC/Admin/2003/2369, [2022] EWHC 2576 (Fam)
-            string rest = ILine.TextContent(RestOptional(main, withinField, i));
-            logger.LogDebug("ignoring PAGE field: " + rest);
+            // string rest = ILine.TextContent(RestOptional(main, withinField, i));
+            // logger.LogDebug("ignoring PAGE field: " + rest);
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" NUMPAGES "))  // [2022] EWFC 125, [2022] EWHC 2794 (Fam)
