@@ -225,6 +225,76 @@ abstract class Builder {
         }
     }
 
+    // private void AddTable1(XmlElement parent, ITable model) {
+    //     XmlElement table = doc.CreateElement("table", ns);
+    //     if (model.Style is not null)
+    //         table.SetAttribute("class", model.Style);
+    //     parent.AppendChild(table);
+    //     List<float> columnWidths = model.ColumnWidthsIns;
+    //     if (columnWidths.Any()) {
+    //         IEnumerable<string> s = columnWidths.Select(w => CSS2.ConvertSize(w, "in"));
+    //         string s2 = string.Join(" ", s);
+    //         table.SetAttribute("widths", Metadata.ukns, s2);
+    //     }
+    //     List<ICell> mergedContentsHandled = new List<ICell>();
+    //     List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
+    //     int iRow = 0;
+    //     foreach (List<ICell> row in rows) {
+    //         bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
+    //         XmlElement tr = doc.CreateElement("tr", ns);
+    //         int iCell = 0;
+    //         foreach (ICell cell in row) {
+    //             if (cell.VMerge == VerticalMerge.Continuation) {
+    //                 logger.LogDebug("skipping merged cell");
+    //                 bool found = mergedContentsHandled.Remove(cell);
+    //                 if (!found)
+    //                     throw new Exception();
+    //                 iCell += 1;
+    //                 continue;
+    //             }
+    //             XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
+    //             if (cell.ColSpan is not null)
+    //                 td.SetAttribute("colspan", cell.ColSpan.ToString());
+    //             Dictionary<string, string> styles = cell.GetCSSStyles();
+    //             if (styles.Any())
+    //                 td.SetAttribute("style", CSS.SerializeInline(styles));
+    //             tr.AppendChild(td);
+    //             this.blocks(td, cell.Contents);
+    //             if (cell.VMerge == VerticalMerge.Start) {
+    //                 IEnumerable<ICell> merged = rows.Skip(iRow + 1)
+    //                     .Select(r => r.Skip(iCell).FirstOrDefault())    // can be null, e.g., in ukut/aac/2022/122
+    //                     .TakeWhile(c => c is not null && c.VMerge == VerticalMerge.Continuation);
+    //                 td.SetAttribute("rowspan", (merged.Count() + 1).ToString());
+    //                 foreach (ICell c in merged) {
+    //                     this.blocks(td, c.Contents);
+    //                     logger.LogDebug("handling merged cell");
+    //                     mergedContentsHandled.Add(c);
+    //                 }
+    //             }
+    //             iCell += 1;
+    //         }
+    //         if (tr.HasChildNodes)   // some rows might contain nothing but merged cells
+    //             table.AppendChild(tr);
+    //         iRow += 1;
+    //     }
+
+    //     if (mergedContentsHandled.Any()) {
+    //         logger.LogCritical("error handling merged cells");
+    //         throw new Exception();  // perhaps ther
+    //     }
+    // }
+
+    private int getColspan(XmlElement td) {
+        string attr = td.GetAttribute("colspan");
+        return string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
+    }
+    private void incrementRowspan(XmlElement td) {
+        string attr = td.GetAttribute("rowspan");
+        int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
+        rowspan += 1;
+        td.SetAttribute("rowspan", rowspan.ToString());
+    }
+
     private void AddTable(XmlElement parent, ITable model) {
         XmlElement table = doc.CreateElement("table", ns);
         if (model.Style is not null)
@@ -236,20 +306,32 @@ abstract class Builder {
             string s2 = string.Join(" ", s);
             table.SetAttribute("widths", Metadata.ukns, s2);
         }
-        List<ICell> mergedContentsHandled = new List<ICell>();
+
+        /* This keeps a grid of cells, with the dimensions the table would have
+        /* if none of the cells were merged. Merged cells are repeated.
+        /* The purpose is to find the correct cell above for vertically merged cells. */
+        List<List<XmlElement>> allCellsWithRepeats = new List<List<XmlElement>>();
+
         List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
         int iRow = 0;
         foreach (List<ICell> row in rows) {
+
+            List<XmlElement> thisRowOfCellsWithRepeats = new List<XmlElement>();
+            allCellsWithRepeats.Add(thisRowOfCellsWithRepeats);
+
             bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
             XmlElement tr = doc.CreateElement("tr", ns);
             int iCell = 0;
             foreach (ICell cell in row) {
                 if (cell.VMerge == VerticalMerge.Continuation) {
-                    logger.LogDebug("skipping merged cell");
-                    bool found = mergedContentsHandled.Remove(cell);
-                    if (!found)
-                        throw new Exception();
-                    iCell += 1;
+                    // the cell above for which this is a continuation
+                    XmlElement above = allCellsWithRepeats[iRow - 1][iCell];
+                    incrementRowspan(above);
+                    this.blocks(above, cell.Contents);
+                    int colspanAbove = getColspan(above);
+                    for (int i = 0; i < colspanAbove; i++)
+                        thisRowOfCellsWithRepeats.Add(above);
+                    iCell += colspanAbove;
                     continue;
                 }
                 XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
@@ -260,27 +342,15 @@ abstract class Builder {
                     td.SetAttribute("style", CSS.SerializeInline(styles));
                 tr.AppendChild(td);
                 this.blocks(td, cell.Contents);
-                if (cell.VMerge == VerticalMerge.Start) {
-                    IEnumerable<ICell> merged = rows.Skip(iRow + 1)
-                        .Select(r => r.Skip(iCell).FirstOrDefault())    // can be null, e.g., in ukut/aac/2022/122
-                        .TakeWhile(c => c is not null && c.VMerge == VerticalMerge.Continuation);
-                    td.SetAttribute("rowspan", (merged.Count() + 1).ToString());
-                    foreach (ICell c in merged) {
-                        this.blocks(td, c.Contents);
-                        logger.LogDebug("handling merged cell");
-                        mergedContentsHandled.Add(c);
-                    }
-                }
-                iCell += 1;
+
+                int colspan = cell.ColSpan ?? 1;
+                for (int i = 0; i < colspan; i++)
+                    thisRowOfCellsWithRepeats.Add(td);
+                iCell += colspan;
             }
             if (tr.HasChildNodes)   // some rows might contain nothing but merged cells
                 table.AppendChild(tr);
             iRow += 1;
-        }
-
-        if (mergedContentsHandled.Any()) {
-            logger.LogCritical("error handling merged cells");
-            throw new Exception();
         }
     }
 
