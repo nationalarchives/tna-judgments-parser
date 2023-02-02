@@ -131,7 +131,7 @@ class PreParser {
 
     /* */
 
-    // this might be unnecessary; e.InnerText might work
+    // e.InnerText collapses tabs to the empty string
     private static string NormalizeParagraph(Paragraph e) {
         IEnumerable<string> texts = e.Descendants()
             .Where(e => e is Text || e is TabChar)
@@ -160,7 +160,10 @@ class PreParser {
         if (match.Success) {
             string rest = t1.Text.TrimStart().Substring(match.Length).TrimStart();
             if (string.IsNullOrEmpty(rest)) {
-                return new WLine(main, e, unfiltered.Skip(1));
+                var rest2 = unfiltered.Skip(1);
+                if (rest2.FirstOrDefault() is WTab)
+                    rest2 = rest2.Skip(1);
+                return new WLine(main, e, rest2);
             } else {
                 WText prepend = new WText(rest, t1.properties);
                 return new WLine(main, e, unfiltered.Skip(1).Prepend(prepend));
@@ -236,7 +239,7 @@ class PreParser {
     /* */
 
     private static WText GetPlainNumberFromParagraph(Paragraph e) {
-        IEnumerable<OpenXmlElement> texts = e.ChildElements.Where(e => e is Text || e is TabChar);
+        IEnumerable<OpenXmlElement> texts = e.Descendants().Where(e => e is Text || e is TabChar);
         if (texts.FirstOrDefault() is not Text text)
             return null;
         if (texts.Skip(1).FirstOrDefault() is not TabChar)
