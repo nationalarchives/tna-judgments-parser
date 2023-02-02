@@ -44,6 +44,8 @@ class Numbering2 {
         AbstractNum abstractNum = Numbering.GetAbstractNum(main, instance);
         Int32Value abstractNumberId = abstractNum.AbstractNumberId;
         Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
+        if (baseLevel is null)  // [2023] UKFTT 00089 (TC), a very strange case
+            return null;
         LevelText format = baseLevel.LevelText;
 
         /* None */
