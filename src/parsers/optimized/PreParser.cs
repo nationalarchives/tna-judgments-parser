@@ -145,7 +145,7 @@ class PreParser {
         if (!match.Success)
             return null;
         string number = match.Groups[1].Value;
-        RunProperties rPr = e.Descendants<RunProperties>().FirstOrDefault();
+        RunProperties rPr = e.Descendants<Run>().FirstOrDefault()?.RunProperties;
         return new WText(number, rPr);
     }
 
