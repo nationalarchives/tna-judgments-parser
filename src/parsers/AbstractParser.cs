@@ -128,6 +128,8 @@ abstract class AbstractParser {
         if (e is Paragraph p) {
             if (DOCX.Numbering2.HasOwnNumber(p))
                 return false;
+            if (DOCX.Numbering2.HasEffectiveStyleNumber(p) && !DOCX.Paragraphs.IsEmptySectionBreak(p))
+                return false;
             if (string.IsNullOrWhiteSpace(p.InnerText))
                 return true;
         }
