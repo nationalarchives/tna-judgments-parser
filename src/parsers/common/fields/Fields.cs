@@ -113,7 +113,7 @@ class Fields {
         if (match.Success) {
             if (i == withinField.Count) {
                 string field = match.Groups[1].Value;
-                RunProperties rProps = first.Ancestors<Run>().FirstOrDefault()?.Descendants<RunProperties>().FirstOrDefault();
+                RunProperties rProps = first.Ancestors<Run>().FirstOrDefault()?.RunProperties;
                 WText wText = new WText(field, rProps);
                 return new List<IInline>(1) { wText };
             }
