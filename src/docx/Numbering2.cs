@@ -25,6 +25,17 @@ class Numbering2 {
         int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         return numId.HasValue && numId.Value != 0;
     }
+    // has style number and that number is not canceled
+    public static bool HasEffectiveStyleNumber(Paragraph paragraph) {
+        int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        if (numId.HasValue && numId.Value == 0)
+            return false;
+        Style style = Styles.GetStyle(Main.Get(paragraph), paragraph);
+        if (style is null)
+            return false;
+        numId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+        return numId.HasValue && numId.Value != 0;
+    }
 
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
@@ -527,8 +538,7 @@ class Numbering2 {
         HashSet<int> prevEncounteredNumIds = new HashSet<int>();
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
-            bool noContent = prev.ChildElements.Any(child => child is ParagraphProperties) && prev.ChildElements.All(child => child is ParagraphProperties);
-            if (noContent && !HasOwnNumber(prev))
+            if (Paragraphs.IsEmptySectionBreak(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
