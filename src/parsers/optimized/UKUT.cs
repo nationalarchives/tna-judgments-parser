@@ -181,6 +181,10 @@ class OptimizedUKUTParser : OptimizedParser {
         new PartyEnricher()
     };
 
+    protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage) {
+        return Enricher.Enrich(coverPage, coverPageEnrichers);
+    }
+
     protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {
         return Enricher.Enrich(header, headerEnrichers);
     }
