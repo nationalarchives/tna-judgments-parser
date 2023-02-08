@@ -53,6 +53,7 @@ abstract class OptimizedParser {
             logger.LogDebug("parsing did not complete: " + i);
             throw new Exception();
         }
+        IEnumerable<IBlock> coverPage = EnrichCoverPage(PreParsed.Header);
         if (header is not null)
             header = EnrichHeader(header);
         body = EnrichBody(body);
@@ -64,7 +65,7 @@ abstract class OptimizedParser {
         IEnumerable<IInternalAttachment> attachments = Util.NumberAttachments<WordprocessingDocument>(this.attachments).Select(tup => FlatParagraphsParser.Parse(tup.Item1.Item1, tup.Item1.Item2, tup.Item2));
         return new Judgment(doc, meta) {
             Type = type,
-            CoverPage = PreParsed.Header,
+            CoverPage = coverPage,
             Header = header,
             Body = body,
             Conclusions = conclusions,
@@ -75,6 +76,9 @@ abstract class OptimizedParser {
 
     protected abstract List<IBlock> Header();
 
+    protected virtual IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage) {
+        return coverPage;
+    }
     protected virtual IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {
         return header;
     }
