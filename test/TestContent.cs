@@ -25,6 +25,28 @@ public class TestContent {
         Assert.Equal(expected, actual);
     }
 
+    [Fact]
+    public void Test11() {
+        var main = Tests.ReadDocx(11, "main");
+        var attach = Tests.ReadDocx(11, "order");
+        List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach, Type = Api.AttachmentType.Order } };
+        var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
+        var expected = Tests.ReadXml(11);
+        actual = ExtractNormalizedContent(actual);
+        expected = ExtractNormalizedContent(expected);
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void Test28() {
+        var docx = Tests.ReadDocx(28);
+        var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
+        var expected = Tests.ReadXml(28);
+        actual = ExtractNormalizedContent(actual);
+        expected = ExtractNormalizedContent(expected);
+        Assert.Equal(expected, actual);
+    }
+
     private string ExtractNormalizedContent(string xml) {
         XmlDocument doc = new XmlDocument();
         doc.LoadXml(xml);
