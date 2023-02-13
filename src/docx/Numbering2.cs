@@ -531,7 +531,7 @@ class Numbering2 {
     /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-        // int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+        int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
         int? start = null;
         int numIdOfStartOverride = -1;
         bool prevContainsNumId = false;
@@ -581,8 +581,12 @@ class Numbering2 {
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
-                if (!isHigher && start is null && prevNumIdOfStyle is not null && prevNumIdOfStyle.Value != prevNumId.Value) {
-                    if (!(prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value)) {    // test47
+                if (!isHigher && !start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
+                    var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val;
+                    var prevStyle = prev.ParagraphProperties?.ParagraphStyleId?.Val;
+                    if (prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value) { // test47
+                    } else if (thisStyle.HasValue && prevStyle.HasValue && thisStyle.Value == prevStyle.Value && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test52
+                    } else { // test38
                         start = 1;
                         numIdOfStartOverride = -2;
                     }
