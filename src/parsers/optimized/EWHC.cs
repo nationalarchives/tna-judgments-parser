@@ -131,9 +131,9 @@ class OptimizedEWHCParser : OptimizedParser {
     private List<IBlock> Header3() {
         List<IBlock> header = new List<IBlock>();
         foreach (var b in PreParsed.Body.Skip(i)) {
-            header.Add(b.Block);
             if (b.LineBreakBefore)
                 return header;
+            header.Add(b.Block);
             if (b.Block is not WLine line)
                 continue;
             foreach (Regex regex in titleRegexes)
