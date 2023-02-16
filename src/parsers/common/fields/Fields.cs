@@ -237,11 +237,10 @@ class Fields {
             if (!IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any()) { // [2020] UKSC 49
-                string url = match.Groups[1].Value;
-                WExternalImage image = new WExternalImage() { URL = url };
-                return new List<IInline>(1) { image };
-            }
+            if (!remaining.Any()) // [2020] UKSC 49, [2023] EWHC 178 (IPEC)
+                logger.LogWarning($"ignoring external image { match.Groups[1].Value }");
+                // note that INCLUDEPICTURE fields with the \d flag are handled by the IncludedPicture class below
+
             return Inline.ParseRuns(main, remaining);
         }
         if (Seq.Is(fieldCode))
