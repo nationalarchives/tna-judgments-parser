@@ -1,0 +1,1658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewcop/2023/3" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewcop/2023/3" />
+          <FRBRdate date="2023-01-20" name="judgment" />
+          <FRBRauthor href="#ewcop" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="3" />
+          <FRBRname value="Sunderland City Council v Lioubov Macpherson" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3" />
+          <FRBRdate date="2023-01-20" name="judgment" />
+          <FRBRauthor href="#ewcop" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3/data.xml" />
+          <FRBRdate date="2023-02-17T16:35:03" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2023-01-20" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewcop" href="https://www.gov.uk/courts-tribunals/court-of-protection" showAs="The Court of Protection" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="sunderland-city-council" href="" showAs="Sunderland City Council" />
+        <TLCPerson eId="lioubov-macpherson" href="" showAs="Lioubov Macpherson" />
+        <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-mr-justice-poole" href="/judge-mr-justice-poole" showAs="MR JUSTICE POOLE" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWCOP</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>3</uk:number>
+        <uk:cite>[2023] EWCOP 3</uk:cite>
+        <uk:parser>0.12.9</uk:parser>
+        <uk:hash>f3f59c869e23d9f4d489620fb69ba400fcb43b6d01a4b3e4cf8ee27ace5c5b9f</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading2 { font-size: 13pt; color: #2E74B5; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .Heading4 { font-style: italic; font-size: 12pt; color: #2E74B5; }
+#judgment .Heading5 { font-size: 12pt; color: #2E74B5; }
+#judgment .Heading6 { font-size: 12pt; color: #1F4D78; }
+#judgment .Heading7 { font-style: italic; font-size: 12pt; color: #1F4D78; }
+#judgment .Heading8 { font-size: 10.5pt; color: #272727; }
+#judgment .Heading9 { font-style: italic; font-size: 10.5pt; color: #272727; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 1.77in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 2.26in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 2.76in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 3.25in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 3.74in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 4.23in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 4.73in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 5.22in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .MainHeading { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .Subheading { font-style: italic; font-size: 12pt; }
+#judgment .BalloonText { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Bibliography { font-size: 12pt; }
+#judgment .BlockText { margin-left: 0.8in; margin-right: 0.8in; font-style: italic; font-size: 12pt; color: #5B9BD5; }
+#judgment .BodyText { font-size: 12pt; }
+#judgment .BodyText2 { font-size: 12pt; }
+#judgment .BodyText3 { font-size: 8pt; }
+#judgment .BodyTextFirstIndent { font-size: 12pt; }
+#judgment .BodyTextIndent { margin-left: 0.2in; font-size: 12pt; }
+#judgment .BodyTextFirstIndent2 { margin-left: 0.25in; font-size: 12pt; }
+#judgment .BodyTextIndent2 { margin-left: 0.2in; font-size: 12pt; }
+#judgment .BodyTextIndent3 { margin-left: 0.2in; font-size: 8pt; }
+#judgment .Caption { font-style: italic; font-size: 9pt; color: #44546A; }
+#judgment .Closing { margin-left: 2.95in; font-size: 12pt; }
+#judgment .CommentText { font-size: 10pt; }
+#judgment .CommentSubject { font-weight: bold; font-size: 10pt; }
+#judgment .Date { font-size: 12pt; }
+#judgment .DocumentMap { font-family: 'Segoe UI'; font-size: 8pt; }
+#judgment .E-mailSignature { font-size: 12pt; }
+#judgment .EndnoteText { font-size: 10pt; }
+#judgment .EnvelopeAddress { margin-left: 2in; font-size: 12pt; }
+#judgment .EnvelopeReturn { font-size: 10pt; }
+#judgment .FootnoteText { font-size: 10pt; }
+#judgment .HTMLAddress { font-style: italic; font-size: 12pt; }
+#judgment .HTMLPreformatted { font-family: Consolas; font-size: 10pt; }
+#judgment .Index1 { margin-left: 0.17in; font-size: 12pt; }
+#judgment .Index2 { margin-left: 0.33in; font-size: 12pt; }
+#judgment .Index3 { margin-left: 0.5in; font-size: 12pt; }
+#judgment .Index4 { margin-left: 0.67in; font-size: 12pt; }
+#judgment .Index5 { margin-left: 0.83in; font-size: 12pt; }
+#judgment .Index6 { margin-left: 1in; font-size: 12pt; }
+#judgment .Index7 { margin-left: 1.17in; font-size: 12pt; }
+#judgment .Index8 { margin-left: 1.33in; font-size: 12pt; }
+#judgment .Index9 { margin-left: 1.5in; font-size: 12pt; }
+#judgment .IndexHeading { font-weight: bold; font-size: 12pt; }
+#judgment .IntenseQuote { text-align: center; margin-left: 0.6in; margin-right: 0.6in; font-style: italic; font-size: 12pt; color: #5B9BD5; }
+#judgment .List { margin-left: 0.2in; font-size: 12pt; }
+#judgment .List2 { margin-left: 0.39in; font-size: 12pt; }
+#judgment .List3 { margin-left: 0.59in; font-size: 12pt; }
+#judgment .List4 { margin-left: 0.79in; font-size: 12pt; }
+#judgment .List5 { margin-left: 0.98in; font-size: 12pt; }
+#judgment .ListBullet { margin-left: 0.25in; font-size: 12pt; }
+#judgment .ListBullet2 { margin-left: 0.45in; font-size: 12pt; }
+#judgment .ListBullet3 { margin-left: 0.64in; font-size: 12pt; }
+#judgment .ListBullet4 { margin-left: 0.84in; font-size: 12pt; }
+#judgment .ListBullet5 { margin-left: 1.04in; font-size: 12pt; }
+#judgment .ListContinue { margin-left: 0.2in; font-size: 12pt; }
+#judgment .ListContinue2 { margin-left: 0.39in; font-size: 12pt; }
+#judgment .ListContinue3 { margin-left: 0.59in; font-size: 12pt; }
+#judgment .ListContinue4 { margin-left: 0.79in; font-size: 12pt; }
+#judgment .ListContinue5 { margin-left: 0.98in; font-size: 12pt; }
+#judgment .ListNumber { margin-left: 0.25in; font-size: 12pt; }
+#judgment .ListNumber2 { margin-left: 0.45in; font-size: 12pt; }
+#judgment .ListNumber3 { margin-left: 0.64in; font-size: 12pt; }
+#judgment .ListNumber4 { margin-left: 0.84in; font-size: 12pt; }
+#judgment .ListNumber5 { margin-left: 1.04in; font-size: 12pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
+#judgment .MacroText { font-family: Consolas; }
+#judgment .MessageHeader { margin-left: 0.79in; font-size: 12pt; }
+#judgment .NoSpacing { font-size: 12pt; }
+#judgment .NormalWeb { font-size: 12pt; }
+#judgment .NormalIndent { margin-left: 0.5in; font-size: 12pt; }
+#judgment .NoteHeading { font-size: 12pt; }
+#judgment .PlainText { font-family: Consolas; font-size: 10.5pt; }
+#judgment .Salutation { font-size: 12pt; }
+#judgment .Signature { margin-left: 2.95in; font-size: 12pt; }
+#judgment .Subtitle { font-size: 11pt; color: #5A5A5A; }
+#judgment .TableofAuthorities { margin-left: 0.17in; font-size: 12pt; }
+#judgment .TableofFigures { font-size: 12pt; }
+#judgment .TOAHeading { font-weight: bold; font-size: 12pt; }
+#judgment .TOC1 { font-size: 12pt; }
+#judgment .TOC2 { margin-left: 0.17in; font-size: 12pt; }
+#judgment .TOC3 { margin-left: 0.33in; font-size: 12pt; }
+#judgment .TOC4 { margin-left: 0.5in; font-size: 12pt; }
+#judgment .TOC5 { margin-left: 0.67in; font-size: 12pt; }
+#judgment .TOC6 { margin-left: 0.83in; font-size: 12pt; }
+#judgment .TOC7 { margin-left: 1in; font-size: 12pt; }
+#judgment .TOC8 { margin-left: 1.17in; font-size: 12pt; }
+#judgment .TOC9 { margin-left: 1.33in; font-size: 12pt; }
+#judgment .TOCHeading { font-weight: normal; font-size: 16pt; color: #2E74B5; }
+#judgment .PlaceholderText { color: #808080; }
+#judgment .ParaLevel1Char { font-size: 12pt; }
+#judgment .MainHeadingChar { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeadingChar { font-size: 12pt; }
+#judgment .SubheadingChar { font-style: italic; font-size: 12pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0563C1; }
+#judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+#judgment .Heading2Char { font-size: 13pt; color: #2E74B5; }
+#judgment .Heading4Char { font-style: italic; font-size: 12pt; color: #2E74B5; }
+#judgment .Heading5Char { font-size: 12pt; color: #2E74B5; }
+#judgment .Heading6Char { font-size: 12pt; color: #1F4D78; }
+#judgment .Heading7Char { font-style: italic; font-size: 12pt; color: #1F4D78; }
+#judgment .Heading8Char { font-size: 10.5pt; color: #272727; }
+#judgment .Heading9Char { font-style: italic; font-size: 10.5pt; color: #272727; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .BodyTextChar { font-size: 12pt; }
+#judgment .BodyText2Char { font-size: 12pt; }
+#judgment .BodyText3Char { font-size: 8pt; }
+#judgment .BodyTextFirstIndentChar { font-size: 12pt; }
+#judgment .BodyTextIndentChar { font-size: 12pt; }
+#judgment .BodyTextFirstIndent2Char { font-size: 12pt; }
+#judgment .BodyTextIndent2Char { font-size: 12pt; }
+#judgment .BodyTextIndent3Char { font-size: 8pt; }
+#judgment .BookTitle { font-style: italic; font-weight: bold; }
+#judgment .ClosingChar { font-size: 12pt; }
+#judgment .CommentReference { font-size: 8pt; }
+#judgment .CommentTextChar { }
+#judgment .CommentSubjectChar { font-weight: bold; }
+#judgment .DateChar { font-size: 12pt; }
+#judgment .DocumentMapChar { font-family: 'Segoe UI'; font-size: 8pt; }
+#judgment .E-mailSignatureChar { font-size: 12pt; }
+#judgment .Emphasis { font-style: italic; }
+#judgment .EndnoteReference { vertical-align: super; }
+#judgment .EndnoteTextChar { }
+#judgment .FollowedHyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #954F72; }
+#judgment .FootnoteReference { vertical-align: super; }
+#judgment .FootnoteTextChar { }
+#judgment .Hashtag { color: #2B579A; background-color: initial; }
+#judgment .HTMLAcronym { }
+#judgment .HTMLAddressChar { font-style: italic; font-size: 12pt; }
+#judgment .HTMLCite { font-style: italic; }
+#judgment .HTMLCode { font-family: Consolas; font-size: 10pt; }
+#judgment .HTMLDefinition { font-style: italic; }
+#judgment .HTMLKeyboard { font-family: Consolas; font-size: 10pt; }
+#judgment .HTMLPreformattedChar { font-family: Consolas; }
+#judgment .HTMLSample { font-family: Consolas; font-size: 12pt; }
+#judgment .HTMLTypewriter { font-family: Consolas; font-size: 10pt; }
+#judgment .HTMLVariable { font-style: italic; }
+#judgment .IntenseEmphasis { font-style: italic; color: #5B9BD5; }
+#judgment .IntenseQuoteChar { font-style: italic; font-size: 12pt; color: #5B9BD5; }
+#judgment .IntenseReference { font-weight: bold; font-variant: small-caps; color: #5B9BD5; }
+#judgment .LineNumber { }
+#judgment .MacroTextChar { font-family: Consolas; }
+#judgment .Mention { color: #2B579A; background-color: initial; }
+#judgment .MessageHeaderChar { font-size: 12pt; background-color: initial; }
+#judgment .NoteHeadingChar { font-size: 12pt; }
+#judgment .PageNumber { }
+#judgment .PlainTextChar { font-family: Consolas; font-size: 10.5pt; }
+#judgment .SalutationChar { font-size: 12pt; }
+#judgment .SignatureChar { font-size: 12pt; }
+#judgment .SmartHyperlink { text-decoration-line: underline; text-decoration-style: dotted; }
+#judgment .SmartLink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; background-color: initial; }
+#judgment .Strong { font-weight: bold; }
+#judgment .SubtitleChar { font-size: 11pt; color: #5A5A5A; }
+#judgment .SubtleEmphasis { font-style: italic; color: #404040; }
+#judgment .SubtleReference { font-variant: small-caps; color: #5A5A5A; }
+#judgment .ColorfulGrid { }
+#judgment .ColorfulGrid td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulGrid-Accent1 { }
+#judgment .ColorfulGrid-Accent1 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulGrid-Accent2 { }
+#judgment .ColorfulGrid-Accent2 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulGrid-Accent3 { }
+#judgment .ColorfulGrid-Accent3 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulGrid-Accent4 { }
+#judgment .ColorfulGrid-Accent4 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulGrid-Accent5 { }
+#judgment .ColorfulGrid-Accent5 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulGrid-Accent6 { }
+#judgment .ColorfulGrid-Accent6 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFFFFF; }
+#judgment .ColorfulList { }
+#judgment .ColorfulList-Accent1 { }
+#judgment .ColorfulList-Accent2 { }
+#judgment .ColorfulList-Accent3 { }
+#judgment .ColorfulList-Accent4 { }
+#judgment .ColorfulList-Accent5 { }
+#judgment .ColorfulList-Accent6 { }
+#judgment .ColorfulShading { }
+#judgment .ColorfulShading td { border: 0.5pt solid #FFFFFF; }
+#judgment .ColorfulShading-Accent1 { }
+#judgment .ColorfulShading-Accent1 td { border: 0.5pt solid #FFFFFF; }
+#judgment .ColorfulShading-Accent2 { }
+#judgment .ColorfulShading-Accent2 td { border: 0.5pt solid #FFFFFF; }
+#judgment .ColorfulShading-Accent3 { }
+#judgment .ColorfulShading-Accent3 td { border: 0.5pt solid #FFFFFF; }
+#judgment .ColorfulShading-Accent4 { }
+#judgment .ColorfulShading-Accent4 td { border: 0.5pt solid #FFFFFF; }
+#judgment .ColorfulShading-Accent5 { }
+#judgment .ColorfulShading-Accent5 td { border: 0.5pt solid #FFFFFF; }
+#judgment .ColorfulShading-Accent6 { }
+#judgment .ColorfulShading-Accent6 td { border: 0.5pt solid #FFFFFF; }
+#judgment .DarkList { }
+#judgment .DarkList-Accent1 { }
+#judgment .DarkList-Accent2 { }
+#judgment .DarkList-Accent3 { }
+#judgment .DarkList-Accent4 { }
+#judgment .DarkList-Accent5 { }
+#judgment .DarkList-Accent6 { }
+#judgment .GridTable1Light { }
+#judgment .GridTable1Light td { border: 0.5pt solid #999999; }
+#judgment .GridTable1Light-Accent1 { }
+#judgment .GridTable1Light-Accent1 td { border: 0.5pt solid #BDD6EE; }
+#judgment .GridTable1Light-Accent2 { }
+#judgment .GridTable1Light-Accent2 td { border: 0.5pt solid #F7CAAC; }
+#judgment .GridTable1Light-Accent3 { }
+#judgment .GridTable1Light-Accent3 td { border: 0.5pt solid #DBDBDB; }
+#judgment .GridTable1Light-Accent4 { }
+#judgment .GridTable1Light-Accent4 td { border: 0.5pt solid #FFE599; }
+#judgment .GridTable1Light-Accent5 { }
+#judgment .GridTable1Light-Accent5 td { border: 0.5pt solid #B4C6E7; }
+#judgment .GridTable1Light-Accent6 { }
+#judgment .GridTable1Light-Accent6 td { border: 0.5pt solid #C5E0B3; }
+#judgment .GridTable2 { }
+#judgment .GridTable2 td { border: 0.25pt solid #666666; }
+#judgment .GridTable2-Accent1 { }
+#judgment .GridTable2-Accent1 td { border: 0.25pt solid #9CC2E5; }
+#judgment .GridTable2-Accent2 { }
+#judgment .GridTable2-Accent2 td { border: 0.25pt solid #F4B083; }
+#judgment .GridTable2-Accent3 { }
+#judgment .GridTable2-Accent3 td { border: 0.25pt solid #C9C9C9; }
+#judgment .GridTable2-Accent4 { }
+#judgment .GridTable2-Accent4 td { border: 0.25pt solid #FFD966; }
+#judgment .GridTable2-Accent5 { }
+#judgment .GridTable2-Accent5 td { border: 0.25pt solid #8EAADB; }
+#judgment .GridTable2-Accent6 { }
+#judgment .GridTable2-Accent6 td { border: 0.25pt solid #A8D08D; }
+#judgment .GridTable3 { }
+#judgment .GridTable3 td { border: 0.5pt solid #666666; }
+#judgment .GridTable3-Accent1 { }
+#judgment .GridTable3-Accent1 td { border: 0.5pt solid #9CC2E5; }
+#judgment .GridTable3-Accent2 { }
+#judgment .GridTable3-Accent2 td { border: 0.5pt solid #F4B083; }
+#judgment .GridTable3-Accent3 { }
+#judgment .GridTable3-Accent3 td { border: 0.5pt solid #C9C9C9; }
+#judgment .GridTable3-Accent4 { }
+#judgment .GridTable3-Accent4 td { border: 0.5pt solid #FFD966; }
+#judgment .GridTable3-Accent5 { }
+#judgment .GridTable3-Accent5 td { border: 0.5pt solid #8EAADB; }
+#judgment .GridTable3-Accent6 { }
+#judgment .GridTable3-Accent6 td { border: 0.5pt solid #A8D08D; }
+#judgment .GridTable4 { }
+#judgment .GridTable4 td { border: 0.5pt solid #666666; }
+#judgment .GridTable4-Accent1 { }
+#judgment .GridTable4-Accent1 td { border: 0.5pt solid #9CC2E5; }
+#judgment .GridTable4-Accent2 { }
+#judgment .GridTable4-Accent2 td { border: 0.5pt solid #F4B083; }
+#judgment .GridTable4-Accent3 { }
+#judgment .GridTable4-Accent3 td { border: 0.5pt solid #C9C9C9; }
+#judgment .GridTable4-Accent4 { }
+#judgment .GridTable4-Accent4 td { border: 0.5pt solid #FFD966; }
+#judgment .GridTable4-Accent5 { }
+#judgment .GridTable4-Accent5 td { border: 0.5pt solid #8EAADB; }
+#judgment .GridTable4-Accent6 { }
+#judgment .GridTable4-Accent6 td { border: 0.5pt solid #A8D08D; }
+#judgment .GridTable5Dark { }
+#judgment .GridTable5Dark td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable5Dark-Accent1 { }
+#judgment .GridTable5Dark-Accent1 td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable5Dark-Accent2 { }
+#judgment .GridTable5Dark-Accent2 td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable5Dark-Accent3 { }
+#judgment .GridTable5Dark-Accent3 td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable5Dark-Accent4 { }
+#judgment .GridTable5Dark-Accent4 td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable5Dark-Accent5 { }
+#judgment .GridTable5Dark-Accent5 td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable5Dark-Accent6 { }
+#judgment .GridTable5Dark-Accent6 td { border: 0.5pt solid #FFFFFF; }
+#judgment .GridTable6Colorful { }
+#judgment .GridTable6Colorful td { border: 0.5pt solid #666666; }
+#judgment .GridTable6Colorful-Accent1 { }
+#judgment .GridTable6Colorful-Accent1 td { border: 0.5pt solid #9CC2E5; }
+#judgment .GridTable6Colorful-Accent2 { }
+#judgment .GridTable6Colorful-Accent2 td { border: 0.5pt solid #F4B083; }
+#judgment .GridTable6Colorful-Accent3 { }
+#judgment .GridTable6Colorful-Accent3 td { border: 0.5pt solid #C9C9C9; }
+#judgment .GridTable6Colorful-Accent4 { }
+#judgment .GridTable6Colorful-Accent4 td { border: 0.5pt solid #FFD966; }
+#judgment .GridTable6Colorful-Accent5 { }
+#judgment .GridTable6Colorful-Accent5 td { border: 0.5pt solid #8EAADB; }
+#judgment .GridTable6Colorful-Accent6 { }
+#judgment .GridTable6Colorful-Accent6 td { border: 0.5pt solid #A8D08D; }
+#judgment .GridTable7Colorful { }
+#judgment .GridTable7Colorful td { border: 0.5pt solid #666666; }
+#judgment .GridTable7Colorful-Accent1 { }
+#judgment .GridTable7Colorful-Accent1 td { border: 0.5pt solid #9CC2E5; }
+#judgment .GridTable7Colorful-Accent2 { }
+#judgment .GridTable7Colorful-Accent2 td { border: 0.5pt solid #F4B083; }
+#judgment .GridTable7Colorful-Accent3 { }
+#judgment .GridTable7Colorful-Accent3 td { border: 0.5pt solid #C9C9C9; }
+#judgment .GridTable7Colorful-Accent4 { }
+#judgment .GridTable7Colorful-Accent4 td { border: 0.5pt solid #FFD966; }
+#judgment .GridTable7Colorful-Accent5 { }
+#judgment .GridTable7Colorful-Accent5 td { border: 0.5pt solid #8EAADB; }
+#judgment .GridTable7Colorful-Accent6 { }
+#judgment .GridTable7Colorful-Accent6 td { border: 0.5pt solid #A8D08D; }
+#judgment .LightGrid { }
+#judgment .LightGrid td { border: 1pt solid #000000; }
+#judgment .LightGrid-Accent1 { }
+#judgment .LightGrid-Accent1 td { border: 1pt solid #5B9BD5; }
+#judgment .LightGrid-Accent2 { }
+#judgment .LightGrid-Accent2 td { border: 1pt solid #ED7D31; }
+#judgment .LightGrid-Accent3 { }
+#judgment .LightGrid-Accent3 td { border: 1pt solid #A5A5A5; }
+#judgment .LightGrid-Accent4 { }
+#judgment .LightGrid-Accent4 td { border: 1pt solid #FFC000; }
+#judgment .LightGrid-Accent5 { }
+#judgment .LightGrid-Accent5 td { border: 1pt solid #4472C4; }
+#judgment .LightGrid-Accent6 { }
+#judgment .LightGrid-Accent6 td { border: 1pt solid #70AD47; }
+#judgment .LightList { }
+#judgment .LightList-Accent1 { }
+#judgment .LightList-Accent2 { }
+#judgment .LightList-Accent3 { }
+#judgment .LightList-Accent4 { }
+#judgment .LightList-Accent5 { }
+#judgment .LightList-Accent6 { }
+#judgment .LightShading { }
+#judgment .LightShading-Accent1 { }
+#judgment .LightShading-Accent2 { }
+#judgment .LightShading-Accent3 { }
+#judgment .LightShading-Accent4 { }
+#judgment .LightShading-Accent5 { }
+#judgment .LightShading-Accent6 { }
+#judgment .ListTable1Light { }
+#judgment .ListTable1Light-Accent1 { }
+#judgment .ListTable1Light-Accent2 { }
+#judgment .ListTable1Light-Accent3 { }
+#judgment .ListTable1Light-Accent4 { }
+#judgment .ListTable1Light-Accent5 { }
+#judgment .ListTable1Light-Accent6 { }
+#judgment .ListTable2 { }
+#judgment .ListTable2 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #666666; }
+#judgment .ListTable2-Accent1 { }
+#judgment .ListTable2-Accent1 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #9CC2E5; }
+#judgment .ListTable2-Accent2 { }
+#judgment .ListTable2-Accent2 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #F4B083; }
+#judgment .ListTable2-Accent3 { }
+#judgment .ListTable2-Accent3 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #C9C9C9; }
+#judgment .ListTable2-Accent4 { }
+#judgment .ListTable2-Accent4 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFD966; }
+#judgment .ListTable2-Accent5 { }
+#judgment .ListTable2-Accent5 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #8EAADB; }
+#judgment .ListTable2-Accent6 { }
+#judgment .ListTable2-Accent6 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #A8D08D; }
+#judgment .ListTable3 { }
+#judgment .ListTable3-Accent1 { }
+#judgment .ListTable3-Accent2 { }
+#judgment .ListTable3-Accent3 { }
+#judgment .ListTable3-Accent4 { }
+#judgment .ListTable3-Accent5 { }
+#judgment .ListTable3-Accent6 { }
+#judgment .ListTable4 { }
+#judgment .ListTable4 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #666666; }
+#judgment .ListTable4-Accent1 { }
+#judgment .ListTable4-Accent1 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #9CC2E5; }
+#judgment .ListTable4-Accent2 { }
+#judgment .ListTable4-Accent2 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #F4B083; }
+#judgment .ListTable4-Accent3 { }
+#judgment .ListTable4-Accent3 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #C9C9C9; }
+#judgment .ListTable4-Accent4 { }
+#judgment .ListTable4-Accent4 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #FFD966; }
+#judgment .ListTable4-Accent5 { }
+#judgment .ListTable4-Accent5 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #8EAADB; }
+#judgment .ListTable4-Accent6 { }
+#judgment .ListTable4-Accent6 td { border-top-width: 0.5pt; border-top-style: solid; border-top-color: #A8D08D; }
+#judgment .ListTable5Dark { }
+#judgment .ListTable5Dark-Accent1 { }
+#judgment .ListTable5Dark-Accent2 { }
+#judgment .ListTable5Dark-Accent3 { }
+#judgment .ListTable5Dark-Accent4 { }
+#judgment .ListTable5Dark-Accent5 { }
+#judgment .ListTable5Dark-Accent6 { }
+#judgment .ListTable6Colorful { }
+#judgment .ListTable6Colorful-Accent1 { }
+#judgment .ListTable6Colorful-Accent2 { }
+#judgment .ListTable6Colorful-Accent3 { }
+#judgment .ListTable6Colorful-Accent4 { }
+#judgment .ListTable6Colorful-Accent5 { }
+#judgment .ListTable6Colorful-Accent6 { }
+#judgment .ListTable7Colorful { }
+#judgment .ListTable7Colorful-Accent1 { }
+#judgment .ListTable7Colorful-Accent2 { }
+#judgment .ListTable7Colorful-Accent3 { }
+#judgment .ListTable7Colorful-Accent4 { }
+#judgment .ListTable7Colorful-Accent5 { }
+#judgment .ListTable7Colorful-Accent6 { }
+#judgment .MediumGrid1 { }
+#judgment .MediumGrid1 td { border: 1pt solid #404040; }
+#judgment .MediumGrid1-Accent1 { }
+#judgment .MediumGrid1-Accent1 td { border: 1pt solid #84B3DF; }
+#judgment .MediumGrid1-Accent2 { }
+#judgment .MediumGrid1-Accent2 td { border: 1pt solid #F19D64; }
+#judgment .MediumGrid1-Accent3 { }
+#judgment .MediumGrid1-Accent3 td { border: 1pt solid #BBBBBB; }
+#judgment .MediumGrid1-Accent4 { }
+#judgment .MediumGrid1-Accent4 td { border: 1pt solid #FFCF40; }
+#judgment .MediumGrid1-Accent5 { }
+#judgment .MediumGrid1-Accent5 td { border: 1pt solid #7295D2; }
+#judgment .MediumGrid1-Accent6 { }
+#judgment .MediumGrid1-Accent6 td { border: 1pt solid #93C571; }
+#judgment .MediumGrid2 { }
+#judgment .MediumGrid2 td { border: 1pt solid #000000; }
+#judgment .MediumGrid2-Accent1 { }
+#judgment .MediumGrid2-Accent1 td { border: 1pt solid #5B9BD5; }
+#judgment .MediumGrid2-Accent2 { }
+#judgment .MediumGrid2-Accent2 td { border: 1pt solid #ED7D31; }
+#judgment .MediumGrid2-Accent3 { }
+#judgment .MediumGrid2-Accent3 td { border: 1pt solid #A5A5A5; }
+#judgment .MediumGrid2-Accent4 { }
+#judgment .MediumGrid2-Accent4 td { border: 1pt solid #FFC000; }
+#judgment .MediumGrid2-Accent5 { }
+#judgment .MediumGrid2-Accent5 td { border: 1pt solid #4472C4; }
+#judgment .MediumGrid2-Accent6 { }
+#judgment .MediumGrid2-Accent6 td { border: 1pt solid #70AD47; }
+#judgment .MediumGrid3 { }
+#judgment .MediumGrid3 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumGrid3-Accent1 { }
+#judgment .MediumGrid3-Accent1 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumGrid3-Accent2 { }
+#judgment .MediumGrid3-Accent2 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumGrid3-Accent3 { }
+#judgment .MediumGrid3-Accent3 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumGrid3-Accent4 { }
+#judgment .MediumGrid3-Accent4 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumGrid3-Accent5 { }
+#judgment .MediumGrid3-Accent5 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumGrid3-Accent6 { }
+#judgment .MediumGrid3-Accent6 td { border: 0.75pt solid #FFFFFF; }
+#judgment .MediumList1 { }
+#judgment .MediumList1-Accent1 { }
+#judgment .MediumList1-Accent2 { }
+#judgment .MediumList1-Accent3 { }
+#judgment .MediumList1-Accent4 { }
+#judgment .MediumList1-Accent5 { }
+#judgment .MediumList1-Accent6 { }
+#judgment .MediumList2 { }
+#judgment .MediumList2-Accent1 { }
+#judgment .MediumList2-Accent2 { }
+#judgment .MediumList2-Accent3 { }
+#judgment .MediumList2-Accent4 { }
+#judgment .MediumList2-Accent5 { }
+#judgment .MediumList2-Accent6 { }
+#judgment .MediumShading1 { }
+#judgment .MediumShading1 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #404040; }
+#judgment .MediumShading1-Accent1 { }
+#judgment .MediumShading1-Accent1 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #84B3DF; }
+#judgment .MediumShading1-Accent2 { }
+#judgment .MediumShading1-Accent2 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #F19D64; }
+#judgment .MediumShading1-Accent3 { }
+#judgment .MediumShading1-Accent3 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #BBBBBB; }
+#judgment .MediumShading1-Accent4 { }
+#judgment .MediumShading1-Accent4 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #FFCF40; }
+#judgment .MediumShading1-Accent5 { }
+#judgment .MediumShading1-Accent5 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #7295D2; }
+#judgment .MediumShading1-Accent6 { }
+#judgment .MediumShading1-Accent6 td { border-top-width: 1pt; border-top-style: solid; border-top-color: #93C571; }
+#judgment .MediumShading2 { }
+#judgment .MediumShading2-Accent1 { }
+#judgment .MediumShading2-Accent2 { }
+#judgment .MediumShading2-Accent3 { }
+#judgment .MediumShading2-Accent4 { }
+#judgment .MediumShading2-Accent5 { }
+#judgment .MediumShading2-Accent6 { }
+#judgment .PlainTable1 { }
+#judgment .PlainTable1 td { border: 0.5pt solid #BFBFBF; }
+#judgment .PlainTable2 { }
+#judgment .PlainTable3 { }
+#judgment .PlainTable4 { }
+#judgment .PlainTable5 { }
+#judgment .Table3Deffects1 { }
+#judgment .Table3Deffects2 { }
+#judgment .Table3Deffects3 { }
+#judgment .TableClassic1 { }
+#judgment .TableClassic2 { }
+#judgment .TableClassic3 { }
+#judgment .TableClassic4 { }
+#judgment .TableColorful1 { }
+#judgment .TableColorful1 td { border-top-width: 0.75pt; border-top-style: solid; border-top-color: #00FFFF; }
+#judgment .TableColorful2 { }
+#judgment .TableColorful3 { }
+#judgment .TableColorful3 td { border-top-width: 0.75pt; border-top-style: solid; border-top-color: #C0C0C0; }
+#judgment .TableColumns1 { }
+#judgment .TableColumns2 { }
+#judgment .TableColumns3 { }
+#judgment .TableColumns3 td { border-right-width: 0.75pt; border-right-style: solid; border-right-color: #000080; }
+#judgment .TableColumns4 { }
+#judgment .TableColumns5 { }
+#judgment .TableColumns5 td { border-right-width: 0.75pt; border-right-style: solid; border-right-color: #C0C0C0; }
+#judgment .TableContemporary { }
+#judgment .TableContemporary td { border: 2.25pt solid #FFFFFF; }
+#judgment .TableElegant { }
+#judgment .TableElegant td { border: 0.75pt solid #000000; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+#judgment .TableGrid1 { }
+#judgment .TableGrid1 td { border: 0.75pt solid #000000; }
+#judgment .TableGrid2 { }
+#judgment .TableGrid2 td { border: 0.75pt solid #000000; }
+#judgment .TableGrid3 { }
+#judgment .TableGrid3 td { border-right-width: 0.75pt; border-right-style: solid; border-right-color: #000000; }
+#judgment .TableGrid4 { }
+#judgment .TableGrid4 td { border: 0.75pt solid #000000; }
+#judgment .TableGrid5 { }
+#judgment .TableGrid5 td { border: 0.75pt solid #000000; }
+#judgment .TableGrid6 { }
+#judgment .TableGrid6 td { border-right-width: 0.75pt; border-right-style: solid; border-right-color: #000000; }
+#judgment .TableGrid7 { }
+#judgment .TableGrid7 td { border: 0.75pt solid #000000; }
+#judgment .TableGrid8 { }
+#judgment .TableGrid8 td { border: 0.75pt solid #000080; }
+#judgment .TableGridLight { }
+#judgment .TableGridLight td { border: 0.5pt solid #BFBFBF; }
+#judgment .TableList1 { }
+#judgment .TableList2 { }
+#judgment .TableList3 { }
+#judgment .TableList3 td { border-top-width: 0.75pt; border-top-style: solid; border-top-color: #000000; }
+#judgment .TableList4 { }
+#judgment .TableList4 td { border-top-width: 0.75pt; border-top-style: solid; border-top-color: #000000; }
+#judgment .TableList5 { }
+#judgment .TableList5 td { border-top-width: 0.75pt; border-top-style: solid; border-top-color: #000000; }
+#judgment .TableList6 { }
+#judgment .TableList7 { }
+#judgment .TableList7 td { border-top-width: 0.75pt; border-top-style: solid; border-top-color: #000000; }
+#judgment .TableList8 { }
+#judgment .TableList8 td { border-right-width: 0.75pt; border-right-style: solid; border-right-color: #000000; }
+#judgment .TableProfessional { }
+#judgment .TableProfessional td { border: 0.75pt solid #000000; }
+#judgment .TableSimple1 { }
+#judgment .TableSimple2 { }
+#judgment .TableSimple3 { }
+#judgment .TableSubtle1 { }
+#judgment .TableSubtle2 { }
+#judgment .TableTheme { }
+#judgment .TableTheme td { border: 0.5pt solid; }
+#judgment .TableWeb1 { }
+#judgment .TableWeb1 td { border: 0.75pt solid; }
+#judgment .TableWeb2 { }
+#judgment .TableWeb2 td { border: 0.75pt solid; }
+#judgment .TableWeb3 { }
+#judgment .TableWeb3 td { border: 0.75pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
+      <p class="Heading6"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:initial">Neutral Citation Number: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:initial">[2023] EWCOP 3</neutralCitation></p>
+      <p style="text-align:right;margin-right:0.07in"><span style="text-decoration-line:underline;text-decoration-style:solid">Case No. </span><docketNumber style="text-decoration-line:underline;text-decoration-style:solid">COP13258625</docketNumber></p>
+      <p style="margin-left:0.07in"><courtType refersTo="#ewcop" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">IN THE COURT OF PROTECTION</courtType></p>
+      <p style="text-align:right;margin-right:0.08in"><span style="text-decoration-line:underline;text-decoration-style:solid">Date: </span><docDate date="2023-01-20" refersTo="#judgment" style="text-decoration-line:underline;text-decoration-style:solid">20 January 2023</docDate></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in"><span style="font-weight:bold">Before:</span></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.84in"><judge refersTo="#judge-mr-justice-poole" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">MR JUSTICE POOLE</judge></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in"><party refersTo="#sunderland-city-council" as="#claimant" style="font-weight:bold">Sunderland City Council</party></p>
+      <p style="text-align:right;margin-left:0.83in;margin-right:0.83in"><role refersTo="#claimant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Claimant</role></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in"><span style="font-weight:bold">-and-</span></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in"><party refersTo="#lioubov-macpherson" as="#defendant" style="font-weight:bold"> Lioubov Macpherson</party></p>
+      <p style="text-align:right;margin-left:0.83in;margin-right:0.83in"><role refersTo="#defendant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Defendant</role></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.84in"><span style="font-weight:bold">Simon Garlick </span>(instructed by Sunderland City Council Legal Department) for <span style="font-weight:bold">the Claimant</span></p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.84in"><span style="font-weight:bold">Oliver Lewis </span>(by Direct Access)<span style="font-weight:bold"> for the Defendant</span></p>
+      <p style="text-align:center;margin-left:0.53in;margin-right:0.53in"><span style="font-weight:bold">Joseph O’Brien KC </span>(instructed by Switalskis Solicitors) for the <span style="font-weight:bold">First Respondent, FP, by her Litigation Friend, NS, </span>in the substantive proceedings in the Court of Protection</p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.84in">Hearing dates: 8 December 2022 and 16 January 2023</p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.83in;margin-right:0.83in"><span style="font-weight:bold;font-size:14pt">JUDGMENT</span></p>
+      <p style="text-align:justify;margin-left:0.07in;margin-right:0.09in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:13.5pt">The judge has given leave for this version of the judgment to be published on</span><span style="font-size:13.5pt"> </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:13.5pt">condition that (irrespective of what is contained in the judgment) in any published</span><span style="font-size:13.5pt"> </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:13.5pt">version of the judgment the anonymity of the incapacitated person and members of</span><span style="font-size:13.5pt"> </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:13.5pt">their family other than the Defendant must be strictly preserved. All persons, including representatives of the</span><span style="font-size:13.5pt"> </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:13.5pt">media, must ensure that this condition is strictly complied with. Failure to do so</span><span style="font-size:13.5pt"> </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:13.5pt">will be a contempt of court.</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p style="text-align:justify;margin-left:0.07in"><span style="font-weight:bold">Mr Justice Poole:</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">1.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">Sunderland City Council has applied for an order committing the Defendant Lioubov Macpherson to prison for contempt of court by breaching injunctive orders made by the court in Court of Protection proceedings on 30 June 2022. The background to the case is set out in detail in my judgment of 30 June 2022, <span style="font-style:italic">SCC v FP and others</span> [2022] EWCOP 30. As set out in that judgment, the Defendant’s daughter, FP is the protected party in Court of Protection proceedings. She is a very vulnerable woman in her early 30’s who was diagnosed with cerebral palsy as a child, suffered meningitis in adulthood, and who now suffers from paranoid schizophrenia. She lacks capacity to make decisions for herself about where she should live, her care, and her contact with others.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">2.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">This judgment not only sets out the breaches of orders found to constitute contempt of court and the court’s sentencing of the Defendant, but also a determination that whilst reporting of the name of the Defendant will risk revealing the identify of the protected person, FP, there should be no prohibition on the reporting of the Defendant’s identity.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">3.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">In 2020 HHJ Moir made various findings against the Defendant during the course of Court of Protection proceedings. In her, as yet unpublished judgment of 21 October 2020, she noted the Defendant’s evidence that in her view, FP had been:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote">“ ‘tortured and abused for years’, that the fluctuation in FP’s mental state was because her medication was not properly reviewed. The Defendant referred to the conspiracy between the doctors and the nurses to experiment with FP’s medication. She told me the Social Services influenced the hospital:</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote">“The social worker interferes, tittle tattle again, turning the nurses against me. I’ve been through so much. They are just bullies. They put me through daily stress, 1 have been deliberately aggravated. I have been excluded. I have had aggravation since day one, I don’t know why. Statements by the social workers are not accurate; they are just not. They are a lot of lies, 1 just try my best for my daughter. I have not done anything wrong”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote">There is no recognition of the effect her behaviour has upon other people, including FP, or any acceptance of any responsibility for the distress occasioned to FP…”</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant and FP had an “enmeshed relationship” characterized by what she called, “high expressed emotion” and that,</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote">“the dynamics of the relationship contribute to an unhealthy cycle of FP and the Defendant ’s level of emotion and distress, increasing distress in the other and, in FP’s case, leading to increased agitation and a decline in her mental health.”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant,</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote">“has often behaved towards care workers in an abusive and unpleasant fashion which may be intended and is likely to demoralise them.”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">She found that the Defendant’s contact with FP was often associated with a decline in FP’s mental health and that the Defendant sought to control FP’s care and treatment and to prevent FP from expressing her own views.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">4.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">When in the Defendant’s care, FP’s condition deteriorated to the extent that she required in-patient treatment under detention under the Mental Health Act 1983 (MHA). Such was the harm caused to FP by the Defendant’s interactions with her and the Defendant’s unsafe management of FP’s medication, that HHJ Moir ordered that it was FP’s best interests not to be cared for at home by her mother, but to be moved to a care home upon the cessation of her MHA detention. FP has resided at her current care home, Placement 3, since November 2021. She receives expert professional care at Placement 3 which is rated outstanding by the Care Quality Commission.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">5.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">It would be very harmful to FP were she to deteriorate again so as to require detention under the MHA 1983, or if she were to lose her current placement for whatever reason. There are no similar placements, offering specialist care of the kind that she needs and currently receives, in the vicinity. She would have to move to a new placement in a new area, with a new set of carers. The alternative would be for her to return home to the care of her mother – a situation that previously led to her requiring prolonged in-patient treatment under detention.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">6.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">After careful further consideration, in my order of 30 June 2022 I suspended face to face contact between FP and the Defendant. Telephone contact between them continued. The reasons for that difficult decision are set out in the published judgment (above). Upon review on 6 December 2022, when I received evidence that FP had become more settled and to engage more in activities, I extended that suspension further but directed that video contact should be introduced beginning during the Christmas holiday period. All the orders made in the Court of Protection have been made, as required by the Mental Capacity Act 2005, in FP’s best interests. The have all involved a difficult balance between trying to ensure that FP has time with her mother, but is protected from harm.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">7.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">The Defendant applied to the Court of Appeal for permission to appeal my order of 30 June 2022, but permission was refused and the application found to be totally without merit.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">8.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">The applications to commit the Defendant to prison for contempt of court allege breaches of injunctive court orders made against the Defendant not to publish material from or about the Court of Protection proceedings on internet sites. By doing so, the Defendant identifies or is likely to identify FP and to publicise details about her condition and treatment.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">9.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">To understand the breaches of the court orders by the Defendant, it is necessary to understand her beliefs and motivation. The Defendant is convinced that FP is not ill and does not have paranoid schizophrenia. It is her firm belief that treating clinicians have caused and continue to cause FP to suffer harm by administering drugs to her that she does not need and that cause her to have the symptoms she exhibits, including her hallucinations, and screaming episodes. There is no evidence to corroborate the Defendant’s beliefs and successive judges in the Court of Protection have found that her beliefs are without foundation, but she maintains them and shows no sign of moderating them. The significant problem is not that the Defendant holds these distorted beliefs but that she acts upon them:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:1.55in;text-indent:-0.49in">a)</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.55in;margin-right:0.57in">She has a history of conveying them to FP which causes distress to FP and feeds into FP’s own delusional beliefs that she is being persecuted.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:1.55in;text-indent:-0.49in">b)</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.55in;margin-right:0.57in">She has a history of berating those who care for FP and makes serial complaints against them, and other professionals involved in FP’s case on the basis that her daughter is being “tortured”. This jeopardises the trust between FP and those caring for her, and the security of FP’s placement.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.56in;margin-right:0.57in">One way in which the Defendant has acted on her beliefs over the course now of many months, is by publicising them. However, alongside her written pieces excoriating those caring for FP and the Court of Protection, the Defendant has posted video recordings of her contact with FP on Facebook and YouTube and has tweeted links to those videos. By doing so, the Defendant has repeatedly identified FP.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">10.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">Accordingly, the Court has made orders, which I extended on 30 June 2022, prohibiting the Defendant from publishing such material. The relevant orders that I made on 30 June 2022 were as follows:</p>
+          </intro>
+          <subparagraph>
+            <num>“1.</num>
+            <intro>
+              <p class="Quote" style="margin-left:1in;text-indent:0.5in"> [The Defendant] shall not:</p>
+            </intro>
+            <subparagraph>
+              <num>a.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">record FP by video or audio for any purpose or in any way.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>b.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">Record whether by video, audio or photographing staff from placement 3, or any other health or social care staff concerned with FP.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>c.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">in any way publicise these proceedings or any evidence filed in the proceedings, including by way of posting on social media, YouTube, or any internet platform or website, including private or public sites.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>d.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">cause to be publicised on any social media, video or streaming service including YouTube any video or audio recording of FP, recorded at any date.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num>2.</num>
+            <content>
+              <p class="Quote" style="margin-left:1.18in">[The Defendant] shall forthwith remove from any social   media video or streaming service including YouTube and from any website or other location on the internet, including private or public sites, any video or audio recording of FP, and/or staff supporting FP, which is present on any of those sites or services.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">11.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The application to commit was originally brought in three applications made November and December 2022. Those application contained eleven separate alleged breaches of the injunctive orders made on 30 June 2022. As I shall explain in more detail below, those eleven alleged breaches were all admitted by the Defendant at the first hearing of the committal applications on 8 December 2022. I set out the admitted breaches with sequential numbering in my order of that date. However, at the hearing on 16 January 2023 the Claimant indicated that it did not seek to persuade the court that six of the admitted breaches constituted contempt of court – the Claimant relies only on the allegations numbered 1, 3, 4, 5 and 11. For the sake of economy therefore I shall not repeat the other six breaches in this judgment. I have disregarded them. The admitted breaches said to constitute contempts of court are put by the Claimant as follows:</span></p>
+          </intro>
+          <subparagraph>
+            <intro>
+              <p class="Quote">“[The Defendant] has uploaded various materials to social media including Facebook and Twitter, specifically:</p>
+            </intro>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">i.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.43in">[No. 1] [The Defendant] has posted two YouTube videos although one video, titled The 21st Century Disgrace' has been removed. The second video, titled ‘The hospital number 2’, uploaded 29 October 2022, records the Defendant on the phone to FP, on loudspeaker, breaching paragraph 1 (d) and 2. Both of these videos had been posted to Twitter, with a link to the Defendant’s Facebook.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">ii.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.43in">[No. 3] On 02 November 2022, the Defendant retweeted a link to an article posted on Facebook 'on 01 April' - the text demonstrates this was posted either in 2021 or 2022 - which explains the background of these proceedings and contained links to videos of FP, although the face is blurred, and the Defendant on the telephone. This post was still visible on Facebook on 18 November 2022 thus breaching paragraphs 1(d) and 2 of the injunction order.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">iii.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">[No. 4] On 31 October 2022 the Defendant retweeted a further link to an article she posted on Facebook ‘on 03 June’ – it is not clear which year this was posted which publicises these proceedings breaching paragraph 1(c) , 1(d) and paragraph 2. The Article details how she has been in Court of Protection proceedings for four years and that the court did not protect FP but was used to hid crimes. Videos are also linked in the Article…”</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">iv.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.43in">[No. 5] On 24 October 2022, the Defendant retweeted a link to an additional article she had posted on Facebook dated ’21 October’ - it is unclear which year this was posted - which talks about the Court of Protection. The article also links a video of an interview of FP dated 22 September 2019 where FP can be physically seen speaking, therefore breaching paragraphs 1(c), 1(d) and paragraph 2.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">v.</num>
+              <content>
+                <p class="Quote" style="margin-left:1.43in">[No. 11] The Defendant has posted a further video to YouTube on 02 December 2022 titled ‘Movie on 17 06 2022 at 13:57’ which records the Defendant on the phone on loudspeaker to someone who is believed to be FP. Within this video recording, the Defendant also records staff speaking on the telephone, therefore breaching paragraph 1(d) and paragraph 2.”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">12.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.57in;margin-right:0.57in">As can be seen the alleged breaches have not been set out in chronological order in the applications, which should have been the case. I do not find them to have been drafted in a focused manner. Also, the references to “retweeting” are incorrect – these were tweets that contained links that had been tweeted by the Defendant previously – she was not re-tweeting her own or anybody else’s tweets.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.57in;margin-right:0.57in">The Defendant was summonsed to attend a first hearing of the committal applications on 8 December 2022. She appeared at the Newcastle Civil and Family Court and Tribunal Centre on that date and had the benefit of pre-arranged legal representation by Ms Turner, solicitor advocate at the hearing. The Defendant was reminded that she had the right to remain silent. I also reminded her and Ms Turner that the Defendant was entitled to sufficient time to consider the allegations, in particular since the third application to commit was dated 7 December 2022, only one day before the hearing. The Defendant elected to continue with the proceedings and not to ask for further time. She admitted all eleven of the breaches alleged including the five as set out above. She did so without equivocation.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">14.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.57in;margin-right:0.57in">I have watched, listened to, and read the material posted by the Defendant where that material has continued to be available. By reference to the numbering of the allegations set out above, and admitted by the Defendant:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.29in;text-indent:-0.5in">i.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.29in;margin-right:0.57in">[No. 1]. The video entitled “The 21<span style="vertical-align:super;font-size:smaller">st</span> Century Disgrace” is no longer available to view and no copy of it has been provided to the court. I therefore disregard that part of the allegation even though it was admitted by the Defendant. The video entitled “The hospital number 2” uploaded on 29 October 2022 shows the Defendant on the telephone to FP, switching it to loudspeaker. The video records the Defendant saying, “They are hurting you more? They don’t understand that, people around you. They are hurting you more. Tell them… They are hurting you. They are not looking after you. They are insulting you.” FP begins to speak in Russian and the Defendant tells her to speak in English. FP can be heard to say, “They do something to my head…” The Defendant then tells FP that she is distressed and instructs FP to tell “them”. FP then says, “I am very distressed.” The Defendant says, “They are breaking you.”</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.29in;text-indent:-0.5in">ii.</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:1.29in;margin-right:0.57in">[No. 3] On 2 November 2022 the Defendant tweeted a link to an article on Facebook dated “1 April” which itself has links to video films of FP. This remained available for me to read and view on 18 November 2022. The long article is said to be the second part of her daughter’s story. The Defendant refers to FP by name (her first name only) and to “her being mercilessly destroyed by so-called medical professionals, by Social Services, by lawyers and by the court… what happened to the safeguards that were introduced after Dr Shipman’s murders?” The Defendant also writes that “I would like to show the distress that my daughter suffers daily, because so-called professionals keep my daughter in deliberately induced illnesses to suit the agenda that she lacks mental capacity.” She refers to her daughter’s treatment as “torture”. There are a number of videos linked. They include an “interview” by the Defendant of FP. Her face is obscured by blurring. It is edited as can be seen by jumps in the film. The second video film is of an interview with FP by a professional. This is evidence in the Court of Protection proceedings. I have then viewed a further six films linked to the tweet, showing the Defendant on the telephone with FP. In the first, the Defendant puts FP on loudspeaker. FP says that she is not feeling well. The Defendant says, “I think you are in big big danger. Something is going on.” The Defendant begins sobbing. FP then says to someone who must be present with her, “I need a doctor”. The Defendant sobs, “Good girl. Good girl.” In the second FP says that she thinks she is going to be killed that night, “They are going to just kill me.”  In the third the Defendant is holding the phone and FP can be heard screaming uncontrollably. It is a disturbing listen of FP clearly suffering from a severe mental health episode. One of the other videos is the “hospital number 2” video posted on YouTube, referred to above.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.29in;text-indent:-0.5in">iii.</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:1.29in;margin-right:0.57in">[No. 4] On 31 October the Defendant tweeted a link to an article posted on Facebook on ‘3 June’ which uses FP’s first name and refers to complaints the Defendant has about her daughter’s care at Placement 3 and the Court of Protection proceedings. Three videos are attached. One is of the Defendant speaking to FP on the phone. FP speaks in Russian, and the Defendant responds in English, “You are not feeling very well.” She asks to speak to the staff. The Defendant says to FP, “I don’t know what’s going on…. Tell me what’s going on please … Why are you so unwell … shall I phone 999?” The carer says that the phone call should end. The second is a video of a face to face contact between the Defendant and her daughter, although all that is shown are people’s feet. It is brief but records the Defendant saying to her daughter, “Are you not happy with me?” FP replies, “Always”.  The third is a very short film of the Defendant showing one of FP’s feet with the Defendant saying, “Look at that. It is just unbelievable.”</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.29in;text-indent:-0.5in">iv.</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:1.29in;margin-right:0.57in">[No. 5] On 24 October 2022 the Defendant tweeted a link to another article which she had posted on Facebook on 21 October which sets out a letter written by the Defendant to the President of the Family Division dated 21 July 2021. It only obliquely refers to the Court of Protection proceedings, but it then shows a video of FP, plainly showing her face. It is an “interview” with the Defendant – the same one posted with the article dated ‘1 April’ but FP’s face is not obscured as it was on the version linked to the tweet on 3 November 2022. FP is there for all to see.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.29in;text-indent:-0.5in">v.</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:1.29in;margin-right:0.57in">[No. 11] The video posted on 2 December 2022 on YouTube is another video of the Defendant talking to FP on the telephone. The Defendant begins by saying, “You are still suffering for long periods of time … and they ignoring you… same old story. The carer who must have been present with FP interrupts in response to which the Defendant raises her voice and says that the court orders “does not exist.” FP says she wants to come home. The Defendant then says, “they not looking after you. And all this medication business.” The carer interrupts again and, in response, the Defendant raises her voice to the carer and says, “I expose you for everything you are doing to my daughter.” FP could of course hear all of this.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">15.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.57in;margin-right:0.57in">The Defendant’s online posts appear to have been quite widely read – some by over 250 people, one by over 3000. Her Facebook account is public – access to it is not restricted to “friends” only</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">16.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.57in;margin-right:0.57in">On 8 December 2022 I indicated that I would adjourn for approximately one month before considering sentencing of the Defendant. I asked whether Ms Turner sought any reports on the Defendant prior to sentencing but she said not. I had in mind the possibility of the court receiving medical evidence about the Defendant if that might be relevant to sentencing. Ms Turner was satisfied that her client had capacity to give instructions. Mr Lewis representing the Defendant today, on 16 January 2023, has not sought any capacity assessment of his client nor any medical reports. On 8 December 2022 I indicated to the Defendant that she had an opportunity before sentencing to abide by the injunctive orders made on 30 June 2022 which remained in force and to take the offending material down from the internet. Prior to the hearing before me today, on 16 January 2023, she has not done so.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">17.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.57in;margin-right:0.57in">I have received a statement from FP’s litigation friend, Mr Salmon, who visited her at Placement 3 on 11 January 2023. He relates that FP told him that her mother might be sent to prison because of posting things on the internet. It has not been established from where FP gained this information, but the fact is that FP is aware, at least in broad terms, of these committal proceedings.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">18.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.57in;margin-right:0.57in">As recently as 13 January 2023 the Claimant served personally on the Defendant a further (fourth) application to commit her to prison for contempt of court for breaching the injunctive orders which I had extended on 6 December 2022. Five alleged breaches are set out in the application, including an allegation that the Defendant has posted the name of Placement 3.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">19.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Ms Turner’s firm came off the record prior to the hearing on 16 January 2023 but the Defendant secured representation, by direct access, from Mr Lewis who appeared at the hearing before me on 16 January 2023. The Defendant has attended in person as ordered. Upon notice of the most recent application for committal I directed that it should be listed for directions or disposal at the hearing on 16 January 2023, the hearing which had been fixed for consideration of sentencing. The purpose of my order, made without a hearing, was simply to list the application at the same time as the other applications to commit and to give the appropriate warnings to the Defendant about her rights, which were set out on the face of my order.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.07in;margin-right:0.57in"><span style="font-weight:bold">Personal Service</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">20.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">In the Claimant’s position statement for the sentencing hearing on 16 January 2023, it informs the court that the orders of 30 June 2022 and 6 December 2022 were not served personally on the defendant. She was present at each hearing. I explained the orders to her. She was served with the full written orders made by email after each hearing once the orders had been drafted and approved by the court. However, there was no personal service and I made no order dispensing with personal service of the orders.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">21.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The Court of Protection Rules [COPR] in force prior to 1 January 2023 provided at rule 21.8:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“21.8. - (1) In the case of a judgment or order requiring a person not to do an act, the court may dispense with service of a copy of the judgment or order in accordance with rules 21.5 to 21.7 if it is satisfied that the person has had notice of it by -</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(a) being present when the judgment or order was given or made; or</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(b) being in attendance at court where notice of the order or judgment was displayed; or</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(c) being notified of its terms by telephone, email or otherwise.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">22.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The Practice Direction 21A applicable before 1 January 2023 stated,</span></p>
+          </intro>
+          <subparagraph>
+            <intro>
+              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Striking out, procedural defects and discontinuance</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in">11.1. On application by the respondent or on its own initiative, the court may strike out a committal application if it appears to the court—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in">(a) that the application and the evidence served in support of it disclose no reasonable ground for alleging that the respondent is guilty of a contempt of court;</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in">(b) that the application is an abuse of the court’s process or, if made in existing proceedings, is otherwise likely to obstruct the just disposal of those proceedings; or</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in">(c) that there has been a failure to comply with a rule, practice direction or court order.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in">11.2. The court may waive any procedural defect in the commencement or conduct of a committal application if satisfied that no injustice has been caused to the respondent by the defect.”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">23.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The new Part 21 of the COPR applicable from 1 January 2023 provides:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“21.4. - (1) Unless and to the extent that the court directs otherwise, every contempt application must be supported by written evidence given by affidavit or affirmation.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <intro>
+              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">A contempt application must include statements of all the following, unless (in the case of (b) to (g)) wholly inapplicable -</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:1.18in;margin-right:0.57in">(a) the nature of the alleged contempt (for example, breach of an order or undertaking or contempt in the face of the court);</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p class="Quote" style="margin-left:0.86in;margin-right:0.57in;text-indent:0.32in">(b) the date and terms of any order allegedly breached or disobeyed;</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.18in;margin-right:0.57in">(c) confirmation that any such order was personally served, and the date it was served, unless the court or the parties dispensed with personal service;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.18in;margin-right:0.57in">(d) if the court dispensed with personal service, the terms and date of the court’s order dispensing with personal service;”</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The new Practice Direction 21A in relation to contempt of court, applicable from 1 January 2023, contains the same provisions in relation to striking out and waiver as in the previous Practice Direction, but now the refer to the defendant rather than the respondent, and they now appear at paragraph 2 of PD21A – Contempt of Court.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">Given that the defendant was present at court (albeit remotely on each occasion) when the orders to which the committal applications relate were made and that the orders were subsequently sent to her by email, I can discern no prejudice to her at all from the failure to effect personal service of the orders upon her. Mr Lewis on behalf of the Defendant accepts that there was no prejudice to her. No permission was given prior to the applications for committal to dispense with personal service of the orders alleged to have been breached. There has therefore been a procedural defect in relation to the applications to commit. However, given the absence of prejudice to the defendant by reason of the procedural defects, in accordance with the PD21A I waive the procedural defects of failing to serve those orders personally on the defendant.</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.07in;margin-right:0.57in"><span style="font-weight:bold">Open Justice and Reporting Restrictions</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The substantive Court of Protection proceedings have been heard in public but subject to a Transparency Order which seeks to protect the anonymity of FP. Whilst the general rule is that a Court of Protection hearing will take place in private (r 4.1 of COPR), r 4.3 allows the court to order that a hearing, or part of it, will be heard in public and Practice Direction 4C (entitled 'Transparency') provides at para.2.1 that, unless it appears to the court that there is a good reason not to, the court will "ordinarily" deploy its power under rule 4.3 and order that "any attended hearing shall be in public". When doing so it is standard practice for the court to impose restrictions on the publication of any information from the proceedings.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">In this case, not only have the Court of Protection proceedings been in public, but I have also published a judgment (above) setting out details of the case. However, that judgment is anonymised, using the anonymisation set out in the Transparency Order, in order to avoid FP being identified.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">For anyone who might question why it is the standard, but not invariable, practice in the Court of Protection, to make orders preventing the identification of P (the protected person), the reasons are primarily that:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">i.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.81in;margin-right:0.57in">The proceedings will often involve matters which would ordinarily be regarded as of a confidential nature involving the private life of P, including their health.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">ii.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.81in;margin-right:0.57in">The proceedings are usually brought by a public body such as a Local Authority or an NHS Trust – P has not chosen to become involved in litigation.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">iii.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.81in;margin-right:0.57in;text-indent:0.12in">P will often not have the mental capacity to give their informed consent to details about their private lives.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">iv.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.81in;margin-right:0.57in">The invasion of privacy caused by identifying P, and P’s awareness that others know information about their private lives, would not only be a breach of their Convention rights, but can often be harmful to P’s mental state or their welfare</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">In the present case, the injunctive orders made against the Defendant were required because the Defendant had consistently breached the Transparency Order made in the Court of Protection proceedings and the court considered it necessary to make more specific and targeted orders to prohibit the Defendant from publishing and communicating confidential information about FP without FP’s consent (which she would not have the capacity to give in any event), invading her privacy. The injunctive orders related to FP’s best interests in respect of her residence, care and contact. For example, if the Defendant uses contact with FP as an opportunity to extract recorded evidence of FP with which to publicise her complaints about her care and treatment, then that is relevant to FP’s best interests in relation to contact with the Defendant. The court is entitled to and did seek to protect FP’s best interests by ordering the Defendant not to record and publicise recordings of FP.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The purpose of preventing the Defendant from posting films of her daughter and naming her through posts on social media platforms, is to protect FP. Not only is it a gross invasion of FP’s privacy to do so but, in this particular case, the nature of the Defendant’s publications about FP is to create the wholly misleading impression that FP is being abused and “tortured” by those caring for her, as sanctioned by a “corrupt” court system. The Defendant is entitled to hold those views, but risks causing a deterioration in FP’s mental health were FP to learn of these publications. The evidence is that FP does have access to the internet. Somehow FP has learned of the committal proceedings.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
+          <content>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The standard Transparency Order used in the Court of Protection, as used in this case, expressly excludes committal proceedings from its ambit.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
+          <intro>
+            <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The then Lord Chief Justice’s Practice Direction: Committal for Contempt of Court - Open Court, March 2015, provides:</span></p>
+          </intro>
+          <subparagraph>
+            <intro>
+              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Open Justice</p>
+            </intro>
+            <subparagraph>
+              <num>3.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.39in">Open justice is a fundamental principle. The general rule is that hearings are carried out in, and judgments and orders are made in, public. This rule applies to all hearings, whether on application or otherwise, for committal for contempt irrespective of the court in which they are heard or of the proceedings in which they arise.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>4.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Derogations from the general principle can only be justified in exceptional circumstances, when they are strictly necessary as measures to secure the proper administration of justice. Derogations shall, where justified, be no more than strictly necessary to achieve their purpose.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Committal Hearings – in Public</p>
+            </intro>
+            <subparagraph>
+              <num>5.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">(1) All committal hearings, whether on application or otherwise and whether for contempt in the face of the court or any other form of contempt, shall be listed and heard in public. (2) They shall, except where paragraph 5(3) applies, be listed in the public court list as follows: FOR HEARING IN OPEN COURT Application by (full name of Claimant) for the Committal to prison of (full name of the person alleged to be in contempt).”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">33.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Prior to the listing of the first hearing of the committal applications on 8 December 2022, the Defendant had posted on social media about the committal proceedings. Abiding by the Transparency Order in place in the Court of Protection proceedings, the court at Newcastle listed the case using the anonymisation used in those proceedings rather than the Defendant’s full name. I accept the submission made by Mr Lewis on behalf of the Defendant that her full name should have appeared in the list. At that first hearing of the committal applications on 8 December 2022, the case was however listed in public. A member of the press attended. He made submissions that I should allow the Defendant’s name to be reported but I decided on that occasion to extend the Transparency Order to the committal proceedings and to prohibit the naming of FP, her placement, or her relatives, including the Defendant. I considered then that to identify the Defendant would risk identifying FP, her daughter, and that the balance of Article 10 and Article 8 rights weighed in favour of prohibiting the naming of the Defendant. Details about the family, anonymised, are within my published judgment. I considered that were the Defendant to be named in reports of the committal proceedings, it would give rise to a risk that her daughter, FP would be identified and, with her identification, all manner of details about her medical history, her current condition, and personal life would become known to anyone who cared to read both the judgment and reports of the committal proceedings. To allow the Defendant to be named would be to undermine the very orders she was alleged to have breached. Maintaining the Defendant’s anonymity, and thereby protecting FP, appeared to me to be necessary in order to maintain the integrity of the orders the Defendant had admitted she had breached. To allow FP’s anonymity to be lost, or at least jeopardised, would be to grant the Defendant what she had sought to achieve by her contempt of court. In correspondence about the alleged breaches of the injunctive orders, the Defendant wrote, ‘Prison will only make me more determined. At least it will go public then.’ I had to balance rights under Articles 8 and 10 of the European Convention on Human Rights. The view I took was that the restriction on freedom of speech, by reason of not being able to name the Defendant, was a necessary and proportionate restriction in order to protect the Article 8 rights of FP. The power of court to restrict the reporting of the Defendant’s name was provided for by r 21.27 of the COPR 2017 as it was at the time of that hearing. Whilst the 2015 Practice Direction does not expressly allow for such a restriction, it does allow for derogations from the principle of open justice “in exceptional circumstances, when they are strictly necessary as measures to secure the proper administration of justice. Derogations shall, where justified, be no more than strictly necessary to achieve their purpose.” The COPR allowed for the reporting restriction and I regard the ordered restriction as being properly justified at the time that it was made.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">34.</num>
+            <intro>
+              <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">I subsequently received correspondence from Mr Farmer, of PA Media, and Professor Celia Kitzinger of the Open Justice Court of Protection Project. They expressed concerns that the case had not been listed publicly, but it had been listed in the public list in the court where the hearing took place. The problem appears to be that in Courtserve, a service which allows subscribers to access court lists from around the country, the listing of the case was different from that in the local court. I do not know how that occurred but am aware that it is something that has happened on other occasions. Since journalists, bloggers and observers may rely on Courtserve to access information about cases listed in the Court of Protection and other courts, it is important that the lists on the service match those published by the courts themselves. Mr Farmer and Professor Kitzinger also expressed their disquiet that the Defendant’s identity had  not been allowed to be reported. I invited them to make written or oral submissions that the reporting restrictions should be varied. I have received written submissions from Mr Farmer. In those very helpful submissions he draws my attention to  </span><span style="font-style:italic;text-decoration-line:none">PA Media Group v London Borough of Haringey</span><span style="text-decoration-line:none"> [2020] EWHC 1282 (Fam) in which Hayden J said of a family case (not in the Court of Protection):</span></p>
+            </intro>
+            <subparagraph>
+              <num>“16.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Ubiquitously, it is now recognised that the primary risk to children's privacy arises in consequence of public postings on social media. Ms Wilson speculates that the crowd funding scheme, organised by the mother with great effect, most probably involved a significant number of small donations rather than a few particularly generous individual benefactors. Ms Wilson reasons from this that many donors might be alerted by the judgment to investigate, by search engine, whether this was the family they gave financial support to. This, it is hypothesised, might lead to a plethora of social media posts which would be difficult to monitor. Ms Wilson also states, that whilst Ms Tickle focuses on the risk to child B by way of "playground taunts" the greater risk probably arises online and insidiously.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>17.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.28in">Mr Farmer considers that these concerns, though intellectually sustainable, are not, as he puts it, "rooted in the real world". Mr Farmer is a seasoned journalist, he argues the following:</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">"I don't think the concerns are enough to justify the Council's anonymisation. I think, in the real world, the chances of people putting together an identity jigsaw are small and the chances of someone putting together that jigsaw and causing harm, smaller still."</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>18.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">In admirably simple language, Mr Farmer makes the important link between "jigsaw identification" and the likelihood of "harm" (i.e. emotional distress) to the children. He is correct to emphasise the indivisibility of the two. Furthermore, both Ms Tickle and Mr Farmer respectfully suggest that very few members of the public will take the time to seek out and read my actual judgments, relying instead on what they read in the media. I have no doubt, at all, that this is largely true. Whilst it may mean that the public has an incomplete understanding of the case, it also follows that they may not be alerted to the pieces of information which might provide a jigsaw to identification.”</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="CoverText" style="text-align:justify;margin-left:0.39in;margin-right:0.57in"><span style="text-decoration-line:none">Similar considerations apply to a case in the Court of Protection. Professor Kitzinger attended the hearing today, 16 January 2023, in person. In fact, all three Counsel agreed that I should permit the Defendant to be named in reporting of these committal proceedings. I indicated that I had too formed that view. I therefore did not need to hear from Professor Kitzinger.</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">35.</num>
+            <intro>
+              <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The court must consider Articles 8 and 10 of the European Convention on Human Rights and Fundamental Freedoms:</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Article 8</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Right to respect for private and family life</p>
+              </intro>
+              <subparagraph>
+                <num>1.</num>
+                <content>
+                  <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Everyone has the right to respect for his private and family life, his home and his correspondence.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>2.</num>
+                <content>
+                  <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">There shall be no interference by a public authority with the exercise of this right except such as is in accordance with the law and is necessary in a democratic society in the interests of national security, public safety or the economic well-being of the country, for the prevention of disorder or crime, for the protection of health or morals, or for the protection of the rights and freedoms of others.</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Article 10</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Freedom of expression</p>
+              </intro>
+              <subparagraph>
+                <num>1.</num>
+                <content>
+                  <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Everyone has the right to freedom of expression. This right shall include freedom to hold opinions and to receive and impart information and ideas without interference by public authority and regardless of frontiers. This Article shall not prevent States from requiring the licensing of broadcasting, television or cinema enterprises.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>2.</num>
+                <content>
+                  <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">The exercise of these freedoms, since it carries with it duties and responsibilities, may be subject to such formalities, conditions restrictions or penalties as are prescribed by law and are necessary in a democratic society, in the interests of national security, territorial integrity or public safety, for the prevention of disorder or crime, for the protection of health or morals, for the protection of the reputation or rights of others, for preventing the disclosure of information received in confidence or for maintaining the authority and impartiality of the judiciary.”</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">36.</num>
+            <intro>
+              <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Section 12 (4) of the Human Rights Act 1998 provides that:</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“The court must have particular regard to the importance of the Convention right to freedom of expression and, where the proceedings relate to material which the respondent claims, or which appear to the court, to be journalistic, literary or artistic material (or to conduct connected with such material) to (a) the extent to which (i) the material has, or is about to, become available to the public, or (ii) it is, or would be, in the public interest for the material to be published, [and] (b) any relevant privacy code.”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">37.</num>
+            <intro>
+              <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Under the Court of Protection (Amendment) Rules 2022 ,which came into force on 1 January 2023,and therefore after the hearing on 8 December 2022 but before the hearing listed for sentencing on 16 January 2023, the new r 21.8(1) to (5) of the COPR provide as follows:</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“21.8. - (1) All hearings of contempt proceedings shall, irrespective of the parties’ consent, be listed and heard in public unless the court otherwise directs, applying the provisions of paragraph (4).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(2)</num>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">In deciding whether to hold a hearing in private, the court must consider any duty to protect or have regard to a right to freedom of expression which may be affected.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(3)</num>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">The court shall take reasonable steps to ensure that all hearings are of an open and public character, save when a hearing is held in private.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(4)</num>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">A hearing, or any part of it, must be held in private if, and only to the extent that, the court is satisfied of one or more of the matters set out in sub-paragraphs (a) to (g) and that it is necessary to sit in private to secure the proper administration of justice:</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(a) publicity would defeat the object of the hearing;</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(b) it involves matters relating to national security;</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(c) it involves confidential information (including information relating to personal financial matters) and publicity would damage that confidentiality;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(d) a private hearing is necessary to protect the interests of P, a protected party or any child;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(e) it is a hearing of an application made without notice and it would be unjust to any respondent for there to be a public hearing;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(f) it involves uncontentious matters arising in the administration of the affairs of P or in the administration of P’s estate; or</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(g) the court for any other reason considers this to be necessary to secure the proper administration of justice.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>(5)</num>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">The court must order that the identity of any party or witness shall not be disclosed if, and only if, it considers non-disclosure necessary to secure the proper administration of justice and in order to protect the interests of that party or witness.”</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those new rules apply to the hearing today. The court may therefore sit in private if one of the conditions under r 21.8(4) is met. For example, if the court determined that a private hearing was necessary to protect the interests of FP and that it was necessary to sit in private to secure the proper administration of justice. Ordinarily, contempt proceedings will be heard in public but the court clearly has the power to direct that contempt proceedings be heard in private. If so, then COPR r 4.2 applies:</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">4.2. - (1) For the purposes of the law relating to contempt of court, information relating to proceedings held in private (whether or not contained in a document filed with the court) may be communicated in accordance with paragraph (2) or (3).</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>(2)</num>
+                <intro>
+                  <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">The court may make an order authorising:</p>
+                </intro>
+                <subparagraph>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(a)the publication or communication of such information or material relating to the proceedings as it may specify; or</p>
+                  </content>
+                </subparagraph>
+                <subparagraph>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(b)the publication of the text or a summary of the whole or part of a judgment or order made by the court.</p>
+                  </content>
+                </subparagraph>
+                <subparagraph>
+                  <num>(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Subject to any direction of the court, information referred to in paragraph (1) may be communicated in accordance with Practice Direction 4A.</p>
+                  </content>
+                </subparagraph>
+                <subparagraph>
+                  <num>(4)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Where the court makes an order under paragraph (2) it may do so on such terms as it thinks fit, and in particular may:</p>
+                  </content>
+                </subparagraph>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(a) impose restrictions on the publication of the identity of:</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(i) any party;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(ii) P (whether or not a party);</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(iii) any witness; or</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <intro>
+                  <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.32in">(iv) any other person;</p>
+                </intro>
+                <subparagraph>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(b) prohibit the publication of any information that may lead to any such person being identified;</p>
+                  </content>
+                </subparagraph>
+                <subparagraph>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(c) prohibit the further publication of any information relating to the proceedings from such date as the court may specify; or</p>
+                  </content>
+                </subparagraph>
+                <subparagraph>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(d) impose such other restrictions on the publication of information relating to the proceedings as the court may specify.</p>
+                  </content>
+                </subparagraph>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those rules apply to all hearings conducted in private in the Court of Protection. However, in relation to contempt of court proceedings, I must have regard to the new r 21.8(5), on the face of which, as it applies to the present contempt proceedings, the court must order that the Defendant’s identity shall not be disclosed if, and only if, it considers non-disclosure necessary to secure the proper administration of justice and in order to protect the interest of the Defendant.  The general power under r 4.2 to impose restrictions on the publication of the identity of any party is circumscribed by r 21.8(5) in relation to contempt of court proceedings.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.5in">38.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">The new r 21.8(5) allows the court to restrict the disclosure of the identity of P (here, FP) if necessary to secure the administration of justice and to protect the interest of P. It does not appear to allow the court to restrict the disclosure of the identity of the Defendant if necessary to secure the administration of justice and to protect the interest of P (here FP). I can envisage cases in which it might be considered that the only way effectively to protect the interest of P is to restrict the disclosure of the identity of another party – the defendant to committal proceedings. However, the new rules do not appear to allow the court to act on that basis.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.5in">39.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">However, if the court <span style="font-style:italic">does </span>have the power to restrict the disclosure of the identity of the Defendant on those grounds (to ensure the administration of justice and to protect FP), the court would be required to consider whether such an order was necessary and proportionate. Here, the following considerations, which weigh in favour and against restricting reporting, appear to me to be particularly relevant:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">i.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in">Mrs Macpherson is the defendant in contempt of court proceedings that might result in her imprisonment. There is a strong public interest in allowing the press and bloggers to identify the defendant. It may be considered to be harmful to the public’s trust in and understanding of the Court of Protection to imprison, or at least to consider the exercise of the power to imprison, a person whose identity is kept secret.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">ii.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in">FP is a vulnerable person whose interests lie in being protected from invasions of her privacy and publicity about her history, condition, and circumstances.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">iii.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in;text-indent:0.12in">Publicity concerning the Defendant’s distorted beliefs and unfounded allegations against those caring for and treating FP, will tend to erode the willingness of those professionals to continue to treat and care for FP. The strain put on healthcare professionals by such allegations should not be under-estimated. Identifying the Defendant will risk amplifying the stream of allegations she makes against the healthcare professionals dealing with her daughter.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">iv.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in">There is a published judgment which gives details about FP. Allowing the Defendant’s identity to be reported will create a substantial risk identifying FP as the subject of that judgment.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">v.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in">The Defendant has used FP’s first name in her online posts. She has been ordered to remove those posts but has, before today, failed or refused to do so. Therefore, naming the Defendant in reports of these contempt proceedings will risk allowing FP to be identified as the subject of those posts and of the judgment referred to.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">vi.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in">FP and the Defendant have different surnames which mitigates the risk of identification of FP if the Defendant’s identity is disclosed.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.81in;text-indent:-0.25in">vii.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.81in;margin-right:0.57in;text-indent:0.12in">FP is largely isolated from contact with others. It is unlikely that she will directly encounter any person who has found out her identity, and her connection with the Court of Protection proceedings herein, through reporting of her mother’s name as the defendant to the committal application. Even if FP is identified by reason of her mother’s name being reported, it is not likely that FP will suffer direct harm as a result.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">40.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">Balancing all the circumstances in this case, the respective Art 8 and Art 10 rights, and bearing in mind s. 12(4) of the HRA 1998, and the new COPR Part 21, I have decided that I should allow the Defendant’s name to be reported as the defendant to these committal proceedings and I shall amend the Transparency Order accordingly. All parties, including FP through her litigation friend, agree that that is the appropriate course. I shall therefore permit reporting of the defendant’s identity in these committal proceedings. However, reporting of the identity of FP and the place where she is living and being cared for, currently Placement 3, is not permitted, whether that reporting is in relation to the substantive Court of Protection proceedings or the committal proceedings against the Defendant.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">41.</num>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">It is important to keep the committal proceedings separate from the substantive Court of Protection proceedings, but there is one matter relating to reporting restrictions in the Court of Protection proceedings that I must address in this judgment As already noted, my judgment in the Court of Protection proceedings has been published (above) with the Defendant anonymised. It would be futile for me to try to pretend that this judgment in the committal proceedings does not relate to the individuals who were the subject of my earlier published judgment, but I shall not cause that published judgment to be altered so as to name the Defendant. I do not consider it appropriate for the court to take steps to make it any easier to identify FP. Nevertheless, it is likely that the Open Justice Court of Protection Project, and perhaps other commentators, will wish to write about the committal proceedings in the context of the Court of Protection proceedings. It would be artificial for them to be able to name the Defendant when commenting on the committal proceedings but not to be permitted to name her when commenting on the substantive Court of Protection proceedings. I therefore permit the reporting of the Defendant’s name in relation to the Court of Protection proceedings also and shall amend the Transparency Order accordingly. The Claimant’s name may also be reported.</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:0.07in;margin-right:0.57in"><span style="font-weight:bold">At the Hearing on 16 January 2023</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">42.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">Mr Lewis was instructed by the Defendant by Direct Access shortly before the hearing on 16 January 2023. I received his skeleton argument late at night on Sunday 15<span style="vertical-align:super;font-size:smaller">th</span> January 2023. I was surprised to read, “Mrs Macpherson searched for a solicitor to take her case on a legal aid basis knowing that there is non-means tested legal aid, but her search was unsuccessful: no solicitor she contacted could take on the case.” As noted, the Defendant was indeed represented by a solicitor on 8 December 2022. That solicitor came off the record because Mrs Macpherson had not subsequently engaged in communications with the firm. It was a further surprise to then read what I understood to be detailed denials of the breaches already admitted by the Defendant, when represented, at the hearing on 8 December 2022.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">In fact, during the course of the hearing today, Mr Lewis clarified, after taking further instructions, that his submissions had been directed to mitigation. The Defendant did not seek to resile from the admissions she had made on 8 December 2022.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">44.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">Mr Lewis legitimately complained in his skeleton argument that his client had not had sufficient time to consider the further alleged breaches alleged in the most recent application to commit served by the Claimant as recently as Friday 13 January 2023. My order directing that that application should be heard at the hearing on 16 January, when the Defendant was to attend in any event, was not an order that the court would make determinations on those allegations and sentence the Defendant for them at this hearing.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">45.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">I questioned Mr Garlick at the outset of the hearing on 16 January 2023 as to what purpose would be served by pressing those further allegations. Whilst the Defendant is alleged to have gone further than before by encouraging people to attend the court building today to protest, no protesters have attended. The other alleged breaches are very similar to the previously alleged breaches. The Claimant has already alleged eleven breaches over a period of some weeks. Inevitably the further application, made so close to the hearing on 16 January 2023 would, if continued, lead to delay in concluding the applications heard and then adjourned on 8 December 2022.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">46.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">Mr Garlick asked for time to take instructions. As noted, one of the new allegations is that the Defendant has posted the name of Placement 3 online. Mr Lewis assured the court that his client had now taken that post down. The Claimant accepted that and Mr Garlick sought permission to withdraw the fourth committal application. I gave permission accordingly. The committal proceedings therefore concern only the first three applications and the five admitted breaches referred to above.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">47.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">I do not consider it helpful to make a succession of applications to commit in the way in which the Claimant has done in this case. It is difficult for the Defendant to keep track of the allegations against her. It involves duplication of work. It causes or risks delay in making determinations. If a contempt of court has been committed it should be dealt with expeditiously where possible. If a further breach of a different or much more serious nature has been allegedly committed since the onset of the original committal proceedings then there might be a case for bringing a further application but, otherwise, an Claimant should consider very carefully the utility of making a series of applications. Here, I cannot see that it was necessary or proportionate to make the most recent application.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">In his written submissions Mr Lews contended that the committal proceedings should be adjourned to allow Mrs Macpherson to appeal the orders made on 30 June 2022, breaches of which form the basis of the committal applications. He contended that the orders were not lawfully made. The difficulty with that submission is that Mrs Macpherson sought permission to appeal all the orders made on 30 June 2022, including the injunctive orders, and permission to appeal was refused by the Court of Appeal as being totally without merit. In refusing permission, the single judge of the Court of Appeal wrote:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“These conclusions [of fact] were clearly open to the judge on the evidence and having reached them he was entirely justified in making the orders, including restricting the appellant’s contact with FP, restraining her from making certain recordings and publishing information relating to the proceedings as set out in paragraphs 1 to 2 of the order … Contrary to the appellant’s argument the orders made do not amount to an unjustifiable breach of human rights … The restrictions imposed on the appellant were based on the evidence and history of her conduct and on that basis were fully justified in FP’s best interests.”</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Although Mrs Macpherson was a litigant in person when she sought and was refused permission to appeal, the very issues that Mr Lewis now says she ought to be able to raise by way of an application for permission to appeal, have already been raised and rejected. Mr Lewis did not press for an adjournment in order to allow the Defendant time to seek for a second time permission to appeal the orders of 30 June 2022. It would have been wholly wrong to delay the conclusion of these committal proceedings on that basis. I am satisfied that it was fair to the Defendant to proceed to sentence on 16 January 2023.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.5in">49.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">The Claimant did not seek to contend that six of the eleven admitted breaches constituted contempt of court. The Claimant’s concern was with the five admitted breaches which involved posting recordings of FP and, at the same time, revealing her identity. Accordingly, those other six alleged breaches should not have been included in the applications to commit. As for the five alleged breaches set out above, I am satisfied that they were deliberate, the Defendant knew she was breaching clear court orders when she committed those breaches, and the breaches were serious. They were serious in that the Defendant’s conduct was contumelious and they were serious in relation to the impact and the potential impact on FP. They involved a significant invasion of her privacy and they involved manipulation of a vulnerable person who is the subject of Court of Protection proceedings. Mr Lewis did not seek to persuade the court that these five breaches did not each constitute a contempt of court. I am satisfied that each of the admitted breaches set out above did constitute a contempt of court. I proceed to sentence the Defendant on that basis.</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.07in;margin-right:0.57in"><span style="font-weight:bold">Sentence</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">50.</num>
+            <intro>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">COPR r 21.9, in force since 1 January 2023 and therefore binding on me for the purposes of sentencing provides:</span></p>
+            </intro>
+            <subparagraph>
+              <intro>
+                <p class="Quote" style="margin-left:0.5in;margin-right:0.57in;text-indent:0.32in">“Powers of the court in contempt proceedings</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:0.82in;margin-right:0.57in">21.9. - (1) If the court finds the defendant in contempt of court, the court may impose a period of imprisonment (an order of committal), a fine, confiscation of assets or other punishment permitted under the law.”</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">51.</num>
+            <intro>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The general principles which I adopt are those set out by MacDonald J in </span><span style="font-style:italic;text-decoration-line:none">Re Dahlia Griffith (application to Commit)</span><span style="text-decoration-line:none"> [2020] EWCOP 46:</span></p>
+            </intro>
+            <subparagraph>
+              <num>“42.</num>
+              <content>
+                <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">As Marcus-Smith J made clear in Patel v Patel and Ors [2017] EWHC 3229 (Ch) at [22] and [23] a penalty for contempt has two primary functions.  First, it upholds the authority of the court by marking the disapproval of the court and deterring others from engaging in the conduct comprising the contempt. Secondly, it acts to ensure future compliance. …</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>43.</num>
+              <intro>
+                <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">In considering the appropriate penalty in this matter, I have had regard to the following principles applicable to that exercise:</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">i) The penalty chosen must be proportionate to the seriousness of the contempt.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">ii) Imprisonment is not the starting point and is not the automatic response to a contempt of court.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">iii) Equally, there is no principle that a sentence of imprisonment cannot be imposed on a contemnor who has not previously committed a contempt.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">iv) In circumstances where the disposal chosen must be proportionate to the seriousness of the contempt, where an immediate term of imprisonment is appropriate it should be as short as possible having regard to the gravity of the contempt and must bear some reasonable relationship to the maximum sentence of two years imprisonment that is available to the court.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">v) Where a term of imprisonment is the appropriate sentence, the length of the term should be determined without reference to whether the term is to be suspended or not.</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">vi) Having determined the length of the term of imprisonment, the court should expressly ask itself whether a sentence of imprisonment might be suspended.”</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">52.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">I take into account that the Defendant made admissions at the first opportunity at the hearing on 8 December 2022. She has breached court orders in the Court of Protection proceedings previously, but no previous committals for contempt of court in these or any other proceedings have been brought to my attention. She has attended court as required during the contempt of court proceedings.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">53.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The Defendant’s actions, amounting to contempt of court, were deliberate. Her attitude has been that the court’s orders are unjust and that she should not comply with them. She has a mission to “expose” the wrongdoing of those treating and caring for FP, and of the Court of Protection. Her means of doing so is by publishing material online irrespective of whether she has been ordered not to do so. She has not availed herself of the opportunity to remove the offending items from Twitter, Facebook or YouTube between the last hearing on 8 December and today.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">54.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The published recordings disclose conduct that is harmful to FP. The Defendant manipulates conversations with her vulnerable daughter and feeds her the line that she is being harmed by those caring for her and by her medication. Since FP has paranoid schizophrenia and believes she is being persecuted, the line fed to her by the Defendant is particularly dangerous to the mental health of her daughter. However, it is the conversations themselves that are most harmful to FP, not the posting of recordings of those conversations online. I have seen no evidence that FP is herself aware of the fact that her conversations have been shown to others by publication online. FP may not even be aware that her telephone conversations have been recorded. She will be aware that she was filmed being “interviewed” by the Defendant but there is no evidence that she knows what the Defendant did with that film. Accordingly, I proceed on the basis that there is no evidence that the admitted breaches have caused FP harm.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">55.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The Defendant has chosen directly to challenge the authority of the court. She has shown no respect for the court orders she has breached. She appears to take pride in having committed those breaches. She stands in defiance of the court and is bent on waging a campaign to bring attention to her views about her daughter’s treatment and care. Her views have no foundation in fact. They are bizarre. The Defendant has maintained them in the face of clear evidence that they are wrong. I have no evidence that the defendant’s thinking is affected by illness. Her views may well be sincerely held but that does not justify her acting on them in the way she has, in deliberate breach of court orders designed to prevent harm to her daughter and unjustified interference with her daughter’s human rights.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">56.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">Mr Lewis informed the court that during the course of the hearing today the Defendant removed all recordings of FP from Facebook and YouTube. Accordingly, links to those recordings on Twitter will not be effective. I am grateful that the Defendant has done so. She has had ample time to do so before today but nevertheless her actions today are a significant mitigating factor. They give the court some grounds for believing that the Defendant will not post similar recordings of FP in the future, in particular if the consequences of doing so are clear to her.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">57.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">Mr Lewis informed the court, and I accept, that the Defendant has no independent income. She lives with her husband who has disabilities and she cares for him. The household income comprises benefits most of which are directed to providing care for him. Nor does the Defendant have any savings or realisable assets. Surprisingly she has taken a loan in order to pay for legal representation today when she was entitled to publicly funded legal representation. However, imposing a fine on the Defendant would risk setting her up to fail because she has no income of her own from which to pay a fine.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">58.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">In this case the Defendant has almost dared the court to send her to prison because she believes it will bring attention to her bizarre views. However, to imprison the Defendant could well cause harm to others, both to the Defendant’s husband, FP’s stepfather, who has health issues and is aged 74 and who is looked after at home by the Defendant, and to FP herself. It seems to me very likely that FP would learn that her mother had been imprisoned by the court. The evidence of Mr Salmon shows that by whatever means, FP has been informed of the committal proceedings. It is very likely that FP would be informed if her mother was indeed imprisoned and this would be upsetting to FP whose mental state is of course fragile. The knowledge that the Defendant had been imprisoned would risk exacerbating FP’s paranoia and fear of persecution. Her understanding of why she has been removed from her mother appears to be limited. Her understanding of why her mother had been imprisoned may well also have limitations. I have to bear in mind that imprisoning the Defendant could well do FP more harm than the breaches themselves.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">59.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The Defendant’s conduct has therefore placed the court in an invidious position. If she is imprisoned for her deliberate and repeated breaches of court orders designed to protect her daughter, the fact of the imprisonment may well cause distress to the very person the court has sought to protect. A sanction other than imprisonment risks sending a signal to the Defendant and to others that the court will tolerate deliberate breaches of its orders.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">60.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">Only a narrow range of sanctions is available to the court. Weighing all the relevant circumstances I am satisfied that the only sentence that is appropriate in this case is one of imprisonment. Nothing else would meet the seriousness of the Defendant’s contempt of court. However, given the mitigating factors referred to above, in my judgment the appropriate length of sentence is one of 28 days, concurrent for each admitted allegation of contempt. Further, the circumstances of this case are such that immediate imprisonment is not justified. The imposition of immediate imprisonment would be harmful to the Defendant’s husband and, most importantly, to FP. The fact that the Defendant has removed the recordings of FP from the internet, albeit belatedly, allows me to pass a suspended sentence. The sentence of the court for each of the five admitted contempts of court is one of 28 days imprisonment, to run concurrently, suspended for 12 months, that is until midnight on 15 January 2024 on condition that the Defendant does not during those 12 months, conduct herself in any court proceedings in such a way as to be found in contempt of court.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">61.</num>
+            <content>
+              <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">I have reminded the Defendant that she has a right of appeal without permission but that the time limit for appealing to the Court of Appeal is 21 days from today, 16 January 2023. I shall ensure that this judgment is published on the website of the judiciary of England and Wales. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
