@@ -58,6 +58,7 @@ class CourtOfAppealParser : AbstractParser {
         "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER", //
         "Determination as to Venue",    // [2022] EWHC 152 (Admin)
         "Approved Consequentials Judgment", // [2022] EWHC 629 (Ch)
+        "SUBSTANTIVE JUDGMENT", // [2023] EWHC 323 (Ch)
 
         /* EAT */
         "TRANSCRIPT OF ORAL JUDGMENT",
