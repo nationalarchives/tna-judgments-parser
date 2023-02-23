@@ -299,7 +299,7 @@ class Inline {
         if (e is OpenXmlUnknownElement && e.LocalName == "tab")
             return new WTab(e);
         if (e is Break br) {
-            if (br.Type == BreakValues.Page)    // [2023] EWHC 323 (Ch)
+            if (br.Type is not null && br.Type == BreakValues.Page)    // [2023] EWHC 323 (Ch)
                 return null;
             // if (br.Type == BreakValues.Column)   // ?
             //     return null;
