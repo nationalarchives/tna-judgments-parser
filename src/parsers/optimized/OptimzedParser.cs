@@ -235,11 +235,11 @@ abstract class OptimizedParser {
     /* numbered big levels */
 
     string[] bigLevelNumberingFormats = {
-        @"^([A-Z]\.)$",
-        @"^(\(\d+\))$",
-        @"^(\d+\.)$",
-        @"^(\([a-z]\))$",
-        @"^(\([ivx]+\))$"
+        @"^[A-Z]\.$",
+        @"^\([A-Z]\)$",
+        @"^\(\d+\)$",
+        @"^\([a-z]\)$",
+        @"^\([ivx]+\)$"
     };
 
     private List<IDivision> BigLevels() {
