@@ -83,7 +83,9 @@ abstract class OptimizedParser {
         return header;
     }
     protected virtual IEnumerable<IDecision> EnrichBody(IEnumerable<IDecision> body) {
-        return body;
+        if (body is null)
+            return body;
+        return body.Select(dec => new Decision { Author = dec.Author, Contents = ConsolidateContiguousDummyDivisions(dec.Contents) });
     }
     protected virtual IEnumerable<IBlock> EnrichConclusions(IEnumerable<IBlock> conclusions) {
         return conclusions;
@@ -180,6 +182,28 @@ abstract class OptimizedParser {
         return new Decision { Author = author, Contents = contents };
     }
 
+    protected List<IDivision> ConsolidateContiguousDummyDivisions(IEnumerable<IDivision> divs) {
+        List<IDivision> consolidated = new List<IDivision>(divs.Count());
+        WDummyDivision last = null;
+        foreach (IDivision next in divs) {
+            if (next is WDummyDivision dummy) {
+                if (last is null)
+                    last = dummy;
+                else
+                    last = new WDummyDivision(Enumerable.Concat(last.Contents, dummy.Contents));
+            } else {
+                if (last is not null) {
+                    consolidated.Add(last);
+                    last = null;
+                }
+                consolidated.Add(next);
+            }
+        }
+        if (last is not null)
+            consolidated.Add(last);
+        return consolidated;
+    }
+
     protected List<IDivision> ParagraphsUntilEndOfDecision() {
         StopParsingParagraphs stop = e => {
             if (IsFirstLineOfDecision(e))
@@ -245,100 +269,6 @@ abstract class OptimizedParser {
         }
         return bigLevels;
     }
-
-    // protected WText GetNumberFromParagraph(Paragraph e, string format) {
-    //     string text = NormalizeParagraph(e);
-    //     Match match = Regex.Match(text, format);
-    //     if (!match.Success)
-    //         return null;
-    //     string number = match.Groups[1].Value;
-    //     RunProperties rPr = e.Descendants<RunProperties>().FirstOrDefault();
-    //     return new WText(number, rPr);
-    // }
-
-    // protected WLine RemoveNumberFromParagraph(Paragraph e, string format) {
-    //     IEnumerable<IInline> unfiltered = Inline.ParseRuns(Main, e.ChildElements);
-    //     unfiltered = Merger.Merge(unfiltered);
-    //     unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab || (inline is WText wText && string.IsNullOrWhiteSpace(wText.Text)));
-    //     IInline first = unfiltered.First();
-    //     if (first is not WText t1)
-    //         throw new Exception();
-    //     Match match = Regex.Match(t1.Text.TrimStart(), format); // TrimStart for 00356_ukut_iac_2019_ms_belgium.doc
-    //     if (match.Success) {
-    //         string rest = t1.Text.TrimStart().Substring(match.Length).TrimStart();
-    //         if (string.IsNullOrEmpty(rest)) {
-    //             return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(1));
-    //         } else {
-    //             WText prepend = new WText(rest, t1.properties);
-    //             return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(1).Prepend(prepend));
-    //         }
-    //     }
-    //     match = Regex.Match(t1.Text + " ", format + @"$");
-    //     if (match.Success) {
-    //         IInline second = unfiltered.Skip(1).FirstOrDefault();
-    //         if (second is WText t2) {
-    //             WText prepend = new WText(t2.Text.TrimStart(), t2.properties);
-    //             return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
-    //         } else if (second is WTab) {
-    //             return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(2));
-    //         } else {
-    //             throw new Exception();
-    //         }
-    //     }
-    //     if (unfiltered.Skip(1).FirstOrDefault() is WText t2bis) {  // 00356_ukut_iac_2019_ms_belgium.doc
-    //         string combined = t1.Text + t2bis.Text;
-    //         match = Regex.Match(combined, format);
-    //         if (match.Success) {
-    //             string rest = combined.Substring(match.Length).TrimStart();
-    //             if (string.IsNullOrEmpty(rest)) {
-    //                 return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(2));
-    //             } else {
-    //                 WText prepend = new WText(rest, t2bis.properties);
-    //                 return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(2).Prepend(prepend));
-    //             }
-    //         }
-    //         match = Regex.Match(combined + " ", format + @"$");
-    //         if (match.Success) {
-    //             IInline third = unfiltered.Skip(2).FirstOrDefault();
-    //             if (third is WTab)  // [2022] UKSC 21
-    //                 return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(3));
-    //         }
-    //         if (unfiltered.Skip(2).FirstOrDefault() is WText t3) {  // [2022] EWHC 2360 (KB)
-    //             string combined3 = t1.Text + t2bis.Text + t3.Text;
-    //             match = Regex.Match(combined3, format);
-    //             string rest = combined3.Substring(match.Length).TrimStart();
-    //             if (string.IsNullOrEmpty(rest)) {
-    //                 return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(3));
-    //             } else {
-    //                 WText prepend = new WText(rest, t3.properties);
-    //                 return new WLine(Main, e.ParagraphProperties, unfiltered.Skip(3).Prepend(prepend));
-    //             }
-    //         }
-    //     }
-    //     return RemoveNumberFromFirstLineOfBigLevel4(format, t1, unfiltered.Skip(1), e.ParagraphProperties);
-    // }
-
-    // private WLine RemoveNumberFromFirstLineOfBigLevel4(string format, WText t1, IEnumerable<IInline> rest, ParagraphProperties pProps) {
-    //     string t1Text = t1.Text.TrimStart();
-    //     if (rest.FirstOrDefault() is WTab) {    // ewhc/ch/2022/2462
-    //         t1Text += " ";
-    //         rest = rest.Skip(1);
-    //     }
-    //     if (rest.FirstOrDefault() is WText t2) {
-    //         string combined = t1Text + t2.Text;
-    //         Match match = Regex.Match(combined, format);
-    //         if (match.Success) {
-    //             string leftOver = combined.Substring(match.Length).TrimStart();
-    //             if (string.IsNullOrEmpty(leftOver)) {
-    //                 return new WLine(Main, pProps, rest.Skip(1));
-    //             } else {
-    //                 WText prepend = new WText(leftOver, t2.properties);
-    //                 return new WLine(Main, pProps, rest.Skip(1).Prepend(prepend));
-    //             }
-    //         }
-    //     }
-    //     throw new Exception();
-    // }
 
     protected bool IsFirstLineOfBigLevel(IBlock block) {
         if (block is not WOldNumberedParagraph np)
@@ -633,7 +563,7 @@ abstract class OptimizedParser {
         return new WNewNumberedParagraph(div.Number, intro);
     }
 
-    private ILeaf ParseSimpleParagraph(ILine line, bool sub) {
+    private ILeaf ParseSimpleParagraph(WLine line, bool sub) {
         i += 1;
         if (line is WOldNumberedParagraph np)
             return new WNewNumberedParagraph(np.Number, WLine.RemoveNumber(np));
