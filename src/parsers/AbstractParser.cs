@@ -683,9 +683,13 @@ abstract class AbstractParser {
         float leftMargin = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
         float firstLine = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (new WLine(main, p).Contents.FirstOrDefault() is WTab) {
+        // if (firstLine < 0 && new WLine(main, p).Contents.FirstOrDefault() is WTab) {
         //     float? nextTab = DOCX.Paragraphs.GetFirstTab(main, p.ParagraphProperties);
-        //     if (nextTab.HasValue)
+        //     if (!nextTab.HasValue)
+        //         indent = leftMargin;
+        //     else if (nextTab.Value > Math.Abs(firstLine))
+        //         indent = leftMargin;
+        //     else
         //         indent += nextTab.Value;
         // }
         return indent;
