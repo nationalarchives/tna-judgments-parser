@@ -119,7 +119,7 @@ class OptimizedEWHCParser : OptimizedParser {
                 continue;
             }
             string trimmed = line.TextContent.Trim();
-            if (trimmed == "Introduction" || trimmed == "INTRODUCTION") {
+            if (trimmed == "Introduction" || trimmed == "INTRODUCTION" || trimmed == "Contents" || trimmed == "CONTENTS") {
                 logger.LogDebug("ending header at " + trimmed);
                 return header;
             }
