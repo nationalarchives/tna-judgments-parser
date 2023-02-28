@@ -84,13 +84,10 @@ class PreParser {
 
     private static readonly string PlainNumberFormat = @"^“?\d+$";
     internal static readonly string[] NumberFormats = {
-        // @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))",
-        @"^(“?\d+\.) ",
-        @"^(“?[A-Z]\.) ",
-        @"^(“?\(\d+\)) ",
-        @"^(“?\([a-z]\)) ",
-        @"^(“?\([ivx]+\)) ",
-        @"^(“?[ivx]+\.?) "
+        @"^(“?\d+\.) ",    @"^(“?\(\d+\)) ",
+        @"^(“?[A-Z]\.) ",  @"^(“?\([A-Z]\)) ",
+        @"^(“?[a-z]\.) ",  @"^(“?\([a-z]\)) ",
+        @"^(“?[ivx]+\.) ", @"^(“?\([ivx]+\)) "
     };
 
     private static WLine ParseParagraph(MainDocumentPart main, Paragraph p) {
