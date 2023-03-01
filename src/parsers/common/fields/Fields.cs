@@ -237,11 +237,10 @@ class Fields {
             if (!IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any()) { // [2020] UKSC 49
-                string url = match.Groups[1].Value;
-                WExternalImage image = new WExternalImage() { URL = url };
-                return new List<IInline>(1) { image };
-            }
+            if (!remaining.Any()) // [2020] UKSC 49, [2023] EWHC 178 (IPEC)
+                logger.LogWarning($"ignoring external image { match.Groups[1].Value }");
+                // note that INCLUDEPICTURE fields with the \d flag are handled by the IncludedPicture class below
+
             return Inline.ParseRuns(main, remaining);
         }
         if (Seq.Is(fieldCode))
@@ -312,8 +311,13 @@ class Fields {
             return RestOptional(main, withinField, i);
         }
 
+        // "The XE field is formatted as hidden text and displays no result in the document." https://support.microsoft.com/en-us/office/field-codes-xe-index-entry-field-abaf7c78-6e21-418d-bf8b-f8186d2e4d08
+        if (fieldCode.StartsWith(" XE ")) { // [2023] EWHC 424 (TCC)
+            return Enumerable.Empty<IInline>();
+        }
+
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
-        throw new Exception();
+        throw new Exception(fieldCode);
     }
 
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {

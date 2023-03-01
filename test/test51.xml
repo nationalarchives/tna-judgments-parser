@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2023/99" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2023/99" />
+          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="99" />
+          <FRBRname value="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS v HAMILTON BRADBURY LTD (IN LIQUIDATION)" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99" />
+          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99/data.xml" />
+          <FRBRdate date="2023-02-06T18:45:30" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        <TLCPerson eId="hamilton-bradbury-ltd-in-liquidation" href="" showAs="HAMILTON BRADBURY LTD (IN LIQUIDATION)" />
+        <TLCRole eId="applicant" href="" showAs="Applicant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-TC</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>99</uk:number>
+        <uk:cite>[2023] UKFTT 99 (TC)</uk:cite>
+        <uk:parser>0.12.7</uk:parser>
+        <uk:hash>0f75ddf793168bfea5b24bd6e3a3aaea4df4b13969087cb6c9db2f259f18c2c6</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Heading3 { text-align: left; font-weight: bold; font-size: 13.5pt; }
+#judgment .Header { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1 { text-align: justify; font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Taxbodytext1 { text-align: justify; margin-left: 0in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2 { text-align: justify; margin-left: 0.39in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3 { text-align: justify; margin-left: 0.79in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4 { text-align: justify; margin-left: 1.18in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2 { text-align: justify; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3 { text-align: justify; font-style: italic; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4 { text-align: justify; font-style: italic; font-weight: normal; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxquotation { text-align: justify; margin-left: 0.79in; margin-right: 0.76in; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5 { text-align: justify; margin-left: 1.58in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeading { text-align: center; font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .legclearfix { text-align: left; font-size: 12pt; }
+#judgment .ListParagraph { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .legp1paratext { text-align: left; font-size: 12pt; }
+#judgment .legp2paratext { text-align: left; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1Char { font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; }
+#judgment .Taxbodytext1Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3Char { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4Char { font-style: italic; font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxquotationChar { font-family: 'Times New Roman'; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeadingChar { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; }
+#judgment .markedcontent { }
+#judgment .Heading3Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 13.5pt; }
+#judgment .legaddition { }
+#judgment .legchangedelimiter { }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .legsubstitution { }
+#judgment .legds { }
+#judgment .legterm { }
+#judgment .legp1no { }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p><img src="image1.png" style="width:82.49pt;height:72pt" /></p>
+      <p style="text-align:left">Neutral Citation: <neutralCitation>[2023] UKFTT 00099 (TC)</neutralCitation></p>
+      <p style="text-align:right">Case Number: TC08721</p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">FIRST-TIER TRIBUNAL</courtType></p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">TAX CHAMBER</courtType></p>
+      <p style="text-align:right;margin-left:3.05in">Location: Decided on the papers</p>
+      <p style="text-align:right">Appeal reference: TC/2021/02349</p>
+      <p><span style="font-style:italic">Application that arrangements should be treated as notifiable within the meaning of s306(1) FA 2004</span></p>
+      <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>02 February 2023</p>
+      <p style="text-align:center"><span style="font-weight:bold">Decided by:</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE ALLATT</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
+      <p style="text-align:center"><party refersTo="#the-commissioners-for-his-majestys-revenue-and-customs" as="#applicant" style="font-weight:bold">THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS</party></p>
+      <p style="text-align:right"><role refersTo="#applicant" style="font-weight:bold">Applicants</role></p>
+      <p style="text-align:center"><span style="font-weight:bold">and</span></p>
+      <p style="text-align:center"><party refersTo="#hamilton-bradbury-ltd-in-liquidation" as="#respondent" style="font-weight:bold">HAMILTON BRADBURY LTD (IN LIQUIDATION)</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondent</role></p>
+      <p>The Tribunal determined the application on 18 October 2022 without a hearing under the provisions of Rule 26 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009 (default paper cases) having first read the HMRC’s application, the witness statement of Robert Jones (with enclosures) and  HMRC’s Skeleton Argument (with enclosures).</p>
+      <p style="text-align:center"><span style="font-weight:bold">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading class="Taxheading1">Introduction</heading>
+          <paragraph eId="para_1">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Application is for an order under section 314A (or in the alternative, section 306A) of the Finance Act 2004 (“FA 2004”) that the arrangements specified and described (“the arrangements”) are (or, in the alternative, should be treated as) notifiable arrangements within the meaning of section 306(1) FA 2004.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">2.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC originally made an application on 25 May 2021, and the respondents to that application were Hamilton Bradbury Limited, a company incorporated and resident in the UK (“HBL”) and HBC Limited, a company incorporated in the Isle of Man and trading as Hamilton Bradbury Consulting (“HBC”).</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">3.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC has subsequently withdrawn the application against HBC, which was dissolved on 4 February 2021.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">4.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HBL is in liquidation, and the liquidators stated that they consent to the matter being dealt with on the papers, they do not wish to file a skeleton argument and they are taking a neutral position on the matter.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">Notifiable Arrangements</heading>
+          <paragraph eId="para_5">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The relevant provisions of Part 7, Finance Act 2004 provide:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><br />Section 306: Meaning of “notifiable arrangements” and “notifiable proposal”<br />(1) In this Part “notifiable arrangements” means any arrangements which—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(a) fall within any description prescribed by the Treasury by regulations,<br />(b) enable, or might be expected to enable, any person to obtain an advantage in relation to any tax that is so prescribed in relation to arrangements of that description, and<br />(c) are such that the main benefit, or one of the main benefits, that might be<br />expected to arise from the arrangements is the obtaining of that advantage.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(2)</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part “notifiable proposal” means a proposal for arrangements which, if entered into, would be notifiable arrangements (whether the proposal relates to a particular person or to any person who may seek to take advantage of it).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">314AOrder to disclose</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(1)HMRC may apply to the tribunal for an order that—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(a)a proposal is notifiable, or</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(b)arrangements are notifiable.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(2)An application must specify—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(a)the proposal or arrangements in respect of which the order is sought, and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(b)the promoter.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(3)On an application the tribunal may make the order only if satisfied that section 306(1)(a) to (c) applies to the relevant arrangements.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">The Arrangements</heading>
+          <paragraph eId="para_6">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The arrangements were implemented in the tax years 2013/2014 to 2018/2019.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">7.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Individuals (‘the user(s)’) found work via an arms-length UK agency or intermediary (“the UK agency”) and agreed to work for the end user client or customer (“the end user(s)”) in return for a particular rate of pay.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">8.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">The following steps were implemented:</span></p>
+            </intro>
+            <subparagraph>
+              <num class="markedcontent">a.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">The user received email correspondence from HBL regarding account set up</span><span> </span><span class="markedcontent">and separate emails from “Hamilton Bradbury Consulting via Signable</span><br /><span class="markedcontent">&lt;document@signable.co.uk&gt;” with links to an online portal to sign the requisite</span><span> </span><span class="markedcontent">contract of employment and loan agreement.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num class="markedcontent">b.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">The user entered into a contract of employment with HBC.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num class="markedcontent">c.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">HBL entered into a contract for services with the UK agency for the provision of</span><span> </span><span class="markedcontent">the user’s services to an end user. HMRC understand that the UK</span><span> </span><span class="markedcontent">agency then entered into a contract with the end user for the provision of the</span><span> </span><span class="markedcontent">user’s services, although a copy of such a contract has not been provided to</span><span> </span><span class="markedcontent">HMRC.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num class="markedcontent">d.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">The user entered into a commercial loan agreement with HBC (“the lender”) by</span><span> </span><span class="markedcontent">which the user (“the borrower”) was provided with an unsecured loan (“the loan</span><span> </span><span class="markedcontent">agreement”). The loan agreement provided that interest shall</span><span> </span><span class="markedcontent">accrue on the loan at “the fixed and invariable rate” of 4.0% calculated on a daily</span><span> </span><span class="markedcontent">basis and that the loan is repayable upon receipt of a written demand by the</span><span> </span><span class="markedcontent">lender on the 10th anniversary of the date of the agreement, unless extended at</span><span> </span><span class="markedcontent">the lender’s discretion.</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">9.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent"> There is no evidence of interest actually being charged</span><span> </span><span class="markedcontent">or repayment of loans actually being required or made, although it should be noted that the 10</span><span class="markedcontent" style="vertical-align:super;font-size:smaller">th</span><span class="markedcontent"> anniversary of the loan has not yet passed.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">10.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">It appears that the amounts</span><span> </span><span class="markedcontent">paid to the user under the loan agreement are calculated by reference to the</span><span> </span><span class="markedcontent">amounts invoiced by HBC to HBL for the provision of the user’s services to the end user, which effectively constitutes around 75% of the user’s income</span><span> </span><span class="markedcontent">generated from the provision of their services.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">11.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">Multiple examples of each of the steps a, b and d above were contained in the evidence bundle.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_12">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">12.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">Evidence obtained from HMRC’s enquiries indicate that monies were received and</span><span> </span><span class="markedcontent">paid as follows:</span></p>
+            </intro>
+            <subparagraph>
+              <num class="markedcontent">a.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">HBL issued the UK agency with invoices for gross amounts for the provision of</span><span> </span><span class="markedcontent">the user’s services to end users</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num class="markedcontent">b.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">The UK agency made payment to HBL.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num class="markedcontent">c.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">The user subsequently received two separate payments from HBC on the same</span><span> </span><span class="markedcontent">day constituting their take home pay, the smaller of those being the user’s</span><span> </span><span class="markedcontent">national minimum wage (“NMW”) from HBC’s PAYE system reference</span><span> </span><span class="markedcontent">120/MA86049 and the larger being payments under the loan agreement. Users’</span><span> </span><span class="markedcontent">bank statements showed the two separate payments and payslips</span><span> </span><span class="markedcontent">confirm the NMW payments from HBC.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num class="markedcontent">d.</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="markedcontent">The take home pay received by the user constituted approximately 82% to 86%</span><span> </span><span class="markedcontent">of the gross invoice value.</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading3">Do the arrangements fall within any description prescribed by the Treasury by regulations?</heading>
+          <paragraph eId="para_13">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">13.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">HMRC contentd that the arrangements meet section 306(1)(a) by virtue of falling within one or more of the</span><span> </span><span class="markedcontent">following descriptions in The Tax Avoidance Schemes (Prescribed Descriptions of</span><span> </span><span class="markedcontent">Arrangements) Regulations 2006, SI 2006/1543 (“the 2006 Regulations”).</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">14.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">The</span><span> </span><span class="markedcontent">arrangements need only fall within one of the descriptions for the requirement in</span><span> </span><span class="markedcontent">section 306(1)(a) to be met.</span></p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p class="Taxbodytext1"><span class="Taxheading3Char" style="font-family:'Times New Roman'">(i) Regulation 8, description 3: Premium Fee</span></p>
+            </content>
+          </level>
+          <paragraph eId="para_15">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">15.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The<span class="markedcontent"> premium fee hallmark provides that a promoter or person connected with a</span><br /><span class="markedcontent">promoter of the arrangements, or arrangements which are substantially similar thereto,</span><br /><span class="markedcontent">would be able to obtain a premium fee from a person experienced in receiving services</span><br /><span class="markedcontent">of the type provided. </span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="markedcontent">Regulation 8, description 3: Premium fee</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+              <content>
+                <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span class="markedcontent">Arrangements are prescribed if they are such that it might reasonably be expected</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(2)</num>
+              <content>
+                <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span class="markedcontent">that a promoter or a person connected with a promoter of arrangements that are</span><br /><span class="markedcontent">the same as, or substantially similar to, the arrangements in question, would, but</span><br /><span class="markedcontent">for the requirements of these Regulations, be able to obtain a premium fee from</span><br /><span class="markedcontent">a person experienced in receiving services of the type being provided.</span><br /><span class="markedcontent">But arrangements are not prescribed by this regulation if—</span><br /><span class="markedcontent">(a) no person is a promoter in relation to them; and</span><br /><span class="markedcontent">(b) the tax advantage which may be obtained under the arrangements is</span><br /><span class="markedcontent">intended to be obtained by an individual or a business which is a small or</span><br /><span class="markedcontent">medium-sized enterprise.</span><br /><span class="markedcontent">(2) For the purposes of paragraph (1), and in relation to any arrangements, a</span><br /><span class="markedcontent">“premium fee” is a fee chargeable by virtue of any element of the arrangements</span><br /><span class="markedcontent">(including the way in which they are structured) from which the tax advantage</span><br /><span class="markedcontent">expected to be obtained arises, and which is—</span><br /><span class="markedcontent">(a) to a significant extent attributable to that tax advantage, or</span><br /><span class="markedcontent">(b) to any extent contingent upon the obtaining of that tax advantage as a matter of</span><br /><span class="markedcontent">law.</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_16">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">16.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">In the recent decision of </span><span class="Taxheading4Char" style="font-family:'Times New Roman'">HMRC v Smartpay Ltd and another [2022] UKFTT 146 (TC),</span><br /><span class="markedcontent">Judge Malek considered the premium fee hallmark and stated at paragraph 22:</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">“The hallmark requires one to envisage a hypothetical promoter of an arrangement</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">which is the same or substantially similar to the arrangement in question and then</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">to ask oneself whether it would be reasonable to expect that such a promoter</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">would be able to obtain a premium fee. It is, therefore, an objective test applied to</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">a hypothetical promoter. The test does not require an examination of the subjective</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">condition of the promoter. The fact that UKCO does not receive a premium fee is</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">neither here nor there. It is equally irrelevant that it would be unreasonable to</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">expect that UKCO as promoter would be in a position to obtain a premium fee for</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">the services that it provided. Both considerations go to the subjective condition of</span><br /><span class="TaxquotationChar" style="font-family:'Times New Roman'">UKCO and are, accordingly, irrelevant.”</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_17">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">17.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">HMRC contends that in relation to these arrangements, the premium fee is be a fee chargeable by virtue</span><span> </span><span class="markedcontent">of the loan element of the arrangements, which accounts for the tax advantage</span><span> </span><span class="markedcontent">expected to be obtained from using the arrangements.</span><span> </span><span class="markedcontent">The arrangements here involve an amount being loaned to the user by HBC, in addition</span><span> </span><span class="markedcontent">to an amount equal to the NMW being paid to the user. The purported effect of the</span><span> </span><span class="markedcontent">arrangements was that the amount loaned would not be charged to income tax or</span><span> </span><span class="markedcontent">national insurance contributions (“NICs”). The NMW wage element would be</span><span> </span><span class="markedcontent">chargeable, if and insofar as it exceeded the individual’s personal allowance. The</span><span> </span><span class="markedcontent">reduction in income tax and/or NICs is an “advantage” as defined in section 318 under</span><span> </span><span class="markedcontent">sub-paragraph (a) as a reduced charge to tax which would have otherwise been</span><span> </span><span class="markedcontent">payable by users. </span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_18">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">18.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">The avoidance by an employer of an obligation to deduct and</span><span> </span><span class="markedcontent">account for income tax under PAYE procedures and to deduct and account for</span><span> </span><span class="markedcontent">employee NICs is also a tax advantage within sub-paragraph (c) of the definition of</span><span> </span><span class="markedcontent">“advantage” in section 318.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_19">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">19.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">HMRC have obtained from users “personal illustrations” which were provided to them,</span><br /><span class="markedcontent">indicating the arrangements offered take home pay of 85%. The increase in</span><span> </span><span class="markedcontent">take home pay referred to in the illustrations is a direct result of the purported reduction</span><span> </span><span class="markedcontent">in charge to income tax and NICs on the loan element of their earnings. Therefore, it might reasonably be expected that a promoter or a person connected with</span><span> </span><span class="markedcontent">a promoter of arrangements that are the same as, or substantially similar to, these</span><span> </span><span class="markedcontent">arrangements, would, but for the requirements of the regulations, be able to obtain a</span><span> </span><span class="markedcontent">premium fee from a person experienced in receiving services of the type being</span><span> </span><span class="markedcontent">provided.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_20">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">20.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">This appears to be supported by the fees in fact charged. The Hamilton Bradbury</span><br /><span class="markedcontent">Companies retained up to 15% of the users’ gross contract value each pay cycle. There was a</span><br /><span class="markedcontent">self-billing agreement between the Hamilton Bradbury Companies </span><span> </span><span class="markedcontent">which showed that that HBL paid 97.5% of users’ gross invoice value to HBC. HBL retained</span><span> </span><span class="markedcontent">2.5% of the gross contract value and HBC retained approximately 12.5% (having paid</span><span> </span><span class="markedcontent">out the remainder to users as NMW and payments pursuant to the loan agreements).</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_21">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">21.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span> </span><span class="markedcontent">Users therefore appeared to agree to give say 90% of their taxable income generated by their economic</span><span> </span><span class="markedcontent">activities to HBC (allowing approximately 10% of the gross contract value to be paid</span><span> </span><span class="markedcontent">as wages in line with the NMW legislation) in return for receiving around 75% of the</span><br /><span class="markedcontent">gross contract value under loan agreements, which is asserted not to be employment</span><br /><span class="markedcontent">income and so is not liable to tax or NICs. As such, the amounts withheld are paid out</span><br /><span class="markedcontent">of income generated by users’ economic activities and ultimately, although indirectly,</span><span> </span><span class="markedcontent">at users’ expense.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_22">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">22.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span class="markedcontent">The amounts withheld by the Hamilton Bradbury Companies are determined by</span><br /><span class="markedcontent">reference to the amounts put through the scheme or, in other words, charged based</span><br /><span class="markedcontent">on users’ contract value with the end user. Since processing large sums does not call</span><br /><span class="markedcontent">for significantly more work from the Hamilton Bradbury Companies than processing</span><br /><span class="markedcontent">small sums, the amounts withheld do not reflect the amount of time, effort or risk to the</span><span> </span><span class="markedcontent">Hamilton Bradbury Companies. HMRC contend that the rewards which the Hamilton Bradbury Companies</span><span> </span><span class="markedcontent">received therefore must have been attributable to something else.</span><span> </span><span class="markedcontent">The value of the amounts put through the scheme determine the amount of the tax</span><span> </span><span class="markedcontent">advantage which users expected to obtain from the arrangements. As the fee is</span><span> </span><span class="markedcontent">chargeable as a percentage of the contract value, the greater the amount awarded</span><span> </span><span class="markedcontent">through the arrangements, the greater the expected tax saving (as tax is a percentage</span><span> </span><span class="markedcontent">of earnings) and therefore the Hamilton Bradbury Companies’ cut increases in line with</span> the expected tax saving. The expected outcome of the arrangements is that users receive cash payments to the value of approximately 85% of the income generated by their economic activities with no, or no significant, tax or NICs either deducted and accounted for or payable by their employers or by them and with no practical prospect of being required to repay funds borrowed.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_23">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">23.</num>
+            <content>
+              <p class="Taxbodytext1" style="text-align:left;margin-left:0in;text-indent:0.5in">It is obvious that no individual would willingly agree to be paid only NMW for work that was commonly paid at much higher rates. Nor would individuals agree to be loaned money if they thought that both the money would need to be paid back and that in another employment a high proportion of that loan would be paid as wages.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_24">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">24.</num>
+            <content>
+              <p class="Taxbodytext1" style="text-align:left;margin-left:0in;text-indent:0.5in">It is therefore clear that the tax purported tax advantage was an integral and main feature of the scheme, and was implemented in order to gain that tax advantage.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_25">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">25.</num>
+            <content>
+              <p class="Taxbodytext1" style="text-align:left;margin-left:0in;text-indent:0.5in">The tax advantage is the main, if not the only, benefit of the<br />arrangements. It is only because of the tax advantage that users are willing to give up<br />15% of their pre-tax income by agreeing to the Hamilton Bradbury Companies<br />withholding and retaining that amount. The amount withheld shows the size of fee that<br />could have been obtained and that is only attributable to the tax advantage to which<br />the transactions purportedly give rise.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_26">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">26.</num>
+            <content>
+              <p class="Taxbodytext1" style="text-align:left;margin-left:0in;text-indent:0.5in">I agree with HMRC that the arrangements therefore fall within the description in regulation 8.</p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p class="Taxbodytext1"><span class="Taxheading3Char" style="font-family:'Times New Roman'">(ii) Regulation 10, description 5: Standardised Tax Products</span></p>
+            </content>
+          </level>
+        </level>
+        <level>
+          <heading class="Taxbodytext1">The Standardised Tax Products description was amended in 2016 by SI 2016/99.</heading>
+          <level>
+            <content>
+              <p class="Taxquotation"><span class="Taxbodytext1Char" style="font-family:'Times New Roman'">Regulation 10, description 5: Standardised tax products</span><br /><span class="Taxbodytext1Char" style="font-family:'Times New Roman'">Prior to 23 February 2016, description 5 of regulation 10 provided as follows:</span><br />(1) Arrangements are prescribed if the arrangements are a standardised tax product...<br />(2) For the purposes of paragraph (1) arrangements are a product if—</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation"><br />(a) the arrangements have standardised, or substantially standardised,<br />documentation—<br />(i) the purpose of which is to enable the implementation, by the client, of the<br />arrangements; and<br />(ii) the form of which is determined by the promoter, and not tailored, to any<br />material extent, to reflect the circumstances of the client;<br />(b) a client must enter into a specific transaction or series of transactions; and<br />(c) that transaction or that series of transactions are standardised, or substantially<span style="font-family:'Times New Roman'"> </span>standardised in form.</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">(3) For the purpose of paragraph (1) arrangements are a tax product if it would be<span style="font-family:'Times New Roman'"> </span>reasonable for an informed observer (having studied the arrangements) to conclude<span style="font-family:'Times New Roman'"> </span>that the main purpose of the arrangements was to enable a client to obtain a tax<span style="font-family:'Times New Roman'"> </span>advantage.</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">(4) For the purpose of paragraph (1) arrangements are standardised if a promoter makes<span style="font-family:'Times New Roman'"> </span>the arrangements available for implementation by more than one other person.</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">Since 23 February 2016, description 5 of regulation 10 provides as follows:</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation"><br />(1) Subject to regulation 11, arrangements are prescribed if a promoter makes the<span style="font-family:'Times New Roman'"> </span>arrangements available for implementation by more than one person and the<span style="font-family:'Times New Roman'"> </span>conditions in paragraph (2) are met.</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">(2) The conditions are that an informed observer (having studied the arrangements and<span style="font-family:'Times New Roman'"> </span>having regard to all relevant circumstances) could reasonably be expected to conclude that –</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">(a) the arrangements have standardised, or substantially standardised,<br />documentation—<br />(i) the purpose of which is to enable a person to implement the<br />arrangements;<br />(ii) the form of which is determined by the promoter; and<br />(iii) the substance of which does not need to be tailored, to any material<br />extent, to enable a person to implement the arrangements;<br />(b) a person implementing the arrangements must enter into a specific transaction<span style="font-family:'Times New Roman'"> </span>or series of transactions;</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">(c) the transaction or series of transactions is standardised, or substantially<br />standardised, in form; and</p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p class="Taxquotation">(d) either the main purpose of the arrangements is to enable a person to obtain a<span style="font-family:'Times New Roman'"> </span>tax advantage or the arrangements would be unlikely to be entered into but for<span style="font-family:'Times New Roman'"> </span>the expectation of obtaining a tax advantage.</p>
+            </content>
+          </level>
+          <paragraph eId="para_27">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">27.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In relation to current regulation 10(1) and former regulation 10(4), HMRC contend the<br />requirements are met on the basis that the arrangements were made available for<br />implementation by more than one person.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_28">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">28.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC state that in 2017/2018 there were approximately 900 users of the arrangements. The Tribunal has not been provided with complete lists of all the users, but from the evidence provided in the form of contracts of employment, loan documents, and details from the HBL of employees paid under umbrella arrangements it is clear that there were many users of these arrangements.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_29">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">29.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"> HMRC say that evidence obtained by them demonstrates the requirements of current regulation<span style="font-family:'Times New Roman'"> </span>10(2)(a) to (c) and former regulation 10(1) and (2) are also clearly met.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_30">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">30.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Documentation obtained by HMRC indicates the arrangements are substantially<br />similar in relation to each user, varying only in relation to the personal details of the<br />individuals involved and the monetary sums. The documents were not tailored to any<br />material extent to suit the individual circumstances of the different parties. Evidence provided to the Tribunal showed multiple identical loan agreements and contracts of employement, varying only in personal details and monetary sums. Whilst it may be common for employers to have standardised agreements, given that for example the Bank of England base rate, and the official beneficial loan rate varied over the period, it might be expected that there would be some variation in loan arrangements to reflect this. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_31">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">31.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Following execution of the above standardised documents, each user was placed into<br />HBC’s PAYE system reference 120/MA86049 where they received their NMW and<br />payments in the form of a loan pursuant to the loan agreements. There was no<br />significant difference in the way the arrangements operated with the series of<br />transactions being broadly the same for each user.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_32">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">32.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"> On the basis of the above, it would appear that HBL, HBC or both together pre-determined the form<span style="font-family:'Times New Roman'"> </span>of the series of standardised documents, which are integral to the series of<span style="font-family:'Times New Roman'"> </span>standardised transactions which users entered into. The purpose of these documents<br />and transactions was to enable the implementation of the arrangements by users.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_33">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">33.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"> In relation to current regulation 10(2)(d) and former regulation 10(3), HMRC contend it<span style="font-family:'Times New Roman'"> </span>would be reasonable for an informed observer (having studied the arrangements) to<br />conclude the main purpose of the arrangements was to enable users to obtain a tax<span style="font-family:'Times New Roman'"> </span>advantage.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_34">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">34.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is clear from the evidence provided by HMRC, both from ‘personal illustrations’ provided to users, and from information provided by the users to HMRC, that low taxation/increased money in their bank account every month was the main marketed benefit to this arrangement.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_35">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">35.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There does not appear to be any other significant benefit to the arrangements.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_36">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">36.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I agree with HMRC that the conditions for both the former and current regulation 10 hallmark apply in this case.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_37">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">37.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As it is only necessary for one hallmark to apply, and I have considered two hallmarks and found them both to apply, I have not considered whether any other hallmarks apply.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading3">s306 (1) (b) and (c)</heading>
+          <paragraph eId="para_38">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">38.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As I have found s306 (a) applies, I now need to consider whether the requirements of section 306(1)(b) and (c) FA 2004 are met.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_39">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">39.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">These are met where the arrangements:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"> (b) enable, or might be expected to enable, any person to obtain an advantage in relation to any tax that is so prescribed in relation to arrangements of that description; and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(c) are such that the main benefit, or one of the main benefits, that might be<br />expected to arise from the arrangements is the obtaining of that advantage.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_40">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">40.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As mentioned above, the evidence from the written personal illustrations, and from communications between users of the arrangements and HMRC, show that the amount of cash received per month, and the difference between amount and the amount of cash that  might be expected from using either a personal limited company or a direct employment relationship were foremost in the marketing to the users and the understanding of the arrangements by the users.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_41">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">41.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">According to the evidence provided, the users did not view the loans as something that required repaying.  One user said ‘I have not replaid any of the loans, I don’t actually understand how the loan works...In terms of repaying the loans....I was originally told this never happens. If this does happen I don’t have any source of funds to repay the loans’.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_42">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">42.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Users had also been told that the arrangements reduced tax. For example  ‘X had been advised by HBL of the benefits of having a proportion of his emoluments paid in the form of a loan and out of the Isle of Man. As an offshore tax jurisdiction, these emoluments would not attract a charge to either income tax or employers/employees NI contributions.’</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_43">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">43.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As mentioned above, it is not credible that an individual would willingly agree to be paid far below the market rate for his or her services, and to be advanced an amount that, even if it was slightly more than they might receive through a payroll, would need to be paid back with interest.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_44">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">44.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is clear that the individuals entering into the agreement were told, and believed, that the loan would not need to be repaid and that interest would not need to be paid.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_45">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">45.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is noticeable that even though HBC was dissolved, there was no attempt to call in the loans that had been made to hundreds of individuals. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_46">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">46.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Therefore the reduction in income tax that arose from only the NMW being put through the payroll was an ‘advantage in relation to tax’.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_47">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">47.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There is no other credible benefit from there arrangements, and therefore the tax advantage is the main benefit.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_48">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">48.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I conclude that the requirements of s306(1)(b) and (c) FA 2004 are met.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">Promoter</heading>
+          <paragraph eId="para_49">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">49.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As HMRC has withdrawn the application in respect of HBC, I am only considering whether HBL is a promoter in respect of these arrangements.</p>
+            </intro>
+            <subparagraph>
+              <num>307</num>
+              <content>
+                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in"><span class="legds">Meaning of “promoter”</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(1)For the purposes of this Part a person is a promoter—</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)in relation to a notifiable proposal, if, in the course of a relevant </span><span class="legsubstitution">business, the person (“P”)—</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legsubstitution">(i)is to any extent responsible for the design of the proposed arrangements,</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legsubstitution">(ii)makes a firm approach to another person (“C”) in relation to the notifiable proposal with a view to P making the notifiable proposal available for implementation by C or any other person, or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legsubstitution">(iii)makes</span><span class="legds"> the notifiable proposal available for implementation by other persons, and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(b)in relation to notifiable arrangements, if he is by virtue of paragraph (a)(ii) </span><span class="legaddition">or (iii)</span><span class="legds"> a promoter in relation to a notifiable proposal which is implemented by those arrangements or if, in the course of a relevant business, he is to any extent responsible for—</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(i)the design of the arrangements, or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(ii)the organisation or management of the arrangements.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(2)In this section “</span><span class="legterm">relevant business</span><span class="legds">” means any trade, profession or business which—</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)involves the provision to other persons of services relating to taxation, or....</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_50">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">50.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC contend that HBL is a promoter under s307(1)(a)(iii). They contend that the ‘relevant business’ of HBL was facilitating the arrangements of the contracts designed to enable minimisation of income tax and National Insurance Contributions, and that this is therefore a relevant business involving the provision to other persons of services relating to taxation.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_51">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">51.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HBL was the gateway for employment contracts to be signed with HBC. It appears from the evidence in the bundle that it was not clear to end users that there was an offshore company in the employment arrangements.  The emails sending links to the documents were sent by HBL and reference what HBL would do, for example ‘during working hours we process your invoices the same day we receive them’.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_52">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">52.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I concluded above that the main purpose of these arrangements was to obtain a benefit in relation to taxation.  As HBL was paid for its part in these arrangements, I conclude that HBL had a business which involved the provision to other persons of services relating to taxation, and hence this was  relevant business.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_53">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">53.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In relation to s307(1)(a)(iii) it is clear that the notifiable proposal was ‘made available for implementation by other persons’ by HBL. The bundle contains examples of emails from HBL to end users with links to all the documents required to enter into the arrangements.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_54">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">54.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HBL also appears to be significantly involved in the organisation or management of the arrangements, as HBL invoiced UK agencies on behalf of users, received payments from UK agencies on behalf of users, issued full VAT invoices to HBC in relation to the amounts HBL owed HBC (which it was required to settle by paying HBC in return for the services users<br />provided to end users in their capacity as HBC employees) and transferred the above funds to HBC. Without HBL’s involvement the income received would not reach HBC and be paid to the end users. The issuing of invoices to agencies is therefore crucial to the arrangements, and therefore HBL is involved in a critical part of the organisation of the arrangements.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_55">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">55.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I therefore find that HBL is a promoter under s307(1)(a)(iii) and 307(1)(b)(ii).</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_56">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">56.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The relevant legislation in respect of National Insurance Contributions is section 132A Social Security Administration Act 1992 and National Insurance Contributions (Application of Part 7 of the Finance Act 2004) Regulations 2012, SI 2012/1868.</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">—(1) HMRC may apply to the tribunal for an order that—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)a proposal is to be treated as a notifiable contribution proposal; or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(b)arrangements are to be treated as notifiable contribution arrangements.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(2) An application must specify—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)the proposal or arrangements in respect of which the order is sought; and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(b)the promoter.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(3) On an application the tribunal may make the order only if satisfied that HMRC—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)have taken all reasonable steps to establish whether the proposal is a notifiable contribution proposal or the arrangements are notifiable contribution arrangements; and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(b)have reasonable grounds for suspecting that the proposal may be a notifiable contribution proposal or the arrangements may be notifiable contribution arrangements.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(4) Reasonable steps under paragraph (3)(a) may (but need not) include taking action under regulation 17 or 18.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(5) Grounds for suspicion under paragraph (3)(b) may include—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)the fact that the relevant arrangements fall within a description prescribed by the Descriptions Regulations;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(b)an attempt by the promoter to avoid or delay providing information or documents about the proposal or arrangements under or by virtue of regulation 17 or 18;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(c)the promoter’s failure to comply with a requirement under or by virtue of regulation 17 or 18 or section 313A or 313B in relation to another proposal or other arrangements.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(6) Where an order is made under this regulation in respect of a proposal or arrangements, the period for the purposes of paragraphs (1) and (3) of regulation 8 is that prescribed.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation">(7) An order under this regulation in relation to a proposal or arrangements is without prejudice to the possible application of regulation 8, other than by virtue of this regulation, to the proposal or arrangements.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_57">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">57.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in" />
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legp1no">7.</span>—(1) For the purposes of this Part a person is a promoter—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(a)in relation to a notifiable contribution proposal if, in the course of a relevant business, the person (“P”) –</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(i)is to any extent responsible for the design of the proposed arrangements;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(ii)makes a firm approach to another person (“C”) in relation to the proposal with a view to P making the proposal available for implementation by C or any other person; or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(iii)makes the notifiable contribution proposal available for implementation by other persons; and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(b)in relation to notifiable contribution arrangements, if the person (“P”) is by virtue of sub-paragraph (a)(ii) or (iii) a promoter in relation to a notifiable contribution proposal which is implemented by those arrangements or if, in the course of a relevant business, P is to any extent responsible for—</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(i)the design of the arrangements, or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxquotation"><span class="legds">(ii)the organisation or management of the arrangements.</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_58">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">58.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I find the requirements of the legislation in relation to National Insurance are also met, for the reasons given above.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1">decision</heading>
+          <paragraph eId="para_59">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">59.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">For the reasons given above, I make an order under s314A Finance Act 2004 that the arrangements are notifiable within the meaning of s306(1)FA 2004.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_60">
+            <num style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">60.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-weight:bold">Right to apply for permission to appeal</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_61">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">61.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">By virtue of article 3(i) of the Appeals (Excluded Decisions) Order 2009 (SI 2009/275) any decision of this Tribunal about the applicability of section 314A and section 306A of the Finance Act 2004 is an excluded decision for the purposes of section 11(1) of the Tribunals, Courts and Enforcement Act 2007 and accordingly there is no right of appeal against this decision.</p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold">SARAH ALLATT</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold">Release date: 02</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">nd</span><span style="font-weight:bold"> FEBRUARY 2023</span></p>
+            </content>
+          </level>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

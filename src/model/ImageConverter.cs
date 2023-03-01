@@ -18,7 +18,7 @@ class ImageConverter {
     internal static void ConvertImages(IJudgment jugdment) {
         ConvertEmfFiles(jugdment);
         ConvertTiffFiles(jugdment);
-        CropImages(jugdment);
+        MutateImages(jugdment);
     }
 
     private static void ConvertEmfFiles(IJudgment jugdment) {
@@ -84,14 +84,14 @@ class ImageConverter {
         jugdment.Images = images;
     }
 
-    private static string MakeCroppedSrc(string src, int n) {
+    private static string MakeChangedSrc(string src, int n) {
         int i = src.LastIndexOf('.');
         if (i == -1)
-            return src + ".crop" + n;
-        return src.Substring(0, i) + ".crop" + n + src.Substring(i);
+            return src + ".change" + n;
+        return src.Substring(0, i) + ".change" + n + src.Substring(i);
     }
 
-    private static void CropImages(IJudgment jugdment) {
+    private static void MutateImages(IJudgment jugdment) {
         List<IImage> images = new List<IImage>();
         var allRefsWithAnyName = Util.Descendants<IImageRef>(jugdment);
         foreach (IImage image in jugdment.Images) {
@@ -100,20 +100,32 @@ class ImageConverter {
                 logger.LogWarning("removing image {0}", image.Name);
                 continue;
             }
-            var uncroppedRefs = allRefs.Where(r => r.Crop is null);
-            if (uncroppedRefs.Any())
+            var unchangedRefs = allRefs.Where(r => r.Crop is null && r.Rotate is null);
+            if (unchangedRefs.Any())
                 images.Add(image);
-            var croppedRefs = allRefs.Where(r => r.Crop is not null);
+            var changedRefs = allRefs.Where(r => r.Crop is not null || r.Rotate is not null);
             int n = 0;
-            foreach (var croppedRef in croppedRefs) {
+            foreach (var changedRef in changedRefs) {
                 n += 1;
-                string croppedSrc = MakeCroppedSrc(croppedRef.Src, n);
-                logger.LogInformation("cropping {0} to ({1}, {2}, {3}, {4})", croppedRef.Src, croppedRef.Crop.Value.Top, croppedRef.Crop.Value.Right, croppedRef.Crop.Value.Bottom, croppedRef.Crop.Value.Left);
-                croppedRef.Src = croppedSrc;
+                string changedSrc = MakeChangedSrc(changedRef.Src, n);
+                changedRef.Src = changedSrc;
+                byte[] data;
+                if (changedRef.Crop is not null) {
+                    logger.LogInformation("cropping {0} to ({1}, {2}, {3}, {4})", changedRef.Src, changedRef.Crop.Value.Top, changedRef.Crop.Value.Right, changedRef.Crop.Value.Bottom, changedRef.Crop.Value.Left);
+                    data = Mutate.Crop(image.Content(), changedRef.Crop.Value);
+                } else {
+                    using var stream = new MemoryStream();
+                    image.Content().CopyTo(stream);
+                    data = stream.ToArray();
+                }
+                if (changedRef.Rotate.HasValue) {
+                    logger.LogInformation("rotating {0} by {1}", changedRef.Src, changedRef.Rotate.Value);
+                    data = Mutate.Rotate(data, changedRef.Rotate.Value);
+                }
                 var converted = new ConvertedImage {
-                    Name = croppedSrc,
+                    Name = changedSrc,
                     ContentType = image.ContentType,
-                    Data = Mutate.Crop(image.Content(), croppedRef.Crop.Value)
+                    Data = data
                 };
                 images.Add(converted);
             }

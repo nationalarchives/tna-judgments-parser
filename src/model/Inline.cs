@@ -164,6 +164,8 @@ interface IImageRef : IInline {
 
     Imaging.Inset? Crop { get; }
 
+    int? Rotate { get; }
+
 }
 
 interface INeutralCitation : IFormattedText { }

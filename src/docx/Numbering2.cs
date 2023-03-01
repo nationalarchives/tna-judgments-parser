@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -24,6 +25,17 @@ class Numbering2 {
         int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         return numId.HasValue && numId.Value != 0;
     }
+    // has style number and that number is not canceled
+    public static bool HasEffectiveStyleNumber(Paragraph paragraph) {
+        int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        if (numId.HasValue && numId.Value == 0)
+            return false;
+        Style style = Styles.GetStyle(Main.Get(paragraph), paragraph);
+        if (style is null)
+            return false;
+        numId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+        return numId.HasValue && numId.Value != 0;
+    }
 
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
@@ -43,6 +55,8 @@ class Numbering2 {
         AbstractNum abstractNum = Numbering.GetAbstractNum(main, instance);
         Int32Value abstractNumberId = abstractNum.AbstractNumberId;
         Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
+        if (baseLevel is null)  // [2023] UKFTT 00089 (TC), a very strange case
+            return null;
         LevelText format = baseLevel.LevelText;
 
         /* None */
@@ -190,14 +204,12 @@ class Numbering2 {
         //     TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
         //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         // }
-        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)([\.\-\(])%(\d+)([^%]*)$");
+        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)([^%]*)%(\d)([^%]*)$");
         if (match.Success) {
             string prefix = match.Groups[1].Value;
             int ilvl1 = int.Parse(match.Groups[2].Value) - 1;
             string middle = match.Groups[3].Value;
             int ilvl2 = int.Parse(match.Groups[4].Value) - 1;
-            if (ilvl2 > 9)
-                logger.LogWarning("two-digit numbering level: " + ilvl2);
             string suffix = match.Groups[5].Value;
             TwoCombinator combine = (num1, num2) => { return prefix + num1 + middle + num2 + suffix; };
             return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
@@ -519,14 +531,14 @@ class Numbering2 {
     /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-        // int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+        int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
         int? start = null;
         int numIdOfStartOverride = -1;
         bool prevContainsNumId = false;
+        HashSet<int> prevEncounteredNumIds = new HashSet<int>();
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
-            bool noContent = prev.ChildElements.Any(child => child is ParagraphProperties) && prev.ChildElements.All(child => child is ParagraphProperties);
-            if (noContent && !HasOwnNumber(prev))
+            if (Paragraphs.IsEmptySectionBreak(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
@@ -539,6 +551,8 @@ class Numbering2 {
 
             if (prevIlvl < ilvl)    // even if prevAbsNumId != abstractNumId
                 prevContainsNumId = false;
+            if (prevIlvl < ilvl)
+                prevEncounteredNumIds.Remove(prevNumId.Value);
 
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
@@ -559,20 +573,32 @@ class Numbering2 {
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
+                if (prevNumIdWithoutStyle == numberingId)
+                    prevEncounteredNumIds.Add(numberingId);
                 count = 0;
                 continue;
             }
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
-                if (!isHigher && start is null && prevNumIdOfStyle is not null && prevNumIdOfStyle.Value != prevNumId.Value) {
-                    if (!(prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value)) {    // test47
+                // this can be simplified, obviously
+                if (!isHigher && !start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
+                    var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
+                    var prevStyle = prev.ParagraphProperties.ParagraphStyleId.Val.Value;
+                    if (prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value) { // test47
+                    } else if (thisStyle is null) { // test 54
+                    } else if (thisStyle == prevStyle && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test52
+                    } else if (thisStyle != prevStyle && thisNumIdOfStyle is null) { // test 54
+                    } else { // test38
                         start = 1;
                         numIdOfStartOverride = -2;
                     }
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
+                if (prevNumIdWithoutStyle == numberingId)
+                    prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
+
                 continue;
             }
 
@@ -599,6 +625,19 @@ class Numbering2 {
             }
             if (prevNumIdWithoutStyle == numberingId)
                 prevContainsNumId = true;
+            if (prevNumIdWithoutStyle == numberingId)
+                prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
+
+            // [2023] UKFTT 00045 (TC)
+            var prevOverridesStyleNumId = prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue && !thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numberingId;
+            if (prevOverridesStyleNumId && ilvl > 0) {
+                // this is similar to code below
+                int? over = GetStartOverride(main, prevNumIdWithoutStyle.Value, ilvl);
+                bool isParent = ilvl < (prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
+                if (!isParent && !prevEncounteredNumIds.Contains(prevNumIdWithoutStyle.Value) && over.HasValue)
+                    continue;
+            }
+
             count += 1;
         }
 

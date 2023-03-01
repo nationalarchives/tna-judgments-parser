@@ -1,0 +1,1438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2023/45" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2023/45" />
+          <FRBRdate date="2023-01-12" name="decision" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="45" />
+          <FRBRname value="RELIABLE SHIPPING LIMITED v THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45" />
+          <FRBRdate date="2023-01-12" name="decision" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
+          <FRBRdate date="2023-02-06T18:44:59" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-10-19" refersTo="#hearing" source="#" />
+        <eventRef date="2023-01-12" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="reliable-shipping-limited" href="" showAs="RELIABLE SHIPPING LIMITED" />
+        <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-TC</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>45</uk:number>
+        <uk:cite>[2023] UKFTT 45 (TC)</uk:cite>
+        <uk:parser>0.12.7</uk:parser>
+        <uk:hash>7653fcf040c1d7f55f82082fef299fc6cf7090d63a7ff2a351feee4d4990cb13</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Header { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1 { text-align: justify; font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Taxbodytext1 { text-align: justify; margin-left: 0in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2 { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3 { text-align: justify; margin-left: 1in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4 { text-align: justify; margin-left: 1.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2 { text-align: justify; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3 { text-align: justify; font-style: italic; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4 { text-align: justify; font-style: italic; font-weight: normal; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxquotation { text-align: justify; margin-left: 0.79in; margin-right: 0.76in; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5 { text-align: justify; margin-left: 2in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeading { text-align: center; font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1Char { font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; }
+#judgment .Taxbodytext1Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3Char { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4Char { font-style: italic; font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxquotationChar { font-family: 'Times New Roman'; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeadingChar { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; }
+#judgment .QuoteChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p><img src="image1.png" style="width:82.49pt;height:72pt" /></p>
+      <p style="text-align:left">Neutral Citation: <neutralCitation>[2023] UKFTT 00045 (TC)</neutralCitation></p>
+      <p style="text-align:right">Case Number: TC08694</p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">FIRST-TIER TRIBUNAL</courtType></p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">TAX CHAMBER</courtType></p>
+      <p style="text-align:right;margin-left:3.05in">By remote video hearing</p>
+      <p style="text-align:right">Appeal reference: TC/2021/00667</p>
+      <p style="text-align:right">TC/2021/00879</p>
+      <p><span style="font-style:italic;color:#000000">EXCISE DUTY – hardship applications – security not payment – whether Ferrazzini binding – yes – Article 6 not in point – applications refused</span></p>
+      <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span><docDate date="2022-10-19" refersTo="#hearing">19 October 2022</docDate></p>
+      <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>12 January 2023</p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT </span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
+      <p style="text-align:center"><party refersTo="#reliable-shipping-limited" as="#appellant" style="font-weight:bold">RELIABLE SHIPPING LIMITED</party></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>
+      <p style="text-align:center"><span style="font-weight:bold">and</span></p>
+      <p style="text-align:center"><party refersTo="#the-commissioners-for-his-majestys-revenue-and-customs" as="#respondent" style="font-weight:bold">THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondents</role></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Representation:</span></p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Appellant:<marker name="tab" />Josh Hitchins, of counsel, instructed by Rogers &amp; Norton, Solicitors</p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Respondents: <marker name="tab" />Ross Birkbeck of counsel, instructed by the General Counsel and Solicitor to HM Revenue and Customs</p>
+      <p style="text-align:center"><span style="font-weight:bold">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading class="Taxheading1">Introduction</heading>
+          <paragraph eId="para_1">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The appeal in TC/2021/00667 relates to an assessment in the sum of £184,280.73 issued by Officer Selant on 4 September 2020.  The appeal in TC/2021/00879 relates to an assessment in the sum of £136,250.27 issued by Officer Selant on 5 September 2020.  The total amount subject to hardship considerations is therefore £320,531.50.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">2.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The general rule in the Finance Act 1994 is that an appellant who wishes to bring an appeal against an assessment issued under section 12 Finance Act 1994 (“FA94”) must pay or deposit the amount of the assessment with HMRC. If not, HMRC have the power to issue a certificate stating either that they have received adequate security from the appellant or that on the grounds of potential hardship a lesser level of, or no, security suffices. If no such certificate is issued by HMRC an appellant can apply to the Tribunal to decide whether HMRC should not have refused to grant such a certificate and that a reasonable level of security, if any, has been given.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">3.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In this appeal the appellant has simply told HMRC that payment of the duty to HMRC would cause it hardship.  HMRC were not persuaded by the information provided by the appellant and have not accepted the appellant’s position.  The appellant now appeals to the Tribunal.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">4.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">With the consent of the parties, the hearing was conducted by video link using the Tribunal’s video hearing system.  A face-to-face hearing was not held because of the difficulty of ensuring the safety of all participants.  The documents to which I was referred comprised a Bundle consisting of 518 pages.  I also had an Authorities Bundle extending to 78 pages.  The appellant had also lodged a Profit and Loss account and a letter from a Licensed Insolvency Practitioner. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I heard evidence from Mr Mingwei Chi for the appellant.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Prior notice of the hearing had been published on the gov.uk website, with information about how representatives of the media or members of the public could apply to join the hearing remotely in order to observe the proceedings.  As such, the hearing was held in public.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading2">Preliminary issue</heading>
+          <paragraph eId="para_7">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">7.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Since no Skeleton Arguments had been lodged an unheralded argument arose as to the distinction between the wording in section 84(3) Value Added Tax Act 1994 (“VATA”) and section 16(3) FA94.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">8.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There was an equally unheralded argument advanced on section 3 Human Rights Act 1998 (“HRA”).  In those circumstances, having due regard to Rule 2 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009 (as amended) ("the Rules") I asked both counsel if they would wish to lodge written submissions on those matters.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">9.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I therefore issued Directions of consent.  When issuing those Directions I pointed out to the parties that both had relied on the First-tier Tribunal (“FTT”) decision in <span style="font-style:italic">Elbrook (Cash &amp; Carry) Limited</span> whereas I would also always look at the decision in the Upper Tribunal which is cited at 2017 UKUT 181 (TCC). I pointed out that I agreed with Judge Poole in <span style="font-style:italic">NT ADA Limited v HMRC</span> [2019] UKFTT 0333 (TC) (“NT”) where he set out a review of the relevant case law in relation to VAT and hardship.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">10.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Lastly, I pointed out to the parties that the two Review Conclusion Letters indicate that the Post Clearance Demand Notes (“PCDNs”) include in their totals both Customs Duty and Import VAT.  In fact the Customs Duty charged is in the sums of £107,206.32 and £18,805.21 and the Import VAT is in the sums of £77,074.41 and £117,445.06.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">11.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The appellant’s submissions extending to 24 pages were lodged on 30 October 2022.  HMRC’s submissions in response, extending to 13 pages, were lodged on 17 November 2022.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading2">Background</heading>
+          <paragraph eId="para_12">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">12.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The facts are not in dispute. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">13.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Mingwei Chi is the sole director and shareholder of the appellant. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">14.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 12 August 2020, HMRC issued a decision letter to the effect that a PCDN in the sum of £184,280.73 comprising Customs Duty of £107,206.32 and Import VAT of £77,074.41 would be issued. The basis for the decision was that following two separate assurance visits on 5 November 2019 and 22 November 2019 it had been established that 155 items covering 60 import entries have been undervalued. A customs debt was therefore deemed to have arisen. On 4 September 2020 the PCDN was issued.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_15">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">15.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 21 August 2020, HMRC issued a decision letter to the effect that a PCDN in the sum of £136,250.27 comprising Customs Duty of £18,805.21 and Import VAT of £117,445.06 would be issued. The officer had identified 86 imports between 10 October 2017 and 7 November 2017 which did not meet the conditions for Onward Supply Relief. Of those entries 52 were further identified as being classified to incorrect commodity codes. A customs debt was therefore deemed to have arisen. On 4 September 2020 the PCDN was issued.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_16">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">16.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The Review Conclusion letters upheld both PCDNs and therefore the assessments.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_17">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">17.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In the two Notices of Appeal dated 22 February and 11 March 2021 respectively, the appellant indicated that it “is not in a position to pay the sum claimed and cannot obtain a loan, it could (would) lead to insolvency”.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_18">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">18.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 27 April 2021, the appellant’s representative wrote to HMRC with an application for hardship. That letter argued that:-</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">“…at first sight, our client’s bank balance looks healthy”. The bank balance was stated to be £997,000. That was said to have been reduced by payments of approximately £45,000 for wages and £90,000 to HMRC.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The owner had not paid himself dividends because of the pandemic.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">£100,000 was ring fenced for clients’ deposits.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(d)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The warehouse lease costs £51,000 quarterly.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(e)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The business required a minimum cash flow of £700,000.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(f)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The owner of the appellant had to comply with a court order to pay his ex-wife £500,000 with a payment of £160,000 being due on 1 May 2021.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext3">The owner of the appellant had no assets and could not secure a loan.</heading>
+          <paragraph eId="para_19">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">19.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC responded asking for more information by 11 June 2021. The appellant’s solicitor asked for an extension of time.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_20">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">20.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 8 July 2021, the appellant’s solicitors wrote to HMRC stating that they enclosed:-</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Management reports for January to March 2021. The net profit for the year to date as at March 2021 (being the year-end) was £866,386.35. The unvouched cash flow forecast for July 2012 to June 2022 projected cumulative losses.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Bank statements that were stated to be for May and June 2021 but were in fact for April and May 2021. The credit balance as at 28 May 2021 was £1,122,008.06. Without doing a detailed analysis, I observe that the balance fluctuated but appears never to have dipped below approximately £755,170.86 but it was consistently significantly higher than that. The solicitors pointed out that the balance included a total of £260,000 of client deposits.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Details of the proposed sale of a flat owned by the appellant which would release equity of approximately £170,000.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(d)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The warehouse lease agreement which had two years to run with a quarterly rental payment of £55,000.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(e)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">A copy of a court order from the Family Court dated 24 January 2020 whereby Mr Chi had to make various payments.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(f)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Miscellaneous documentation.  </p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_21">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">21.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 28 July 2021, HMRC responded pointing out in particular that the cash flow forecast showed only outflows and no inward payments. HMRC asked for other information to be provided by 28 August 2021 and on 23 August 2021 a further extension of time was sought by the solicitors. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_22">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">22.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 9 September 2021, the appellant’s solicitors provided some information. They argued that HMRC should look “further than the attached papers” and take into account Covid and the then business environment.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_23">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">23.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 21 October 2021, HMRC wrote to the appellant confirming that in accordance with Articles 44-45 of the Union Customs Code (“UCC”) and the FA94, HMRC had made a decision not to allow the application for hardship in relation to the total assessments of £320,531.50.  The basis for the refusal was as follows:-</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Until at least 27 August 2021 the appellant continued to hold cash reserves of £887,371 that were significantly in excess of the debt.  That balance was after £200,000 of cash was transferred out of the account on 26 August 2021 and no explanation had been provided about that transfer.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">A transfer on 29 April 2021 appeared to be related to a divorce liability and HMRC wished an explanation as to why that should happen when there was an application for hardship.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">It had been argued for the appellant that £260,000 of the cash held by the appellant represented deposits paid by customers but the underlying details and contractual terms had not been provided.  Even if those deposits were ring fenced the remaining cash reserves would have been £627,371 which was significantly in excess of the customs debt.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(d)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The cash flow forecast indicated that the lowest expected cash balance across the forecast period was £819,854 at 30 September 2021 which, again, was significantly in excess of the customs debt.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(e)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The appellant’s representative had simply stated that “in order to pay its monthly liabilities it needs a minimum cash flow of £700,000”. That statement was completely unvouched.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(f)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">No details or documentation had been provided in respect of a secured loan facility in the sum of £120,000.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(g)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The appellant’s cash balance was predicted to be £888,319 on 30 April 2022.  If dividends of £160,000 were paid by the appellant then cash would reduce to £728,319 which exceeded the customs debt.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_24">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">24.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 25 October 2021, the appellant’s solicitors emailed HMRC asking if a charge against one of the appellant’s properties would be acceptable as security and on 3 November 2021, HMRC responded stating that HMRC would accept a guarantee and explained the process.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_25">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">25.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 2 December 2021, the solicitors emailed offering a charge on a property by way of guarantee and stated that they would draft the documentation. On 7 January 2022, HMRC responded enclosing the relevant form for completion. On 13 January 2022, the solicitors indicated that they did not understand the need for a financial institution to be involved and HMRC responded that day explaining the process and the need for legally binding documentation. HMRC asked for sight of the charge described by the solicitors. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_26">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">26.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There is no further correspondence in the Bundle until, on 5 August 2022, the appellant’s solicitors wrote to HMRC simply stating:-“A deed will not be possible nor will a Charge on property”.  They undertook to provide an update on the financial position by the end of the month. In the interim the flat owned by the appellant had apparently been sold and the proceeds paid to Mr Chi who had paid his ex-wife. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_27">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">27.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">On 14 October 2022, the appellant’s solicitor lodged with the Tribunal a witness statement from Mr Chi dated 12 October 2022 with supporting documentation.  Some of that documentation included the correspondence and documentation referred to above.  The more recent information included:-</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">A decision from the Crown Court at Chelmsford dated 26 September 2022 in relation to a conviction in the Magistrates Court on 7 July 2022 for an employer breach of general duty to an employee.  The outcome was a fine of £400,000 to be paid at £80,000 within two months from 23 September 2022 and then £80,000 by 1 October each year until settled.  In addition there were costs of £6,336.83 to be paid by 7 January 2023.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">A certificate from the appellant’s accountants stating that the appellant’s turnover had decreased from £7.8 million in 2021 to £6.7 million in the year to 31 March 2022.  The turnover for the five months from April 2022 to August 2022 was approximately £1.5 million and rising fuel prices were an issue.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Bank statements for the period 1 September 2022 to 28 September 2022.  An email chain dated July 2022 relating to a refund of a deposit of £158,092.55.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(d)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">As at 11 October 2022, the balance in the appellant’s bank was stated to be approximately £360,000 and that was the minimum required to operate and pay the £80,000 referred to above.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(e)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in"> The appellant needed to budget for legal fees of £60,000.  </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(f)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">The appellant was taking advice on insolvency.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_28">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">28.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">A letter dated 17 October 2022 from a firm of insolvency practitioners was lodged by the solicitors stating that they might be giving the appellant unspecified insolvency advice.  </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold">HMRC’s submissions</span></heading>
+          <paragraph eId="para_29">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">29.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC have maintained their position opposing hardship.  They argued that the war in Ukraine, the rising cost of fuel and Covid-19 were not relevant concerns.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_30">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">30.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The issue for the Tribunal is to determine whether HMRC’s hardship decision was reasonable in the light of the information provided. Section 16(3) FA94 applies and section 84 VATA does not. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_31">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">31.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Therefore, what HMRC describe as the <span style="font-style:italic">Elbrook</span> Principles, an expression that I adopt, insofar as they concern the timing of the assessment, do not apply to section 16 FA94. The hardship test must be applied at the time that HMRC assessed the hardship application and not as at the date of the hearing. HMRC would have considered the provisions of security.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_32">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">32.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Birkbeck maintained his position that the appellant was still in a position to pay the customs debt but chose not to do so. HMRC would have considered any new vouched information at any stage up until the Tribunal hearing. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_33">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">33.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Chi’s priority had been payments to his ex-wife (by extracting dividends from the appellant) and meeting other commitments. There was a lack of specificity about a number of the financial issues. There was not clarity about the treatment of deposits. There had been healthy cash balances shown in all the bank statements that had been provided, albeit the appellant had not chosen to produce the bank statements. There were unexplained depletions in the bank account. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading2">The appellant’s submissions</heading>
+          <paragraph eId="para_34">
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">34.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The appellant’s case can be summarised as:-</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Article 6 European Convention on Human Rights (“EHCR”) applies to the proceedings,</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Section 3 HRA, read with Article 6.1 EHCR requires a construction of section 16 FA94 which focuses on the appellant’s position at the date of the hearing as opposed to when HMRC made the decision not to issue a hardship certificate.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">In the alternative, the Supreme Court’s decision in <span style="font-style:italic">R(oao Unison) v Lord Chancellor</span> [2017] UKSC 51  (“Unison”) compels the same construction. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(d)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">Even if the EHCR has no bearing upon the construction of section 16 FA94, the normal rules of statutory construction militate for the construction relied upon by the appellant.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </level>
+        <level>
+          <content>
+            <p class="Taxheading2">The Legislation</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Taxheading3">VATA</p>
+          </content>
+        </level>
+        <paragraph eId="para_35">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">35.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In so far as material, section 1 and section 16 VATA read:-</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-weight:bold">“1</num>
+          <intro>
+            <p class="Taxbodytext1" style="text-indent:0.5in"><span style="font-weight:bold">Value Added Tax</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.11in">VAT on the importation of goods into the United Kingdom shall be charged and payable as if it were import duty.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in">…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-weight:bold">16</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.11in"><span style="font-weight:bold">Application of customs enactments</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+            <intro>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The provision made by or under</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Customs and Excise Acts 1979 (as defined in the Management Act), and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the other enactments for the time being having effect generally in relation to duties of customs and excise charged by reference to the importation of goods into the United Kingdom,</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in">apply (so far as relevant) in relation to any VAT chargeable on the importation of goods into the United Kingdom as they apply in relation to any duty of customs or excise. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The provision made by section 1(4) for VAT on the importation of goods to be charged and payable as if it were import duty is to be taken as applying, in relation to any VAT chargeable on the importation of the goods, the provision made by or under Part 1 of TCTA 2018.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(3)</num>
+            <intro>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The Commissioners may by regulations</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">provide for exceptions from the effect of subsection (1) or (2), or</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">provide for the provision mentioned in subsection (1) or (2) to have effect with modifications specified in the regulations.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Subsections (1) and (2) do not apply so far as the context otherwise requires.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">36.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I will revert to the point, but it had been argued in the course of the hearing that there was no case law on the interpretation of section 16(3) and Mr Birkbeck argued then, as he did in the written submissions, that the only relevant case law related to section 84 VATA where the wording is similar but not identical. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">37.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The material provisions insofar as relevant in section 84 VATA read:-</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(3A) Subject to subsections (3B) and (3C), where the appeal is against an assessment which is a recovery assessment for the purposes of this subsection, or against the amount of such an assessment, it shall not be entertained unless the amount notified by the assessment has been paid or deposited with HMRC.</p>
+          </content>
+        </level>
+        <paragraph>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />(3B)  In a case where the amount determined to be payable as VAT or the amount notified by the recovery assessment has not been paid or deposited, an appeal shall be entertained if –</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(a)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">HMRC are satisfied (on the application of the appellant), or</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(b)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">The tribunal decides (HMRC not being so satisfied and on the application of the appellant),</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.39in">that the requirement to pay or deposit the amount determined <span style="text-decoration-line:underline;text-decoration-style:solid">would cause</span> the appellant to suffer hardship”. (emphasis added)</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading3">FA94</p>
+          </content>
+        </level>
+        <paragraph eId="para_38">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">38.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Section 16(3) FA94 reads:-</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(3)<marker name="tab" />An appeal which relates to a relevant decision falling within any of paragraphs (a) to (h) of section 13A(2), or which relates to a decision on a review of any such relevant decision, shall not be entertained if the amount of relevant duty which HMRC have determined to be payable in relation to that decision has not been paid or deposited with them unless-</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(a)</num>
+            <intro>
+              <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Commissioners have, on the application of the appellant, issued a certificate stating either-</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:0in">(i)</num>
+              <content>
+                <p class="Taxbodytext4" style="margin-left:0.98in;text-indent:0.38in">that such security as appears to them to be adequate has been given to them for the payment of that amount; or</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:0in">(ii)</num>
+              <content>
+                <p class="Taxbodytext4" style="margin-left:0.98in;text-indent:0.5in">that, on the grounds of the hardship that would otherwise be suffered by the appellant, they either do not require the giving of security for the payment of that amount or have accepted such lesser security as they consider appropriate;</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <intro>
+            <p class="Taxbodytext4" style="text-indent:0.69in">or</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(b)</num>
+            <content>
+              <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Tribunal to which the appeal is made decide that the Commissioners <span style="text-decoration-line:underline;text-decoration-style:solid">should not have refused</span> to issue a certificate under paragraph (a) above and are satisfied that such <span style="text-decoration-line:underline;text-decoration-style:solid">security</span> (if any) as it would have been reasonable for the Commissioners to accept in the circumstances has been given to the Commissioners.”  (emphasis added).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">39.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Section 13A(2)(b) is relevant for the purposes of this appeal and reads:-</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(b) so much of any decision by HMRC that a person is liable to any duty of excise, or as to the amount of his liability, as is contained in any assessment under section 12 above;”.</p>
+          </content>
+        </level>
+        <paragraph eId="para_40">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">40.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"> Section 12(1A) is the relevant part of that section and reads:-</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span> </span><marker name="tab" />“(1A) Subject to subsection (4) below, where it appears to the Commissioners:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />(a) that any person is a person from whom any amount has become due in respect of any duty of excise; and </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><marker name="tab" />(b) at the amount due can be ascertained by the Commissioners,</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />the Commissioners may assess the amount of duty due from that person and notify that amount to that person or his representative.” </p>
+          </content>
+        </level>
+        <paragraph eId="para_41">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">41.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"> Subsection (4) reads:-</p>
+          </intro>
+          <subparagraph>
+            <num>“(4)</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">An assessment of the amount of any duty of excise due from any person shall not be made under this section at any time after whichever is the earlier of the following times, that is to say— </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"> … </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">(b) the end of the period of one year beginning with the day on which evidence of facts, sufficient in the opinion of the Commissioners to justify the making of the assessment, comes to their knowledge; </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">but this subsection shall be without prejudice, where further evidence comes to the knowledge of the Commissioners at any time after the making of an assessment under this section, to the making of a further assessment within the period applicable by virtue of this subsection in relation to that further assessment.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading2">Discussion</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Taxheading3">Mr Chi’s evidence</p>
+          </content>
+        </level>
+        <paragraph eId="para_42">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">42.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Firstly, Mr Birkbeck was correct in arguing that there was a distinct lack of transparency in the evidence from Mr Chi. His evidence on the deposits can best be described as opaque. In his witness statement it was stated, again, that there were two deposits of £100,000 and £160,000, the latter of which had been repaid. When he was taken to the bank statements, the deposits in the sums stated could not be identified. He then conceded that the “deposit” would not be “an exact amount”. Then he conceded that it would have included “other things” which remained unspecified. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">43.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He also conceded that the full amount had not been refunded.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">44.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He was very vague as to why it had been argued that cash in hand was needed at a minimum of £700,000 and later it was £360,000. Beyond explaining that trading conditions had changed, all he could say in regard to the larger figure was that he wanted to “prepare for a worst case scenario”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">45.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He explained that he had needed to sell the property held by the appellant in order to make a payment to his ex-wife.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">46.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He argued that he had only provided HMRC with what his solicitor had told him to provide; hence there were limited bank statements. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">47.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He confirmed that ultimately no security had been offered to HMRC.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">48.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Lastly, Mr Chi argued that he did what he did on the basis of professional advice but that does not avail him. There is absolutely no evidence that the diversion of funds from the appellant was done on the basis of any advice let alone professional advice. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">49.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He has not established that there was any deficiency at all in the advice he has received but even were he to have done so I simply draw attention to the decision of the Upper Tribunal in <span style="font-style:italic">HMRC v</span><span> </span><span style="font-style:italic">Katib </span>[2019] UKUT 189 (TC).</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading3">The law</p>
+          </content>
+        </level>
+        <paragraph eId="para_50">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">50.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As I have pointed out at paragraphs 34 and 8, it had been argued by both parties that there was no case law on the interpretation of section 16 FA94 and both parties had relied on VAT cases. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">51.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As I have indicated, I told the parties that I agreed with Judge Poole in <span style="font-style:italic">NT </span>where he set out a review of the relevant case law in relation to VAT and hardship. In his written submissions Mr Birkbeck cited it.  That decision is not binding on me but it sets out the <span style="font-style:italic">Elbrook </span>Principles and I agree with that review and adopt it and set it out as follows:-</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>“33.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0.39in">In <span style="font-style:italic">HMRC v Elbrook (Cash &amp; Carry) Limited</span> [2017] UKUT 181 (TCC) at [16] to [31], the Upper Tribunal recently provided a useful review of the legal principles in this area.  From it, I derive the following points (references are to paragraphs in the Upper Tribunal’s decision):</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The purpose of the provisions is to strike a balance between the abuse of the appeals mechanism by employing it to delay paying disputed tax and the stricture of having to pay or deposit the disputed sum as the price of entering the appeal process; the relief afforded by the ‘hardship’ provision should not be applied so as to operate as a fetter on the right of appeal ([19]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(2)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The Tribunal should not concern itself with the merits of the underlying appeal ([20]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(3)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The test is an ‘all or nothing’ one, in which it is not relevant that the appellant might be able to pay or deposit some amount less than the whole disputed sum ([31]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(4)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The test is to be applied to the position at the date of the hearing ([26]).  This means that the Tribunal should not ‘speculate as to what might become available to the appellant in the future’ ([22] &amp; [26]).  It should focus on ‘immediately or readily available resources ([21]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(5)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The fact that the appellant may have the necessary cash or other readily available resources may not be determinative, if hardship would result from using it (or them) in paying the disputed sum ([22]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(6)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Available borrowing resources may be considered, but generally only from existing sources, e.g. unused facilities or new facilities immediately available with minimal formality ([23]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(7)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Potentially available borrowing from new sources, for example if the appellant owns property capable as acting as security for a new loan, will only exceptionally be considered as ‘immediately or readily available’, for example where arrangements for borrowing are at an advanced stage ([24]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(8)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The potential sale, outside the ordinary course of business, of assets properly purchased for the purposes of the appellant’s business, might cause hardship even if the assets are not currently being used in the business ([25]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(9)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">There is no hard and fast rule that ‘regard can never be had to the resources of connected (but legally independent) entities where … there is common control and the evidence suggests a free flow of resources to meet the needs or requirements of any one entity at the expense of the other or others of them from time to time’ ([25]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(10)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">Although the test is to be applied by reference to the circumstances at the date of the hearing (see [33(4)] above), that does not mean that events leading up to that time are necessarily ignored.  The Tribunal can take into account ‘whether the appellant is himself responsible for putting himself in a position where he cannot pay … and that would include by delaying the hearing so that at the time of the hearing he cannot pay … without hardship’ ([27]), endorsed at [28]). The basis for this is that the ‘real cause’ of the appellant’s inability to pay without hardship may be his own prior actions.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(11)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">The Tribunal should make its assessment on the basis of the most up-to-date available information.  The burden lies on the appellant to establish hardship, so it is normally incumbent on the appellant to adduce the necessary evidence to satisfy the Tribunal ([29]).  Absence of contemporaneous accounting evidence may justify the Tribunal in placing little, if any, weight on an oral assertion that the appellant is unable to afford to pay.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(12)</num>
+            <content>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">Within the above parameters, the decision of the Tribunal is a value judgment on the basis of the evidence before it ([16]).”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">52.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In addition, I quote in full these two paragraphs from the decision of the Upper Tribunal in <span style="font-style:italic">Elbrook:-</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>“21.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0.39in">In the same passage in <span style="font-style:italic">ToTel 1</span>, Simon J also approved two further principles derived from a decision of the VAT and Duties Tribunal, <span style="font-style:italic">Seymour Limousines Limited v Revenue and Customs Commissioners</span> [2009] UKVAT V20966.  He said:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.69in;text-indent:-0.39in"><marker name="tab" />‘…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.69in;text-indent:-0.39in"><marker name="tab" />ii)    The test is one of capacity to pay without financial hardship, and must be applied in a way which complies with the principle of proportionality in order to comply with Community law, see <span style="font-style:italic">Seymour Limousines Ltd</span> (above) at [57].</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.69in;text-indent:-0.39in"><marker name="tab" />iii)   The hardship enquiry should be directed to the ability of an appellant to pay from resources which are immediately or readily available.  It should not involve a lengthy investigation of assets and liabilities, and an ability to pay in the future, see <span style="font-style:italic">Seymour Limousines Ltd</span> (above) at [58].  This is a reflection of the broader principle that the issue of hardship ought to be capable of prompt resolution on readily available material.’</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>22.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0.39in">Whether resources are immediately or readily available to pay the tax without hardship is a value judgment.  The test is not simply of capacity to pay, but capacity to pay without financial hardship.  Thus, the mere existence of cash or other readily realisable resources will not necessarily suffice, if the employment of those resources in paying the disputed cash would have consequences that would cause financial hardship.  The requirement that the resources be immediately or readily available is a reflection of the structure of s 84(3B), which looks to the existing financial position of the appellant, and does not require enquiry as to possible future action or any potential resources that might become available in the future (see <span style="font-style:italic">Buyco Limited and Sellco Limited v Revenue and Customs Commissioners</span> [2006] UKVAT V19752, at [8].”</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1">The <span style="font-style:italic">ToTel 1</span> referred to above is in fact the Court of Appeal in <span style="font-style:italic">R</span> (on the application of <span style="font-style:italic">ToTel Limited</span>) v <span style="font-style:italic">First-tier Tribunal (Tax Chamber) and Another</span> [2011] EWHC 652.</p>
+          </content>
+        </level>
+        <paragraph eId="para_53">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">53.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I have set out the <span style="font-style:italic">Elbrook </span>Principles for completeness and because Mr Hitchins argues that section 84 VATA applies to the Import VAT element of the assessments.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">54.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I disagree with him and agree with Mr Birkbeck that the impact of sections 1 and 16 VATA is that an appeal against Import VAT is treated as an excise duty appeal and not an appeal against a VAT assessment. Therefore section 84 VATA is of no application. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">55.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">That is also because, as a matter of fact, the appeals are against assessments to which paragraph (b) of section 13A(2) FA94 applies, namely they are assessments under section 12 FA94 in respect of excise duty.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">56.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The decisions that are the subject matter of these appeals are not decisions in terms of VATA. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">57.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I note and accept Mr Birkbeck’s arguments to the effect that the <span style="font-style:italic">Elbrook </span>Principles are not binding in relation to section 16(3) FA94, and they are certainly not, but, as he argues insofar as hardship is concerned, they broadly apply. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">58.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He argues that section 84 VATA makes it clear that the Tribunal must decide whether <span style="text-decoration-line:underline;text-decoration-style:solid">paying</span> (my emphasis) would cause hardship whereas the focus of section 16(3) FA 94 is solely to review the decision of HMRC and decide whether it was reasonable. To some extent he is correct.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">59.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">However, I must look at the language of section 16 FA94. In the absence of payment (hence my emphasis in the previous paragraph) the issue is whether HMRC’s decision not to issue a certificate in relation to security or the lack thereof is reasonable.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">60.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I am afraid that when writing this decision, I found that both parties are incorrect in stating that there is no jurisprudence in relation to section 16 FA94. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">61.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Judge Falk, as she then was, and Mr Williams, in <span style="font-style:italic">Sintra Global Inc v HMRC </span>[2016] UKFTT 726 (TC) (“Sintra”) which was a case dealing with both VAT (in the sense of conventional VAT assessments) and excise duty in terms of FA94 assessments, set out at paragraphs 11 and 12 the authorities in relation to VAT and hardship. That included the <span style="font-style:italic">Elbrook </span>Principles<span style="font-style:italic">. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">62.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">However, and in my view entirely accurately, at paragraph 13 they stated:-</p>
+          </intro>
+          <subparagraph>
+            <num>“13.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">The test for excise duty purposes is somewhat different. The main relevant cases are <span style="font-style:italic">Commissioners of Customs and Excise v Mitsui &amp; Co Plc and H.T. Walker</span> [2000] 1 C.M.L.R 85 and, at the First-tier Tribunal level, <span style="font-style:italic">John Cozens v HMRC</span> [2012] UKFTT 228 (TC) and <span style="font-style:italic">Tradium Limited v HMRC</span> [2012] UKFTT 421 (TC). The key distinguishing features are that the excise duty test is not “all or nothing”, so criterion (6) in <span style="font-style:italic">Elbrook</span> does not apply, and <span style="font-weight:bold">the focus is on the question of security, not paymen</span>t. As explained in <span style="font-style:italic">Mitsui</span> at [9], the Commissioners are both entitled and bound to require security in lieu of immediate payment, subject to hardship being established.” (Emphasis added)</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">63.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">They went on to add that the burden of proof lies with the appellant. I agree.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">64.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-style:italic">Sintra</span> is not binding upon me but I agree entirely. The focus is on security and not on ability to pay at any stage. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">65.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The first point to make about the HMRC decision on hardship is that it inaccurately refers to section 3 FA94 whereas the quotation utilised is from section 16(3) FA94. The reference should therefore have been to the latter. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">66.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The second is that the decision, in that context, stated that:-</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"> “..it has not been demonstrated that [the appellant] would suffer hardship should it be required to settle the debt in question, this is on the basis that the cash reserves held (both currently and as forecast) would be sufficient to enable [the appellant] to settle the debt.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_67">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">67.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">HMRC were focussing, as they did in the submissions and cross-examination, on payment. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">68.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Judge Falk faced the same issue and found at paragraph 58 that:-</p>
+          </intro>
+          <subparagraph>
+            <num>“58.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">We have also considered the differences between the VAT and excise duty hardship rules. We accept that HMRC has refused the appellant’s hardship applications on grounds that referred only to not paying or depositing the (full) amount, and that their decision did not expressly refer to the provision of security for all or part of the amount as contemplated for excise duty purposes. However, we do not think that that affects our jurisdiction to determine the matter under s 16(3)(b) FA 1994, and Mr Brown did not argue otherwise. The appellant also did not offer any security at all, so must be treated as having asked that no security should be required. We find that it is not the case that it would have been reasonable in the circumstances for the Commissioners to accept no security, and therefore the appellant has not satisfied the test in s 16(3)(b).”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_69">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">69.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I agree with her. The wording in section 16 is very clear (see paragraph 38 above). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">70.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Judge Thomas and Ms Dean in <span style="font-style:italic">E v HMRC</span> [2017] UKFTT 348 (TC) at paragraph 45, in relation to hardship for VAT and duty stated:-</p>
+          </intro>
+          <subparagraph>
+            <num>“45.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">There are some obvious differences. VAT is a tax, not a duty. (And equally excise duty is a duty, not a tax, a point that has escaped HMRC’s hardship specialists and Solicitor’s Office – hence the plethora of “(sic)” above). And for excise duty (and any other duty to which s 16 FA 1994 applies) the question is not whether the duty does not need to be paid on the grounds that to pay it would cause hardship but whether the person assessed should give security for the duty due or whether security should not be required because of the hardship it would cause to give it.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1">That is entirely correct.</p>
+          </content>
+        </level>
+        <paragraph eId="para_71">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">71.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The simple problem for the appellant is that the focus has been on ability to pay and the timing of any such payment and not whether the appellant should have given security or a reasoned argument supported by evidence as to why that, in any sum, would cause hardship. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">72.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The simple facts are that HMRC were prepared to consider security and offered a lengthy window within which that could have been provided. The appellant just did not do so.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">73.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Furthermore, I find that the appellant deliberately released funds to Mr Chi, whether by way of dividend or otherwise, and there was a significant delay in furnishing information that was incomplete (eg bank statements) and in the case of the contemporaneous accounting information it was lacking in relevant specification. The bland statement that £700,000 was required for cash flow was almost entirely unvouched. The information about deposits was vague and unsupported by documentation. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_74">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">74.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There is a signal lack of material evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">75.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In these circumstances, the appellant has not established why security would have caused hardship had it been required. No real or credible explanation was given as to why no security or charge would be given. The appellant elected not to offer security. The appellant has not identified what level of security, if any, would cause hardship and why.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">76.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I find that it is not the case that it would have been reasonable in the circumstances for HMRC to accept no security, and therefore the appellant has not satisfied the test in section 16(3)(b).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_77">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">77.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">For those reasons alone the applications are dismissed. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_78">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">78.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">However, in case I am wrong, and for completeness, I consider some of the other arguments advanced.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold">Article 6 read with the provisions of the HRA</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_79">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">79.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Both parties referred to <span style="font-style:italic">Ferrazzini v Italy</span> [2001] STC 1314 (“Ferrazzini”) where the European Court of Human Rights (“ECHR”) held that tax disputes fell outside the scope of civil rights and obligations because tax was a public law matter. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_80">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">80.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Hitchins urged me to find that the interpretation adopted in <span style="font-style:italic">Ferrazzini </span>leads to results that are harsh and absurd and should not apply to section 16 FA94 because it is irrational in a UK context and can be distinguished.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_81">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">81.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">He pointed out that Judge Mosedale, in <span style="font-style:italic">K W Hadleigh Limited v HMRC </span>[2014] UKFTT 336 (TC) had described the rationale in<span style="font-style:italic"> Ferrazzini</span> as “very difficult to understand”, and she did. <span style="font-style:italic"> </span>However, she went on to apply it and pointed out that:-</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">“26…I am bound to apply it: this is because s 2 Human Rights Act requires me to take account of any relevant judgment of the ECHR.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>27.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">The effect of <span style="font-style:italic">Ferrazzini</span> is that the Convention does not guarantee a fair trial in a tax dispute. Therefore, s 3 HRA cannot require a strained reading to be given to s 83(1)(zc) in order to give the appellant a right to a hearing of his challenge to the legality of Regulation 25A.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1">That is dealing with different legislation, as, of course, was the case in <span style="font-style:italic">Ferrazzini </span>and the various cases where <span style="font-style:italic">Ferrazzini </span>has been applied, or not, in this jurisdiction. </p>
+          </content>
+        </level>
+        <paragraph eId="para_82">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">82.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Hitchins argues that Judge Mosedale was “simply wrong” as the Tribunal is not bound by <span style="font-style:italic">Ferrazzini </span>but must simply<span style="font-style:italic"> </span>have regard to it. The Tribunal should rather consider whether there is a “clear and constant line of Strasbourg authorities” diluting it but he had already conceded that:-</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">“Whilst <span style="font-style:italic">Ferrazzinni</span> has been referred to subsequently in ECtHR judgments, it has not been subject to any comprehensive or meaningful analysis by the Strasbourg Court in subsequent decisions.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">83.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I am afraid that I was wholly unpersuaded by his argument that I should follow the decision in <span style="font-style:italic">Ali (t/a Shapla Tandoori Restaurant) v CEC </span>[2002] S.T.I. 1675 at paragraphs 25 and 26 which concluded that <span style="font-style:italic">Ferrazzinni “</span>is not applicable in the UK, at least as far as rights and obligations relating to VAT are concerned”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">84.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Firstly, for the reasons set out, I find that I am dealing with excise duty assessments and not VAT. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_85">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">85.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Secondly, and far more pertinently I am bound by the High Court in <span style="font-style:italic">R(oao ToTel Limited)</span><span> </span><span style="font-style:italic">v the FTT and another</span> [2011] EWHC 652 where Mr Justice Simon, having referred to those two paragraphs stated that:-</p>
+          </intro>
+          <subparagraph>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.5in">“130…In <span style="font-style:italic">Jussila v Finland</span> (2006) (A/73053/01) the Court at [29], and by 13 votes to 4, made clear its views about the impact of the civil aspect of Article 6 in relation to taxes. </p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Quote" style="margin-left:0.79in">The assessment of tax and the imposition of surcharges fall outside the scope of Article 6 under its civil head (see <span style="font-style:italic">Ferrazzini v. Italy</span> ...  §29).</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num>131.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">In my view this provides the ‘clear and common jurisprudence of the European Court of Human Rights’ which should be followed in the absence of special circumstances, see Lord Slynn at [26] in <span style="font-style:italic">R v. Alconbury Developments Ltd) v. Secretary of State for the Environment, Transport and the Regions</span> [2002] 2 AC 295. The view of both the framers of the European Convention on Human Rights and the European Court of Human Rights is that tax disputes are excluded from the civil aspect of Article 6.1 save in egregious cases.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">86.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Both parties referred to <span style="font-style:italic">R(oao APVCO 19 Ltd) v HMRC</span> [2015] EWCA Civ 648 but for different reasons. Mr Hitchins’ primary argument was that it could be distinguished on its own case specific facts and the fact that the court had found that Article 6 was not engaged. Mr Birkbeck rightly said that the quotation (from paragraph 68) relied upon by Mr Hitchins stating that “in this case” had to be read in context. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">87.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The rest of the paragraph makes it clear that the judge had been:-</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">“right to place primary reliance on…<span style="font-style:italic">Ferrazzini</span>, where it was made clear …that the concept of ‘civil rights and obligations’ in article 6 is an autonomous one, and that…. ‘tax disputes fall outside the scope of civil rights and obligations, despite the pecuniary effects which they produce for the taxpayer’”. </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_88">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">88.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Birkbeck also relied upon <span style="font-style:italic">R(oao Rowe) and Another v HMRC</span> [2017] EWCA Civ 2105 where Lady Justice Arden, as she then was, made it explicit in relation to a different tax but the principle is the same, at paragraphs 151 and 152 citing paragraph 29 of <span style="font-style:italic">Ferrazzini </span>that advance payment of tax is not a sanction for non-payment of tax, Article 6 is not engaged and judicial review is the relevant protection.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_89">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">89.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In fact in this case the protection is the review of the decision by this Tribunal in terms of section 16 FA94. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_90">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">90.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Lastly, whilst I do understand the various reservations expressed about <span style="font-style:italic">Ferrazzini, </span>I was not referred to <span style="font-style:italic">Walapu v HMRC</span> [2016] EWHC 658 (Admin) at paragraph 105 where Mr Justice Green stated that although <span style="font-style:italic">Ferrazzini</span> is considered with “some caution” by the domestic courts, “Nonetheless <span style="font-style:italic">Ferrazzinni</span> is still treated as stating the law” and is “routinely endorsed by the Strasbourg Court”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_91">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">91.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Accordingly, notwithstanding Mr Hitchins’ sometimes ingenious arguments I am bound by <span style="font-style:italic">Ferrazzini</span>; Article 6 is not engaged and therefore, nor is section 3 of the HRA. Section 16 FA94 should be construed in accordance with the usual principles of statutory construction.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading3">What facts and when?</p>
+          </content>
+        </level>
+        <paragraph eId="para_92">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">92.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Hitchins argued that when looking at hardship the Tribunal had to ascertain the mischief that section 16 FA94 was designed to remedy.  He argued that the purpose of the hardship provision was the same, both for VAT and customs duty, and that therefore the case law relating to section 84 VATA was relevant for customs duty.  Accordingly, I should look at the facts as at the date of the hearing.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_93">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">93.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Birkbeck took the opposite view and argued that it was very clear from the wording in the two different legislative provisions that Parliament had had different purposes in mind and I should look at the position as at October 2021. He conceded that paragraph 26 of <span style="font-style:italic">Elbrook</span> makes it quite clear that the use of the words “would cause” in section 84 VATA mean that the normal rule would be that hardship has to be assessed as at the date of the hearing.  However, he argued that those words do not occur in section 16 FA94.  Rather, the purpose of Parliament was to give the Tribunal jurisdiction to review HMRC’s decision only.  Section 16 has to be read as a whole and it can be seen by the following provision at section 16(4) in relation to ancillary matters, that that is the clear intention.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_94">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">94.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">A lot of time and print has been absorbed in arguing about whether the decision on hardship should be considered on the basis of the facts at the time of HMRC’s decision or as at the date of the hearing. I have not found HMRC’s arguments that I am constrained to looking only at the position as at 21 October 2021 persuasive. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_95">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">95.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I observe, and of course I am not bound by either decision, that Judge Berner in <span style="font-style:italic">Cozens</span> decided that the application should be determined on the basis of the material available at the time of the hearing, as did Judge Mosedale in <span style="font-style:italic">Tradium. </span>(For both references see paragraph 61 above.)</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_96">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">96.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In this case, the appeals in terms of section 16 FA94 followed reviews in terms of section 15 FA94 and, although that decision deals with section 16(4) FA94, the following statement by Judges Herrington and Richards in <span style="font-style:italic">Grzegorz Sczcepaniak t/a Phu Greg-Car </span>[2019] UKUT 295 (TCC) is in point since my task is to decide whether or not HMRC’s decision was unreasonable:-</p>
+          </intro>
+          <subparagraph>
+            <num>“5.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">It follows from s16(1) that the Appellant’s appeal to the FTT was against the Respondent’s ‘decision on a review under section 15’… Accordingly, the FTT could only interfere with the Respondent’s decision if was satisfied that the Respondent could not reasonably have arrived at that decision…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">However, the limitation of the FTT’s powers is subject to an important qualification. In deciding whether the Respondent’s decision was unreasonable, the FTT is not bound by the factual determinations that the Respondent made. Nor is the FTT limited to a consideration of evidence that was before the Respondent’s decision maker. It was, therefore, open to the Appellant to produce evidence that was not before the Respondent when it made its review decision and invite the FTT to reach factual conclusions different from those that the Respondent reached in its review. Moreover, the Appellant was entitled to argue that, in the light of those different factual conclusions, the Respondent’s decision was unreasonable. The Court of Appeal recently endorsed that proposition in <span style="font-style:italic">The Commissioners for Her Majesty’s Revenue &amp; Customs v Behzad Fuels (UK) Ltd</span> [2019] EWCA Civ 319…”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_97">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">97.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I consider that it is at least, strongly arguable that I should look at the facts as at the date of the hearing. However, I do not require to decide the point since the onus of proof lies with the appellant and that has not been discharged.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_98">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">98.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In October 2021, the appellant had not and does not now offer security. Is that reasonable? Neither in October 2021 nor at the hearing did the appellant produce anything like the type or level of material evidence that would be required to persuade me that HMRC should be satisfied with no security.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_99">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">99.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Chi was a vague and evasive witness. The correspondence shows repeated failures to explain movements in the bank account. There are numerous problems with the evidence or perhaps I should say the lack of relevant evidence as I have pointed out at paragraphs 71 and  72. What is clear is that the appellant has deliberately paid out large sums of money in preference to prioritising its obligations. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_100">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">100.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">What I do find as fact is that to the extent that the appellant cannot find security the appellant has been responsible for putting itself in a position that it is unable to do so and that there have also been long delays. The inability to find any, or some, level of security has been caused by the appellant’s actions (see point 10 of the <span style="font-style:italic">Elbrook </span>Principles).  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_101">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">101.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I am unable to find as facts reasons why there should be no security. There are simply largely unsupported assertions and it is trite law that that is not evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_102">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">102.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">For those reasons the applications fail.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading3">Unison </p>
+          </content>
+        </level>
+        <paragraph eId="para_103">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">103.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The alternative argument for the appellant is that access to justice is being denied. That is predicated on the basis that the appellant cannot progress the appeals if the duty is not paid or an appropriate level of security is not provided.  I do not accept that as it is Parliament’s explicit intention that <span style="text-decoration-line:underline;text-decoration-style:solid">unless</span> hardship is accepted or established then the duty must be paid or a security provided if an appeal is to proceed.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_104">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">104.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In <span style="font-style:italic">Unison </span>at paragraph 80 Lord Hodge made it explicit that:-</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0.3in;text-indent:-0.3in"><marker name="tab" />“Even where a statutory power authorises an intrusion upon the right of access to the courts, it is interpreted as authorising only such a degree of intrusion as is reasonably necessary to fulfil the objective of the provision in question….That depended on whether an objective need for such a rule….could be demonstrated…”.</p>
+          </content>
+        </level>
+        <paragraph eId="para_105">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">105.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The legislation does not unfairly or improperly exclude access to justice. If there is no hardship the duty would be paid or security at some level provided. If hardship is established then the duty need not be paid and either some or no security provided. That does not impede access to justice.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_106">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">106.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The further clear objective of the legislation is to ensure that the taxpayer can appeal to the Tribunal, as the appellant has done. The appellant had the right to furnish more and better information. As I have explained that has not happened but the appellant had the right to do so.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_107">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">107.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">These appeals are in terms of FA94, the assessments are in terms thereof, the provisions of section 16 are clear and do not require a strained interpretation for any reason.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading2">Decision</p>
+          </content>
+        </level>
+        <paragraph eId="para_108">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">108.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">I have weighed in the balance all of the factors that have been brought to my attention.  Sadly, there has been very limited focus on the onus of proof and the need for relevant, credible material evidence about hardship in the context of the provision of security or not.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_109">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">109.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">For all these reasons the applications are refused.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxheading1">Right to apply for permission to appeal</p>
+          </content>
+        </level>
+        <paragraph eId="para_110">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">110.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">This document contains full findings of fact and reasons for the decision.  Any party dissatisfied with this decision has a right to apply for permission to appeal against it pursuant to Rule 39 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009.  The application must be received by this Tribunal not later than 56 days after this decision is sent to that party.  The parties are referred to “Guidance to accompany a Decision from the First-tier Tribunal (Tax Chamber)” which accompanies and forms part of this decision notice.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">ANNE SCOTT</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2023-01-12" refersTo="#decision"><span style="font-weight:bold">12</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> January 2023</span></docDate></p>
+          </content>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
