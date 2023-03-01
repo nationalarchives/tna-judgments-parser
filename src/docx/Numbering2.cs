@@ -583,12 +583,12 @@ class Numbering2 {
                     count += 1;
                 // this can be simplified, obviously
                 if (!isHigher && !start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
-                    var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val;
-                    var prevStyle = prev.ParagraphProperties?.ParagraphStyleId?.Val;
+                    var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
+                    var prevStyle = prev.ParagraphProperties.ParagraphStyleId.Val.Value;
                     if (prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value) { // test47
-                    } else if (thisStyle is null || prevStyle is null) { // test 54
-                    } else if (thisStyle.HasValue && prevStyle.HasValue && thisStyle.Value == prevStyle.Value && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test52
-                    } else if (thisStyle.HasValue && prevStyle.HasValue && thisStyle.Value != prevStyle.Value && thisNumIdOfStyle is null && prevNumIdOfStyle is not null ) { // test 54
+                    } else if (thisStyle is null) { // test 54
+                    } else if (thisStyle == prevStyle && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test52
+                    } else if (thisStyle != prevStyle && thisNumIdOfStyle is null) { // test 54
                     } else { // test38
                         start = 1;
                         numIdOfStartOverride = -2;
