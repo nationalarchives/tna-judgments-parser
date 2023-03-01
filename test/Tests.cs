@@ -26,7 +26,7 @@ public class Tests {
     public static IEnumerable<object[]> indices = Enumerable.Concat(
         Enumerable.Range(1, 10), Enumerable.Concat(
             Enumerable.Range(12, 16),
-            Enumerable.Range(29, 25)
+            Enumerable.Range(29, 26)
         )
     ).Select(i => new object[] { i });
 
