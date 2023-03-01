@@ -498,10 +498,16 @@ abstract class OptimizedParser {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
         float firstLine = line.FirstLineIndentWithNumber ?? 0f;
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (new WLine(main, p).Contents.FirstOrDefault() is WTab) {
-        //     float? nextTab = DOCX.Paragraphs.GetFirstTab(main, p.ParagraphProperties);
-        //     if (nextTab.HasValue)
-        //         indent += nextTab.Value;
+        // if (line.Contents.FirstOrDefault() is WTab) {
+        //     float? tabStop = line.FirstTab;
+        //     if (firstLine < 0) {
+        //         if (!tabStop.HasValue)
+        //             indent = leftMargin;
+        //         else if (tabStop.Value > Math.Abs(firstLine))
+        //             indent = leftMargin;
+        //         else
+        //             indent += tabStop.Value;
+        //     }
         // }
         return indent;
     }

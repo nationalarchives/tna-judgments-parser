@@ -257,6 +257,10 @@ class WLine : ILine {
         }
     }
 
+    // public float? FirstTab {
+    //     get => DOCX.Paragraphs.GetFirstTab(main, properties);
+    // }
+
 }
 
 class WRestriction : WLine, IRestriction {
