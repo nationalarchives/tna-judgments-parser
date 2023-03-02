@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse.UKSC {
 
@@ -19,7 +18,7 @@ class SealRemover : Enricher {
         IInline inline = line.Contents.First();
         if (inline is not WImageRef image)
             return blocks;
-        line = new WLine(line, line.Contents.Skip(1));
+        line = WLine.Make(line, line.Contents.Skip(1));
         return blocks.Skip(1).Prepend(line);
     }
 

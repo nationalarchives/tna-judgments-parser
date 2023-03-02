@@ -202,7 +202,7 @@ internal class WNeutralCitation2 : INeutralCitation2 {
 
     public IEnumerable<IFormattedText> Contents { get; init; }
 
-    public String Text => ILine.TextContent(Contents);
+    public String Text => IInline.ToString(Contents);
 
 }
 

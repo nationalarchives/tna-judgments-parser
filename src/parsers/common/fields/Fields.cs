@@ -205,7 +205,7 @@ class Fields {
                 throw new Exception();
             IEnumerable<IInline> parsed = Inline.ParseRuns(main, rest);
             if (parsed.All(inline => inline is IFormattedText)) {
-                string content = Enricher.NormalizeInlines(parsed);
+                string content = IInline.ToString(parsed);
                 try {
                     CultureInfo culture = new CultureInfo("en-GB");
                     DateTime date = DateTime.Parse(content, culture);

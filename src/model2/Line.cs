@@ -38,20 +38,14 @@ class WLine : ILine {
         Paragraph = paragraph;
     }
 
-    [Obsolete]
-    internal WLine(WLine prototype, IEnumerable<IInline> contents) {
-        // if (prototype.GetType().IsSubclassOf(typeof(WLine))) {
-        // }
+    protected WLine(WLine prototype, IEnumerable<IInline> contents) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
     }
-    [Obsolete]
-    internal WLine(WLine prototype) {
-        // if (prototype.GetType().IsSubclassOf(typeof(WLine))) {
-        // }
+    protected WLine(WLine prototype) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = prototype.contents;

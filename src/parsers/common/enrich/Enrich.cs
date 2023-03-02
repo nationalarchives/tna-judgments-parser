@@ -130,22 +130,22 @@ abstract class Enricher {
     //     return string.Join("", texts).Trim();
     // }
 
-    [Obsolete]
-    internal static string NormalizeInlines(IEnumerable<IInline> line) {
-        IEnumerable<string> texts = line
-            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-        return string.Join("", texts).Trim();
-    }
+    // [Obsolete]
+    // internal static string NormalizeInlines(IEnumerable<IInline> line) {
+    //     IEnumerable<string> texts = line
+    //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
+    //     return string.Join("", texts).Trim();
+    // }
 
     // protected string NormalizeLine(IEnumerable<IInline> line) {
     //     IEnumerable<string> texts = line
     //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
     //     return string.Join("", texts).Trim();
     // }
-    [Obsolete]
-    internal static string NormalizeLine(ILine line) {
-        return NormalizeInlines(line.Contents);
-    }
+    // [Obsolete]
+    // internal static string NormalizeLine(ILine line) {
+    //     return NormalizeInlines(line.Contents);
+    // }
     // public static string NormalizeContent(this ILine line) {
     //     return NormalizeInlines(line.Contents);
     // }
