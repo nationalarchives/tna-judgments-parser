@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
-          <FRBRdate date="2023-02-06T18:44:59" name="transform" />
+          <FRBRdate date="2023-03-01T21:07:15" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>45</uk:number>
         <uk:cite>[2023] UKFTT 45 (TC)</uk:cite>
-        <uk:parser>0.12.7</uk:parser>
+        <uk:parser>0.13.0</uk:parser>
         <uk:hash>7653fcf040c1d7f55f82082fef299fc6cf7090d63a7ff2a351feee4d4990cb13</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -523,10 +523,6 @@
         <level>
           <content>
             <p class="Taxheading2">The Legislation</p>
-          </content>
-        </level>
-        <level>
-          <content>
             <p class="Taxheading3">VATA</p>
           </content>
         </level>
@@ -537,9 +533,8 @@
           </content>
         </paragraph>
         <paragraph>
-          <num style="font-weight:bold">“1</num>
           <intro>
-            <p class="Taxbodytext1" style="text-indent:0.5in"><span style="font-weight:bold">Value Added Tax</span></p>
+            <p class="Taxbodytext1"><span style="font-weight:bold">“1  Value Added Tax</span></p>
           </intro>
           <subparagraph>
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
@@ -559,9 +554,8 @@
             </content>
           </subparagraph>
           <subparagraph>
-            <num style="font-weight:bold">16</num>
             <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.11in"><span style="font-weight:bold">Application of customs enactments</span></p>
+              <p class="Taxbodytext2" style="margin-left:0.39in"><span style="font-weight:bold">16 Application of customs enactments</span></p>
             </content>
           </subparagraph>
           <subparagraph>
@@ -669,8 +663,9 @@
           </content>
         </paragraph>
         <paragraph>
+          <num>“(3)</num>
           <intro>
-            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(3)<marker name="tab" />An appeal which relates to a relevant decision falling within any of paragraphs (a) to (h) of section 13A(2), or which relates to a decision on a review of any such relevant decision, shall not be entertained if the amount of relevant duty which HMRC have determined to be payable in relation to that decision has not been paid or deposited with them unless-</p>
+            <p class="Taxbodytext1" style="margin-left:0.39in">An appeal which relates to a relevant decision falling within any of paragraphs (a) to (h) of section 13A(2), or which relates to a decision on a review of any such relevant decision, shall not be entertained if the amount of relevant duty which HMRC have determined to be payable in relation to that decision has not been paid or deposited with them unless-</p>
           </intro>
           <subparagraph>
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.69in;text-indent:0in">(a)</num>
@@ -708,11 +703,12 @@
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Section 13A(2)(b) is relevant for the purposes of this appeal and reads:-</p>
           </content>
         </paragraph>
-        <level>
+        <paragraph>
+          <num>“(b)</num>
           <content>
-            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(b) so much of any decision by HMRC that a person is liable to any duty of excise, or as to the amount of his liability, as is contained in any assessment under section 12 above;”.</p>
+            <p class="Taxbodytext1" style="margin-left:0.39in">so much of any decision by HMRC that a person is liable to any duty of excise, or as to the amount of his liability, as is contained in any assessment under section 12 above;”.</p>
           </content>
-        </level>
+        </paragraph>
         <paragraph eId="para_40">
           <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">40.</num>
           <content>
@@ -724,16 +720,18 @@
             <p class="Taxbodytext1"><span> </span><marker name="tab" />“(1A) Subject to subsection (4) below, where it appears to the Commissioners:</p>
           </content>
         </level>
-        <level>
+        <paragraph>
+          <num>(a)</num>
           <content>
-            <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />(a) that any person is a person from whom any amount has become due in respect of any duty of excise; and </p>
+            <p class="Taxbodytext1" style="margin-left:0.39in">that any person is a person from whom any amount has become due in respect of any duty of excise; and </p>
           </content>
-        </level>
-        <level>
+        </paragraph>
+        <paragraph>
+          <num>(b)</num>
           <content>
-            <p class="Taxbodytext1"><marker name="tab" />(b) at the amount due can be ascertained by the Commissioners,</p>
+            <p class="Taxbodytext1" style="text-indent:0.5in">at the amount due can be ascertained by the Commissioners,</p>
           </content>
-        </level>
+        </paragraph>
         <level>
           <content>
             <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />the Commissioners may assess the amount of duty due from that person and notify that amount to that person or his representative.” </p>
@@ -756,8 +754,9 @@
             </content>
           </subparagraph>
           <subparagraph>
+            <num>(b)</num>
             <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">(b) the end of the period of one year beginning with the day on which evidence of facts, sufficient in the opinion of the Commissioners to justify the making of the assessment, comes to their knowledge; </p>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">the end of the period of one year beginning with the day on which evidence of facts, sufficient in the opinion of the Commissioners to justify the making of the assessment, comes to their knowledge; </p>
             </content>
           </subparagraph>
           <subparagraph>
@@ -769,10 +768,6 @@
         <level>
           <content>
             <p class="Taxheading2">Discussion</p>
-          </content>
-        </level>
-        <level>
-          <content>
             <p class="Taxheading3">Mr Chi’s evidence</p>
           </content>
         </level>
@@ -1420,15 +1415,7 @@
         <level>
           <content>
             <p style="text-align:center"><span style="font-weight:bold">ANNE SCOTT</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
             <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
             <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2023-01-12" refersTo="#decision"><span style="font-weight:bold">12</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> January 2023</span></docDate></p>
           </content>
         </level>
