@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-          <FRBRdate date="2022-10-31T20:27:40" name="transform" />
+          <FRBRdate date="2023-03-01T21:06:33" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>343</uk:number>
         <uk:cite>[2022] UKFTT 343 (TC)</uk:cite>
-        <uk:parser>0.10.12</uk:parser>
+        <uk:parser>0.13.0</uk:parser>
         <uk:hash>dd30d8828f0e0b2cdc637c46577fe248a2c4a6f92ba93353052ffcf00c75a782</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -230,11 +230,9 @@
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Although there is doubt about the status of the second appellant’s amended grounds of appeal (i.e. the second version of the first appellant’s grounds of appeal,) as far as the first sub-paragraph above is concerned it was stated that:-</p>
             </content>
           </paragraph>
-          <level>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“The Appellant appeals each of the assessments raised by HMRC.  The Appellant made contributions (‘the Contributions’) to a trust (‘the Trust’).  Under the terms of the arrangement with the Trust, the contributed funds were held in a Personal Management Company (or ‘PMC’).  The PMC held the funds in a fiduciary capacity on behalf of the Trust.  A certain fraction of the contributions were applied in meeting the ongoing legal fees (‘Legal Fees’) of the providers of the trust services.”</p>
-            </content>
-          </level>
+        </level>
+        <level>
+          <heading class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“The Appellant appeals each of the assessments raised by HMRC.  The Appellant made contributions (‘the Contributions’) to a trust (‘the Trust’).  Under the terms of the arrangement with the Trust, the contributed funds were held in a Personal Management Company (or ‘PMC’).  The PMC held the funds in a fiduciary capacity on behalf of the Trust.  A certain fraction of the contributions were applied in meeting the ongoing legal fees (‘Legal Fees’) of the providers of the trust services.”</heading>
           <paragraph eId="para_15">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">15.</num>
             <intro>
@@ -1013,16 +1011,18 @@
               <p style="margin-left:0in;text-indent:0.39in"> The Tribunal’s powers in relation to strike out are contained in Rule 8(3)(c) of the Rules which reads:-</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num>“(3)</num>
             <content>
-              <p style="margin-left:0.2in;text-indent:-0.2in"><marker name="tab" />“(3)  The Tribunal may strike out the whole or a part of the proceedings if –</p>
+              <p style="margin-left:0.2in">The Tribunal may strike out the whole or a part of the proceedings if –</p>
             </content>
-          </level>
-          <level>
+          </paragraph>
+          <paragraph>
+            <num>(c)</num>
             <content>
-              <p style="margin-left:0.2in;text-indent:-0.2in"><marker name="tab" /><marker name="tab" />(c)  the Tribunal considers there is no reasonable prospect of the appellant’s case, or part of it, succeeding.”</p>
+              <p style="margin-left:0.2in">the Tribunal considers there is no reasonable prospect of the appellant’s case, or part of it, succeeding.”</p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_111">
             <num style="margin-left:0in;text-indent:0in">111.</num>
             <content>
@@ -1365,7 +1365,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-                <FRBRdate date="2022-10-31T20:27:40" name="transform" />
+                <FRBRdate date="2023-03-01T21:06:33" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

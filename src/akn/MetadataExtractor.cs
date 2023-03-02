@@ -44,6 +44,13 @@ public class MetadataExtractor {
         };
     }
 
+    public static string ExtractContentHash(XmlDocument judgment) {
+        XmlNamespaceManager nsmgr = new XmlNamespaceManager(judgment.NameTable);
+        nsmgr.AddNamespace("akn", Builder.ns);
+        nsmgr.AddNamespace("uk", Metadata.ukns);
+        return judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:hash", nsmgr)?.InnerText;
+    }
+
 }
 
 public class ExternalRef {

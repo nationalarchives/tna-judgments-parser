@@ -64,21 +64,21 @@ public class Tests {
         Assert.Equal(expected, actual);
     }
 
-    private byte[] ReadDocx(int i) {
+    internal static byte[] ReadDocx(int i) {
         var assembly = Assembly.GetExecutingAssembly();
         using Stream stream = assembly.GetManifestResourceStream($"test{i}.docx");
         MemoryStream ms = new MemoryStream();
         stream.CopyTo(ms);
         return ms.ToArray();
     }
-    private byte[] ReadDocx(int i, string name) {
+    internal static byte[] ReadDocx(int i, string name) {
         var assembly = Assembly.GetExecutingAssembly();
         using Stream stream = assembly.GetManifestResourceStream($"test{i}-{name}.docx");
         MemoryStream ms = new MemoryStream();
         stream.CopyTo(ms);
         return ms.ToArray();
     }
-    private string ReadXml(int i) {
+    internal static string ReadXml(int i) {
         var assembly = Assembly.GetExecutingAssembly();
         using Stream stream = assembly.GetManifestResourceStream($"test{i}.xml");
         using StreamReader reader = new StreamReader(stream);

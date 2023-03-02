@@ -200,7 +200,7 @@ class NetrualCitation : Enricher2 {
             IInline second = line.Skip(1).First();
             IInline third = line.Last();
             if (first is WText fText1 && second is WText fText2 && third is WText fText3) {
-                string text = ILine.TextContent(line);
+                string text = IInline.ToString(line);
                 Group group = Match(text);
                 if (group is null)
                     group = Match2(text);

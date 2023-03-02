@@ -32,6 +32,32 @@ interface IInline {
         return false;
     }
 
+    static string GetText(IInline i) {
+        if (i is IFormattedText t)
+            return t.Text;
+        if (i is ITab)
+            return " ";
+        if (i is ILineBreak)
+            return "";
+        if (i is IInlineContainer container)
+            return string.Join("", container.Contents.Select(GetText));
+        if (i is INeutralCitation2 ncn)
+            return string.Join("", ncn.Contents.Select(GetText));
+        if (i is ICourtType2 court)
+            return string.Join("", court.Contents.Select(GetText));
+        if (i is IDate date)
+            return string.Join("", date.Contents.Select(GetText));
+        if (i is IDateTime time)
+            return string.Join("", time.Contents.Select(GetText));
+        if (i is IParty2 party)
+            return string.Join("", party.Contents.Select(GetText));
+        return "";
+    }
+
+    static string ToString(IEnumerable<IInline> inlines) {
+        return string.Join("", inlines.Select(GetText));
+    }
+
 }
 
 interface IInlineContainer : IInline {

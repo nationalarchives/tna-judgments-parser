@@ -19,7 +19,7 @@ class Date1 : FirstMatch {
     }
 
     private WLine EnrichLineOutsideTable(WLine line) {
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         if (text.StartsWith("Date of Decision ") || text.StartsWith("Date of Decision: "))
             return Date0.Enrich(line, "decision", 1);
         if (text.StartsWith("Hearing date ") || text.StartsWith("Hearing date: "))
@@ -68,9 +68,9 @@ class Date1 : FirstMatch {
         if (!cell.Contents.Any())
             return false;
         IBlock block = cell.Contents.First();
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         if (normalized.StartsWith("Heard at "))
             return true;
         if (normalized.StartsWith("At: "))
@@ -87,9 +87,9 @@ class Date1 : FirstMatch {
         if (!cell.Contents.Any())
             return false;
         IBlock block = cell.Contents.First();
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         if (normalized == "Decision & Reasons Promulgated")
             return true;
         return false;
