@@ -17,7 +17,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 
 class OptimizedEWHCParser : OptimizedParser {
 
-    private static ILogger logger = Logging.Factory.CreateLogger<CourtOfAppealParser>();
+    private static ILogger logger = Logging.Factory.CreateLogger<OptimizedEWHCParser>();
 
     public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) {
         return new OptimizedEWHCParser(doc, preParsed, meta, attachments).ProtectedParse(JudgmentType.Judgment);

@@ -327,7 +327,7 @@ class PartyEnricher : Enricher {
         WLine enriched1 = EnrichOnePartyAndRoleOrNull(one);
         if (enriched1 is null)
             return null;
-        if (!((ILine)two).NormalizedContent().Equals("V", StringComparison.InvariantCultureIgnoreCase))
+        if (!two.NormalizedContent.Equals("V", StringComparison.InvariantCultureIgnoreCase))
             return null;
         WLine enriched3 = EnrichOnePartyAndRoleOrNull(three);
         if (enriched3 is null)
@@ -342,7 +342,7 @@ class PartyEnricher : Enricher {
         IEnumerable<IInline> enriched = EnrichOnePartyAndRoleOrNull(first);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     // private List<IInline> EnrichOnePartyAndRoleOrNull(IInline inline) {

@@ -15,6 +15,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 abstract class AbstractParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
@@ -769,11 +770,14 @@ abstract class AbstractParser {
         DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
         if (info is not null) {
             DOCX.WNumber number = new DOCX.WNumber(main, info.Value, p);
-            return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+            line.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(number, line);
         }
         INumber num2 = Fields.RemoveListNum(line);
-        if (num2 is not null)
-            return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+        if (num2 is not null) {
+            line.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(num2, line);
+        }
         string format1 = @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))";
         string[] formats;
         if (sub)

@@ -46,7 +46,7 @@ class Citation : FirstMatch2 {
                 return Enumerable.Concat(enriched, line.Skip(1));
             }
             if (line.Skip(1).Any() && line.Skip(1).All(i => i is WText)) {
-                string all = ILine.TextContent(line);
+                string all = IInline.ToString(line);
                 match = Regex.Match(first.Text, @"^(Neutral Citation: )\[\d{4}\]");
                 bool match2 = Regex.IsMatch(all, @"^Neutral Citation: \[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\)$");
                 if (match.Success && match2) {

@@ -62,7 +62,7 @@ abstract class OptimizedParser {
         if (annexes is not null)
             annexes = EnrichAnnexes(annexes);
 
-        IEnumerable<IInternalAttachment> attachments = Util.NumberAttachments<WordprocessingDocument>(this.attachments).Select(tup => FlatParagraphsParser.Parse(tup.Item1.Item1, tup.Item1.Item2, tup.Item2));
+        IEnumerable<IInternalAttachment> attachments = Util.NumberAttachments<WordprocessingDocument>(this.attachments).Select(tup => AttachmentParser.Parse(tup.Item1.Item1, tup.Item1.Item2, tup.Item2));
         return new Judgment(doc, meta) {
             Type = type,
             CoverPage = coverPage,
