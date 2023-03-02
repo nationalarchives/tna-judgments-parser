@@ -27,6 +27,7 @@ class Attachment : IInternalAttachment {
 
 }
 
+[Obsolete]
 class FlatParagraphsParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<FlatParagraphsParser>();

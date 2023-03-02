@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 class EmploymentTribunalParser : AbstractParser {
 
     public static Judgment Parse(WordprocessingDocument doc) {

@@ -15,6 +15,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 
+[Obsolete]
 class Parser : AbstractParser {
 
     private Parser(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<Tuple<WordprocessingDocument,AttachmentType>> attachments) : base(doc, meta, attachments) { }
