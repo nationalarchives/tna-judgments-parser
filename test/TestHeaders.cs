@@ -1,16 +1,15 @@
 
 // using System.Collections.Generic;
-// using System.Text.RegularExpressions;
 // using System.Xml;
 
 // using Xunit;
 
 // using Api = UK.Gov.NationalArchives.Judgments.Api;
-// using Hash = UK.Gov.Legislation.Judgments.AkomaNtoso.SHA256;
+// using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 // namespace UK.Gov.NationalArchives.CaseLaw {
 
-// public class TestContent {
+// public class TestHeaders {
 
 //     public static IEnumerable<object[]> indices = Tests.indices;
 
@@ -20,9 +19,7 @@
 //         var docx = Tests.ReadDocx(i);
 //         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
 //         var expected = Tests.ReadXml(i);
-//         actual = ExtractNormalizedContent(actual);
-//         expected = ExtractNormalizedContent(expected);
-//         Assert.Equal(expected, actual);
+//         TestHeader(actual, expected);
 //     }
 
 //     [Fact]
@@ -32,9 +29,7 @@
 //         List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach, Type = Api.AttachmentType.Order } };
 //         var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
 //         var expected = Tests.ReadXml(11);
-//         actual = ExtractNormalizedContent(actual);
-//         expected = ExtractNormalizedContent(expected);
-//         Assert.Equal(expected, actual);
+//         TestHeader(actual, expected);
 //     }
 
 //     [Fact]
@@ -42,16 +37,20 @@
 //         var docx = Tests.ReadDocx(28);
 //         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
 //         var expected = Tests.ReadXml(28);
-//         actual = ExtractNormalizedContent(actual);
-//         expected = ExtractNormalizedContent(expected);
-//         Assert.Equal(expected, actual);
+//         TestHeader(actual, expected);
 //     }
 
-//     private string ExtractNormalizedContent(string xml) {
-//         XmlDocument doc = new XmlDocument();
-//         doc.LoadXml(xml);
-//         string content = Hash.RemoveMetadata(doc);
-//         return Regex.Replace(content, @"\s", "");
+//     private void TestHeader(string actual, string expected) {
+//         XmlDocument actual1 = new XmlDocument();
+//         actual1.LoadXml(actual);
+//         XmlDocument expected1 = new XmlDocument();
+//         expected1.LoadXml(expected);
+//         XmlNamespaceManager nsmgr1 = new XmlNamespaceManager(actual1.NameTable);
+//         nsmgr1.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
+//         nsmgr1.AddNamespace("uk", "https://caselaw.nationalarchives.gov.uk/akn");
+//         var x = actual1.SelectNodes("/akn:akomaNtoso/akn:judgment/akn:header/*", nsmgr1);
+//         var y = expected1.SelectNodes("/akn:akomaNtoso/akn:judgment/akn:header/*", nsmgr1);
+//         Assert.Equal(x.Count, y.Count);
 //     }
 
 // }

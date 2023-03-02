@@ -1,16 +1,15 @@
 
 // using System.Collections.Generic;
-// using System.Text.RegularExpressions;
 // using System.Xml;
 
 // using Xunit;
 
 // using Api = UK.Gov.NationalArchives.Judgments.Api;
-// using Hash = UK.Gov.Legislation.Judgments.AkomaNtoso.SHA256;
+// using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 // namespace UK.Gov.NationalArchives.CaseLaw {
 
-// public class TestContent {
+// public class TestMetadata {
 
 //     public static IEnumerable<object[]> indices = Tests.indices;
 
@@ -20,9 +19,7 @@
 //         var docx = Tests.ReadDocx(i);
 //         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
 //         var expected = Tests.ReadXml(i);
-//         actual = ExtractNormalizedContent(actual);
-//         expected = ExtractNormalizedContent(expected);
-//         Assert.Equal(expected, actual);
+//         TestMetadata1(expected, actual);
 //     }
 
 //     [Fact]
@@ -32,9 +29,7 @@
 //         List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach, Type = Api.AttachmentType.Order } };
 //         var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
 //         var expected = Tests.ReadXml(11);
-//         actual = ExtractNormalizedContent(actual);
-//         expected = ExtractNormalizedContent(expected);
-//         Assert.Equal(expected, actual);
+//         TestMetadata1(expected, actual);
 //     }
 
 //     [Fact]
@@ -42,16 +37,23 @@
 //         var docx = Tests.ReadDocx(28);
 //         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
 //         var expected = Tests.ReadXml(28);
-//         actual = ExtractNormalizedContent(actual);
-//         expected = ExtractNormalizedContent(expected);
-//         Assert.Equal(expected, actual);
+//         TestMetadata1(expected, actual);
 //     }
 
-//     private string ExtractNormalizedContent(string xml) {
-//         XmlDocument doc = new XmlDocument();
-//         doc.LoadXml(xml);
-//         string content = Hash.RemoveMetadata(doc);
-//         return Regex.Replace(content, @"\s", "");
+//     private void TestMetadata1(string expected, string actual) {
+//         XmlDocument expected1 = new XmlDocument();
+//         expected1.LoadXml(expected);
+//         AkN.Meta expectedMeta = AkN.MetadataExtractor.Extract(expected1);
+
+//         XmlDocument actual1 = new XmlDocument();
+//         actual1.LoadXml(actual);
+//         AkN.Meta actualMeta = AkN.MetadataExtractor.Extract(actual1);
+
+//         Assert.Equal("uri=" + expectedMeta.WorkUri, "uri=" + actualMeta.WorkUri);
+//         Assert.Equal("date=" + expectedMeta.WorkDate, "date=" + actualMeta.WorkDate);
+//         Assert.Equal("name=" + expectedMeta.WorkName, "name=" + actualMeta.WorkName);
+//         Assert.Equal("court=" + expectedMeta.UKCourt, "court=" + actualMeta.UKCourt);
+//         Assert.Equal("cite=" + expectedMeta.UKCite, "cite=" + actualMeta.UKCite);
 //     }
 
 // }
