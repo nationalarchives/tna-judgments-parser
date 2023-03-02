@@ -14,6 +14,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 class CourtOfAppealParser : AbstractParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<CourtOfAppealParser>();

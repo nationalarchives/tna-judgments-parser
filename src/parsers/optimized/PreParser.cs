@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml.Vml;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -54,12 +55,36 @@ class PreParser {
         return contents;
     }
 
+    internal static bool IsSkippable(OpenXmlElement e) {
+        if (e is SectionProperties)
+            return true;
+        if (e is BookmarkStart || e is BookmarkEnd)
+            return true;
+        if (e.Descendants().OfType<Drawing>().Any())
+            return false;
+        if (e.Descendants().OfType<Picture>().Any())
+            return false;
+        if (e.Descendants().OfType<Shape>().Any())
+            return false;
+        if (e is Paragraph p) {
+            if (DOCX.Numbering2.HasOwnNumber(p))
+                return false;
+            if (DOCX.Numbering2.HasEffectiveStyleNumber(p) && !DOCX.Paragraphs.IsEmptySectionBreak(p))
+                return false;
+            if (string.IsNullOrWhiteSpace(p.InnerText))
+                return true;
+        }
+        if (e is PermEnd)
+            return true;
+        return false;
+    }
+
     private List<BlockWithBreak> Body(MainDocumentPart main) {
         List<BlockWithBreak> contents = new List<BlockWithBreak>();
         bool lineBreakBefore = false;
         foreach (var e in main.Document.Body.ChildElements) {
             lineBreakBefore = lineBreakBefore || Util.IsSectionOrPageBreak(e);
-            if (AbstractParser.IsSkippable(e))
+            if (IsSkippable(e))
                 continue;
             IEnumerable<IBlock> blocks = ParseElement(main, e);
             foreach (IBlock block in blocks) {

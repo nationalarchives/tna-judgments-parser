@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Packaging;
@@ -9,6 +10,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 class EWPDF : CourtOfAppealParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<EWPDF>();
