@@ -57,7 +57,7 @@ class DocDate : Enricher {
         List<IInline> contents = EnrichText(text);
         if (contents is null)
             return null;
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
     virtual protected WLine Enrich2OrDefault(WLine line) {
@@ -75,7 +75,7 @@ class DocDate : Enricher {
         List<IInline> enriched = EnrichText(fText2);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched.Prepend(first));
+        return WLine.Make(line, enriched.Prepend(first));
     }
 
     private WLine Enrich3OrDefault(WLine line) {
@@ -92,7 +92,7 @@ class DocDate : Enricher {
         IEnumerable<IInline> enriched = Enrich3OrDefault(fText1, fText2, fText3, isMain);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     private IEnumerable<IInline> Enrich3OrDefault(WText fText1, WText fText2, WText fText3, bool isMain) {
@@ -189,7 +189,7 @@ class DocDate : Enricher {
         IEnumerable<IInline> enriched = Enrich3OrDefault(fText2, fText3, fText4, isMain);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched.Prepend(first));
+        return WLine.Make(line, enriched.Prepend(first));
     }
 
     /* one */

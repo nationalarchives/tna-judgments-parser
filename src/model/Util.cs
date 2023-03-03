@@ -84,6 +84,9 @@ class Util {
             return Enumerable.Empty<T>();
         return blocks.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
     }
+    public static IEnumerable<T> Descendants<T>(IBlock block) {
+        return GetLines(block).SelectMany(line => line.Contents).OfType<T>();
+    }
 
     public static string NormalizeSpace(string s) {
         return Regex.Replace(s, @"\s+", " ").Trim();

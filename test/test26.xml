@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/689/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/689/data.xml" />
-          <FRBRdate date="2022-11-22T19:34:17" name="transform" />
+          <FRBRdate date="2023-03-01T21:04:43" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -48,7 +48,7 @@
         <uk:year>2022</uk:year>
         <uk:number>689</uk:number>
         <uk:cite>[2022] EWHC 689 (IPEC)</uk:cite>
-        <uk:parser>0.11.0</uk:parser>
+        <uk:parser>0.13.0</uk:parser>
         <uk:hash>5a3910ff9918ffc74c074b69ee249ac23440191f49bd67c892947ca3cf30535b</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -99,14 +99,32 @@
       <p class="CoverText" style="text-align:center"><span style="font-weight:bold">Before:</span></p>
       <p class="CoverText" style="text-align:center"><span style="font-weight:bold">MISS RECORDER AMANDA MICHAELS</span></p>
       <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Between</span><span style="font-weight:bold;font-family:'Times New Roman'">:</span></p>
-      <p style="text-align:center"><party refersTo="#fairfax-&amp;-favor-limited" as="#claimant" style="font-weight:bold;font-family:'Times New Roman'">(1) FAIRFAX &amp; FAVOR LIMITED</party></p>
-      <p style="text-align:center"><party refersTo="#mr-felix-favor-parker" as="#claimant" style="font-weight:bold;font-family:'Times New Roman'">(2) MR FELIX FAVOR PARKER</party></p>
-      <p style="text-align:center"><party refersTo="#mr-marcus-fairfax-fountaine" as="#claimant" style="font-weight:bold;font-family:'Times New Roman'">(3) MR MARCUS FAIRFAX FOUNTAINE</party></p>
+      <blockContainer>
+        <num style="font-weight:bold;font-family:'Times New Roman'">(1)</num>
+        <p style="text-align:center;text-indent:0.5in"><party refersTo="#fairfax-&amp;-favor-limited" as="#claimant" style="font-weight:bold;font-family:'Times New Roman'">FAIRFAX &amp; FAVOR LIMITED</party></p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-weight:bold;font-family:'Times New Roman'">(2)</num>
+        <p style="text-align:center;text-indent:0.5in"><party refersTo="#mr-felix-favor-parker" as="#claimant" style="font-weight:bold;font-family:'Times New Roman'">MR FELIX FAVOR PARKER</party></p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-weight:bold;font-family:'Times New Roman'">(3)</num>
+        <p style="text-align:center;text-indent:0.5in"><party refersTo="#mr-marcus-fairfax-fountaine" as="#claimant" style="font-weight:bold;font-family:'Times New Roman'">MR MARCUS FAIRFAX FOUNTAINE</party></p>
+      </blockContainer>
       <p style="text-align:right"><role refersTo="#claimant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Claimants</role></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman'">and</span></p>
-      <p style="text-align:center"><party refersTo="#the-house-of-bruar-limited" as="#defendant" style="font-weight:bold;font-family:'Times New Roman'">(1) THE HOUSE OF BRUAR LIMITED</party></p>
-      <p style="text-align:center"><party refersTo="#mr-patrick-mark-birkbeck" as="#defendant" style="font-weight:bold;font-family:'Times New Roman'">(2) MR PATRICK MARK BIRKBECK</party></p>
-      <p style="text-align:center"><party refersTo="#mr-mark-nigel-thomas-birkbeck" as="#defendant" style="font-weight:bold;font-family:'Times New Roman'">(3) MR MARK NIGEL THOMAS BIRKBECK</party></p>
+      <blockContainer>
+        <num style="font-weight:bold;font-family:'Times New Roman'">(1)</num>
+        <p style="text-align:center;text-indent:0.5in"><party refersTo="#the-house-of-bruar-limited" as="#defendant" style="font-weight:bold;font-family:'Times New Roman'">THE HOUSE OF BRUAR LIMITED</party></p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-weight:bold;font-family:'Times New Roman'">(2)</num>
+        <p style="text-align:center;text-indent:0.5in"><party refersTo="#mr-patrick-mark-birkbeck" as="#defendant" style="font-weight:bold;font-family:'Times New Roman'">MR PATRICK MARK BIRKBECK</party></p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-weight:bold;font-family:'Times New Roman'">(3)</num>
+        <p style="text-align:center;text-indent:0.5in"><party refersTo="#mr-mark-nigel-thomas-birkbeck" as="#defendant" style="font-weight:bold;font-family:'Times New Roman'">MR MARK NIGEL THOMAS BIRKBECK</party></p>
+      </blockContainer>
       <p style="text-align:right"><role refersTo="#defendant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Defendants</role></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman'">Thomas St Quintin </span><span style="font-family:'Times New Roman'">(instructed by </span><span style="font-weight:bold;font-family:'Times New Roman'">McDaniel &amp; Co</span><span style="font-family:'Times New Roman'">) for the Claimants</span></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman'">Kathryn Pickard  </span><span style="font-family:'Times New Roman'">(instructed by</span><span style="font-weight:bold;font-family:'Times New Roman'"> Marks &amp; Clerk Law LLP </span><span style="font-family:'Times New Roman'">) for the Defendants</span></p>
@@ -354,7 +372,7 @@
           </intro>
           <subparagraph>
             <content>
-              <p class="ListParagraph" style="margin-left:0.98in"><img src="image9.emf.crop1.png" style="width:173.62pt;height:184.79pt" /><span> </span><marker name="tab" /><marker name="tab" /><img src="image10.jpeg" style="width:57.14pt;height:173.23pt" /></p>
+              <p class="ListParagraph" style="margin-left:0.98in"><img src="image9.emf.change1.png" style="width:173.62pt;height:184.79pt" /><span> </span><marker name="tab" /><marker name="tab" /><img src="image10.jpeg" style="width:57.14pt;height:173.23pt" /></p>
             </content>
           </subparagraph>
         </paragraph>
@@ -509,13 +527,15 @@
               <p style="margin-left:0.69in;text-indent:0.31in"><span style="font-family:'Times New Roman'">The owner of design right in a design has the exclusive right to reproduce the design for commercial purposes—</span></p>
             </intro>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(a)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(a) by making articles to that design, or</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">by making articles to that design, or</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(b)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(b) by making a design document recording the design for the purpose of enabling such articles to be made.</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">by making a design document recording the design for the purpose of enabling such articles to be made.</span></p>
               </content>
             </subparagraph>
           </subparagraph>
@@ -549,28 +569,33 @@
               <p style="margin-left:0.79in;text-indent:0.21in"><span style="font-family:'Times New Roman'">Subsistence of UKUDR therefore requires:</span></p>
             </intro>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(i)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(i) that the design be “original”;</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">that the design be “original”;</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(ii)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(ii) that the designer or his/her employer is a “qualifying person”, or that articles made to the design were first marketed in a way which qualifies them for protection;</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">that the designer or his/her employer is a “qualifying person”, or that articles made to the design were first marketed in a way which qualifies them for protection;</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(iii)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(iii) that the design not be excluded from protection (“must fit, “must match” etc);</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">that the design not be excluded from protection (“must fit, “must match” etc);</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(iv)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(iv) that the design has been recorded in a design document or an article has been made to the design; and</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">that the design has been recorded in a design document or an article has been made to the design; and</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:'Times New Roman'">(v)</num>
               <content>
-                <p style="margin-left:0.98in"><span style="font-family:'Times New Roman'">(v) that the term of the design has not expired.</span></p>
+                <p style="margin-left:0.98in;text-indent:0.02in"><span style="font-family:'Times New Roman'">that the term of the design has not expired.</span></p>
               </content>
             </subparagraph>
           </subparagraph>
@@ -862,10 +887,6 @@
         <level>
           <content>
             <p style="text-align:left;margin-left:0.79in;text-indent:-0.79in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">The merits</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
             <p style="text-align:left;margin-left:0.79in;text-indent:-0.79in"><span style="font-style:italic;font-family:'Times New Roman'">Validity and subsistence of rights</span></p>
           </content>
         </level>

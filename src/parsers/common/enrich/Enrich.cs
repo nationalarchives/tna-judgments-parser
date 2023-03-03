@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class Enricher {
@@ -92,12 +89,8 @@ abstract class Enricher {
     }
 
     protected virtual IBlock Enrich(IBlock block) {
-        if (block is WOldNumberedParagraph np)
-            return new WOldNumberedParagraph(np.Number, Enrich(np));
         if (block is WLine line)
             return Enrich(line);
-        // if (block is WTable table)
-        //     return EnrichTable(table);
         return block;
     }
 
@@ -109,9 +102,9 @@ abstract class Enricher {
 
     // }
 
-    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichLine);
+    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichILine);
 
-    protected virtual ILine EnrichLine(ILine line) {
+    private ILine EnrichILine(ILine line) {
         if (line is WLine wLine)
             return Enrich(wLine);
         return line;
@@ -121,7 +114,7 @@ abstract class Enricher {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
         if (object.ReferenceEquals(enriched, line.Contents))
             return line;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     abstract protected IEnumerable<IInline> Enrich(IEnumerable<IInline> line);
@@ -137,20 +130,22 @@ abstract class Enricher {
     //     return string.Join("", texts).Trim();
     // }
 
-    internal static string NormalizeInlines(IEnumerable<IInline> line) {
-        IEnumerable<string> texts = line
-            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-        return string.Join("", texts).Trim();
-    }
+    // [Obsolete]
+    // internal static string NormalizeInlines(IEnumerable<IInline> line) {
+    //     IEnumerable<string> texts = line
+    //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
+    //     return string.Join("", texts).Trim();
+    // }
 
     // protected string NormalizeLine(IEnumerable<IInline> line) {
     //     IEnumerable<string> texts = line
     //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
     //     return string.Join("", texts).Trim();
     // }
-    internal static string NormalizeLine(ILine line) {
-        return NormalizeInlines(line.Contents);
-    }
+    // [Obsolete]
+    // internal static string NormalizeLine(ILine line) {
+    //     return NormalizeInlines(line.Contents);
+    // }
     // public static string NormalizeContent(this ILine line) {
     //     return NormalizeInlines(line.Contents);
     // }
@@ -161,7 +156,7 @@ abstract class Enricher2 : Enricher {
 
     protected override IBlock Enrich(IBlock block) {
         if (block is WLine line)
-            return EnrichLine(line);
+            return Enrich(line);
         if (block is WTable table)
             return EnrichTable(table);
         return block;
@@ -213,13 +208,6 @@ abstract class Enricher2 : Enricher {
             }
         }
         return cell;
-    }
-
-    private WLine EnrichLine(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
     }
 
 }

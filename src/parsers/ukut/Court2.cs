@@ -22,7 +22,7 @@ class CourtType2 : Enricher {
         int i = 0;
         while (i < blocks.Count() && i < limit) {
             IBlock block1 = blocks.ElementAt(i);
-            List<ILine> one = Match1(block1, nc);
+            List<WLine> one = Match1(block1, nc);
             if (one is not null) {
                 IEnumerable<IBlock> before = blocks.Take(i);
                 IEnumerable<IBlock> after = blocks.Skip(i + 1);
@@ -33,7 +33,7 @@ class CourtType2 : Enricher {
         return blocks;
     }
 
-    protected List<ILine> Match1(IBlock block, WNeutralCitation nc) {
+    protected List<WLine> Match1(IBlock block, WNeutralCitation nc) {
         Court court;
         if (nc.Text.EndsWith("(IAC)"))
             court = Courts.UpperTribunal_ImmigrationAndAsylumChamber;

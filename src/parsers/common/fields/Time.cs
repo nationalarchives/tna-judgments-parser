@@ -37,7 +37,7 @@ internal class Time {
     private static IEnumerable<IInline> DateOnly(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
         IEnumerable<IInline> parsed = Fields.Rest(main, rest);
         if (parsed.All(inline => inline is IFormattedText)) {
-            string content = Enricher.NormalizeInlines(parsed);
+            string content = IInline.ToString(parsed);
             try {
                 CultureInfo culture = new CultureInfo("en-GB");
                 DateTime date = DateTime.Parse(content, culture);

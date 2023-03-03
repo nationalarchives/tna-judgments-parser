@@ -14,6 +14,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 class CourtOfAppealParser : AbstractParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<CourtOfAppealParser>();
@@ -58,6 +59,7 @@ class CourtOfAppealParser : AbstractParser {
         "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER", //
         "Determination as to Venue",    // [2022] EWHC 152 (Admin)
         "Approved Consequentials Judgment", // [2022] EWHC 629 (Ch)
+        "SUBSTANTIVE JUDGMENT", // [2023] EWHC 323 (Ch)
 
         /* EAT */
         "TRANSCRIPT OF ORAL JUDGMENT",
@@ -66,6 +68,11 @@ class CourtOfAppealParser : AbstractParser {
 
     ISet<string> rawTitles = new HashSet<string>() {
         "A P P R O V E D  J U D G M E N T" // [2022] EWCA Crim 381 (has two spaces between words)
+    };
+
+    Regex[] titleRegexes = new Regex[] {
+        new Regex(@"^Judgement of [A-Z][a-z]+ [A-Z][a-z]+ KC$"), // [2022] EWFC 172
+        new Regex(@"^© CROWN COPYRIGHT \d{4}$")
     };
 
     protected override List<IBlock> Header() {
@@ -134,8 +141,9 @@ class CourtOfAppealParser : AbstractParser {
             header.Add(e);
             if (Util.IsSectionOrPageBreak(e))
                 return header;
-            if (Regex.IsMatch(e.InnerText, @"© CROWN COPYRIGHT \d{4}"))
-                return header;
+            foreach (Regex regex in titleRegexes)
+                if (regex.IsMatch(e.InnerText))
+                    return header;
         }
         return null;
     }

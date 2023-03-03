@@ -6,6 +6,10 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class RemoveTrailingWhitespace : Enricher {
 
+    public IBlock Enrich1(IBlock block) {
+        return base.Enrich(block);
+    }
+
     private static bool IsWhitespace(IInline inline) {
         if (inline is WTab)
             return true;

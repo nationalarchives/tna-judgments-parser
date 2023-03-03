@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2021/50/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2021/50/data.xml" />
-          <FRBRdate date="2022-11-22T19:30:55" name="transform" />
+          <FRBRdate date="2023-03-01T21:02:05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -49,7 +49,7 @@
         <uk:year>2021</uk:year>
         <uk:number>50</uk:number>
         <uk:cite>[2021] UKSC 50</uk:cite>
-        <uk:parser>0.11.0</uk:parser>
+        <uk:parser>0.13.0</uk:parser>
         <uk:hash>ed865f2db49c89de0d02aba0e5c9165873cacd8c57f1020b14f16c63209556f6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -149,8 +149,8 @@
           </content>
         </level>
         <level>
-          <num style="font-family:Calibri, sans-serif">A.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">Introduction</span></heading>
+          <num>A.</num>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Introduction</span></heading>
           <paragraph eId="para_1">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">1.</num>
             <content>
@@ -212,7 +212,7 @@
         </level>
         <level>
           <num style="font-family:Calibri, sans-serif">B.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">Factual background</span></heading>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Factual background</span></heading>
           <paragraph eId="para_9">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">9.</num>
             <content>
@@ -252,7 +252,7 @@
         </level>
         <level>
           <num style="font-family:Calibri, sans-serif">C.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">The Legal FRAMEWORK</span></heading>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The Legal FRAMEWORK</span></heading>
           <paragraph eId="para_15">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">15.</num>
             <content>
@@ -265,11 +265,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Because the acts and omissions giving rise to the present claim occurred in 2011 and 2012, the claim is governed by the old law contained in the DPA 1998 and the Data Protection Directive. The parties and interveners in their submissions on this appeal nevertheless made frequent references to provisions of the General Data Protection Regulation and the DPA 2018. In principle, the meaning and effect of the DPA 1998 and the Data Protection Directive cannot be affected by legislation which has been enacted subsequently. The later legislation therefore cannot help to resolve the issues raised on this appeal, and I shall leave it to one side.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(1)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(1)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The scheme of the DPA 1998</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The scheme of the DPA 1998</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_17">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">17.</num>
             <content>
@@ -286,13 +287,15 @@
                 <p class="Quote"><span style="font-family:Calibri, sans-serif">“Personal data shall be processed fairly and lawfully and, in particular, shall not be processed unless -</span></p>
               </intro>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(a)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.77in;text-indent:-0.39in"><span style="font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">at least one of the conditions in Schedule 2 is met, and</span></p>
+                  <p class="Quote" style="margin-left:1.77in"><span style="font-family:Calibri, sans-serif">at least one of the conditions in Schedule 2 is met, and</span></p>
                 </content>
               </subparagraph>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(b)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.77in;text-indent:-0.39in"><span style="font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">in the case of sensitive personal data, at least one of the conditions in Schedule 3 is also met.”</span></p>
+                  <p class="Quote" style="margin-left:1.77in"><span style="font-family:Calibri, sans-serif">in the case of sensitive personal data, at least one of the conditions in Schedule 3 is also met.”</span></p>
                 </content>
               </subparagraph>
             </subparagraph>
@@ -308,11 +311,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As discussed in more detail below, section 13 of the DPA 1998 gives an individual who suffers damage “by reason of any contravention by a data controller of any of the requirements of this Act” a right to compensation from the data controller for that damage.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(2)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(2)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The allegations of breach of duty</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The allegations of breach of duty</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_20">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">20.</num>
             <content>
@@ -340,12 +344,13 @@
         </level>
         <level>
           <num style="font-family:Calibri, sans-serif">D.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">Collective redress in English law</span></heading>
-          <level>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Collective redress in English law</span></heading>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(1)</num>
             <content>
-              <p class="Paraheading2" style="margin-left:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">(1)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Group Actions</span></p>
+              <p class="Paraheading2" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Group Actions</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_24">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">24.</num>
             <content>
@@ -386,11 +391,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">A further factor which makes group litigation impractical in cases where the loss suffered by each individual is small, even if in aggregate it may amount to a very large sum of money, is the need to prove the quantum of loss in each individual case. Not only are eligible individuals less likely to opt into the proceedings where the potential gain to them is small, but the costs of obtaining evidence from each individual to support their claim is again likely to make group litigation uneconomic in such cases.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(2)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(2)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Collective Proceedings</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Collective Proceedings</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_29">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">29.</num>
             <content>
@@ -425,11 +431,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As Lord Briggs explained in <span style="font-style:italic">Merricks v Mastercard </span>[2020] UKSC 51; [2021] Bus LR 25, at para 76, section 47C(2) of the Competition Act “radically alters the established common law compensatory principle by removing the requirement to assess individual loss”. This is so for the purposes both of making and of paying out an aggregate award of damages. How an aggregate award of damages is distributed among the members of the class is subject to the control of the CAT and, as this court held in <span style="font-style:italic">Merricks v Mastercard</span>, the only requirement is that the distribution should be just: see paras 76-77, 149. No doubt in many cases a just method of distribution will be one which divides up an aggregate award of damages in a way which takes account of individual loss. But particularly where the size of the class is large and the amount of damages awarded small considered on a per capita basis, it may be impractical or disproportionate to adopt such a method. In such cases some other method of distribution, such as an equal division among all the members of the class, may be justified.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(3)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(3)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Representative Actions</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Representative Actions</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_33">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">33.</num>
             <intro>
@@ -441,13 +448,15 @@
                 <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Where more than one person has the same interest in a claim -</span></p>
               </intro>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(a)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.67in;text-indent:-0.3in"><span style="font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">the claim may be begun; or</span></p>
+                  <p class="Quote" style="margin-left:1.67in"><span style="font-family:Calibri, sans-serif">the claim may be begun; or</span></p>
                 </content>
               </subparagraph>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(b)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.67in;text-indent:-0.3in"><span style="font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">the court may order that the claim be continued,</span></p>
+                  <p class="Quote" style="margin-left:1.67in"><span style="font-family:Calibri, sans-serif">the court may order that the claim be continued,</span></p>
                 </content>
               </subparagraph>
             </subparagraph>
@@ -474,19 +483,22 @@
                 <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Unless the court otherwise directs any judgment or order given in a claim in which a party is acting as a representative under this rule -</span></p>
               </intro>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(a)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.67in;text-indent:-0.3in"><span style="font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">is binding on all persons represented in the claim; but</span></p>
+                  <p class="Quote" style="margin-left:1.67in"><span style="font-family:Calibri, sans-serif">is binding on all persons represented in the claim; but</span></p>
                 </content>
               </subparagraph>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(b)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.67in;text-indent:-0.3in"><span style="font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">may only be enforced by or against a person who is not a party to the claim with the permission of the court.”</span></p>
+                  <p class="Quote" style="margin-left:1.67in"><span style="font-family:Calibri, sans-serif">may only be enforced by or against a person who is not a party to the claim with the permission of the court.”</span></p>
                 </content>
               </subparagraph>
             </subparagraph>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(a)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Origins of the rule</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Origins of the rule</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -545,8 +557,9 @@
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(b)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Effect of the Judicature Act</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Effect of the Judicature Act</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -599,8 +612,9 @@
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(c)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(c)</span><marker name="tab" /><span style="font-style:italic;font-family:Calibri, sans-serif">Markt</span><span style="font-family:Calibri, sans-serif"> and declarations of rights</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;font-family:Calibri, sans-serif">Markt</span><span style="font-family:Calibri, sans-serif"> and declarations of rights</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -640,8 +654,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This decision was important in demonstrating the potential for a bifurcated process whereby issues common to the claims of a class of persons may be decided in a representative action which, if successful, can then form a basis for individual claims for redress. More generally, the <span style="font-style:italic">Prudential </span>case marked a welcome revival of the spirit of flexibility which characterised the old case law.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(d)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(d)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Claims for damages</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Claims for damages</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -702,8 +717,9 @@
               <p class="ParaNoNumber"><span style="font-family:Calibri, sans-serif">While the right enforced in such a common suit would in modern company law be seen as a right belonging to the company itself, rather than its shareholders, it is clear from the context that Lord Hatherley had in mind a representative action brought on behalf of shareholders, as he gave this analogy to explain how in that case a representative claim could be brought on behalf of all the freehold tenants of a manor to establish common rights against the lord of the manor even though different tenants or classes of tenant had different rights as between themselves.</span></p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(e)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(e)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Emerald Supplies</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Emerald Supplies</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -725,8 +741,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It seems to me that this second difficulty might have been avoided either by altering the class definition to exclude sub-purchasers or by following the approach adopted in <span style="font-style:italic">Prudential </span>of claiming a declaration that those members of the class who had suffered damage as a result of the alleged price fixing were entitled to damages. However, those possibilities do not appear to have been considered. I think that the judge in <span style="font-style:italic">Rendlesham Estates plc v Barr Ltd</span> [2014] EWHC 3968 (TCC); [2015] 1 WLR 3663 - a case relied on by Google on this appeal - was therefore wrong to conclude from <span style="font-style:italic">Emerald Supplies</span>, at para 90, that “if damage is an ingredient of the cause of action a representative claim could not be maintained”. The Court of Appeal in <span style="font-style:italic">Emerald Supplies</span> did not doubt the correctness of the <span style="font-style:italic">Prudential</span> decision, where a representative claim was allowed to proceed although damage was an ingredient of the cause of action. As Professor Rachael Mulheron, a leading expert in this field, has persuasively argued, it should likewise have been possible in <span style="font-style:italic">Emerald Supplies</span> to adopt a bifurcated process in which the questions whether prices had been inflated by agreements or concerted practices and whether passing on was in principle available as a defence were decided in a representative action. If successful, this action could then have formed the basis for further proceedings to prove the fact and amount of damage in individual cases: see Mulheron R, “<span style="font-style:italic">Emerald Supplies Ltd v British Airways plc</span>; A Century Later, The Ghost of <span style="font-style:italic">Markt</span> Lives On” [2009] Comp Law 159, 171.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(f)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(f)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Commonwealth cases</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Commonwealth cases</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -736,11 +753,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The highest courts of Australia, Canada and New Zealand have all adopted a broad and flexible approach in interpreting representative rules derived from the English rule.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(i)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(i)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Australia</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Australia</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_60">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">60.</num>
             <intro>
@@ -752,11 +770,12 @@
               </content>
             </subparagraph>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(ii)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(ii)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Canada</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Canada</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_61">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">61.</num>
             <content>
@@ -781,11 +800,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">McLachlin CJ further observed, at para 34, that, while it would clearly be advantageous if there existed a comprehensive legislative framework regulating class actions, in its absence “the courts must fill the void”.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(iii)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(iii)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">New Zealand</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">New Zealand</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_65">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">65.</num>
             <content>
@@ -798,8 +818,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The New Zealand Supreme Court affirmed the decision of the Court of Appeal that the claim should be allowed to continue on an opt out basis. In doing so, the Supreme Court rejected an argument that it should not develop an opt out regime in the absence of a statutory framework and gave guidance on various matters relating to supervision of opt out representative proceedings.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(g)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(g)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Principles governing use of the representative procedure</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Principles governing use of the representative procedure</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -815,11 +836,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I agree with the highest courts of Australia, Canada and New Zealand that, while a detailed legislative framework would be preferable, its absence (outside the field of competition law) in this country is no reason to decline to apply, or to interpret restrictively, the representative rule which has long existed (and has had a legislative basis since 1873). I also agree with the view expressed in <span style="font-style:italic">Carnie</span> that the very simplicity of the representative rule is in some respects a strength, allowing it to be treated as “a flexible tool of convenience in the administration of justice” and “applied to the exigencies of modern life as occasion requires”.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(i)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(i)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The “same interest” requirement</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The “same interest” requirement</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_69">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">69.</num>
             <content>
@@ -856,11 +878,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Even if it were considered inconsistent with the “same interest” requirement, or otherwise inappropriate, for a single person to represent two groups of people in relation to whom different issues arise although there is no conflict of interest between them, any procedural objection could be overcome by bringing two (or more) representative claims, each with a separate representative claimant or defendant, and combining them in the same action.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(ii)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(ii)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The court’s discretion</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The court’s discretion</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_75">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">75.</num>
             <content>
@@ -873,44 +896,48 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Four further features of the representative rule deserve mention.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(iii)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(iii)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">No requirement of consent</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">No requirement of consent</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_77">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">77.</num>
             <content>
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">First, as the ability to act as a representative under the rule does not depend on the consent of the persons represented but only on community of interest between them, there is ordinarily no need for a member of the represented class to take any positive step, or even to be aware of the existence of the action, in order to be bound by the result. The rule does not confer a right to opt out of the proceedings (though a person could, at least in theory, apply to the court for a direction under rule 19.6(3) that the named claimant (or defendant) may not represent them or under rule 19.6(4) that any judgment given will not be binding on them). It is, however, always open to the judge managing the case to impose a requirement to notify members of the class of the proceedings and establish a simple procedure for opting out of representation, if this is considered desirable. Equally, if there are circumstances which make it appropriate to limit the represented class to persons who have positively opted into the litigation, it is open to the judge to make this a condition of representation. The procedure is entirely flexible in these respects.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(iv)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(iv)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The class definition</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The class definition</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_78">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">78.</num>
             <content>
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Second, while it is plainly desirable that the class of persons represented should be clearly defined, the adequacy of the definition is a matter which goes to the court’s discretion in deciding whether it is just and convenient to allow the claim to be continued on a representative basis rather than being a precondition for the application of the rule. <span style="font-style:italic">Emerald Supplies</span> illustrates a general principle that membership of the class should not depend on the outcome of the litigation. Beyond that, whether or to what extent any practical difficulties in identifying the members of the class are material must depend on the nature and object of the proceedings. In <span style="font-style:italic">Duke of Bedford v Ellis</span>, for example, it did not matter that the number and identities of growers of fruit etc would have been difficult if not impossible to ascertain or that the class was a fluctuating one: given that the aim was to establish whether anyone who was a grower had preferential rights, all that mattered was that there would be no real difficulty in determining whether a particular person who claimed a preferential right to a vacant stand at Covent Garden was a grower or not: see [1901] AC 1 at 11. In some cases, however, for example where the viability of a claim for damages depends on demonstrating the size of the class or who its members are, such practical difficulties might well be significant.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(v)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(v)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Liability for costs</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Liability for costs</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_79">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">79.</num>
             <content>
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Third, as persons represented by a representative claimant or defendant will not normally themselves have been joined as parties to the claim, they will not ordinarily be liable to pay any costs incurred by the representative in pursuing (or defending) the claim. That does not prevent the court, if it is in the interests of justice to do so, from making an order requiring a represented person to pay or contribute to costs and giving permission for the order to be enforced against that person pursuant to CPR rule 19.6(4)(b). Alternatively, such an order could be made pursuant to the general jurisdiction of the court to make costs orders against non-parties. It is difficult, however, to envisage circumstances in which it could be just to order a represented person to contribute to costs incurred by a claimant in bringing a representative claim which the represented person did not authorise. On the other hand, a commercial litigation funder who finances unsuccessful proceedings is likely to be ordered to pay the successful party’s costs at least to the extent of the funding: see <span style="font-style:italic">Davey v Money</span> [2020] EWCA Civ 246; [2020] 1 WLR 1751. That principle is no less applicable where the proceedings financed are a representative action.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif">(vi)</num>
             <content>
-              <p class="Paraheading4"><span style="font-family:Calibri, sans-serif">(vi)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The scope for claiming damages</span></p>
+              <p class="Paraheading4" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The scope for claiming damages</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_80">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">80.</num>
             <content>
@@ -938,7 +965,7 @@
         </level>
         <level>
           <num style="font-family:Calibri, sans-serif">E.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">The representative claim in this case</span></heading>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The representative claim in this case</span></heading>
           <paragraph eId="para_84">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">84.</num>
             <content>
@@ -951,11 +978,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The claimant has not proposed such a bifurcated process, however. That is doubtless because success in the first, representative stage of such a process would not itself generate any financial return for the litigation funders or the persons represented. Funding the proceedings could therefore only be economic if pursuing separate damages claims on behalf of those individuals who opted into the second stage of the process would be economic. For the reasons discussed at paras 25-28 above and emphasised in argument by counsel for the claimant, it clearly would not. In practice, therefore, as both courts below accepted, a representative action for damages is the only way in which the claims can be pursued.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(1)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(1)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The formulation of the claim for damages</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The formulation of the claim for damages</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_86">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">86.</num>
             <content>
@@ -984,23 +1012,27 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The claimant seeks to overcome this difficulty in one or other of two ways. Both rely on the proposition that an individual is entitled to compensation for any (non-trivial) contravention of the DPA 1998 without the need to prove that the individual suffered any financial loss or distress. On that footing it is argued, first of all, that general damages can be awarded on a uniform per capita basis to each member of the represented class without the need to prove any facts particular to that individual. The draft particulars of claim plead that the uniform sum awarded should reflect “the serious nature of the breach, in particular (but non-exhaustively):</p>
             </intro>
             <subparagraph>
+              <num style="font-family:Calibri, sans-serif">“(a)</num>
               <content>
-                <p class="Quote"><span style="font-family:Calibri, sans-serif">“(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The lack of consent or knowledge of the Representative Claimant and each member of the Claimant Class to the defendant’s collection and use of their personal data.</span></p>
+                <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The lack of consent or knowledge of the Representative Claimant and each member of the Claimant Class to the defendant’s collection and use of their personal data.</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:Calibri, sans-serif">(b)</num>
               <content>
-                <p class="Quote"><span style="font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The fact that such collection and use was contrary to the defendant’s public statements.</span></p>
+                <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The fact that such collection and use was contrary to the defendant’s public statements.</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:Calibri, sans-serif">(c)</num>
               <content>
-                <p class="Quote"><span style="font-family:Calibri, sans-serif">(c)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The fact that such collection and use was greatly to the commercial benefit of the defendant.</span></p>
+                <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The fact that such collection and use was greatly to the commercial benefit of the defendant.</span></p>
               </content>
             </subparagraph>
             <subparagraph>
+              <num style="font-family:Calibri, sans-serif">(d)</num>
               <content>
-                <p class="Quote"><span style="font-family:Calibri, sans-serif">(d)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The fact that the defendant knew or ought to have known of the operation of the Safari Workaround from a very early stage during the Relevant Period. …”</span></p>
+                <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The fact that the defendant knew or ought to have known of the operation of the Safari Workaround from a very early stage during the Relevant Period. …”</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1015,11 +1047,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The alternative case pleaded is that each member of the class is entitled to damages assessed as an amount which they could reasonably have charged for releasing Google from the duties which it breached. Again, it is contended that such damages should be assessed on a uniform per capita basis, “reflecting the generalised standard terms (rather than individuated basis) on which [Google] does business”.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(2)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(2)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Section 13 of the DPA 1998</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Section 13 of the DPA 1998</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_90">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">90.</num>
             <intro>
@@ -1037,13 +1070,15 @@
                 <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">An individual who suffers distress by reason of any contravention by a data controller of any of the requirements of this Act is entitled to compensation from the data controller for that distress if -</span></p>
               </intro>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(a)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.77in;text-indent:-0.39in"><span style="font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">the individual also suffers damage by reason of the contravention, or</span></p>
+                  <p class="Quote" style="margin-left:1.77in"><span style="font-family:Calibri, sans-serif">the individual also suffers damage by reason of the contravention, or</span></p>
                 </content>
               </subparagraph>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(b)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.77in;text-indent:-0.39in"><span style="font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">the contravention relates to the processing of personal data for the special purposes.</span></p>
+                  <p class="Quote" style="margin-left:1.77in"><span style="font-family:Calibri, sans-serif">the contravention relates to the processing of personal data for the special purposes.</span></p>
                 </content>
               </subparagraph>
             </subparagraph>
@@ -1078,11 +1113,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Two initial points can be made about the wording and structure of section 13. First, to recover compensation under this provision it is not enough to prove a breach by a data controller of its statutory duty under section 4(4) of the Act: an individual is only entitled to compensation under section 13 where “damage” - or in some circumstances “distress” - is suffered as a consequence of such a breach of duty. Second, it is plain from subsection (2) that the term “damage” as it is used in section 13 does not include “distress”. The term “material damage” is sometimes used to describe any financial loss or physical or psychological injury, but excluding distress (or other negative emotions not amounting to a recognised psychiatric illness): see eg <span style="font-style:italic">Watkins v Secretary of State for the Home Department</span> [2006] UKHL 17; [2006] 2 AC 395, para 7. Adopting this terminology, on a straightforward interpretation the term “damage” in section 13 refers only to material damage and compensation can only be recovered for distress if either of the two conditions set out in subsection (2) is met.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(3)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(3)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Vidal-Hall v Google Inc</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Vidal-Hall v Google Inc</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_93">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">93.</num>
             <content>
@@ -1107,11 +1143,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Court of Appeal nevertheless held that section 13(2) should be disapplied on the ground that it conflicts with articles 7 and 8 of the Charter of Fundamental Rights of the European Union (“the EU Charter”). Article 7 of the EU Charter is in materially similar terms to article 8 of the European Convention for the Protection of Human Rights and Fundamental Freedoms (“the Convention”) and provides that “[e]veryone has the right to respect for his or her private and family life, home and communications”. Article 8(1) provides that “[e]veryone has the right to the protection of personal data concerning him or her”. In addition, article 47 requires that “[e]veryone whose rights and freedoms guaranteed by the law of the Union are violated has the right to an effective remedy before a tribunal …”. The Court of Appeal decided that, in order to provide an effective remedy for the rights guaranteed by articles 7 and 8 of the EU Charter, it was necessary that national law should give effect to the obligation under article 23 of the Data Protection Directive to provide a right to receive compensation from the data controller for <span style="font-style:italic">any</span> damage, including distress, suffered as a result of an unlawful processing operation. That result could and should be achieved by disapplying section 13(2) of the DPA 1998, thus enabling section 13(1) to be interpreted compatibly with article 23: see [2016] QB 1003, para 105.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(4)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(4)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Misuse of private information</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Misuse of private information</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_97">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">97.</num>
             <intro>
@@ -1145,11 +1182,12 @@
               <p class="ParaNoNumber"><span style="font-family:Calibri, sans-serif">If this test is met, in cases where freedom of expression is involved the court must then undertake a “balancing exercise” to decide whether in all the circumstances the interests of the owner of the private information must yield to the right to freedom of expression conferred on the publisher by article 10 of the Convention: see eg </span><span style="font-style:italic;font-family:Calibri, sans-serif">McKennitt v Ash</span><span style="font-family:Calibri, sans-serif"> [2006] EWCA Civ 1714; [2008] QB 73, para 9.</span></p>
             </content>
           </level>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(5)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(5)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">Gulati v MGN Ltd</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">Gulati v MGN Ltd</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_100">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">100.</num>
             <intro>
@@ -1215,11 +1253,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Mann J’s reference to “loss of privacy or autonomy” and the Court of Appeal’s explanation that the claimants could be compensated for misuse of their private information itself because they were deprived of “their right to control [its] use” convey the point that English common law now recognises as a fundamental aspect of personal autonomy a person’s freedom to choose and right to control whether and when others have access to his or her private affairs: see on this point the helpful discussion by NA Moreham, “Compensating for Loss of Dignity and Autonomy” in Varuhas J and Moreham N (eds), <span style="font-style:italic">Remedies for Breach of Privacy</span> (2018) ch 5.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(6)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(6)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">How the present claim is framed</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">How the present claim is framed</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_105">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">105.</num>
             <content>
@@ -1244,11 +1283,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Instead of making either of these potential claims, the claimant seeks to break new legal ground by arguing that the principles identified in <span style="font-style:italic">Gulati</span> as applicable to the assessment of damages for misuse of private information at common law also apply to the assessment of compensation under section 13(1) of the DPA 1998. The case advanced, which is also supported by the Information Commissioner, is that the word “damage” in section 13(1) not only extends beyond material damage to include distress, as decided in <span style="font-style:italic">Vidal-Hall</span>, but also includes “loss of control” over personal data.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(7)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(7)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">“Loss of control” over personal data</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">“Loss of control” over personal data</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_109">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">109.</num>
             <content>
@@ -1261,11 +1301,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It was made clear in submissions, however, that, in describing the basis for the compensation claimed as “loss of control” of personal data, the claimant is not seeking to single out a particular category of breaches of the DPA 1998 by a data controller as breaches in respect of which the data subject is entitled to compensation without proof of material damage or distress. The claimant’s case, which was accepted by the Court of Appeal, is that an individual is entitled to recover compensation under section 13 of the DPA 1998 without proof of material damage or distress whenever a data controller fails to comply with any of the requirements of the Act in relation to any personal data of which that individual is the subject, provided only that the contravention is not trivial or de minimis. Any such contravention, on the claimant’s case, ipso facto involves “loss of control” of data for which compensation is payable. Only where the individual claiming compensation is not the data subject is it necessary on the claimant’s case to show that the individual has suffered material damage or distress.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(8)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(8)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The common source argument</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The common source argument</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_111">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">111.</num>
             <intro>
@@ -1309,8 +1350,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I cannot accept this argument for two reasons. First, even if the suggested analogy between the privacy tort and the data protection regime were persuasive, section 13(1) of the DPA 1998 cannot, in my opinion, properly be interpreted as having the meaning for which the claimant contends. Second, the logic of the argument by analogy is in any event flawed.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(a)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The wording of the DPA 1998</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The wording of the DPA 1998</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1336,13 +1378,15 @@
                 <p class="Quote"><span style="font-family:Calibri, sans-serif">“If a court is satisfied on the application of a data subject -</span></p>
               </intro>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(a)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.5in"><span style="font-family:Calibri, sans-serif">(a)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">that he has suffered damage by reason of any contravention by a data controller of any of the requirements of this Act in respect of any personal data, in circumstances entitling him to compensation under section 13, and</span></p>
+                  <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">that he has suffered damage by reason of any contravention by a data controller of any of the requirements of this Act in respect of any personal data, in circumstances entitling him to compensation under section 13, and</span></p>
                 </content>
               </subparagraph>
               <subparagraph>
+                <num style="font-family:Calibri, sans-serif">(b)</num>
                 <content>
-                  <p class="Quote" style="margin-left:1.5in"><span style="font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">that there is a substantial risk of further contravention in respect of those data in such circumstances,</span></p>
+                  <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">that there is a substantial risk of further contravention in respect of those data in such circumstances,</span></p>
                 </content>
               </subparagraph>
             </subparagraph>
@@ -1364,8 +1408,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The second reason why the claimant’s interpretation is impossible to reconcile with the language of section 13 is that, as the Court of Appeal recognised in <span style="font-style:italic">Vidal-Hall</span>, it is plain from the words enacted by Parliament the term “damage” was intended to be limited to material damage and not to extend to “distress”. The only basis on which the Court of Appeal in <span style="font-style:italic">Vidal-Hall</span> was able to interpret the term “damage” as encompassing distress was by disapplying section 13(2) as being incompatible with EU law. By the same token, if the term “damage” in section 13 is to be interpreted as having an even wider meaning and as encompassing an infringement of a data subject’s rights under the Act which causes no material damage nor even distress, that could only be because this result is required by EU law. On a purely domestic interpretation of the DPA 1998, such a reading is untenable.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(b)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(b)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">The effect of EU law</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The effect of EU law</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1399,8 +1444,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">EU law therefore does not provide a basis for giving a wider meaning to the term “damage” in section 13 of the DPA 1998 than was given to that term by the Court of Appeal in <span style="font-style:italic">Vidal-Hall</span>.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(c)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(c)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Flaws in the common source argument</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Flaws in the common source argument</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1440,8 +1486,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Accordingly, the fact that the common law privacy tort and the data protection legislation have a common source in article 8 of the Convention does not justify reading across the principles governing the award of damages from one regime to the other.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(d)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(d)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Material differences between the regimes</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Material differences between the regimes</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1491,8 +1538,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Accordingly, I do not accept that the decision in <span style="font-style:italic">Gulati</span> is applicable by analogy to the DPA 1998. To the contrary, there are significant differences between the privacy tort and the data protection legislation which make such an analogy positively inappropriate.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(e)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(e)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Equivalence and effectiveness</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Equivalence and effectiveness</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1518,8 +1566,9 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The principle of effectiveness invalidates a national procedure if it renders the enforcement of a right conferred by EU law either virtually impossible or excessively difficult: see again <span style="font-style:italic">Totel Ltd</span> at para 7. However, the absence of a right to compensation for a breach of data protection rights which causes no material damage or distress, even if regarded as a procedural limitation, does not render the enforcement of such rights virtually impossible or excessively difficult. The right to an effective remedy does not require awards of compensation for every (non-trivial) breach of statutory requirements even if no material damage or distress has been suffered.</p>
             </intro>
             <subparagraph>
+              <num style="text-decoration-line:none;font-family:Calibri, sans-serif">(f)</num>
               <content>
-                <p class="Paraheading3" style="margin-left:0.5in"><span style="text-decoration-line:none;font-family:Calibri, sans-serif">(f)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif">Conclusion on the effect of section 13</span></p>
+                <p class="Paraheading3" style="margin-left:0.5in;text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Conclusion on the effect of section 13</span></p>
               </content>
             </subparagraph>
           </paragraph>
@@ -1529,11 +1578,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">For all these reasons, I conclude that section 13 of the DPA 1998 cannot reasonably be interpreted as conferring on a data subject a right to compensation for any (non-trivial) contravention by a data controller of any of the requirements of the Act without the need to prove that the contravention has caused material damage or distress to the individual concerned.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(9)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(9)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The claim for user damages</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The claim for user damages</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_139">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">139.</num>
             <intro>
@@ -1572,18 +1622,19 @@
         </level>
         <level>
           <num style="font-family:Calibri, sans-serif">F.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">The need for individualised evidence of misuse</span></heading>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">The need for individualised evidence of misuse</span></heading>
           <paragraph eId="para_144">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">144.</num>
             <content>
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">There is a further reason why the claimant’s attempt to recover damages under section 13 of the DPA 1998 by means of a representative claim cannot succeed. Even if (contrary to my conclusion) it were unnecessary in order to recover compensation under this provision to show that an individual has suffered material damage or distress as a result of unlawful processing of his or her personal data, it would still be necessary for this purpose to establish the extent of the unlawful processing in his or her individual case. In deciding what amount of damages, if any, should be awarded, relevant factors would include: over what period of time did Google track the individual’s internet browsing history? What quantity of data was unlawfully processed? Was any of the information unlawfully processed of a sensitive or private nature? What use did Google make of the information and what commercial benefit, if any, did Google obtain from such use?</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(1)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(1)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The claim for the “lowest common denominator”</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The claim for the “lowest common denominator”</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_145">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">145.</num>
             <content>
@@ -1602,11 +1653,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I do not think it necessary to enter into the merits of this issue. I am prepared to assume, without deciding, that as a matter of discretion the court could - if satisfied that the persons represented would not be prejudiced and with suitable arrangements in place enabling them to opt out of the proceedings if they chose - allow a representative claim to be pursued for only a part of the compensation that could potentially be claimed by any given individual. The fundamental problem is that, if no individual circumstances are taken into account, the facts alleged are insufficient to establish that any individual member of the represented class is entitled to damages. That is so even if it is unnecessary to prove that the alleged breaches caused any material damage or distress to the individual.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(2)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(2)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">The facts common to each individual case</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">The facts common to each individual case</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_148">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">148.</num>
             <content>
@@ -1643,11 +1695,12 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On the claimant’s own case there is a threshold of seriousness which must be crossed before a breach of the DPA 1998 will give rise to an entitlement to compensation under section 13. I cannot see that the facts which the claimant aims to prove in each individual case are sufficient to surmount this threshold. If (contrary to the conclusion I have reached) those facts disclose “damage” within the meaning of section 13 at all, I think it impossible to characterise such damage as more than trivial. What gives the appearance of substance to the claim is the allegation that Google secretly tracked the internet activity of millions of Apple iPhone users for several months and used the data obtained for commercial purposes. But on analysis the claimant is seeking to recover damages without attempting to prove that this allegation is true in the case of any individual for whom damages are claimed. Without proof of some unlawful processing of an individual’s personal data beyond the bare minimum required to bring them within the definition of the represented class, a claim on behalf of that individual has no prospect of meeting the threshold for an award of damages.</p>
             </content>
           </paragraph>
-          <level>
+          <paragraph>
+            <num style="font-family:Calibri, sans-serif;font-size:13pt">(3)</num>
             <content>
-              <p class="Paraheading2"><span style="font-family:Calibri, sans-serif;font-size:13pt">(3)</span><marker name="tab" /><span style="font-family:Calibri, sans-serif;font-size:13pt">User damages on a lowest common denominator basis</span></p>
+              <p class="Paraheading2" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif;font-size:13pt">User damages on a lowest common denominator basis</span></p>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_154">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">154.</num>
             <content>
@@ -1685,7 +1738,7 @@
         </level>
         <level>
           <num style="font-family:Calibri, sans-serif">G.</num>
-          <heading class="ParaHeading1"><span style="font-family:Calibri, sans-serif">Conclusion</span></heading>
+          <heading class="ParaHeading1" style="text-indent:0.5in"><span style="font-family:Calibri, sans-serif">Conclusion</span></heading>
           <paragraph eId="para_158">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Calibri, sans-serif;font-size:13pt;margin-left:0in;text-indent:0in">158.</num>
             <content>

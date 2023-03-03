@@ -113,7 +113,7 @@ class Fields {
         if (match.Success) {
             if (i == withinField.Count) {
                 string field = match.Groups[1].Value;
-                RunProperties rProps = first.Ancestors<Run>().FirstOrDefault()?.Descendants<RunProperties>().FirstOrDefault();
+                RunProperties rProps = first.Ancestors<Run>().FirstOrDefault()?.RunProperties;
                 WText wText = new WText(field, rProps);
                 return new List<IInline>(1) { wText };
             }
@@ -205,7 +205,7 @@ class Fields {
                 throw new Exception();
             IEnumerable<IInline> parsed = Inline.ParseRuns(main, rest);
             if (parsed.All(inline => inline is IFormattedText)) {
-                string content = Enricher.NormalizeInlines(parsed);
+                string content = IInline.ToString(parsed);
                 try {
                     CultureInfo culture = new CultureInfo("en-GB");
                     DateTime date = DateTime.Parse(content, culture);
@@ -237,11 +237,10 @@ class Fields {
             if (!IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any()) { // [2020] UKSC 49
-                string url = match.Groups[1].Value;
-                WExternalImage image = new WExternalImage() { URL = url };
-                return new List<IInline>(1) { image };
-            }
+            if (!remaining.Any()) // [2020] UKSC 49, [2023] EWHC 178 (IPEC)
+                logger.LogWarning($"ignoring external image { match.Groups[1].Value }");
+                // note that INCLUDEPICTURE fields with the \d flag are handled by the IncludedPicture class below
+
             return Inline.ParseRuns(main, remaining);
         }
         if (Seq.Is(fieldCode))
@@ -256,13 +255,13 @@ class Fields {
         match = Regex.Match(fieldCode, @"^ =\d");   // EWHC/Ch/2005/2793, EWHC/Ch/2011/2301
         if (match.Success) {
             IEnumerable<IInline> rest = Rest(main, withinField, i);
-            string normal = Enricher.NormalizeInlines(rest);
-            logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
+            // string normal = Enricher.NormalizeInlines(rest);
+            // logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
             return rest;
         }
         if (fieldCode.StartsWith(" PAGE ")) {   // EWHC/Admin/2003/2369, [2022] EWHC 2576 (Fam)
-            string rest = ILine.TextContent(RestOptional(main, withinField, i));
-            logger.LogDebug("ignoring PAGE field: " + rest);
+            // string rest = ILine.TextContent(RestOptional(main, withinField, i));
+            // logger.LogDebug("ignoring PAGE field: " + rest);
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" NUMPAGES "))  // [2022] EWFC 125, [2022] EWHC 2794 (Fam)
@@ -312,8 +311,13 @@ class Fields {
             return RestOptional(main, withinField, i);
         }
 
+        // "The XE field is formatted as hidden text and displays no result in the document." https://support.microsoft.com/en-us/office/field-codes-xe-index-entry-field-abaf7c78-6e21-418d-bf8b-f8186d2e4d08
+        if (fieldCode.StartsWith(" XE ")) { // [2023] EWHC 424 (TCC)
+            return Enumerable.Empty<IInline>();
+        }
+
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
-        throw new Exception();
+        throw new Exception(fieldCode);
     }
 
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {

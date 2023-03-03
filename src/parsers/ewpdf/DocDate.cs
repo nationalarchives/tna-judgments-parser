@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -22,7 +21,7 @@ class DocDatePDF : DocDate {
         if (enriched is null)
             return null;
         IEnumerable<IInline> contents = enriched.Append(new WLineBreak()).Append(fText2);
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
 }

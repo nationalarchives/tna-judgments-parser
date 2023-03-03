@@ -15,6 +15,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 abstract class AbstractParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
@@ -127,6 +128,8 @@ abstract class AbstractParser {
             return false;
         if (e is Paragraph p) {
             if (DOCX.Numbering2.HasOwnNumber(p))
+                return false;
+            if (DOCX.Numbering2.HasEffectiveStyleNumber(p) && !DOCX.Paragraphs.IsEmptySectionBreak(p))
                 return false;
             if (string.IsNullOrWhiteSpace(p.InnerText))
                 return true;
@@ -342,7 +345,7 @@ abstract class AbstractParser {
         if (!match.Success)
             return null;
         string number = match.Groups[1].Value;
-        RunProperties rPr = e.Descendants<RunProperties>().FirstOrDefault();
+        RunProperties rPr = e.Descendants<Run>().FirstOrDefault()?.RunProperties;
         return new WText(number, rPr);
     }
 
@@ -681,9 +684,13 @@ abstract class AbstractParser {
         float leftMargin = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
         float firstLine = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (new WLine(main, p).Contents.FirstOrDefault() is WTab) {
+        // if (firstLine < 0 && new WLine(main, p).Contents.FirstOrDefault() is WTab) {
         //     float? nextTab = DOCX.Paragraphs.GetFirstTab(main, p.ParagraphProperties);
-        //     if (nextTab.HasValue)
+        //     if (!nextTab.HasValue)
+        //         indent = leftMargin;
+        //     else if (nextTab.Value > Math.Abs(firstLine))
+        //         indent = leftMargin;
+        //     else
         //         indent += nextTab.Value;
         // }
         return indent;
@@ -763,11 +770,14 @@ abstract class AbstractParser {
         DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
         if (info is not null) {
             DOCX.WNumber number = new DOCX.WNumber(main, info.Value, p);
-            return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+            line.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(number, line);
         }
         INumber num2 = Fields.RemoveListNum(line);
-        if (num2 is not null)
-            return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
+        if (num2 is not null) {
+            line.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(num2, line);
+        }
         string format1 = @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))";
         string[] formats;
         if (sub)

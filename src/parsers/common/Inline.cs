@@ -298,8 +298,13 @@ class Inline {
             return new WTab(tab);
         if (e is OpenXmlUnknownElement && e.LocalName == "tab")
             return new WTab(e);
-        if (e is Break br)
+        if (e is Break br) {
+            if (br.Type is not null && br.Type == BreakValues.Page)    // [2023] EWHC 323 (Ch)
+                return null;
+            // if (br.Type == BreakValues.Column)   // ?
+            //     return null;
             return new WLineBreak(br);
+        }
         if (e is OpenXmlUnknownElement && e.LocalName == "br")
             return new WLineBreak(e);
         if (e is NoBreakHyphen hyphen)

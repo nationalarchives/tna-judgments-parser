@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -17,31 +18,50 @@ class WLine : ILine {
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
 
-    public WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
+    [Obsolete]
+    internal WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
         this.main = main;
         this.properties = properties;
         this.contents = contents;
         Paragraph = null;
     }
-    public WLine(MainDocumentPart main, Paragraph paragraph) {
+    internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
         this.contents = Inline.ParseRuns(main, paragraph.ChildElements);
         Paragraph = paragraph;
     }
-    public WLine(WLine prototype, IEnumerable<IInline> contents) {
+    internal WLine(MainDocumentPart main, Paragraph paragraph, IEnumerable<IInline> contents) {
+        this.main = main;
+        this.properties = paragraph.ParagraphProperties;
+        this.contents = contents;
+        Paragraph = paragraph;
+    }
+
+    protected WLine(WLine prototype, IEnumerable<IInline> contents) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
     }
-    internal WLine(WLine prototype) {
+    protected WLine(WLine prototype) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = prototype.contents;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
+    }
+
+    public static WLine Make(WLine prototype, IEnumerable<IInline> contents) {
+        if (prototype is WOldNumberedParagraph np)
+            return new WOldNumberedParagraph(np, contents);
+        if (prototype is WRestriction restrict)
+            return new WRestriction(restrict, contents);
+        return new WLine(prototype, contents);
+    }
+    public static WLine RemoveNumber(WOldNumberedParagraph np) {
+        return new WLine(np, np.Contents);
     }
 
     public string Style {
@@ -65,6 +85,12 @@ class WLine : ILine {
             if (just.Val.Equals(JustificationValues.Both))
                 return AlignmentValues.Justify;
             return null;
+        }
+    }
+
+    internal float? LeftIndentWithNumber {
+        get {
+            return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
         }
     }
 
@@ -106,6 +132,10 @@ class WLine : ILine {
             return null;
         string num = info.Value.Number.TrimEnd('.');
         return num.Length * 0.125f;
+    }
+
+    internal float? FirstLineIndentWithNumber {
+        get => DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties);
     }
 
     public float? FirstLineIndentInches {
@@ -203,15 +233,35 @@ class WLine : ILine {
         set { contents = value; }
     }
 
-    public string NormalizedContent() {
-        return ILine.NormalizeContent(this);
+    private string _textContent;
+    virtual public string TextContent {
+        get {
+            if (_textContent is null)
+                _textContent = IInline.ToString(contents);
+            return _textContent;
+        }
     }
+
+    private string _normalized;
+    public string NormalizedContent {
+        get {
+            if (_normalized is null)
+                _normalized = Regex.Replace(TextContent, @"\s+", " ").Trim();
+            return _normalized;
+        }
+    }
+
+    // public float? FirstTab {
+    //     get => DOCX.Paragraphs.GetFirstTab(main, properties);
+    // }
 
 }
 
 class WRestriction : WLine, IRestriction {
 
     internal WRestriction(WLine line) : base(line) { }
+
+    internal WRestriction(WRestriction proto, IEnumerable<IInline> contents) : base(proto, contents) { }
 
 }
 
