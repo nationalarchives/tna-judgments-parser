@@ -107,12 +107,12 @@ class PreParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
-    private static readonly string PlainNumberFormat = @"^“?\d+$";
+    private static readonly string PlainNumberFormat = @"^[“""]?\d+$";
     internal static readonly string[] NumberFormats = {
-        @"^(“?\d+\.) ",    @"^(“?\(\d+\)) ",
-        @"^(“?[A-Z]\.) ",  @"^(“?\([A-Z]\)) ",
-        @"^(“?[a-z]\.) ",  @"^(“?\([a-z]\)) ",
-        @"^(“?[ivx]+\.) ", @"^(“?\([ivx]+\)) "
+        @"^([“""]?\d+\.) ",    @"^([“""]?\(\d+\)) ",
+        @"^([“""]?[A-Z]\.) ",  @"^([“""]?\([A-Z]\)) ",
+        @"^([“""]?[a-z]\.) ",  @"^([“""]?\([a-z]\)) ",
+        @"^([“""]?[ivx]+\.) ", @"^([“""]?\([ivx]+\)) "
     };
 
     private static WLine ParseParagraph(MainDocumentPart main, Paragraph p) {
