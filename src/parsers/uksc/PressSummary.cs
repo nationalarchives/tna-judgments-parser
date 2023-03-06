@@ -31,40 +31,18 @@ class PressSummary : IAknDocument {
 class PressSummaryParser {
 
     internal IAknDocument Parse(WordprocessingDocument doc) {
-        var contents = doc.MainDocumentPart.Document.Body.ChildElements.Select(e => ParseParagraph(doc.MainDocumentPart, e)).Where(p => p is not null);
-        contents = new RemoveTrailingWhitespace().Enrich(contents);
-        contents = new Merger().Enrich(contents);
+        WordDocument preParsed = new PreParser().Parse(doc);
+        return Parse(doc, preParsed);
+    }
+
+    internal IAknDocument Parse(WordprocessingDocument doc, WordDocument preParsed) {
+        var contents = Enumerable.Concat( preParsed.Header, preParsed.Body.Select(bb => bb.Block) );
         contents = new PSCite().Enrich(contents);
         contents = new PSDocType().Enrich(contents);
         contents = new PSDate().Enrich(contents);
         var metadata = new PSMetadata(doc.MainDocumentPart, contents);
         var images = WImage.Get(doc);
         return new PressSummary { Metadata = metadata, Body = contents, Images = images };
-    }
-
-    private static IBlock ParseParagraph(MainDocumentPart main, OpenXmlElement e) {
-        if (AbstractParser.IsSkippable(e))
-            return null;
-        if (e is Paragraph p) {
-            DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
-            if (info is not null)
-                return new WOldNumberedParagraph(info.Value, main, p);
-            WLine line = new WLine(main, p);
-            INumber num2 = Fields.RemoveListNum(line);
-            if (num2 is not null)
-                return new WOldNumberedParagraph(num2, line);
-            return line;
-        }
-        if (e is Table table)
-            return new WTable(main, table);
-        // if (e is SdtBlock) {
-        //     DocPartGallery dpg = e.Descendants<DocPartGallery>().FirstOrDefault();
-        //     if (dpg is not null && dpg.Val.Value == "Table of Contents") {
-        //         logger.LogWarning("skipping table of contents");
-        //         return null;
-        //     }
-        // }
-        throw new System.Exception(e.GetType().ToString());
     }
 
 }
@@ -160,7 +138,7 @@ class WDocType : IInlineContainer {
     public IEnumerable<IInline> Contents { get; init; } // init shouldn't need to be public
 
     public string Name() {
-        string text = ILine.TextContent(Contents);
+        string text = IInline.ToString(Contents);
         text = Regex.Replace(text, @"\s+", " ").Trim();
         return Regex.Replace(text, @"([A-Z])([A-Z]+)\b", m => m.Groups[1].Value + m.Groups[2].Value.ToLower());
     }
@@ -198,7 +176,7 @@ class PSDocType : Enricher {
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (!line.All(i => i is IFormattedText))
             return line;
-        string text = ILine.TextContent(line);
+        string text = IInline.ToString(line);
         text = Regex.Replace(text, @"\s+", " ").Trim();
         if (!string.Equals(text, "Press Summary", StringComparison.OrdinalIgnoreCase))
             return line;
@@ -211,7 +189,7 @@ class PSDocType : Enricher {
 
 class PSDate : Enricher {
 
-    private readonly int Limit = 3;
+    private readonly int Limit = 4;
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         int count = 0;
