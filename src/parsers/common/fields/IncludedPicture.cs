@@ -18,16 +18,16 @@ class IncludedPicture {
 
     private static ILogger logger = Logging.Factory.CreateLogger<IncludedPicture>();
 
-    private static readonly string pattern1 = @"^ INCLUDEPICTURE \\d ""([^""]+)"" \\x \\y $";
-    private static readonly string pattern2 = @"^ INCLUDEPICTURE ""([^""]+)"" \\\* MERGEFORMAT \\d \\x \\y $";
-    private static readonly string pattern3 = @"^ INCLUDEPICTURE ""([^""]+)"" \\\* MERGEFORMAT \\d \\z $";
+    private static readonly string pattern1 = @"^ INCLUDEPICTURE \\d ""([^""]+)"" ";
+    private static readonly string pattern2 = @"^ INCLUDEPICTURE ""([^""]+)"" ";
+    // private static readonly string pattern1 = @"^ INCLUDEPICTURE \\d ""([^""]+)"" \\x \\y $";
+    // private static readonly string pattern2 = @"^ INCLUDEPICTURE ""([^""]+)"" \\\* MERGEFORMAT \\d \\x \\y $";
+    // private static readonly string pattern3 = @"^ INCLUDEPICTURE ""([^""]+)"" \\\* MERGEFORMAT \\d \\z $";
 
     internal static IInline Parse(MainDocumentPart main, string fieldCode, IEnumerable<OpenXmlElement> rest) {
         Match match = Regex.Match(fieldCode, pattern1);
         if (!match.Success)
             match = Regex.Match(fieldCode, pattern2);
-        if (!match.Success)
-            match = Regex.Match(fieldCode, pattern3);
         if (!match.Success)
             throw new Exception();
         string uri = match.Groups[1].Value;
