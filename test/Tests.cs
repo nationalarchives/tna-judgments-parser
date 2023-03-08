@@ -23,10 +23,12 @@ public class Tests {
         Transform.Load(xsltReader);
     }
 
-    public static IEnumerable<object[]> indices = Enumerable.Concat(
-        Enumerable.Range(1, 10), Enumerable.Concat(
+    public static IEnumerable<object[]> indices =
+        Enumerable.Concat(
+            Enumerable.Range(1, 10),
+        Enumerable.Concat(
             Enumerable.Range(12, 16),
-            Enumerable.Range(29, 26)
+            Enumerable.Range(29, 27)
         )
     ).Select(i => new object[] { i });
 
