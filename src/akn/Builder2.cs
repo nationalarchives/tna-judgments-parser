@@ -72,8 +72,13 @@ class MetadataBuilder {
         XmlElement uri = CreateAndAppend("FRBRuri", work);
         uri.SetAttribute("value", metadata.WorkURI);
         XmlElement date = CreateAndAppend("FRBRdate", work);
-        date.SetAttribute("date", metadata.Date.Date);
-        date.SetAttribute("name", metadata.Date.Name);
+        if (metadata.Date is null) {
+            date.SetAttribute("date", "1000-01-01");
+            date.SetAttribute("name", "dummy");
+        } else {
+            date.SetAttribute("date", metadata.Date.Date);
+            date.SetAttribute("name", metadata.Date.Name);
+        }
         XmlElement author = CreateAndAppend("FRBRauthor", work);
         author.SetAttribute("href", "#" + metadata.Author.ID);
         XmlElement country = CreateAndAppend("FRBRcountry", work);
@@ -91,8 +96,13 @@ class MetadataBuilder {
         XmlElement uri = CreateAndAppend("FRBRuri", expression);
         uri.SetAttribute("value", metadata.ExpressionURI);
         XmlElement date = CreateAndAppend("FRBRdate", expression);
-        date.SetAttribute("date", metadata.Date.Date);
-        date.SetAttribute("name", metadata.Date.Name);
+        if (metadata.Date is null) {
+            date.SetAttribute("date", "1000-01-01");
+            date.SetAttribute("name", "dummy");
+        } else {
+            date.SetAttribute("date", metadata.Date.Date);
+            date.SetAttribute("name", metadata.Date.Name);
+        }
         XmlElement author = CreateAndAppend("FRBRauthor", expression);
         author.SetAttribute("href", "#" + metadata.Author.ID);
         // XmlElement expAuthoritative = append(doc, expression, "FRBRauthoritative");
@@ -160,7 +170,7 @@ class MetadataBuilder {
     }
 
     private static void Presentation(XmlElement meta, IAknMetadata metadata) {
-        IDictionary<string, IDictionary<string, string>> styles = metadata.CSSStyles;
+        Dictionary<string, Dictionary<string, string>> styles = metadata.CSSStyles;
         if (styles is null)
             return;
         XmlElement presentation = CreateAndAppend("presentation", meta);
@@ -168,8 +178,8 @@ class MetadataBuilder {
         XmlElement style = meta.OwnerDocument.CreateElement("style", "http://www.w3.org/1999/xhtml");
         presentation.AppendChild(style);
         style.AppendChild(meta.OwnerDocument.CreateTextNode("\n"));
-        // string css = CSS.Serialize(styles);
-        // style.AppendChild(meta.OwnerDocument.CreateTextNode(css));
+        string css = CSS.Serialize(styles);
+        style.AppendChild(meta.OwnerDocument.CreateTextNode(css));
     }
 
 }
