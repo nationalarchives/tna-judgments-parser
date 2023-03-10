@@ -42,7 +42,7 @@ interface IAknMetadata {
 
     IList<Tuple<String, String>> Proprietary { get; }
 
-    IDictionary<string, IDictionary<string, string>> CSSStyles { get; }
+    Dictionary<string, Dictionary<string, string>> CSSStyles { get; }
 
 }
 
