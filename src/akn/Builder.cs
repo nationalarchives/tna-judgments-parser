@@ -5,7 +5,8 @@ using System.Linq;
 using System.Xml;
 
 using Microsoft.Extensions.Logging;
-using UK.Gov.NationalArchives.CaseLaw.Parse.UKSC;
+
+using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
@@ -387,7 +388,7 @@ abstract class Builder {
     /* inline */
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
-        if (model is WDocType docType) {
+        if (model is IDocType docType) {
             XmlElement courtType = CreateAndAppend("docType", parent);
             foreach (IInline inline in docType.Contents)
                 AddInline(courtType, inline);
