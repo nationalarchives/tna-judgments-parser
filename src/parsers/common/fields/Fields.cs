@@ -315,6 +315,10 @@ class Fields {
         if (fieldCode.StartsWith(" XE ")) { // [2023] EWHC 424 (TCC)
             return Enumerable.Empty<IInline>();
         }
+        // https://support.microsoft.com/en-us/office/field-codes-index-field-adafcf4a-cb30-43f6-85c7-743da1635d9e
+        if (fieldCode.StartsWith(" INDEX ")) {  // [2023] EWHC 521 (Comm)
+            return Enumerable.Empty<IInline>();
+        }
 
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
         throw new Exception(fieldCode);
