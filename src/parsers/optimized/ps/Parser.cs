@@ -19,7 +19,7 @@ class PressSummaryParser {
         contents = PressSummaryEnricher.Enrich(contents);
         var metadata = new PSMetadata(doc.MainDocumentPart, contents);
         var images = WImage.Get(doc);
-        return new PressSummary { Metadata = metadata, Body = contents, Images = images };
+        return new PressSummary(doc) { Metadata = metadata, Body = contents, Images = images };
     }
 
 }

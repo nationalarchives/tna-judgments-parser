@@ -44,11 +44,13 @@ class PressSummaryEnricher {
                     continue;
                 }
                 if (IsRed(line)) {
-                    Enriched.Add(line);
+                    WRestriction restriction = new WRestriction(line);
+                    Enriched.Add(restriction);
                     continue;
                 }
                 if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase)) {
-                    Enriched.Add(line);
+                    WRestriction restriction = new WRestriction(line);
+                    Enriched.Add(restriction);
                     continue;
                 }
                 WLine enriched1 = EnrichDate(line);
@@ -66,7 +68,8 @@ class PressSummaryEnricher {
                     continue;
                 }
                 if (IsRed(line)) {
-                    Enriched.Add(line);
+                    WRestriction restriction = new WRestriction(line);
+                    Enriched.Add(restriction);
                     continue;
                 }
                 WLine enriched1 = EnrichDocType(line);
@@ -86,7 +89,8 @@ class PressSummaryEnricher {
                     continue;
                 }
                 if (IsRed(line)) {
-                    Enriched.Add(line);
+                    WRestriction restriction = new WRestriction(line);
+                    Enriched.Add(restriction);
                     continue;
                 }
                 WLine enriched1 = EnrichCite(line);
@@ -96,11 +100,13 @@ class PressSummaryEnricher {
                     continue;
                 }
                 if (line.NormalizedContent.Contains(@" v ", StringComparison.InvariantCultureIgnoreCase)) {
-                    Enriched.Add(line);
+                    WLine title = WDocTitle2.ConvertContents(line);
+                    Enriched.Add(title);
                     continue;
                 }
                 if (line.NormalizedContent.Contains(@"In the matter of ", StringComparison.InvariantCultureIgnoreCase)) {
-                    Enriched.Add(line);
+                    WLine title = WDocTitle2.ConvertContents(line);
+                    Enriched.Add(title);
                     continue;
                 }
                 if (line.NormalizedContent.StartsWith(@"REFERENCE ")) {

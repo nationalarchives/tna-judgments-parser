@@ -412,6 +412,8 @@ abstract class Builder {
             AddRole(parent, role);
         else if (model is IDocTitle docTitle)
             AddDocTitle(parent, docTitle);
+        else if (model is IDocTitle2 docTitle2)
+            AddDocTitle(parent, docTitle2);
         else if (model is IJudge judge)
             AddJudge(parent, judge);
         else if (model is ILawyer lawyer)
@@ -601,6 +603,16 @@ abstract class Builder {
             docTitle.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
         docTitle.AppendChild(text);
+    }
+    private void AddDocTitle(XmlElement parent, IDocTitle2 model) {
+        AddInlineContainer(parent, "docTitle", model.Contents);
+    }
+
+    private void AddInlineContainer(XmlElement parent, string name, IEnumerable<IInline> contents) {
+        XmlElement x = doc.CreateElement(name, ns);
+        parent.AppendChild(x);
+        foreach (var inline in contents)
+            AddInline(x, inline);
     }
 
     private void AddJudge(XmlElement parent, IJudge model) {

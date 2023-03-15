@@ -337,6 +337,16 @@ internal class WDocTitle : WText, IDocTitle {
     public WDocTitle(WText text) : base(text.Text, text.properties) { }
 
 }
+internal class WDocTitle2 : IDocTitle2 {
+
+    public IEnumerable<IInline> Contents { get; init; }
+
+    public static WLine ConvertContents(WLine line) {
+        WDocTitle2 title = new WDocTitle2 { Contents = line.Contents };
+        return WLine.Make(line, new List<IInline>(1) { title });
+    }
+
+}
 
 internal class WJudge : WText, IJudge {
 

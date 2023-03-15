@@ -2,31 +2,45 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.Legislation.Judgments;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.Parse;
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
+using System.Xml;
 
-namespace UK.Gov.NationalArchives.CaseLaw.Parse {
+namespace UK.Gov.NationalArchives.CaseLaw {
 
 class PressSummary : IAknDocument {
 
     public DocType Type { get => DocType.Summary; }
 
-    public PSMetadata Metadata { get; init; }
+    private WordprocessingDocument Source { get; init; }
+
+    public PSMetadata Metadata { get; internal init; }
 
     IAknMetadata IAknDocument.Metadata { get => Metadata; }
 
-    public IEnumerable<IBlock> Body { get; init; }
+    public IEnumerable<IBlock> Body { get; internal init; }
 
-    public IEnumerable<IImage> Images { get; init; }
+    public IEnumerable<IImage> Images { get; set; } // setter required by ImageConverter
+
+    public PressSummary(WordprocessingDocument source) {
+        Source = source;
+    }
 
     public static readonly int PerfectScore = PSMetadata.PerfectScore;
 
     public static int Score(PressSummary ps) {
         return ps.Metadata.Score();
+    }
+
+    public PSBundle Bundle() {
+        return new PSBundle(Source, this);
     }
 
 }
@@ -48,13 +62,14 @@ class PSResource : IResource {
 class PSMetadata : IAknMetadata {
 
     private IResource TNA = new PSResource { ID = "tna", URI = "https://www.nationalarchives.gov.uk", ShowAs = "The National Archives" };
-    private IResource UKSC = new PSResource { ID = "uksc", URI = "https://www.supremecourt.uk", ShowAs = "The Supreme Court" };
+    private IResource UKSC = new PSResource { ID = "uksc", URI = Courts.SupremeCourt.URL, ShowAs = Courts.SupremeCourt.LongName };
+    private IResource UKPC = new PSResource { ID = "ukpc", URI = Courts.PrivyCouncil.URL, ShowAs = Courts.PrivyCouncil.LongName };
 
     public IResource Source { get => TNA; }
 
-    public IResource Author { get => UKSC; }
+    public IResource Author { get; private init; }
 
-    private string ShortUriComponent { get; init; }
+    internal string ShortUriComponent { get; private init; }
 
     public string WorkURI { get => "https://caselaw.nationalarchives.gov.uk/id/" + ShortUriComponent; }
 
@@ -86,7 +101,22 @@ class PSMetadata : IAknMetadata {
         if (cite is not null) {
             string normalized = Citations.Normalize(cite);
             ShortUriComponent = Citations.MakeUriComponent(normalized) + "/summary/1";
+
+            Match match = Regex.Match(normalized, @"\[(\d{4})\] UKSC \d");
+            if (match.Success) {
+                Author = UKSC;
+                Proprietary.Add(new Tuple<string, string>("court", Courts.SupremeCourt.Code));
+                Proprietary.Add(new Tuple<string, string>("year", match.Groups[1].Value));
+            } else {
+                match = Regex.Match(normalized, @"\[(\d{4})\] UKPC \d");
+                if (match.Success) {
+                    Author = UKPC;
+                    Proprietary.Add(new Tuple<string, string>("court", Courts.PrivyCouncil.Code));
+                    Proprietary.Add(new Tuple<string, string>("year", match.Groups[1].Value));
+                }
+            }
         }
+        Proprietary.Add(new Tuple<string, string>("parser", Metadata.GetParserVersion()));
         CSSStyles = DOCX.CSS.Extract(main, "#main");
     }
 
