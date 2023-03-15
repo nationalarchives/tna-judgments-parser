@@ -256,6 +256,9 @@ interface IRole : IInlineContainer {
 
 interface IDocTitle : IFormattedText { }
 
+interface IDocTitle2 : IInlineContainer { }
+
+
 interface IJudge : IFormattedText {
 
     string Name { get {

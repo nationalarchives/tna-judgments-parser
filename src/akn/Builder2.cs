@@ -80,7 +80,7 @@ class MetadataBuilder {
             date.SetAttribute("name", metadata.Date.Name);
         }
         XmlElement author = CreateAndAppend("FRBRauthor", work);
-        author.SetAttribute("href", "#" + metadata.Author.ID);
+        author.SetAttribute("href", "#" + metadata.Author?.ID);
         XmlElement country = CreateAndAppend("FRBRcountry", work);
         country.SetAttribute("value", "GB-UKM");
         if (metadata.Name is not null) {
@@ -104,7 +104,7 @@ class MetadataBuilder {
             date.SetAttribute("name", metadata.Date.Name);
         }
         XmlElement author = CreateAndAppend("FRBRauthor", expression);
-        author.SetAttribute("href", "#" + metadata.Author.ID);
+        author.SetAttribute("href", "#" + metadata.Author?.ID);
         // XmlElement expAuthoritative = append(doc, expression, "FRBRauthoritative");
         // expAuthoritative.SetAttribute("value", "true");
         XmlElement language = CreateAndAppend("FRBRlanguage", expression);
@@ -133,6 +133,8 @@ class MetadataBuilder {
         Reference(references, metadata.Author);
     }
     private static void Reference(XmlElement references, IResource resource) {
+        if (resource is null)
+            return;
         string name;
         if (resource.Type == ResourceType.Oranization)
             name = "TLCOrganization";
