@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2022/1/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2022/1/data.xml" />
-          <FRBRdate date="2023-03-01T21:03:24" name="transform" />
+          <FRBRdate date="2023-03-20T16:52:22" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,8 +47,8 @@
         <uk:year>2022</uk:year>
         <uk:number>1</uk:number>
         <uk:cite>[2022] UKUT 1 (IAC)</uk:cite>
-        <uk:parser>0.13.0</uk:parser>
-        <uk:hash>2b66b090ca5fb6d7a6a9a53f675a1ea1e06ec192a2c193e27bd402c573723e90</uk:hash>
+        <uk:parser>0.13.3</uk:parser>
+        <uk:hash>a6f209436e1a39c4976f05223ad20a6fd105d36879b4a810f584af09396903c8</uk:hash>
       </proprietary>
       <presentation source="#">
         <style xmlns="http://www.w3.org/1999/xhtml">
@@ -2750,21 +2750,16 @@
               <p style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua';color:#000000">Documents in the Case</span></p>
             </content>
           </level>
-          <paragraph>
-            <intro>
-              <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">In relation to the case of [the appellant] we have had sight of the following documents</span></p>
-            </intro>
-            <subparagraph>
+          <level>
+            <heading style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">In relation to the case of [the appellant] we have had sight of the following documents</span></heading>
+            <paragraph>
               <num style="font-family:Symbol;font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">–</num>
               <content>
                 <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Book Antiqua';color:#000000">Determination of FTT Judge Obhi, dated 18</span><span style="vertical-align:super;font-size:smaller;font-family:'Book Antiqua';color:#000000">th</span><span style="font-family:'Book Antiqua';color:#000000"> July 2019</span></p>
               </content>
-            </subparagraph>
-            <subparagraph>
+            </paragraph>
+            <paragraph>
               <num style="font-family:Symbol;font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">–</num>
-              <intro>
-                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Book Antiqua';color:#000000">Appellant’s Bundle of Documents to the FTT Appeal, including, inter alia;</span></p>
-              </intro>
               <subparagraph>
                 <content>
                   <p style="text-align:justify;margin-left:1.18in"><span style="font-family:'Book Antiqua';color:#000000">Screening Interview Record, 25</span><span style="vertical-align:super;font-size:smaller;font-family:'Book Antiqua';color:#000000">th</span><span style="font-family:'Book Antiqua';color:#000000"> September 2017</span></p>
@@ -2785,31 +2780,29 @@
                   <p style="text-align:justify;margin-left:1.18in"><span style="font-family:'Book Antiqua';color:#000000">Statement of [the appellant], dated </span><docDate date="2019-06-05" refersTo="#decision"><span style="font-family:'Book Antiqua';color:#000000">5</span><span style="vertical-align:super;font-size:smaller;font-family:'Book Antiqua';color:#000000">th</span><span style="font-family:'Book Antiqua';color:#000000"> June 2019</span></docDate></p>
                 </content>
               </subparagraph>
-            </subparagraph>
-          </paragraph>
-          <paragraph>
-            <intro>
-              <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">We have also read the following Home Office publications, relevant to [the appellant’s] case and to the wider country guidance issues in this case:</span></p>
-            </intro>
-            <subparagraph>
+            </paragraph>
+          </level>
+          <level>
+            <heading style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">We have also read the following Home Office publications, relevant to [the appellant’s] case and to the wider country guidance issues in this case:</span></heading>
+            <paragraph>
               <num style="font-family:Symbol;font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">–</num>
               <content>
                 <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Book Antiqua';color:#000000">Country Policy and Information Note Ethiopia: Opposition to the government, Version 4.0, July 2020</span></p>
               </content>
-            </subparagraph>
-            <subparagraph>
+            </paragraph>
+            <paragraph>
               <num style="font-family:Symbol;font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">–</num>
               <content>
                 <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Book Antiqua';color:#000000">Report of a Home Office Fact-Finding Mission Ethiopia: The political situation, February 2020</span></p>
               </content>
-            </subparagraph>
-            <subparagraph>
+            </paragraph>
+            <paragraph>
               <num style="font-family:Symbol;font-size:12pt;color:#000000;margin-left:0.5in;text-indent:-0.25in">–</num>
               <content>
                 <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Book Antiqua';color:#000000">Country Policy and Information Note Ethiopia: Oromos, Version 3.0 November 2019</span></p>
               </content>
-            </subparagraph>
-          </paragraph>
+            </paragraph>
+          </level>
           <level>
             <content>
               <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">We have also read the current country guidance case in relation to OLF members and supporters in Ethiopia, </span><span style="font-style:italic;font-family:'Book Antiqua';color:#000000">MB (OLF and MTA – risk) Ethiopia CG </span><span style="font-family:'Book Antiqua';color:#000000">[2007] UKAIT 00030.</span></p>
@@ -2990,41 +2983,35 @@
               <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">Beyond personal profile elements, there are two points regarding geography that we also consider to be relevant profile factors in the question of risk.</span></p>
             </content>
           </level>
-          <paragraph>
-            <intro>
-              <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">Firstly, we have noted the statement in the Home Office’s Country Policy and Information Note that,</span></p>
-            </intro>
-            <subparagraph>
+          <level>
+            <heading style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">Firstly, we have noted the statement in the Home Office’s Country Policy and Information Note that,</span></heading>
+            <paragraph>
               <content>
                 <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in"><span style="font-family:'Book Antiqua';color:#000000">‘the available evidence does not indicate that all OLF activists, members or supporters … </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua';color:#000000">throughout Ethiopia</span><span style="font-family:'Book Antiqua';color:#000000"> are at risk of treatment amounting to persecution by its nature and/or repetition. The assessment of risk for a person </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua';color:#000000">will vary between different areas of Ethiopia</span><span style="font-family:'Book Antiqua';color:#000000"> and within Oromia itself’ (emphasis added)</span><authorialNote class="footnote" marker="24"><p class="EndnoteText"><span> </span><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf"><span class="Hyperlink">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf</span></a><span> </span></p></authorialNote></p>
               </content>
-            </subparagraph>
-          </paragraph>
+            </paragraph>
+          </level>
           <level>
             <content>
               <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">We are concerned that this is potentially misleading, insofar as it implies that the entirety of the country of Ethiopia is a relevant consideration in this case. The OLF, and those perceived as supporting it, are present essentially exclusively in Oromia and the capital Addis Ababa (which is in any case geographically encircled by Oromia). The realistic question, therefore, is whether there are areas of Oromia or Addis Ababa where the risks identified in MB no longer apply.</span></p>
             </content>
           </level>
-          <paragraph>
-            <intro>
-              <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">On this second point, we note that the CPIN states that,</span></p>
-            </intro>
-            <subparagraph>
+          <level>
+            <heading style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">On this second point, we note that the CPIN states that,</span></heading>
+            <paragraph>
               <content>
                 <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in"><span style="font-family:'Book Antiqua';color:#000000">‘Areas such as West Wollega and Guji, in western and southern Oromia respectively, have been subject to government and OLA (sometimes also referred to as ‘shene’, a faction of the OLA), clashes, violence and killings including of civilians, attributed to both sides. The federal government has established military ‘command posts’ in these areas in an attempt to counter the OLA threat. … There have been reports of OLA, ‘shene’ and OLF members and sympathisers being arrested and detained, as well as some being extra-judicially killed, in the areas around ‘command posts’ where there have been notably high levels of violence and fighting, particularly in western and southern Oromia.’</span><authorialNote class="footnote" marker="25"><p class="EndnoteText"><span> </span><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf"><span class="Hyperlink">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf</span></a><span> </span></p></authorialNote></p>
               </content>
-            </subparagraph>
-          </paragraph>
-          <paragraph>
-            <intro>
-              <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">And goes on to argue that,</span></p>
-            </intro>
-            <subparagraph>
+            </paragraph>
+          </level>
+          <level>
+            <heading style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">And goes on to argue that,</span></heading>
+            <paragraph>
               <content>
                 <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in"><span style="font-family:'Book Antiqua';color:#000000">‘OLF members or supporters in Oromia, particularly in areas where armed conflict between the OLA and the armed forces continues, face a higher risk of treatment that amounts to persecution than those in Addis Ababa.’</span><authorialNote class="footnote" marker="26"><p class="EndnoteText"><span> </span><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf"><span class="Hyperlink">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf</span></a><span> </span></p></authorialNote></p>
               </content>
-            </subparagraph>
-          </paragraph>
+            </paragraph>
+          </level>
           <level>
             <content>
               <p style="text-align:justify"><span style="font-family:'Book Antiqua';color:#000000">This section of the CPIN concludes by asserting that a person who is a member or supporter of the OLF is not at risk of persecution for that reason alone, and that each case must be considered on its facts, including the ‘proposed place of return’ the person would be being sent to.</span><authorialNote class="footnote" marker="27"><p class="EndnoteText"><span> </span><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf"><span class="Hyperlink">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/900975/CPIN_-_Ethiopia_-_Opposition_to_the_government.pdf</span></a><span> </span></p></authorialNote></p>

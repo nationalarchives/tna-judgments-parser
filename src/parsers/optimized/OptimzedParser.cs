@@ -516,7 +516,7 @@ abstract class OptimizedParser {
         ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)
             return div;
-        if (div.Heading is not null)
+        if (div.Heading is not null)  // currently impossible
             return div;
         if (div.Contents.Count() != 1)
             return div;
@@ -559,8 +559,18 @@ abstract class OptimizedParser {
                 subparagraphs.Add(subparagraph);
                 continue;
             }
-
-            throw new System.Exception(next.GetType().ToString());
+            throw new System.Exception();  // should be impossible
+        }
+        // ideally all cross-headings would already have been recognized
+        if (!sub && div.Number is null && intro.Count == 1 && intro.First() is WLine heading && subparagraphs.Any()) {
+            Func<IDivision, IDivision> promote = sp => {
+                if (sp is BranchSubparagraph branch)
+                    return new BranchParagraph { Number = branch.Number, Children = branch.Children };
+                if (sp is LeafSubparagraph leaf)
+                    return new WNewNumberedParagraph(leaf.Number, leaf.Contents);
+                throw new Exception();  // should be impossible
+            };
+            return new CrossHeading { Heading = heading, Children = subparagraphs.Select(promote) };
         }
         if (subparagraphs.Any())
             return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs };

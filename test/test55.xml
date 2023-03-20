@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
-          <FRBRdate date="2023-03-08T17:05:31" name="transform" />
+          <FRBRdate date="2023-03-20T16:51:28" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2023</uk:year>
         <uk:number>488</uk:number>
         <uk:cite>[2023] EWHC 488 (Admin)</uk:cite>
-        <uk:parser>0.13.2</uk:parser>
+        <uk:parser>0.13.3</uk:parser>
         <uk:hash>b6b56a9aae17eee317f0db0336ed6b59c497faf8dc67e08634ac759f93d267b6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -161,16 +161,14 @@
     </header>
     <judgmentBody>
       <decision>
-        <paragraph>
-          <intro>
-            <p><span style="font-weight:bold">Timothy Corner, KC:</span></p>
-          </intro>
-          <subparagraph>
+        <level>
+          <heading><span style="font-weight:bold">Timothy Corner, KC:</span></heading>
+          <paragraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold">INTRODUCTION</span></p>
             </content>
-          </subparagraph>
-        </paragraph>
+          </paragraph>
+        </level>
         <paragraph eId="para_1">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
           <content>
@@ -189,16 +187,14 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The Claimant and Defendant have not agreed costs and have made written submissions, the last being the Claimant’s Reply sent to me on 24 January 2023. This is my determination of the issue. </p>
           </content>
         </paragraph>
-        <paragraph>
-          <intro>
-            <p class="ParaLevel1" style="text-indent:0.39in"><span style="font-weight:bold">FACTUAL BACKGROUND</span></p>
-          </intro>
-          <subparagraph>
+        <level>
+          <heading class="ParaLevel1" style="text-indent:0.39in"><span style="font-weight:bold">FACTUAL BACKGROUND</span></heading>
+          <paragraph>
             <content>
               <p class="BodyText" style="text-align:justify;margin-left:0.19in;text-indent:0.2in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The First Permission</span></p>
             </content>
-          </subparagraph>
-        </paragraph>
+          </paragraph>
+        </level>
         <paragraph>
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">2.</num>
           <intro>
@@ -1105,16 +1101,14 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
-          <intro>
-            <p class="ParaLevel1">       4 There shall be no order as to costs between the Claimant and Interested Party.</p>
-          </intro>
-          <subparagraph>
+        <level>
+          <heading class="ParaLevel1">       4 There shall be no order as to costs between the Claimant and Interested Party.</heading>
+          <paragraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.33in">5 An application shall be made by the Claimant to withdraw the claims in accordance with paragraph 5 of the Agreement (including applying to withdraw the application to admit the transcript) within 14 days of….receipt of the Court’s determination of costs….”</p>
             </content>
-          </subparagraph>
-        </paragraph>
+          </paragraph>
+        </level>
         <paragraph eId="para_73">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">73.</num>
           <intro>
