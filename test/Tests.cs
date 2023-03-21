@@ -28,7 +28,7 @@ public class Tests {
             Enumerable.Range(1, 10),
         Enumerable.Concat(
             Enumerable.Range(12, 16),
-            Enumerable.Range(29, 27)
+            Enumerable.Range(29, 28)
         )
     ).Select(i => new object[] { i });
 

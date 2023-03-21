@@ -1,0 +1,1034 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewfc/2023/35" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewfc/2023/35" />
+          <FRBRdate date="2023-03-01" name="judgment" />
+          <FRBRauthor href="#ewfc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="35" />
+          <FRBRname value="The Father v The Mother" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/35" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/35" />
+          <FRBRdate date="2023-03-01" name="judgment" />
+          <FRBRauthor href="#ewfc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/35/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/35/data.xml" />
+          <FRBRdate date="2023-03-21T17:13:40" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2023-03-01" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewfc" href="https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/" showAs="The Family Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="the-father" href="" showAs="The Father" />
+        <TLCPerson eId="the-mother" href="" showAs="The Mother" />
+        <TLCRole eId="applicant" href="" showAs="Applicant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWFC</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>35</uk:number>
+        <uk:cite>[2023] EWFC 35</uk:cite>
+        <uk:parser>0.13.4</uk:parser>
+        <uk:hash>2f3de72d0802bb591313490af815c37f9d4527ef05b7f475431e2357bff8272e</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 0.5in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-family: Calibri, sans-serif; font-size: 11pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="CoverText"><span style="font-family:Arial">Neutral Citation No:</span><span> </span><neutralCitation style="font-family:Arial">[2023] EWFC 35</neutralCitation></p>
+      <p><courtType refersTo="#ewfc" style="font-family:Arial">IN THE FAMILY COURT </courtType></p>
+      <p><docTitle style="font-family:Arial">IN THE MATTER OF THE CHILDREN ACT 1989</docTitle></p>
+      <p><span style="font-family:Arial">AND IN THE MATTER OF A CHILD ““J”” (a Minor)</span></p>
+      <p class="CoverText"><span style="font-family:Arial">Date: </span><docDate date="2023-03-01" refersTo="#judgment" style="font-family:Arial">1 March 2023</docDate></p>
+      <p><span style="font-weight:bold;font-family:Arial">Before :</span><marker name="tab" /><span style="font-weight:bold;font-family:Arial">Her Honour Judge Hesford</span></p>
+      <p style="text-align:center"><span style="font-family:Arial">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#the-father" as="#applicant" style="font-weight:bold;font-family:Arial">The Father </party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#applicant" style="font-family:Arial">Applicant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">- and –</span></p>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#the-mother" as="#respondent" style="font-weight:bold;font-family:Arial">The Mother</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right;margin-left:-0.12in"><role refersTo="#respondent"><span style="font-family:Arial">1</span><span style="vertical-align:super;font-size:smaller;font-family:Arial">st</span><span style="font-family:Arial"> Respondent</span></role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial"> - and – </span></p>
+      <p style="text-align:right"><span style="font-weight:bold;font-family:Arial">“J” (A Child) via his guardian Zile Ngwenya   </span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">2</span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;vertical-align:super;font-size:smaller;font-family:Arial">nd</span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial"> Respondent</span></p>
+      <p style="text-align:center"><span style="font-family:Arial">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-family:Arial">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">Samuel Davis </span><span style="font-family:Arial">(instructed by</span><span style="font-weight:bold;font-family:Arial"> Mowll &amp; Mowll Solicitors</span><span style="font-family:Arial">) for the </span><span style="font-weight:bold;font-family:Arial">Applicant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">The mother was unrepresented</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial">Yvonne Healing (</span><span style="font-family:Arial">instructed by</span><span style="font-weight:bold;font-family:Arial"> Anthony Theakston of Bromleys Solicitors) </span><span style="font-family:Arial">for the </span><span style="font-weight:bold;font-family:Arial">2</span><span style="font-weight:bold;vertical-align:super;font-size:smaller;font-family:Arial">nd</span><span style="font-weight:bold;font-family:Arial"> Respondent child</span></p>
+      <p style="text-align:center"><span style="font-family:Arial">Hearing date: 27 February - 28 February 2023</span></p>
+      <p style="text-align:center"><span style="font-family:Arial">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p class="eMailBlock"><span style="font-family:Arial;font-size:16pt">FINAL JUDGMENT</span></p>
+      <p class="eMailBlock"><span style="font-family:Arial;font-size:16pt">3 March 2023</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p><span style="font-weight:bold;font-family:Arial">Her Honour Judge Hesford:</span></p>
+            <p style="text-align:justify"><span style="font-weight:bold;font-family:Arial">This judgment is being handed down [in private] on 3 March 2023. It consists of 36 pages. The Judge has given permission for the judgment (and any of the facts and matters contained in it) to be published on condition that in any report, no person other than the advocates or the solicitors instructing them (and other persons identified by name in the judgment itself) may be identified by name, current address or location [including school or work place]. In particular the anonymity of the child and the adult members of their family must be strictly preserved. All persons, including representatives of the media, must ensure that these conditions are strictly complied with. Failure to do so will be a contempt of court. For the avoidance of doubt, the strict prohibition on publishing the names and current addresses of the parties and the child will continue to apply where that information has been obtained by using the contents of this judgment to discover information already in the public domain.</span></p>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">I</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">INTRODUCTION AND POSITIONS</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">I am concerned with “J”, a young boy, who was born on […………….] 2016. This is the father’s application for, inter alia, a Child Arrangements Order, which was issued in April 2021. I have had conduct of the case as District Judge &amp; Recorder in Manchester and thereafter following appointment as a Circuit Judge in Chester.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">This judgment follows on from the written Judgment I delivered on 28 June 2022 when following a contested hearing on submissions I changed “J”’s residence to live with his father pending further assessment and this final hearing. This judgment should be read in conjunction with that judgment as it contains much of the detailed history and evidence which I will not repeat here although it remains pertinent.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The father sought a final Child Arrangements Order for “J” to live with him and for an order for Supervised Contact in accordance with the recommendations of the Guardian. The mother opposed this and sought an order for “J”’s return. The Guardian and […….] Local Authority supported the father.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">I have prepared a detailed written judgment in order that the mother can clearly understand the reasoning for my decisions in this matter but also so that “J” when he grows up, can also understand if he ever wishes for an explanation from the court.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">II</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">THE HEARING</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The father was represented by Mr Davis of counsel, the mother acted in person and the child was represented by Ms Healing of counsel.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The matter proceeded as a remote hearing over 2 days via Teams although the mother declined to appear visually and chose to be telephoned in. She confirmed that this was her preference – she was alone at home with her younger child and she personally did not consider it appropriate for the cameras to be on in her home whilst that child was subject to a child protection plan. Mother stated that she had absolutely no other support network to assist her.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">It was clear that the mother had not made any attempt to prepare for the hearing. Indeed she has failed to engage properly throughout, showing scant regard for court orders and even penal notices. She had filed no final statement (indeed had filed no formal statements whatsoever, just some brief emails) and had no papers available to her and no assistance in caring for her other child. This hearing had been listed by my order of 3 October 2022 when the mother was present and listed by Teams at her request, with her camera turned off. My order of 10 January at the Pre Hearing Review specifically ordered the mother to file a witness statement by 24 January 2023 and provided guidance on how to do so. She had eventually prepared some “questions” for the experts in the form of an email, which were submitted and dealt with in writing.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The mother also had her young child present (…… months old). The court was informed that the child’s social worker had offered to provide support for the mother and the child so that she could concentrate on the court hearing. She failed to engage with this offer and indeed denied that it had been made.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">It is also important to note that the mother has not had the benefit of legal representation throughout this matter. Despite this she has been afforded every opportunity to engage and has been supported to represent herself. I am satisfied that if she had had legal representation the outcome would have been the same although she would have understood the process and likely outcome better had she received appropriate advice about the merits of her case from a solicitor or barrister.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The circumstances of the final hearing were accordingly not ideal. Despite this, the court and advocates for the father and the child made every effort to ensure that the mother’s position was properly put forward and the mother was given the opportunity to cross examine all parties. I gave opportunities for the mother to have breaks whenever needed and to prepare a statement to read as her evidence. I also arranged for the father and guardian’s closing submissions to be put in writing so that the mother could clearly see the nature of their case and prepare her response. The court is satisfied that all feasible and appropriate steps were taken to make the hearing fair and notes that the mother thanked the court for its assistance in presenting her case.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">11.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The only other option available would have been to adjourn the hearing of the courts own motion. The court did not consider this to be appropriate and no application was made by any party. Any such application would have been refused. There are many reasons why, including the following:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:Symbol;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in"><span style="font-family:Arial">The hearing was listed in October – 4-5 months ago.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:Symbol;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in"><span style="font-family:Arial">The mother has a history of failing to engage with the court process including failing to comply with orders, to file evidence,  to undergo DNA testing and failing to attend court hearings by way of some examples.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:Symbol;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in"><span style="font-family:Arial">Adjourning the hearing would cause significant delay and the Children Act is clear that delay is likely to prejudice the welfare of the child. These proceedings were issued in April </span><span style="text-transform:uppercase;font-family:Arial">2021, </span><span style="font-family:Arial">almost 2 years ago. They need to be concluded so that “J” can have certainty.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:Symbol;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in"><span style="font-family:Arial">Any adjournment would not be purposeful – the mother would likely, as per history, be in the same unprepared and unengaged position as she has been throughout. She freely accepted that she had no excuse at all and apologised to the court.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:Symbol;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in"><span style="font-family:Arial">In addition to this, the evidence from many sources, is significant, substantial, very detailed and overwhelmingly and unanimously in support of the father’s application. Delay would not affect the quality of the evidence, mother has not made the necessary changes identified as far back as June or earlier as I will set out later in this judgment.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The court summed up the mother’s position from her email as being, in very simple terms, that </span><span style="font-style:italic;font-family:Arial">she doesn’t accept some of the evidence (it was often unclear what) and that she simply wants another chance to care for “J”. Things are different now and she should be given that chance”. </span><span style="font-family:Arial">She was firmly of the opinion that everyone had already made up their minds and the court confirmed that the evidence of the professionals was clear, strong and indeed that the experts supported the same outcome but that the court would listen to her case and consider the matter fully in light of all of the evidence. She wanted to ask some questions of the witnesses and the matter therefore proceeded as a fully contested hearing.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">In view of all of these issues, the court went to considerable lengths to ensure that the mother’s case was clearly presented, evidence challenged as she wished and that she had every opportunity to present her case. This included standing the matter down whilst the mother attempted to locate any of the court papers, ensuring she had pen and paper available to take notes and write questions, hearing more evidence in chief from witnesses than is usual so that she could hear the case which she had to challenge and allowing her to ask extra questions at the end of each cross examination. I thus attempted to guide her as to the points to address and additionally asked some relevant questions to clarify her position regarding the evidence.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">III</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">THE BACKGROUND AND THE JUNE 2022 HEARING &amp; JUDGMENT</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">When I transferred the residence of “J” to his father in June 2022 I had the benefit of a Section 37 report by […………………..] Children’s Services and a joint psychologists assessment of all the parties.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The S.37 report was a very comprehensive document and confirmed that the Local Authority considered that the mother has parentally alienated “J” from his father. It recommended that “J” should live with his father. In my judgment I set out the following paragraphs:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“It is a significant worry that the mother is continuing to report that the child has been sexually harmed by his father, despite the investigation from K Children’s Services finding no evidence of this and the initial allegation reported to have been made by the mother and not directly from the child. It is a worry that the child is potentially being led to believe that he has been sexually harmed and this could have a significant impact upon his emotional wellbeing and his mental health in the future”. (page 364)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">Ms Cottam opines that “The allegations against the father have been made in order to alienate the father after he has questioned the child’s Birth Certificate and wanting to be named on this to enable him to have parental responsibility.” (page 365).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">Ms Cottam also confirmed that ‘the mother has not been honest with the social worker on a number of occasions and this includes the reasons for moving to [present location]’ (page 365)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“The Local Authority shares the concerns of Parental alienation from the mother towards the father and given the mother’s fixation on the sexually harmful behaviours she believes the father has carried out and not being able to accept the outcome of the investigations completed by professionals that she is not in a position at this current time to positively support a meaningful relationship between the child and his father and that this contact would not be consistent and will not progress. It is acknowledged that Parental Alienation is likely to cause significant emotional harm to the child and will not allow his identity to be positively supported.” (page 366)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“the father does not pose a risk of harm to the child and there is no evidence to suggest this”. (page 366)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“The father has been impacted up on emotionally by the allegations made against him, however, it is felt that he is in a position to be able to support positive contact between the child and the mother and that he would support this in the best interest of the child. It is clear from information that has been gathered and shared in regards to the father that he had a significant role in caring for the child; the paternal family were an active part of the child’s life and the father was very supportive of the child’s education and has his best interest at heart. The Local Authority are of the view that that the emotional harm and parental alienation enforce the right to request a change of care of the child’s primary caregiver; and it should be considered for the child to return to [……...] to reside with his father full time and contact between the child and the mother to be supported. The child needs structure, stability, family and support and to reside in an environment where he can thrive and not witness domestic abuse or parental alcohol use.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">During that hearing, the Social Worker took instructions from her manager at my direction. The indication of the Local Authority, in simple terms and adopting my words, was that if the child was to remain with mother, the local authority would be issuing public law proceedings for a care order and seeking removal from the mother’s care. In the event that this court sanctioned the change of residence to father they did not consider that they needed to share Parental Responsibility and would not be issuing public law proceedings. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">I explained this to the mother, she remained resolute that she was an excellent mother and change was not necessary. She made allegations of lying against Dr Alwin with no obvious support at present and she also criticised the Social Worker in similar terms saying that no-one listened to her.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">She insisted that she would promote contact and could improve.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial"> I also set out in some detail the most pertinent contents of the psychological assessment which led to my decision for the immediate change of residence at paragraphs 17 to 18 of my judgment. I consider it important to set out those matters again here:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">The Mother</span><span style="font-family:Arial"> </span><span style="font-style:italic;font-family:Arial">‘had presented an overly positive impression of her psychological development and current functioning’</span><span style="font-family:Arial"> that she </span><span style="font-style:italic;font-family:Arial">‘faked good’ </span><span style="font-family:Arial">and that she lacked </span><span style="font-style:italic;font-family:Arial">‘openness and frankness’ </span><span style="font-family:Arial">(page 272) </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">“</span><span style="font-style:italic;font-family:Arial">I also have concern that the mother would be likely to consider that her views and opinions were correct and should be accepted and acceded to. Consequently, she would be likely to expect her child to accept and accede to wishes and demands. This could please a child in a difficult position if the children did not hold the same views as the mother and I have concerns that a child in that position would struggle to hold their own views given the strengths and intensity of the views held by the mother. As a consequence, I would have concerns that a child in that environment could experience emotional harm and have their lived experience misrepresented/denied. Consequently, I would have concerns the mother may struggle to recognise and respond to her child’s emotional needs and have difficulties prioritizing those needs above her own. I have a concern that, given her tendency to form short-time fractious volatile relationships, she would struggle to provide a secure and stable home environment</span><span style="font-family:Arial">”. (page 277)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“It was apparent throughout the interview with the mother she presented the father as a violent and aggressive individual who had sexually harmed the child. There did not appear to be any clear evidence that what she had stated was accurate. However, she maintained that perception of events was correct and that others had misrepresented the child’s experiences and minimised potential concerns regarding the father. Consequently, I formed the opinion that, whilst it was apparent that the father would be able to promote contact with the mother, I would have concerns that the mother, despite her protestations to the contrary, would struggle to promote the father as a parent to the child”. </span><span style="font-family:Arial">(page 278)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">In addition, Dr Alwin comments: “Unfortunately, I did not form the same opinion with the mother and consider she would struggle to promote contact with the father and appeared to struggle to recognize the child’s need to form and sustain a relationship with both parents”.</span><span style="font-family:Arial"> (page </span><span style="font-style:italic;font-family:Arial">28</span><span style="font-family:Arial">0)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“I have concerns the mother has attempted to manipulate the child to make false negative statements regarding his father. I consider this to be evidence of the mother attempting to prevent the child from having contact with his father, which would constitute parental alienation”. </span><span style="font-family:Arial">(page 280)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial"> “In respect of the mother’s ability to engage therapeutically to improve her understanding and acceptance of the professionals’ concerns, ability to change; unfortunately, I have concerns that the mother would not engage in such a process and, consequently, have concerns that at the current time she would struggle to make the beneficial change required for her to be able to provide safe and consistent care to the child”.</span><span style="font-family:Arial"> (page 283)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“In my opinion there was no indication the father had acted in a manner that would put a child at risk of physical or emotional harm. There was no indication the allegations made by the mother were supported by medical and social services professionals and there was every indication that when the father was having contact with the child he was seen to provide effective care to the child. However, I have concerns the mother’s presentation of events and her evident fixation upon the child having been sexually harmed by the father, despite information to the contrary, would indicate she was acting in a manner that could cause the child emotional harm”. </span><span style="font-family:Arial">(page 281)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“I consider the father would appear to have worked constructively with professionals over time and to have demonstrated he could provide appropriate care to the child. There does not appear to be any clear indication of any risk he could pose. However, I consider the father would benefit from engaging in a psychological therapy to address his interpersonal issues, most notably his tendency to be intense and erratic” </span><span style="font-family:Arial">(page 283).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">Dr Milson is very clear that the child is suffering emotional and psychological harm: “his current presentation is that he has not been given emotional permission to speak positively about his father because of the environment in which he lives where there remains ongoing hostility towards his father in the form of his mother’s belief system and, I believe, his older sister also. It is evident from the assessment of Dr Alwin that mother still holds highly negative views of the father which have not altered and the ability of her to promote the relationship with the father is significantly limited. The child’s presentation is in line with this formulation as his mother is of the primary emotional importance to him and he is in my opinion well aware of mother’s feelings towards father and well aware of his sister’s feelings towards his father and may not be able to hold on to any positives he may feel or remember”. </span><span style="font-family:Arial">(page 285)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">“I believe the child is starting to develop a negative view of his father simply by being exposed to negative views from others in relation to his father. In my opinion the child’s current view of his father is not entirely of his own making (ie. from his own negative memories and experiences), it is the consequence of ongoing negativity from within the family”. </span><span style="font-family:Arial">(page 285)</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The mother had sent narrative questions to the experts about the report in her email of around 4th February. Mother informed the court that the experts had failed to answer her questions, whereas the reality was that they did consider them and reported that their views remained unchanged. They responded: </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial;font-size:11.5pt">Thank you for providing the mother’s questions for the experts and her subsequent communication which involved a family picture. Dr Milson and Dr Alwin have perused both documents. In reading those documents it is evident the mother has outlined a series of statements regarding her perception of the report produced by Dr Milson and Dr Alwin. However, Dr Milson and Dr Alwin, having perused the mother’s statements, do not consider they</span><span style="font-style:italic;font-family:Arial"> </span><span style="font-style:italic;font-family:Arial;font-size:11.5pt">would make any amendments to the report, dated 27</span><span style="font-style:italic;font-family:Arial;font-size:9pt">th </span><span style="font-style:italic;font-family:Arial;font-size:11.5pt">May 2022.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;font-family:Arial;font-size:11.5pt">IV</span><marker name="tab" /><span style="font-weight:bold;font-family:Arial">THE ISSUES</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The issues in this case relate to whether I should revisit my decision to transfer “J”’s residence to his father in June 2022 and depending on that decision the matter of contact for the absent parent.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">They also relate to the mother’s past and future behaviour, her honesty, parental alienation by the mother and to the ability of the parents to promote contact. Mother submits that she has changed and that “J” should be returned to her care.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">There is also an issue of change of name for “J” but that is agreed.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-weight:bold;font-family:Arial">V</span><marker name="tab" /><span style="font-weight:bold;font-family:Arial">MY IMPRESSION OF THE WITNESSES AND ASSESSMENT OF THE EVIDENCE</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">I do not intend to set out in this judgment the written evidence or much of the oral evidence of the parties save where relevant, mainly that of the mother. The oral evidence reflected the written evidence. Very little of the evidence of the Social Worker and Guardian was challenged by the mother by cross examination and she had consistently failed to file any statement herself. Indeed during her cross examination, mother accepted that the report of Ms. Townsend was “a good report, just a few things I wasn’t happy with”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">I heard live evidence from the Social Worker Ms Townsend, the Guardian Ms Ngwenye, the father and the mother.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">I have read all of the papers in the bundle including the documents filed since the Interim Residence hearing. These are primarily the Section 7 report from […………….] Council and the Guardian’s analysis.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">It is clear from those reports that “J” has settled well in [……………….] and is now thriving in the care of his father. The social worker has been in frequent contact with “J” and recommends:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">‘…that “J” remain in the care of his Father, […………..]. “J” has settled in well living with his father and starting a new school. The father has demonstrated good understanding of “J”’s care needs and been observed to meet this to a good standard. “J” presents as Happy in the care of his father and has not raised any worries while living with the father during home visits or direct work. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;font-family:Arial">The Local Authority is recommending that “J” has daily telephone/video call contact with his Mother [……….] and initially in person contact of at least once a month where [……………….] travels to [………….] for contact. The Local Authority recommends that contact should be build up over time to ensure that contact is safe and consistent’</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">In her oral evidence she confirmed that her position was unchanged. She was a clear and decisive witness. It was positive that, if true, the mother had undertaken courses and made improvements but “J” was very settled with his father and doing well at school. Uprooting him would put him at risk of further emotional harm. Mother had no support. Further, there was a real concern of further parental alienation and risk of domestic abuse in the mother’s care, she did not acknowledge the harm already caused. “J” was caught in an unhappy situation where he felt compelled to tell each parent what he thought they wanted to hear. Unsupervised contact would risk continuation. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">Mother had not worked openly with professionals and she had not seen any proof of completion of courses or indeed proof of sustained change. This included her various allegations about the father, there was no evidence that she had accepted that they were unfounded. Mother stated that she would support contact but there was no evidence to support this.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">She confirmed that the council was agreeable to a 6 month Family Assistance Order but that the parents would need to work together and develop a family plan for long term contact</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The Guardian too recognised that “J” had settled in his father’s care and that [………..] Council would be closing their case. Again she was an impressive witness. The Guardian’s concerns remained the same as before the interim residence hearing and had not changed. She refused to accept mother’s assertions that she had changed as she had not been honest previously and there was no proof.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">She stated that she </span><span style="font-style:italic;font-family:Arial">remain[s] concerned that she [the mother] remains with no understanding of concerns in respect of “J”’ … It is, however, my assessment that the mother lacks insight into the main concerns around “J” which are parental alienation and emotional harm, and she does not acknowledge the Court’s findings and the opinions and recommendations of Drs Milson and Alwin’s expert analysis. This means, in my view, that “J” remains at risk of emotional harm should he be reunified into the mother’s care. This is evidenced in part by the inappropriate comments during the indirect contact and “J”’s changing wishes and feelings’</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">33.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">She recommended that “J” should remain in the care of his father and spend time with the mother … </span><span style="font-style:italic;font-family:Arial">I remain of the view that “J” should have direct contact with the mother and that it should be supervised due to the risk of emotional harm … I propose that there should be direct contact six times a year / bi-monthly … I suggest that the parties should utilise a contact centre for handovers and supervision of contact, preferably in the community.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">34.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">Further: </span><span style="font-style:italic;font-family:Arial">I recommend to the Court to make a Family Assistance Order, to […………….] Children’s Services for a period of six months to support with the transition to direct contact. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The fathers evidence was brief and child focussed. I accept that he is committed to supporting contact and that he genuinely believes that “J” should see his mother. He will meet at a half way point.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">36.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">The father’s case summary set out 5 main reasons why the father says that the mother should not care for “J” in the future and these were detailed orally to the mother so that she could consider them. I addressed these and other issues in my original judgment. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:Arial;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">37.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Arial">They are, in short,</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0.82in;text-indent:-0.32in">37.1</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.82in;text-indent:0.18in"><span style="font-family:Arial">She chronically abuses alcohol (a hairstrand test through to January 2022 is available at page 292). There is no evidence before the Court that the Mother has resolved her alcohol abuse problem. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0.82in;text-indent:-0.32in">37.2</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.82in;text-indent:0.18in"><span style="font-family:Arial">She was willing to subject the child to emotional harm through manipulation and parental alienation. This included imposing a false narrative on the child about the Father. There is no evidence that the Mother has undergone real change or undertaken any therapy that might mitigate the risk of future emotional or psychological harm. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0.82in;text-indent:-0.32in">37.3</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.82in;text-indent:0.18in"><span style="font-family:Arial">She has engaged in domestically abusive relationship(s) (notably with the man referred to as ‘………’) and exposed the child to those domestically abusive relationship(s). There is no evidence of change that shows (1) that the mother will not return to her previous relationship or (2) that the mother will be able to safeguard herself from (and avoid) a domestically abusive relationship with a new partner. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0.82in;text-indent:-0.32in">37.4</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.82in;text-indent:0.18in"><span style="font-family:Arial">She is willing to take extreme steps to disrupt the child’s relationship with the Father. This has included relocating without notice, threatening to leave the jurisdiction, denying the child’s parentage and making false allegations of sexual harm. The Mother successful frustrated the Father’s relationship with the child for 18 months and there is a real risk she will seek to do so again. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;margin-left:0.82in;text-indent:-0.32in">37.5</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.82in;text-indent:0.18in"><span style="font-family:Arial">She has shown an unwillingness to engage properly with authority. This includes the Mother’s repeated breaches of the order(s) of this Court, her non-attendance at hearings and her propensity to reject the advise and guidance of professionals (she described one of the psychological experts as a liar, by way of example).</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-family:Arial;margin-left:0.32in;text-indent:-0.32in">38</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.32in"><span style="font-family:Arial">Mother read out a short statement as her evidence. In it she accepted the professionals investigation, that “J” was happy with his father and that she had behaved badly in the past. She sought another chance and would allow a lot of contact. Her other child remains on a recently renewed Child Protection Plan and she is just emerging from another abusive relationship as a result of which she must move house and area.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">39</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">At times she was avoidant, dismissive and she minimised or denied many issues. Other times she accepted that she was wrong and expressed regret or made excuses whilst still insisting that she had been honest and open throughout. The whole tenor of her evidence was on the basis that she had changed although she accepted that there was no proof of this whatsoever. I remind myself that at the June hearing she stated that she did not need to change as she was an excellent mother.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">40</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I will address her evidence and position further throughout this judgment.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">41</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">In short, the father – and indeed the Social Workers and Guardian – effectively say that nothing has changed since these proceedings commenced or at the very least, if anything has changed as mother asserts, it is unproven and untested. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">42</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Sadly mother has not engaged with any direct contact – her reasons are varied including the length of travel to [………………], cost of the same, caring for a young child and the child being on a Child Protection Plan making it inappropriate to travel. She has also declined to travel to a half way meeting point. Her other child’s social worker has offered to drive her to contact in [………………….] and [……….] Council have offered financial support. Neither has been accepted. These matters do not suggest a commitment to contact or to “J”’s best interests. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">43</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">In my judgment, I consider it likely that part of the reason why the mother has failed to engage as she will only accept one outcome – which is “J” returning to her care. This applies to the whole proceedings and not just to contact. Mother has attempted to avoid this whole case and “J” having a relationship with his father from the first moment she left […………]. This is amply evidenced by her original disappearance, denial of paternity, failure to attend many court hearings or engage in DNA testing which led to my making a declaration of parentage, failure to comply with orders and penal notices, failure to file statements, failure to travel for contact, failure to provide proof of any changes she claims, lack of acceptance of the truth of her allegations against the father being dismissed and maintaining and repeating them, accusing the psychologists of being liars and failing to engage with a plethora of support which has been offered throughout this case. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">44</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The court was recently informed that the mother had failed to engage and comply with the SPIP as recently as January 2023, having missed 3 dates which were offered. She has been discharged.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">45</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">In my judgment, the 5 points or “pillars” made by the father, as set out at paragraph 28 herein are factual and are amply established and supported by the evidence. I accept them as being accurate. The mother has deliberately embarked on a campaign to alienate the child from his father and has taken every opportunity to delay matters. She has tried to avoid these proceedings at every stage. There is no evidence of change at all, just her own word and she has been shown to be dishonest on many occasions.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">46</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">It is important to note that the mothers position and “change” is only one issue to be considered. When “J” was moved to live with his father in June 2022 this was not done on the basis that it would give mother time to change. It was done on the basis that I decided, based on the evidence of the various professionals, that it was in “J”’s best interests to live with his father, his immediate welfare demanded it. Even if the mother had made and evidenced positive changes this would not be a basis for “J”’s return.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">47</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">There is no presumption that a child should live with the mother – the child’s welfare is what is important. “J” has settled well with his father. He has settled well at school, has stability and a support network of the father’s family. Disrupting and moving him from this will certainly cause him harm – as he was harmed when removed from his fathers care previously and denied contact.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold;font-family:Arial">THE LEGAL FRAMEWORK</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_48">
+          <num style="font-family:Arial;margin-left:0.32in;text-indent:-0.32in">48</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.32in"><span style="font-family:Arial">The applicable law is clear. I set out detailed law in relation to the issue of interim residence in my earlier judgment. The tests I applied there led to an immediate change of residence for “J” and I will consider all relevant matters including whether anything has changed since the move took place which would lead me to reverse the position on a final basis.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">49</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I have of course in mind throughout my consideration of this case the applicable provisions of the Children Act and in particular Section 1 and the Welfare Checklist: When a court determines any question with respect to the upbringing of a child…. the child’s welfare shall be the court’s paramount consideration. I will address the welfare checklist shortly.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">50</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Section 1(2A) of the Act confirms that there is a presumption that the involvement of a parent in the life of a child will further the child’s welfare unless the contrary is shown. I stress that “involvement” means “involvement of some kind, either direct or indirect, but not any particular division of the child’s time”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">51</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Section 1(2) confirms that delay is likely to be harmful to a child. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">52</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I must also bear in mind the Human Rights Act, including under Article 8 Right to respect for private and family life – for all parties not just the applicant and respondent and indeed I take into account “J”’s rights too.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">53</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I am satisfied that the hearing has been Article 6 compliant as stated earlier.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">VI</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">THE WELFARE CHECKLIST</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_54">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">54</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I have had regard in particular to the criteria of the welfare checklist which I will now consider  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">55</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(a) the ascertainable wishes and feelings of the child concerned (considered in the light of his age and understanding); </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">In an ideal world, “J” would want to have a good relationship with both of his parents and would want good communication between them, less acrimony and not to be caught in the middle or subjected to any arguments. He would want a secure, stable and supportive home and regular, safe and beneficial time with the other parent. He would not wish to be exposed to or put at risk of any harm, whether emotional, psychological, or physical as a result of his mother’s issues. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">56</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">He is clearly a happy boy in the care of his father as evidenced by the information from the school and the social worker. He also wants to see his mum and half-brother. This needs to be promoted and mother needs to commit to attending direct contact. Indirect contact is not sufficient for “J”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">57</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(b) his physical, emotional and educational needs; </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">“J” has the usual physical and emotional needs of a young boy. He has a safe and secure home with his father and his physical and emotional needs are being met by his father. He has settled and attends school regularly. He would certainly benefit from having a closer and direct relationship with his mother as he grows up if this can be managed safely, without putting him at risk of any harm.  It is important that “J” sees his mother and knows that she loves him and is committed to him. At present, such direct (and indirect) contact will need to be supervised due to the risks which I have identified in this judgment. “J” should also have a relationship with his half brother. This can be facilitated with the mother’s contact.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">58</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The issue for me is to decide is how these relationships can be best managed now and in the future and if appropriate, developed over his childhood until he is in a position to make his own decisions.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">59</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(c) the likely effect on him of any change in his circumstances; </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">There would be a substantial change in “J”’s circumstances if I was to change his living arrangement so that he lives with his mother again. “J” has had many moves in his life and mother is moving again. He had a significant change in June 2022 when I ordered that he should live with his father. He has settled quickly and well and seems resilient, but he needs stability and certainty and regular settled arrangements. The future direct reintroduction to his mother needs to be done sensitively and in a supported manner where he and his father as primary carer can be assured of his emotional and physical safety. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">“J” remembers being removed from his father and home previously. For me to consider that he should move to live with his mother I must be persuaded that the benefits of moving outweigh the harm. I am not so persuaded.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">60</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The mother did not accept that a change of residence and school would be disruptive for “J”, but in her eyes he was old enough to decide and he would settle.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">61</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(d) his age, sex, background and any characteristics of his which the court considers relevant; </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">“J” is almost [.] years old.  He has no particular characteristics which differ him from any other young boy of his age although he has no doubt suffered from emotional harm being caught in-between his parents and denied contact with his father for a long period of time. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">62</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(e) any harm which he has suffered or is at risk of suffering; </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Mother has at no stage until the court hearing accepted that she has behaved inappropriately following the parties separation. She has still not fully accepted that her many and varied allegations against the father are unsubstantiated and she has continued to repeat these. She has shown no insight into the impact of her actions upon “J” which have undoubtedly caused him emotional harm. He has been caught in the middle, subjected to his mother’s beliefs which have made him prone to making up lies to please each parent, to tell them what he thinks they want to hear. He has been deprived of the opportunity for a relationship with his father following separation until June 2022. He has also been present when the mother has been subjected to physical harm by at least one of her previous partners. The mother shows no insight into the effects of this upon “J”. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">63</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">This causes me considerable concern as to her understanding of how her future behaviour could cause “J” emotional harm. Sadly, her approach to personal support and engagement with professionals to date has not been positive but she informed the court that she has now completed some courses although there was no proof of engagement. I encourage her to continue to engage and seek support. She also needs to accept the effects of her own behaviour upon “J”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">64</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I am entirely satisfied from the evidence in this case that the mother presently presents a real risk to “J” of emotional and psychological harm due to the issues I have addressed in this judgment and to her almost complete lack of insight into how her behaviour could damage and has previously affected “J”. I accept the opinion of all the professionals that she has alienated “J” from his father, taking many direct and deliberate steps to do this. She did not at any stage consider how this would affect “J”. Until she shows proper insight, there is a real risk of her saying inappropriate things to “J” which would potentially be very harmful. Contact must be supervised for the foreseeable future. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">65</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(f) how capable each of his parents, and any other person in relation to whom the court considers the question to be relevant, is of meeting his needs; </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Both parents are capable of meeting “J”’s main physical needs and the father is presently meeting “J”’s daily physical and emotional needs to a very high standard. “J” is thriving in his care. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The mother has not, however always been able to meet “J”’s emotional needs in particular. She has exposed him to domestic abuse and alcohol abuse. She has shown historically that she is not capable promoting “J”’s relationship with his father so as to meet “J”’s emotional need for that relationship. I have no evidence, other than her word, that any of this has changed. Father, I accept, is capable and willing to promote contact – he has promoted indirect contact and offered direct contact; the mother has failed to engage with any arrangements for direct contact to date, rejecting offers of assistance from professionals and is seemingly unwilling to commit to any travelling at the present time – until her other child is (potentially) removed from the Child Protection Plan. Dr Alwin was firmly of the opinion that the father could and would promote contact.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">66</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">(g) the range of powers available to the court under this Act in the proceedings in question. </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I have the options of making various orders under the Children Act – Child Arrangement Orders in relation to “J” including an order that he should live with mother / father and / or an Order that he should spend time with mother / father and I remind myself that making no order at all is an option. I am also invited to make a Family Assistance Order.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">VII</span><marker name="tab" /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">ADDITIONAL ANALYSIS AND DECISION</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_67">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">67</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The evidence is clear from the experts, social workers and Guardian – “J” has suffered and would continue to suffer from significant emotional harm if returned to the care of his mother.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">68</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The argument put forward that </span><span style="font-style:italic;font-family:Arial">as mother can care for her other child why not “J”</span><span style="font-family:Arial">? is far too simplistic. The issues are fundamentally different. “J” has an alternative carer, his father, where he is now thriving. For the other child, it is only the mother or a more draconian alternative of public law proceedings. Further, “J” has already suffered harm in his mother’s care and is now recovering from that with his father’s support. A move would cause more harm and involve yet another change of house and school, let alone the existing and established risks linked to the mother and her care.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_69">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">69</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I consider that there should be no change to where “J” lives. Arrangements should be made for “J” to have direct contact with his mother. The evidence in support of this decision is simply overwhelming, from the many experts and professionals involved in this case and is proven. The majority is even accepted by the mother, at least verbally at the hearing.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">70</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">In the part of my judgment from June marked “Additional Analysis” I set out a number of concerns regarding the mother and areas where change was necessary. Mother, in her evidence, stated that she had attended courses but accepted that there was no proof. In relation to one course, apparently completed before Christmas, she was waiting for the certificate. There is no proof whatsoever that mother has attended and engaged in any support courses – and she accepted this lack of proof freely in evidence. Consequently there is no evidence that she has changed or indeed that she is capable of change.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_71">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">71</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I remind myself of the comments of the psychologist Dr Alwin that mother presents as overly positive/favourable or “faked good” and that unless she fully accepted her past behaviour and openly engaged in therapy with an independent professional she would not change. Since the report in June there is no evidence of any such engagement. In June mother was firmly still asserting to Dr Alwin that “J” had been sexually abused by the father and that all the professionals had failed to accept her concerns – she was right, they were wrong. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">72</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">In her evidence at the final hearing, not so much at the 11</span><span style="vertical-align:super;font-size:smaller;font-family:Arial">th</span><span style="font-family:Arial"> hour but more at 11.59, she seemed to deviate from this and accepted that she should have behaved differently following separation. She tearfully read a statement at the beginning of her evidence which stated clearly that she accepted that her behaviour had been harmful to “J” “a crazy moment” and that she felt “really bad” about the way “J” was behaving in telling each parent what they wanted to hear. She accepted that her decision to move from Kent suddenly had hurt “J”, that the professionals had investigated and she accepted that and she accepted the psychological report. She could see that “J” was happy with his father and wanted what was best for “J”, however she considered that this should mean he lived with her and saw his father. She would promote contact.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">73</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Much of Mothers evidence consisted of her accepting, when put to her, the truth of the professionals’ concerns about her but it was not clear whether she truly accepts this and regrets it as she now claims or was merely paying lip service. She was also evasive on occasions and had ready excuses available for questions she found hard to answer, such as those about her other daughter for whom there is a no contact order or why she lied about the alcohol test results.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_74">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">74</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Further, she did not state on any occasion that the abuse allegation was unfounded – just that she was wrong with what she did and regretted it. She insisted that she was open and honest with professionals. That is simply not true. She informed the CAFCASS officer at the gatekeeping stage that there were no alcohol issues for herself, misled the social workers over the alcohol tests, was dishonest about her relationship with Mr [..] and informed the psychologist that father was violent and aggressive and had sexually harmed “J”. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">75</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Mother’s frequent assertions that she would never harm “J” and her denials of being under the influence whilst caring for him show an almost complete lack of understanding of risk and her behaviour. It is beyond any doubt that she was frequently under the influence of alcohol when caring for “J” as shown by the expert test results covering that period which are accepted by her.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">76</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Mother accepted in her evidence that her words and claims of change would mean very little in view of the absence of evidence and her admitted previous history of avoidance, poor behaviour, denial and dishonesty.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_77">
+          <num style="font-family:Arial;margin-left:0.32in;text-indent:-0.32in">77</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.32in"><span style="font-family:Arial">I have no hesitation in concluding that “J” should remain living with his father.</span><span> </span><span style="font-family:Arial">The history shows that the mother has taken great efforts and seemingly done everything she could so far to avoid the father having a relationship with “J” including relocating, denial of paternity, avoidance of DNA testing, lack of engagement in these proceedings, not promoting any contact between child and father and others. History is a useful indicator of future behaviour. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_78">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">78</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Mother even seemed to be reluctant to agree to arranging direct contact during her oral evidence, or to contribute towards contact costs, saying that she needed to know the cost before agreeing. This, to me, does not seem the actions of a mother who is committed to seeing her child. She needs to be more positive and pro-active.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_79">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">79</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I intend to do all that I can to facilitate contact between mother and “J”. This will involve continuing the indirect contact as present but also with the assistance of [……...] Council and a Family Assistance Order, the introduction of direct contact. This will involve a mind shift for the mother – instead of thinking of reasons why it can’t and wont work for her, to working with [………] Council and the father to find a way to actually make it work, now that she knows that “J” is to remain in […………].</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_80">
+          <num style="font-style:italic;font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">80</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Sadly in mother’s closing submissions she stated that she had “</span><span style="font-style:italic;font-family:Arial">googled contact and prices of centres and travel cost for trains in […………..]. It is absolutely ridiculous. The prices are through the roof to me personally it’s not doable six times a year it’s not enough I have to think about [“child 2”] because of living and I do not want to risk losing my home and struggling every month The courtroom today was very overly emotional for me go into a contact centre.”</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_81">
+          <num style="font-style:italic;font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">81</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The tone of this email suggests that the mother will neither contribute to the cost of contact nor travel to […………..]. Whether this is another tactic to attempt to persuade the court to return “J” to her on the basis that she cannot see him if he is not returned or to get the court to order father to pay all the costs I</span><span style="font-style:italic;font-family:Arial"> </span><span style="font-family:Arial">do not know. I hope that given time she will come to terms with my decision and engage for “J”’s sake. Ultimately that is a matter and decision for her. I cannot force her to attend for contact but she must be aware that if she chooses not to attend it will be “J” who suffers. He will need to know why his mother is choosing not to see him so that he does not blame his father for this. That will need to form part of the work under the Family Assistance Order if direct contact is not to take place. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_82">
+          <num style="font-style:italic;font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">82</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Advance tickets for train travel from […………..] to [……………………….] start from around £15 each way according to Google. I do not have information for the price of contact centres  - indeed some are free - but the mother will need to pay for half of the costs of each visit, 6 times each year. I do not consider that to be a significant expense and it is in my judgment a  reasonable contribution. It is entirely appropriate that she should pay half. She should prioritise “J”’s welfare and budget accordingly.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-style:italic;font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">83</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">It is also likely that at some point during the indirect facetime contact, which will continue, “J” will ask his mother why she is not seeing him if she does not engage. My concerns about what the mother may say to him are such that it will mean that indirect contact must also continue to be supervised until full engagement.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">84</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">I am aware that […………….] have previously offered to assist with travelling expenses for a period of time and that the [………….] Council social worker has also offered to assist with transport. The 6 month period of the Family Assistance Order (FAO) should assist both local authorities and the parents to commence contact and formulate a plan for the future.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_85">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">85</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Contact must be supervised until such a time as the father is confident that the mother will not seek to undermine “J”’s placement with him. He has the responsibility to move contact forwards as “J” grows and as, hopefully, his mother accepts the reality of his residence with father in [………………..].</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">86</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Contact, if mother  decides to engage, will take place at a central venue – [……………….] – at an agreed contact centre. Each parent will pay for their own travelling costs (with any contribution from third parties) and shall pay half of the contact centre fees. It will take place approximately bi-monthly for the foreseeable future, during school holidays and for a period of time which is agreed with the assistance of the Family Assistance Order. The FAO will assist with the practicalities such as identifying the centre and dates/timings. I am thankful to [………….] Council for agreeing to this order and I urge [………………] to also assist. Direct contact should commence as soon as practicable.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">87</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">The success and progress of this contact is in the hands of the mother and her active effort and engagement. She will need to commit to the contact, pay her share of the fees and attend. If she fails to do so, the responsibility for its consequent effect upon “J” is hers alone. She must be aware that he will suffer emotional harm if she fails to attend, particularly if she lets him down at the last minute. I am satisfied – as indeed was Dr Alwin – that the father will facilitate contact. Mother needs to attend and I consider that these arrangements are entirely appropriate, fair and achievable.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;font-family:Arial">VIII</span><marker name="tab" /><span style="font-weight:bold;font-family:Arial">ORDER AND DECISION</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_88">
+          <num style="font-family:Arial;font-size:12pt;margin-left:0.32in;text-indent:-0.32in">88</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.32in"><span style="font-family:Arial">Accordingly my decision is as follows: (a formal properly worded and detailed order should be agreed between the parties and submitted for approval).</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:0.57in;text-indent:-0.25in">1</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.57in"><span style="font-family:Arial;font-size:12pt;color:#000000">The child shall live with the Applicant </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:0.57in;text-indent:-0.25in">2</num>
+            <intro>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.57in"><span style="font-family:Arial;font-size:12pt;color:#000000">The Applicant Father shall make the child available for reasonable contact with the First Respondent mother</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">a.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">The existing indirect facetime contact will continue.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">b.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">The detail of such direct contact will be that which Cafcass/[……………./……………] Social Services consider appropriate but shall be approximately every 2 months during school holidays etc for an agreed period of time for the foreseeable future.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">c.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">All such contact must be facilitated/supervised until further order and shall commence and take place at a Child Contact Centre in [……………………]</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">d.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">When the father is satisfied that contact is proceeding well it may move to the community but remain supervised.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">e.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">The mother and father shall each pay their own travel costs and half of the contact centre fees. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">f.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">The contact centre fees shall be paid directly not less than 7 days in advance of the visit (or in accordance with the contact centre’s conditions) and in the event of default by the mother the contact will not take place.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">g.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">The mother must confirm her attendance at any arranged contact no less than 48 hours beforehand</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">h.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">The mother may attend with her other child but no partner shall attend the contact without prior agreement of the father</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1.07in;text-indent:-0.25in">i.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.07in"><span style="font-family:Arial;font-size:12pt;color:#000000">Any changes to this order are at the discretion of the father or by agreement</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-weight:normal;font-family:Arial;font-size:12pt;color:#000000;margin-left:0.57in;text-indent:-0.25in">2.</num>
+            <intro>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.57in"><span style="font-family:Arial;font-size:12pt;color:#000000">There shall be a Family Assistance Order in accordance with S16 Children Act 1989 with […………..] Council named as the Local Authority</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1in;text-indent:-0.25in">a.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-family:Arial;font-size:12pt;color:#000000">[……………….] Council shall endeavour to assist the parties in setting up arrangements for contact in accordance with the above order. This may include assistance with funding, travel and meetings etc</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1in;text-indent:-0.25in">b.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-family:Arial;font-size:12pt;color:#000000">Ideally a plan and agreement should be prepared (and agreed)</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Arial;font-size:12pt;color:#000000;margin-left:1in;text-indent:-0.25in">c.</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-family:Arial;font-size:12pt;color:#000000">The order shall last until 30 September 2023</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify;text-indent:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Arial;color:#000000">Change of Name</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-weight:normal;font-family:Arial;font-size:12pt;margin-left:0.57in;text-indent:-0.25in">3.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.57in"><span style="font-family:Arial;font-size:12pt;color:#000000">By agreement, the child’s second name shall be “….….-………”</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold;font-family:Arial">Her Honour Judge Hesford  1.3.23</span></p>
+          </content>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
