@@ -565,7 +565,7 @@ abstract class OptimizedParser {
         if (!sub && div.Number is null && intro.Count == 1 && intro.First() is WLine heading && subparagraphs.Any()) {
             Func<IDivision, IDivision> promote = sp => {
                 if (sp is BranchSubparagraph branch)
-                    return new BranchParagraph { Number = branch.Number, Children = branch.Children };
+                    return new BranchParagraph { Number = branch.Number, Intro = branch.Intro, Children = branch.Children };
                 if (sp is LeafSubparagraph leaf)
                     return new WNewNumberedParagraph(leaf.Number, leaf.Contents);
                 throw new Exception();  // should be impossible
