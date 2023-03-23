@@ -289,6 +289,10 @@ class Fields {
         match = Regex.Match(fieldCode, @" ASK [_A-Za-z0-9]+ ""[^""]+"" \\\* MERGEFORMAT $"); // EWHC/Admin/2020/287
         if (match.Success)
             return Rest(main, withinField, i);
+        // match = Regex.Match(fieldCode, @" ASK [_A-Za-z0-9]+ \\\* MERGEFORMAT $"); // [2023] EWHC 628 (Ch)
+        // if (match.Success)
+        //     return Rest(main, withinField, i);
+
         if (fieldCode == " ADDIN CiteCheck Marker ")    // EWHC/Comm/2012/3586
             return RestOptional(main, withinField, i);
         if (fieldCode.StartsWith(" TA "))   // EWHC/Comm/2005/735
