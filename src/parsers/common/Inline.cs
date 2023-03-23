@@ -9,6 +9,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using OMML = DocumentFormat.OpenXml.Math;
 
 using Microsoft.Extensions.Logging;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -100,6 +101,23 @@ class Inline {
                         withinField.Add(enumerator.Current);
                     }
                     continue;
+                }
+                if (fc1 == "" && fc2.StartsWith("ASK ")) {  // [2023] EWHC 628 (Ch)
+                    while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current)) { }
+                    continue;
+                }
+                if (fc1 == "" && fc2.StartsWith("SET ")) {  // [2023] EWHC 628 (Ch)
+                    var match = Regex.Match(fc2, "SET ([A-Za-z]+)");
+                    if (match.Success) {
+                        var toRemove = withinField.SingleOrDefault(e => e.InnerText == match.Groups[1].Value);
+                        if (toRemove != null) {
+                            bool found = withinField.Remove(toRemove);
+                            if (found) {
+                                while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current)) { }
+                                continue;
+                            }
+                        }
+                    }
                 }
                 throw new Exception();
             }
