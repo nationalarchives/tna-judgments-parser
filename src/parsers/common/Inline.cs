@@ -106,10 +106,12 @@ class Inline {
                     while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current)) { }
                     continue;
                 }
+                // SET field code
+                // assumes that the 'variable' has just been used as a field code
                 if (fc1 == "" && fc2.StartsWith("SET ")) {  // [2023] EWHC 628 (Ch)
                     var match = Regex.Match(fc2, "SET ([A-Za-z]+)");
                     if (match.Success) {
-                        var toRemove = withinField.SingleOrDefault(e => e.InnerText == match.Groups[1].Value);
+                        var toRemove = withinField.SingleOrDefault(e => Fields.IsFieldCode(e) && e.InnerText == match.Groups[1].Value);
                         if (toRemove != null) {
                             bool found = withinField.Remove(toRemove);
                             if (found) {
