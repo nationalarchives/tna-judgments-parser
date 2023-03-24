@@ -581,26 +581,29 @@ class Numbering2 {
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
-                // this can be simplified, obviously
                 if (!isHigher && !start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
-                    var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
-                    var prevStyle = prev.ParagraphProperties.ParagraphStyleId.Val.Value;
-                    if (false) {
-                    } else if (thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value) { // test47
-                    } else if (thisStyle is null) { // test 56
-                    } else if (thisStyle == prevStyle && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test56
-                    } else if (thisStyle != prevStyle && thisNumIdOfStyle is null) { // test 54
-                    } else if (thisStyle != prevStyle && thisNumIdOfStyle == prevNumIdOfStyle && prevIlvl - ilvl == 1) {  // test 55
-                    } else { // test38
+                    if (prevIlvl - ilvl > 1) { // test38
                         start = 1;
                         numIdOfStartOverride = -2;
                     }
+                    // this is old code, replaced by th above
+                    // var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
+                    // var prevStyle = prev.ParagraphProperties.ParagraphStyleId.Val.Value;
+                    // if (false) {
+                    // } else if (thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value) { // test47
+                    // } else if (thisStyle is null) { // test 56
+                    // } else if (thisStyle == prevStyle && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test56
+                    // } else if (thisStyle != prevStyle && thisNumIdOfStyle is null) { // test 54
+                    // } else if (thisStyle != prevStyle && thisNumIdOfStyle == prevNumIdOfStyle && prevIlvl - ilvl == 1) {  // test 55
+                    // } else { // test38
+                    //     start = 1;
+                    //     numIdOfStartOverride = -2;
+                    // }
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
                 if (prevNumIdWithoutStyle == numberingId)
                     prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
-
                 continue;
             }
 
