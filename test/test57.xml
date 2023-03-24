@@ -1,0 +1,1548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/kb/2023/579" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/kb/2023/579" />
+          <FRBRdate date="2023-03-20" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="579" />
+          <FRBRname value="MICROLISE LIMITED v JAMES KEMBALL LIMITED" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2023/579" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2023/579" />
+          <FRBRdate date="2023-03-20" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2023/579/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2023/579/data.xml" />
+          <FRBRdate date="2023-03-24T18:53:45" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2023-03-20" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd" href="https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court" showAs="The King's Bench Division of the High Court" shortForm="The King's Bench Division" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="microlise-limited" href="" showAs="MICROLISE LIMITED" />
+        <TLCPerson eId="james-kemball-limited" href="" showAs="JAMES KEMBALL LIMITED" />
+        <TLCPerson eId="uniserve-holdings-limited" href="" showAs="UNISERVE HOLDINGS LIMITED" />
+        <TLCPerson eId="zenith-logistical-services-uk-limited" href="" showAs="ZENITH LOGISTICAL SERVICES (UK) LIMITED" />
+        <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCRole eId="third-party" href="" showAs="Third Party" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-KBD</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>579</uk:number>
+        <uk:cite>[2023] EWHC 579 (KB)</uk:cite>
+        <uk:parser>0.13.8</uk:parser>
+        <uk:hash>d09c9253dbac8cf651e8580d0487faf25312104aef3451027aa7471a06916641</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .HeaderFooter { font-family: 'Helvetica Neue'; font-size: 12pt; color: #000000; }
+#judgment .BodyA { font-size: 12pt; color: #000000; }
+#judgment .NumberedPara { text-align: justify; font-size: 12pt; color: #000000; }
+#judgment .BodyAA { font-size: 12pt; color: #000000; }
+#judgment .MJN1Quote { text-align: justify; margin-left: 0.79in; font-style: italic; font-family: Arial; font-size: 11pt; color: #000000; }
+#judgment .NormalWeb { color: #000000; }
+#judgment .BalloonText { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .PlaceholderText { color: #808080; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2023] EWHC 579 KB</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>QB-2020-000919</docketNumber></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">KING'S BENCH DIVISION</courtType></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2023-03-20" refersTo="#judgment">20 March 2023</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
+      <p class="CoverMain" style="text-align:center">MR HEALY-PRATT</p>
+      <p class="CoverMain" style="text-align:center"><span style="font-weight:normal">(sitting as a Deputy High Court Judge)</span></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#microlise-limited" as="#claimant" style="font-weight:bold">MICROLISE LIMITED</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#claimant">Claimant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#james-kemball-limited" as="#defendant" style="font-weight:bold">(1) JAMES KEMBALL LIMITED</party></p>
+            <p style="text-align:center"><party refersTo="#uniserve-holdings-limited" as="#defendant" style="font-weight:bold">(2) UNISERVE HOLDINGS LIMITED</party></p>
+            <p style="text-align:center"><span style="font-weight:bold">- and-</span></p>
+            <p style="text-align:center"><party refersTo="#zenith-logistical-services-uk-limited" as="#third-party" style="font-weight:bold">ZENITH LOGISTICAL SERVICES (UK) LIMITED</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#defendant">Defendants</role></p>
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right"><role refersTo="#third-party">Third Party</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Martyn Naylor </span>(instructed by<span style="font-weight:bold"> Flint Bishop LLP</span>) for the <span style="font-weight:bold">Claimant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">David Parratt &amp; Nicholas Kaplan</span> (instructed by <span style="font-weight:bold">HFW Solicitors</span>) for the <span style="font-weight:bold">Defendants &amp; Third Party</span></p>
+      <p style="text-align:center">Hearing dates: 17 &amp; 18 January 2023</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment </p>
+      <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">This judgment was handed down remotely at 10:30am on 20 March 2023 by circulation to the parties or their representatives by e-mail and by release to the National Archives.</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p><span style="font-weight:bold">Mr Healy-Pratt:</span></p>
+            <p class="ParaHeading"><span style="font-weight:bold">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">1.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">This judgment relates to the trial of three Preliminary Issues ordered by Soole J on 5 October 2022. The first two Issues concern contract formation: 1) which set of terms applied and 2) between which contracting parties were those terms agreed? The third Issue concerns the effect of certain pleaded limitation and/or exclusion clauses.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">2.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in"> The dispute in its broader sense relates to the supply and maintenance of telematic devices and data technology by the Claimant to commercial haulage operators who are the first and second Defendants and Third Party. It is agreed that contractual relations were intended, at least between the Claimant and the first and second defendants. There is no agreement on which of the Claimant’s sets of terms apply, and to whom. Remaining issues are fixed for a six-day trial commencing on 22<span style="vertical-align:super;font-size:smaller"> </span>January 2024. This judgment has sixteen sections as set out below:</p>
+            <table uk:widths="2.89in 2.89in">
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Introduction</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara"> Paragraph 1-2</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Relevant background</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">3-13</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">The narrative</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">14-49</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Witness evidence</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">50-68</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 1 law</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">69-73</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 1 submissions from Claimant</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">74-80</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue1 submissions from Defendants</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">81-87</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 1 ruling</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">88-98</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 2 submissions from Claimant</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">99-105</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 2 submissions from Defendants</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">106-110</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 2 ruling</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">111-117</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 3 law</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">118-129</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 3 submissions from Claimant</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">130-133</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 3 submissions from Defendant</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">134-135</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Issue 3 ruling</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">136-150</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">Conclusion</p>
+                </td>
+                <td style="border:0.5pt solid #000000;background-color:initial">
+                  <p class="NumberedPara">151-154</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="NumberedPara" style="text-align:left;margin-left:0.15in;text-indent:-0.15in"><span style="font-weight:bold">Relevant background</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">3.</num>
+          <content>
+            <p class="NumberedPara" style="text-align:left;margin-left:0.39in">The Claimant, Microlise, provides technology for trucks. This includes telematic devices, cameras and associated systems.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">4.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">The second Defendant, Uniserve Holdings Limited (“UHL”), acts as the <span style="font-family:'Arial Unicode MS'">‘</span>holding company<span style="font-family:'Arial Unicode MS'">’ </span>for a number of logistics and haulage companies which it wholly or partly owns, including the first Defendant, (“JKL”) and the Third Party Zenith Logistical Services (UK) Limited (“Zenith”). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">5.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">JKL is a haulage company, purchased by UHL on 22 April 2016.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">6.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Zenith is a warehousing and distribution company, purchased by Uniserve UK on 9 October 2015.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">7.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Uniserve UK Limited is another warehousing and distribution company, which is owned by UHL. It is not a party in these proceedings. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">8.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">There is no legal entity known as the <span style="font-family:'Arial Unicode MS'">‘</span>Uniserve Group<span style="font-family:'Arial Unicode MS'">’</span>. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">9.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">References to the Defendants and Third Party will be the “Defendants”. This is consistent with the terminology at the preliminary hearing.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">10.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Patrick Magee is the Claimant’s Account Manager. He was the person responsible for negotiating elements of the contracts at issue. He prepared a witness statement for the hearing and gave evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">11.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Peter Keates was formerly a director of the Third Party, the first Defendant and UUK. Alongside others, he was involved with negotiating elements of the contracts at issue. He has not been a director of any of the relevant companies since May 2018.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">12.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Iain Liddell is the CEO of the Defendants. He prepared a witness statement for the hearing and gave evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">13.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">The contemporaneous documents and communications between the parties are helpful in objectively establishing the intentions of the parties. This is because negotiations occurred over an extended period of time. It is necessary to set out that narrative in detail at paragraphs 14-50.</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NumberedPara" style="margin-left:0.39in"><span style="font-weight:bold">The narrative</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">14.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Microlise had a longstanding business relationship with the truck manufacturer MAN Truck and Bus UK Limited (<span style="font-family:'Arial Unicode MS'">“</span>MAN”). MAN would incorporate Microlise telematics technology into its vehicles, and then sell or lease those vehicles to its customer base under what was known as a <span style="font-family:'Arial Unicode MS'">“</span>white label” agreement. One of those MAN customers was Zenith since 2010/11. Mr Keates was the CEO of Zenith at that time. He had experience of the Microlise technology on the MAN trucks operated by Zenith. Mr Keates had known Mr Magee of Microlise since 2012. Mr Keates requested a meeting with Mr Magee, which happened in October 2015, where Mr Keates explained that he had become involved with Uniserve. This is because Uniserve UK Limited had purchased Zenith that same month. Mr Magee understood that Mr Keates was responsible for dealing with the Uniserve fleet of trucks. That October 2015 meeting led to the start of a direct business relationship between Microlise and Uniserve. It led to various business quotes from Mr Magee to Mr Keates.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">15.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">On 21 October 2015, Mr Magee sent a Microlise Quotation/Order (“Q/O”) for 100 telematic devices under a three-year contract to Mr Keates at Uniserve. The Q/O form contained a full two-page copy of the Microlise<span style="font-family:'Arial Unicode MS'"> </span>General terms &amp; conditions. The Q/O form also stated by way of a rider on page 2 that by accepting the quotation, “<span style="font-style:italic">you agree to Microlise standard terms &amp; conditions (available on request)</span>”. I refer to this as the original rider. The <span style="font-family:'Arial Unicode MS'">‘</span>Company<span style="font-family:'Arial Unicode MS'">’ </span>and ‘Invoice Address’ boxes on the Q/O form referred to the <span style="font-family:'Arial Unicode MS'">“</span><span style="font-style:italic">Uniserve Group</span>”. It is agreed that the Q/O form is sent out electronically to customers as a three-page pdf document, with the specific details of services and price on page 1, and the General terms and conditions on page 2 and 3.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">16.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">At Uniserve, Mr Keates emailed Mr Liddell, the Group CEO on 13 December 2015, where he raised this potential purchase: “<span style="font-style:italic">The cost demonstrates that Microlise is the best option and it is used by Zenith on all 80 trucks so it would work across the group…Another benefit for the roll out is that all the Zenith team are fully conversant with Microlise so we can get plenty of support for roll out.</span>”. Mr Liddell replied by email on 15 December 2015 requesting that “<span style="font-style:italic">You deal with it</span>”. This was the only written record of Mr Liddell being involved at the contract negotiation stage.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">17.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">On 18 December 2015, Mr Magee sent two further and updated Q/O forms for 100 telematic devices, with three or five year options to Mr Keates. Both Q/O forms were in the same format as the initial Q/O form of 21 October 2015.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">18.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">Those updated Q/O forms on page 1 contained a Requirements Summary:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyAA" style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Microlise to provide Tracking &amp; Telematics including the installation of 100 ML30 &amp; DriveTab Incab Tablet…Interface with Uniserve… Software services and support including field based support for in cab hardware. Costs based on a 3(5) year lease terms with Uniserve owning the hardware at the end of contract.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">19.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Those Q/O forms were accompanied by a copy of Microlise<span style="font-family:'Arial Unicode MS'">’</span>s <span style="font-family:'Arial Unicode MS'">‘</span>new customer details<span style="font-family:'Arial Unicode MS'">’ </span>form and a version of Microlise<span style="font-family:'Arial Unicode MS'">’</span>s <span style="font-family:'Arial Unicode MS'">“</span><span style="font-style:italic">Supply of Products and Services Agreement</span>” (<span style="font-family:'Arial Unicode MS'">“</span>SPSA”), which referred to the <span style="font-family:'Arial Unicode MS'">“</span><span style="font-style:italic">Uniserve Group</span>” as the Customer. The SPSA is a much more detailed contractual document than the Q/O form General terms &amp; conditions. Its purpose is as an umbrella or framework contract. Mr Magee sent those documents with a covering email message “<span style="font-style:italic">As discussed please find attached quoted for 36 and 60 month lease option…</span><span> </span><span style="font-style:italic">I have also attached our standard contract and new customer form to start the process moving</span>.” </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">20.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The SPSA standard contract was for Microlise to provide hardware, software, professional services, support, maintenance and hosting including access to various Applications. That contract runs to 33 pages, including Schedules. Recital 3 states that the SPSA shall, “<span style="font-style:italic">unless otherwise expressly stated in writing, apply to the subject matter of any agreement in respect thereof</span>.”  Section 1 defines Customer as “<span style="font-style:italic">the individual, business, or other organisation with whom the Supplier contracts</span>.” Section 2 states that “<span style="font-style:italic">Customer Orders, if accepted by the Supplier, shall be subject to these Terms and Conditions and to the availability of all relevant Products and Services.</span>”   Q/O forms are used for Customer Orders. The SPSA was not signed or returned by anyone at Uniserve, JKL and/or Zenith.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">21.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The SPSA did not have a commencement date agreed, but was for a 36-month period. Notable other Sections include Section 29.1 that seeks to exclude indirect and consequential loss and Section 29.2 that seeks to limit liability to £1M. Sections 17, 18 and 19 refer to Fees and Payment, Applications and Training and have accompanying Schedules 1, 2 and 5. At that time, the Schedules had not been completed.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">22.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">It is agreed that neither Mr Magee nor Mr Keates had authority to negotiate the terms of or sign the SPSA. This was reserved to the administrative departments of their respective companies.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">23.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 19 December 2015, Mr Keates replied to Mr Magee<span style="font-family:'Arial Unicode MS'">’</span>s email, saying: <span style="font-family:'Arial Unicode MS'">“</span><span style="font-style:italic">We will go with this. I just need to check some vehicle data to decide wether </span>[sic] <span style="font-style:italic">3 or 5 years</span>.<span style="font-style:italic"> I’ll sign and scan everything back over the weekend.</span>” </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">24.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 21 December 2015, Mr Keates returned a completed signed copy of the first page of the Q/O form (for the three year contract option) to Mr Magee. The form was completed with Uniserve (UK) Limited named in the <span style="font-family:'Arial Unicode MS'">‘</span>Company<span style="font-family:'Arial Unicode MS'">’ </span>box, and Uniserve Group in the Invoice Address box. Pages 2 and 3 of the Q/O form containing the General terms and conditions were neither signed nor sent back.<span style="font-style:italic"> </span>Later on 21 December 2015, Mr Magee emailed his own Sales Office attaching the signed Q/O form “<span style="font-style:italic">Can you start to process this please, the new customer form will follow as well as the fleet list</span>.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">25.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 5 January 2016, Mr Keates returned a completed copy of the <span style="font-family:'Arial Unicode MS'">‘</span>new customer details<span style="font-family:'Arial Unicode MS'">’ </span>form to Mr Magee. That form was completed in the name of Uniserve UK Limited. There then followed various exchanges between Microlise and Uniserve that related to routine credit checks and financial due diligence. These exchanges resulted in UHL becoming the named company on the new customer details form. UHL had a preferable credit rating to the previous Uniserve entities.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">26.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 21 January 2015 Mr Keates emailed Mr Magee “<span style="font-style:italic">Can you get the paperwork across to me please so I can get the group CEO to sign</span>.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">27.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Meanwhile at Uniserve, Mr Keates emailed a colleague Mr Barry Tuck on Friday 29 January 2015 with a copy of the SPSA. On 1 February 2016 Mr Keats sent a further email to Mr Tuck stating “<span style="font-style:italic">The document I sent you on Friday was the draft contract that which has to be completed at a later stage. To get things moving we need to complete the attached to get the account open. Please can you get this done today please.</span>” The attached document in that second email was the new customer details form.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">28.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 1 February 2016, Mr Keates sent a further signed copy of first page of the three-year Q/O form SL-013106 to Mr Magee, which had been amended to UHL in the <span style="font-family:'Arial Unicode MS'">‘</span>Company<span style="font-family:'Arial Unicode MS'">’ </span>box. The <span style="font-family:'Arial Unicode MS'">‘</span>Invoice Address<span style="font-family:'Arial Unicode MS'">’ </span>box still referred to <span style="font-family:'Arial Unicode MS'">“</span><span style="font-style:italic">Uniserve Group”</span>. The signed Q/O form had a “Date Raised” stated as 18/12/15. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">29.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee then emailed his accounts team on 1 February 2016 where he stated “<span style="font-style:italic">We have now resolved the leasing and accounts hurdles, so could you please activate the attached order today please?… I have attached the original quote.</span>” This reference to the original quote was the 18th December 2015 Q/O form but with UHL as the Company and the Uniserve Group for the Invoice Address. At this point, after three and a half months, a contract had been finally formed.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">30.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">As part of this process there were also discussions about how the Microlise products and services would be installed and utilised within the Uniserve fleet of trucks. This emerged in the form of a Deployment Scope document. This was prepared by Mr Magee around 1- 5 February 2016 following several months of discussions he had had with Mr Keates and his colleague at Uniserve, Mr Read. The actual Deployment Scope document was not finally signed and agreed between the parties until April 2016. That document stated at the outset that “<span style="font-style:italic">Requirements capture has been the result of meetings between Patrick Magee of Microlise and Peter Keates and Chris Read of Uniserve Group.</span>” At 3.2, that document listed the Operational Scenario as “<span style="font-style:italic">Uniserve Group has approximately 330 HGV units across 4 business units, Uniserve UK, YCT, Zenith Transport and another acquisition (TBC Confirmed).</span>”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">31.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">A few weeks after the first order, on 19 February 2016 Mr Magee emailed a further Q/O form (SL-013861) for 14 devices to Mr Read, copied to Mr Keates. It was in a similar format to the previous Q/O form, and named UHL as the Company. At the bottom of page 1 it contained a different rider that stated “<span style="font-style:italic">This quotation is valid for 30 days from the date of issue. Please note that by accepting this quotation, you agree to Microlise standard terms and conditions attached below. Please note any customer specific terms &amp; conditions previously agreed with Microlise override the Microlise standard terms &amp; conditions enclosed.</span>” I refer to this as the revised rider, which would contemplate an SPSA as being customer specific terms and conditions previously agreed.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">32.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 24 February 2016 Mr Magee emailed Mr Read relating to a further order and stated “<span style="font-style:italic">We also need to agree and get our contract in place now everything is moving nicely, please find attached our standard contract this was provided with the original quotation back in December. Can you get your legal team to take a look</span>?” Attached was a copy of Q/O form SL-013861 and a more complete version of the SPSA. It now contained at Schedule 1 (Fees) the financial information of that order for 100 telematic devices. At Schedule 2 it now contained comprehensive details of the Applications being provided.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">33.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Following the confirmed orders and deployment scope discussion there was a Microlise and Uniserve Project Kick Off meeting on 25 February 2016. Attendees included Mr Read and Mr Magee. Arrangements were put in place for the installation and integration of the telematic devices for some of Uniserve’s trucks. There was no mention of the SPSA, or it needing negotiation, review or signature.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">34.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 13 May 2016 Mr Magee emailed Mr Read where again he attached “<span style="font-style:italic">a copy of our standard contract for your legal team to review and comment, this was the version I sent through in December when the first 100 vehicles were ordered</span>.” Mr Magee emailed Mr Read again on 2 June 2016 “<span style="font-style:italic">Just wondering if you managed to make any progress with reviewing the attached contract? We do need to move this on and get it agreed.</span>”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">35.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">In addition to the Q/O form signed by Mr Keates on 1 February 2016, numerous further Q/O forms were completed between the parties between February 2016 and March 2019. Various versions of the rider were used.</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyAA" style="text-align:justify;margin-left:0.39in"><span style="font-weight:bold">Subsequent conduct and events</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">36.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 4 April 2017 Mr Magee emailed Mr Read at Uniserve with a copy of the SPSA and stated “<span style="font-style:italic">Microlise are changing how they store our customer contracts… And I don’t believe we received a signed copy of the attached contract I sent over late 2015. If we have previously received it then please accept our apologies for miss placing it, and would you mind sending us the signed copy you have? It was never completed by Uniserve would it be possible for you to arrange for it to be completed and signed</span>?”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">37.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 21 February 2018 Mr Justin Winrow from Zenith emailed Mr Magee “<span style="font-style:italic">I’m being asked internally for a copy of the Uniserve and Kemballs Microlise contracts, from what I can see I don’t have anything on file, would it be possible to get a copy of them please?</span>” In response that day Mr Magee replied “<span style="font-style:italic">Yes not a problem I will forward over a copy later today. One note thought I don’t remember ever getting a signed copy back from Chris?</span>” This was a reference to Mr Read.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">38.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 23 February 2018 Mr Magee emailed Mr Winrow “<span style="font-style:italic">I have been searching for our completed Contract. Please see the below email I sent through to Chris early last year, I don’t believe we ever received a signed completed contract. I would suggest we arrange a meeting to discuss this and agree the next step</span>?” That forwarded email contained the SPSA. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">39.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 26 February 2018 Mr Winrow responded “<span style="font-style:italic">I will catch up this week to get this copy signed and sent back over to you</span>.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">40.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 18 April 2018 Mr Liddell emailed Mr Magee “<span style="font-style:italic">As discussed please can you send me the contract and terms.</span>” In response Mr Magee replied that same day by email to Mr Liddell “<span style="font-style:italic">I have spoken to our accounts team…we don’t want this to damage our relationship. Please find attached a copy of the contract including our terms</span>.” The SPSA was attached.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">41.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 2 May 2018, Mr Liddell emailed Mr Magee “<span style="font-style:italic">We have now been chasing for over two weeks and really are quite disappointed that we’re unable to get any clear and precise information regarding our account… Can we have a copy of our current contract covering Uniserve, James Kemball and Zenith</span>.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">42.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 3 May 2018, Mr Magee in response to Mr Liddell stated “<span style="font-style:italic">With regards to the contacts for your divisions, we have a contract just with Uniserve Group and not each division. I sent through a copy on the 18th April, I would suggest that we discuss the need for individual contracts and terms.” </span>In response that same day Mr Liddell replied to Mr Magee by email “<span style="font-style:italic">It seems surprising that there is no separate contracts as it was James Kemball who was being threatened with being “cut off” for not paying up front.</span>”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">43.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">An internal email at Microlise dated 17 December 2018 from Mr Ball, Senior Account Manager to Mr Wightman stated “ <span style="font-style:italic">Please see the below information required as a result from our meeting at Uniserve last week. This is to cover all Group companies including Uniserve, Zenith and James Kemball… Copies of the contracts to include Contract/leasing end dates and full breakdown of SLAs on the Uniserve Group (I sent over an unsigned contract for James Kemballs last week). I’m guessing we won’t have any luck on the contract side, however we should at least be able to deduce how long they have left on their existing contract with when they first started paying</span>?”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">44.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 12 January 2019 Mr Liddell contacted Mr Brendan Ball, Senior Account Manager at Microlise by email “<span style="font-style:italic">We have had a major issue with the contracts and different pricing across the group</span>.”  On 21 January 2019 Mr Ball replied to Mr Liddell “<span style="font-style:italic">With regards to pricing across the Uniserve Group, Microlise has remained consistent. As mentioned… we charge you for 283 systems. These are split into the following orders: Uniserve 100, James Kemball 100, Uniserve 14, Uniserve 8, James Kemball 58, James Kemball 3</span>.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">45.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 29 January 2019 Mr Liddell responded to Mr Ball and stated that <span style="font-style:italic">“We don’t have a contract.”</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">46.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 28 March 2019, Mr Liddell emailed Mr Ball requesting<span style="font-style:italic"> “the following for the Group broken down by James Kemball, Zenith and Uniserve….. 7- Copy Order Forms, 8-Copy Contracts.” </span>That same day Mr Liddell replied to Mr Ball with comments on the information requested<span style="font-style:italic"> “7-Copy Order Forms, Attached: OK, is there anything else, such as emails or what was sold to us? 8-Attached (albeit the unsigned version as discussed on the call) OK, is there anything else, such as emails or what was sold to us?”</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">47.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 26 April 2019 Mr Liddell sent an email to Mr Bill Wynn the Chief Financial Officer of Mircrolise where he stated <span style="font-style:italic">“ The Uniserve Group including UniUK, James Kemball and Zenith (via a 3rd party) have spent with you between 2016 and 2019  £1.225million and we currently have £243k under query…we have not received the value from this equipment…and the set up and implementation and training has been virtually non-existent (the lack of proper contracts demonstrates this) plus nobody knows where half of the equipment actually is.”</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">48.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">In an internal email sent by Mr Ball on 29 April 2019 to Mr Wynn, he commented<span style="font-style:italic"> “The absence of a signed contract does not validate the following statement “the setup and implementation of training has been virtually non-existent” - we absolutely and categorically dispute this”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">49.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 14 June 2019, Mr Liddell wrote to Mr Nadeem Raza CEO at Microlise, <span style="font-style:italic">“I also explained that we believe that Microlise had breach any contract (if in place) by not supplying what was promised and then by turning off our system.”</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Witness evidence</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_50">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">50.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee gave evidence for Microlise, Mr Liddell gave evidence for Uniserve, JKL and Zenith. Their evidence provided different perspectives, with Mr Magee a sales professional at Microlise and Mr Liddell, a Group CEO at Uniserve. Their evidence was provided several years after the contractual negotiations. It generally tracked the outlines of their respective pleaded cases. I considered that there was an element of reverse engineering in some of their evidence, where both perhaps had started from their respective legal positions and worked backwards interpretatively when reviewing the historic contemporaneous documentary evidence.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="text-decoration-line:underline;text-decoration-style:solid">Mr Magee</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_51">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">51.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee was a credible witness. However I consider that his evidence was significantly vague both on the contractual details and their effect on the products and services that he was selling. Mr Magee was equivocal at best when asked to explain what he understood to be Microlise’s General terms &amp; conditions. He was similarly so in relation to Microlise’s Standard terms &amp; conditions. This was important because the rider on each Q/O form referred to those terms &amp; conditions in various different guises. Mr Magee was unable to give meaningful evidence on the difference between, and application of, General and Standard terms.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">52.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">This is not a criticism of Mr Magee, since I infer that he not been given sufficient training on contractual matters within his sales environment. The Q/O forms had different riders throughout the contracting history between the parties. It is not surprising that Mr Magee was unable to explain these variations or their effect. Mr Magee agreed that part of his sales task was to send out the SPSA, as part of the new customer package, and then get a signed copy back from his customer. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">53.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee described that his first Q/O form was sent to Mr Keates in October 2015 and referred to the Uniserve Group, which probably came from the email footer of Mr Keates. The actual legal entity at that stage was not a priority for Mr Magee since that came at a later stage when there was an agreement in principle. His second Q/O form sent to Mr Keates in December 2015 contained the new customer details form and a draft contract that he referred to as Microlise’s Master Supply Agreement (“MSA”).  It is agreed that this MSA is synonymous with the SPSA. Mr Magee had sent the SPSA as a Word document and only completed two sections and referred to the Uniserve Group. Mr Magee at that time did not consider Uniserve Group to be the customer or who the contract was intended to be with. It was not his job to carry out checks on the named entity. Microlise generally would not enter a contract with a number of companies and with liability split amongst those companies. If an order is being placed by a company with Microlise, then that company must have its own account set up with Microlise’s accounts team. That required an account opening process that included credit checks, hence the need for the new customer details form.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">54.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee stated that in 2015 Microlise had two ways of contracting with its customers. Firstly a bespoke SPSA, with overarching terms with orders being placed using a Q/O form. Secondly, where there was no SPSA, orders could be placed using a Q/O form in isolation. Microlise would send out both an SPSA and Q/O form to a new customer, and leave it to the customer to negotiate terms of the SPSA or simply contract on the basis of the Q/O form. This is what Mr Magee says happened in December 2015. I have difficulty with his evidence on this point. This is because of the clear wording contained on the original rider of the Q/O form that refers to standard terms applying that are available on request, accompanied by the SPSA which is then referred to by Mr Magee explicitly in writing as the “standard contract”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">55.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee stated that the SPSA is typically negotiated with bespoke terms, which is why he sent it in Word format. He expected it to be returned with comments which he would forward to his legal team who deal with the negotiation of terms. No comments were ever received from Messrs Keates, Read or Winrow. The lack of a signed or completed version of the SPSA was raised by Mr Magee with Messrs Keates, Read or Winrow. Mr Magee did not believe that any of those individuals or Uniserve thought there was any signed or completed SPSA at any stage.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">56.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee believed that Mr Keates had decided to proceed on the basis of placing an order using a Q/O form rather than entering into an SPSA. However, he was not able to provide any positive contemporaneous documentary evidence that corroborated this belief. Neither was any contemporaneous evidence offered involving Microlise senior management that supported Mr Magee’s position. Mr Magee sent the SPSA to Uniserve on several occasions, because he had not received feedback and did not think it had been agreed. Whilst the SPSA never contained a commencement date, it did in its second variant (still dated 18/12/15 on its front page) on 24 February 2016 contain material details of Fees at Schedule 1 and significant details of various Applications at Schedule 2.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">57.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee was not able to explain language in the Q/O rider, specifically whether the reference to Standard terms related to the SPSA terms as distinct from the General terms and conditions contained at page 2 and 3 of the Q/O form. Mr Magee also stated that whilst the Q/O rider stated that the validity of the quote was for 30 days, it was a commercial decision of Microlise whether to extend that period of time. Mr Magee did not consider it significant that the SPSA reserved this specific right to Microlise, whilst the Q/O General terms and conditions did not. In his view, this was a commercial decision for Microlise on a case-by-case basis.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">58.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee agreed that the SPSA was possible to negotiate after the event, but in his view at the time it needed to be signed and returned by the customer, for signature then by Microlise. He accepted that he could be mistaken about whether signature was actually required for the SPSA to be in force.</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyAA" style="text-align:justify;margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Mr Liddell</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">59.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell gave evidence. I considered that Mr Liddell was a credible witness. I was referred by Mr Naylor to previous litigation involving Mr Liddell and Mr Keates and Mr Read (involving the dismissal of Messrs Keates and Read) where critical views were expressed by the Trial judge about Mr Liddell’s evidence - <span style="font-style:italic">Zenith Logistical Services (UK) Ltd, Uniserve (UK) Ltd &amp; James Kemball Ltd v Peter Keates, Chris Read &amp; Others </span>[2022] EWHC 1495.  I reject the applicability of that reference, since I found Mr Liddell to be credible. Mr Liddell was vague on some aspects of detail, and there were some inaccuracies in his written evidence. However he demonstrated a strategic and commercial understanding of the Microlise relationship in the context of supplier contracts to his group of companies.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">60.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">As CEO, it was clear and unsurprising that Mr Liddell was not directly involved in the contract negotiations with Mr Magee. Mr Liddell was involved in a supervisory and senior managerial role, delegating the project management of incorporating Microlise telematics to Mr Keates. Mr Keates reported directly to Mr Liddell as well as attending weekly meetings of the Operating Board of the Uniserve Group, comprised of the leaders of the main businesses as well as central corporate services.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">61.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell has been approached by Mr Keates to improve operational performance and cost reduction through the use of telematic devices fitted to their fleet of trucks. Mr Keates had experience of this from the Zenith MAN collaboration. Mr Liddell tasked Mr Keates with negotiating with Microlise for the entire Uniserve Group fleet of trucks. Mr Liddell considered that this included JKL and Zenith. Mr Liddell was involved in internal Uniserve discussions about the Microlise products. Following the first Q/O on 21st October 2015, he authorised Mr Keates to progress the project. Mr Liddell was aware that there were discussions in December 2015 between Mr Magee, Mr Keates and Mr Potter of YCT. YCT Limited had been purchased by JKL. JKL was to be acquired by Uniserve a few months later in April 2016. Mr Keates asked Mr Magee for a specific quote, on 15 December 2015 for 100 telematic units. Following receipt of the Q/O on 18 December 2015 and the new customer package, Mr Liddell approved the Q/O. This enabled Mr Keates to confirm that to Mr Magee on 19 December 2015.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">62.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell was aware that, in early February 2016, the project goals between Microlise and Uniserve were agreed within the Deployment Scope document. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">63.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell noted that various Q/O forms were issued. Mr Liddell understood the Q/O forms to be nothing more than forms listing the ordered items. His understanding was that the small print terms and conditions on the back of the orders were never intended to govern the supply of the equipment and services. Mr Liddell understood that the SPSA was to govern that. He extended this belief to Uniserve employees and member companies. Mr Liddell considered that the SPSA continued to form the basis of the relationship between Uniserve and Microlise without re-negotiation or amendment. Given the existence of multiple orders over an extended period of time for Microlise devices for multiple trucks, Mr Liddell did not believe that each order needed its legal aspects considered each time - hence the purpose and existence of the SPSA. This was simple commercial common sense in his view.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">64.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Similarly, Mr Liddell believed Microlise to take that same view about the applicability of the SPSA. He highlighted the provision of the updated SPSA in February 2016 with Schedules 1 and 2 completed, as well as subsequent conduct where the SPSA was provided by Mr Magee in both February and April 2018 when asked for a copy of the contract terms. Mr Liddell also places reliance on Mr Magee stating to him on 3 May 2018 by email that the Uniserve Group had a contract with Microlise and that we should “<span style="font-style:italic">discuss the need for individual contracts and terms</span>.” </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">65.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell notes that Microlise asked for a signed copy of the SPSA at various times, but Uniserve did not respond due to an administrative oversight, and not because Uniserve considered the contract inapplicable. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">66.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell gave oral evidence on a number of areas. He was aware Mr Keates had a lot of experience whilst at Zenith, prior to its acquisition by Uniserve, with different suppliers of telematics. Mr Liddell also described that Mr Keates, whilst not a Director of JKL, was aware of Uniserve’s intention to acquire JKL. Mr Liddell was not one hundred percent sure on the detail of the pre-takeover relationship between MAN and Zenith, but knew that Zenith operated trucks from MAN with manufacturer installed “white-label” Microlise telematic devices.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_67">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">67.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Liddell explained that UHL was the named counter party on a majority of the Q/O forms due to its preferable credit rating. This had not surprised him given the history of communications relating to the Microlise new customer onboarding process. Mr Liddell considered the new customer details form to be an accounting or credit application document. That document had no significance other than the financial protection for Microlise - which would then provide its products and services to four of the Uniserve companies. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">68.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">When asked why the first version of the SPSA contained no prices at Schedule 1, 2 of 5, Mr Liddell stated that prices had been provided through the Q/O forms. In Mr Liddell’s view, the SPSA combined with the Q/O forms provided a reasonably full agreement of what was expected. Mr Liddell was challenged by Mr Naylor on whether his position on the existence of the SPSA had varied when problems started to emerge in 2018 and 2019. Mr Liddell explained that when he referred in an email to “there being no contract”, he was referring to any signed SPSA, as in his view a signature finished the process. I questioned Mr Liddell why he considered there to be significance relating to the SPSA being signed. Mr Liddell stated that he was aware there was no legal magic to the signatures, but it provided him with more certainty where signatures had been provided. Mr Liddell was candid in his disappointment of both administrative functions of the parties, but emphasised that he believed it was the Supplier that should drive the process, not the Customer.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><marker name="tab" /><span style="font-weight:bold">Applicable Law on Issue 1 </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_69">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">69.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Naylor suggested that the issue of a potential “battle of the forms” might arise. That reference is to disputes where each party is seeking to rely on its own terms and conditions, to the exclusion of the other side’s terms and conditions. I do not agree that a “battle of the forms” analysis is applicable to this dispute. Here the forms both belong to the Claimant. The dispute is more properly characterised as being single sided. In my judgment, the relevant analysis for this dispute is distinguishable from the classic authorities on bilateral competing terms and conditions.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">70.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The authors of Chitty [Chitty on Contracts, 34th Edition at 4-032] explain that where lengthy negotiations are engaged in and it is left unclear what precisely has been agreed and when, the <span style="font-family:'Arial Unicode MS'">“</span><span style="font-style:italic">court must then look at the whole correspondence and decide whether, on its true construction, the parties had agreed to the same terms</span>.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_71">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">71.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">An objective interpretation of the whole correspondence is an important and essential task. As Lord Clarke said in <span style="font-style:italic">RTS Flexible Ltd v. Molkerei Alois Muller Gmbh, </span>[2010] UKSC 14 at [45]:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyAA" style="text-align:justify;margin-left:1.18in;margin-right:0.75in"><marker name="tab" />“<span style="font-style:italic">Whether there is a binding contract between the parties and, if so, upon what terms depends upon what the” have agreed. It depends not upon their subjective state of mind, but upon a consideration of what was communicated between them by words or conduct, and whether that leads objectively to a conclusion that they intended to create legal relations and had agreed upon all the terms which they regarded or the law requires as essential for the formation of legally binding relations</span>.” </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">72.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Post-contractual conduct is also admissible in aiding my objective assessment of the parties’ intentions. As stated in Lewison, The Interpretation of Contracts 7th Edition at 3.189:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyAA" style="text-align:justify;margin-left:1.18in;margin-right:0.75in;text-indent:-0.39in"><marker name="tab" /><marker name="tab" />“<span style="font-style:italic">Evidence of post-contractual conduct is admissible in deciding what terms the parties agreed (as opposed to interpreting the meaning of the terms that they did agree), at all events where the contract is not contained wholly in writing…</span>”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">73.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in"><marker name="tab" />I remind myself of the significance of contemporaneous documentary evidence as an important tool in my objective assessment of the intentions of the parties. Of relevance are the comments of Males LJ in <span style="font-style:italic">Simetra Global Assets Ltd and Anor v Ikon Finance Ltd and others </span>[2019] EWCA Civ 1413 at paragraphs [48-49].</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Submissions of Claimant on Issue 1</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_74">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">74.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant contends that each Q/O form incorporated the General terms and conditions that was attached to that form. They do not accept that the SPSA ever came into force; that it was only sent in draft form, never completed and never signed. They say that the SPSA was always a draft, and offered for negotiation and signature in due course. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">75.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant invites me to prefer the evidence of Mr Magee. Whilst Mr Keates was the main negotiator for Uniserve, only documentary evidence from his email account was offered in support of his former employer. Instead, Mr Liddell provided evidence, which the Claimant say is necessarily high level and at times inconsistent and should be treated with caution. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">76.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant says that the email acceptance by Mr Keates to Mr Magee on 19 December 2015 was not any contractual acceptance of the draft SPSA. Mr Keates did not sign and scan everything back, but just the first page of the 3 year Q/O form in the name of Uniserve UK Ltd. The Claimant suggests that neither party considered the contract to be concluded at this stage, since Mr Magee had made it clear that the relevant Uniserve counter-party needed to be identified in the “new customer details” form. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_77">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">77.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant asserts that the Q/O forms included a full copy of the General terms and conditions and plainly stated that they would apply to any order that the customer might subsequently place. This was, therefore, the ‘default’ position. I do not agree with this submission, as the original rider on the October and December 2015 Q/O forms expressly stated that they were subject to the Microlise standard terms and conditions that were available on request. Nevertheless, the Claimant also states that it was always open to the customer to negotiate and conclude a customer-specific contract, an SPSA, which would then override the Q/O form. This option was expressly referred to in Microlise’s Q/O forms, with the revised rider, from February 2016 onwards. In my view it was also open to the customer to accept the SPSA without negotiation.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_78">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">78.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They further assert that by attaching the draft and incomplete SPSA to his email of 18 December 2015, Mr Magee gave the opportunity to negotiate and possibly conclude a customer specific contract on behalf of one or more identified legal entities with Microlise. In order to do so, however, Mr Keates would have been required to complete the draft SPSA and, ultimately, both parties would have been required to sign it. On an objective analysis they submit that the orthodox application of straightforward ‘offer and acceptance’ principles leads to the result that the Q/O form General terms and conditions were incorporated into the contracts between Microlise and Uniserve / JKL.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_79">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">79.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant says that it is clear that Mr Magee did not consider the SPSA to have been “completed”, and that it would not be complete unless and until it was “signed” and returned to Microlise. In their view, the responses (or lack thereof) from Uniserve to these emails are also telling.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_80">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">80.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant seeks to minimise the email by Mr Magee of 3 May 2018 sent to Mr Liddell stating that “<span style="font-style:italic">we have a contract just with Uniserve Group and not each division. I sent through a copy on the 18 April…”</span> They say it should be considered in its proper context; one of an escalating dispute between the parties, which Mr Magee was attempting to defuse. To that end they remind me that Mr Magee is not himself a lawyer but rather a salesman; whatever his subjective view may have been on the terms applicable, what really matters is the objective analysis of how the contracts were concluded.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Submissions from the Defendants on Issue 1</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_81">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">81.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">When the Q/O form was sent by Microlise on 18 December 2015, it was accompanied by both the SPSA terms and the new customer details form. The Q/O form contained the original rider. Mr Magee stated in the accompanying email that the “standard contract” was attached. They submit, quite rightly in my view, that cannot have been a reference to the General terms and conditions (i.e. contained at page 2 and 3 of the Q/O form), since those were immediately below (hence not what was referred to as “available on request”). They submit that statement must reasonably have been understood to refer to the SPSA terms, i.e. the Microlise standard contract. The version that finally became order SL-013106 was signed and returned by Mr Keates on 1 February 2016 to Mr Magee. The form returned by Mr Keates was the Q/O form, less page 2 and 3.  The Deployment Scope document, in line with the SPSA terms, confirmed the parties’ agreement that Microlise would supply equipment and associated systems and services to the Uniserve Group to be used by the fleet. On 24 February 2016 Microlise re-sent the SPSA terms to Uniserve. That version issued on that date had been updated significantly. Hence they submit that the objective intention of the parties was that, from the very first order issued, the SPSA terms were to apply and not the Q/O form General terms. This was also Mr Magee’s own understanding when the matter was raised by Mr Liddell in May 2018.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_82">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">82.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The second order that was concluded was SL-013861. It was sent by Mr Magee on 19 February 2016. It does not appear to have ever been signed by Mr Keates, and in any case expressly contained the revised rider that recognised SPSA terms and conditions would apply in preference to the Q/O form General terms. Uniserve submits that this was a clear reference to the SPSA terms that had already been agreed. In my view, that is objectively correct, and consistent with the documented negotiations up to that point in time.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">83.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Taking all of the further Q/O forms, the Defendants identify four categories which were placed on the SPSA terms. They submit that those Q/O forms would, in context, have been understood to refer to the SPSA terms. Again in my view, that is objectively correct and consistent with the documentary evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">84.</num>
+          <content>
+            <p class="BodyAA" style="margin-left:0.39in">They also point to Mr Magee resending the SPSA several times to Uniserve: When the first order was varied (added to), Mr Magee re-circulated that Q/O form as an appendix to the SPSA terms, indicating the latter was being treated as agreed. In my view, that is also objectively correct and consistent with the documentary evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_85">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">85.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They explain the lack of signature of the SPSA by any of the Defendants as an administrative oversight   However, the Court is invited to infer that a contract had been agreed on the SPSA terms, and the request by Mr Magee on 4 April 2017 was merely an administrative updating exercise. I accept that submission as being objectively correct and consistent with the documentary evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">86.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They also highlight that Mr Magee sent Mr Liddell a copy of the SPSA as the contract that had been agreed, in response to a request on 18 April 2018. When asked by Mr Liddell on 2 May 2018 to confirm how the contracts operated vis-à-vis the three entities (JKL, UHL and Zenith), Mr Magee responded by stating there was a contract just with Uniserve Group not each division. They submit that in context that must have been a reference to the SPSA. I accept that submission as being objectively correct and consistent with the documentary evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">87.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Defendants agree that the evidential picture is incomplete without Mr Keates and Mr Read, but also the evidence objectively was muddled. At different times both sides were mistaken about what the position actually was. They invite me to draw the proper inferences that Mr Magee correlated the phrase “Standard terms and conditions” with the SPSA, when he sent the email package to Mr Keates on 18 December 2015 containing the SPSA. In my view, objectively that must be correct. They also invite me to construe that communication against the backdrop of objective commerciality. They point to certain features of the contractual relationship where the SPSA expressly permits, but the Q/O form General terms &amp; conditions do not, acceptance of orders for quotes in excess of 30 days. They highlight the insertion of material order details by Microlise to the SPSA in February 2016. They submit that the totality of the evidence cumulatively and corroboratively establishes that it is more likely than not that both parties actually regarded the terms of the SPSA to apply to that relationship. I accept that submission as being objectively correct.</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyAA" style="text-align:justify;margin-left:0.2in"><span style="font-weight:bold">Ruling on Issue 1:</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_88">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">88.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The first order placed by Uniserve was SL-013106 dated 18 December 2015, but not signed until 1 February 2016. The delay, well in excess of the 30-day validity of the Microlise quote, was due to Microlise credit checks resulting in a new customer account for UHL. Normal procedure was followed by Microlise in the run up to that 1 February 2016 order; the December 2015 Q/O forms provided by Microlise to Uniserve were accompanied by the Microlise “standard contract” and new customer form. The original rider on those Q/O forms referred to the application of Microlise standard terms &amp; conditions (available on request), and not to the integral Q/O General terms &amp; conditions. Objectively, I consider that the SPSA was the “standard contract”, and that the Q/O rider reference to standard terms and conditions was to the SPSA. This is because there was no other standard contract or other standard terms and conditions at any stage between December 2015 and 1 February 2016, save for the SPSA. Had Microlise intended to rely upon their Q/O form General terms and conditions, they would have specified that, which they did not. Instead, Microlise expressly referred to their standard terms and conditions, available on request, in their Q/O form. This was corroborated by Mr Magee providing the standard contract - the SPSA, as part of that package.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_89">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">89.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">In my view, the only objective and commercial interpretation of intent was that Microlise was prepared to offer 100 telematics devices to Uniserve subject to the terms of its standard contract - the SPSA. On the face of that documentary evidence, the terms of the SPSA were incorporated by specific reference. As intended, they took precedence over the General terms &amp; conditions integral to the Q/O form. Mr Keates from Uniserve confirmed his acceptance of those terms. In my judgment there is also cumulative evidence that supports my objective assessment throughout the entire correspondence between, and conduct of, the parties that accords with my finding that the SPSA was incorporated by reference from 1 February 2016. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_90">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">90.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee was not able to explain how or when either the Standard or General terms applied, and any interrelationship they may or may not have. In my judgment, as a matter of objective construction, Standard terms cannot be equated with General terms in this dispute. To do so invites a measure of chaos and a lack of commercial common sense. Superficially it may appear that Microlise offered their supply of equipment and services with two different sets of terms and conditions, one General set on each Q/O form and one Standard set via the SPSA. However, my objective assessment is that Microlise were only offering the Standard terms. This is because the original rider on the December Q/O form clearly stated that it was the Standard terms that would apply, and these were sent alongside the Q/O form as the SPSA. The SPSA understandably states that it overrules the Q/O form General terms. This is entirely consistent with the express purpose of the SPSA. The SPSA does not need to be in the same name as each Q/O form, or each new customer details form. It is a framework agreement.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_91">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">91.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">  The SPSA terms were substantially more detailed than the Q/O form general terms. Mr Magee only ever expressly referred to the SPSA when he highlighted the standard contract. The General terms &amp; conditions were never referred to by Mr Magee. Mr Magee did not direct Uniserve to sign the SPSA initially, nor the Q/O form nor its integral General terms &amp; conditions. The Q/O form directs only signature on page 1 and does not refer to signature elsewhere. Mr Magee never explained to Uniserve that there was a choice between the Standard and General terms. Mr Magee did not explain that the terms of the SPSA were negotiable. A signed Q/O form was sufficient to constitute an offer by Uniserve in the eyes of Microlise since the constitutive elements of the contract were in place. That offer by Uniserve was subsequently accepted by Microlise through performance. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_92">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">92.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The SPSA terms contained detailed provisions on Quotes and Orders (Clauses 2 and 4), whilst the General terms did not. Whilst the duration of a Quote was 30 days, and Microlise would exercise commercial discretion on accepting orders outside that period, the SPSA preserved that discretion whilst the General terms were silent. The General terms did not refer to the Quote above, nor do they say that returning the Quote signed is deemed to incorporate those General terms. Notably, after 1 February 2016, the Microlise Q/O form changed its rider to state that the Standard terms were within the same Q/O form rather than available on request. However, that redrafted Q/O form provided that “previously agreed” terms and conditions would override the General terms and conditions. On an objective and commercial construction of that revised rider, and in the context of the correspondence, I am satisfied that “previously agreed” terms can only refer to the SPSA.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_93">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">93.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Both Mr Magee and Mr Keates were aware that the SPSA could be signed and completed at a later stage. Mr Keates signed and returned only page 1 of the 3-page pdf Q/O form. It is suggested by Mr Parratt that an inference could be made that Mr Keates did not consider the general terms applied since the SPSA had been supplied alongside the Q/O form, and that Mr Keates considered the SPSA to apply which could be completed and signed at a later stage. I am not convinced that a proper inference can be made on that specific issue, given the absence of evidence from Mr Keates. However, I do not need to make that inference since I consider that an objective and cumulative assessment of the entire correspondence and conduct between the parties evidences a mutual intention that the SPSA terms were to apply.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_94">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">94.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">There were three variants of the SPSA provided by Mr Magee, each with the same counterparts - Microlise and the Uniserve Group. The Uniserve Group is not a legal identity, and whilst there is provision for the “Customer” to have a Company registration number and registered offer, this was left blank throughout. Neither was there a commencement date, nor was it signed. However, in my view, the absence of these three features is not fatal to the existence of the SPSA when considered objectively against the contextual factual matrix of the parties. The SPSA was an umbrella agreement that embraced quotations and orders. This is also consistent with intentions of the parties contained within the Deployment Scope document.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_95">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">95.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Mr Magee reissued the SPSA multiple times between December 2015 and May 2018. I do not consider the SPSA could be considered to be fatally incomplete at any stage. In that regard, I prefer the evidence of Mr Liddell that the SPSA is perfectly able to be to be read in conjunction with the commercial pricing details contained within the Q/O forms. Significantly, Mr Magee uploaded pricing details relating to order SL-013106 to Schedule 1 of the SPSA and Applications details to Schedule 2 of the SPSA and sent them to Uniserve on 24 February 2016. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_96">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">96.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">On 18 April 2018 he sent the SPSA to Mr Liddell as the contract which had been agreed. On 3 May 2018 he confirmed to Mr Liddell that Microlise had a contract “<span style="font-style:italic">just with Uniserve Group and not each division</span>”. Contextually and objectively, that can only have been a reference to the SPSA. Mr Magee accepted that he could have been mistaken that signature was required for the SPSA to be enforceable. In March 2019 Mr Ball (senior accounts manager at Microlise) sent Mr Liddell the SPSA as the agreed (albeit unsigned) contract in place between the parties.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_97">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">97.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Objectively, there is cogent and compelling commercial sense in the evidence of Mr Liddell. This is because multiple Microlise orders for multiple trucks were 1) both a possibility at the negotiation stage in 2015/2016 and 2) a reality over an extended period of time from 2016 to 2019. Mr Liddell did not consider that each order needed its legal aspects considered each time - hence the need for the SPSA. This evidence is synchronous with the contractual framework that Microlise had drafted and supplied to Uniserve leading up to 1 February 2016. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_98">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">98.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">To apply the words of Lord Clarke, an objective assessment of the parties’ intentions  depends not upon the subjective state of mind of either Mr Magee or Mr Keates, but upon a consideration of what was communicated between them by words or conduct, i.e. the Q/O forms with the original and revised riders, the express reference by Mr Magee to a standard contract, various iterations of the SPSA, the Deployment Scope  document and performance of, and payment for, the goods and services provided. My objective assessment of the parties’ intentions is that a contract was agreed through the vehicle of the SPSA for the formation of legally binding relations. The existence of the SPSA was confirmed by subsequent conduct and communications, by both Mr Magee and Mr Ball at Microlise. Accordingly, I conclude that the SPSA came into force on 1 February 2016. Its terms and conditions override any Q/O form General terms and conditions.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">ISSUE 2.</span></p>
+            <p class="NumberedPara"><span style="font-weight:bold">Between which contracting parties were those contracts agreed?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_99">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">99.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Submissions made by the parties were largely devoted to the contracting parties to each Q/O form rather than the SPSA. They were mostly contingent on the SPSA not being found to have been incorporated. Issue 2 is a relatively short point on the facts and law if Issue 1 led to the SPSA being in force. Given my ruling on Issue 1, I will confine my analysis to the SPSA related submissions. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Submissions of Claimant on Issue Two</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_100">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">100.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Uniserve Group is not a legal entity but consists of more than 50 different companies and joint ventures, including UHL and UUK. UUK acquired Zenith on 9 October 2015 and UHL acquired JKL on 22 April 2016. It is agreed that Zenith had a long history of placing orders with a third party, MAN, for Microlise products going back to at least 2012. As of 15 August 2015, all of Zenith’s Microlise subscriptions went through MAN. There was no direct contractual relationship between Zenith and Microlise. They state that it is common ground that there were multiple contracts between the parties, and that each of those contracts arose pursuant to a Q/O form. Each Q/O form identified a particular Defendant entity, i.e. Uniserve or JKL. Such identification was not an accident, but rather a specific reflection of the particular counterparty with whom Microlise was contracting with. In my view, the SPSA now neutralises, to a significant extent, this point of specific counterparties, but see my comments at Paragraphs [115-117] below.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_101">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">101.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant accepts that it was Mr Liddell’s evidence that UHL owned the first 100 vehicles into which Microlise’s products were installed (the first UHL order). The installation works were carried out at a variety of locations depending where the relevant vehicles were at the time. There was cross-charging between various group entities in relation to the Microlise products and services. Again, in my view, the SPSA largely neutralises the relevance of this submission.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_102">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">102.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">As Mr Liddell states in his witness evidence, the “<span style="font-style:italic">Uniserve Group now comprises over 50 100% owned companies and various joint ventures</span>…” Mr Naylor suggests that logically it must be the Defendants’ case that all 50 or so of these companies were party to each of the contracts with Microlise. I disagree with this expansive submission. Objectively on the evidence, there were only four entities within the Uniserve Group that were in receipt of Microlise products and services. Those four entities were known to Microlise. Mr Liddell made the same point in his oral evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_103">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">103.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Claimant correctly point out that JKL was not a party to the first orders between Microlise and Uniserve because JKL was not owned by any Uniserve-related entity until 22 April 2016. JKL was not a company within the “Uniserve Group” when the original contracts were concluded on 1 February 2016. After acquisition by Uniserve, Q/O forms were specifically agreed between Microlise and JKL. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_104">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">104.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They note in relation to Zenith, it was not a party to the orders either, because it purchased Microlise’s products and/or services on a ‘white-label’ basis through its separate contractual relationship with MAN. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_105">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">105.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They highlight that the relationship between Zenith and MAN meant that Zenith was required to continue placing orders through MAN rather than directly with Microlise. This was understood by Zenith as well as Microlise and MAN itself.  They assert that all parties were well aware that only one of the Defendant entities was the contracting party to any particular contract with Microlise, and that if another company in the group benefitted from this, they would cross-charge internally as required. This arrangement did not concern Microlise, which knew who its Q/O contractual counterparty was by looking at the company name on the relevant Q/O Form. Accordingly, the parties to each of the Q/O contracts were Microlise, on the one hand, and only one or other of Uniserve or JKL, on the other hand. The Q/O contracts were not between Microlise and all of the Defendants together or the so-called ‘Uniserve Group’ of 50 or so different entities. In my view, this set of submissions can only be partially correct in the context that the SPSA was in place and overruled the Q/O form General terms. See my comments at paragraphs [115-117] below.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Submissions of Defendants on issue two</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_106">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">106.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Defendants note that the Deployment Scope document was drafted by Mr Magee based on conversations with Mr Keates and Mr Read that took place between October 2015 to February 2016. That Scope document forms part of the contextual commercial background against which the subsequent orders were placed. The objective joint purpose of the parties in contracting was to provide Uniserve with a single telematics solution across its entire fleet of trucks. Microlise was aware, throughout the course of the parties’ dealings, that the Uniserve fleet of trucks was owned by a number of separate entities in the Uniserve Group including Zenith. In my view and in the context of the SPSA applying, I agree with this submission.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_107">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">107.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The Deployment Scope document is part of the context in which the identity of the parties falls to be determined. It was to be “used as an agreement between The Customer and Microlise.” In context, the words ‘The Customer’ could only have referred to the Uniserve Group by which was meant each and all of the entities within the Group which owned vehicles onto which the equipment to be supplied was to be fitted i.e. JKL, UHL and Zenith. In my view, this submission has force in the context of the SPSA applying and consistently referring to the Uniserve Group. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_108">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">108.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The ‘Customer’ was the entity that was ‘purchasing the equipment’ i.e. who would use it during the lease and own it at the end of the 3-year term. On Orders naming both UHL and JKL at the head of the Q/O form, it was specified that Uniserve would “<span style="font-style:italic">own the hardware at the end of the contract</span>” In that context ‘Uniserve’ meant whichever entity within the Group owned the vehicle onto which the equipment was fitted. More pertinently in this regard, Order SL-021957 contains JKL’s name in the ‘Company’ box, nevertheless it also states that “<span style="font-style:italic">price based on a 3 Year lease term with Uniserve owning the hardware at the end of contract</span>.” They submit that cannot have been a reference to JKL. The Q/O form therefore reflects the intention of the parties that it was the relevant entity within the Uniserve Group (be it Zenith, UHL or JKL) onto which the equipment was to be fitted which was purchasing the equipment, regardless of the particular entity named in the ‘Company’ box. In my view, this submission only has partial force in the context of the SPSA applying. See my comments at paragraphs [115-117] below.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_109">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">109.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They note that some Zenith vehicles already had some Microlise equipment installed through a prior ’white-label’ relationship with MAN. However, Microlise installed other products such as dashcams and forward facing cameras directly onto Zenith trucks without the involvement of MAN on 26/27 November and December 2016 and May 2017.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_110">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">110.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">They summarise by submitting that Microlise contracted with the three companies JKL, UHL and Zenith which owned the 283 trucks onto which equipment was fitted and made use of the systems supplied and hosted by Microlise. Those companies were collectively referred to by the individuals involved in negotiating, agreeing and operating the Contracts as (variously) the ‘Uniserve Group’ or ‘Uniserve.’  If the Court is with Uniserve on Issue 1, then the SPSA plainly states on its cover sheet and in the recitals that the agreement is between Microlise and the Uniserve Group. Therefore if Uniserve succeeds on Issue 1 it submits that it should also succeed on Issue 2.  Uniserve submits that the Deployment Scope document demonstrates who the parties intended the ‘Customer’ to be, and it is this that elucidates how the ‘defined’ term ‘Customer’ was used in the Order Form T&amp;Cs. In particular it demonstrates that Microlise was aware that Zenith was part of the Uniserve Group and that it owned vehicles within Uniserve’s Fleet. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Ruling on Issue Two</span></p>
+            <p class="NumberedPara"><span style="text-decoration-line:underline;text-decoration-style:solid">Between which contracting parties were those contracts agreed?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_111">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">111.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;border-style:none">I have ruled on Issue 1 that the SPSA between Microlise and the Uniserve Group was in force from 1 February 2016, and that its terms overrode the Q/O General terms. On that basis, Mr Parratt makes the simple argument that the answer to Issue 2 is self-evident, as the SPSA applies to UHL, JKL and Zenith. That argument carries considerable force, given the application of the SPSA as a framework agreement. However, there are some nuances relating to 1) the point in time that the SPSA applied to each entity and 2) to what Microlise products and services.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_112">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">112.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in;border-style:none"><span style="font-style:italic">Chitty </span>at 4-002, states “<span style="font-style:italic">the objective test applies when determining the identity of the parties to the contract</span>.” This approach was applied by the Court of Appeal in <span style="font-style:italic">Hamid (t/a Hamid Properties) v. Francis Bradshaw Partnership </span>[2013] EWCA Civ<span style="text-decoration-line:underline;text-decoration-style:solid"> 470</span>  per Lord Jackson:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.18in;text-indent:-0.5in">1.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.75in"><marker name="tab" />“<span style="font-style:italic">57 (i) Where an issue arises as to the identity of a party referred to in a deed or contract, extrinsic evidence is admissible to assist the resolution of that issue.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:1.18in;text-indent:-0.5in">2.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.75in"><marker name="tab" /><span style="font-style:italic">57 (ii) In determining the identity of the contracting party, the court’s approach is objective, not subjective. The question is what a reasonable person, furnished with the relevant information, would conclude. The private thoughts of the protagonists concerning who was contracting with whom are irrelevant and inadmissible.</span>”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_113">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">113.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;border-style:none">Objectively the SPSA governed the relationship between Microlise and the Uniserve Group from February 2016. The Deployment Scope document is consistent with the SPSA, as is the Q/O form provision that equipment at the end of each lease would be the property of Uniserve. Individual orders on the Q/O forms then fell within the terms of the SPSA if those orders had been given by a Uniserve entity. Accordingly, any disputes arising under any Q/O form then fell within the terms of the SPSA.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_114">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">114.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;border-style:none">It was common knowledge that three business units within Uniserve, and later on a fourth unit, (but which was JKL), were to utilise Microlise products and services. It was also common knowledge that Zenith had a prior contractual relationship with MAN for its Microlise installed products and services.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_115">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">115.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;border-style:none">To the extent any Q/O forms were returned by Zenith, then clearly the subject matter of those orders would be subject to the SPSA. Similarly, when JKL was acquired on 22 April 2016, any subsequent Q/O forms returned by them would be subject to the SPSA. On a matter of simple objective construction, JKL could not have been subject to the SPSA prior to 22 April 2016. However, once JKL was acquired, it then fell within the remit of the SPSA as that was objectively in the contemplation of the parties, including the Deployment Scope document, and consistent with their conduct.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_116">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">116.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">In relation to Zenith, there were known pre-existing contracts with MAN relating to “white label” Microlise equipment before 1 February 2016. To the extent there were problems with that equipment under those pre-existing contracts, then that would be a contractual matter between Zenith and MAN to which the SPSA would not apply. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_117">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">117.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">I do not consider that an objective consideration of the parties’ intentions for the SPSA would include any pre-existing contractual obligations between Zenith and MAN. I also do not consider that any post 1 February 2016 Zenith orders through MAN (rather than directly with Microlise) would fall within the scope of the SPSA. Specifically, subsequent to 1 February 2016, where Microlise installed non “white label” hardware such as dashcams and forward facing cameras on Zenith trucks, and there were problems with that equipment, then that would fall under the SPSA, absent any applicable and relevant Zenith MAN contract.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Issue Three</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_118">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">118.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">This concerns the effect of certain pleaded limitation and/or exclusion clauses. Given my finding on Issue 1, I confine the submissions, law and my ruling to the SPSA. The Claimants submit that three clauses in the SPSA are, under the Unfair Contract Terms Act 1997 (“UCTA”) fair, reasonable and enforceable. Specifically Clause 8.1 relating to contractual warranties, Clause 29.1 relating to an exclusion of certain types of loss, and Clause 29.2 relating to a liability cap of £1m. In contrast, the Defendants in their Case Summary state that if the SPSA applies, they do not seek to construe material terms differently or to imply important terms into that contract. Similarly in their skeleton argument they do not contend that any of terms contained in the SPSA are void or unenforceable. Nevertheless the Defendants seek to restrict the ambit of Clause 29.1. They also state under Clause 29.2 their counterclaim for breach of contract will be limited to £1 million but their claims in misrepresentation are not so limited. By doing so, the Defendants implicitly question the ambit of Clauses 29.1 and 29.2. No objection has been raised by the Defendants to Clause 8.1 of the SPSA.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_119">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">119.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The SPSA Clauses</p>
+          </content>
+        </paragraph>
+        <level>
+          <heading class="NumberedPara"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">Exclusion of certain types of losses: Clause 29.1 of the SPSA </span></heading>
+          <paragraph>
+            <content>
+              <p class="NumberedPara" style="margin-left:0.39in"><span style="font-style:italic">Subject to clause 30 of this Agreement, the Supplier shall not be liable to the Customer for any indirect or consequential loss the Customer may suffer even if such loss is reasonably foreseeable or if the Supplier has been advised of the possibility of the Customer incurring it.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <content>
+            <p class="NumberedPara"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">Caps on liability: Clause 29.2 of the SPSA</span></p>
+            <p class="NumberedPara" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" /><span style="font-style:italic">The Supplier’s entire liability to the Customer in respect of any breach of its contractual obligations, any breach of warranty, any representation, statement or tortious act or omission including negligence arising under or in connection with this Agreement shall be limited to £1M.</span></p>
+            <p class="BodyAA" style="text-align:justify"><span style="text-decoration-line:underline;text-decoration-style:solid">The applicable law</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_120">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">120.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">The starting point in considering whether a limitation or exclusion clause will be enforceable is the ‘reasonableness’ test in section 11 of UCTA, which provides as follows:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">“11.</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:0.79in;text-indent:0.21in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">The “reasonableness” test</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(1)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">In relation to a contract term, the requirement of reasonableness for the purposes of this Part of this Act… is that the term shall have been a fair and reasonable one to be included having regard to the circumstances which were, or ought reasonably to have been, known to or in the contemplation of the parties when the contract was made. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(2)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">ln determining for the purposes of section 6 or 7 above whether a contract term satisfies the requirement of reasonableness, regard shall be had in particular to the matters specified in Schedule 2 to this Act… </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in;text-indent:-0.39in"><span style="font-family:'Times New Roman';font-size:12pt">…</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(4)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:0.79in;text-indent:0.21in"><span style="font-family:'Times New Roman';font-size:12pt">Where by reference to a contract term or notice a person seeks to restrict liability to a specified sum of money, and the question arises (under this or any other Act) whether the term or notice satisfies the requirement of reasonableness, regard shall be had in particular (but without prejudice to subsection (2) above in the case of contract terms) to— </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(a)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.58in"><span style="font-family:'Times New Roman';font-size:12pt">the resources which he could expect to be available to him for the purpose of meeting the liability should it arise… </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(5)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.57in"><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">lt is for those claiming that a contract term or notice satisfies the requirement of reasonableness to show that it does.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_121">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">121.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">As set out in section 11(2) above, Schedule 2 of UCTA sets out a number of “<span style="font-style:italic">matters specified</span>” which are relevant in determining whether any particular contract term is fair and reasonable. That Schedule 2 is headed “<span style="font-style:italic">‘Guidelines’ for application of reasonableness test</span>”, and is in the following terms: </p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="MJN1Quote"><span style="font-family:'Times New Roman';font-size:12pt">“The matters to which regard is to be had in particular…  are any of the following which appear to be relevant – </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(a)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">the strength of the bargaining positions of the parties relative to each other, taking into account (among other things) alternative means by which the customer’s requirements could have been met; </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(b)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">whether the customer received an inducement to agree to the term, or in accepting it had an opportunity of entering into a similar contract with other persons, but without having a similar term; </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(c)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">whether the customer knew or ought reasonably to have known of the existence and the extent of the term (having regard, among other things, to any custom of the trade and any previous course of dealing between the parties); </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(d)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">where the term excludes or restricts any relevant liability if some condition was not complied with, whether it was reasonable at the time of the contract to expect that compliance with that condition would be practicable; </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">(e)</num>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in"><span style="font-family:'Times New Roman';font-size:12pt">whether the goods were manufactured, processed or adapted to the special order of the customer.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_122">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">122.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">In <span style="font-style:italic">Granville Oil &amp; Chemicals Ltd v. Davis Turner &amp; Co Ltd [2003] 2 Lloyd’s Rep 356</span>, Tuckey LJ said at 362 (emphasis added): </p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in;margin-right:0.75in"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">“</span><span style="font-family:'Times New Roman';font-size:12pt">[UCTA] obviously plays a very important role in protecting vulnerable consumers from the effects of draconian contract terms. But </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">I am less enthusiastic about its intrusion into contracts between commercial parties of equal bargaining strength, who should generally be considered capable of being able to make contracts of their choosing and expect to be bound by their terms</span><span style="font-family:'Times New Roman';font-size:12pt">.</span><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_123">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">123.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">Similarly, in <span style="font-style:italic">Watford Electronics Ltd v Sanderson CFL Ltd [2001] EWCA Civ 317</span>, Chadwick LJ said at [55] (emphasis added): </p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in;margin-right:0.75in"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">“</span><span style="font-family:'Times New Roman';font-size:12pt">Where experienced businessmen representing substantial companies of equal bargaining power negotiate an agreement, they may be taken to have had regard to the matters known to them. They should, in my view be taken to be the best judge of the commercial fairness of the agreement which they have made; including the fairness of each of the terms in that agreement. They should be taken to be the best judge on the question whether the terms of the agreement are reasonable. The court should not assume that either is likely to commit his company to an agreement which he thinks is unfair, or which he thinks includes unreasonable terms. </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Unless satisfied that one party has, in effect, taken unfair advantage of the other – or that a term is so unreasonable that it cannot properly have been understood or considered – the court should not interfere</span><span style="font-family:'Times New Roman';font-size:12pt">.</span><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_124">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">124.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">As to the Court’s approach to exclusion clauses generally, Lewison LJ said in <span style="font-style:italic">Interactive E-Solutions JLT v. O3B Africa Ltd</span>, [2018] EWCA Civ 62 at [14]  (emphasis added):</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in;margin-right:0.75in"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">“</span><span style="font-family:'Times New Roman';font-size:12pt">The traditional approach of the courts towards exclusion clauses has been one of hostility. A strict and narrow approach to their interpretation held sway. This began to change with the passing of the Unfair Contract Terms Act 1977. Since then </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">the courts have become more accepting of such clauses, recognising (at least in commercial contracts made between parties of equal bargaining power) that exclusion and limitation clauses are an integral part of pricing and risk allocation</span><span style="font-family:'Times New Roman';font-size:12pt">.</span><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in;text-indent:-0.39in"><marker name="tab" /><span style="font-style:italic">See also Persimmon Homes Ltd v. Arup &amp; Partners Ltd 2017 EWCA Civ 373, </span>per Jackson LJ at [56-57] and<span style="font-style:italic"> Goodlife Foods Ltd v. Hall Fire Protection Ltd </span>[2018] EWCA Civ 1371 per Coulson LJ at [61].</p>
+          </content>
+        </level>
+        <paragraph eId="para_125">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">125.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">In <span style="font-style:italic">Watford Electronics Ltd</span> the Court of Appeal held reasonable a term in a contract for the supply of a bespoke integrated software system which excluded the liability of either party for indirect and consequential losses, whether arising from negligence or otherwise, and limited the liability of the supplier to the amount of the contract price. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_126">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">126.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">Similarly, in <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Goodlife</span>, a clause in a supply of goods agreement excluding “<span style="font-style:italic">all liability, loss, damages or expense consequential or otherwise caused to… property, goods… or the like, directly or indirectly resulting from… negligence or delay or failure or malfunction of the systems or components provided… for whatever reason</span>” was held by the trial judge to have been reasonable and therefore enforceable. The Court of Appeal upheld the judge’s decision.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_127">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">127.</num>
+          <content>
+            <p class="BodyA" style="text-align:justify;margin-left:0.39in">The task for the court is a balancing exercise weighing up all the relevant factors, see: <span style="font-style:italic">George Mitchell (Chesterhall Limited) v Finney Lock Seeds Limited </span>[1983] 2 AC 803. It has been held that excluding liability for the consequences of defective provision of the work or goods which are the subject of the contract is in itself fundamentally unreasonable, see: <span style="font-style:italic">Charlotte Thirty Limited v. Croker Limited</span> (1977) 24 Con LR 46 and <span style="font-style:italic">Balmoral Group Limited v. Borealis (UK) Limited</span> [2006] 2 Lloyd<span style="font-family:'Arial Unicode MS'">’</span>s Rep. 629. The reasonableness of the term must be assessed as of the time at which the contract was made. That assessment is therefore not affected by the nature or seriousness of the loss or damage actually caused to a party, nor by the way in which the term has in fact operated or been relied on, except to the extent to which such events were or ought reasonably to have been in the contemplation of the parties at that time.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_128">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">128.</num>
+          <content>
+            <p class="BodyA" style="text-align:justify;margin-left:0.39in">Exclusion clauses will be more strictly construed than limitation clauses. (<span style="font-style:italic">Ailsa Craig v. Malvern Fishing Co Ltd (The Strathallan)</span> 1982 SC (HL) 14 [983] 1 WLR 964). Further, it is for the party seeking to rely on the exclusion clause to show that the clause, on its true construction, covers the obligation or liability that it purports to restrict or exclude (Chitty on Contracts, 34th Edition paragraphs [17-22]).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_129">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">129.</num>
+          <content>
+            <p class="BodyA" style="text-align:justify;margin-left:0.39in">I note that recently the Court of Appeal in the case of <span style="font-style:italic">Soteria Insurance Limited (formerly Cis General Insurance Limited) v IBM United Kingdom Limited</span> [2022] EWCA Civ 440 has given guidance as to how a court should approach the interpretation of exclusion clauses in commercial contracts. As with construction of commercial contracts generally, the starting point is the application of the principles in the Supreme Court cases of <span style="font-style:italic">Rainy Sky SA v Kookmin Bank</span> [2011] UKSC 50 at [14]-[30]; <span style="font-style:italic">Arnold v Britton</span> [2015] UKSC 36 at [14]-[22]; and <span style="font-style:italic">Wood v Capita Insurance Services Limited</span> [2017] UKSC 24 at [8]-[15]. The ultimate aim in interpreting a commercial contract is to determine what the parties meant by the language used, which involves ascertaining what a reasonable person would have understood the parties to have meant. The reasonable person is one who has all the background knowledge which would reasonably have been available to the parties in the situation in which they were at the time of the contact. Thereafter the court will have regard to the rules for the construction of exclusion clauses applying the above principals and requirement for sufficient clarity of language. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">The submissions from the Claimant on Issue Three</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_130">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">130.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">The parties agree that there is no inequality of bargaining power between them. This is relevant to the first of the ‘guidelines’ in Schedule 2 to Unfair Contract Terms Act 1977 (“UCTA”).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_131">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">131.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">As to guideline factor (c) in Schedule 2 of UCTA, all categories of the limitation / exclusion clauses at issue are commonly used across the haulage / logistics industry. The Claimant provided a matrix setting out comparable clauses from nine companies in that sector. Those comparator clauses were not expressly challenged by the Defendants. Mr Naylor also highlights that Uniserve’s own terms and conditions 1) limit its liability by reference to the value of goods and 2) exclude indirect or consequential loss, including loss of profit. A number of similar and/or competitor entities to Microlise (including Samsara, which is the provider apparently used by Uniserve now) also limit their liability and exclude certain types of losses.  Hence they submit that the Defendant entities were aware of the type of limitation / exclusion clauses in question, both as a matter of a long course of dealing between the parties and because such clauses are standard in their industry<span style="font-size:11pt">.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_132">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:10pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">132.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in"><span style="font-size:11pt">They note that </span>Clause 29.1 of the SPSA concerns the exclusion of particular types of loss and/or damage and that such clauses are commonly upheld as reasonable. The Claimants point to the similarities in<span style="font-style:italic"> Watford Electronics Ltd v. Sanderson CFL Ltd </span>[2001] EWCA Civ 317<span style="font-style:italic">. </span>They submit that in the circumstances this clause is fair, reasonable and enforceable.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_133">
+          <num style="font-style:normal;font-weight:normal;text-transform:none;font-variant:normal;vertical-align:baseline;font-family:Arial;font-size:11pt;color:#000000;margin-left:0.39in;text-indent:-0.39in">133.</num>
+          <intro>
+            <p class="NumberedPara" style="margin-left:0.39in">They note that Clause 29.2 is a limitation clause that limits Microlise’s liability to £1 million and that such caps on liability are regularly upheld as reasonable by the Courts. Support was found through <span style="font-style:italic">Chitty</span> at 17-112:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="MJN1Quote" style="margin-left:1.18in;margin-right:0.75in"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">“</span><span style="font-family:'Times New Roman';font-size:12pt">Clauses limiting the amount of damages recoverable have been upheld as reasonable in Moore v Yakeley Associates Ltd, where a term in the Royal Institute of British Architects’ Standard Form limited the liability of an architect to £250,000, and in Britvic Soft Drinks Ltd v Messer UK Ltd where there was a term in a contract for the sale of bulk carbon dioxide limiting the liability of the seller in respect of direct physical damage to property, and losses arising directly therefrom, whether through negligence or otherwise, to £500,000. In Frans Maas (UK) Ltd v Samsung Electronics (UK) Ltd a clause in the BIFA (freight forwarders) contract limiting the damages recoverable in respect of loss by theft of mobile telephones (valued at £2m) to approximately £25,000 was upheld as reasonable and in Sterling Hydraulics Ltd v Dichtomatik Ltd a clause in a contract for trailer parts which restricted the seller’s liability for defects to the value of the goods was likewise held to be reasonable. In Regus (UK) Ltd v Epcot Solutions Ltd terms in a contract for the hire of serviced office accommodation were held reasonable which excluded liability for consequential loss and which limited liability to 125 per cent of fees or £50,000.</span><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="NumberedPara"><marker name="tab" />They also directed me to the decisions in <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Shepherd Homes Ltd v. Encia Remediation</span><span style="font-style:italic"> </span><marker name="tab" /><marker name="tab" /><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Ltd </span>[2007] EWHC 70 (TCC)<span style="font-family:Arial"> </span>per Christopher Clarke J at [66]-[68], and <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Trebor Bassett</span><span style="font-style:italic"> </span><marker name="tab" /><marker name="tab" /><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Holdings Ltd v. ADT Fire and Security plc</span> [2011] EWHC 1936 per Coulson J at [201]. <marker name="tab" /><marker name="tab" />In this context of decided cases they say that the liability cap set out in the SPSA is fair, <marker name="tab" />reasonable and enforceable.</p>
+            <p class="NumberedPara"><span style="font-weight:bold">Submissions of the Defendants on Issue Three</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_134">
+          <num>134.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">The Defendants’ Case Summary states that if the SPSA applies, they do not seek to construe material terms differently or to imply important terms into that contract. Similarly in their skeleton argument they do not contend that any of terms contained in the SPSA are void or unenforceable. Hence their submissions are necessarily limited on this issue. However, they do qualify that view in relation to the ambit of Clauses 29.1 and 29.2. They submit that Clause 29.1 is exclusionary in nature and subject to the strict approach to interpretation. In that context, Uniserve submits that on its true construction this clause purports to exclude liability for indirect/consequential losses of the kind falling within the second limb of <span style="font-style:italic">Hadley v Baxendale</span>. It has no wider application and nothing else is excluded. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_135">
+          <num>135.</num>
+          <content>
+            <p class="NumberedPara" style="margin-left:0.39in">They submit in relation to Clause 29.2 that it is also exclusionary in nature and subject to the strict approach to construction. They submit that the words <span style="font-family:'Arial Unicode MS'">“</span>any representations” in that Clause apply only to contractual representations and not to pre-contractual mis-representations. Otherwise, the Defendants accept that if the SPSA terms apply, Microlise<span style="font-family:'Arial Unicode MS'">’</span>s liability (subject to reasonableness/UCTA) will be capped at £1 million but its claims in misrepresentation are not so limited.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify"><span style="font-weight:bold">Ruling on Issue Three</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_136">
+          <num>136.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">It is common to see clauses which accept liability for limited types of loss or damage but which attempt to exclude or restrict liability for "indirect", "consequential" and/or "economic" loss. "Indirect" and "consequential" losses are widely accepted as the same thing, i.e. losses which fall under the second limb of <span style="font-style:italic">Hadley -v- Baxendale</span>. Under that second limb only loss that can reasonably be supposed to have been in the contemplation of both parties at the time the contract was made can be recovered. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_137">
+          <num>137.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Whether an exclusion of "consequential loss" catches financial loss such as loss of profits depends on the circumstances of the contract in question. In many cases such losses will be direct (for example where they can ordinarily be expected to flow from a breach) and in some they will be indirect. One approach is to exclude identified, defined categories of loss. Another approach is to incorporate a financial cap. Frequently both approaches will be adopted, as was the case with the SPSA here. Accordingly, my analysis and ruling will be limited to the issue of reasonableness under UCTA of clause 29.1 and 29.2.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in;text-indent:-0.39in"><marker name="tab" /><span style="text-decoration-line:underline;text-decoration-style:solid">Clause 29.1</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_138">
+          <num>138.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">Clause 29.1 of the SPSA is an exclusion clause for indirect and consequential loss and in my view is fair and reasonable under S 11 of UCTA. It is agreed that the parties are of sufficiently equal bargaining power. It is a clause commonly used across the haulage/logistics/telematics sectors. An informative matrix setting out comparable clauses from nine companies involved in that sector was provided by Mr Naylor and not expressly challenged by the Defendants. It is notable and relevant that Uniserve<span style="font-family:'Arial Unicode MS'">’</span>s own terms and conditions exclude indirect or consequential loss, including loss of profit. Uniserve was clearly well aware of the commercial considerations that lead a service provider to include a provision restricting liability for indirect or consequential loss. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_139">
+          <num>139.</num>
+          <content>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">A number of similar and/or competitor entities to Microlise (including Samsara, which it is understood are the current telematics provider used by Uniserve now) contractually exclude indirect or consequential types of losses. I am satisfied that the Defendants were aware of the type of exclusion clause in question. Their pleaded position is that the SPSA is the applicable contract. I am also satisfied on the available evidence that the Defendants would also be fully aware that this type of exclusion clause was standard in their sector<span style="font-size:11pt">.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_140">
+          <num style="font-size:11pt">140.</num>
+          <intro>
+            <p class="BodyAA" style="text-align:justify;margin-left:0.39in">By way of comparator example, the MAN standard contract with whom Zenith had a long course of dealing, stated by way of an exclusion clause:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyA" style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">16c. In no event shall we be liable to You in contract, tort or otherwise including any liability for negligence for any loss of revenue, business, anticipated savings or profits, or any loss of use or value; or for any indirect or consequential loss, howsoever arising. "Anticipated Savings" means any expense which You expect to avoid incurring or to incur in a lesser amount than would otherwise have been the case. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="BodyA" style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">16d. We are not liable for any consequential loss, loss of business and/or loss of profit which You may suffer as a result of Our breach of Our obligations under this Agreement.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_141">
+          <num>141.</num>
+          <intro>
+            <p class="BodyA" style="text-align:justify;margin-left:0.39in">By way of further example, Uniserve’s own standard exclusion clause stated:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-style:italic;font-size:12pt">26C. Save in respect of such loss or damage as is referred to at sub-clause (B), and subject to clause 2B above and sub- clause (D) below, the Company shall not be liable for indirect or consequential loss such as (but not limited to) loss of profit, loss of market, or the consequence of delay or deviation, however caused</span><span style="font-size:12pt">.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_142">
+          <num style="font-size:12pt">142.</num>
+          <intro>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">A further example of an exclusion clause utilised by Samsara states:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="margin-left:0.39in">8.1 No Consequential Damages.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><marker name="tab" />NEITHER SAMSARA NOR CUSTOMER NOR ANY OTHER PARTY INVOLVED IN <marker name="tab" /><marker name="tab" /><marker name="tab" />CREATING, PRODUCING, OR DELIVERING THE PRODUCTS WILL BE LIABLE <marker name="tab" /><marker name="tab" /><marker name="tab" />FOR ANY INCIDENTAL, SPECIAL, PUNITIVE, EXEMPLARY OR <marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" />CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, LOSS OF DATA OR <marker name="tab" /><marker name="tab" /><marker name="tab" />GOODWILL, SERVICE INTERRUPTION, COMPUTER DAMAGE OR SYSTEM <marker name="tab" /><marker name="tab" /><marker name="tab" />FAILURE OR THE COST OF SUBSTITUTE PRODUCTS ARISING OUT OF OR IN <marker name="tab" /><marker name="tab" /><marker name="tab" />CONNECTION WITH THESE TERMS OR FROM THE USE OF OR INABILITY TO <marker name="tab" /><marker name="tab" /><marker name="tab" />USE THE PRODUCTS, WHETHER BASED ON WARRANTY, CONTRACT, TORT <marker name="tab" /><marker name="tab" /><marker name="tab" />(INCLUDING NEGLIGENCE), PRODUCT LIABILITY OR ANY OTHER LEGAL <marker name="tab" /><marker name="tab" /><marker name="tab" />THEORY, AND WHETHER OR NOT THE OTHER PARTY HAS BEEN INFORMED <marker name="tab" /><marker name="tab" /><marker name="tab" />OF THE POSSIBILITY OF SUCH DAMAGE, EVEN IF A LIMITED REMEDY SET <marker name="tab" /><marker name="tab" /><marker name="tab" />FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE. <marker name="tab" /><marker name="tab" /><marker name="tab" />SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF <marker name="tab" /><marker name="tab" /><marker name="tab" />LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, SO THE <marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" />ABOVE LIMITATION MAY NOT APPLY. </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_143">
+          <num style="font-size:12pt">143.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">Clearly, a common theme running through the comparator clauses is an exclusion for indirect or consequential loss. The natural and ordinary meaning of the purpose of Clause 29.1 is (at the least) to exclude contractual claims for indirect and consequential losses i.e the second limb of </span><span style="font-style:italic;font-size:12pt">Hadley v Baxendale</span><span style="font-size:12pt">. Those are losses which do not result </span><span style="font-family:'Arial Unicode MS';font-size:12pt">“</span><span style="font-size:12pt">directly and naturally” from the breach; but which, nevertheless were or must reasonably be supposed to have been in the contemplation of both parties at 1 February 2016.  Further, as a matter of construction, Clause 29.1 does not seek to exclude loss resulting from pre-contractual statements in relation to which a claim lies (if at all) in tort or under the Misrepresentation Act 1967 (“1967 Act”). To the extent the parties wish to deal with any issues arising out of the 1967 Act, then this will be a matter for them to deal with at the next hearing.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_144">
+          <num style="font-size:12pt">144.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">My assessment of the reasonableness of this term is as of the time at which the SPSA was made, 1 February 2016. That assessment is therefore not affected by the nature or seriousness of the loss actually caused, nor by the way in which the term has in fact operated or been relied on, except to the extent to which such events were or ought reasonably to have been in the contemplation of the parties at that time.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in;text-indent:-0.39in"><marker name="tab" /><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:12pt">Clause 29.2</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_145">
+          <num style="font-size:12pt">145.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">Clause 29.2 of the SPSA is a limitation clause capping liability at £1m. In my judgment it is fair and reasonable under S11 of UCTA. The natural and ordinary meaning of that clause results in it being more properly characterised as a limitation clause, rather than an exclusion clause. To the extent the parties wish to deal with any issues arising out of the 1967 Act, then this will be a matter for them to deal with at the next hearing.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_146">
+          <num style="font-size:12pt">146.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">The requisite elements for reasonableness under UCTA in relation to Clause 29.1 are equally applicable here. The parties are of equal bargaining power. Zenith had an extended course of dealing with MAN for several years prior to 2016 through the </span><span style="font-family:'Arial Unicode MS';font-size:12pt">“</span><span style="font-size:12pt">white label” relationship. A number of similar and/or competitor entities to Microlise (including Samsara, an apparent current supplier of telematics to the Defendants) contractually limit certain types of losses. I am satisfied that the Defendants were aware of the type of limitation clause in question. Their pleaded position is that the SPSA is the applicable contract of which they had sufficient notice. Whilst Uniserve’s limitation clause is more specific to haulage operations (e.g reference to Special Drawing Rights weight limitations in the context of CMR Conventions), it is relevant evidence of their awareness of the ability to place a financial cap on contractual obligations. I am satisfied on the available evidence that the Defendants would also be fully aware that this type of exclusion clause was standard in their sector.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_147">
+          <num style="font-size:12pt">147.</num>
+          <intro>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">By way of comparator example, the MAN standard contract with whom Zenith had a long course of dealing, stated by way of a limitation clause:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="margin-left:0.39in"><span style="font-style:italic;font-size:12pt">16b. In no event will Our liability under this Agreement exceed the aggregate of the Rentals already paid by You. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_148">
+          <num style="font-size:12pt">148.</num>
+          <intro>
+            <p class="NormalWeb" style="margin-left:0.39in"><span style="font-size:12pt">By way of further example, Uniserve</span><span style="font-family:'Arial Unicode MS';font-size:12pt">’</span><span style="font-size:12pt">s own standard limitation clause stated:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="margin-left:0.39in"><span style="font-style:italic;font-size:12pt">6A. Subject to 2B and 11B above and subclause D below, the Company's liability howsoever arising and, notwithstanding that the cause of loss or damage be unexplained, shall not exceed: </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="margin-left:0.39in"><span style="font-size:12pt">i) </span><span style="font-style:italic;font-size:12pt">in the case of claims for loss or damages to Goods;</span><br /><span style="font-style:italic;font-size:12pt">a) the value of any loss or damage; or</span><br /><span style="font-style:italic;font-size:12pt">b) a sum at the rate of 2 SDR per kilo of the gross weight of any Goods lost or damaged</span><br /><span style="font-style:italic;font-size:12pt">whichever shall be the lesser.</span><br /><span style="font-style:italic;font-size:12pt">ii) subject to (iii) below, in the case of all other claims:</span><br /><span style="font-style:italic;font-size:12pt">a) the value of the subject Goods of the relevant transaction between the Company and its Customer; or</span><br /><span style="font-style:italic;font-size:12pt">b) where the weight can be defined, a sum calculated at the rate of 2 SDR per kilo of the gross weight of the subject Goods of the said transaction; or</span><br /><span style="font-style:italic;font-size:12pt">c)75,000 SDR in respect of any one transaction,</span><br /><span style="font-style:italic;font-size:12pt">whichever shall be the lesser.</span><br /><span style="font-style:italic;font-size:12pt">iii) in the case of an error and/or omission, or a series of errors and/or omissions which are repetitions of or represent the continuation of an original error and/or omission:</span><br /><span style="font-style:italic;font-size:12pt">a) the loss incurred; or</span><br /><span style="font-style:italic;font-size:12pt">b) 75,000 SDR in the aggregate of any one trading year commencing from the time of the making of the original error and/or omission,</span><br /><span style="font-style:italic;font-size:12pt">whichever shall be the lesser.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_149">
+          <num style="font-size:12pt">149.</num>
+          <intro>
+            <p class="NormalWeb" style="margin-left:0.39in"><span style="font-size:12pt">A further example of an exclusion clause utilised by Samsara states:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="margin-left:0.39in">18.2 Cap.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="text-align:justify;margin-left:0.39in">EXCEPT AS TO ANY EXPRESS INDEMNIFICATION OBLIGATION SET FORTH IN THESE TERMS, IN NO EVENT WILL EITHER PARTY’S TOTAL LIABILITY ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR FROM THE USE OF OR INABILITY TO USE THE PRODUCTS EXCEED THE AMOUNTS CUSTOMER HAS PAID TO SAMSARA HEREUNDER DURING THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE DAMAGE, OR IF CUSTOMER HAS NOT HAD ANY PAYMENT OBLIGATIONS TO SAMSARA (FOR EXAMPLE THROUGH A FREE TRIAL), ONE HUNDRED DOLLARS ($100). </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="text-align:justify;margin-left:0.39in">18.3 THE EXCLUSIONS AND LIMITATIONS OF DAMAGES SET FORTH ABOVE ARE FUNDAMENTAL ELEMENTS OF THE BASIS OF THE BARGAIN BETWEEN SAMSARA AND CUSTOMER. </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_150">
+          <num style="font-size:12pt">150.</num>
+          <intro>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">As with Clause 29.1, my assessment of the reasonableness of this term is as of the time at which the SPSA was made, 1 February 2016. </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="NormalWeb" style="margin-left:0.39in"><span style="font-weight:bold;font-size:12pt">Conclusion</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_151">
+          <num style="font-size:12pt">151.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt"> On Issue One: The terms and conditions of the Microlise SPSA are applicable. The SPSA came into force on 1 February 2016. The SPSA terms override the applicable Q/O form General terms and conditions.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_152">
+          <num style="font-size:12pt">152.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">On Issue Two: The SPSA governed the relationship between Microlise and the Uniserve Group from 1 February 2016. Individual orders on the Q/O forms then fell within the terms of the SPSA if those orders had been given by a Uniserve entity. To the extent any Q/O forms were returned by Zenith, then those orders would be subject to the SPSA. Similarly, when JKL was acquired on 22 April 2016, any subsequent Q/O forms by them would be subject to the SPSA. JKL could not have been subject to the SPSA prior to 22 April 2016. Once JKL was acquired, it then fell within the remit of the SPSA. In relation to Zenith, there were known pre-existing contracts with MAN relating to “white-label” Microlise equipment before 1 February 2016. To the extent there were problems with that equipment under those pre-existing contracts, then that would be a contractual matter between Zenith and MAN to which the SPSA would not apply. Any post 1 February 2016 Zenith orders through MAN (rather than directly with Microlise) would not fall within the scope of the SPSA. Subsequent to 1 February 2016, where Microlise installed non “white label” hardware such as dashcams and forward facing cameras on Zenith trucks, and there were problems with that equipment, then that would fall under the SPSA, absent any applicable and relevant Zenith MAN contract.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_153">
+          <num style="font-size:12pt">153.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">On Issue Three: Clauses 29.1 and 29.2 of the SPSA are fair and reasonable under Section 11 of UCTA.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_154">
+          <num style="font-size:12pt">154.</num>
+          <content>
+            <p class="NormalWeb" style="text-align:justify;margin-left:0.39in"><span style="font-size:12pt">Given my rulings on these three preliminary issues I invite the parties to draw up an appropriate Order.</span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
