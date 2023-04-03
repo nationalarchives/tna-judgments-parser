@@ -264,6 +264,18 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + format.Val.Value);
     }
 
+    private static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
+        AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+            .OfType<AbstractNum>()
+            .Where(a => a.AbstractNumberId.Value == absNumId)
+            .First();
+        Level level = abs.ChildElements
+            .OfType<Level>()
+            .Where(l => l.LevelIndex.Value == ilvl)
+            .FirstOrDefault();  // does not exist in EWHC/Ch/2003/2902
+        return level?.StartNumberingValue?.Val ?? 1;
+    }
+
     private static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
         Level level = numbering.Descendants<Level>()
@@ -277,17 +289,7 @@ class Numbering2 {
             .FirstOrDefault();
         if (lvlOver?.StartOverrideNumberingValue?.Val is not null)
             return lvlOver.StartOverrideNumberingValue.Val;
-        AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
-            .OfType<AbstractNum>()
-            .Where(a => a.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
-            .First();
-        level = abs.ChildElements
-            .OfType<Level>()
-            .Where(l => l.LevelIndex.Value == ilvl)
-            .FirstOrDefault();  // does not exist in EWHC/Ch/2003/2902
-        if (level?.StartNumberingValue?.Val is not null)
-            return level.StartNumberingValue.Val;
-        return 1;
+        return GetAbstractStart(main, numbering.AbstractNumId.Val.Value, ilvl);
     }
 
     private delegate string OneCombinator(string num1);
@@ -528,12 +530,60 @@ class Numbering2 {
             .FirstOrDefault()?.StartOverrideNumberingValue?.Val?.Value;
     }
 
+    private static bool StartOverrideIsOperative(MainDocumentPart main, Paragraph target, int ilvl) {
+        (int? targetNumId, int targetIlvl) = Numbering.GetNumberingIdAndIlvl(main, target);
+        if (!targetNumId.HasValue)
+            throw new Exception();
+        if (targetIlvl != ilvl)
+            throw new Exception();
+        NumberingInstance targetNumbering = Numbering.GetNumbering(main, targetNumId.Value);
+
+        int numIdOfStartOverride = -1;
+        var allPrev = target.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, target));
+        foreach (Paragraph prev in allPrev) {
+            // if (Paragraphs.IsEmptySectionBreak(prev))
+            //     continue;
+            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
+            if (!prevNumId.HasValue)
+                continue;
+            NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
+            if (prevNumbering is null)
+                continue;
+            AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
+            if (prevAbsNum.AbstractNumberId.Value != targetNumbering.AbstractNumId.Val.Value)
+                continue;
+
+            if (prevIlvl < ilvl) {
+                if (numIdOfStartOverride == targetNumId.Value)
+                    return false;
+                continue;
+            }
+            if (prevIlvl > ilvl) {
+                // maybe add something here, see below for test38
+                continue;
+            }
+            // prevIlvl == ilvl
+            if (prevNumId != numIdOfStartOverride) {
+                int? prevOver = GetStartOverride(prevNumbering, ilvl);
+                if (prevOver.HasValue)
+                    numIdOfStartOverride = prevNumId.Value;
+            }
+        }
+        return true;
+    }
+
     /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+
         int? start = null;
         int numIdOfStartOverride = -1;
+        // -1 means not set
+        // -2 meanss trumped, even numbering instance's own start value doesn't matter
+        // any positive integer is the numbering id of the previous paragraph that set the value of 'start'
+        int absStart = GetAbstractStart(main, abstractNumId, ilvl);
+
         bool prevContainsNumId = false;
         HashSet<int> prevEncounteredNumIds = new HashSet<int>();
         int count = 0;
@@ -563,13 +613,16 @@ class Numbering2 {
             int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
 
             if (prevIlvl < ilvl) {
-                if (start is not null && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2 && prevNumId.Value == numberingId) {
+                if (numIdOfStartOverride == -2) {
+                    ;
+                } else if (numIdOfStartOverride == numberingId) {
+                    start = absStart;
+                    numIdOfStartOverride = -2;
+                } else if (start is null) {
+                    ;
+                } else {
                     start = null;
                     numIdOfStartOverride = -1;
-                }
-                else if (!thisNumIdWithoutStyle.HasValue && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2 && prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue && prevNumIdWithoutStyle.Value != prevNumIdOfStyle.Value) {
-                    start = 1;
-                    numIdOfStartOverride = -2;
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
@@ -583,22 +636,9 @@ class Numbering2 {
                     count += 1;
                 if (!isHigher && !start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
                     if (prevIlvl - ilvl > 1) { // test38
-                        start = 1;
+                        start = absStart;
                         numIdOfStartOverride = -2;
                     }
-                    // this is old code, replaced by th above
-                    // var thisStyle = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
-                    // var prevStyle = prev.ParagraphProperties.ParagraphStyleId.Val.Value;
-                    // if (false) {
-                    // } else if (thisNumIdWithoutStyle.HasValue && prevNumId.Value != thisNumIdWithoutStyle.Value) { // test47
-                    // } else if (thisStyle is null) { // test 56
-                    // } else if (thisStyle == prevStyle && thisNumIdOfStyle.HasValue && thisNumIdOfStyle.Value != numberingId) { // test56
-                    // } else if (thisStyle != prevStyle && thisNumIdOfStyle is null) { // test 54
-                    // } else if (thisStyle != prevStyle && thisNumIdOfStyle == prevNumIdOfStyle && prevIlvl - ilvl == 1) {  // test 55
-                    // } else { // test38
-                    //     start = 1;
-                    //     numIdOfStartOverride = -2;
-                    // }
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
@@ -607,40 +647,26 @@ class Numbering2 {
                 continue;
             }
 
+            // prevIlvl == ilvl
             if (start is null) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
-                if (prevOver.HasValue) {
+                if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    if (prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue)
+                    if (prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue) {
                         count = 0;
-                    // bool prevIsParent = ilvl < (prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
-                    // if (!prevIsParent && !prevContainsNumId)
-                    //     count = 0;
-                    if (!prevContainsNumId)
+                    }
+                    if (!prevContainsNumId) {
                         count = 0;
+                    }
                 }
             } else if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
-                if (prevOver.HasValue) {
+                if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
                     count = 0;
                 }
-            }
-            // if (prevNumIdWithoutStyle == numberingId)
-            //     prevContainsNumId = true;
-            // if (prevNumIdWithoutStyle == numberingId)
-            //     prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
-
-            // [2023] UKFTT 00045 (TC)
-            var prevOverridesStyleNumId = prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue && !thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numberingId;
-            if (prevOverridesStyleNumId && ilvl > 0) {
-                // this is similar to code below
-                int? over = GetStartOverride(main, prevNumIdWithoutStyle.Value, ilvl);
-                bool isParent = ilvl < (prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
-                if (!isParent && !prevEncounteredNumIds.Contains(prevNumIdWithoutStyle.Value) && over.HasValue)
-                    continue;
             }
 
             count += 1;
