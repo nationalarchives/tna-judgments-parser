@@ -278,17 +278,14 @@ class Numbering2 {
 
     private static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
-        Level level = numbering.Descendants<Level>()
+        int? start = numbering.Descendants<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
-            .FirstOrDefault();
-        if (level?.StartNumberingValue?.Val is not null)
-            return level.StartNumberingValue.Val;
-        LevelOverride lvlOver = numbering.ChildElements
-            .OfType<LevelOverride>()
-            .Where(l => l.LevelIndex.Value == ilvl)
-            .FirstOrDefault();
-        if (lvlOver?.StartOverrideNumberingValue?.Val is not null)
-            return lvlOver.StartOverrideNumberingValue.Val;
+            .FirstOrDefault()?.StartNumberingValue?.Val?.Value;
+        if (start.HasValue)
+            return start.Value;
+        int? lvlOver = GetStartOverride(numbering, ilvl);
+        if (lvlOver.HasValue)
+            return lvlOver.Value;
         return GetAbstractStart(main, numbering.AbstractNumId.Val.Value, ilvl);
     }
 
@@ -582,11 +579,10 @@ class Numbering2 {
         // -1 means not set
         // -2 meanss trumped, even numbering instance's own start value doesn't matter
         // any positive integer is the numbering id of the previous paragraph that set the value of 'start'
+        bool prevContainsNumId = false; // whether this numId has already been encountered _since the most recent higher level_
 
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
-        bool prevContainsNumId = false;
-        HashSet<int> prevEncounteredNumIds = new HashSet<int>();
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
             if (Paragraphs.IsEmptySectionBreak(prev))
@@ -594,16 +590,12 @@ class Numbering2 {
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
                 continue;
-            // if (prevNumId.Value == 0)
-            //     continue;
             NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
             if (prevNumbering is null)
                 continue;
 
             if (prevIlvl < ilvl)    // even if prevAbsNumId != abstractNumId
                 prevContainsNumId = false;
-            if (prevIlvl < ilvl)
-                prevEncounteredNumIds.Remove(prevNumId.Value);
 
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
@@ -627,8 +619,6 @@ class Numbering2 {
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
-                if (prevNumIdWithoutStyle == numberingId)
-                    prevEncounteredNumIds.Add(numberingId);
                 count = 0;
                 continue;
             }
@@ -644,13 +634,11 @@ class Numbering2 {
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
-                if (prevNumIdWithoutStyle == numberingId)
-                    prevEncounteredNumIds.Add(prevNumIdWithoutStyle.Value);
                 continue;
             }
 
             // prevIlvl == ilvl
-            if (start is null) {
+            if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
                 if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                     start = prevOver.Value;
@@ -658,30 +646,19 @@ class Numbering2 {
                     if (!prevContainsNumId)
                         count = 0;
                 }
-            } else if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {
-                int? prevOver = GetStartOverride(prevNumbering, ilvl);
-                if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
-                    start = prevOver.Value;
-                    numIdOfStartOverride = prevNumId.Value;
-                    count = 0;
-                }
             }
 
             count += 1;
         }
 
-        if (start is null) {    //  || numberingId != numIdOfStartOverride
-            start = GetStart(main, numberingId, ilvl);
+        if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
             int? over = GetStartOverride(main, numberingId, ilvl);
-            if (!isHigher && !prevContainsNumId && over.HasValue)
-                count = 0;
-        } else if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {
-            int? over = GetStartOverride(main, numberingId, ilvl);
-            if (over.HasValue) {
+            if (start is null)
                 start = GetStart(main, numberingId, ilvl);
-                if (!isHigher && !prevContainsNumId)
-                    count = 0;
-            }
+            else if (over.HasValue)
+                start = over.Value;
+            if (over.HasValue && !isHigher && !prevContainsNumId)
+                count = 0;
         }
         return count + start.Value;
     }
