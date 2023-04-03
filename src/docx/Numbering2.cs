@@ -582,6 +582,7 @@ class Numbering2 {
         // -1 means not set
         // -2 meanss trumped, even numbering instance's own start value doesn't matter
         // any positive integer is the numbering id of the previous paragraph that set the value of 'start'
+
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
         bool prevContainsNumId = false;
@@ -631,6 +632,7 @@ class Numbering2 {
                 count = 0;
                 continue;
             }
+
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
@@ -653,12 +655,8 @@ class Numbering2 {
                 if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    if (prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle.HasValue) {
+                    if (!prevContainsNumId)
                         count = 0;
-                    }
-                    if (!prevContainsNumId) {
-                        count = 0;
-                    }
                 }
             } else if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
@@ -675,15 +673,13 @@ class Numbering2 {
         if (start is null) {    //  || numberingId != numIdOfStartOverride
             start = GetStart(main, numberingId, ilvl);
             int? over = GetStartOverride(main, numberingId, ilvl);
-            bool isParent = ilvl < (paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
-            if (!isParent && !prevContainsNumId && over.HasValue)
+            if (!isHigher && !prevContainsNumId && over.HasValue)
                 count = 0;
         } else if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {
             int? over = GetStartOverride(main, numberingId, ilvl);
             if (over.HasValue) {
                 start = GetStart(main, numberingId, ilvl);
-                bool isParent = ilvl < (paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0);
-                if (!isParent && !prevContainsNumId)
+                if (!isHigher && !prevContainsNumId)
                     count = 0;
             }
         }
