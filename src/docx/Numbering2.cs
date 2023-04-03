@@ -638,12 +638,12 @@ class Numbering2 {
             }
 
             // prevIlvl == ilvl
-            if (prevNumId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
+            if (prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
                 int? prevOver = GetStartOverride(prevNumbering, ilvl);
                 if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    if (!prevContainsNumId)
+                    if (!prevContainsNumId)  // only test37 needs this condition
                         count = 0;
                 }
             }
@@ -657,7 +657,7 @@ class Numbering2 {
                 start = GetStart(main, numberingId, ilvl);
             else if (over.HasValue)
                 start = over.Value;
-            if (over.HasValue && !isHigher && !prevContainsNumId)
+            if (over.HasValue && !isHigher && !prevContainsNumId)  // only test37 needs !isHigher && !prevContainsNumId
                 count = 0;
         }
         return count + start.Value;
