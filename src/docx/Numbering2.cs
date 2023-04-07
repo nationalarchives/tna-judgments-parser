@@ -594,9 +594,6 @@ class Numbering2 {
             if (prevNumbering is null)
                 continue;
 
-            if (prevIlvl < ilvl)    // even if prevAbsNumId != abstractNumId
-                prevContainsNumId = false;
-
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
             if (prevAbsNumId != abstractNumId)
@@ -619,6 +616,8 @@ class Numbering2 {
                 }
                 if (prevNumIdWithoutStyle == numberingId)
                     prevContainsNumId = true;
+                else
+                    prevContainsNumId = false;
                 count = 0;
                 continue;
             }
@@ -626,7 +625,7 @@ class Numbering2 {
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
-                if (!isHigher && !start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
+                if (!start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
                     if (prevIlvl - ilvl > 1) { // test38
                         start = absStart;
                         numIdOfStartOverride = -2;
@@ -651,13 +650,16 @@ class Numbering2 {
             count += 1;
         }
 
+        if (isHigher && thisNumIdWithoutStyle.HasValue)
+            prevContainsNumId = true;
+
         if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
             int? over = GetStartOverride(main, numberingId, ilvl);
             if (start is null)
                 start = GetStart(main, numberingId, ilvl);
             else if (over.HasValue)
                 start = over.Value;
-            if (over.HasValue && !isHigher && !prevContainsNumId)  // only test37 needs !isHigher && !prevContainsNumId
+            if (over.HasValue && !prevContainsNumId)  // only test37 needs !prevContainsNumId
                 count = 0;
         }
         return count + start.Value;
