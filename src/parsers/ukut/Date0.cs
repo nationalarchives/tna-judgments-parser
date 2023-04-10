@@ -38,7 +38,7 @@ class Date0 {
         if (line.Contents.Last() is not WText wText)
             return line;
         string pattern = @"(^| )(\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}) *$";
-        Match match = Regex.Match(wText.Text, pattern);
+        Match match = Regex.Match(wText.Text, pattern, RegexOptions.IgnoreCase);
         if (!match.Success)
             return line;
         Group group = match.Groups[2];
@@ -62,7 +62,7 @@ class Date0 {
             return line;
         string normalized = Regex.Replace(wText1.Text + wText2.Text, @"\s+", " ").Trim();
         string pattern = @"^\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}$";
-        Match match = Regex.Match(normalized, pattern);
+        Match match = Regex.Match(normalized, pattern, RegexOptions.IgnoreCase);
         if (!match.Success)
             return line;
         DateTime date = DateTime.Parse(match.Value, culture);
@@ -89,7 +89,7 @@ class Date0 {
         Match match2 = Regex.Match(wText2.Text, pattern2);
         if (!match2.Success)
             return line;
-        Match match3 = Regex.Match(wText3.Text, pattern3);
+        Match match3 = Regex.Match(wText3.Text, pattern3, RegexOptions.IgnoreCase);
         if (!match3.Success)
             return line;
         DateTime date = DateTime.Parse(match1.Value + match3.Value, culture);
