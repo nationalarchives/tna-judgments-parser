@@ -167,7 +167,9 @@ class PressSummaryEnricher {
             return false;
         if (string.IsNullOrWhiteSpace(text.Text))
             return true;
-        if ("FF0000".Equals(text.FontColor, StringComparison.InvariantCultureIgnoreCase))
+        // if ("FF0000".Equals(text.FontColor, StringComparison.InvariantCultureIgnoreCase))
+        //     return true;
+        if (text.FontColor is not null && Regex.IsMatch(text.FontColor, "^[0-9A-F]{2}0{4}$", RegexOptions.IgnoreCase))
             return true;
         return false;
     }
