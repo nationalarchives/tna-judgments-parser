@@ -104,7 +104,7 @@ public class WImageRef : IImageRef {
             return null;
         }
         if (data.Skip(1).Any())
-            logger.LogWarning("picutre contains more than one image data");
+            logger.LogCritical("picutre contains more than one image data");
         Vml.ImageData datum = data.First();
         string relId = datum.RelationshipId?.Value;
         if (relId is null) {
