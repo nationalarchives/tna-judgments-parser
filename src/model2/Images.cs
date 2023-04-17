@@ -100,15 +100,15 @@ public class WImageRef : IImageRef {
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
         IEnumerable<Vml.ImageData> data = picture.Descendants<Vml.ImageData>();
         if (!data.Any()) {
-            logger.LogWarning("skipping picutre because it has no 'image data'");
+            logger.LogWarning("skipping picture because it has no 'image data'");
             return null;
         }
         if (data.Skip(1).Any())
-            logger.LogCritical("picutre contains more than one image data");
+            logger.LogCritical("picture contains more than one image data");
         Vml.ImageData datum = data.First();
         string relId = datum.RelationshipId?.Value;
         if (relId is null) {
-            logger.LogWarning("skipping picutre because its 'image data' has no relationship");
+            logger.LogWarning("skipping picture because its 'image data' has no relationship");
             return null;
         }
         return new WImageRef(main, picture, datum, relId);
