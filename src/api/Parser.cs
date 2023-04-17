@@ -209,9 +209,9 @@ public class Parser {
 
     internal static void Log(Api.Meta meta) {
         if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
-            Logger.LogWarning(@"The judgment's uri is null");
+            Logger.LogWarning(@"The judgment uri is null");
         else
-            Logger.LogInformation($"The judgment's uri is { meta.Uri }");
+            Logger.LogInformation($"The judgment uri is { meta.Uri }");
         if (meta.Court is null)
             Logger.LogWarning(@"The court is null");
         else
