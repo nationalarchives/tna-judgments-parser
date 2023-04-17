@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -22,11 +21,14 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE {
 
 public class Lambda {
 
-    private static readonly ILogger logger;
+    private readonly UK.Gov.Legislation.Judgments.CustomLoggerProvider loggerProvider;
+    private readonly ILogger logger;
 
-    static Lambda() {
-        string logFile = Path.GetTempPath() + "log-{Date}.txt";
-        UK.Gov.Legislation.Judgments.Logging.SetConsoleAndFile(new FileInfo(logFile), Microsoft.Extensions.Logging.LogLevel.Debug);
+    private readonly string logFilename = "parser.log";
+
+    public Lambda() {
+        loggerProvider = new UK.Gov.Legislation.Judgments.CustomLoggerProvider();
+        UK.Gov.Legislation.Judgments.Logging.Factory.AddProvider(loggerProvider);
         logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<Lambda>();
     }
 
@@ -34,31 +36,32 @@ public class Lambda {
         using MemoryStream ms = new MemoryStream();
         input.CopyTo(ms);
         Request request = JsonSerializer.Deserialize<Request>(ms.ToArray());
-        Response response = FunctionHandler2(request);
+        Response response = Helper1(request);
         byte[] json = JsonSerializer.SerializeToUtf8Bytes(response);
         return new MemoryStream(json);
     }
 
-    private Response FunctionHandler2(Request request) {
-        try {
-            string logFile = Path.GetTempPath() + "log-" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            File.WriteAllText(logFile, string.Empty);
-        } catch (Exception) {
-        }
-        ParserInputs inputs = request.Inputs;
+    private Response Helper1(Request request) {
+        ParserOutputs outputs = Helper2(request.Inputs);
+        return new Response { Outputs = outputs };
+    }
+
+    private ParserOutputs Helper2(ParserInputs inputs) {
+        List<string> errors = new List<string>();
         if (inputs is null) {
             logger.LogError("parser-inputs is null");
-            return Response.Error("parser-inputs is null");
+            errors.Add("parser-inputs is null");
+            return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
         using HttpClient http = new HttpClient();
         byte[] docx;
         try {
-            docx = http.GetByteArrayAsync(request.Inputs.DocumentUrl).Result;
+            docx = http.GetByteArrayAsync(inputs.DocumentUrl).Result;
         } catch (Exception e) {
-            logger.LogError(e, "read error");
-            return Response.Error("error reading .docx file");
+            logger.LogError(e, "error reading .docx file");
+            errors.Add("error reading .docx file");
+            return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
-        List<string> errors = new List<string>();
         List<Api.Attachment> attachments = new List<Api.Attachment>();
         if (inputs.AttachmentURLs is not null) {
             foreach (string url in inputs.AttachmentURLs) {
@@ -66,7 +69,7 @@ public class Lambda {
                     byte[] content = http.GetByteArrayAsync(url).Result;
                     attachments.Add(new Api.Attachment { Content = content });
                 } catch (Exception e) {
-                    logger.LogError(e, "read error");
+                    logger.LogError(e, "error reading attachment");
                     errors.Add("error reading attachment");
                 }
             }
@@ -77,7 +80,7 @@ public class Lambda {
         } catch (Exception e) {
             logger.LogError(e, "parse error");
             errors.Add("error parsing document");
-            return Response.Errors(errors);
+            return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
         string xmlFilename = inputs.ConsignmentReference + ".xml";
         try {
@@ -106,27 +109,24 @@ public class Lambda {
                 errors.Add("error saving image " + image.Name);
             }
         }
-        string logFilename = "parser.log";
+        bool saveLogWasSuccessful;
         try {
-            string logFile = Path.GetTempPath() + "log-" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            byte[] log = File.ReadAllBytes(logFile);
-            // File.WriteAllText(logFile, string.Empty);
-            Save(inputs.S3Bucket, inputs.S3OutputPrefix, logFilename, log, "text/plain");
+            ClearAndSaveLog(inputs.S3Bucket, inputs.S3OutputPrefix);
+            saveLogWasSuccessful = true;
         } catch (Exception) {
             errors.Add("error saving log file");
-            logFilename = null;
+            saveLogWasSuccessful = false;
         }
-        return new Response { Outputs = new ParserOutputs {
+        return new ParserOutputs {
             XMLFilename = xmlFilename,
             MetadataFilename = metadataFilename,
             ImageFilenames = imageFilenames,
-            LogFilename = logFilename,
+            LogFilename = saveLogWasSuccessful ? logFilename : null,
             ErrorMessages = errors
-        } };
+        };
     }
 
-    private static PutObjectResponse Save(string bucket, string prefix, string filename, byte[] content, string type) {
-        logger.LogInformation("saving " + prefix + filename);
+    private PutObjectResponse Save(string bucket, string prefix, string filename, byte[] content, string type) {
         PutObjectRequest request = new PutObjectRequest() {
             BucketName = bucket,
             Key = prefix + filename,
@@ -135,6 +135,27 @@ public class Lambda {
         };
         AmazonS3Client s3 = new AmazonS3Client();
         return s3.PutObjectAsync(request).Result;
+    }
+
+    private ParserOutputs ClearAndSaveLogAndReturnErrors(ParserInputs inputs, List<string> errors) {
+        try {
+            ClearAndSaveLog(inputs.S3Bucket, inputs.S3OutputPrefix);
+            return new ParserOutputs {
+                LogFilename = logFilename,
+                ErrorMessages = errors
+            };
+        } catch (Exception) {
+            errors.Add("error saving log");
+            return new ParserOutputs {
+                ErrorMessages = errors
+            };
+        }
+    }
+
+    private void ClearAndSaveLog(string bucket, string prefix) {
+        IList<UK.Gov.Legislation.Judgments.LogMessage> messages = loggerProvider.Reset();
+        string log = UK.Gov.Legislation.Judgments.CustomLoggerProvider.ToJson(messages);
+        Save(bucket, prefix, logFilename, Encoding.UTF8.GetBytes(log), "application/json");
     }
 
 }
