@@ -52,7 +52,7 @@ class PreParser {
             .Where(block => block is not ILine line || !line.IsEmpty());
         contents = removeTrailingWhitespace.Enrich(contents);
         contents = mergeRuns.Enrich(contents);
-        return contents;
+        return contents.ToList();  // toList() is needed for the ImageRef.Src replacement
     }
 
     internal static bool IsSkippable(OpenXmlElement e) {
