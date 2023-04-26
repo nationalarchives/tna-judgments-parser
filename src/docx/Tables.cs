@@ -39,14 +39,11 @@ class Tables {
     }
 
     internal static string SumAbove(TableCell cell) {
-        // CultureInfo culture = new CultureInfo("en-GB");
-        CultureInfo culture = new CultureInfo("en-US");
-        // NumberFormatInfo format = culture.NumberFormat;
         Func<string, double> parse = (num) => {
             num = Regex.Replace(num, @"\s+", " ").Trim();
-            return double.Parse(num, NumberStyles.Currency, culture);
+            return double.Parse(num);  // TODO what if currency?
         };
-        Func<double, string> format = num => num.ToString("c", culture);
+        Func<double, string> format = num => num.ToString();  // TODO what if currency?
         double sum = SumAbove(cell, parse);
         if (sum == 0d)
             throw new Exception();
