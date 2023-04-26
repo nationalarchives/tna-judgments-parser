@@ -174,24 +174,23 @@ class Fields {
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" =SUM(ABOVE) ")) {   // EWCA/Crim/2018/542, EWHC/Ch/2015/164, EWHC/QB/2010/1112
-            if (i == withinField.Count) {
-                TableCell cell = first.Ancestors<TableCell>().First();
-                string sum = DOCX.Tables.SumAbove(cell);
-                RunProperties rProps = ((Run) first).RunProperties;
-                WText wText = new WText(sum, rProps);
-                return new List<IInline>(1) { wText };
-            } else {
+            if (HasRest(withinField, i))
                 return Rest(main, withinField, i);
-            }
+            TableCell cell = first.Ancestors<TableCell>().First();
+            string sum = DOCX.Tables.SumAbove(cell);
+            logger.LogWarning($"calculating sum: { sum }");
+            RunProperties rProps = ((Run) first).RunProperties;
+            WText wText = new WText(sum, rProps);
+            return new List<IInline>(1) { wText };
         }
         if (fieldCode.StartsWith(" =SUM(ABOVE)")) { // Miles v Forster - Approved Judgment - 19th January 2022 v.1.docx
-            if (i == withinField.Count)
-                logger.LogWarning("skipping SUM field because no alternative is provided");
+            if (!HasRest(withinField, i))
+                logger.LogCritical("skipping SUM field because no alternative is provided");
             return RestOptional(main, withinField, i);
         }
         if (fieldCode == " =sum(left) ") {  // EWCA/Civ/2016/138.rtf
-            if (i == withinField.Count)
-                logger.LogWarning("skipping SUM field because no alternative is provided");
+            if (!HasRest(withinField, i))
+                logger.LogCritical("skipping SUM field because no alternative is provided");
             return RestOptional(main, withinField, i);
         }
         if (fieldCode.StartsWith(" DATE ") || fieldCode.StartsWith(" createDATE ")) {   // EWCA/Crim/2015/558, EWCA/Civ/2018/1307
@@ -349,6 +348,22 @@ class Fields {
         // if (!rest.Skip(1).Any())
         //     throw new Exception();
         return Inline.ParseRuns(main, rest.Skip(1));
+    }
+
+    /// <summary>
+    /// Method <c>HasRest</c> indicates whether there is content following the field separator
+    /// </summary>
+    /// <param name="withinField">the field conents</param>
+    /// <param name="i">the index of the next element in <paramref name="withinField"/> to be processed</param>
+    /// <returns></returns>
+    internal static bool HasRest(List<OpenXmlElement> withinField, int i) {
+        if (i == withinField.Count)
+            return false;
+        OpenXmlElement next = withinField[i];
+        if (!IsFieldSeparater(next))
+            return false;
+        IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+        return remaining.Any();
     }
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
         if (i == withinField.Count)
