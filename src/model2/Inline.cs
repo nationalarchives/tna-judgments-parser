@@ -296,7 +296,11 @@ internal class WParty : WText, IParty1 {
 
     public WParty(WText text) : base(text.Text, text.properties) { }
 
-    public string Name { get => Party.MakeName(this.Text); }
+    public string Name { get {
+        bool uppercase = this.Uppercase ?? false;
+        string text = uppercase ? this.Text.ToUpper() : this.Text;
+        return Party.MakeName(text);
+    } }
 
     public PartyRole? Role { get; set; }
 
