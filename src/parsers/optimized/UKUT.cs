@@ -43,7 +43,9 @@ class OptimizedUKUTParser : OptimizedParser {
         "DETERMINATION AND REASONS",
 
         "JUDGMENT",
-        "APPROVED JUDGMENT"
+        "APPROVED JUDGMENT",
+
+        "REASONS"   // must go here b/c "Decision" might be the heading of the final section: [2022] UKFTT 282 (GRC)
     };
 
     Regex[] titles2 = new Regex[] {
@@ -143,8 +145,6 @@ class OptimizedUKUTParser : OptimizedParser {
             if (trimmed == "DIRECTIONS") // [2018] UKFTT 709 (TC)
                 return header;
             if (trimmed == "IT IS DIRECTED that")   // ukftt/tc/2018/249
-                return header;
-            if (trimmed == "REASONS")   // [2022] UKFTT 00152 (GRC)
                 return header;
             header.Add(b);
         }
