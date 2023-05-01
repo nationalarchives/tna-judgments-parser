@@ -523,7 +523,7 @@ abstract class OptimizedParser {
         if (div.Contents.First() is not WLine)
             return div;
         
-        const float marginOfError = 0.05f;
+        const float marginOfError = 0.099f;
         float indent1 = GetEffectiveIndent(line);
 
         List<IBlock> intro = new List<IBlock>();
