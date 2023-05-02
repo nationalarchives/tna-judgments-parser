@@ -90,6 +90,8 @@ class PreParser {
             foreach (IBlock block in blocks) {
                 var enriched = removeTrailingWhitespace.Enrich1(block);
                 enriched = mergeRuns.Enrich1(enriched);
+                if (block is ILine line && block is not IOldNumberedParagraph && !line.Contents.Any())
+                    continue;
                 contents.Add(new BlockWithBreak { Block = enriched, LineBreakBefore = lineBreakBefore });
                 lineBreakBefore = false;
             }
