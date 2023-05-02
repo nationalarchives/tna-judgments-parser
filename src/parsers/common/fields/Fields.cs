@@ -316,15 +316,23 @@ class Fields {
 
         // "The XE field is formatted as hidden text and displays no result in the document." https://support.microsoft.com/en-us/office/field-codes-xe-index-entry-field-abaf7c78-6e21-418d-bf8b-f8186d2e4d08
         if (fieldCode.StartsWith(" XE ")) { // [2023] EWHC 424 (TCC)
+            logger.LogWarning($"ignoring hidden text: { fieldCode }");
             return Enumerable.Empty<IInline>();
         }
         // https://support.microsoft.com/en-us/office/field-codes-index-field-adafcf4a-cb30-43f6-85c7-743da1635d9e
         if (fieldCode.StartsWith(" INDEX ")) {  // [2023] EWHC 521 (Comm)
+            logger.LogWarning($"ignoring index: { fieldCode }");
             return Enumerable.Empty<IInline>();
         }
 
+        if (fieldCode.StartsWith(@" LINK Excel.Sheet")) {
+            logger.LogWarning($"ignoring link to Excel: { fieldCode }");
+            return RestOptional(main, withinField, i);
+        }
+
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
-        throw new Exception(fieldCode);
+        logger.LogCritical($"unknown field code: { fieldCode }");
+        throw new Exception($"unknown field code: { fieldCode }");
     }
 
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
