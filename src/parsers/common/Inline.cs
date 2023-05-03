@@ -20,7 +20,7 @@ class Inline {
     public static IEnumerable<IInline> ParseRuns(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
         List<IInline> parsed = new List<IInline>();
         List<OpenXmlElement> withinField = null;
-        IEnumerator<OpenXmlElement> enumerator = elements.GetEnumerator();
+        BidirectionalEnumerator<OpenXmlElement> enumerator = new BidirectionalEnumerator<OpenXmlElement>(elements);
         while (enumerator.MoveNext()) {
             OpenXmlElement e = enumerator.Current;
             if (e is ParagraphProperties)
@@ -132,6 +132,11 @@ class Inline {
             if (Fields.IsFieldEnd(e)) {
                 if (withinField is null) {  // EWHC/Comm/2004/999
                     logger.LogWarning("field end without start in same paragraph");
+                    continue;
+                }
+                if (IsDuplicateSumAboveField(withinField, enumerator)) {  // [2023] EWHC 942 (Fam)
+                    logger.LogWarning("skipping duplicate =SUM(ABOVE) field");
+                    withinField = null;
                     continue;
                 }
                 IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
@@ -379,6 +384,34 @@ class Inline {
     // internal static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
     //     return MapRunChild(main, run.RunProperties, e);
     // }
+
+    private static bool IsDuplicateSumAboveField(List<OpenXmlElement> withinField, BidirectionalEnumerator<OpenXmlElement> enumerator) {
+        if (withinField.Count != 2)
+            return false;
+        var first = withinField[0];
+        if (!Fields.IsFieldCode(first))
+            return false;
+        if (Fields.GetFieldCode(first) != " =SUM(ABOVE) ")
+            return false;
+        var second = withinField[1];
+        if (!Fields.IsFieldSeparater(second))
+            return false;
+        if (!enumerator.MoveNext())
+            return false;
+        var next = enumerator.Current;
+        if (!Fields.IsFieldStart(next)) {
+            enumerator.MovePrevious();
+            return false;
+        }
+        if (!enumerator.MoveNext()) {
+            enumerator.MovePrevious();
+            return false;
+        }
+        var nextNext = enumerator.Current;
+        enumerator.MovePrevious();
+        enumerator.MovePrevious();
+        return Fields.IsFieldCode(nextNext) && Fields.GetFieldCode(nextNext) == " =SUM(ABOVE) ";
+    }
 
 }
 
