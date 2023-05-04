@@ -48,7 +48,11 @@ class ImageConverter {
                     png = Imaging.Convert.ConvertToPng(converted.Item2);
                 } catch (Exception e) {
                     logger.LogWarning("cannot further convert {0} from .bmp to .png: {1}", image.Name, e.Message);
-                    images.Add(image);
+                    var bmpName = image.Name + ".bmp";
+                    foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name))
+                        iRef.Src = bmpName;
+                    var bmpImage = new ConvertedImage { Name = bmpName, ContentType = "image/bmp", Data = converted.Item2 };
+                    images.Add(bmpImage);
                     continue;
                 }
                 string newName = image.Name + ".png";
