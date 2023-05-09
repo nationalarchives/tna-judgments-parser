@@ -348,66 +348,9 @@
     <EmbeddedResource Include="./test54.xml">
       <LogicalName>test54.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="./test55.docx">
-      <LogicalName>test55.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test55.xml">
-      <LogicalName>test55.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test56.docx">
-      <LogicalName>test56.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test56.xml">
-      <LogicalName>test56.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test57.docx">
-      <LogicalName>test57.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test57.xml">
-      <LogicalName>test57.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test58.docx">
-      <LogicalName>test58.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test58.xml">
-      <LogicalName>test58.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test59.docx">
-      <LogicalName>test59.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test59.xml">
-      <LogicalName>test59.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test60.docx">
-      <LogicalName>test60.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test60.xml">
-      <LogicalName>test60.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test61.docx">
-      <LogicalName>test61.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test61.xml">
-      <LogicalName>test61.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test62.docx">
-      <LogicalName>test62.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test62.xml">
-      <LogicalName>test62.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test63.docx">
-      <LogicalName>test63.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test63.xml">
-      <LogicalName>test63.xml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test64.docx">
-      <LogicalName>test64.docx</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="./test64.xml">
-      <LogicalName>test64.xml</LogicalName>
-    </EmbeddedResource>
+
+    <EmbeddedResource Include="./ps/*.docx" />
+    <EmbeddedResource Include="./ps/*.xml" />
   </ItemGroup>
 
 </Project>
