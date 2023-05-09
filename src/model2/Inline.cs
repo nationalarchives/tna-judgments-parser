@@ -372,6 +372,8 @@ internal class WLocation : WText, ILocation {
 
 internal class WHyperlink1 : WText, IHyperlink1 {
 
+    public WHyperlink1(string text, RunProperties props) : base(text, props) { }
+
     public WHyperlink1(WText text) : base(text.Text, text.properties) { }
 
     public string Href { get; init; }
@@ -387,6 +389,18 @@ internal class WHyperlink2 : IHyperlink2 {
     public string Href { get; init; }
 
     public string ScreenTip { get; init; }
+
+}
+
+internal class WRef : WHyperlink1, IRef {
+
+    public WRef(string text, RunProperties props) : base(text, props) { }
+
+    public string Canonical { get; internal init; }  // required
+
+    public bool? IsNeutral { get; internal init; }
+
+    public RefType? Type { get; internal init; }
 
 }
 

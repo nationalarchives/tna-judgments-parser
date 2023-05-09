@@ -41,13 +41,15 @@ class MetadataBuilder {
 
     private static XmlElement CreateAndAppend(string name, XmlNode parent) {
         const string ns = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
-        return CreateAndAppend(name, parent, ns);
-    }
-    private static XmlElement CreateAndAppend(string name, XmlNode parent, string ns) {
         XmlElement e = parent.OwnerDocument.CreateElement(name, ns);
         parent.AppendChild(e);
         return e;
     }
+    // private static XmlElement CreateAndAppend(string name, XmlNode parent, string ns) {
+    //     XmlElement e = parent.OwnerDocument.CreateElement(name, ns);
+    //     parent.AppendChild(e);
+    //     return e;
+    // }
 
     internal static void Build(XmlElement main, IAknMetadata metadata) {
         XmlElement meta = CreateAndAppend("meta", main);
@@ -165,7 +167,8 @@ class MetadataBuilder {
         foreach (var tuple in metadata.Proprietary) {
             string name = tuple.Item1;
             string value = tuple.Item2;
-            XmlElement e = CreateAndAppend(name, prop, metadata.ProprietaryNamespace);
+            XmlElement e = prop.OwnerDocument.CreateElement("uk", name, metadata.ProprietaryNamespace);
+            prop.AppendChild(e);
             XmlText text = meta.OwnerDocument.CreateTextNode(value);
             e.AppendChild(text);
         }
