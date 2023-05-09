@@ -16,100 +16,49 @@ public class Serializer {
         new Serializer(stream).Serialize(doc);
     }
 
-    private readonly XmlWriter writer;
+    private readonly XmlTextWriter writer;
 
     private Serializer(Stream stream) {
-        XmlWriterSettings settings = new XmlWriterSettings() {
-            OmitXmlDeclaration = false,
-            Indent = true,
-            Encoding = new UTF8Encoding(false),
-            ConformanceLevel = ConformanceLevel.Document
-        };
-        // settings.IndentChars = ("\t");
-        writer = XmlWriter.Create(stream, settings);
+        writer = new XmlTextWriter(stream, new UTF8Encoding(false));
+        writer.Formatting = Formatting.Indented;
     }
 
     private void Serialize(XmlDocument doc) {
-        foreach (XmlNode child in doc.ChildNodes) {
-            if (child.NodeType == XmlNodeType.ProcessingInstruction) {
-                XmlProcessingInstruction pi = (XmlProcessingInstruction) child;
-                writer.WriteProcessingInstruction(pi.Name, pi.Data);
-            } else if (child.NodeType == XmlNodeType.Element) {
-                XmlElement e = (XmlElement) child;
-                SerializeElement(e);
-            }
-        }
+        writer.WriteStartDocument();
+        SerializeNodes(doc.ChildNodes);
         writer.WriteRaw("\n");
         writer.Close();
     }
 
-    private void SerializeChildElements(XmlNode parent) {
-        SerializeElements(parent.ChildNodes);
+    private void SerializeNodes(XmlNodeList nodes) {
+        foreach (XmlNode node in nodes)
+            SerializeNode(node);
     }
 
-    private void SerializeElements(XmlNodeList nodes) {
-        foreach (XmlNode node in nodes) {
-            if (node.NodeType != XmlNodeType.Element)
-                continue;
-            SerializeElement((XmlElement) node);
-        }
+    private void SerializeNode(XmlNode node) {
+        if (node is XmlElement e)
+            SerializeElement(e);
+        else if (node is XmlText text)
+            writer.WriteString(text.Value);
     }
+
+    private int blockDepth = 0;
 
     private void SerializeElement(XmlElement e) {
-        if (e.NamespaceURI == Metadata.ukns)
-            writer.WriteStartElement("uk", e.LocalName, e.NamespaceURI);
-        else
-            writer.WriteStartElement(e.Prefix, e.LocalName, e.NamespaceURI);
+        writer.WriteStartElement(e.Prefix, e.LocalName, e.NamespaceURI);
         foreach (XmlAttribute attr in e.Attributes)
             writer.WriteAttributeString(attr.Prefix, attr.LocalName, attr.NamespaceURI, attr.Value);
-        if (blocks.Contains(e.LocalName))
-            SerializeFlat(e);
-        else if (e.NamespaceURI != ns)
-            e.WriteContentTo(writer);
-        else
-            SerializeChildElements(e);
+        if (blocks.Contains(e.LocalName)) {
+            if (blockDepth == 0)
+                writer.Formatting = Formatting.None;
+            blockDepth += 1;
+        }
+        SerializeNodes(e.ChildNodes);
         writer.WriteEndElement();
-    }
-
-    private void SerializeFlat(XmlElement e) {
-        XmlWriterSettings settings = new XmlWriterSettings();
-        settings.OmitXmlDeclaration = true;
-        settings.Indent = false;
-        // settings.Encoding = new UTF8Encoding(false);
-        settings.ConformanceLevel = ConformanceLevel.Fragment;
-        StringBuilder builder = new StringBuilder();
-        XmlWriter inline = XmlWriter.Create(builder, settings);
-        foreach (XmlNode child in e.ChildNodes)
-            Serialize2(child, inline);
-        inline.Close();
-        writer.WriteRaw(builder.ToString());
-    }
-
-    private static void Serialize2(XmlNode node, XmlWriter inline) {
-        if (node is XmlElement e) {
-            if (e.Name.Contains(':')) {
-                int i = e.Name.IndexOf(':');
-                string prefix = e.Name.Substring(0, i);
-                string localName = e.Name.Substring(i + 1);
-                inline.WriteStartElement(prefix, localName, node.GetNamespaceOfPrefix(prefix));
-            } else {
-                inline.WriteStartElement(e.Name);
-            }
-            foreach (XmlAttribute attr in e.Attributes) {
-                if (attr.Name.Contains(':')) {
-                    int i = attr.Name.IndexOf(':');
-                    string prefix = attr.Name.Substring(0, i);
-                    string localName = attr.Name.Substring(i + 1);
-                    inline.WriteAttributeString(prefix, localName, attr.GetNamespaceOfPrefix(prefix), attr.Value);
-                } else {
-                    inline.WriteAttributeString(attr.Name, attr.Value);
-                }
-            }
-            foreach (XmlNode child in e.ChildNodes)
-                Serialize2(child, inline);
-            inline.WriteEndElement();
-        } else if (node is XmlText text) {
-            inline.WriteString(text.Value);
+        if (blocks.Contains(e.LocalName)) {
+            blockDepth -= 1;
+            if (blockDepth == 0)
+                writer.Formatting = Formatting.Indented;
         }
     }
 

@@ -694,6 +694,10 @@ abstract class Builder {
     }
 
     private void AddHperlink(XmlElement parent, IHyperlink1 link) {
+        if (link is IRef r) {
+            AddRef(parent, r);
+            return;
+        }
         var x = AddAndWrapText(parent, "a", link);
         x.SetAttribute("href", link.Href);
         if (link.ScreenTip is not null)
@@ -707,6 +711,18 @@ abstract class Builder {
             a.SetAttribute("title", link.ScreenTip);
         foreach (IInline inline in link.Contents)
             AddInline(a, inline);
+    }
+
+    private void AddRef(XmlElement parent, IRef model) {
+        var x = AddAndWrapText(parent, "ref", model);
+        x.SetAttribute("href", model.Href);
+        x.SetAttribute("canonical", Metadata.ukns, model.Canonical);
+        if (model.Type.HasValue)
+            x.SetAttribute("type", Metadata.ukns, Enum.GetName(typeof(RefType), model.Type.Value).ToLower());
+        if (model.IsNeutral.HasValue)
+            x.SetAttribute("isNeutral", Metadata.ukns, model.IsNeutral.Value.ToString().ToLower());
+        if (model.ScreenTip is not null)
+            x.SetAttribute("title", model.ScreenTip);
     }
 
     private void AddMath(XmlElement parent, IMath model) {
@@ -735,7 +751,7 @@ abstract class Builder {
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);
-        XmlElement hash = akn.CreateElement("hash", Metadata.ukns);
+        XmlElement hash = akn.CreateElement("uk", "hash", Metadata.ukns);
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
     }
