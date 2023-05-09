@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using DocumentFormat.OpenXml.Wordprocessing;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parsers;
@@ -20,6 +22,7 @@ class PressSummaryEnricher {
         Start,
         AfterDateBeforeDocType, AfterDocTypeBeforeDate, // date and docType can be in either order
         AfterDateAndDocTypeBeforeCite,                  // cite is always after both date and docType
+        AfterCiteBeforeOnAppealFrom,
         Done                                            // haven't necessarily found all but stop looking
     };
 
@@ -128,7 +131,7 @@ class PressSummaryEnricher {
                 WLine enriched1 = EnrichCite(line);
                 if (!Object.ReferenceEquals(enriched1, line)) {
                     Enriched.Add(enriched1);
-                    state = State.Done;
+                    state = State.AfterCiteBeforeOnAppealFrom;
                     continue;
                 }
                 if (line.NormalizedContent.Contains(@" v ", StringComparison.InvariantCultureIgnoreCase)) {
@@ -141,6 +144,11 @@ class PressSummaryEnricher {
                     Enriched.Add(title);
                     continue;
                 }
+                if (line.NormalizedContent.Contains("(Appellant)") && line.NormalizedContent.Contains("(Respondent)")) {
+                    WLine title = WDocTitle2.ConvertContents(line);
+                    Enriched.Add(title);
+                    continue;
+                }
                 if (line.NormalizedContent.StartsWith(@"REFERENCE ")) {
                     Enriched.Add(line);
                     continue;
@@ -149,14 +157,27 @@ class PressSummaryEnricher {
                 state = State.Done;
                 continue;
             }
+            if (state == State.AfterCiteBeforeOnAppealFrom) {
+                if (block is not WLine line) {
+                    Enriched.Add(block);
+                    state = State.Done;
+                    continue;
+                }
+                WLine enriched1 = EnrichOnAppealFrom(line);
+                if (!Object.ReferenceEquals(enriched1, line)) {
+                    Enriched.Add(enriched1);
+                    state = State.Done;
+                    continue;
+                }
+                Enriched.Add(line);
+                state = State.Done;
+                continue;
+            }
             if (state == State.Done) {
                 Enriched.Add(block);
-                while (Enumerator.MoveNext())
-                    Enriched.Add(Enumerator.Current);
-                return Enriched;
             }
         }
-        return Blocks;
+        return Enriched;
     }
 
     private bool IsRed(WLine line) {
@@ -167,8 +188,6 @@ class PressSummaryEnricher {
             return false;
         if (string.IsNullOrWhiteSpace(text.Text))
             return true;
-        // if ("FF0000".Equals(text.FontColor, StringComparison.InvariantCultureIgnoreCase))
-        //     return true;
         if (text.FontColor is not null && Regex.IsMatch(text.FontColor, "^[0-9A-F]{2}0{4}$", RegexOptions.IgnoreCase))
             return true;
         return false;
@@ -188,36 +207,19 @@ class PressSummaryEnricher {
     }
 
     private WLine EnrichCite(WLine line) {
-        // WLine enriched = EnrichLastText(line);
-        // if (!Object.ReferenceEquals(enriched, line))
-        //     return enriched;
-        // enriched = EnrichFromEnd(line);
-        // if (!Object.ReferenceEquals(enriched, line))
-        //     return enriched;
-        // return EnrichWholeLine(line);
-        return EnrichFromEnd(line);
+        string pattern = @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$";
+        var constructor = (string text, RunProperties rProps) => new WNeutralCitation(text, rProps);
+        return EnrichFromEnd(line, pattern, constructor);
     }
 
-    private static string pattern1 = @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$";
-
-    // private static WLine EnrichLastText(WLine line) {
-    //     if (line.Contents.LastOrDefault() is not WText text)
-    //         return line;
-    //     Match match = Regex.Match(text.Text, pattern1);
-    //     if (!match.Success)
-    //         return line;
-    //     List<IInline> replacement = Helper.SplitOnGroup(text, match.Groups[1], (txt, rProps) => new WNeutralCitation(txt, rProps));
-    //     return WLine.Make(line, Enumerable.Concat( line.Contents.SkipLast(1), replacement ));
-    // }
-
-    private static WLine EnrichFromEnd(WLine line) {
+    private static WLine EnrichFromEnd(WLine line, string pattern, Func<string, RunProperties, IInline> constructor) {
         IEnumerator<IInline> reversed = line.Contents.Reverse().GetEnumerator();
         string end = "";
         while (reversed.MoveNext()) {
             if (reversed.Current is not WText wText)
                 return line;
             end = wText.Text + end;
-            Match match = Regex.Match(end, pattern1);
+            Match match = Regex.Match(end, pattern);
             if (match.Success) {
                 List<IInline> replacement = new List<IInline>();
                 Group group = match.Groups[1];
@@ -225,7 +227,7 @@ class PressSummaryEnricher {
                     WText leading = new WText(end.Substring(0, group.Index), wText.properties);
                     replacement.Add(leading);
                 }
-                IInline middle = new WNeutralCitation(group.Value, wText.properties);
+                IInline middle = constructor(group.Value, wText.properties);
                 replacement.Add(middle);
                 if (group.Index + group.Length < end.Length) {
                     WText trailing = new WText(end.Substring(group.Index + group.Length), (line.Contents.Last() as WText).properties);
@@ -239,17 +241,23 @@ class PressSummaryEnricher {
         return line;
     }
 
-    // private static string pattern2 = @"^\[\d{4}\] (UKSC|UKPC) \d+$";
-
-    // private static WLine EnrichWholeLine(WLine line) {
-    //     if (!line.Contents.All(inline => inline is IFormattedText))
-    //         return line;
-    //     Match match = Regex.Match(line.NormalizedContent, pattern2);
-    //     if (!match.Success)
-    //         return line;
-    //     WNeutralCitation2 ncn = new WNeutralCitation2 { Contents = line.Contents.Cast<IFormattedText>() };
-    //     return WLine.Make(line, new List<IInline>(1) { ncn });
-    // }
+    private WLine EnrichOnAppealFrom(WLine line) {
+        if (!line.NormalizedContent.StartsWith("On appeal from"))
+            return line;
+        string pattern = @"(\[\d{4}\] EWCA (Civ|Crim) \d+)\.? *$";
+        var constructor = (string text, RunProperties rProps) => {
+            var normalized = Citations.Normalize(text);
+            // var prefix = "https://caselaw.nationalarchives.gov.uk/";
+            var url = "/" + Citations.MakeUriComponent(normalized);
+            return new WRef(text, rProps) {
+                Href = url,
+                Canonical = normalized,
+                IsNeutral = true,
+                Type = RefType.Case
+            };
+        };
+        return EnrichFromEnd(line, pattern, constructor);
+    }
 
 }
 
