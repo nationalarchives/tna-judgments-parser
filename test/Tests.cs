@@ -1,5 +1,7 @@
 
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Xsl;
@@ -8,8 +10,6 @@ using Xunit;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
@@ -64,23 +64,29 @@ public class Tests {
         Assert.Equal(expected, actual);
     }
 
-    internal static byte[] ReadDocx(int i) {
+    private static byte[] ReadDocx(int i) {
+        var resource = $"test{i}.docx";
+        return ReadDocx(resource);
+    }
+    private static byte[] ReadDocx(int i, string name) {
+        var resource = $"test{i}-{name}.docx";
+        return ReadDocx(resource);
+    }
+    internal static byte[] ReadDocx(string resource) {
         var assembly = Assembly.GetExecutingAssembly();
-        using Stream stream = assembly.GetManifestResourceStream($"test{i}.docx");
+        using Stream stream = assembly.GetManifestResourceStream(resource);
         MemoryStream ms = new MemoryStream();
         stream.CopyTo(ms);
         return ms.ToArray();
     }
-    internal static byte[] ReadDocx(int i, string name) {
-        var assembly = Assembly.GetExecutingAssembly();
-        using Stream stream = assembly.GetManifestResourceStream($"test{i}-{name}.docx");
-        MemoryStream ms = new MemoryStream();
-        stream.CopyTo(ms);
-        return ms.ToArray();
+
+    private static string ReadXml(int i) {
+        var resource = $"test{i}.xml";
+        return ReadXml(resource);
     }
-    internal static string ReadXml(int i) {
+    internal static string ReadXml(string resource) {
         var assembly = Assembly.GetExecutingAssembly();
-        using Stream stream = assembly.GetManifestResourceStream($"test{i}.xml");
+        using Stream stream = assembly.GetManifestResourceStream(resource);
         using StreamReader reader = new StreamReader(stream);
         return reader.ReadToEnd();
     }
@@ -96,7 +102,7 @@ public class Tests {
   </xsl:template>
 </xsl:stylesheet>";
 
-    private string RemoveSomeMetadata(string akn) {
+    internal string RemoveSomeMetadata(string akn) {
         using XmlReader reader = XmlReader.Create(new StringReader(akn));
         using StringWriter sWriter = new StringWriter();
         using XmlWriter xWriter = XmlWriter.Create(sWriter);
