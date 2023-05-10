@@ -198,11 +198,16 @@ class PressSummaryEnricher {
     }
 
     private WLine EnrichDocType(WLine line) {
-        if (!line.Contents.All(i => i is IFormattedText))
+        if (!line.Contents.All(i => i is WText))
             return line;
         if (!string.Equals(line.NormalizedContent, "Press Summary", StringComparison.OrdinalIgnoreCase))
             return line;
-        WDocType docType = new WDocType(line.Contents.Cast<IFormattedText>());
+        IEnumerable<WText> contents = line.Contents.Cast<WText>();
+        if (contents.Count() == 1) {
+            WDocType1 docType1 = new WDocType1(contents.First());
+            return WLine.Make(line, new List<IInline>(1) { docType1 });
+        }
+        WDocType2 docType = new WDocType2(contents);
         return WLine.Make(line, new List<IInline>(1) { docType });
     }
 
