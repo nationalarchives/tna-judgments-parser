@@ -100,7 +100,7 @@ class PSMetadata : IAknMetadata {
             cite = cite = Util.Descendants<WNeutralCitation2>(contents).FirstOrDefault()?.Text;
         if (cite is not null) {
             string normalized = Citations.Normalize(cite);
-            ShortUriComponent = Citations.MakeUriComponent(normalized) + "/summary/1";
+            ShortUriComponent = Citations.MakeUriComponent(normalized) + "/press-summary/1";
 
             Match match = Regex.Match(normalized, @"\[(\d{4})\] UKSC \d");
             if (match.Success) {
