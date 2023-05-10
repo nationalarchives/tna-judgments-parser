@@ -338,6 +338,10 @@ internal class WDocTitle2 : IDocTitle2 {
     public IEnumerable<IInline> Contents { get; init; }
 
     public static WLine ConvertContents(WLine line) {
+        if (line.Contents.Count() == 1 && line.Contents.First() is WText first) {
+            WDocTitle title1 = new WDocTitle(first);
+            return WLine.Make(line, new List<IInline>(1) { title1 });
+        }
         WDocTitle2 title = new WDocTitle2 { Contents = line.Contents };
         return WLine.Make(line, new List<IInline>(1) { title });
     }
