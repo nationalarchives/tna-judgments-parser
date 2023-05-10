@@ -91,9 +91,14 @@ class PSMetadata : IAknMetadata {
         if (date is not null) {
             Date = new WNamedDate { Name = "release", Date = date.Date };
         }
-        WDocType docType = Util.Descendants<WDocType>(contents).FirstOrDefault();
-        if (docType is not null) {
-            Name = docType.Name();
+        WDocType1 docType1 = Util.Descendants<WDocType1>(contents).FirstOrDefault();
+        if (docType1 is not null) {
+            Name = docType1.Name();
+        } else {
+            WDocType2 docType2 = Util.Descendants<WDocType2>(contents).FirstOrDefault();
+            if (docType2 is not null) {
+                Name = docType2.Name();
+            }
         }
         string cite = Util.Descendants<WNeutralCitation>(contents).FirstOrDefault()?.Text;
         if (cite is null)

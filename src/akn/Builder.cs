@@ -388,7 +388,9 @@ abstract class Builder {
     /* inline */
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
-        if (model is IDocType docType) {
+        if (model is IDocType1 docType1) {
+            AddAndWrapText(parent, "docType", docType1);
+        } else if (model is IDocType2 docType) {
             XmlElement courtType = CreateAndAppend("docType", parent);
             foreach (IInline inline in docType.Contents)
                 AddInline(courtType, inline);
