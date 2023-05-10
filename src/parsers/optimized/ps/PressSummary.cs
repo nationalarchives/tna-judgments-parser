@@ -6,12 +6,13 @@ using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
+using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Judgments;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
-using System.Xml;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
@@ -79,33 +80,54 @@ class PSMetadata : IAknMetadata {
 
     public string Name { get; private init; }
 
+    internal string DocType { get; init; }
+
     public string ProprietaryNamespace { get => "https://caselaw.nationalarchives.gov.uk/akn"; }
 
     public IList<Tuple<String, String>> Proprietary { get; private init; }
 
     public Dictionary<string, Dictionary<string, string>> CSSStyles { get; private init; }
 
+    private static ILogger logger = Logging.Factory.CreateLogger<PSMetadata>();
+
     internal PSMetadata(MainDocumentPart main, IEnumerable<IBlock> contents) {
         Proprietary = new List<Tuple<String, String>>();
         WDocDate date = Util.Descendants<WDocDate>(contents).FirstOrDefault();
         if (date is not null) {
             Date = new WNamedDate { Name = "release", Date = date.Date };
-        }
-        WDocType1 docType1 = Util.Descendants<WDocType1>(contents).FirstOrDefault();
-        if (docType1 is not null) {
-            Name = docType1.Name();
+            logger.LogInformation("date is {0}", date.Date);
         } else {
-            WDocType2 docType2 = Util.Descendants<WDocType2>(contents).FirstOrDefault();
-            if (docType2 is not null) {
-                Name = docType2.Name();
+            logger.LogWarning("date is null");
+        }
+
+        Name = makeName(contents);
+        if (Name is null)
+            logger.LogWarning("name is null");
+        else
+            logger.LogInformation("name is {0}", Name);
+
+        WDocType1 docType = Util.Descendants<WDocType1>(contents).FirstOrDefault();
+        if (docType is not null) {
+            DocType = docType.Name();
+            logger.LogInformation("doc type is {0}", DocType);
+        } else {
+            WDocType2 docType1 = Util.Descendants<WDocType2>(contents).FirstOrDefault();
+            if (docType1 is not null) {
+                DocType = docType1.Name();
+                logger.LogInformation("doc type is {0}", DocType);
+            } else {
+                logger.LogWarning("doc type is null");
             }
         }
+
         string cite = Util.Descendants<WNeutralCitation>(contents).FirstOrDefault()?.Text;
         if (cite is null)
             cite = cite = Util.Descendants<WNeutralCitation2>(contents).FirstOrDefault()?.Text;
         if (cite is not null) {
             string normalized = Citations.Normalize(cite);
-            ShortUriComponent = Citations.MakeUriComponent(normalized) + "/press-summary/1";
+            string judgmentUriComponent = Citations.MakeUriComponent(normalized);
+            ShortUriComponent = judgmentUriComponent + "/press-summary/1";
+            logger.LogInformation("uri is {0}", ShortUriComponent);
 
             Match match = Regex.Match(normalized, @"\[(\d{4})\] UKSC \d");
             if (match.Success) {
@@ -120,18 +142,41 @@ class PSMetadata : IAknMetadata {
                     Proprietary.Add(new Tuple<string, string>("year", match.Groups[1].Value));
                 }
             }
+        } else {
+            logger.LogWarning("uri is null");
         }
         Proprietary.Add(new Tuple<string, string>("parser", Metadata.GetParserVersion()));
         CSSStyles = DOCX.CSS.Extract(main, "#main");
     }
 
-    internal static readonly int PerfectScore = 3;
+    private static string makeName(IEnumerable<IBlock> contents) {
+        var titles = Util.Descendants<IInline>(contents)
+            .Where(i => i is WDocTitle || i is WDocTitle2)
+            .Select(dt => {
+                if (dt is WDocTitle dt1) return dt1.Text;
+                if (dt is WDocTitle2 dt2) return IInline.ToString(dt2.Contents);
+                throw new Exception();
+            });
+        if (!titles.Any())
+            return null;
+        var title = string.Join(" ", titles)
+            .Replace("(Appellant)", "")
+            .Replace("(Appellants)", "")
+            .Replace("(Respondent)", "")
+            .Replace("(Respondents)", "");
+        title = Regex.Replace(title, @"\s+", " ").Trim();
+        return "Press Summary of " + title;
+    }
+
+    internal static readonly int PerfectScore = 4;
 
     internal int Score() {
         int score = 0;
         if (Date is not null)
             score += 1;
         if (Name is not null)
+            score += 1;
+        if (DocType is not null)
             score += 1;
         if (ShortUriComponent is not null)
             score += 1;
