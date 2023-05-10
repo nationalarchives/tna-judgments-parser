@@ -17,7 +17,7 @@ namespace UK.Gov.NationalArchives.CaseLaw {
 
 class PressSummary : IAknDocument {
 
-    public DocType Type { get => DocType.Summary; }
+    public DocType Type { get => DocType.PressSummary; }
 
     private WordprocessingDocument Source { get; init; }
 

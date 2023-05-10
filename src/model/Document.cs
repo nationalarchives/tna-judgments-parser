@@ -8,7 +8,7 @@ using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
-enum DocType { Summary }
+enum DocType { PressSummary }
 
 interface IAknDocument {
 
