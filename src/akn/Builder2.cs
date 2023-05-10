@@ -1,7 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 
 using UK.Gov.NationalArchives.CaseLaw;
@@ -25,7 +24,9 @@ class DocBuilder : Builder {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
         akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
-        main.SetAttribute("name", Enum.GetName(typeof(DocType), document.Type).ToLower());
+        var name = Enum.GetName(typeof(DocType), document.Type);
+        name = name.Substring(0, 1).ToLower() + name.Substring(1);
+        main.SetAttribute("name", name);
         MetadataBuilder.Build(main, document.Metadata);
         AddBody(main, document.Body);
     }
