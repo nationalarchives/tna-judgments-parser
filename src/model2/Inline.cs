@@ -334,6 +334,8 @@ internal class WRole : IRole {
 
 internal class WDocTitle : WText, IDocTitle {
 
+    public WDocTitle(string text, RunProperties rProps) : base(text, rProps) { }
+
     public WDocTitle(WText text) : base(text.Text, text.properties) { }
 
 }

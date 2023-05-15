@@ -214,10 +214,10 @@ class PressSummaryEnricher {
     private WLine EnrichCite(WLine line) {
         string pattern = @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$";
         var constructor = (string text, RunProperties rProps) => new WNeutralCitation(text, rProps);
-        return EnrichFromEnd(line, pattern, constructor);
+        return EnrichFromEnd(line, pattern, constructor, true);
     }
 
-    private static WLine EnrichFromEnd(WLine line, string pattern, Func<string, RunProperties, IInline> constructor) {
+    private static WLine EnrichFromEnd(WLine line, string pattern, Func<string, RunProperties, IInline> constructor, bool wrapBeforeInDocTitle = false) {
         IEnumerator<IInline> reversed = line.Contents.Reverse().GetEnumerator();
         string end = "";
         while (reversed.MoveNext()) {
@@ -226,11 +226,12 @@ class PressSummaryEnricher {
             end = wText.Text + end;
             Match match = Regex.Match(end, pattern);
             if (match.Success) {
+                List<IInline> before = new List<IInline>();
                 List<IInline> replacement = new List<IInline>();
                 Group group = match.Groups[1];
                 if (group.Index > 0) {
                     WText leading = new WText(end.Substring(0, group.Index), wText.properties);
-                    replacement.Add(leading);
+                    before.Add(leading);
                 }
                 IInline middle = constructor(group.Value, wText.properties);
                 replacement.Add(middle);
@@ -239,8 +240,24 @@ class PressSummaryEnricher {
                     replacement.Add(trailing);
                 }
                 while (reversed.MoveNext())
-                    replacement.Insert(0, reversed.Current);
-                return WLine.Make(line, replacement);
+                    before.Insert(0, reversed.Current);
+                if (!wrapBeforeInDocTitle)
+                    return WLine.Make(line, Enumerable.Concat(before, replacement));
+                if (string.IsNullOrWhiteSpace(IInline.ToString(before)))
+                    return WLine.Make(line, Enumerable.Concat(before, replacement));
+                if (before.Count == 1 && before.First() is WText wText1) {
+                    string wTest1Trimmed = wText1.Text.TrimEnd();
+                    WDocTitle docTitle1;
+                    if (wTest1Trimmed.Length == wText1.Text.Length) {
+                        docTitle1 = new WDocTitle(wText1);
+                        return WLine.Make(line, replacement.Prepend(docTitle1));
+                    }
+                    docTitle1 = new WDocTitle(wTest1Trimmed, wText1.properties);
+                    WText space = new WText(wText1.Text.Substring(wTest1Trimmed.Length), wText1.properties);
+                    return WLine.Make(line, replacement.Prepend(space).Prepend(docTitle1));
+                }
+                WDocTitle2 docTitle2 = new WDocTitle2 { Contents = before };
+                return WLine.Make(line, replacement.Prepend(docTitle2));
             }
         }
         return line;
