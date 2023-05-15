@@ -249,7 +249,8 @@ static class Paragraphs {
     }
 
     internal static bool IsEmptySectionBreak(Paragraph p) {
-        return p.ChildElements.Any(child => child is ParagraphProperties pPr && pPr.SectionProperties is not null) && p.ChildElements.All(child => child is ParagraphProperties);
+        return p.ChildElements.Any(child => child is ParagraphProperties pPr && pPr.SectionProperties is not null)
+            && p.ChildElements.All(child => child is ParagraphProperties);
     }
 
 }
