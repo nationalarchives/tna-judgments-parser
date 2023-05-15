@@ -150,16 +150,17 @@ class PSMetadata : IAknMetadata {
     }
 
     private static string makeName(IEnumerable<IBlock> contents) {
-        var titles = Util.Descendants<IInline>(contents)
+        var title = Util.Descendants<IInline>(contents)
             .Where(i => i is WDocTitle || i is WDocTitle2)
             .Select(dt => {
                 if (dt is WDocTitle dt1) return dt1.Text;
                 if (dt is WDocTitle2 dt2) return IInline.ToString(dt2.Contents);
                 throw new Exception();
-            });
-        if (!titles.Any())
+            })
+            .FirstOrDefault();
+        if (title is null)
             return null;
-        var title = string.Join(" ", titles)
+        title = title
             .Replace("(Appellant)", "")
             .Replace("(Appellants)", "")
             .Replace("(Respondent)", "")
