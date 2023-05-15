@@ -67,9 +67,11 @@ class PreParser {
         if (e.Descendants().OfType<Shape>().Any())
             return false;
         if (e is Paragraph p) {
+            if (DOCX.Paragraphs.IsEmptySectionBreak(p))
+                return true;
             if (DOCX.Numbering2.HasOwnNumber(p))
                 return false;
-            if (DOCX.Numbering2.HasEffectiveStyleNumber(p) && !DOCX.Paragraphs.IsEmptySectionBreak(p))
+            if (DOCX.Numbering2.HasEffectiveStyleNumber(p))
                 return false;
             if (string.IsNullOrWhiteSpace(p.InnerText))
                 return true;
