@@ -89,15 +89,17 @@ class OptimizedEWHCParser : OptimizedParser {
             if (b.Block is not WLine line)
                 continue;
             string text = line.NormalizedContent;
-            if (titles.Contains(text))
+            if (titles.Contains(text)) {
+                logger.LogInformation("found title: {0}", line.NormalizedContent);
                 break;
-            if (rawTitles.Contains(line.TextContent))
+            }
+            if (rawTitles.Contains(line.TextContent)) {
+                logger.LogInformation("found title: {0}", line.NormalizedContent);
                 break;
+            }
         }
-        if (i + header.Count < PreParsed.Body.Count)
-            logger.LogInformation("found title");
-        else
-            logger.LogCritical("could not find title");
+        if (i + header.Count >= PreParsed.Body.Count)
+            logger.LogWarning("could not find title");
         foreach (var b in PreParsed.Body.Skip(i + header.Count)) {
             if (b.LineBreakBefore)
                 return header;
