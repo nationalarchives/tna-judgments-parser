@@ -51,12 +51,7 @@ class PressSummaryEnricher {
                     Enriched.Add(line);
                     continue;
                 }
-                if (IsRed(line)) {
-                    WRestriction restriction = new WRestriction(line);
-                    Enriched.Add(restriction);
-                    continue;
-                }
-                if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase)) {
+                if (IsRestriction(line)) {
                     WRestriction restriction = new WRestriction(line);
                     Enriched.Add(restriction);
                     continue;
@@ -81,7 +76,7 @@ class PressSummaryEnricher {
                     state = State.Done;
                     continue;
                 }
-                if (IsRed(line)) {
+                if (IsRestriction(line)) {
                     WRestriction restriction = new WRestriction(line);
                     Enriched.Add(restriction);
                     continue;
@@ -102,7 +97,7 @@ class PressSummaryEnricher {
                     state = State.Done;
                     continue;
                 }
-                if (IsRed(line)) {
+                if (IsRestriction(line)) {
                     WRestriction restriction = new WRestriction(line);
                     Enriched.Add(restriction);
                     continue;
@@ -110,6 +105,19 @@ class PressSummaryEnricher {
                 WLine enriched1 = EnrichDate(line);
                 if (!Object.ReferenceEquals(enriched1, line)) {
                     Enriched.Add(enriched1);
+                    state = State.AfterDateAndDocTypeBeforeCite;
+                    continue;
+                }
+                // some have no date
+                enriched1 = EnrichCite(line);
+                if (!Object.ReferenceEquals(enriched1, line)) {
+                    Enriched.Add(enriched1);
+                    state = State.AfterCiteBeforeOnAppealFrom;
+                    continue;
+                }
+                if (IsCaseName(line)) {
+                    WLine title = WDocTitle2.ConvertContents(line);
+                    Enriched.Add(title);
                     state = State.AfterDateAndDocTypeBeforeCite;
                     continue;
                 }
@@ -123,7 +131,7 @@ class PressSummaryEnricher {
                     state = State.Done;
                     continue;
                 }
-                if (IsRed(line)) {
+                if (IsRestriction(line)) {
                     WRestriction restriction = new WRestriction(line);
                     Enriched.Add(restriction);
                     continue;
@@ -134,17 +142,7 @@ class PressSummaryEnricher {
                     state = State.AfterCiteBeforeOnAppealFrom;
                     continue;
                 }
-                if (line.NormalizedContent.Contains(@" v ", StringComparison.InvariantCultureIgnoreCase)) {
-                    WLine title = WDocTitle2.ConvertContents(line);
-                    Enriched.Add(title);
-                    continue;
-                }
-                if (line.NormalizedContent.Contains(@"In the matter of ", StringComparison.InvariantCultureIgnoreCase)) {
-                    WLine title = WDocTitle2.ConvertContents(line);
-                    Enriched.Add(title);
-                    continue;
-                }
-                if (line.NormalizedContent.Contains("(Appellant)") && line.NormalizedContent.Contains("(Respondent)")) {
+                if (IsCaseName(line)) {
                     WLine title = WDocTitle2.ConvertContents(line);
                     Enriched.Add(title);
                     continue;
@@ -180,6 +178,15 @@ class PressSummaryEnricher {
         return Enriched;
     }
 
+    /* helper functions */
+
+    private bool IsRestriction(WLine line) {
+        if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase))
+            return true;
+        if (IsRed(line))
+            return true;
+        return false;
+    }
     private bool IsRed(WLine line) {
         return line.Contents.All(IsRedOrEmpty);
     }
@@ -209,6 +216,16 @@ class PressSummaryEnricher {
         }
         WDocType2 docType = new WDocType2(contents);
         return WLine.Make(line, new List<IInline>(1) { docType });
+    }
+
+    private bool IsCaseName(WLine line) {
+        if (line.NormalizedContent.Contains(@" v ", StringComparison.InvariantCultureIgnoreCase))
+            return true;
+        if (line.NormalizedContent.Contains(@"In the matter of ", StringComparison.InvariantCultureIgnoreCase))
+            return true;
+        if (line.NormalizedContent.Contains("(Appellant)") && line.NormalizedContent.Contains("(Respondent)"))
+            return true;
+        return false;
     }
 
     private WLine EnrichCite(WLine line) {
