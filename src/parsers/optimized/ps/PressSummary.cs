@@ -142,6 +142,8 @@ class PSMetadata : IAknMetadata {
                     Proprietary.Add(new Tuple<string, string>("year", match.Groups[1].Value));
                 }
             }
+            var judgmentUri = "https://caselaw.nationalarchives.gov.uk/id/" + judgmentUriComponent;
+            Proprietary.Add(new Tuple<string, string>("summaryOf", judgmentUri));
         } else {
             logger.LogWarning("uri is null");
         }
