@@ -225,6 +225,8 @@ class PressSummaryEnricher {
             return true;
         if (line.NormalizedContent.Contains("(Appellant)") && line.NormalizedContent.Contains("(Respondent)"))
             return true;
+        if (line.NormalizedContent.Contains("(Applicant)") && line.NormalizedContent.Contains("(Intervener)"))
+            return true;
         return false;
     }
 
