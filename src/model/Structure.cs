@@ -65,4 +65,10 @@ interface ITableOfContents : IDivision {
 
 }
 
+interface IBlockWrapper : IBlock {
+
+    IDivision Division { get; }
+
+}
+
 }
