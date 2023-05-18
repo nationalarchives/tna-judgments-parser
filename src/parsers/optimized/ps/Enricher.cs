@@ -23,6 +23,7 @@ class PressSummaryEnricher {
         AfterDateBeforeDocType, AfterDocTypeBeforeDate, // date and docType can be in either order
         AfterDateAndDocTypeBeforeCite,                  // cite is always after both date and docType
         AfterCiteBeforeOnAppealFrom,
+        AfterOnAppealFromBeforeJustices,
         Done                                            // haven't necessarily found all but stop looking
     };
 
@@ -164,7 +165,23 @@ class PressSummaryEnricher {
                 WLine enriched1 = EnrichOnAppealFrom(line);
                 if (!Object.ReferenceEquals(enriched1, line)) {
                     Enriched.Add(enriched1);
+                    state = State.AfterOnAppealFromBeforeJustices;
+                    continue;
+                }
+                Enriched.Add(line);
+                state = State.Done;
+                continue;
+            }
+            if (state == State.AfterOnAppealFromBeforeJustices) {
+                if (block is not WLine line) {
+                    Enriched.Add(block);
                     state = State.Done;
+                    continue;
+                }
+                WLine enriched1 = EnrichJustices(line);
+                if (!Object.ReferenceEquals(enriched1, line)) {
+                    Enriched.Add(enriched1);
+                    state = State.AfterOnAppealFromBeforeJustices;
                     continue;
                 }
                 Enriched.Add(line);
@@ -298,6 +315,48 @@ class PressSummaryEnricher {
             };
         };
         return EnrichFromEnd(line, pattern, constructor);
+    }
+
+    private WLine EnrichJustices(WLine line) {
+        if (!line.NormalizedContent.StartsWith("Justices:", StringComparison.InvariantCultureIgnoreCase))
+            return line;
+        List<IInline> replacement = new List<IInline>();
+        IEnumerator<IInline> reversed = line.Contents.Reverse().GetEnumerator();
+        string pattern = @"([:,] +)([[A-Z][A-Za-z \(]+?[a-z\)]) *$";
+        while (reversed.MoveNext()) {
+            if (reversed.Current is not WText wText) {
+                replacement.Insert(0, reversed.Current);
+                break;
+            }
+            string text = wText.Text;
+            Match match = Regex.Match(text, pattern);
+            while (match.Success) {
+                Group commaGroup = match.Groups[1];
+                Group nameGroup = match.Groups[2];
+                string after = text.Substring(nameGroup.Index + nameGroup.Length);
+
+                if (!string.IsNullOrEmpty(after)) {
+                    WText wText2 = new WText(after, wText.properties);
+                    replacement.Insert(0, wText2);
+                }
+
+                WJudge judge = new WJudge(nameGroup.Value, wText.properties);
+                replacement.Insert(0, judge);
+
+                WText comma = new WText(commaGroup.Value, wText.properties);
+                replacement.Insert(0, comma);
+
+                text = text.Substring(0, commaGroup.Index);
+                match = Regex.Match(text, pattern);
+            }
+            if (!string.IsNullOrEmpty(text)) {
+                WText wText2 = new WText(text, wText.properties);
+                replacement.Insert(0, wText2);
+            }
+        }
+        while (reversed.MoveNext())
+            replacement.Insert(0, reversed.Current);
+        return WLine.Make(line, replacement);
     }
 
 }
