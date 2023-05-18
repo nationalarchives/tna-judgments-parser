@@ -82,6 +82,9 @@ class PSMetadata : IAknMetadata {
 
     internal string DocType { get; init; }
 
+    public IList<IResource> References = new List<IResource>();
+    IEnumerable<IResource> IAknMetadata.References { get => References; }
+
     public string ProprietaryNamespace { get => "https://caselaw.nationalarchives.gov.uk/akn"; }
 
     public IList<Tuple<String, String>> Proprietary { get; private init; }
@@ -149,6 +152,15 @@ class PSMetadata : IAknMetadata {
         }
         Proprietary.Add(new Tuple<string, string>("parser", Metadata.GetParserVersion()));
         CSSStyles = DOCX.CSS.Extract(main, "#main");
+
+        foreach (IJudge judge in Util.Descendants<WJudge>(contents)) {
+            PSResource resource = new PSResource {
+                Type = ResourceType.Person,
+                ID = judge.Id,
+                ShowAs = judge.Name
+            };
+            References.Add(resource);
+        }
     }
 
     private static string makeName(IEnumerable<IBlock> contents) {

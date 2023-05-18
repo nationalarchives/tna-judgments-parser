@@ -134,6 +134,13 @@ class MetadataBuilder {
         references.SetAttribute("source", "#" + metadata.Source.ID);
         Reference(references, metadata.Source);
         Reference(references, metadata.Author);
+        foreach (IResource reference in metadata.References) {
+            if (reference.ID == metadata.Source.ID)
+                continue;
+            if (reference.ID == metadata.Author.ID)
+                continue;
+            Reference(references, reference);
+        }
     }
     private static void Reference(XmlElement references, IResource resource) {
         if (resource is null)
@@ -151,7 +158,7 @@ class MetadataBuilder {
             name = "TLCConcept";
         XmlElement e = CreateAndAppend(name, references);
         e.SetAttribute("eId", resource.ID);
-        e.SetAttribute("href", resource.URI);
+        e.SetAttribute("href", resource.URI ?? "/" + resource.ID);
         if (resource.ShowAs is not null)
             e.SetAttribute("showAs", resource.ShowAs);
         if (resource.ShortForm is not null)
