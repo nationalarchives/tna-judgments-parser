@@ -494,7 +494,7 @@ abstract class OptimizedParser {
         return GetEffectiveIndent(line) <= 0f;
     }
 
-    private static float GetEffectiveIndent(WLine line) {
+    internal static float GetEffectiveIndent(WLine line) {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
         float firstLine = line.FirstLineIndentWithNumber ?? 0f;
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
@@ -511,6 +511,7 @@ abstract class OptimizedParser {
         // }
         return indent;
     }
+    internal static float MarginOfError = 0.05f;
 
     private IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
         ILeaf div = ParseSimpleParagraph(line, sub);
@@ -523,7 +524,6 @@ abstract class OptimizedParser {
         if (div.Contents.First() is not WLine)
             return div;
         
-        const float marginOfError = 0.099f;
         float indent1 = GetEffectiveIndent(line);
 
         List<IBlock> intro = new List<IBlock>();
@@ -541,7 +541,7 @@ abstract class OptimizedParser {
             }
             if (next is WLine nextLine) {
                 float nextIndent1 = GetEffectiveIndent(nextLine);
-                if (nextIndent1 - marginOfError <= indent1)
+                if (nextIndent1 - MarginOfError <= indent1)
                     break;
 
                 int save = i;

@@ -140,4 +140,10 @@ internal class WTableOfContents : ITableOfContents {
 
 }
 
+internal class BlockWrapper : IBlockWrapper {
+
+    public IDivision Division { get; }
+
+}
+
 }
