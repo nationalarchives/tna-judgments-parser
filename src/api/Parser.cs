@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
+
 using DocumentFormat.OpenXml.Packaging;
+
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
@@ -19,7 +21,7 @@ using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.Word
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
-public enum Hint { UKSC, EWCA, EWHC, UKUT }
+public enum Hint { UKSC, EWCA, EWHC, UKUT, Judgment, PressSummary }
 
 public class InvalidAkNException : System.Exception {
 
@@ -66,13 +68,17 @@ public class Parser {
     private static ParseFunction GetParser(Hint? hint) {
         if (!hint.HasValue)
             return OptimizedCombined;
+        if (hint.Value == Hint.Judgment)
+            return OptimizedCombined;
         if (hint.Value == Hint.EWHC || hint.Value == Hint.EWCA)
             return Wrap(UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedEWHCParser.Parse);
         if (hint.Value == Hint.UKSC)
             return Wrap(UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedUKSCParser.Parse);
         if (hint.Value == Hint.UKUT)
             return Wrap(UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedUKUTParser.Parse);
-        return OptimizedCombined;
+        if (hint.Value == Hint.PressSummary)
+            throw new Exception("The press summary parser is not yet operational.");
+        throw new Exception("unsupported hint: " + Enum.GetName(typeof(Hint), hint));
     }
 
     // private static ParseFunction EWCAParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3);
