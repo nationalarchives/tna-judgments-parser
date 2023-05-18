@@ -38,6 +38,8 @@ interface IAknMetadata {
 
     string? Name { get; }
 
+    IEnumerable<IResource> References { get; }
+
     string? ProprietaryNamespace { get; }
 
     IList<Tuple<String, String>> Proprietary { get; }
