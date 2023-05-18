@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2019/10/press-summary/1/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2019/10/press-summary/1/data.xml" />
-          <FRBRdate date="2023-05-08T15:59:39" name="transform" />
+          <FRBRdate date="2023-05-18T13:35:10" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -29,6 +29,11 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk" showAs="The National Archives" />
         <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The Supreme Court" />
+        <TLCPerson eId="judge-lady-hale-president" href="/judge-lady-hale-president" showAs="Lady Hale (President)" />
+        <TLCPerson eId="judge-lord-wilson" href="/judge-lord-wilson" showAs="Lord Wilson" />
+        <TLCPerson eId="judge-lady-black" href="/judge-lady-black" showAs="Lady Black" />
+        <TLCPerson eId="judge-lord-briggs" href="/judge-lord-briggs" showAs="Lord Briggs" />
+        <TLCPerson eId="judge-lord-kitchin" href="/judge-lord-kitchin" showAs="Lord Kitchin" />
       </references>
       <proprietary source="#tna">
         <uk:court>UKSC</uk:court>
@@ -59,7 +64,7 @@
       <p><docTitle style="font-weight:bold;font-family:Garamond">KV (Sri Lanka) (Appellant) Secretary of State for the Home Department (Respondent)</docTitle></p>
       <p><neutralCitation style="font-weight:bold;font-family:Garamond">[2019] UKSC 10</neutralCitation></p>
       <p><span style="font-style:italic;font-weight:bold;font-family:Garamond">On appeal from </span><ref style="font-style:italic;font-weight:bold;font-family:Garamond" href="/ewca/civ/2017/119" uk:canonical="[2017] EWCA Civ 119" uk:type="case" uk:isNeutral="true">[2017] EWCA Civ 119</ref></p>
-      <p><span style="font-weight:bold;font-family:Garamond">JUSTICES</span><span style="font-family:Garamond">: Lady Hale (President), Lord Wilson, Lady Black, Lord Briggs, Lord Kitchin</span></p>
+      <p><span style="font-weight:bold;font-family:Garamond">JUSTICES</span><span style="font-family:Garamond">: </span><judge refersTo="#judge-lady-hale-president" style="font-family:Garamond">Lady Hale (President)</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-wilson" style="font-family:Garamond">Lord Wilson</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lady-black" style="font-family:Garamond">Lady Black</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-briggs" style="font-family:Garamond">Lord Briggs</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-kitchin" style="font-family:Garamond">Lord Kitchin</judge></p>
       <p><span style="font-weight:bold;font-family:Garamond">BACKGROUND TO THE APPEAL</span></p>
       <p style="text-align:justify"><span style="font-family:Garamond;font-size:11.5pt">KV, who is a Sri Lankan national of Tamil ethnicity, arrived in the UK in February 2011 and claimed asylum. He has scars on his arm and back which he says are the result of torture, but the Home Secretary’s case is that they were self-inflicted by proxy (‘SIBP’), that is, by another person at his invitation. </span></p>
       <p style="text-align:justify"><span style="font-family:Garamond;font-size:11.5pt">KV’s account is that although he was not a member of the LTTE (‘Tamil Tigers’), he used to melt gold for them. He says he was detained and tortured by the Sri Lankan government, who sought to extract information about where the gold and other valuables were kept. He alleges that the government applied hot metal rods to his arm while he was conscious, the pain rendered him unconscious, and that while he remained unconscious they applied the rods to his back.</span></p>
