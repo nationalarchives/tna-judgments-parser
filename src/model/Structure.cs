@@ -65,7 +65,8 @@ interface ITableOfContents : IDivision {
 
 }
 
-interface IBlockWrapper : IBlock {
+/// The purpose of this class is to allow Divisions to exist in a Block context, e.g., the body of a press summary
+interface IDivWrapper : IBlock {
 
     IDivision Division { get; }
 

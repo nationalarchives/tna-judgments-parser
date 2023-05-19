@@ -154,7 +154,7 @@ public class Parser {
             }
         }
 
-        PressSummary ps = new PressSummaryParser().Parse(doc, preParsed);
+        PressSummary ps = PressSummaryParser.Parse(doc, preParsed);
         if (PressSummary.Score(ps) == PressSummary.PerfectScore)
             return ps.Bundle();
 
