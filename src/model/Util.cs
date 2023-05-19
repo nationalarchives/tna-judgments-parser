@@ -20,6 +20,8 @@ class Util {
             var blocks = cells.SelectMany(cell => cell.Contents);
             return blocks.SelectMany(GetLines);
         }
+        if (block is IDivWrapper wrapper)
+            return GetBlocksFromDivision(wrapper.Division).SelectMany(GetLines);
         throw new Exception();
     };
 

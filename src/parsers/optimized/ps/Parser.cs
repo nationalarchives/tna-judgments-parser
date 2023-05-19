@@ -12,23 +12,24 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 class PressSummaryParser {
 
     internal static PressSummary Parse(WordprocessingDocument doc) {
-        return new PressSummaryParser().Parse1(doc);
-    }
-
-    private PressSummary Parse1(WordprocessingDocument doc) {
         WordDocument preParsed = new PreParser().Parse(doc);
         return Parse(doc, preParsed);
     }
+    internal static PressSummary Parse(WordprocessingDocument doc, WordDocument preParsed) {
+        return new PressSummaryParser().Parse1(doc, preParsed);
+    }
 
-    private PressSummary Parse(WordprocessingDocument doc, WordDocument preParsed) {
+    private int i = 0;
+
+    private PressSummaryParser() {}
+
+    private PressSummary Parse1(WordprocessingDocument doc, WordDocument preParsed) {
         var contents = Enumerable.Concat( preParsed.Header, ParseBody(preParsed.Body) );
         contents = PressSummaryEnricher.Enrich(contents);
         var metadata = new PSMetadata(doc.MainDocumentPart, contents);
         var images = WImage.Get(doc);
         return new PressSummary(doc) { Metadata = metadata, Body = contents, Images = images };
     }
-
-    private int i = 0;
 
     private IList<IBlock> ParseBody(IList<BlockWithBreak> unparsed) {
         List<IBlock> parsed = new List<IBlock>();
@@ -72,11 +73,37 @@ class PressSummaryParser {
             intro = first;
         }
 
-        if (!children.Any(child => child is BlockWrapper)) {
+        if (children.All(child => child is WOldNumberedParagraph)) {
+            List<IBlock> newIntro = new List<IBlock>(1) { intro };
+            IEnumerable<IDivision> newChildren = children.Cast<WOldNumberedParagraph>()
+                .Select(np => new LeafSubparagraph { Number = np.Number, Contents = new List<IBlock>(1) { WLine.RemoveNumber(np) } });
+            IDivision div;
+            if (firstNum is null)
+                div = new GroupOfParagraphs { Intro = newIntro, Children = newChildren };
+            else
+                div = new BranchParagraph { Number = firstNum, Intro = newIntro, Children = newChildren };
+            return new DivWrapper { Division = div };
         }
-        if (children.All(child => child is BlockWrapper)) {
 
+        if (children.All(child => child is DivWrapper)) {
+            List<IBlock> newIntro = new List<IBlock>(1) { intro };
+            IEnumerable<IDivision> newChildren = children.Cast<DivWrapper>()
+                .Select(wrapper => wrapper.Division)
+                .Select(child => {
+                    if (child is GroupOfParagraphs gop)
+                        return new BranchSubparagraph { Intro = gop.Intro, Children = gop.Children };
+                    if (child is BranchParagraph bp)
+                        return BranchSubparagraph.Demote(bp);
+                    return child;
+                });
+            IDivision div;
+            if (firstNum is null)
+                div = new GroupOfParagraphs { Intro = newIntro, Children = newChildren };
+            else
+                div = new BranchParagraph { Number = firstNum, Intro = newIntro, Children = newChildren };
+            return new DivWrapper { Division = div };
         }
+
         i = save;
         return first;
     }
