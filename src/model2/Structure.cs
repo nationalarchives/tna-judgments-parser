@@ -42,7 +42,7 @@ internal class GroupOfParagraphs : IBranch {
 
     public ILine Heading => null;
 
-    public IEnumerable<IBlock> Intro => null;
+    public IEnumerable<IBlock> Intro { get; internal init; }
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
@@ -134,9 +134,9 @@ internal class WTableOfContents : ITableOfContents {
 
 }
 
-internal class BlockWrapper : IBlockWrapper {
+internal class DivWrapper : IDivWrapper {
 
-    public IDivision Division { get; }
+    public IDivision Division { get; internal init; }
 
 }
 
