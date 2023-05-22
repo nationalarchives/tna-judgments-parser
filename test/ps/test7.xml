@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="pressSummary">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/uksc/2016/40/press-summary/1" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/uksc/2016/40/press-summary/1" />
+          <FRBRdate date="2016-07-13" name="release" />
+          <FRBRauthor href="#uksc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRname value="Press Summary of Edwards v Kumarasamy" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2016/40/press-summary/1" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2016/40/press-summary/1" />
+          <FRBRdate date="2016-07-13" name="release" />
+          <FRBRauthor href="#uksc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2016/40/press-summary/1/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2016/40/press-summary/1/data.xml" />
+          <FRBRdate date="2023-05-19T16:26:02" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk" showAs="The National Archives" />
+        <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The Supreme Court" />
+        <TLCPerson eId="judge-lord-neuberger-president" href="/judge-lord-neuberger-president" showAs="Lord Neuberger (President)" />
+        <TLCPerson eId="judge-lord-wilson" href="/judge-lord-wilson" showAs="Lord Wilson" />
+        <TLCPerson eId="judge-lord-sumption" href="/judge-lord-sumption" showAs="Lord Sumption" />
+        <TLCPerson eId="judge-lord-reed" href="/judge-lord-reed" showAs="Lord Reed" />
+        <TLCPerson eId="judge-lord-carnwath" href="/judge-lord-carnwath" showAs="Lord Carnwath" />
+      </references>
+      <proprietary source="#tna">
+        <uk:court>UKSC</uk:court>
+        <uk:year>2016</uk:year>
+        <uk:summaryOf>https://caselaw.nationalarchives.gov.uk/id/uksc/2016/40</uk:summaryOf>
+        <uk:parser>0.13.0</uk:parser>
+        <uk:hash>a6529333da50b1d28f74b93bcd7e4654433c153fb686f90a24764e61ed2841e5</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#main { font-family: 'Times New Roman'; font-size: 12pt; }
+#main .Normal { font-size: 12pt; }
+#main .Header { font-size: 12pt; }
+#main .Footer { font-size: 12pt; }
+#main .BalloonText { font-family: Tahoma; font-size: 8pt; }
+#main .CommentText { font-size: 10pt; }
+#main .CommentSubject { font-weight: bold; font-size: 10pt; }
+#main .FooterChar { font-size: 12pt; }
+#main .Strong { font-weight: bold; }
+#main .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#main .FollowedHyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #954F72; }
+#main .CommentReference { font-size: 8pt; }
+#main .CommentTextChar { }
+#main .CommentSubjectChar { font-weight: bold; }
+</style>
+      </presentation>
+    </meta>
+    <mainBody>
+      <p style="text-align:center"><img src="image1.png" style="width:84.05pt;height:112.35pt" /></p>
+      <p style="text-align:right"><docDate date="2016-07-13" refersTo="#release" style="font-weight:bold;font-family:Garamond">13 July 2016</docDate></p>
+      <p style="text-align:center"><docType style="font-weight:bold;font-family:Garamond">PRESS SUMMARY</docType></p>
+      <p><docTitle style="font-weight:bold;font-family:Garamond">Edwards (Respondent) v Kumarasamy (Appellant)</docTitle><span style="font-weight:bold;font-family:Garamond"> </span><neutralCitation style="font-weight:bold;font-family:Garamond">[2016] UKSC 40</neutralCitation></p>
+      <p><span style="font-style:italic;font-weight:bold;font-family:Garamond">On appeal from: </span><ref style="font-style:italic;font-weight:bold;font-family:Garamond" href="/ewca/civ/2015/20" uk:canonical="[2015] EWCA Civ 20" uk:type="case" uk:isNeutral="true">[2015] EWCA Civ 20</ref></p>
+      <p><span style="font-weight:bold;font-family:Garamond">JUSTICES</span><span style="font-family:Garamond">: </span><judge refersTo="#judge-lord-neuberger-president" style="font-family:Garamond">Lord Neuberger (President)</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-wilson" style="font-family:Garamond">Lord Wilson</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-sumption" style="font-family:Garamond">Lord Sumption</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-reed" style="font-family:Garamond">Lord Reed</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-carnwath" style="font-family:Garamond">Lord Carnwath</judge></p>
+      <p><span style="font-weight:bold;font-family:Garamond">BACKGROUND TO THE APPEAL</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">By a lease dated 28 April 2006, the freeholder of a block of flats in Runcorn (“the Building”) let Flat 10 in the building for a term of 199 years from 1 January 2006 to Mr Kumarasamy (“the Headlease”). The Building is accessed by a paved pathway (“the paved area”) which leads to the main entrance door which opens onto a front hallway (“the front hallway”).</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">On 2 April 2009, Mr Kumarasamy granted Mr Edwards a subtenancy of the Flat for a term expiring on 5 October 2009 (“the Subtenancy”). The Subtenancy included a grant of “the right to use, in common with others, any shared rights of access, stairways, communal parts, paths and drives” of the Building. Under the Subtenancy, Mr Edwards was under an obligation to repair the Flat, excepting items which Mr Kumarasamy was responsible to maintain.</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">On 1 July 2010, Mr Edwards was taking rubbish from the Flat to the communal dustbins, when he tripped over an uneven paving stone on the paved area. He suffered injuries as a result and issued proceedings against Mr Kumarasamy contending that his injury was caused by Mr Kumarasamy’s failure to keep the paved area in repair, in breach of covenants implied into the Subtenancy by section 11(1)(a) and 11(1A)(a) of the Landlord and Tenant Act 1985 (“the 1985 Act”).</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">At first instance Deputy District Judge Gilman accepted Mr Edwards case and awarded him £3,750 in damages. Her Honour Judge May QC allowed Mr Kumarasamy’s appeal on two grounds: (i) the paved area was not within the ambit of the section 11 covenant; and (ii) even if it had been, Mr Kumarasamy could not have been liable as he had no notice of the disrepair. The Court of Appeal allowed Mr Edwards’ appeal, disagreeing with Judge May on both grounds. Mr Kumarasamy now appeals to the Supreme Court.</span></p>
+      <p style="text-align:justify"><span style="font-weight:bold;font-family:Garamond">JUDGMENT</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">The Supreme Court unanimously allows Mr Kumarasamy’s appeal. Lord Neuberger gives the leading judgment, with which the other Justices agree. Lord Carnwath also gives a short judgment.</span></p>
+      <p style="text-align:justify"><span style="font-weight:bold;font-family:Garamond">REASONS FOR THE JUDGMENT</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">This appeal raises three questions, all of which must be answered in the affirmative for Mr Edwards to succeed on the appeal </span><span style="font-weight:bold;font-family:Garamond">[14-16]</span><span style="font-family:Garamond">:</span></p>
+      <blockContainer>
+        <num style="font-family:Garamond;margin-left:0.5in;text-indent:-0.25in">(1)</num>
+        <p style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:Garamond">Whether, in the light of the wording of sections 11(1)(a) and 11(1A)(a) of the 1985 Act, the paved area can be described as part of the exterior of the front hall;</span></p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:Garamond;margin-left:0.5in;text-indent:-0.25in">(2)</num>
+        <p style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:Garamond">Whether Mr Kumarasamy had an “estate or interest” in the front hall for the purposes of section 11(1A)(a);</span></p>
+      </blockContainer>
+      <blockContainer>
+        <num style="font-family:Garamond;margin-left:0.5in;text-indent:-0.25in">(3)</num>
+        <p style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:Garamond">Whether Mr Kumarasamy could be liable to Mr Edwards for the disrepair in question notwithstanding that he had had no notice of the disrepair in the paved area before Mr Edwards’ accident.</span></p>
+      </blockContainer>
+      <p style="text-align:justify"><span style="font-family:Garamond">Section 11(1) of the 1985 Act, which implies into certain leases of dwelling-houses a covenant by the landlord to keep in repair the structure and exterior of the dwelling-house, applies to the Subtenancy. Where the dwelling-house only forms part of a building, section 11(1A) provides that the covenant has effect in relation to any part of the building in which the lessor has an estate or interest </span><span style="font-weight:bold;font-family:Garamond">[6]</span><span style="font-family:Garamond">. It is not possible, as a matter of ordinary language, to describe a path leading from a car park to the entrance door of a building as part of the exterior of the front hall of that building </span><span style="font-weight:bold;font-family:Garamond">[17]</span><span style="font-family:Garamond">. Such a wide reading would be difficult to reconcile with the wording of section 11(1A)(a), particularly the limitation to “the building”, and the specific extension to cover “drains, gutters and external pipes”, which supports a natural reading of the term “exterior” </span><span style="font-weight:bold;font-family:Garamond">[18]</span><span style="font-family:Garamond">.</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">As to the second question, Mr Kumarasamy was granted a right of way over the front hall and, as a matter of property law, a right of way over land constitutes an interest in that land </span><span style="font-weight:bold;font-family:Garamond">[23]</span><span style="font-family:Garamond">. The argument that Mr Kumarasamy cannot be said to have interest in the front hall since the Subtenancy had effectively deprived Mr Kumarasamy of any practical benefit in the easement so long as it continued is rejected </span><span style="font-weight:bold;font-family:Garamond">[24-25]</span><span style="font-family:Garamond">. </span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">As to the third question, there is an established rule that a landlord is not liable to repair premises which are in the possession of the tenant and not of the landlord, unless and until the landlord has notice of the disrepair (“the rule”) </span><span style="font-weight:bold;font-family:Garamond">[30]</span><span style="font-family:Garamond">. Where a landlord agrees to repair the structure and exterior of a flat, the rule would apply but only to the extent that the structure is included in the demise and the tenant is accordingly in possession of that part of the structure </span><span style="font-weight:bold;font-family:Garamond">[39-40]</span><span style="font-family:Garamond">.</span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">The subsequent question is whether the rule can be invoked when a landlord has covenanted with a tenant to repair the structure but is not in possession of the structure, for example because he has let it to another tenant </span><span style="font-weight:bold;font-family:Garamond">[41]</span><span style="font-family:Garamond">. In such a case, the landlord is not normally entitled to notice in such circumstances </span><span style="font-weight:bold;font-family:Garamond">[42-42]</span><span style="font-family:Garamond">. The rule only applies to property in the possession of the tenant </span><span style="font-weight:bold;font-family:Garamond">[43]</span><span style="font-family:Garamond">. </span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">In view of this analysis, Mr Kumarasamy’s submission that, in every case where a tenant relies on a covenant implied by section 11, a landlord could not be liable until they had notice of the disrepair, even where the landlord is undoubtedly in possession of the property, is rejected </span><span style="font-weight:bold;font-family:Garamond">[44-46]</span><span style="font-family:Garamond">. </span></p>
+      <p style="text-align:justify"><span style="font-family:Garamond">The present case is concerned with the application of a landlord’s repairing covenant to property which is not in the possession of either the landlord or the tenant. The application of the reasoning upon which the rule is based justifies the conclusion that the landlord’s obligation to repair the paved area is only triggered once he has notice of any disrepair for which the tenant would seek to make him liable </span><span style="font-weight:bold;font-family:Garamond">[49]</span><span style="font-family:Garamond">. While it is true that Mr Kumarasamy has the right to use the common parts as against the freeholder, he has effectively lost that right for the duration of the Subtenancy to the tenant, Mr Edwards </span><span style="font-weight:bold;font-family:Garamond">[50]</span><span style="font-family:Garamond">. It is true that the tenant does not enjoy exclusive possession of the common parts, but he is present on them every time he comes to or leaves the flat </span><span style="font-weight:bold;font-family:Garamond">[50]</span><span style="font-family:Garamond"> and has the best means of knowing of any want of repair in them </span><span style="font-weight:bold;font-family:Garamond">[52]</span><span style="font-family:Garamond">.</span></p>
+      <p><span style="font-style:italic;font-family:Garamond">References in square brackets are to paragraphs in the judgment</span></p>
+      <p><br /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond;font-size:11pt">NOTE</span></p>
+      <p style="text-align:justify"><span style="font-weight:bold;font-family:Garamond;font-size:11pt">This summary is provided to assist in understanding the Court’s decision.  It does not form part of the reasons for the decision.  The full judgment of the Court is the only authoritative document.   Judgments are public documents and are available at:</span></p>
+      <p><a href="http://supremecourt.uk/decided-cases/index.html"><span class="Hyperlink" style="font-family:Garamond;font-size:11pt;color:initial">http://supremecourt.uk/decided-cases/index.html</span></a></p>
+    </mainBody>
+  </doc>
+</akomaNtoso>
