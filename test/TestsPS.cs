@@ -13,7 +13,9 @@ public class TestsPS {
 
     private XslCompiledTransform Transform = new XslCompiledTransform();
 
-    public static IEnumerable<object[]> indices = Enumerable.Range(1, 1)
+    private static int N = 17;
+
+    public static IEnumerable<object[]> indices = Enumerable.Range(1, N)
         .Select(i => new object[] { i });
 
     private Tests main = new Tests();
