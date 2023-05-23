@@ -265,12 +265,20 @@ class PreParser {
     /* */
 
     private static WText GetPlainNumberFromParagraph(Paragraph e) {
-        IEnumerable<OpenXmlElement> texts = e.Descendants().Where(e => e is Text || e is TabChar);
-        if (texts.FirstOrDefault() is not Text text)
-            return null;
-        if (texts.Skip(1).FirstOrDefault() is not TabChar)
-            return null;
-        Match match = Regex.Match(text.InnerText, PlainNumberFormat);
+        IEnumerator<OpenXmlElement> children = e.ChildElements
+            .Where(e => e is Run).SelectMany(e => e.ChildElements)
+            .Where(e => e is not RunProperties)
+            .Where(e => e is not LastRenderedPageBreak)
+            .GetEnumerator();
+        string beginning = "";
+        while (children.MoveNext()) {
+            if (children.Current is TabChar)
+                break;
+            if (children.Current is not Text text)
+                return null;
+            beginning += text.InnerText;
+        }
+        Match match = Regex.Match(beginning, PlainNumberFormat);
         if (!match.Success)
             return null;
         string number = match.Value;
@@ -279,7 +287,13 @@ class PreParser {
     }
 
     protected static WLine RemovePlainNumberFromParagraph(MainDocumentPart main, Paragraph p) {
-        return RemoveNumberFromParagraph(main, p, PlainNumberFormat);
+        IEnumerable<IInline> parsed = Inline.ParseRuns(main, p.ChildElements);
+        parsed = Merger.Merge(parsed);
+        if (parsed.FirstOrDefault() is not WText)
+            throw new Exception();
+        if (parsed.Skip(1).FirstOrDefault() is not WTab)
+            throw new Exception();
+        return new WLine(main, p, parsed.Skip(2));
     }
 
 }
