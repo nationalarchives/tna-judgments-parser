@@ -220,6 +220,8 @@ abstract class Builder {
                 AddTable(parent, table);
             // } else if (block is IContainer contain) {
             //     AddContainer(parent, contain);
+            } else if (block is IDivWrapper wrapper) {
+                AddDivision(parent, wrapper.Division);
             } else {
                 throw new Exception(block.GetType().ToString());
             }
