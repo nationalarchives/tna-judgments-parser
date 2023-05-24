@@ -264,7 +264,7 @@ class PreParser {
 
     /* */
 
-    private static WText GetPlainNumberFromParagraph(Paragraph e) {
+    internal static WText GetPlainNumberFromParagraph(Paragraph e) {
         IEnumerator<OpenXmlElement> children = e.ChildElements
             .Where(e => e is Run).SelectMany(e => e.ChildElements)
             .Where(e => e is not RunProperties)
@@ -286,7 +286,7 @@ class PreParser {
         return new WText(number, rPr);
     }
 
-    protected static WLine RemovePlainNumberFromParagraph(MainDocumentPart main, Paragraph p) {
+    internal static WLine RemovePlainNumberFromParagraph(MainDocumentPart main, Paragraph p) {
         IEnumerable<IInline> parsed = Inline.ParseRuns(main, p.ChildElements);
         parsed = Merger.Merge(parsed);
         if (parsed.FirstOrDefault() is not WText)
