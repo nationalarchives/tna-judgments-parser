@@ -98,6 +98,7 @@ class PreParser {
                 lineBreakBefore = false;
             }
         }
+        contents = ExtractHardNumbers(contents).ToList();
         return contents;
     }
 
@@ -111,191 +112,103 @@ class PreParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
-    private static readonly string PlainNumberFormat = @"^[“""]?\d+$";
-    internal static readonly string[] NumberFormats = {
-        @"^([“""]?\d+\.) ",    @"^([“""]?\(\d+\)) ",
-        @"^([“""]?[A-Z]\.) ",  @"^([“""]?\([A-Z]\)) ",
-        @"^([“""]?[a-z]\.) ",  @"^([“""]?\([a-z]\)) ",
-        @"^([“""]?[ivx]+\.) ", @"^([“""]?\([ivx]+\)) "
-    };
-
     private static WLine ParseParagraph(MainDocumentPart main, Paragraph p) {
         DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
-        if (info is not null)
+        if (info.HasValue)
             return new WOldNumberedParagraph(info.Value, main, p);
         WLine line = new WLine(main, p);
-        INumber num2 = Fields.RemoveListNum(line);
+        INumber num2 = Fields.RemoveListNum(line);  // mutates line if successful!
         if (num2 is not null)
             return new WOldNumberedParagraph(num2, line);
-
-        WText plainNum = GetPlainNumberFromParagraph(p);
-        if (plainNum is not null) {
-            try {
-                WLine removed = RemovePlainNumberFromParagraph(main, p);
-                removed.IsFirstLineOfNumberedParagraph = true;
-                return new WOldNumberedParagraph(plainNum, removed);
-            } catch (System.Exception) {
-                return line;
-            }
-        }
-
-        string normalized = NormalizeParagraph(p);
-        foreach (string format in NumberFormats) {
-            WText num = GetNumberFromParagraph(p, format, normalized);
-            if (num is null)
-                continue;
-            try {
-                WLine removed = RemoveNumberFromParagraph(main, p, format);
-                removed.IsFirstLineOfNumberedParagraph = true;
-                return new WOldNumberedParagraph(num, removed);
-            } catch (System.Exception) {
-                break;
-            }
-        }
         return line;
     }
 
-    /* */
+    /* hard numbers */
 
-    // e.InnerText collapses tabs to the empty string
-    private static string NormalizeParagraph(Paragraph e) {
-        IEnumerable<string> texts = e.Descendants()
-            .Where(e => e is Text || e is TabChar)
-            .Select(e => { if (e is Text) return e.InnerText; if (e is TabChar) return " "; return ""; });
-        return string.Join("", texts).Trim();
+    private static readonly string PlainNumberFormat = @"^[“""]?\d+$";
+
+    internal static readonly string[] NumberFormats = new string[] {
+        @"^([“""]?\d+\.)",    @"^([“""]?\(\d+\))",
+        @"^([“""]?[A-Z]\.)",  @"^([“""]?\([A-Z]\))",
+        @"^([“""]?[a-z]\.)",  @"^([“""]?\([a-z]\))",
+        @"^([“""]?[ivx]+\.)", @"^([“""]?\([ivx]+\))"
+    }.Select(s => s + "( |$)").ToArray();
+
+    private static IEnumerable<BlockWithBreak> ExtractHardNumbers(IEnumerable<BlockWithBreak> contents) {
+        return contents.Select(bb => ExtractHardNumber(bb));
     }
 
-    /// text is normalized
-    private static WText GetNumberFromParagraph(Paragraph e, string format, string text) {
-        Match match = Regex.Match(text, format);
+    private static BlockWithBreak ExtractHardNumber(BlockWithBreak bb) {
+        if (bb.Block is not WLine line)
+            return bb;
+        WOldNumberedParagraph removed = ExtractHardNumber(line);
+        if (removed is null)
+            return bb;
+        return new BlockWithBreak { Block = removed, LineBreakBefore = bb.LineBreakBefore };
+    }
+
+    private static WOldNumberedParagraph ExtractHardNumber(WLine line) {
+        if (line is WOldNumberedParagraph)
+            return null;
+        WOldNumberedParagraph removed = ExtractPlainNumber(line);
+        if (removed is not null)
+            return removed;
+        foreach (string format in NumberFormats) {
+            removed = ExtractNumberWithFormat(line, format);
+            if (removed is not null)
+                return removed;
+        }
+        return null;
+    }
+
+    internal static WOldNumberedParagraph ExtractPlainNumber(WLine line) {
+        if (line is WOldNumberedParagraph)
+            return null;
+        if (line.Contents.FirstOrDefault() is not WText first)
+            return null;
+        if (line.Contents.Skip(1).FirstOrDefault() is not WTab)
+            return null;
+        if (!Regex.IsMatch(first.Text, PlainNumberFormat))
+            return null;
+        return new WOldNumberedParagraph(first, line.Contents.Skip(2), line);
+    }
+
+    internal static WOldNumberedParagraph ExtractNumberWithFormat(WLine line, string format) {
+        if (line is WOldNumberedParagraph)
+            return null;
+        IEnumerable<IInline> contents = line.Contents;
+        contents = contents.SkipWhile(first => first is WTab || first is WLineBreak);
+        if (contents.FirstOrDefault() is not WText first)
+            return null;
+        IEnumerable<IInline> rest = contents.Skip(1);
+        string trimmed = first.Text.TrimStart();
+        RunProperties firstProps = first.properties;
+        RunProperties lastProps = first.properties;
+        Match match = Regex.Match(trimmed, format);
+        if (!match.Success && trimmed.Length < 5 && rest.FirstOrDefault() is WText second) {
+            trimmed = trimmed + second.Text;
+            lastProps = second.properties;
+            rest = rest.Skip(1);
+            match = Regex.Match(trimmed, format);
+        }
         if (!match.Success)
             return null;
-        string number = match.Groups[1].Value;
-        RunProperties rPr = e.Descendants<Run>().FirstOrDefault()?.RunProperties;
-        return new WText(number, rPr);
-    }
-
-    protected static WLine RemoveNumberFromParagraph(MainDocumentPart main, Paragraph e, string format) {
-        IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
-        unfiltered = RemoveTrailingWhitespace.Remove(unfiltered);
-        unfiltered = Merger.Merge(unfiltered);
-        unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab || (inline is WText wText && string.IsNullOrWhiteSpace(wText.Text)));
-        IInline first = unfiltered.First();
-        if (first is not WText t1)
-            throw new Exception();
-        Match match = Regex.Match(t1.Text.TrimStart(), format); // TrimStart for 00356_ukut_iac_2019_ms_belgium.doc
-        if (match.Success) {
-            string rest = t1.Text.TrimStart().Substring(match.Length).TrimStart();
-            if (string.IsNullOrEmpty(rest)) {
-                var rest2 = unfiltered.Skip(1);
-                if (rest2.FirstOrDefault() is WTab)
-                    rest2 = rest2.Skip(1);
-                return new WLine(main, e, rest2);
-            } else {
-                WText prepend = new WText(rest, t1.properties);
-                return new WLine(main, e, unfiltered.Skip(1).Prepend(prepend));
-            }
-        }
-        match = Regex.Match(t1.Text + " ", format + @"$");
-        if (match.Success) {
-            IInline second = unfiltered.Skip(1).FirstOrDefault();
-            if (second is WText t2) {
-                WText prepend = new WText(t2.Text.TrimStart(), t2.properties);
-                return new WLine(main, e, unfiltered.Skip(2).Prepend(prepend));
-            } else if (second is WTab) {
-                return new WLine(main, e, unfiltered.Skip(2));
-            } else {
-                throw new Exception();
-            }
-        }
-        if (unfiltered.Skip(1).FirstOrDefault() is WText t2bis) {  // 00356_ukut_iac_2019_ms_belgium.doc
-            string combined = t1.Text + t2bis.Text;
-            match = Regex.Match(combined, format);
-            if (match.Success) {
-                string rest = combined.Substring(match.Length).TrimStart();
-                if (string.IsNullOrEmpty(rest)) {
-                    return new WLine(main, e, unfiltered.Skip(2));
-                } else {
-                    WText prepend = new WText(rest, t2bis.properties);
-                    return new WLine(main, e, unfiltered.Skip(2).Prepend(prepend));
-                }
-            }
-            match = Regex.Match(combined + " ", format + @"$");
-            if (match.Success) {
-                IInline third = unfiltered.Skip(2).FirstOrDefault();
-                if (third is WTab)  // [2022] UKSC 21
-                    return new WLine(main, e, unfiltered.Skip(3));
-            }
-            if (unfiltered.Skip(2).FirstOrDefault() is WText t3) {  // [2022] EWHC 2360 (KB)
-                string combined3 = t1.Text + t2bis.Text + t3.Text;
-                match = Regex.Match(combined3, format);
-                string rest = combined3.Substring(match.Length).TrimStart();
-                if (string.IsNullOrEmpty(rest)) {
-                    return new WLine(main, e, unfiltered.Skip(3));
-                } else {
-                    WText prepend = new WText(rest, t3.properties);
-                    return new WLine(main, e, unfiltered.Skip(3).Prepend(prepend));
-                }
-            }
-        }
-        return NextFunction(main, format, t1, unfiltered.Skip(1), e);
-    }
-
-    private static WLine NextFunction(MainDocumentPart main, string format, WText t1, IEnumerable<IInline> rest, Paragraph p) {
-        string t1Text = t1.Text.TrimStart();
-        if (rest.FirstOrDefault() is WTab) {    // ewhc/ch/2022/2462
-            t1Text += " ";
+        WText num = new WText(match.Groups[1].Value, firstProps);
+        string after = trimmed.Substring(num.Text.Length).TrimStart();
+        if (!string.IsNullOrEmpty(after)) {
+            WText after2 = new WText(after, lastProps);
+            rest = rest.Prepend(after2);
+        } else if (rest.FirstOrDefault() is WTab) {
             rest = rest.Skip(1);
         }
-        if (rest.FirstOrDefault() is WText t2) {
-            string combined = t1Text + t2.Text;
-            Match match = Regex.Match(combined, format);
-            if (match.Success) {
-                string leftOver = combined.Substring(match.Length).TrimStart();
-                if (string.IsNullOrEmpty(leftOver)) {
-                    return new WLine(main, p, rest.Skip(1));
-                } else {
-                    WText prepend = new WText(leftOver, t2.properties);
-                    return new WLine(main, p, rest.Skip(1).Prepend(prepend));
-                }
+        if (rest.FirstOrDefault() is WText next) {
+            string nextTrimmed = next.Text.TrimStart();
+            if (nextTrimmed != next.Text) {
+                WText replacement = new WText(next.Text.TrimStart(), next.properties);
+                rest = rest.Skip(1).Prepend(replacement);
             }
         }
-        throw new Exception();
-    }
-
-    /* */
-
-    internal static WText GetPlainNumberFromParagraph(Paragraph e) {
-        IEnumerator<OpenXmlElement> children = e.ChildElements
-            .Where(e => e is Run).SelectMany(e => e.ChildElements)
-            .Where(e => e is not RunProperties)
-            .Where(e => e is not LastRenderedPageBreak)
-            .GetEnumerator();
-        string beginning = "";
-        while (children.MoveNext()) {
-            if (children.Current is TabChar)
-                break;
-            if (children.Current is not Text text)
-                return null;
-            beginning += text.InnerText;
-        }
-        Match match = Regex.Match(beginning, PlainNumberFormat);
-        if (!match.Success)
-            return null;
-        string number = match.Value;
-        RunProperties rPr = e.Descendants<Run>().FirstOrDefault()?.RunProperties;
-        return new WText(number, rPr);
-    }
-
-    internal static WLine RemovePlainNumberFromParagraph(MainDocumentPart main, Paragraph p) {
-        IEnumerable<IInline> parsed = Inline.ParseRuns(main, p.ChildElements);
-        parsed = RemoveTrailingWhitespace.Remove(parsed);
-        parsed = Merger.Merge(parsed);
-        if (parsed.FirstOrDefault() is not WText)
-            throw new Exception();
-        if (parsed.Skip(1).FirstOrDefault() is not WTab)
-            throw new Exception();
-        return new WLine(main, p, parsed.Skip(2));
+        return new WOldNumberedParagraph(num, rest, line);
     }
 
 }
