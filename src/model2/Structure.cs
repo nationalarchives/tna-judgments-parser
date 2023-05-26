@@ -100,9 +100,15 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
         Number = number;
         IsFirstLineOfNumberedParagraph = proto.IsFirstLineOfNumberedParagraph;
     }
+    // this probably should be deprecated
     internal WOldNumberedParagraph(WOldNumberedParagraph proto, IEnumerable<IInline> contents) : base(proto, contents) {
         Number = proto.Number;
         IsFirstLineOfNumberedParagraph = proto.IsFirstLineOfNumberedParagraph;
+    }
+    // here proto is used only for ParagraphProperties and a link to the MainDocumentPart
+    internal WOldNumberedParagraph(IFormattedText number, IEnumerable<IInline> contents, WLine proto) : base(proto, contents) {
+        Number = number;
+        IsFirstLineOfNumberedParagraph = true;
     }
 
     public IFormattedText Number { get; }
