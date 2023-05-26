@@ -20,10 +20,13 @@ class RemoveTrailingWhitespace : Enricher {
         return false;
     }
 
-    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+    internal static IEnumerable<IInline> Remove(IEnumerable<IInline> line) {
         while (line.Any() && IsWhitespace(line.Last()))
             line = line.SkipLast(1);
         return line;
+    }
+    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+        return Remove(line);
     }
 
 }
