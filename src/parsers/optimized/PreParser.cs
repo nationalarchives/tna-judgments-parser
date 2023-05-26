@@ -177,6 +177,7 @@ class PreParser {
 
     protected static WLine RemoveNumberFromParagraph(MainDocumentPart main, Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
+        unfiltered = RemoveTrailingWhitespace.Remove(unfiltered);
         unfiltered = Merger.Merge(unfiltered);
         unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab || (inline is WText wText && string.IsNullOrWhiteSpace(wText.Text)));
         IInline first = unfiltered.First();
@@ -288,6 +289,7 @@ class PreParser {
 
     internal static WLine RemovePlainNumberFromParagraph(MainDocumentPart main, Paragraph p) {
         IEnumerable<IInline> parsed = Inline.ParseRuns(main, p.ChildElements);
+        parsed = RemoveTrailingWhitespace.Remove(parsed);
         parsed = Merger.Merge(parsed);
         if (parsed.FirstOrDefault() is not WText)
             throw new Exception();
