@@ -54,6 +54,7 @@ class OptimizedEWHCParser : OptimizedParser {
         "Determination as to Venue",    // [2022] EWHC 152 (Admin)
         "Approved Consequentials Judgment", // [2022] EWHC 629 (Ch)
         "SUBSTANTIVE JUDGMENT", // [2023] EWHC 323 (Ch)
+        "REDACTED JUDGMENT",  // [2023] EWHC 654 (Ch)
 
         /* EAT */
         "TRANSCRIPT OF ORAL JUDGMENT",
