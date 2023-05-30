@@ -200,7 +200,8 @@ class DocDate : Enricher {
         /* add other month abbreviations */
         @"^(\s*Date ?:? *)?\d{1,2} ?(January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",   // comma after month in EWHC/Ch/2003/812
         // @"^(\s*Date ?:? *)?\d{1,2} ?(January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
-        @"^(\s+)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"
+        @"^(\s+)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
+        @"^(Date of Redacted Judgment: )\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}()$"
     };
 
     private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369
