@@ -1,8 +1,6 @@
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -98,7 +96,7 @@ class PreParser {
                 lineBreakBefore = false;
             }
         }
-        contents = ExtractHardNumbers(contents).ToList();
+        contents = HardNumbers.Extract(contents);
         return contents;
     }
 
@@ -121,94 +119,6 @@ class PreParser {
         if (num2 is not null)
             return new WOldNumberedParagraph(num2, line);
         return line;
-    }
-
-    /* hard numbers */
-
-    private static readonly string PlainNumberFormat = @"^[“""]?\d+$";
-
-    internal static readonly string[] NumberFormats = new string[] {
-        @"^([“""]?\d+\.)",    @"^([“""]?\(\d+\))",
-        @"^([“""]?[A-Z]\.)",  @"^([“""]?\([A-Z]\))",
-        @"^([“""]?[a-z]\.)",  @"^([“""]?\([a-z]\))",
-        @"^([“""]?[ivx]+\.)", @"^([“""]?\([ivx]+\))"
-    }.Select(s => s + "( |$)").ToArray();
-
-    private static IEnumerable<BlockWithBreak> ExtractHardNumbers(IEnumerable<BlockWithBreak> contents) {
-        return contents.Select(bb => ExtractHardNumber(bb));
-    }
-
-    private static BlockWithBreak ExtractHardNumber(BlockWithBreak bb) {
-        if (bb.Block is not WLine line)
-            return bb;
-        WOldNumberedParagraph removed = ExtractHardNumber(line);
-        if (removed is null)
-            return bb;
-        return new BlockWithBreak { Block = removed, LineBreakBefore = bb.LineBreakBefore };
-    }
-
-    private static WOldNumberedParagraph ExtractHardNumber(WLine line) {
-        if (line is WOldNumberedParagraph)
-            return null;
-        WOldNumberedParagraph removed = ExtractPlainNumber(line);
-        if (removed is not null)
-            return removed;
-        foreach (string format in NumberFormats) {
-            removed = ExtractNumberWithFormat(line, format);
-            if (removed is not null)
-                return removed;
-        }
-        return null;
-    }
-
-    internal static WOldNumberedParagraph ExtractPlainNumber(WLine line) {
-        if (line is WOldNumberedParagraph)
-            return null;
-        if (line.Contents.FirstOrDefault() is not WText first)
-            return null;
-        if (line.Contents.Skip(1).FirstOrDefault() is not WTab)
-            return null;
-        if (!Regex.IsMatch(first.Text, PlainNumberFormat))
-            return null;
-        return new WOldNumberedParagraph(first, line.Contents.Skip(2), line);
-    }
-
-    internal static WOldNumberedParagraph ExtractNumberWithFormat(WLine line, string format) {
-        if (line is WOldNumberedParagraph)
-            return null;
-        IEnumerable<IInline> contents = line.Contents;
-        contents = contents.SkipWhile(first => first is WTab || first is WLineBreak);
-        if (contents.FirstOrDefault() is not WText first)
-            return null;
-        IEnumerable<IInline> rest = contents.Skip(1);
-        string trimmed = first.Text.TrimStart();
-        RunProperties firstProps = first.properties;
-        RunProperties lastProps = first.properties;
-        Match match = Regex.Match(trimmed, format);
-        if (!match.Success && trimmed.Length < 5 && rest.FirstOrDefault() is WText second) {
-            trimmed = trimmed + second.Text;
-            lastProps = second.properties;
-            rest = rest.Skip(1);
-            match = Regex.Match(trimmed, format);
-        }
-        if (!match.Success)
-            return null;
-        WText num = new WText(match.Groups[1].Value, firstProps);
-        string after = trimmed.Substring(num.Text.Length).TrimStart();
-        if (!string.IsNullOrEmpty(after)) {
-            WText after2 = new WText(after, lastProps);
-            rest = rest.Prepend(after2);
-        } else if (rest.FirstOrDefault() is WTab) {
-            rest = rest.Skip(1);
-        }
-        if (rest.FirstOrDefault() is WText next) {
-            string nextTrimmed = next.Text.TrimStart();
-            if (nextTrimmed != next.Text) {
-                WText replacement = new WText(next.Text.TrimStart(), next.properties);
-                rest = rest.Skip(1).Prepend(replacement);
-            }
-        }
-        return new WOldNumberedParagraph(num, rest, line);
     }
 
 }
