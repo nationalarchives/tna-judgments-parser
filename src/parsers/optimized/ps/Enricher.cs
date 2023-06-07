@@ -137,6 +137,10 @@ class PressSummaryEnricher {
                     Enriched.Add(restriction);
                     continue;
                 }
+                if (line.NormalizedContent.StartsWith("Reference by ")) {
+                    Enriched.Add(line);
+                    continue;
+                }
                 WLine enriched1 = EnrichCite(line);
                 if (!Object.ReferenceEquals(enriched1, line)) {
                     Enriched.Add(enriched1);
@@ -168,6 +172,11 @@ class PressSummaryEnricher {
                     state = State.AfterOnAppealFromBeforeJustices;
                     continue;
                 }
+                if (line.NormalizedContent.StartsWith("On appeal from ")) {  // for NICA
+                    Enriched.Add(enriched1);
+                    state = State.AfterOnAppealFromBeforeJustices;
+                    continue;
+                }
                 Enriched.Add(line);
                 state = State.Done;
                 continue;
@@ -181,7 +190,7 @@ class PressSummaryEnricher {
                 WLine enriched1 = EnrichJustices(line);
                 if (!Object.ReferenceEquals(enriched1, line)) {
                     Enriched.Add(enriched1);
-                    state = State.AfterOnAppealFromBeforeJustices;
+                    state = State.Done;
                     continue;
                 }
                 Enriched.Add(line);
@@ -302,7 +311,7 @@ class PressSummaryEnricher {
     private WLine EnrichOnAppealFrom(WLine line) {
         if (!line.NormalizedContent.StartsWith("On appeal from"))
             return line;
-        string pattern = @"(\[\d{4}\] EWCA (Civ|Crim) \d+)\.? *$";
+        string pattern = @"(\[\d{4}\] EWCA (Civ|Crim) \d+)\.? *$";  // NICA?
         var constructor = (string text, RunProperties rProps) => {
             var normalized = Citations.Normalize(text);
             // var prefix = "https://caselaw.nationalarchives.gov.uk/";
