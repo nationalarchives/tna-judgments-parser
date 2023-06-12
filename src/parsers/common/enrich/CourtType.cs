@@ -1268,6 +1268,10 @@ class Combo1 : Combo {
             Court = Courts.EWFC
         },
         new Combo1 {
+            Re = new Regex("^IN THE CENTRAL FAMILY COURT$", RegexOptions.IgnoreCase),
+            Court = Courts.EWFC
+        },
+        new Combo1 {
             Re = new Regex("^IN THE FAMILY COURT AT [A-Z-]+$", RegexOptions.IgnoreCase),
             Court = Courts.EWFC
         },
