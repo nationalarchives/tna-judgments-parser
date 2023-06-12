@@ -618,6 +618,16 @@ class Numbering2 {
                     prevContainsNumId = true;
                 else
                     prevContainsNumId = false;
+
+                // the strange case of [2023] EWCA Civ 657
+                if (!prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
+                    Style prevStyle =  Styles.GetStyle(main, prev);
+                    string prevBasedOn = prevStyle?.BasedOn?.Val?.Value;
+                    string thisStyleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
+                    int? prevStyleIlvl = prevStyle?.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
+                    if (prevBasedOn is not null && prevBasedOn == thisStyleId && prevStyleIlvl.HasValue)
+                        continue;
+                }
                 count = 0;
                 continue;
             }
