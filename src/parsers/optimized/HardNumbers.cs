@@ -148,7 +148,7 @@ class HardNumbers {
             int indent = GetIndent(np);
             IndexAndNumber here = new IndexAndNumber { I = i, N = n };
 
-            Func<IndexAndNumber?> GetLast = () => magic.ContainsKey(indent) ? magic[indent].Peek() : null;
+            Func<IndexAndNumber?> GetLast = () => magic.ContainsKey(indent) && magic[indent].Count > 0 ? magic[indent].Peek() : null;
             Action SetLast = () => { if (!magic.ContainsKey(indent)) magic[indent] = new Stack<IndexAndNumber>(); magic[indent].Push(here); };
             IndexAndNumber? last = GetLast();
 
@@ -156,8 +156,9 @@ class HardNumbers {
             Action RevertLast = () => {
                 int lastI = last.Value.I;
                 Extracted[lastI] = Input[lastI];
-                magic[indent].Pop();
-                last = magic[indent].Peek();
+                Stack<IndexAndNumber> magic1 = magic[indent];
+                magic1.Pop();
+                last = magic1.Count == 0 ? null : magic1.Peek();
             };
 
             if (n == 1 && !last.HasValue) {
