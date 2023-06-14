@@ -38,6 +38,8 @@ class Inline {
                     withinField = new List<OpenXmlElement>();
                     continue;
                 }
+                // if (!withinField.Any())
+                //     continue;
                 logger.LogDebug("field within field");
                 string fc1;
                 if (withinField.FirstOrDefault() is not null && Fields.IsFieldCode(withinField.First()))
@@ -48,19 +50,6 @@ class Inline {
                     logger.LogDebug("skipping inner field because it's within a TOC entry");
                     while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current))
                         ;
-                    continue;
-                }
-                if (fc1 is not null && fc1.StartsWith("INCLUDEPICTURE ")) {  // [2020] UKSC 49
-                    logger.LogDebug("skipping inner field because it's within an INCLUDEPICTURE entry");
-                    int starts = 1;
-                    while (enumerator.MoveNext()) {
-                        if (Fields.IsFieldStart(enumerator.Current))
-                            starts += 1;
-                        if (Fields.IsFieldEnd(enumerator.Current)) {
-                            starts -= 1;
-                            if (starts == 0) break;
-                        }
-                    }
                     continue;
                 }
                 if (!enumerator.MoveNext())
@@ -76,14 +65,48 @@ class Inline {
                         logger.LogDebug("skipping inner field because it's empty");
                         continue;
                     }
-                    throw new Exception();
+                    if (Fields.IsFieldCode(enumerator.Current)) {
+                        fc2 += Fields.GetFieldCode(enumerator.Current);
+                    } else {
+                        throw new Exception();
+                    }
+                }
+                if (fc1 is not null && fc1.StartsWith("INCLUDEPICTURE") && fc2 is not null && fc2.StartsWith("INCLUDEPICTURE")) {  // [2020] UKSC 49, ewca_civ_2023_637
+                    logger.LogDebug("INCLUDEPICTURE within INCLUDEPICTURE");
+                    int starts = 1;
+                    while (enumerator.MoveNext()) {
+                        if (Fields.IsFieldStart(enumerator.Current)) {
+                            starts += 1;
+                            continue;
+                        }
+                        if (Fields.IsFieldCode(enumerator.Current)) {
+                            string fc3 = Fields.GetFieldCode(enumerator.Current).TrimStart();
+                            logger.LogDebug(fc3.TrimEnd() + " within INCLUDEPICTURE within INCLUDEPICTURE");
+                            continue;
+                        }
+                        if (Fields.IsFieldSeparater(enumerator.Current))
+                            continue;
+                        if (Fields.IsFieldEnd(enumerator.Current)) {
+                            starts -= 1;
+                            if (starts == 0)
+                                break;
+                            continue;
+                        }
+                        withinField.Add(enumerator.Current);
+                    }
+                    IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
+                    parsed.AddRange(parsedFieldContents);
+                    withinField = null;
+                    continue;
                 }
                 if (fc1 == "FORMTEXT " && fc2 == "FORMTEXT ") { // EWCA/Civ/2015/40.rtf
                     logger.LogDebug("FORMTEXT within FORMTEXT");
                     int starts = 1;
                     while (enumerator.MoveNext()) {
-                        if (Fields.IsFieldStart(enumerator.Current))
+                        if (Fields.IsFieldStart(enumerator.Current)) {
                             starts += 1;
+                            continue;
+                        }
                         if (Fields.IsFieldCode(enumerator.Current)) {
                             string fc3 = Fields.GetFieldCode(enumerator.Current).TrimStart();
                             logger.LogDebug(fc3.TrimEnd() + " within FORMTEXT within FORMTEXT");
@@ -96,7 +119,9 @@ class Inline {
                             continue;
                         if (Fields.IsFieldEnd(enumerator.Current)) {
                             starts -= 1;
-                            if (starts == 0) break;
+                            if (starts == 0)
+                                break;
+                            continue;
                         }
                         withinField.Add(enumerator.Current);
                     }
