@@ -44,7 +44,7 @@ class CourtType : AbstractCourtType {
             },
             new Combo2 {
                 Re1 = new Regex(@"^First-tier Tribunal$", RegexOptions.IgnoreCase),
-                Re2 = new Regex(@"^General Regulatory Chamber$", RegexOptions.IgnoreCase),
+                Re2 = new Regex(@"^\(?General Regulatory Chamber\)?$", RegexOptions.IgnoreCase),
                 Court = Courts.FirstTierTribunal_GRC
             }
         };
