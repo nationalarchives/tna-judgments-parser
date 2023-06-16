@@ -134,7 +134,7 @@ class PartyEnricher : Enricher {
         IInline next = enumerator.Current;
         if (next is not WText text2)
             return line;
-        if (text2.Text != "v")
+        if (text2.Text.Trim() != "v")
             return line;
         contents.Add(next);
 
@@ -450,6 +450,23 @@ class PartyEnricher : Enricher {
             remainder = remainder.Substring(0, middleMatch.Index);
         }
 
+        Match twoPartyMatch = Regex.Match(remainder, @"^ *\(1\) *(.+?) \(2\) *(.+?) *$");
+        if (twoPartyMatch.Success) {
+            Group group1 = twoPartyMatch.Groups[1];
+            Group group2 = twoPartyMatch.Groups[2];
+            string before = remainder.Substring(0, group1.Index);
+            string party1 = group1.Value;
+            string between = remainder.Substring(group1.Index + group1.Length, group2.Index - (group1.Index + group1.Length));
+            string party2 = group2.Value;
+            string after = remainder.Substring(group2.Index + group2.Length);
+            if (!string.IsNullOrEmpty(after))
+                contents.AddFirst(new WText(after, text.properties));
+            contents.AddFirst(new WParty(party2, text.properties) { Role = role });
+            contents.AddFirst(new WText(between, text.properties));
+            contents.AddFirst(new WParty(party1, text.properties) { Role = role });
+            contents.AddFirst(new WText(before, text.properties));
+            return Merger.Merge(contents);
+        }
         Match partyMatch = Regex.Match(remainder, @"^ *(.+?) *$");
         if (!partyMatch.Success)
             return null;
