@@ -733,7 +733,7 @@ class PartyEnricher : Enricher {
     private static bool IsFirstPartyType(string s) {
         ISet<string> firstPartyTypes = new HashSet<string>() {
             "Claimant", "Claimants", "(Claimant)", "(CLAIMANT)", "(CLAIMANTS)", "Claimant/part 20 Defendant",
-            "First Claimant", "Second Claimant",
+            "First Claimant", "Second Claimant", "Claimant / Defendant to Counterclaim",
             "Claimant/Respondent", "Claimant/ Respondent", "CLAIMANT/RESPONDENT", "Respondent/Claimant", "Claimants/Respondents", "CLAIMANTS/RESPONDENTS",
             "Respondent",    // EWCA/Civ/2003/1686
             "Applicant", "Applicants", "Claimant/Applicant", "Claimant/Appellant", "Claimants/Appellants", "CLAIMANT/APPELLANT",
@@ -767,6 +767,7 @@ class PartyEnricher : Enricher {
             case "Claimant/part 20 Defendant":
             case "First Claimant":
             case "Second Claimant":
+            case "Claimant / Defendant to Counterclaim":
                 return PartyRole.Claimant;
             case "Claimant/Respondent":
             case "Claimant/ Respondent":
@@ -927,14 +928,15 @@ class PartyEnricher : Enricher {
             "First Defendant", "Second Defendant",
             "(FIRST DEFENDANT)", "(SECOND DEFENDANT)", "(1ST DEFENDANT)", "(2ND DEFENDANT)", "(1st DEFENDANT)", "(2nd DEFENDANT)", "(3rd DEFENDANT)",
             "Applicants/Defendants",
-            "Defendant/Appellant", "DEFENDANT/APPELLANT", "Defendants/Appellants", "Defendants / Appellants", "Appellant/Defendant", "Appellant/First Defendant",
+            "Defendant/Appellant", "DEFENDANT/APPELLANT", "Defendants/Appellants", "Defendants / Appellants", "Appellant/Defendant", "Appellant/First Defendant", "Defendant / Counterclaimant",
             "Appellant", // EWCA/Civ/2003/1686
             "Respondent", "Respondents", "(RESPONDENT)", "(RESPONDENTS)", "Defendant/Respondent", "Defendants/Respondents", "DEFENDANT/RESPONDENT", "DEFENDANTS/RESPONDENTS", "Respondent/Respondent", "Respondents/Respondents", "Respondents/Defendants", "Respondents/ Defendants",
             "Respondnet",  // EWHC/Admin/2010/3393
             "First Respondent", "Second Respondent",
             "Interested Party", "Interested Parties", "(INTERESTED PARTY)", "(INTERESTED PARTIES)", "Second Interested Party", "Third Interested Party",
             "FIRST DEFENDANT’S SOLICITOR/APPELLANT", "Third Party/Appellant",
-            "Intervener", "Interveners"
+            "Intervener", "Interveners",
+            "Additional Claimant"
         };
         if (secondPartyTypes.Contains(s))
             return true;
@@ -964,6 +966,7 @@ class PartyEnricher : Enricher {
             case "(2nd DEFENDANT)":
             case "(3rd DEFENDANT)":
             case "Applicants/Defendants":
+            case "Defendant / Counterclaimant":
                 return PartyRole.Defendant;
             case "Defendant/Appellant":
             case "DEFENDANT/APPELLANT":
@@ -1001,6 +1004,8 @@ class PartyEnricher : Enricher {
             case "Intervener":
             case "Interveners":
                 return PartyRole.Intervener;
+            case "Additional Claimant":
+                return PartyRole.Claimant;
             default:
                 return GetPartyRole(s).Value;
         }
@@ -1263,13 +1268,13 @@ class PartyEnricher : Enricher {
         };
         if (types.Contains(normalized))
             return PartyRole.Appellant;
-        types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant" };
+        types = new HashSet<string>() { "Claimant", "Claimants", "Claimant/Part 20 Defendant", "Claimant/part 20 Defendant", "Claimant / Defendant to Counterclaim", "Additional Claimant" };
         if (types.Contains(normalized))
             return PartyRole.Claimant;
         types = new HashSet<string>() { "Applicant", "Applicants", "Respondent/Applicant", "Applicants/Claimants", "Applicant/ Claimant", "Claimant/Applicant", "Defendant/ Applicant", "1st Applicant", "2nd Applicant" };
         if (types.Contains(normalized))
             return PartyRole.Applicant;
-        types = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Part 20 Claimant", "First Defendant", "Second Defendant", "Third Defendant" };
+        types = new HashSet<string>() { "Defendant", "Defendants", "Defendant/Part 20 Claimant", "First Defendant", "Second Defendant", "Third Defendant", "Defendant / Counterclaimant" };
         if (types.Contains(normalized))
             return PartyRole.Defendant;
         types = new HashSet<string>() { "Respondent", "RESPONDENT", "Respondents",
@@ -1534,6 +1539,10 @@ class PartyEnricher : Enricher {
                                     WParty2 party = new WParty2(line.Contents.Cast<ITextOrWhitespace>()) { Role = role };
                                     return WLine.Make(line, new List<IInline>(1) { party });
                                 }
+                }
+                if (line.Contents.All(inline => inline is WText)) {
+                    WParty2 party = new WParty2(line.Contents.Cast<WText>());
+                    return WLine.Make(line, new List<IInline>(1) { party });
                 }
                 if (line.Contents.Count() == 3) {   // EWHC/Ch/2018/2498
                     IInline first = line.Contents.First();
