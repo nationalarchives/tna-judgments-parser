@@ -507,7 +507,7 @@ class PartyEnricher : Enricher {
         if (block is not WLine line)
             return false;
         string normalized = line.NormalizedContent;
-        normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':');
+        normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(new char[] { ':', '-' });
         if (normalized.Equals("BETWEEN", StringComparison.InvariantCultureIgnoreCase))
             return true;
         return false;
