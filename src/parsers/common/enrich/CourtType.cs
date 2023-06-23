@@ -633,8 +633,13 @@ class Combo3 : Combo {
         new Combo3 {    // [2022] EWHC 48 (Ch)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^BUSINESS LIST \(ChD\)$", RegexOptions.IgnoreCase),
-            // Re4 = new Regex(@"^PENSIONS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^BUSINESS LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),  // space in [2023] EWHC 1391 (Ch)
+            Court = Courts.EWHC_Chancery_BusinessList
+        },
+        new Combo3 {    // [2023] EWHC 1439 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS IN BIRMINGHAM$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^BUSINESS LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList
         },
         new Combo3 {
