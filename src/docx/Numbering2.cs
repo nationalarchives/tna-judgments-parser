@@ -61,10 +61,10 @@ class Numbering2 {
 
         /* None */
         if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
-            if (!string.IsNullOrEmpty(format.Val.Value)) {  // EWHC/Ch/2014/4092 contains %
-                logger.LogDebug("None number format: " + format.Val.Value);
-            }
-            return "";
+            if (string.IsNullOrEmpty(format.Val.Value))
+                return "";
+            logger.LogDebug("None number format: " + format.Val.Value);
+            return Regex.Replace(format.Val.Value, @"%\d", "");  // EWHC/Ch/2014/4092, [2023] EWHC 1526 (Admin)
         }
 
         /* Bullet */
