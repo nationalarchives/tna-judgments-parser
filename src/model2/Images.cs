@@ -62,6 +62,7 @@ public class WImageRef : IImageRef {
 
         // for alt text
         // var props = drawing.Descendants().OfType<DrawingML.Wordprocessing.DocProperties>().FirstOrDefault();
+        // see also DrawingML.Pictures.NonVisualDrawingProperties>().FirstOrDefault()?.Description;
         // var name = props?.Name;
         // var desc = props?.Description;
         // StringValue relId = drawing.Inline.Graphic.GraphicData.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().First().Embed;
@@ -101,6 +102,11 @@ public class WImageRef : IImageRef {
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
         IEnumerable<Vml.ImageData> data = picture.Descendants<Vml.ImageData>();
         if (!data.Any()) {
+            var drawing = picture.Descendants<Drawing>().FirstOrDefault();
+            if (drawing is not null) {
+                logger.LogWarning("drawing within picture");
+                return new WImageRef(main, drawing);
+            }
             logger.LogWarning("skipping picture because it has no 'image data'");
             return null;
         }
@@ -206,7 +212,6 @@ public class WImageRef : IImageRef {
             return null;
         return xfrm.Rotation.Value / 60000;
     }
-
 
 }
 
