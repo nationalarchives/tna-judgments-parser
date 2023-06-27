@@ -259,6 +259,10 @@ static class Paragraphs {
         return p.ChildElements.All(child => child is ParagraphProperties || child is DeletedRun);
     }
 
+    internal static bool IsMergedWithFollowing(Paragraph p) {
+        return p.ParagraphProperties?.ParagraphMarkRunProperties?.Deleted is not null;
+    }
+
 }
 
 }
