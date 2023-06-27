@@ -31,6 +31,12 @@ class BlockWithBreak {
 
 }
 
+class MergedBlockWithBreak : BlockWithBreak {
+
+    internal bool MergedWithNext { get; init; }
+
+}
+
 class PreParser {
 
     private ILogger Logger = Logging.Factory.CreateLogger<PreParser>();
@@ -86,33 +92,43 @@ class PreParser {
     }
 
     private List<BlockWithBreak> Body(MainDocumentPart main) {
-        List<BlockWithBreak> contents = new List<BlockWithBreak>();
+        List<MergedBlockWithBreak> unmerged = FirstPass(main);
+        List<BlockWithBreak> merged = Merge(unmerged)
+            .Select(RemoveTrailingWhitespaceAndMergeRuns)
+            .Where(LineIsNotEmpty)
+            .ToList();
+        merged = HardNumbers.Extract(merged);
+        return merged;
+    }
+
+    private List<MergedBlockWithBreak> FirstPass(MainDocumentPart main) {
+        List<MergedBlockWithBreak> unmerged = new List<MergedBlockWithBreak>();
         bool lineBreakBefore = false;
         foreach (var e in main.Document.Body.ChildElements) {
             lineBreakBefore = lineBreakBefore || Util.IsSectionOrPageBreak(e);
             if (IsSkippable(e))
                 continue;
-            IEnumerable<IBlock> blocks = ParseElement(main, e);
-            foreach (IBlock block in blocks) {
-                var enriched = removeTrailingWhitespace.Enrich1(block);
-                enriched = mergeRuns.Enrich1(enriched);
-                if (block is ILine line && block is not IOldNumberedParagraph && !line.Contents.Any())
-                    continue;
-                contents.Add(new BlockWithBreak { Block = enriched, LineBreakBefore = lineBreakBefore });
+            List<IBlock> blocks = ParseElement(main, e);
+            foreach (IBlock block in blocks.SkipLast(1)) {
+                unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore });
+                lineBreakBefore = false;
+            }
+            foreach (IBlock block in blocks.TakeLast(1)) {
+                bool merged1 = e is Paragraph p && DOCX.Paragraphs.IsMergedWithFollowing(p);
+                unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore, MergedWithNext = merged1 });
                 lineBreakBefore = false;
             }
         }
-        contents = HardNumbers.Extract(contents);
-        return contents;
+        return unmerged;
     }
 
-    private static IEnumerable<IBlock> ParseElement(MainDocumentPart main, OpenXmlElement e) {
+    private static List<IBlock> ParseElement(MainDocumentPart main, OpenXmlElement e) {
         if (e is Paragraph p)
             return new List<IBlock>(1) { ParseParagraph(main, p) };
         if (e is Table table)
             return new List<IBlock>(1) { new WTable(main, table) };
         if (e is SdtBlock sdt)
-            return Blocks.ParseStdBlock(main, sdt);
+            return Blocks.ParseStdBlock(main, sdt).ToList();
         throw new System.Exception(e.GetType().ToString());
     }
 
@@ -125,6 +141,46 @@ class PreParser {
         if (num2 is not null)
             return new WOldNumberedParagraph(num2, line);
         return line;
+    }
+
+    private List<BlockWithBreak> Merge(List<MergedBlockWithBreak> unmerged) {
+        List<BlockWithBreak> merged = new List<BlockWithBreak>();
+        bool prevMerged = false;
+        foreach (var mbb in unmerged) {
+            if (prevMerged) {
+                var prev = merged.Last();
+                if (prev.Block is WLine prevLine && mbb.Block is WLine thisLine) {
+                    WLine line2 = WLine.Make(thisLine, Enumerable.Concat(prevLine.Contents, thisLine.Contents));
+                    var prev2 = new BlockWithBreak { LineBreakBefore = prev.LineBreakBefore, Block = line2 };
+                    merged.RemoveAt(merged.Count - 1);
+                    merged.Add(prev2);
+                } else {
+                    Logger.LogWarning("can't merge");
+                    merged.Add(mbb);
+                }
+            } else {
+                merged.Add(mbb);
+            }
+            prevMerged = mbb.MergedWithNext;
+        }
+        return merged;
+    }
+
+
+    private BlockWithBreak RemoveTrailingWhitespaceAndMergeRuns(BlockWithBreak bb) {
+        var enriched = removeTrailingWhitespace.Enrich1(bb.Block);
+        enriched = mergeRuns.Enrich1(enriched);
+        if (object.ReferenceEquals(enriched, bb))
+            return bb;
+        return new BlockWithBreak { Block = enriched, LineBreakBefore = bb.LineBreakBefore };
+    }
+
+    private bool LineIsNotEmpty(BlockWithBreak bb) {
+        if (bb.Block is not ILine line)
+            return true;
+        if (line is IOldNumberedParagraph)
+            return true;
+        return line.Contents.Any();
     }
 
 }

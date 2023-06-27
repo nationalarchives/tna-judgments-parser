@@ -589,6 +589,8 @@ class Numbering2 {
                 continue;
             if (Paragraphs.IsEmptySectionBreak(prev))
                 continue;
+            if (Paragraphs.IsMergedWithFollowing(prev))
+                continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
                 continue;
