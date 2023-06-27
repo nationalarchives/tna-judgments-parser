@@ -253,6 +253,12 @@ static class Paragraphs {
             && p.ChildElements.All(child => child is ParagraphProperties);
     }
 
+    internal static bool IsDeleted(Paragraph p) {
+        if (!p.ChildElements.OfType<DeletedRun>().Any())
+            return false;
+        return p.ChildElements.All(child => child is ParagraphProperties || child is DeletedRun);
+    }
+
 }
 
 }

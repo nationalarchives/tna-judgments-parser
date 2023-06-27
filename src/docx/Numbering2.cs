@@ -585,6 +585,8 @@ class Numbering2 {
 
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
+            if (Paragraphs.IsDeleted(prev))
+                continue;
             if (Paragraphs.IsEmptySectionBreak(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);

@@ -10,6 +10,7 @@ using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
+using Microsoft.Extensions.Logging;
 
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parse {
@@ -32,7 +33,10 @@ class BlockWithBreak {
 
 class PreParser {
 
+    private ILogger Logger = Logging.Factory.CreateLogger<PreParser>();
+
     internal WordDocument Parse(WordprocessingDocument doc) {
+        Logger.LogTrace($"pre-parsing { doc.DocumentType.ToString() }");
         return new WordDocument {
             Header = Header(doc.MainDocumentPart),
             Body = Body(doc.MainDocumentPart)
@@ -58,18 +62,20 @@ class PreParser {
             return true;
         if (e is BookmarkStart || e is BookmarkEnd)
             return true;
-        if (e.Descendants().OfType<Drawing>().Any())
-            return false;
-        if (e.Descendants().OfType<Picture>().Any())
-            return false;
-        if (e.Descendants().OfType<Shape>().Any())
-            return false;
         if (e is Paragraph p) {
+            if (DOCX.Paragraphs.IsDeleted(p))
+                return true;
             if (DOCX.Paragraphs.IsEmptySectionBreak(p))
                 return true;
             if (DOCX.Numbering2.HasOwnNumber(p))
                 return false;
             if (DOCX.Numbering2.HasEffectiveStyleNumber(p))
+                return false;
+            if (e.Descendants().OfType<Drawing>().Any())
+                return false;
+            if (e.Descendants().OfType<Picture>().Any())
+                return false;
+            if (e.Descendants().OfType<Shape>().Any())
                 return false;
             if (string.IsNullOrWhiteSpace(p.InnerText))
                 return true;
