@@ -1091,6 +1091,11 @@ class Combo2 : Combo {
             Re2 = new Regex(@"\(Chancery Division\)"),
             Court = Courts.EWHC_Chancery
         },
+        new Combo2 {    // [2023] EWHC 1593 (KB)
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex("KING['’]S BENCH DIVISION"),
+            Court = Courts.EWHC_KBD
+        },
         // new Combo2 {
         //     Re1 = new Regex("IN THE HIGH COURTS? OF JUSTICE"),
         //     Re2 = new Regex("CHANCERY DIVISION"),
