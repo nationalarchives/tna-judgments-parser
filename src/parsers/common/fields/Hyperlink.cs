@@ -60,6 +60,29 @@ internal class Hyperlink {
         }
     }
 
+    internal static List<IInline> Parse(string fieldCode, List<IInline> contents) {
+        Match match = Regex.Match(fieldCode, regex);
+        if (!match.Success)
+            throw new Exception();
+        string href = match.Groups[2].Value;
+        string location = match.Groups[4].Value;
+        string screenTip = match.Groups[6].Value;
+        // \t switch ???
+        if (string.IsNullOrEmpty(href)) {   // EWHC/Ch/2018/2285
+            Fields.logger.LogWarning("cross-references are not yet supported: " + fieldCode);
+            return contents;
+        }
+        if (string.IsNullOrEmpty(location))
+            href += "";
+        else if (location.Contains('#'))    // EWHC/Fam/2011/586
+            href += location.Substring(location.IndexOf('#'));
+        else
+            href += "#" + location;
+        var mergedContents = UK.Gov.Legislation.Judgments.Parse.Merger.Merge(contents);
+        WHyperlink2 hyperlink = new WHyperlink2() { Contents = mergedContents, Href = href, ScreenTip = screenTip };
+        return new List<IInline>(1) { hyperlink };
+    }
+
 }
 
 }

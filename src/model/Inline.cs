@@ -62,7 +62,7 @@ interface IInline {
 
 interface IInlineContainer : IInline {
 
-    IEnumerable<IInline> Contents { get; init; }
+    IEnumerable<IInline> Contents { get; }
 
 }
 
@@ -144,6 +144,12 @@ interface IFormattedText : ITextOrWhitespace {
 
     Dictionary<string, string> GetCSSStyles() {
         return CSS.GetCSSStyles(this);
+    }
+
+    static bool IsFormattedTextAndNothingElse(IInline inline) {
+        if (inline is not IFormattedText)
+            return false;
+        return inline.GetType().GetInterfaces().Length == 1;
     }
 
 }
@@ -332,22 +338,7 @@ interface IHyperlink2 : IInline {
 
 }
 
-enum RefType { Case, Legislation }
-
-/// a <ref> in LegalDocML is an inline element "containing a legal reference"
-/// the properties below are part of the Find Case Law enrichment model
-interface IRef : IHyperlink1 {
-
-    string Canonical { get; }  // required
-
-    bool? IsNeutral { get; }
-
-    RefType? Type { get; }
-
-    string Origin { get => "parser"; }
-
-}
-
+interface IPageReference : IInlineContainer { }
 
 interface ILineBreak : ITextOrWhitespace { }
 

@@ -26,7 +26,12 @@ class Symbol {
         ANSI = Encoding.GetEncoding(1252);
     }
 
+    [Obsolete]
     internal static IInline Parse(MainDocumentPart main, string fieldCode, IEnumerable<OpenXmlElement> rest) {
+        return Convert(fieldCode);
+    }
+
+    internal static SpecialCharacter Convert(string fieldCode) {
         Match match = Regex.Match(fieldCode, pattern);
         if (match.Success) {
             string code = match.Groups[1].Value;
@@ -43,11 +48,6 @@ class Symbol {
             return new WText(utf8, null);
         }
         throw new Exception();
-    }
-
-    private static string AnsiToUtf8(byte ansi) {
-        byte[] utf8 = Encoding.Convert(ANSI, Encoding.UTF8, new byte[] { ansi });
-        return Encoding.UTF8.GetString(utf8);
     }
 
 }

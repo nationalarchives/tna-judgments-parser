@@ -398,17 +398,16 @@ internal class WHyperlink2 : IHyperlink2 {
 
 }
 
-internal class WRef : WHyperlink1, IRef {
+internal abstract class InlineContainer : IInlineContainer {
 
-    public WRef(string text, RunProperties props) : base(text, props) { }
-
-    public string Canonical { get; internal init; }  // required
-
-    public bool? IsNeutral { get; internal init; }
-
-    public RefType? Type { get; internal init; }
+    public IEnumerable<IInline> Contents { get; internal init; }
 
 }
+
+internal class WPageReference : InlineContainer, IPageReference { }
+
+
+/* whitespace */
 
 internal class WLineBreak : ILineBreak {
 
