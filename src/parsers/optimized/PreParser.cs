@@ -13,7 +13,6 @@ using UK.Gov.Legislation.Judgments.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 using Microsoft.Extensions.Logging;
 
-
 namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 
 class WordDocument {
@@ -105,7 +104,7 @@ class PreParser {
     }
 
     private List<BlockWithBreak> Body(MainDocumentPart main) {
-        List<MergedBlockWithBreak> unmerged = FirstPass(main);
+        List<MergedBlockWithBreak> unmerged = FirstPass1.X(main);
         List<BlockWithBreak> merged = Merge(unmerged)
             .Select(TrimWhitespaceAndMergeRuns)
             .Where(LineIsNotEmpty)
@@ -114,6 +113,7 @@ class PreParser {
         return merged;
     }
 
+    [Obsolete]
     private List<MergedBlockWithBreak> FirstPass(MainDocumentPart main) {
         List<MergedBlockWithBreak> unmerged = new List<MergedBlockWithBreak>();
         bool lineBreakBefore = false;
@@ -195,6 +195,127 @@ class PreParser {
         if (line is IOldNumberedParagraph)
             return true;
         return line.Contents.Any();
+    }
+
+    class FirstPass1 {
+
+        internal static List<MergedBlockWithBreak> X(MainDocumentPart main) => new FirstPass1(main).DoPass();
+
+        private MainDocumentPart Main { get; init; }
+
+        private int i = 0;
+
+        private FirstPass1(MainDocumentPart main) { this.Main = main; }
+
+        private List<MergedBlockWithBreak> DoPass() {
+            List<MergedBlockWithBreak> unmerged = new List<MergedBlockWithBreak>();
+            bool lineBreakBefore = false;
+            while (i < Main.Document.Body.ChildElements.Count) {
+                OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
+                lineBreakBefore = lineBreakBefore || Util.IsSectionOrPageBreak(e);
+                if (IsSkippable(e)) {
+                    i += 1;
+                    continue;
+                }
+
+                int save = i;
+                TableOfContents toc = ParseTableOfContents(e);
+                if (toc is not null) {
+                    unmerged.Add(new MergedBlockWithBreak { Block = toc, LineBreakBefore = lineBreakBefore });
+                    lineBreakBefore = false;
+                    continue;
+                } else {
+                    i = save;
+                }
+
+                List<IBlock> blocks = ParseElement(Main, e);
+                foreach (IBlock block in blocks.SkipLast(1)) {
+                    unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore });
+                    lineBreakBefore = false;
+                }
+                foreach (IBlock block in blocks.TakeLast(1)) {
+                    bool mergedWithNext = e is Paragraph p && DOCX.Paragraphs.IsMergedWithFollowing(p);
+                    unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore, MergedWithNext = mergedWithNext });
+                    lineBreakBefore = false;
+                }
+                i += 1;
+            }
+            return unmerged;
+        }
+
+        private TableOfContents ParseTableOfContents(OpenXmlElement e1) {
+            if (e1 is not Paragraph p1)
+                return null;
+            if (!IsTOCStart(p1))
+                return null;
+            List<WLine> contents = new List<WLine>();
+
+            WLine line1 = ParseParagraph(Main, p1);
+            contents.Add(line1);
+            i += 1;
+
+            while (i < Main.Document.Body.ChildElements.Count) {
+                OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
+                if (e is not Paragraph p)
+                    return null;
+                i += 1;
+                if (HasAnExtraFieldEnd(p)) // needs to be before IsSkippable
+                    return new TableOfContents { Contents = contents };
+                if (IsSkippable(e))
+                    continue;
+                WLine line = ParseParagraph(Main, p);
+                contents.Add(line);
+            }
+            return null;
+        }
+
+        private static bool IsTOCStart(Paragraph p) {
+            // if (e is not Paragraph p)
+            //     return false;
+            var runs = p.ChildElements.Where(child => child is not ParagraphProperties);
+            if (runs.FirstOrDefault() is not Run run1)
+                return false;
+            if (!DOCX.Fields.IsFieldStart(run1))
+                return false;
+            if (runs.Skip(1).FirstOrDefault() is not Run run2)
+                return false;
+            if (!Fields.IsFieldCode(run2))
+                return false;
+            string code = Fields.GetFieldCode(run2);
+            return DOCX.Fields.NormalizeFieldCode(code).StartsWith(" TOC ");
+        }
+
+        private static IEnumerable<Run> GetFieldStarts(OpenXmlElement e) {
+            if (e is Run r && DOCX.Fields.IsFieldStart(r))
+                return new List<Run>(1) { r };
+            if (e is Hyperlink)
+                return e.ChildElements.SelectMany(GetFieldStarts);
+            return Enumerable.Empty<Run>();
+        }
+        private static IEnumerable<Run> GetFieldEnds(OpenXmlElement e) {
+            if (e is Run r && DOCX.Fields.IsFieldEnd(r))
+                return new List<Run>(1) { r };
+            if (e is Hyperlink)
+                return e.ChildElements.SelectMany(GetFieldEnds);
+            return Enumerable.Empty<Run>();
+        }
+
+        private static bool HasAnExtraFieldEnd(Paragraph p) {
+            var ends = p.ChildElements.SelectMany(GetFieldEnds);
+            if (!ends.Any())
+                return false;
+            var starts = p.ChildElements.SelectMany(GetFieldStarts);
+            return ends.Count() > starts.Count();
+        }
+
+    }
+
+    class SecondPass {
+
+        private List<BlockWithBreak> Body(List<MergedBlockWithBreak> unmerged) {
+            return null;
+        }
+
     }
 
 }

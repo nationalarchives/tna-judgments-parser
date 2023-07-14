@@ -87,4 +87,10 @@ interface IOldNumberedParagraph : ILine {
 
 }
 
+interface ITableOfContents2 : IBlock {
+
+    IEnumerable<ILine> Contents { get; }
+
+}
+
 }
