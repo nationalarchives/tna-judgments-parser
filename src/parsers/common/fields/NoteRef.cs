@@ -20,6 +20,7 @@ internal class NoteRef {
         return Regex.IsMatch(fieldCode, regex);
     }
 
+    [Obsolete]
     internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, List<OpenXmlElement> withinField, int i) {
         Match match = Regex.Match(fieldCode, regex);
         if (!match.Success)
@@ -37,6 +38,25 @@ internal class NoteRef {
             marker += above ? " above" : " below";
         }
         WText numberInThisFormat = new WText(marker, withinField.OfType<Run>().First().RunProperties);
+        return new List<IInline>(1) { numberInThisFormat };
+    }
+
+    internal static List<IInline> Construct(MainDocumentPart main, Run run, string fieldCode) {
+        Match match = Regex.Match(fieldCode, regex);
+        if (!match.Success)
+            throw new Exception();
+        string bkmkName = match.Groups[1].Value;
+        bool fSwitch = match.Groups[2].Captures.Where(v => v.Value == @" \f").Any();
+        /* In EWHC/Ch/2014/1316, the \p switch is present, but the surrounding text includes the word "above" */
+        bool pSwitch = false;
+        BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkName);
+        FootnoteEndnoteReferenceType note = bkmk.NextSibling().ChildElements.OfType<FootnoteEndnoteReferenceType>().First();
+        string marker = WFootnote.GetMarker(note);
+        if (pSwitch) {
+            bool above = Ref.BookmarkIsAbove(run, bkmk);
+            marker += above ? " above" : " below";
+        }
+        WText numberInThisFormat = new WText(marker, run.RunProperties);
         return new List<IInline>(1) { numberInThisFormat };
     }
 

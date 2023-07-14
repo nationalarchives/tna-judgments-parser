@@ -579,6 +579,13 @@ abstract class OptimizedParser {
                 i += 1;
                 continue;
             }
+            if (next is ITableOfContents2 toc) {
+                if (subparagraphs.Any())
+                    break;
+                intro.Add(toc);
+                i += 1;
+                continue;
+            }
             if (next is WLine nextLine) {
                 float nextIndent1 = GetEffectiveIndent(nextLine);
                 if (nextIndent1 - MarginOfError <= indent1)

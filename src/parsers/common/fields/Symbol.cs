@@ -26,7 +26,12 @@ class Symbol {
         ANSI = Encoding.GetEncoding(1252);
     }
 
+    [Obsolete]
     internal static IInline Parse(MainDocumentPart main, string fieldCode, IEnumerable<OpenXmlElement> rest) {
+        return Convert(fieldCode);
+    }
+
+    internal static SpecialCharacter Convert(string fieldCode) {
         Match match = Regex.Match(fieldCode, pattern);
         if (match.Success) {
             string code = match.Groups[1].Value;

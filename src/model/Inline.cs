@@ -62,7 +62,7 @@ interface IInline {
 
 interface IInlineContainer : IInline {
 
-    IEnumerable<IInline> Contents { get; init; }
+    IEnumerable<IInline> Contents { get; }
 
 }
 
@@ -144,6 +144,12 @@ interface IFormattedText : ITextOrWhitespace {
 
     Dictionary<string, string> GetCSSStyles() {
         return CSS.GetCSSStyles(this);
+    }
+
+    static bool IsFormattedTextAndNothingElse(IInline inline) {
+        if (inline is not IFormattedText)
+            return false;
+        return inline.GetType().GetInterfaces().Length == 1;
     }
 
 }

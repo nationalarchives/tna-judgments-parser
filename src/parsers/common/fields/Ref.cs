@@ -24,6 +24,7 @@ internal class Ref {
         return fieldCode.StartsWith(" REF ");
     }
 
+    [Obsolete]
     internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, List<OpenXmlElement> withinField, int i) {
         Match match = Regex.Match(fieldCode, pattern);
         if (!match.Success)
@@ -58,6 +59,20 @@ internal class Ref {
         return Inline.ParseRuns(main, remaining);
     }
 
+    internal static List<IInline> Construct(MainDocumentPart main, Run run, string fieldCode) {
+        Match match = Regex.Match(fieldCode, pattern);
+        if (!match.Success)
+            throw new Exception();
+        string bookmarkName = match.Groups[1].Value;
+        CaptureCollection swtchs = match.Groups[2].Captures;
+        bool rSwitch = swtchs.Where(v => v.Value == @" \r" || v.Value == @" r").Any();  // EWCA/Civ/2009/1119 has no \ character
+        bool nSwitch = swtchs.Where(v => v.Value == @" \n" || v.Value == @" n").Any();  // EWHC/Patents/2013/2927
+        bool pSwitch = swtchs.Where(v => v.Value == @" \p" || v.Value == @" p").Any();
+        bool wSwitch = swtchs.Where(v => v.Value == @" \w" || v.Value == @" w").Any();
+        bool hSwitch = swtchs.Where(v => v.Value == @" \h" || v.Value == @" h").Any();  // EWCA/Civ/2009/1119 has no \ character
+        return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, run);
+    }
+
     private static bool BookmarkIsAbove(Paragraph refParagraph, Paragraph bookmarkParagrah) {
         bool above = true;
         Paragraph nextPara = refParagraph.NextSibling<Paragraph>();
@@ -75,7 +90,7 @@ internal class Ref {
         return BookmarkIsAbove(anchorParagraph, bookmarkParagraph);
     }
 
-    private static IEnumerable<IInline> IgnoreFollowing(MainDocumentPart main, string bookmarkName, bool rSwitch, bool pSwitch, bool wSwitch, Run field) {
+    private static List<IInline> IgnoreFollowing(MainDocumentPart main, string bookmarkName, bool rSwitch, bool pSwitch, bool wSwitch, Run field) {
         BookmarkStart bookmark = DOCX.Bookmarks.Get(main, bookmarkName);
         if (bookmark is null)
             throw new Exception();
