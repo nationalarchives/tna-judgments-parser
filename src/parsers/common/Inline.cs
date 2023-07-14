@@ -17,6 +17,7 @@ class Inline {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parse.Inline>();
 
+    [Obsolete]
     public static IEnumerable<IInline> ParseRuns(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
         List<IInline> parsed = new List<IInline>();
         List<OpenXmlElement> withinField = null;
@@ -298,7 +299,8 @@ class Inline {
         return parsed;
     }
 
-    private static WHyperlink2 MapHyperlink(MainDocumentPart main, Hyperlink link) {
+    [Obsolete]
+    internal static WHyperlink2 MapHyperlink(MainDocumentPart main, Hyperlink link) {
         string href;
         if (link.Id is not null) {
             Uri uri = DOCX.Relationships.GetUriForHyperlink(link);

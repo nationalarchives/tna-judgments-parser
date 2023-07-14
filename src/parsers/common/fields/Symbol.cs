@@ -17,7 +17,12 @@ class Symbol {
 
     private static readonly string pattern = @"^ SYMBOL (183) \\f ""(Symbol)"" \\s (\d+) \\h $";
 
+    [Obsolete]
     internal static IInline Parse(MainDocumentPart main, string fieldCode, IEnumerable<OpenXmlElement> rest) {
+        return Convert(fieldCode);
+    }
+
+    internal static SpecialCharacter Convert(string fieldCode) {
         Match match = Regex.Match(fieldCode, pattern);
         if (!match.Success)
             throw new Exception();
@@ -28,6 +33,7 @@ class Symbol {
         string symbol = Char.ConvertFromUtf32(utf32);
         return new SpecialCharacter(symbol, null, font, points);
     }
+
 }
 
 }

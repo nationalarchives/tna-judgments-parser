@@ -421,7 +421,7 @@ class Fields {
 
     /* AUTONUM */
     /* incomplete: will not format correctly */
-    private static INumber Autonum(MainDocumentPart main, Run run) {  // EWHC/Ch/2005/2793
+    internal static INumber Autonum(MainDocumentPart main, Run run) {  // EWHC/Ch/2005/2793
         Paragraph paragraph = run.Ancestors<Paragraph>().First();
         int n = 1;
         Paragraph preceding = paragraph.PreviousSibling<Paragraph>();
@@ -444,6 +444,7 @@ class Fields {
         return new DOCX.WNumber2(n.ToString() + ".", run.RunProperties, main, paragraph.ParagraphProperties);
     }
 
+    [Obsolete]
     internal static IEnumerable<IInline> ParseSimple(MainDocumentPart main, SimpleField fldSimple) {
         logger.LogWarning("simple field: " + fldSimple.Instruction);
         if (!fldSimple.ChildElements.Any())

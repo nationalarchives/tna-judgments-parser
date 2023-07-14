@@ -38,6 +38,7 @@ class IncludedPicture {
         }
         return new WExternalImage() { URL = uri };
     }
+
 }
 
 }

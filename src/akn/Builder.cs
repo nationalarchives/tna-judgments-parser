@@ -185,8 +185,14 @@ abstract class Builder {
         XmlElement level = CreateAndAppend("hcontainer", parent);
         level.SetAttribute("name", "tableOfContents");
         XmlElement content = CreateAndAppend("content", level);
-        XmlElement e = CreateAndAppend("toc", content);
-        foreach (ILine item in toc.Contents) {
+        AddTableOfContents(content, toc.Contents);
+    }
+    private void AddTableOfContents(XmlElement parent, ITableOfContents2 toc) {
+        AddTableOfContents(parent, toc.Contents);
+    }
+    private void AddTableOfContents(XmlElement parent, IEnumerable<ILine> contents) {
+        XmlElement e = CreateAndAppend("toc", parent);
+        foreach (ILine item in contents) {
             var tocItem = Block(e, item, "tocItem");
             tocItem.SetAttribute("level", "0");
             tocItem.SetAttribute("href", "#");
@@ -217,8 +223,8 @@ abstract class Builder {
                 this.p(parent, line);
             } else if (block is ITable table) {
                 AddTable(parent, table);
-            // } else if (block is IContainer contain) {
-            //     AddContainer(parent, contain);
+            } else if (block is ITableOfContents2 toc) {
+                AddTableOfContents(parent, toc);
             } else {
                 throw new Exception(block.GetType().ToString());
             }
@@ -386,6 +392,22 @@ abstract class Builder {
 
     /* inline */
 
+    private void AddInlineContainer(XmlElement parent, IInlineContainer model, string name) {
+        // if (!model.Contents.Any())
+        //     return;
+        XmlElement container = CreateAndAppend("inline", parent);
+        container.SetAttribute("name", name);
+        if (!model.Contents.All(inline => IFormattedText.IsFormattedTextAndNothingElse(inline))) {
+            foreach (IInline child in model.Contents)
+                AddInline(container, child);
+            return;
+        }
+        if (model.Contents.Count() == 1)
+            TextAndFormatting(container, model.Contents.Cast<IFormattedText>().First());
+        else
+            AddOrWrapText(container, model.Contents.Cast<IFormattedText>());
+    }
+
     protected virtual void AddInline(XmlElement parent, IInline model) {
         if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
@@ -433,6 +455,8 @@ abstract class Builder {
             AddExternalImage(parent, eImg);
         else if (model is IMath math)
             AddMath(parent, math);
+        else if (model is IPageReference page)
+            AddInlineContainer(parent, page, "page");
         else if (model is ILineBreak)
             AddLineBreak(parent);
         else if (model is ITab tab)
@@ -576,7 +600,7 @@ abstract class Builder {
     private void AddRole(XmlElement parent, IRole model) {
         XmlElement role = CreateAndAppend("role", parent);
         role.SetAttribute("refersTo", "#" + ((PartyRole) model.Role).EId());
-        if (model.Contents.All(inline => inline is IFormattedText)) {
+        if (model.Contents.All(inline => IFormattedText.IsFormattedTextAndNothingElse(inline))) {
             if (model.Contents.Count() == 1) {
                 TextAndFormatting(role, model.Contents.Cast<IFormattedText>().First());
             } else {
