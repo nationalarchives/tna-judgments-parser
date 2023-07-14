@@ -498,18 +498,16 @@ abstract class OptimizedParser {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
         float firstLine = line.FirstLineIndentWithNumber ?? 0f;
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (line.Contents.FirstOrDefault() is WTab) {
-        //     float? tabStop = line.FirstTab;
-        //     if (firstLine < 0) {
-        //         if (!tabStop.HasValue)
-        //             indent = leftMargin;
-        //         else if (tabStop.Value > Math.Abs(firstLine))
-        //             indent = leftMargin;
-        //         else
-        //             indent += tabStop.Value;
-        //     }
-        // }
-        return indent;
+        if (!withTab)
+            return indent;
+        if (line.Contents.FirstOrDefault() is not WTab)
+            return indent;
+        float? tabStop = line.FirstTab;
+        if (!tabStop.HasValue)
+            return indent;
+        if (firstLine < 0 && tabStop.Value > Math.Abs(firstLine))
+            return leftMargin;
+        return indent + tabStop.Value;
     }
 
     protected virtual bool HasProperParagraphNumber(IDivision div) {
