@@ -251,9 +251,9 @@ class WLine : ILine {
         }
     }
 
-    // public float? FirstTab {
-    //     get => DOCX.Paragraphs.GetFirstTab(main, properties);
-    // }
+    public float? FirstTab {
+        get => DOCX.Paragraphs.GetFirstTab(main, properties);
+    }
 
 }
 
