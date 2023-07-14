@@ -494,22 +494,20 @@ abstract class OptimizedParser {
         return GetEffectiveIndent(line) <= 0f;
     }
 
-    internal static float GetEffectiveIndent(WLine line) {
+    private static float GetEffectiveIndent(WLine line, bool withTab = false) {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
         float firstLine = line.FirstLineIndentWithNumber ?? 0f;
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (line.Contents.FirstOrDefault() is WTab) {
-        //     float? tabStop = line.FirstTab;
-        //     if (firstLine < 0) {
-        //         if (!tabStop.HasValue)
-        //             indent = leftMargin;
-        //         else if (tabStop.Value > Math.Abs(firstLine))
-        //             indent = leftMargin;
-        //         else
-        //             indent += tabStop.Value;
-        //     }
-        // }
-        return indent;
+        if (!withTab)
+            return indent;
+        if (line.Contents.FirstOrDefault() is not WTab)
+            return indent;
+        float? tabStop = line.FirstTab;
+        if (!tabStop.HasValue)
+            return indent;
+        if (firstLine < 0 && tabStop.Value > Math.Abs(firstLine))
+            return leftMargin;
+        return indent + tabStop.Value;
     }
 
     protected virtual bool HasProperParagraphNumber(IDivision div) {
@@ -562,8 +560,9 @@ abstract class OptimizedParser {
                 continue;
             }
             if (next is WLine nextLine) {
-                float nextIndent1 = GetEffectiveIndent(nextLine);
-                if (nextIndent1 - MarginOfError <= indent1)
+                bool considerTab = line is WOldNumberedParagraph && nextLine is not WOldNumberedParagraph; // [2023] EWHC 1676 (Fam)
+                float nextIndent1 = GetEffectiveIndent(nextLine, considerTab);
+                if (nextIndent1 - marginOfError <= indent1)
                     break;
 
                 int save = i;
