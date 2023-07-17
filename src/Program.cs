@@ -6,12 +6,14 @@ using System.Text;
 using System.Text.Json;
 
 using System.CommandLine;
-using System.CommandLine.Invocation;
+using System.CommandLine.NamingConventionBinder;
 
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
+
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 
 class Program {
 

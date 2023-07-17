@@ -144,11 +144,19 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
     } }
 
     public string FontColor { get {
-        return properties?.Color?.Val?.Value;
+        string color = properties?.Color?.Val?.Value;
+        if (color is not null)
+            return color;
+        return properties?.Shading?.Color?.Value;
     } }
 
     public string BackgroundColor { get {
-        return properties?.Shading?.Fill?.Value;
+        HighlightColorValues? highlight = properties?.Highlight?.Val?.Value;
+        if (!highlight.HasValue)
+            return properties?.Shading?.Fill?.Value;
+        if (highlight == HighlightColorValues.None)
+            return null;
+        return highlight.ToString().ToLower();
     } }
 
     public bool IsHidden { get {
@@ -194,7 +202,7 @@ internal class WNeutralCitation2 : INeutralCitation2 {
 
     public IEnumerable<IFormattedText> Contents { get; init; }
 
-    public String Text => ILine.TextContent(Contents);
+    public String Text => IInline.ToString(Contents);
 
 }
 
@@ -288,7 +296,11 @@ internal class WParty : WText, IParty1 {
 
     public WParty(WText text) : base(text.Text, text.properties) { }
 
-    public string Name { get => Party.MakeName(this.Text); }
+    public string Name { get {
+        bool uppercase = this.Uppercase ?? false;
+        string text = uppercase ? this.Text.ToUpper() : this.Text;
+        return Party.MakeName(text);
+    } }
 
     public PartyRole? Role { get; set; }
 

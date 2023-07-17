@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/scco/2022/2231" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/scco/2022/2231" />
+          <FRBRdate date="2022-08-11" name="judgment" />
+          <FRBRauthor href="#ewhc-seniorcourtscosts" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="2231" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231" />
+          <FRBRdate date="2022-08-11" name="judgment" />
+          <FRBRauthor href="#ewhc-seniorcourtscosts" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
+          <FRBRdate date="2023-03-01T21:06:05" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-08-11" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-seniorcourtscosts" href="https://www.gov.uk/courts-tribunals/senior-courts-costs-office" showAs="The England and Wales High Court (Senior Courts Costs Office)" shortForm="The Senior Courts Costs Office" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-SeniorCourtsCosts</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>2231</uk:number>
+        <uk:cite>[2022] EWHC 2231 (SCCO)</uk:cite>
+        <uk:parser>0.13.0</uk:parser>
+        <uk:hash>36304c21d62fafa39524c8a67e8b61758e76ebe771ba97e9069e8608ae3519fc</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: left; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 18pt; }
+#judgment .CoverMain { text-align: left; font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ListParagraph { text-align: left; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="CoverText" style="text-align:center"><img src="image1.png" style="width:76.5pt;height:75.75pt" /></p>
+      <p class="CoverText">Neutral Citation No. <neutralCitation>[2022] EWHC 2231 (SCCO)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>T20217026</docketNumber></p>
+      <p class="CoverText">SCCO Reference: SC-2022-CRI-000074</p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-seniorcourtscosts">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-seniorcourtscosts" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">SENIOR COURTS COSTS OFFICE</courtType></p>
+      <p class="CoverText">Thomas More Building</p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2022-08-11" refersTo="#judgment">11 August 2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
+      <p class="CoverMain" style="text-align:center">COSTS JUDGE LEONARD</p>
+      <p class="CoverDesc"><span style="font-size:12pt">REGINA </span></p>
+      <p class="CoverDesc"><span style="font-size:12pt">v </span></p>
+      <p class="CoverDesc"><span style="font-size:12pt">JARIR</span></p>
+      <p class="CoverDesc"><span style="font-size:12pt">Judgment on Appeal under Regulation 29 of the Criminal Legal Aid (Remuneration) Regulations 2013</span></p>
+      <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">Appellant: </span><span style="font-size:12pt">M&amp;A Solicitors</span></p>
+      <p class="CoverDesc"><span style="font-weight:normal;font-size:12pt">This Appeal has been dismissed for the reasons set out below.</span></p>
+      <p style="text-align:center">COSTS JUDGE LEONARD</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <paragraph eId="para_1">
+          <num style="margin-left:0.5in;text-indent:-0.5in">1.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">This appeal concerns payment to defence solicitors of a graduated fee, as determined under Schedule 2 to the Criminal Legal Aid (Remuneration) Regulations 2013. The matter in issue is whether payment should be made for a Guilty Plea or for a Cracked Trial. The Representation Order was made on 10 February 2021, so the 20013 Regulations apply as in force on that date.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="margin-left:0.5in;text-indent:-0.5in">2.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.5in">Cracked Trials and Guilty Pleas are defined, for the purposes of the 2013 Regulations, at Schedule 2 Paragraph 1(1):</p>
+          </intro>
+          <subparagraph>
+            <intro>
+              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“…cracked trial” means a case on indictment in which—</p>
+            </intro>
+            <subparagraph>
+              <num>(a)</num>
+              <intro>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the assisted person enters a plea of not guilty to one or more counts at the first hearing at which he or she enters a plea and—</p>
+              </intro>
+              <subparagraph>
+                <num>(i)</num>
+                <content>
+                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in;text-indent:0.32in">the case does not proceed to trial (whether by reason of pleas of guilty or for other reasons) or the prosecution offers no evidence; and</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>(ii)</num>
+                <intro>
+                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in;text-indent:0.32in">either—</p>
+                </intro>
+                <subparagraph>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.38in;margin-right:0.39in">(aa)   in respect of one or more counts to which the assisted person pleaded guilty, the assisted person did not so plead at the first hearing at which he or she entered a plea; or</p>
+                  </content>
+                </subparagraph>
+                <subparagraph>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.38in;margin-right:0.39in">(bb)   in respect of one or more counts which did not proceed, the prosecution did not, before or at the first hearing at which the assisted person entered a plea, declare an intention of not proceeding with them; or</p>
+                  </content>
+                </subparagraph>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <num>(b)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case is listed for trial without a hearing at which the assisted person enters a plea;</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“guilty plea” means a case on indictment which—</p>
+            </intro>
+            <subparagraph>
+              <num>(a)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">is disposed of without a trial because the assisted person pleaded guilty to one or more counts; and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(b)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">is not a cracked trial…”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold">Case History</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_3">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">This appeal has, at the Appellant’s option, been disposed of without a hearing. The detail of the case as available to me from the papers filed is limited, but adequate for the purposes of the appeal. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The Appellant represented Adam Jarir (“the Defendant”) in the Crown Court at Bolton. The Defendant, one of at least five co-defendants, was charged with two counts of Conspiracy to Supply Class A Drugs.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">A Plea and Trial Preparation Hearing (PTPH) was listed for 10 March 2021 but was not effective, apparently due to problems with video conferencing technology. As a result, none of the defendants were arraigned on 10 March.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">6.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">Both the Appellant solicitors and counsel (who has I understand been paid a cracked trial fee) were however in attendance at court. The Defendant’s instructions to the Appellant were that he was not guilty and an indication of his position and that of other Defendants was apparently given to the court. The case was listed for trial on 4 October 2021 with a time estimate of four weeks, on the basis that there would be five Defendants pleading not guilty.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The PTPH was adjourned to 4 April 2021, credit for a guilty plea being to the adjourned hearing. The Defendant failed to appear on 14 April but reiterated his “not guilty” instructions to the Appellant. He did however (along, it would appear, with other defendants) plead guilty at a further case management hearing on 13 May 2021, that hearing being described by the Determining Officer as the first formal opportunity for the Defendant to plead. The Appellant had prepared a Defence Statement by that stage and the guilty plea came as something of a surprise to the Appellant.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">8.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The case was then listed for sentencing and the Defendant was sentenced on 14 February 2022. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold">The Determining Officer’s View</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_9">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The Determining Officer, referring to a number of costs decisions made between 1999 and 2001, took the view that although the Defendant’s case was listed for trial before a plea was entered, that was done only for administrative purposes. As soon as an effective PTPH had taken place the Defendant was listed for sentence and trial was not sought by the prosecution.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The case had been listed for trial with no pleas entered. If it had had remained listed for trial then a Cracked Trial would be payable. Guilty Pleas were however entered at the adjourned PTPH and in consequence the case was no longer listed for trial. In those circumstances only a Guilty Plea fee, in the Determining Officer’s view, was payable.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold">The Appellant’s Submissions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_11">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">11.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The Appellant relies upon the judgment of Costs Judge Rowley in <span style="font-style:italic">R v Williams</span> (SCCO SC-2019-CRI-000118, 30 April 2020).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The facts in <span style="font-style:italic">Williams</span> were similar to the facts of this case. The defendant in <span style="font-style:italic">Williams </span>was not formally arraigned at an initial PTPH but indicated that a not guilty plea would be entered, so a trial date was set. Four months later, the defendant pleaded guilty, so the trial did not go ahead. Costs Judge Rowley decided that the case qualified for a cracked trial fee, saying (at paragraph 8 of his judgment):</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The Legal Aid Agency’s Crown Court Fee Guidance accurately describes the essence of a cracked trial as being that after the PTPH there is still the real possibility of a trial. The express way of this occurring is of course for the defendant to plead not guilty. But the guidance refers to the court setting a trial date as being a way of marking the possibility that a trial will go ahead. That description in itself suggests that a formal plea it the PTPH is not an absolute requirement.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The Appellant argues that precisely the same applies here, and that a cracked trial fee must, accordingly, be due.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold">Conclusions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_14">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">In the light of R v <span style="font-style:italic">Williams</span>, and the payment of a cracked trial fee to the Defendant’s counsel, I can quite understand why the Appellant is dissatisfied with the Costs Officer’s decision. I regret to say however that I am unable to agree with the conclusions reached by Costs Judge Rowley. These are my reasons.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">I should first say that I do not think that it matters whether the trial in this case was listed “for administrative purposes.” The expression has no meaning for the purposes of the 2013 Regulations. Either a trial is listed or it is not.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">Nor does this appeal turn upon whether a cracked trial fee was paid to counsel for the Defendant. I cannot comment upon that. The question before me is whether a cracked trial fee is, properly applying the 2013 Regulations, payable to the Appellant.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The real question seems to me to be that which I addressed in <span style="font-style:italic">R v Malik</span> (SCCO SC-2019-CRI-000136, 5 June 2020) and <span style="font-style:italic">R v Barzey</span> (SC-2022-CRI-000034, 30 June 2022), and which I shall repeat here for ease of reference.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">There are two situations in which a cracked trial fee will be due under Schedule 2 to the 2013 Regulations. The first requires, before any other condition is met, that the assisted person enters a plea of not guilty to one or more counts at the first hearing at which he or she enters a plea. It has no application to this case.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The second is that a case is listed for trial without a hearing at which the assisted person enters a plea. This could be read in one of two ways: that there is no hearing at which the assisted person enters a plea, or that there is such a hearing, but the case is listed for trial before it takes place.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">If the second interpretation is right, then the Appellant is correct, a cracked trial fee is payable, and the appeal should succeed. If the first interpretation is correct, then the fee appropriate to a guilty plea is payable, and the appeal should fail.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">21.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"> In both <span style="font-style:italic">R v Malik</span> and <span style="font-style:italic">R v Barzey</span>, I came to the conclusion that the first interpretation must be the correct one.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">22.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">My reasoning in both cases concurred with that of Costs Judge Brown in <span style="font-style:italic">R v Lamin</span> (SCCO 175/19, 7 April 2020). I note that Costs Judge Rowley does not appear to have been referred to that decision, quite possibly because it was not available at the time. Costs Judge Brown’s decision merits reading in full, but I will attempt to summarise it here.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">In <span style="font-style:italic">R v Lamin</span> Costs Judge Brown undertook a careful and thorough analysis of the development of the 2013 Regulations, and its bearing upon the question I have identified. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">Until 5 October 2015, the definition of Cracked Trial at paragraph 1 of Schedule 2 to the 2013 Regulations read:</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in" />
+          </intro>
+          <subparagraph>
+            <intro>
+              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“cracked trial”  means a case on indictment in which—</p>
+            </intro>
+            <subparagraph>
+              <num>(a)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">a plea and case management hearing takes place and—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case does not proceed to trial (whether by reason of pleas of guilty or for other reasons) or the prosecution offers no evidence; and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(ii)</num>
+              <intro>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">either—</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in">(aa)  in respect of one or more counts to which the assisted person pleaded guilty, the assisted person did not so plead at the plea and case management hearing; or</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in">(bb)  in respect of one or more counts which did not proceed, the prosecution did not, before or at the plea and case management hearing, declare an intention of not proceeding with them; or</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <num>(b)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case is listed for trial without a plea and case management hearing taking place…”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">It was in relation to that version of the 2013 Regulations that the Senior Costs Judge (then Master Gordon-Saker) in <span style="font-style:italic">R v Rahman</span> (SCCO 198/13, 17 December 2013) found that where a PCMH takes place at which the relevant defendant pleads guilty,</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in"> “…the case is (not) a cracked trial, even if a trial had been listed at an earlier preliminary hearing.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">I have, as in my previous judgments (and as did Costs Judge Brown in <span style="font-style:italic">R v Lamin</span>) added the word “not” to my quotation from Master Gordon-Saker’s judgment, because it is evidently missing in the original, in which he dismissed an appeal against a Determining Officer’s decision to pay a guilty plea fee rather than a cracked trial fee.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The question addressed by Costs Judge Brown in <span style="font-style:italic">R v Lamin</span> was whether it followed from the October 2015 changes to the 2013 Regulations that <span style="font-style:italic">R v Rahman </span>no longer applied. He found that <span style="font-style:italic">R v Rahman </span>did still apply, and that to the extent that the LAA’s Crown Court Fee guidance at the time indicated otherwise, it was wrong and had not been adequately updated. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">His conclusions were based primarily upon the fact that the express intent of the amending regulations, (the Civil and Criminal Legal Aid (Amendment) (No.2) Regulations 2015) was, in deleting references to  plea and case management hearings which were no longer mandatory, to accommodate procedural changes without changing the fees payable under the 2013 Regulations.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">I am of the same view as Costs Judge Brown. It seems to me that if the 2013 Regulations had been amended in 2015 to provide that a cracked trial fee would be payable in any case that had been listed for trial before a plea was entered, they would say so, and they do not.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"> I would add that “Trial” is not defined in the 2013 regulations. If the definition of a “cracked trial” covers any case listed for trial before a plea is entered, then applying the 2013 Regulations mechanistically (as one must)  the definition would extend all such cases, even those which proceed to a full trial. I do not think that that could be right.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">For those reasons, this appeal does not succeed.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:justify">.</p>
+          </content>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

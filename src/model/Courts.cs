@@ -55,7 +55,7 @@ public readonly struct Courts {
         URL = ""
     };
 
-    /* The three Divisions of the High Court: Queen's Bench, Chancery and Family */
+    /* The three Divisions of the High Court: Kings's/Queen's Bench, Chancery and Family */
 
     public static readonly Court EWHC_QBD = new Court {
         Code = "EWHC-QBD",
@@ -142,6 +142,26 @@ public readonly struct Courts {
         ShortName = "The Circuit Commercial Court",
         URL = "https://www.gov.uk/courts-tribunals/commercial-circuit-court"
     };
+
+    /* King's Bench */
+
+    private static Court ConvertQueensToKings(Court court) {
+        return new Court {
+            Code = court.Code.Replace("-QBD", "-KBD"),
+            LongName = court.LongName.Replace("Queen", "King").Replace("QBD", "KBD"),
+            ShortName = court.ShortName.Replace("Queen", "King").Replace("QBD", "KBD"),
+            URL = court.URL
+        };
+    }
+    public static readonly Court EWHC_KBD = ConvertQueensToKings(EWHC_QBD);
+    public static readonly Court EWHC_KBD_Administrative = ConvertQueensToKings(EWHC_QBD_Administrative);
+    public static readonly Court EWHC_KBD_Planning = ConvertQueensToKings(EWHC_QBD_Planning);
+    public static readonly Court EWHC_KBD_BusinessAndProperty = ConvertQueensToKings(EWHC_QBD_BusinessAndProperty);
+    public static readonly Court EWHC_KBD_Commercial = ConvertQueensToKings(EWHC_QBD_Commercial);
+    public static readonly Court EWHC_KBD_Admiralty = ConvertQueensToKings(EWHC_QBD_Admiralty);
+    public static readonly Court EWHC_KBD_TCC = ConvertQueensToKings(EWHC_QBD_TCC);
+    public static readonly Court EWHC_KBD_Commercial_Financial = ConvertQueensToKings(EWHC_QBD_Commercial_Financial);
+    public static readonly Court EWHC_KBD_Commercial_Circuit = ConvertQueensToKings(EWHC_QBD_Commercial_Circuit);
 
     /* Courts within the Chancery Division of the High Court -- all are specialist "Business and Property Courts" */
 
@@ -246,29 +266,33 @@ public readonly struct Courts {
     public static readonly Court UpperTribunal_AdministrativeAppealsChamber = new Court {
         Code = "UKUT-AAC",
         LongName = "United Kingdom Upper Tribunal (Administrative Appeals Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(AAC\)$")
     };
     public static readonly Court UpperTribunal_ImmigrationAndAsylumChamber = new Court {
         Code = "UKUT-IAC",
         LongName = "United Kingdom Upper Tribunal (Immigration and Asylum Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(IAC\)$")
     };
     public static readonly Court UpperTribunal_LandsChamber = new Court {
         Code = "UKUT-LC",
         LongName = "United Kingdom Upper Tribunal (Lands Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(LC\)$")
     };
     public static readonly Court UpperTribunal_TaxAndChanceryChamber = new Court {
         Code = "UKUT-TCC",
         LongName = "United Kingdom Upper Tribunal (Tax and Chancery Chamber)",
-        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber"
+        URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(TCC\)$")
     };
 
     public static readonly Court EmploymentAppealTribunal = new Court {
         Code = "EAT",
         LongName = "Employment Appeal Tribunal",
         URL = "https://www.gov.uk/courts-tribunals/employment-appeal-tribunal",
-        CitationPattern = new Regex(@"$\[\d{4}\] EAT \d+$")
+        CitationPattern = new Regex(@"^\[\d{4}\] EAT \d+$")
     };
 
     public static readonly Court FirstTierTribunal_Tax = new Court {
@@ -297,18 +321,17 @@ public readonly struct Courts {
         CoA_Crim,
         CoA_Civil,
         EWHC,
-        EWHC_QBD,
+        EWHC_KBD, EWHC_QBD,
         EWHC_Chancery,
         EWHC_Family,
-        // EWHC_QBD_General,
-        EWHC_QBD_Administrative,
-        EWHC_QBD_Planning,
-        EWHC_QBD_BusinessAndProperty,
-        EWHC_QBD_Commercial,
-        EWHC_QBD_Admiralty,
-        EWHC_QBD_TCC,
-        EWHC_QBD_Commercial_Financial,
-        EWHC_QBD_Commercial_Circuit,
+        EWHC_KBD_Administrative, EWHC_QBD_Administrative,
+        EWHC_KBD_Planning, EWHC_QBD_Planning,
+        EWHC_KBD_BusinessAndProperty, EWHC_QBD_BusinessAndProperty,
+        EWHC_KBD_Commercial, EWHC_QBD_Commercial,
+        EWHC_KBD_Admiralty, EWHC_QBD_Admiralty,
+        EWHC_KBD_TCC, EWHC_QBD_TCC,
+        EWHC_KBD_Commercial_Financial, EWHC_QBD_Commercial_Financial,
+        EWHC_KBD_Commercial_Circuit, EWHC_QBD_Commercial_Circuit,
         EWHC_Chancery_BusinessAndProperty,
         EWHC_Chancery_BusinessList,
         EWHC_Chancery_InsolvencyAndCompanies,

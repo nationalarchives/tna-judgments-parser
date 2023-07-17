@@ -117,7 +117,7 @@ class WMetadata : IMetadata {
 
     virtual public INamedDate Date { get {
         IEnumerable<IDocDate> dates = Util.Descendants<IDocDate>(judgment);
-        return dates.OrderByDescending<IDocDate, int>(dd => dd.Priority).FirstOrDefault();
+        return dates.OrderByDescending<IDocDate, string>(dd => (dd as IDate).Date).FirstOrDefault();
     } }
 
     virtual public string Name { get {

@@ -17,7 +17,7 @@ class CourtTypePDF : CourtType {
         }
     };
 
-    override protected List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
+    override protected List<WLine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
         foreach (Combo4 combo in combo4s)
             if (combo.Match(one, two, three, four))
                 return combo.Transform(one, two, three, four);
@@ -26,8 +26,8 @@ class CourtTypePDF : CourtType {
 
     /* two */
 
-    override protected List<ILine> Match2(IBlock block1, IBlock block2) {
-        List<ILine> value = base.Match2(block1, block2);
+    override protected List<WLine> Match2(IBlock block1, IBlock block2) {
+        List<WLine> value = base.Match2(block1, block2);
         if (value is not null)
             return value;
         if (block1 is not WLine line1)
@@ -50,10 +50,10 @@ class CourtTypePDF : CourtType {
                     continue;
                 if (!combo.Re3.IsMatch(three.Text.Trim()))
                     continue;
-                return new List<ILine>(3) {
-                    new WLine(line1, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
-                    new WLine(line2, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
-                    new WLine(line2, new List<IInline>(1) { new WCourtType(three, combo.Court) })
+                return new List<WLine>(3) {
+                    WLine.Make(line1, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
+                    WLine.Make(line2, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
+                    WLine.Make(line2, new List<IInline>(1) { new WCourtType(three, combo.Court) })
                 };
             }
         }
@@ -62,14 +62,14 @@ class CourtTypePDF : CourtType {
 
     /* one */
 
-    override protected List<ILine> Match1(IBlock block) {
-        List<ILine> value = base.Match1(block);
+    override protected List<WLine> Match1(IBlock block) {
+        List<WLine> value = base.Match1(block);
         if (value is not null)
             return value;
         return Split(block);
     }
 
-    private List<ILine> Split(IBlock block) {
+    private List<WLine> Split(IBlock block) {
         if (block is not WLine line)
             return null;
         IEnumerable<IInline> filtered = line.Contents.Where(inline => inline is IFormattedText text ? !string.IsNullOrWhiteSpace(text.Text) : true);
@@ -83,26 +83,27 @@ class CourtTypePDF : CourtType {
     }
 
     IDictionary<string, Court> threes = new Dictionary<string, Court>() {
-        { @"^(IN THE HIGH COURT OF JUSTICE) (QUEEN[’']?S BENCH DIVISION) (ADMINISTRATIVE COURT)$", Courts.EWHC_QBD_Administrative }
+        { @"^(IN THE HIGH COURT OF JUSTICE) (QUEEN[’']?S BENCH DIVISION) (ADMINISTRATIVE COURT)$", Courts.EWHC_QBD_Administrative },
+        { @"^(IN THE HIGH COURT OF JUSTICE) (KING[’']?S BENCH DIVISION) (ADMINISTRATIVE COURT)$", Courts.EWHC_KBD_Administrative }
     };
 
-    private List<ILine> Split1(IEnumerable<IInline> filtered, WLine prototype) {
+    private List<WLine> Split1(IEnumerable<IInline> filtered, WLine prototype) {
         if (filtered.First() is not WText one)
             return null;
         foreach (var item in threes) {
             Match match = Regex.Match(one.Text.Trim(), item.Key);
             if (match.Success) {
-                return new List<ILine>(3) {
-                    new WLine(prototype, new List<IInline>(1) { new WCourtType(match.Groups[1].Value, one.properties) { Code = item.Value.Code } }),
-                    new WLine(prototype, new List<IInline>(1) { new WCourtType(match.Groups[2].Value, one.properties) { Code = item.Value.Code } }),
-                    new WLine(prototype, new List<IInline>(1) { new WCourtType(match.Groups[3].Value, one.properties) { Code = item.Value.Code } })
+                return new List<WLine>(3) {
+                    WLine.Make(prototype, new List<IInline>(1) { new WCourtType(match.Groups[1].Value, one.properties) { Code = item.Value.Code } }),
+                    WLine.Make(prototype, new List<IInline>(1) { new WCourtType(match.Groups[2].Value, one.properties) { Code = item.Value.Code } }),
+                    WLine.Make(prototype, new List<IInline>(1) { new WCourtType(match.Groups[3].Value, one.properties) { Code = item.Value.Code } })
                 };
             }
         }
         return null;
     }
 
-    private List<ILine> Split3(IEnumerable<IInline> filtered, WLine prototype) {
+    private List<WLine> Split3(IEnumerable<IInline> filtered, WLine prototype) {
         if (filtered.First() is not WText one)
             return null;
         if (filtered.ElementAt(1) is not WText two)
@@ -116,23 +117,23 @@ class CourtTypePDF : CourtType {
                 continue;
             if (!combo.Re3.IsMatch(three.Text.Trim()))
                 continue;
-            return new List<ILine>(3) {
-                new WLine(prototype, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
-                new WLine(prototype, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
-                new WLine(prototype, new List<IInline>(1) { new WCourtType(three, combo.Court) })
+            return new List<WLine>(3) {
+                WLine.Make(prototype, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
+                WLine.Make(prototype, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
+                WLine.Make(prototype, new List<IInline>(1) { new WCourtType(three, combo.Court) })
             };
         }
         return null;
     }
 
-    private List<ILine> SplitMoreThan3(IEnumerable<IInline> filtered, WLine line) {
-        List<ILine> firstTry = SplitMoreThan3Beginning(filtered, line);
+    private List<WLine> SplitMoreThan3(IEnumerable<IInline> filtered, WLine line) {
+        List<WLine> firstTry = SplitMoreThan3Beginning(filtered, line);
         if (firstTry is not null)
             return firstTry;
         return SplitMoreThan3End(filtered, line);
     }
 
-    private List<ILine> SplitMoreThan3Beginning(IEnumerable<IInline> filtered, WLine line) {
+    private List<WLine> SplitMoreThan3Beginning(IEnumerable<IInline> filtered, WLine line) {
         if (filtered.First() is not WText one)
             return null;
         if (filtered.ElementAt(1) is not WText two)
@@ -157,16 +158,16 @@ class CourtTypePDF : CourtType {
             }
             while (enumerator.MoveNext())
                 after.Add(enumerator.Current);
-            return new List<ILine>(4) {
-                new WLine(line, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
-                new WLine(line, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
-                new WLine(line, new List<IInline>(1) { new WCourtType(three, combo.Court) }),
-                new WLine(line, after),
+            return new List<WLine>(4) {
+                WLine.Make(line, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
+                WLine.Make(line, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
+                WLine.Make(line, new List<IInline>(1) { new WCourtType(three, combo.Court) }),
+                WLine.Make(line, after),
             };
         }
         return null;
     }
-    private List<ILine> SplitMoreThan3End(IEnumerable<IInline> filtered, WLine line) {
+    private List<WLine> SplitMoreThan3End(IEnumerable<IInline> filtered, WLine line) {
         if (filtered.SkipLast(2).Last() is not WText one)
             return null;
         if (filtered.SkipLast(1).Last() is not WText two)
@@ -184,11 +185,11 @@ class CourtTypePDF : CourtType {
             var enumerator = line.Contents.GetEnumerator();
             while (enumerator.MoveNext() && !object.ReferenceEquals(enumerator.Current, one))
                 before.Add(enumerator.Current);
-            return new List<ILine>(4) {
-                new WLine(line, before),
-                new WLine(line, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
-                new WLine(line, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
-                new WLine(line, new List<IInline>(1) { new WCourtType(three, combo.Court) })
+            return new List<WLine>(4) {
+                WLine.Make(line, before),
+                WLine.Make(line, new List<IInline>(1) { new WCourtType(one, combo.Court) }),
+                WLine.Make(line, new List<IInline>(1) { new WCourtType(two, combo.Court) }),
+                WLine.Make(line, new List<IInline>(1) { new WCourtType(three, combo.Court) })
             };
         }
         return null;

@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 abstract class Enricher {
@@ -27,8 +24,16 @@ abstract class Enricher {
     }
 
     internal IEnumerable<IDivision> Enrich(IEnumerable<IDivision> divs) {
-        return divs.Select(div => Enrich(div));
+        List<IDivision> enriched = new List<IDivision>(divs.Count());
+        bool changed = false;
+        foreach (IDivision div in divs) {
+            IDivision enriched1 = Enrich(div);
+            enriched.Add(enriched1);
+            changed = changed || !Object.ReferenceEquals(enriched1, div);
+        }
+        return changed ? enriched : divs;
     }
+
     internal virtual IDivision Enrich(IDivision div) {
         if (div is BigLevel big)
             return new BigLevel() { Number = big.Number, Heading = big.Heading, Children = Enrich(big.Children) };
@@ -42,18 +47,50 @@ abstract class Enricher {
             return new WTableOfContents(EnrichLines(toc.Contents));
         if (div is WDummyDivision dummy)
             return new WDummyDivision(Enrich(dummy.Contents));
+        if (div is BranchParagraph bp)
+            return EnrichBranchParagraph(bp);
+        if (div is BranchSubparagraph bsp)
+            return EnrichBranchSubparagraph(bsp);
+        if (div is LeafSubparagraph lsp)
+            return EnrichLeafSubparagraph(lsp);
         throw new Exception();
     }
 
-    internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) => blocks.Select(Enrich);
+    private BranchParagraph EnrichBranchParagraph(BranchParagraph para) {
+        IEnumerable<IBlock> enrichedIntro = para.Intro is null ? null : Enrich(para.Intro);
+        IEnumerable<IDivision> enrichedChildren = Enrich(para.Children);
+        if (Object.ReferenceEquals(enrichedIntro, para.Intro) && Object.ReferenceEquals(enrichedChildren, para.Children))
+            return para;
+        return new BranchParagraph { Number = para.Number, Intro = enrichedIntro, Children = enrichedChildren };
+    }
+    private BranchSubparagraph EnrichBranchSubparagraph(BranchSubparagraph para) {
+        IEnumerable<IBlock> enrichedIntro = para.Intro is null ? null : Enrich(para.Intro);
+        IEnumerable<IDivision> enrichedChildren = Enrich(para.Children);
+        if (Object.ReferenceEquals(enrichedIntro, para.Intro) && Object.ReferenceEquals(enrichedChildren, para.Children))
+            return para;
+        return new BranchSubparagraph { Number = para.Number, Intro = enrichedIntro, Children = enrichedChildren };
+    }
+    private LeafSubparagraph EnrichLeafSubparagraph(LeafSubparagraph para) {
+        IEnumerable<IBlock> enrichedContents = Enrich(para.Contents);
+        if (Object.ReferenceEquals(enrichedContents, para.Contents))
+            return para;
+        return new LeafSubparagraph { Number = para.Number, Contents = enrichedContents };
+    }
+
+    internal virtual IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        List<IBlock> enriched = new List<IBlock>(blocks.Count());
+        bool changed = false;
+        foreach (IBlock block in blocks) {
+            IBlock enriched1 = Enrich(block);
+            enriched.Add(enriched1);
+            changed = changed || !Object.ReferenceEquals(enriched1, block);
+        }
+        return changed ? enriched : blocks;
+    }
 
     protected virtual IBlock Enrich(IBlock block) {
-        if (block is WOldNumberedParagraph np)
-            return new WOldNumberedParagraph(np.Number, Enrich(np));
         if (block is WLine line)
             return Enrich(line);
-        // if (block is WTable table)
-        //     return EnrichTable(table);
         return block;
     }
 
@@ -65,9 +102,9 @@ abstract class Enricher {
 
     // }
 
-    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichLine);
+    internal virtual IEnumerable<ILine> EnrichLines(IEnumerable<ILine> blocks) => blocks.Select(EnrichILine);
 
-    protected virtual ILine EnrichLine(ILine line) {
+    private ILine EnrichILine(ILine line) {
         if (line is WLine wLine)
             return Enrich(wLine);
         return line;
@@ -77,7 +114,7 @@ abstract class Enricher {
         IEnumerable<IInline> enriched = Enrich(line.Contents);
         if (object.ReferenceEquals(enriched, line.Contents))
             return line;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     abstract protected IEnumerable<IInline> Enrich(IEnumerable<IInline> line);
@@ -93,20 +130,22 @@ abstract class Enricher {
     //     return string.Join("", texts).Trim();
     // }
 
-    internal static string NormalizeInlines(IEnumerable<IInline> line) {
-        IEnumerable<string> texts = line
-            .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-        return string.Join("", texts).Trim();
-    }
+    // [Obsolete]
+    // internal static string NormalizeInlines(IEnumerable<IInline> line) {
+    //     IEnumerable<string> texts = line
+    //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
+    //     return string.Join("", texts).Trim();
+    // }
 
     // protected string NormalizeLine(IEnumerable<IInline> line) {
     //     IEnumerable<string> texts = line
     //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
     //     return string.Join("", texts).Trim();
     // }
-    internal static string NormalizeLine(ILine line) {
-        return NormalizeInlines(line.Contents);
-    }
+    // [Obsolete]
+    // internal static string NormalizeLine(ILine line) {
+    //     return NormalizeInlines(line.Contents);
+    // }
     // public static string NormalizeContent(this ILine line) {
     //     return NormalizeInlines(line.Contents);
     // }
@@ -117,7 +156,7 @@ abstract class Enricher2 : Enricher {
 
     protected override IBlock Enrich(IBlock block) {
         if (block is WLine line)
-            return EnrichLine(line);
+            return Enrich(line);
         if (block is WTable table)
             return EnrichTable(table);
         return block;
@@ -149,7 +188,7 @@ abstract class Enricher2 : Enricher {
             if (!object.ReferenceEquals(before, after)) {
                 while (cells.MoveNext())
                     enriched.Add(cells.Current);
-                return new WRow(row.Table, enriched);
+                return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
             }
         }
         return row;
@@ -169,13 +208,6 @@ abstract class Enricher2 : Enricher {
             }
         }
         return cell;
-    }
-
-    private WLine EnrichLine(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
     }
 
 }

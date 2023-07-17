@@ -103,13 +103,6 @@ class PartyEnricher : Enricher {
         return false;
     }
 
-    protected override WLine Enrich(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (Object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
-    }
-
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (!line.Any())
             return line;
@@ -141,7 +134,7 @@ class PartyEnricher : Enricher {
         IInline next = enumerator.Current;
         if (next is not WText text2)
             return line;
-        if (text2.Text != "v")
+        if (text2.Text.Trim() != "v")
             return line;
         contents.Add(next);
 
@@ -334,7 +327,7 @@ class PartyEnricher : Enricher {
         WLine enriched1 = EnrichOnePartyAndRoleOrNull(one);
         if (enriched1 is null)
             return null;
-        if (!((ILine)two).NormalizedContent().Equals("V", StringComparison.InvariantCultureIgnoreCase))
+        if (!two.NormalizedContent.Equals("V", StringComparison.InvariantCultureIgnoreCase))
             return null;
         WLine enriched3 = EnrichOnePartyAndRoleOrNull(three);
         if (enriched3 is null)
@@ -349,7 +342,7 @@ class PartyEnricher : Enricher {
         IEnumerable<IInline> enriched = EnrichOnePartyAndRoleOrNull(first);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     // private List<IInline> EnrichOnePartyAndRoleOrNull(IInline inline) {
@@ -457,6 +450,23 @@ class PartyEnricher : Enricher {
             remainder = remainder.Substring(0, middleMatch.Index);
         }
 
+        Match twoPartyMatch = Regex.Match(remainder, @"^ *\(1\) *(.+?) \(2\) *(.+?) *$");
+        if (twoPartyMatch.Success) {
+            Group group1 = twoPartyMatch.Groups[1];
+            Group group2 = twoPartyMatch.Groups[2];
+            string before = remainder.Substring(0, group1.Index);
+            string party1 = group1.Value;
+            string between = remainder.Substring(group1.Index + group1.Length, group2.Index - (group1.Index + group1.Length));
+            string party2 = group2.Value;
+            string after = remainder.Substring(group2.Index + group2.Length);
+            if (!string.IsNullOrEmpty(after))
+                contents.AddFirst(new WText(after, text.properties));
+            contents.AddFirst(new WParty(party2, text.properties) { Role = role });
+            contents.AddFirst(new WText(between, text.properties));
+            contents.AddFirst(new WParty(party1, text.properties) { Role = role });
+            contents.AddFirst(new WText(before, text.properties));
+            return Merger.Merge(contents);
+        }
         Match partyMatch = Regex.Match(remainder, @"^ *(.+?) *$");
         if (!partyMatch.Success)
             return null;
@@ -489,7 +499,7 @@ class PartyEnricher : Enricher {
                 if (!Object.ReferenceEquals(enriched, line)) {
                     IEnumerable<IBlock> rest = cell.Contents.Skip(1).Select(block => block is WLine wLine ? Enrich(wLine) : block);
                     return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
-                        new WRow(row1.Table, row1.TypedCells.Skip(1).Prepend(
+                        new WRow(row1.Table, row1.TablePropertyExceptions, row1.Properties, row1.TypedCells.Skip(1).Prepend(
                             new WCell(cell.Row, cell.Props, rest.Prepend(enriched))
                         ))
                     ));
@@ -511,7 +521,7 @@ class PartyEnricher : Enricher {
                 return table;
             IEnumerable<IBlock> rest = cell.Contents.Skip(3);
             return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
-                new WRow(row1.Table, row1.TypedCells.Skip(1).Prepend(
+                new WRow(row1.Table, row1.TablePropertyExceptions, row1.Properties, row1.TypedCells.Skip(1).Prepend(
                     new WCell(cell.Row, cell.Props, Enumerable.Concat(enriched, rest))
                 ))
             ));

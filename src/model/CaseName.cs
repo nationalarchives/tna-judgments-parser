@@ -14,26 +14,15 @@ class CaseName {
 
         Court? court = judgment.Metadata.Court();
 
-        List<IParty> parties = new List<IParty>();
-        List<IDocTitle> docTitle = new List<IDocTitle>();
-        List<ILocation> location = new List<ILocation>();
+        IEnumerable<IParty> parties = Enumerable.Concat(
+            Util.Descendants<IParty>(judgment.CoverPage),
+            Util.Descendants<IParty>(judgment.Header)
+        );
+        IEnumerable<IDocTitle> docTitle = Util.Descendants<IDocTitle>(judgment.Header);
+        IEnumerable<ILocation> location = Util.Descendants<ILocation>(judgment.Header);
+
         IParty party1 = null;
         IParty party2 = null;
-        foreach (IBlock block in judgment.Header) {
-            if (block is ILine line) {
-                parties.AddRange(line.Contents.OfType<IParty>());
-                docTitle.AddRange(line.Contents.OfType<IDocTitle>());
-                location.AddRange(line.Contents.OfType<ILocation>());
-            }
-            if (block is ITable table)
-                foreach (IRow row in table.Rows)
-                    foreach (ICell cell in row.Cells)
-                        foreach (ILine line2 in cell.Contents.OfType<ILine>()) {
-                            parties.AddRange(line2.Contents.OfType<IParty>());
-                            docTitle.AddRange(line2.Contents.OfType<IDocTitle>());
-                            location.AddRange(line2.Contents.OfType<ILocation>());
-                        }
-        }
         party1 = parties.FirstOrDefault();
         party2 = parties.Where(party => party.Role != party1.Role).FirstOrDefault();
         if (party2 is null && parties.Count() == 2 && !parties.Last().Role.HasValue)
@@ -41,13 +30,13 @@ class CaseName {
         
         if (party2 is not null) {
             string name1 = party1.Name;
-            if (Regex.IsMatch(name1, @"^THE QUEEN \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(name1, @"^THE (KING|QUEEN) \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Skip(1).FirstOrDefault();
                 if (next1 is not null && next1.Role == party1.Role) {
                     name1 = next1.Name + " (R on the application of)";
                 }
             }
-            if (Regex.IsMatch(name1, @"^THE QUEEN$", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(name1, @"^THE (KING|QUEEN)$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Skip(1).FirstOrDefault();
                 if (next1 is not null && next1.Role == party1.Role) {
                     string next1normalized = Regex.Replace(next1.Text, @"\s+", " ").Trim();
@@ -76,7 +65,7 @@ class CaseName {
                 }
             }
             string name2 = party2.Name;
-            if (Regex.IsMatch(name2, @"^THE QUEEN \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(name2, @"^THE (KING|QUEEN) \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Where(p => p.Role == party2.Role).Skip(1).FirstOrDefault();
                 if (next1 is not null) {
                     name2 = next1.Name + " (R on the application of)";

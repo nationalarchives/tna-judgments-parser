@@ -32,7 +32,15 @@ class SpecialCharacter : WText {
         string text = ch.ToString();
         return new SpecialCharacter(text, rProps, sym.Font);
     }
-    
+
+    internal static SpecialCharacter MakeSymEx(OpenXmlElement symEx, RunProperties rProps) {
+        string ns = "http://schemas.microsoft.com/office/word/2015/wordml/symex";
+        string font = symEx.GetAttribute("font", ns).Value;
+        string hex = symEx.GetAttribute("char", ns).Value;
+        string text = System.Char.ConvertFromUtf32(int.Parse(hex, System.Globalization.NumberStyles.HexNumber));
+        return new SpecialCharacter(text, rProps, font);
+    }
+
     override public string FontName {
         get {
             if (font.HasValue)

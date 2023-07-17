@@ -26,9 +26,9 @@ class DateEnricher : Enricher {
                     IBlock next = enumerator.Current;
                     if (next is WLine line2 && line2.Contents.All(inline => inline is WText)) {
                         try {
-                            DateTime dt = DateTime.Parse(((ILine) line2).NormalizedContent(), culture);
+                            DateTime dt = DateTime.Parse(line2.NormalizedContent, culture);
                             WDocDate dd = new WDocDate(line2.Contents.Cast<WText>(), dt);
-                            WLine line3 = new WLine(line2, new List<IInline>(1) {dd});
+                            WLine line3 = WLine.Make(line2, new List<IInline>(1) {dd});
                             contents.Add(line3);
                             while (enumerator.MoveNext())
                                 contents.Add(enumerator.Current);
@@ -44,9 +44,9 @@ class DateEnricher : Enricher {
     }
 
     private static bool IsLineBeforeDate(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         ISet<string> ok = new HashSet<string>() { "JUDGMENT GIVEN ON", "JUDGMENT DELIVERED ON", "ON" };
         return ok.Contains(normalized);
     }
@@ -57,13 +57,6 @@ class DateEnricher : Enricher {
         if (block is WTable table)
             return EnrichTable(table);
         return block;
-    }
-
-    protected override WLine Enrich(WLine line) {
-        IEnumerable<IInline> enriched = Enrich(line.Contents);
-        if (Object.ReferenceEquals(enriched, line.Contents))
-            return line;
-        return new WLine(line, enriched);
     }
 
     private static readonly CultureInfo culture = new CultureInfo("en-GB");
@@ -165,12 +158,14 @@ class DateEnricher : Enricher {
             return EnrichLine(line);
         });
 
-        return new WRow(row.Table, new List<WCell>(1) {
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, new List<WCell>(1) {
             new WCell(row, cell.Props, newContents)
         });
     }
 
     private static WLine EnrichLine(WLine line) {
+        if (line is WOldNumberedParagraph)
+            return line;
         if (line.Contents.Count() == 1)
             return EnrichLine1(line);
         if (line.Contents.Count() >= 3)
@@ -190,7 +185,7 @@ class DateEnricher : Enricher {
         } catch (FormatException) {
             return line;
         }
-        return new WLine(line, new List<IInline>(1) { new WDocDate(text, dt) });
+        return WLine.Make(line, new List<IInline>(1) { new WDocDate(text, dt) });
     }
 
     private static WLine EnrichLine3(WLine line) {
@@ -226,7 +221,7 @@ class DateEnricher : Enricher {
         }
         WDocDate docDate = new WDocDate(line.Contents.Cast<WText>(), dt);
         IEnumerable<IInline> contents = line.Contents.Skip(3).Prepend(docDate);
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
 
     }
 

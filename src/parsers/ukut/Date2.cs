@@ -11,34 +11,19 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 class Date2 : Enricher {
 
     internal override IEnumerable<IDecision> Enrich(IEnumerable<IDecision> body) {
-        if (!body.Any())
-            return body;
-        IDecision last = body.Last();
-        IDecision enriched = Enrich(last);
-        if (object.ReferenceEquals(enriched, last))
-            return body;
-        return body.SkipLast(1).Append(enriched);
+        return EnrichLast<IDecision>(body, EnrichDecision);
     }
 
-    internal IDecision Enrich(IDecision decision) {
-        if (!decision.Contents.Any())
-            return decision;
-        if (decision.Contents.All(child => child is ILeaf)) {
-            IEnumerable<ILeaf> children2 = EnrichLast<ILeaf>(decision.Contents.Cast<ILeaf>(), EnrichLeaf);
-            if (!object.ReferenceEquals(children2, decision.Contents)) {
-                return Substitute(decision, children2);
-
-            }
-        }
-        IDivision last = decision.Contents.Last();
-        IDivision enriched = Enrich(last);
-        if (object.ReferenceEquals(enriched, last))
+    internal IDecision EnrichDecision(IDecision decision) {
+        IEnumerable<IDivision> enriched = EnrichLast<IDivision>(decision.Contents, Enrich);
+        if (object.ReferenceEquals(enriched, decision.Contents))
             return decision;
         return new Decision {
             Author = decision.Author,
-            Contents = decision.Contents.SkipLast(1).Append(enriched)
+            Contents = enriched
         };
     }
+
     private IDecision Substitute(IDecision decision, IEnumerable<ILeaf> children) {
         if (decision is Decision d)
             return new Decision() { Author = decision.Author, Contents = children };
@@ -52,20 +37,14 @@ class Date2 : Enricher {
             return EnrichLeaf(leaf);
         throw new NotImplementedException();
     }
+
     internal IDivision EnrichBranch(IBranch branch) {
-        if (!branch.Children.Any())
+        IEnumerable<IDivision> enriched = EnrichLast<IDivision>(branch.Children, Enrich);
+        if (object.ReferenceEquals(enriched, branch.Children))
             return branch;
-        if (branch.Children.All(child => child is ILeaf)) {
-            IEnumerable<ILeaf> children2 = EnrichLast<ILeaf>(branch.Children.Cast<ILeaf>(), EnrichLeaf);
-            if (!object.ReferenceEquals(children2, branch.Children))
-                return Substitute(branch, children2);
-        }
-        IDivision last = branch.Children.Last();
-        IDivision enriched = Enrich(last);
-        if (object.ReferenceEquals(enriched, last))
-            return branch;
-        return Substitute(branch, branch.Children.SkipLast(1).Append(enriched));
+        return Substitute(branch, enriched);
     }
+
     private IBranch Substitute(IBranch branch, IEnumerable<IDivision> children) {
         if (branch is BigLevel bl)
             return new BigLevel() {
@@ -80,6 +59,18 @@ class Date2 : Enricher {
             };
         if (branch is GroupOfParagraphs gp)
             return new GroupOfParagraphs() {
+                Children = children
+            };
+        if (branch is BranchParagraph bp)
+            return new BranchParagraph {
+                Number = bp.Number,
+                Intro = bp.Intro,
+                Children = children
+            };
+        if (branch is BranchSubparagraph bsp)
+            return new BranchSubparagraph {
+                Number = bsp.Number,
+                Intro = bsp.Intro,
                 Children = children
             };
         throw new NotImplementedException();
@@ -111,6 +102,8 @@ class Date2 : Enricher {
             return new WNewNumberedParagraph(np.Number, enriched);
         if (leaf is WDummyDivision dd)
             return new WDummyDivision(enriched);
+        if (leaf is LeafSubparagraph sp)
+            return new LeafSubparagraph { Number = sp.Number, Contents = enriched };
         throw new NotImplementedException();
     }
 

@@ -49,7 +49,7 @@ class Merger : Enricher {
 
     private WRow EnrichRow(WRow row) {
         IEnumerable<WCell> cells = EnrichCells((IEnumerable<WCell>) row.Cells);
-        return new WRow(row.Table, cells);
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, cells);
     }
 
     private IEnumerable<WCell> EnrichCells(IEnumerable<WCell> cells) {
@@ -65,6 +65,10 @@ class Merger : Enricher {
         if (block is WTable table)
             return EnrichTable(table);
         return base.Enrich(block);
+    }
+
+    public IBlock Enrich1(IBlock block) {
+        return Enrich(block);
     }
 
 }

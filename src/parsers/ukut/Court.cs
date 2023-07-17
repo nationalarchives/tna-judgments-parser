@@ -35,7 +35,7 @@ class CourtType : AbstractCourtType {
             new Combo2 {
                 Re1 = new Regex(@"^(IN THE )?UPPER TRIBUNAL$", RegexOptions.IgnoreCase),
                 Re2 = new Regex(@"^\(?ADMINISTRATIVE APPEALS CHAMBER\)?$", RegexOptions.IgnoreCase),
-                Court = Courts.UpperTribunal_TaxAndChanceryChamber
+                Court = Courts.UpperTribunal_AdministrativeAppealsChamber
             },
             new Combo2 {
                 Re1 = new Regex(@"^FIRST-TIER TRIBUNAL$", RegexOptions.IgnoreCase),
@@ -44,7 +44,7 @@ class CourtType : AbstractCourtType {
             },
             new Combo2 {
                 Re1 = new Regex(@"^First-tier Tribunal$", RegexOptions.IgnoreCase),
-                Re2 = new Regex(@"^General Regulatory Chamber$", RegexOptions.IgnoreCase),
+                Re2 = new Regex(@"^\(?General Regulatory Chamber\)?$", RegexOptions.IgnoreCase),
                 Court = Courts.FirstTierTribunal_GRC
             }
         };

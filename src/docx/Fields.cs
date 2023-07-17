@@ -29,7 +29,7 @@ static class Fields {
     internal static bool IsFieldEnd(Run run) {
         if (!run.ChildElements.Any(child => child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.End)))
             return false;
-        if (!run.ChildElements.All(child => child is RunProperties || (child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.End))))
+        if (!run.ChildElements.All(child => child is RunProperties || child is LastRenderedPageBreak || (child is FieldChar chr && chr.FieldCharType.Equals(FieldCharValues.End))))
             throw new Exception();
         return true;
     }

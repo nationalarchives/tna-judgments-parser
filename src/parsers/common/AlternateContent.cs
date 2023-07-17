@@ -15,6 +15,8 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class AlternateContent2 {
 
+    private static ILogger Logger = Logging.Factory.CreateLogger<AlternateContent2>();
+
     internal static IInline Map(MainDocumentPart main, RunProperties rprops, AlternateContent e) {
         if (e.ChildElements.Count == 1) {
             AlternateContentChoice choice1 = (AlternateContentChoice) e.FirstChild;
@@ -37,13 +39,37 @@ class AlternateContent2 {
         // http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
         if (choice.Requires == "wpi")   // [2021] EWCA Civ 1768
             return MapFallback(main, rprops, fallback);
+        // http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas
+        if (choice.Requires == "wpc") // [2023] EWHC 1495 (Pat)
+            return MapFallback(main, rprops, fallback);
+        // https://docs.microsoft.com/en-us/openspecs/office_standards/ms-docx/c2aa01cb-206d-4875-afef-5feabb8f124d
+        if (choice.Requires == "w16se") {
+            string ns = "http://schemas.microsoft.com/office/word/2015/wordml/symex";
+            OpenXmlElement symEx = choice.ChildElements.FirstOrDefault();
+            if (symEx is not null && symEx.LocalName == "symEx" && symEx.NamespaceUri == ns && !choice.ChildElements.Skip(1).Any())
+                return SpecialCharacter.MakeSymEx(symEx, rprops);
+        }
+        // https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.vml?view=openxml-2.8.1
+        if (choice.Requires == "v") {
+            if (choice.FirstChild is Picture pict)
+                return WImageRef.Make(main, pict);
+            if (fallback.FirstChild is Drawing drawing)
+                return new WImageRef(main, drawing);
+        }
         throw new Exception();
     }
 
     private static IInline MapFallback(MainDocumentPart main, RunProperties rprops, AlternateContentFallback fallback) {
         if (fallback.ChildElements.Count != 1)
             throw new Exception();
-        return Inline.MapRunChild(main, rprops, fallback.FirstChild);
+        var child = fallback.FirstChild;
+        Logger.LogDebug($"using fallback for alternate content: <{ child.Prefix }:{ child.LocalName }>");
+        IInline mapped = Inline.MapRunChild(main, rprops, child);
+        if (mapped is null)
+            Logger.LogWarning("fallback is null");
+        else
+            Logger.LogDebug($"fallback is { mapped.GetType().Name }");
+        return mapped;
     }
 
 }

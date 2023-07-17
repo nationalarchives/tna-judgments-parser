@@ -18,10 +18,10 @@ class NetrualCitation : Enricher2 {
 
     private static readonly string[] patterns = {
         @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^ *Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\]? EWHC +\d+ +\((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\.?\))",    // . in EWHC/Comm/2007/197
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC))",  // EWHC/Admin/2003/301
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\))",   // EWHC/Admin/2006/2373
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EHWC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\))",   // [2022] EHWC 950 (Ch)
+        @"^ *Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\]? EWHC +\d+ +\((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\.?\))",    // . in EWHC/Comm/2007/197
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC))",  // EWHC/Admin/2003/301
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",   // EWHC/Admin/2006/2373
+        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EHWC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",   // [2022] EHWC 950 (Ch)
         @"^Neutral Citation( Number| No)?:? (\[\d{4}\] EWCOP \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
@@ -30,9 +30,9 @@ class NetrualCitation : Enricher2 {
     };
     private static readonly string[] patterns2 = {
         @"^\s*(\[\d{4}\] EWCA (Civ|Crim) \d+)", // \s matches non-breaking space in [2022] EWCA Crim 733
-        @"^ *(\[?\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
+        @"^ *(\[?\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",  // period after Admlty in EWHC/Admlty/2003/320
         @"^\s(\[\d{4}\] EWHC \d+ \(Admin\))",  // non-space in [2022] EWHC 307 (Admin)
-        @"^(\[\d{4}\] EWHC \[\d+\] \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|Pat|QB|SCCO|TCC)\))$",    // [2021] EWHC [3505] (IPEC)
+        @"^(\[\d{4}\] EWHC \[\d+\] \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))$",    // [2021] EWHC [3505] (IPEC)
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)",    // misspelling in EWCA/Civ/2006/1507
         @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
         @"^NCN:? (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2021] EWCA Crim 1412
@@ -90,7 +90,7 @@ class NetrualCitation : Enricher2 {
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
-        if (line.Count() > 0) {
+        if (line.Any()) {
             IInline first = line.First();
             if (first is WText fText) {
                 Group group = Match(fText.Text);
@@ -193,6 +193,19 @@ class NetrualCitation : Enricher2 {
                     List<IInline> replacement = Replace(wText, group);
                     return Concat3(first, replacement, line.Skip(2));
                 }
+            }
+        }
+        if (line.Count() == 3) {
+            IInline first = line.First();
+            IInline second = line.Skip(1).First();
+            IInline third = line.Last();
+            if (first is WText fText1 && second is WText fText2 && third is WText fText3) {
+                string text = IInline.ToString(line);
+                Group group = Match(text);
+                if (group is null)
+                    group = Match2(text);
+                if (group is not null)
+                    return Replace(text, group, fText1.properties); // this won't preserve all run formatting
             }
         }
         return line;

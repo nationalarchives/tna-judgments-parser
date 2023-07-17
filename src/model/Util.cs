@@ -37,23 +37,37 @@ class Util {
         return dec.Contents.SelectMany(GetBlocksFromDivision);
     }
     private static IEnumerable<IBlock> GetBlocksFromDivision(IDivision div) {
-        if (div is ILeaf leaf)
-            return leaf.Contents;
-        if (div is IBranch branch)
-            return branch.Children.SelectMany(GetBlocksFromDivision);
+        if (div is ILeaf leaf) {
+            if (leaf.Heading is null)
+                return leaf.Contents;
+            return leaf.Contents.Prepend(leaf.Heading);
+        }
+        if (div is IBranch branch) {
+            List<IBlock> blocks = new List<IBlock>();
+            if (branch.Heading is not null)
+                blocks.Add(branch.Heading);
+            if (branch.Intro is not null)
+                blocks.AddRange(branch.Intro);
+            return Enumerable.Concat<IBlock>(
+                blocks,
+                branch.Children.SelectMany(GetBlocksFromDivision)
+            );
+        }
         if (div is ITableOfContents toc)
             return toc.Contents;
         throw new Exception();
     }
 
     public static IEnumerable<T> Descendants<T>(IJudgment judgment) {
-        return Enumerable.Concat(
-            Enumerable.Concat(
-                Descendants<T>(judgment.Header),
-                Descendants<T>(judgment.Body)
-            ),
-            Descendants<T>(judgment.Conclusions)
-        );
+        var listOfLists = new List<IEnumerable<T>> {
+            Descendants<T>(judgment.CoverPage),
+            Descendants<T>(judgment.Header),
+            Descendants<T>(judgment.Body),
+            Descendants<T>(judgment.Conclusions),
+            Descendants<T>(judgment.Annexes.SelectMany(a => a.Contents)),
+            Descendants<T>(judgment.InternalAttachments.SelectMany(a => a.Contents))
+        };
+        return listOfLists.SelectMany(x => x);
     }
 
     public static IEnumerable<T> Descendants<T>(IEnumerable<IDecision> decisions) {
@@ -66,7 +80,12 @@ class Util {
         return divisions.SelectMany(GetBlocksFromDivision).SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
     }
     public static IEnumerable<T> Descendants<T>(IEnumerable<IBlock> blocks) {
+        if (blocks is null)
+            return Enumerable.Empty<T>();
         return blocks.SelectMany(GetLines).SelectMany(line => line.Contents).OfType<T>();
+    }
+    public static IEnumerable<T> Descendants<T>(IBlock block) {
+        return GetLines(block).SelectMany(line => line.Contents).OfType<T>();
     }
 
     public static string NormalizeSpace(string s) {

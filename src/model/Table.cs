@@ -37,6 +37,8 @@ interface ITable : IBlock {
 
 interface IRow {
 
+    bool IsHeader { get; }
+
     IEnumerable<ICell> Cells { get; }
 
 }

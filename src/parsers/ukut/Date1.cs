@@ -8,7 +8,27 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 
-class Date1 : FirstMatch {
+class Date1 : Enricher {
+
+    internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
+        var enumerator = blocks.GetEnumerator();
+        List<IBlock> contents = new List<IBlock>(blocks.Count());
+        int i = 0;
+        while (enumerator.MoveNext()) {
+            IBlock block = enumerator.Current;
+            IBlock enrichecd = Enrich(block);
+            contents.Add(enrichecd);
+            if (!object.ReferenceEquals(enrichecd, block)) {
+                WDocDate date = Util.Descendants<WDocDate>(enrichecd).First();
+                if (date.Name == "decision")
+                    break;
+            }
+            i += 1;
+        }
+        while (enumerator.MoveNext())
+            contents.Add(enumerator.Current);
+        return contents;
+    }
 
     protected override IBlock Enrich(IBlock block) {
         if (block is WLine line)
@@ -19,8 +39,10 @@ class Date1 : FirstMatch {
     }
 
     private WLine EnrichLineOutsideTable(WLine line) {
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         if (text.StartsWith("Date of Decision ") || text.StartsWith("Date of Decision: "))
+            return Date0.Enrich(line, "decision", 1);
+        if (text.StartsWith("Decision given on ") || text.StartsWith("Decision given on: "))
             return Date0.Enrich(line, "decision", 1);
         if (text.StartsWith("Hearing date ") || text.StartsWith("Hearing date: "))
             return Date0.Enrich(line, "hearing", 0);
@@ -68,9 +90,9 @@ class Date1 : FirstMatch {
         if (!cell.Contents.Any())
             return false;
         IBlock block = cell.Contents.First();
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         if (normalized.StartsWith("Heard at "))
             return true;
         if (normalized.StartsWith("At: "))
@@ -87,9 +109,9 @@ class Date1 : FirstMatch {
         if (!cell.Contents.Any())
             return false;
         IBlock block = cell.Contents.First();
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string normalized = line.NormalizedContent();
+        string normalized = line.NormalizedContent;
         if (normalized == "Decision & Reasons Promulgated")
             return true;
         return false;
@@ -102,7 +124,7 @@ class Date1 : FirstMatch {
         WCell enriched = EnrichCellWithDate(cell, "hearing", 0);
         if (object.ReferenceEquals(enriched, cell))
             return row;
-        return new WRow(row.Table, row.TypedCells.Skip(1).Prepend(enriched));
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
     }
     private WRow EnrichSecondLineOfFirstCellWithHearingDate(WRow row) {
         if (!row.Cells.Any())
@@ -111,7 +133,7 @@ class Date1 : FirstMatch {
         WCell enriched = EnrichSecondLineOfCellWithDate(cell, "hearing", 0);
         if (object.ReferenceEquals(enriched, cell))
             return row;
-        return new WRow(row.Table, row.TypedCells.Skip(1).Prepend(enriched));
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
     }
 
     private WRow EnrichRowWithDecisionDate(WRow row) {
@@ -121,7 +143,7 @@ class Date1 : FirstMatch {
         WCell enriched = EnrichCellWithDate(cell, "decision", 1);
         if (object.ReferenceEquals(enriched, cell))
             return row;
-        return new WRow(row.Table, row.TypedCells.Skip(1).Prepend(enriched));
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, row.TypedCells.Skip(1).Prepend(enriched));
     }
 
     private WCell EnrichCellWithDate(WCell cell, string name, int priority) {

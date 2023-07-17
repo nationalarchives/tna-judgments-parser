@@ -50,14 +50,14 @@ abstract internal class WNumText : IFormattedText {
     }
 
     /* some properties don't depend on the ParagraphMarkRunProperties */
-    private T Get2<T>(Func<NumberingSymbolRunProperties,T> getter1, Func<StyleRunProperties,T> getter2) {
-        T prop = default(T);
-        if (props is not null)
-            prop = getter1(props);
-        if (prop is null && style is not null)
-            prop = Styles.GetStyleProperty(this.style, s => s.StyleRunProperties is null ? default(T) : getter2(s.StyleRunProperties));
-        return prop;
-    }
+    // private T Get2<T>(Func<NumberingSymbolRunProperties,T> getter1, Func<StyleRunProperties,T> getter2) {
+    //     T prop = default(T);
+    //     if (props is not null)
+    //         prop = getter1(props);
+    //     if (prop is null && style is not null)
+    //         prop = Styles.GetStyleProperty(this.style, s => s.StyleRunProperties is null ? default(T) : getter2(s.StyleRunProperties));
+    //     return prop;
+    // }
 
     public bool? Italic {
         get {
@@ -74,8 +74,9 @@ abstract internal class WNumText : IFormattedText {
     }
 
     public UnderlineValues2? Underline {
+        // underlining does not depend on style: [2023] EWCOP 3
         get {
-            Underline underline = Get2<Underline>(x => x.Underline, x => x.Underline);
+            Underline underline = props?.Underline;
             return DOCX.Underline2.Get(underline);
         }
     }

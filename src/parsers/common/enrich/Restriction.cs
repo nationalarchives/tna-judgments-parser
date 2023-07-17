@@ -45,9 +45,9 @@ class RestrictionsEnricher : Enricher {
     private static bool IsTopRestriction(IBlock block) {
         if (IsRestriction(block))
             return true;
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string color = line.GetCSSStyles().GetValueOrDefault("color");
+        string color = ((ILine) line).GetCSSStyles().GetValueOrDefault("color");
         if (color is not null && color == "red")
             return true;
         if (color is not null && color.ToLower() == "#ff0000")
@@ -62,13 +62,18 @@ class RestrictionsEnricher : Enricher {
             return true;
         if (color is not null && color.ToLower() == "#ff0000")
             return true;
+        string content = line.NormalizedContent;
+        if (content == "IN CONFIDENCE")
+            return true;
+        if (content.StartsWith("This Judgment was delivered in private."))
+            return true;
         return false;
     }
 
     private static bool IsRestriction(IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
-        string content = line.NormalizedContent();
+        string content = line.NormalizedContent;
         if (content.StartsWith("If this Transcript is to be reported or published, there is a requirement to "))
             return true;
         if (content.StartsWith("WARNING: reporting restrictions may apply to the contents transcribed in this document"))
@@ -89,7 +94,7 @@ class RestrictionsEnricher : Enricher {
         WLine firstLine = (WLine) firstCell.Contents.First();
         WRestriction restriction = new WRestriction(firstLine);
         return new WTable(table.Main, table.Properties, table.Grid, table.TypedRows.Skip(1).Prepend(
-            new WRow(firstRow.Table, firstRow.TypedCells.Skip(1).Prepend(
+            new WRow(firstRow.Table, firstRow.TablePropertyExceptions, firstRow.Properties, firstRow.TypedCells.Skip(1).Prepend(
                 new WCell(firstCell.Row, firstCell.Props, firstCell.Contents.Skip(1).Prepend(restriction))
             ))
         ));

@@ -1,13 +1,64 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Judgments {
 
-interface IInline { }
+interface IInline {
+
+    static bool IsEmpty(IInline i) {
+        if (i is IFormattedText t)
+            return string.IsNullOrWhiteSpace(t.Text);
+        if (i is ITab)
+            return true;
+        if (i is ILineBreak)
+            return true;
+        if (i is IInlineContainer container)
+            return container.Contents.All(IInline.IsEmpty);
+        if (i is INeutralCitation2 ncn)
+            return ncn.Contents.All(IInline.IsEmpty);
+        if (i is ICourtType2 court)
+            return court.Contents.All(IInline.IsEmpty);
+        if (i is IDate date)
+            return date.Contents.All(IInline.IsEmpty);
+        if (i is IDateTime time)
+            return time.Contents.All(IInline.IsEmpty);
+        if (i is IParty2 party)
+            return party.Contents.All(IInline.IsEmpty);
+        return false;
+    }
+
+    static string GetText(IInline i) {
+        if (i is IFormattedText t)
+            return t.Text;
+        if (i is ITab)
+            return " ";
+        if (i is ILineBreak)
+            return "";
+        if (i is IInlineContainer container)
+            return string.Join("", container.Contents.Select(GetText));
+        if (i is INeutralCitation2 ncn)
+            return string.Join("", ncn.Contents.Select(GetText));
+        if (i is ICourtType2 court)
+            return string.Join("", court.Contents.Select(GetText));
+        if (i is IDate date)
+            return string.Join("", date.Contents.Select(GetText));
+        if (i is IDateTime time)
+            return string.Join("", time.Contents.Select(GetText));
+        if (i is IParty2 party)
+            return string.Join("", party.Contents.Select(GetText));
+        return "";
+    }
+
+    static string ToString(IEnumerable<IInline> inlines) {
+        return string.Join("", inlines.Select(GetText));
+    }
+
+}
 
 interface IInlineContainer : IInline {
 
@@ -62,6 +113,8 @@ interface IFormattedText : ITextOrWhitespace {
     string Text { get; }
 
     static bool HaveSameFormatting(IFormattedText fText1, IFormattedText fText2) {
+        if (fText1.Style != fText2.Style)
+            return false;
         if (fText1.Italic != fText2.Italic)
             return false;
         if (fText1.Bold != fText2.Bold)
@@ -110,6 +163,8 @@ interface IImageRef : IInline {
     string Style { get; }
 
     Imaging.Inset? Crop { get; }
+
+    int? Rotate { get; }
 
 }
 

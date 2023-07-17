@@ -15,6 +15,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 
+[Obsolete]
 class Parser : AbstractParser {
 
     private Parser(WordprocessingDocument doc, IOutsideMetadata meta, IEnumerable<Tuple<WordprocessingDocument,AttachmentType>> attachments) : base(doc, meta, attachments) { }
@@ -36,22 +37,16 @@ class Parser : AbstractParser {
         "DECISION AND REMITTAL",
         "DECISION AND DIRECTIONS",
         "DECISION in PRINCIPLE",
-
         "DECISION OF THE UPPER TRIBUNAL",
 
-        // "Decision: the application for judicial review is refused",
-
         "DETERMINATION AND REASONS",
-
-        // "FINDINGS OF THE UPPER TRIBUNAL EXERCISING ITS HAMID JURISDICTION",
-
-        // "REASONS FOR DECISION",
 
         "JUDGMENT",
         "APPROVED JUDGMENT"
     };
 
     Regex[] titles2 = new Regex[] {
+        new Regex(@"Ruling on [a-z]+", RegexOptions.IgnoreCase),
         new Regex(@"\d+ DECISION")
     };
 
@@ -95,6 +90,8 @@ class Parser : AbstractParser {
             header.Add(e);
             if (IsTitleParagraph(e))
                 return header;
+            if (IsFirstLineOfAnnex(e))  // [2022] UKFTT 00416 (GRC)
+                return null;
             if (e is Table table) {
                 var last = table.Descendants<Paragraph>().Where(p => !string.IsNullOrWhiteSpace(p.InnerText)).LastOrDefault();
                 if (last is not null && IsTitleParagraph(last))
@@ -184,8 +181,9 @@ class Parser : AbstractParser {
 
     protected override List<IDecision> Body() {
         List<IDivision> contents = Divisions();
-        if (contents is null || contents.Count == 0)
-            return null;
+        if (contents is null)
+            contents = new List<IDivision>();
+        contents.AddRange(ParagraphsUntilEndOfDecision());
         Decision decision = new Decision { Author = null, Contents = contents };
         return new List<IDecision>(1) { decision };
     }
@@ -200,6 +198,11 @@ class Parser : AbstractParser {
         return Enricher.Enrich(enriched, new List<Enricher>(1) { new UKUT.Date2() });
     }
 
+    override protected bool IsFirstLineOfConclusions(OpenXmlElement e) {
+        if (e.InnerText.StartsWith("Signed: "))
+            return true;
+        return false;
+    }
 
     override protected List<IDivision> ParagraphsUntilAnnex() {
         OpenXmlElementList elements = doc.MainDocumentPart.Document.Body.ChildElements;

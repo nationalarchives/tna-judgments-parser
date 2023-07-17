@@ -9,7 +9,7 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 abstract class Combo {
 
     protected bool Match(Regex regex, IBlock block) {
-        if (block is not ILine line)
+        if (block is not WLine line)
             return false;
         if (!line.Contents.Any())
             return false;
@@ -24,12 +24,12 @@ abstract class Combo {
             if (!line.Contents.All(inline => inline is WText))
                 return false;
         }
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         return regex.IsMatch(text);
     }
 
     protected static bool MatchFirstRun(Regex regex, IBlock block) {
-        if (!(block is ILine line))
+        if (!(block is WLine line))
             return false;
         if (line.Contents.Count() == 0)
             return false;
@@ -50,7 +50,7 @@ abstract class Combo {
     }
 
     protected bool MatchThirdRun(Regex regex, IBlock block) {
-        if (!(block is ILine line))
+        if (!(block is WLine line))
             return false;
         if (line.Contents.Count() < 3)
             return false;
@@ -65,7 +65,7 @@ abstract class Combo {
     }
 
     protected bool MatchFirstAndThirdRuns(IBlock block, Regex re1, Regex re2) {
-        if (!(block is ILine line))
+        if (!(block is WLine line))
             return false;
         if (line.Contents.Count() < 3)
             return false;
@@ -94,7 +94,7 @@ abstract class Combo {
         WCourtType ct1 = new WCourtType(first.Text, first.properties) { Code = this.Court.Code };
         WCourtType ct3 = new WCourtType(third.Text, third.properties) { Code = this.Court.Code };
         IEnumerable<IInline> contents = line.Contents.Skip(3).Prepend(ct3).Prepend(second).Prepend(ct1);
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
     public Court Court { get; init; }
@@ -104,16 +104,16 @@ abstract class Combo {
         if (line.Contents.Count() == 1) {
             WText text = (WText) line.Contents.First();
             WCourtType ct = new WCourtType(text.Text, text.properties) { Code = this.Court.Code };
-            return new WLine(line, new List<IInline>(1) { ct });
+            return WLine.Make(line, new List<IInline>(1) { ct });
         } else if (line.Contents.First() is IImageRef) {
             WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Skip(1).Cast<WText>() };
-            return new WLine(line, new List<IInline>(2) { line.Contents.First(), ct });
+            return WLine.Make(line, new List<IInline>(2) { line.Contents.First(), ct });
         } else if (line.Contents.First() is ILineBreak) {
             WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Skip(1).Cast<WText>() };
-            return new WLine(line, new List<IInline>(2) { line.Contents.First(), ct });
+            return WLine.Make(line, new List<IInline>(2) { line.Contents.First(), ct });
         } else {
             WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = line.Contents.Cast<WText>() };
-            return new WLine(line, new List<IInline>(1) { ct });
+            return WLine.Make(line, new List<IInline>(1) { ct });
         }
     }
 
@@ -124,12 +124,12 @@ abstract class Combo {
             WText wText2 = (WText) line.Contents.Skip(1).First();
             WCourtType ct = new WCourtType(wText2.Text, wText2.properties) { Code = this.Court.Code };
             IEnumerable<IInline> contents = line.Contents.Skip(2).Prepend(ct).Prepend(first);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         } else {
             WText wText1 = (WText) first;
             WCourtType ct = new WCourtType(wText1.Text, wText1.properties) { Code = this.Court.Code };
             IEnumerable<IInline> contents = line.Contents.Skip(1).Prepend(ct);
-            return new WLine(line, contents);
+            return WLine.Make(line, contents);
         }
     }
 
@@ -138,8 +138,18 @@ abstract class Combo {
         IEnumerable<IInline> text = line.Contents.Take(3);
         WCourtType2 ct = new WCourtType2() { Code = this.Court.Code, Contents = text };
         IEnumerable<IInline> contents = line.Contents.Skip(3).Prepend(ct);
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
+
+    protected static Regex ConvertQueensToKings(Regex re) {
+        return new Regex(re.ToString().Replace("Queen", "King").Replace("QUEEN", "KING").Replace("QBD", "KBD"), re.Options);
+    }
+    protected static Court ConvertQueensToKings(Court court) {
+        string code = court.Code.Replace("-QBD", "-KBD");
+        return Courts.ByCode[code];
+    }
+
+    protected abstract Combo ConvertQueensToKings();
 
 }
 
@@ -168,8 +178,8 @@ class Combo6 : Combo {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four) && Match(Re5, five) && Match(Re6, six);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five, IBlock six) {
-        return new List<ILine>(6) {
+    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five, IBlock six) {
+        return new List<WLine>(6) {
             Transform1(one),
             Transform1(two),
             Transform1(three),
@@ -179,11 +189,29 @@ class Combo6 : Combo {
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five, IBlock six) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five, IBlock six) {
         foreach (Combo6 combo in combos)
             if (combo.Match(one, two, three, four, five, six))
                 return combo.Transform(one, two, three, four, five, six);
         return null;
+    }
+
+    override protected Combo6 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return new Combo6 {
+            Re1 = this.Re1,
+            Re2 = this.Re2,
+            Re3 = this.Re3,
+            Re4 = this.Re4,
+            Re5 = ConvertQueensToKings(this.Re5),
+            Re6 = this.Re6,
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo6() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -211,8 +239,8 @@ class Combo5 : Combo {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four) && Match(Re5, five);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
-        return new List<ILine>(5) {
+    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+        return new List<WLine>(5) {
             Transform1(one),
             Transform1(two),
             Transform1(three),
@@ -221,11 +249,28 @@ class Combo5 : Combo {
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
         foreach (Combo5 combo in Combo5.combos)
             if (combo.Match(one, two, three, four, five))
                 return combo.Transform(one, two, three, four, five);
         return null;
+    }
+
+    override protected Combo5 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return new Combo5 {
+            Re1 = this.Re1,
+            Re2 = this.Re2,
+            Re3 = this.Re3,
+            Re4 = ConvertQueensToKings(this.Re4),
+            Re5 = this.Re5,
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo5() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -369,8 +414,8 @@ class Combo4 : Combo {
     internal bool Match(IBlock one, IBlock two, IBlock three, IBlock four) {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four);
     }
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
-        return new List<ILine>(4) {
+    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return new List<WLine>(4) {
             Transform1(one),
             Transform1(two),
             Transform1(three),
@@ -381,13 +426,13 @@ class Combo4 : Combo {
     internal bool Match2(IBlock one, IBlock two, IBlock three, IBlock four) {
         return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two) && MatchFirstRun(Re3, three) && MatchFirstRun(Re4, four);
     }
-    internal List<ILine> Transform2(IBlock one, IBlock two, IBlock three, IBlock four) {
-        return new List<ILine>(4) {
+    internal List<WLine> Transform2(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return new List<WLine>(4) {
             TransformFirstRun(one), TransformFirstRun(two), TransformFirstRun(three), TransformFirstRun(four)
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four) {
         foreach (Combo4 combo in Combo4.combos)
             if (combo.Match(one, two, three, four))
                 return combo.Transform(one, two, three, four);
@@ -395,6 +440,22 @@ class Combo4 : Combo {
             if (combo.Match2(one, two, three, four))
                 return combo.Transform2(one, two, three, four);
         return null;
+    }
+
+    override protected Combo4 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo4 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Re3 = ConvertQueensToKings(this.Re3),
+            Re4 = ConvertQueensToKings(this.Re4),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo4() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -441,17 +502,33 @@ class Combo3_1 : Combo {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three) && Match(Re4, four);
     }
 
-    private List<ILine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
-        return new List<ILine>(4) {
-            Transform1(one), Transform1(two), Transform1(three), (ILine) four
+    private List<WLine> Transform(IBlock one, IBlock two, IBlock three, IBlock four) {
+        return new List<WLine>(4) {
+            Transform1(one), Transform1(two), Transform1(three), (WLine) four
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three, IBlock four) {
         foreach (Combo3_1 combo in Combo3_1.combos)
             if (combo.Match(one, two, three, four))
                 return combo.Transform(one, two, three, four);
         return null;
+    }
+
+    override protected Combo3_1 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo3_1 {
+            Re1 = this.Re1,
+            Re2 = this.Re2,
+            Re3 = ConvertQueensToKings(this.Re3),
+            Re4 = ConvertQueensToKings(this.Re4),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo3_1() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -556,8 +633,13 @@ class Combo3 : Combo {
         new Combo3 {    // [2022] EWHC 48 (Ch)
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re3 = new Regex(@"^BUSINESS LIST \(ChD\)$", RegexOptions.IgnoreCase),
-            // Re4 = new Regex(@"^PENSIONS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^BUSINESS LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),  // space in [2023] EWHC 1391 (Ch)
+            Court = Courts.EWHC_Chancery_BusinessList
+        },
+        new Combo3 {    // [2023] EWHC 1439 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS IN BIRMINGHAM$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^BUSINESS LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList
         },
         new Combo3 {
@@ -596,12 +678,13 @@ class Combo3 : Combo {
             Re3 = new Regex(@"^APPEALS \(CH D\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
-        new Combo3 {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND? WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
-            Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
-            Court = Courts.EWHC_QBD_Commercial
-        },
+        // no distinction between KB and QB
+        // new Combo3 {
+        //     Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+        //     Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND? WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
+        //     Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+        //     Court = Courts.EWHC_QBD_Commercial
+        // },
         new Combo3 {    // EWHC/Comm/2018/3326
             Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),    // missing D in EWHC/QB/2017/2921
@@ -673,6 +756,12 @@ class Combo3 : Combo {
             Re2 = new Regex(@"^(IN THE )?BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^PROPERTY, TRUSTS (AND|&) PROBATE LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_PropertyTrustsProbate
+        },
+        new Combo3 {  // [2023] EWHC 654 (Ch)
+            Re1 = new Regex(@"^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS IN LEEDS$", RegexOptions.IgnoreCase),
+            Re3 = new Regex(@"^PROPERTY, TRUSTS (AND|&) PROBATE LIST \(ChD\)$", RegexOptions.IgnoreCase),
+            Court = Courts.EWHC_Chancery_PropertyTrustsProbate
         }
     };
 
@@ -680,25 +769,25 @@ class Combo3 : Combo {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) { Transform1(one), Transform1(two), Transform1(three) };
+    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three) {
+        return new List<WLine>(3) { Transform1(one), Transform1(two), Transform1(three) };
     }
 
     internal bool MatchFirstRun(IBlock one, IBlock two, IBlock three) {
         return MatchFirstRun(Re1, one) && Match(Re2, two) && Match(Re3, three);
     }
-    internal List<ILine> TransformFirstRun(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) { TransformFirstRun(one), Transform1(two), Transform1(three) };
+    internal List<WLine> TransformFirstRun(IBlock one, IBlock two, IBlock three) {
+        return new List<WLine>(3) { TransformFirstRun(one), Transform1(two), Transform1(three) };
     }
 
     internal bool MatchTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
         return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two) && Match(Re3, three);
     }
-    internal List<ILine> TransformTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) { TransformFirstRun(one), TransformFirstRun(two), Transform1(three) };
+    internal List<WLine> TransformTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
+        return new List<WLine>(3) { TransformFirstRun(one), TransformFirstRun(two), Transform1(three) };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three) {
         foreach (Combo3 combo in Combo3.combos)
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
@@ -707,11 +796,26 @@ class Combo3 : Combo {
                 return combo.TransformFirstRun(one, two, three);
         return null;
     }
-    internal static List<ILine> MatchAny2(IBlock one, IBlock two) {
+    internal static List<WLine> MatchAny2(IBlock one, IBlock two) {
         foreach (Combo3 combo in Combo3.combos)
             if (combo.Match(combo.Re1, one) && combo.MatchFirstAndThirdRuns(two, combo.Re2, combo.Re3))
-                return new List<ILine>(2) { combo.Transform1(one), combo.TransformFirstAndThirdRuns(two) };
+                return new List<WLine>(2) { combo.Transform1(one), combo.TransformFirstAndThirdRuns(two) };
         return null;
+    }
+
+    override protected Combo3 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo3 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Re3 = ConvertQueensToKings(this.Re3),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo3() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -858,11 +962,11 @@ class Combo2_1 : Combo {
     };
 
     private bool Matchish(Regex regex, IBlock block) {
-        if (!(block is ILine line))
+        if (!(block is WLine line))
             return false;
         if (line.Contents.Count() == 0)
             return false;
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         return regex.IsMatch(text);
     }
 
@@ -873,18 +977,18 @@ class Combo2_1 : Combo {
         return MatchFirstRun(Re1, one) && Match(Re2, two) && Matchish(Re3, three);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) {
-            Transform1(one), Transform1(two), (ILine) three
+    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three) {
+        return new List<WLine>(3) {
+            Transform1(one), Transform1(two), (WLine) three
         };
     }
-    private List<ILine> Transform2(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) {
-            TransformFirstRun(one), Transform1(two), (ILine) three
+    private List<WLine> Transform2(IBlock one, IBlock two, IBlock three) {
+        return new List<WLine>(3) {
+            TransformFirstRun(one), Transform1(two), (WLine) three
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three) {
         foreach (Combo2_1 combo in Combo2_1.combos) {
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
@@ -893,6 +997,21 @@ class Combo2_1 : Combo {
         }
         return null;
 
+    }
+
+    override protected Combo2_1 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo2_1 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Re3 = this.Re3,
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo2_1() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -916,20 +1035,28 @@ class Combo1_2 : Combo {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two, IBlock three) {
-        return new List<ILine>(3) {
-            Transform1(one), (ILine) two, (ILine) three
+    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three) {
+        return new List<WLine>(3) {
+            Transform1(one), (WLine) two, (WLine) three
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two, IBlock three) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two, IBlock three) {
         foreach (Combo1_2 combo in Combo1_2.combos)
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
         return null;
-
     }
 
+    override protected Combo1_2 ConvertQueensToKings() {
+        if (this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return null;
+    }
+    // static Combo1_2() {
+    //     var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+    //     combos = combos.Concat(kings).ToArray();
+    // }
 
 }
 
@@ -963,6 +1090,11 @@ class Combo2 : Combo {
             Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
             Re2 = new Regex(@"\(Chancery Division\)"),
             Court = Courts.EWHC_Chancery
+        },
+        new Combo2 {    // [2023] EWHC 1593 (KB)
+            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re2 = new Regex("KING['’]S BENCH DIVISION"),
+            Court = Courts.EWHC_KBD
         },
         // new Combo2 {
         //     Re1 = new Regex("IN THE HIGH COURTS? OF JUSTICE"),
@@ -1014,42 +1146,56 @@ class Combo2 : Combo {
     internal bool Match(IBlock one, IBlock two) {
         return Match(Re1, one) && Match(Re2, two);
     }
-    internal List<ILine> Transform(IBlock one, IBlock two) {
-        return new List<ILine>(2) { Transform1(one), Transform1(two) };
+    internal List<WLine> Transform(IBlock one, IBlock two) {
+        return new List<WLine>(2) { Transform1(one), Transform1(two) };
     }
 
     internal bool MatchFirstRun(IBlock one, IBlock two) {
         return MatchFirstRun(Re1, one) && Match(Re2, two);
     }
-    internal List<ILine> TransformFirstRun(IBlock one, IBlock two) {
-        return new List<ILine>(3) { TransformFirstRun(one), Transform1(two) };
+    internal List<WLine> TransformFirstRun(IBlock one, IBlock two) {
+        return new List<WLine>(3) { TransformFirstRun(one), Transform1(two) };
     }
 
     internal bool MatchTwoFirstRuns(IBlock one, IBlock two) {
         return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two);
     }
-    internal List<ILine> TransformTwoFirstRuns(IBlock one, IBlock two) {
-        return new List<ILine>(3) { TransformFirstRun(one), TransformFirstRun(two) };
+    internal List<WLine> TransformTwoFirstRuns(IBlock one, IBlock two) {
+        return new List<WLine>(3) { TransformFirstRun(one), TransformFirstRun(two) };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two) {
         foreach (Combo2 combo in Combo2.combos)
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
         foreach (Combo2 combo in Combo2.combos)
             if (MatchFirstRun(combo.Re1, one) && MatchFirstRun(combo.Re2, two))
-                return new List<ILine>(2) { combo.TransformFirstRun(one), combo.TransformFirstRun(two) };
+                return new List<WLine>(2) { combo.TransformFirstRun(one), combo.TransformFirstRun(two) };
         return null;
     }
 
     internal bool Match1(IBlock block) {
         return MatchFirstRun(Re1, block) && MatchThirdRun(Re2, block);
     }
-    internal static List<ILine> MatchAny1(IBlock block) {
+    internal static List<WLine> MatchAny1(IBlock block) {
         foreach (Combo2 combo in Combo2.combos)
             if (combo.Match1(block))
-                return new List<ILine>(1) { combo.TransformFirstThreeRuns(block) };
+                return new List<WLine>(1) { combo.TransformFirstThreeRuns(block) };
         return null;
+    }
+
+    override protected Combo2 ConvertQueensToKings() {
+        if (!this.Court.Code.Contains("-QBD"))
+            return null;
+        return new Combo2 {
+            Re1 = this.Re1,
+            Re2 = ConvertQueensToKings(this.Re2),
+            Court = ConvertQueensToKings(this.Court)
+        };
+    }
+    static Combo2() {
+        var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+        combos = combos.Concat(kings).ToArray();
     }
 
 }
@@ -1071,16 +1217,26 @@ class Combo1_1 : Combo {
         return Match(Re1, one) && Match(Re2, two);
     }
 
-    internal List<ILine> Transform(IBlock one, IBlock two) {
-        return new List<ILine>(2) { Transform1(one), (ILine) two };
+    internal List<WLine> Transform(IBlock one, IBlock two) {
+        return new List<WLine>(2) { Transform1(one), (WLine) two };
     }
 
-    internal static List<ILine> MatchAny(IBlock one, IBlock two) {
+    internal static List<WLine> MatchAny(IBlock one, IBlock two) {
         foreach (Combo1_1 combo in Combo1_1.combos)
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
         return null;
     }
+
+    override protected Combo1_1 ConvertQueensToKings() {
+        if (this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return null;
+    }
+    // static Combo1_1() {
+    //     var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+    //     combos = combos.Concat(kings).ToArray();
+    // }
 
 }
 
@@ -1119,6 +1275,10 @@ class Combo1 : Combo {
         },
         new Combo1 {
             Re = new Regex("^IN (THE FAMILY COURT) *$", RegexOptions.IgnoreCase),
+            Court = Courts.EWFC
+        },
+        new Combo1 {
+            Re = new Regex("^IN THE CENTRAL FAMILY COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWFC
         },
         new Combo1 {
@@ -1163,16 +1323,26 @@ class Combo1 : Combo {
         return Match(Re, one);
     }
 
-    internal List<ILine> Transform(IBlock one) {
-        return new List<ILine>(1) { Transform1(one) };
+    internal List<WLine> Transform(IBlock one) {
+        return new List<WLine>(1) { Transform1(one) };
     }
 
-    internal static List<ILine> MatchAny(IBlock one) {
+    internal static List<WLine> MatchAny(IBlock one) {
         foreach (Combo1 combo in Combo1.combos)
             if (combo.Match(one))
                 return combo.Transform(one);
         return null;
     }
+
+    override protected Combo1 ConvertQueensToKings() {
+        if (this.Court.Code.Contains("-QBD"))
+            throw new Exception();
+        return null;
+    }
+    // static Combo1() {
+    //     var kings = combos.Select(c => c.ConvertQueensToKings()).Where(c => c is not null);
+    //     combos = combos.Concat(kings).ToArray();
+    // }
 
 }
 
@@ -1200,7 +1370,7 @@ class Combo1bis {
         return true;
     }
 
-    internal List<ILine> Transform(IBlock one) {
+    internal List<WLine> Transform(IBlock one) {
         WLine line = (WLine) one;
         WText text1 = (WText) line.Contents.ElementAt(0);
         WLineBreak lineBreak = (WLineBreak) line.Contents.ElementAt(1);
@@ -1210,12 +1380,12 @@ class Combo1bis {
             lineBreak,
             new WCourtType(text2.Text, text2.properties) { Code = Two.Court.Code }
         };
-        return new List<ILine>(1) {
-            new WLine(line, contents)
+        return new List<WLine>(1) {
+            WLine.Make(line, contents)
         };
     }
 
-    internal static List<ILine> MatchAny(IBlock one) {
+    internal static List<WLine> MatchAny(IBlock one) {
         foreach (Combo1bis combo in Combo1bis.combos)
             if (combo.Match(one))
                 return combo.Transform(one);
@@ -1226,27 +1396,27 @@ class Combo1bis {
 
 class CourtType : Enricher2 {
 
-    private List<ILine> Match6(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five, IBlock six) {
+    private List<WLine> Match6(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five, IBlock six) {
         return Combo6.MatchAny(one, two, three, four, five, six);
     }
 
-    private List<ILine> Match5(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
+    private List<WLine> Match5(IBlock one, IBlock two, IBlock three, IBlock four, IBlock five) {
         return Combo5.MatchAny(one, two, three, four, five);
     }
 
-    virtual protected List<ILine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
+    virtual protected List<WLine> Match4(IBlock one, IBlock two, IBlock three, IBlock four) {
         return Combo4.MatchAny(one, two, three, four) ?? Combo3_1.MatchAny(one, two, three, four);
     }
 
-    private List<ILine> Match3(IBlock one, IBlock two, IBlock three) {
+    private List<WLine> Match3(IBlock one, IBlock two, IBlock three) {
         return Combo3.MatchAny(one, two, three) ?? Combo2_1.MatchAny(one, two, three) ?? Combo1_2.MatchAny(one, two, three);
     }
 
-    protected virtual List<ILine> Match2(IBlock one, IBlock two) {
+    protected virtual List<WLine> Match2(IBlock one, IBlock two) {
         return Combo2.MatchAny(one, two) ?? Combo1_1.MatchAny(one, two) ?? Combo3.MatchAny2(one, two);
     }
 
-    protected virtual List<ILine> Match1(IBlock block) {
+    protected virtual List<WLine> Match1(IBlock block) {
         return Combo1.MatchAny(block) ?? Combo1bis.MatchAny(block) ?? Combo2.MatchAny1(block);
     }
 
@@ -1261,7 +1431,7 @@ class CourtType : Enricher2 {
                 IBlock block4 = blocks.ElementAt(i + 3);
                 IBlock block5 = blocks.ElementAt(i + 4);
                 IBlock block6 = blocks.ElementAt(i + 5);
-                List<ILine> six = Match6(block1, block2, block3, block4, block5, block6);
+                List<WLine> six = Match6(block1, block2, block3, block4, block5, block6);
                 if (six is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 6);
@@ -1273,7 +1443,7 @@ class CourtType : Enricher2 {
                 IBlock block3 = blocks.ElementAt(i + 2);
                 IBlock block4 = blocks.ElementAt(i + 3);
                 IBlock block5 = blocks.ElementAt(i + 4);
-                List<ILine> five = Match5(block1, block2, block3, block4, block5);
+                List<WLine> five = Match5(block1, block2, block3, block4, block5);
                 if (five is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 5);
@@ -1284,7 +1454,7 @@ class CourtType : Enricher2 {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 IBlock block3 = blocks.ElementAt(i + 2);
                 IBlock block4 = blocks.ElementAt(i + 3);
-                List<ILine> four = Match4(block1, block2, block3, block4);
+                List<WLine> four = Match4(block1, block2, block3, block4);
                 if (four is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 4);
@@ -1294,7 +1464,7 @@ class CourtType : Enricher2 {
             if (i < blocks.Count() - 2) {
                 IBlock block2 = blocks.ElementAt(i + 1);
                 IBlock block3 = blocks.ElementAt(i + 2);
-                List<ILine> three = Match3(block1, block2, block3);
+                List<WLine> three = Match3(block1, block2, block3);
                 if (three is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 3);
@@ -1303,14 +1473,14 @@ class CourtType : Enricher2 {
             }
             if (i < blocks.Count() - 1) {
                 IBlock block2 = blocks.ElementAt(i + 1);
-                List<ILine> two = Match2(block1, block2);
+                List<WLine> two = Match2(block1, block2);
                 if (two is not null) {
                     IEnumerable<IBlock> before = blocks.Take(i);
                     IEnumerable<IBlock> after = blocks.Skip(i + 2);
                     return Enumerable.Concat(Enumerable.Concat(before, two), after);
                 }
             }
-            List<ILine> one = Match1(block1);
+            List<WLine> one = Match1(block1);
             if (one is not null) {
                 IEnumerable<IBlock> before = blocks.Take(i);
                 IEnumerable<IBlock> after = blocks.Skip(i + 1);

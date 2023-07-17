@@ -113,7 +113,7 @@ class Fields {
         if (match.Success) {
             if (i == withinField.Count) {
                 string field = match.Groups[1].Value;
-                RunProperties rProps = first.Ancestors<Run>().FirstOrDefault()?.Descendants<RunProperties>().FirstOrDefault();
+                RunProperties rProps = first.Ancestors<Run>().FirstOrDefault()?.RunProperties;
                 WText wText = new WText(field, rProps);
                 return new List<IInline>(1) { wText };
             }
@@ -166,33 +166,31 @@ class Fields {
             }
             return rest;
         }
-        if (fieldCode.StartsWith(" MACROBUTTON ")) {    // EWCA/Crim/2018/2190
-            if (i != withinField.Count)
-                throw new Exception();
-            return Enumerable.Empty<IInline>();
+        if (fieldCode.StartsWith(" MACROBUTTON")) {    // EWCA/Crim/2018/2190, [2022] EWCA Civ 1242
+            logger.LogWarning("skipping MACROBUTTON field");
+            return RestOptional(main, withinField, i);
         }
         if (fieldCode == " PRIVATE ") { // EWCA/Civ/2003/295
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" =SUM(ABOVE) ")) {   // EWCA/Crim/2018/542, EWHC/Ch/2015/164, EWHC/QB/2010/1112
-            if (i == withinField.Count) {
-                TableCell cell = first.Ancestors<TableCell>().First();
-                string sum = DOCX.Tables.SumAbove(cell);
-                RunProperties rProps = ((Run) first).RunProperties;
-                WText wText = new WText(sum, rProps);
-                return new List<IInline>(1) { wText };
-            } else {
+            if (HasRest(withinField, i))
                 return Rest(main, withinField, i);
-            }
+            TableCell cell = first.Ancestors<TableCell>().First();
+            string sum = DOCX.Tables.SumAbove(cell);
+            logger.LogWarning($"calculating sum: { sum }");
+            RunProperties rProps = ((Run) first).RunProperties;
+            WText wText = new WText(sum, rProps);
+            return new List<IInline>(1) { wText };
         }
         if (fieldCode.StartsWith(" =SUM(ABOVE)")) { // Miles v Forster - Approved Judgment - 19th January 2022 v.1.docx
-            if (i == withinField.Count)
-                logger.LogWarning("skipping SUM field because no alternative is provided");
+            if (!HasRest(withinField, i))
+                logger.LogCritical("skipping SUM field because no alternative is provided");
             return RestOptional(main, withinField, i);
         }
         if (fieldCode == " =sum(left) ") {  // EWCA/Civ/2016/138.rtf
-            if (i == withinField.Count)
-                logger.LogWarning("skipping SUM field because no alternative is provided");
+            if (!HasRest(withinField, i))
+                logger.LogCritical("skipping SUM field because no alternative is provided");
             return RestOptional(main, withinField, i);
         }
         if (fieldCode.StartsWith(" DATE ") || fieldCode.StartsWith(" createDATE ")) {   // EWCA/Crim/2015/558, EWCA/Civ/2018/1307
@@ -206,7 +204,7 @@ class Fields {
                 throw new Exception();
             IEnumerable<IInline> parsed = Inline.ParseRuns(main, rest);
             if (parsed.All(inline => inline is IFormattedText)) {
-                string content = Enricher.NormalizeInlines(parsed);
+                string content = IInline.ToString(parsed);
                 try {
                     CultureInfo culture = new CultureInfo("en-GB");
                     DateTime date = DateTime.Parse(content, culture);
@@ -221,7 +219,7 @@ class Fields {
         }
         if (Time.Is(fieldCode))
             return Time.Parse(main, fieldCode, withinField.Skip(i));
-        if (fieldCode.StartsWith(" tc ")) {    // EWCA/Civ/2008/875_1, EWHC/Ch/2010/3727
+        if (fieldCode.StartsWith(" tc ", StringComparison.InvariantCultureIgnoreCase)) {    // EWCA/Civ/2008/875_1, EWHC/Ch/2010/3727, UTAAC/2010/V 3024 2010-00.doc
             return Enumerable.Empty<IInline>();
         }
         if (fieldCode.StartsWith(" TOC ")) {    // EWHC/Ch/2008/219, EWHC/Admin/2021/30
@@ -238,11 +236,10 @@ class Fields {
             if (!IsFieldSeparater(next))
                 throw new Exception();
             IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-            if (!remaining.Any()) { // [2020] UKSC 49
-                string url = match.Groups[1].Value;
-                WExternalImage image = new WExternalImage() { URL = url };
-                return new List<IInline>(1) { image };
-            }
+            if (!remaining.Any()) // [2020] UKSC 49, [2023] EWHC 178 (IPEC)
+                logger.LogWarning($"ignoring external image { match.Groups[1].Value }");
+                // note that INCLUDEPICTURE fields with the \d flag are handled by the IncludedPicture class below
+
             return Inline.ParseRuns(main, remaining);
         }
         if (Seq.Is(fieldCode))
@@ -257,15 +254,19 @@ class Fields {
         match = Regex.Match(fieldCode, @"^ =\d");   // EWHC/Ch/2005/2793, EWHC/Ch/2011/2301
         if (match.Success) {
             IEnumerable<IInline> rest = Rest(main, withinField, i);
-            string normal = Enricher.NormalizeInlines(rest);
-            logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
+            // string normal = Enricher.NormalizeInlines(rest);
+            // logger.LogWarning("using cached value:" + fieldCode + "-> " + normal);
             return rest;
         }
-        if (fieldCode == " PAGE ") {   // EWHC/Admin/2003/2369
-            if (!first.Ancestors<Header>().Any())
-                throw new Exception();
+        if (fieldCode.StartsWith(" PAGE ")) {   // EWHC/Admin/2003/2369, [2022] EWHC 2576 (Fam)
+            // string rest = ILine.TextContent(RestOptional(main, withinField, i));
+            // logger.LogDebug("ignoring PAGE field: " + rest);
             return Enumerable.Empty<IInline>();
         }
+        if (fieldCode.StartsWith(" NUMPAGES "))  // [2022] EWFC 125, [2022] EWHC 2794 (Fam)
+            return RestOptional(main, withinField, i);
+        if (fieldCode.StartsWith(" NUMWORDS "))  // [2022] EWHC 2794 (Fam)
+            return RestOptional(main, withinField, i);
         match = Regex.Match(fieldCode, @" PAGEREF [_A-Za-z0-9]+ \\h ");   // EWHC/Ch/2007/1044
         if (match.Success) {
             return Enumerable.Empty<IInline>();
@@ -287,6 +288,10 @@ class Fields {
         match = Regex.Match(fieldCode, @" ASK [_A-Za-z0-9]+ ""[^""]+"" \\\* MERGEFORMAT $"); // EWHC/Admin/2020/287
         if (match.Success)
             return Rest(main, withinField, i);
+        // match = Regex.Match(fieldCode, @" ASK [_A-Za-z0-9]+ \\\* MERGEFORMAT $"); // [2023] EWHC 628 (Ch)
+        // if (match.Success)
+        //     return Rest(main, withinField, i);
+
         if (fieldCode == " ADDIN CiteCheck Marker ")    // EWHC/Comm/2012/3586
             return RestOptional(main, withinField, i);
         if (fieldCode.StartsWith(" TA "))   // EWHC/Comm/2005/735
@@ -304,13 +309,30 @@ class Fields {
         if (fieldCode.StartsWith(" SUBJECT ")) // EWHC/Ch/2009/1330
             return RestOptional(main, withinField, i);
         
-        if (fieldCode == " The FORMTEXT " || fieldCode == " The The FORMTEXT ") {    // [2022] EWCA Crim 6, error in ____
-            logger.LogWarning("field error: " + fieldCode);
+        if (fieldCode.EndsWith(" FORMTEXT ")) {    // [2022] EWCA Crim 6, [2022] EWHC 2488 (Ch)
+            logger.LogWarning("skipping FORMTEXT: " + fieldCode);
+            return RestOptional(main, withinField, i);
+        }
+
+        // "The XE field is formatted as hidden text and displays no result in the document." https://support.microsoft.com/en-us/office/field-codes-xe-index-entry-field-abaf7c78-6e21-418d-bf8b-f8186d2e4d08
+        if (fieldCode.StartsWith(" XE ")) { // [2023] EWHC 424 (TCC)
+            logger.LogWarning($"ignoring hidden text: { fieldCode }");
+            return Enumerable.Empty<IInline>();
+        }
+        // https://support.microsoft.com/en-us/office/field-codes-index-field-adafcf4a-cb30-43f6-85c7-743da1635d9e
+        if (fieldCode.StartsWith(" INDEX ")) {  // [2023] EWHC 521 (Comm)
+            logger.LogWarning($"ignoring index: { fieldCode }");
+            return Enumerable.Empty<IInline>();
+        }
+
+        if (fieldCode.StartsWith(@" LINK Excel.Sheet")) {
+            logger.LogWarning($"ignoring link to Excel: { fieldCode }");
             return RestOptional(main, withinField, i);
         }
 
         // https://support.microsoft.com/en-us/office/list-of-field-codes-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51
-        throw new Exception();
+        logger.LogCritical($"unknown field code: { fieldCode }");
+        throw new Exception($"unknown field code: { fieldCode }");
     }
 
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
@@ -334,6 +356,22 @@ class Fields {
         // if (!rest.Skip(1).Any())
         //     throw new Exception();
         return Inline.ParseRuns(main, rest.Skip(1));
+    }
+
+    /// <summary>
+    /// Method <c>HasRest</c> indicates whether there is content following the field separator
+    /// </summary>
+    /// <param name="withinField">the field conents</param>
+    /// <param name="i">the index of the next element in <paramref name="withinField"/> to be processed</param>
+    /// <returns></returns>
+    internal static bool HasRest(List<OpenXmlElement> withinField, int i) {
+        if (i == withinField.Count)
+            return false;
+        OpenXmlElement next = withinField[i];
+        if (!IsFieldSeparater(next))
+            return false;
+        IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
+        return remaining.Any();
     }
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
         if (i == withinField.Count)

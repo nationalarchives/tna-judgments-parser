@@ -9,6 +9,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using OMML = DocumentFormat.OpenXml.Math;
 
 using Microsoft.Extensions.Logging;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -19,7 +20,7 @@ class Inline {
     public static IEnumerable<IInline> ParseRuns(MainDocumentPart main, IEnumerable<OpenXmlElement> elements) {
         List<IInline> parsed = new List<IInline>();
         List<OpenXmlElement> withinField = null;
-        IEnumerator<OpenXmlElement> enumerator = elements.GetEnumerator();
+        BidirectionalEnumerator<OpenXmlElement> enumerator = new BidirectionalEnumerator<OpenXmlElement>(elements);
         while (enumerator.MoveNext()) {
             OpenXmlElement e = enumerator.Current;
             if (e is ParagraphProperties)
@@ -37,6 +38,8 @@ class Inline {
                     withinField = new List<OpenXmlElement>();
                     continue;
                 }
+                // if (!withinField.Any())
+                //     continue;
                 logger.LogDebug("field within field");
                 string fc1;
                 if (withinField.FirstOrDefault() is not null && Fields.IsFieldCode(withinField.First()))
@@ -47,19 +50,6 @@ class Inline {
                     logger.LogDebug("skipping inner field because it's within a TOC entry");
                     while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current))
                         ;
-                    continue;
-                }
-                if (fc1 is not null && fc1.StartsWith("INCLUDEPICTURE ")) {  // [2020] UKSC 49
-                    logger.LogDebug("skipping inner field because it's within an INCLUDEPICTURE entry");
-                    int starts = 1;
-                    while (enumerator.MoveNext()) {
-                        if (Fields.IsFieldStart(enumerator.Current))
-                            starts += 1;
-                        if (Fields.IsFieldEnd(enumerator.Current)) {
-                            starts -= 1;
-                            if (starts == 0) break;
-                        }
-                    }
                     continue;
                 }
                 if (!enumerator.MoveNext())
@@ -75,14 +65,48 @@ class Inline {
                         logger.LogDebug("skipping inner field because it's empty");
                         continue;
                     }
-                    throw new Exception();
+                    if (Fields.IsFieldCode(enumerator.Current)) {
+                        fc2 += Fields.GetFieldCode(enumerator.Current);
+                    } else {
+                        throw new Exception();
+                    }
+                }
+                if (fc1 is not null && fc1.StartsWith("INCLUDEPICTURE") && fc2 is not null && fc2.StartsWith("INCLUDEPICTURE")) {  // [2020] UKSC 49, ewca_civ_2023_637
+                    logger.LogDebug("INCLUDEPICTURE within INCLUDEPICTURE");
+                    int starts = 1;
+                    while (enumerator.MoveNext()) {
+                        if (Fields.IsFieldStart(enumerator.Current)) {
+                            starts += 1;
+                            continue;
+                        }
+                        if (Fields.IsFieldCode(enumerator.Current)) {
+                            string fc3 = Fields.GetFieldCode(enumerator.Current).TrimStart();
+                            logger.LogDebug(fc3.TrimEnd() + " within INCLUDEPICTURE within INCLUDEPICTURE");
+                            continue;
+                        }
+                        if (Fields.IsFieldSeparater(enumerator.Current))
+                            continue;
+                        if (Fields.IsFieldEnd(enumerator.Current)) {
+                            starts -= 1;
+                            if (starts == 0)
+                                break;
+                            continue;
+                        }
+                        withinField.Add(enumerator.Current);
+                    }
+                    IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
+                    parsed.AddRange(parsedFieldContents);
+                    withinField = null;
+                    continue;
                 }
                 if (fc1 == "FORMTEXT " && fc2 == "FORMTEXT ") { // EWCA/Civ/2015/40.rtf
                     logger.LogDebug("FORMTEXT within FORMTEXT");
                     int starts = 1;
                     while (enumerator.MoveNext()) {
-                        if (Fields.IsFieldStart(enumerator.Current))
+                        if (Fields.IsFieldStart(enumerator.Current)) {
                             starts += 1;
+                            continue;
+                        }
                         if (Fields.IsFieldCode(enumerator.Current)) {
                             string fc3 = Fields.GetFieldCode(enumerator.Current).TrimStart();
                             logger.LogDebug(fc3.TrimEnd() + " within FORMTEXT within FORMTEXT");
@@ -95,11 +119,32 @@ class Inline {
                             continue;
                         if (Fields.IsFieldEnd(enumerator.Current)) {
                             starts -= 1;
-                            if (starts == 0) break;
+                            if (starts == 0)
+                                break;
+                            continue;
                         }
                         withinField.Add(enumerator.Current);
                     }
                     continue;
+                }
+                if (fc1 == "" && fc2.StartsWith("ASK ")) {  // [2023] EWHC 628 (Ch)
+                    while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current)) { }
+                    continue;
+                }
+                // SET field code
+                // assumes that the 'variable' has just been used as a field code
+                if (fc1 == "" && fc2.StartsWith("SET ")) {  // [2023] EWHC 628 (Ch)
+                    var match = Regex.Match(fc2, "SET ([A-Za-z]+)");
+                    if (match.Success) {
+                        var toRemove = withinField.SingleOrDefault(e => Fields.IsFieldCode(e) && e.InnerText == match.Groups[1].Value);
+                        if (toRemove != null) {
+                            bool found = withinField.Remove(toRemove);
+                            if (found) {
+                                while (enumerator.MoveNext() && !Fields.IsFieldEnd(enumerator.Current)) { }
+                                continue;
+                            }
+                        }
+                    }
                 }
                 throw new Exception();
             }
@@ -112,6 +157,11 @@ class Inline {
             if (Fields.IsFieldEnd(e)) {
                 if (withinField is null) {  // EWHC/Comm/2004/999
                     logger.LogWarning("field end without start in same paragraph");
+                    continue;
+                }
+                if (IsDuplicateSumAboveField(withinField, enumerator)) {  // [2023] EWHC 942 (Fam)
+                    logger.LogWarning("skipping duplicate =SUM(ABOVE) field");
+                    withinField = null;
                     continue;
                 }
                 IEnumerable<IInline> parsedFieldContents = Fields.ParseFieldContents(main, withinField);
@@ -182,6 +232,12 @@ class Inline {
             if (e is DeletedRun dRun) {    // EWCA/Civ/2004/1580
                 continue;
             }
+            if (e is SdtRun stdRun) {   // [2022] EWHC 3214 (Admin)
+                var children = stdRun.ChildElements.OfType<SdtContentRun>()
+                    .SelectMany(cr => cr.ChildElements);
+                parsed.AddRange(ParseRuns(main, children));
+                continue;
+            }
             if (e is OpenXmlUnknownElement) {
                 // if (withinField is not null) {
                 //     withinField.Add(e);
@@ -217,6 +273,11 @@ class Inline {
             }
             if (e is CommentRangeStart || e is CommentRangeEnd) // EWHC/Comm/2016/869
                 continue;
+            if (e is OMML.Paragraph oMathPara) { // [2022] EWHC 2363 (Pat)
+                var children = ParseRuns(main, e.ChildElements);
+                parsed.AddRange(children);
+                continue;
+            }
             if (e is OMML.OfficeMath omml) { // EWHC/Comm/2018/335
                 IMath mathML = Math2.Parse(main, omml);
                 parsed.Add(mathML);
@@ -287,8 +348,13 @@ class Inline {
             return new WTab(tab);
         if (e is OpenXmlUnknownElement && e.LocalName == "tab")
             return new WTab(e);
-        if (e is Break br)
+        if (e is Break br) {
+            if (br.Type is not null && br.Type == BreakValues.Page)    // [2023] EWHC 323 (Ch)
+                return null;
+            // if (br.Type == BreakValues.Column)   // ?
+            //     return null;
             return new WLineBreak(br);
+        }
         if (e is OpenXmlUnknownElement && e.LocalName == "br")
             return new WLineBreak(e);
         if (e is NoBreakHyphen hyphen)
@@ -343,6 +409,34 @@ class Inline {
     // internal static IInline MapRunChild(MainDocumentPart main, Run run, OpenXmlElement e) {
     //     return MapRunChild(main, run.RunProperties, e);
     // }
+
+    private static bool IsDuplicateSumAboveField(List<OpenXmlElement> withinField, BidirectionalEnumerator<OpenXmlElement> enumerator) {
+        if (withinField.Count != 2)
+            return false;
+        var first = withinField[0];
+        if (!Fields.IsFieldCode(first))
+            return false;
+        if (Fields.GetFieldCode(first) != " =SUM(ABOVE) ")
+            return false;
+        var second = withinField[1];
+        if (!Fields.IsFieldSeparater(second))
+            return false;
+        if (!enumerator.MoveNext())
+            return false;
+        var next = enumerator.Current;
+        if (!Fields.IsFieldStart(next)) {
+            enumerator.MovePrevious();
+            return false;
+        }
+        if (!enumerator.MoveNext()) {
+            enumerator.MovePrevious();
+            return false;
+        }
+        var nextNext = enumerator.Current;
+        enumerator.MovePrevious();
+        enumerator.MovePrevious();
+        return Fields.IsFieldCode(nextNext) && Fields.GetFieldCode(nextNext) == " =SUM(ABOVE) ";
+    }
 
 }
 

@@ -14,6 +14,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 class CourtOfAppealParser : AbstractParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<CourtOfAppealParser>();
@@ -35,10 +36,9 @@ class CourtOfAppealParser : AbstractParser {
         "Judgement",
         "Approved Judgment", "Judgment Approved", "JUDGMENT (As Approved)", "Approved judgment",
         "Approved Judgement",   // [2022] EWHC 544 (Comm)
-        "APPROVED JUDGMENT",
+        "APPROVED JUDGMENT", "APPROVED JUDGEMENT",
         "APPROVED J U D G M E N T",
-        "J U D G M E N T (Approved)", // EWCA/Crim/2017/1012
-        // "J U D G M E N T  (Approved)",
+        "JUDGMENT (Approved)", "J U D G M E N T (Approved)",
         "J U D G M E N T (As approved)", // EWCA/Crim/2015/1870
         "J U D G M E N T (As Approved by the Court)",   // EWCA/Crim/2016/681
         "J U D G M E N T (As approved by the Court)",   // EWCA/Crim/2016/798
@@ -59,6 +59,7 @@ class CourtOfAppealParser : AbstractParser {
         "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER", //
         "Determination as to Venue",    // [2022] EWHC 152 (Admin)
         "Approved Consequentials Judgment", // [2022] EWHC 629 (Ch)
+        "SUBSTANTIVE JUDGMENT", // [2023] EWHC 323 (Ch)
 
         /* EAT */
         "TRANSCRIPT OF ORAL JUDGMENT",
@@ -69,10 +70,19 @@ class CourtOfAppealParser : AbstractParser {
         "A P P R O V E D  J U D G M E N T" // [2022] EWCA Crim 381 (has two spaces between words)
     };
 
+    Regex[] titleRegexes = new Regex[] {
+        new Regex(@"^Judgement of [A-Z][a-z]+ [A-Z][a-z]+ KC$"), // [2022] EWFC 172
+        new Regex(@"^© CROWN COPYRIGHT \d{4}$")
+    };
+
     protected override List<IBlock> Header() {
         List<OpenXmlElement> header1 = Header1();
         if (header1 is null)
             header1 = Header2();
+        if (header1 is null)
+            header1 = Header3();
+        if (header1 is null)
+            header1 = Header4();
         if (header1 is null)
             return null;
         List<IBlock> header2 = new List<IBlock>(header1.Count);
@@ -83,18 +93,12 @@ class CourtOfAppealParser : AbstractParser {
     private List<OpenXmlElement> Header1() {
         List<OpenXmlElement> header = new List<OpenXmlElement>();
         foreach (var e in elements.Skip(i)) {
+            header.Add(e);
             string text = Regex.Replace(e.InnerText, @"\s+", " ").Trim();
             if (titles.Contains(text))
                 break;
             if (rawTitles.Contains(e.InnerText))
                 break;
-            Predicate<SectionProperties> isNewSection = (sectPr) => {
-                return sectPr.ChildElements.OfType<PageNumberType>().Where(pgNumType => pgNumType.Start.HasValue).Any();
-            };
-            // [2022] EWFC 1
-            if (e is Paragraph p && p.Descendants<SectionProperties>().Where(sectPr => isNewSection(sectPr)).Any())
-                return header;
-            header.Add(e);
         }
         if (i + header.Count < elements.Count)
             logger.LogInformation("found title: " + header.Last().InnerText);
@@ -125,6 +129,29 @@ class CourtOfAppealParser : AbstractParser {
                 logger.LogDebug("ending header at " + trimmed);
                 return header;
             }
+            header.Add(e);
+            if (trimmed.StartsWith("Approved Ruling on "))
+                return header;
+        }
+        return null;
+    }
+    private List<OpenXmlElement> Header3() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
+            header.Add(e);
+            if (Util.IsSectionOrPageBreak(e))
+                return header;
+            foreach (Regex regex in titleRegexes)
+                if (regex.IsMatch(e.InnerText))
+                    return header;
+        }
+        return null;
+    }
+    private List<OpenXmlElement> Header4() {
+        List<OpenXmlElement> header = new List<OpenXmlElement>();
+        foreach (var e in elements.Skip(i)) {
+            if (e is Paragraph p && DOCX.Numbering.HasNumberOrMarker(main, p))
+                return header;
             header.Add(e);
         }
         return null;

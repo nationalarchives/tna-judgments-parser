@@ -57,7 +57,7 @@ class DocDate : Enricher {
         List<IInline> contents = EnrichText(text);
         if (contents is null)
             return null;
-        return new WLine(line, contents);
+        return WLine.Make(line, contents);
     }
 
     virtual protected WLine Enrich2OrDefault(WLine line) {
@@ -75,7 +75,7 @@ class DocDate : Enricher {
         List<IInline> enriched = EnrichText(fText2);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched.Prepend(first));
+        return WLine.Make(line, enriched.Prepend(first));
     }
 
     private WLine Enrich3OrDefault(WLine line) {
@@ -92,7 +92,7 @@ class DocDate : Enricher {
         IEnumerable<IInline> enriched = Enrich3OrDefault(fText1, fText2, fText3, isMain);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched);
+        return WLine.Make(line, enriched);
     }
 
     private IEnumerable<IInline> Enrich3OrDefault(WText fText1, WText fText2, WText fText3, bool isMain) {
@@ -189,7 +189,7 @@ class DocDate : Enricher {
         IEnumerable<IInline> enriched = Enrich3OrDefault(fText2, fText3, fText4, isMain);
         if (enriched is null)
             return null;
-        return new WLine(line, enriched.Prepend(first));
+        return WLine.Make(line, enriched.Prepend(first));
     }
 
     /* one */
@@ -200,7 +200,9 @@ class DocDate : Enricher {
         /* add other month abbreviations */
         @"^(\s*Date ?:? *)?\d{1,2} ?(January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",   // comma after month in EWHC/Ch/2003/812
         // @"^(\s*Date ?:? *)?\d{1,2} ?(January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
-        @"^(\s+)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$"
+        @"^(\s+)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
+        @"^(Date of Redacted Judgment: )\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$",
+        @"^(Handed down )\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
     };
 
     private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369

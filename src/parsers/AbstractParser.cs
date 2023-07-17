@@ -1,5 +1,4 @@
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +15,7 @@ using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordprocess
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 abstract class AbstractParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parse.AbstractParser>();
@@ -84,7 +84,8 @@ abstract class AbstractParser {
         Header header = DOCX.Headers.GetFirst(main);
         if (header is null)
             return null;
-        return Blocks.ParseBlocks(main, header.ChildElements);
+        return Blocks.ParseBlocks(main, header.ChildElements)
+            .Where(block => block is not ILine line || !line.IsEmpty());
     }
 
     protected abstract List<IBlock> Header();
@@ -125,8 +126,14 @@ abstract class AbstractParser {
             return false;
         if (e.Descendants().OfType<Vml.Shape>().Any())
             return false;
-        if (e is Paragraph p && string.IsNullOrWhiteSpace(p.InnerText))
-            return true;
+        if (e is Paragraph p) {
+            if (DOCX.Numbering2.HasOwnNumber(p))
+                return false;
+            if (DOCX.Numbering2.HasEffectiveStyleNumber(p) && !DOCX.Paragraphs.IsEmptySectionBreak(p))
+                return false;
+            if (string.IsNullOrWhiteSpace(p.InnerText))
+                return true;
+        }
         if (e is PermEnd)
             return true;
         return false;
@@ -192,11 +199,11 @@ abstract class AbstractParser {
     }
 
     private static readonly string[] titledJudgeNamePatterns2 = {
-        @"^MRS?\.? JUSTICE( [A-Z]+)+: ",
-        @"^(LORD|LADY|MRS?) JUSTICE( [A-Z]+)+: ",
-        @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?: ",
-        @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+: ",
-        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge: "
+        @"^MRS?\.? JUSTICE( [A-Z]+)+:",
+        @"^(LORD|LADY|MRS?) JUSTICE( [A-Z]+)+:",
+        @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?:",
+        @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+:",
+        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge:"
     };
     private IEnumerable<Regex> titledJudgeNameRegexes2 = titledJudgeNamePatterns2
         .Select(p => new Regex(p));
@@ -235,6 +242,10 @@ abstract class AbstractParser {
         return decisions;
     }
 
+    protected bool IsFirstLineOfDecision(OpenXmlElement e) {
+        return IsTitledJudgeName(e);
+    }
+
     protected IDecision Decision() {
         logger.LogTrace("parsing element " + i);
         OpenXmlElement e = elements.ElementAt(i);
@@ -247,7 +258,21 @@ abstract class AbstractParser {
         List<IDivision> contents = Divisions();
         if (contents is null || contents.Count == 0)
             return null;
+        contents.AddRange(ParagraphsUntilEndOfDecision());
         return new Decision { Author = author, Contents = contents };
+    }
+
+    protected List<IDivision> ParagraphsUntilEndOfDecision() {
+        StopParsingParagraphs stop = e => {
+            if (IsFirstLineOfDecision(e))
+                return true;
+            if (IsFirstLineOfConclusions(e))
+                return true;
+            if (IsFirstLineOfAnnex(e))
+                return true;
+            return false;
+        };
+        return ParagraphsUntil(stop);
     }
 
     protected List<IDivision> Divisions() {
@@ -266,7 +291,7 @@ abstract class AbstractParser {
         if (i < elements.Count)
             logger.LogTrace(elements.ElementAt(i).OuterXml);
         i = save;
-        return ParagraphsUntilAnnex();
+        return ParagraphsUntilEndOfDecision();
     }
 
     /* numbered big levels */
@@ -307,27 +332,27 @@ abstract class AbstractParser {
         return bigLevels;
     }
 
-    private string NormalizeFirstLineOfBigLevel(OpenXmlElement e, string format) {
+    private string NormalizeParagraph(Paragraph e) {
         IEnumerable<string> texts = e.Descendants()
             .Where(e => e is Text || e is TabChar)
             .Select(e => { if (e is Text) return e.InnerText; if (e is TabChar) return " "; return ""; });
         return string.Join("", texts).Trim();
     }
 
-    protected WText GetNumberFromFirstLineOfBigLevel(OpenXmlElement e, string format) {
-        string text = NormalizeFirstLineOfBigLevel(e, format);
+    protected WText GetNumberFromParagraph(Paragraph e, string format) {
+        string text = NormalizeParagraph(e);
         Match match = Regex.Match(text, format);
         if (!match.Success)
             return null;
         string number = match.Groups[1].Value;
-        RunProperties rPr = e.Descendants<RunProperties>().FirstOrDefault();
+        RunProperties rPr = e.Descendants<Run>().FirstOrDefault()?.RunProperties;
         return new WText(number, rPr);
     }
 
-    protected WLine RemoveNumberFromFirstLineOfBigLevel(Paragraph e, string format) {
+    protected WLine RemoveNumberFromParagraph(Paragraph e, string format) {
         IEnumerable<IInline> unfiltered = Inline.ParseRuns(main, e.ChildElements);
         unfiltered = Merger.Merge(unfiltered);
-        unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak);
+        unfiltered = unfiltered.SkipWhile(inline => inline is WLineBreak || inline is WTab || (inline is WText wText && string.IsNullOrWhiteSpace(wText.Text)));
         IInline first = unfiltered.First();
         if (first is not WText t1)
             throw new Exception();
@@ -371,6 +396,39 @@ abstract class AbstractParser {
                 if (third is WTab)  // [2022] UKSC 21
                     return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
             }
+            if (unfiltered.Skip(2).FirstOrDefault() is WText t3) {  // [2022] EWHC 2360 (KB)
+                string combined3 = t1.Text + t2bis.Text + t3.Text;
+                match = Regex.Match(combined3, format);
+                string rest = combined3.Substring(match.Length).TrimStart();
+                if (string.IsNullOrEmpty(rest)) {
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3));
+                } else {
+                    WText prepend = new WText(rest, t3.properties);
+                    return new WLine(main, e.ParagraphProperties, unfiltered.Skip(3).Prepend(prepend));
+                }
+            }
+        }
+        return RemoveNumberFromFirstLineOfBigLevel4(format, t1, unfiltered.Skip(1), e.ParagraphProperties);
+    }
+
+    private WLine RemoveNumberFromFirstLineOfBigLevel4(string format, WText t1, IEnumerable<IInline> rest, ParagraphProperties pProps) {
+        string t1Text = t1.Text.TrimStart();
+        if (rest.FirstOrDefault() is WTab) {    // ewhc/ch/2022/2462
+            t1Text += " ";
+            rest = rest.Skip(1);
+        }
+        if (rest.FirstOrDefault() is WText t2) {
+            string combined = t1Text + t2.Text;
+            Match match = Regex.Match(combined, format);
+            if (match.Success) {
+                string leftOver = combined.Substring(match.Length).TrimStart();
+                if (string.IsNullOrEmpty(leftOver)) {
+                    return new WLine(main, pProps, rest.Skip(1));
+                } else {
+                    WText prepend = new WText(leftOver, t2.properties);
+                    return new WLine(main, pProps, rest.Skip(1).Prepend(prepend));
+                }
+            }
         }
         throw new Exception();
     }
@@ -380,7 +438,7 @@ abstract class AbstractParser {
             return false;
         if (!DOCX.Paragraphs.IsFlushLeft(main, p))
             return false;
-        string text = NormalizeFirstLineOfBigLevel(e, format);
+        string text = NormalizeParagraph(p);
         if (Regex.IsMatch(text, format)) {
             logger.LogTrace("This is a BigLevel: ");
             logger.LogTrace(e.InnerText);
@@ -409,8 +467,8 @@ abstract class AbstractParser {
         if (!IsFirstLineOfBigLevel(e, format))
             return null;
         Paragraph p = (Paragraph) e;
-        WText number = GetNumberFromFirstLineOfBigLevel(p, format);
-        WLine heading = RemoveNumberFromFirstLineOfBigLevel(p, format);
+        WText number = GetNumberFromParagraph(p, format);
+        WLine heading = RemoveNumberFromParagraph(p, format);
         // WLine heading = new WLine(doc.MainDocumentPart, (Paragraph) e);
         i += 1;
         int save = i;
@@ -451,36 +509,21 @@ abstract class AbstractParser {
     protected virtual bool IsFirstLineOfCrossHeading(OpenXmlElement e) {
         if (e is not Paragraph p)
             return false;
-        if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p) && DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is null)
-            throw new Exception();
-        if (DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p))
+        if (e.Descendants<Drawing>().Any())
             return false;
-        if (DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p) is not null)
+        if (e.Descendants<Picture>().Any())
+            return false;
+        bool hasNumberOrMarker = DOCX.Numbering.HasNumberOrMarker(doc.MainDocumentPart, p);
+        object formattedNumber = DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p);
+        if (hasNumberOrMarker && formattedNumber is null)
+            throw new Exception();
+        if (hasNumberOrMarker)
+            return false;
+        if (formattedNumber is not null)
             throw new Exception();
         if (IsFirstLineOfBigLevel(e, bigLevelNumberingFormats))
             return false;
-        // StringValue indent = Util.GetLeftIndent(doc.MainDocumentPart, p);
-        // System.Console.WriteLine("indent " + indent + " - " + e.InnerText);
-        // bool value = indent is null || indent == "0";
-        bool value = DOCX.Paragraphs.IsFlushLeft(doc.MainDocumentPart, p);
-        // if (e.InnerText == "Essential Factual Background" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "The Course of the Proceedings at Lewes Crown Court" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "Grounds of Appeal" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "Discussion and Conclusions" && !value)
-        //     throw new Exception();
-        // if (e.InnerText == "Disposal" && !value)
-        //     throw new Exception();
-        // if (value) {
-        //     System.Console.Write("This is a CrossHeading: ");
-        //     System.Console.WriteLine(e.InnerText);
-        // } else {
-        //     System.Console.Write("This is not a CrossHeading: ");
-        //     System.Console.WriteLine(e.InnerText);
-        // }
-        return value;
+        return DOCX.Paragraphs.IsFlushLeft(doc.MainDocumentPart, p);
     }
 
     private CrossHeading CrossHeading() {
@@ -532,9 +575,9 @@ abstract class AbstractParser {
     protected List<IDivision> ParagraphsUntilEndOfBody() {
         StopParsingParagraphs predicate = e => {
             if (IsFirstLineOfConclusions(e))
-                return true;;
+                return true;
             if (IsFirstLineOfAnnex(e))
-                return true;;
+                return true;
             return false;
         };
         return ParagraphsUntil(predicate);
@@ -622,17 +665,7 @@ abstract class AbstractParser {
             return null;
         }
         if (e is Paragraph p) {
-            i += 1;
-            WLine line = new WLine(doc.MainDocumentPart, p);
-            DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
-            if (info is not null) {
-                DOCX.WNumber number = new DOCX.WNumber(main, info.Value, p);
-                return new WNewNumberedParagraph(number, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-            }
-            INumber num2 = Fields.RemoveListNum(line);
-            if (num2 is not null)
-                return new WNewNumberedParagraph(num2, new WLine(line) { IsFirstLineOfNumberedParagraph = true });
-            return new WDummyDivision(line);
+            return ParseParagraphAndSubparagraphs(p);
         }
         if (e is Table table) {
             i += 1;
@@ -647,13 +680,138 @@ abstract class AbstractParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
+    private float GetEffectiveIndent(Paragraph p) {
+        float leftMargin = DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
+        float firstLine = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, p.ParagraphProperties) ?? 0.0f;
+        float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
+        // if (firstLine < 0 && new WLine(main, p).Contents.FirstOrDefault() is WTab) {
+        //     float? nextTab = DOCX.Paragraphs.GetFirstTab(main, p.ParagraphProperties);
+        //     if (!nextTab.HasValue)
+        //         indent = leftMargin;
+        //     else if (nextTab.Value > Math.Abs(firstLine))
+        //         indent = leftMargin;
+        //     else
+        //         indent += nextTab.Value;
+        // }
+        return indent;
+    }
+
+    private IDivision ParseParagraphAndSubparagraphs(Paragraph p, bool sub = false) {
+        ILeaf div = ParseSimpleParagraph(p, sub);
+        if (i == elements.Count)
+            return div;
+        if (div.Heading is not null)
+            return div;
+        if (div.Contents.Count() != 1)
+            return div;
+        if (div.Contents.First() is not WLine)
+            return div;
+        
+        const float marginOfError = 0.05f;
+        float indent1 = GetEffectiveIndent(p);
+
+        List<IBlock> intro = new List<IBlock>();
+        intro.AddRange(div.Contents);
+        List<IDivision> subparagraphs = new List<IDivision>();
+
+        while (i < elements.Count) {
+            OpenXmlElement next = elements.ElementAt(i);
+            if (IsSkippable(next)) {
+                i += 1;
+                continue;
+            }
+            if (next is Table table) {
+                if (subparagraphs.Any())
+                    break;
+                intro.Add(new WTable(doc.MainDocumentPart, table));
+                i += 1;
+                continue;
+            }
+            if (next is SdtBlock sdt) { // "EWHC/Admin/2021/30"
+                if (subparagraphs.Any())
+                    break;
+                intro.AddRange(Blocks.ParseStdBlock(main, sdt));
+                i += 1;
+                continue;
+            }
+            if (next is Paragraph nextPara) {
+                float nextIndent1 = GetEffectiveIndent(nextPara);
+                if (nextIndent1 - marginOfError <= indent1)
+                    break;
+
+                int save = i;
+                IDivision subparagraph = ParseParagraphAndSubparagraphs(nextPara, true);
+                if (!sub && div.Number is null && subparagraph.Number is not null && Regex.IsMatch(subparagraph.Number.Text, @"^\d+\.$")) {
+                    i = save;
+                    break;
+                }
+                if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
+                } else if (subparagraph is IBranch subbranch) {
+                    subparagraph = new BranchSubparagraph { Number = subparagraph.Number, Intro = subbranch.Intro, Children = subbranch.Children };
+                } else {
+                    subparagraph = new LeafSubparagraph { Number = subparagraph.Number, Contents = (subparagraph as ILeaf).Contents };
+                }
+                subparagraphs.Add(subparagraph);
+                continue;
+            }
+
+            throw new System.Exception(next.GetType().ToString());
+        }
+        if (subparagraphs.Any())
+            return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs };
+        if (intro.Count == div.Contents.Count())
+            return div;
+        return new WNewNumberedParagraph(div.Number, intro);
+    }
+
+    private ILeaf ParseSimpleParagraph(Paragraph p, bool sub) {
+        i += 1;
+        WLine line = new WLine(doc.MainDocumentPart, p);
+        DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
+        if (info is not null) {
+            DOCX.WNumber number = new DOCX.WNumber(main, info.Value, p);
+            line.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(number, line);
+        }
+        INumber num2 = Fields.RemoveListNum(line);
+        if (num2 is not null) {
+            line.IsFirstLineOfNumberedParagraph = true;
+            return new WNewNumberedParagraph(num2, line);
+        }
+        string format1 = @"^(“?\d+\.?) (?!(Jan |January|Feb |February|Mar |March|Apr |April|May |Jun |June|Jul |July|Aug |August|Sep |Sept |September|Oct |October|Nov |November|Dec |December))";
+        string[] formats;
+        if (sub)
+            formats = new string[] { format1, @"^(“?\d+\(\d+\)) ", @"^(“?\(\d+\)) ", @"^(“?[a-z]\.) ", @"^(“?[ivx]+\.) " };
+        else
+            formats = new string[] { format1 };
+        foreach (string format in formats) {
+            WText num3 = GetNumberFromParagraph(p, format);
+            if (num3 is null)
+                continue;
+            try {
+                WLine line1 = RemoveNumberFromParagraph(p, format);
+                line1.IsFirstLineOfNumberedParagraph = true;
+                return new WNewNumberedParagraph(num3, line1);
+            } catch (Exception) {   // [2022] EAT 165
+                logger.LogWarning("unable to extract number from pagraph: " + p.InnerText);
+                break;
+            }
+        }
+        return new WDummyDivision(line);
+    }
 
     /* annexes */
 
-    private readonly Regex annexPattern = new Regex(@"^\s*ANNEX\s+\d+\s*$");
-
     protected virtual bool IsFirstLineOfAnnex(OpenXmlElement e) {
-        return annexPattern.IsMatch(e.InnerText);
+        if (Regex.IsMatch(e.InnerText, @"^\s*ANNEX\s+\d+\s*$", RegexOptions.IgnoreCase))
+            return true;
+        if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s*$", RegexOptions.IgnoreCase))
+            return true;
+        if (Regex.IsMatch(e.InnerText, @"^\s*-\sANNEX\s-\s*$", RegexOptions.IgnoreCase))
+            return true;
+        // if (Regex.IsMatch(e.InnerText, @"^\s*Appendix\s+No\.?\s*\d+\s*$", RegexOptions.IgnoreCase))
+        //     return true;
+        return false;
     }
 
     private List<IAnnex> Annexes() {
