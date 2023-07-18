@@ -28,7 +28,7 @@ class WLine : ILine {
     internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
-        this.contents = Inline.ParseRuns(main, paragraph.ChildElements);
+        this.contents = UK.Gov.NationalArchives.CaseLaw.Parse.Inline2.ParseRuns(main, paragraph.ChildElements);
         Paragraph = paragraph;
     }
     internal WLine(MainDocumentPart main, Paragraph paragraph, IEnumerable<IInline> contents) {

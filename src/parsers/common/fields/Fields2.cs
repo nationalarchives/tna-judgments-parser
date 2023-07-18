@@ -41,7 +41,8 @@ internal class Fields2 {
         new Regex(@"^ SEQ ", RegexOptions.IgnoreCase),
         new Regex(@"^ SUBJECT "),
         new Regex(@"^ =SUM(ABOVE) "),
-        new Regex(@"^ =sum(left) ", RegexOptions.IgnoreCase)
+        new Regex(@"^ =sum(left) ", RegexOptions.IgnoreCase),
+        new Regex(@"^ TOC ")  // not ideal
     };
 
     private static Regex[] Critical = {
