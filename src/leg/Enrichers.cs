@@ -8,6 +8,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Enrich {
 
+[Obsolete]
 class DocType {
 
     internal IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
@@ -27,15 +28,16 @@ class DocType {
     }
 
     protected WLine EnrichLine(WLine line) {
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         if (!text.Equals("EXPLANATORY MEMORANDUM TO", StringComparison.InvariantCultureIgnoreCase))
             return line;
         Model.DocType2 docType = new Model.DocType2 { Contents = line.Contents };
-        return new WLine(line, new List<IInline>(1) { docType });
+        return WLine.Make(line, new List<IInline>(1) { docType });
     }
 
 }
 
+[Obsolete]
 class DocNumber {
 
     internal IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
@@ -55,11 +57,11 @@ class DocNumber {
     }
 
     protected WLine EnrichLine(WLine line) {
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         if (!Regex.IsMatch(text, @"^\d{4} No\. \d+$"))
             return line;
         Model.DocNumber2 docNum = new Model.DocNumber2 { Contents = line.Contents };
-        return new WLine(line, new List<IInline>(1) { docNum });
+        return WLine.Make(line, new List<IInline>(1) { docNum });
     }
 
 }
