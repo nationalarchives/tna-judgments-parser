@@ -1,6 +1,7 @@
 
 using System.Xml;
 
+using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation {
@@ -107,9 +108,9 @@ class Builder : AkN.Builder {
 
     protected override void AddDivision(XmlElement parent, Judgments.IDivision div) {
         if (div is Model.IParagraph para)
-            base.AddDivision(parent, div, "paragraph");
+            base.AddDivision(parent, div);
         else if (div is Model.ISubparagraph subpara)
-            base.AddDivision(parent, div, "subparagraph");
+            base.AddDivision(parent, div);
         else
             base.AddDivision(parent, div);
     }
@@ -128,6 +129,9 @@ class Builder : AkN.Builder {
         }
     }
 
+    protected override string MakeDivisionId(IDivision div) {
+        return null;
+    }
 
 }
 

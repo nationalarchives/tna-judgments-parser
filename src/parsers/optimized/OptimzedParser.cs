@@ -20,7 +20,7 @@ abstract class OptimizedParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<OptimizedParser>();
 
-    private readonly WordprocessingDocument doc;
+    protected readonly WordprocessingDocument doc;
     protected readonly MainDocumentPart Main;
     private readonly IOutsideMetadata meta;
     private readonly IEnumerable<AttachmentPair> attachments;
