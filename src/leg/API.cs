@@ -18,7 +18,7 @@ class API {
     }
 
     private static IXmlDocument Parse(WordprocessingDocument docx) {
-        IDocument doc = GenericDocumentParser.Parse(docx);
+        IDocument doc = ExplanatoryMemoranda.Parser.Parse(docx);
         XmlDocument xml = Builder.Build(doc);
         return new XmlDocument_ { Document = xml };
     }
