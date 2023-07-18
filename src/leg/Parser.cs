@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.Legislation.Judgments;
-
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 using JudgmentsP = UK.Gov.Legislation.Judgments.Parse;
 
@@ -14,6 +13,7 @@ namespace UK.Gov.Legislation {
 
 // delegate IDocument Parser(WordprocessingDocument document);
 
+[Obsolete]
 class GenericDocumentParser : JudgmentsP.AbstractParser {
 
     internal static IDocument Parse(WordprocessingDocument doc) {
@@ -68,9 +68,9 @@ class GenericDocumentParser : JudgmentsP.AbstractParser {
         IEnumerable<IBlock> header = JudgmentsP.Blocks.ParseBlocks(main, elements.Take(3));
         // if (header.Count() < 3)
         //     return null;
-        if (header.Last() is not ILine line)
+        if (header.Last() is not JudgmentsP.WLine line)
             return null;
-        string text = line.NormalizedContent();
+        string text = line.NormalizedContent;
         if (!Regex.IsMatch(text, @"^\d{4} No\. \d+$"))
             return null;
         i = 3;
@@ -90,7 +90,7 @@ class GenericDocumentParser : JudgmentsP.AbstractParser {
         if (docNumber is Model.IDocNumber1 docNum1)
             text = docNum1.Text;
         else if (docNumber is Model.DocNumber2 docNum2)
-            text = ILine.TextContent(docNum2.Contents);
+            text = IInline.ToString(docNum2.Contents);
         else
             throw new Exception();
         Match match = Regex.Match(text, @"^(\d{4}) No\. (\d+)$");
@@ -162,10 +162,11 @@ class GenericDocumentParser : JudgmentsP.AbstractParser {
             if (elements.ElementAt(i - 1) is not DocumentFormat.OpenXml.Wordprocessing.Paragraph p)
                 return null;
             string format =  @"^(\d+\.\d+\.?) ";
-            JudgmentsP.WText num3 = base.GetNumberFromFirstLineOfBigLevel(p, format);
+            JudgmentsP.WText num3 = base.GetNumberFromParagraph(p, format);
             if (num3 is not null) {
-                JudgmentsP.WLine removed = RemoveNumberFromFirstLineOfBigLevel(p,  format);
-                div = new JudgmentsP.WNewNumberedParagraph(num3, new JudgmentsP.WLine(removed) { IsFirstLineOfNumberedParagraph = true });
+                JudgmentsP.WLine removed = base.RemoveNumberFromParagraph(p, format);
+                removed.IsFirstLineOfNumberedParagraph = true;
+                div = new JudgmentsP.WNewNumberedParagraph(num3, removed);
             }
         }
         if (div is not JudgmentsP.WNewNumberedParagraph para1)
