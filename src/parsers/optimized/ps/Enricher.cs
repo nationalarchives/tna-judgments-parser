@@ -314,8 +314,8 @@ class PressSummaryEnricher {
         string pattern = @"(\[\d{4}\] EWCA (Civ|Crim) \d+)\.? *$";  // NICA?
         var constructor = (string text, RunProperties rProps) => {
             var normalized = Citations.Normalize(text);
-            // var prefix = "https://caselaw.nationalarchives.gov.uk/";
-            var url = "/" + Citations.MakeUriComponent(normalized);
+            var prefix = "https://caselaw.nationalarchives.gov.uk/";
+            var url = prefix + Citations.MakeUriComponent(normalized);
             return new WRef(text, rProps) {
                 Href = url,
                 Canonical = normalized,
