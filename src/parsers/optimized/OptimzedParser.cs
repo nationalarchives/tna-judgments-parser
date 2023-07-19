@@ -496,18 +496,18 @@ abstract class OptimizedParser {
 
     private static float GetEffectiveIndent(WLine line, bool withTab = false) {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
-        float firstLine = line.FirstLineIndentWithNumber ?? 0f;
+        float firstLine = line.FirstLineIndentWithNumber ?? 0f; // relative to left margin
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
         if (!withTab)
             return indent;
         if (line.Contents.FirstOrDefault() is not WTab)
             return indent;
-        float? tabStop = line.FirstTab;
-        if (!tabStop.HasValue)
-            return indent;
-        if (firstLine < 0 && tabStop.Value > Math.Abs(firstLine))
+        float? tab = line.GetFirstTabAfter(leftMargin + firstLine);  // tab is absolute
+        if (!tab.HasValue)
+            tab = WLine.GetFirstDefaultTabAfter(leftMargin + firstLine);
+        if (firstLine < 0 && tab.Value > leftMargin)
             return leftMargin;
-        return indent + tabStop.Value;
+        return tab.Value;
     }
 
     private IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
