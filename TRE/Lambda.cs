@@ -53,10 +53,9 @@ public class Lambda {
             errors.Add("parser-inputs is null");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
-        using HttpClient http = new HttpClient();
         byte[] docx;
         try {
-            docx = http.GetByteArrayAsync(inputs.DocumentUrl).Result;
+            docx = ReadDocx(inputs);
         } catch (Exception e) {
             logger.LogError(e, e.Message);
             logger.LogError(e, "error reading .docx file");
@@ -65,6 +64,7 @@ public class Lambda {
         }
         List<Api.Attachment> attachments = new List<Api.Attachment>();
         if (inputs.AttachmentURLs is not null) {
+            using HttpClient http = new HttpClient();
             foreach (string url in inputs.AttachmentURLs) {
                 try {
                     byte[] content = http.GetByteArrayAsync(url).Result;
@@ -76,9 +76,17 @@ public class Lambda {
                 }
             }
         }
+        Api.Hint? hint;
+        try {
+            hint = GetHint(inputs);
+        } catch (Exception e) {
+            errors.Add(e.Message);
+            hint = null;
+        }
+
         Api.Response response;
         try {
-            response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments });
+            response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments, Hint = hint });
         } catch (Exception e) {
             logger.LogError(e, e.Message);
             logger.LogError(e, "parse error");
@@ -164,6 +172,40 @@ public class Lambda {
         Save(bucket, prefix, logFilename, Encoding.UTF8.GetBytes(log), "application/json");
     }
 
+    private byte[] ReadDocx(ParserInputs inputs) {
+        if (!string.IsNullOrEmpty(inputs.DocumentUrl)) {
+            using HttpClient http = new HttpClient();
+            var task = http.GetByteArrayAsync(inputs.DocumentUrl);
+            return task.Result;
+        } else {
+            AmazonS3Client s3 = new AmazonS3Client();
+            GetObjectRequest request = new GetObjectRequest {
+                BucketName = inputs.S3InputBucket,
+                Key = inputs.S3InputKey
+            };
+            var task = s3.GetObjectAsync(request);
+            var response = task.Result;
+            using var ms = new MemoryStream();
+            response.ResponseStream.CopyTo(ms);
+            return ms.ToArray();
+        }
+    }
+
+    private Api.Hint? GetHint(ParserInputs inputs) {
+        if (string.IsNullOrEmpty(inputs.DocumentType)) {
+            logger.LogInformation("document type is null");
+            return null;
+        }
+        Api.Hint hint;
+        if (Enum.TryParse(inputs.DocumentType, true, out hint)) {
+            logger.LogInformation("document type is {0}", Enum.GetName(typeof(Api.Hint), hint));
+            return hint;
+        }
+        var warning = "unrecognized document type: " + inputs.DocumentType;
+        logger.LogWarning(warning);
+        throw new Exception(warning);
+    }
+
 }
 
 public class Request {
@@ -189,6 +231,17 @@ public class ParserInputs {
 
     [JsonPropertyName("s3-output-prefix")]
     public string S3OutputPrefix { get; set; }
+
+    /* new params for TREv2 */
+
+    [JsonPropertyName("s3-input-bucket")]
+    public string S3InputBucket { get; set; }
+
+    [JsonPropertyName("s3-input-key")]
+    public string S3InputKey { get; set; }
+
+    [JsonPropertyName("document-type")]
+    public string DocumentType { get; set; }
 
 }
 
