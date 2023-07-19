@@ -275,12 +275,19 @@ static class Paragraphs {
         }
     }
 
-    public static float? GetFirstTab(MainDocumentPart main, ParagraphProperties props) {
-        var all = GetTabs(main, props);
-        var first = all.OrderBy(t => t.Position).FirstOrDefault();
-        if (first is null)
+    public static IEnumerable<float> GetTabPositions(MainDocumentPart main, ParagraphProperties props) {
+        return GetTabs(main, props)
+            .Select(t => TabPositionToInches(t.Position.Value))
+            .Where(p => p.HasValue).Cast<float>()
+            .OrderBy(p => p);
+    }
+    public static float? GetFirstTabAfter(MainDocumentPart main, ParagraphProperties props, float left) {
+        IEnumerable<float> tabs = DOCX.Paragraphs.GetTabPositions(main, props);
+        IEnumerable<float> after = tabs.Where(t => t > left);
+        // can't use FirstOrDefault() b/c the default for float is 0
+        if (!after.Any())
             return null;
-        return TabPositionToInches(first.Position);
+        return after.First();
     }
 
     public static float? GetNumTab(MainDocumentPart main, ParagraphProperties pProps) {
