@@ -148,9 +148,9 @@ public class Parser {
             }
         }
 
-        PressSummary ps = PressSummaryParser.Parse(doc, preParsed);
-        if (PressSummary.Score(ps) == PressSummary.PerfectScore)
-            return ps.Bundle();
+        // PressSummary ps = PressSummaryParser.Parse(doc, preParsed);
+        // if (PressSummary.Score(ps) == PressSummary.PerfectScore)
+        //     return ps.Bundle();
 
         return new AkN.Bundle(doc, judgment1);
     }
