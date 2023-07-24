@@ -78,18 +78,18 @@ class Header {
             Enriched.Add(line);
             return;
         }
-        if (PressSummaryEnricher.IsRestriction(line)) {
+        if (Enricher.IsRestriction(line)) {
             WRestriction restriction = new WRestriction(line);
             Enriched.Add(restriction);
             return;
         }
-        WLine enriched1 = PressSummaryEnricher.EnrichDate(line);
+        WLine enriched1 = Enricher.EnrichDate(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterDateBeforeDocType;
             return;
         }
-        enriched1 = PressSummaryEnricher.EnrichDocType(line);
+        enriched1 = Enricher.EnrichDocType(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterDocTypeBeforeDate;
@@ -103,12 +103,12 @@ class Header {
             state = State.Fail;
             return;
         }
-        if (PressSummaryEnricher.IsRestriction(line)) {
+        if (Enricher.IsRestriction(line)) {
             WRestriction restriction = new WRestriction(line);
             Enriched.Add(restriction);
             return;
         }
-        WLine enriched1 = PressSummaryEnricher.EnrichDocType(line);
+        WLine enriched1 = Enricher.EnrichDocType(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterDateAndDocTypeBeforeCite;
@@ -123,25 +123,25 @@ class Header {
             state = State.Done;
             return;
         }
-        if (PressSummaryEnricher.IsRestriction(line)) {
+        if (Enricher.IsRestriction(line)) {
             WRestriction restriction = new WRestriction(line);
             Enriched.Add(restriction);
             return;
         }
-        WLine enriched1 = PressSummaryEnricher.EnrichDate(line);
+        WLine enriched1 = Enricher.EnrichDate(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterDateAndDocTypeBeforeCite;
             return;
         }
         // some have no date
-        enriched1 = PressSummaryEnricher.EnrichCite(line);
+        enriched1 = Enricher.EnrichCite(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterCiteBeforeOnAppealFrom;
             return;
         }
-        if (PressSummaryEnricher.IsCaseName(line)) {
+        if (Enricher.IsCaseName(line)) {
             WLine title = WDocTitle2.ConvertContents(line);
             Enriched.Add(title);
             state = State.AfterDateAndDocTypeBeforeCite;
@@ -157,7 +157,7 @@ class Header {
             state = State.Done;
             return;
         }
-        if (PressSummaryEnricher.IsRestriction(line)) {
+        if (Enricher.IsRestriction(line)) {
             WRestriction restriction = new WRestriction(line);
             Enriched.Add(restriction);
             return;
@@ -166,13 +166,13 @@ class Header {
             Enriched.Add(line);
             return;
         }
-        WLine enriched1 = PressSummaryEnricher.EnrichCite(line);
+        WLine enriched1 = Enricher.EnrichCite(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterCiteBeforeOnAppealFrom;
             return;
         }
-        if (PressSummaryEnricher.IsCaseName(line)) {
+        if (Enricher.IsCaseName(line)) {
             WLine title = WDocTitle2.ConvertContents(line);
             Enriched.Add(title);
             return;
@@ -187,7 +187,7 @@ class Header {
             state = State.Done;
             return;
         }
-        WLine enriched1 = PressSummaryEnricher.EnrichOnAppealFrom(line);
+        WLine enriched1 = Enricher.EnrichOnAppealFrom(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.AfterOnAppealFromBeforeJustices;
@@ -208,7 +208,7 @@ class Header {
             state = State.Done;
             return;
         }
-        WLine enriched1 = PressSummaryEnricher.EnrichJustices(line);
+        WLine enriched1 = Enricher.EnrichJustices(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);
             state = State.Done;
