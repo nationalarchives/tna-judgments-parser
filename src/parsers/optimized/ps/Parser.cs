@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,10 +12,12 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 
 class PressSummaryParser {
 
+    [Obsolete]
     internal static PressSummary Parse(WordprocessingDocument doc) {
         WordDocument preParsed = new PreParser().Parse(doc);
         return Parse(doc, preParsed);
     }
+    [Obsolete]
     internal static PressSummary Parse(WordprocessingDocument doc, WordDocument preParsed) {
         return new PressSummaryParser().Parse1(doc, preParsed);
     }
@@ -23,6 +26,7 @@ class PressSummaryParser {
 
     private PressSummaryParser() {}
 
+    [Obsolete]
     private PressSummary Parse1(WordprocessingDocument doc, WordDocument preParsed) {
         var contents = Enumerable.Concat( preParsed.Header, ParseBody(preParsed.Body) );
         contents = PressSummaryEnricher.Enrich(contents);
