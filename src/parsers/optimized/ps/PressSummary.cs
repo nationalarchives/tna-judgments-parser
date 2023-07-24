@@ -16,36 +16,6 @@ using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
-class PressSummary : IAknDocument {
-
-    public DocType Type { get => DocType.PressSummary; }
-
-    private WordprocessingDocument Source { get; init; }
-
-    public PSMetadata Metadata { get; internal init; }
-
-    IAknMetadata IAknDocument.Metadata { get => Metadata; }
-
-    public IEnumerable<IBlock> Body { get; internal init; }
-
-    public IEnumerable<IImage> Images { get; set; } // setter required by ImageConverter
-
-    public PressSummary(WordprocessingDocument source) {
-        Source = source;
-    }
-
-    public static readonly int PerfectScore = PSMetadata.PerfectScore;
-
-    public static int Score(PressSummary ps) {
-        return ps.Metadata.Score();
-    }
-
-    public PSBundle Bundle() {
-        return new PSBundle(Source, this);
-    }
-
-}
-
 class PSResource : IResource {
 
     public ResourceType Type { get; init; }

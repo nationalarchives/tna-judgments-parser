@@ -16,7 +16,7 @@ class PressSummary2 : IAknDocument2 {
 
     public IEnumerable<IDivision> Body { get; internal init; }
 
-    public IEnumerable<IImage> Images { get; internal init; }
+    public IEnumerable<IImage> Images { get; internal set; }  // setter required by ImageConverter
 
 }
 
