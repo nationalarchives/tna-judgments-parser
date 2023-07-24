@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
+using UK.Gov.NationalArchives.CaseLaw;
 
 namespace UK.Gov.Legislation.Judgments {
 
@@ -58,6 +59,13 @@ class Util {
         if (div is ITableOfContents toc)
             return toc.Contents;
         throw new Exception();
+    }
+
+    public static IEnumerable<T> Descendants<T>(IAknDocument2 doc) {
+        return Enumerable.Concat(
+            Descendants<T>(doc.Preface),
+            Descendants<T>(doc.Body)
+        );
     }
 
     public static IEnumerable<T> Descendants<T>(IJudgment judgment) {

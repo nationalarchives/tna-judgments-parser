@@ -5,6 +5,7 @@ using System.Xml;
 using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.NationalArchives.CaseLaw;
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
@@ -53,9 +54,9 @@ internal class Bundle : ILazyBundle {
 internal class PSBundle : ILazyBundle {
 
     private readonly WordprocessingDocument doc;
-    private readonly PressSummary PS;
+    private readonly PressSummary2 PS;
 
-    internal PSBundle(WordprocessingDocument doc, PressSummary ps) {
+    internal PSBundle(WordprocessingDocument doc, PressSummary2 ps) {
         this.doc = doc;
         this.PS = ps;
         ImageConverter.ConvertImages(PS);
@@ -71,6 +72,7 @@ internal class PSBundle : ILazyBundle {
             return _xml;
         }
     }
+    public XmlDocument Xml => Judgment;
 
     public IEnumerable<IImage> Images { get => PS.Images; }
 
