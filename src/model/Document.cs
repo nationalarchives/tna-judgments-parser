@@ -22,6 +22,20 @@ interface IAknDocument {
 
 }
 
+interface IAknDocument2 {
+
+    DocType Type { get; }
+
+    IAknMetadata Metadata { get; }
+
+    IEnumerable<IBlock> Preface { get; }
+
+    IEnumerable<IDivision> Body { get; }
+
+    IEnumerable<IImage> Images { get; }
+
+}
+
 interface IAknMetadata {
 
     IResource Source { get; }

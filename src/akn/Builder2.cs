@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 using UK.Gov.NationalArchives.CaseLaw;
@@ -19,6 +20,12 @@ class DocBuilder : Builder {
         AddHash(builder.doc);
         return builder.doc;
     }
+    public static XmlDocument Build(IAknDocument2 document) {
+        DocBuilder builder = new DocBuilder();
+        builder.Build2(document);
+        AddHash(builder.doc);
+        return builder.doc;
+    }
 
     private void Build1(IAknDocument document) {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
@@ -30,10 +37,33 @@ class DocBuilder : Builder {
         MetadataBuilder.Build(main, document.Metadata);
         AddBody(main, document.Body);
     }
+    private void Build2(IAknDocument2 document) {
+        XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
+        akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
+        XmlElement main = CreateAndAppend("doc", akomaNtoso);
+        var name = Enum.GetName(typeof(DocType), document.Type);
+        name = name.Substring(0, 1).ToLower() + name.Substring(1);
+        main.SetAttribute("name", name);
+        MetadataBuilder.Build(main, document.Metadata);
+        AddPreface(main, document.Preface);
+        AddBody2(main, document.Body);
+    }
 
     private void AddBody(XmlElement main, IEnumerable<IBlock> contents) {
         XmlElement body = CreateAndAppend("mainBody", main);
         blocks(body, contents);
+    }
+
+    private void AddPreface(XmlElement main, IEnumerable<IBlock> contents) {
+        if (!contents.Any())
+            return;
+        XmlElement pref = CreateAndAppend("preface", main);
+        blocks(pref, contents);
+    }
+
+    private void AddBody2(XmlElement main, IEnumerable<IDivision> contents) {
+        XmlElement body = CreateAndAppend("mainBody", main);
+        AddDivisions(body, contents);
     }
 
 }

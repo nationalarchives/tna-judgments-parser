@@ -14,6 +14,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 
 class PressSummaryEnricher {
 
+    [Obsolete]
     internal static IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         return new PressSummaryEnricher(blocks).Enrich();
     }
@@ -206,14 +207,14 @@ class PressSummaryEnricher {
 
     /* helper functions */
 
-    private bool IsRestriction(WLine line) {
+    internal static bool IsRestriction(WLine line) {
         if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase))
             return true;
         if (IsRed(line))
             return true;
         return false;
     }
-    private bool IsRed(WLine line) {
+    internal static bool IsRed(WLine line) {
         return line.Contents.All(IsRedOrEmpty);
     }
     private static bool IsRedOrEmpty(IInline inline) {
@@ -226,11 +227,11 @@ class PressSummaryEnricher {
         return false;
     }
 
-    private WLine EnrichDate(WLine line) {
+    internal static WLine EnrichDate(WLine line) {
         return Date0.Enrich(line, "release", 1);
     }
 
-    private WLine EnrichDocType(WLine line) {
+    internal static WLine EnrichDocType(WLine line) {
         if (!line.Contents.All(i => i is WText))
             return line;
         if (!string.Equals(line.NormalizedContent, "Press Summary", StringComparison.OrdinalIgnoreCase))
@@ -244,7 +245,7 @@ class PressSummaryEnricher {
         return WLine.Make(line, new List<IInline>(1) { docType });
     }
 
-    private bool IsCaseName(WLine line) {
+    internal static bool IsCaseName(WLine line) {
         if (line.NormalizedContent.Contains(@" v ", StringComparison.InvariantCultureIgnoreCase))
             return true;
         if (line.NormalizedContent.Contains(@"In the matter of ", StringComparison.InvariantCultureIgnoreCase))
@@ -256,7 +257,7 @@ class PressSummaryEnricher {
         return false;
     }
 
-    private WLine EnrichCite(WLine line) {
+    internal static WLine EnrichCite(WLine line) {
         string pattern = @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$";
         var constructor = (string text, RunProperties rProps) => new WNeutralCitation(text, rProps);
         return EnrichFromEnd(line, pattern, constructor, true);
@@ -308,7 +309,7 @@ class PressSummaryEnricher {
         return line;
     }
 
-    private WLine EnrichOnAppealFrom(WLine line) {
+    internal static WLine EnrichOnAppealFrom(WLine line) {
         if (!line.NormalizedContent.StartsWith("On appeal from"))
             return line;
         string pattern = @"(\[\d{4}\] EWCA (Civ|Crim) \d+)\.? *$";  // NICA?
@@ -326,7 +327,7 @@ class PressSummaryEnricher {
         return EnrichFromEnd(line, pattern, constructor);
     }
 
-    private WLine EnrichJustices(WLine line) {
+    internal static WLine EnrichJustices(WLine line) {
         if (!line.NormalizedContent.StartsWith("Justices:", StringComparison.InvariantCultureIgnoreCase))
             return line;
         List<IInline> replacement = new List<IInline>();
