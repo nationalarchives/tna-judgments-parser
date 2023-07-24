@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Extensions.Logging;
-using UK.Gov.NationalArchives.CaseLaw;
+
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 using UK.Gov.NationalArchives.Imaging;
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
@@ -22,9 +23,9 @@ class ImageConverter {
         ConvertImages(getter, refs, setter);
     }
 
-    internal static void ConvertImages(PressSummary ps) {
+    internal static void ConvertImages(PressSummary2 ps) {
         Func<IEnumerable<IImage>> getter = () => ps.Images;
-        IEnumerable<IImageRef> refs = Util.Descendants<IImageRef>(ps.Body);
+        IEnumerable<IImageRef> refs = Util.Descendants<IImageRef>(ps);
         Action<List<IImage>> setter = (List<IImage> images) => { ps.Images = images; };
         ConvertImages(getter, refs, setter);
     }
