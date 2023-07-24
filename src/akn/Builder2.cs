@@ -16,28 +16,12 @@ class DocBuilder : Builder {
 
     public static XmlDocument Build(IAknDocument document) {
         DocBuilder builder = new DocBuilder();
-        builder.Build1(document);
-        AddHash(builder.doc);
-        return builder.doc;
-    }
-    public static XmlDocument Build(IAknDocument2 document) {
-        DocBuilder builder = new DocBuilder();
         builder.Build2(document);
         AddHash(builder.doc);
         return builder.doc;
     }
 
-    private void Build1(IAknDocument document) {
-        XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
-        akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
-        XmlElement main = CreateAndAppend("doc", akomaNtoso);
-        var name = Enum.GetName(typeof(DocType), document.Type);
-        name = name.Substring(0, 1).ToLower() + name.Substring(1);
-        main.SetAttribute("name", name);
-        MetadataBuilder.Build(main, document.Metadata);
-        AddBody(main, document.Body);
-    }
-    private void Build2(IAknDocument2 document) {
+    private void Build2(IAknDocument document) {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
         akomaNtoso.SetAttribute("xmlns:uk", Metadata.ukns);
         XmlElement main = CreateAndAppend("doc", akomaNtoso);

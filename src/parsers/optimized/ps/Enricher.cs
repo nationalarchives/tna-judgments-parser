@@ -8,11 +8,12 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parsers;
 
-namespace UK.Gov.NationalArchives.CaseLaw.Parse {
+namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries {
 
-class PressSummaryEnricher {
+class Enricher {
 
     internal static bool IsRestriction(WLine line) {
         if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase))

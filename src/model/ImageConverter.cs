@@ -23,7 +23,7 @@ class ImageConverter {
         ConvertImages(getter, refs, setter);
     }
 
-    internal static void ConvertImages(PressSummary2 ps) {
+    internal static void ConvertImages(PressSummary ps) {
         Func<IEnumerable<IImage>> getter = () => ps.Images;
         IEnumerable<IImageRef> refs = Util.Descendants<IImageRef>(ps);
         Action<List<IImage>> setter = (List<IImage> images) => { ps.Images = images; };
