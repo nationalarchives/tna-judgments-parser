@@ -16,18 +16,6 @@ interface IAknDocument {
 
     IAknMetadata Metadata { get; }
 
-    IEnumerable<IBlock> Body { get; }
-
-    IEnumerable<IImage> Images { get; }
-
-}
-
-interface IAknDocument2 {
-
-    DocType Type { get; }
-
-    IAknMetadata Metadata { get; }
-
     IEnumerable<IBlock> Preface { get; }
 
     IEnumerable<IDivision> Body { get; }

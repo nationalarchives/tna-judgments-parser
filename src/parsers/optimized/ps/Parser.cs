@@ -14,23 +14,23 @@ namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries {
 
 class Parser : OptimizedParser {
 
-    internal static PressSummary2 Parse(WordprocessingDocument doc) {
+    internal static PressSummary Parse(WordprocessingDocument doc) {
         WordDocument preParsed = new PreParser().Parse(doc);
         return Parse(preParsed);
     }
-    internal static PressSummary2 Parse(WordDocument preParsed) {
+    internal static PressSummary Parse(WordDocument preParsed) {
         return new Parser(preParsed).Parse();
     }
 
     private Parser(WordDocument preParsed) : base(preParsed.Docx, preParsed, null, null) { }
 
-    private PressSummary2 Parse() {
+    private PressSummary Parse() {
         List<IBlock> header = Header();
         header.InsertRange(0, PreParsed.Header);
         List<IDivision> body = Body2();
-        var metadata = new PSMetadata(PreParsed.Docx.MainDocumentPart, header);
+        var metadata = new Metadata(PreParsed.Docx.MainDocumentPart, header);
         var images = WImage.Get(PreParsed.Docx);
-        return new PressSummary2() { Metadata = metadata, Preface = header, Body = body, Images = images };
+        return new PressSummary() { Metadata = metadata, Preface = header, Body = body, Images = images };
     }
 
     protected override List<IBlock> Header() {

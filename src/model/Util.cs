@@ -61,7 +61,7 @@ class Util {
         throw new Exception();
     }
 
-    public static IEnumerable<T> Descendants<T>(IAknDocument2 doc) {
+    public static IEnumerable<T> Descendants<T>(IAknDocument doc) {
         return Enumerable.Concat(
             Descendants<T>(doc.Preface),
             Descendants<T>(doc.Body)

@@ -54,9 +54,9 @@ internal class Bundle : ILazyBundle {
 internal class PSBundle : ILazyBundle {
 
     private readonly WordprocessingDocument doc;
-    private readonly PressSummary2 PS;
+    private readonly PressSummary PS;
 
-    internal PSBundle(WordprocessingDocument doc, PressSummary2 ps) {
+    internal PSBundle(WordprocessingDocument doc, PressSummary ps) {
         this.doc = doc;
         this.PS = ps;
         ImageConverter.ConvertImages(PS);
