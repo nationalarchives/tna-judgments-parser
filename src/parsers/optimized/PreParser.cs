@@ -18,6 +18,8 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 
 class WordDocument {
 
+    public WordprocessingDocument Docx { get; init; }
+
     public IEnumerable<IBlock> Header { get; init; }
 
     public List<BlockWithBreak> Body { get; init; }
@@ -36,6 +38,7 @@ class PreParser {
 
     internal WordDocument Parse(WordprocessingDocument doc) {
         return new WordDocument {
+            Docx = doc,
             Header = Header(doc.MainDocumentPart),
             Body = Body(doc.MainDocumentPart)
         };

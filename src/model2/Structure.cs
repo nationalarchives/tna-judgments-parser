@@ -71,6 +71,23 @@ internal class WNewNumberedParagraph : ILeaf {
 
 }
 
+internal class GroupOfUnnumberedParagraphs : ILeaf {
+
+    public string Name => null;
+
+    public IFormattedText Number => null;
+
+    public ILine Heading { get; private init; }
+
+    public IEnumerable<IBlock> Contents { get; private init; }
+
+    internal GroupOfUnnumberedParagraphs(ILine heading, IEnumerable<IBlock> contents) {
+        Heading = heading;
+        Contents = contents;
+    }
+
+}
+
 internal class WDummyDivision : ILeaf {
 
     internal WDummyDivision(IEnumerable<IBlock> blocks) {
