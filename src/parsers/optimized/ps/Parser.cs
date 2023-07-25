@@ -64,11 +64,13 @@ class Parser : OptimizedParser {
             return false;
         if (line is WOldNumberedParagraph)
             return false;
-        if (!line.Contents.All(i => i is IFormattedText ft && (ft.Bold ?? false)))
-            return false;
         if (line.NormalizedContent == "PRESS SUMMARY")
             return false;
-        if (!Regex.IsMatch(line.NormalizedContent, "^[A-Z ]+$"))
+        if (line.Style == "SectionHeading")
+            return true;
+        if (!line.Contents.All(i => i is IFormattedText ft && (ft.Bold ?? false))) // IsAllBold
+            return false;
+        if (!Regex.IsMatch(line.NormalizedContent, "^[A-Z ]+$"))  // IsAllCaps
             return false;
         return true;
     }
