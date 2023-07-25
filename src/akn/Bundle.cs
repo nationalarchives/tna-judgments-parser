@@ -9,7 +9,7 @@ using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
-public interface ILazyBundle {
+public interface ILazyBundle : System.IDisposable {
 
     string ShortUriComponent { get; }
 
@@ -48,6 +48,9 @@ internal class Bundle : ILazyBundle {
     public void Close() {
         doc.Close();
     }
+    public void Dispose() {
+        Close();
+    }
 
 }
 
@@ -78,6 +81,9 @@ internal class PSBundle : ILazyBundle {
 
     public void Close() {
         doc.Close();
+    }
+    public void Dispose() {
+        Close();
     }
 
 }
