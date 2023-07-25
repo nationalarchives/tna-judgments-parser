@@ -33,7 +33,7 @@ class Parser : CaseLaw.OptimizedParser {
         List<IDivision> body = Body2();
 
         IEnumerable<IImage> images = WImage.Get(doc);
-        DocumentMetadata metadata = Metadata.Make(doc);
+        DocumentMetadata metadata = Metadata.Make(header, doc);
         return new DividedDocument {
             Header = header,
             Body = body,
