@@ -96,13 +96,7 @@ class HeaderSplitter {
             state = State.Fail;
             return;
         }
-        Regex[] patterns = {
-            new Regex(@"^SR \d{4} No\. \d+$"),
-            new Regex(@"^\d{4} No\. \d+$"),
-            new Regex(@"^SSI \d{4}/\d+$")
-        };
-        bool isNumber = patterns.Any(pattern => pattern.IsMatch(line.NormalizedContent));
-        if (!isNumber) {
+        if (!RegulationNumber.Is(line.NormalizedContent)) {
             state = State.Fail;
             return;
         }
