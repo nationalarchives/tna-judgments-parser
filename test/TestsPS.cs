@@ -5,7 +5,7 @@ using System.Xml.Xsl;
 
 using Xunit;
 
-using Api = UK.Gov.NationalArchives.Judgments.Api;
+using PS = UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
@@ -25,7 +25,7 @@ public class TestsPS {
     public void Test(int i) {
         var docx = Tests.ReadDocx($"test.ps.test{i}.docx");
         var expected = Tests.ReadXml($"test.ps.test{i}.xml");
-        var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
+        var actual = PS.Helper.Parse(docx);
         actual = main.RemoveSomeMetadata(actual);
         expected = main.RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
