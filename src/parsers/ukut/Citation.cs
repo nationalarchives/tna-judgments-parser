@@ -41,6 +41,8 @@ class Citation : FirstMatch2 {
                 match = Regex.Match(first.Text, @"^UT Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
             if (!match.Success)
                 match = Regex.Match(first.Text, @"^NCN: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+            if (!match.Success)
+                match = Regex.Match(first.Text, @"^ *(\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");  // [2023] UKUT 168 (LC)
             if (match.Success) {
                 List<IInline> enriched = Helper.SplitOnGroup(first, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(enriched, line.Skip(1));
