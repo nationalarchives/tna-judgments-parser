@@ -199,27 +199,27 @@ class Metadata {
             proprietary.SetAttribute("source", "#");
 
             if (court is not null) {
-                XmlElement courtt = doc.CreateElement("court", ukns);
+                XmlElement courtt = doc.CreateElement("uk", "court", ukns);
                 proprietary.AppendChild(courtt);
                 courtt.AppendChild(doc.CreateTextNode(court.Value.Code.ToString()));
             }
             if (metadata.Year is not null) {
-                XmlElement year = doc.CreateElement("year", ukns);
+                XmlElement year = doc.CreateElement("uk", "year", ukns);
                 proprietary.AppendChild(year);
                 year.AppendChild(doc.CreateTextNode(metadata.Year.ToString()));
             }
             if (metadata.Number is not null) {
-                XmlElement number = doc.CreateElement("number", ukns);
+                XmlElement number = doc.CreateElement("uk", "number", ukns);
                 proprietary.AppendChild(number);
                 number.AppendChild(doc.CreateTextNode(metadata.Number.ToString()));
             }
             if (metadata.Cite is not null) {
-                XmlElement cite = doc.CreateElement("cite", ukns);
+                XmlElement cite = doc.CreateElement("uk", "cite", ukns);
                 proprietary.AppendChild(cite);
                 cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
             }
             if (true) {
-                XmlElement parser = doc.CreateElement("parser", ukns);
+                XmlElement parser = doc.CreateElement("uk", "parser", ukns);
                 proprietary.AppendChild(parser);
                 parser.AppendChild(doc.CreateTextNode(GetParserVersion()));
             }

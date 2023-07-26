@@ -6,6 +6,7 @@ using System.Linq;
 
 using Microsoft.Extensions.Logging;
 
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 using UK.Gov.NationalArchives.Imaging;
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
@@ -16,14 +17,28 @@ class ImageConverter {
     private static ILogger logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<EMF>();
 
     internal static void ConvertImages(IJudgment jugdment) {
-        ConvertEmfFiles(jugdment);
-        ConvertTiffFiles(jugdment);
-        MutateImages(jugdment);
+        Func<IEnumerable<IImage>> getter = () => jugdment.Images;
+        IEnumerable<IImageRef> refs = Util.Descendants<IImageRef>(jugdment);
+        Action<List<IImage>> setter = (List<IImage> images) => { jugdment.Images = images; };
+        ConvertImages(getter, refs, setter);
     }
 
-    private static void ConvertEmfFiles(IJudgment jugdment) {
+    internal static void ConvertImages(PressSummary ps) {
+        Func<IEnumerable<IImage>> getter = () => ps.Images;
+        IEnumerable<IImageRef> refs = Util.Descendants<IImageRef>(ps);
+        Action<List<IImage>> setter = (List<IImage> images) => { ps.Images = images; };
+        ConvertImages(getter, refs, setter);
+    }
+
+    internal static void ConvertImages(Func<IEnumerable<IImage>> getter, IEnumerable<IImageRef> refs, Action<List<IImage>> setter) {
+        ConvertEmfFiles(getter(), refs, setter);
+        ConvertTiffFiles(getter(), refs, setter);
+        MutateImages(getter(), refs, setter);
+    }
+
+    private static void ConvertEmfFiles(IEnumerable<IImage> unconverted, IEnumerable<IImageRef> refs, Action<List<IImage>> setter) {
         List<IImage> images = new List<IImage>();
-        foreach (IImage image in jugdment.Images) {
+        foreach (IImage image in unconverted) {
             // logger.LogDebug("image {name}", image.Name);
             if (!image.Name.EndsWith(".emf") && !image.Name.EndsWith(".wmf")) {
                 images.Add(image);
@@ -49,14 +64,14 @@ class ImageConverter {
                 } catch (Exception e) {
                     logger.LogWarning("cannot further convert {0} from .bmp to .png: {1}", image.Name, e.Message);
                     var bmpName = image.Name + ".bmp";
-                    foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name))
+                    foreach (var iRef in refs.Where(r => r.Src == image.Name))
                         iRef.Src = bmpName;
                     var bmpImage = new ConvertedImage { Name = bmpName, ContentType = "image/bmp", Data = converted.Item2 };
                     images.Add(bmpImage);
                     continue;
                 }
                 string newName = image.Name + ".png";
-                foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
+                foreach (var iRef in refs.Where(r => r.Src == image.Name)) {
                     iRef.Src = newName;
                 }
                 var converted2 = new ConvertedImage { Name = newName, ContentType = "image/png", Data = png };
@@ -65,27 +80,27 @@ class ImageConverter {
             }
             throw new System.Exception();
         }
-        jugdment.Images = images;
+        setter(images);
     }
 
-    private static void ConvertTiffFiles(IJudgment jugdment) {
-        if (!jugdment.Images.Any(image => image.ContentType == "image/tiff"))
+    private static void ConvertTiffFiles(IEnumerable<IImage> unconverted, IEnumerable<IImageRef> refs, Action<List<IImage>> setter) {
+        if (!unconverted.Any(image => image.ContentType == "image/tiff"))
             return;
         List<IImage> images = new List<IImage>();
-        foreach (IImage image in jugdment.Images) {
+        foreach (IImage image in images) {
             if (image.ContentType != "image/tiff") {
                 images.Add(image);
                 continue;
             }
             byte[] png = Imaging.Convert.ConvertToPng(image.Content());
             string newName = image.Name + ".png";
-            foreach (var iRef in Util.Descendants<IImageRef>(jugdment).Where(r => r.Src == image.Name)) {
+            foreach (var iRef in refs.Where(r => r.Src == image.Name)) {
                 iRef.Src = newName;
             }
             var converted = new ConvertedImage { Name = newName, ContentType = "image/png", Data = png };
             images.Add(converted);
         }
-        jugdment.Images = images;
+        setter(images);
     }
 
     private static string MakeChangedSrc(string src, int n) {
@@ -95,11 +110,10 @@ class ImageConverter {
         return src.Substring(0, i) + ".change" + n + src.Substring(i);
     }
 
-    private static void MutateImages(IJudgment jugdment) {
+    private static void MutateImages(IEnumerable<IImage> unconverted, IEnumerable<IImageRef> refs, Action<List<IImage>> setter) {
         List<IImage> images = new List<IImage>();
-        var allRefsWithAnyName = Util.Descendants<IImageRef>(jugdment);
-        foreach (IImage image in jugdment.Images) {
-            var allRefs = allRefsWithAnyName.Where(r => r.Src == image.Name);
+        foreach (IImage image in unconverted) {
+            var allRefs = refs.Where(r => r.Src == image.Name);
             if (!allRefs.Any()) {
                 logger.LogWarning("removing image {0}", image.Name);
                 continue;
@@ -134,7 +148,7 @@ class ImageConverter {
                 images.Add(converted);
             }
         }
-        jugdment.Images = images;
+        setter(images);
     }
 
 }

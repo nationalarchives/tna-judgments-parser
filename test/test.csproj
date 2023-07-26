@@ -408,6 +408,9 @@
     <EmbeddedResource Include="./test64.xml">
       <LogicalName>test64.xml</LogicalName>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="./ps/*.docx" />
+    <EmbeddedResource Include="./ps/*.xml" />
   </ItemGroup>
 
 </Project>

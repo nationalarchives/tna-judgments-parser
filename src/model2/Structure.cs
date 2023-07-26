@@ -42,7 +42,7 @@ internal class GroupOfParagraphs : IBranch {
 
     public ILine Heading => null;
 
-    public IEnumerable<IBlock> Intro => null;
+    public IEnumerable<IBlock> Intro { get; internal init; }
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
@@ -68,6 +68,23 @@ internal class WNewNumberedParagraph : ILeaf {
     public ILine Heading => null;
 
     public IEnumerable<IBlock> Contents { get; internal set; }
+
+}
+
+internal class GroupOfUnnumberedParagraphs : ILeaf {
+
+    public string Name => null;
+
+    public IFormattedText Number => null;
+
+    public ILine Heading { get; private init; }
+
+    public IEnumerable<IBlock> Contents { get; private init; }
+
+    internal GroupOfUnnumberedParagraphs(ILine heading, IEnumerable<IBlock> contents) {
+        Heading = heading;
+        Contents = contents;
+    }
 
 }
 
@@ -137,6 +154,12 @@ internal class WTableOfContents : ITableOfContents {
     internal WTableOfContents(IEnumerable<ILine> blocks) {
         Contents = blocks;
     }
+
+}
+
+internal class DivWrapper : IDivWrapper {
+
+    public IDivision Division { get; internal init; }
 
 }
 

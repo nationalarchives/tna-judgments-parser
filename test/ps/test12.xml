@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="pressSummary">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/uksc/2021/21/press-summary/1" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/uksc/2021/21/press-summary/1" />
+          <FRBRdate date="2021-06-18" name="release" />
+          <FRBRauthor href="#uksc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRname value="Press Summary of Khan v Meadows" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2021/21/press-summary/1" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2021/21/press-summary/1" />
+          <FRBRdate date="2021-06-18" name="release" />
+          <FRBRauthor href="#uksc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2021/21/press-summary/1/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2021/21/press-summary/1/data.xml" />
+          <FRBRdate date="2023-07-24T19:21:48" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk" showAs="The National Archives" />
+        <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The Supreme Court" />
+        <TLCPerson eId="judge-lord-leggatt" href="/judge-lord-leggatt" showAs="Lord Leggatt" />
+        <TLCPerson eId="judge-lord-burrows" href="/judge-lord-burrows" showAs="Lord Burrows" />
+      </references>
+      <proprietary source="#tna">
+        <uk:court>UKSC</uk:court>
+        <uk:year>2021</uk:year>
+        <uk:summaryOf>https://caselaw.nationalarchives.gov.uk/id/uksc/2021/21</uk:summaryOf>
+        <uk:parser>0.13.0</uk:parser>
+        <uk:hash>20f88c37a18cee34e4bc1e8d7d7dad289f1d52918b774e5fbfc026f323edf6fc</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#main { font-family: 'Times New Roman'; font-size: 12pt; }
+#main .Normal { font-size: 12pt; }
+#main .Header { font-size: 12pt; }
+#main .Footer { font-size: 12pt; }
+#main .BalloonText { font-family: Tahoma; font-size: 8pt; }
+#main .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
+#main .ParaLevel1 { text-align: justify; margin-left: 0in; font-size: 13pt; }
+#main .ParaLevel2 { text-align: justify; margin-left: 0.49in; font-size: 13pt; }
+#main .ParaLevel3 { text-align: justify; margin-left: 0.98in; font-size: 13pt; }
+#main .ParaLevel4 { text-align: justify; margin-left: 1.48in; font-size: 13pt; }
+#main .ParaLevel5 { text-align: justify; margin-left: 1.97in; font-size: 13pt; }
+#main .ParaLevel6 { text-align: justify; margin-left: 2.46in; font-size: 13pt; }
+#main .ParaLevel7 { text-align: justify; margin-left: 2.95in; font-size: 13pt; }
+#main .ParaLevel8 { text-align: justify; margin-left: 3.45in; font-size: 13pt; }
+#main .ParaLevel9 { text-align: justify; margin-left: 3.94in; font-size: 13pt; }
+#main .FooterChar { font-size: 12pt; }
+#main .Strong { font-weight: bold; }
+#main .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+</style>
+      </presentation>
+    </meta>
+    <preface>
+      <p style="text-align:center"><img src="image1.png" style="width:84pt;height:112.5pt" /></p>
+      <p style="text-align:right"><docDate date="2021-06-18" refersTo="#release" style="font-weight:bold;font-family:Garamond">18 June 2021</docDate></p>
+      <p style="text-align:center"><docType style="font-weight:bold;font-family:Garamond">PRESS SUMMARY</docType></p>
+      <p><docTitle style="font-weight:bold;font-family:Garamond">Khan (Respondent) v Meadows (Appellant)</docTitle></p>
+      <p><neutralCitation style="font-weight:bold;font-family:Garamond">[2021] UKSC 21</neutralCitation></p>
+      <p><span style="font-style:italic;font-weight:bold;font-family:Garamond">On appeal from </span><ref style="font-style:italic;font-weight:bold;font-family:Garamond" href="https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/152" uk:canonical="[2019] EWCA Civ 152" uk:type="case" uk:isNeutral="true">[2019] EWCA Civ 152</ref></p>
+      <p><span style="font-weight:bold;font-family:Garamond">JUSTICES</span><span style="font-family:Garamond">: Lord Reed (President), Lord Hodge (Deputy President), Lady Black, Lord Kitchin,</span><br /><span style="font-family:Garamond">Lord Sales</span><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-leggatt" style="font-family:Garamond">Lord Leggatt</judge><span style="font-family:Garamond">, </span><judge refersTo="#judge-lord-burrows" style="font-family:Garamond">Lord Burrows</judge></p>
+    </preface>
+    <mainBody>
+      <level>
+        <heading><span style="font-weight:bold;font-family:Garamond">BACKGROUND TO THE APPEAL</span></heading>
+        <content>
+          <p style="text-align:justify"><span style="font-family:Garamond">This appeal concerns whether, in the context of a claim for clinical negligence, the Court should follow the approach to ascertaining the scope of a defendant’s duty of care laid down in </span><span style="font-style:italic;font-family:Garamond">South Australia Asset Management Corpn v York Montague Ltd</span><span style="font-family:Garamond"> [1997] AC 191 (“</span><span style="font-style:italic;font-weight:bold;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond">”) and, if it should, how that approach is to be applied. It is one of two appeals heard by the same panel of seven justices examining the application of </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond"> in different fields. It is being handed down and should be read together with the Court’s judgment in </span><span style="font-style:italic;font-family:Garamond">Manchester Building Society v Grant Thornton UK LLP</span><span style="font-family:Garamond"> [2021] UKSC 20.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">In 2006, the appellant, Ms Meadows, consulted her GP practice to establish whether she was a carrier of the haemophilia gene. Following blood tests, she was negligently led to believe by the respondent, Dr Khan, that she was not a carrier. In fact, the tests only confirmed that she did not herself have haemophilia. In 2010, Ms Meadows became pregnant with her son, Adejuwon. Shortly after his birth Adejuwon was diagnosed as having haemophilia. Subsequent genetic testing confirmed Ms Meadows was a carrier of the gene. Had Ms Meadows known that she was a carrier, she would have undergone foetal testing for haemophilia when she was pregnant. This would have revealed the foetus was affected. Ms Meadows would then have chosen to terminate her pregnancy, and her son would not have been born.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">It is not in dispute that Dr Khan is liable in negligence for the costs of bringing up Adejuwon attributable to his haemophilia. The dispute between the parties arises from the fact that Adejuwon was also born and subsequently diagnosed with autism, a condition which is unrelated to his haemophilia. The question is whether Dr Khan is liable for all costs related to Adejuwon’s disabilities arising from the pregnancy or only those associated with his haemophilia. The High Court held that Dr Khan was liable for costs associated with both Adejuwon’s haemophilia and autism. The Court of Appeal allowed Dr Khan’s appeal, finding her liable for costs associated with Adejuwon’s haemophilia only. In so doing, it considered the scope of duty principle as illustrated in </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond"> as determinative of the issue. </span></p>
+        </content>
+      </level>
+      <level>
+        <heading><span style="font-weight:bold;font-family:Garamond">JUDGMENT</span></heading>
+        <content>
+          <p style="text-align:justify"><span style="font-family:Garamond">The Supreme Court unanimously dismisses the appeal. It holds that there is no principled basis for excluding clinical negligence from the ambit of the scope of duty principle. Dr Khan is liable only for losses falling within the scope of her duty of care to advise Ms Meadows on whether or not she was a carrier of the haemophilia gene. She is not liable for costs associated with Adejuwon’s autism. Lord Hodge and Lord Sales give the lead judgment with whom Lord Reed, Lady Black and Lord Kitchin agree. Lord Burrows and Lord Leggatt each give a concurring judgment.</span></p>
+        </content>
+      </level>
+      <level>
+        <heading><span style="font-weight:bold;font-family:Garamond">REASONS FOR THE JUDGMENT</span></heading>
+        <content>
+          <p style="text-align:justify"><span style="font-family:Garamond">The Court considers that a helpful model to analyse the place of the scope of duty principle within the scheme of the tort of negligence is to answer the following six questions in sequence: (1) Is the harm (loss, injury and damage) which is the subject matter of the claim actionable in negligence? (the actionability question); (2) What are the risks of harm to the claimant against which the law imposes on the defendant a duty to take care? (the scope of duty question); (3) Did the defendant breach his or her duty by his or her act or omission? (the breach question); (4) Is the loss for which the claimant seeks damages the consequence of the defendant’s act or omission? (the factual causation question); (5) Is there a sufficient nexus between a particular element of the harm for which the claimant seeks damages and the subject matter of the defendant’s duty of care as analysed at stage 2 above? (the duty nexus question); and (6) Is a particular element of the harm for which the claimant seeks damages irrecoverable because it is too remote, or because there is a different effective cause or because the claimant has mitigated his or her loss or has failed to avoid loss which he or she could reasonably have been expected to avoid? (the legal responsibility question) </span><span style="font-weight:bold;font-family:Garamond">[28]</span><span style="font-family:Garamond">.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">The second stage in the above scheme relates to the scope of duty principle. The scope of duty principle is that a defendant is liable only for losses which fall within the scope of his or her duty of care to the claimant. The principle predates </span><span style="font-style:italic;font-family:Garamond">SAAMCO </span><span style="font-family:Garamond">but was developed in that case by its application not to kinds or categories of damage but to the quantification of damage </span><span style="font-weight:bold;font-family:Garamond">[36]</span><span style="font-family:Garamond">. Regarding the distinction drawn between “advice” and “information” in </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond">, there is in reality a spectrum. In addressing the scope of duty question, the Court seeks to identify the purpose for which advice or information was given. It asks: “what was the risk which the advice or information was intended and was reasonably understood to address?”</span><span style="font-weight:bold;font-family:Garamond">[41]</span><span style="font-family:Garamond">.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">In some cases, the answer to the scope of duty question also answers the duty nexus question (stage five). However, in cases where the scope of duty question is concerned with the quantification or extent of a particular kind of loss, the duty nexus question should be addressed separately after the court has determined that there is a breach of duty and factual causation </span><span style="font-weight:bold;font-family:Garamond">[48-49]</span><span style="font-family:Garamond">. The mechanism by which the duty nexus question has been addressed in the </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond"> line of cases (ie valuers’ negligence cases) is the </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond"> counterfactual. It asks: “what would the claimant’s loss have been if the information which the defendant in fact gave had been correct?”. The </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond"> counterfactual is best understood as an analytical tool which is useful in some but not all circumstances to ascertain the extent of a defendant’s liability flowing from the breach of a duty of a defined scope </span><span style="font-weight:bold;font-family:Garamond">[53-54]</span><span style="font-family:Garamond">.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">The Court rejects the submission by counsel for Ms Meadows that the scope of duty principle does not apply to claims arising out of clinical negligence. There is no sound basis for excluding clinical negligence from the ambit of the principle nor for confining the principle to cases involving pure economic loss arising in commercial transactions </span><span style="font-weight:bold;font-family:Garamond">[62]</span><span style="font-family:Garamond">.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">Applying the six-step model to the facts of the case, first, the economic costs of caring for a disabled child are clearly actionable. Second, Dr Khan’s advice was concerned with a specific risk, the risk of a child having haemophilia for which Dr Khan owed a duty of care to Ms Meadows. Third, Dr Khan was in breach of her duty. Fourth, as a matter of factual causation, there was a causal link between Dr Khan’s mistake and the birth of Adejuwon. Fifth, the answer to the scope of duty question gives a straightforward answer to the duty nexus question: the law did not impose on Dr Khan any duty in relation to unrelated risks (such as autism) which might arise in any pregnancy. In any case, applying the </span><span style="font-style:italic;font-family:Garamond">SAAMCO</span><span style="font-family:Garamond"> counterfactual, if Dr Khan’s advice had been correct and all else remained the same, Adejuwon would have been born with autism. Sixth, there being no questions of remoteness, other effective cause or mitigation of loss, the law imposes on Dr Khan responsibility for the foreseeable consequences of the birth of a boy with haemophilia, and in particular the increased cost of caring for a child with haemophilia </span><span style="font-weight:bold;font-family:Garamond">[67-68]</span><span style="font-family:Garamond">.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">Lord Burrows and Lord Leggatt agree that the appeal should be dismissed but each explain in their own words how they understand </span><span style="font-style:italic;font-family:Garamond">SAAMCO </span><span style="font-family:Garamond">and its application to the facts of this case.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">Lord Burrows emphasises that the purpose of the advice or information is of central importance. In light of the purpose for which Ms Meadows approached the GP practice (to ascertain whether she was a carrier of the haemophilia gene) it was fair and reasonable that that the risk of a child being born with haemophilia should be allocated to Dr Khan. Applying the S</span><span style="font-style:italic;font-family:Garamond">AAMCO</span><span style="font-family:Garamond"> counterfactual as a cross-check, it supports the conclusion that the losses relating to Adejuwon’s autism were outside the scope of Dr Khan’s duty of care </span><span style="font-weight:bold;font-family:Garamond">[77]</span><span style="font-family:Garamond">. Lord Burrows does not consider the six-step model advocated by Lord Hodge and Lord Sales to be helpful or necessary in this case. He sets out his own approach involving seven questions which he views as a more conventional structure of the tort of negligence </span><span style="font-weight:bold;font-family:Garamond">[79]</span><span style="font-family:Garamond">.</span></p>
+          <p style="text-align:justify"><span style="font-family:Garamond">Lord Leggatt agrees that it is always necessary to determine whether, or to what extent, the claimant’s “basic loss”(ie the factually caused loss) is within the scope of the defendant’s duty of care. While Lord Hodge and Lord Sales call this the duty nexus question, Lord Leggatt refers to this as a causal connection </span><span style="font-weight:bold;font-family:Garamond">[97]</span><span style="font-family:Garamond">. The rationale underpinning the requirement to show a causal connection between the subject matter of the defendant’s advice and the claimant’s loss is that it is not fair and reasonable to impose on a professional adviser liability for adverse consequences which a person relying on the advice would have suffered even if the advice was sound. No good reason has been given for treating doctors differently in this respect </span><span style="font-weight:bold;font-family:Garamond">[90]</span><span style="font-family:Garamond">. There is no need to apply the</span><span style="font-style:italic;font-family:Garamond"> SAAMCO</span><span style="font-family:Garamond"> counterfactual in this case but no difficulty in doing so. If the advice had been correct, Adejuwon would still have been born with autism </span><span style="font-weight:bold;font-family:Garamond">[95]</span><span style="font-family:Garamond">. </span></p>
+          <p><span style="font-style:italic;font-family:Garamond">References in square brackets are to paragraphs in the judgment</span></p>
+        </content>
+      </level>
+      <level>
+        <heading><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">NOTE</span></heading>
+        <content>
+          <p><span style="font-weight:bold;font-family:Garamond">This summary is provided to assist in understanding the Court’s decision.  It does not form part of the reasons for the decision.  The full judgment of the Court is the only authoritative document.   Judgments are public documents and are available at:</span></p>
+          <p><a href="http://supremecourt.uk/decided-cases/index.shtml"><span class="Hyperlink" style="font-family:Garamond">http://supremecourt.uk/decided-cases/index.html</span></a></p>
+        </content>
+      </level>
+    </mainBody>
+  </doc>
+</akomaNtoso>

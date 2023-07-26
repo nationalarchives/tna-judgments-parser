@@ -1,0 +1,23 @@
+
+using System.Collections.Generic;
+using UK.Gov.Legislation.Judgments;
+
+namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries {
+
+class PressSummary : IAknDocument {
+
+    public DocType Type => DocType.PressSummary;
+
+    public Metadata Metadata { get; internal init; }
+
+    IAknMetadata IAknDocument.Metadata { get => Metadata; }
+
+    public IEnumerable<IBlock> Preface { get; internal init; }
+
+    public IEnumerable<IDivision> Body { get; internal init; }
+
+    public IEnumerable<IImage> Images { get; internal set; }  // setter required by ImageConverter
+
+}
+
+}

@@ -43,6 +43,12 @@ class BranchSubparagraph : Branch {
 
     override public ILine Heading => null;
 
+    internal static BranchSubparagraph Demote(BranchParagraph p) => new BranchSubparagraph {
+        Number = p.Number,
+        Intro = p.Intro,
+        Children = p.Children
+    };
+
 }
 
 class LeafSubparagraph : Leaf {
@@ -50,6 +56,11 @@ class LeafSubparagraph : Leaf {
     override public string Name => "subparagraph";
 
     override public ILine Heading => null;
+
+    // internal static LeafSubparagraph Demote(WNewNumberedParagraph p) => new LeafSubparagraph {
+    //     Number = p.Number,
+    //     Contents = p.Contents
+    // };
 
 }
 

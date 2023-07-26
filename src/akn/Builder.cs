@@ -6,6 +6,7 @@ using System.Xml;
 
 using Microsoft.Extensions.Logging;
 
+using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
@@ -219,6 +220,8 @@ abstract class Builder {
                 AddTable(parent, table);
             // } else if (block is IContainer contain) {
             //     AddContainer(parent, contain);
+            } else if (block is IDivWrapper wrapper) {
+                AddDivision(parent, wrapper.Division);
             } else {
                 throw new Exception(block.GetType().ToString());
             }
@@ -387,7 +390,13 @@ abstract class Builder {
     /* inline */
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
-        if (model is INeutralCitation cite)
+        if (model is IDocType1 docType1) {
+            AddAndWrapText(parent, "docType", docType1);
+        } else if (model is IDocType2 docType) {
+            XmlElement courtType = CreateAndAppend("docType", parent);
+            foreach (IInline inline in docType.Contents)
+                AddInline(courtType, inline);
+        } else if (model is INeutralCitation cite)
             AddAndWrapText(parent, "neutralCitation", cite);
         else if (model is INeutralCitation2 cite2) {
             XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
@@ -407,6 +416,8 @@ abstract class Builder {
             AddRole(parent, role);
         else if (model is IDocTitle docTitle)
             AddDocTitle(parent, docTitle);
+        else if (model is IDocTitle2 docTitle2)
+            AddDocTitle(parent, docTitle2);
         else if (model is IJudge judge)
             AddJudge(parent, judge);
         else if (model is ILawyer lawyer)
@@ -597,6 +608,16 @@ abstract class Builder {
         XmlText text = doc.CreateTextNode(model.Text);
         docTitle.AppendChild(text);
     }
+    private void AddDocTitle(XmlElement parent, IDocTitle2 model) {
+        AddInlineContainer(parent, "docTitle", model.Contents);
+    }
+
+    private void AddInlineContainer(XmlElement parent, string name, IEnumerable<IInline> contents) {
+        XmlElement x = doc.CreateElement(name, ns);
+        parent.AppendChild(x);
+        foreach (var inline in contents)
+            AddInline(x, inline);
+    }
 
     private void AddJudge(XmlElement parent, IJudge model) {
         XmlElement judge = doc.CreateElement("judge", ns);
@@ -677,6 +698,10 @@ abstract class Builder {
     }
 
     private void AddHperlink(XmlElement parent, IHyperlink1 link) {
+        if (link is IRef r) {
+            AddRef(parent, r);
+            return;
+        }
         var x = AddAndWrapText(parent, "a", link);
         x.SetAttribute("href", link.Href);
         if (link.ScreenTip is not null)
@@ -690,6 +715,18 @@ abstract class Builder {
             a.SetAttribute("title", link.ScreenTip);
         foreach (IInline inline in link.Contents)
             AddInline(a, inline);
+    }
+
+    private void AddRef(XmlElement parent, IRef model) {
+        var x = AddAndWrapText(parent, "ref", model);
+        x.SetAttribute("href", model.Href);
+        x.SetAttribute("canonical", Metadata.ukns, model.Canonical);
+        if (model.Type.HasValue)
+            x.SetAttribute("type", Metadata.ukns, Enum.GetName(typeof(RefType), model.Type.Value).ToLower());
+        if (model.IsNeutral.HasValue)
+            x.SetAttribute("isNeutral", Metadata.ukns, model.IsNeutral.Value.ToString().ToLower());
+        if (model.ScreenTip is not null)
+            x.SetAttribute("title", model.ScreenTip);
     }
 
     private void AddMath(XmlElement parent, IMath model) {
@@ -717,8 +754,8 @@ abstract class Builder {
         string value = SHA256.Hash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
-        XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary", nsmgr);
-        XmlElement hash = akn.CreateElement("hash", Metadata.ukns);
+        XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);
+        XmlElement hash = akn.CreateElement("uk", "hash", Metadata.ukns);
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
     }

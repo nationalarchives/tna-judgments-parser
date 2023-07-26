@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
+using UK.Gov.NationalArchives.CaseLaw;
+using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
 using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
@@ -151,6 +153,11 @@ public class Parser {
                 score1 = score2;
             }
         }
+
+        // PressSummary ps = PressSummaryParser.Parse(doc, preParsed);
+        // if (PressSummary.Score(ps) == PressSummary.PerfectScore)
+        //     return ps.Bundle();
+
         return new AkN.Bundle(doc, judgment1);
     }
 

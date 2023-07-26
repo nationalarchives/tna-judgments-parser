@@ -20,8 +20,7 @@ public readonly struct Courts {
 
     public static readonly Court SupremeCourt = new Court() {
         Code = "UKSC",
-        LongName = "The UK Supreme Court",
-        ShortName = "Supreme Court",
+        LongName = "The Supreme Court",
         URL = "https://www.supremecourt.uk/",
         CitationPattern = new Regex(@"^\[\d{4}\] UKSC \d+$")
     };
