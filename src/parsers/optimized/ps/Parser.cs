@@ -94,7 +94,7 @@ class Parser : OptimizedParser {
             }
             if (IsHeading(line))
                 break;
-            var p = ParseParagraph();
+            var p = ParseParagraphAndSubparagraphs(line, true); // true means unnumbered paragraph won't get promoted to a cross-heading
             children.Add(p);
         }
         if (!children.Any())
