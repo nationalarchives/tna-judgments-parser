@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340" />
-          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRdate date="2022-09-13" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="340" />
@@ -15,21 +15,25 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340" />
-          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRdate date="2022-09-13" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/data.xml" />
-          <FRBRdate date="2023-05-25T21:51:41" name="transform" />
+          <FRBRdate date="2023-07-27T14:28:41" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-09-13" refersTo="#decision" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="hedge-fund-investment-management-limited" href="" showAs="HEDGE FUND INVESTMENT MANAGEMENT LIMITED" />
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -40,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>340</uk:number>
         <uk:cite>[2022] UKFTT 340 (TC)</uk:cite>
-        <uk:parser>0.14.7</uk:parser>
+        <uk:parser>0.15.0</uk:parser>
         <uk:hash>8ec35ea5ce3218b89b52afc9f2c5e546215b13a032904a7332bd28889a1a724a</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -859,7 +863,7 @@
           <content>
             <p style="text-align:center"><span style="font-weight:bold">NIGEL POPPLEWELL</span></p>
             <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
-            <p style="text-align:center"><span style="font-weight:bold">Release date: 13</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> SEPTEMBER 2022</span></p>
+            <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-09-13" refersTo="#decision"><span style="font-weight:bold">13</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> SEPTEMBER 2022</span></docDate></p>
           </content>
         </level>
       </decision>
@@ -872,21 +876,21 @@
               <FRBRWork>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340" />
-                <FRBRdate date="1000-01-01" name="dummy" />
+                <FRBRdate date="2022-09-13" name="decision" />
                 <FRBRauthor href="#ukftt-tc" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340" />
-                <FRBRdate date="1000-01-01" name="dummy" />
+                <FRBRdate date="2022-09-13" name="decision" />
                 <FRBRauthor href="#ukftt-tc" />
                 <FRBRlanguage language="eng" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/data.xml" />
-                <FRBRdate date="2023-05-25T21:51:41" name="transform" />
+                <FRBRdate date="2023-07-27T14:28:41" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

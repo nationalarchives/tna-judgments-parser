@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/144" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/144" />
-          <FRBRdate date="2022-04-01" name="hearing" />
+          <FRBRdate date="2022-05-04" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="144" />
@@ -15,7 +15,7 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144" />
-          <FRBRdate date="2022-04-01" name="hearing" />
+          <FRBRdate date="2022-05-04" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
@@ -29,11 +29,13 @@
       </identification>
       <lifecycle source="#">
         <eventRef date="2022-04-01" refersTo="#hearing" source="#" />
+        <eventRef date="2022-05-04" refersTo="#decision" source="#" />
       </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="cia-insurance-services-ltd" href="" showAs="CIA INSURANCE SERVICES LTD" />
         <TLCPerson eId="the-commissioners-for-her-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -4395,7 +4397,7 @@
           </level>
           <paragraph>
             <content>
-              <p style="text-align:center"><span style="font-weight:bold">Release date: 04 MAY 2022</span></p>
+              <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-05-04" refersTo="#decision" style="font-weight:bold">04 MAY 2022</docDate></p>
               <table uk:widths="0.98in 1.18in 1.58in 1.08in 1.28in 1.67in 1.28in 1.28in">
                 <tr>
                   <th style="border:0.5pt solid #000000;background-color:#D9D9D9">
