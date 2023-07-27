@@ -513,8 +513,8 @@ abstract class OptimizedParser {
     }
     internal static float MarginOfError = 0.05f;
 
-    private IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
-        ILeaf div = ParseSimpleParagraph(line, sub);
+    protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
+        ILeaf div = ParseSimpleParagraph(line);
         if (i == PreParsed.Body.Count)
             return div;
         if (div.Heading is not null)  // currently impossible
@@ -579,7 +579,7 @@ abstract class OptimizedParser {
         return new WNewNumberedParagraph(div.Number, intro);
     }
 
-    private ILeaf ParseSimpleParagraph(WLine line, bool sub) {
+    private ILeaf ParseSimpleParagraph(WLine line) {
         i += 1;
         if (line is WOldNumberedParagraph np)
             return new WNewNumberedParagraph(np.Number, WLine.RemoveNumber(np));
