@@ -511,7 +511,7 @@ abstract class OptimizedParser {
         // }
         return indent;
     }
-    internal static float MarginOfError = 0.05f;
+    internal static float MarginOfError = 0.099f;
 
     protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
         ILeaf div = ParseSimpleParagraph(line);
