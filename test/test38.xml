@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/304" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/304" />
-          <FRBRdate date="2022-08-17" name="hearing" />
+          <FRBRdate date="2022-08-24" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="304" />
@@ -15,25 +15,27 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/304" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/304" />
-          <FRBRdate date="2022-08-17" name="hearing" />
+          <FRBRdate date="2022-08-24" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/304/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/304/data.xml" />
-          <FRBRdate date="2023-03-01T21:06:00" name="transform" />
+          <FRBRdate date="2023-07-27T14:28:33" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
       <lifecycle source="#">
         <eventRef date="2022-08-17" refersTo="#hearing" source="#" />
+        <eventRef date="2022-08-24" refersTo="#decision" source="#" />
       </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="joshua-peter-taylor" href="" showAs="JOSHUA PETER TAYLOR" />
         <TLCPerson eId="the-commissioners-for-her-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -44,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>304</uk:number>
         <uk:cite>[2022] UKFTT 304 (TC)</uk:cite>
-        <uk:parser>0.13.0</uk:parser>
+        <uk:parser>0.15.0</uk:parser>
         <uk:hash>39eff708e4b595d37a77a78625497c5134fa0df37832aef48d58eea6268be110</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -683,7 +685,7 @@
           <content>
             <p style="text-align:center"><span style="font-weight:bold">ANNE SCOTT</span></p>
             <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
-            <p style="text-align:center"><span style="font-weight:bold">Release date: 24 AUGUST 2022</span></p>
+            <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-08-24" refersTo="#decision" style="font-weight:bold">24 AUGUST 2022</docDate></p>
           </content>
         </level>
       </decision>
