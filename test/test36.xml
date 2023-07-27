@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/226" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/226" />
-          <FRBRdate date="2022-05-24" name="hearing" />
+          <FRBRdate date="2022-07-22" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="226" />
@@ -15,25 +15,27 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226" />
-          <FRBRdate date="2022-05-24" name="hearing" />
+          <FRBRdate date="2022-07-22" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226/data.xml" />
-          <FRBRdate date="2023-03-01T21:05:42" name="transform" />
+          <FRBRdate date="2023-07-27T14:28:20" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
       <lifecycle source="#">
         <eventRef date="2022-05-24" refersTo="#hearing" source="#" />
+        <eventRef date="2022-07-22" refersTo="#decision" source="#" />
       </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="the-towards-zero-foundaiton" href="" showAs="THE TOWARDS ZERO FOUNDAITON" />
         <TLCPerson eId="formerly-global-new-car-assessment-programme" href="" showAs="(formerly GLOBAL NEW CAR ASSESSMENT PROGRAMME)" />
         <TLCPerson eId="the-commissioners-for-her-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
@@ -45,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>226</uk:number>
         <uk:cite>[2022] UKFTT 226 (TC)</uk:cite>
-        <uk:parser>0.13.0</uk:parser>
+        <uk:parser>0.15.0</uk:parser>
         <uk:hash>2d4805fd4176f1888b378d56759b8a87d27bf8571bcce77368f3c3c5d963163a</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -514,7 +516,7 @@
           <content>
             <p style="text-align:center"><span style="font-weight:bold">AMANDA BROWN QC</span></p>
             <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
-            <p style="text-align:center"><span style="font-weight:bold">Release date: 22 JULY 2022</span></p>
+            <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-07-22" refersTo="#decision" style="font-weight:bold">22 JULY 2022</docDate></p>
           </content>
         </level>
       </decision>

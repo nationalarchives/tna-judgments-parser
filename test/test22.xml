@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/144" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/144" />
-          <FRBRdate date="2022-04-01" name="hearing" />
+          <FRBRdate date="2022-05-04" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="144" />
@@ -15,25 +15,27 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144" />
-          <FRBRdate date="2022-04-01" name="hearing" />
+          <FRBRdate date="2022-05-04" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144/data.xml" />
-          <FRBRdate date="2023-05-25T21:52:02" name="transform" />
+          <FRBRdate date="2023-07-27T14:28:05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
       <lifecycle source="#">
         <eventRef date="2022-04-01" refersTo="#hearing" source="#" />
+        <eventRef date="2022-05-04" refersTo="#decision" source="#" />
       </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="cia-insurance-services-ltd" href="" showAs="CIA INSURANCE SERVICES LTD" />
         <TLCPerson eId="the-commissioners-for-her-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -44,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>144</uk:number>
         <uk:cite>[2022] UKFTT 144 (TC)</uk:cite>
-        <uk:parser>0.14.7</uk:parser>
+        <uk:parser>0.15.0</uk:parser>
         <uk:hash>f5b19a9174dbef667b2e66f109f6477d60dbf9c7cac7192d5e351578a65c6871</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -4395,7 +4397,7 @@
           </level>
           <paragraph>
             <content>
-              <p style="text-align:center"><span style="font-weight:bold">Release date: 04 MAY 2022</span></p>
+              <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-05-04" refersTo="#decision" style="font-weight:bold">04 MAY 2022</docDate></p>
               <table uk:widths="0.98in 1.18in 1.58in 1.08in 1.28in 1.67in 1.28in 1.28in">
                 <tr>
                   <th style="border:0.5pt solid #000000;background-color:#D9D9D9">
