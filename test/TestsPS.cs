@@ -1,17 +1,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Xsl;
 
 using Xunit;
 
-using PS = UK.Gov.NationalArchives.CaseLaw.PressSummaries;
+using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
 public class TestsPS {
-
-    private XslCompiledTransform Transform = new XslCompiledTransform();
 
     private static int N = 17;
 
@@ -25,7 +22,7 @@ public class TestsPS {
     public void Test(int i) {
         var docx = Tests.ReadDocx($"test.ps.test{i}.docx");
         var expected = Tests.ReadXml($"test.ps.test{i}.xml");
-        var actual = PS.Helper.Parse(docx);
+        var actual = Api.Parser.Parse(new Api.Request { Content = docx, Hint = Api.Hint.PressSummary }).Xml;
         actual = main.RemoveSomeMetadata(actual);
         expected = main.RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
