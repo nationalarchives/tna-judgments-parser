@@ -569,6 +569,16 @@ class Numbering2 {
         return true;
     }
 
+    private static bool LevelFormatIsCompound(MainDocumentPart main, int numberingId, int ilvl) {
+        LevelText format = Numbering.GetLevel(main, numberingId, ilvl)?.LevelText;
+        if (format is null)
+            return false;
+        if (!format.Val.HasValue)
+            return false;
+        int c = format.Val.Value.Count(c => (c == '%'));
+        return c > 1;
+    }
+
     /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
@@ -579,7 +589,8 @@ class Numbering2 {
         // -1 means not set
         // -2 meanss trumped, even numbering instance's own start value doesn't matter
         // any positive integer is the numbering id of the previous paragraph that set the value of 'start'
-        bool prevContainsNumId = false; // whether this numId has already been encountered _since the most recent higher level_
+
+        bool prevContainsLowerCompound = false; // see setter below
 
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
@@ -618,10 +629,6 @@ class Numbering2 {
                     start = null;
                     numIdOfStartOverride = -1;
                 }
-                if (prevNumIdWithoutStyle == numberingId)
-                    prevContainsNumId = true;
-                else
-                    prevContainsNumId = false;
 
                 // the strange case of [2023] EWCA Civ 657
                 if (!prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
@@ -645,8 +652,8 @@ class Numbering2 {
                         numIdOfStartOverride = -2;
                     }
                 }
-                if (prevNumIdWithoutStyle == numberingId)
-                    prevContainsNumId = true;
+                if (prevNumIdWithoutStyle == numberingId && LevelFormatIsCompound(main, numberingId, prevIlvl))
+                    prevContainsLowerCompound = true;
                 continue;
             }
 
@@ -656,7 +663,7 @@ class Numbering2 {
                 if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                     start = prevOver.Value;
                     numIdOfStartOverride = prevNumId.Value;
-                    if (!prevContainsNumId)  // only test37 needs this condition
+                    if (!prevContainsLowerCompound)  // only test37 needs this condition
                         count = 0;
                 }
             }
@@ -664,8 +671,8 @@ class Numbering2 {
             count += 1;
         }
 
-        if (isHigher && thisNumIdWithoutStyle.HasValue)
-            prevContainsNumId = true;
+        if (isHigher)
+            prevContainsLowerCompound = true;
 
         if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
             int? over = GetStartOverride(main, numberingId, ilvl);
@@ -673,7 +680,7 @@ class Numbering2 {
                 start = GetStart(main, numberingId, ilvl);
             else if (over.HasValue)
                 start = over.Value;
-            if (over.HasValue && !prevContainsNumId)  // only test37 needs !prevContainsNumId
+            if (over.HasValue && !prevContainsLowerCompound)  // only test37 needs second condition
                 count = 0;
         }
         return count + start.Value;
