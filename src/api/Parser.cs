@@ -12,8 +12,7 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
-using UK.Gov.NationalArchives.CaseLaw;
-using UK.Gov.NationalArchives.CaseLaw.Parse;
+using PS = UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
 using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
@@ -79,42 +78,9 @@ public class Parser {
         if (hint.Value == Hint.UKUT)
             return Wrap(UK.Gov.NationalArchives.CaseLaw.Parse.OptimizedUKUTParser.Parse);
         if (hint.Value == Hint.PressSummary)
-            throw new Exception("The press summary parser is not yet operational.");
+            return ParsePressSummary;
         throw new Exception("unsupported hint: " + Enum.GetName(typeof(Hint), hint));
     }
-
-    // private static ParseFunction EWCAParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3);
-    // private static ParseFunction UKSCParser = AkN.Parser.MakeParser4(UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3);
-    // private static ParseFunction UKUTParser = AkN.Parser.MakeParser4(UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT.Parser.Parse);
-    // private static AkN.ILazyBundle Combined(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
-    //     WordprocessingDocument doc = AkN.Parser.Read(docx);
-    //     IEnumerable<AttachmentPair1> attach2 = AkN.Parser.ConvertAttachments(attachments);
-    //     ParseFunction1 first = UK.Gov.Legislation.Judgments.Parse.CourtOfAppealParser.Parse3;
-    //     List<ParseFunction1> others = new List<ParseFunction1>(2) {
-    //         UK.Gov.Legislation.Judgments.Parse.SupremeCourtParser.Parse3,
-    //         UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT.Parser.Parse
-    //     };
-    //     IJudgment judgment1 = first(doc, meta, attach2);
-    //     // if (judgment1.Metadata.Court() is not null || judgment1.Metadata.Cite is not null)
-    //     //     return new AkN.Bundle(doc, judgment1);
-    //     // above doesn't work for [2022] UKUT 300 (IAC)
-    //     int score1 = Score(judgment1);
-    //     if (score1 == PerfectScore)
-    //         return new AkN.Bundle(doc, judgment1);
-    //     foreach (var other in others) {
-    //         IJudgment judgment2 = other(doc, meta, attach2);
-    //         // if (judgment2.Metadata.Court() is not null || judgment2.Metadata.Cite is not null)
-    //         //     return new AkN.Bundle(doc, judgment2);
-    //         int score2 = Score(judgment2);
-    //         if (score2 == PerfectScore)
-    //             return new AkN.Bundle(doc, judgment2);
-    //         if (score2 > score1) {
-    //             judgment1 = judgment2;
-    //             score1 = score2;
-    //         }
-    //     }
-    //     return new AkN.Bundle(doc, judgment1);
-    // }
 
     private static ParseFunction Wrap(OptimizedParseFunction f) {
         return (byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) => {
@@ -179,6 +145,14 @@ public class Parser {
             score += 1;
         return score;
     }
+
+    private static AkN.ILazyBundle ParsePressSummary(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+        WordprocessingDocument doc = AkN.Parser.Read(docx);
+        PS.PressSummary ps = PS.Parser.Parse(doc);
+        return new AkN.PSBundle(doc, ps);
+    }
+
+    /* */
 
     internal static string SerializeXml(XmlDocument judgment) {
         using MemoryStream memStrm = new MemoryStream();
