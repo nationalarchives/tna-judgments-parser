@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340" />
+          <FRBRdate date="2022-09-13" name="decision" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="340" />
+          <FRBRname value="HEDGE FUND INVESTMENT MANAGEMENT LIMITED v THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340" />
+          <FRBRdate date="2022-09-13" name="decision" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/data.xml" />
+          <FRBRdate date="2023-07-27T14:28:41" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-09-13" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="hedge-fund-investment-management-limited" href="" showAs="HEDGE FUND INVESTMENT MANAGEMENT LIMITED" />
+        <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-TC</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>340</uk:number>
+        <uk:cite>[2022] UKFTT 340 (TC)</uk:cite>
+        <uk:parser>0.15.0</uk:parser>
+        <uk:hash>8ec35ea5ce3218b89b52afc9f2c5e546215b13a032904a7332bd28889a1a724a</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Heading1 { text-align: justify; font-size: 16pt; color: #2F5496; }
+#judgment .Heading3 { margin-left: 0.48in; font-style: italic; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; color: #000000; }
+#judgment .Header { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1 { text-align: justify; font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Taxbodytext1 { text-align: justify; margin-left: 0in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2 { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3 { text-align: justify; margin-left: 0.79in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4 { text-align: justify; margin-left: 1.18in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2 { text-align: justify; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3 { text-align: justify; font-style: italic; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4 { text-align: justify; font-style: italic; font-weight: normal; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxquotation { text-align: justify; margin-left: 0.79in; margin-right: 0.76in; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5 { text-align: justify; margin-left: 1.58in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeading { text-align: center; font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .ListParagraph { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1Char { font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; }
+#judgment .Taxbodytext1Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3Char { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4Char { font-style: italic; font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxquotationChar { font-family: 'Times New Roman'; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5Char { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeadingChar { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; }
+#judgment .Heading3Char { font-style: italic; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; color: #000000; }
+#judgment .Heading1Char { font-size: 16pt; color: #2F5496; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p><img src="image1.png" style="width:82.49pt;height:72pt" /></p>
+      <p style="text-align:left">Neutral Citation: <neutralCitation>[2022] UKFTT 00340 (TC)</neutralCitation></p>
+      <p style="text-align:right">Case Number: TC08596</p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">FIRST-TIER TRIBUNAL</courtType></p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">TAX CHAMBER</courtType></p>
+      <p style="text-align:right;margin-left:3.05in">Held in public by remote video hearing</p>
+      <p style="text-align:right">Appeal references: TC/2019/04048</p>
+      <p style="text-align:right">TC/2020/00815</p>
+      <p style="text-align:right">TC/2020/01318</p>
+      <p style="text-align:right">TC/2020/03154</p>
+      <p><span style="font-style:italic">VAT – inputs incurred at a time when the appellant was not actually trading – was it an intended trader? – Norseman Gold W Resources and Sofology considered – held yes – credit to be given for such input tax as the appellant can demonstrate is attributable to such expected trade or is an overhead cost – appeal allowed to that extent – appeal against a penalty allowed </span></p>
+      <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span>4 and 5 July 2022 with written submissions received from the parties on</p>
+      <p style="text-align:right;margin-left:3.05in">22 August 2022</p>
+      <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>13 September 2022</p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE NIGEL POPPLEWELL</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">MR MOHAMMED FAROOQ</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
+      <p style="text-align:center"><party refersTo="#hedge-fund-investment-management-limited" as="#appellant" style="font-weight:bold">HEDGE FUND INVESTMENT MANAGEMENT LIMITED</party></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>
+      <p style="text-align:center"><span style="font-weight:bold">and</span></p>
+      <p style="text-align:center"><party refersTo="#the-commissioners-for-his-majestys-revenue-and-customs" as="#respondent" style="font-weight:bold">THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondents</role></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Representation:</span></p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Appellant:<marker name="tab" />Mr Tushar Patel director of the Appellant</p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Respondents: <marker name="tab" />Ms Olivia Donovan litigator of HM Revenue and Customs’ Solicitor’s Office</p>
+      <p style="text-align:center"><span style="font-weight:bold">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold">INTRODUCTION</span></heading>
+          <paragraph eId="para_1">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">This is a VAT case. The respondents (or “</span><span style="font-weight:bold;font-family:'Times New Roman'">HMRC</span><span style="font-family:'Times New Roman'">”) have decided that for certain VAT periods, input VAT claimed by the appellant (alternatively “</span><span style="font-weight:bold;font-family:'Times New Roman'">HFIM</span><span style="font-family:'Times New Roman'">” or “</span><span style="font-weight:bold;font-family:'Times New Roman'">the company</span><span style="font-family:'Times New Roman'">”) should not be allowed. They say this on the basis that during those periods, the appellant did not carry-on a business or economic activity, nor was there any direct and immediate link between the inputs and outputs during those periods. These inputs include legal fees incurred by the appellant in relation to litigation conducted in the Seychelles. The appellant’s position is that throughout those periods it was carrying on an economic activity and that there was the necessary direct and immediate link.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">2.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">This decision deals with four appeals. That numbered 2019/04048 is against a decision by HMRC to disallow input tax credit for the periods 03/15 to 12/18, and a consequential assessment to claw back input tax for the periods 03/15 to 06/17 in an amount of £25,120. Appeal number 2020/00815 is against a decision by HMRC to disallow input tax for the periods 03/19 and 06/19, and a consequential assessment for £7,896 (together with interest of £50.87). Appeal number 2020/01318 is against HMRC’s decision to disallow input tax for the period 09/19 in the sum of £2,665. Appeal number 2020/03154 is against HMRCs decision to disallow input tax for the periods 03/20 and 06/20 in the sum of £4,096.98. We refer in this appeal, unless otherwise stated, to both the assessments and those decisions as “</span><span style="font-weight:bold;font-family:'Times New Roman'">the decisions</span><span style="font-family:'Times New Roman'">”.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">3.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">HMRC have also issued a penalty assessment under Schedule 24 of Finance Act 2007 (the “</span><span style="font-weight:bold;font-family:'Times New Roman'">penalty assessment</span><span style="font-family:'Times New Roman'">”) on the basis that the appellant has submitted carelessly inaccurate returns. The penalty assessment covers the periods 03/15 to 12/18 and is for £9,667. The appellant’s appeal against the penalty assessment is part of appeal 2019/04048.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman'">THE NEED FOR FURTHER SUBMISSIONS</span></heading>
+          <paragraph eId="para_4">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">4.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">In their written and oral submissions at the hearing, HMRC cited article 9 of the Principal VAT Directive and the Court of Appeal decision in </span><span style="font-style:italic;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">Wakefield College v HMRC</span><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF"> [2018] EWCA Civ 952 (“</span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">Wakefield</span><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">”) as authority for the proposition that supplies must be made for the purposes of obtaining income therefrom on a continuing basis in order for there to be an economic activity, and the Tribunal should adopt a two stage test, considering firstly whether a supply for consideration had been made ("a supply for consideration is a necessary but not sufficient condition for economic activity"). In their view the appellant falls at this hurdle since there were no taxable supplies for consideration by the appellant during the relevant period.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">The appellant's position is that it was carrying on a business in all of the relevant periods and has tested its activities against the criteria set out in </span><span style="font-style:italic;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">C&amp;EC v Lord Fisher </span><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">[1981] STC 238 (“</span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">Lord</span><span style="font-weight:bold;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF"> </span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">Fisher</span><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">”). In its view, the evidence shows that those criteria are met and that it was, therefore, carrying on business during the relevant periods.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="color:initial;background-color:#FFFFFF">However, somewhat surprisingly, neither party considered what we believe to be the two cases with most relevance to the issues in these appeals, namely the Upper Tribunal decision in </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Norseman Gold v HMRC</span><span style="color:initial;background-color:#FFFFFF"> [2016] UKUT 69 (“</span><span style="font-style:italic;font-weight:bold;color:initial;background-color:#FFFFFF">Norseman Gold</span><span style="color:initial;background-color:#FFFFFF">”) and the First-tier Tribunal decision in</span><span style="font-style:italic;color:initial;background-color:#FFFFFF"> W Resources plc</span><span style="color:initial;background-color:#FFFFFF"> v </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">HMRC</span><span style="color:initial;background-color:#FFFFFF"> [2018] UKFTT 0746 (“</span><span style="font-style:italic;font-weight:bold;color:initial;background-color:#FFFFFF">W Resources</span><span style="color:initial;background-color:#FFFFFF">”). Neither cases were in the authorities bundle.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">7.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="color:initial;background-color:#FFFFFF">We set out the extracts which we believe to be most relevant below, but in essence what these cases show is that an intention to make supplies for consideration in the future is sufficient to mean that an economic activity is currently being carried on.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">8.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="color:initial;background-color:#FFFFFF">We say "somewhat surprisingly" since it is clear from HMRC's skeleton argument that they understand the appellant's case to be that it did have an intention to trade which constituted an economic activity. This is clear, in their view, from the appellant's grounds of appeal. The appellant, however, did not refer to either of the foregoing cases before us notwithstanding that it refers to </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Norseman Gold</span><span style="color:initial;background-color:#FFFFFF"> in its correspondence with HMRC. And it is surprising too, that in the appeal of </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Alternative Investment Strategies Ltd v HMRC</span><span style="color:initial;background-color:#FFFFFF"> [2020] UKFTT 0019 (“</span><span style="font-style:italic;font-weight:bold;color:initial;background-color:#FFFFFF">AIS</span><span style="color:initial;background-color:#FFFFFF">”) an associated company to HFIM and in which Mr Patel represented AIS, both of the foregoing cases were referred to and extracts therefrom were cited in the judgment.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">9.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">We would, therefore, have expected detailed submissions on intention to trade to have been made at the hearing by the appellant which, no doubt, would have been contested by HMRC. This would have enabled us to come to a view, based on our findings of fact, as to whether the appellant had made out a case of intention to trade. In the absence of any submissions, we felt compelled to return to the parties to seek their submissions on this point.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">10.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">Written submissions were received from both parties, and we have taken those into account when reaching our Decision in these appeals.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman';color:#201F1E;background-color:#FFFFFF">THE LEGISLATION</span></heading>
+          <paragraph eId="para_11">
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">11.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The relevant legislation is set out in the Appendix to this Decision.</span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman'">CASE LAW</span></p>
+            <p class="Taxbodytext1"><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman'">Intention to trade</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#201F1E;margin-left:0in;text-indent:0in">12.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#201F1E">In </span><span style="font-style:italic;font-family:'Times New Roman';color:#201F1E">Norseman Gold</span><span style="font-family:'Times New Roman';color:#201F1E">:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';color:#201F1E">"124.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:'Times New Roman';color:#201F1E">Accordingly, Norseman needs to establish that, when it incurred input tax in the relevant period, it had either already made supplies for a consideration (the first question) or that it had the intention of making at some time in the future supplies for a consideration (the second question).  If it is right to conclude that Norseman had not already made such supplies and that it had failed to establish such intention, then it is right also to conclude that it was not entitled to recover input tax. It is clear from the decision in Finland that the mere receipt of payment does not, per se, mean that a given activity is economic in nature: thus, payment does not per se amount to consideration. What needs to be established is a direct and immediate link between the services supplied and the charges levied or to be levied".</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';color:#201F1E">"135.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:'Times New Roman';color:#201F1E">In either case, the link required by EU law must be established. An intention to make taxable supplies in the future will be established if, but only if, the intended payment is such that the necessary link between the future supply and the future payment is established at the relevant time or times, that is to say the time or times when the input tax was incurred. The taxable nature of supplies already made during the relevant period will be established only if the intended payment in respect of those supplies is such that the necessary link between the supply which has been made and the future payment is established as at the time of the supply".</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0in;text-indent:0in">13.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;margin-right:0.01in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#201F1E">And in </span><span style="font-style:italic;font-family:'Times New Roman';color:#201F1E">W Resources</span><span style="font-family:'Times New Roman';color:#201F1E">:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';color:#000000">“15.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in;margin-right:0.01in;text-indent:0.11in"><span style="font-family:'Times New Roman';color:#000000">The parties agree that, in order for the Appellant to succeed in the appeals, the burden is on the Appellant to establish that:</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.79in;text-indent:0in">(1)</num>
+              <content>
+                <p class="Taxbodytext2" style="margin-left:0.79in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">during the period to which the appeals relate, it was making supplies to its subsidiaries; </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.79in;text-indent:0in">(2)</num>
+              <content>
+                <p class="Taxbodytext2" style="margin-left:0.79in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">those supplies were being made for a consideration and therefore fell to be treated as supplies which would be taxable supplies for the purposes of Article 2 PVD had they been made in the UK; and </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.79in;text-indent:0in">(3)</num>
+              <content>
+                <p class="Taxbodytext2" style="margin-left:0.79in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">it made those supplies in the course of carrying on an economic activity within the meaning of Article 9 PVD. </span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">16.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">For completeness, I would note that, whilst the parties were content to conduct the appeals on the basis of the Appellant’s rights under the PVD, the domestic equivalents of Articles 2 and 9 PVD in the UK are Section 5 VATA and Section 3 VATA respectively. It seems to me that Section 3 VATA does not quite cover the ground laid out in Article 9 PVD in that it defines a “taxable person” as a person who is, or is required to be, registered for VAT and therefore excludes a person who is entitled to be registered for VAT pursuant to paragraphs 9 or 10 of Schedule 1 VATA but is not actually registered because the Respondents fail to satisfy their obligations under those paragraphs.  The relevant section ought in my view to include such persons in the definition of “taxable person”.  Nevertheless, nothing turns on this because it is common ground that the Appellant is entitled to rely on its rights under the PVD to the extent that those are inconsistent with the UK domestic legislation.  Accordingly, for the purposes of this decision, I will refer almost exclusively to the relevant provisions of the PVD. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#000000">The relevant case law</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">17.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">There are a number of decisions - both by the European Court of Justice (the “ECJ”) and by the UK domestic courts - which are relevant in determining whether or not the Appellant has satisfied the conditions set out in paragraph 15 above. In most instances, there is no dispute between the parties as to how those decisions should be interpreted but, where there is such a disagreement, I will note it in the paragraphs which follow and then set out my conclusion on the point in issue. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">18.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">The most useful starting point in the analysis of the authorities is the recent decision of the Court of Appeal in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Wakefield College v Revenue and Customs Commissioners</span><span style="font-family:'Times New Roman';color:#000000"> [2018] EWCA Civ 952 (“</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Wakefield</span><span style="font-family:'Times New Roman';color:#000000">”). It is common ground that this decision makes it clear that the ECJ case law requires a two-stage test to be adopted in determining whether a particular person is a taxable person making taxable supplies (or supplies which would be taxable supplies if they were to be made in the Member State in which the relevant person belongs). The first test relates to Article 2 PVD and is satisfied if the relevant person is making supplies for a consideration, whilst the second test relates to article 9 PVD and is satisfied if the relevant person is making the supplies for the purposes of obtaining income therefrom on a continuing basis – see paragraph [52] in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Wakefield</span><span style="font-family:'Times New Roman';color:#000000">.   </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#000000">Supplies for a consideration</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">19.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman'">In relation to the first test, the Court of Appeal noted as follows: </span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="margin-left:0.79in;margin-right:0.01in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">“A supply for a consideration is a necessary but not sufficient condition for an economic activity.  It is therefore logically the first question to address.  It requires a legal relationship between the supplier and the recipient, pursuant to which there is reciprocal performance whereby the goods or services are supplied in return for the consideration provided by the recipient: see, for example, the judgment in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Borsele</span><span style="font-family:'Times New Roman';color:#000000"> at [24].  That is what is meant by “a direct link” between the supply of the goods or services and the consideration provided by the recipient: see </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Borsele</span><span style="font-family:'Times New Roman';color:#000000"> at [26] and contrast </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Apple and Pear Development Council v Customs and Excise Comrs</span><span style="font-family:'Times New Roman';color:#000000">.  There is no need for the consideration to be equal in value to the goods or services.  It is simply the price at which the goods or services are supplied.  This requirement was satisfied in both </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Finland</span><span style="font-family:'Times New Roman';color:#000000"> and </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Borsele</span><span style="font-family:'Times New Roman';color:#000000">” </span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">20.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman'">It can be seen from the above that the necessary ingredients for satisfying the first test are that there needs to be a “legal relationship” between the supplier and the recipient, pursuant to which there is “reciprocal performance” whereby the goods or services are supplied in return for the consideration, thus meaning that there is a “direct link” between the supply of the goods or services and the consideration….</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Heading3" style="text-align:justify;margin-left:0.39in">Economic activity</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">39.</num>
+            <content>
+              <p style="margin-left:0.39in;margin-right:0.01in;text-indent:0.25in"><span style="font-family:'Times New Roman'">Turning then to the application of the economic activity condition in Article 9 PVD, the starting point in relation to this test is to note that it is distinct from the first test and therefore that it is possible for a particular set of circumstances to satisfy the first test - because there are supplies being made as result of a “legal relationship” between the supplier and the recipient, pursuant to which there is “reciprocal performance” whereby the goods or services are supplied in return for the consideration, thus meaning that there is a “direct link” between the supply of the goods or services and the consideration – and yet fail the second – because the supplier does not have the purpose of obtaining income from its supplies on a continuing basis.  In the words of Lord Justice David Richards in </span><span style="font-style:italic;font-family:'Times New Roman'">Wakefield</span><span style="font-family:'Times New Roman'">, “[a] supply for a consideration is a necessary but not sufficient condition for an economic activity” and “[s]atisfaction of the test for a supply for consideration under article 2 does not give rise to a presumption or general rule that the supply constitutes an economic activity” (see paragraphs [52] and [53] in </span><span style="font-style:italic;font-family:'Times New Roman'">Wakefield</span><span style="font-family:'Times New Roman'">)………..</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">42.</num>
+            <intro>
+              <p class="ListParagraph" style="margin-left:0.39in;margin-right:0.01in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">In the light of the decisions in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Borsele</span><span style="font-family:'Times New Roman';color:#000000"> and </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Finland</span><span style="font-family:'Times New Roman';color:#000000">, the Court of Appeal in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Wakefield</span><span style="font-family:'Times New Roman';color:#000000"> summarised the economic activity test as follows: </span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(a)</num>
+              <content>
+                <p style="margin-left:0.79in;margin-right:0.01in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">the test is objective and not subjective; </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(b)</num>
+              <content>
+                <p style="margin-left:0.79in;margin-right:0.01in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">it requires a wide-ranging and fact-sensitive enquiry which takes into account all the circumstances;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(c)</num>
+              <content>
+                <p style="margin-left:0.79in;margin-right:0.01in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">there is no need for the supplier to be intending to make a profit – the supplier needs merely to have the purpose of obtaining income; and </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in">(d)</num>
+              <content>
+                <p style="margin-left:0.79in;margin-right:0.01in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">while cases concerning other facts provide helpful pointers to some of the factors to be considered, there is no checklist of factors and, “[e]ven where the same factors are present, they may assume different relative importance in different cases.  The CJEU made clear in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Borsele</span><span style="font-family:'Times New Roman';color:#000000"> at [32] that it was for the national court to assess all the facts of a case” (see paragraph [59] in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Wakefield</span><span style="font-family:'Times New Roman';color:#000000">)………..</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';color:#201F1E">108.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:'Times New Roman';color:#201F1E">I have referred in paragraphs 109 and 110 above to the fact that an intention to make supplies for a consideration in the future is sufficient to mean that an economic activity is currently being carried on. There are a number of ECJ authorities to that effect which are summarised in the Upper Tribunal decision in Norseman. I believe that it is common ground that a person who incurs VAT input tax with the intention of making future supplies for a consideration should both be treated as carrying on an economic activity during the period in which it has that intention but has yet to make the supplies in question and entitled to deduct the VAT input tax which is attributable to those expected future supplies even if the expected future supplies subsequently do not occur. But, insofar as that is not common ground, I consider that this is the effect of ECJ decisions such as those in Belgium v Ghent Coal Terminal NV (Case C-37/95) [1998] STC 260, [1998] ECR 1-4321 and Finanzamt Goslar v Breitsohl 4321 (Case C- 400/98) [2001] STC 355, [2000] ECR 1-4321”.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman'">Direct and immediate link</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">14.</num>
+          <intro>
+            <p class="Taxbodytext1" style="margin-left:0in;margin-right:0.01in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In </span><span style="font-style:italic;font-family:'Times New Roman'">Sofology and another v HMRC</span><span style="font-family:'Times New Roman'"> [2022] UKFTT 00153 (“</span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman'">Sofology</span><span style="font-family:'Times New Roman'">”) Judge Tony Beare, who had also decided </span><span style="font-style:italic;font-family:'Times New Roman'">W Resources</span><span style="font-family:'Times New Roman'">, said this:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in;text-indent:-0.01in"><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">“INPUT TAX RECOVERY - THE PRINCIPLE OF ATTRIBUTION</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.39in;text-indent:-0.01in"><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">Direct and immediate</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">21.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">It may be seen from the legislation set out above that input tax is deductible only to the extent that the cost to which the input tax relates is a “cost component” of the taxable person’s taxable supplies (see Article 1(2) of the Directive). Article 168 of the Directive expands on this phrase by identifying the input tax which is deductible as that which relates to goods or services “used for the purposes of” the taxable person’s taxable supplies. In </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">BLP Group plc v Customs and Excise Commissioners </span><span style="font-family:'Times New Roman';color:#000000">(Case C-4/94) [1995] STC 424 (“</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">BLP</span><span style="font-family:'Times New Roman';color:#000000">”), the Court of Justice of the European Communities (the “CJEU”) made it clear that the above language is satisfied as long as there is a “direct and immediate link” between the transaction to which the input tax relates and the taxable person’s taxable supplies – see </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">BLP </span><span style="font-family:'Times New Roman';color:#000000">at paragraphs [19] to [21]. In particular, in </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">The Commissioners for Her Majesty’s Revenue and Customs v Royal Opera House Covent Garden Foundation </span><span style="font-family:'Times New Roman';color:#000000">[2021] EWCA Civ 910 (“</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">ROH</span><span style="font-family:'Times New Roman';color:#000000">”), the Court of Appeal made it clear that the reference to “cost components” in Article 1(2) of the Directive does not mean that the cost of the transaction to which the input tax relates needs to be reflected in the prices charged by the taxable person for its taxable supplies (see </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">ROH </span><span style="font-family:'Times New Roman';color:#000000">at paragraph [17]). It said that both “cost components” and objectively determined “purposes” were very general terms which were encapsulated in the “direct and immediate link” test (see </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">ROH </span><span style="font-family:'Times New Roman';color:#000000">at paragraph [18]). Accordingly, although, for the sake of consistency, we will refer throughout this decision solely to the test’s being one of a “direct and immediate link” between a cost and a supply, that phrase should be taken to be synonymous with the phrases “cost component” and “used for the purposes of”.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">22.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">It is for the national courts to apply the “direct and immediate link” test to the facts of each case before them and to take account of all the circumstances surrounding the transactions in issue – see </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Midland Bank plc v Customs and Excise Commissioners </span><span style="font-family:'Times New Roman';color:#000000">(Case C-98/98) [2000] STC 501 (“</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Midland Bank</span><span style="font-family:'Times New Roman';color:#000000">”) at paragraph [25] and </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Dial-a-Phone Limited v Her Majesty’s Customs and Excise Commissioners </span><span style="font-family:'Times New Roman';color:#000000">[2004] EWCA Civ 603 (“</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">DaP</span><span style="font-family:'Times New Roman';color:#000000">”) at paragraph [26].</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">23.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">In terms of domestic case law, the Court of Appeal has referred to this principle in a number of its decisions, including </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">DaP </span><span style="font-family:'Times New Roman';color:#000000">at paragraph [14] and </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Mayflower Theatre v The Commissioners for Her Majesty’s Revenue and Customs </span><span style="font-family:'Times New Roman';color:#000000">[2006] EWCA Civ 116 (“</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">Mayflower</span><span style="font-family:'Times New Roman';color:#000000">”) at paragraph [9].</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">24.</num>
+            <intro>
+              <p style="margin-left:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';color:#000000">The corollary of the formulation described in paragraphs 21 to 23 above is that:</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in;text-indent:-0.01in">(1)</num>
+              <content>
+                <p style="margin-left:0.79in;text-indent:0.37in"><span style="font-family:'Times New Roman';color:#000000">no right to deduct input tax arises in circumstances where the input tax relates to costs which have a direct and immediate link only with the taxable person’s exempt supplies; and</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.79in;text-indent:0in">(2)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">where input tax relates to costs which have a direct and immediate link with both the taxable person’s taxable supplies and the taxable person’s exempt supplies, only the portion of the input tax which relates to costs attributable to the taxable person’s taxable supplies is recoverable.</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">Overheads</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">25.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in">Certain costs incurred by a taxable person do not have a direct and immediate link with either the taxable person’s taxable supplies or the taxable person’s exempt supplies. This could be for various reasons.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">26.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in">One is that the transaction with which such costs have a direct and immediate link does not amount to a supply for VAT purposes at all – see <span style="font-style:italic;font-family:'Times New Roman'">Abbey National plc v Her Majesty’s Customs and Excise Commissioners </span>(Case C-408/98) [2001] STC 297 (“<span style="font-style:italic;font-family:'Times New Roman'">Abbey National</span>”) (where the costs in question related to a transfer as a going concern), <span style="font-style:italic;font-family:'Times New Roman'">Kretztechnik AG v Finanzamt Linz </span>(Case C-465/03) [2005] STC 1118 (where the costs in question related to a share issue) and <span style="font-style:italic;font-family:'Times New Roman'">Cibo Participations SA v Directeur regional des impôts du Nord-Pas-de- Calais </span>(C-16/00) [2002 STC 460 (“<span style="font-style:italic;font-family:'Times New Roman'">Cibo</span>”) (where the costs in question related to the acquisition of shares in a subsidiary). In each of these cases, the relevant costs related to a transaction which did not involve the making of a supply for VAT purposes.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">27.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in">Alternatively, the absence of a direct and immediate link to either category of supplies may be attributable to the fact that the costs are too general in nature to be capable of being linked directly to any specific supply or any specific supplies. Examples of this given by Lord Millett in <span style="font-style:italic;font-family:'Times New Roman'">Her Majesty’s Customs and Excise Commissioners v Redrow Group plc </span>[1999] STC 161 (“<span style="font-style:italic;font-family:'Times New Roman'">Redrow</span>”) were “<span style="font-size:11pt">[audit] and legal fees and the cost of the office carpet</span>” (see <span style="font-style:italic;font-family:'Times New Roman'">Redrow </span>at 169h).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in;text-indent:-0in">28.</num>
+            <content>
+              <p style="margin-left:0.39in;text-indent:0.25in">Costs which do not have a direct and immediate link with either the taxable person’s taxable supplies or the taxable person’s exempt supplies are commonly referred to in the VAT context as “overhead costs”. The input tax relating to overhead costs is deductible where the costs are attributable to the taxable person’s economic activity as a whole (but only in the proportion that the taxable supplies made in the course of that economic activity bears to the aggregate supplies made in the course of that economic activity) – see <span style="font-style:italic;font-family:'Times New Roman'">Mayflower </span>at paragraphs [26] to [34]. The basis for the deduction in that case is that the costs in question have a direct and immediate link with the taxable person’s business as a whole and, as such, are “<span style="font-size:11pt">cost components of an undertaking’s products</span>” (see <span style="font-style:italic;font-family:'Times New Roman'">Cibo </span>at paragraph [33])”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">15.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;margin-right:0.01in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Although we are not bound by Judge Beare’s decisions in </span><span style="font-style:italic;font-family:'Times New Roman'">W Resources</span><span style="font-family:'Times New Roman'"> and</span><span style="font-style:italic;font-family:'Times New Roman'"> Sofology</span><span style="font-family:'Times New Roman'">, we agree with the principles set out therein and gratefully adopt them for the purposes of this Decision.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold;font-family:'Times New Roman'">THE EVIDENCE AND FINDINGS OF FACT</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">16.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;margin-right:0.01in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were provided with a bundle of documents. Mr Patel, the director of the company, gave oral evidence on the basis of a comprehensive witness statement on which he was cross examined by Ms Donovan. From this evidence we find as follows:</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(1)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The company was incorporated in 1998 and, since July 2006 has been authorised to undertake regulated activities by the Financial Conduct Authority. The company compiled a comprehensive business plan which was expressed to take effect from 1 August 2006, and a regulatory business plan, which dealt with the regulatory aspects of the commercial business plan, which appears to have been compiled in July 2006 and related to a fund which was to launch on 1 September 2006.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(2)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The activities of the company can be divided into two broad business categories. Firstly, investment management of hedge funds (“fund management”). Secondly, research, advisory, consultancy introductory and distribution services (together “research advisory and introduction”).</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(3)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">Fund management activities involve the management of investment funds to generate profits for investor clients. In return for managing those funds, the company was to be paid a management fee based on the value of assets under management and a performance fee. We were shown a prospectus for the HFI Emerging Alpha Strategies Funds plc dated 4 July 2011 (“</span><span style="font-weight:bold;font-family:'Times New Roman'">the prospectus</span><span style="font-family:'Times New Roman'">”). This is a significant document in terms conventional to such a prospectus. Mr Patel is one of the directors of HFIM Emerging Alpha Strategies Funds plc. It is an umbrella fund established as an open-ended investment company under Irish law. The investment objective is to generate returns by investing in selected emerging Alpha Strategies. However, the prospectus was never used as the basis for attracting investment and had to be pulled as a result of the litigation in the Seychelles to which we refer later in this Decision.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(4)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">We were shown no further evidence of investment management activity undertaken by the appellant during the relevant period, and we find as a fact that during that period the company did not actually provide fund management services to any hedge fund.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(5)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The company’s research activities involve undertaking investment research and meeting and entering into a dialogue with fund managers (typically based in Europe, USA or Asia) and undertaking due diligence about those funds. Due diligence concerns the fund managers, hedge funds and their investment strategies, their investment process, market views and historic performance. The company undertakes this research in order to identify funds that either it, or its clients, should invest in. These clients are those who benefit from the second limb of the company’s activities, namely the advisory activities which involve providing advisory or consultancy services to clients in return for an hourly, daily, or fixed fee. The research was actually undertaken, on behalf of the company, by interns, for example business school graduates who were simply paid their expenses.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(6)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">Remuneration for providing these advisory services is often not immediate and Mr Patel’s evidence was that it can often take several weeks, months or several years from the date of engaging with potential clients for this activity to generate fees and profit.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(7)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">The company’s introductory activity involves introducing businesses or hedge fund managers to prospective investors or third-party introducer/marketers who can make multiple introductions to prospective investors with a view to promoting their business and strategies to raise investment for their firm or the hedge fund. If an introduction is successful, HFIM gains a fee which can either be one-off, or a percentage of both management fee and performance fee based on the investment into the fund and this can continue for several years provided an investor remains invested in a client fund.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(8)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">Mr Patel’s evidence, which was not seriously challenged by Ms Donovan, was that between May 2012 and January 2020, the company has made 19 introductions to a single client with whom it entered into a short (one page) agreement on 27 November 2019 which sets out brief terms of the basis on which the company would be paid for introducing investors to that client. We were also shown an introducer agreement dated 16 August 2018 between another client and the company which set out, in greater detail, the services which would be performed by the company (identifying individuals or organisations and introducing them to the fund manager, promoting the fund manager’s products and services to those individuals or organisations, and sending the names of any potential investors to the fund manager).</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(9)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">Over and above those 19 business introductions, Mr Patel’s evidence was that a further 12 introductions had been made to funds and other clients between November 2016 and November 2019.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(10)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were also provided with emails between the appellant and a variety of individuals and organisations which Mr Patel explained showed that he was actively pursuing introductions during the relevant period. These emails are largely ones which emanate from the appellant, but their validity was not seriously challenged by Ms Donovan.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(11)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were provided with only 3 invoices raised by the company during the relevant period. One is dated 28 December 2017, yet the invoice is expressed to be 1 December 2017 for £10,000 together with VAT at 20% of £2,000. However, extraordinarily, the total is expressed to be £10,000 (when of course it should be £12,000). The description of the services was “fees for services provided between May 2016 and July 2016 and agreed. The services included attending meetings, reviewing the strategy of XMG market-making project, the opportunity, putting the information together to analyse performance, the management time spent by HFIM team. Providing assistance on materials and assisting with introduction to interested market professionals.” The second is dated 13 September 2019 reference 2019/1 and is for £1,200 net plus VAT of £240 making a total of £1,440. The narrative states that it is Stage 1:10% introductory fee on £12,000 (plus VAT) in relation to [that particular client]. The third is dated 13 December 2019 reference 2019/2 and is for a net amount of £1,000 together with VAT of £200 making a total of £1200. It is expressed to be for Stage I fee 10% introductory fee regarding the introduction of [the same client].</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(12)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were told that as far as the first of these invoices was concerned, the client made a prepayment (and this is evidenced by the bank statement) on 25 July 2016 of £500. We accept this. On 6 January 2020 the company and this client signed an introductory agreement. Email exchanges between the company and this client in 2018 and 2019 reflect the client’s intention to settle the December 2017 invoice, and furthermore, acknowledges the potential introduction by an organisation of $20 million into a client fund.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(13)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were also shown a copy of a non-disclosure agreement dated 29 June 2012 reciting that the company and a fund manager were proposing to supply each other with written confidential information which imposed restrictions on further disclosure of that information.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(14)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Mr Patel, on behalf of the company, attended a significant number (15) of marketing events between 2014 and 2018 at which he spoke or was a member of a panel bestowing awards. The purpose of attendance at these events was to search for new potential clients, business leads and ideas, to gather information and to develop relationships with investors, hedge fund managers, third party introducers/marketers, distributors, investment consultants and advisers. It was also to develop relationships and gather information on the latest or emerging investment strategies developed by industry participants. In support of this, we were shown a document entitled “Enhancing Risk-Adjusted Returns through Emerging Alpha Strategies”. This is expressed to be a business plan dated August 2018 and intended for professional investors and eligible counterparties only. It deals with the asset management industry. It deals with the benefits of early stage investing and emerging strategies, and sets out the value proposition of the company and why an investor should invest in it. It is a highly professional document which deals with the intricacies of investment in a coherent, comprehensive manner, using accessible yet technical terms.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(15)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">During the relevant years, the company’s accounts were audited by a reputable firm of independent accountants. Those accounts appear to reflect two sources of income. The first is entitled “Turnover” and reflects the anticipated income arising from the Seychelles litigation. The second is “Other operating income” and reflects other income for example foreign exchange gains and losses. It is for this reason that the turnover of the company between 2011 and 2018, and the operating profit/loss in those years, seems to fluctuate wildly. For example, for the year to 30 June 2014, its turnover was £97,126 and it made an operating loss of £260,629. For the year ended 30 December 2018, its turnover was £30,458 yet it made an operating profit of £922,897.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(16)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">On 25 February 2009 the company entered into a sub-introductory agreement with a company registered in the Seychelles (“</span><span style="font-weight:bold;font-family:'Times New Roman'">HIL</span><span style="font-family:'Times New Roman'">”). In November 2010, Mr Patel discovered that the company’s business (and therefore income) had been diverted by a former director of HFIL to HIL. The company started litigation in the Seychelles to recover that income. In 2012 the directors of HFIM Emerging Alpha Strategies Fund, the Irish fund which was party to the prospectus, and which was a client of HFIM, became concerned about the potential reputational consequences arising from the litigation and the amount of management time that would be required to focus on it. The directors of the fund therefore resolved to temporarily suspend the fund management activities with a view to recommencing them once the litigation was resolved. The litigation (and therefore suspension of the fund management activities) was not expected to be for long, but as a result of delays in the proceedings, resolution of the litigation is ongoing.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(17)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Judgment in the litigation was given by the Supreme Court of Seychelles on 6 February 2017 which awarded damages of US$3,598,605.48 to be paid by HIL to the company. On 14 November 2018 the High Court of the UK registered the Seychelles judgment as a judgment of the Queen’s Bench Division of the UK High Court.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(18)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The company has received two payments in respect of these damages. The first on or around 5 December 2017 for $496,955.77. The second on or around 19 February 2019 for $3,166,336.77.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(19)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">During the accounting periods in which the litigation has been ongoing, the company has accounted (under the heading “Turnover”) for an amount which the company reasonably calculates, based on a prudent assumption, are the fees to which it was entitled from HIL. So, for example, for the period 1 July 2015 to 31 December 2016, that amount was calculated as £150,594. No invoices for any of these turnover amounts were given by the company to HIL. However, we were shown an invoice dated 31 August 2017 made out to HIL for $42,620.29. The narrative on the invoice is for “Fees and costs under cc4 of 2012”. It was Mr Patel’s evidence that this was an invoice in relation to the litigation. The amount of VAT stated on the invoice is $0.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(20)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Reed Smith LLP, the law firm, was retained by the company to conduct the Seychelles litigation. Reed Smith rendered invoices to HFIM for those services. Mr Patel’s evidence was that those invoices were all paid, but not by HFIM in the first instance. They were paid initially by one of his other companies, or companies related to HFIM, but the payments were ultimately borne by HFIM. We were provided with no details as to how any reimbursement was made by the company to those other companies which initially settled the Reed Smith invoices. We were provided with four Reed Smith invoices dated 17 March 2015, 31 August 2015, 9 December 2015 and 30 March 2016. The total VAT on those invoices amounts to approximately £5,009. We were told that the appellant sought recovery of this VAT in its returns of 03/19 and 06/19.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(21)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We were shown a schedule of the VAT return summaries for the company between periods 03/15 and 06/20. In only five of those was there an entry in Box 1 (Output Tax). In all of those periods a claim for input tax recovery (Box 4) had been made, and we were told that the basis for this, in those periods other than the five in which output tax had been declared, were EC acquisitions. These were invariably of a modest nature (in all cases they were less than £200).</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(22)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In those five periods in which output tax was declared, we can correlate three of those periods with the invoices which were in the bundle. The output tax for the December 2017 invoice appears to have been accounted for in the period 12/17. For the September 2019 invoice it was accounted for in the 9/19 period, and the output tax for the December 2019 invoice was accounted for in the 12/19 return. The sum of £29 was declared as output tax for the return 03/18, and £31 output tax was declared in the return 06/18. We were not shown any corresponding invoices for these output tax entries.</span></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(23)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In February, March and June 2019, then again in January and August 2020, HMRC sent a number of letters to the appellant which adjusted or corrected the returns from and including 09/17 to 09/20. The basis of these adjustments, which appears in each of these letters, was that HMRC believed that there were inaccuracies in the returns. These letters each included a table showing the boxes of those returns which contained those inaccuracies, and the amounts that had been declared as well as the adjusted amounts that the appellant’s return would have shown if it had not contained those inaccuracies. These adjustments were based on HMRC’s enquiries. In all cases, the adjusted amounts, for each of Boxes 1-5 was 0. This of course meant that Box 5 (Net VAT) was reduced to 0 thus denying the appellant any input tax credit for those periods.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext2"><span style="font-weight:bold;font-family:'Times New Roman'">BURDEN AND</span><span style="font-family:'Times New Roman'"> </span><span style="font-weight:bold;font-family:'Times New Roman'">STANDARD</span><span style="font-family:'Times New Roman'"> </span><span style="font-weight:bold;font-family:'Times New Roman'">OF PROOF</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">17.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The burden of proof as regards both the assessments and penalty assessments lies firstly with HMRC to establish that they are valid in time assessments, and then, if that is so established, changes so that it is for the appellant to show that the assessments are incorrect, or that, in the case of the penalties it was not careless or that there are mitigating factors such as special circumstances. In both cases the standard of proof is the balance of probabilities, or that it is more likely than not.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">18.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">As far as the validity of the assessments and penalty assessments are concerned, we are satisfied that they are valid in time assessments. Indeed the appellant made no challenge to their validity.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">19.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The focus, therefore, of our discussion below, is whether the appellant has discharged the burden of establishing that the assessments and the penalty assessments are incorrect.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold">DISCUSSION</span></p>
+            <p class="Taxbodytext1"><span style="font-style:italic">Submissions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">20.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Ms Donovan submitted as follows:</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(1)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">As far as the actual carrying on of a business, during the relevant period, is concerned, the appellant did not carry on any business during those periods. To be an economic activity it is clear from <span style="font-style:italic">Wakefield </span>that the first stage of the two-stage test is to consider whether a supply for a consideration had been made, and no such supplies have been made in the relevant period.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(2)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">Furthermore, the appellant has not made out that there was a direct and immediate link between the inputs and the outputs for each of the periods under appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(3)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The period 03/15 to 12/18, sixteen VAT returns were submitted including claims for input tax totalling £45,852.91. No output tax was declared in the first eleven of these periods and for the three periods 12/17 to 06/18 output tax of only £3,540 was declared. HMRC were entitled, therefore, on the basis that the appellant was carrying out no economic activity or intended economic activity to amend the appellant’s returns for the periods 09/17 to12/18 reducing the appellant’s claim for input tax recovery to 0 for each of those periods.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(4)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The appellant’s evidence was that no invoices were raised and no income received during this period.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(5)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The invoice dated 1 December 2017 does not meet the principles set out in <span style="font-style:italic">Norseman</span><span> </span><span style="font-style:italic">Gold</span> and <span style="font-style:italic">W Resources </span>as; firstly the invoice relates to services carried out 18 months before the invoice was issued and the appellant has not established the link between the input tax claimed in the 06/16 and 09/16 periods and the December invoice; secondly the delay in providing the services and seeking payment suggests that at the time the services were provided there was no expectation of payment (underlined by the fact  that there was little chasing for payment); and finally the nature of the services is unclear.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(6)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">As regards the other VAT periods in this period, the agreement dated 27 November 2019 falls outside the dates covered by these appeals. The commencement date is backdated to 30 January 2015 so at the time the inputs were incurred there was no contractual agreement in place and thus the appellant has not demonstrated the necessary link between those inputs incurred in the relevant period, and the future taxable supplies which is required in order to recover input tax under the intending trader principle. An intention to make supplies is not sufficient to enable an appellant to recover input tax. What needs to be established is an intention to make taxable supplies and that needs to be demonstrated at the time that the inputs are incurred. The appellant has not done this.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(7)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">As regards periods 03/19 and 06/19, there is no evidence that the appellant issued any invoices during this period. So, no taxable supplies were made during this period to which an input tax credit can be attributed.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(8)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">For the period 09/19, the period in which the 13 September 2019 invoice fell, output VAT of only £240 was accounted for against an input tax claim of £2,665. There is no evidence that this invoice was ever paid and given the difference between the output tax declared and input tax claimed not just in this but in other periods, HMRC’s position is that this activity is inconsistent with the concept of economic activity carried on for the purpose of obtaining income on a continuing basis.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(9)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">As regards the invoices for the legal fees, the evidence is that the company did not pay these, but instead they were paid out of other accounts. Furthermore, the legal fees were incurred in relation to a dispute which started in 2009, yet they were claimed in the VAT periods 03/19 and 06/19 some considerable time after the relevant event and thus there is no direct or immediate link between those fees and supplies made in the 03/19 and 06/19 periods.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(10)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.5in">As far as the penalties are concerned, it is her submission that the appellant did not make any supplies in the 4 years prior to the penalties being assessed and was unable to provide information and documentation to support the claim that it was already trading when it submitted its repayment returns. This reflects careless behaviour. The appellant should have checked with HMRC whether his atypical situation was acceptable. There are no special circumstances which would justify mitigating the penalty.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">21.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Mr Patel submitted as follows:</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(1)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The appellant has been undertaking business since 2006. Under the <span style="font-style:italic">Norseman</span><span> </span><span style="font-style:italic">Gold </span>tests, the appellant needs to show that at the time it incurred input tax it had the intention of making, at some time in the future, supplies for a consideration. These must be taxable supplies. The evidence shows that the appellant at all times had the intention of making taxable supplies for consideration. Furthermore, the payments for the supplies of the appellant’s services which would be made in the future (as far as the input tax was concerned) was linked to the input tax incurred (as far as the outputs were concerned) in the past.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(2)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The research advisory and introduction activities have been carried on, on a regular basis, since it became FCA regulated in 2006. The appellant has maintained its regulated status enabling it to undertake investment business. This reflects that it has fulfilled its compliance duties. Since 2012, the company has made approximately 30 introductions to various investors, third-party introducers and fund managers. Through this, the company has generated fees. Even though there are risks that some of these activities will not generate fees, the agreements which the company has entered into, have value and demonstrate current business activity.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(3)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The company has actively pursued business activities by looking for prospective clients, new investors and new funds through research and analysis. It has occupied premises in London which enables it to arrange meetings with potential clients, fund managers, and investors and to undertake research activities. HMRC seem to suggest that the company had no customers. This is incorrect. The company had numerous clients and customers for whom it worked and for whom it effected introductions. In addition, Mr Patel regularly attended industry conferences at which he often spoke.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(4)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The company’s financial statements, which have been audited by a reputable firm of accountants, demonstrate business activity as they show that the company was generating fees and profits from that activity. Those statements demonstrate significant turnover throughout the periods under consideration.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(5)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The company had intended to conduct fund management on a regular basis as evidenced by the prospectus, but the litigation with HIL, and the reputation risks associated with that, meant that the fund management activity had to be put on the back burner pending resolution of that litigation. It was anticipated that would only be for a 6 month period but it became protracted, hence the reason that there has been no fund management activity throughout the relevant period. However now that the litigation is settled, the company intends to refresh its fund management offering.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(6)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The company has provided proof of sales invoices, emails of services, bank statements and customer agreements during the relevant period (and indeed the periods post the relevant period) which clearly demonstrates the intention to make taxable supplies.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(7)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">In <span style="font-style:italic">AIS </span>the tribunal had found that<span style="font-style:italic"> “there was no dispute that HF IM was trading”. </span>Furthermore, HMRC have accepted that from the period 12/20 onwards, there was sufficient evidence to show on balance that the appellant was undertaking a business activity.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">(8)</num>
+          <content>
+            <p class="Taxbodytext2" style="margin-left:0in;text-indent:0.39in">The appellant has provided evidence of future sales and the intention of obtaining services for consideration in the future, and should not be jeopardised from recovering input tax on the basis that it is or was unsuccessful in ultimately making taxable supplies.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext2"><span style="font-style:italic">The decisions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">22.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The appellant’s case is that throughout the periods covered by these appeals, it was an intending trader. We have set out the law, at some length, which applies to the ability to recover input tax by such a trader. The principles can be distilled into the following: Firstly, the trader needs to be able to show on the evidence that at the time that it incurred input tax it intended to make taxable supplies (i.e. supplies for a consideration which are not exempt). Secondly the trader must also show either that those inputs are attributable to those expected taxable supplies (i.e. they have a direct and immediate link with them) or that they are overhead costs within the meaning set out in paragraphs 25 to 28 of <span style="font-style:italic">Sofology</span> recorded above.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">23.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is our view, for the reasons given below, that this appellant has amply shown that at the time that it incurred the input tax it was intending to make future taxable supplies, and thus was an intending trader.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">24.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">It is clear, for many of the reasons given by Mr Patel in his evidence and subsequently in his oral and written submissions, that the appellant was carrying out a number of activities during the relevant period. His oral testimony has been supported, at almost every turn, by the documentary evidence.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">25.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The company has been regulated by the Financial Conduct Authority since July 2006 and has maintained that status throughout the relevant period. It had both a commercial and regulatory business plan and, as regards its fund management activities, there is powerful evidence, in the form of the prospectus, to support Mr Patel’s evidence that this was intended to be a significant limb of its income generating activities. That prospectus is a professionally drafted document and the professional services firms identified in it are all significant players in the corporate finance arena. It would have taken a great deal of time, effort and cost to have concluded that prospectus, and we accept Mr Patel’s evidence that it was only pulled as a result of the Seychelles litigation, and the anxiety of the participants not to run any reputational risk which might arise from that litigation, and that the management time needed to conduct the litigation would prevent it focussing on fund management. These are all indicia of a trader which has a serious intention of undertaking significant commercial activity which will generate fees. It has not been suggested by HMRC that those fees might be exempt as they relate to financial services (broadly speaking). And we have not been addressed on the VAT status of fund management activities. But we are clearly of the view that such activities were carried out with the intention of generating income therefrom and it was circumstances which prevented the appellant from so doing. And had it not been for the Seychelles litigation, it is our view that the appellant would have undertaken its commercial activities as originally envisaged in its business plan and would have recovered its input VAT in the usual way.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">26.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The fact of the Seychelles litigation is not in dispute. HMRC’s original case was that there was no evidence that the appellant derived any benefit from it, but it is clear from the evidence before us that the appellant has received two significant payments from the defendant, thus justifying the litigation.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">27.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We have seen copies of the company’s accounts for a number of years. These are audited, and broadly speaking show income from two sources. The first is the Seychelles litigation which has been given, what is in essence a net present value of the anticipated damages, for the period in which the accounts were compiled reflecting the company’s view of the actuarial likelihood of recovering such damages. As we say, we were told that no invoices had been raised for these amounts yet we did see evidence that an invoice had been made out to HIL dated 31 August 2017 for $42,620.29. The second source of income evidenced by the accounts was, we were told, derived from foreign exchange gains and losses. To our mind prosecuting the litigation during those years was a commercial decision (and as things turned out justifiable one) which reflects a business which, having taken legal advice, took the view that they were likely to recover significant sums which, in turn, reflected work they had done in 2009, and which would also provide working capital for its ongoing and future activities. We will return to the significance of the invoice, in a moment.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">28.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The main activity conducted by the company during the relevant period focused on research advisory and introduction. Evidence of this ongoing activity is set out at length above and includes the emails relating to the introductions, the documents relating to those introductions, along with the confidentiality agreements, the conference attendances by Mr Patel and the marketing material produced for presentations. There was also the oral evidence of Mr Patel as to the extent of these activities. We accept this evidence as evidence of a genuine commercial activity being undertaken during the period of the Seychelles litigation in order to enable the company to generate income from exploiting the work done during that period once the litigation has ceased. Of course, there was some exploitation during the period in question as evidenced by the three invoices. But to our mind the significance of those invoices lies as much in the fact that taxable supplies were made in that period as evidence of intention to make such taxable supplies once the Seychelles litigation has concluded.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">29.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The evidence supplied to us demonstrates that the company was carrying on all the activities that one would expect from an organisation which was intending to introduce investors to fund managers and to provide financial advice to funds and to those investors. And to support both activities, it undertook research through the agency of interns employed by the appellant. During the conduct of the Seychelles litigation, the appellant did not have the resources to fully pursue these introductory and advisory services, but the research it was undertaking has enabled it to keep itself up to date with the trends in the industry which is and was essential to enable it to give relevant advice at the appropriate time. Furthermore, as far as introductory services are concerned, it was obviously important to undertake some level of activity in order to keep its name “in the market” as it were and for Mr Patel to maintain his connections which could be exploited in earnest once the Seychelles litigation has concluded.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">30.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In our judgment the evidence demonstrates that the appellant was intending to make taxable supplies in the future, and that intention was established at the time that the input tax was incurred during the relevant periods, and we accept Mr Patel’s submissions on this point.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">31.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">But the appellant needs to go further. It needs to establish either that at the time the input tax was incurred, it was attributable to those expected taxable supplies, or that the input tax reflected overhead costs.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">32.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">The evidence that we have seen makes it very difficult for us to come to a definite view on this, as we only have one quarters worth of financial information, namely the details of the input incurred for the period 09/17. This is unsurprising since this is, as far as we are aware, the only period for which the appellant was asked to provide that breakdown.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">33.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">That breakdown includes an item for rent (clearly in overhead) as well as what are likely to be regular expenses such as Microsoft subscriptions and network charges. It was Mr Patel’s evidence that the inputs incurred in this period were typical of his inputs throughout the period covered by this appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">34.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We are reluctant to come to a conclusion on this point, and in our view the most appropriate way of dealing with it is for the parties to review the inputs claimed by the appellant throughout the relevant period on the basis of the finding that throughout the period the appellant was an intending trader. It seems to us that the appellant and HMRC should readily be able to undertake such review and to reach an agreement as to the extent to which the inputs incurred during that period are either directly attributable to the appellant’s intending trade or (more likely we suspect) comprise overhead costs.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">35.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">There are two further matters on which we need to reach a conclusion. The first relates to legal fees. We were told that these were claimed in the 03/19 and 06/19 periods. There is no difficulty in identifying why these fees were incurred. They are legal costs associated with the ongoing Seychelles litigation. Although, as mentioned above, we were told that there was no actual invoice for the figures set out in the accounts representing the accounting view of the ongoing value of a likely damages award, there is the invoice dated 31 August 2017 for approximately $42,620.29 made out to HIL. The four invoices for legal fees all predate that invoice. We were told that even though the appellant may not have originally paid these invoices, the costs were ultimately borne by it, and the four invoices were certainly all made out to the appellant. In our judgment the input tax on the invoices for the legal fees has a direct and immediate link to the invoice of 31 August 2017, and the appellant is therefore entitled to recover that input tax.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-style:italic">The penalty assessment</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">36.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">Finally, we turn to the question of the penalty assessment visited on the appellant on the basis that it had submitted carelessly inaccurate returns for the period 03/15 to 12/18.  The penalty assessment explains that the appellant’s careless behaviour was that it had continued to claim VAT as input tax when it has not made, nor demonstrated an intention to make, any taxable supplies, and that it had failed to take reasonable care in completing its VAT returns because it did not check with HMRC that this was acceptable. As we have found that the appellant was, throughout the relevant period, an intending trader, we take the view the appellant has not been careless as suggested by HMRC, and we allow its appeal against the penalty assessment.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold">DECISION</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">37.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">In our judgment, the appellant was an intending trader throughout the periods covered by these appeals and thus, to the extent that it can demonstrate that the inputs incurred in those periods had either a direct and immediate link to the expected taxable supplies or were overhead costs, is entitled to credit for any input tax incurred on those inputs. We Direct that within 28 days from the date of release of this Decision, the appellant sends to HMRC a detailed breakdown of those costs together with an analysis of whether they have either a direct and immediate link to its expected taxable supplies, or that they comprise overheads. The parties shall then use all reasonable endeavours to agree the extent to which the appellant is entitled to credit for that input tax, and in the absence of any such agreement within 3 months from the date of release of this decision, the parties may apply to the Tribunal for the Tribunal to resolve the issue.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">38.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.5in">We allow the appellant’s appeal against the penalty assessment.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Taxbodytext1"><span style="font-weight:bold">RIGHT TO APPLY FOR PERMISSION TO APPEAL</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">39.</num>
+          <content>
+            <p class="Taxbodytext1" style="margin-left:0in;margin-right:0.01in;text-indent:0.5in"><span style="font-family:'Times New Roman'">This document contains full findings of fact and reasons for the decision.  Any party dissatisfied with this Decision has a right to apply for permission to appeal against it pursuant to Rule 39 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009.  The application must be received by this Tribunal not later than 56 days after this Decision is sent to that party.  The parties are referred to “Guidance to accompany a Decision from the First-tier Tribunal (Tax Chamber)” which accompanies and forms part of this decision notice.</span></p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">NIGEL POPPLEWELL</span></p>
+            <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
+            <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-09-13" refersTo="#decision"><span style="font-weight:bold">13</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> SEPTEMBER 2022</span></docDate></p>
+          </content>
+        </level>
+      </decision>
+    </judgmentBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340/annex/1" />
+                <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/340" />
+                <FRBRdate date="2022-09-13" name="decision" />
+                <FRBRauthor href="#ukftt-tc" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/annex/1" />
+                <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340" />
+                <FRBRdate date="2022-09-13" name="decision" />
+                <FRBRauthor href="#ukftt-tc" />
+                <FRBRlanguage language="eng" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/annex/1/data.xml" />
+                <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/340/data.xml" />
+                <FRBRdate date="2023-07-27T14:28:41" name="transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p style="text-align:center"><span style="font-weight:bold">APPENDIX</span></p>
+            <p><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">THE LEGISLATION</span></p>
+            <p><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">VAT</span></p>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">1.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">The legislation which is relevant to carrying on of an economic activity and the right to deduct may be found in Articles 1,2, 9, 168 and 173 of Council Directive 2006/112/EC (the “Directive”), Sections 24 to 26 of the Value Added Tax Act 1983 (the “VATA”) and paragraph 101 of The Value Added Tax Regulations 1995 (1995/2518) (the “Regulations”).</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">2.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">Article 1 of the Directive sets out the basic principle that the VAT chargeable in respect of a taxable supply is to be calculated after the “deduction of the amount of VAT borne directly by the various cost components”.</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">3.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">Article 2 (1) states, relevantly:</span></p>
+            </blockContainer>
+            <p style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">“The following transactions shall be subject to VAT:</span></p>
+            <p style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">……..</span></p>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';color:#000000">(c)</num>
+              <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:'Times New Roman';color:#000000">the supply of services for consideration within the territory of a Member State by a taxable person acting as such……”.</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">4.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">Article 9 (1) provides:</span></p>
+            </blockContainer>
+            <p style="margin-left:0.39in;text-indent:0in"><span style="font-family:'Times New Roman';color:#000000">““Taxable person” shall mean any person who, independently, carries out in any place any economic activity, whatever the purpose or results of that activity.</span></p>
+            <p style="margin-left:0.39in;text-indent:0in"><span style="font-family:'Times New Roman';color:#000000">Any activity of producers, traders, or persons supplying services, including mining and agricultural activities and activities of the profession, shall be regarded as “economic activity”. The exploitation of tangible or intangible property for the purposes of obtaining income therefrom on a continuing basis shall in particular be regarded as an economic activity”.</span></p>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">5.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">The right to deduct input tax in respect of the various cost components is then set out in Article 168 of the Directive, which provides as follows:</span></p>
+            </blockContainer>
+            <p style="margin-left:0.39in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">“In so far as the goods and services are used for the purposes of the taxed transactions of a taxable person, the taxable person shall be entitled, in the Member State in which he carries out these transactions, to deduct the following from the VAT which he is liable to pay:</span></p>
+            <p style="margin-left:0.39in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">the VAT due or paid in that Member State in respect of supplies to him of goods or services, carried out or to be carried out by another taxable person;...”.</span></p>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">6.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">The principle of attribution is then set out in Article 173 of the Directive, which provides as follows:</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';color:#000000">“1.</num>
+              <p style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">In the case of goods or services used by a taxable person both for transactions in respect of which VAT is deductible pursuant to Articles 168, 169 and 170, and for transactions in respect of which VAT is not deductible, only such proportion of the VAT as is attributable to the former transactions shall be deductible.</span></p>
+            </blockContainer>
+            <p style="margin-left:0.39in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">The deductible proportion shall be determined, in accordance with Articles 174 and 175, for all the transactions carried out by the taxable person….”.</span></p>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">7.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">Articles 174 and 175 of the Directive stipulate that, subject to certain exceptions which are not relevant in this case, the deductible proportion is to be determined by a fraction of which the numerator is the turnover, exclusive of VAT, attributable to taxable transactions and the denominator is the turnover, exclusive of VAT, attributable to taxable transactions and the turnover attributable to exempt transactions.</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">8.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">The principles for calculating the deductible proportion of a taxable person’s input tax set out in Articles 174 and 175 of the Directive have been enacted into UK domestic law by Sections 24 to 26 of the VATA. So far as is material to this Decision:</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:0in">(1)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Section 24(1) of the VATA provides as follows:</p>
+            </blockContainer>
+            <p style="margin-left:0.79in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">“….“input tax”, in relation to a taxable person, means the following tax, that is to say— VAT on the supply to him of any goods or services;…</span></p>
+            <p style="margin-left:0.79in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">being (in each case) goods or services used or to be used for the purpose of any business carried on or to be carried on by him”.</span></p>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(2)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Section 25(2) of the VATA provides that a taxable person “is entitled at the end of each prescribed accounting period to credit for so much of his input tax as is allowable under section 26, and then to deduct that amount from any output tax that is due from him”;</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(3)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Section 26(1) of the VATA provides that credit is to be given for “so much of the input tax for the period (that is input tax on supplies, acquisitions and importations in the period) as is allowable by or under regulations as being attributable to supplies within subsection (2) below”;</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(4)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Section 26(2) of the VATA provides that:</span></p>
+            </blockContainer>
+            <p style="margin-left:0.39in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">“The supplies within this subsection are the following supplies made or to be made by the taxable person in the course or furtherance of his business— taxable supplies;…”; and</span></p>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(5)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">Section 26(3) of the VATA provides that:</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';color:#000000">“(3)</num>
+              <p style="margin-left:0.79in"><span style="font-family:'Times New Roman';color:#000000">The Commissioners shall make regulations for securing a fair and reasonable attribution of input tax to supplies within subsection (2) above…”.</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">9.</num>
+              <p style="margin-left:0in;text-indent:0.12in"><span style="font-family:'Times New Roman';color:#000000">The regulations to which Section 26(3) of the VATA refers are the Regulations. At the times to which this Decision relates:</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(1)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">paragraph 101(2) of the Regulations provided that, subject to various exceptions which are not material to this decision:</span></p>
+            </blockContainer>
+            <p style="margin-left:0.79in;text-indent:-0.01in"><span style="font-family:'Times New Roman';color:#000000">“…in respect of each prescribed accounting period—</span></p>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:1.18in;text-indent:-0.01in">(a)</num>
+              <p style="margin-left:1.18in;text-indent:0.37in"><span style="font-family:'Times New Roman';color:#000000">goods imported or acquired by and …goods or services supplied to, the taxable person in the period shall be identified,</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:1.18in;text-indent:-0.01in">(b)</num>
+              <p style="margin-left:1.18in;text-indent:0.37in"><span style="font-family:'Times New Roman';color:#000000">there shall be attributed to taxable supplies the whole of the input tax on such of those goods or services as are used or to be used by him exclusively in making taxable supplies,</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:1.18in;text-indent:-0.01in">(c)</num>
+              <p style="margin-left:1.18in;text-indent:0.37in"><span style="font-family:'Times New Roman';color:#000000">no part of the input tax on such of those goods or services as are used or to be used by him exclusively in making exempt supplies, or in carrying on any activity other than the making of taxable supplies, shall be attributed to taxable supplies,</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:1.18in;text-indent:-0.01in">(d)</num>
+              <p style="margin-left:1.18in;text-indent:0.37in"><span style="font-family:'Times New Roman';color:#000000">…subject to subparagraph (e) below, there shall be attributed to taxable supplies such proportion of the residual input tax as bears the same ratio to the total of such input tax as the value of taxable supplies made by him bears to the value of all supplies made by him in the period,</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:1.18in;text-indent:-0.01in">(e)</num>
+              <p style="margin-left:1.18in;text-indent:0.37in"><span style="font-family:'Times New Roman';color:#000000">the attribution required by subparagraph (d) above may be made on the basis of the extent to which the goods or services are used or to be used by him in making taxable supplies,…”;</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(2)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">paragraphs 101(4) and 101(5) of the Regulations provide for the ratio calculated in accordance with sub-paragraph 101(2)(d) of the Regulations to be expressed as a percentage and, if that percentage is not a whole number, to be rounded up; and</span></p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.39in;text-indent:0in">(3)</num>
+              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in"><span style="font-family:'Times New Roman';color:#000000">paragraph 101(10) of the Regulations provides that “[in] this regulation “residual input tax” means input tax incurred by a taxable person on goods or services which are used or to be used by him in making both taxable and exempt supplies”.</span></p>
+            </blockContainer>
+            <p><span style="font-weight:bold;font-family:'Times New Roman';color:#000000">Penalties</span></p>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0in">10.</num>
+              <p style="margin-left:0in;text-indent:0.25in">The provisions of Schedule 24 Finance Act 2007 which are relevant to this case are as follows: </p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(1)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in">The respondents may assess a taxpayer for a penalty if a tax return contains a careless inaccuracy (paragraphs 1 and 3).</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(2)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in"> The penalty for an inaccuracy which is careless is 30% of the potential lost revenue (paragraph 4). </p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(3)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in">This can be mitigated to 15% if a taxpayer makes a prompted disclosure (paragraphs 9 and 10).</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(4)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in">The respondents may reduce the penalty for special circumstances (paragraph 11).</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(5)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in">A taxpayer may appeal against a penalty assessment (paragraph 15).</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(6)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in">On an appeal, the Tribunal may affirm HMRC’s decision or substitute for it another decision that HMRC has the power to make (paragraph 17(2)).</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-weight:normal;text-decoration-line:none;vertical-align:baseline;font-family:'Times New Roman';font-size:12pt;color:#000000;background-color:initial;margin-left:0.39in">(7)</num>
+              <p class="ListParagraph" style="margin-left:0.39in;text-indent:0.38in">If the Tribunal substitutes its own decision it can rely on paragraph 11 (i.e. special circumstances) to a different extent to HMRC, but only if HMRC’s decision in respect of the application of paragraph 11 is flawed. </p>
+            </blockContainer>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
+  </judgment>
+</akomaNtoso>
