@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admin/2003/2527" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admin/2003/2527" />
+          <FRBRdate date="2003-10-14" name="judgment" />
+          <FRBRauthor href="#ewhc-qbd-admin" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="2527" />
+          <FRBRname value="VIVAN MARY JONES (R on the application of) v GUILDFORD CROWN COURT" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2003/2527" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2003/2527" />
+          <FRBRdate date="2003-10-14" name="judgment" />
+          <FRBRauthor href="#ewhc-qbd-admin" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2003/2527/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2003/2527/data.xml" />
+          <FRBRdate date="2022-11-03T19:19:25" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2003-10-14" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-qbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (Queen's Bench Division)" shortForm="The Administrative Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="the-queen-on-the-application-of" href="" showAs="THE QUEEN ON THE APPLICATION OF" />
+        <TLCPerson eId="vivan-mary-jones" href="" showAs="VIVAN MARY JONES" />
+        <TLCPerson eId="guildford-crown-court" href="" showAs="GUILDFORD CROWN COURT" />
+        <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-lord-justice-brooke" href="/judge-lord-justice-brooke" showAs="LORD JUSTICE BROOKE" />
+        <TLCPerson eId="judge-mr-justice-sullivan" href="/judge-mr-justice-sullivan" showAs="MR JUSTICE SULLIVAN" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-QBD-Admin</uk:court>
+        <uk:year>2003</uk:year>
+        <uk:number>2527</uk:number>
+        <uk:cite>[2003] EWHC 2527 (Admin)</uk:cite>
+        <uk:parser>0.10.13</uk:parser>
+        <uk:hash>5087e861b011f40f67dfb2e7a49e8f65b4702ce1e35758095ab5913fedfa5983</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Fixed { margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Question { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Answer { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Colloquy { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .ContinQ { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .ContinA { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .ContinCol { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Parenthetical { margin-left: 0.8in; margin-right: 0.51in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Centered { text-align: center; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Rightflush { text-align: right; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .BylineSQ { margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .BylineQS { margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .0Style { margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal1 { margin-left: 0.8in; margin-right: 0.81in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal2 { margin-left: 1.2in; margin-right: 0.81in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal3 { margin-left: 1.6in; margin-right: 0.81in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal4 { margin-left: 0.8in; margin-right: 0.51in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal5 { margin-left: 1.2in; margin-right: 1.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal6 { margin-left: 1.6in; margin-right: 0.91in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal7 { text-align: right; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Normal8 { text-align: center; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .9Style { margin-right: 1.31in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Header { text-align: center; margin-right: 1.31in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Footer { text-align: center; margin-right: 1.31in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Questionquoted { margin-left: 1.2in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Answerquoted { margin-left: 1.2in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Speakerquoted { margin-left: 1.2in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .questionPghquoted { margin-left: 1.2in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .answerPghquoted { margin-left: 1.2in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .speakerPghquoted { margin-left: 1.2in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Marginsecondary { margin-left: 0.8in; margin-right: 0.81in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Extramargin { margin-left: 1.2in; margin-right: 0.81in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .Ordinaryextramargin { margin-left: 1.6in; margin-right: 0.81in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .LeftFlush { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .HEADING { margin-left: 0.4in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .RESTRICTEDACCESS { text-align: center; margin-right: 1.21in; font-family: Arial; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="Normal7" style="margin-right:0.01in"><docketNumber style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">C0/1892/2003</docketNumber><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'"> </span></p>
+      <p class="0Style" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Neutral Citation Number: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">[2003] EWHC 2527 (Admin)</neutralCitation></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewhc-qbd-admin" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewhc-qbd-admin" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">QUEEN'S BENCH DIVISION</courtType></p>
+      <p class="0Style" style="margin-right:0.01in"><courtType refersTo="#ewhc-qbd-admin" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">ADMINISTRATIVE COURT</courtType></p>
+      <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Royal Courts of Justice</span></p>
+      <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Strand</span></p>
+      <p class="Normal7" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">London WC2</span></p>
+      <p class="Normal7" style="margin-right:0.01in"><docDate date="2003-10-14" refersTo="#judgment" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Tuesday, 14 October 2003</docDate></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">B E F O R E:</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><judge refersTo="#judge-lord-justice-brooke" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">LORD JUSTICE BROOKE</judge></p>
+      <p class="Normal8" style="margin-right:0.01in"><judge refersTo="#judge-mr-justice-sullivan" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">MR JUSTICE SULLIVAN</judge></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">- - - - - - -</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><party refersTo="#the-queen-on-the-application-of" as="#claimant" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">THE QUEEN ON THE APPLICATION OF</party></p>
+      <p class="Normal8" style="margin-right:0.01in"><party refersTo="#vivan-mary-jones" as="#claimant" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">VIVAN MARY JONES</party></p>
+      <p class="Normal7" style="margin-right:0.01in"><role refersTo="#claimant" style="font-family:'Times New Roman'">(CLAIMANT)</role></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">-v- </span></p>
+      <p class="Normal8" style="margin-right:0.01in"><party refersTo="#guildford-crown-court" as="#defendant" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">GUILDFORD CROWN COURT</party></p>
+      <p class="Normal7" style="margin-right:0.01in"><role refersTo="#defendant" style="font-family:'Times New Roman'">(DEFENDANT) </role></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'"> - - - - - - -</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">Computer-Aided Transcript of the Stenograph Notes of </span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">Smith Bernal Wordwave Limited</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">190 Fleet Street  London EC4A 2AG</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">Tel No: 020 7404 1400 Fax No: 020 7831 8838</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">(Official Shorthand Writers to the Court)</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'"> - - - - - - -</span></p>
+      <p class="0Style" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">MISS RJ CALDER</span><span style="font-family:'Times New Roman'"> (instructed by ) appeared on behalf of the CLAIMANT</span></p>
+      <p class="0Style" style="margin-right:0.01in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">THE DEFENDANT DID NOT APPEAR AND WAS NOT REPRESENTED</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'"> - - - - - - -</span></p>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-family:'Times New Roman'">J U D G M E N T </span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <paragraph eId="para_1">
+          <num style="font-family:'Times New Roman'">1.</num>
+          <content>
+            <p class="Colloquy" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">LORD JUSTICE BROOKE:  In this matter Miss Calder appears on behalf of Vivian Mary Jones, seeking permission to apply for a mandatory order requiring the Guildford Crown Court to state a case in relation to the orders it made when it dismissed her appeal against conviction on 18th December 2002.  On 19th July 2002 the North Surrey Magistrates' Court had convicted her of driving with excess alcohol.  In this court Owen J dismissed the application on paper and this is a renewed application.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-family:'Times New Roman'">2.</num>
+          <intro>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">When the Crown Court acknowledged service, they said in terms that this court should not consider the matter without the prosecution being represented and without having a transcript of what was said by the Crown Court.  They referred us in that respect to what the judge said when he refused to state a case.  He concluded by saying: </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Parenthetical" style="text-align:justify;margin-right:0.51in"><span style="font-family:'Times New Roman'">"This application is frivolous.  In my view, if it is made before the Divisional Court, the prosecution should be represented to make sure that the facts put before the Court on behalf of the appellant are correct.  A transcript should be obtained of what I said when dismissing the appeal and making the order for costs". </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-family:'Times New Roman'">3.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">The application to state a case sought the opinion of the High Court on two questions: (i) could a reasonable Bench, properly directing itself, of its own motion adjourn the trial of this matter part-heard, for two days so that the prosecution could make good its case by bringing three witnesses from Chorley, Lancashire?  and (ii) could a reasonable Bench, properly directing itself, have awarded the prosecution its costs of the hearing for December 16th and December 18th?</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-family:'Times New Roman'">4.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">So far as the first matter is concerned, there was an unhappy previous history in the Magistrates' Court.  The case had been listed for hearing in February last year, but the defendant was unexpectedly admitted to hospital in an emergency.  The magistrates' court required a certificate from the hospital and was not willing to accept somebody's say so that she was ill.  At all events, as soon as the certificate arrived, the matter was adjourned.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-family:'Times New Roman'">5.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">It was listed for hearing again on 13th June.  On that occasion the defendant attended with counsel, but the prosecution analyst was said to be ill and could not attend the hearing.  The defence was worried that there had been no prior notice.  There was no certificate when the court had granted an adjournment, and Miss Calder has told us, what is quite well-known to the court, that often prosecutions go off in the magistrates' court because, for one reason or another, the prosecution is not ready.  However that may be, there was a feeling that there had been one set of rules for the defence and one set of rules for the prosecution.  In the event, on 19th July 2002 the hearing took place before the justices and the defendant was disqualified for a year, fined £100 and ordered to pay £350 costs. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-family:'Times New Roman'">6.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">The matter was fixed for hearing in the Crown Court on 16th October 2002; the hearing to take place on 16th December 2002.  When the case came on, objection was taken to the prosecution wishing to rely on a number of statements, which it regarded as formal, but they had not all been signed and objection was taken.  The judge made a ruling that section 9 of the Criminal Justice Act 1967 had not been complied with, but he said that the prosecution could adjourn to allow three witnesses to come from Chorley.  He fixed a further hearing, two days later (which the two justices could manage), so that the matter could be dealt with before Christmas.  The hearing took place.  The appeal was dismissed and Miss Jones was ordered to pay £500 costs.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-family:'Times New Roman'">7.</num>
+          <intro>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">As to the first question which Miss Calder sought to be answered, the judge said: </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Parenthetical" style="text-align:justify;margin-right:0.51in"><span style="font-family:'Times New Roman'">"The prosecution were allowed an adjournment to call 3 witnesses because the defence took a technical point which had no merit.  The evidence of the analysis of the blood sample taken from the appellant was in reality not in dispute at all - as the defence well knew because live evidence from an analyst had been called at the Magistrates' Court.  The prosecution had served Section 9 statements from 3 witnesses from the laboratory in Lancashire upon the defence, but by an oversight the witness statements which were served had not been signed by the witnesses.  In fact signed copies of the witness statements were obtained, but were only available on the first day of the hearing and had not been served."</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p class="LeftFlush" style="text-align:justify;margin-left:0.39in;margin-right:0in;text-indent:0in"><span style="font-family:'Times New Roman'">I pause there to say it appears that they were faxed down during the course of the day.  </span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Parenthetical" style="text-align:justify;margin-right:0.51in"><span style="font-family:'Times New Roman'">"It followed that technically the 3 witness statements could not be read.  It was in those circumstances that the Court adjourned for 2 days so that the 3 witnesses could attend from Lancashire - at great public expense and inconvenience.  When they were called their evidence was not disputed.  This was not surprising since the defence already knew that there was no point to be taken on this evidence.  The only point of substance taken on the appeal was whether the officer was correct to have a blood sample taken from the appellant."  </span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-family:'Times New Roman'">8.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">Miss Calder objects to the description of the effect of the evidence.  In her solicitors' statement, it is said that gas chromatography is not a particularly accurate method and scientific papers have been written on possible interferences with the result from, for example, the preservative which is mixed with the blood and the storing of the sample.  The defence wanted to have the opportunity, without any expert evidence available at all, to ask the prosecution witnesses about this.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-family:'Times New Roman'">9.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">It appears to me that, so far as that question was concerned, this was amply within the discretion of the Crown Court, and whether the word "frivolous" is a particular happy word - and it has been explained by a former Lord Chief Justice in the past - I consider it is an appropriate word to use in relation to the first question.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-family:'Times New Roman'">10.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">The second question is a rather different one, it is ineptly phrased at the moment: (ii) could a reasonable Bench, properly directing itself, have awarded the prosecution its costs of the hearing for December 16th and December 18th 2002?  It is quite clear that the Crown Court's patience was a little bit frayed -- in view of the way the matter proceeded -- but we do not have the transcript of what the judge said.  What is said on her behalf is that in addition to £450, which was ordered to be paid below, the order for £500 costs in the Crown Court meant that the defendant had to pay £950 and she was destitute.  She had psychiatric problems; she was not even in receipt of state benefits; the appeal should have been disposed of in one day but owing to the judge's decision to adjourn it to another day the costs were increased.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-family:'Times New Roman'">11.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">There appears to be no excuse whatsoever for the solicitors and counsel having the carriage of this matter not to have taken effective steps to obtain an order that a transcript of what the judge said could be obtained at public expense, if it is correct that the defendant could not afford it.  It is absolutely elementary that before considering a matter of this kind, the court, if there is a transcript of what the judge said, should obtain it; even more so when the judge himself says the court would benefit from it and when the Crown Court in its acknowledgment of service suggests that the court would benefit from it.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-family:'Times New Roman'">12.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">Given that the question at present asked is inept, because the Crown Court could properly make an order for costs, but the question was should it have made a different order than otherwise might have been made, on account of the defendant's means, technically we would be entitled to dismiss this application outright.  On the other hand it seems to me that before dismissing it outright, we should have an opportunity of seeing what the judge said.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-family:'Times New Roman'">13.</num>
+          <content>
+            <p class="ContinCol" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">The course that this case should now take is that we direct that a transcript of the judge's reasons for making the costs order he did be obtained from the Crown Court at public expense, and that it be sent -- and not merely filed with this court -- to the defendant's solicitors.  They have three weeks in which they can make such further submissions as they wish in writing, based on what the Crown Court judge has said in his reasons, and framing a sensible case which we might then pose.  We will then consider the reasons of the Crown Court, and any submissions that we receive from the defendant, and give our reasons in writing as to whether we then decide to make the order sought or dismiss the application.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-family:'Times New Roman'">14.</num>
+          <content>
+            <p class="Colloquy" style="text-align:justify;margin-left:0.39in;margin-right:0in"><span style="font-family:'Times New Roman'">MR JUSTICE SULLIVAN:  I agree. </span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/fam/2023/208" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/fam/2023/208" />
+          <FRBRdate date="2023-02-03" name="judgment" />
+          <FRBRauthor href="#ewhc-family" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="208" />
+          <FRBRname value="C v M" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2023/208" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2023/208" />
+          <FRBRdate date="2023-02-03" name="judgment" />
+          <FRBRauthor href="#ewhc-family" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2023/208/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2023/208/data.xml" />
+          <FRBRdate date="2023-05-01T16:01:29" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2023-02-03" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-family" href="https://www.gov.uk/courts-tribunals/family-division-of-the-high-court" showAs="The Family Division of the High Court" shortForm="The Family Division" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="c" href="" showAs="C" />
+        <TLCPerson eId="m" href="" showAs="M" />
+        <TLCRole eId="applicant" href="" showAs="Applicant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-mrs-justice-theis-dbe" href="/judge-mrs-justice-theis-dbe" showAs="MRS JUSTICE THEIS DBE" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-Family</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>208</uk:number>
+        <uk:cite>[2023] EWHC 208 (Fam)</uk:cite>
+        <uk:parser>0.14.2</uk:parser>
+        <uk:hash>2dcbab103b25c3a2ca8d698517f6aeadd5b03bef2c612c277be09373d108ca88</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .NormalWeb { font-size: 12pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
+#judgment .Revision { font-size: 12pt; }
+#judgment .PlaceholderText { color: #808080; }
+#judgment .Emphasis { font-style: italic; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .FollowedHyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #954F72; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2023] EWHC 208 (Fam)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>FD22P00737</docketNumber><span> </span></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-family">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-family" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">FAMILY DIVISION</courtType></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2023-02-03" refersTo="#judgment">3/2/2023</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mrs-justice-theis-dbe">MRS JUSTICE THEIS DBE</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td style="border:0.5pt solid">
+            <p />
+          </td>
+          <td style="border:0.5pt solid">
+            <p style="text-align:center"><party refersTo="#c" as="#applicant" style="font-weight:bold;color:#000000">C</party></p>
+          </td>
+          <td style="border:0.5pt solid">
+            <p class="CoverMain" style="text-align:right"><role refersTo="#applicant">Applicant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td style="border:0.5pt solid">
+            <p />
+          </td>
+          <td style="border:0.5pt solid">
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td style="border:0.5pt solid">
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td style="border:0.5pt solid">
+            <p />
+          </td>
+          <td style="border:0.5pt solid">
+            <p style="text-align:center"><party refersTo="#m" as="#respondent" style="font-weight:bold">M</party></p>
+          </td>
+          <td style="border:0.5pt solid">
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent">Respondent</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p><span style="font-weight:bold">Ms Jennifer Perrins </span>(instructed by<span style="font-weight:bold"> The International Family Law Group LLP)</span></p>
+      <p style="text-align:center">for the <span style="font-weight:bold">Applicant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Mr Mark Jarman </span> (instructed by <span style="font-weight:bold">DMH Stallard</span>) for the <span style="font-weight:bold">Respondent </span></p>
+      <p style="text-align:center">Hearing dates: 24<span style="vertical-align:super;font-size:smaller">th</span> &amp; 25<span style="vertical-align:super;font-size:smaller">th</span> January 2023</p>
+      <p style="text-align:center">Judgment: 3 February 2023</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center">.............................</p>
+      <p style="text-align:center"><span style="font-weight:bold">MRS JUSTICE THEIS DBE</span></p>
+      <p style="text-align:justify">This judgment was delivered in private.   The judge has given leave for this version of the judgment to be published. The anonymity of the children and members of their family must be strictly preserved.   All persons, including representatives of the media, must ensure that this condition is strictly complied with.   Failure to do so will be a contempt of court.</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p><span style="font-weight:bold">Mrs Justice Theis DBE :</span></p>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The court is concerned with the father’s application under the 1980 Hague Convention (‘the Convention’) for the return of X (11 years old) and Y (5 years old) to the jurisdiction of Mauritius.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The mother accepts that on 6 October 2022 the children were wrongfully removed from Mauritius to England within the terms of the Convention. The mother resists an order for the return of the children forthwith to Mauritius, as required by Article 12 of the Convention, relying on the defences of grave risk of harm and/or intolerability under Article 13 (1)(b) and the child’s objections under Article 13 (2).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">As well as considering the documents in the trial bundle, the court heard the oral evidence on Ms Callaghan, the Cafcass officer who met the children and prepared a report on their wishes.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Before turning to consider the evidence, I would like to make a general point about the length of statements in abduction proceedings. In many of these cases such statements are far too long. In this case the mother’s statement was 33 pages, 82 paragraphs with 90 pages of exhibits. The father’s was 26 pages, 61 paragraphs with 80 pages of exhibits. The current Child Abduction Practice Guidance describes at paragraph 3.7 that such witness statements should be <span style="font-style:italic">‘as economical as possible and should deal only with those factual matters raised in the answer. </span><span style="font-style:italic;font-weight:bold">The court will rarely be assisted by a detailed account of the history of the parents’ relationship.’</span><span style="font-style:italic"> </span>[emphasis added] The strictures of the Practice Guidance had not been applied in this case. The length of the statements and the number of exhibits, many of which were barely referred to, resulted in this case having a bundle that exceeded the PD27A page limit. No permission was sought to do so. Parties to abduction proceedings should re-acquaint themselves with the Practice Guidance and make sure the provisions in paragraph 3.7 provide the guiding framework for any statement filed in these proceedings.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="text-indent:-0.1in"><span style="font-weight:bold">Relevant background</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The parties are both dual British and Mauritian nationals. They met in England in 2000, married here in 2003 and both children were born here.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The father ran a recruitment consultancy business that went into liquidation in 2014 in circumstances that are disputed between the parents. The father states it was due to high interest rates, the mother alleges it was due to the father’s financial mis-management. This had an impact on the family lifestyle and properties they owned had to be sold and money borrowed from family and elsewhere. Following that there are cross allegations by the parents regarding the family finances. The father states that due to the financial difficulties they decided in about 2019 to relocate. They discussed moving to Singapore after spending time with the mother’s parents in Mauritius. He accepts he made initial enquiries with schools and homes they could live in in Singapore but says the move did not take place due to the mother insisting they had <span style="font-style:italic">‘£140,000 in our account before moving to Singapore’.</span> The mother says the plan to move to Singapore was more certain when they left England in 2019 and the main reason for the stay in Mauritius was to enable her to renew her Mauritian passport, which could only be done in person. Events then overtook with the Covid travel restrictions and the parties’ separation in November 2020. The mother states the intention was not to stay in Mauritius long term. According to the father once they were in Mauritius the mother wanted to stay there, he agreed and they decided to stay with the maternal grandparents until they could purchase their own home which, he says, he engaged in correspondence about in May, August and September 2021. He says his second company <span style="font-style:italic">‘has been very successful, and I believe this is largely due to the move to Mauritius, which allows me to work effectively within the time zone of southeast Asia’.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In Mauritius the family initially lived with the maternal grandparents until the parents’ separation in November 2020, when the father went to live with his mother. The father continued to have contact with Y seeing him every weekend. After the separation X only participated in indirect video-call contact, which stopped in in about November 2021.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In June 2022 the father had instigated court procedures in Mauritius to seek contact with X. He made a ‘request to the court’ on 7 June 2022 and on 10 June 2022 both parties attended court-based mediation, where the parties agreed when the father came to the home to collect Y he would see X for up to 30 minutes. According to the father, that arrangement did not work with X and he was in the process of making a formal court application when he received the letter from the mother’s English solicitors dated 7 October 2022 stating she had left with the children.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In his statement the father refers to a message from the mother in August 2022 confirming that Y will be attending the same school as X from January 2023. He sets out in his statement the financial support he has provided for the mother and the maternal grandmother, which is disputed by the mother. The father denies being abusive to the mother either prior to them being in Mauritius and also since their arrival there. According to the father his position was made difficult in the maternal grandparents’ home after he reconciled his relationship with his own mother in January 2020. He considered the mother was aggressive to him and he moved out as the environment had become <span style="font-style:italic">‘toxic’.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The father received a further letter from the mother’s solicitors on 11 October 2022 informing him she had issued divorce proceedings in England. The father was served with those proceedings on 25 October 2022 and he disputes jurisdiction. The father issued divorce proceedings in Mauritius on 1 November 2022.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Following her arrival here the mother initially stayed with relatives before securing emergency accommodation with the council. The mother registered the children to attend their current school and informed the father when she had done so. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The father contacted the Central Authority in Mauritius on 13 October 2022 and informed the mother’s solicitors on 15 October 2022 that he had registered the case as child abduction with the Mauritian authorities.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">These proceedings were issued in early November and served on the mother on 15 November 2022. On 18 November 2022 the mother voluntarily handed hers and the children’s travel documents to the father’s solicitor.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Directions were made by Mr Dias KC on 29 November 2022, listing this hearing and making directions for the filing of evidence and for Cafcass to undertake a report. It was agreed the father would continue to have daily video calls with the children.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Both parties filed evidence from Mauritian lawyers regarding the enforceability of protective measures.  It was agreed a single joint expert should be instructed. The Part 25 application to do so was agreed and directed by the court. Ms Varuna Bunwaree filed her report on 23 January 2023. Following her answering further questions, she was not required to give oral evidence.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="text-indent:-0.1in"><span style="font-weight:bold">The evidence</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Both parents’ detailed statements set out their account of the background of the relationship.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The mother’s statement sets out in some detail the financial background and the alleged difficulties in the various businesses run by the father during their marriage. This is principally relied upon to demonstrate that the father’s protective measures regarding financial support need to be considered with some caution due to this background. The mother also alleges the father exerted control over her by the way he managed the family finances and took unilateral steps without her knowledge. The father denies the allegations. He accepts the difficulties in some of the businesses but denies it was as a result of his behaviour and was more to do with external circumstances at the time.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The mother’s statement also sets out a detailed account of alleged domestic abuse during the parties’ relationship which include allegations of physical, verbal and emotional abuse towards her, X and some members her wider family, including during the time when the parties were in Mauritius prior to their separation.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The father denies these allegations, although he does accept at various points there were heated discussions between the adults, sometimes in the presence of X. He provides an alleged context; that such difficulties that existed related to his decision to reconcile his relationship with his mother in January 2020 and the tensions that flowed from that.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.6in">20.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The SJE, Ms Banwaree, sets out in her report the process that can take place in Mauritius to enforce any protective measures offered here by the father. In summary, she confirms that:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.3in">(1)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in;text-indent:0.08in">The process is by way of an application for an order for exequatur of the foreign judgment which is lodged before the Supreme Court of Mauritius. It can be lodged by either party and the judge does not review the basis of the foreign judgment other than whether any of the undertakings offered are contrary to public order. In her report she stated the time frame for such an order to be made could be 6 months to two years. Following questions from the parties she revised this timeframe to about two weeks if there was no opposition to what is sought stating <span style="font-style:italic">‘The judge would generally grant the order on the same day’</span> although continued <span style="font-style:italic">‘In some circumstances, especially if the application requires some clarification, the judge may take time to consider the application before granting the Order.’</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.3in">(2)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in;text-indent:0.08in">Turning to the question of whether the financial undertakings offered by the father could be put into an interim financial order, Ms Bunwaree stated that if the divorce petition issued contains a prayer that includes custody, access and alimony, interim orders could be made which could be given on the same day for presentation. The court was informed there is an interim hearing fixed on 29 March 2022 at 9.30. Ms Bunwaree also confirmed the parties could write a joint letter to the court to ask for an earlier listing.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.3in">(3)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in;text-indent:0.08in">Ms Bunwaree set out details about enforcement of non-monetary undertakings either by way of a contempt application and also by making a formal complaint to the police, as breach of a protection order is a criminal offence.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.3in">(4)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in;text-indent:0.08in">As regards costs, Ms Bunwaree states the parties may apply for legal aid, subject to eligibility and confirms the disbursements costs associated with the lodging of exequatur proceedings.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.3in">(5)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in;text-indent:0.08in">Finally, in relation to any application made for relocation she estimated that such an application would take between one to two years to be determined at first instance level.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.49in;text-indent:-0.49in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.49in">Ms Callaghan provided her report to the parties on 13 January 2023 directed to consider the children’s wishes about returning to Mauritius, their maturity and whether any of the children should be separately represented. Ms Callaghan met with the children on 10 January 2023.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.49in;text-indent:-0.49in">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.49in">The report describes X as initially being anxious, but then relaxed. Y was present during the meeting although was not able to directly engage with Ms Callaghan. In her discussions with X she was very positive about her school here. When asked about the school in Mauritius she responded that it was <span style="font-style:italic">‘good’</span> before then returning to describing school here. She described Mauritius as <span style="font-style:italic">‘..like a holiday place, not a place where you live all your life, England is my home, I was born here, and it is exciting to be back. In Mauritius once you have seen everything, there is nothing more to see’.</span> When asked how she feels about going to back to Mauritius she replied <span style="font-style:italic">‘I don’t want to go back to Mauritius, I am at home here and able to do the stuff that I love and to learn and go to places I enjoy’</span>. She continued in relation to Mauritius <span style="font-style:italic">‘In Mauritius it is really warm, but it is nice to have different weather, even when it is sometimes cold’.</span> She described the house in Mauritius as <span style="font-style:italic">‘nice and had a garden but there are two houses, with my grandparents in one and my aunt and uncle and two cousins in the other’</span>. X referred to an incident when she alleges the father took her and Y from her aunt’s house describing him coming and taking them and then he <span style="font-style:italic">‘sat me down and screamed at me, he is like that even when he is on the phone, he would get angry and make me scared. I would shut myself away after seeing his scary face’</span>. X then described an incident when she says she witnessed the father physically assaulting her mother, describing how she felt <span style="font-style:italic">‘it made me really scared……I was worried that my mum was going to fall, I was terrified’</span>. X said if she had a choice <span style="font-style:italic">‘Í would never see or speak to him again’.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.49in;text-indent:-0.49in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.49in">When Ms Callaghan suggested to X that it sounds as if she felt angry towards her father she responded <span style="font-style:italic">‘not angry, but I think why would someone do that. A few times a week it would happen and even after he left, he would get angry on the phone’</span>. X referred to a conversation she said she had with her father when she was seeing him in the garage  and he talked about <span style="font-style:italic">‘twisting nipples and the Squid game, which was banned by my school’</span> and he said she should not tell her mother. X described the sleeping arrangements at the maternal grandparents’ home in Mauritius, where she said she heard her parents fighting and <span style="font-style:italic">‘went to sleep with them to stop the fighting, so nothing would happen to mum’</span>, she continued that <span style="font-style:italic">‘now we have our own bedrooms and don’t have to share’</span>. When asked about her maternal grandparents X responded <span style="font-style:italic">‘my grandmother is really nice and really cares about us’</span>, then said <span style="font-style:italic">‘I don’t want to go back to Mauritius, even if it is nice, I like my country (England) and I don’t want to see him (her father), he is a bully, like when he sat me down and shouted at me, he screamed at me ‘I am your father’. Also, because Mauritius is a holiday place, England is my home, there are so many places I enjoy here, it is not nice being taken away from your home’</span>. In her oral evidence Ms Callaghan considered if the details X gave related to her own experiences of her father and if she had witnessed these incidents it would have impacted on X’s emotional wellbeing. X said she didn’t want to go back to Mauritius because her father is there and described him as a bully. When asked she said she did not miss anything about Mauritius describing it as <span style="font-style:italic">‘alright but I love it here’</span>. X agreed she knew about the trip to England beforehand.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.49in;text-indent:-0.49in">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.49in">When asked if there was anything she was worried about if she returned to Mauritius she said <span style="font-style:italic">‘I have made friends here and I love it here. I would have to see him, and he might do something to me. While we are here, he won’t be able to do anything and that makes me feel safe. He used to come and see us in the garage, but I didn’t want to go but I had to and when he got angry, I would run away’</span>.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Ms Callaghan described X as an articulate child and she considered her maturity was in line with her age. Although Ms Callaghan thought X may have aligned herself with her mother she considered her views to be authentic and didn’t consider she had been ‘coached’. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.49in;text-indent:-0.49in">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.49in">Y was present but did not express any views about returning to Mauritius and Ms Callaghan considered his level of maturity to be less than expected for a child of his age.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">Relevant Legal Framework</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The mother accepts that the children’s habitual residence was in Mauritius prior to 6 October 2022 and that she wrongfully removed them from Mauritius without the father’s consent. Article 12 of the Convention requires the court to return the children, unless the mother can establish one of the exceptions under Article 13 of the Convention.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Article 13 provides as follows:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic">Notwithstanding the provisions of the preceding Article, the judicial or administrative authority of the requested State is not bound to order the return of the child if the person, institution or other body which opposes its return establishes that – </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic">a) the person, institution or other body having the care of the person of the child was not actually exercising the custody rights at the time of removal or retention, or had consented to or subsequently acquiesced in the removal or retention; or </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic">b) there is a grave risk that his or her return would expose the child to physical or psychological harm or otherwise place the child in an intolerable situation. The judicial or administrative authority may also refuse to order the return of the child if it finds that the child objects to being returned and has attained an age and degree of maturity at which it is appropriate to take account of its views.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">As regards Article 13 b the leading decisions are <span style="font-style:italic">Re E (Children)(Abduction: Custody Appeal) </span>[2012] 1 AC 144 and <span style="font-style:italic">Re S (A Child) (Abduction: Rights of Custody)</span> [2012] UKSC 10.  In <span style="font-style:italic">Re E </span>Baroness Hale made clear at paragraphs 31- 37:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(1)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The burden of proof lies with the person opposing the return [32].”</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(2)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">No need for elaboration or gloss to the reference to ‘grave risk of harm’; by its terms it is of ‘restricted application’ [31] the risk must be grave [33].”</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(3)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">There was recognition that the term ‘physical or psychological harm’ are not qualified but they ‘gain colour’ from the alternative ‘or otherwise’ placed ‘in an intolerable situation’. Whilst accepting a child will have to put up with a certain amount of ‘rough and tumble, discomfort and distress’ there are some things that it is not reasonable to expect them to tolerate. These include physical or psychological abuse or neglect and can include exposure to such behaviour [34].</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(4)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The analysis under article 13 b is looking to the future; the situation there would be if the child is returned to the home country which is not necessarily the same as being returned to the person seeking the child’s return. The situation the child will face on return depends on the protective measures that can be put in place [35].</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(5)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">Where the allegations relied upon are contested Baroness Hale stated as follows [36] <span style="font-style:italic">‘</span><span style="font-style:italic;color:#000000">Where allegations of domestic abuse are made, the court should first ask whether, if they are true, there would be a grave risk that the child would be exposed to physical or psychological harm or otherwise placed in an intolerable situation. If so, the court must then ask how the child can be protected against the risk. The appropriate protective measures and their efficacy will obviously vary from case to case and from country to country. This is where arrangements for international co-operation between liaison judges are so helpful. Without such protective measures, the court may have no option but to do the best it can to resolve the disputed issues’</span><span style="color:#000000">. As has been later stated by Moylan LJ in </span><span style="font-style:italic;color:#000000">Re C (Children)(Abduction: Article 13b)</span><span style="color:#000000"> [2019] 1 FLR 1045 this does not mean no evaluative assessment of the allegations could or should be undertaken, with due caution being factored in when conducting a paper evaluation.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Turning to the issue regarding child’s objections the leading judgment is <span style="font-style:italic">Re M (Children)(Republic of Ireland) (Child’s Objections) (Joinder of Children as Parties to Appeal)</span> [2015] 2 FLR 1074 helpfully summarised by MacDonald J in <span style="font-style:italic">H v K (Return Order)</span> [2017] EWHC 1141 (Fam) at paragraphs 46 – 47:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:italic;color:#000000">"46.</num>
+            <content>
+              <p style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;color:#000000">The law on the 'child's objection' defence under Art 13 of the Convention is comprehensively set out in the judgment of Black LJ in  Re M (Republic of Ireland) (Child's Objections) (Joinder of Children as Parties to Appeal)[2015] 2 FLR 1074 (and endorsed by the Court of Appeal in Re F (Child's Objections) [2015] EWCA Civ 1022)  and I have regard to the clear guidance given in that case. In summary, the position is as follows:</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:italic;color:#000000">(i)</num>
+            <content>
+              <p style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;color:#000000">The gateway stage should be confined to a straightforward and fairly robust examination of whether the simple terms of the Convention are satisfied in that the child objects to being returned and has attained an age and degree of maturity at which it is appropriate to take account of his or her views.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:italic;color:#000000">(ii)</num>
+            <content>
+              <p style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;color:#000000">Whether a child objects is a question of fact. The child's views have to amount to an objection before Art 13 will be satisfied. An objection in this context is to be contrasted with a preference or wish.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:italic;color:#000000">(iii)</num>
+            <content>
+              <p style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;color:#000000">The objections of the child are not determinative of the outcome but rather give rise to a discretion. Once that discretion arises, the discretion is at large. The child's views are one factor to take into account at the discretion stage.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:italic;color:#000000">(iv)</num>
+            <content>
+              <p style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;color:#000000">There is a relatively low threshold requirement in relation to the objections defence, the obligation on the court is to 'take account' of the child's views, nothing more.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.5in"><span style="font-style:italic;color:#000000"> At the discretion stage there is no exhaustive list of factors to be considered. The court should have regard to welfare considerations, in so far as it is possible to take a view about them on the limited evidence available. The court must give weight to Convention considerations and at all times bear in mind that the Convention only works if, in general, children who have been wrongfully retained or removed from their country of habitual residence are returned, and returned promptly".</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:italic;color:#000000">47.</num>
+            <content>
+              <p style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;color:#000000">Once the discretion comes into play, the court may have to consider the nature and strength of the child's objections, the extent to which they are authentically the child's own or the product of the influence of the abducting parent, the extent to which they coincide or at odds with other considerations which are relevant to the child's welfare, as well as the general Convention considerations (Re M [2007] 1 AC 619)."</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p><span style="font-weight:bold;color:#000000">Discussion and decision</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_31">
+          <num style="margin-left:0.5in;text-indent:-0.6in">31.</num>
+          <intro>
+            <p style="margin-left:0.5in"><span style="color:#000000">The father seeks the children’s return and offers a number of protective measures. The final list of measures were sent to the court on 25 January 2023. They can be summarised as follows:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(1)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father will not contact the mother save for the purpose of making arrangements to see the children and wherever possible will do so via solicitors.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(2)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father agrees not to threaten violence and not to remove either of the children from the mother’s care save for agreed contact or that ordered by the court after an on-notice hearing.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(3)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father will pay for the mother and children to return to Mauritius.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(4)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father will not attend the airport when the mother and children return or instigate or support any criminal or civil proceedings against the mother regarding the removal of the children.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(5)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father will use his best endeavours to secure an early listing of an on notice hearing to consider children issues and will not make any application for custody before such a hearing.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(6)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father will co-operate in any way to ensure a joint application for exequatur is made to record and make enforceable his undertakings.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.39in">(7)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:0.98in">The father will make payment in advance of the mother and children travelling of 6 months (as the school payment is lower than expected) child maintenance of £2,124 (£354 pm) and secure medical insurance. In addition, he will pay the school fees (including transport costs), 3 months’ rent for accommodation up to a maximum of £400 pm and any deposit required and continue to pay these ongoing costs (rent/school fees/maintenance) until further order of the court.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">32.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">Although not entirely clear from the documents I have seen, the mother takes issue with the father’s proposed protective measures. She seeks a higher monthly rent (up to £4,050 pcm), a larger allowance for a rental deposit (£7,200) and maintenance fees and utilities (£650pcm). The school costs are similar between the parties save for a sum the mother seeks of £575 pcm entitled ‘other misc school costs’. She seeks a higher child maintenance figure of £400 pcm and a sum for legal fees in Mauritius (£33,890).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">33.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">The mother accepts the burden is on her to establish the defences she relies upon. In relation to the Article 13 b defence, she relies both upon the financial history she sets out in her statement as demonstrating the lack of reliability regarding any financial proposals made by the father as protective measures and the alleged history of domestic abuse. On behalf of the mother Mr Jarman submits <span style="font-style:italic">‘in circumstances where the father was constantly aggressive, abusive and controlling where he made no financial contribution to the mother or children during almost the entirety of their time in Mauritius, the mother avers that a return of the children to Mauritius presents a grave risk to them or would otherwise be intolerable’.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">34.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">In relation to child’s objections Mr Jarman submits X is an articulate child. The report from Ms Callaghan makes clear if X did witness the domestic abuse she described, this is likely to have compromised her emotional wellbeing and would have an impact on her wishes and feelings. He submits the report from Ms Callaghan makes clear X wishes to remain here and not return to Mauritius. X spoke negatively about her father and does not want to spend time with him. X considered this jurisdiction to be safer and to be her home. Mr Jarman submits the evidence demonstrates X objects to a return to Mauritius, she is of an age where her wishes should be considered and any return to Mauritius would present a grave risk of harm to her physical and emotional wellbeing. He submits the protective measures offered do not reduce the risk and offer insufficient protection in the circumstances of this case.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">35.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">Ms Perrins, on behalf of the father, submits the evidence relied upon by the mother does not meet the threshold under Article 13 b. The father denies the allegations of financial mismanagement and domestic abuse. Even if the allegations of domestic abuse are taken at their highest she submits they need to be considered in the context of the parties separation in November 2020, the fact that the father had contact with the children by agreement with the mother without any involvement of the court until June 2022 and there are no allegations of incidents between the parties post-dating the separation. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">36.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">Ms Perrins submits that the part of the mother’s case that relies on the financial history should be treated with some caution, particularly as the mother issued divorce proceedings in this jurisdiction within days of her arrival. She submits the statement reads more like a statement in financial proceedings rather than child abduction. Even if what the mother states is taken as its highest, the concerns about financial issues in the context of these abduction proceedings are met by the protective measures offered and the wider issues relating to financial matters will be considered by the competent court in Mauritius. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">37.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">Turning to the issue of child’s objections Ms Perrins submits that when properly analysed, X’s views amount to no more than a preference. If she is objecting it is to the wrong thing, as any negative views about Mauritius are bound up with her views about not wanting to see her father rather than to a return to Mauritius. In any event, she submits even if X’s views could amount to an objection the factors relevant to the exercise of discretion point heavily and decisively towards a return.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">38.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.5in">It is clear from the differing accounts in the parties’ witness statements many of the allegations made by the mother about the financial history of the parties relationship and her allegations of domestic abuse are disputed. What the court has got to focus on within these proceedings is whether either separately or together the matters relied upon by the mother satisfy the requirements of Article 13 b. The court cannot determine all the issues in dispute. It needs to look at the matters relied upon in that context, consider all of the protective measures on offer, taking the allegations at their highest, and determine whether, in those circumstances, there will be such a grave risk that the return would expose the child to physical or psychological harm, or otherwise place the child in an intolerable situation. In my judgment they do not. The mother’s defence under Article 13 b is not established for the following reasons:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(1)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">In relation to the financial issues, they are mainly historical. Whilst the court should consider them at their highest, it is clear there are many issues about the financial circumstances between the parties. There is some scepticism about the father’s financial contribution in the recent past, as the limited documents relied upon by him do not provide a clear picture of regular financial support, which lends support to the mother’s account of his recent financial unreliability.  The father’s position is his business is doing very well and he can support the family financially. In my judgment the package of protective measures put forward by the father, including the arrangements that need to be in place prior to departure, ameliorate any risk caused by the father’s alleged financial unreliability, subject to the observations on the protective measures below.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(2)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">In relation to the allegations of domestic abuse. They are serious and concerning allegations, which may need to be investigated by any court considering welfare issues. For the purposes of this application, the court needs to consider them at their highest but also factor in the wider context, such as the lack of recent allegations after the parties separated in November 2020 and that the parties were able to continue making arrangements for contact post separation. If X is right, she has witnessed some of the alleged incidents between her parents and has been the subject of abusive behaviour by the father directed towards her and  she is likely to have suffered psychological harm. Whilst denying many of the allegations, the father accepts there have been occasions when the parents have argued and X has been present. Recognising these allegations are serious and are likely to have had an impact on X, the range of protective measures will ameliorate that risk as they mean X will remain in the care of her mother, in separate accommodation and will not be required to have any contact with the father without the agreement of the mother or an order of the court in Mauritius. In addition, these protective measures will be in a form that is enforceable, if required.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(3)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">In her statement the mother makes reference to the medical needs of X, and to a lesser extent Y. I have considered those matters, there is only limited evidence about these issues and the father has agreed that private medical insurance will be put in place.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(4)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">Subject to the observations below, I am satisfied that when considering all the evidence and the package of protective measures proposed by the father the Article 13 b defence is not established.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">39.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">Regarding X’s objections it is clear X is of an age and understanding that the court should consider her views. Ms Callaghan’s views, which I accept, were that her level of maturity is in line with her age. In her meeting with Ms Callaghan X did object to returning to Mauritius, although it was in the context of her clear preference to remain living here for the reasons she gave. I agree with Ms Callaghan X is likely to have aligned herself with the mother, although Ms Callaghan did not detect any sign of her having been coached. It is of note that even though X objected, she was able to say some positive things about Mauritius and clearly connected the return there to seeing her father, which she did not want to do. Although finely balanced, I am satisfied that the threshold has just been crossed and X does object to a return. I recognise her objection is closely aligned with her views about her father, but it is difficult in the circumstances of this case to separate the two.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-style:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">40.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">Turning to consider whether the court should exercise its discretion to order the children are returned. In my judgment the court should exercise its discretion and order a return for the following reasons.</p>
+          </intro>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(1)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">Whilst I have concluded X objects I do not regard her objections as being strong objections, they are strongly aligned to her views about her father. She was able to say many positive things about Mauritius when speaking to Ms Callaghan. Under what is proposed she would remain in her mother’s care on return in their own accommodation, with a clear framework to consider what contact, if any, she has with her father and provisions limiting any contact the father has with the mother.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(2)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">Y’s position needs to be considered. He was seeing his father regularly prior to October 2022 and, whilst there have been some concerns expressed about that contact, it continued for a period of over two years after the parties separated. Since October 2022 the arrangements for contact have only been by video link.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(3)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">The effect of the protective measures is that the immediate accommodation, schooling and financial needs will be met, the arrangements regarding X’s contact with her father are managed and the measures offered by the father will be in a form that is enforceable, if required. In addition, there are proceedings in place in Mauritius where the issues between the parties can be determined. I am satisfied on the information the court has that whilst the maternal grandparents may be able to offer general support, they are not able to offer accommodation for the mother and children for the reasons they give.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(4)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">The children had lived in Mauritius for three years and attended school there. They will be returning to the same schools.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(5)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">The protective measures proposed by the father provide a framework that will meet the children’s needs until either the parties reach longer term agreement or the matter is before the court in Mauritius. Ms Banwaree refers in her report to legal aid being available, subject to means.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(6)</num>
+            <content>
+              <p class="ParaLevel8" style="margin-left:0.89in;text-indent:0.08in">The policy considerations that underpin the Convention need to be considered. This was a unilateral removal of children by one parent from their jurisdiction of habitual residence without the knowledge of the other parent. The mother may well be right in the longer term, that the children’s welfare needs are met by them living in this jurisdiction, which both the children and their parents have a strong connection to, but such a step should not be imposed on the other parent by such action. It is this type of situation which the Convention was designed to prevent. The question of the future arrangements for the children is a matter for the Mauritian court, if the parents are unable to agree.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-style:normal;margin-left:0.5in;text-indent:-0.5in">41.</num>
+          <intro>
+            <p style="margin-left:0.5in">For the reasons I have set out above, the children should be returned to Mauritius on a date to be agreed between the parties or determined by the court. Prior to the return the following steps should be taken:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(1)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:0.89in;text-indent:0.08in">The protective measures regarding the payment in advance of six months of maintenance should be in place. The amount should be £400 pcm.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(2)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:0.89in;text-indent:0.08in">The health insurance should be in place.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(3)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:0.89in;text-indent:0.08in">Arrangements should urgently be put in place for a joint application for an exequatur and that order made, so the undertakings offered by the father can be in an enforceable form prior to return. Ms Bunwaree stated that could be done in a matter of weeks, if it was a joint agreed application. This should be done at the father’s expense.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;margin-left:0.89in;text-indent:-0.3in">(4)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:0.89in;text-indent:0.08in">Arrangements should be in place regarding the rental of accommodation, which should available prior to departure. The parties should endeavour to agree a framework, including a maximum rental figure. If the parties are unable to agree the court is going to require more focussed information about this issue.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-style:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">42.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in">If required, the court can determine any outstanding issues regarding the protective measures and the date of return.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-style:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">Although the court has ordered a return, that is in the context of this application under the Convention. If the mother still seeks to relocate back to this jurisdiction the parties are urged and encouraged to continue to try, through mediation or otherwise, ways of narrowing the issues or agreeing matters between them regarding the future arrangements for the children.</p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

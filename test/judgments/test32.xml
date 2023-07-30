@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewca/civ/2022/840" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewca/civ/2022/840" />
+          <FRBRdate date="2022-06-13" name="judgment" />
+          <FRBRauthor href="#ewca-civil" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="840" />
+          <FRBRname value="PUBLIC AND COMMERCIAL SERVICES UNION (R on the application of) v SECRETARY OF STATE FOR THE HOME DEPARTMENT" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840" />
+          <FRBRdate date="2022-06-13" name="judgment" />
+          <FRBRauthor href="#ewca-civil" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840/data.xml" />
+          <FRBRdate date="2023-05-25T21:49:54" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-06-13" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewca-civil" href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division" showAs="The Court of Appeal of England and Wales (Civil Division)" shortForm="Court of Appeal Criminal Division" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="the-queen-on-the-application-of" href="" showAs="THE QUEEN on the application of" />
+        <TLCPerson eId="public-and-commercial-services-union" href="" showAs="PUBLIC AND COMMERCIAL SERVICES UNION" />
+        <TLCPerson eId="detention-action" href="" showAs="DETENTION ACTION" />
+        <TLCPerson eId="care-4-calais" href="" showAs="CARE 4 CALAIS" />
+        <TLCPerson eId="mom-syria" href="" showAs="MOM (Syria)" />
+        <TLCPerson eId="nsk-iraq" href="" showAs="NSK (Iraq)" />
+        <TLCPerson eId="secretary-of-state-for-the-home-department" href="" showAs="SECRETARY OF STATE FOR THE HOME DEPARTMENT" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-lord-justice-singh" href="/judge-lord-justice-singh" showAs="LORD JUSTICE SINGH" />
+        <TLCPerson eId="judge-lady-justice-simler" href="/judge-lady-justice-simler" showAs="LADY JUSTICE SIMLER" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWCA-Civil</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>840</uk:number>
+        <uk:cite>[2022] EWCA Civ 840</uk:cite>
+        <uk:parser>0.14.7</uk:parser>
+        <uk:hash>0bc8db175ea1908ea1e36bca130bdb75094a0332cfea49214c8f54fb10a4ac9c</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { text-align: justify; margin-left: 0.39in; font-size: 12pt; }
+#judgment .Heading1 { text-align: left; margin-left: 0in; font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .CoverText { text-align: right; margin-left: 0.39in; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverMain { text-align: justify; margin-left: 0.39in; font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverDesc { text-align: center; margin-left: 0.39in; font-weight: bold; font-size: 18pt; }
+#judgment .Normal8 { text-align: center; margin-left: 0.39in; margin-right: 0.01in; font-family: 'Courier New'; font-size: 12pt; }
+#judgment .ListParagraph { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .BalloonText { text-align: justify; margin-left: 0.39in; font-family: Tahoma; font-size: 8pt; }
+#judgment .Spkr { text-align: justify; margin-left: 0.39in; font-weight: normal; font-size: 12pt; }
+#judgment .Quote1 { text-align: justify; margin-left: 0.98in; margin-right: 0.59in; font-weight: normal; font-size: 12pt; }
+#judgment .Header { text-align: left; margin-left: 0in; font-family: Univers; font-size: 12pt; }
+#judgment .Footer { text-align: left; margin-left: 0in; font-family: Univers; font-size: 12pt; }
+#judgment .ParaHeading { text-align: left; margin-left: 0in; font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; margin-left: 0in; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 0.5in; font-size: 12pt; }
+#judgment .Title { text-align: center; margin-left: 0in; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; margin-left: 0in; font-weight: bold; font-size: 13pt; }
+#judgment .BodyText { text-align: left; margin-left: 0in; font-size: 12pt; }
+#judgment .Default { font-family: Garamond; font-size: 12pt; color: #000000; }
+#judgment .Revision { font-size: 12pt; }
+#judgment .BalloonTextChar { font-family: Tahoma; font-size: 8pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .Heading1Char { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .HeaderChar { font-family: Univers; font-size: 12pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .PageNumber { font-size: 10pt; }
+#judgment .QuoteChar { font-size: 12pt; }
+#judgment .TitleChar { font-weight: bold; }
+#judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+#judgment .BodyTextChar { font-size: 12pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.5pt;height:75.75pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWCA Civ 840</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>CA-2022-001147</docketNumber></p>
+      <p class="CoverMain" style="text-align:left"><courtType refersTo="#ewca-civil">IN THE COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
+      <p class="CoverMain">ON APPEAL FROM THE HIGH COURT OF JUSTICE</p>
+      <p class="CoverMain">QUEEN'S BENCH DIVISION</p>
+      <p class="CoverMain">ADMINISTRATIVE COURT</p>
+      <p class="CoverMain">Mr Justice Swift</p>
+      <p class="CoverMain">CO/2032/2022</p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText"><docDate date="2022-06-13" refersTo="#judgment">Monday, 13 June 2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before:</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-lord-justice-singh" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LORD JUSTICE SINGH</judge></p>
+      <p style="text-align:center"><judge refersTo="#judge-lady-justice-simler" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LADY JUSTICE SIMLER</judge></p>
+      <p style="text-align:center">and</p>
+      <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LORD JUSTICE STUART-SMITH</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>
+      <table uk:widths="0.91in 4.31in 1in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#the-queen-on-the-application-of" as="#appellant" style="font-weight:bold">THE QUEEN on the application of</party></p>
+            <p style="text-align:center" />
+            <p style="text-align:center"><party refersTo="#public-and-commercial-services-union" as="#appellant" style="font-weight:bold">(1) PUBLIC AND COMMERCIAL SERVICES UNION</party></p>
+            <p style="text-align:center;margin-left:0.59in;text-indent:0in"><party refersTo="#detention-action" as="#appellant" style="font-weight:bold">(2) DETENTION ACTION</party></p>
+            <p style="text-align:center;margin-left:0.59in;text-indent:0in"><party refersTo="#care-4-calais" as="#appellant" style="font-weight:bold">(3) CARE 4 CALAIS</party></p>
+            <p style="text-align:center;margin-left:0.59in;text-indent:0in"><party refersTo="#mom-syria" as="#appellant" style="font-weight:bold">(4) MOM (Syria)</party></p>
+            <p style="text-align:center;margin-left:0.59in;text-indent:0in"><party refersTo="#nsk-iraq" as="#appellant" style="font-weight:bold">(5) NSK (Iraq)</party></p>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:center" />
+            <p class="CoverMain" style="text-align:center" />
+            <p class="CoverMain" style="text-align:center"><role refersTo="#appellant" style="text-decoration-line:none">Appellants</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#secretary-of-state-for-the-home-department" as="#respondent" style="font-weight:bold">SECRETARY OF STATE FOR THE HOME DEPARTMENT</party></p>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:center" />
+            <p class="CoverMain" style="text-align:center"><role refersTo="#respondent" style="text-decoration-line:none">Respondent</role></p>
+          </td>
+        </tr>
+      </table>
+      <p class="Normal8" style="margin-right:0.01in"><span style="font-weight:bold;font-family:'Times New Roman'">UNITED NATIONS HIGH COMMISSIONER FOR REFUGEES</span></p>
+      <p style="text-align:right"><span style="font-weight:bold">Intervener</span></p>
+      <p style="text-align:center;margin-left:0.5in"><span style="font-size:10pt">Transcript of Epiq Europe Ltd, Unit 1 Blenheim Court, Beaufort Business Park, Bristol BS32 4NE</span></p>
+      <p style="text-align:center;margin-left:0.5in"><span style="font-size:10pt">Tel No: 020 7404 1400  Email: </span><a href="mailto:civil@epiqglobal.co.uk"><span class="Hyperlink" style="font-size:10pt">civil@epiqglobal.co.uk</span></a><span style="font-size:10pt">  (Official Shorthand Writers to the Court)</span></p>
+      <p style="text-align:center;margin-left:0.5in"><span style="font-style:italic;font-size:10pt">This transcript is Crown Copyright.  It may not be reproduced in whole or in part other than in accordance with relevant licence or with the express consent of the Authority.  All rights are reserved.</span></p>
+      <block name="restriction" style="text-align:center;margin-left:0.5in"><span style="font-style:italic;font-family:Arial;font-size:10pt">WARNING: reporting restrictions may apply to the contents transcribed in this document, particularly if the case concerned a sexual offence or involved a child.  Reporting restrictions prohibit the publication of the applicable information to the public or any section of the public, in writing, in a broadcast or by means of the internet, including social media.  Anyone who receives a copy of this transcript is responsible in law for making sure that applicable restrictions are not breached.  A person who breaches a reporting restriction is liable to a fine and/or imprisonment.  For guidance on whether reporting restrictions apply, and to what information, ask at the court office or take legal advice.</span></block>
+      <p style="text-align:center"><span style="font-weight:bold">Raza Husain QC, Chris Buttler QC, Jason Pobjoy, Katy Sheridan, Will Bordell, </span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Ryan Fakhoury and Eleanor Mitchell </span>(instructed by<span style="font-weight:bold"> Duncan Lewis Solicitors</span>) </p>
+      <p style="text-align:center">for the <span style="font-weight:bold">Appellants</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Rory Dunlop QC, Mathew Gullick QC, Natasha Barnes and Sian Reeves </span>(instructed by<span style="font-weight:bold"> Treasury Solicitor</span>) for the <span style="font-weight:bold">Respondent</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Laura Dubinsky QC, David Chirico, Shane Sibbel, Ben Bundock, and Agata Patyna </span>(instructed by <span style="font-weight:bold">Baker McKenzie</span>) for the <span style="font-weight:bold">Intervener</span></p>
+      <p style="text-align:center">Hearing date: 13 June 2022</p>
+      <p class="CoverDesc">Judgment</p>
+      <p class="CoverDesc"><span style="font-size:12pt">(As Approved)</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold;font-size:10pt">Crown Copyright©</span></p>
+            <p class="CoverDesc" style="text-align:left"><span style="font-size:12pt">LORD JUSTICE SINGH:</span></p>
+            <p class="ParaHeading"><span style="text-decoration-line:underline;text-decoration-style:solid">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">This is the judgment of the Court.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">This is an appeal brought with the permission of Swift J against his order of Friday, 10 June 2022, refusing interim relief, in particular to prevent the removal of the individual claimants from the United Kingdom ("UK") to Rwanda, pursuant to the well-known scheme which has been agreed between the Governments of the two countries.  The reason for the urgency in the case is that a flight is due to take place on the evening of tomorrow, 14 June, with the first group of individuals who are to be removed to Rwanda.  At one time there were 37 people to be removed on that flight but, at the hearing this morning we were informed that there are 11.  They include the Fifth Appellant but no longer include the Fourth.  They were the Ninth and Tenth Claimants in the High Court proceedings.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">We are grateful to all concerned, including the legal teams and court staff, for their hard work, in particular over the weekend, which has enabled this hearing to take place today speedily and efficiently.  In particular we are grateful to Mr Raza Husain QC, who made oral submissions for the Appellants, Ms Laura Dubinsky QC, who made submissions for the Intervener, the UNHCR, and Mr Rory Dunlop QC, who made submissions for the Respondent.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Because of the urgency in this case, it has not been possible to obtain an approved transcript of the judgment below.  The Court and the parties have, however, been provided with a note of his judgment by the judge, for which we are grateful.  The parties have had the opportunity to draw our attention to any errors or deficiencies that there may have been in that note but none has been suggested that is material.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Before we address the specific issues which arise on this appeal, we should emphasise certain fundamentals about our system of justice.  While the underlying issues concerning removal of some asylum claimants to Rwanda are the subject of much public interest and ethical and political controversy, the courts cannot enter those debates.  The merits of the underlying policy are not a matter for the courts: the Government is accountable to Parliament for the merits of its policies.  The courts have the important, but limited, function of deciding only whether governmental action is lawful or not.  Furthermore, the question of the lawfulness of the scheme is not before us today and will be considered by the High Court in July.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Moreover, as will become apparent, the role of this Court is not the same as the role of the High Court.  We do not sit to hear the case again or to substitute our own views for that of the judge.  As is common ground, our role, as an appellate court, is a more limited one, especially as the decision which the judge took to refuse interim relief was one in which he was exercising a discretion.  In particular, we shall have to consider whether the judge erred in principle and, even if he did not, whether his decision was one which was not reasonably open to him on the material before him.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The First Appellant, which was the Fifth Claimant below, the Public and Commercial Services Union ("PCSU"), is the largest trade union representing civil servants and represents around 80 per cent of Border Force Officials who are charged with implementing the scheme.  The Second and Third Appellants, who were the Sixth and Seventh Claimants below, are both charities.  Detention Action provides support to people in immigration detention and campaigns for detention reform; it is interested in this case because the scheme envisages that detention powers will be used to hold persons pending their removal to Rwanda.  Care 4 Calais provides frontline humanitarian support to refugees. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">The nature of the scheme</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">8.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in">The nature of the scheme was summarised as follows by the judge at paras. 5-9 of his judgment:</p>
+          </intro>
+          <subparagraph>
+            <num>"5.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">This claim has been heralded as a challenge to the Home Secretary's general decision of removal to asylum claimants to Rwanda.  This is a notion that needs to be handled with care.  </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:TimesNewRomanPSMT">6.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">There are some documents that are of general effect.  There is a Memorandum of Understanding ("MOU") made between the United Kingdom and the Republic of Rwanda.  That agreement was made on 13 April 2022 and published on 14 April 2022.  The document records arrangements made for the transfer of persons, and responsibilities accepted by the United Kingdom and the Republic of Rwanda, respectively.  The MOU also sets out the arrangements for a Monitoring Committee which will monitor implementation of and compliance with the arrangements, and report.  The MOU is supplemented by two Notes Verbales: one addressing the asylum process in Rwanda; the other concerning the practical support to be provided to persons awaiting decisions on asylum claims, and to be provided to them after those decisions have been taken (both if the claim is accepted, and if it is refused). </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:TimesNewRomanPSMT">7.</num>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">The Home Secretary has also published several generic documents.  There are five in total; all were published in May 2022.  The first is titled "</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Review of Asylum Processing.  Rwanda: assessment</span><span style="font-family:TimesNewRomanPSMT">".  The preface explains the document as follows: </span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:1.5in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">'This note provides an assessment of Rwanda's asylum system, support provisions, integration opportunities as well as some of the general, related human rights issues, for use by Home Office decision makers handling particular types of protection and human rights claims.' </span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">The preface goes on to say:</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:1.5in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">'[This document] must be read in conjunction with the separate country information reports: </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:1.5in;margin-right:1.02in"><span style="font-family:SymbolMT">• </span><span style="font-family:TimesNewRomanPSMT">Review of asylum processing Rwanda: county information on the asylum system:</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:1.5in;margin-right:1.02in"><span style="font-family:SymbolMT">• </span><span style="font-family:TimesNewRomanPSMT">Review of asylum processing Rwanda: country information on general human rights in Rwanda; </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:1.5in;margin-right:1.02in"><span style="font-family:SymbolMT">• </span><span style="font-family:TimesNewRomanPSMT">Review of asylum processing Rwanda: notes of interviews'</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel1" style="margin-left:1.5in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">Decision makers </span><span style="font-weight:bold;font-family:TimesNewRomanPS-BoldMT">must</span><span style="font-family:TimesNewRomanPSMT">, however, still consider all claims on an individual basis, taking into account each case's full facts.'</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">The point to note is that this document is the Home Secretary's own assessment of the asylum system and related matters in Rwanda. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:TimesNewRomanPSMT">8.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">The second document is "</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Review of Asylum Processing.  Rwanda: country information on the asylum system</span><span style="font-family:TimesNewRomanPSMT">".  This document contains information from a range of sources.  It is described as providing objective country information about Rwanda's asylum system, support provisions and integration opportunities.  It is stated that the document should not be read as an exhaustive survey of any subject or theme.  The preface to the document also makes the same point made in the first document; that decision makers must consider all the circumstances of each individual case.  The third document is titled "</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Inadmissibility: safe third country cases</span><span style="font-family:TimesNewRomanPSMT">".  It provides guidance for the purposes of decisions under paragraphs 345 A - D of the Rules.  The fourth document is titled "</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Review of asylum processing.  Rwanda: country information on general human rights</span><span style="font-family:TimesNewRomanPSMT">".  The fifth is titled "</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Review of asylum processing.  Rwanda: interview notes (Annex A)</span><span style="font-family:TimesNewRomanPSMT">".  This document contains information gathered during visits to Rwanda in January and March 2022.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:TimesNewRomanPSMT">9.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-family:TimesNewRomanPSMT">However, these general documents notwithstanding, the position of each of the individual Claimants in this case has been the subject of a discrete decision taken under the 2004 Act and under the Rules.  These individual decisions are the operative matters.  The challenge in these proceedings, regardless of how it is formulated, must be targeted to the legality of those specific decisions.  There is no single, generic decision that can be the target of an application for judicial review.  As this is a matter of importance I will explain the point in a little more detail."</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Legislative framework</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">9.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in">The legislative framework was summarised as follows at paras. 10-13 of his judgment:</p>
+          </intro>
+          <subparagraph>
+            <num>"10.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in">Section 33 of the 2004 Act gives effect to Schedule 3 to the Act.  Schedule 3 contains provisions about the removal of persons claiming asylum to 'countries known to protect refugees and respect human rights'.  Absent Schedule 3, the operative provision is section 77 of the Nationality, Immigration and Asylum Act 2002 ("the 2002 Act").  That prevents the removal from the United Kingdom of a person who has an asylum claim pending.  Schedule 3 to the 2004 Act contains four distinct schemes that provide exceptions to the default provision in section 77 of the 2002 Act.  Persons who have made asylum claims that have yet to be determined may be removed under any of these exceptions.  The premise of these exceptions is that the person concerned will then be able to pursue an asylum claim in the country to which he has been removed.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>11.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in">Part Two of Schedule 3 to the 2004 Act prescribes a list of countries (all EU or EEA states) and provides that each is to be treated as a country in which a person would not be at risk of ill-treatment on any Refugee Convention ground; would not be sent to another country in breach of the Refugee Convention; and would not be sent to another country in breach of ECHR rights.  Asylum claimants can be removed to such countries so long the Secretary of State certifies the person concerned is not a national of the country concerned.  Part Two is not an issue in these proceedings; Rwanda is not on the list of states.  Parts Three and Four of Schedule 3 permit the Secretary of State to make orders specifying states.  If an order is made, the state concerned is to be treated as being one in which a person would not be a risk of ill-treatment on any Refugee Convention ground; and would not be sent to another country in breach of the Refugee Convention.  Neither Part 3 nor Part 4 is material for present purposes; no such order has been made in respect of Rwanda.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>12.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in">Part 5 of Schedule 3 is material.  By paragraph 17, the Secretary of State has the power to certify that she proposes to remove a person to a specified state; that the person is not a national of that state; and that it is her opinion that the specified state is a place where the person would not be at risk of ill-treatment on any Refugee Convention ground or be sent to any other country in breach of the Convention.  If the Secretary of State has so certified, paragraph 18 of Schedule 3 disapplies section 77 of the 2002 Act so that the person concerned may be removed from the United Kingdom notwithstanding an extant asylum claim.  The paragraph 17 power is the power that has been exercised in respect of each of the individual Claimants and is the power that is the legal premise for the Secretary of State's policy to remove certain asylum seekers from the United Kingdom to Rwanda.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>13.</num>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in">The statutory provisions in the 2004 Act are supplemented by paragraphs 345 A - D of the Rules.  These rules permit the Secretary of State to treat a claim for asylum as 'inadmissible" and not to decide the claim if the asylum claimant has already been recognised as a refugee in a third "safe country", or the claimant "otherwise" enjoys sufficient protection in a safe third country, or:</p>
+            </intro>
+            <subparagraph>
+              <intro>
+                <p style="margin-left:1.58in;margin-right:0.89in">'(iii)<marker name="tab" />the applicant could enjoy sufficient protection in a safe third country, including benefiting from the principle of non-refoulement because:</p>
+              </intro>
+              <subparagraph>
+                <num>(a)</num>
+                <content>
+                  <p style="margin-left:1.89in;margin-right:0.89in">they have already made an application for protection to that country;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>(b)</num>
+                <content>
+                  <p style="margin-left:1.89in;margin-right:0.89in">they could have made an application for protection to that country but did not do so and there were no exceptional circumstances preventing such an application being made, or</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>(c)</num>
+                <content>
+                  <p style="margin-left:1.89in;margin-right:0.89in">they have a connection to that country, such that it would be reasonable for them to go there to obtain protection.' </p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p style="margin-right:0.04in;text-indent:0.39in">'Safe third country' is defined at paragraph 345B:</p>
+            </intro>
+            <subparagraph>
+              <intro>
+                <p style="margin-left:1.58in">'A country is a safe third country for a particular applicant, if:</p>
+              </intro>
+              <subparagraph>
+                <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:1.58in;text-indent:0in">(i)</num>
+                <content>
+                  <p style="margin-left:1.58in;margin-right:0.89in;text-indent:0.38in">the applicant's life and liberty will not be threatened on account of race, religion, nationality, membership of a particular social group, or political opinion in that country;</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:1.58in;text-indent:0in">(ii)</num>
+                <content>
+                  <p style="margin-left:1.58in;margin-right:0.89in;text-indent:0.5in">the principle of non-refoulement will be respected in that country in accordance with the Refugee Convention:</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:1.58in;text-indent:0in">(iii)</num>
+                <content>
+                  <p style="margin-left:1.58in;margin-right:0.89in;text-indent:0.62in">the prohibition of removal, in violation of the right to freedom from torture and cruel, inhumane, or degrading treatment as laid down in international law, is respected in that country; and</p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num>(iv)</num>
+                <content>
+                  <p style="margin-left:1.58in;margin-right:0.89in;text-indent:0.08in">the possibility exists to request refugee status and, if found to be a refugee, to receive protection in accordance with the Refugee Convention in that country."</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p style="margin-left:0.98in;margin-right:0.95in;text-indent:0in">Paragraph 345C states the consequences of a decision that a claim is inadmissible.</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="margin-left:1.5in;margin-right:1.02in;text-indent:0in">'When an application is treated as inadmissible, the Secretary of State will attempt to remove the applicant to the safe third country in which they were previously present, or to which they have a connection, or to any other safe third country which may agree to their entry.'</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="margin-left:0.98in;margin-right:0.95in;text-indent:0in">So far as concerns the Rules, the premises for the operation of the Secretary of State's policy on removal to Rwanda are: <span style="font-style:italic">first </span>that the person falls within one or other of the categories specified at paragraph 345A (most likely 345A(iii)(b)); and <span style="font-style:italic">second </span>that that being so, Rwanda is, for the purposes of paragraph 345C, a safe country that agrees to the person's entry.'"</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="text-decoration-line:underline;text-decoration-style:solid">Grounds for Judicial Review </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The individual removal decisions and the scheme pursuant to which they were made are challenged in the High Court proceedings on the following seven grounds:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(1)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 1 (safe third country determination)</span><span style="color:#000000">: the Secretary of State's determinations that Rwanda is in general a safe third country are contrary to the statutory scheme, irrational or in breach of her </span><span style="font-style:italic;color:#000000">Tameside</span><span style="color:#000000"> duty: see </span><span style="font-style:italic;color:#000000">Secretary of State for Education and Science v Tameside MBC </span><span style="color:#000000">[1977] AC 1014.  This first ground was the focus of oral submissions at the hearing on 10 June, although the other grounds were still maintained and had been set out fully in writing.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(2)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 2 (malaria prevention)</span><span style="color:#000000">: the Secretary of State's failure to make provision for malaria prevention is irrational or renders the policy unlawful per </span><span style="font-style:italic;color:#000000">Gillick v West Norfolk and Wisbech AHA </span><span style="color:#000000">[1986] AC 112.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(3)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 3 (article 3 of the ECHR breach)</span><span style="color:#000000">: removal breaches the individual claimants' article 3 rights by breaching procedural obligations or exposing them to a risk of harm.  Further it is </span><span style="font-style:italic;color:#000000">Gillick</span><span style="color:#000000"> unlawful as it will inevitably result in some decisions breaching individual Article 3 rights.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(4)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 4 (</span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;color:#000000">ultra vires</span><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000"> by unlawful penalisation of refugees)</span><span style="color:#000000">: the practice/procedure of removing asylum seekers to Rwanda or relevant paragraphs of the Immigration Rules are </span><span style="font-style:italic;color:#000000">ultra vires</span><span style="color:#000000"> section 2 of the Asylum and Immigration Appeals Act 1993 ("</span><span style="font-weight:bold;color:#000000">the 1993 Act</span><span style="color:#000000">") because they are contrary to Article 31 of the 1951 Geneva Convention Relating to the Status of Refugees in that they involve the unlawful penalisation of refugees who fall within the terms of that article.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(5)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 5 (</span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;color:#000000">ultra vires</span><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000"> by not discharging obligations)</span><span style="color:#000000">: the removals are also </span><span style="font-style:italic;color:#000000">ultra vires</span><span style="color:#000000"> section 2 of the 1993 Act as it is contrary to the Refugee Convention to carry out removals where on the evidence Rwanda will not discharge the full set of obligations owed under that Convention. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(6)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 6 (failure to issue guidance)</span><span style="color:#000000">:</span><span style="font-style:italic;color:#000000"> </span><span style="color:#000000">the Secretary of State has failed to issue guidance to decision makers on how to exercise their discretion under the scheme to treat a claim as inadmissible. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;color:#000000;margin-left:0.98in;text-indent:-0.49in">(7)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="text-decoration-line:underline;text-decoration-style:solid;color:#000000">Ground 7 (failure to consider representations)</span><span style="color:#000000">:</span><span style="font-style:italic;color:#000000"> </span><span style="color:#000000">the Secretary of State has failed to take into account representations made or the rule 35 report in respect of the Second to Fourth Claimants.  Removal directions were revoked in the case of those claimants and they are not appellants before this Court.  Nevertheless, Mr Husain submits that the Fifth Appellant is in a materially identical position, as there is a rule 35 report in his case which had not been considered.  On Friday, 10 June the Respondent said that she would reconsider his case in the light of the rule 35 report by noon today.  At the end of the hearing today, we were informed by Mr Husain that the reconsideration has now taken place and the Respondent has decided to maintain her decision that the Fifth Appellant will be one of the persons who are to be removed on tomorrow's flight.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">The Judgment of the High Court</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">By the time of the hearing, the application for interim relief sought to prevent the Fourth and Fifth Appellants being removed to Rwanda pending the final hearing of the proceedings and an order to prevent the Secretary of State from removing any person, who has made an asylum claim, without their consent to Rwanda until the final hearing of the claim.  Importantly, the judge considered that the legality of the individual removal decisions was the operative matters for these proceedings, not the general decision of the Secretary of State to remove asylum claimants to Rwanda (see paragraphs 5 to 13 of his judgment, in particular the conclusion at paragraph 9). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The judge considered that there was a serious issue to be tried on grounds 1, 2, 3 and 5. Accordingly, he went on to consider whether the balance of convenience for an interim period, unlikely to extend far beyond July 2022, favoured or did not favour the grant of interim relief and held that it favoured neither the granting of the generic order sought against all removals without consent to Rwanda nor an order preventing the removal of the individual claimants.  The judge recognised that removal to Rwanda would be "arduous" and "distressing" for the individual claimants and that material matters of personal prejudice to each claimant would arise on removal.  In parentheses, we should observe that the note of the judgment taken by those acting for the Appellants recorded that the judge used the word "onerous" but, as Mr Husain rightly acknowledged, there is no material difference between the words "arduous" and "onerous" in this context.  However, the judge held that any prejudice to the claimants was outweighed by the prejudice which an order preventing removals would cause to the public interest in the Secretary of State being able to implement immigration control decisions, even for a short interim period. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">The decisions under challenge </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The judge observed at paragraph 9 that each individual claimant in the case had been subject to a discrete decision taken under the 2004 Act and under the Immigration Rules, and that there was no single, generic decision that could be the target of an application for judicial review.  The judge set out his reasoning on this point by close reference to the relevant statutory provisions at paragraphs 10 to 13 of his judgment with the conclusion that the premise for the operation of the policy on removal to Rwanda was, first, that the person falls within one or other of the categories specified at paragraph 345A of the Immigration Rules, most likely subparagraph (iii)(b), and, second, that being so, Rwanda is a safe country that agrees to a person's entry for the purposes of paragraph 345C of the Rules. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">Was there a serious issue to be tried? </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">At paragraph 14 the judge directed himself to the well-known test for applications for interim relief.  The two questions were whether the Claimants' grounds of challenge gave rise to one or more serious triable issues and, if they did, that the grant of relief will depend on the "balance of convenience", which he chose to describe more precisely as "which course of action pending the final hearing of the claim for judicial review gives rise to the least risk of prejudice if it turns out to be the wrong course of action."  In assessing what the judge called "the balance of prejudice" at paragraph 15, he said that he was bound to take account of the interests of the Fourth and Fifth Appellants and the general public interest that a public authority be permitted to apply a policy or continue to act to exercise its statutory powers when acting in the public interest. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The judge dealt with the grounds for judicial review in reverse order as the focus at the hearing had been on ground 1 and concluded that grounds 1, 5, 3 and 2 (although the last of those only out of caution) all raised serious triable issues for the following reasons:  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">(1)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Ground 7 </span>was no longer material; the criticism of the guidance to caseworkers under <span style="text-decoration-line:underline;text-decoration-style:solid">ground 6 </span>was held to be a matter of policy not law and unlikely to succeed; and the submission under <span style="text-decoration-line:underline;text-decoration-style:solid">ground 4 </span>that removal to Rwanda would be a breach of Article 31 of the Refugee Convention was held to be unsustainable. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">(2)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Ground 5 </span>was held to be a repetition of ground 1 concerning the conclusion that Rwanda was a "safe third country"; or alternatively as contending that paragraph 345B of the Immigration Rules was <span style="font-style:italic">ultra vires</span> the requirements of section 2 of the 1993 Act, which was a bad point (see paragraph 20). </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">(3)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.39in">Under <span style="text-decoration-line:underline;text-decoration-style:solid">ground 3</span>, the judge held that the submission that the policy gave rise to a real risk of a breach of Article 3 of the ECHR was unlikely to succeed and that the second part concerning ill-treatment to the individual claimants collapsed into ground 1. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">(4)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.39in">The judge considered at paragraph 23 that <span style="text-decoration-line:underline;text-decoration-style:solid">ground 2 </span>concerning malaria arrangements was essentially a rationality challenge and was unlikely to succeed.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">(5)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.39in">The judge considered that two aspects of <span style="text-decoration-line:underline;text-decoration-style:solid">ground 1 </span>gave rise to a serious triable issue: first, that the decision to treat Rwanda as a safe third country was irrational or in breach of the duty of sufficient inquiry; and, second, although considered to be less strong, the submission that the Secretary of State has made a decision that Rwanda will be a safe third country for all purposes and in all cases (see paragraphs 24 and 25).  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Although the judge held that the case met the triable issue standard to the extent identified, he neither granted nor refused permission in relation to any of those grounds.  Instead a rolled-up hearing was ordered by him.  It will be open to the Appellants at trial to press any (or all) grounds regarded as unsustainable by the judge.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-style:italic">Where did the balance of convenience lie?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The judge approached the balance of convenience on the basis that the interim period until the hearing of the claim will be relatively short and unlikely to extend beyond July 2022 (see paragraph 27). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The judge held at paragraph 28 that the balance of convenience did not favour the grant of any generic order because the grounds of challenge did not show any triable issue in respect of some illegality affecting either paragraph 345A or paragraph 345B of the Immigration Rules and he was satisfied that the implementation of the scheme depends on case-by-case decisions. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Concerning the individual claimants, now the Fourth and Fifth Appellants, the judge considered that removal to Rwanda will be arduous and distressing and a further stage in the journey each has taken from his home country would cause prejudice.  The judge considered witness statements from both claimants at paragraph 33 and recognised that removal would be distressing for both and that the prospect of removal was itself distressing. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">20.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The Claimants advanced a number of general considerations said to give rise to prejudice.  Those submissions predominantly related to the asylum system in Rwanda in reliance on information provided by the UNHCR and notes of a meeting between the Home Office and UNHCR disclosed during the hearing.  The judge considered these in light of the Memorandum of Understanding ("MOU") and Notes Verbales before the court as he considered that it was realistic to approach the issues on the basis that transfers would follow the terms and shape set out in those formal documents (see paragraph 38). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:11pt;margin-left:0.39in;text-indent:-0.39in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The UNHCR was also granted permission to intervene in the application.  In determining that the rationality/<span style="font-style:italic">Tameside</span> enquiry aspect of ground 1 raised a serious triable issue, the judge made express reference to the information provided by the UNHCR and relied on by the appellants (see paragraph 24).  He referred to the UNHCR's review document of July 2020 and a letter of 8 June 2022 to the Secretary of State setting out systemic concerns about the refugee determination process in Rwanda (paragraph 34).  At paragraph 41 the judge referred to Ms Dubinsky's submission that a long-term remedial approach is required, and the problems identified by the UNHCR had no quick fix.  However, the judge made clear that he was not able to "scrutinise" this evidence. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">As to the general considerations of prejudice, the judge held at paragraph 43 that he did not consider there was a realistic risk that during the interim period the individual claimants would be at risk of ill-treatment contrary to the Refugee Convention or risk of <span style="font-style:italic">refoulement</span> or a risk of removal from Rwanda giving rise to a risk of breach of article 3 of the ECHR because of ill-treatment in another country.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">On the other side of the balance was the public interest in permitting the Secretary of State to pursue her policy and to give effect to immigration decisions until such time that it is determined she is acting unlawfully.  The public policy was said to be deterring people from making dangerous journeys to the UK to claim asylum which are facilitated by criminal smugglers.  The judge accepted that this public interest was material and any order preventing removal would prejudice it (see paragraph 44).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Finally, the judge concluded at paragraph 45 that the balance did not favour the grant of interim relief in favour of the individual claimants.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">The Appellants' submissions on this appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">25.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in">On behalf of the Appellants Mr Husain advances three main grounds of appeal:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-size:11.5pt">"</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11.5pt">Ground 1 </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-size:11.5pt">The judge erred in law in finding that (i) in particular there was no compelling case in respect of Ground 1; (ii) there was no compelling case on the balance of the grounds, and indeed in respect of Grounds 4, 6 and 7, no serious issue to be tried.  In consequence he erred in refusing to give any weight to the strength of the Claimants' case in determining the balance of convenience. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11.5pt">Ground 2 </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-size:11.5pt">The judge's conclusion that the balance of convenience did not favour the stay of removal: (i) was irreconcilable with the evidence that was before the Court; (ii) failed to take into account, and/or give adequate weight, to obviously material considerations (including failing to afford sufficient weight to the institutional expertise of UNHCR); (iii) was made on the legally erroneous basis that the judge was entitled to presume that an untested, unenforceable and unmonitored Memorandum of Understanding and </span><span style="font-style:italic;font-size:11.5pt">Note Verbale </span><span style="font-size:11.5pt">would be complied with, notwithstanding the absence of any sound objective basis that the assurances contained therein would be fulfilled and/or any mechanism for enforcement or present monitoring; (iv) proceeded on the false premise that the analysis could be confined to the period through to the judgment of the Administrative Court; and (v) was otherwise '</span><span style="font-style:italic;font-size:11.5pt">plainly wrong'</span><span style="font-size:11.5pt">.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11.5pt">Ground 3</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:1.02in"><span style="font-size:11.5pt">The judge erred in law in refusing general interim relief on the basis that there was a '</span><span style="font-style:italic;font-size:11.5pt">mismatch'</span><span style="font-size:11.5pt"> between the generic relief claimed and the decisions the legality of which would be in issue in the proceedings."</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Ground 1 concerns the judge's conclusions about which grounds of challenge disclosed a serious issue to be tried.  On behalf of the Appellants Mr Husain submits that the judge's errors as to the strength of ground 1 and his negative conclusion on grounds 4, 6 and 7 were fundamental because the strength of the underlying claim is a key factor in assessing the balance of convenience in public law proceedings: see for example <span style="font-style:italic">National Commercial Bank Ltd v Olint Corporation Ltd</span> [2009] UKPC 16; [2009] 1 WLR 1405, at paragraph 18 (Lord Hoffmann). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">27.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain submits that the challenge to the <span style="font-style:italic">rationality</span> of the Secretary of State's conclusion that Rwanda was in general a "safe third country" was compelling on the evidence before the judge.  He submits that the Secretary of State appears to have ignored at least three recent cases of <span style="font-style:italic">refoulement</span> raised by the UNHCR with her.  He also relies on the UNHCR's position that deficiencies in the asylum process in Rwanda create a real risk of onward <span style="font-style:italic">refoulement</span> and include the denial of access to process, a lack of interpreters, a lack of training, decisions said to be systematically biased especially concerning applicants from the Middle East, absence of reasons for rejection and inadequate appeals processes.  Mr Husain submits there is no answer to these points and so as a matter of public law, the "safe third country" conclusion cannot be rationally sustained.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:11pt;margin-left:0.39in;text-indent:-0.39in">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Underlying all of these submissions was Mr Husain's contention that the Secretary of State has fundamentally misunderstood the views of the UNHCR about the general respect for the principle of non-<span style="font-style:italic">refoulement</span> in Rwanda and the concerns it has about the process for making RSD decisions, and has applied that erroneous understanding to individual decisions.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"> In this context Mr Husain took us to a series of documents which he submits demonstrate that the Appellants have a compelling case on the evidence relating to ground 1, including documents produced by the Secretary of State and evidence filed on her behalf in these proceedings, in particular the Witness Statement of Mr Hobbs, at paragraph 8.  Mr Husain submits that this evidence  effectively concedes that the Appellants will succeed on ground 1, because the Secretary of State had "misread" the position of the UNHCR.  He further submits that this misunderstanding has operated not only at a generic level but has fed through to decisions in the cases of individuals.  Mr Husain informed us that he made virtually the same submissions "verbatim" to the judge. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">30.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain submits that the judge's negative conclusions on ground 4 were an error of law and misunderstood the "coming directly" requirement in Article 31 of the Refugee Convention.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">31.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain also submits that it was wrong for the judge to conclude that ground 7, particular to individual claimants, had fallen away.  The Secretary of State maintained removal directions at that time in respect of both the Fourth and Fifth Appellants which, Mr Husain submits, unlawfully failed to take account of mandatory relevant considerations.  As such, the removal decisions should be withdrawn and re-taken or interim relief granted. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">32.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Ground 2 </span>on this appeal concerns the balance of convenience exercise undertaken in public law proceedings.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">33.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain submits that in the present case, if interim relief is refused, the Fourth and Fifth Appellants, and other asylum seekers removed under the scheme, will suffer extremely serious and irremediable prejudice that goes far beyond the judge's conclusion that removal to Rwanda will be "arduous", "onerous" or "distressing".  In support of this submission, Mr Husain highlights five particular factors: (1) forcible removal from the UK, (2) the risk of onward <span style="font-style:italic">refoulement</span> in Rwanda, (3) additional risks of harm in Rwanda, (4) the administrative cost, and potential claims, for unlawful forcible removal and (5) the prejudice to the prosecution of the underlying claim for judicial review.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">34.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In relation to factor 1 Mr Husain submits that the whole process of removal amounts to a serious interference with basic dignity and will be both a tort and a breach of the Human Rights Act 1998.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In relation to factors 2 to 3 he submits that the risks of onward <span style="font-style:italic">refoulement</span> and of additional harm in Rwanda are made out on the evidence before the Court from the UNHCR and are not addressed by any assurances from the Government of Rwanda. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">36.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In relation to factor 4, Mr Husain submits that were the Claimants to succeed and be entitled to "bring back" orders, this would carry significant administrative cost and each individual will probably have claims in tort and for damages under the Human Rights Act.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">37.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Finally, in relation to factor 5, Mr Husain submits that removal would significantly prejudice the Fourth and Fifth Appellants' ability to give instructions and receive advice from their lawyers or participate in proceedings. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">38.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain identifies seven errors the judge is said to have made in his conclusion that the balance of convenience did not favour the grant of relief.  First, the judge gave no weight to the overall strength of the claim and did not take some grounds into account, a conclusion challenged under ground 1 on this appeal. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">39.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Second, the conclusion that there was no real risk of <span style="font-style:italic">refoulement</span> in the period up to the substantive hearing was irreconcilable with the evidence before the judge and in tension with the finding that ground 1 disclosed a serious issue to be tried.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">40.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Third, as the judge did not summarily dismiss the challenge, he was bound to grant interim relief staying removal. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">41.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Fourth, the judge erred in focusing on a short period in assessing risk, since there may be appeals.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Fifth, it was a legal error for the judge to proceed on the basis that the Government of Rwanda would follow the terms of the MOU and Notes Verbales as the test was one of being sure and the judge cannot have been sure as there is no sound objective basis for the assurances. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">43.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Sixth, the judge failed to take into account mandatory relevant factors in the balance of convenience such as the consequences of removal for the individuals' mental health and dignity, the risk of arbitrary detention in Rwanda if asylum seekers protest against their removal and the administrative cost of "bring back" orders and damages claims.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Seventh, the judge afforded disproportionate weight to the Government's policy objectives where there is no evidence of the policy's deterrent effect and serious doubts have been raised about its efficacy by civil servants. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">45.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Ground 3 </span>on this appeal is shorter and concerns the conclusion that general interim relief was inappropriate as no ground raised a serious triable issue cutting across all individual removal decisions.  Mr Husain submits that the judge made a fundamental legal error in holding that a generally applicable assessment or decision, which judicial review ground 1 targets, cannot be challenged by way of judicial review when not "operative" in an individual's case.  If correct, then it would follow that policies would not be amenable to judicial review at all.  Moreover, Mr Husain argues that the Secretary of State's assessment has been relied on heavily in individual decisions and so any public law error in that decision vitiates the individual removal decisions which rely on it. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">46.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain relies on his previous submissions as to why general interim relief is appropriate and highlights three particular points before this Court.  First, any issue taken as to the standing of the First to Third Appellants is not an issue at this hearing.  Second, the evidence on irremediable harm in this case applies "across the board" to every decision made pursuant to the scheme and is, in Mr Husain's submission, enough to show a real risk of Article 3 harm.  Potential further prejudice to groups not before the Court, who may be gay or disabled, makes the case even more compelling.  Third, the type of general interim relief order sought is one commonly made in charter flight cases and Mr Husain relies on a number of examples of such orders which the Court has made in other unrelated cases.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">47.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Husain also notes that by the day of the hearing in the Court of Appeal, matters have moved on and there is now no time for other individuals to bring applications before the Court.  This, he says, favours the grant of general interim relief in favour of all individuals who have not consented to their removal to Rwanda.  At the hearing before us Mr Husain made it clear that his submission is confined to all the 11 people who are due to be removed on tomorrow's flight and does not include anyone who may be removed to Rwanda in the next few weeks before the substantive hearing in the High Court.  Nevertheless, as Mr Dunlop observed on behalf of the Respondent, it would be unrealistic to think that, if this Court grants generic interim relief in relation to the flight tomorrow, other flights could take place before the High Court hearing.  </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Submissions for the Intervener </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_48">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">48.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">On behalf of the UNHCR Ms  Dubinsky submits that it is well established that the UNHCR's views concerning factual matters within its remit and the legal standards applicable under the Refugee Convention are owed great respect.  This respect is a product of the UNHCR's supervisory responsibilities, the duty of member states under the Refugee Convention to co-operate with it, and its unique experience and expertise as recognised by the courts. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">49.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In short, the UNHCR's submission is that the flight on 14 June 2022 to Rwanda should not proceed and, more generally, removals to Rwanda under the agreement between the UK and Rwanda should be suspended.  The reason for this position most relevant to these interim relief proceedings is the UNHCR's serious concerns about Rwanda's capacity to make fair refugee status determination decisions adequate to protect from indirect <span style="font-style:italic">refoulement. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">50.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In its written submissions, the UNHCR draws the Court's attention to a number of relevant factual matters.  Ms Dubinsky highlights that the vast majority of the Rwandan Government's decision-making on refugee claims has been of a <span style="font-style:italic">prima facie </span>kind concerning objective circumstances in a limited number of nearby countries of origin and that case-by-case determination is nascent (there is said to be only one eligibility officer in Rwanda assessing all such claims).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">51.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Ms Dubinsky also highlights that when the Secretary of State and the UNHCR met in Kigali in March 2022, the UNHCR was not informed that the UK Government was contemplating a process of removing asylum seekers to Rwanda and, therefore, did not elicit the UNHCR's views on this proposal.  Further, the Secretary of State then omitted from the published policy documents concerns which the UNHCR had raised about the proposals in meetings held in the UK and Kigali in April 2022.  The substance of those concerns are set out at paragraphs 14 and 15 of the UNHCR's written submissions before this Court.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">52.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Ms Dubinsky also highlights that the UNHCR has subsequently become aware of decision letters issued by the Secretary of State which contained incorrect statements about the UNHCR's involvement in the agreement with Rwanda, its role in oversight and claims that the UNHCR had <span style="font-style:italic">not</span> expressed substantial concerns.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">53.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Addressing the first ground of appeal, Ms Dubinsky reiterates the submissions made before the judge that the UNHCR warns that there is a real risk of indirect <span style="font-style:italic">refoulement</span> if asylum seekers are removed from the UK to Rwanda.  The UNHCR has concerns about the fairness and capacity of the refugee status determination process which cannot be rectified at speed.  Ms Dubinsky also submits that persons relocated to Rwanda may be at risk of detention and treatment not in accordance with international standards should they protest against their conditions after arrival.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">54.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Under ground 2, Ms Dubinsky submits that the judge did not address or apply special regard to the UNHCR's risk assessment.  Ms Dubinsky also submits that the MOU and Notes Verbales do not demonstrate when or how a systemic improvement process will achieve a significant change to the present situation on the ground in Rwanda and the judge should not have concluded that warnings about fairness and capacity were inapplicable or mitigated by these documents.  Further, the intentions expressed in the documents do not remove the real risk of what, the UNHCR submits, are three distinct forms of <span style="font-style:italic">refoulement</span>: pre-emptory <span style="font-style:italic">refoulement</span>, constructive <span style="font-style:italic">refoulement </span>or, as she put it at the hearing before us <span style="font-style:italic">de facto refoulement</span>, and <span style="font-style:italic">de jure</span><span> </span><span style="font-style:italic">refoulement</span>. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">55.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">At the hearing before us, Ms Dubinsky handed in a Table on the Notes Verbales which sets out the ways in which the UNHCR considers that there are deficiencies in relation for example to interpreters, trained decision-makers and the like in Rwanda.  We have considered that document carefully.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">56.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In conclusion, the UNHCR submits that removals under the agreement with Rwanda should be stayed to avert the real risk of serious harm that would otherwise arise for those removed. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Submissions for the Respondent</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_57">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">57.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Dunlop has reminded this Court that, as a matter of policy, the Respondent considers that there is a strong public interest in deterring unsafe, unnecessary and illegal (in the sense of irregular) journeys from safe third countries to the UK by asylum seekers and to achieve that aim the Secretary of State sought a partnership with another safe third country to which asylum seekers could be safely relocated. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">58.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In summary, the Respondent's case is that there are good answers to the errors alleged in the judge's conclusions raised by the Appellants under the first and second grounds of appeal, including that many of the arguments raised cannot found an appeal, being quibbles with weight or conclusions on the evidence, and also that ground 3 is misconceived since the generic relief sought was correctly held to be mismatched with the grounds of claim. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">59.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In relation to the first ground of appeal, Mr Dunlop advances five "answers" to the alleged errors in the judge's conclusions about the first stage of the judge's assessment on the serious issues to be tried.  First, he submits that this ground does not identify any error of principle.  It is in essence a submission that the judge should have given greater weight to the likelihood of the claim succeeding as it was "compelling".  Any difference between the judge's assessment that there was a serious issue and the contentions about a compelling case are not material.  In any event, this Court should not, Mr Dunlop argues, substitute its views on the strengths of the grounds of the claim. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">60.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Secondly, Mr Dunlop contends that the Appellants are wrong to submit that the Secretary of State and the judgment have no answer to ground 1 of the claim or the concerns raised by the UNHCR.  For example, later material from the UNHCR can be taken into account by officials making case-by-case decisions and the Secretary of State is well-placed to assess the likelihood of Rwanda complying with the Notes Verbales.  Whether those Notes Verbales provide a sufficient answer is an issue for the substantive hearing where the Secretary of State intends to submit evidence. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">61.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Thirdly, given that the case turned on the balance of convenience, the judge's observations on the weaker grounds were not material.  At the hearing, Mr Dunlop reminded us that what matters is that the judge acknowledged that, if there were one or more serious issues to be tried, then he should go on to consider the balance of convenience test.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">62.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Fourthly, the judge was correct, for the reasons he gave, to consider the ground 4 <span style="font-style:italic">ultra vires</span> argument to be unsustainable but, even if he was in error, this had made no difference to his conclusion on interim relief. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">63.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Fifthly, the judge was correct to find that ground 7 had fallen away as it did not relate to the Fourth or Fifth Appellants. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">64.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Dunlop submits that the Appellants' arguments on the second ground of appeal disclose no error of principle concerning the balance of convenience and are an attempt to re-argue the case.  The first error highlighted about the overall strength of the case adds nothing to ground 1. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">65.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Dunlop submits that the second alleged error concerning <span style="font-style:italic">refoulement</span> has no merit.  It amounts to a challenge to a factual assessment by the judge on the evidence and was not irrational or "plainly wrong".  Mr Dunlop also contends that the UNHCR's evidence was not, as the Appellants submit, "overwhelming" and that the judge was correct to identify that the very purpose of the MOU was for transferred individuals to have their asylum claims considered <span style="font-style:italic">in</span> Rwanda.  Moreover, there is no tension between the conclusions on the interim risk of <span style="font-style:italic">refoulement</span> and ground 1 of the claim.  Finally, the Appellants' submission on the weight that should be afforded to the minutes of the 25 April 2022 meeting cannot found a ground of appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">66.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The third error, alleging that the Court was bound to grant relief, is attacked by Mr Dunlop as an attempt to convert a statement of what "usually" happens in cases allegedly direct <span style="font-style:italic">refoulement</span> into a universal principle encompassing indirect <span style="font-style:italic">refoulement</span>.  Mr Dunlop relies on the judge's explanation for why the balance of convenience was different in this case arising from the MOU and the short period until the substantive hearing of the claim. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_67">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">67.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Dunlop submits that the fourth contention about the assessment of the short period identifies no error of principle. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">68.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">As to the fifth error relating to the MOU assurances, Mr Dunlop submits that the judge did not need to be "sure" that the MOU would be followed. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_69">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">69.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Sixth, Mr Dunlop submits that the Appellants do not identify any "mandatory relevant factors" which the judge failed to take into account in conducting the exercise.  The judge had regard to the impact of removal on the individual claimants and did not need to refer expressly to potential costs to the taxpayer and the like.  Mr Dunlop also highlights that it was for the Secretary of State to assess whether the public interest in starting to enforce a policy justifies the risk of additional cost or administrative inconvenience if the policy is later successfully challenged. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">70.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The seventh error advanced is another point about weight which Mr Dunlop submits also cannot found a ground of appeal.  Importantly, the judge was entitled to give weight to the Secretary of State's assessment that the policy served the public interest identified whether or not there was evidence that the policy had started to work. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_71">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">71.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Dunlop submits that ground 3 on the appeal which concerns the terms of relief, only survives if the Appellants succeed on grounds 1 and 2, but should in any event fail as there was indeed a "mismatch" between the grounds of claim advanced and the general relief sought.  The judge was correct to point out that the premise that an error in the general assessment of Rwanda would vitiate all decisions was wrong for the reasons given at paragraph 28.  Mr Dunlop notes that, for example, an official making a case-by-case decision might make a lawful decision notwithstanding flaws in the assessment. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">72.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Further, Mr Dunlop submits that the Appellants are wrong to submit there is no time for other individuals subject to removal directions to "get into Court" and that the judge considered correctly that individual decisions about interim relief could be taken.  Finally, Mr Dunlop also contends that the examples of other generic orders relied on by the Appellants do not begin to demonstrate that in this context the judge was obliged to make the generic order sought. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">73.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Mr Dunlop submits that the UNHCR's submissions add nothing to the Appellants' grounds and notes that the judge had due regard to the UNHCR's expertise, who were given permission to intervene. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Relevant legal principles</span></p>
+            <p class="ParaLevel1"><span style="font-style:italic">Interim relief</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_74">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">74.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The Court's power to grant injunctive relief is provided by section 37(1) and (2) of the Senior Courts Act 1981:</p>
+          </intro>
+          <subparagraph>
+            <num>"(1)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:0.95in">The High Court may by order (whether interlocutory or final) grant an injunction … in all cases in which it appears to the court to be just and convenient to do so.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;margin-right:0.95in">Any such order may be made either unconditionally or on such terms and conditions as the court thinks just."</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">75.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The grant of interim relief is governed by the well-known test and principles set out by the House of Lords in <span style="font-style:italic">American Cyanamid Co v Ethicon Ltd</span> [1975] AC 396.  The questions that arise are usually:</p>
+          </intro>
+          <subparagraph>
+            <num>(1)</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;text-indent:0.5in">Is there a serious question to be tried?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote">If the answer to that question is "yes", then two further related questions arise; they are:</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;text-indent:0.5in">Would damages be an adequate remedy for a party injured by the court's grant of, or its failure to grant, an injunction?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(3)</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;text-indent:0.5in">If not, where does the "balance of convenience" lie?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote">The first question indicates a threshold requirement. </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">76.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">It is common ground that the test is modified in the public law context.  As Sir Clive Lewis puts it in <span style="text-decoration-line:underline;text-decoration-style:solid">Judicial Remedies in Public Law</span> (6<span style="vertical-align:super;font-size:smaller">th</span> ed., 2020) at paragraph 8-024:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-right:0.95in">"Further, the adequacy of damages as a remedy will rarely determine whether or not it is appropriate to grant or refuse an interim injunction.  For that reason, the courts will normally need to consider the wider balance of convenience and in doing so, the courts must take the wider public interest into account." </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_77">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">77.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">R (Governing Body of X) v Office for Standards in Education</span> [2020] EWCA Civ 594 [2020]; EMLR 22 Lindblom LJ (with whom Sir Geoffrey Vos C and Henderson LJ agreed) commented, at paragraph 66:</p>
+          </intro>
+          <subparagraph>
+            <num>"66.</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">There is support at first instance for the proposition that, in a public law claim, the court will generally be reluctant to grant interim relief in the absence of a "strong prima facie case" to justify the granting of an interim injunction … This is not to say that the relevant case law at first instance supports the concept of a "strong prima facie case" being deployed as a "threshold" or "gateway" test in such cases, but rather that the underlying strength of the substantive challenge is likely to be a significant factor in the balance of considerations weighing for or against the granting of an injunction."</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">The "balance of convenience"</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_78">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">78.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The language of "balance of convenience" is well established but, as the judge observed, the court is concerned not with convenience as such but balancing the risk of prejudice or, as it has been expressed in some of the authorities, the balance of justice or the relative risk of injustice.  The risk arises from the inevitable fact that a court cannot deal with the final merits of litigation early on and yet it may be necessary to grant a remedy in the meantime while the parties prepare their cases.  It may turn out at the end of the day that the court has granted or refused a remedy which a party was or was not entitled to.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_79">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">79.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The purpose of considering the balance of convenience or justice was helpfully set out by the Privy Council in <span style="font-style:italic">National Commercial Bank Ltd v Olint Corporation Ltd</span> [2009] UKPC 16; [2009] 1 WLR 1405, at paragraphs 16 to 17, by Lord Hoffmann: </p>
+          </intro>
+          <subparagraph>
+            <num>"16.</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">… The purpose of such an injunction is to improve the chances of the court being able to do justice after a determination of the merits at the trial.  At the interlocutory stage, the court must therefore assess whether granting or withholding an injunction is more likely to produce a just result.  …</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>17.</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">… the court has to engage in trying to predict whether granting or withholding an injunction is more or less likely to cause irremediable prejudice (and to what extent) if it turns out that the injunction should not have been granted or withheld, as the case may be.  The basic principle is that the court should take whichever course seems likely to cause the least irremediable prejudice to one party or the other."</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-style:italic">Appeals against grant/refusal of interim injunctions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_80">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">80.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The nature of an appeal to this court is governed by CPR rule 52.21(1).  It is in general by way of "review" and not a re-hearing.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_81">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">81.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Further, CPR rule 51.21(3) provides the two grounds on which appeals will be allowed: </p>
+          </intro>
+          <subparagraph>
+            <num>"(3)</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">The appeal court will allow an appeal where the decision of the lower court was</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(a)</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">wrong; or</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(b)</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">unjust because of a serious procedural or other irregularity in the proceedings in the lower court."</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">Paragraph (b) is not relevant to the present appeal.  What is submitted by Mr Husain is that the judge was wrong.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_82">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">82.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The essence of the appeal court's powers in injunction cases is concisely summarised in Sir David Bean and Andrew Burns<span style="font-style:italic">, Injunctions</span> (14th edition, 2022) at paragraph 6-021:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-right:0.95in">"6-021</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-right:0.95in">…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-right:0.95in">The appeal, whether from an interim or a final judgment, is by way of a review of the decision of the lower court unless the court considers that in the circumstances of a particular case the appeal should be by way of rehearing… The appeal court is not required to consider whether it would have granted an injunction, but whether the judge had been wrong to do so, respecting the judge's findings where the remedy was a discretionary one (<span style="font-style:italic">Frank Industries Pty UK v Nike Retail BV</span> [2018] EWCA Civ 497 applying <span style="font-style:italic">Re DB's Application for Judicial Review</span> [2017] UKSC 7; [2017] NI 301). </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote">…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-right:0.95in">It is not the function of an appellate court in an injunction case to substitute its own discretion for that of the judge (<span style="font-style:italic">Hadmor Productions Ltd v Hamilton</span> [1983] 1 AC 191).  It may do so however, where the judge has misdirected himself on the law (<span style="font-style:italic">Mercury Communications Ltd v Scott-Garner</span> [1984] Ch 37)."</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">83.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">This summary is based in part on Lewison LJ's judgment in <span style="font-style:italic">Frank Industries</span> at paragraph 17: </p>
+          </intro>
+          <subparagraph>
+            <num>"17.</num>
+            <content>
+              <p class="Quote" style="margin-left:1in;margin-right:0.95in;text-indent:0.5in">We are not hearing an application for an interim injunction but an appeal.  The question is not whether we would have made the same order as the judge, but whether the judge was wrong to make the order that he did.  I do not consider that these alleged failings and the judge's treatment of the evidence are such as would entitle an appeal court to intervene.  Even where a trial judge evaluates evidence given in writing without the benefit of live evidence an appeal court should generally respect his evaluation, (see <span style="font-style:italic">DB v The Chief Constable for Northern Ireland</span> … at paragraph [80]).  This applies all the more strongly where the remedy that the judge has granted is a discretionary remedy."</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">84.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">R </span>(<span style="font-style:italic">Governing Body of X) </span>to which we have already made reference,  Lindblom LJ said, at paragraph 80: </p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="Quote" style="margin-right:0.95in">"Only if the lower court's conclusions are irrational or otherwise plainly incorrect in law will its decision be reversed.  As Sir James rightly reminded us, the grant of interim relief is discretionary and the exercise of discretion by a judge should be afforded appropriate deference by the appellate court."</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid">Our assessment</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_85">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">85.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">We consider that the judge produced a detailed and careful judgment, which is all the more impressive in view of the time constraints under which he had to give it, late on a Friday afternoon, after a day's argument in this urgent and important case.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">86.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In our view, the judge directed himself correctly as to the relevant principles on the grant of interim relief, both generally and in public law cases of this kind.  He did not err in principle nor did he fail to take into account all relevant considerations.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">87.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">We do not accept the submission that his conclusions were plainly wrong or irrational.  We consider that they were reasonably open to him on the material before him.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_88">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">88.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">We do not accept Ground 1 on this appeal.  At the end of the day, the fact is that the judge accepted that there were some serious issues to be tried.  We do not consider that it would be appropriate to go into whether some grounds of challenge were "compelling" but, in any event, we do not disagree with the judge about his overall assessment of the strength of those grounds at the end of paragraph 26 his judgment.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_89">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">89.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">We note that the proceedings before the High Court are at a very early stage.  They were commenced on 8 June.  In view of the urgency it has not been possible for the usual steps to be taken, for example, the filing of summary grounds of resistance.  The judge ordered there to be a rolled-up hearing before the end of July, by which time the Respondent will have had the opportunity to file detailed evidence.  It is not for us to anticipate what the High Court will finally decide after the substantive hearing after it has been able to assess all of the evidence in the round.  Although Mr Husain submitted in his reply before us that public law grounds are inherently grounds of law, it is often the case that they turn on detailed assessment of evidence.  In the present case, we consider that will be true, for example in relation to the capacity of Rwanda to cope with asylum claims; the provision of interpreters and legal advice and so on.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_90">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">90.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In any event, we do not accept that it is for this Court, sitting on an appeal, to go behind the judge's assessment of the evidence.  Although he had limited time in which to consider the evidence, he had the advantage of seeing it all and had a day's hearing before him on Friday.  As is usually the case on an appeal, this Court properly is shown only parts of the evidence but, in any event, it is not the function of this Court to substitute its own view for that of the judge on factual matters. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_91">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">91.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Having identified that there were serious issues to be tried, the judge went on to consider the balance of justice question.  That is the critical question on which the present case turned.  As we have said, in our view, the judge conducted that balancing exercise in a way that cannot be impugned by this Court on appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_92">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">92.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">We consider that, on analysis, the principal ground of appeal before us is indeed Ground 2.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_93">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">93.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">The starting point for the judge’s assessment was that the interim period would be relatively short, about six or seven weeks, until around the end of July.  He was right to take that view.  We do not accept the submission that the judge was obliged to take into account the possibility of appeals and further delay after the judgment of the High Court has been given after the substantive hearing.  The hypothesis for the Appellants' case must be that they will succeed at the substantive hearing.  On that basis, as the judge noted, the individual claimant would, on his own case, be entitled to be returned to the UK.  If there were then an appeal, as the judge observed, it would be a matter for the appellate court to determine what the next steps should be, for example whether any interim relief should be granted pending an appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_94">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">94.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Given therefore that the interim period would be relatively short, the judge was entitled to take the view that it was unlikely that the individual claimants before him would be improperly returned to another state by the Rwandan authorities in that timeframe.  To suggest otherwise is indeed, as the judge noted, speculative.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_95">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">95.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Furthermore, in that context, the judge was entitled to give weight to the MOU and Notes Verbales.  They may not be legally enforceable, even as a matter of international law, but they are formal agreements between sovereign states.  The UK will expect Rwanda to comply with them and the Rwandan authorities will know that their conduct will be under scrutiny in the particular context of people who have been removed there by the UK pursuant to the arrangements between the two countries.  The judge did not need to be sure, as has been submitted, that the MOU would be implemented.  This was something to which he was entitled to give weight.  As Mr Dunlop reminded us, questions of weight are not for this Court on an appeal in cases such as this.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_96">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">96.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">Turning to the position of the UNHCR, the judge did give respect to their unique position and institutional expertise.  He considered their views but was not bound to follow them.  The fact is that, in the context of the relatively short interim period which the judge was considering, the evidence for the UNHCR did not lead to the conclusion that it was likely that an individual claimant would be improperly returned to another state without proper consideration of their asylum claim in Rwanda in the brief interim period.  There simply would not be time for all of those steps to be taken, especially in the circumstances we have already ready described above, in which the MOU and Notes Verbales are in place.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_97">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">97.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In those circumstances, since the only individual claimant now before us cannot obtain interim relief, it is strictly unnecessary to consider Ground 3.  In any event, we agree with the judge that applications for interim relief in this context must be considered on an individual basis and not a generic basis.  Otherwise, the Respondent could be prevented from implementing her policy of removal even in a case in which there is no legal defect in the individual decision-making process at all.  </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_98">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">98.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">In this context, we bear in mind that, as recent events have shown, the Secretary of State continues to consider each case on its individual facts and has been prepared to revoke removal directions in a number of cases while these proceedings have been taking place and even over the weekend since the judgment below was given.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_99">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">99.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">We return to the fundamental point in this case, which turns on how the judge dealt with the balance of convenience.  In our judgment he conducted that balancing exercise properly.  He did not err in principle in the approach which he took.  He weighed all the relevant factors on each side of the balance.  He reached a conclusion which he was reasonably entitled to reach on the material before him.  This Court cannot therefore interfere with that conclusion.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Conclusion</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_100">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.39in;text-indent:-0.39in">100.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in">For the reasons we have given, this appeal is dismissed.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Spkr"><span style="font-weight:bold">Epiq Europe Ltd</span> hereby certify that the above is an accurate and complete record of the proceedings or part thereof.</p>
+            <p class="Spkr">Unit 1 Blenheim Court, Beaufort Business Park, Bristol BS32 4NE</p>
+            <p class="Spkr">Tel No: 020 7404 1400</p>
+            <p class="Spkr">Email: <a href="mailto:civil@epiqglobal.co.uk"><span class="Hyperlink">civil@epiqglobal.co.uk</span></a></p>
+            <p class="Spkr" style="text-align:center"><span style="font-weight:bold">This transcript has been approved by the Judge</span></p>
+          </content>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

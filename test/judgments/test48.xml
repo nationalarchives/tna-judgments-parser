@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/ch/2022/3050" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/ch/2022/3050" />
+          <FRBRdate date="2022-12-01" name="judgment" />
+          <FRBRauthor href="#" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="3050" />
+          <FRBRname value="Aldermore Bank plc v Roderick John Lynch" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/3050" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/3050" />
+          <FRBRdate date="2022-12-01" name="judgment" />
+          <FRBRauthor href="#" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/3050/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/3050/data.xml" />
+          <FRBRdate date="2023-03-01T21:07:04" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-12-01" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="aldermore-bank-plc" href="" showAs="Aldermore Bank plc" />
+        <TLCPerson eId="roderick-john-lynch" href="" showAs="Roderick John Lynch" />
+        <TLCPerson eId="alex-cadwallader-in-his-capacity-as" href="" showAs="Alex Cadwallader (in his capacity as" />
+        <TLCPerson eId="trustee-in-bankruptcy-of-mr-lynch" href="" showAs="trustee in bankruptcy of Mr Lynch)" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-mr-justice-fancourt" href="/judge-mr-justice-fancourt" showAs="MR JUSTICE FANCOURT" />
+      </references>
+      <proprietary source="#">
+        <uk:year>2022</uk:year>
+        <uk:number>3050</uk:number>
+        <uk:cite>[2022] EWHC 3050 (Ch)</uk:cite>
+        <uk:parser>0.13.0</uk:parser>
+        <uk:hash>708fd0580e815f7b88845a9ba29ba2de26a09b0aba4bb85b346b3ef39cfc7af8</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading2 { font-weight: bold; font-size: 12pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .Heading4 { text-align: justify; font-style: italic; font-size: 12pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .BalloonText { font-family: Tahoma; font-size: 8pt; }
+#judgment .BodyText { text-align: justify; margin-left: 0.39in; font-size: 12pt; }
+#judgment .BodyTextnonum { text-align: justify; margin-left: 0.39in; font-size: 12pt; }
+#judgment .Citations { text-align: justify; margin-left: 0.79in; margin-right: 0.39in; font-size: 12pt; }
+#judgment .CommentText { font-size: 10pt; }
+#judgment .CommentSubject { font-weight: bold; font-size: 10pt; }
+#judgment .DocumentMap { font-family: Tahoma; font-size: 8pt; }
+#judgment .FootnoteText { text-align: justify; margin-left: 0.39in; font-size: 10pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
+#judgment .TOC1 { text-align: center; font-size: 12pt; }
+#judgment .TOC2 { margin-left: 0.5in; font-size: 12pt; }
+#judgment .TOC3 { margin-left: 0.5in; font-size: 12pt; }
+#judgment .TOC4 { margin-left: 0.5in; font-size: 12pt; }
+#judgment .PlaceholderText { color: #808080; }
+#judgment .Heading2Char { font-weight: bold; font-size: 12pt; }
+#judgment .Heading4Char { font-style: italic; font-size: 12pt; }
+#judgment .Heading1Char { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3Char { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .BalloonTextChar { font-family: Tahoma; font-size: 8pt; }
+#judgment .BodyTextChar { font-size: 12pt; }
+#judgment .CommentReference { font-size: 8pt; }
+#judgment .CommentTextChar { }
+#judgment .CommentSubjectChar { font-weight: bold; }
+#judgment .DocumentMapChar { font-family: Tahoma; font-size: 8pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .FootnoteReference { vertical-align: super; }
+#judgment .FootnoteTextChar { }
+#judgment .HeaderChar { font-family: Univers; font-size: 12pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .mandelbrotrefrag { }
+#judgment .outputecliaff { }
+#judgment .PageNumber { }
+#judgment .searchword { }
+#judgment .TitleChar { font-weight: bold; }
+#judgment .QuoteChar { font-size: 12pt; }
+#judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <table uk:widths="3.25in 3in">
+        <tr>
+          <td>
+            <p class="Header" />
+          </td>
+          <td>
+            <p class="Header" style="text-align:right" />
+          </td>
+        </tr>
+      </table>
+    </coverPage>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWHC 3050 (Ch)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>CH-2021-000082</docketNumber></p>
+      <p class="CoverMain">IN THE HIGH COURT OF JUSTICE</p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES</span></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">CHANCERY APPEAL (ChD)</span></p>
+      <p class="CoverText">Royal Courts of Justice, Rolls Building</p>
+      <p class="CoverText">Fetter Lane, London, EC4A 1NL</p>
+      <p class="CoverText">Date: <docDate date="2022-12-01" refersTo="#judgment">01/12/2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-justice-fancourt">MR JUSTICE FANCOURT</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#aldermore-bank-plc" as="#appellant" style="font-weight:bold">    Aldermore Bank plc</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#appellant">Appellant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold">(1)</span><marker name="tab" /><party refersTo="#roderick-john-lynch" as="#defendant" style="font-weight:bold">Roderick John Lynch</party></p>
+            <p style="text-align:center"><span style="font-weight:bold">(2)</span><marker name="tab" /><party refersTo="#alex-cadwallader-in-his-capacity-as" as="#defendant" style="font-weight:bold">Alex Cadwallader (in his capacity as</party></p>
+            <p style="text-align:center"><party refersTo="#trustee-in-bankruptcy-of-mr-lynch" as="#defendant" style="font-weight:bold">trustee in bankruptcy of Mr Lynch)</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right" />
+            <p class="CoverMain" style="text-align:right"><role refersTo="#defendant">Defendants</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Ian Wilson KC and Sarah Parker </span>(instructed by<span style="font-weight:bold"> Pinsent Masons</span>) for the <span style="font-weight:bold">Appellant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">William McCormick KC and Oberon Kwok</span> (instructed by <span style="font-weight:bold">Axiom</span><span> </span><span style="font-weight:bold">DWFM</span>) for the <span style="font-weight:bold">First Respondent</span></p>
+      <p style="text-align:center">The <span style="font-weight:bold">Second Respondent</span> played no active part in the appeal.</p>
+      <p style="text-align:center">Hearing dates: 3, 4 November 2022</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center"><span style="font-style:italic">Remote hand-down</span>: This judgment was handed down remotely at 10:00am on Thursday 1 December 2022 by circulation to the parties or their representatives by email and by release to The National Archives.</p>
+      <p style="text-align:center">.............................</p>
+      <p style="text-align:center">MR JUSTICE FANCOURT</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p><span style="font-weight:bold">Mr Justice Fancourt :</span></p>
+          </content>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">Introduction</span></heading>
+          <paragraph eId="para_1">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">1.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">This is an appeal against an order of Chief Insolvency and Companies Court Judge Briggs made on 23 February 2021. On that day, the Judge handed down judgment following a 6-day trial that took place fully remotely between 1 and 9 February 2021.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">2.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The trial was formally an appeal against the admission by Mr Lynch’s trustee in bankruptcy of a proof of debt of Aldermore Bank (“the Bank”). The proof was based on a guarantee dated 12 September 2011 of debts of Mr Lynch’s company, Ruskin Private Hire Limited (“Ruskin”), allegedly signed by Mr Lynch (“the Guarantee”). Mr Lynch disputed the Bank’s debt on the basis that he did not sign the Guarantee. The Judge allowed the appeal and reversed the trustee’s decision to admit the proof.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">3.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Ruskin had gone into creditors’ voluntary liquidation on 12 February 2015, following a winding up petition of HMRC presented in August 2013.  Mr Lynch was made bankrupt by order of 12 March 2015.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">4.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge heard evidence from several witnesses over 5 days, including Mr Lynch himself and Ms Hughes, who appeared to have witnessed Mr Lynch’s signature on the Guarantee but who disputed having done so. There were witnesses called by the Bank: Mr Broomhead and Mr Adcock of the Bank, and a Mr Bramwell, whose company had been involved in providing finance to Ruskin or Mr Lynch.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">5.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge also read an unchallenged joint expert report of a handwriting expert, Dr Radley. Dr Radley’s opinion was that the Guarantee was not signed by Mr Lynch but that it was signed by Ms Hughes, who appended her name and address to it.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">6.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge found that documentary evidence from the Bank’s records did not prove that the Guarantee was provided to Mr Lynch for him to sign. He ultimately accepted the evidence of Mr Lynch and Ms Hughes that they had not been given a guarantee to sign and did not sign it.  Indeed, he found that the document had never left the Bank, so Mr Lynch and Ms Hughes could not have signed it.  The Judge felt unable to accept Dr Radley’s opinion that Ms Hughes had signed and appended her name and address to the Guarantee, but he accepted his evidence that Mr Lynch did not sign it. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">7.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Despite the proceedings being in the form of an appeal against a trustee in bankruptcy’s admission of a proof, the court had previously directed that statements of case be exchanged.  Mr Lynch filed Points of Claim in which he alleged that both his and Ms Hughes’ signatures on the Guarantee were forgeries, and that it was to be inferred that the perpetrator of the forgery was an officer, employee or other agent of the Bank.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">8.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank’s case, in its Points of Defence, was that Mr Lynch <span style="font-style:italic">or his agent</span> had signed the Guarantee on 12 September 2011, which was the day that the documents were said to have been brought to Ruskin’s offices; and that 3 days later Mr Lynch <span style="font-style:italic">or his agent</span> delivered the Guarantee to Tracey Court of the Bank when she visited Ruskin’s offices.  The Bank had alternative cases: first that, if Mr Lynch did not sign, he authorised someone else to sign and that person did so; second, that he was estopped from denying the validity of the Guarantee because he or his agent delivered the Guarantee to the Bank apparently bearing his signature.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">9.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Mr Ian Wilson KC and Ms Sarah Parker on behalf of the Appellant argued that, in view of the alternative cases pleaded by the Bank, the Judge had to decide not just whether Mr Lynch signed the Guarantee but also on which side (the Bank’s side or the Ruskin side) the signatures had been appended, if Mr Lynch did not sign it.  However, they criticise the Judge’s finding that Mr Lynch’s signature was signed by a person at the Bank.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">10.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In substance, the 6-day hearing proceeded as a trial of the issues identified in the pleadings. The skeleton arguments, list of issues and the transcript of the opening submissions at the trial establish that the Judge was not simply required to decide whether Mr Lynch signed the Guarantee, but also whether someone else authorised by Mr Lynch did so, by emulating his signature, and whether he knowingly caused a guarantee apparently bearing his signature to be delivered to the Bank.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">11.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">However, as Mr Wilson accepted, as the evidence unfolded, the fundamental factual question in the trial was whether the guarantee document reached Ruskin at all. If it did not, it could not have been signed by Mr Lynch or anyone else on the Ruskin side on his behalf, which would dispose of the three ways in which the Bank put its case.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_12">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">12.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">What was not for determination was who forged the signatures of Mr Lynch and Ms Hughes, if forgeries they were.  Despite Mr Lynch’s pleaded allegations of forgery, that question was unnecessary for the determination of any of the alternative cases on which the Bank relied to establish the validity of its proof. Mr Knight, representing Mr Lynch at trial, confirmed in opening that he was not asking the Judge to infer that the Bank forged the guarantee.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">13.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">There was much written in the skeleton arguments for this appeal about where the burden of proof lay at trial.  It seemed to be accepted at trial that the burden lay on Mr Lynch to prove, by cogent evidence, that his signature had been forged, and Mr Lynch was treated as the claimant at the trial.  Mr McCormick KC and Mr Kwok, for Mr Lynch on this appeal, do not accept that the burden did lie on Mr Lynch. They say that the Bank had to prove the basis of its proof of debt and the Judge did not have to decide an allegation of forgery.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">14.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">However, nothing in the Judge’s judgment ultimately turned on where the legal or evidential burden of proof lay, despite the way that he expressed some of his conclusions being capable of being read as relating to burden of proof. Both sides called witnesses and relied on documents in the agreed bundles. The Judge was satisfied, having heard all the evidence and read the relevant documents, that neither Mr Lynch nor anyone else on the Ruskin side received or signed the Guarantee.  Equally, the Bank does not suggest on this appeal that any reasonable judge would have decided the case in its favour by falling back on the burden or standard of proof when unable to decide the probabilities of the matter. It contends that any reasonable judge would have decided, when weighing all the evidence, that the Guarantee was probably signed by Mr Lynch and witnessed by Ms Hughes. The alternative way that it puts its case is that the Judge’s analysis of parts of the evidence was so flawed that his conclusion cannot stand.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_15">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">15.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">It is therefore unnecessary to dwell on who bore the burden of proof.  The Judge did, however, have to have regard to the inherent probabilities of the matter, in the light of the undisputed facts, the evidence that he heard and the documents that stood as evidence of their contents (pursuant to CPR PD32, para 27.2). </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The undisputed facts</span></heading>
+          <paragraph eId="para_16">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">16.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Mr Lynch was at the relevant time a businessman, operating through Ruskin from 2004. He also owned another dormant company, Robust Training Ltd (“Robust”).  Ruskin provided transport services to children and vulnerable adults with special needs, mainly under contracts with local authorities. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_17">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">17.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge said that the business was seasonal, concentrated on school term times, and so Ruskin needed invoice financing services.  These had been provided through the Royal Bank of Scotland’s subsidiaries (“RBS”), but Ruskin got caught up in RBS’s Global Recoveries Group’s activities in 2008 and sought to find alternative funding.  When an attempt to obtain funding from National Westminster Bank failed, Mr Lynch turned to two independent consultants, Mr Goodrich and Mr Dartford, who introduced Mr Bramwell of Inspiration Finance plc (“Inspiration”) to Ruskin in March 2011.  Mr Bramwell liked the Ruskin business and considered investing himself.  Inspiration did make loans to Ruskin (or Mr Lynch) in the summer of 2011.  Mr Bramwell also set up meetings between Ms Hughes, who was the financial controller of Ruskin, and officers of the Bank.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_18">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">18.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank did some due diligence in the summer of 2011 and its initial reaction to what it saw was unfavourable. However, Mr Clark met Mr Lynch on 29 July 2011, as a result of which the Bank started to look more favourably on Ruskin.  What was said in that meeting in relation to a guarantee that the Bank would require from Mr Lynch was disputed at trial.  Mr Lynch said that it was indicated that a limited guarantee of up to £150,000 might possibly be required; the Bank said that it would have required an unlimited guarantee.  Mr Clark was not called to give evidence.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_19">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">19.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">It is not disputed that the Bank itself contemplated that it would be obtaining an unlimited guarantee from Mr Lynch, though it was sceptical about the value of it, given Mr Lynch’s other financial commitments. Credit committee approval was given on the basis of an unlimited guarantee. However there was in evidence no document sent by the Bank to Ruskin or Mr Lynch that states that an unlimited guarantee would be required.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_20">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">20.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank held meetings and sought a reference on Ruskin from RBS. It then made an offer of a facility of £1,000,000 to Ruskin on 2 September 2011.  This referred to a requirement for a guarantee and indemnity from Mr Lynch “in our standard format”. There were then meetings between Mr Lynch and Mr Bramwell and others on 5 and 8 September 2011 to discuss the offer. Inspiration provided some funding. At some stage, a revised offer was received from the Bank on essentially the same terms, also dated 2 September 2011.  It is admitted by Mr Lynch that he signed the revised offer on behalf of Ruskin.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_21">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">21.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">On 12 September 2011, Mr Adcock of the Bank attended Ruskin’s offices. He took a suite of documents with him.  There were many other documents relating to Ruskin’s facility and other security that were required to be signed.  The Bank contended that these documents included the Guarantee and a letter advising Mr Lynch to take legal advice before signing the Guarantee.  Mr Lynch disputed that.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_22">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">22.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The document alleged to be the Guarantee is dated 12 September 2011.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_23">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">23.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">On 14 September 2011 (a Wednesday), the day before Tracey Court went to Ruskin’s offices to collect signed documents for the Bank, there were the following email exchanges:</p>
+            </intro>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Mr Adcock of the Bank told Ms Hughes that subject to satisfactory debt verification the next day [i.e. 15 September] and confirmation that all preconditions had been met, the Bank was going to take on Ruskin from the Friday [16 September];</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">ii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Ms Hughes replied asking what she needed to give Tracey [Court] and Howard [Atkinson] tomorrow;</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;text-indent:0.11in">Mr Adcock forwarded that reply to Ms Court and asked her to phone Ms Hughes and give her “a heads up on what you’ll need tomorrow”</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iv)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Ms Court emailed Ms Hughes describing what was required for the debt verification process and then set out, in a table, various conditions that were said to be outstanding, which included delivery of a signed and dated guarantee and indemnity of Mr Lynch in standard format and an asset and liability statement for Mr Lynch in standard format.  Many other conditions were also specified.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">v)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Ms Hughes forwarded this email to Mr Dartford: “I thought that you had supplied a lot of this already????”</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">vi)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Mr Dartford then replied, copied to Mr Lynch, adding his notes to the conditions that Ms Court had listed.  In relation to the guarantee and the asset and liabilities statement, Mr Dartford’s notes stated: “Tracey to pick up tomorrow”.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_24">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">24.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">On 15 September 2011, Ms Court and Mr Atkinson attended Ruskin’s offices to verify debt and collect documentation relating to the facility. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_25">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">25.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In fact, Mr Lynch signed the asset and liability statement, dating it either 13 or 15 September 2011, but it was only faxed to Ms Court on Friday 16 September, the day after the attendance to collect the facility documents.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_26">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">26.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The first payment pursuant to the facility was made on 19 September 2011 (the following Monday) and the document alleged to be the Guarantee and appearing to be signed by Mr Lynch and witnessed by Ms Hughes was uploaded onto the Bank’s document management system on 20 September 2011.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_27">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">27.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">None of Ms Court,  Mr Atkinson or Mr Dartford was called to give evidence at the trial.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_28">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">28.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">It is common ground on this appeal (and at trial) that the signatures on the Guarantee were original “wet ink” signatures and that Dr Radley was provided with the original document.  Dr Radley concluded by a scientific process that the printing of the document had preceded the signing of Mr Lynch’s name. The signature in his name therefore cannot have been on a blank document, and neither of the signatures can have been cut and pasted from another document onto the Guarantee.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The Bank’s case at trial</span></heading>
+          <paragraph eId="para_29">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">29.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank’s case at trial relied predominantly on documents said to establish clearly that Mr Lynch knew that he was expected to sign an unlimited guarantee of the facility and that the Guarantee had been given to Mr Lynch to sign on 12 September 2011. Two internal documents in particular were relied on, the contents of which no witness called by the Bank was able to explain in detail. The first is headed “Take-On Checklist” and contains many lines and check boxes relating to the setting up and administration of Ruskin’s facility. The second is a version of pages 2-3 of the revised offer letter, setting out the conditions of the facility, on which someone had written “Preliminary conditions Ruskin Private Hire Ltd” and made various markings (“the Preliminary Checklist”). There was also a third unidentified document headed “Deal Outline”.  It will be necessary to consider those documents in more detail later.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_30">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">30.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank’s case was therefore that the documents showed that Mr Lynch was given the Guarantee to sign and did so. It was supported by oral evidence from its officers that Mr Adcock took the suite of documents including the Guarantee to Ruskin for signature on 12 September 2011 and that receipt of the Guarantee was indicated by its signed off internal documents.  It also called evidence from Mr Bramwell of Inspiration to the effect that, at a detailed discussion on 8 September 2011, Mr Lynch acknowledged that he was required to enter into an unlimited guarantee.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_31">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">31.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank relied on previous written evidence of Mr Lynch as demonstrating the falsity of his case that he did not sign the Guarantee. It also relied on other occasions on which Mr Lynch had made similar allegations of non-receipt of important documents, and even of forgery of a loan document by Inspiration.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_32">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">32.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">In earlier proceedings in which Mr Lynch sought to set aside a statutory demand served on him by the Bank, Mr Lynch initially put the Bank to proof as to the correct amount of the debt claimed against him; then, in a witness statement dated 24 April 2014, Mr Lynch stated:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“From my recollection of matters, I did sign some form of agreement with Aldermore but this limited my liability to no more than £150,000. Unfortunately I cannot locate a copy of the document …”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_33">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">33.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In a further witness statement in those proceedings dated 18 August 2014, Mr Lynch acknowledged what he had previously said but then stated that, having refreshed his memory of the meeting with Mr Clark on 29 July 2011, he recalled that Mr Clark mentioned the possibility of such a guarantee, however he (Mr Lynch) “never actually signed such a document in my capacity as Director of Ruskin Private Hire Limited”. Later in the same witness statement, he acknowledged a dispute about the authenticity of the Guarantee and stated that he believed his signature had been forged and was either copied and pasted from another Bank document that he did sign or somehow imposed on the Guarantee. He added that he had made a complaint to the Police that a fraud had been committed against him by the Bank.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The Judge’s conclusions</span></heading>
+          <paragraph eId="para_34">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">34.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The judgment is written in several parts, but the content of each part is not closely confined according to the headings used.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_35">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">35.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">An early section, headed “The proof of debt”, contains reference to the contents of a witness statement made by Mr Dartford, who did not give evidence at trial, and an assessment of whether that statement had any value. The statement containing Mr Dartford’s expressions of belief about what happened with the intended guarantee was referred to (and quoted from) correspondence. I was told that no one applied at trial to admit the underlying witness statement as a hearsay statement. The Judge was willing to give it “little weight but that does not mean that it has no value” (para 6).</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_36">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">36.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">There is a long section headed “The background” (paras 13-48), which contains an assessment of the written and oral evidence of Mr Lynch in relation to the 29 July 2011 meeting with Mr Clark, then several paragraphs analysing the written and oral evidence of Mr Bramwell, in which the Judge reached certain factual conclusions contrary to what Mr Bramwell had stated in his evidence.  He also referred here to the content of a witness summary of Ms Court. The summary had been prepared by solicitors, summarising what she, a reluctant witness, might say if called to give evidence. But she was not called to give evidence and the summary had no evidential status at trial.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_37">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">37.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In the same section of the judgment, the Judge reached conclusions about the evidential weight of certain documents.  He referred to the “Take-On Checklist”, the “Preliminary Checklist”, some e-mails exchanged within the Bank in 2012, and a “Deal Outline” of unknown origins which the Bank had disclosed.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_38">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">38.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">The Bank’s case based on documentary evidence is then summarised at the end of this section of the judgment in the following paragraphs:</p>
+            </intro>
+            <subparagraph>
+              <num>“44.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Although Mr Atkinson and Ms Court were not called to give evidence, the Bank rely on the “Take-on Document”, never seen by Mr Lynch until these proceedings, and not signed off at the time, to support its case that the Guarantee was provided to Mr Lynch by the hand of Mr Adcock on 12 September and returned signed, witnessed and dated. The Guarantee and this evidence spells what may be described as the height of its case.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>45.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Mr Mills took the court to a number of the Bank’s internal documents arguing that they provided sufficient evidence for the court to make inferences of fact to support its case; they were of minimal evidential value. These documents were not put to any witness because the authors of those documents had not been called. In consequence, the evidence about the documents, their meaning, the date and circumstances in which they came to be created could not be tested. As an example Mr Mills took me to what he called a “preliminary checklist” which was not put to any witness. It included ticks by numbered paragraphs. Three paragraphs had a circle around the number and a tick. Mr Mills submitted that it was permissible to infer that the author (who was not disclosed) had first circled the matters that required doing before the Bank could be satisfied that the conditions for lending had been satisfied. After they were satisfied, a tick was applied. One such matter concerns the Guarantee.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>46.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">An inference can only properly drawn from a fact or facts that has or have been established. Once a fact has been established an inference may be drawn to support a further finding of fact which follows logically from the established fact.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>47.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">It has not been proved that the purpose of the circles was to indicate that an item on the sheet was outstanding. They may have been circled for other reasons. It is known that the Bank was not satisfied about the relevant licences, certificates and accreditations until 14 September 2011, yet the “Take-On” document included prior dates (12 September 2011). There is no explanation as to why there would be a shadow document tracking documents: casting further doubt on the evidential weight of the “Take-On Checklist”. Mr Mills submitted that the handwriting was that of Ms Court. Her unsigned witness summary explains her working practice and contradicts the submission made by Mr Mills. In the summary, she says that she “relied heavily” on the Take-On Checklist. She does not mention a shadow document. The method she used for outstanding matters to be dealt with, was to mark them with an asterisk and then cross the asterisk out once satisfied. In the absence of cross-examination where the documentary record could be examined, the court is left with accepting that Mr Mills’ interpretation of facts as possible, but that is not the same as drawing a proper inference of fact. I declined his invitation to do so.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_39">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">39.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">There then follows a section of the judgment addressing “The witnesses” (paras 49-67).  In it, the Judge first directs himself by reference to the well-known observations of Leggatt J in <span style="text-decoration-line:underline;text-decoration-style:solid">Gestmin SGPS S.A. v Credit Suisse (UK) Ltd</span> [2013] EWHC 3560 (Comm) (“<span style="font-style:italic">Gestmin</span>”) about the fallibility of memory, and other cases.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_40">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">40.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">He then summarises his conclusions about the reliability of the 5 witnesses.  </p>
+            </intro>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">As to Mr Lynch, the Judge concluded that overall he gave honest testimony.  He said that Mr Lynch’s evidence at trial was clearly consistent with his written evidence in 2014 “save that he misremembered signing the agreement he thought he did sign”.  He concluded that he could not safely rely on “similar fact evidence” concerning allegations of Mr Lynch about non-receipt or forgery of other documents.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">ii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge explained that he found Ms Hughes to be an extremely impressive and honest witness on whom he could rely.  He was particularly impressed by her apparently spontaneous evidence about how Mr Lynch would not have signed the Guarantee in blue ink, and that although the handwriting on the Guarantee looked like hers, she had not signed it or written her name and address on it.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;text-indent:0.11in">The Judge found Mr Broomhead’s evidence to be inconsistent and unreliable, particularly on what the Bank’s policy was about unlimited guarantees and why he had not signed off the Take-On Checklist.  </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iv)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">He found Mr Adcock’s evidence to be confined to what the Bank should have done and his own usual practices, and not to be directed to what actually happened on 12 and 15 September 2011 in terms of delivery and collection of documents, which Mr Adcock, perhaps unsurprisingly, could not remember.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">v)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Mr Bramwell’s evidence was found to be “tainted” by the fact that he had misunderstood a reference to a “standard format” guarantee to be a standard, unlimited guarantee; and he could not accurately recall the conversation with Mr Lynch on 8 September 2011 and was unable to give evidence about what happened on 12 and 15 September.   </p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_41">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">41.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">In the next section of the judgment, headed “Execution of the Guarantee”, the Judge concludes that Mr Clark did tell Mr Lynch that a limited guarantee would be acceptable and that that was what Mr Lynch was expecting to sign. He then turned to the question of whether Mr Lynch signed any guarantee, and concluded that the Guarantee was not taken to Ruskin’s offices on 12 September 2011, nor emailed to Mr Lynch, and that the Bank’s documents did not establish that they were:</p>
+            </intro>
+            <subparagraph>
+              <num>“74.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">As to the execution of the Guarantee the Bank has failed to counter the case of Mr Lynch that the Guarantee was not taken to the offices of Ruskin on 12 September 2011. An email dated 12 September attaches the Robust Guarantee and Robust board minutes for execution. As this was considered to be a sufficient method of conveyance for the Robust guarantee it is unlikely that it would not be sufficient for the Guarantee. This is particularly so since it was the Bank’s practice to ensure that a prospective guarantor had time to take legal advice and consider the seriousness of entering such a guarantee. No proper explanation was proffered at trial by any witness. Although emailing the Guarantee did not necessarily exclude personal carriage, in the absence of evidence from Mr Adcock that he did deliver the Guarantee personally, it is more likely than not that a similar method would have been used to convey the Guarantee: no such email exists. Mr Adcock did not review the documents he took to the offices and could not recall which documents were taken. The evidence is confused about whether it was sent by post. It can be said with some degree of confidence that there is no evidence of posting and no party to the proceedings has found an email with the Guarantee attached. The evidence supports a finding that the documents taken to the Ruskin office on 12 September were corporate only.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>75.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">The positive case put by the Bank is that Ms Court collected the signed Guarantee on 15 September 2011. In some ways it is an extraordinary position to take as there is no evidence that she did so. There is no doubt she did collect some documents: those taken by Mr Adcock on 12 September 2011. In these circumstances the court is asked to make a series of inferences to make good the Bank’s position based on the Bank’s normal practice, emails and internal documents. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>76.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">A major flaw to making such inferences is other evidence before the court, Mr Broomhead’s lack of knowledge as to the signing of the Guarantee, and his failure to check the Take-on Checklist before payment was made.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>77.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">The failure to provide evidence from Ms Court or Mr Atkinson, both present at the meeting on 15 September 2011, is striking. That is not to say that an adverse inference should be drawn from their absence. Ms Court, for example, was not prepared to provide sworn evidence. It is beyond argument that the court does not have the benefit of this evidence and Mr Lynch is prevented from testing these potential witnesses of fact by reference to the key events in which they were involved, and the documents Ms Court in particular produced. This, in my judgment, reduces the weight the court can properly put on the untested documents.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_42">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">42.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Finally, the Judge turned at para 79 to the expert opinion evidence and what he was to make of it.  He directed himself, correctly, by reference to Clarke LJ’s judgment in <span style="text-decoration-line:underline;text-decoration-style:solid">Coopers Payen Ltd v Southampton Container Terminal Ltd</span> [2003] EWCA Civ 1223; [2004] 1 Lloyd’s Rep 331 at [42]-[43], of the requirement to evaluate the expert evidence alongside the other evidence in the case, and that he was not required simply to accept the expert evidence.  He noted that the factual evidence that he accepted was consistent with Dr Radley’s opinion about Mr Lynch’s signature but contrary to his opinion about Ms Hughes’ signature.  The relevant evidence that the Judge had to weigh was partly conflicting. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_43">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">43.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">The Judge reiterated, before proceeding to analyse the opinion evidence, that he found Mr Lynch to have given honest evidence and Ms Hughes to have been “impressive, honest and capable”, and then said:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“It is from those findings that I reach my conclusions”.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p style="text-align:justify;margin-left:0.39in">He stated that the burden of proof lay on the Bank to prove its debt, and said:</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The Bank has failed to prove that the Guarantee was conveyed to Mr Lynch on 12 September 2011 or later, failed to prove on the balance of probabilities that it was signed by Mr Lynch and failed to prove that it was collected or sent back to the Bank. … The Bank has provided no witness evidence to contradict the version of events as advanced by Mr Lynch, I accept his account.” [para 83]</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_44">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">44.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge concluded, on the balance of probabilities, that Ms Hughes did not sign the Guarantee, on behalf of Mr Lynch or at all – she could not have done so if the document had never been sent or taken to Ruskin. Further, Ms Hughes could not have witnessed Mr Lynch’s signature for the same reason: the document was not received by her or Mr Lynch.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_45">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">45.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">The Judge’s conclusions presented him with a final difficulty: what to say about the opinion evidence.  He dealt with it in this way:</p>
+            </intro>
+            <subparagraph>
+              <num>“86.</num>
+              <intro>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">I recognise that the second finding [about Ms Hughes’s signing] is contrary to the opinion of Dr Radley. The opinion of Dr Radley is weaker in respect of Miss Hughes than it is in respect of Mr Lynch due to the reduced amount of comparable evidence available. Further Dr Radley warned:</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;margin-right:0.39in">‘I am not able to establish the full writing range of variation for Miss Hughes. I am therefore unable to ascertain whether this difference is merely within her range of writing variation but not evidenced in the limited known documents presented.’</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <num>87.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Dr Radley did not have the benefit of her explanation of the handwriting differences: it is similar but there were differences that stood out such as the last four letters of Marion. If the expert had more comparable evidence and a greater range there is a prospect that he would have reached a different conclusion.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_46">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">46.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge therefore felt able to reject the unchallenged expert opinion about Ms Hughes’s signature and handwriting on the basis that the expert himself had qualified his opinion that it was hers, and that he did not have the benefit of Ms Hughes’ view that the last four letters of her first name, r-i-o-n, looked different from her writing.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The grounds of Appeal</span></heading>
+          <paragraph eId="para_47">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">47.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">The Bank has 6 grounds of appeal, which at the hearing it addressed in the following order, reflecting, perhaps, the cogency and importance of the submissions that it had to make on the grounds.  I summarise the grounds as follows:</p>
+            </intro>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge misunderstood the expert evidence in a highly material way: Dr Radley had in fact expressed a greater degree of confidence than in relation to Mr Lynch’s signature that the handwriting on the Guarantee was that of Ms Hughes. The Judge was therefore wrong to reject part of Dr Radley’s evidence for the reason that he gave (“<span style="font-weight:bold">the expert evidence ground</span>”).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">ii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge failed to adhere to the <span style="font-style:italic">Gestmin</span> direction that he gave himself about the unreliability of witness testimony, as compared with contemporaneous documents and conclusions based on inherent probability, because he decided the case on the basis of his belief that Mr Lynch and Ms Hughes were telling the truth and gave little or no weight to the contemporaneous documents, taking a wrong approach to their status as evidence (“<span style="font-weight:bold">the hierarchy of evidence ground</span>”).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;text-indent:0.11in">The Judge failed to take into account significant and material evidence and drew unreasonable conclusions and wrong inferences from the evidence before him (“<span style="font-weight:bold">the flawed evaluation of evidence ground</span>”).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iv)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge’s decision and conduct of the proceedings contained a number of procedural and other irregularities (“<span style="font-weight:bold">the irregularities ground</span>”)</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">v)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge was wrong to hold that the burden of proof was on the Bank to prove that Mr Lynch’s signature on the Guarantee was genuine, and should not have concluded that Mr Lynch’s signature was signed by a person at the Bank. He should have held that the burden lay on Mr Lynch to prove a forgery (“<span style="font-weight:bold">the burden of proof ground</span>”).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">vi)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge failed to direct himself that, to discharge the burden of proof, Mr Lynch had to have cogent evidence of forgery (“<span style="font-weight:bold">the weight of evidence ground</span>”).</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_48">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">48.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In consequence, the Bank puts its case as high as to submit that any reasonable judge would have reached the opposite conclusion to that reached by the Judge, and would have found that the Guarantee was signed by or on behalf of Mr Lynch and accordingly valid. The Judge’s conclusion is said to be irrational.  Alternatively, the Bank argues that the Judge erred in various respects in making findings of fact, which were material to the factual conclusions, and so the decision-making is seriously flawed and the Order should be set aside and a re-trial ordered.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">Legal approach to challenge to Judge’s factual findings</span></heading>
+          <paragraph eId="para_49">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">49.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The right approach to a suggestion that a trial judge was wrong to make a finding of fact is set out in a number of important recent decisions of the Court of Appeal. Mr Wilson accepted that the Bank is required on this appeal to establish that no reasonable judge could have made the finding that is under attack, or (which amounts to the same thing) that it is rationally insupportable. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_50">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">50.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Simetra Global Assets Ltd v  Ikon Finance Ltd</span> [2019] EWCA Civ 1413; [2019] 4 WLR 112, Males LJ said at [37]-[38]:</p>
+            </intro>
+            <subparagraph>
+              <intro>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The approach which an appellate court should take when asked to reverse the judge’s findings of fact has been addressed in a number of recent cases. These are conveniently summarised in the <span style="font-style:italic">Group Seven</span> case under the heading of “Appellate restraint”,  at paras 21–23. I need not repeat that summary, which emphasises the advantages which the trial judge, immersed in all aspects of the case and able to test the evidence at first had, has over this court where the focus is inevitably narrower, and emphasises also the principle that this court should not interfere unless satisfied that a finding of fact is plainly wrong. However I would add a reference to <span style="font-style:italic">Volcafe Ltd v Cia Sud Americana de Vapores SA (trading as CSAV)</span> [2018] UKSC 61; [2019] AC 358, at paragraph 41, on which Mr Paul McGrath QC for Ikon particularly relied. Lord Sumption said:</p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p style="text-align:justify;margin-left:1in;margin-right:0.39in">‘this court has on a number of occasions pointed out that while an appeal to the Court of Appeal is by way of rehearing, a trial judge’s findings of fact should not be overturned simply because the Court of Appeal would have found them differently. It must be shown that the trial judge was wrong, i.e. that he fundamentally misunderstood the issue or the evidence, or that he plainly fails to take the evidence into account, or that he arrived at a conclusion which the evidence could not on any view support. Within these broad limits, the weight of the evidence is a matter for the trial judge. There is a world of difference between the impression which evidence makes on a judge who has followed it as it was deployed and the impression that an appellate court derives from cold transcripts.’.</p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">At some points in his submissions Mr Stephen Hofmeyr QC for the appellants invited us to reverse the judge’s findings of fact. In particular he invited us to find that Mr Jagannah was dishonest, contrary to the judge’s finding that he was not, and to remit the case for a retrial with that issue already determined. That struck me as an unrealistic approach. Once it is acknowledged, as Mr Hofmeyr does acknowledge, that a retrial is necessary, I consider that we should not tie the hands of the judge who will retry the case. Accordingly I do not propose that we should reverse the judge’s findings, in the sense of replacing them with findings of our own. That being so, the approach described in the <span style="font-style:italic">Group Seven</span> case and in the <span style="font-style:italic">Volcafe </span>case is not directly applicable, although clearly it must be borne in mind as constituting the framework within which this court must operate. Rather the issue is whether the judge gave adequate reasons for his conclusions. In that regard it will be necessary to consider in particular whether, in Lord Sumption’s words, the judge ‘plainly fails to take the evidence into account’. To the same effect, Lord Reed referred in <span style="font-style:italic">Henderson v Foxworth Investments Ltd</span> [2014] UKSC 41; [2014] 1 WLR 2600, at para 67, to ‘a demonstrable failure to consider relevant evidence…’”.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_51">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">51.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Fage UK Ltd v Chobani UK Ltd</span> [2014] EWCA Civ 5; [2014] ETMR 26, Lewison LJ memorably identified the reasons for the approach that appellate courts take to challenges to findings of fact as including:</p>
+            </intro>
+            <subparagraph>
+              <num>“i.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">The expertise of a trial judge is in determining what facts are relevant to the legal issues to be decided, and what those facts are if they are disputed.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>ii.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">The trial is not a dress rehearsal. It is the first and last night of the show.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>iii.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Duplication of the trial judge’s role on appeal as a disproportionate use of the limited resources of an appellate court, and will seldom lead to a different outcome in an individual case</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>iv.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">In making his decisions the trial judge will have regard to the whole of the sea of evidence presented to him whereas an appellate court will only be island hopping.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>v.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">The atmosphere of the courtroom cannot, in any event, be recreated by reference to documents (including transcripts of evidence).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>vi.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Thus even if it were possible to duplicate the role of the trial judge, it cannot in practice be done.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_52">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">52.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I must accordingly be careful not to put myself in the position of the Judge and re-try the case on the very detailed arguments about evidence that were presented to me at the hearing. I must not usurp the Judge’s function of evaluating the reliability of the witnesses. Some of the arguments of the Bank were an attempt to re-argue the case based on the contemporaneous documents and persuade me to attribute different weight to various parts of the evidence. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_53">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">53.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">It is irrelevant whether I think that I would have come to the same conclusion as the Judge, based on what parts I have seen of the sea of evidence. I am nevertheless required to consider whether the Judge went wrong in principle in the way that he assessed parts of the evidence, misunderstood or disregarded material evidence or took into account irrelevant evidence, or otherwise reached an irrational conclusion. In this case, the Bank also relies on a series of alleged procedural irregularities, which are said to have infected his decision in such a way that it should not be allowed to stand.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The expert evidence ground</span></heading>
+          <paragraph eId="para_54">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">54.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank submits that there is a very material flaw in the reasoning of the Judge for rejecting Dr Radley’s opinion that Ms Hughes signed and appended her name to the Guarantee. It submits that, on a correct reading of Dr Radley’s report, there was no room for any doubt about his conclusion that the handwriting underneath the signature was the handwriting of Ms Hughes.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_55">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">55.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">No one at trial sought to challenge the expertise of Dr Radley or criticise the approach in his expert report. It appears that he was not asked any questions after providing his written opinion.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_56">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">56.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">As regards the signature in the name of Mr Lynch, Dr Radley summarised his conclusion in the following terms: “there is strong evidence to support the proposition that the signature in the name of Roderick Lynch on the questioned Guarantee has not been written by Mr Lynch but is a simulation (freehand copy) or possibly a tracing of his general signature style”.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_57">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">57.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">As regards Ms Hughes, Dr Radley’s summary of his conclusions was different as regards the signature and the handwriting under the signature. He noted that the comparison signatures made available to him were limited in number, which had slightly restricted the examination that he made. His conclusions on, first, the signature and, second, the handwriting are as follows:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“I am of the opinion that there is strong evidence to support the proposition that the questioned signature in the name of Marion Hughes on the questioned Guarantee was written by Ms Hughes. I consider the alternative proposition, that it is a simulation of her general signature style to be unlikely. Presentation of further course of business signatures contemporaneous with the questioned document may allow the examination to be taken further.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">I am of the opinion that Ms Hughes wrote the handwritten entries (witness name and witness address beneath the questioned signature) on the questioned Guarantee. I consider the alternative proposition, that this handwriting is the result of another individual simulating her handwriting style, can be realistically disregarded.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_58">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">58.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In more detail in his report, Dr Radley explained that the handwriting samples of Ms Hughes, taken from documents that she admitted she had signed and appended her name and address to, are suitable in number and nature for his examination. He observed that in her handwritings there are numerous idiosyncratic features, both in respect of individual forms and joining strokes between the letterforms. He concluded that, given the number and nature of similarities, in the absence of any evidence to the contrary he was of the opinion that Ms Hughes wrote her name and address on the Guarantee, and that the likelihood of some other individual copying the details could realistically be disregarded.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_59">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">59.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">As Dr Radley’s report states, his conclusions have to be read by reference to appendix C to his report, which is a glossary of terminology. There, he sets out the scale of confidence of the opinions that he expresses, which (excluding “moderate evidence” and “inconclusive” evidence) reads as follows: </p>
+            </intro>
+            <subparagraph>
+              <num>“1.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">The highest level of confidence is an absolute or<span style="font-weight:bold"> conclusive opinion</span> where an examiner has no reservations or qualifications whatsoever and an alternative explanation, in the opinion of the examiner, may be realistically disregarded.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>2.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Marginally below this level of confidence, an expression ‘<span style="font-weight:bold">there is very strong evidence to support the proposition ‘X’ wrote</span>’ may be used. It is a very narrow band of very high confidence of opinion which falls just short of the conclusive level. In this instance, it is highly unlikely that an alternative explanation represents the truth of the matter….</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>3.</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:-0.39in">Another highly confident opinion, which again is a relatively narrow band slightly below that expressed above, is the phrase “<span style="font-weight:bold">there is strong evidence to support the proposition ‘X’ wrote</span>…” In this instance, it is unlikely that an alternative explanation represents the truth of the matter. There may be a small restriction on the examination for one reason or another e.g. copy material only available for examination or a restriction on the volume of known and questioned material etc but no significant differences to the known and questioned signatures.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_60">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">60.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Reading together Dr Radley’s opinions and his appendix C, it is clear that he expressed different strengths of confidence about his conclusion on the signature and the handwriting of Ms Hughes. The signature, like the signature of Mr Lynch, fell into category 3 in the appendix: strong evidence giving rise to high confidence, despite the restriction on the volume of comparable signatures in Ms Hughes’s case. The handwriting of Ms Hughes, however, fell into category 1: absolute or conclusive opinion, because Dr Radley says that the likelihood of some other individual copying that writing could realistically be disregarded, which is the corollary of an absolute or conclusive opinion being expressed. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_61">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">61.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">As noted in para 46 above, the Judge concluded that Dr Radley’s opinion about Ms Hughes was weaker than his conclusion about Mr Lynch. The Judge felt that, with the benefit of Ms Hughes’s evidence about four letters in her first name and more comparable evidence and a greater range, he might have reached a different conclusion about her having witnessed the Guarantee.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_62">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">62.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Mr McCormick sought to persuade me that the Judge had not confused or conflated the different treatment in Dr Radley’s report of Ms Hughes’ signature and her handwriting. It is unclear from the transcript of evidence whether, in identifying differences in the r-i-o-n of her first name, Ms Hughes was pointing to the disputed signature or the disputed handwriting. In any event, it is clear that the Judge thought that the qualification that Dr Radley expressed in relation to his level of confidence about Ms Hughes applied generally, and not just to the signature. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_63">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">63.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I accept Mr Wilson’s submission that, if the Judge had understood the distinction that Dr Radley was making, he would have wanted to make this important distinction clear in his judgment. When summarising Dr Radley’s conclusions at para 11 of the judgment, the Judge did not refer to the conclusion about Ms Hughes’ handwriting. Further, although Dr Radley expressed his conclusion about Ms Hughes’ handwriting as being “in the absence of any evidence to the contrary”, the say so of Ms Hughes would not be the kind of evidence that a handwriting expert had in mind. It is not credible to suggest (and Mr McCormick did not) that Dr Radley would have failed to study any of the letters in the disputed signature and handwriting when comparing them to the authentic samples. By “evidence to the contrary”, Dr Radley must have had in mind other evidence that tends to support an alternative explanation. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_64">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">64.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">It appears to me, accordingly, that the Judge misunderstood or misapplied this part of Dr Radley’s evidence. His reasons for concluding that Ms Hughes’ evidence was to be preferred to that of Dr Radley were not supported by the undisputed evidence. I have some sympathy with the Judge, in that this point was not flagged up by (different) Counsel then acting for the Bank in the way that Mr Wilson has done before me. The separate finding of Dr Radley relating to the handwriting of Ms Hughes was, however, identified in the opening submissions of Counsel for Mr Lynch and in the Bank’s opening skeleton argument at trial (para 70(3)), and obliquely referred to in its written closing submissions.  It would therefore not be right to prevent the Bank from taking the point on appeal.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_65">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">65.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The mistake made by the Judge is potentially of real significance. The Judge reached his conclusion about the validity of the Guarantee on the basis that the relevant document had probably never left the Bank and so was not provided to anyone on the Ruskin side. He concluded, at para 85 of his judgment, that, logically, the disputed signature must therefore have been made by a person at the Bank. That is a strong finding to make – and one to which the Bank takes exception, given that the issue of who forged the Guarantee was agreed not to be a live issue at trial. If Dr Radley’s conclusion at the highest level of confidence about Ms Hughes’ handwriting is correct, the document must have left the Bank and been received by Ms Hughes at least. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_66">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">66.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Ms Hughes gave evidence, which the Judge accepted, that she would not have signed any document as a witness unless there was already a signature on it. That potentially calls into question the conclusion about whether Mr Lynch signed the Guarantee, albeit (ironically) Dr Radley expressed a strong conclusion that he did not.  It also reopens for decision the alternative cases of the Bank, namely that someone authorised by Mr Lynch signed the Guarantee in his name, or that he knowingly delivered the Guarantee that apparently bore his signature, both of which the factual findings of the Judge had closed off, as they were impossible if the document had never reached the Ruskin side. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_67">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">67.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">However, it is impossible for me to say, based on a correct understanding of Dr Radley’s evidence, that any reasonable judge would have reached the opposite conclusion to the Judge, namely that Mr Lynch and Ms Hughes did sign the document, not least because Dr Radley himself opines strongly that Mr Lynch did not. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_68">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">68.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">It is also impossible to conclude on appeal that any reasonable judge would have decided that if Mr Lynch did not sign the Guarantee someone else on the Ruskin side did, with Mr Lynch’s authority, or that Mr Lynch delivered the Guarantee to the Bank’s officers knowing that it apparently bore his signature.  This is not a case where a judge who did not hear the relevant witnesses can substitute a different overall conclusion for that of the Judge. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_69">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">69.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I will consider the appropriate relief to grant at the end of this judgment.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The hierarchy of evidence ground</span></heading>
+          <paragraph eId="para_70">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">70.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The gravamen of this ground of appeal is that although the Judge gave himself an impeccable <span style="font-style:italic">Gestmin </span>direction, he failed to apply it because he gave greater weight to the oral testimony of Mr Lynch and Ms Hughes than to the Bank’s documents and other documents, and failed to have regard to the inherent improbability of the conclusion that he reached, namely that someone at the Bank forged Mr Lynch’s signature on the Guarantee between 15 and 20 September 2011.  The Bank argues that the Judge should have had greater regard to the documents and the inherent likelihood of either side’s case being correct than to flawed recollections of what happened over ten years ago.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_71">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">71.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">This ground of appeal took up the greater part of the 2-day hearing and both sides analysed with great care the sequence of internal Bank documents and relatively few other documents, from which it was argued that conclusions could or could not be drawn. However, it is not my role to make a fresh decision about what is proved and which evidence should be preferred. The weight to be given to any particular evidence was a matter for the Judge. To allow the appeal on this ground I need to be satisfied that the Judge was wrong in principle in his evaluation of the evidence or reached a conclusion that no reasonable judge would have reached.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_72">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">72.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The starting point is to identify the issues to which any of the evidence was relevant.  The critical factual issues on which the outcome of the trial turned were whether Mr Lynch and Ms Hughes signed the Guarantee, and whether the document that became the Guarantee was sent or taken by someone on the Bank side to someone on the Ruskin side on about 12 September 2011.  The latter issue was of importance to the disposal of the Bank’s alternative cases.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_73">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">73.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The oral testimony of Mr Lynch and Ms Hughes about whether they signed the Guarantee was obviously important in a case of this nature, as was the Judge’s view of whether each was a credible witness.  Given the serious allegations made by Mr Lynch, a finding that he was unreliable or not frank and honest would be liable to have a significant bearing on the decision. A finding that he appeared to be reliable and honest would lend support to Dr Radley’s evidence that the signature was not Mr Lynch’s.  However, the Judge needed to be cautious in evaluating the reliability of the witnesses, given the length of time between the events in dispute and the trial. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_74">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">74.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">This was not a case of the paradigm kind described by Leggatt J where the factual issues depend on what was said between commercial parties in various meetings and in conversations over a period when the parties were negotiating or transacting business.  In such cases, where there is a reliable documentary record of emails between the parties, minutes and notes, it is clear and now understood that the picture presented by the documentary record is likely to be much more reliable that the participants’ imperfect recollections at a significant distance of time.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_75">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">75.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In this case, the two factual questions were of a different kind.  Given the allegation of forgery, the question of whether Mr Lynch and Ms Hughes signed the Guarantee was not going to be resolved by the key documents that were in evidence.  There was no document sending the Guarantee to anyone on the Ruskin side for Mr Lynch to sign, and the Guarantee was disputed.  The issue of whether the Guarantee document had left the Bank and arrived at Ruskin depended on the reliability of the evidence of Mr Broomhead, whose statement said that it would have been posted to Ruskin (though there was no documentary record of posting), and Mr Adcock, whose statement said that he took the Guarantee with him to Ruskin on 12 September 2011, as well as on the Bank’s internal documents. Two key witnesses, Ms Court and Mr Atkinson, who went to Ruskin on 15 September 2011 to verify debt and collect the signed documentation, were not called to give evidence.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_76">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">76.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">There can be no doubt that the Bank’s internal documents and the emails of 14 September 2011 were admissible evidence on which the Bank was entitled to rely.  The documents in the bundle proved their contents and so were some evidence of what the Bank had done in relation to the Ruskin transaction.  They did not have to have been seen at the time by the Ruskin side or put to Mr Lynch to be admissible, if they were relied on as evidence of what the Bank had done internally as opposed to in conjunction with My Lynch. But, importantly, the Judge had to decide what those documents themselves proved and how reliable they were. Having done that, he had to decide what if any inferences of fact could be drawn from the facts established by the documents. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_77">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">77.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge found the documentary record to be incomplete and inadequate: in his judgment he identified a number of missing entries and signatures. Further, what the documents appeared to record was inconsistent in certain respects with the Bank’s case.  No one was called by the Bank who could explain the markings or entries on the Take-On Checklist or the Preliminary Checklist.  That was not a matter of oral testimony being needed simply to prove the documents; it was a case of testimony being needed to explain what various entries or markings meant, where they were not self-explanatory, and who made them and when, where that was not stated on the face of the documents.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_78">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">78.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In short, there was a live question about what the documents proved, and what if any inferences could be drawn from them.  The Judge had to weigh such oral evidence as there was explaining the nature of the documents with what they stated, and decide whether the documents proved that the Guarantee document was either sent or taken to Ruskin on 12 September 2011, or whether that could safely be inferred from what the documents recorded. Mr Mills, on behalf of the Bank in closing submissions invited the Judge to infer that circles and ticks on the Preliminary Checklist signified that Ms Court had first identified that something was outstanding and then marked the document again when it was done or obtained; and that a tick meant that the condition in question had been adequately complied with.  Unsurprisingly, the Judge was unwilling to draw that inference in the absence of some evidence about who created the document, when and for what purpose, and who made the manuscript markings on it and what the markings signified.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_79">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">79.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Judge expressed his dissatisfaction with the Bank’s evidence in support of its case in various ways. There were important witnesses who were not called; witnesses who were called were unreliable; and the documentary record was incomplete and unexplained.  His conclusions about the documentary evidence were expressed in paras 44 to 47 of the judgment, set out above.  Mr Wilson criticised the way that the Judge expressed his conclusions, and said that it assumed that the onus was on the Bank to disprove a forgery; but the issue for me is whether in substance the Judge approached the documentary evidence in a way that a reasonable judge could have done, not whether he expressed himself felicitously in explaining his conclusions.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_80">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">80.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In my judgment, what the Judge concluded in substance was this. There were no documents, internal or external, that were reliable evidence that the Guarantee document went from the Bank side to the Ruskin side on 12 September 2011 or on any day, given the limitations of the documentary record and the absence of any explanation of what certain documents meant. Further, no inference to the effect that the Guarantee was delivered to Ruskin could properly be drawn from what the documents did prove. That, in my judgment, was a conclusion that was open to the Judge, given the evidential gaps in the Bank’s case based on the documents. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_81">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">81.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The high point of the Bank’s argument was the markings on the Take-On Checklist and the emails exchanged between Ms Court, Ms Hughes and Mr Dartford on 14 September 2011. The Deal Outline was not identified or explained in evidence and does not by itself prove any relevant fact.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_82">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">82.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Take-On Checklist is a complex document that appears to record the preparation and checking of documents for the transaction on 2 September 2011 (though there is no signature to attest this), and a check of completed documents and paperwork by Ms Court on 12 September 2011, apparently signed by her. It identifies an unlimited personal guarantee of Mr Lynch as one of the documents, and a “date sent out” for that (and all other documents) of 12 September 2011, and also being “signed by individual” and properly witnessed and dated on that same day. The form bears Mr Adcock’s name and a date of 12 September 2011 but he has not signed it off.  The form is signed in two places by Ms Court on 14 September. The checklist also bears Mr Broomhead’s name and a date of 19 September 2011, but not his signature.  It records copy documents sent to client on 19 September, but there was no other evidence of such documents having been sent or received.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_83">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">83.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The statement that the Guarantee was signed, witnessed and dated 12 September 2011 is therefore inconsistent with Mr Adcock’s written evidence that he took all the documents to Ruskin on 12 September and left them for Mr Lynch to consider, and that Ms Court and Mr Atkinson collected them on 15 September. It is also inconsistent with the 14 September email from Ms Court to Ms Hughes, which stated that a dated and signed guarantee of Mr Lynch was outstanding and needed to be satisfied by Friday 16 September. Since Ms Court signed off the checklist on 14 September, the day before she collected documents from Ruskin, it is unclear how she could have certified due signature and witnessing of the Guarantee on 12 September.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_84">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">84.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The 14 September 2011 emails are summarised in para 23 above.  They show that Ms Court identified the Guarantee and an asset and liability statement as being outstanding conditions, and that Mr Dartford annotated the email from Ms Court to state that Ms Court would pick them up the next day. Mr Lynch was copied into Mr Dartford’s reply. There was no email response from Mr Lynch.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_85">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">85.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Mr Dartford’s email is evidence of his understanding about what would happen and his being involved in some way with Ruskin’s arrangements to secure its facility.  Whether his understanding about the Guarantee and the assets and liability statement was correct or mistaken is unknown, as Mr Dartford was not called to give evidence (the assets and liability statement was in fact only faxedon behalf of Mr Lynch to the Bank on 16 September, not – apparently – collected by Ms Court on 15 September). The email is relied on by the Bank as evidence that a document of guarantee had previously been sent by the Bank to Ruskin. But that is an inference that depends on Mr Dartford’s level of involvement between 12 and 14 September, whether he had reviewed the suite of documents brought by Mr Adcock and verified the contents, and whether Mr Lynch saw and read the annotations to Ms Court’s email, among other things. Mr Dartford did not give evidence.  There was therefore, again, a gap in the evidential basis for the Bank’s submission.    </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_86">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">86.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">This is, in my view, a case where the contemporaneous documents were arguably insufficiently probative of the facts that the Bank sought to establish, not a case where there was a reliable documentary record of what happened.  It is apparent from the way that the judgment is structured that the Judge did not first decide which oral testimony he accepted before considering whether any of the documents altered his conclusion: he addressed the shortcomings of the documents, alongside some of the evidence, in the “Background” section of the judgment, reaching conclusions at paras 44-47. He only then turned to the live witnesses and gave his reasons for either accepting their testimony or being cautious about it.  All the strands except one are then brought together in the section headed “Execution of the Guarantee”, where the Judge weighs them up.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_87">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">87.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Where the Judge says at para 81 that he found that Mr Lynch and Ms Hughes were honest (and in Ms Hughes’ case, impressive) witnesses and that “It is from those findings that I reach my conclusions”, that has to be read as a way of expressing a conclusion about all the evidence (except Dr Radley’s evidence, to which the Judge later turned) and not merely, as the Bank would have it, after considering the oral evidence.  Given the particular circumstances of this case, the weight to be given to oral testimony as against whatever the documents did prove was a matter for the Judge.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_88">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">88.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The one strand that was not expressly brought into consideration was the inherent likelihood or unlikelihood of the Guarantee having been signed by someone on the Bank side, as opposed to someone on the Ruskin side.  Inherent probability of one or other side’s factual account being correct is a valuable and important consideration in a case where fraud or forgery is alleged.  It was particularly important in this case because the Judge’s factual conclusions meant that he felt impelled to say that the signature of Mr Lynch was appended by a person at the Bank.  A finding of forgery carried out by an employee of a reputable company is a serious finding to make (particularly when the parties had agreed that there was no requirement to make it). </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_89">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">89.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Armagas Ltd v Mundogas SA (The Ocean Frost)</span> [1985] 1 Lloyd’s Rep 1, 57, Robert Goff LJ said:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“Furthermore it is implicit in the statement of Lord MacMillan in <span style="font-style:italic">Powell v Streatham Manor Nursing Home </span>at p.256 that the probabilities and possibilities of the case may be such as to impel an appellant court to depart from the opinion of the trial Judge formed upon his assessment of witnesses whom he has seen and heard in the witness box. Speaking from my own experience, I have found it essential in cases of fraud, when considering the credibility of witnesses, always to test the veracity by reference to the objective facts proved independently of their testimony, in particular by reference to the documents in the case, and also to pay particular regard to their motives and to the overall probabilities. It is frequently very difficult to tell whether a witnesses telling the truth or not; and where there is a conflict of evidence such as there was in the present case, reference to the objective facts and documents, to the witnesses motives, and the overall probabilities, can be a very great assistance to a judge in ascertaining truth. I have been driven to the conclusion that the judge did not pay sufficient regard to these matters in making his findings of fact in the present case.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_90">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">90.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">A significant section of the Bank’s opening and closing submissions at trial was concerned with the inherent improbability of its having forged the Guarantee. Mr Wilson articulated the main arguments on appeal as follows:</p>
+            </intro>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">There was no apparent reason for the Bank to forge the Guarantee. If it had overlooked it, it was entitled to require provision of a guarantee under the contractually binding terms of the facility, failing which it could terminate the facility. Even if the first advance had already been made (on 19 September), it could take immediate action to require compliance.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">ii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The intended guarantee was in any event regarded internally as being of relatively little value, in reality.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;text-indent:0.11in">Since the facility was not in fact drawn down until 19 September, and there was no reason for a forgery before drawdown, the Bank employee must be taken to have forged the Guarantee within a day – since the signed Guarantee was uploaded on 20 September – instead of raising the matter urgently with Ruskin.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iv)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Despite the limited time available to perpetrate the forgery, the skill of the forger was so great as to fool a very experienced expert such as Dr Radley into expressing strong conclusions that Ms Hughes witnessed the signature.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">v)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">Forging the Guarantee was at great risk to the employee, as the consequences would be serious and the documentation would remain on file.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">vi)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">There was no obvious gain for the employee who decided to forge the Guarantee, or other motive to do so; only substantial risk. </p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_91">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">91.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Having reached a conclusion that the documents were not strongly probative of the Bank’s case and that Mr Lynch and Ms Hughes appeared to be honest witnesses, the Judge was persuaded that the Guarantee document had never left the Bank and that therefore the signatures must have been forged within the Bank. The Judge was only partly supported in this conclusion by the expert opinion of Dr Radley. The Judge should have tested his provisional conclusion by reference to the undisputed facts, the possible motives of the parties and the inherent probabilities of the matter.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_92">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">92.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">A judge does not have to deal expressly in a judgment with every issue and argument raised. It can usually safely be inferred that, without referring to them expressly, a judge had all the evidence and submissions in mind. I am left in doubt, however, whether the Judge did carry out the essential step described by Robert Goff LJ. I have re-read the judgment to try to find reassurance that the Judge did stand back and consider inherent probabilities. There is nothing to indicate that he did. The Judge’s finding that the signature was made by a person at the Bank was said to follow “logically” from the conclusion that the Guarantee was never provided to Mr Lynch (para 85). That suggests that the Judge did not do so.    </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_93">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">93.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I accept that this is not a case where the documents point forcefully against the Judge’s conclusion, but what is nevertheless missing is consideration of why someone at the Bank may have acted in that way, within such a short timescale, when the Bank had a contractual right to a guarantee. There was only one day between the first drawdown on the facility and the Guarantee being uploaded. It is hard to imagine why the signatures would have been forged before drawdown. The Judge would also have had to consider whether, if Mr Lynch did not sign his name, someone else on the Ruskin side might have done so and had a reason to do so. The Judge may have been deflected from that course because of his conclusion that the Guarantee did not leave the Bank, but it was right nevertheless to have tested his conclusion of forgery at the Bank by reference to that possibility.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_94">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">94.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Given what Dr Radley said about Mr Lynch’s signature and the flaws in the Bank’s evidential case, it cannot be said that any reasonable judge who carried out that evaluation would have reached the opposite conclusion to that of the Judge.  There are too many evidential points at play in this case, some of which conflict. A final conclusion could only be made by a judge who heard the witness evidence.  Nevertheless, the decision that the Judge reached is flawed because it does not appear that he considered the essential matters identified by Robert Goff LJ.  </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The flawed evaluation of evidence ground</span></heading>
+          <paragraph eId="para_95">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">95.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In view of the conclusions that I have reached, it is perhaps unnecessary for me to consider at length the other grounds of appeal. I will nevertheless address this and the next ground briefly.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_96">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">96.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank submitted that the decision was further flawed because the Judge failed to take into account “significant and material evidence, and drew unreasonable and logically flawed inferences from the evidence before him”.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_97">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">97.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">This ground encompasses three distinct points:</p>
+            </intro>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge wrongly dismissed evidence that Mr Lynch had a propensity to deny receipt of important documents when it suited him;</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">ii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in">The Judge wrongly gave no weight to the fact that Mr Lynch had made a similar allegation of forgery of a loan agreement against Inspiration, when the chances of there being two separate forgeries were absurdly remote;</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="color:initial;margin-left:0.79in;text-indent:-0.39in">iii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;text-indent:0.11in">The Judge wrongly dismissed evidence of other serious allegations of wrongdoing made by Mr Lynch in the course of the proceedings.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_98">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">98.</num>
+            <intro>
+              <p style="text-align:justify;margin-left:0.39in">The Judge said:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“Mr Mills sought to undermine the evidence of Mr Lynch by introducing what may loosely be described as similar fact evidence, asking the court to infer that he gave dishonest testimony based upon previous denials that he had received certain documents sent in relation to other proceedings. In my judgment it would be dangerous to make a finding of dishonesty based on such evidence and in any event, the evidence must be considered as a whole.”  </p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_99">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">99.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">All of these facts were relied on by the Bank in an attempt to discredit Mr Lynch.  They could not be relied on as evidence of propensity because there had been no finding, nor was there an attempt to prove, that Mr Lynch had in fact received the documents in question or that the Inspiration loan agreement was genuine, or that the other serious allegations were unfounded.  What could be said was accordingly not that Mr Lynch had made false allegations previously but that it was inherently unlikely that Mr Lynch could be the victim of so many mischances as he suggested was the case, in particular of two separate forgeries in the same month relating to Ruskin’s financing arrangements; and, therefore, it was unlikely that he was being truthful about the execution of the Guarantee.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_100">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">100.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">As such, the evidence in question was being used as a means of establishing that Mr Lynch was unreliable as a witness.  The Judge was right to see them as an attempt to persuade him that Mr Lynch was dishonest, but without proving that there had been previous occasions of dishonesty.  The Judge was entitled to be cautious about that approach; I would say he was right to be cautious.  The second allegation of forgery might have been regarded as being of particular interest but, as with much similar fact evidence, there is a danger that a judge becomes distracted by matters that are not directly in issue. It might indeed have been unlikely that Mr Lynch had been defrauded twice by different persons, but without a finding about the Inspiration loan agreement that of itself would not assist the Judge to decide whether the Guarantee was forged.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_101">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">101.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In my judgment, it cannot be said that the Judge was wrong to decline to place reliance on this evidence. It was well within the scope of his evaluative function to decide which evidence most assisted him to decide whether Mr Lynch had signed the Guarantee.  That conclusion about the ‘similar fact evidence’ applies a fortiori to allegations of wrongdoing made within these proceedings.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_102">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">102.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I reject this ground of appeal.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">The irregularities ground</span></heading>
+          <paragraph eId="para_103">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">103.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The matters of which the Bank complains under this ground are somewhat of a rag bag of evidential criticisms, which are not in truth procedural irregularities but criticisms of the weight (or lack of it) that the Judge placed on particular evidence. They were time-consuming allegations to argue, but I do not find that the Judge’s treatment of any of them to amounts either to a procedural irregularity or to a factual finding that was plainly wrong.  I will outline my reasons relatively briefly.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_104">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">104.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Signature in blue pen</span>. Foremost among the matters of complaint is the Judge’s reliance on evidence given by Ms Hughes to the effect that Mr Lynch would never have signed the Guarantee in a blue pen. The Judge found this evidence to be spontaneously given and inherently reliable, but it was not the only reason why he found Ms Hughes to be an honest and impressive witness.    </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_105">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">105.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank submitted that it was astonishing that any judge could place reliance on this piece of evidence, given that it had emerged only in cross-examination and had not previously been raised in the witness statement of either Mr Lynch or Ms Hughes. The use of blue ink had been mentioned previously in a 2017 witness statement of a Mr Reddy and in the expert report of Dr Radley.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_106">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">106.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank complains that there was a serious procedural irregularity because it had no chance to consider and test the suggestion that Mr Lynch would not have signed in anything but a black pen.  There was no procedural irregularity. The point emerged in the course of the Bank’s cross-examination at trial. The Bank’s Counsel would have been aware that the point had not been identified previously by Mr Lynch or Ms Hughes and could have challenged the evidence on that basis.  If the Bank needed time to consider the point, or examine other documents or seek further disclosure, it could have done so at the trial.  It is not permissible for the Bank to raise the complaint on appeal.  The weight, if any, to be given to that evidence was a matter for the Judge, in the light of the way that the evidence was given and his evaluation of Ms Hughes and the witnesses generally.  Some, or many, judges may have been unimpressed by it, but it cannot be said that the Judge’s acceptance of that evidence was irrational.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_107">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">107.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Reliance on Mr Dartford.  </span>It is true that at one point in his judgment the Judge referred to what was said in correspondence about the content of a witness statement of Mr Dartford (made in connection with the admission of proofs by Mr Lynch’s trustee in bankruptcy) being evidence that “<span style="font-style:italic">has little weight but that does not mean it has no value</span>”.  The reference to the content of that witness statement was admissible double hearsay, if the letter was in the bundle, though no notice had been given under the Civil Evidence Act 1995 in relation to the witness statement, so the Judge was perfectly entitled to conclude that it had little weight. Others might have concluded that it had none, but that is irrelevant. There is no indication that the little weight that the Judge thought it could bear had any impact on his decision, even though he pointed out that his conclusion that neither Mr Lynch nor Ms Hughes signed the Guarantee was consistent with what Mr Dartford had said.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_108">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">108.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">The psychology of human memory.</span><marker name="tab" />The fact that the Judge alluded in his judgment to academic studies into the reliability of human memory, identifying two psychologists who were pre-eminent in that field, does not mean that he relied on any material unknown to the parties beyond what is now well-known, as a result of its discussion in cases such as <span style="font-style:italic">Gestmin</span>.  The Judge referred to “memory bias” in the course of closing submissions, and considered that Mr Bramwell’s evidence was affected by it, sc. that the Bank’s standard guarantee was an unlimited guarantee. But memory bias is hardly a novel proposition or a matter that would have taken the Bank’s Counsel at trial by surprise.  The argument that the two psychologists should have been called as expert witnesses before the Judge could refer to their work was very surprising.  There is nothing in the judgment to suggest that the Judge relied on anything beyond what has previously been discussed in authorities and what is now commonplace in a trial.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_109">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">109.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Unbalanced approach to memory of witnesses. </span>Neither is there anything in the complaint that the Judge found that Mr Bramwell’s recollection was affected by memory bias, but did not take the same approach in relation to Mr Lynch’s evidence. The Judge was well aware that Mr Lynch, in his 2014 witness statements, had given a different explanation of his dealings with the Bank, namely that he probably signed a limited guarantee. He referred to it in his judgment. It cannot seriously be suggested that the Judge must have overlooked the fact that Mr Lynch did not initially dispute that he had signed a guarantee.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_110">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">110.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Evidence of industry standard practice. </span>The Bank’s criticism of the Judge’s apparent acceptance of what Mr Lynch said about industry standard practice for limited guarantees may be justified, in that the evidence was either inadmissible opinion evidence or else evidence of his own necessarily very limited experience; but overall it was of no materiality in the Judge’s conclusion that a guarantee document did not leave the Bank. Whether Mr Lynch would have signed an unlimited guarantee, had one been sent or brought to Ruskin, was not in the event a question that the Judge had to decide.  The Judge nowhere concluded that a guarantee document was not sent because the Bank recognised that a limited guarantee of the kind that Mr Lynch described had no value.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_111">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">111.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The Bank also criticises the Judge for appearing not to accept Mr Bramwell’s evidence that if nothing more is said about the extent of a guarantee to be given then it is an unlimited guarantee that will be required. The Judge expressed a view in his judgment that a bank should bring the terms of a guarantee to a guarantor’s notice, particularly if the guarantee is unlimited.  The Bank suggests that this disagreement, based on the Judge’s views about good banking practice, led to a rejection of Mr Bramwell’s evidence on the basis that it was a “reconstruction”.  I consider that the Judge’s comment on banking practice was little more than a comment (perhaps an unnecessary one) and did not affect his conclusion about whether there was a discussion on 8 September 2011 about an unlimited guarantee. Neither did the Judge’s view about good banking practice affect his assessment of whether Mr Lynch or Mr Bramwell was right to recall what sort of guarantee was discussed on that day. Mr Bramwell’s reconstruction was said to follow from his own views of what was standard practice. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_112">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">112.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Comment on witnesses.</span><marker name="tab" /><span style="font-style:italic"> </span>The fact that the Judge expressed an opinion about Ms Hughes and Mr Bramwell as witnesses during closing submissions of Mr Lynch, before hearing the Bank’s closing submissions, is neither here nor there. It cannot sensibly be suggested (nor indeed was it said) that the Judge had closed his mind to any submissions the Bank might make about the evidence that the Judge had heard.  Judges frequently give indications of provisional views that they have formed, and advocates generally find it helpful to receive them and be able to address them. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_113">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">113.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic">Use of term ‘pari passu’. </span>The Bank contends that the Judge wrongly evaluated Mr Lynch’s evidence that the term ‘<span style="font-style:italic">pari passu</span>’ was used by Mr Clark on 29 July 2011.  It contends that this evidence was incredible, given that it is a technical insolvency term and given that Mr Lynch said that he did not understand it when Mr Clark used it.  Mr Lynch might have come across it during the course of his later bankruptcy proceedings, it was suggested.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_114">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">114.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">Whether Mr Lynch’s recollection of that expression being used in July 2011 was accurate was self-evidently a matter for the Judge, depending on his assessment of the quality of Mr Lynch’s recollection of other events and his reliability.  It is not possible to say on appeal that any reasonable judge would have rejected that evidence.  Nor is it at all clear how a failure to reach the contrary conclusion (viz that Mr Lynch had misremembered based on later use of the expression) contaminated the Judge’s decision on the central factual issues, which did not depend on anything that was said at the July 2011 meeting.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_115">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">115.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I therefore reject this ground of appeal.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">Burden of proof and weight of evidence grounds</span></heading>
+          <paragraph eId="para_116">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">116.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">For reasons already given, and in view of my conclusion on the expert evidence and hierarchy of evidence grounds, it is unnecessary to address the burden of proof and weight of evidence grounds in great detail.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_117">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">117.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">The burden of proof on an appeal from a decision of an office-holder about a proof of debt lies on the creditor, regardless of whether the creditor, the debtor or a third party is the appellant: <span style="text-decoration-line:underline;text-decoration-style:solid">Levi Solicitors LLP v Wilson</span> [2022] EWHC 24 (Ch) at [19]-[20].  That is because the appeal is a full rehearing: the creditor must prove the debt. It means that, if the claimed debt derives from a guarantee, the persuasive burden falls on the creditor to prove the guarantee and the amount of the liability.  </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_118">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">118.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">If, however, the debtor’s only defence (and the real issue on the appeal) is that what appears to be a valid guarantee is a forgery, the evidential burden will shift to the debtor once the creditor has adduced <span style="font-style:italic">prima facie </span>evidence that the guarantee is a genuine document. <span style="font-style:italic">Prima facie</span> evidence is evidence that, if no contrary evidence is adduced, is sufficient to justify the court in deciding the rival cases in favour of the creditor.  At that stage, although the persuasive burden does not shift, effectively the burden of proof lies on the party who asserts the forgery, not the party who denies it. The same applies, in my judgment, if the critical issue is the truth of an assertion that the guarantor did not sign it.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_119">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">119.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">In a trial where evidence is called by both sides and no submission of no case is made, the burden of proof is usually irrelevant because the judge is able to resolve the issues, on the balance of probability, in the light of all the evidence. So, in this case, the Judge decided that it was more likely than not that Mr Lynch did not sign the Guarantee. However, his decision was flawed in the two respects that I have already explained.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><span style="font-weight:bold">Conclusion</span></heading>
+          <paragraph eId="para_120">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">120.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">I therefore propose to allow the appeal of the Bank on the grounds that the Judge appears to have misunderstood or misapplied an important part of the expert opinion evidence, and failed to take into account questions of motive and inherent probability when reaching his factual conclusions.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_121">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;color:initial;margin-left:0.39in;text-indent:-0.39in">121.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.39in">As I have indicated, this is not a case where I can substitute the opposite conclusion for the conclusion reached by the Judge. It appears to me that the case will have to be retried, but I will hear Counsel on the appropriate order to make in view of my decision. </p>
+            </content>
+          </paragraph>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

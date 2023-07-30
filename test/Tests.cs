@@ -62,11 +62,11 @@ public class Tests {
     }
 
     private static byte[] ReadDocx(int i) {
-        var resource = $"test{i}.docx";
+        var resource = $"test.judgments.test{i}.docx";
         return ReadDocx(resource);
     }
     private static byte[] ReadDocx(int i, string name) {
-        var resource = $"test{i}-{name}.docx";
+        var resource = $"test.judgments.test{i}-{name}.docx";
         return ReadDocx(resource);
     }
     internal static byte[] ReadDocx(string resource) {
@@ -78,7 +78,7 @@ public class Tests {
     }
 
     private static string ReadXml(int i) {
-        var resource = $"test{i}.xml";
+        var resource = $"test.judgments.test{i}.xml";
         return ReadXml(resource);
     }
     internal static string ReadXml(string resource) {
@@ -125,7 +125,7 @@ public class Tests {
         Assert.Equal(expectedXml, actualXml);
         var assembly = Assembly.GetExecutingAssembly();
         foreach (var actual in response.Images) {
-            using Stream stream = assembly.GetManifestResourceStream($"test{ i }-{ actual.Name }");
+            using Stream stream = assembly.GetManifestResourceStream($"test.judgments.test{ i }-{ actual.Name }");
             using MemoryStream ms = new MemoryStream();
             stream.CopyTo(ms);
             byte[] expected = ms.ToArray();
