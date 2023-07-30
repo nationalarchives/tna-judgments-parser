@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admin/2022/2354" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admin/2022/2354" />
+          <FRBRdate date="2022-09-16" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd-admin" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="2354" />
+          <FRBRname value="ASAD AL-JABAN v COURT OF FIRST INSTANCE IN ANTWERP (BELGIUM)" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/2354" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/2354" />
+          <FRBRdate date="2022-09-16" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd-admin" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/2354/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/2354/data.xml" />
+          <FRBRdate date="2022-10-31T20:23:45" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-09-16" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (King's Bench Division)" shortForm="The Administrative Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="asad-al-jaban" href="" showAs="ASAD AL-JABAN" />
+        <TLCPerson eId="court-of-first-instance-in-antwerp-belgium" href="" showAs="COURT OF FIRST INSTANCE IN ANTWERP (BELGIUM)" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-mr-justice-fordham" href="/judge-mr-justice-fordham" showAs="MR JUSTICE FORDHAM" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-KBD-Admin</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>2354</uk:number>
+        <uk:cite>[2022] EWHC 2354 (Admin)</uk:cite>
+        <uk:parser>0.10.12</uk:parser>
+        <uk:hash>5bd415f41900578b24b6f73b1b95ef33ca1fa009cc2f5c038aaf1d33e529e3b0</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: left; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 18pt; }
+#judgment .CoverMain { text-align: left; font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaHeading { text-align: left; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Header { text-align: left; font-family: Univers; font-size: 12pt; }
+#judgment .Footer { text-align: left; font-family: Univers; font-size: 12pt; }
+#judgment .ListParagraph { text-align: left; margin-left: 0.5in; font-size: 12pt; }
+#judgment .BalloonText { text-align: left; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .HeaderChar { font-family: Univers; font-size: 12pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .ListParagraphChar { font-size: 12pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <table uk:widths="3.25in 3in">
+        <tr>
+          <td>
+            <p class="Header"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:8pt">THE HON. MR JUSTICE FORDHAM</span></p>
+            <p class="Header"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:8pt">Approved Judgment</span></p>
+          </td>
+          <td>
+            <p class="Header" style="text-align:right" />
+          </td>
+        </tr>
+      </table>
+    </coverPage>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.4pt;height:75.75pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWHC 2354 (Admin)</neutralCitation><span> </span></p>
+      <p class="CoverText">Case No: <docketNumber>CO/2492/2021</docketNumber></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-admin">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-admin" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">KING'S BENCH DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-admin" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">ADMINISTRATIVE COURT </courtType></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText"><docDate date="2022-09-16" refersTo="#judgment">16<span style="vertical-align:super;font-size:smaller">th</span> September 2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before:</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-justice-fordham">MR JUSTICE FORDHAM</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>
+      <table uk:widths="1.23in 3.86in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#asad-al-jaban" as="#appellant" style="font-weight:bold;font-family:Arial">ASAD AL-JABAN</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#appellant">Appellant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#court-of-first-instance-in-antwerp-belgium" as="#respondent" style="font-weight:bold">COURT OF FIRST INSTANCE IN ANTWERP (BELGIUM)</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent">Respondent</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Rebecca Hill </span>(instructed by Freemans Solicitors) for the <span style="font-weight:bold">Appellant</span></p>
+      <p style="text-align:center">The <span style="font-weight:bold">Respondent</span> did not appear and was not represented</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">Hearing date: 13.9.22</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center">I direct that no official shorthand note shall be taken of this Judgment and that copies of this version as handed down may be treated as authentic.</p>
+      <p style="text-align:center"><img src="image2.png" style="width:83.33pt;height:51.12pt" /></p>
+      <p style="text-align:center">.............................</p>
+      <p style="text-align:center">THE HON. MR JUSTICE FORDHAM</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p><span style="font-weight:bold">MR JUSTICE FORDHAM:</span></p>
+          </content>
+        </level>
+        <level>
+          <heading class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid">Introduction</span></heading>
+          <paragraph eId="para_1">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">This in-person renewed application for permission to appeal came before the Court in consequence of the Divisional Court’s judgment [2022] EWHC 1906 (Admin). The background and context can be seen from that judgment (§§3 and 28 to 34), where the essence of the renewal grounds was also encapsulated (§33). There is a section 2 Extradition Act 2003 ground raising the inadequacy of particulars. There is also a section 10 ground alleging the absence of an “extradition offence” by reference to “dual criminality” but Ms Hill accepts that this section 10 ground is parasitic on the section 2 ground (as, I note, was also the position in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran v Belgium</span> [2021] EWHC 1257 (Admin) at §39). I will be focusing on section 2 particularisation.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">2.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">The Appellant’s extradition to Belgium was ordered by a judgment of DJ Rimmer (the Judge) dated 13 July 2021. The EAW of 30 July 2020 on which the Appellant was arrested on 4 September 2020 is an accusation warrant. Further Information is dated 6 January 2021 (FI1) and 26 April 2021 (FI2). The Appellant is a refugee whose country of origin is Syria. He came to the United Kingdom on 22 June 2019 in a lorry and claimed asylum, which was granted in December 2019. The alleged offences for which he is wanted to stand trial in Belgium relate to “people trafficking” as an active member of a criminal gang concerned with smuggling people from Belgium to the United Kingdom hidden in lorries. The Appellant denies that alleged offending and says he became caught up with the gang and in the people trafficking, but only as a victim. The Judge heard submissions about a refugee’s shield under Article 31 of the Refugee Convention but the Respondent convincingly explained that a refugee has no blanket immunity insofar as they are directly implicated in smuggling others.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">I would normally have given a judgment ex tempore. But Ms Hill had been instructed at short notice. Without setting any precedent, I acceded to her invitation to read and consider – after the hearing – two authorities which she emphasised but which had not been supplied in her authorities bundle, then giving a brief ruling in writing. In doing so, I came across <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> and asked her to address that case in urgent brief written submissions, as she helpfully did. In subsequent reading for another case, I have also now come across <span style="text-decoration-line:underline;text-decoration-style:solid">Osu v Spain</span> [2020] EWHC 3856 (Admin), to which I will interpose two footnote references. I was and am satisfied that it is not necessary or appropriate to reconvene the hearing or put any further aspect for argument by either party.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Law</span></heading>
+          <paragraph eId="para_4">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">The essential law on particularisation derives from section 2(4)(c)(d) of the 2003 Act and Article 8(1)(e)(f) of the Framework Decision compatibly with which it is interpreted and applied (in the present case); and the Multiple Offences Order SI 2003/3150. As to authorities, the Judge referred to <span style="text-decoration-line:underline;text-decoration-style:solid">Belgium v Cando-Armas</span> [2006] 2 AC 1; <span style="text-decoration-line:underline;text-decoration-style:solid">Dabas v Spain</span> [2007] 2 AC 31; <span style="text-decoration-line:underline;text-decoration-style:solid">Ektor v Holland</span> [2007] EWHC 3106 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">Taylor v Germany</span> [2012] EWHC 475 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">Poland v Sabramowicz</span> [2012] EWHC 3878 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">Alexander &amp; Di Benedetto v France &amp; Italy</span> [2017] EWHC 1392 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">FK v Germany</span> [2017] EWHC 2160 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B v Italy</span> [2018] EWHC 1808 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">Avadanei v France</span> [2019] EWHC 2534 (Admin); <span style="text-decoration-line:underline;text-decoration-style:solid">Zeka v Belgium</span> [2020] EWHC 2304 (Admin). Ms Hill’s bundle supplied me with <span style="text-decoration-line:underline;text-decoration-style:solid">Taylor</span>, <span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B</span> and <span style="text-decoration-line:underline;text-decoration-style:solid">King v France</span> [2015] EWHC 3670 (Admin). At the end of the hearing she asked me to receive and read <span style="text-decoration-line:underline;text-decoration-style:solid">Avadanei</span> and <span style="text-decoration-line:underline;text-decoration-style:solid">Zeka</span>. I then drew her attention to <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Legal Principles</span></heading>
+          <paragraph eId="para_5">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">The following summary of applicable legal principles suffices for the present case. They can all be found reflected in the Judge’s judgment. (1) Legally adequate particularisation is required for an EAW to be valid (<span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B</span> §46i). (2) Further Information can add missing information to a deficient EAW to establish its validity (<span style="text-decoration-line:underline;text-decoration-style:solid">Alexander</span> §73). (3) However, a “wholesale failure” in the EAW cannot be cured by Further Information (<span style="text-decoration-line:underline;text-decoration-style:solid">Alexander</span> §75). (4) The onus in establishing legally adequate particulars is on the requesting judicial authority and the standard is the criminal standard (<span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B</span> §46ii, iii). (5) “Each offence” must be adequately particularised (<span style="text-decoration-line:underline;text-decoration-style:solid">FK</span> §54vi; 2003 Order). (6) Required information includes “particulars of the circumstances in which the person is alleged to have committed the offence”, including “the conduct” alleged to constitute the offence, “the time and place at which” they are alleged to have done so, “any provision of the law” under which the conduct is alleged to “constitute an offence” (s.2(4)(c)), their “degree of participation” (Article 8(1)(e)), and “particulars of the sentence which may be imposed” (s.2(4)(d)). (7) The purposes of particularisation are twofold. (i) First, so that the requested person knows with reasonable certainty the substance of the allegations against them, in particular when and where the offence is said to have been committed and what they are said to have done (<span style="text-decoration-line:underline;text-decoration-style:solid">FK</span> §54ii). (ii) Secondly, so that the requested person can raise – and the extradition courts apply – extradition bars and safeguards (<span style="text-decoration-line:underline;text-decoration-style:solid">FK</span> §54iii-iv), including (a) the dual criminality “transposition exercise” regarding each “offence” (2003 Act ss.10, 64; <span style="text-decoration-line:underline;text-decoration-style:solid">FK</span> §54iii; <span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B</span> §47) and (b) being able to invoke specialty protection (2003 Act s.17; <span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B</span> §47). (8) Adequate particularisation arises in the context of the object of simplifying extradition procedures with a high level of mutual trust, so that a “balance must be struck” and “great detail” is unnecessary (<span style="text-decoration-line:underline;text-decoration-style:solid">Taylor</span> §11), there being “no requirement for full and exhaustive particularisation”, and “the appropriate level of particularisation” being “dependent upon the circumstances of the specific case” (<span style="text-decoration-line:underline;text-decoration-style:solid">FK</span> §54), and whether there is a “wholesale failure” is a judgment “on the specific facts” (<span style="text-decoration-line:underline;text-decoration-style:solid">Alexander</span> §75). I have applied those principles in assessing arguability in this case.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Killoran’s case</span></heading>
+          <paragraph eId="para_6">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">6.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>, permission to appeal was refused after an oral hearing with relatively extensive oral argument, such that Chamberlain J gave permission for the judgment to be cited (§61). Ms Killoran was wanted for extradition to Belgium. The EAW identified two “offences” of “people smuggling” (§7) and gave the maximum as “15-20 years” (§4). The ringleader was identified as Saman Ahmed Taha. The alleged “people smuggling” involved receiving payments and guiding people from Oud-Turnhout train station to Belgian pickup points (on the E34, E313 and E40) where they would join lorries for the UK. Ms Killoran was said to have transported people to the pickup points and the Further Information gave “the dates of the occasions when she was present at the parking areas on the E34 and E313” (§11). She argued that the EAW failed adequately to particularise each offence, which was a “wholesale failure” uncurable by Further Information; that even with the Further Information there were inadequate particulars; and that the maximum sentence was not adequately particularised (§3). These were held to be unarguable (§§12-33). As will be seen, there are obvious parallels with the present case. As Ms Hill has accepted, it is “the same wider conspiracy to traffic people” and the ss.2 and 10 challenges in the present case “exactly echo” those in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>. Where I refer below to <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>, I am not saying it is identical, nor that the judgment is legally binding on me. Rather, it will be where – in assessing arguability in the present case - I find the analysis in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> helpful and agree with it.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">The present case</span></heading>
+          <paragraph eId="para_7">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">I start with the EAW. The EAW in this case identifies the same two “offences” as did the EAW in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> (§7): (a) “smuggling of human beings, committed against minors, during which the victim’s life was exposed to serious danger, as a habit, and within the framework of a criminal organisation”; and (b) “smuggling of human beings, during which the victim’s life with exposed to serious danger, as a habit, and within the framework of a criminal organisation”. The difference is that (a) would apply when any smuggled individual was a minor. The EAW refers to the applicable statutory provisions as in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> (§7): section 66 of the Belgian Criminal Code and section 77 of a December 1980 Immigration Law. The EAW records under “indications on the length of the sentence” as the “maximum length of the custodial sentence” imprisonment of “15 to 20 years”, as in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> (§4). The EAW identifies the same ringleader: Saman Ahmed Taha. The alleged “people smuggling” involves receiving payments and guiding people from Brussels North railway station to the same pickup points (E34, E313 and E40) to join lorries for the UK (explaining that the Appellant himself joined a lorry to the UK on 20 June 2019). The EAW describes the mode of operation of the gang in guiding individuals from the Brussels North railway station to the pick up location, in return for payment. It describes instructions being given as to how to get to the pick up location or the individual being taken there. It identifies the Appellant as having been involved in the smuggling operation; having been identified as present at Brussels North railway station and present at the pickup points (between 8 October 2018 and 20 June 2019); as having telephone contact with the ringleader; and as being instructed by the ringleader to hand over money that had come from the smuggled individuals.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">8.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">FI1 and FI2 give considerable further detail. FI2 adds a third species of offence (“being part of a criminal organisation”) and a Prosecutor’s Statement (8.3.21) explains that this “entails” the “same conduct” already summarised, in a context where “within the framework of a criminal organisation” is already an “aggravating circumstance” of the two species of offence specified in the EAW. As the Judge unassailably accepted, what this ‘participation in an organisation’ is describing is being “part of a conspiracy to smuggle people from Belgium to the UK”. FI1 provides very considerable detail of the case against the Appellant that he guided victims to the pickup location; that his role included assisting with smuggling activities at that location; that he guided victims from the Brussels North train station to that location; that he recovered money from victims; and that he handed over part of the recovered money to the ringleader. FI1 gives a series of specific dates when the Appellant is alleged to have been at Brussels North train station and then travelled to the pickup location: 9/10/18; 12/10/18; 22/10/18; 23/10/18; 24-25/10/18; 25-26/10/18; 12-13/12/18; 17-18/12/18; 26-27/3/19; 27-28/3/19; 28/3/19; 3-4/4/19; 5-6/4/19; 10-11/4/19; 14/5/19; 20/5/19; 21/5/19; 5-6/6/19; 18-19/6/19; 19-20/6/19. FI1 also says this: “It is still possible that further investigation (such as camera images, statements or telephony investigation) shows [the Appellant’s] involvement in other acts of human trafficking for the same criminal organisation, in which case, evidently, he will be prosecuted for these acts as well”. Ms Hall accepts that there is nothing, per se, objectionable in that description or course of action, but says it brings into sharp focus whether legally adequate particulars have been given so as to allow the Appellant to invoke speciality protection.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">The Argument</span></heading>
+          <paragraph eId="para_9">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">Ms Hill submitted that it is reasonably arguable that the Judge was wrong not to find a “wholesale failure” in the EAW; alternatively that the Judge was wrong not to find the EAW and Further Information fail to provide legally adequate particulars. She emphasises that <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> was a permission decision; argues that it was materially distinct as to the materials and arguments; and argues that this Court should if necessary take a different view on the basis that the conclusions “could not properly have [been] reached”. Ms Hill helpfully identified five features of the case involving arguable lack of particularisation: (1) failure to specify a clear <span style="text-decoration-line:underline;text-decoration-style:solid">maximum sentence</span>, given the “ambiguous” reference to “15 to 20 years” indicating a sentencing “range” (section 2(4)(d)); (2) failure to identify which alleged courses of conduct involved trafficking <span style="text-decoration-line:underline;text-decoration-style:solid">of a minor</span>; (3) failure to specify the <span style="text-decoration-line:underline;text-decoration-style:solid">place</span> at which the Appellant is alleged to have committed each offence (section 2(4)(c)), especially given references to the Appellant having undertaken the role of collecting money once trafficked persons “had arrived in the UK”; (4) failure to identify clearly the <span style="text-decoration-line:underline;text-decoration-style:solid">species</span> of alleged criminal offending; and (5) failure to identify clearly the <span style="text-decoration-line:underline;text-decoration-style:solid">number</span> of alleged incidents (occasions) of each species of criminal offence. She argues that the Appellant arguably does not know the substance of the case against him. She submits that the particulars fail to achieve the purpose as to the invocation and assessment of potential extradition bars and protections, identifying as potential candidates (a) forum (b) dual criminality and (c) speciality.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Discussion</span></heading>
+          <paragraph eId="para_10">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">I cannot accept those submissions. In my judgment, this appeal has no realistic prospect of success. The starting point is that there is, in my judgment, no difficulty at all in the present case in identifying the essential substance of the cases against him. The “offences” are smuggling human beings by seriously endangering their life and doing so within the framework of a criminal organisation; doing so in the case of underaged persons (minors); and (through the same conduct) participating in a conspiracy to smuggle people. As to the alleged criminal conduct, what is being said is this. Individuals (adults, but also children) were being smuggled into the United Kingdom by a gang who facilitated their perilous passage hidden in lorries, in return for money. Those individuals would arrive at Brussels North train station where they would encounter a member of the criminal gang who would guide them by telling them how to get to the lorry pick-up point or accompanying them there. Money was collected. The Appellant acted as a facilitator. He encountered individuals at the train station and guided or accompanied them to the location. He received payments. He passed on money collected to the gang ringleader. Mobile phone locational information and intercept evidence put him in contact with the ringleader and place him at Brussels North train station and at the pick up point, on a series of identified specific dates.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">11.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">If I focus in on the EAW (read as a whole) there is in my judgment – beyond argument – nothing constituting a “wholesale failure”. I reach the same view about this EAW as did Chamberlain J about the EAW in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> (§27). This EAW is a document in the prescribed form, presented as an EAW, setting out to address the required information (<span style="text-decoration-line:underline;text-decoration-style:solid">Alexander</span> §75). I am assisted by working illustrations. <span style="text-decoration-line:underline;text-decoration-style:solid">M &amp; B</span> was a people smuggling case where the Divisional court found a “wholesale failure” in an EAW which effectively listed the entirety of a hundred or more offences against a large number of defendants, where some defendants were being accused of some offences, but without specifying which of the allegations related to the requested persons: see §§48, 63. <span style="text-decoration-line:underline;text-decoration-style:solid">Avadanei</span> was about organised thefts by members of a gang, where Laing J found a “wholesale failure” (§30) in an EAW which was internally contradictory (in referring to 35 offences and then about 30 offences) and in giving “none of the details” required by section 2 about the requested person’s involvement. These cases were discussed in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> at §25. (I interpose that in the mail/email scam case of <span style="text-decoration-line:underline;text-decoration-style:solid">Osu</span> there was a “wholesale failure” (§15) in an accusation EAW: two of the three species of offence involved “no particulars”; and the third was “wholly devoid of the level of detail which would permit the appellant to ascertain what case he would be required to meet on return”.)</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_12">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">Next, there is no difficulty in undertaking the dual criminality ‘transposition’ exercise. That ‘transposition’ involves identifying each relevant “species” of offence and asking whether that “species” would be an offence here, as I pointed out in <span style="text-decoration-line:underline;text-decoration-style:solid">Zeka</span> §3. As the Judge explained, “the conduct would amount to conspiring to assist unlawful immigration to a member state, contrary to section 25 of the Immigration Act 1971 and section 1 of the Criminal Law Act 1977”.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">So far as concerns the maximum sentence, the focus is on the description in the EAW of “15 to 20 years”. Ms Hill submits that this is a legally deficient ambiguity. The Grounds of Renewal contend that the Judge was wrong not to find it “unclear where the figure of 15 or 20 years imprisonment as a maximum sentence has derived from”. In <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>, the District Judge – encouraged by the EAW and the Respondent – had read this as a 15 year “minimum” and a 20 year “maximum”. That was challenged as being incorrect. It took a Respondent’s Notice (by Counsel Mr Ball: who also appeared in the present case and drafted the RN here) for the penny to drop: <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> §29. There is a “maximum” of 20 years but legally prescribed features – like having a young child as Ms Killoran did (§49) – lowers the “maximum” to 15 years. That became clear before Chamberlain J. In turn, his judgment makes it clear for the rest of us. This is not a sentencing “range”. There is now no ambiguity. The explanation in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> must explain the very same content of the EAW in the present case. I am not prepared to grant permission to appeal on a point of supposed ambiguity has (and had) in fact decisively been explained in this Court in a parallel case. Like – indeed, from – Chamberlain J, I have the illumination needed, after which the point evaporates.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">So far as concerns minors, I cannot accept – even arguably – that duties of legally adequate particulars required specificity as to which occasions involved children being smuggled onto the lorries. It is obvious that the case against the Appellant is that insofar as he was involved in smuggling individuals by facilitating their arrival at the pickup point and concealment in UK bound lorries from that point, and that into far as those individuals were underage, the more serious offence was being committed. The context is important. No extradition bar or safeguard is undermined. At any criminal trial, whether and when minors were involved would be a matter for evidence. There is no realistic prospect of this Court concluding that there was or is a failure of legally adequate particulars, bearing in mind that there is no requirement of full and exhaustive particularisation, the object of the EAW process beeing to remove the complexity and potential for delay in extradition. By way of footnote, I note that in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> – where the same “offence” was being relied on – nobody evidently thought it had to be spelled out on which of the relevant dates children were smuggled.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_15">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">Turning to location, the EAW and further information spelled out clearly that the critical locations were Brussels North station and the identified pickup points. Ms Hill points to the fact that the Judge recorded an acceptance – in the context of his section 10 analysis – of a submission by Mr Ball that “the conduct set out in the EAW and … Further Information establishes” that the Appellant was being said to have collected money once the individuals being smuggled “had arrived in the UK”. I have noted the earlier references in the judgment to collecting and passing money after “the individuals’ UK arrival” and “once they had arrived in the UK”. I asked Ms Hill whether the EAW or Further Information anywhere says that. Her answer was that it does not. I agree. The description of the Appellant travelling to the UK – himself “put inside” a lorry – is on 19/20 June 2019. It seems obvious that the Appellant cannot be being said to have travelled in all those lorries with all those individuals to the UK, only then to collect money on arrival, and somehow then to have been back at Brussels North railway station, often the next day. Having said all of that, there is in any event no viable extradition bar or safeguard which has somehow been undermined in this respect. Ms Hill suggested that there could be a “forum” argument – which could have been advanced based on what was being said about an aspect of conduct in the UK – but it is plain that a forum argument could not in any event realistically have succeeded. In <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>, an aspect of Ms Killoran’s alleged conduct involved purchase and supply of vehicles from the UK (§10). No bar arose.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_16">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">I turn to the number of “offences”. It is helpful to distinguish different “species” of offence – such as is relevant when addressing “dual criminality” – and “occasions on which it is alleged that the appellant engaged in conduct constituting the offence” (see <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> §23). Here, there are three “species” of offence. The Appellant’s argument before the Judge included that “the EAW did not make clear the species of offences”, but the Respondent supplied the answer, which the Judge went on unimpeachably to accept, that FI2 “deals dispositively” with this point “as to the number of offences” because “it clarifies that he is wanted for three offences”. That leaves “occasions”. The short answer is that there are “precise dates” given in the Further Information, as in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> (§§11, 24). That, beyond argument, is plainly legally adequate in this case. Moreover, and as in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> (§24): “read as a whole, the material enables the Appellant to assert … speciality protection”.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_17">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">In those circumstances, whether and in what circumstances it is in fact necessary to give precise dates of all occasions does not arise. I will simply add these observations. Legally adequate particulars for extradition do not require the production of an ‘indictment’, and “occasions” can be set out in different ways when an ‘indictment’ comes to be drawn up (<span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span> §23). In <span style="text-decoration-line:underline;text-decoration-style:solid">Zeka</span> (at §§3-4), I observed that <span style="text-decoration-line:underline;text-decoration-style:solid">Taylor</span> – a case of alleged species and occasions of sexual assaults (see §§8-13) does not support the contention that the precise number of “occasions” needs to be specified. I remain of that view of that case. In <span style="text-decoration-line:underline;text-decoration-style:solid">Avadanei</span>, among the vices in the “wholly deficient” EAW was the internal contradiction between 35 “offences” and “about 30 organised thefts” (§30), and Laing J observed (§31) that she would not have regarded further information as adequate because it was “still unclear” in relation to “how many offences extradition was sought”. (I interpose that in <span style="text-decoration-line:underline;text-decoration-style:solid">Osu</span>, May J found particulars to be legally inadequate where the requested person did not know whether he faced allegations of mail/email scam conspiracy “in respect of three victims or 55 or somewhere in between” (§15).) The degree of particularity required as to “occasions” strikes me as contextual, and inapt for rigid rule, having regard to the applicable legal principles (which I have identified earlier in this judgment) including as to the purposes of particularisation, the principle of mutual respect, and the recognised case-specific balance to be struck. But be those observations as they may, in the present case specific dates have been given in Further Information, just as they were in <span style="text-decoration-line:underline;text-decoration-style:solid">Killoran</span>.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Conclusion</span></heading>
+          <paragraph eId="para_18">
+            <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">In all the circumstances and for these reasons, the application for permission to appeal is refused.</p>
+            </content>
+          </paragraph>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

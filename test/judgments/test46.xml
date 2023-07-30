@@ -1,0 +1,1263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2022/2616" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2022/2616" />
+          <FRBRdate date="2022-10-18" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="2616" />
+          <FRBRname value="MACQUARIE BANK LIMITED v PHELAN ENERGY GROUP LIMITED" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616" />
+          <FRBRdate date="2022-10-18" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616/data.xml" />
+          <FRBRdate date="2023-05-01T15:54:43" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-10-18" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd-commercial" href="https://www.gov.uk/courts-tribunals/commercial-court" showAs="The Business and Property Courts (Commercial Court)" shortForm="The Commercial Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="macquarie-bank-limited" href="" showAs="MACQUARIE BANK LIMITED" />
+        <TLCPerson eId="phelan-energy-group-limited" href="" showAs="PHELAN ENERGY GROUP LIMITED" />
+        <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-mr-justice-foxton" href="/judge-mr-justice-foxton" showAs="MR JUSTICE FOXTON" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-KBD-Commercial</uk:court>
+        <uk:year>2022</uk:year>
+        <uk:number>2616</uk:number>
+        <uk:cite>[2022] EWHC 2616 (Comm)</uk:cite>
+        <uk:parser>0.14.2</uk:parser>
+        <uk:hash>fa9569b8916d5ac30dc3a6f0b802c4b1cee008965c19896a4909458a0bcae9c7</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .markedcontent { }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0563C1; }
+#judgment .counderline { }
+#judgment .FollowedHyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #954F72; }
+#judgment .cosearchterm { }
+#judgment .coitalic { }
+#judgment .costarpage { }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2022] EWHC 2616 (Comm)</neutralCitation></p>
+      <p class="CoverText">Case No: <docketNumber>FL-2021-000024</docketNumber></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-commercial">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-commercial">BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT (KBD)</courtType></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">FINANCIAL LIST</span></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2022-10-18" refersTo="#judgment">18/10/2022</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-justice-foxton">MR JUSTICE FOXTON</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#macquarie-bank-limited" as="#claimant" style="font-weight:bold">MACQUARIE BANK LIMITED</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#claimant">Claimant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#phelan-energy-group-limited" as="#defendant" style="font-weight:bold">PHELAN ENERGY GROUP LIMITED</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#defendant">Defendant</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Matthew Hardwick KC </span>(instructed by<span style="font-weight:bold"> Simmons and Simmons LLP</span>) for the <span style="font-weight:bold">Claimant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Jasbir Dhillon KC </span>and <span style="font-weight:bold">Fred Hobson</span> (instructed by <span style="font-weight:bold">Hausfeld &amp; Co LLP</span>) for the <span style="font-weight:bold">Defendant</span></p>
+      <p style="text-align:center">Hearing 5 and 6 October 2022</p>
+      <p style="text-align:center">Draft to the parties: 11 October 2022</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center"><span style="font-weight:bold">I direct that no official shorthand note shall be taken of this Judgment and that copies of this version as handed down may be treated as authentic</span>.</p>
+      <p style="text-align:center">.............................</p>
+      <p style="text-align:center">THE HONOURABLE MR JUSTICE FOXTON</p>
+      <p class="CoverDesc" style="text-align:justify"><span style="font-weight:normal;font-size:12pt;color:#000000">This judgment was handed down by the judge remotely by circulation to the parties’ representatives by email and release to The National Archives. The date and time for hand-down is deemed to be Tuesday 18 October 2022 at 10:00am.</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p><span style="font-weight:bold">Mr Justice Foxton :</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">INTRODUCTION</span></p>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">The issues at this hearing</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">This is the hearing of the Claimant’s (<span style="font-weight:bold">Macquarie</span>’s) application for summary judgment and for an interim payment.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">2.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The dispute arises out of a foreign exchange swap (USD being swapped for South African Rand or <span style="font-weight:bold">ZAR</span>) on the terms of the ISDA 2002 Master Agreement dated as of 26 September 2019 between Macquarie and the Defendant (<span style="font-weight:bold">Phelan</span>). I shall refer to this document as <span style="font-weight:bold">the Master Agreement </span>and, together with the associated trades which were concluded, <span style="font-weight:bold">the Transaction</span>. There is a dispute between the parties as to whether:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">there was an Event of Default on 28 May 2021 by reason of Phelan’s failure to pay the ZAR amount due from it (which arises from a dispute between Macquarie and Phelan as to what the agreed strike price was for the ZAR payment on the trade settling on that date);</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Macquarie became entitled to and did terminate the Transaction by reason of the alleged Event of Default, by designating an Early Termination Date of 4 June 2021; and</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">whether, in any event, Macquarie has correctly calculated the Early Termination Amount and, if not, what consequences follow from this.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">This is Macquarie’s second summary judgment application in these proceedings. The first proceeded on the basis that there was no issue to be tried as to whether or not the Transaction had been terminated, and sought payment of the amount which would have been due even if Phelan was correct in its contention that the trades had proceeded to their maturity date. That application did not proceed to judgment, because Phelan agreed to an order requiring it to pay the amount claimed (US$ 14,719,523.18) within a stipulated time period which has since been extended on an “unless order” basis.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Macquarie brings this further summary judgment application on the basis that, even if it is Phelan and not Macquarie who is right about the strike price for the ZAR payment due on 28 May 2021, there was nonetheless an Event of Default and Macquarie was entitled to and did terminate the Transaction on 4 June 2021. On this occasion, therefore, Macquarie invites the court summarily to determine the termination issue in its favour, while accepting that there remains a triable issue as to what the correct strike price is, and to order an interim payment in its favour in an amount equivalent to the Early Termination Amount as it would have been due had the Transaction been on the terms alleged by Phelan (<span style="font-weight:bold">the Alternative Early Termination Amount</span>).</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">The factual background</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_5">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Macquarie and Phelan entered into the Master Agreement on 26 September 2019.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In June 2020, Phelan entered into four USD/ZAR swaps with Macquarie, which were rolled on a number of occasions, extending the expiration date until 14 May 2021.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Between 13 and 14 May 2021, there were emails and a telephone call between Macquarie and Phelan about the terms of proposed new trades, in which Macquarie initially proposed a ZAR strike price of 22.05 for the trade due to settle on 28 May 2021 (Macquarie’s email of 13.28 on 13 May 2021). There is a dispute between the parties as to whether that trade was concluded by reference to that strike price, or whether the deal was done by reference to a strike price of 22.16. It is the latter figure which appears in the trade recap email sent by Macquarie to Phelan at 12.44 on 14 May 2021, but the status of that document is in dispute. However, there is no dispute that a swap was concluded on 14 May 2021 for settlement on 28 May 2021 (<span style="font-weight:bold">the 28 May 2021 Settlement Trade</span>).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">On 28 May 2021 at 07.34, Macquarie emailed Phelan stating, “Macquarie Bank is due to receive ZAR 117,780,488.64” (a figure arrived at using the 22.16 strike price). Phelan responded at 15.49 stating “we hereby dispute the amounts stated in the email as being due and correct as we are unable to reconcile the amounts to the fully executed agreement and/or trade”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">On 31 May 2021, Macquarie sent Phelan a notice entitled “Transaction between [Macquarie] and [Phelan] with trade date 14 May 2021 and Reference TTD933K/23728873 (the ‘Transaction’)”, stating:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">“We refer to the Transaction. We hereby notify that you have failed to make a payment to Macquarie in the sum of [ZAR 117,780,488.64] <span style="font-weight:bold">[square brackets in original</span>] which was due on 28 May 2021 in respect of the Transaction …</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A failure to make this payment to Macquarie on or before the first Local Business Day after this notice is given to you will constitute an Event of Default under Section 5(a)(i) of the ISDA Agreement”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" />(<span style="font-weight:bold">the Disputed Default Notice</span>).</p>
+          </content>
+        </level>
+        <paragraph eId="para_10">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">On 31 May 2021, Phelan replied stating it “does not confirm that the amount quoted in the .. email [of 31 May 2021] is correct, and accordingly disputes this matter”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">11.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Macquarie provided a response on 2 June 2022, and stated that it was reserving its right to designate an Early Termination Date under the Master Agreement. The following day, Macquarie sent Phelan a letter entitled “Designation of Early Termination Date” which stated:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">“We hereby give you notice, pursuant to Section 6(a) of the ISDA Master Agreement that we designate <span style="text-decoration-line:underline;text-decoration-style:solid">4 June 2021</span> as the Early Termination Date in respect of all outstanding Transactions under the ISDA Agreement as a result of the aforementioned continuing Event of Default”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">(the Disputed ETDN</span>).</p>
+          </content>
+        </level>
+        <paragraph eId="para_12">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Phelan replied the following day, contending that in the light of its notice of dispute of 31 May 2021, it was not open to Macquarie to designate an Early Termination Date (a contention no longer pursued).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">On 9 June 2021, Macquarie sent Phelan a document entitled “Notice of Early Termination Amount|” which stated:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">“Please find attached in the schedule (‘Schedule’) a statement specifying the payments due in respect of the Early Termination Date. This notice constitutes the statement required by Section 6(d)(i) of the Agreement … Please make payment of USD 22,643,860.22 (the ‘Termination Payment Amount’).”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Phelan contends that:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The 28 May 2021 Settlement Trade was at a strike price of 22.05.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The amount of ZAR 117.8m which Macquarie alleged that it had not paid (calculated by reference to a strike price of 22.16) was not due and as a result the Disputed Default Notice “was not, therefore, a valid notice for the purposes of Section 5(a)(i) of the ISDA Master Agreement and had no legal effect”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">Macquarie therefore had no right to designate an Early Termination Date, and the Disputed ETDN was “invalid and of no effect”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iv)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Macquarie’s calculation of the Early Termination Amount is in any event defective, due to the time of day at which Macquarie took a “spot” exchange rate (and other reasons).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Phelan does not dispute that, on its case as to the terms of the 28 May 2021 Settlement Trade, the sum of ZAR 117.2m was payable on 28 May 2021 and was not paid. The difference between the amount which Macquarie says was due, and the amount which Phelan accepts was due, is some US$42,000.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">THE MASTER AGREEMENT</span></p>
+            <p class="ParaLevel1"><span style="font-weight:bold">The relevant terms of the Master Agreement</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_16">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">For purposes of the determining the first part of this application, the following provisions of the ISDA Master Agreement are material:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <intro>
+              <p class="ParaLevel2" style="margin-left:0.98in">Section 5 provides:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel2" style="text-align:left;margin-left:0.98in"><span class="markedcontent">“Events of Default and Termination Events</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.28in;text-indent:-0.39in">(a)</num>
+              <intro>
+                <p class="ParaLevel5" style="margin-left:1.28in"><span class="markedcontent">Events of Default. The occurrence at any time with respect to a party or, if applicable, any Credit Support Provider of such party or any Specified Entity of such party of any of the following events constitutes … an event of default (an ‘Event of Default’) with respect to such party:—</span></p>
+              </intro>
+              <subparagraph>
+                <num style="font-size:12pt;margin-left:1.67in;text-indent:-0.39in">(ii)</num>
+                <content>
+                  <p class="ParaLevel6" style="margin-left:1.67in;text-indent:0.11in"><span class="markedcontent">Failure to Pay or Deliver. Failure by the party to make, when due, any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)(i)(2) or (4) required to be made by it if such failure is not remedied on or before the first Local Business Day in the case of any such payment or the first Local Delivery Day in the case of any such delivery after, in each case, notice of such failure is given to the party.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-size:12pt;margin-left:1.67in;text-indent:-0.39in">(iii)</num>
+                <intro>
+                  <p class="ParaLevel6" style="margin-left:1.67in;text-indent:0.23in">Breach of Agreement; Repudiation of Agreement.</p>
+                </intro>
+                <subparagraph>
+                  <num style="font-size:12pt;margin-left:2.07in;text-indent:-0.39in">(1)</num>
+                  <content>
+                    <p class="ParaLevel6" style="margin-left:2.07in"><span class="markedcontent">Failure by the party to comply with or perform any agreement or obligation (other than an</span><span> </span><span class="markedcontent">obligation to make any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)i)(2) or (4) or to give notice of a Termination Event or any agreement or obligation under Season 4(a)(i),</span><span> </span><span class="markedcontent">4(a)(iii) or 4(d)) to be complied with or performed by the party in accordance with this Agreement if such failure is not remedied within 30 days after notice of such failure is given to the party …”.</span></p>
+                  </content>
+                </subparagraph>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.89in;text-indent:-0.39in">ii)</num>
+            <intro>
+              <p class="ParaLevel2" style="margin-left:0.89in">Section 6 provides:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel2" style="margin-left:0.89in"><span class="markedcontent">“Early Termination: Close Out Netting:</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.28in;text-indent:-0.39in">(a)</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.28in"><span class="markedcontent">Right to Terminate Following Event of Default. If at any time an Event of Default with respect to a party (the ‘Defaulting Party’) has occurred and is then continuing, the other party (the ‘Non-defaulting Party’) may, by not</span><span> </span><span class="markedcontent">more than 20 days notice to the Defaulting Party specifying the relevant Event of Default, designate a day not earlier</span><span> </span><span class="markedcontent">than the day such notice is effective as an Early Termination Date in respect of all outstanding Transactions.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel5" style="text-align:left;margin-left:0.89in"><span class="markedcontent">…</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;margin-left:1.28in;text-indent:-0.3in">(c)</num>
+              <intro>
+                <p class="ParaLevel5" style="margin-left:1.28in;text-indent:0.08in"><span class="markedcontent">Effect of Designation:</span></p>
+              </intro>
+              <subparagraph>
+                <num style="font-size:12pt;margin-left:1.67in;text-indent:-0.39in">(i)</num>
+                <content>
+                  <p class="ParaLevel6" style="margin-left:1.67in"><span class="markedcontent">If notice designating an Early Termination Date is given under Section 6(a) or 6(b), the Early Termination Date will occur on the date so designated, whether or not the relevant Event of Default or Termination Event is then continuing,</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num class="markedcontent">(ii)</num>
+                <content>
+                  <p class="ParaLevel5" style="margin-left:1.67in"><span class="markedcontent">Upon the occurrence or effective designation of an Early Termination Date, no further payments or deliveries under Section 2(a)(i) or 9(h)(i) in respect of the Terminated Transactions will be required to be</span><span> </span><span class="markedcontent">made, but without prejudice to the other provisions of this Agreement. The amount, if any, payable in</span><span> </span><span class="markedcontent">respect of an Early Termination Date will be determined pursuant to Sections 6(e) and 9(h)(ii)”.</span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">The construction of the ISDA Master Agreement</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_17">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">I was referred by the parties to various authorities commenting on the interpretation of the ISDA Master Agreement which emphasise the considerations which need to be kept in mind when interpreting that agreement. I have had particular regard to the following considerations:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The ISDA Master Agreement “should as far as possible be interpreted in a way that serves the objectives of clarity, certainty and predictability so that the very large number of parties using it should know where they stand”: Briggs J in <span style="font-style:italic">Lomas v JFB Firth Rixson Inc </span>[2010] EWHC 3372 (Ch), [53]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The focus is “ultimately on the words used, which should be taken to have been selected after considerable thought and with the benefit of the input and continuing review of users of the standard forms and of knowledge of the market” (Hildyard J in <span style="font-style:italic">Lehman Brothers International (Europe) </span>[2016] EWHC 2417 (Ch), [48(3]).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">WAS THERE AN EVENT OF DEFAULT WITHIN SECTION 5(A)(I) OF THE MASTER AGREEMENT?</span></p>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_18">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">For an Event of Default of the kind specified within Section 5(a)(i) to occur:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <intro>
+              <p class="ParaLevel2" style="margin-left:0.98in">First, there must be a “failure … <span class="markedcontent">to make, when due, any payment under this Agreement”. </span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel2" style="margin-left:0.98in"><span class="markedcontent">It is not disputed that this requirement was satisfied.</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <intro>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span class="markedcontent">The failure must not be remedied “on or before the first Local Business Day after … notice of such failure is given to the party”.</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel2" style="margin-left:0.98in"><span class="markedcontent">There is no dispute that the failure to pay the amount</span><span class="markedcontent" style="font-size:11.5pt"> which was due was not and has never been remedied. However, Phelan contends that there was not a failure to remedy “after notice of such failure” was given to Phelan, because the Disputed Default Notice was not valid.</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The issue of whether the notice required by Section 5(a)(i) needed to specify the outstanding amount of the payment at all, and what the consequence of including an incorrect figure would be, is ultimately a matter of construction of two documents:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">First, of the contractual provision providing for the notice to be served, in order to identify what Lord Goff referred to in <span style="font-style:italic">Mannai Investment Co Ltd v Eagle Star Life Assurance Co Ltd</span> [1997] AC 749, 755 as “the specification in the clause”. That requires a process of construction of the contractual provision on conventional principles, but also having regard to the particular considerations relating to the ISDA Master Agreement referred to at [17] above.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Second, of the notice, to ascertain whether, properly construed in context, it meets the requirement of that specification (or, picking up the language of Lord Goff at p.755 of <span style="font-style:italic">Mannai</span>), whether the key represented by the notice fits the lock constituted by the contractual provision requiring the service of a notice to achieve a particular legal effect. That involves the construction of the notice, by reference to the principles identified by Lord Steyn and endorsed by the majority in <span style="font-style:italic">Mannai</span>.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">What are the requirements for a valid notice under sections 5(a)(i) and (ii)?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_20">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">I accept that the issue of whether or not an Event of Default has occurred is of fundamental importance under the ISDA Master Agreement. As Mr Dhillon KC pointed out, the effect of an Event of Default will be:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The early termination of all the trades under the relevant ISDA Master Agreement, with the future obligations to pay amounts over time being replaced by the immediate obligation to pay the single Early Termination Amount.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">In many circumstances, the termination of other ISDA Swap Transactions, including hedging transactions or transactions by the defaulting party with other parties by reason of the operation of cross-default provisions.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Further, the “period of grace” for curing any Potential Event of Default within section 5(a)(i) is very short, an Event of Default occurring if the payment or delivery is not made on the next local business or delivery day after a valid notice (section 5(a)(ii), in comparison, providing a 30 day grace period).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">22.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Notwithstanding the significance of Events of Default and of the requirement of a notice before a Potential Event of Default will crystallise into an actual Event of Default, the terms of sections 5(a)(i) and (ii) offer limited express guidance as to the contents of such a notice before it will be effective. This is to be contrasted with:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Section 6(b)(i), which provides for the notification required under that clause to specify “the nature of [a Termination Event other than a Force Majeure Event] and each Affected Transaction”, and for the notification of a Force Majeure Event to specify “the nature of that Force Majeure Event”. These are reinforced by the definition of the expression “Terminated Transactions” which, where termination results from an Illegality or a Force Majeure Event, means “all Affected Transactions specified in the notice given pursuant to Section (b)(iv)”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The detailed requirements as to the form of notice, and where it is to be sent, in section 12.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="color:initial;background-color:#FFFFFF">I accept that the grace period which service of a valid notice triggers is a relevant consideration when determining what is necessary for a notice to be effective. In </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Deutsche Bank AG v Sebastian Holdings Inc </span><span style="color:initial;background-color:#FFFFFF">[2013] EWHC 3463 (Comm), [1225]), Cooke J observed that “the whole point of section 5(a)(ii) and section 2(a)(iii) is to provide an opportunity to remedy the failure which gives rise to the Event of Default or Potential Event of Default”.</span> A statement to similar effect was made by Andrews J, in a judgment principally concerned with the form of the notice required by section 5(a)(ii), in <span style="font-style:italic">Greenclose Ltd v National Westminster Bank plc</span> [2014] EWHC 1156 (Ch), [97]. <span style="color:initial;background-color:#FFFFFF">I accept Mr Dhillon KC’s submission that the fact that the notice is intended to give a window for remedying the receiving party’s failure is relevant when considering what a valid notice requires, as is the length of the grace period.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="color:initial;background-color:#FFFFFF">In my view, a valid notice under section 5(a)(i) must be such as to:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in"><span style="color:initial;background-color:#FFFFFF">communicate clearly, readily and unambiguously to the reasonable recipient in the context in which it is received t</span>he failure to pay or deliver in question (such that the reasonable recipient will clearly understand the trade under which the obligation to pay or deliver has arisen, and the particular obligation which it is said has not been performed); and</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">thereby enable the reasonable recipient to identify what the relevant trade requires it to do in order to cure any failure to pay or deliver (if it accepts that there has been such a failure) within the applicable grace period.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">This follows from:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The event of which notice is to be given (“failure to make, when due, any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)(i)(2) or (4) required to be made”), that being the “such failure” referred to in the context of the notice requirement.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The purpose of the notice requirement, as set out in [23] above.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">I do not accept, however, Mr Dhillon KC’s argument that Section 5(a)(i) requires the notice itself to contain express and wholly accurate statements of the following matters in order to be effective:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The identification of the Confirmation (which, at least in parts of Mr Dhillon KC’s submissions, appeared to require the identification, albeit not the attachment, of “the documents and other confirming evidence”) for the relevant trade.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">A precise and entirely accurate statement of the amount of the payment or delivery not made.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">The currency of the payment.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">If accepted, that argument would involve a number of highly improbable consequences:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">In a case in which the ISDA Master Agreement was entered into for the purposes of carrying out a single trade (as is often the case), a Default Notice would be ineffective if it failed to identify the documents constituting the Confirmation for that trade. On Mr Dhillon KC’s case, it would also appear to mean that any inaccuracy in the identification of the relevant trade (for example if the wrong reference number was given or a figure misstated) would also invalidate the Default Notice.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Even when the amount of the payment due had been referred to in correspondence immediately preceding the default notice (“please confirm you will be remitting the $200,000 payable today”), the default notice would be invalid if it referred to “the failure to make the payment due on 28 May 2021” without repeating the figure.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">A failure to include the currency, or a typing error, would invalidate the notice (and would do so even if the parties had only traded on one currency).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">There is no language which requires such a construction, nor does the nature of the ISDA Master Agreement compel it. At points in his submissions, Mr Dhillon KC appeared to accept that minor errors in identifying the trade or stating the outstanding amount would not be fatal to a Default Notice, but no clear test for distinguishing between fatal and non-fatal errors was given. The requirements of certainty which I accept should influence the construction of the ISDA Master Agreement, and in particular the Event of Default provisions, are satisfied by the requirement that the notice be such as to clearly, readily and unambiguously to the reasonable recipient in the context in which it is received communicate the matters in [24] above. As Lord Hoffmann observed in <span style="font-style:italic">Mannai</span>, 774, the issue of whether the required information has been communicated unambiguously does not solely depend on the language used alone, and there can be an unambiguous communication of information even when the communication in question involves a mistake.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">This is not, as Mr Dhillon KC submitted, to confuse the two different stages of the analysis identified in [19] above. Rather it reflects the fact that, in contracting for the provision of “notice of such failure” but without specifying any express requirements for the contents of the notice, the parties are to be taken to have been concerned with what the notice would communicate to the reasonable recipient in the context in which it is received.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">Did the Disputed Default Notice meet the requirements of section 5(a)(i)?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_30">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Before turning to the Default Notice, it is helpful to consider the context in which the reasonable recipient would have received and read it, assuming for this purpose the correctness of Phelan’s case as to the spot rate to be used:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The parties had, on 14 May 2021, entered into the 28 May 2021 Settlement Trade which provided for Macquarie to make a ZAR payment in respect of a US$5,315,004 notional on 28 May 2021, at a spot price of 22.05.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">This was the only trade which involved a payment on 28 May 2021 (or indeed at any point in May 2021).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">On 14 May 2021, Macquarie had sent Phelan an email purporting to recap the trades done on the 28 May 2021 Settlement Trade, which included the following: “Phelan Energy Group buys 5,315,004 USD, sells 117,780,488.64 ZAR @ 22.16 for value on 28 May 2021”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iv)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">On 14 and again on 26 May 2021, Macquarie had sent Phelan draft confirmations for signature, which included a draft confirmation with a Macquarie reference “TTD933K/23728873” in respect of a trade done on 14 May 2021, for payment on 28 May 2021, for the US$ amount of US$5,315,004 against ZAR 117,780,488.64, using a spot rate of 22.16.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">v)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">At 07.54 UTC on 28 May 2021, Macquarie had sent Phelan an email asking it to confirm that it agreed that on 28 May 2021, Macquarie was due to receive ZAR 117,780,488.64 and Macquarie Bank was due to pay US$5,315,004.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">vi)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Phelan had made no payment of any kind in respect of the 28 May 2021 Settlement Trade.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Against that background, what would the reasonable recipient of the Disputed Notice have understood the position to be? I am satisfied that the following matters would have been unambiguously clear:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The Disputed Default Notice was complaining that Phelan had failed to make a payment on 28 May 2021 in respect of the 28 May 2021 Settlement Trade entered into by the parties pursuant to the ISDA Master Agreement.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The 28 May 2021 settlement date and the ISDA Master Agreement of 26 September 2019 were expressly referred to, as was the failure to pay on 28 May 2021. As I have noted, there was only one trade which was done between the parties with that settlement date (or with a settlement date at any time in May 2021).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">The reference of TTD933K/23728873 in the Disputed Default Notice was that given on the confirmation sent through by Macquarie in relation to a trade done on 14 May 2021 for settlement on 28 May 2021 at a notional value of US$5,315,004, albeit using the wrong spot rate.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iv)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The figure of ZAR117,780,488.64 in the Disputed Default Notice was the same figure which had appeared in the draft confirmation and in the email sent earlier that day, both of which were clearly referring to a trade done on 14 May 2021 for settlement on 28 May 2021 by reference to a notional amount of US$5,315,004.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">v)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Macquarie had (wrongly) used a spot rate of 22.16 instead of 22.05 when calculating the amount payable by Phelan, which had overstated the amount due by US$42,000 (or about 0.5%).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Reverting back to the requirements referred to at [24] above, it would, therefore, have been immediately and unambiguously clear to Phelan that:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Macquarie was complaining that it had failed to make the payment due from it on 28 May 2021 under the 28 May 2021 Settlement Trade.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Phelan had made no payment under the 28 May 2021 Settlement Trade.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">On the terms of the documents which on Phelan’s case constituted the Confirmation of the 28 May 2001 Settlement Trade, it was obliged to pay ZAR 117,195,838.20 to cure the default (i.e., US$5,315,004 x 22.05) to remedy that failure.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">33.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">As a further means of developing his argument, Mr Dhillon KC submitted that, through its use of the internal Macquarie reference which appeared on the unsigned Confirmation using the wrong strike price, and by claiming an amount that was payable which was not in fact payable under the 28 May 2021 Settlement Trade, Macquarie had specified the “wrong trade”, and that the Disputed Default Notice was defective for this reason. However:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">As I have noted, there was only one trade between the parties with a settlement date of 28 May 2021 and only one trade undertaken by reference to a USD notional of US$5,315,004. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">It was absolutely clear that this was the trade which Macquarie was saying that Phelan had not performed its payment obligation under, even if Macquarie had overstated the amount payable by 0.5%. This could no more have been understood by a reasonable recipient in Phelan’s position as a reference to some other trade than the tenant in <span style="font-style:italic">Mannai</span> could have been understood the notice as referring to a different lease.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel2"><span style="font-weight:bold">WAS THE DISPUTED ETDN VALID?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_34">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">34.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Phelan contends that the Disputed ETDN was invalid because there had been no Event of Default. That argument fails for the reasons set out above.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The result is that the Transaction was terminated, and the Early Termination Date was 4 June 2021.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">IF THE TRANSACTION WAS ON PHELAN’S TERMS, AND TERMINATED WITH AN EARLY TERMINATION DATE OF 4 JUNE 2021, WHAT CLAIMS DOES MACQUARIE HAVE?</span></p>
+            <p class="ParaLevel1"><span style="font-weight:bold">The pleading point</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_36">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">36.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Macquarie’s Particulars of Claim pleads:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Phelan’s failure to pay the Early Termination Amount as it falls to be calculated on Macquarie’s case ([33]) and its breach of contract in failing to pay the Early Termination Amount (or “any part thereof”) ([38]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">It pleads in the alternative that, on Phelan’s case as to the terms of the trade, “Phelan is in breach of contract for failing to pay the settlement amounts that would have been due on 28 May 2021 under the terms of that transaction”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">Macquarie has “suffered loss and damage by reason of Phelan’s failure to pay the amounts that would have been due to Macquarie on 28 May 2021 had the 14 May 2021 Transaction been concluded” on the basis alleged by Phelan ([46]).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iv)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The prayer claims the amount due on Macquarie’s case, alternatively damages for breach of contract.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">37.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Faced with these statements of case, Phelan contends as follows:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Macquarie is confined to a claim in damages on its Particulars of Claim.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The claim in damages in the Particulars of Claim does not extend to the Alternative Early Termination Amount. While Phelan accepts that a case advanced on that basis does appear in response 14 to Macquarie’s Part 18 response, it is said that this raises “an entirely new claim” and that “a claimant cannot introduce a new claim by way of Part 18 response”.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">It is said that if a claim for damages had been pleaded in the Particulars of Claim, that would have engaged “the factual issue of what loss Macquarie suffered, including any mitigation”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">38.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">I will consider the last – substantive – objection first. Where a party makes an error in its Early Termination Amount calculation, is the effect that it has no right to recover any such amount as a debt at all? To answer that question, it is necessary to look more closely at what is sometimes referred to as the architecture of the ISDA Master Agreement:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The effect of section 6(c)(i) and (ii) is that on the date designated as the Early Termination Date, the payment obligations previously owed in respect of individual trades are replaced by the single amount payable.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The calculation by the relevant party or parties of the amount due as of the Early Termination Date may not occur until after the Early Termination Date (section 6(d)(i)).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">Reflecting the fact that the new single obligation which has replaced the underlying trades is due as from the Early Termination Date, interest on the amount runs from the Early Termination Date, and not from the date of any calculation (Section 9(h)(ii)(2)). I will turn to the issue of when it becomes payable in due course.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.49in">This analysis reflects the analysis of the Court of Appeal when addressing the 1992 Master Agreement in <span style="font-style:italic">Videocon Global v Goldman Sachs International </span>[2016] EWCA Civ 528, [56].</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">39.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">In circumstances in which the relevant debt arises as from the Early Termination Date and prior to any calculation under the ISDA Master Agreement, it would be surprising if the effect of an error in one party’s calculation was sufficient to prevent the debt becoming due. As Gloster LJ noted in <span style="font-style:italic">Videocon Global</span> at [57]:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in">“The point to make in the present context is that the accrual of the <span class="coitalic" style="font-style:italic">debt </span>obligation in respect of the amount due in respect of an Early Termination Date necessarily arises prior to the service of the statement referred to in section 6(d) (i) . Therefore, it cannot possibly be subject to the type of condition precedent for which Mr Wheeler contended, namely service of a statement compliant with all the requirements of section 6(d)(i) , including the ‘as soon as reasonably practicable’ requirement. <span style="font-style:italic">The debt obligation in respect of the amount due in respect of an Early Termination Date cannot be discharged simply by reason of a failure to serve a statement that is compliant with all the requirements of section 6(d)(i)</span>” (emphasis added).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">40.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">An important feature of the ISDA Master Agreement is that a party entitled to an Early Termination Amount is, within certain limits, entitled to quantify the amount of the payment <span style="font-style:italic">after the debt has arisen</span>. Those limits include the requirement to act “in good faith and use commercially reasonable procedures in order to produce a commercially reasonable result” (which appear in the definition of “close-out amount” in section 14). If no such calculation is performed, it is clear that this does not render the debt which has accrued forever unquantified or unpayable. As Rix LJ noted of the valuation procedures in <span style="font-style:italic">Socimer International Bank Ltd v Standard Bank London Ltd (No 2)</span> [2008] EWCA Civ 116 (a case not concerned with either form of ISDA Master Agreement) at [65]:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in"><span style="color:initial;background-color:#FFFFFF">“The second issue referred to above is what is to happen if the contractual discretion ought to have been exercised but has not. That is answered in this court by </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Cantor Fitzgerald International v. Horkulak </span><span style="color:initial;background-color:#FFFFFF">[2004] EWCA Civ 1287. There an employee who had been wrongly dismissed sought compensation to include a discretionary bonus which he might otherwise have been awarded. This court held that the court's task in such a case is to put itself in the shoes of the decision-maker”.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">41.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">The effect of the invalid calculation of the Early Termination Amount, therefore, will frequently be that the court will determine the amount due itself. This was the course followed by Burton J in <span style="font-style:italic">Lehman Brothers Finance SA (in liquidation) v Sal Oppenheim Jr &amp; Cie </span>[2014] EWHC 2627 (Comm), [36] and by Robin Knowles J in <span style="font-style:italic">Lehman Brothers Special Financing Inc v National Power Corp </span>[2018] EWHC 487 (Comm). At [51], Robin Knowles J summarised the position as follows:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.89in"><span style="color:initial;background-color:#FFFFFF">“In my judgment on the true interpretation of the 2002 ISDA Master Agreement the position is as follows:</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(a)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">With its letter dated 17 October 2008 NPC caused a debt obligation to arise and with delivery of NPC's letter dated 26 January 2009 an obligation to pay arose.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(b)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">These are significant contractual events and once they have arisen the relationship between the parties is thereafter affected, and not reversible (save by agreement, or in some cases an order of a court or tribunal).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(c)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">NPC was required and permitted to make a determination.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(d)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">NPC made a determination that US$3,461,590.93 (plus interest and aside from Expenses) was payable. The Annex showed how that determination had been calculated. This completed its obligation and right to make a determination.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(e)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">If there is an error in the determination then (absent agreement) the court or tribunal chosen by the parties will be left to declare that and to state what the Close-out Amount would have been on a determination that was without error.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(f)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">However, the Determining Party is also a party to the contract. It can make and accept proposals in its capacity as a party to the contract, including to correct an error in the determination.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(g)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in">The revised calculation statement may still serve as evidence to inform the question of whether there was an error, and the question what the Close-out Amount would have been on a determination that was without error …”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In my view, therefore, if Phelan’s case as to the 14 May 2021 Trade is accepted, then the Alternative Early Termination Amount is due from Phelan to Macquarie as a debt, and due from 4 June 2021 as the validly designated Early Termination Date.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Is such a claim open to Macquarie’s case on its statement of case? While the Particulars of Claim do not reflect the distinction between debt and damages as faithfully as they might, I am satisfied that the cause of action is pleaded and that there is no prejudice to Phelan in allowing Macquarie to advance such a claim at this hearing:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">The amount due on the Early Termination is clearly claimed as a debt claim (paragraphs 38 and 40.1 and the first part of the prayer). Mr Hobson (who argued this aspect of Phelan’s claim and did so forcefully and effectively) contended otherwise, on the basis that the expression “the 14 May 2021 Transaction” was a defined term, reflecting Macquarie’s case. However, Macquarie’s (assumed) error as to one of the terms of the contract relied upon does not mean that a claim quantified on the correct basis involves a new cause of action. It cannot be the case that any dispute as to the terms of a contract involves the introduction of a new cause of action when that mistake is corrected.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">While Macquarie has quantified the amount of that debt by reference to its case as to the strike price, it would be open to the court at trial to award it what the court determines to be the correct amount of the debt. Phelan could not conceivably object to such a course simply because the alternative amount (whatever that might be) had not been expressly pleaded.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">This involved no unfairness to Phelan, who has known throughout that this application is premised on Macquarie asserting its entitlement to recover at a minimum the amount recoverable on Phelan’s version of the 28 May 2021 Settlement Trade.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">However, once it is recognised that the same cause of action is in play on both Macquarie’s and Phelan’s cases, it would not be appropriate to grant summary judgment in the amount due on Phelan’s case (which would have the effect that the relevant cause of action would merge in the judgment). That would not present an obstacle to ordering an interim payment in any amount which, on my findings, would be indisputably due at trial even if Macquarie’s case as to the strike price is rejected.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">45.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">It follows that I am satisfied, on the findings I have made, that, even if Phelan succeeds in its case as to the terms of the 28 May 2021 Settlement Trade, the Alternative Early Termination Amount is due from Phelan to Macquarie.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">Is any such debt payable?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_46">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">46.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Mr Hobson argued that even though a debt may have arisen from Phelan to Macquarie on this hypothesis, the debt was not payable. He submitted as follows:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">There is a fundamental distinction in the ISDA Master Agreement between the events necessary for a debt to arise, and those necessary before such a debt becomes payable (<span style="font-style:italic">Goldman Sachs International v Videocon Global Ltd</span> [2016] EWCA Civ 130) [35], using the paragraph references in the report at [2016] 1 CLC 528).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <intro>
+              <p class="ParaLevel2" style="margin-left:0.98in">While the Early Termination Amount will become due on the effective designation of an Early Termination Date, it does not become payable until the requirements of section 6(d)(ii) have been met. This provides:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel2" style="margin-left:1.28in">“An Early Termination Amount due in respect of any Early Termination Date will, together with any amount of interest payable pursuant to Section 9(h)(ii)(2), <span style="font-style:italic">be payable ... on the day on which notice of the amount payable is effective</span> in the case of an Early Termination Event which is designated or occurs as a result of an Event of Default” (emphasis added).</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ParaLevel2" style="margin-left:0.98in">On the assumption that Macquarie’s calculation of the Early Termination Amount used the wrong spot rate for the 28 May 2021 Settlement Trade, it was not an “effective” notice, and in the absence of service of a fresh notice, the debt due is not yet payable.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">47.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Mr Hobson supported his argument by reference to the following statement in Gloster LJ’s judgment in <span style="font-style:italic">Videocon Global</span>:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.28in;text-indent:-0.39in">“[59]<marker name="tab" />Before the judge Mr Yeo, appearing on behalf of Goldman, accepted in the light of the decision of Mr Knowles QC that pursuant to section 6(d) the sum claimed only became ‘payable’ once <span class="coitalic" style="font-style:italic">adequate details </span>of the sum claimed had been provided … In my judgment that concession was not correct. Likewise I do not agree with the judge's conclusion as set out in paragraph 16, that once ‘sufficient details’ of both the calculation of the sum claimed and of the bank account into which the sum was to be paid ‘the notice is … effective’. The use by the draftsman of the word ‘notice’, in conjunction with the word ‘effective’, in section 6(d)(ii) in order to ascertain the Payment Date must, in my judgment, be a reference to the language of section 12 , which expressly addresses the question of the precise day upon which a notice is deemed to be ‘effective’. The words used in section 6(d) (ii) (i.e. ‘on the day that notice of the amount payable is effective’) are not, in my view, addressing a wholly different concept of ‘effectiveness’ – namely the concept that a section 6(d)(i) statement (or notice) can only be ‘effective’ once all the details required to be contained in such a statement are supplied, a date which may be unclear and open to argument. On the contrary, section 6(d)(ii) is referring to when, in accordance with the provisions of section 12 , the notice is ‘effective’, viz. a specific delivery date, identified by the provisions of section 12.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in">…</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:1.28in;text-indent:-0.39in">[62]<marker name="tab" />In the present case the letter dated 14 December 2011, and delivered on that date <span style="font-weight:bold">clearly set out not only the amount payable</span><span style="font-style:italic">,</span> but also Goldman's calculations of the amount payable. The fact that, according to Mr Knowles QC, such calculations were not sufficiently detailed to satisfy the contractual requirements of section 6(d) (i) , did not, in my judgment, prevent the letter constituting an adequate ‘notice of the amount payable’ for the purposes of identifying a Payment Date under section 6(d)(ii) …. </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <heading style="text-indent:0.39in"><span style="color:initial;background-color:#FFFFFF">[64]</span><marker name="tab" /><span style="color:initial;background-color:#FFFFFF">My reasons for this conclusion may be summarised as follows.</span></heading>
+          <paragraph>
+            <num>(i)</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.28in">Section 6(d)(ii) does not state that the amount due in respect of an Early Termination Date will be payable <span class="coitalic" style="font-style:italic">only</span> when a statement compliant with section 6(d)(i) has been served. On the contrary, section 6(d)(ii) states that the sum is payable on the day that notice of the amount payable is effective’. <span style="font-weight:bold">In other words, as I have already suggested, the Payment Date is linked to the date on which the Non-defaulting Party gives notice of ‘the amount payable’ and that notice is deemed to be ‘effective’ in accordance with the provisions of section 12</span> . In the present case, that notice was in fact given well in time on 14 December 2011. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <content>
+              <p style="margin-left:1.28in;text-indent:-0.39in">…</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>(iii)</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.28in">The appellants' construction is inconsistent not only with the wording, but also with the contractual scheme and mechanisms of the Master Agreement . As I have already said, the <span class="coitalic" style="font-style:italic">debt </span>obligation to pay the amount due in respect of any Early Termination Date, as calculated under section 6(e) , clearly arises on the Early Termination Date. It would be surprising, to say the least, if that debt obligation could never be enforced, because, on the appellants' analysis, the obligation to pay such sum never arose, and therefore the Non-defaulting Party had to sue for some entirely different amount, which it might be able to establish at its loss as the result of the Defaulting Party's breach of contract.”</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <content>
+              <p style="margin-left:0.49in">(emphasis in bold added).</p>
+            </content>
+          </paragraph>
+        </level>
+        <paragraph eId="para_48">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">It is to be noted that Gloster LJ expressly rejected the suggestion that the word “effective” in section 6(d)(ii) was addressing the quality of information provided as to the calculation of the Early Termination Amount, saying it was aimed at “a wholly different concept of effectiveness”, namely that dealt with in section 12(a) of the ISDA Master Agreement, which identifies the point in time at which particular forms of notice will be treated as having been received, and effective in that sense. I accept that the passages in bold lend some support to the argument that notice of the amount payable is necessary for the debt to become payable. However, Gloster LJ did not need to consider the legal consequence of a notice which was not properly calculated but which was effectively received. Further, she emphasised the commercial unlikelihood of a scenario in which a debt which became due never became payable.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">49.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Gloster LJ referred with approval to the decision of Aikens J in<span style="font-style:italic"> ANZ Banking Group Ltd v Société Générale </span>[2000] CLC 161, another case concerned with the 1992 ISDA Master Agreement. Section 5(b)(v) had been supplemented in that case by an additional termination event for “Russian market events”, with both parties being treated as affected parties and with the “loss” measure to be used in calculating the amounts payable on termination. One party (SG) served a notice of a “Russian market event”, contending that both parties were required to serve their calculation of loss or gain. The parties agreed an early termination date of 24 September 1998, and provided their respective calculations on 1 October 1998. A significant feature of the case was that the net amount payable was dependent on the combined effect of the calculations of <span style="font-style:italic">both </span>parties. ANZ disputed SG’s calculation, and the court upheld that challenge. A dispute arose as to which interest rate was payable to ANZ, the contractual termination rate or the default rate. SG submitted ([13]):</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in">“[A] party does not have the right to be paid on the ‘payment date’ in accordance with s. 6(d)(ii) until a notice of the amount payable is effective. But in the present case neither side produced a notice of the amount payable because of the dispute as to how the losses of SG should be calculated. The calculation of SG, even if it is ultimately found to be wrong, was, in the words of the ‘loss’ clause, ‘reasonably determined [by SG] to be its total losses and costs’. Therefore if the parties, in good faith, fail to agree on the amount payable in accordance with s. 6(e), and so no effective notice was produced, then no ‘payment date’ can be determined. Therefore the ‘payment date’ will only arrive upon the court's determination of the proper basis for calculating SG's losses. Until that time SG is not in default and so does not have to pay the ‘default rate’.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">50.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Aikens J rejected that argument. He noted at [15]:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in">“There is nothing in s. 6(d)(i) or (ii) or s. 12 (which defines how a notice may be given under the contract: e.g. in writing or by telex or e-mail, and the point at which it is effective) to indicate that the two parties' statements must agree before there can be a notice of the amount payable to one party or the other. This is not surprising, as in some cases there will only be one ‘affected party’ (see s. 6(e)(ii)(1)) and so only that party will have to make a calculation and serve a statement.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">51.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">At [16], he rejected the argument that the amount only became payable when both parties had served their statements, such that the net amount payable was known, concluding:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in">“I think that time runs once a calculation has been served stipulating the amount payable to one party as set out in s. 6(d)(i) and (ii), <span style="font-weight:bold">provided that the calculation is either agreed or (retrospectively) once the court ultimately finds that the calculation served is correct. </span>If it were otherwise one party could always claim that the ‘payment date’ could never arrive if the calculation of the amounts due were disputed, provided that party's calculation was made in good faith.”</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="text-align:left;margin-left:0.5in;text-indent:-0.01in">(emphasis added).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">52.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">In this passage, Aikens J does suggest that time will only run from the service of a notice which contains a correct or undisputed amount. I do not understand Aikens J to have determined in the scenario before him that in the absence of agreement, there would be no cause of action unless and until the court determined that the amount claimed was correct, which would then retrospectively spring into existence from an earlier point in time. That would raise obvious issues as to precisely what claim the litigating party had in the period prior to judgment in its favour. Rather, Aikens J was making the point that the court’s determination would retrospectively confirm the correctness of the notice.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">53.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Aikens J did not have to consider the position where a notice is served which the court subsequently determines was wrongly calculated, and the court arrives at its own calculation of the amount payable on the basis set out at [40] above. While it cannot be the case that in such a scenario the debt which had accrued due never becomes payable (cf. Gloster LJ’s concern at [64(iii)] of <span style="font-style:italic">Videocon</span>), the date when the amount became <span style="font-style:italic">payable </span>is capable of being of economic importance because of the interest rate provisions of the ISDA Master Agreement. Section 9(h)(ii)(2) provides that interest on the Early Termination Amount runs at the “Applicable Close Out Rate”. Under the Section 14 definitions:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">For Early Termination Amounts payable by a Defaulting or Non-Defaulting Party, there are circumstances in which the rate payable before and after the date when the amount is payable might differ (depending on whether the conditions in (ii)(1) of the definition of “Applicable Close-out Rate” apply).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">More significantly, in all other cases, there is a move from the Applicable Deferral Rate (which is derived from an inter-bank interest rate) to the Termination Rate (“the arithmetic mean of the cost .. to each party (as certified by such party) if it were to fund or of funding such amounts”) once the Early Termination Amount becomes payable.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">54.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">There are a number of ways of addressing the consequences of an error in the calculation of the Early Termination Amount:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">It might be said that notice of one party’s calculation of the Early Termination Amount, even if the calculation is incorrect and not binding as to the amount due, is nonetheless sufficient to render the Early Termination Amount payable in such amount as the court later determines. There are authorities which, in other contexts, have held that notice of a failure to pay a debt will be valid and trigger the obligation to pay even if the wrong amount is given in the notice (collected <span style="color:initial;background-color:#FFFFFF">in </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Lombard North Central Plc v European Skyjets Ltd </span><span style="color:initial;background-color:#FFFFFF">[2022] EWHC 728 (QB), [108]). However, none of these authorities address the complex architecture of the ISDA Master Agreement and the differential in interest rates before and after the “date on which [the] amount is payable” for parties other than Defaulting and Non-Defaulting Parties, which might be said to reflect an assumption that on the date on which the amount becomes payable, the amount which must be paid will be known.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">It might be said that if an invalid Early Termination Amount is served, such that the court must then determine the amount, the machinery for rendering the debt payable has broken down, and is replaced by an obligation to pay the debt within a reasonable time (which would have regard to the point at which the paying party would reasonably be aware of the amount to be paid). There are other commercial contexts in which a <span style="font-style:italic">debitum in praesentum solvendum in futuro </span>has been held to have become payable in such circumstances: in the charterparty context in <span style="font-style:italic">Vagres Compania Maritima SA v Nissho-Iwai American Corp (The Karin Vatis </span>[1988] 2 Lloyd’s 330, 332-333 and 336-337 and <span style="font-style:italic">Bank of Boston Connecticut v European Grain and Shipping </span>Ltd [1989] AC 10561098-99; and in the sale of goods context in <span style="font-style:italic">Alexander v Gardner </span>(1835) 1 Bing N Cas 671 and <span style="font-style:italic">Fragano v Long </span>(1825) 4 B &amp; C 218). However, none of these cases involved the carefully crafted interest regime of the ISDA Master Agreement.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">It might be said that a party who has served an invalid notice as to the Early Termination Amount must serve a valid one in respect of the correct amount in order to render the debt which is due payable, even if that has to be done after trial or even after a successful appeal, or in advance on a contingent basis (in the alternative to its primary case that a valid notice has already been served – as Mr Dhillon KC accepted could be done). Given that interest will run in respect of the period before such a notice is served (albeit in some cases at a different rate), it might be said that no significant practical detriment would follow from this approach.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">55.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The late stage at which the correct legal classification of Macquarie’s claim came into focus meant that there was no sufficient opportunity at the hearing to explore the first two alternatives, and it would not be appropriate to resolve those issues without the benefit of full argument, given their potential impact on such a widely used form. In these circumstances, I have decided to proceed for the purposes of the interim payment application on the basis that Macquarie would only be entitled to obtain a judgment at trial for the Alternative Early Termination Amount if notice of that amount had been served so as to make it clear beyond scope for argument that such an amount was payable (there being no suggestion that this has already been done), albeit without prejudice to its case as to the validity of the notice of the Early Termination Amount it has already given.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">56.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Subject to the quantum issues which I address below, I am willing to adjourn the interim payment application to allow Macquarie to serve such a precautionary notice in respect of its claim to the Alternative Early Termination Amount.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">The amount recoverable</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_57">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">57.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Finally, Phelan raises two quantum issues.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">58.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">The first is to suggest that the court cannot be confident that the figure for the Alternative Early Termination Amount as calculated by Macquarie will be recoverable at trial, pointing to the fact that the parties had agreed, and on 4 May 2022, Mr Justice Andrew Baker had ordered the parties, to exchange expert evidence as to the appropriate spot rate which is due to be exchanged on 28 October 2022.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">59.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">However, in its application of 14 April 2022, Macquarie made clear the basis on which it contended that it had used the spot rate most favourable to Phelan, and exhibited the relevant documents. Phelan served no evidence in response. Having failed to answer this aspect of Macquarie’s claim, it cannot now resist an interim payment on the basis that something may come out of the woodwork in the expert evidence. This does not render the order for expert evidence unnecessary because it will still be necessary at trial to determine whether Macquarie is entitled to more than the amount for which it seeks an interim payment.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">60.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Second, by way of a late developing point, it was said that there was reason to believe Macquarie had made a “highly material” (but unquantified) gain on a hedging contract it had taken out in relation to its exposure to Phelan, and that it is arguable that such a profit needs to be brought into account when calculating the Alternative Early Payment Amount. In this context, Mr Hobson relied upon the definition of “Close-out Amount”, and in particular the words:</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in">“Without duplication of amounts calculated based on information described in clause (i), (ii) or (iii) above, or other relevant information, and when it is commercially reasonable to do so, the Determining Party may in addition consider in calculating a Close-out Amount any loss or costs incurred in connection with its terminating, liquidating or re-establishing any hedge related to a Terminated Transaction or group of Terminated Transactions (or any gain resulting from any of them”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">61.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Mr Hardwick KC objected that if there had been such a gain, and if it had to be brought into account in the calculation of the Early Termination or Alternative Early Termination Amount (neither of which were admitted), the maximum amount was of the order of US$165,000. However, there was no evidence supporting this figure. In the absence of such evidence, but having regard to the circumstances in which the point arose and the fact that experts’ reports will be exchanged on 28 October 2022, I decided to adjourn this aspect of the interim payment application, with liberty to restore once the expert reports have been exchanged.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">CONCLUSION</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_62">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">62.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">In these circumstances, the parties are asked to agree declarations to be recorded in an order now reflecting my determinations that, if the strike price for the 28 May 2021 Settlement Trade was 22.05, then:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">There was an Event of Default within section 5(a)(i) of the ISDA Master Agreement.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">Macquarie validly designated 4 June 2021 as the Early Termination Date.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">On 4 June 2021, the Alternative Early Termination Amount accrued as a debt from Phelan to Macquarie.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">63.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in">Macquarie’s application for an interim payment is otherwise adjourned with liberty to restore in relation to the following issues:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">whether, if the strike price for the 28 May 2021 Settlement Trade was 22.05, the Alternative Early Termination Amount which accrued due has become payable by reason of the service of a notice under section 6(d)(ii) of the ISDA Master Agreement in respect of the Alternative Early Termination Amount;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.98in">the position so far as any alleged gain on hedging transactions is concerned.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
