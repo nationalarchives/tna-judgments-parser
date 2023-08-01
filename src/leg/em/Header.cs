@@ -60,6 +60,21 @@ class HeaderSplitter {
             }
     }
 
+    string[] Titles = { "Explanatory Memorandum To", "Policy Note" };
+
+    internal static string GetDocumentType(List<IBlock> header) {
+        Model.DocType2 docType = Util.Descendants<Model.DocType2>(header).FirstOrDefault();
+        if (docType is null)
+            return null;
+        string name = IInline.ToString(docType.Contents);
+        name = Regex.Replace(name, @"\s+", " ").Trim();
+        if ("Explanatory Memorandum To".Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
+            return "ExplanatoryMemorandum";
+        if ("Policy Note".Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
+            return "PolicyNote";
+        return null;
+    }
+
     private void Start(IBlock block) {
         if (block is not WLine line) {
             state = State.Fail;
@@ -69,16 +84,14 @@ class HeaderSplitter {
             state = State.Fail;
             return;
         }
-        string[] titles = { "Explanatory Memorandum To", "Policy Note" };
-        bool isTitle = titles.Any(title => title.Equals(line.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
+        bool isTitle = Titles.Any(title => title.Equals(line.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
         if (!isTitle) {
             state = State.Fail;
             return;
         }
-        // WDocType docType = new WDocType(line.Contents);
-        // WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
-        // Enriched.Add(newLine);
-        Enriched.Add(line);
+        Model.DocType2 docType = new Model.DocType2 { Contents = line.Contents };
+        WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
+        Enriched.Add(newLine);
         state = State.AfterDocType;
     }
 
@@ -100,7 +113,9 @@ class HeaderSplitter {
             state = State.Fail;
             return;
         }
-        Enriched.Add(line);
+        Model.DocNumber2 docNumber = new Model.DocNumber2 { Contents = line.Contents };
+        WLine newLine = WLine.Make(line, new List<IInline>(1) { docNumber });
+        Enriched.Add(newLine);
         state = State.Done;
     }
 

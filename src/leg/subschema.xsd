@@ -39,9 +39,10 @@
 
 <xs:element name="mainBody">
     <xs:complexType>
-        <xs:sequence>
-            <xs:element ref="level" maxOccurs="unbounded" />
-        </xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="level" />
+            <xs:element ref="paragraph" />
+        </xs:choice>
     </xs:complexType>
 </xs:element>
 
@@ -54,15 +55,15 @@
             <xs:element ref="heading" minOccurs="0" />
             <xs:choice>
                 <xs:sequence>
-                      <xs:element ref="intro" minOccurs="0" />
-                      <xs:choice>
-                        <xs:element ref="level" minOccurs="1" maxOccurs="unbounded" />
-                        <xs:element ref="paragraph" minOccurs="1" maxOccurs="unbounded" />
-                      </xs:choice>
-                      <xs:element ref="wrapUp" minOccurs="0" />
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice minOccurs="1" maxOccurs="unbounded">
+                        <xs:element ref="level" />
+                        <xs:element ref="paragraph" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
                 </xs:sequence>
                 <xs:element ref="content" />
-          </xs:choice>
+            </xs:choice>
         </xs:sequence>
     </xs:complexType>
 </xs:element>
@@ -74,9 +75,9 @@
             <xs:element ref="heading" minOccurs="0" />
             <xs:choice>
                 <xs:sequence>
-                      <xs:element ref="intro" minOccurs="0" />
-                      <xs:element ref="subparagraph" minOccurs="1" maxOccurs="unbounded" />
-                      <xs:element ref="wrapUp" minOccurs="0" />
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:element ref="subparagraph" minOccurs="1" maxOccurs="unbounded" />
+                    <xs:element ref="wrapUp" minOccurs="0" />
                 </xs:sequence>
                 <xs:element ref="content" />
           </xs:choice>
@@ -89,7 +90,14 @@
         <xs:sequence>
             <xs:element ref="num" minOccurs="0" />
             <xs:element ref="heading" minOccurs="0" />
-            <xs:element ref="content" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:element ref="subparagraph" minOccurs="1" maxOccurs="unbounded" />
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+          </xs:choice>
         </xs:sequence>
     </xs:complexType>
 </xs:element>
@@ -97,9 +105,10 @@
 <!-- block containers -->
 
 <xs:complexType name="block-container">
-    <xs:sequence>
-        <xs:element ref="p" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:choice maxOccurs="unbounded">
+        <xs:element ref="p" />
+        <xs:element ref="table"  />
+    </xs:choice>
 </xs:complexType>
 
 <xs:element name="intro" type="block-container" />
@@ -120,6 +129,8 @@
 <xs:complexType name="inline-container" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element ref="span" />
+        <xs:element ref="a" />
+        <xs:element ref="marker" />
     </xs:choice>
     <xs:attribute name="class" /> <!--  -->
     <xs:attribute name="style" />
@@ -133,19 +144,19 @@
 
 <!-- inline -->
 
-<xs:element name="span">
-    <xs:complexType mixed="true">
-        <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element ref="marker" />
-        </xs:choice>
-        <xs:attribute name="class" /> <!--  -->
-        <xs:attribute name="style" />
-    </xs:complexType>
-</xs:element>
+<xs:element name="span" type="inline-container" />
+
+<xs:element name="a" />
 
 <xs:element name="marker">
     <xs:complexType>
-        <xs:attribute name="name" use="required" />
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="tab" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
 </xs:element>
 
