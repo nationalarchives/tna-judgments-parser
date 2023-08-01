@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 class Metadata {
 
     internal static DocumentMetadata Make(List<IBlock> header, WordprocessingDocument doc) {
-        string name = "ExplanatoryMemorandum";
+        string name = HeaderSplitter.GetDocumentType(header);
         string uri = null;
         if (header.Last() is WLine last)
             uri = RegulationNumber.MakeURI(last.NormalizedContent) + "/em";
