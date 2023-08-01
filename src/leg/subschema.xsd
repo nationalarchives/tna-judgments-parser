@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" targetNamespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+
+<xs:element name="akomaNtoso">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="doc" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="doc">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="meta" />
+            <xs:element ref="preface" minOccurs="0" />
+            <xs:element ref="mainBody" />
+        </xs:sequence>
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ExplanatoryMemorandum" />
+                    <xs:enumeration value="PolicyNote" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="meta" />
+
+<xs:element name="preface">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="p" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="mainBody">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="level" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<!-- hcontainers -->
+
+<xs:element name="level">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" minOccurs="0" />
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                      <xs:element ref="intro" minOccurs="0" />
+                      <xs:choice>
+                        <xs:element ref="level" minOccurs="1" maxOccurs="unbounded" />
+                        <xs:element ref="paragraph" minOccurs="1" maxOccurs="unbounded" />
+                      </xs:choice>
+                      <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+          </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="paragraph">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" minOccurs="0" />
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                      <xs:element ref="intro" minOccurs="0" />
+                      <xs:element ref="subparagraph" minOccurs="1" maxOccurs="unbounded" />
+                      <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+          </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="subparagraph">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" minOccurs="0" />
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:element ref="content" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<!-- block containers -->
+
+<xs:complexType name="block-container">
+    <xs:sequence>
+        <xs:element ref="p" maxOccurs="unbounded" />
+    </xs:sequence>
+</xs:complexType>
+
+<xs:element name="intro" type="block-container" />
+
+<xs:element name="content" type="block-container" />
+
+<xs:element name="wrapUp" type="block-container" />
+
+<!-- blocks -->
+
+<xs:element name="num">
+    <xs:complexType mixed="true">
+        <xs:attribute name="class" /> <!--  -->
+        <xs:attribute name="style" />
+    </xs:complexType>
+</xs:element>
+
+<xs:complexType name="inline-container" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="span" />
+    </xs:choice>
+    <xs:attribute name="class" /> <!--  -->
+    <xs:attribute name="style" />
+</xs:complexType>
+
+<xs:element name="heading" type="inline-container" />
+
+<xs:element name="p" type="inline-container" />
+
+<xs:element name="table" />
+
+<!-- inline -->
+
+<xs:element name="span">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="marker" />
+        </xs:choice>
+        <xs:attribute name="class" /> <!--  -->
+        <xs:attribute name="style" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="marker">
+    <xs:complexType>
+        <xs:attribute name="name" use="required" />
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>
