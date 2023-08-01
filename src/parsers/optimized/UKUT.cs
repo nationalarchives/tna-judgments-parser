@@ -50,8 +50,8 @@ class OptimizedUKUTParser : OptimizedParser {
     };
 
     Regex[] titles2 = new Regex[] {
-        new Regex(@"Ruling on [a-z]+", RegexOptions.IgnoreCase),
-        new Regex(@"\d+ DECISION")
+        new Regex(@"^Ruling on [a-z]+$", RegexOptions.IgnoreCase),
+        new Regex(@"^\d+ DECISION$")
     };
 
     protected bool IsTitleParagraph(IBlock block) {
