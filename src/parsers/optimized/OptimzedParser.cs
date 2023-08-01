@@ -511,17 +511,39 @@ abstract class OptimizedParser {
         // }
         return indent;
     }
+
+    protected virtual bool HasProperParagraphNumber(IDivision div) {
+        return div.Number is not null && Regex.IsMatch(div.Number.Text.Trim(), @"^\d+\.?$");
+    }
+
+    private static IDivision DemoteToSubparagraph(IDivision p) {
+        if (p is BranchSubparagraph || p is LeafSubparagraph)
+            return p;
+        if (p is IBranch branch)
+            return new BranchSubparagraph { Number = branch.Number, Intro = branch.Intro, Children = branch.Children };
+        if (p is ILeaf leaf)
+            return new LeafSubparagraph { Number = leaf.Number, Contents = leaf.Contents };
+        return p;
+    }
+    private static IDivision PromoteFromSubparagraph(IDivision sp) {
+        if (sp is BranchSubparagraph branch)
+            return new BranchParagraph { Number = branch.Number, Intro = branch.Intro, Children = branch.Children };
+        if (sp is LeafSubparagraph leaf)
+            return new WNewNumberedParagraph(leaf.Number, leaf.Contents);
+        return sp;
+    }
+
     internal static float MarginOfError = 0.099f;
 
     protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
-        ILeaf div = ParseSimpleParagraph(line);
+        ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)
             return div;
         if (div.Heading is not null)  // currently impossible
             return div;
-        if (div.Contents.Count() != 1)
+        if (div.Contents.Count() != 1)  // currently impossible
             return div;
-        if (div.Contents.First() is not WLine)
+        if (div.Contents.First() is not WLine intro1)  // currently impossible
             return div;
         
         float indent1 = GetEffectiveIndent(line);
@@ -546,40 +568,31 @@ abstract class OptimizedParser {
 
                 int save = i;
                 IDivision subparagraph = ParseParagraphAndSubparagraphs(nextLine, true);
-                if (!sub && div.Number is null && subparagraph.Number is not null && Regex.IsMatch(subparagraph.Number.Text, @"^\d+\.$")) {
+                // it would be better not to need this, b/c big levels would already have been recognized
+                if (!sub && !HasProperParagraphNumber(div) && HasProperParagraphNumber(subparagraph)) {
                     i = save;
                     break;
                 }
-                if (subparagraph is BranchSubparagraph || subparagraph is LeafSubparagraph) {
-                } else if (subparagraph is IBranch subbranch) {
-                    subparagraph = new BranchSubparagraph { Number = subparagraph.Number, Intro = subbranch.Intro, Children = subbranch.Children };
-                } else {
-                    subparagraph = new LeafSubparagraph { Number = subparagraph.Number, Contents = (subparagraph as ILeaf).Contents };
-                }
+                subparagraph = DemoteToSubparagraph(subparagraph);
                 subparagraphs.Add(subparagraph);
                 continue;
             }
             throw new System.Exception();  // should be impossible
         }
+
         // ideally all cross-headings would already have been recognized
-        if (!sub && div.Number is null && intro.Count == 1 && intro.First() is WLine heading && subparagraphs.Any()) {
-            Func<IDivision, IDivision> promote = sp => {
-                if (sp is BranchSubparagraph branch)
-                    return new BranchParagraph { Number = branch.Number, Intro = branch.Intro, Children = branch.Children };
-                if (sp is LeafSubparagraph leaf)
-                    return new WNewNumberedParagraph(leaf.Number, leaf.Contents);
-                throw new Exception();  // should be impossible
-            };
-            return new CrossHeading { Heading = heading, Children = subparagraphs.Select(promote) };
-        }
+        if (!sub && div.Number is null && intro.Count == 1 && subparagraphs.Any())
+            return new CrossHeading { Heading = intro1, Children = subparagraphs.Select(PromoteFromSubparagraph) };
         if (subparagraphs.Any())
             return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs };
         if (intro.Count == div.Contents.Count())
             return div;
+        // if (!sub && div.Number is null)
+        //     return new WDummyDivision(intro);
         return new WNewNumberedParagraph(div.Number, intro);
     }
 
-    private ILeaf ParseSimpleParagraph(WLine line) {
+    private ILeaf ParseSimpleParagraph(WLine line, bool sub) {
         i += 1;
         if (line is WOldNumberedParagraph np)
             return new WNewNumberedParagraph(np.Number, WLine.RemoveNumber(np));
