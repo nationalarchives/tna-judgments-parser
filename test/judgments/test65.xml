@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/1481/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/1481/data.xml" />
-          <FRBRdate date="2023-07-27T18:19:32" name="transform" />
+          <FRBRdate date="2023-08-01T18:22:11" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -70,7 +70,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1481</uk:number>
         <uk:cite>[2023] EWHC 1481 (Comm)</uk:cite>
-        <uk:parser>0.15.0</uk:parser>
+        <uk:parser>0.15.2</uk:parser>
         <uk:hash>d828cb59472c0506412c9c3fc197144d3f387e773c3b71738f83c42e6e49b8b8</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -5552,33 +5552,31 @@
             <p style="text-align:justify">the Company will pay to the Policyholder the amount of loss resulting from the interruption or interference caused by the Damage in accordance with the provisions of the insurance.</p>
             <p style="text-align:justify"><span style="font-weight:bold">Item on Gross Profit</span></p>
             <p style="text-align:justify">(unless shown as Not Insured in the Schedule)</p>
+            <p style="text-align:justify">Subject to the special provisions below the Company will pay as indemnity:</p>
           </content>
         </level>
-        <level>
-          <heading style="text-align:justify">Subject to the special provisions below the Company will pay as indemnity:</heading>
-          <paragraph>
-            <num style="margin-left:0.5in;text-indent:-0.25in">1</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.5in">In respect of <span style="font-weight:bold">Reduction in Turnover</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in">the sum produced by applying the Rate of Gross Profit to the amount by which the Turnover during the Indemnity Period falls short of the Standard Turnover in consequence of the Damage.</p>
-              </content>
-            </subparagraph>
-          </paragraph>
-          <paragraph>
-            <num style="margin-left:0.5in;text-indent:-0.25in">2</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.5in">In respect of <span style="font-weight:bold">Increase in Cost of Working</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in">the additional expenditure necessarily and reasonably incurred for the sole purpose of avoiding or diminishing the reduction in Turnover which but for that expenditure would have taken place during the Indemnity Period in consequence of the Damage</p>
-              </content>
-            </subparagraph>
-          </paragraph>
-        </level>
+        <paragraph>
+          <num style="margin-left:0.5in;text-indent:-0.25in">1</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.5in">In respect of <span style="font-weight:bold">Reduction in Turnover</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.5in">the sum produced by applying the Rate of Gross Profit to the amount by which the Turnover during the Indemnity Period falls short of the Standard Turnover in consequence of the Damage.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num style="margin-left:0.5in;text-indent:-0.25in">2</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.5in">In respect of <span style="font-weight:bold">Increase in Cost of Working</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.5in">the additional expenditure necessarily and reasonably incurred for the sole purpose of avoiding or diminishing the reduction in Turnover which but for that expenditure would have taken place during the Indemnity Period in consequence of the Damage</p>
+            </content>
+          </subparagraph>
+        </paragraph>
         <level>
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Definitions</span></p>
@@ -6410,23 +6408,21 @@
             <p style="text-align:justify">…</p>
             <p style="text-align:justify">Covers</p>
             <p style="text-align:justify">The following are the Covers insured except as otherwise stated in the Schedule</p>
+            <p style="text-align:justify">…</p>
           </content>
         </level>
-        <level>
-          <heading style="text-align:justify">…</heading>
-          <paragraph>
-            <num style="margin-left:0.5in;text-indent:-0.25in">3</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold">Riot, civil commotion, strikers, locked-out workers</span> or <span style="font-weight:bold">persons taking part in labour disturbances</span> or <span style="font-weight:bold">malicious persons</span> excluding Damage</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num style="margin-left:0.5in;text-indent:-0.25in">a)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.5in">arisingfrom confiscation, requisition or destruction by order of the government or any public authority.</p>
-            </content>
-          </paragraph>
-        </level>
+        <paragraph>
+          <num style="margin-left:0.5in;text-indent:-0.25in">3</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold">Riot, civil commotion, strikers, locked-out workers</span> or <span style="font-weight:bold">persons taking part in labour disturbances</span> or <span style="font-weight:bold">malicious persons</span> excluding Damage</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="margin-left:0.5in;text-indent:-0.25in">a)</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.5in">arisingfrom confiscation, requisition or destruction by order of the government or any public authority.</p>
+          </content>
+        </paragraph>
         <level>
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">…</p>
