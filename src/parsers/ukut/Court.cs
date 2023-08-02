@@ -16,6 +16,66 @@ class CourtType : AbstractCourtType {
                 Re2 = new Regex(@"^ADMINISTRATIVE APPEALS CHAMBER$", RegexOptions.IgnoreCase),
                 Re3 = new Regex(@"^\(TRAFFIC COMMISSIONER APPEALS\)$", RegexOptions.IgnoreCase),
                 Court = Courts.UpperTribunal_AdministrativeAppealsChamber
+            },
+            new GRCCombo3("Charity") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Claims") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Community right to bid") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Consultant lobbyists") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Conveyancing") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Copyright licensing") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Electronic communications and postal services") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Environment") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Estate agent") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Examination boards") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Food labelling") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Gambling Appeals") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Immigration services") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Individual Electronic") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Information rights") {
+                Court = Courts.FirstTierTribunal_GRC_InformationRights
+            },
+            new GRCCombo3("Letting and managing agents") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Local government standards") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Pensions Regulation") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Secondary ticketing") {
+                Court = Courts.FirstTierTribunal_GRC
+            },
+            new GRCCombo3("Welfare of animals") {
+                Court = Courts.FirstTierTribunal_GRC
             }
         };
     }
@@ -65,6 +125,16 @@ class CourtType : AbstractCourtType {
                 Court = Courts.FirstTierTribunal_Tax
             }
         };
+    }
+
+}
+
+class GRCCombo3 : Combo3 {
+
+    internal GRCCombo3(string name) {
+        Re1 = new Regex(@"^First-tier Tribunal$", RegexOptions.IgnoreCase);
+        Re2 = new Regex(@"^General Regulatory Chamber$", RegexOptions.IgnoreCase);
+        Re3 = new Regex(@"^\[?" + name + @"\]?$", RegexOptions.IgnoreCase);
     }
 
 }
