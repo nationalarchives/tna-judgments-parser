@@ -494,17 +494,30 @@ abstract class OptimizedParser {
         return GetEffectiveIndent(line) <= 0f;
     }
 
-    internal static float GetEffectiveIndent(WLine line, bool withTab = false) {
+    internal static float GetEffectiveIndent(WLine line) {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
-        float firstLine = line.FirstLineIndentWithNumber ?? 0f; // relative to left margin
-        float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        if (!withTab)
-            return indent;
+
+        if (line is WOldNumberedParagraph) {
+            var firstNum = line.FirstLineIndentWithNumber ?? 0f;
+            return firstNum > 0 ? leftMargin : leftMargin + firstNum;
+        }
+
+        float firstLine = line.FirstLineIndentInches ?? 0f; // relative to left margin
+
+        if (firstLine > 0) {
+            var rightIndent = line.RightIndentInches ?? 0f;
+            var width = 8.27 - leftMargin - rightIndent;
+            if (line.NormalizedContent.Length > width * 14) // runs onto second line
+                return leftMargin;
+            // this is a rough estimate, assuming A4 width and 14 characters per inch
+        }
+
+        float indent = leftMargin + firstLine;
         if (line.Contents.FirstOrDefault() is not WTab)
             return indent;
-        float? tab = line.GetFirstTabAfter(leftMargin + firstLine);  // tab is absolute
+        float? tab = line.GetFirstTabAfter(indent);  // tab is absolute
         if (!tab.HasValue)
-            tab = WLine.GetFirstDefaultTabAfter(leftMargin + firstLine);
+            tab = WLine.GetFirstDefaultTabAfter(indent);
         if (firstLine < 0 && tab.Value > leftMargin)
             return leftMargin;
         return tab.Value;
@@ -560,8 +573,7 @@ abstract class OptimizedParser {
                 continue;
             }
             if (next is WLine nextLine) {
-                bool considerTab = line is WOldNumberedParagraph && nextLine is not WOldNumberedParagraph; // [2023] EWHC 1676 (Fam)
-                float nextIndent1 = GetEffectiveIndent(nextLine, considerTab);
+                float nextIndent1 = GetEffectiveIndent(nextLine);
                 if (nextIndent1 - MarginOfError <= indent1)
                     break;
 
