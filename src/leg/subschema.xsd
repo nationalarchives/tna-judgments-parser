@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" targetNamespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" targetNamespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" elementFormDefault="qualified">
 
 <xs:element name="akomaNtoso">
     <xs:complexType>
@@ -29,13 +29,32 @@
 
 <xs:element name="meta" />
 
+<!-- preface -->
+
 <xs:element name="preface">
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref="p" maxOccurs="unbounded" />
+            <xs:element name="p" type="header-paragraph" maxOccurs="unbounded" />
         </xs:sequence>
     </xs:complexType>
 </xs:element>
+
+<xs:complexType name="header-paragraph" mixed="true">
+    <xs:complexContent>
+        <xs:extension base="inline-container">
+            <xs:choice minOccurs="0" maxOccurs="1">
+                <xs:element ref="docType" />
+                <xs:element ref="docNumber" />
+            </xs:choice>
+        </xs:extension>
+    </xs:complexContent>
+</xs:complexType>
+
+<xs:element name="docType" type="inline-container" />
+
+<xs:element name="docNumber" type="inline-container" />
+
+<!-- body -->
 
 <xs:element name="mainBody">
     <xs:complexType>
@@ -121,7 +140,7 @@
 
 <xs:element name="num">
     <xs:complexType mixed="true">
-        <xs:attribute name="class" /> <!--  -->
+        <xs:attribute name="class" />
         <xs:attribute name="style" />
     </xs:complexType>
 </xs:element>
@@ -132,7 +151,7 @@
         <xs:element ref="a" />
         <xs:element ref="marker" />
     </xs:choice>
-    <xs:attribute name="class" /> <!--  -->
+    <xs:attribute name="class" />
     <xs:attribute name="style" />
 </xs:complexType>
 
