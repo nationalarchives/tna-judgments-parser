@@ -8,12 +8,11 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	exclude-result-prefixes="uk html math xs">
 
-<xsl:output method="html" encoding="utf-8" indent="no" include-content-type="no" />
+<xsl:output method="html" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
 <xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time" />
 
-<xsl:param name="standalone" as="xs:boolean" select="false()" />
 <xsl:param name="image-base" as="xs:string" select="'/'" />
 
 <!-- global variables -->
@@ -36,59 +35,36 @@
 <!-- templates -->
 
 <xsl:template match="akomaNtoso">
-	<xsl:choose>
-		<xsl:when test="$standalone">
-			<html>
-				<head>
-					<!-- <title>
-						<xsl:value-of select="$title" />
-					</title> -->
-					<style>
-						<xsl:text>
-body { margin: 1cm 1in }
-</xsl:text>
-						<xsl:call-template name="style" />
-					</style>
-				</head>
-				<body>
-					<xsl:apply-templates />
-				</body>
-			</html>
-		</xsl:when>
-		<xsl:otherwise>
-			<div id="doc-wrapper">
-				<xsl:apply-templates />
-			</div>
-		</xsl:otherwise>
-	</xsl:choose>
+	<html>
+		<head>
+			<xsl:call-template name="style" />
+		</head>
+		<body>
+			<xsl:apply-templates />
+		</body>
+	</html>
 </xsl:template>
-
-<xsl:template match="meta" />
-
-<xsl:variable name="selector1" as="xs:string" select="if ($standalone) then 'body' else '#doc-wrapper'" />
 
 <xsl:template name="style">
-<xsl:value-of select="$selector1" /> .tab { display: inline-block; width: 0.25in }
-<xsl:value-of select="$selector1" /> section { position: relative }
-<xsl:value-of select="$selector1" /> h2 { font-size: inherit; font-weight: normal }
-<xsl:value-of select="$selector1" /> h2.floating { position: absolute; margin-top: 0 }
-<xsl:value-of select="$selector1" /> .num { display: inline-block; padding-right: 1em }
-<xsl:value-of select="$selector1" /> td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
-<xsl:value-of select="$selector1" /> td > .num { left: -2em }
-<xsl:value-of select="$selector1" /> table { margin: 0 auto; width: 100%; border-collapse: collapse }
-<xsl:value-of select="$selector1" /> .header table { table-layout: fixed }
-<xsl:value-of select="$selector1" /> td > p:first-child { margin-top: 0 }
-<xsl:value-of select="$selector1" /> td > p:last-child { margin-bottom: 0 }
-<xsl:value-of select="$selector1" /> .fn { vertical-align: super; font-size: small }
-<xsl:value-of select="$selector1" /> .footnote > p > .marker { vertical-align: super; font-size: small }
-<xsl:value-of select="$selector1" /> .restriction { color: red }
-<xsl:apply-templates select="/akomaNtoso/doc/meta/presentation/html:style" />
-<xsl:text>
-</xsl:text>
-</xsl:template>
-
-<xsl:template match="html:style">
-	<xsl:value-of select="." />
+	<style>
+.preface &gt; p { text-align: center }
+section { position: relative }
+section:not(.heading) { margin-left: 0.5in }
+h2 { font-size: inherit; font-weight: normal }
+h2.heading &gt; .num { display: inline-block; width: 0.5in }
+h2:not(.heading) { position: absolute; margin-top: 0; margin-left: -0.5in }
+<!-- h2.floating { position: absolute; margin-top: 0 }
+.num { display: inline-block; padding-right: 1em }
+td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
+td > .num { left: -2em }
+table { margin: 0 auto; width: 100%; border-collapse: collapse }
+.header table { table-layout: fixed }
+td > p:first-child { margin-top: 0 }
+td > p:last-child { margin-bottom: 0 }
+.fn { vertical-align: super; font-size: small }
+.footnote > p > .marker { vertical-align: super; font-size: small }
+.tab { display: inline-block; width: 0.25in } -->
+</style>
 </xsl:template>
 
 <xsl:template match="doc">
@@ -97,6 +73,8 @@ body { margin: 1cm 1in }
 		<xsl:call-template name="footnotes" />
 	</article>
 </xsl:template>
+
+<xsl:template match="meta" />
 
 <xsl:template match="preface">
 	<div class="{ local-name() }">
@@ -110,32 +88,20 @@ body { margin: 1cm 1in }
 	</div>
 </xsl:template>
 
-<xsl:template name="class">
-	<xsl:attribute name="class">
-		<xsl:value-of select="local-name()" />
-		<xsl:if test="@class">
-			<xsl:text> </xsl:text>
-			<xsl:value-of select="@class" />
-		</xsl:if>
-	</xsl:attribute>
-</xsl:template>
-
 <xsl:template match="level | paragraph | subparagraph">
 	<section>
-		<xsl:call-template name="class" />
-		<xsl:apply-templates select="@* except @class" />
+		<xsl:attribute name="class">
+			<xsl:choose>
+				<xsl:when test="exists(heading)">
+					<xsl:sequence select="concat(local-name(.), ' heading')" />
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:sequence select="local-name(.)" />
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:attribute>
 		<xsl:if test="num | heading">
-			<h2>
-				<xsl:choose>
-					<xsl:when test="exists(heading/@class)">
-						<xsl:attribute name="class">
-							<xsl:value-of select="heading/@class" />
-						</xsl:attribute>
-					</xsl:when>
-					<xsl:when test="empty(heading)">
-						<xsl:attribute name="class">floating</xsl:attribute>
-					</xsl:when>
-				</xsl:choose>
+			<h2 class="{ string-join((num, heading)/local-name(.), ' ') }">
 				<xsl:apply-templates select="num | heading" />
 			</h2>
 		</xsl:if>
@@ -143,87 +109,58 @@ body { margin: 1cm 1in }
 	</section>
 </xsl:template>
 
-<!-- <xsl:template match="hcontainer[@name='tableOfContents']" /> -->
-
 <xsl:template match="blockContainer">
-	<section>
-		<xsl:call-template name="class" />
-		<xsl:apply-templates select="@* except @class" />
+	<div class="blockContainer">
 		<xsl:apply-templates select="* except num" />
-	</section>
+	</div>
 </xsl:template>
 
 <xsl:template match="blockContainer/p[1]">
 	<p>
-		<xsl:apply-templates select="@*" />
 		<xsl:apply-templates select="preceding-sibling::num" />
 		<xsl:apply-templates />
 	</p>
 </xsl:template>
 
-<xsl:template match="p | span">
+<!-- blocks -->
+
+<xsl:template match="p">
 	<xsl:element name="{ local-name() }">
-		<xsl:apply-templates select="@*" />
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>
 
 <xsl:template match="block">
-	<p>
-		<xsl:attribute name="class">
-			<xsl:value-of select="@name" />
-			<xsl:if test="@class">
-				<xsl:text> </xsl:text>
-				<xsl:value-of select="@class" />
-			</xsl:if>
-		</xsl:attribute>
-		<xsl:apply-templates select="@* except @name, @class" />
+	<p class="@name">
 		<xsl:apply-templates />
 	</p>
 </xsl:template>
 
-<xsl:template match="num | heading">
-	<span>
-		<xsl:attribute name="class">
-			<xsl:value-of select="local-name()" />
-		</xsl:attribute>
-		<xsl:apply-templates select="@* except @class" />
+<!-- inline -->
+
+<xsl:template match="num | heading | docType | docNumber | date">
+	<span class="{ local-name() }">
 		<xsl:apply-templates />
 	</span>
 </xsl:template>
 
-<xsl:template match="docType | docNumber">
+<xsl:template match="span">
 	<span>
-		<xsl:call-template name="class" />
-		<xsl:apply-templates select="@* except @class" />
 		<xsl:apply-templates />
 	</span>
 </xsl:template>
 
 <xsl:template match="img">
 	<img>
-		<xsl:apply-templates select="@*" />
+		<xsl:attribute name="src">
+			<xsl:sequence select="concat($image-base, $doc-id, '/', @src)" />
+		</xsl:attribute>
 		<xsl:apply-templates />
 	</img>
 </xsl:template>
-<xsl:template match="img/@src">
-	<xsl:attribute name="src">
-		<xsl:sequence select="concat($image-base, $doc-id, '/', .)" />
-	</xsl:attribute>
-</xsl:template>
 
 <xsl:template match="br">
-	<xsl:element name="{ local-name() }">
-		<xsl:apply-templates />
-	</xsl:element>
-</xsl:template>
-
-<xsl:template match="date">
-	<span>
-		<xsl:call-template name="class" />
-		<xsl:apply-templates select="@* except @class" />
-		<xsl:apply-templates />
-	</span>
+	<br/>
 </xsl:template>
 
 
@@ -257,7 +194,7 @@ body { margin: 1cm 1in }
 
 <xsl:template match="a | ref">
 	<a>
-		<xsl:apply-templates select="@*" />
+		<xsl:apply-templates select="@href" />
 		<xsl:apply-templates />
 	</a>
 </xsl:template>
@@ -266,17 +203,13 @@ body { margin: 1cm 1in }
 <!-- tables of contents -->
 
 <xsl:template match="toc">
-	<div>
-		<xsl:call-template name="class" />
-		<xsl:apply-templates select="@* except @class" />
+	<div class="toc">
 		<xsl:apply-templates />
 	</div>
 </xsl:template>
 
 <xsl:template match="tocItem">
-	<p>
-		<xsl:call-template name="class" />
-		<xsl:apply-templates select="@* except @class" />
+	<p class="tocItem">
 		<xsl:apply-templates />
 	</p>
 </xsl:template>
@@ -285,16 +218,12 @@ body { margin: 1cm 1in }
 <!-- markers and attributes -->
 
 <xsl:template match="marker[@name='tab']">
-	<span class="tab"> </span>
+	<span class="tab">&#160;</span>
 </xsl:template>
 
-<xsl:template match="@class | @style | @src | @href | @title">
+<xsl:template match="@src | @href | @title">
 	<xsl:copy />
 </xsl:template>
-
-<xsl:template match="@refersTo | @date | @as" />
-
-<xsl:template match="@*" />
 
 
 <!-- footnotes -->
