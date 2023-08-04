@@ -22,7 +22,7 @@ public class TestsPS {
     public void Test(int i) {
         var docx = Tests.ReadDocx($"test.ps.test{i}.docx");
         var expected = Tests.ReadXml($"test.ps.test{i}.xml");
-        var actual = Api.Parser.Parse(new Api.Request { Content = docx, Hint = Api.Hint.PressSummary }).Xml;
+        var actual = Api.Parser.Parse(new Api.Request { Content = docx }).Xml;
         actual = main.RemoveSomeMetadata(actual);
         expected = main.RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);

@@ -69,7 +69,7 @@ public class Parser {
 
     private static ParseFunction GetParser(Hint? hint) {
         if (!hint.HasValue)
-            return ParseAnyJudgment;
+            return JudgmentOrPressSummary;
         if (hint.Value == Hint.Judgment)
             return ParseAnyJudgment;
         if (hint.Value == Hint.EWHC || hint.Value == Hint.EWCA)
