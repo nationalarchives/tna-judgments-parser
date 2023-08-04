@@ -494,22 +494,20 @@ abstract class OptimizedParser {
         return GetEffectiveIndent(line) <= 0f;
     }
 
-    internal static float GetEffectiveIndent(WLine line) {
+    internal static float GetEffectiveIndent(WLine line, bool withTab = false) {
         float leftMargin = line.LeftIndentWithNumber ?? 0f;
-        float firstLine = line.FirstLineIndentWithNumber ?? 0f;
+        float firstLine = line.FirstLineIndentWithNumber ?? 0f; // relative to left margin
         float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (line.Contents.FirstOrDefault() is WTab) {
-        //     float? tabStop = line.FirstTab;
-        //     if (firstLine < 0) {
-        //         if (!tabStop.HasValue)
-        //             indent = leftMargin;
-        //         else if (tabStop.Value > Math.Abs(firstLine))
-        //             indent = leftMargin;
-        //         else
-        //             indent += tabStop.Value;
-        //     }
-        // }
-        return indent;
+        if (!withTab)
+            return indent;
+        if (line.Contents.FirstOrDefault() is not WTab)
+            return indent;
+        float? tab = line.GetFirstTabAfter(leftMargin + firstLine);  // tab is absolute
+        if (!tab.HasValue)
+            tab = WLine.GetFirstDefaultTabAfter(leftMargin + firstLine);
+        if (firstLine < 0 && tab.Value > leftMargin)
+            return leftMargin;
+        return tab.Value;
     }
 
     protected virtual bool HasProperParagraphNumber(IDivision div) {
@@ -562,7 +560,8 @@ abstract class OptimizedParser {
                 continue;
             }
             if (next is WLine nextLine) {
-                float nextIndent1 = GetEffectiveIndent(nextLine);
+                bool considerTab = line is WOldNumberedParagraph && nextLine is not WOldNumberedParagraph; // [2023] EWHC 1676 (Fam)
+                float nextIndent1 = GetEffectiveIndent(nextLine, considerTab);
                 if (nextIndent1 - MarginOfError <= indent1)
                     break;
 
