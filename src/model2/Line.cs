@@ -110,7 +110,7 @@ class WLine : ILine {
             return CSS.ConvertSize(inches, "in");
         }
     }
-    public string RightIndent {
+    public float? RightIndentInches {
         get {
             if (properties is null)
                 return null;
@@ -119,7 +119,14 @@ class WLine : ILine {
                 right = properties.Indentation?.End?.Value;
             if (right is null)
                 return null;
-            float inches = DOCX.Util.DxaToInches(right);
+            return DOCX.Util.DxaToInches(right);
+        }
+    }
+    public string RightIndent {
+        get {
+            float? inches = RightIndentInches;
+            if (inches == null)
+                return null;
             return CSS.ConvertSize(inches, "in");
         }
     }
