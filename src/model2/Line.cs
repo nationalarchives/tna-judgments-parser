@@ -97,7 +97,7 @@ class WLine : ILine {
     public float? LeftIndentInches {
         get {
             if (!IsFirstLineOfNumberedParagraph)
-                return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, properties);
+                return DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, properties);
             else
                 return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
         }

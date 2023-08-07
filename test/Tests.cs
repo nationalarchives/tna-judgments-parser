@@ -105,6 +105,7 @@ public class Tests {
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>";
+//  <xsl:template match='@style'/>
 
     internal string RemoveSomeMetadata(string akn) {
         // akn = new System.Text.RegularExpressions.Regex("text-indent ?:[-0-9a-z\\.]+ ?").Replace(akn, "");
