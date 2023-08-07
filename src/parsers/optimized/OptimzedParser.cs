@@ -494,33 +494,39 @@ abstract class OptimizedParser {
         return GetEffectiveIndent(line) <= 0f;
     }
 
+    private static float GetEffectiveFirstLineIndent(WLine line) {
+        float left = line.LeftIndentInches ?? 0f;
+        float first = left + (line.FirstLineIndentInches ?? 0f);
+        foreach (var inline in line.Contents) {
+            if (inline is not WTab)
+                break;
+            float tab = line.GetFirstTabAfter(first) ?? WLine.GetFirstDefaultTabAfter(first);
+            if (first < left && tab > left)
+                first = left;
+            else
+                first = tab;
+        }
+        return first;
+    }
+
+    /// this is a rough estimate
+    // private static bool IsOnlyOneLine(WLine line, float start) {
+    //     var rightIndent = line.RightIndentInches ?? 0f;
+    //     var width = 8.27 - start - rightIndent;
+    //     return line.NormalizedContent.Length < width * 14;
+    // }
+
     internal static float GetEffectiveIndent(WLine line) {
-        float leftMargin = line.LeftIndentWithNumber ?? 0f;
-
         if (line is WOldNumberedParagraph) {
-            var firstNum = line.FirstLineIndentWithNumber ?? 0f;
-            return firstNum > 0 ? leftMargin : leftMargin + firstNum;
+            float leftWithNum = line.LeftIndentWithNumber ?? 0f;
+            var firstWithNum = line.FirstLineIndentWithNumber ?? 0f;
+            return firstWithNum > 0 ? leftWithNum : leftWithNum + firstWithNum;
         }
-
-        float firstLine = line.FirstLineIndentInches ?? 0f; // relative to left margin
-
-        if (firstLine > 0) {
-            var rightIndent = line.RightIndentInches ?? 0f;
-            var width = 8.27 - leftMargin - rightIndent;
-            if (line.NormalizedContent.Length > width * 14) // runs onto second line
-                return leftMargin;
-            // this is a rough estimate, assuming A4 width and 14 characters per inch
-        }
-
-        float indent = leftMargin + firstLine;
-        if (line.Contents.FirstOrDefault() is not WTab)
-            return indent;
-        float? tab = line.GetFirstTabAfter(indent);  // tab is absolute
-        if (!tab.HasValue)
-            tab = WLine.GetFirstDefaultTabAfter(indent);
-        if (firstLine < 0 && tab.Value > leftMargin)
-            return leftMargin;
-        return tab.Value;
+        return GetEffectiveFirstLineIndent(line);
+        // float left = line.LeftIndentInches ?? 0f;
+        // float first = GetEffectiveFirstLineIndent(line);
+        // bool isOnlyOneLine = IsOnlyOneLine(line, first);
+        // return isOnlyOneLine ? first : left;
     }
 
     protected virtual bool HasProperParagraphNumber(IDivision div) {

@@ -98,6 +98,7 @@ public class Tests {
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>";
+//  <xsl:template match='@style'/>
 
     internal string RemoveSomeMetadata(string akn) {
         using XmlReader reader = XmlReader.Create(new StringReader(akn));
