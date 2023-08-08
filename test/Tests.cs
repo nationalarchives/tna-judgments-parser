@@ -68,11 +68,11 @@ public class Tests {
         Assert.Equal(expected, actual);
     }
 
-    private static byte[] ReadDocx(int i) {
+    public static byte[] ReadDocx(int i) {
         var resource = $"test.judgments.test{i}.docx";
         return ReadDocx(resource);
     }
-    private static byte[] ReadDocx(int i, string name) {
+    public static byte[] ReadDocx(int i, string name) {
         var resource = $"test.judgments.test{i}-{name}.docx";
         return ReadDocx(resource);
     }
@@ -84,7 +84,7 @@ public class Tests {
         return ms.ToArray();
     }
 
-    private static string ReadXml(int i) {
+    public static string ReadXml(int i) {
         var resource = $"test.judgments.test{i}.xml";
         return ReadXml(resource);
     }
@@ -107,7 +107,7 @@ public class Tests {
 </xsl:stylesheet>";
 //  <xsl:template match='@style'/>
 
-    internal string RemoveSomeMetadata(string akn) {
+    public string RemoveSomeMetadata(string akn) {
         // akn = new System.Text.RegularExpressions.Regex("text-indent ?:[-0-9a-z\\.]+ ?").Replace(akn, "");
         using XmlReader reader = XmlReader.Create(new StringReader(akn));
         using StringWriter sWriter = new StringWriter();

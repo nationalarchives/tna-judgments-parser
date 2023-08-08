@@ -62,10 +62,13 @@ class HardNumbers {
     private static readonly string PlainNumberFormat = @"^[“""]?\d+$";
 
     private static readonly string[] NumberFormats = new string[] {
-        @"^([“""]?\d+\.)",    @"^([“""]?\(\d+\))",
-        @"^([“""]?[A-Z]\.)",  @"^([“""]?\([A-Z]\))",
-        @"^([“""]?[a-z]\.)",  @"^([“""]?\([a-z]\))",
-        @"^([“""]?[ivx]+\.)", @"^([“""]?\([ivx]+\))"
+        @"^([“""]?\d+\.)",              @"^([“""]?\(\d+\))",
+        @"^([“""]?[A-Z]\.)",            @"^([“""]?\([A-Z]\))",
+        @"^([“""]?[a-z]\.)",            @"^([“""]?\([a-z]\))",
+        @"^([“""]?[ivx]+\.)",           @"^([“""]?\([ivx]+\))",
+        // compound
+        @"^([“""]?[1-9]\d*\.\d+\.?)",        @"^([“""]?\([1-9]\d*\.\d+\))",
+        @"^([“""]?[1-9]\d*\.\d+\.\d+\.?)",   @"^([“""]?\([1-9]\d*\.\d+\.\d+\))"
     }.Select(s => s + @"( |$)").ToArray();
 
     private WOldNumberedParagraph ExtractPlainNumber(WLine line) {
