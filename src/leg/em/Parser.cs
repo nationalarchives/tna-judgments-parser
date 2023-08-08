@@ -34,6 +34,8 @@ class Parser : CaseLaw.OptimizedParser {
 
         IEnumerable<IImage> images = WImage.Get(doc);
         DocumentMetadata metadata = Metadata.Make(header, doc);
+        logger.LogInformation("the type is " + metadata.Name);
+        logger.LogInformation("the uri is " + metadata.ShortUriComponent);
         return new DividedDocument {
             Header = header,
             Body = body,
