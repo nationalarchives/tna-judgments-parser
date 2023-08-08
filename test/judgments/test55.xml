@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
-          <FRBRdate date="2023-03-20T16:51:28" name="transform" />
+          <FRBRdate date="2023-08-08T15:14:28" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2023</uk:year>
         <uk:number>488</uk:number>
         <uk:cite>[2023] EWHC 488 (Admin)</uk:cite>
-        <uk:parser>0.13.3</uk:parser>
+        <uk:parser>0.16.1</uk:parser>
         <uk:hash>b6b56a9aae17eee317f0db0336ed6b59c497faf8dc67e08634ac759f93d267b6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -183,18 +183,20 @@
         </paragraph>
         <paragraph eId="para_3">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
-          <content>
+          <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The Claimant and Defendant have not agreed costs and have made written submissions, the last being the Claimant’s Reply sent to me on 24 January 2023. This is my determination of the issue. </p>
-          </content>
-        </paragraph>
-        <level>
-          <heading class="ParaLevel1" style="text-indent:0.39in"><span style="font-weight:bold">FACTUAL BACKGROUND</span></heading>
-          <paragraph>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="text-indent:0.39in"><span style="font-weight:bold">FACTUAL BACKGROUND</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
             <content>
               <p class="BodyText" style="text-align:justify;margin-left:0.19in;text-indent:0.2in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The First Permission</span></p>
             </content>
-          </paragraph>
-        </level>
+          </subparagraph>
+        </paragraph>
         <paragraph>
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">2.</num>
           <intro>
@@ -317,15 +319,15 @@
         </paragraph>
         <paragraph eId="para_11">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">11.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The Committee reserved the discharge of Condition 15 to come back to it for consideration and final approval.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The First Discharge Application</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The First Discharge Application</span></p>
-          </content>
-        </level>
         <paragraph eId="para_12">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">12.</num>
           <content>
@@ -340,15 +342,15 @@
         </paragraph>
         <paragraph eId="para_14">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">14.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">On 14 October 2021, the Claimant’s solicitors wrote to the Defendant saying that the August 21 BV Report and the draft DCMP were flawed on their face and inviting the Defendant to reject the First Discharge Application.  Further correspondence followed between the Claimant and the Defendant in which the Claimant urged the Defendant to stand by the agreed and imposed maximum levels and sought assurances from the Defendant that it would ensure that the IP fully complied   with those levels in any purported attempt to discharge Condition 15.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Injunction</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Injunction</span></p>
-          </content>
-        </level>
         <paragraph eId="para_15">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">15.</num>
           <content>
@@ -357,15 +359,15 @@
         </paragraph>
         <paragraph eId="para_16">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">16.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The claim for an injunction was resolved by consent, with the IP agreeing to ensure it stayed within the agreed limits and the Claimant agreeing to grant the IP a licence (“<span style="font-weight:bold">the Licence”</span>) to carry out proper “on-site testing” in order to prepare a DCMP that showed it could properly discharge Condition 15 by complying with the agreed and imposed levels.  The terms of the licence provided <span style="font-style:italic">inter alia </span>for the IP to i) consult with Vanguardia as to the location and nature of testing equipment; ii) for Vanguardia to be present during the testing; iii) for the IP to monitor the extent to which all the results met or exceeded the agreed noise limits; and iv) for BV to disclose all testing results to the Claimant.  </p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">On-Site Testing</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">On-Site Testing</span></p>
-          </content>
-        </level>
         <paragraph eId="para_17">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">17.</num>
           <content>
@@ -386,15 +388,15 @@
         </paragraph>
         <paragraph eId="para_20">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">20.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The results of the On-Site Testing were purportedly reported in a BV Report dated January 2022 (the “<span style="font-weight:bold">January 22 BV Report</span>”), which noted the likelihood of exceedances and the need to consider alternative techniques.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Further correspondence</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Further correspondence</span></p>
-          </content>
-        </level>
         <paragraph eId="para_21">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">21.</num>
           <content>
@@ -403,15 +405,15 @@
         </paragraph>
         <paragraph eId="para_22">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">22.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">By letters dated 27 January 2022 to the Defendant, the Claimant’s solicitors raised further concerns about the Defendant’s approach to the First Discharge Application, as well as with regards to the alleged deficiencies in the submitted material itself, addressing those concerns to the Defendant’s Head of Planning and Building Control and the Defendant’s planning officer.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Unilateral Off-Site Testing</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Unilateral Off-Site Testing</span></p>
-          </content>
-        </level>
         <paragraph eId="para_23">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">23.</num>
           <content>
@@ -428,12 +430,12 @@
               <p style="text-align:justify;margin-left:0.33in;margin-right:0.07in"><marker name="tab" />“<span style="font-style:italic">At the request of LB Hackney (in consultation with LB Hackney’s Environmental Protection Officer) additional noise testing and monitoring was undertaken on site at 118 Curtain Road on 10 March in order to verify that the use of a handheld core drill is acceptable…etc..”</span></p>
             </content>
           </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Further correspondence</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Further correspondence</span></p>
-          </content>
-        </level>
         <paragraph eId="para_25">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">25.</num>
           <content>
@@ -470,15 +472,15 @@
         </paragraph>
         <paragraph eId="para_29">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">29.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The Claimant provided Vanguardia’s March 2022 Review to the Defendant under cover of a letter dated 30 March 2022.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Recommendation</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Recommendation</span></p>
-          </content>
-        </level>
         <paragraph eId="para_30">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">30.</num>
           <content>
@@ -556,26 +558,26 @@
         </paragraph>
         <paragraph eId="para_32">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">32.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">By email dated 6 April 2022, and having reviewed OR2, the Claimant’s solicitors brought their concerns as to the interpretation of Condition 15 to the attention of the Defendant’s officers.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Addendum Report</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Addendum Report</span></p>
-          </content>
-        </level>
         <paragraph eId="para_33">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">33.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">In advance of the Committee meeting, the Defendant’s officers produced a “Planning Sub-Committee Addendum” (the “<span style="font-weight:bold">Addendum Report</span>”), which sought to summarise the Claimant’s consultation response under the heading “<span style="font-style:italic">Item 7: 118 Curtain     Road”.</span></p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Decision</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The Decision</span></p>
-          </content>
-        </level>
         <paragraph eId="para_34">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">34.</num>
           <content>
@@ -584,15 +586,15 @@
         </paragraph>
         <paragraph eId="para_35">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">35.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">The Decision Notice was issued on 8 April 2022.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Change of Use Application</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Change of Use Application</span></p>
-          </content>
-        </level>
         <paragraph eId="para_36">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">36.</num>
           <intro>
@@ -660,15 +662,15 @@
         </paragraph>
         <paragraph eId="para_41">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">41.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">By letter dated 2 March 2021, further concerns were raised on behalf of the Claimant, emphasising the need for protection equivalent to that imposed by Condition 15 to the First Permission.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Second Permission</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Second Permission</span></p>
-          </content>
-        </level>
         <paragraph eId="para_42">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">42.</num>
           <intro>
@@ -726,12 +728,12 @@
               <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“REASON: To avoid hazard and obstruction being caused to users of the public highway, in the interest of public safety and amenity, in order to prevent the construction of the development having an unacceptable environmental impact upon neighbouring properties and to protect air quality, human health and to contribute to National Air Quality Objectives.”</span></p>
             </content>
           </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Undertaking</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Undertaking</span></p>
-          </content>
-        </level>
         <paragraph eId="para_45">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">45.</num>
           <content>
@@ -740,15 +742,15 @@
         </paragraph>
         <paragraph eId="para_46">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">46.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">By email dated 20 April 2021, the Defendant provided an undertaking in the form sought. </p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">Second Discharge Application</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">Second Discharge Application</span></p>
-          </content>
-        </level>
         <paragraph eId="para_47">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">47.</num>
           <content>
@@ -796,23 +798,23 @@
               <p class="ListParagraph" style="text-align:justify;margin-left:0.75in">Appendix C, which sets out a “<span style="font-style:italic">Noise Exceedance Protocol</span>”, but does not provide any further details as to the locations and/or number of monitoring points.  </p>
             </content>
           </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">Objection</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">Objection</span></p>
-          </content>
-        </level>
         <paragraph eId="para_49">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">49.</num>
-          <content>
+          <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">The Claimant objected to the Second Discharge Application by letter dated 15 November 2021.</p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">Decision</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">Decision</span></p>
-          </content>
-        </level>
         <paragraph eId="para_50">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">50.</num>
           <intro>
@@ -1211,12 +1213,12 @@
               <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.17in"><span style="font-weight:bold">LEGAL BACKGROUND</span></p>
             </content>
           </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-right:0.08in"><marker name="tab" /><span style="text-decoration-line:underline;text-decoration-style:solid">Approach in relation to costs where a case settles</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p style="text-align:justify;margin-right:0.08in"><marker name="tab" /><span style="text-decoration-line:underline;text-decoration-style:solid">Approach in relation to costs where a case settles</span></p>
-          </content>
-        </level>
         <paragraph eId="para_76">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">76.</num>
           <intro>
@@ -1235,7 +1237,7 @@
           <subparagraph>
             <num style="font-style:italic">62.</num>
             <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0in"><span style="font-style:italic">In case (ii), when deciding how to allocate liability for costs after a trial, the court will normally determine questions such as how reasonable the claimant was in pursuing the unsuccessful claim, how important it was compared with the successful claim, and how much the costs were increased as a result of the claimant pursuing the unsuccessful claim. Given that there will have been a hearing, the court will be in a reasonably good position to make findings on such questions. However, where there has been a settlement, the court will, at least normally, be in a significantly worse position to make findings on such issues than where the case has been fought out. In many such cases, the court will be able to form a view as to the appropriate costs order based on such issues; in other cases, it will be much more difficult. I would accept the argument that, where the parties have settled the claimant’s substantive claims on the basis that he succeeds in part, but only part, there is often much to be said for concluding that there is no order for costs….However, where there is not a clear winner, so much would depend on the particular facts. In some such cases, it may help to consider who would have won if the matter had proceeded to trial, as, if it is tolerably clear, it may, for instance support or undermine that one of the two claims was stronger than the other…</span></p>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.17in"><span style="font-style:italic">In case (ii), when deciding how to allocate liability for costs after a trial, the court will normally determine questions such as how reasonable the claimant was in pursuing the unsuccessful claim, how important it was compared with the successful claim, and how much the costs were increased as a result of the claimant pursuing the unsuccessful claim. Given that there will have been a hearing, the court will be in a reasonably good position to make findings on such questions. However, where there has been a settlement, the court will, at least normally, be in a significantly worse position to make findings on such issues than where the case has been fought out. In many such cases, the court will be able to form a view as to the appropriate costs order based on such issues; in other cases, it will be much more difficult. I would accept the argument that, where the parties have settled the claimant’s substantive claims on the basis that he succeeds in part, but only part, there is often much to be said for concluding that there is no order for costs….However, where there is not a clear winner, so much would depend on the particular facts. In some such cases, it may help to consider who would have won if the matter had proceeded to trial, as, if it is tolerably clear, it may, for instance support or undermine that one of the two claims was stronger than the other…</span></p>
             </content>
           </subparagraph>
           <subparagraph>
