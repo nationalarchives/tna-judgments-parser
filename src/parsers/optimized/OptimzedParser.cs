@@ -494,22 +494,39 @@ abstract class OptimizedParser {
         return GetEffectiveIndent(line) <= 0f;
     }
 
+    private static float GetEffectiveFirstLineIndent(WLine line) {
+        float left = line.LeftIndentInches ?? 0f;
+        float first = left + (line.FirstLineIndentInches ?? 0f);
+        foreach (var inline in line.Contents) {
+            if (inline is not WTab)
+                break;
+            float tab = line.GetFirstTabAfter(first) ?? WLine.GetFirstDefaultTabAfter(first);
+            if (first < left && tab > left)
+                first = left;
+            else
+                first = tab;
+        }
+        return first;
+    }
+
+    /// this is a rough estimate
+    // private static bool IsOnlyOneLine(WLine line, float start) {
+    //     var rightIndent = line.RightIndentInches ?? 0f;
+    //     var width = 8.27 - start - rightIndent;
+    //     return line.NormalizedContent.Length < width * 14;
+    // }
+
     internal static float GetEffectiveIndent(WLine line) {
-        float leftMargin = line.LeftIndentWithNumber ?? 0f;
-        float firstLine = line.FirstLineIndentWithNumber ?? 0f;
-        float indent = firstLine > 0 ? leftMargin : leftMargin + firstLine;
-        // if (line.Contents.FirstOrDefault() is WTab) {
-        //     float? tabStop = line.FirstTab;
-        //     if (firstLine < 0) {
-        //         if (!tabStop.HasValue)
-        //             indent = leftMargin;
-        //         else if (tabStop.Value > Math.Abs(firstLine))
-        //             indent = leftMargin;
-        //         else
-        //             indent += tabStop.Value;
-        //     }
-        // }
-        return indent;
+        if (line is WOldNumberedParagraph) {
+            float leftWithNum = line.LeftIndentWithNumber ?? 0f;
+            var firstWithNum = line.FirstLineIndentWithNumber ?? 0f;
+            return firstWithNum > 0 ? leftWithNum : leftWithNum + firstWithNum;
+        }
+        return GetEffectiveFirstLineIndent(line);
+        // float left = line.LeftIndentInches ?? 0f;
+        // float first = GetEffectiveFirstLineIndent(line);
+        // bool isOnlyOneLine = IsOnlyOneLine(line, first);
+        // return isOnlyOneLine ? first : left;
     }
 
     protected virtual bool HasProperParagraphNumber(IDivision div) {

@@ -97,7 +97,7 @@ class WLine : ILine {
     public float? LeftIndentInches {
         get {
             if (!IsFirstLineOfNumberedParagraph)
-                return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, properties);
+                return DOCX.Paragraphs.GetLeftIndentWithStyleButNotNumberingInInches(main, properties);
             else
                 return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
         }
@@ -110,7 +110,7 @@ class WLine : ILine {
             return CSS.ConvertSize(inches, "in");
         }
     }
-    public string RightIndent {
+    public float? RightIndentInches {
         get {
             if (properties is null)
                 return null;
@@ -119,7 +119,14 @@ class WLine : ILine {
                 right = properties.Indentation?.End?.Value;
             if (right is null)
                 return null;
-            float inches = DOCX.Util.DxaToInches(right);
+            return DOCX.Util.DxaToInches(right);
+        }
+    }
+    public string RightIndent {
+        get {
+            float? inches = RightIndentInches;
+            if (inches == null)
+                return null;
             return CSS.ConvertSize(inches, "in");
         }
     }
@@ -136,6 +143,10 @@ class WLine : ILine {
 
     internal float? FirstLineIndentWithNumber {
         get => DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties);
+    }
+
+    public static float GetFirstDefaultTabAfter(float left) {
+        return (float) ((Math.Floor(left * 2) + 1) / 2);
     }
 
     public float? FirstLineIndentInches {
@@ -155,18 +166,11 @@ class WLine : ILine {
             }
 
             float leftIndent = this.LeftIndentInches ?? 0f;
-            float defaultTab;
-            if (leftIndent == 0) {
-                defaultTab = 0.5f;
-            } if (leftIndent > 0) {
-                defaultTab = (float) ((Math.Floor(leftIndent * 2) + 1) / 2 - leftIndent);
-            } else {
-                defaultTab = (float) ((Math.Floor(Math.Abs(leftIndent) * 2) + 1) / 2 - Math.Abs(leftIndent));
-            }
+            float defaultTab = GetFirstDefaultTabAfter(leftIndent) - Math.Abs(leftIndent); // relative
             if (minNumWidth.HasValue && minNumWidth.Value > defaultTab)
                 defaultTab = minNumWidth.Value;
 
-            float? firstTab = DOCX.Paragraphs.GetFirstTab(main, properties); // this is absolute not relative
+            float? firstTab = DOCX.Paragraphs.GetFirstTabAfter(main, properties, leftIndent); // absolute
             if (!firstTab.HasValue)
                 return relative + defaultTab;
             float hardFirst = leftIndent + relative;
@@ -251,9 +255,9 @@ class WLine : ILine {
         }
     }
 
-    // public float? FirstTab {
-    //     get => DOCX.Paragraphs.GetFirstTab(main, properties);
-    // }
+    public float? GetFirstTabAfter(float left) {
+        return DOCX.Paragraphs.GetFirstTabAfter(main, properties, left);
+    }
 
 }
 

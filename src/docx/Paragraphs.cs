@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using System.Linq;
 
 using DocumentFormat.OpenXml;
@@ -210,9 +211,6 @@ static class Paragraphs {
     }
 
     public static bool IsFlushLeft(MainDocumentPart main, Paragraph para) {
-        // if (para.InnerText.StartsWith("Thus, the Judge specifically stated")) {
-        //     System.Console.WriteLine();
-        // }
         if (para.ChildElements.OfType<Run>().FirstOrDefault()?.ChildElements.Where(e => e is not RunProperties).Where(e => e is not LastRenderedPageBreak).FirstOrDefault() is TabChar)
             return false;
         if (para.ParagraphProperties is null)
@@ -220,19 +218,80 @@ static class Paragraphs {
         return IsFlushLeft(main, para.ParagraphProperties);
     }
 
-    public static float? GetFirstTab(MainDocumentPart main, ParagraphProperties pProps) {
-        var x = pProps?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value != TabStopValues.Clear).OrderBy(t => t.Position).FirstOrDefault();
-        if (x is null)
+    /* tabs */
+
+    private static List<TabStop> GetStyleTabs(MainDocumentPart main, ParagraphProperties props) {
+        var styleId = props.ParagraphStyleId;
+        if (styleId is null)
+            return new List<TabStop>(0);
+        var style = Styles.GetStyle(main, styleId);
+        if (style is null)
+            return new List<TabStop>(0);
+        var tabs = style.StyleParagraphProperties?.Tabs;
+        if (tabs is null)
+            return new List<TabStop>(0);
+        return tabs.ChildElements.Cast<TabStop>().ToList();
+    }
+
+    private static List<TabStop> GetOwnTabs(ParagraphProperties props) {
+        var tabs = props.Tabs;
+        if (tabs is null)
+            return new List<TabStop>(0);
+        return tabs.ChildElements.Cast<TabStop>().ToList();
+    }
+
+    private static List<TabStop> MergeTabs(List<TabStop> above, List<TabStop> below) {
+        List<TabStop> merged = new List<TabStop>(above.Count + below.Count);
+        foreach (var above1 in above) {
+            if (above1.Val.Value == TabStopValues.Clear)
+                continue;
+            if (below.Any(below1 => below1.Val.Value == TabStopValues.Clear && below1.Position == above1.Position))
+                continue;
+            merged.Add(above1);
+        }
+        foreach (var below1 in below) {
+            if (below1.Val.Value == TabStopValues.Clear)
+                continue;
+            merged.Add(below1);
+        }
+        return merged;
+    }
+
+    private static List<TabStop> GetTabs(MainDocumentPart main, ParagraphProperties props) {
+        if (props is null)
+            return new List<TabStop>(0);
+        var style = GetStyleTabs(main, props);
+        var own = GetOwnTabs(props);
+        return MergeTabs(style, own);
+    }
+
+    private static float? TabPositionToInches(Int32Value position) {
+        if (position is null)
             return null;
         try {
-            return x.Position / 1440f;
+            return position / 1440f;
         } catch (System.FormatException) { // spec says it should always be an integer, but in some documents it's not
-            return DOCX.Util.DxaToInches(x.Position.InnerText);
+            return DOCX.Util.DxaToInches(position.InnerText);
         }
     }
 
+    public static IEnumerable<float> GetTabPositions(MainDocumentPart main, ParagraphProperties props) {
+        return GetTabs(main, props)
+            .Select(t => TabPositionToInches(t.Position.Value))
+            .Where(p => p.HasValue).Cast<float>()
+            .OrderBy(p => p);
+    }
+    public static float? GetFirstTabAfter(MainDocumentPart main, ParagraphProperties props, float left) {
+        IEnumerable<float> tabs = DOCX.Paragraphs.GetTabPositions(main, props);
+        IEnumerable<float> after = tabs.Where(t => t > left);
+        // can't use FirstOrDefault() b/c the default for float is 0
+        if (!after.Any())
+            return null;
+        return after.First();
+    }
+
     public static float? GetNumTab(MainDocumentPart main, ParagraphProperties pProps) {
-        var x = pProps?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
+        var x = GetTabs(main, pProps).Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
         if (x is not null)
             return x.Position / 1440f;
         x = Numbering.GetOwnLevel(main, pProps)?.PreviousParagraphProperties?.Tabs?.ChildElements.OfType<TabStop>().Where(t => t.Val.Value == TabStopValues.Number).OrderBy(t => t.Position).FirstOrDefault();
@@ -247,6 +306,8 @@ static class Paragraphs {
             return x.Position / 1440f;
         return null;
     }
+
+    /* misc  */
 
     internal static bool IsEmptySectionBreak(Paragraph p) {
         return p.ChildElements.Any(child => child is ParagraphProperties pPr && pPr.SectionProperties is not null)
