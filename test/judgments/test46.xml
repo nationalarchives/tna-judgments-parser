@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616/data.xml" />
-          <FRBRdate date="2023-05-01T15:54:43" name="transform" />
+          <FRBRdate date="2023-08-08T15:19:02" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2616</uk:number>
         <uk:cite>[2022] EWHC 2616 (Comm)</uk:cite>
-        <uk:parser>0.14.2</uk:parser>
+        <uk:parser>0.16.1</uk:parser>
         <uk:hash>fa9569b8916d5ac30dc3a6f0b802c4b1cee008965c19896a4909458a0bcae9c7</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -247,12 +247,12 @@
               <p class="ParaLevel1" style="margin-left:0.79in">A failure to make this payment to Macquarie on or before the first Local Business Day after this notice is given to you will constitute an Event of Default under Section 5(a)(i) of the ISDA Agreement”.</p>
             </content>
           </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" />(<span style="font-weight:bold">the Disputed Default Notice</span>).</p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" />(<span style="font-weight:bold">the Disputed Default Notice</span>).</p>
-          </content>
-        </level>
         <paragraph eId="para_10">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
           <content>
@@ -269,12 +269,12 @@
               <p class="ParaLevel1" style="margin-left:0.79in">“We hereby give you notice, pursuant to Section 6(a) of the ISDA Master Agreement that we designate <span style="text-decoration-line:underline;text-decoration-style:solid">4 June 2021</span> as the Early Termination Date in respect of all outstanding Transactions under the ISDA Agreement as a result of the aforementioned continuing Event of Default”.</p>
             </content>
           </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">(the Disputed ETDN</span>).</p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">(the Disputed ETDN</span>).</p>
-          </content>
-        </level>
         <paragraph eId="para_12">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
           <content>
@@ -1040,32 +1040,34 @@
               <p style="text-align:justify;margin-left:1.28in;text-indent:-0.39in">[62]<marker name="tab" />In the present case the letter dated 14 December 2011, and delivered on that date <span style="font-weight:bold">clearly set out not only the amount payable</span><span style="font-style:italic">,</span> but also Goldman's calculations of the amount payable. The fact that, according to Mr Knowles QC, such calculations were not sufficiently detailed to satisfy the contractual requirements of section 6(d) (i) , did not, in my judgment, prevent the letter constituting an adequate ‘notice of the amount payable’ for the purposes of identifying a Payment Date under section 6(d)(ii) …. </p>
             </content>
           </subparagraph>
-        </paragraph>
-        <level>
-          <heading style="text-indent:0.39in"><span style="color:initial;background-color:#FFFFFF">[64]</span><marker name="tab" /><span style="color:initial;background-color:#FFFFFF">My reasons for this conclusion may be summarised as follows.</span></heading>
-          <paragraph>
-            <num>(i)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.28in">Section 6(d)(ii) does not state that the amount due in respect of an Early Termination Date will be payable <span class="coitalic" style="font-style:italic">only</span> when a statement compliant with section 6(d)(i) has been served. On the contrary, section 6(d)(ii) states that the sum is payable on the day that notice of the amount payable is effective’. <span style="font-weight:bold">In other words, as I have already suggested, the Payment Date is linked to the date on which the Non-defaulting Party gives notice of ‘the amount payable’ and that notice is deemed to be ‘effective’ in accordance with the provisions of section 12</span> . In the present case, that notice was in fact given well in time on 14 December 2011. </p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <content>
-              <p style="margin-left:1.28in;text-indent:-0.39in">…</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num>(iii)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.28in">The appellants' construction is inconsistent not only with the wording, but also with the contractual scheme and mechanisms of the Master Agreement . As I have already said, the <span class="coitalic" style="font-style:italic">debt </span>obligation to pay the amount due in respect of any Early Termination Date, as calculated under section 6(e) , clearly arises on the Early Termination Date. It would be surprising, to say the least, if that debt obligation could never be enforced, because, on the appellants' analysis, the obligation to pay such sum never arose, and therefore the Non-defaulting Party had to sue for some entirely different amount, which it might be able to establish at its loss as the result of the Defaulting Party's breach of contract.”</p>
-            </content>
-          </paragraph>
-          <paragraph>
+          <subparagraph>
+            <intro>
+              <p style="text-indent:0.39in"><span style="color:initial;background-color:#FFFFFF">[64]</span><marker name="tab" /><span style="color:initial;background-color:#FFFFFF">My reasons for this conclusion may be summarised as follows.</span></p>
+            </intro>
+            <subparagraph>
+              <num>(i)</num>
+              <content>
+                <p style="text-align:justify;margin-left:1.28in">Section 6(d)(ii) does not state that the amount due in respect of an Early Termination Date will be payable <span class="coitalic" style="font-style:italic">only</span> when a statement compliant with section 6(d)(i) has been served. On the contrary, section 6(d)(ii) states that the sum is payable on the day that notice of the amount payable is effective’. <span style="font-weight:bold">In other words, as I have already suggested, the Payment Date is linked to the date on which the Non-defaulting Party gives notice of ‘the amount payable’ and that notice is deemed to be ‘effective’ in accordance with the provisions of section 12</span> . In the present case, that notice was in fact given well in time on 14 December 2011. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="margin-left:1.28in;text-indent:-0.39in">…</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(iii)</num>
+              <content>
+                <p style="text-align:justify;margin-left:1.28in">The appellants' construction is inconsistent not only with the wording, but also with the contractual scheme and mechanisms of the Master Agreement . As I have already said, the <span class="coitalic" style="font-style:italic">debt </span>obligation to pay the amount due in respect of any Early Termination Date, as calculated under section 6(e) , clearly arises on the Early Termination Date. It would be surprising, to say the least, if that debt obligation could never be enforced, because, on the appellants' analysis, the obligation to pay such sum never arose, and therefore the Non-defaulting Party had to sue for some entirely different amount, which it might be able to establish at its loss as the result of the Defaulting Party's breach of contract.”</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
             <content>
               <p style="margin-left:0.49in">(emphasis in bold added).</p>
             </content>
-          </paragraph>
-        </level>
+          </subparagraph>
+        </paragraph>
         <paragraph eId="para_48">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
           <content>

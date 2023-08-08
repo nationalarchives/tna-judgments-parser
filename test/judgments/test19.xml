@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/935/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/935/data.xml" />
-          <FRBRdate date="2023-05-31T17:03:28" name="transform" />
+          <FRBRdate date="2023-08-08T15:18:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>935</uk:number>
         <uk:cite>[2022] EWHC 935 (Comm)</uk:cite>
-        <uk:parser>0.14.7</uk:parser>
+        <uk:parser>0.16.1</uk:parser>
         <uk:hash>3fc01134900fcf434319e5c28d953785663571c9a8677b52b6e2b430908caa72</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -1767,15 +1767,15 @@
         </paragraph>
         <paragraph>
           <num style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">I.</num>
-          <content>
+          <intro>
             <p class="ParaLevel1" style="text-indent:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">THE EVIDENCE</span></p>
-          </content>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="text-indent:0.39in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">THE  FACTUAL EVIDENCE</span></p>
+            </content>
+          </subparagraph>
         </paragraph>
-        <level>
-          <content>
-            <p class="ParaLevel1" style="text-indent:0.39in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">THE  FACTUAL EVIDENCE</span></p>
-          </content>
-        </level>
         <paragraph eId="para_139">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">139.</num>
           <content>
@@ -2106,39 +2106,39 @@
             </content>
           </subparagraph>
           <subparagraph>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.29in">A. Yes, or all of us assumed it was a small one, yes.</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. And that that was really a matter for the claimant's commercial judgment and your commercial advice?</p>
-              </content>
-            </subparagraph>
+            </content>
           </subparagraph>
           <subparagraph>
-            <intro>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. And that that was really a matter for the claimant's commercial judgment and your commercial advice?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.29in">A. Yes, and it was called an exit redemption premium I think, wasn't it?</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. That sort of commercial decision making was nothing to do with the lawyers, is it?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. Well, I think the way it's drafted in the articles of association I would argue it is because I think, as we've seen, what's happened is that the redemption premium has been applied even though ISIS haven't had their exit.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. Yes, well, could I put it this way, no one intended it to operate on a false transfer, it was always intended to operate on an exit?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. Yes, when we looked at the redemption premium, we looked at it on an exit basis.</p>
-              </content>
-            </subparagraph>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. That sort of commercial decision making was nothing to do with the lawyers, is it?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. Well, I think the way it's drafted in the articles of association I would argue it is because I think, as we've seen, what's happened is that the redemption premium has been applied even though ISIS haven't had their exit.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. Yes, well, could I put it this way, no one intended it to operate on a false transfer, it was always intended to operate on an exit?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. Yes, when we looked at the redemption premium, we looked at it on an exit basis.</p>
+            </content>
           </subparagraph>
           <subparagraph>
             <content>
@@ -2146,29 +2146,29 @@
             </content>
           </subparagraph>
           <subparagraph>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.29in">A. That's what it was called, yeah.</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: For the avoidance of doubt, you've each used the phrase "exit"; what do you mean, Mr Billingham, by "exit"?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. I suppose it would be living -- the exit -- the sale of the business.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: These two parties, about to themselves contract, exiting the business?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. Yes, so when they exit, when they sell it together, which couldn't happen for three years unless they both agreed it, that's -- that's when we understood that that's when it would kick in.”</p>
-              </content>
-            </subparagraph>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: For the avoidance of doubt, you've each used the phrase "exit"; what do you mean, Mr Billingham, by "exit"?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. I suppose it would be living -- the exit -- the sale of the business.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: These two parties, about to themselves contract, exiting the business?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. Yes, so when they exit, when they sell it together, which couldn't happen for three years unless they both agreed it, that's -- that's when we understood that that's when it would kick in.”</p>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_172">
@@ -2617,208 +2617,208 @@
               </table>
             </content>
           </subparagraph>
-        </paragraph>
-        <paragraph>
-          <content>
-            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">The Second Valuation Date</span></p>
-            <table class="TableGrid" uk:widths="2.08in 0.87in 0.56in 0.67in 0.7in 0.7in 0.7in">
-              <tr>
-                <td style="border-right-width:1.5pt;border-style:none solid none none;border-right-color:initial">
-                  <p />
-                </td>
-                <td colspan="3" style="border-top-width:1.5pt;border-right-width:1.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial;background-color:#BFBFBF">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Skeels 1</span></p>
-                </td>
-                <td colspan="3" style="border-width:1.5pt 1.5pt 0.5pt;border-style:solid;border-color:initial;background-color:#BFBFBF">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Taylor 1</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-style:none solid solid none;border-right-color:initial;border-bottom-color:initial">
-                  <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">£ million</span></p>
-                </td>
-                <td style="border-bottom-width:1.5pt;border-left-width:1.5pt;border-bottom-style:solid;border-left-style:solid;border-bottom-color:initial;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Midpoint</span></p>
-                </td>
-                <td style="border-bottom-width:1.5pt;border-bottom-style:solid;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Low</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">High</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Midpoint</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Low</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">High</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-top-width:1.5pt;border-right-width:1.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
-                  <p><span style="font-family:Garamond;font-size:10pt">EV/EBITDA Multiple</span></p>
-                </td>
-                <td style="border-top-width:1.5pt;border-left-width:1.5pt;border-top-style:solid;border-left-style:solid;border-top-color:initial;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">8.3x</span></p>
-                </td>
-                <td style="border-top-width:1.5pt;border-top-style:solid;border-top-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">8.1x</span></p>
-                </td>
-                <td style="border-top-width:1.5pt;border-right-width:1.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">8.4x</span></p>
-                </td>
-                <td style="border-top-width:1.5pt;border-right-width:0.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">5.3x</span></p>
-                </td>
-                <td style="border-top-width:1.5pt;border-right-width:0.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">4.0x</span></p>
-                </td>
-                <td style="border-top-width:1.5pt;border-right-width:1.5pt;border-left-width:0.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.6x</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p><span style="font-family:Garamond;font-size:10pt">EBITDA</span></p>
-                </td>
-                <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">1.3</span></p>
-                </td>
-                <td>
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">1.3</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">1.3</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.7</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.6</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.9</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Enterprise Value</span></p>
-                </td>
-                <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">11.0</span></p>
-                </td>
-                <td>
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">10.8</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">11.2</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">4.2</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">2.4</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">5.9</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p><span style="font-family:Garamond;font-size:10pt">Net debt</span></p>
-                </td>
-                <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(4.7)</span></p>
-                </td>
-                <td>
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(4.7)</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(4.7)</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(5.0)</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(5.0)</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(5.0)</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p><span style="font-family:Garamond;font-size:10pt">Equity value</span></p>
-                </td>
-                <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.3</span></p>
-                </td>
-                <td>
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.1</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.5</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(0.9)</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(2.6)</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
-                  <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.9</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Claimants’ 60% share (no RPP)</span></p>
-                </td>
-                <td style="border-bottom-width:0.5pt;border-left-width:1.5pt;border-bottom-style:solid;border-left-style:solid;border-bottom-color:initial;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">3.5</span></p>
-                </td>
-                <td style="border-bottom-width:0.5pt;border-bottom-style:solid;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">3.4</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">3.6</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">nil</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-bottom-width:0.5pt;border-left-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">0.5</span></p>
-                </td>
-              </tr>
-              <tr>
-                <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Claimants’ 60% share (with RPP)</span></p>
-                </td>
-                <td style="border-bottom-width:1.5pt;border-left-width:1.5pt;border-bottom-style:solid;border-left-style:solid;border-bottom-color:initial;border-left-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
-                </td>
-                <td style="border-bottom-width:1.5pt;border-bottom-style:solid;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">0.2</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
-                </td>
-                <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">nil</span></p>
-                </td>
-                <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
-                  <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">nil</span></p>
-                </td>
-              </tr>
-            </table>
-          </content>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">The Second Valuation Date</span></p>
+              <table class="TableGrid" uk:widths="2.08in 0.87in 0.56in 0.67in 0.7in 0.7in 0.7in">
+                <tr>
+                  <td style="border-right-width:1.5pt;border-style:none solid none none;border-right-color:initial">
+                    <p />
+                  </td>
+                  <td colspan="3" style="border-top-width:1.5pt;border-right-width:1.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial;background-color:#BFBFBF">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Skeels 1</span></p>
+                  </td>
+                  <td colspan="3" style="border-width:1.5pt 1.5pt 0.5pt;border-style:solid;border-color:initial;background-color:#BFBFBF">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Taylor 1</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-style:none solid solid none;border-right-color:initial;border-bottom-color:initial">
+                    <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">£ million</span></p>
+                  </td>
+                  <td style="border-bottom-width:1.5pt;border-left-width:1.5pt;border-bottom-style:solid;border-left-style:solid;border-bottom-color:initial;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Midpoint</span></p>
+                  </td>
+                  <td style="border-bottom-width:1.5pt;border-bottom-style:solid;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Low</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">High</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Midpoint</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Low</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">High</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-top-width:1.5pt;border-right-width:1.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
+                    <p><span style="font-family:Garamond;font-size:10pt">EV/EBITDA Multiple</span></p>
+                  </td>
+                  <td style="border-top-width:1.5pt;border-left-width:1.5pt;border-top-style:solid;border-left-style:solid;border-top-color:initial;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">8.3x</span></p>
+                  </td>
+                  <td style="border-top-width:1.5pt;border-top-style:solid;border-top-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">8.1x</span></p>
+                  </td>
+                  <td style="border-top-width:1.5pt;border-right-width:1.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">8.4x</span></p>
+                  </td>
+                  <td style="border-top-width:1.5pt;border-right-width:0.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">5.3x</span></p>
+                  </td>
+                  <td style="border-top-width:1.5pt;border-right-width:0.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">4.0x</span></p>
+                  </td>
+                  <td style="border-top-width:1.5pt;border-right-width:1.5pt;border-left-width:0.5pt;border-top-style:solid;border-right-style:solid;border-top-color:initial;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.6x</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p><span style="font-family:Garamond;font-size:10pt">EBITDA</span></p>
+                  </td>
+                  <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">1.3</span></p>
+                  </td>
+                  <td>
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">1.3</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">1.3</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.7</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.6</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.9</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Enterprise Value</span></p>
+                  </td>
+                  <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">11.0</span></p>
+                  </td>
+                  <td>
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">10.8</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">11.2</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">4.2</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">2.4</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">5.9</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p><span style="font-family:Garamond;font-size:10pt">Net debt</span></p>
+                  </td>
+                  <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(4.7)</span></p>
+                  </td>
+                  <td>
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(4.7)</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(4.7)</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(5.0)</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(5.0)</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(5.0)</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p><span style="font-family:Garamond;font-size:10pt">Equity value</span></p>
+                  </td>
+                  <td style="border-left-width:1.5pt;border-left-style:solid;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.3</span></p>
+                  </td>
+                  <td>
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.1</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">6.5</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(0.9)</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">(2.6)</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-right-color:initial">
+                    <p style="text-align:center"><span style="font-family:Garamond;font-size:10pt">0.9</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Claimants’ 60% share (no RPP)</span></p>
+                  </td>
+                  <td style="border-bottom-width:0.5pt;border-left-width:1.5pt;border-bottom-style:solid;border-left-style:solid;border-bottom-color:initial;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">3.5</span></p>
+                  </td>
+                  <td style="border-bottom-width:0.5pt;border-bottom-style:solid;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">3.4</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">3.6</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-bottom-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">nil</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-bottom-width:0.5pt;border-left-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">0.5</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Claimants’ 60% share (with RPP)</span></p>
+                  </td>
+                  <td style="border-bottom-width:1.5pt;border-left-width:1.5pt;border-bottom-style:solid;border-left-style:solid;border-bottom-color:initial;border-left-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
+                  </td>
+                  <td style="border-bottom-width:1.5pt;border-bottom-style:solid;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">0.2</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">Nil</span></p>
+                  </td>
+                  <td style="border-right-width:0.5pt;border-bottom-width:1.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">nil</span></p>
+                  </td>
+                  <td style="border-right-width:1.5pt;border-bottom-width:1.5pt;border-left-width:0.5pt;border-right-style:solid;border-bottom-style:solid;border-right-color:initial;border-bottom-color:initial">
+                    <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond;font-size:10pt">nil</span></p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </subparagraph>
         </paragraph>
         <paragraph eId="para_208">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">208.</num>
@@ -3545,114 +3545,114 @@
             </content>
           </subparagraph>
           <subparagraph>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.39in;text-indent:0.39in">A. Zero.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. Okay.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. I've said no control premium, so yes.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. So you are saying no control premium, it's zero and that's it. So there isn't an alternative hypothesis where you posit a figure of say 20 per cent, you just aren't prepared to go there?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. No, I've seen no evidence that supports the application of a control premium, so I have applied a zero control premium.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. Now, could I ask you to look back in your original report at 2234 in C.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: Just on that point, you say it's zero, Mr Taylor. Is that because, as I read in your principal report, paragraph 4.2.5, that the exercise of reaching market value is:</p>
             </intro>
             <subparagraph>
               <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. Okay.</p>
+                <p class="ParaLevel1" style="margin-left:1.08in">"... a hypothetical one which assumes that neither the buyer nor the seller is under any compulsion, transaction is at arm's length [et cetera]. This means that FMV is an impersonal standard of value rather than a personal standard of value."</p>
               </content>
             </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. I've said no control premium, so yes.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. So you are saying no control premium, it's zero and that's it. So there isn't an alternative hypothesis where you posit a figure of say 20 per cent, you just aren't prepared to go there?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. No, I've seen no evidence that supports the application of a control premium, so I have applied a zero control premium.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. Now, could I ask you to look back in your original report at 2234 in C.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <intro>
-                <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: Just on that point, you say it's zero, Mr Taylor. Is that because, as I read in your principal report, paragraph 4.2.5, that the exercise of reaching market value is:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="ParaLevel1" style="margin-left:1.08in">"... a hypothetical one which assumes that neither the buyer nor the seller is under any compulsion, transaction is at arm's length [et cetera]. This means that FMV is an impersonal standard of value rather than a personal standard of value."</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Tell me if that is a different point, but is that part of the reason why you say you don't look to the hypothetical willing buyer and assume that buyer's acquiring a majority or --</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. No, that's a slightly different point, this would -- being an impersonal standard is -- is taking into account that there are no synergies. So if – when buying a company you could combine them and make savings, then there would be a particular value to you for getting those synergies and so you would be willing to pay more. The control premium is more that if you have control over the whole company you can improve it in some way that would increase the value of the company. So you would be willing to pay more because you think if you control it you can do better than it's doing at the market -- at the multiple of the -- of the market price, yes.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: Thank you. Yes, thank you, I interrupted you, Mr Leiper.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">MR LEIPER: Just looking back, if we may, at C/2581, paragraph 3.2.2, you are describing whether or not you take into account synergies. So if when buying a company you'd combine them and make savings, so there would be particular value to you for getting those synergies and so you would be willing to pay more, that's what you are describing in that paragraph, 3.2.2, isn't it?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. Yes.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. And that is what you describe as the principle of control premium?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. Yes, yes.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. But in your answer to his Lordship you said that the control premium was different. It's more that if you have control over the whole company you can improve it in some way. So you appear don't you -- just let me finish the question -- you appear, don't you, to be confusing your definitions of control premium?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. In the exhibits that I attached and discussed the control premium we can see that there's schools of thought that there are different levels of control premium, one is financial control premium and one is strategic control premium, and we are being a little ambiguous in our language in not explicitly saying which one we're talking about. And they're in my exhibits and there are charts that show them, we can -- I can find a reference and for, my Lord, if that would be helpful. But yes, there are two different aspects of control premium and we have been confusing them a bit.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. Well, you say "we", you've been very clear in your supplemental report about how you are defining the principle of control premium, haven't you?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. I have taken the view that there is no control premium and that is putting both of them together. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. You have been -- if I may repeat the question – you have been very clear in your definition of control premium for the purposes of your supplemental report in paragraph 3.2.2, haven't you?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">A. I think, no, it's -- it's usually by operating the company in a more efficient manner or by benefiting from synergies, and then when a buyer perceives that a company's profit is not being maximised, I'd say that definition now of control premium is -- is the two effectively put together in what I am now apologising for being a slightly ambiguous way when we could have gone deeper into the theory of control premium and split them out.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">Q. I am not going to go over your earlier answers, let's move on.  ………”</p>
-              </content>
-            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Tell me if that is a different point, but is that part of the reason why you say you don't look to the hypothetical willing buyer and assume that buyer's acquiring a majority or --</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. No, that's a slightly different point, this would -- being an impersonal standard is -- is taking into account that there are no synergies. So if – when buying a company you could combine them and make savings, then there would be a particular value to you for getting those synergies and so you would be willing to pay more. The control premium is more that if you have control over the whole company you can improve it in some way that would increase the value of the company. So you would be willing to pay more because you think if you control it you can do better than it's doing at the market -- at the multiple of the -- of the market price, yes.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">JUDGE RUSSEN QC: Thank you. Yes, thank you, I interrupted you, Mr Leiper.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">MR LEIPER: Just looking back, if we may, at C/2581, paragraph 3.2.2, you are describing whether or not you take into account synergies. So if when buying a company you'd combine them and make savings, so there would be particular value to you for getting those synergies and so you would be willing to pay more, that's what you are describing in that paragraph, 3.2.2, isn't it?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. Yes.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. And that is what you describe as the principle of control premium?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. Yes, yes.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. But in your answer to his Lordship you said that the control premium was different. It's more that if you have control over the whole company you can improve it in some way. So you appear don't you -- just let me finish the question -- you appear, don't you, to be confusing your definitions of control premium?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. In the exhibits that I attached and discussed the control premium we can see that there's schools of thought that there are different levels of control premium, one is financial control premium and one is strategic control premium, and we are being a little ambiguous in our language in not explicitly saying which one we're talking about. And they're in my exhibits and there are charts that show them, we can -- I can find a reference and for, my Lord, if that would be helpful. But yes, there are two different aspects of control premium and we have been confusing them a bit.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. Well, you say "we", you've been very clear in your supplemental report about how you are defining the principle of control premium, haven't you?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. I have taken the view that there is no control premium and that is putting both of them together. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. You have been -- if I may repeat the question – you have been very clear in your definition of control premium for the purposes of your supplemental report in paragraph 3.2.2, haven't you?</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">A. I think, no, it's -- it's usually by operating the company in a more efficient manner or by benefiting from synergies, and then when a buyer perceives that a company's profit is not being maximised, I'd say that definition now of control premium is -- is the two effectively put together in what I am now apologising for being a slightly ambiguous way when we could have gone deeper into the theory of control premium and split them out.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in">Q. I am not going to go over your earlier answers, let's move on.  ………”</p>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_258">
