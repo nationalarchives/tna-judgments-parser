@@ -8,8 +8,10 @@ class RegulationNumber {
 
     internal static Regex[] Patterns = {
         new Regex(@"^SSI \d{4}/\d+$"),
-        new Regex(@"^S\.?R\.? \d{4} No\. \d+"),
-        new Regex(@"^\d{4} No\. \d+$")
+        new Regex(@"^SSI \d{4}/\d+ \(C\. \d+\)$"),
+        new Regex(@"^S\.?R\.? \d{4} No\. \d+$"),
+        new Regex(@"^\d{4} No\. \d+$"),
+        new Regex(@"^\d{4} No\. \d+ \([LS]\. \d+\)$")
     };
 
     internal static bool Is(string text) {
@@ -18,13 +20,19 @@ class RegulationNumber {
 
     internal static string MakeURI(string s) {
         Match match;
-        match = Regex.Match(s, @"^SSI \d{4}/\d+$");
+        match = Regex.Match(s, @"^SSI (\d{4})/(\d+)$");
+        if (match.Success)
+            return AddYearAndNum("ssi", match);
+        match = Regex.Match(s, @"^SSI (\d{4})/(\d+) \(C\. \d+\)$");
         if (match.Success)
             return AddYearAndNum("ssi", match);
         match = Regex.Match(s, @"^S\.?R\.? (\d{4}) No\. (\d+)$");
         if (match.Success)
             return AddYearAndNum("nisr", match);
         match = Regex.Match(s, @"^(\d{4}) No\. (\d+)$");
+        if (match.Success)
+            return AddYearAndNum("uksi", match);
+        match = Regex.Match(s, @"^(\d{4}) No\. (\d+) \([LS]\. \d+\)$");
         if (match.Success)
             return AddYearAndNum("uksi", match);
         return null;

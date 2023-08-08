@@ -1,5 +1,6 @@
 
 using System.Xml;
+using System.Linq;
 
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
@@ -19,7 +20,7 @@ class Builder : AkN.Builder {
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
         AddMetadata(main, document.Meta);
-        if (document.Header is not null) {
+        if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);
             main.AppendChild(header);
             blocks(header, document.Header);
