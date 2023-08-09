@@ -1,4 +1,5 @@
 
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -6,35 +7,24 @@ namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 
 class RegulationNumber {
 
-    internal static Regex[] Patterns = {
-        new Regex(@"^SSI \d{4}/\d+$"),
-        new Regex(@"^SSI \d{4}/\d+ \(C\. \d+\)$"),
-        new Regex(@"^S\.?R\.? \d{4} No\. \d+$"),
-        new Regex(@"^\d{4} No\. \d+$"),
-        new Regex(@"^\d{4} No\. \d+ \([LS]\. \d+\)$")
+    internal static Tuple<Regex, string>[] Patterns = new Tuple<Regex, string>[] {
+        Tuple.Create( new Regex(@"^S\.?S\.?I\.? (\d{4})/(\d+)$"), "ssi" ),
+        Tuple.Create( new Regex(@"^S\.?S\.?I\.? (\d{4})/(\d+) \(?C\. \d+\)?$"), "ssi" ),
+        Tuple.Create( new Regex(@"^S\.?R\.? (\d{4}) No\. (\d+)$"), "nisr" ),
+        Tuple.Create( new Regex(@"^(\d{4}) No\. (\d+)$"), "uksi" ),
+        Tuple.Create( new Regex(@"^(\d{4}) No\. (\d+) \([LS]\. \d+\)$"), "uksi" )
     };
 
     internal static bool Is(string text) {
-        return Patterns.Any(pattern => pattern.IsMatch(text));
+        return Patterns.Any(t => t.Item1.IsMatch(text));
     }
 
     internal static string MakeURI(string s) {
-        Match match;
-        match = Regex.Match(s, @"^SSI (\d{4})/(\d+)$");
-        if (match.Success)
-            return AddYearAndNum("ssi", match);
-        match = Regex.Match(s, @"^SSI (\d{4})/(\d+) \(C\. \d+\)$");
-        if (match.Success)
-            return AddYearAndNum("ssi", match);
-        match = Regex.Match(s, @"^S\.?R\.? (\d{4}) No\. (\d+)$");
-        if (match.Success)
-            return AddYearAndNum("nisr", match);
-        match = Regex.Match(s, @"^(\d{4}) No\. (\d+)$");
-        if (match.Success)
-            return AddYearAndNum("uksi", match);
-        match = Regex.Match(s, @"^(\d{4}) No\. (\d+) \([LS]\. \d+\)$");
-        if (match.Success)
-            return AddYearAndNum("uksi", match);
+        foreach (var t in Patterns) {
+            Match match = t.Item1.Match(s);
+            if (match.Success)
+                return AddYearAndNum(t.Item2, match);
+        }
         return null;
     }
 
