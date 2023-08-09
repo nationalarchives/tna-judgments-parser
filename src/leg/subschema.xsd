@@ -150,6 +150,7 @@
         <xs:element ref="span" />
         <xs:element ref="a" />
         <xs:element ref="marker" />
+        <xs:element ref="authorialNote" />
     </xs:choice>
     <xs:attribute name="class" />
     <xs:attribute name="style" />
@@ -176,6 +177,22 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="authorialNote">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="p" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="class" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="footnote" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="marker" use="required" type="xs:integer" />
     </xs:complexType>
 </xs:element>
 
