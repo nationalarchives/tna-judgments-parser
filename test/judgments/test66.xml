@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRdate date="2023-07-24" name="decision" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="" />
+          <FRBRname value="DARREN MYNETT v THE COMMISSIONERS FOR" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRdate date="2023-07-24" name="decision" />
+          <FRBRauthor href="#ukftt-tc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+          <FRBRdate date="2023-08-09T13:35:30" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2022-03-13" refersTo="#hearing" source="#" />
+        <eventRef date="2023-07-24" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="darren-mynett" href="" showAs="DARREN MYNETT" />
+        <TLCPerson eId="the-commissioners-for" href="" showAs="THE COMMISSIONERS FOR" />
+        <TLCPerson eId="his-majestys-revenue-and-customs" href="" showAs="HIS MAJESTY’S REVENUE AND CUSTOMS" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-TC</uk:court>
+        <uk:parser>0.16.2</uk:parser>
+        <uk:hash>5bcbfa5ad6c93073a2a31a4b88a45fe9766462749c88947665cef2f4ea3f5308</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Header { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Footer { text-align: justify; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1 { text-align: justify; font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Taxbodytext1 { text-align: justify; margin-left: 0in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2 { text-align: justify; margin-left: 0.39in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3 { text-align: justify; margin-left: 0.79in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4 { text-align: justify; margin-left: 1.18in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2 { text-align: justify; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3 { text-align: justify; font-style: italic; font-weight: bold; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4 { text-align: justify; font-style: italic; font-weight: normal; font-variant: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxquotation { text-align: justify; margin-left: 0.79in; margin-right: 0.76in; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .BalloonText { text-align: justify; font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5 { text-align: justify; margin-left: 1.58in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeading { text-align: center; font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .NormalWeb { text-align: left; font-family: Times; font-size: 10pt; }
+#judgment .ListParagraph { text-align: left; margin-left: 0.5in; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .FooterChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading1Char { font-weight: bold; font-variant: small-caps; font-family: 'Times New Roman'; }
+#judgment .Taxbodytext1Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext2Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext3Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxbodytext4Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading3Char { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Taxheading4Char { font-style: italic; font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxquotationChar { font-family: 'Times New Roman'; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+#judgment .Taxbodytext5Char { font-weight: normal; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .TaxSuperHeadingChar { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; }
+#judgment .Emphasis { font-style: italic; }
+#judgment .hit { }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:left">Neutral Citation: [2023] UKFTT 00652 (TC)<marker name="tab" /><marker name="tab" /><marker name="tab" />   Case Number: TC08873</p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">FIRST-TIER TRIBUNAL</courtType></p>
+      <p style="text-align:left"><courtType refersTo="#ukftt-tc" style="font-weight:bold">TAX CHAMBER</courtType></p>
+      <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">By remote video hearing</span></p>
+      <p style="text-align:right"><span style="font-weight:bold">Appeal reference: TC/2022/11390</span></p>
+      <p><span style="font-style:italic">VALUE ADDED TAX – VAT default surcharge for failure to submit VAT return and/or pay VAT by the due date – service of surcharge notices – reasonable excuse – Section 59 of the Value Added Tax Act 1994 – the Value Added Tax Regulations 1995</span></p>
+      <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span><docDate date="2022-03-13" refersTo="#hearing">13 March 2022</docDate></p>
+      <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>24 July 2023</p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE </span><span style="font-weight:bold;text-transform:uppercase">jennifer lee</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase">TRIBUNAL MEMBER REBECCA NEWNS</span></p>
+      <p style="text-align:center"><img src="image1.png" style="width:115.95pt;height:88.95pt" /></p>
+      <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
+      <table class="TableGrid" uk:widths="0.98in 4.23in 1.08in">
+        <tr>
+          <td style="border:none">
+            <p style="text-align:left" />
+          </td>
+          <td style="border:none">
+            <p style="text-align:center"><party refersTo="#darren-mynett" as="#appellant" style="font-weight:bold;text-transform:uppercase">DARREN MYNETT</party></p>
+          </td>
+          <td style="border:none;vertical-align:bottom">
+            <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center"><span style="font-weight:bold">-and-</span></p>
+      <table class="TableGrid" uk:widths="0.96in 4.25in 1.09in">
+        <tr>
+          <td style="border:none">
+            <p style="text-align:left" />
+          </td>
+          <td style="border:none">
+            <p style="text-align:center"><party refersTo="#the-commissioners-for" as="#respondent" style="font-weight:bold">THE COMMISSIONERS FOR </party></p>
+            <p style="text-align:center"><party refersTo="#his-majestys-revenue-and-customs" as="#respondent" style="font-weight:bold">HIS MAJESTY’S REVENUE AND CUSTOMS</party></p>
+          </td>
+          <td style="border:none;vertical-align:bottom">
+            <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold">Respondents</role></p>
+          </td>
+        </tr>
+      </table>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Representation:</span></p>
+      <p style="margin-left:1.58in;text-indent:-1.58in">For the Appellant:<marker name="tab" />Mr Darren Mynett, who appeared in person</p>
+      <p class="Taxbodytext1" style="margin-left:1.58in;text-indent:-1.58in">For the Respondents: <marker name="tab" />Mr Parminder Singh, litigator of HM Revenue and Customs’ Solicitor’s Office.  </p>
+      <p style="text-align:center"><span style="font-weight:bold">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">Introduction</span></heading>
+          <paragraph eId="para_1">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">1.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">With the consent of the parties, this hearing was conducted remotely by way of the Tribunal’s video platform, VHS (Video Hearing Service).  </span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">2.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">We have had the benefit of considering a number of documents, </span>including the Appellant’s notice of appeal dated 22 March 2022 (received by the Tribunal on 24 March 2022), HMRC’s statement of reasons dated 2 August 2022, HMRC’s amended statement of reasons dated 8 August 2022, an electronic documents bundle prepared by HMRC containing 60 pages, and an electronic legislation and authorities bundle prepared by HMRC containing 157 pages. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">3.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Prior notice of the hearing had been published on the gov.uk website, with information about how representatives of the media or members of the public could apply to join the hearing remotely in order to observe the proceedings.  As such, the hearing was held in public.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">background</span></heading>
+          <paragraph eId="para_4">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">4.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">This is an appeal brought by the Appellant against HMRC’s decision to issue a VAT default surcharge under section 59 of the Value Added Tax Act 1994 (“VATA 1994”) for periods 06/2021 and 09/2021.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">5.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The default surcharge subject to the appeal amounts to <span style="font-weight:bold">£1,913.62</span>. The details are as follows:</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <content>
+              <p class="Taxbodytext1" style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">VAT Default Surcharge</span></p>
+              <table class="TableGrid" uk:widths="1.18in 0.98in 1.18in 1.08in 1.08in 0.98in">
+                <tr>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in"><span style="font-weight:bold">VAT period</span></p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in"><span style="font-weight:bold">Due date</span></p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in"><span style="font-weight:bold">Date return received </span></p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in"><span style="font-weight:bold">Date VAT paid</span></p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in"><span style="font-weight:bold">Rate of surcharge</span></p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in"><span style="font-weight:bold">Amount</span></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center">06/2021</p>
+                    <p class="Taxbodytext1" style="text-align:center">(period 1/4/21 – 30/6/21)</p>
+                    <p class="Taxbodytext1" style="text-align:center" />
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">7/8/2021</p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">30/8/2021</p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">30/8/2021</p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">5%</p>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in" />
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">£446.61</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-right:-0.17in">09/2021</p>
+                    <p class="Taxbodytext1" style="text-align:center;margin-right:-0.17in">(period 1/7/21</p>
+                    <p class="Taxbodytext1" style="text-align:center;margin-right:-0.17in">– 30/9/2021)</p>
+                    <p class="Taxbodytext1" style="text-align:center" />
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">7/11/2021</p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">8/11/2021</p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">8/11/2021</p>
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">10%</p>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in" />
+                  </td>
+                  <td>
+                    <p class="Taxbodytext1" style="text-align:center;margin-left:0.12in">£1,467.01</p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">6.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The Appellant is a sole trader and trades as “Dab Hand Cleaning Services”. He specialises in cleaning services and has been registered for VAT since 26 April 2010. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">7.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The Appellant submitted a notice of appeal against the above default surcharges on 22 March 2022. In its notice of appeal, the Appellant states, in summary:</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">That he moved house before the pandemic and took measures to amend his correspondence address and put in place a postal divert system via Royal Mail. He also changed his correspondence address on the online personal tax system. However, unfortunately, and unbeknownst to him, the VAT address wasn’t updated, an error which he states was “<span style="font-style:italic">an oversight on our part”.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">If he had received the initial surcharge of £441.61, which he states he is happy to pay, he would have definitely not allowed the next VAT period to be late. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Additionally, he has never been charged a surcharge prior to this, which he states, shows he has always paid VAT and any taxes due.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num>8.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The Appellant further states that “<span style="font-style:italic">I do believe the above amounts to a reasonable excuse for late payment but in any event, would ask that you please kindly apply your discretion in these circumstances given we are a small family business who have survived the pandemic without being able to quality for any additional support from the Government and despite a significant downturn in our turnover and have always paid the requisite taxes.” </span></p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">The issues </span></heading>
+          <paragraph eId="para_9">
+            <num>9.</num>
+            <intro>
+              <p class="Taxbodytext1" style="text-indent:0.39in">The outstanding issues for the Tribunal are:</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Whether the default surcharge assessment for the periods 06/2021 and 09/2021 were correctly issued (and whether the notices were served on the Appellant);</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Whether the Appellant had a reasonable excuse for the default under appeal.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">10.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The burden rests on HMRC to demonstrate that the surcharges were due. Once so established, the burden shifts to the Appellant to demonstrate that there was a reasonable excuse for the default. The standard of proof is the ordinary civil standard, which is the balance of probabilities.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">11.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The relevant statutory provisions are included as an Appendix to this decision.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">Discussion and decision</span></heading>
+          <paragraph eId="para_12">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">12.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">In addition to considering the documents provided by the parties, the Tribunal received oral evidence and submissions from Mr Mynett, the Appellant, and oral submissions from Mr Singh on behalf of HMRC. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">13.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">We have also received an email from HMRC on 14 March 2023, copied to the Appellant, in which HMRC confirmed (at the Tribunal’s request) that it had submitted to the Tribunal and served on the Appellant an amended statement of reasons dated 8 August 2022, and clarifying the law in relation to the fourth stage in the approach to be taken to the issue of reasonable excuse as set out in <span style="font-style:italic">Christine Perrin and The Commissioners for Her Majesty’s Revenue and Custom </span>[2018] UKUT 0156 (TCC) (see below).</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">14.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">We are grateful to the Appellant and to HMRC. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold">Whether the default surcharge assessments were correctly issued (and whether the  notices were served on the Appellant)</span></heading>
+          <paragraph eId="para_15">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">15.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Section 59 of VATA 1994 relates to default surcharges. That provision provides that where a taxable person is required to furnish a return but HMRC have not received the return, or the amount of VAT shown on the return by the due date, then that taxpayer shall be regarded as being in default in respect of that period.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_16">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">16.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">A surcharge liability notice is sent to the taxable person if they default in respect of a prescribed accounting period. The notice specifies the surcharge period for the purposes of section 59, which is  a period ending on the first anniversary of the last day of the period in default and beginning on the date of the notice. When a surcharge liability notice is served by reason of a further default in a VAT period that ends at or before the end of an existing surcharge period already notified, the existing surcharge period is extended under section 59(3) VATA 1994. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_17">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">17.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Section 59(5) VATA 1994 specifies the rates of penalty for any further default within a surcharge period. Essentially, the first default within a surcharge period results in a penalty of 2% of the outstanding VAT at the date of the surcharge, the second default results in a penalty of 5%, the third default results in a penalty of 10%, and the fourth and subsequent defaults results in a penalty of 15%. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_18">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">18.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">We have had regard to the schedule of defaults and payments (page 33 of the documents bundle), which shows the Appellant’s history of defaults – the first default having been for the period 9/20 which triggered the issue of a surcharge liability notice, which gave a surcharge period of 13/11/2020 – 30/9/2021. There were subsequent defaults, for the periods 3/2021, 6/2021 and 9/2021.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_19">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">19.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">We have also had regard to the specimen VAT liability notices (page 52 – 59), the VAT returns ledger (pages 49 – 51), the records held by HMRC as to the Appellant’s address for VAT purposes (pages 41 – 43), and the Appellant’s letter to HMRC of 14 January 2022 requesting a review (page 36). </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_20">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">20.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The Appellant did not submit its VAT returns or make the necessary VAT payments by the due dates for the relevant periods 9/2020, 3/2021, 6/2021 and 9/2021. The Appellant was therefore in default in respect of those periods. The Tribunal has reviewed the surcharges imposed, as summarised in the schedule of defaults and payments. We are satisfied that they are in accordance with the rates of penalty prescribed by section 59(5) of VATA 1994, and that the amounts imposed are correct. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_21">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">21.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Having so determined, the Tribunal must consider the separate but linked issue as to whether the surcharge liability notices were validly served on the Appellant. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_22">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">22.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">In <span style="font-style:italic">Customs and Excise Commissioners v Medway Draughting and Technical Services Ltd</span> [1989] STC 346, the Court held that it was Parliament’s intention that a warning in the form of a surcharge liability notice should be given to a taxpayer before a surcharge could be levied. Receipt of the notice was crucial to enable the taxpayer to avoid the surcharge. In the words of Macpherson J: </p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.69in"><span style="font-style:italic">“I have come firmly to the conclusion that in the present cases it was the intention of Parliament that a warning should be given before a surcharge could be levied…As a matter of construction of s.19, the whole scheme of default surcharge is dependent on service of the surcharge liability notice.” </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_23">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">23.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">There are two statutory provisions which must be mentioned at this juncture. The first is section 98 of VATA 1994, which relates to the service of notices:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.69in">“<span style="font-style:italic">Any notice, notification, requirement or demand to be served on, given to or made of any person for the purposes of this Act may be served, given or made by sending it by post in a letter addressed to that person or his VAT representative at the last or usual residence or place of business of that person or representative”</span>.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_24">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">24.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The second is section 7 of the Interpretation Act 1978 (IA 1978), which states that in relation to service by post:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.69in">“<span style="font-style:italic">Where an Act authorises or requires any document to be served by post (whether the expression “serve” or the expression “give” or “send” or any other expression is used) then, unless the contrary intention appears, the service is deemed to be effected by properly addressing, pre-paying and posting a letter containing the document and, unless the contrary is proved, to have been effected at the time at which the letter would be delivered in the ordinary course of post.” </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_25">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">25.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Having carefully reviewed the available evidence and reflected on the parties’ submissions, the Tribunal has determined that the surcharge liability notices were validly served on the Appellant. In reaching this conclusion, we take into account the following: </p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">HMRC’s records/ systems demonstrate that the surcharge liability notice and all subsequent notices of surcharge and notices of extension were posted to the Appellant at 3 Neston Road, Watford WD24 7BN, that being the Appellant’s last or usual place of business, as recorded on HMRC’s systems for VAT purposes. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">The Appellant’s evidence to the Tribunal was that he did not in fact notify HMRC of his change of address for VAT purposes, nor did he change his address on the MTD system/ account for VAT purposes. He was entirely full and frank in this regard, and stated that this had been an omission on his part.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(c)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">HMRC’s records/ systems show that it was not until 14 January 2022 that the Appellant changed his address on his MTD account, the same day he wrote to HMRC to request a review.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(d)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Although the Appellant had moved house in around May 2019 and had put in place arrangements for his post to be redirected to his new address at 8 The Shires, Watford WD25 0JL, that arrangement ceased, according to the Appellant, in around May 2020, prior to the issue of the first surcharge notice. He did not extend that arrangement or make any other arrangement thereafter to ensure that any post delivered to his old address would be forwarded on to his new address.</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(e)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Pursuant to s.98 of VATA 1994, which relates to the service of notices, HMRC may serve any notice or demand on a taxpayer by sending it by post in a letter addressed to the taxpayer at their last or usual residence or place of business. In the circumstances, HMRC were entitled to serve the relevant notices by posting them addressed to the Appellant at 3 Neston Road, Watford WD24 7BN, that being the last or usual residence or place of business that HMRC had on record for the Appellant for VAT purposes. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(f)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Section 7 of IA 1978 does not assist the Appellant, in our view. That provision provides that<span style="font-style:italic"> </span>service is deemed to be effected by properly addressing, pre-paying and posting a letter containing the document and, unless the contrary is proved, to have been effected at the time at which the letter would be delivered in the ordinary course of post. There is nothing to suggest that service of the documents (e.g. the notices) were not effected at the time at which the letters would be delivered in the ordinary course of post. That is not the issue here. The issue was that they were delivered to the Appellant’s old address (3 Neston Road, Watford), but that was the only address which HMRC had on record for the Appellant as its last or usual residence or place of business. HMRC were entitled to serve the notices to the Appellant at that address. </p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxbodytext1"><span style="font-weight:bold">Whether the Appellant has established a reasonable excuse for the late payment of VAT.</span></heading>
+          <paragraph eId="para_26">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">26.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Section 59(7) VATA 1994 provides that a surcharge does not arise in relation to a failure to submit a VAT return or make payment by the due date if the taxpayer satisfies HMRC or a Tribunal on appeal that they had a reasonable excuse for the failure.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_27">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">27.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Section 71 VATA 1994 specifies two situations that are not capable of constituting a reasonable excuse, namely:</p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(a)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">An insufficiency of funds to pay is not a reasonable excuse; and</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(b)</num>
+              <content>
+                <p class="Taxbodytext3" style="margin-left:0.79in">Where reliance is placed on any other person to perform any task, neither the fact of that reliance nor any dilatoriness or inaccuracy on the part of the person relied upon is a reasonable excuse.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_28">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">28.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The term “reasonable excuse” is not defined, but according to Special Commissioner Adrian Shipwright in <span style="font-style:italic">Rowland v Revenue and Customs Commissioners [2006] STC (SCD) 536 </span>at paragraph 19<span style="font-style:italic">:</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.69in">“This is a matter to be considered in the light of all the circumstances of the particular case.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_29">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">29.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The term “reasonable excuse” was also considered by Judge Medd QC in <span style="font-style:italic">The Clean Car Company v C&amp;E Commissioners </span>[1991] BVC 568:</p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.69in">“It has been said before in cases arising from default surcharges that the test of whether or not there is a reasonable excuse is an objective one. In my judgment it is an objective test in this sense. One must ask oneself: was what the taxpayer did a reasonable thing for a responsible trader conscious of and intending to comply with his obligations regarding tax, but having the experience and other relevant attributes of the taxpayer and placed in the situation that the taxpayer found himself at the relevant time, a reasonable thing to do?"</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_30">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">30.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The Upper Tribunal in <span style="font-style:italic">Christine Perrin </span>suggested that tribunals should approach the question of a reasonable excuse as follows:</p>
+            </intro>
+            <subparagraph>
+              <num>“81.</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.59in;text-indent:0.41in">When considering a “reasonable excuse” defence, therefore, in our view the FTT can usefully approach matters in the following way: </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(1)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.98in">First, establish what facts the taxpayer asserts give rise to a reasonable excuse (this may include the belief, acts or omissions of the taxpayer or any other person, the taxpayer’s own experience or relevant attributes, the situation of the taxpayer at any relevant time and any other relevant external facts). </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(2)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.98in">Second, decide which of those facts are proven. </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(3)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.98in">Third, decide whether, viewed objectively, those proven facts do indeed amount to an objectively reasonable excuse for the default and the time when that objectively reasonable excuse ceased. In doing so, it should take into account the experience and other relevant attributes of the taxpayer and the situation in which the taxpayer found himself at the relevant time or times. It might assist the FTT, in this context, to ask itself the question “was what the taxpayer did (or omitted to do or believed) objectively reasonable for this taxpayer in those circumstances?” </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(4)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.98in">Fourth, having decided when any reasonable excuse ceased, decide whether the taxpayer remedied the failure without unreasonable delay after that time (unless, exceptionally, the failure was remedied before the reasonable excuse ceased). In doing so, the FTT should again decide the matter objectively, but taking into account the experience and other relevant attributes of the taxpayer and the situation in which the taxpayer found himself at the relevant time or times.”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_31">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">31.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">As set out in HMRC’s amended statement of reasons, and as reiterated in Mr Singh’s email to the Tribunal of 14 March 2023, the fourth step in <span style="font-style:italic">Christine</span><span> </span><span style="font-style:italic">Perrin</span> (as summarised above) does not apply to default surcharges. The Tribunal agrees. The relevant authority is <span style="font-style:italic">Porter &amp; Company</span> [2019] UKFTT 178 (TCC), in which Judge Anne Redston stated, at paragraph [30]:</p>
+            </intro>
+            <subparagraph>
+              <num>“30.</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in"><span style="font-family:'Times New Roman'">The fourth stage of the process recommended by the Upper Tribunal is not relevant, because the statutory provisions being considered in </span><span class="Emphasis" style="font-family:'Times New Roman'">Perrin</span><span style="font-family:'Times New Roman'"> contain an extra requirement which does not apply to default surcharges.</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_32">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">32.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-style:italic">Porter &amp; Company</span> has also been subsequently followed by the First-tier Tribunal in <span style="font-style:italic">Hawksmoor Construction Ltd v HMRC</span> [2022] UKFTT 209 (TC). </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_33">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">33.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The statutory provisions considered in <span style="font-style:italic">Christine Perrin</span> related to penalties under Schedule 55 of the Finance Act 2009 (not to default surcharges). In respect of penalties, <span style="font-family:'Times New Roman'">Schedule 55 provides as follows: </span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in">“<span style="font-family:'Times New Roman'">REASONABLE EXCUSE </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in"><span style="font-family:'Times New Roman'">23— (1) </span><marker name="tab" /><span style="font-family:'Times New Roman'">Liability to a penalty under any paragraph of this Schedule does not arise in relation to a failure to make a return if P satisfies HMRC or (on appeal) the First-tier Tribunal or Upper Tribunal that there is a reasonable excuse for the failure. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:'Times New Roman'">(2)</num>
+              <intro>
+                <p class="Taxbodytext1" style="margin-left:1.18in"><span style="font-family:'Times New Roman'">For the purposes of sub-paragraph (1)— </span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="Taxbodytext1" style="margin-left:1.18in"><span style="font-family:'Times New Roman'">…..</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-family:'Times New Roman'">(c)</num>
+                <content>
+                  <p class="Taxbodytext1" style="margin-left:1.18in;text-indent:0.32in"><span style="font-family:'Times New Roman'">where P had a reasonable excuse for the failure but the excuse has ceased, P is to be treated as having continued to have the excuse if the failure is remedied without unreasonable delay after the excuse ceased.”</span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_34">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">34.</num>
+            <intro>
+              <p class="Taxbodytext1" style="margin-left:0.39in">This can be contrasted with the relevant provision in VATA 1994 as to reasonable excuse in the context of default surcharges (which is the subject of this appeal). Section 59(7) VATA 1994 states:</p>
+            </intro>
+            <subparagraph>
+              <num>“(7)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">If a person who, apart from this subsection, would be liable to a surcharge under subsection (4) above satisfies the Commissioners or, on appeal, a tribunal that, in the case of a default which is material to the surcharge—</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in">… </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>(b)</num>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">there is a reasonable excuse for the return or VAT not having been so despatched,</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="Taxbodytext1" style="margin-left:0.79in">he shall not be liable to the surcharge and for the purposes of the preceding provisions of this section….”</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_35">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">35.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Did the Appellant have a reasonable excuse for the defaults which have led to the surcharges under appeal? In our view, he did not. When questioned as to why his VAT return and payments were late for the periods 06/2021 and 09/2021, the Appellant very frankly stated “<span style="font-style:italic">to be honest with you, I don’t have a reasonable excuse for the delay, it was an oversight…”</span>. We also note that the Appellant has been registered for VAT since April 2010. In our view, he should have been aware of his VAT obligations, e.g. to file VAT returns on time and to make payment on time. Compliance with those obligations are not contingent on him having received reminders to do so, or notices of surcharge.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_36">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">36.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The fact that the Appellant had not previously been in default, or that he had not asked HMRC or the government for assistance during the pandemic, does not assist him in this appeal. The question we have to consider is whether he had a reasonable excuse for the defaults relating to the periods 9/2020, 3/2021, 6/2021 and 9/2021. The Appellant has not demonstrated a reasonable excuse for those defaults. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_37">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">37.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">In closing, we will add this. The Appellant has asked that discretion be applied. Whilst the Tribunal is sympathetic to the Appellant, it does not have the power or discretion to reduce or waive the surcharges imposed by HMRC pursuant to section 59 VATA 1994. The surcharges were correctly issued; the rates are prescribed by the statute. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:12pt">Conclusion</span></heading>
+          <paragraph eId="para_38">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">38.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in">For the reasons stated above, the appeal against the VAT default surcharge for periods 06/2021 and 09/2021, amounting to £1,913.62, is dismissed. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:12pt">Right to apply for permission to appeal</span></heading>
+          <paragraph eId="para_39">
+            <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">39.</num>
+            <content>
+              <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">This document contains full findings of fact and reasons for the decision.  Any party dissatisfied with this decision has a right to apply for permission to appeal against it pursuant to Rule 39 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009.  The application must be received by this Tribunal not later than 56 days after this decision is sent to that party.  The parties are referred to “Guidance to accompany a Decision from the First-tier Tribunal (Tax Chamber)” which accompanies and forms part of this decision notice.</span></p>
+            </content>
+          </paragraph>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase">Judge jennifer lee</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL </span><span style="font-weight:bold;text-transform:uppercase">JUDGE</span></p>
+            </content>
+          </level>
+          <level>
+            <content>
+              <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2023-07-24" refersTo="#decision"><span style="font-weight:bold">24</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> July 2023</span></docDate></p>
+            </content>
+          </level>
+        </level>
+      </decision>
+    </judgmentBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id//annex/1" />
+                <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/" />
+                <FRBRdate date="2023-07-24" name="decision" />
+                <FRBRauthor href="#ukftt-tc" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="https://caselaw.nationalarchives.gov.uk//annex/1" />
+                <FRBRuri value="https://caselaw.nationalarchives.gov.uk/" />
+                <FRBRdate date="2023-07-24" name="decision" />
+                <FRBRauthor href="#ukftt-tc" />
+                <FRBRlanguage language="eng" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="https://caselaw.nationalarchives.gov.uk//annex/1/data.xml" />
+                <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+                <FRBRdate date="2023-08-09T13:35:34" name="transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p class="TaxSuperHeading">APPENDIX</p>
+            <p class="TaxSuperHeading">RELEVANT STATUTORY PROVISIONS</p>
+            <blockContainer>
+              <num>1.</num>
+              <p style="margin-left:0.39in">The VAT default surcharge under appeal is imposed by section 59(2) of the VATA 1994. The default surcharge provides that where a taxable person is required in accordance with regulations under this Act to furnish a return for a prescribed accounting period and -</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(a)</num>
+              <p style="margin-left:0.79in">the Commissioners have not received that return, or</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(b)</num>
+              <p style="margin-left:0.79in">the Commissioners have received that return but have not received the amount of VAT shown on the return as payable by him in respect of that period, </p>
+            </blockContainer>
+            <p style="margin-left:0.79in;text-indent:-0.39in">then that person shall be regarded for the purposes of this section as being in default in</p>
+            <p style="margin-left:0.79in;text-indent:-0.39in">respect of that period.</p>
+            <blockContainer>
+              <num>2.</num>
+              <p class="Taxbodytext1" style="text-indent:0.39in">A Surcharge Liability Notice (“SLN”) is sent to the taxable person if they default in <marker name="tab" />respect of a prescribed accounting period per section 59(2) VATA 1994. The notice <marker name="tab" />specifies the surcharge period for the purposes of section 59.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>3.</num>
+              <p class="Taxbodytext1" style="margin-left:0.39in">The surcharge period may be extended under section 59(3) VATA 1994. When a SLN is served by reason of a default in a VAT period that ends at or before the end of an existing surcharge period already notified, the existing surcharge period is extended.</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">4.</num>
+              <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The rates of surcharge are prescribed by section 59(5), as follows:</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(5)</num>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">Subject to subsections (7) to (10) below, the specified percentage shall be determined in relation to a prescribed accounting period by reference to the number of such periods in respect of which the taxable person is in default during the surcharge period and for which he has outstanding VAT, so that—</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(a)</num>
+              <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">in relation to the first such prescribed accounting period, the specified percentage is 2 per cent;</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(b)</num>
+              <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">in relation to the second such period, the specified percentage is 5 per cent;</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(c)</num>
+              <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">in relation to the third such period, the specified percentage is 10 per cent; and</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(d)</num>
+              <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">in relation to each such period after the third, the specified percentage is 15 per cent.</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">5.</num>
+              <p class="Taxbodytext1" style="margin-left:0.39in">As to reasonable excuse, section 59(7) states as follows:</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(7)</num>
+              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">If a person who, apart from this subsection, would be liable to a surcharge under subsection (4) above satisfies the Commissioners or, on appeal, a tribunal that, in the case of a default which is material to the surcharge—</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(a)</num>
+              <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">the return or, as the case may be, the VAT shown on the return was despatched at such a time and in such a manner that it was reasonable to expect that it would be received by the Commissioners within the appropriate time limit, or</p>
+            </blockContainer>
+            <blockContainer>
+              <num>(b)</num>
+              <p class="Taxbodytext1" style="margin-left:0.79in;text-indent:0.21in">there is a reasonable excuse for the return or VAT not having been so despatched,</p>
+            </blockContainer>
+            <p class="Taxbodytext1" style="margin-left:0.39in">he shall not be liable to the surcharge and for the purposes of the preceding provisions of this section he shall be treated as not having been in default in respect of the prescribed accounting period in question (and, accordingly, any surcharge liability notice the service of which depended upon that default shall be deemed not to have been served).</p>
+            <blockContainer>
+              <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">6.</num>
+              <p class="Taxbodytext1" style="margin-left:0.39in">Section 71 VATA 1994 specifies two situations that are not capable of constituting a reasonable excuse, namely:</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(a)</num>
+              <p class="Taxbodytext3" style="margin-left:0.79in">An insufficiency of funds to pay is not a reasonable excuse; and</p>
+            </blockContainer>
+            <blockContainer>
+              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0.79in;text-indent:-0.39in">(b)</num>
+              <p class="Taxbodytext3" style="margin-left:0.79in">Where reliance is placed on any other person to perform any task, neither the fact of that reliance nor any dilatoriness or inaccuracy on the part of the person relied upon is a reasonable excuse.</p>
+            </blockContainer>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
+  </judgment>
+</akomaNtoso>
