@@ -646,12 +646,15 @@ class Numbering2 {
             if (prevIlvl > ilvl) {
                 if (count == 0) // test35
                     count += 1;
-                if (!start.HasValue && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != prevNumId.Value) {
-                    if (prevIlvl - ilvl > 1) { // test38
-                        start = absStart;
+
+                if (prevNumIdWithoutStyle.HasValue) { // see test 46
+                    int? prevStartOverride = GetStartOverride(prevNumbering, prevIlvl);
+                    if (prevStartOverride.HasValue && prevStartOverride.Value > 1) { // test 38
+                        start = absStart; // not sure why
                         numIdOfStartOverride = -2;
                     }
                 }
+
                 if (prevNumIdWithoutStyle == numberingId && LevelFormatIsCompound(main, numberingId, prevIlvl))
                     prevContainsLowerCompound = true;
                 continue;
@@ -713,7 +716,6 @@ class Numbering2 {
             if (ilvl != baseIlvl)
                 throw new Exception();
             Level lvl = Numbering.GetLevel(main, numberingId, ilvl);    // this is redundant
-            int start = lvl.StartNumberingValue?.Val ?? 1;
             int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
             n -= 1;
             string num = FormatN(n, lvl.NumberingFormat);
