@@ -19,6 +19,7 @@ class Builder : AkN.Builder {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
+        main.SetAttribute("xmlns:uk", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.ukns); // for widths attr on table element
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);

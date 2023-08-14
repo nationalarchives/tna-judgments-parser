@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.Parse;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 
 namespace UK.Gov.Legislation.ExplanatoryMemoranda {
@@ -23,7 +22,7 @@ class Parser : CaseLaw.OptimizedParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parser>();
 
-    private Parser(WordprocessingDocument doc, WordDocument preParsed) : base(doc, preParsed, null, null) { }
+    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed) : base(doc, preParsed, null, null) { }
 
     private IDocument Parse() {
 
@@ -34,8 +33,8 @@ class Parser : CaseLaw.OptimizedParser {
 
         IEnumerable<IImage> images = WImage.Get(doc);
         DocumentMetadata metadata = Metadata.Make(header, doc);
-        logger.LogInformation("the type is " + metadata.Name);
-        logger.LogInformation("the uri is " + metadata.ShortUriComponent);
+        logger.LogInformation("the type is {}", metadata.Name);
+        logger.LogInformation("the uri is {}", metadata.ShortUriComponent);
         return new DividedDocument {
             Header = header,
             Body = body,
@@ -65,12 +64,59 @@ class Parser : CaseLaw.OptimizedParser {
 
     private IDivision ParseDivsion() {
         int save = i;
-        IDivision div = ParseSection();
+        IDivision div = ParseCrossHeading();
+        if (div is not null)
+            return div;
+        i = save;
+        div = ParseSection();
         if (div is not null)
             return div;
         i = save;
         return ParseParagraph();
     }
+
+    /* cross-headings */
+
+    private bool IsCrossHeading(WLine line) {
+        if (i < 3)
+            return false;
+        if (line is WOldNumberedParagraph)
+            return false;
+        float left = line.LeftIndentInches ?? 0f;
+        if (left != 0)
+            return false;
+        float first = line.FirstLineIndentInches ?? 0f;
+        if (first != 0)
+            return false;
+        // if (!line.IsFlushLeft())
+        //     return false;
+        if (!line.Contents.All(i => i is IFormattedText ft && (ft.Bold ?? false))) // IsAllBold
+            return false;
+        return true;
+    }
+
+    private IDivision ParseCrossHeading() {
+        IBlock block1 = PreParsed.Body[i].Block;
+        if (block1 is not WLine line1)
+            return null;
+        if (!IsCrossHeading(line1))
+            return null;
+        i += 1;
+
+        List<Model.Section> children = new ();
+        while (i < PreParsed.Body.Count) {
+            Model.Section child = ParseSection();
+            if (child is null)
+                break;
+            children.Add(child);
+        }
+        if (!children.Any())
+            return null;
+
+        return new CrossHeading{ Heading = line1, Children = children };
+    }
+
+    /* sections */
 
     private static bool IsSectionHeading(IBlock block) {
         if (block is not WLine line)
@@ -80,8 +126,8 @@ class Parser : CaseLaw.OptimizedParser {
         return true;
     }
 
-    private IDivision ParseSection() {
-        logger.LogTrace("parsing element " + i);
+    private Model.Section ParseSection() {
+        logger.LogTrace("parsing element {}", i);
         IBlock block = PreParsed.Body.ElementAt(i).Block;
         if (!IsSectionHeading(block))
             return null;
@@ -98,7 +144,7 @@ class Parser : CaseLaw.OptimizedParser {
             heading = line;
         }
         List<IDivision> children = ParseSectionChildren();
-        return new BigLevel { Number = num, Heading = heading, Children = children };
+        return new Model.Section { Number = num, Heading = heading, Children = children };
     }
 
     private List<IDivision> ParseSectionChildren() {

@@ -5,6 +5,21 @@ using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Model {
 
+
+internal class Section : IBranch {
+
+    public string Name => "section";
+
+    public IFormattedText Number { get; internal init; }
+
+    public ILine Heading { get; internal init; }
+
+    public IEnumerable<IBlock> Intro => null;
+
+    public IEnumerable<IDivision> Children { get; internal set; }
+
+}
+
 interface IParagraph : Judgments.IDivision { }
 
 interface IBranchParagraph : IParagraph, Judgments.IBranch { }
