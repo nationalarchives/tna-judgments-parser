@@ -29,6 +29,7 @@
 
 <xs:element name="meta" />
 
+
 <!-- preface -->
 
 <xs:element name="preface">
@@ -46,6 +47,14 @@
                 <xs:element ref="docType" />
                 <xs:element ref="docNumber" />
             </xs:choice>
+            <xs:attribute name="class" >
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="center" />
+                        <xs:enumeration value="right" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:extension>
     </xs:complexContent>
 </xs:complexType>
@@ -54,35 +63,41 @@
 
 <xs:element name="docNumber" type="inline-container" />
 
+
 <!-- body -->
 
 <xs:element name="mainBody">
     <xs:complexType>
-        <xs:choice maxOccurs="unbounded">
+        <xs:choice minOccurs="2" maxOccurs="unbounded">
             <xs:element ref="level" />
+            <xs:element ref="section" />
             <xs:element ref="paragraph" />
         </xs:choice>
     </xs:complexType>
 </xs:element>
+
 
 <!-- hcontainers -->
 
 <xs:element name="level">
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref="num" minOccurs="0" />
-            <xs:element ref="heading" minOccurs="0" />
-            <xs:choice>
-                <xs:sequence>
-                    <xs:element ref="intro" minOccurs="0" />
-                    <xs:choice minOccurs="1" maxOccurs="unbounded">
-                        <xs:element ref="level" />
-                        <xs:element ref="paragraph" />
-                    </xs:choice>
-                    <xs:element ref="wrapUp" minOccurs="0" />
-                </xs:sequence>
-                <xs:element ref="content" />
+            <xs:element ref="heading" />
+            <xs:choice minOccurs="2" maxOccurs="unbounded">
+                <xs:element ref="level" />
+                <xs:element ref="section" />
+                <xs:element ref="paragraph" />
             </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="section">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" />
+            <xs:element ref="heading" />
+            <xs:element ref="paragraph" minOccurs="1" maxOccurs="unbounded" />
         </xs:sequence>
     </xs:complexType>
 </xs:element>
@@ -90,12 +105,11 @@
 <xs:element name="paragraph">
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref="num" minOccurs="0" />
-            <xs:element ref="heading" minOccurs="0" />
+            <xs:element ref="num" />
             <xs:choice>
                 <xs:sequence>
                     <xs:element ref="intro" minOccurs="0" />
-                    <xs:element ref="subparagraph" minOccurs="1" maxOccurs="unbounded" />
+                    <xs:element ref="subparagraph" minOccurs="2" maxOccurs="unbounded" />
                     <xs:element ref="wrapUp" minOccurs="0" />
                 </xs:sequence>
                 <xs:element ref="content" />
@@ -108,11 +122,10 @@
     <xs:complexType>
         <xs:sequence>
             <xs:element ref="num" minOccurs="0" />
-            <xs:element ref="heading" minOccurs="0" />
             <xs:choice>
                 <xs:sequence>
                     <xs:element ref="intro" minOccurs="0" />
-                    <xs:element ref="subparagraph" minOccurs="1" maxOccurs="unbounded" />
+                    <xs:element ref="subparagraph" minOccurs="2" maxOccurs="unbounded" />
                     <xs:element ref="wrapUp" minOccurs="0" />
                 </xs:sequence>
                 <xs:element ref="content" />
@@ -120,6 +133,7 @@
         </xs:sequence>
     </xs:complexType>
 </xs:element>
+
 
 <!-- block containers -->
 
@@ -136,24 +150,28 @@
 
 <xs:element name="wrapUp" type="block-container" />
 
+
 <!-- blocks -->
 
 <xs:element name="num">
     <xs:complexType mixed="true">
-        <xs:attribute name="class" />
-        <xs:attribute name="style" />
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
     </xs:complexType>
 </xs:element>
 
 <xs:complexType name="inline-container" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="span" />
+        <xs:element ref="b" />
+        <xs:element ref="i" />
+        <xs:element ref="u" />
         <xs:element ref="a" />
         <xs:element ref="marker" />
         <xs:element ref="authorialNote" />
     </xs:choice>
-    <xs:attribute name="class" />
-    <xs:attribute name="style" />
 </xs:complexType>
 
 <xs:element name="heading" type="inline-container" />
@@ -162,9 +180,29 @@
 
 <xs:element name="table" />
 
+
 <!-- inline -->
 
-<xs:element name="span" type="inline-container" />
+<xs:element name="b">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="i">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="u" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="u">
+    <xs:complexType mixed="true" />
+</xs:element>
 
 <xs:element name="a" />
 
@@ -185,13 +223,6 @@
         <xs:sequence>
             <xs:element ref="p" maxOccurs="unbounded" />
         </xs:sequence>
-        <xs:attribute name="class" use="required">
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="footnote" />
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:attribute>
         <xs:attribute name="marker" use="required" type="xs:integer" />
     </xs:complexType>
 </xs:element>
