@@ -24,6 +24,7 @@ class HeaderSplitter {
         Start,
         AfterDocType,
         AfterRegulationTitle,
+        AfterDocNumber,
         Done,
         Fail
     };
@@ -49,6 +50,9 @@ class HeaderSplitter {
                     break;
                 case State.AfterRegulationTitle:
                     AfterRegulationTitle(block);
+                    break;
+                case State.AfterDocNumber:
+                    AfterDocNumber(block);
                     break;
                 case State.Done:
                     return;
@@ -116,6 +120,39 @@ class HeaderSplitter {
         Model.DocNumber2 docNumber = new Model.DocNumber2 { Contents = line.Contents };
         WLine newLine = WLine.Make(line, new List<IInline>(1) { docNumber });
         Enriched.Add(newLine);
+        state = State.AfterDocNumber;
+    }
+
+    internal static string GetDocumentNumber(List<IBlock> header) {
+        Model.DocNumber2 docNumber = Util.Descendants<Model.DocNumber2>(header).FirstOrDefault();
+        if (docNumber is null)
+            return null;
+        string text = IInline.ToString(docNumber.Contents);
+        return Regex.Replace(text, @"\s+", " ").Trim();
+    }
+
+    private void AfterDocNumber(IBlock block) {
+        if (block is WTable table && table.Rows.Count() == 1 && table.Rows.First() is WRow row)
+        {
+            if (row.Cells.Count() == 1 && row.Cells.First() is WCell cell)
+            {
+                if (cell.Contents.Count() == 1 && cell.Contents.First() is WLine x) {
+                    if (x.NormalizedContent.StartsWith("The purpose of the instrument is") || x.NormalizedContent.StartsWith("Purpose of the instrument."))
+                    {
+                        Enriched.Add(x);
+                        return;
+                    }
+                }
+            }
+        }
+        if (block is not WLine line) {
+            state = State.Done;
+            return;
+        }
+        if (line.NormalizedContent.StartsWith("The above instrument")) {
+            Enriched.Add(line);
+            return;
+        }
         state = State.Done;
     }
 
