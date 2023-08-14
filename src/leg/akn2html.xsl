@@ -47,14 +47,18 @@
 
 <xsl:template name="style">
 	<style>
-.preface &gt; p { text-align: center }
+article { margin: 0.5in 1in }
+.preface &gt; p.center { text-align: center }
 section { position: relative }
-section:not(.heading) { margin-left: 0.5in }
 h2 { font-size: inherit; font-weight: normal }
-h2.heading &gt; .num { display: inline-block; width: 0.5in }
-h2:not(.heading) { position: absolute; margin-top: 0; margin-left: -0.5in }
-<!-- h2.floating { position: absolute; margin-top: 0 }
-.num { display: inline-block; padding-right: 1em }
+.section &gt; h2 &gt; .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section &gt; .level { margin-left: 0.5in }
+</style>
+<!--	
 td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
 td > .num { left: -2em }
 table { margin: 0 auto; width: 100%; border-collapse: collapse }
@@ -64,7 +68,6 @@ td > p:last-child { margin-bottom: 0 }
 .fn { vertical-align: super; font-size: small }
 .footnote > p > .marker { vertical-align: super; font-size: small }
 .tab { display: inline-block; width: 0.25in } -->
-</style>
 </xsl:template>
 
 <xsl:template match="doc">
@@ -88,20 +91,19 @@ td > p:last-child { margin-bottom: 0 }
 	</div>
 </xsl:template>
 
-<xsl:template match="level | paragraph | subparagraph">
+<xsl:template match="level | section | paragraph | subparagraph">
 	<section>
 		<xsl:attribute name="class">
-			<xsl:choose>
-				<xsl:when test="exists(heading)">
-					<xsl:sequence select="concat(local-name(.), ' heading')" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:sequence select="local-name(.)" />
-				</xsl:otherwise>
-			</xsl:choose>
+			<xsl:value-of select="local-name(.)" />
+			<xsl:if test="num">
+				<xsl:text> num</xsl:text>
+			</xsl:if>
+			<xsl:if test="heading">
+				<xsl:text> heading</xsl:text>
+			</xsl:if>
 		</xsl:attribute>
 		<xsl:if test="num | heading">
-			<h2 class="{ string-join((num, heading)/local-name(.), ' ') }">
+			<h2>
 				<xsl:apply-templates select="num | heading" />
 			</h2>
 		</xsl:if>
@@ -126,6 +128,7 @@ td > p:last-child { margin-bottom: 0 }
 
 <xsl:template match="p">
 	<xsl:element name="{ local-name() }">
+		<xsl:copy-of select="@class" />
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>
@@ -157,6 +160,12 @@ td > p:last-child { margin-bottom: 0 }
 		</xsl:attribute>
 		<xsl:apply-templates />
 	</img>
+</xsl:template>
+
+<xsl:template match="b | i | u">
+	<xsl:element name="{ local-name() }">
+		<xsl:apply-templates />
+	</xsl:element>
 </xsl:template>
 
 <xsl:template match="br">
