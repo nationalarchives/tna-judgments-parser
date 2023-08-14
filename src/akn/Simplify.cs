@@ -113,6 +113,11 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             e.RemoveAttribute("class");
             e.RemoveAttribute("style");
 
+            if (e.ParentNode.LocalName == "preface" && State.TryGetValue("text-align", out string align) && align != "normal")
+            {
+                e.SetAttribute("class", align);
+            }
+
             List<XmlNode> children = e.ChildNodes.Cast<XmlNode>().ToList();
             foreach (XmlNode child in children)
                 VisitNode(child);
@@ -152,7 +157,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 State["font-style"] = "italic";
                 return;
             }
-            if (State.GetValueOrDefault("text-decoration") == "underline")
+            if (State.GetValueOrDefault("text-decoration") == "underline" || State.GetValueOrDefault("text-decoration-line") == "underline")
             {
                 var u = text.OwnerDocument.CreateElement("u", Builder.ns);
                 text.ParentNode.ReplaceChild(u, text);
