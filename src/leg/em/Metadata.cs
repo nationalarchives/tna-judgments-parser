@@ -12,9 +12,8 @@ class Metadata {
 
     internal static DocumentMetadata Make(List<IBlock> header, WordprocessingDocument doc) {
         string name = HeaderSplitter.GetDocumentType(header);
-        string uri = null;
-        if (header.LastOrDefault() is WLine last)
-            uri = RegulationNumber.MakeURI(last.NormalizedContent) + "/em";
+        string number = HeaderSplitter.GetDocumentNumber(header);
+        string uri = number is null ? null : RegulationNumber.MakeURI(number) + "/em";
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
         return new DocumentMetadata {
             Name = name,
