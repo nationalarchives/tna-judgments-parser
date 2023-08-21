@@ -106,33 +106,40 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
         private void VisitElement(XmlElement e)
         {
             Dictionary<string, string> copy = new(this.State);
+            UpdateStateAndRemoveStyleAttributes(e);
+            AddClassToPrefaceParagraph(e);
+            e.ChildNodes.Cast<XmlNode>().ToList().ForEach(VisitNode);
+            RemoveSpan(e);
+            State = copy;
+        }
+
+        private void UpdateStateAndRemoveStyleAttributes(XmlElement e) {
             foreach (KeyValuePair<string, string> item in GetClassProperties(e))
                 State[item.Key] = item.Value;
             foreach (KeyValuePair<string, string> item in GetStyleProperties(e))
                 State[item.Key] = item.Value;
             e.RemoveAttribute("class");
             e.RemoveAttribute("style");
+        }
 
-            if (e.ParentNode.LocalName == "preface" && State.TryGetValue("text-align", out string align) && align != "normal")
-            {
-                e.SetAttribute("class", align);
-            }
+        private void AddClassToPrefaceParagraph(XmlElement p) {
+            if (p.ParentNode.LocalName != "preface")
+                return;
+            State.TryGetValue("text-align", out string align);
+            if (align == "center" || align == "right")
+                p.SetAttribute("class", align);
+        }
 
-            List<XmlNode> children = e.ChildNodes.Cast<XmlNode>().ToList();
+        private static void RemoveSpan(XmlElement span) {
+            if (span.LocalName != "span")
+                return;
+            List<XmlNode> children = span.ChildNodes.Cast<XmlNode>().ToList();
             foreach (XmlNode child in children)
-                VisitNode(child);
-            if (e.LocalName == "span")
             {
-                children = e.ChildNodes.Cast<XmlNode>().ToList();
-                foreach (XmlNode child in children)
-                {
-                    e.RemoveChild(child);
-                    e.ParentNode.InsertAfter(child, e);
-                }
-                e.ParentNode.RemoveChild(e);
+                span.RemoveChild(child);
+                span.ParentNode.InsertAfter(child, span);
             }
-
-            State = copy;
+            span.ParentNode.RemoveChild(span);
         }
 
         private void VisitText(XmlText text)
@@ -157,15 +164,29 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 State["font-style"] = "italic";
                 return;
             }
-            if (State.GetValueOrDefault("text-decoration") == "underline" || State.GetValueOrDefault("text-decoration-line") == "underline")
+            if (State.GetValueOrDefault("text-decoration") == "underline")
             {
                 var u = text.OwnerDocument.CreateElement("u", Builder.ns);
                 text.ParentNode.ReplaceChild(u, text);
                 u.AppendChild(text);
-                // State.Remove("text-decoration");
-                // VisitText(text);
-                // State["text-decoration"] = "underline";
-                // return;
+                State.Remove("text-decoration");
+                VisitText(text);
+                State["text-decoration"] = "underline";
+                return;
+            }
+            if (State.GetValueOrDefault("text-decoration-line") == "underline")
+            {
+                var u = text.OwnerDocument.CreateElement("u", Builder.ns);
+                text.ParentNode.ReplaceChild(u, text);
+                u.AppendChild(text);
+                State.Remove("text-decoration-line");
+                VisitText(text);
+                State["text-decoration-line"] = "underline";
+                return;
+            }
+            if (State.GetValueOrDefault("text-transform") == "uppercase") {
+                text.Value = text.Value.ToUpper();
+                return;
             }
         }
 
