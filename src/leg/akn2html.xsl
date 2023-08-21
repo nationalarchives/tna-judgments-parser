@@ -57,6 +57,8 @@ h2 { font-size: inherit; font-weight: normal }
 .subparagraph { margin-left: 0.5in }
 .subparagraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
 section &gt; .level { margin-left: 0.5in }
+span.fn { vertical-align: super; font-size: small }
+.footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
 </style>
 <!--	
 td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
