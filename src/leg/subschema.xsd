@@ -82,11 +82,18 @@
 <xs:element name="level">
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref="heading" />
-            <xs:choice minOccurs="2" maxOccurs="unbounded">
-                <xs:element ref="level" />
-                <xs:element ref="section" />
-                <xs:element ref="paragraph" />
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="level" />
+                        <xs:element ref="section" />
+                        <xs:element ref="paragraph" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -97,7 +104,10 @@
         <xs:sequence>
             <xs:element ref="num" />
             <xs:element ref="heading" />
-            <xs:element ref="paragraph" minOccurs="1" maxOccurs="unbounded" />
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="level" />
+                <xs:element ref="paragraph" />
+            </xs:choice>
         </xs:sequence>
     </xs:complexType>
 </xs:element>
@@ -105,11 +115,11 @@
 <xs:element name="paragraph">
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref="num" />
+            <xs:element ref="num" minOccurs="0" />
             <xs:choice>
                 <xs:sequence>
                     <xs:element ref="intro" minOccurs="0" />
-                    <xs:element ref="subparagraph" minOccurs="2" maxOccurs="unbounded" />
+                    <xs:element ref="subparagraph" maxOccurs="unbounded" />
                     <xs:element ref="wrapUp" minOccurs="0" />
                 </xs:sequence>
                 <xs:element ref="content" />
