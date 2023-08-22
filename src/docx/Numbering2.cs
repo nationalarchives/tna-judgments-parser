@@ -647,9 +647,11 @@ class Numbering2 {
                 if (count == 0) // test35
                     count += 1;
 
-                if (prevNumIdWithoutStyle.HasValue) { // see test 46
-                    int? prevStartOverride = GetStartOverride(prevNumbering, prevIlvl);
-                    if (prevStartOverride.HasValue && prevStartOverride.Value > 1) { // test 38
+                int? prevStartOverride = GetStartOverride(prevNumbering, prevIlvl);
+                if (prevStartOverride.HasValue) { // see tests 38, 47, 66 & 67
+                    bool condition1 = prevIlvl - ilvl > 1 && prevStartOverride.Value > 1;
+                    bool condition2 = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != thisNumIdOfStyle.Value;
+                    if (condition1 || condition2) {
                         start = absStart; // not sure why
                         numIdOfStartOverride = -2;
                     }
