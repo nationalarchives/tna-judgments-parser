@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,6 +52,14 @@ class PreParser {
 
     RemoveTrailingWhitespace removeTrailingWhitespace = new RemoveTrailingWhitespace();
     Merger mergeRuns = new Merger();
+    readonly Func<IBlock, IBlock> trimLeadingLineBreaks = (block) => {
+        if (block is not WLine line)
+            return block;
+        var trimmed = line.Contents.SkipWhile(i => i is WLineBreak);
+        if (trimmed.Count() == line.Contents.Count())
+            return line;
+        return WLine.Make(line, trimmed);
+    };
 
     private IEnumerable<IBlock> Header(MainDocumentPart main) {
         Header header = DOCX.Headers.GetFirst(main);
@@ -59,6 +68,7 @@ class PreParser {
         IEnumerable<IBlock> contents = Blocks.ParseBlocks(main, header.ChildElements)
             .Where(block => block is not ILine line || !line.IsEmpty());
         contents = removeTrailingWhitespace.Enrich(contents);
+        contents = contents.Select(trimLeadingLineBreaks);
         contents = mergeRuns.Enrich(contents);
         return contents.ToList();  // toList() is needed for the ImageRef.Src replacement
     }
@@ -94,7 +104,7 @@ class PreParser {
     private List<BlockWithBreak> Body(MainDocumentPart main) {
         List<MergedBlockWithBreak> unmerged = FirstPass(main);
         List<BlockWithBreak> merged = Merge(unmerged)
-            .Select(RemoveTrailingWhitespaceAndMergeRuns)
+            .Select(TrimWhitespaceAndMergeRuns)
             .Where(LineIsNotEmpty)
             .ToList();
         merged = HardNumbers.Extract(merged);
@@ -167,8 +177,9 @@ class PreParser {
     }
 
 
-    private BlockWithBreak RemoveTrailingWhitespaceAndMergeRuns(BlockWithBreak bb) {
+    private BlockWithBreak TrimWhitespaceAndMergeRuns(BlockWithBreak bb) {
         var enriched = removeTrailingWhitespace.Enrich1(bb.Block);
+        enriched = trimLeadingLineBreaks(enriched);
         enriched = mergeRuns.Enrich1(enriched);
         if (object.ReferenceEquals(enriched, bb))
             return bb;
