@@ -15,7 +15,6 @@ class WLine : ILine {
     private readonly ParagraphProperties properties;
     private IEnumerable<IInline> contents;
 
-    internal bool IsHeadingOfNumberedParagraph { get; set; }
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
 
@@ -97,8 +96,6 @@ class WLine : ILine {
 
     public float? LeftIndentInches {
         get {
-            if (IsHeadingOfNumberedParagraph)
-                return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, properties);
             if (IsFirstLineOfNumberedParagraph)
                 return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);
             return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, properties);
