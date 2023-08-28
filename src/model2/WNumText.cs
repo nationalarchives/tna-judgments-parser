@@ -177,20 +177,13 @@ internal class WNumber : WNumText, INumber {
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties pProps;
 
-    internal bool IsNumberOfParagraphWithHeading { get; set; }
-
     public WNumber(MainDocumentPart main, DOCX.NumberInfo info, Paragraph paragraph) : base(main, info, paragraph) {
         this.main = main;
         this.pProps = paragraph.ParagraphProperties;
     }
 
     public float? LeftIndentInches {
-        get {
-            if (IsNumberOfParagraphWithHeading)
-                return DOCX.Paragraphs.GetLeftIndentWithoutNumberingOrStyleInInches(main, pProps);
-            else
-                return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
-        }
+        get => DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, pProps);
     }
 
     public string LeftIndent {
