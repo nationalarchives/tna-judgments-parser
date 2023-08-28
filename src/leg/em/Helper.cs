@@ -3,9 +3,9 @@ using System.IO;
 using System.Xml;
 using DocumentFormat.OpenXml.Packaging;
 
-namespace UK.Gov.Legislation {
+namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 
-class API {
+class Helper {
 
     public static IXmlDocument Parse(Stream docx) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
