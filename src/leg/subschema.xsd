@@ -186,7 +186,17 @@
 
 <xs:element name="heading" type="inline-container" />
 
-<xs:element name="p" type="inline-container" />
+<xs:element name="p">
+    <xs:complexType mixed="true">
+        <xs:complexContent>
+            <xs:extension base="inline-container">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="br" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:element>
 
 <xs:element name="table" />
 
@@ -235,6 +245,10 @@
         </xs:sequence>
         <xs:attribute name="marker" use="required" type="xs:integer" />
     </xs:complexType>
+</xs:element>
+
+<xs:element name="br">
+    <xs:complexType />
 </xs:element>
 
 </xs:schema>
