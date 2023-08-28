@@ -8,7 +8,7 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	exclude-result-prefixes="uk html math xs">
 
-<xsl:output method="html" encoding="utf-8" indent="yes" include-content-type="no" />
+<xsl:output method="html" version="5" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
 <xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time" />
@@ -37,6 +37,7 @@
 <xsl:template match="akomaNtoso">
 	<html>
 		<head>
+			<meta charset="utf-8" />
 			<xsl:call-template name="style" />
 		</head>
 		<body>
