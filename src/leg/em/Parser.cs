@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -12,7 +13,7 @@ using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 
 namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 
-class Parser : CaseLaw.OptimizedParser {
+partial class Parser : CaseLaw.OptimizedParser {
 
     internal static IDocument Parse(WordprocessingDocument doc) {
         CaseLaw.WordDocument preParsed = new CaseLaw.PreParser().Parse(doc);
@@ -118,10 +119,15 @@ class Parser : CaseLaw.OptimizedParser {
 
     /* sections */
 
+    [GeneratedRegex("^\\d+\\.$")]
+    private static partial Regex SectionNumberRegex();
+
     private static bool IsSectionHeading(IBlock block) {
-        if (block is not WLine line)
+        if (block is not WOldNumberedParagraph np)
             return false;
-        if (line.Style != "EMSectionTitle")
+        if (np.Style != "EMSectionTitle")
+            return false;
+        if (!SectionNumberRegex().IsMatch(np.Number.Text))
             return false;
         return true;
     }
