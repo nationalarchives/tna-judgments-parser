@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2016/40/press-summary/1/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2016/40/press-summary/1/data.xml" />
-          <FRBRdate date="2023-07-24T19:21:48" name="transform" />
+          <FRBRdate date="2023-08-29T17:35:21" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,7 +39,7 @@
         <uk:court>UKSC</uk:court>
         <uk:year>2016</uk:year>
         <uk:summaryOf>https://caselaw.nationalarchives.gov.uk/id/uksc/2016/40</uk:summaryOf>
-        <uk:parser>0.13.0</uk:parser>
+        <uk:parser>0.17.0</uk:parser>
         <uk:hash>a6529333da50b1d28f74b93bcd7e4654433c153fb686f90a24764e61ed2841e5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -145,21 +145,13 @@
             <p><span style="font-style:italic;font-family:Garamond">References in square brackets are to paragraphs in the judgment</span></p>
           </content>
         </level>
-        <level>
-          <content>
-            <p><br /><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond;font-size:11pt">NOTE</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p style="text-align:justify"><span style="font-weight:bold;font-family:Garamond;font-size:11pt">This summary is provided to assist in understanding the Court’s decision.  It does not form part of the reasons for the decision.  The full judgment of the Court is the only authoritative document.   Judgments are public documents and are available at:</span></p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p><a href="http://supremecourt.uk/decided-cases/index.html"><span class="Hyperlink" style="font-family:Garamond;font-size:11pt;color:initial">http://supremecourt.uk/decided-cases/index.html</span></a></p>
-          </content>
-        </level>
+      </level>
+      <level>
+        <heading><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond;font-size:11pt">NOTE</span></heading>
+        <content>
+          <p style="text-align:justify"><span style="font-weight:bold;font-family:Garamond;font-size:11pt">This summary is provided to assist in understanding the Court’s decision.  It does not form part of the reasons for the decision.  The full judgment of the Court is the only authoritative document.   Judgments are public documents and are available at:</span></p>
+          <p><a href="http://supremecourt.uk/decided-cases/index.html"><span class="Hyperlink" style="font-family:Garamond;font-size:11pt;color:initial">http://supremecourt.uk/decided-cases/index.html</span></a></p>
+        </content>
       </level>
     </mainBody>
   </doc>
