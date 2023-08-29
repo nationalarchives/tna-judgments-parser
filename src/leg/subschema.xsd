@@ -68,7 +68,7 @@
 
 <xs:element name="mainBody">
     <xs:complexType>
-        <xs:choice minOccurs="2" maxOccurs="unbounded">
+        <xs:choice maxOccurs="unbounded">
             <xs:element ref="level" />
             <xs:element ref="section" />
             <xs:element ref="paragraph" />
@@ -135,7 +135,7 @@
             <xs:choice>
                 <xs:sequence>
                     <xs:element ref="intro" minOccurs="0" />
-                    <xs:element ref="subparagraph" minOccurs="2" maxOccurs="unbounded" />
+                    <xs:element ref="subparagraph" maxOccurs="unbounded" />
                     <xs:element ref="wrapUp" minOccurs="0" />
                 </xs:sequence>
                 <xs:element ref="content" />
