@@ -60,6 +60,8 @@ h2 { font-size: inherit; font-weight: normal }
 section &gt; .level { margin-left: 0.5in }
 span.fn { vertical-align: super; font-size: small }
 .footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
 </style>
 <!--	
 td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
