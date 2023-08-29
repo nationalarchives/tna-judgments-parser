@@ -144,6 +144,15 @@
     </xs:complexType>
 </xs:element>
 
+<xs:element name="blockContainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" />
+            <xs:element ref="p" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
 
 <!-- block containers -->
 
@@ -240,9 +249,10 @@
 
 <xs:element name="authorialNote">
     <xs:complexType>
-        <xs:sequence>
-            <xs:element ref="p" maxOccurs="unbounded" />
-        </xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="p" />
+            <xs:element ref="blockContainer" />
+        </xs:choice>
         <xs:attribute name="marker" use="required" type="xs:integer" />
     </xs:complexType>
 </xs:element>
