@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/720/em" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/720/em" />
-          <FRBRdate date="2023-08-29" name="generated" />
+          <FRBRdate date="2023-08-30" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/720/em" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/720/em" />
-          <FRBRdate date="2023-08-29" name="generated" />
+          <FRBRdate date="2023-08-30" name="generated" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/720/em/data.xml" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/720/em/data.xml" />
-          <FRBRdate date="2023-08-29T19:10:09" name="transform" />
+          <FRBRdate date="2023-08-30T17:59:35" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -28,6 +28,10 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
+      <proprietary source="#">
+        <uk:parser>0.17.0</uk:parser>
+        <uk:hash>6cfb5ff3d24247cc773dd6cc5526f000b4a90ab842f035e81671c48f602bd17c</uk:hash>
+      </proprietary>
     </meta>
     <preface>
       <p class="center"><docType><b>EXPLANATORY MEMORANDUM TO</b></docType></p>
