@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="PolicyNote">
+  <doc name="PolicyNote" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ssi/2020/315/em" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ssi/2020/315/em" />
-          <FRBRdate date="2023-08-29" name="generated" />
+          <FRBRdate date="2023-08-30" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ssi/2020/315/em" />
           <FRBRuri value="http://www.legislation.gov.uk/ssi/2020/315/em" />
-          <FRBRdate date="2023-08-29" name="generated" />
+          <FRBRdate date="2023-08-30" name="generated" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ssi/2020/315/em/data.xml" />
           <FRBRuri value="http://www.legislation.gov.uk/ssi/2020/315/em/data.xml" />
-          <FRBRdate date="2023-08-29T19:05:26" name="transform" />
+          <FRBRdate date="2023-08-30T17:59:36" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -28,6 +28,10 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
+      <proprietary source="#">
+        <uk:parser>0.17.0</uk:parser>
+        <uk:hash>69c8f870ad2486ae2515736f7e79d3f22c3b2e1b6dfcc893acddf46cc0650987</uk:hash>
+      </proprietary>
     </meta>
     <preface>
       <p class="center"><docType><b>POLICY NOTE</b></docType></p>
@@ -38,7 +42,7 @@
     <mainBody>
       <level>
         <content>
-          <table d6p1:widths="6.26in" xmlns:d6p1="https://caselaw.nationalarchives.gov.uk/akn">
+          <table uk:widths="6.26in">
             <tr>
               <td>
                 <p><b>Purpose of the instrument.</b><b> </b></p>

@@ -17,6 +17,8 @@ abstract class Builder {
 
     public static readonly string ns = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
+    protected abstract string UKNS { get; }
+
     protected readonly XmlDocument doc;
 
     protected Builder() {
@@ -307,7 +309,7 @@ abstract class Builder {
         if (columnWidths.Any()) {
             IEnumerable<string> s = columnWidths.Select(w => CSS2.ConvertSize(w, "in"));
             string s2 = string.Join(" ", s);
-            table.SetAttribute("widths", Metadata.ukns, s2);
+            table.SetAttribute("widths", UKNS, s2);
         }
 
         /* This keeps a grid of cells, with the dimensions the table would have
@@ -750,12 +752,16 @@ abstract class Builder {
         parent.AppendChild(tab);
     }
 
-    protected static void AddHash(XmlDocument akn) {
+    protected void AddHash(XmlDocument akn) {
+        AddHash(akn, UKNS);
+    }
+
+    protected static void AddHash(XmlDocument akn, string ns) {
         string value = SHA256.Hash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);
-        XmlElement hash = akn.CreateElement("uk", "hash", Metadata.ukns);
+        XmlElement hash = akn.CreateElement("uk", "hash", ns);
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
     }

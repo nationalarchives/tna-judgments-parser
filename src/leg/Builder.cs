@@ -9,8 +9,10 @@ namespace UK.Gov.Legislation {
 
 class Builder : AkN.Builder {
 
+    override protected string UKNS => "https://legislation.gov.uk/akn";
+
     public static XmlDocument Build(IDocument document) {
-        Builder builder = new Builder();
+        Builder builder = new();
         builder.PrivateBuild(document);
         return builder.doc;
     }
@@ -19,7 +21,7 @@ class Builder : AkN.Builder {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
-        // main.SetAttribute("xmlns:uk", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.ukns); // for widths attr on table element
+        main.SetAttribute("xmlns:uk", UKNS);
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);
@@ -33,6 +35,7 @@ class Builder : AkN.Builder {
             blocks(body, undivided.Body);
         else
             throw new System.Exception();
+        AddHash(doc);
     }
 
     private void AddMetadata(XmlElement main, DocumentMetadata data) {
@@ -96,6 +99,12 @@ class Builder : AkN.Builder {
         tna.SetAttribute("eId", "tna");
         tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
         tna.SetAttribute("showAs", "The National Archives");
+
+        XmlElement proprietary = CreateAndAppend("proprietary", meta);
+        proprietary.SetAttribute("source", "#");
+        XmlElement parser = doc.CreateElement("uk", "parser", UKNS);
+        proprietary.AppendChild(parser);
+        parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));
 
         if (data.CSS is not null) {
             XmlElement presentation = CreateAndAppend("presentation", meta);

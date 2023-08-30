@@ -10,6 +10,8 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class DocBuilder : Builder {
 
+    override protected string UKNS => Metadata.ukns;
+
     protected override string MakeDivisionId(IDivision div) {
         return null;
     }
@@ -17,7 +19,7 @@ class DocBuilder : Builder {
     public static XmlDocument Build(IAknDocument document) {
         DocBuilder builder = new DocBuilder();
         builder.Build2(document);
-        AddHash(builder.doc);
+        AddHash(builder.doc, builder.UKNS);
         return builder.doc;
     }
 
