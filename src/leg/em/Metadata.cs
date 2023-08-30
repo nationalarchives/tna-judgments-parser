@@ -1,9 +1,9 @@
 
 using System.Collections.Generic;
-using System.Linq;
+
 using DocumentFormat.OpenXml.Packaging;
+
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 
 namespace UK.Gov.Legislation.ExplanatoryMemoranda {

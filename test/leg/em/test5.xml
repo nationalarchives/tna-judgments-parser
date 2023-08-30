@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2020/1542/em" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2020/1542/em" />
-          <FRBRdate date="2023-08-29" name="generated" />
+          <FRBRdate date="2023-08-30" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2020/1542/em" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2020/1542/em" />
-          <FRBRdate date="2023-08-29" name="generated" />
+          <FRBRdate date="2023-08-30" name="generated" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2020/1542/em/data.xml" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2020/1542/em/data.xml" />
-          <FRBRdate date="2023-08-29T19:07:46" name="transform" />
+          <FRBRdate date="2023-08-30T17:59:35" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -28,6 +28,10 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
+      <proprietary source="#">
+        <uk:parser>0.17.0</uk:parser>
+        <uk:hash>c9da01a14f12ff70dd763c44b96a8bd3acef1eeb7087d6dcd0f53f58dba460ed</uk:hash>
+      </proprietary>
     </meta>
     <preface>
       <p class="center"><docType><b>EXPLANATORY MEMORANDUM TO</b></docType></p>
@@ -502,7 +506,7 @@
           <paragraph>
             <content>
               <p>This table sets out the statements that <u>may</u> be required under the 2018 Act.</p>
-              <table d8p1:widths="0.98in 1.77in 1.87in 2.56in" xmlns:d8p1="https://caselaw.nationalarchives.gov.uk/akn">
+              <table uk:widths="0.98in 1.77in 1.87in 2.56in">
                 <tr>
                   <td>
                     <p><b>Statement</b></p>
@@ -793,7 +797,7 @@
         <paragraph>
           <content>
             <p><b>Summary of amendments made in the Common Fisheries Policy (Amendment etc.) (EU Exit) Regulations 2020</b></p>
-            <table d7p1:widths="2.95in 6.69in" xmlns:d7p1="https://caselaw.nationalarchives.gov.uk/akn">
+            <table uk:widths="2.95in 6.69in">
               <tr>
                 <td colspan="2">
                   <p><b>Discard Plans</b></p>
@@ -1007,7 +1011,7 @@
         <paragraph>
           <content>
             <p><b>Retained EU law revoked by the instrument: Part 1</b></p>
-            <table d7p1:widths="2.95in 6.69in" xmlns:d7p1="https://caselaw.nationalarchives.gov.uk/akn">
+            <table uk:widths="2.95in 6.69in">
               <tr>
                 <td>
                   <p><b>Regulation</b></p>
@@ -1075,7 +1079,7 @@
         <paragraph>
           <content>
             <p><b>so far as it forms part of retained EU law: Part 2</b></p>
-            <table d7p1:widths="2.95in 6.69in" xmlns:d7p1="https://caselaw.nationalarchives.gov.uk/akn">
+            <table uk:widths="2.95in 6.69in">
               <tr>
                 <td>
                   <p><b>Regulation</b></p>

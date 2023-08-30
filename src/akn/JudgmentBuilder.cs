@@ -13,6 +13,8 @@ class JudgmentBuilder : Builder {
 
     private HashSet<string> Ids = new HashSet<string>();
 
+    override protected string UKNS => Metadata.ukns;
+
     override protected string MakeDivisionId(IDivision division) {
         if (division.Name != "paragraph")
             return null;
@@ -31,7 +33,7 @@ class JudgmentBuilder : Builder {
     public static XmlDocument Build(IJudgment judgment) {
         JudgmentBuilder akn = new JudgmentBuilder();
         akn.Build1(judgment);
-        AddHash(akn.doc);
+        AddHash(akn.doc, akn.UKNS);
         return akn.doc;
     }
 
