@@ -102,6 +102,14 @@ class Builder : AkN.Builder {
 
         XmlElement proprietary = CreateAndAppend("proprietary", meta);
         proprietary.SetAttribute("source", "#");
+        // if (data is Metadata em && em.AltNum is not null) {
+        //     string ukm = "http://www.legislation.gov.uk/namespaces/metadata";
+        //     proprietary.SetAttribute("xmlns:ukm", ukm);
+        //     XmlElement altNum = doc.CreateElement("ukm", "AlternativeNumber", ukm);
+        //     altNum.SetAttribute("Value", em.AltNum.Item2.ToString());
+        //     altNum.SetAttribute("Category", em.AltNum.Item1);
+        //     proprietary.AppendChild(altNum);
+        // }
         XmlElement parser = doc.CreateElement("uk", "parser", UKNS);
         proprietary.AppendChild(parser);
         parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));

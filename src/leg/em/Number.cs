@@ -15,6 +15,11 @@ class RegulationNumber {
         Tuple.Create( new Regex(@"^(\d{4}) No\. (\d+) \([LS]\. \d+\)$"), "uksi" )
     };
 
+    private static Regex[] AltNumPatterns = new Regex[] {
+        new Regex(@"^S\.?S\.?I\.? \d{4}/\d+ \(?(C)\. (\d+)\)?$"),
+        new Regex(@"^\d{4} No\. \d+ \(([LS])\. (\d+)\)$")
+    };
+
     internal static bool Is(string text) {
         return Patterns.Any(t => t.Item1.IsMatch(text));
     }
@@ -34,6 +39,17 @@ class RegulationNumber {
         if (string.IsNullOrEmpty(num))
             num = "0";
         return $"{type}/{year}/{num}";
+    }
+
+    internal static Tuple<string, int> ExtractAltNumber(string s) {
+        if (string.IsNullOrEmpty(s))
+            return null;
+        foreach (var pat in AltNumPatterns) {
+            Match match = pat.Match(s);
+            if (match.Success)
+                return Tuple.Create(match.Groups[1].Value, int.Parse(match.Groups[2].Value));
+        }
+        return null;
     }
 
 }
