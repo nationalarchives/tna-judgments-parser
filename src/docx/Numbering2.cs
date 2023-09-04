@@ -522,9 +522,10 @@ class Numbering2 {
         return GetStartOverride(numbering, ilvl);
     }
     private static int? GetStartOverride(NumberingInstance numbering, int ilvl) {
-        return numbering?.ChildElements.OfType<LevelOverride>()
+        LevelOverride over = numbering?.ChildElements.OfType<LevelOverride>()
             .Where(l => l.LevelIndex.Value == ilvl)
-            .FirstOrDefault()?.StartOverrideNumberingValue?.Val?.Value;
+            .FirstOrDefault();
+        return over?.StartOverrideNumberingValue?.Val?.Value;
     }
 
     private static bool StartOverrideIsOperative(MainDocumentPart main, Paragraph target, int ilvl) {
@@ -664,12 +665,14 @@ class Numbering2 {
 
             // prevIlvl == ilvl
             if (prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
-                int? prevOver = GetStartOverride(prevNumbering, ilvl);
-                if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
-                    start = prevOver.Value;
-                    numIdOfStartOverride = prevNumId.Value;
-                    if (!prevContainsLowerCompound)  // only test37 needs this condition
-                        count = 0;
+                if (!isHigher || prevNumIdOfStyle.HasValue) {  // test68
+                    int? prevOver = GetStartOverride(prevNumbering, ilvl);
+                    if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
+                        start = prevOver.Value;
+                        numIdOfStartOverride = prevNumId.Value;
+                        if (!prevContainsLowerCompound)  // only test37 needs this condition
+                            count = 0;
+                    }
                 }
             }
 
