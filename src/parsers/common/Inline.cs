@@ -273,16 +273,21 @@ class Inline {
             }
             if (e is CommentRangeStart || e is CommentRangeEnd) // EWHC/Comm/2016/869
                 continue;
-            if (e is OMML.Paragraph oMathPara) { // [2022] EWHC 2363 (Pat)
+
+            /* math */
+            if (e is OMML.Paragraph) { // [2022] EWHC 2363 (Pat)
                 var children = ParseRuns(main, e.ChildElements);
                 parsed.AddRange(children);
                 continue;
             }
-            if (e is OMML.OfficeMath omml) { // EWHC/Comm/2018/335
-                IMath mathML = Math2.Parse(main, omml);
+            if (e is OMML.ParagraphProperties)  // [2023] UKFTT 718 (TC)
+                continue;
+            if (e is OMML.OfficeMath oMath) { // EWHC/Comm/2018/335
+                IMath mathML = Math2.Parse(main, oMath);
                 parsed.Add(mathML);
                 continue;
             }
+
             if (e is SimpleField fldSimple) { // EWHC/Admin/2006/983
                 var p = Fields.ParseSimple(main, fldSimple);
                 parsed.AddRange(p);
