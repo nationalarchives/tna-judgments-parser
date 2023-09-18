@@ -39,6 +39,9 @@ class Metadata {
         parent.AppendChild(e);
         return e;
     }
+    private static XmlElement append(XmlElement parent, string name) {
+        return append(parent.OwnerDocument, parent, name);
+    }
     private static XmlElement append(XmlDocument doc, XmlElement parent, string name, string aName, string aValue) {
         XmlElement e = doc.CreateElement(name, ns);
         parent.AppendChild(e);
@@ -195,6 +198,15 @@ class Metadata {
                 tlcLocation.SetAttribute("showAs", loc.Name);
             }
 
+            IEnumerable<IDocJurisdiction> jurisdictions = Util.Descendants<IDocJurisdiction>(judgment.Header);
+            foreach (IDocJurisdiction jd in jurisdictions) {
+                XmlElement tlcConcept = append(references, "TLCConcept");
+                tlcConcept.SetAttribute("eId", jd.Id);
+                tlcConcept.SetAttribute("href", "/" + jd.Id.Replace('-', '/'));
+                tlcConcept.SetAttribute("showAs", jd.LongName);
+                tlcConcept.SetAttribute("shortForm", jd.ShortName);
+            }
+
             XmlElement proprietary = append(doc, meta, "proprietary");
             proprietary.SetAttribute("source", "#");
 
@@ -217,6 +229,11 @@ class Metadata {
                 XmlElement cite = doc.CreateElement("uk", "cite", ukns);
                 proprietary.AppendChild(cite);
                 cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
+            }
+            foreach (IDocJurisdiction jd in jurisdictions) {
+                XmlElement juris = doc.CreateElement("uk", "jurisdiction", ukns);
+                proprietary.AppendChild(juris);
+                juris.AppendChild(doc.CreateTextNode(jd.ShortName));
             }
             if (true) {
                 XmlElement parser = doc.CreateElement("uk", "parser", ukns);

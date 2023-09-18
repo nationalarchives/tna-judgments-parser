@@ -10,13 +10,14 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT {
 class CourtType : AbstractCourtType {
 
     protected override IEnumerable<Combo3> Combo3s() {
-        return new List<Combo3>(1) {
+        return new List<Combo3>(2) {
             new Combo3 {
                 Re1 = new Regex(@"^(IN THE )?UPPER TRIBUNAL$", RegexOptions.IgnoreCase),
                 Re2 = new Regex(@"^ADMINISTRATIVE APPEALS CHAMBER$", RegexOptions.IgnoreCase),
                 Re3 = new Regex(@"^\(TRAFFIC COMMISSIONER APPEALS\)$", RegexOptions.IgnoreCase),
                 Court = Courts.UpperTribunal_AdministrativeAppealsChamber
-            }
+            },
+            new GRCCombo()
         };
     }
 

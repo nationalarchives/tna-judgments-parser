@@ -765,25 +765,25 @@ class Combo3 : Combo {
         }
     };
 
-    internal bool Match(IBlock one, IBlock two, IBlock three) {
+    virtual internal bool Match(IBlock one, IBlock two, IBlock three) {
         return Match(Re1, one) && Match(Re2, two) && Match(Re3, three);
     }
 
-    internal List<WLine> Transform(IBlock one, IBlock two, IBlock three) {
+    virtual internal List<WLine> Transform(IBlock one, IBlock two, IBlock three) {
         return new List<WLine>(3) { Transform1(one), Transform1(two), Transform1(three) };
     }
 
-    internal bool MatchFirstRun(IBlock one, IBlock two, IBlock three) {
+    virtual internal bool MatchFirstRun(IBlock one, IBlock two, IBlock three) {
         return MatchFirstRun(Re1, one) && Match(Re2, two) && Match(Re3, three);
     }
-    internal List<WLine> TransformFirstRun(IBlock one, IBlock two, IBlock three) {
+    virtual internal List<WLine> TransformFirstRun(IBlock one, IBlock two, IBlock three) {
         return new List<WLine>(3) { TransformFirstRun(one), Transform1(two), Transform1(three) };
     }
 
-    internal bool MatchTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
+    virtual internal bool MatchTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
         return MatchFirstRun(Re1, one) && MatchFirstRun(Re2, two) && Match(Re3, three);
     }
-    internal List<WLine> TransformTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
+    virtual internal List<WLine> TransformTwoFirstRuns(IBlock one, IBlock two, IBlock three) {
         return new List<WLine>(3) { TransformFirstRun(one), TransformFirstRun(two), Transform1(three) };
     }
 
