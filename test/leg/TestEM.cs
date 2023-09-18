@@ -38,7 +38,7 @@ public class TestEM {
     }
 
     private static string xslt = @"<?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://caselaw.nationalarchives.gov.uk/akn'>
+<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn'>
   <xsl:template match='akn:FRBRdate/@date'/>
   <xsl:template match='uk:parser/text()'/>
   <xsl:template match='@*|node()'>
