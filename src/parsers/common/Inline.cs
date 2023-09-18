@@ -146,6 +146,9 @@ class Inline {
                         }
                     }
                 }
+                if (fc1 is not null && fc1.StartsWith("REF") && fc2 is not null && fc2.StartsWith("REF")) { // [2023] UKFTT 00745 (TC)
+                    continue;
+                }
                 throw new Exception();
             }
             if (Fields.IsFieldSeparater(e)) {
