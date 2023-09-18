@@ -117,6 +117,7 @@ class Metadata : IAknMetadata {
             }
             var judgmentUri = "https://caselaw.nationalarchives.gov.uk/id/" + judgmentUriComponent;
             Proprietary.Add(new Tuple<string, string>("summaryOf", judgmentUri));
+            Proprietary.Add(new Tuple<string, string>("summaryOfCite", cite));
         } else {
             logger.LogWarning("uri is null");
         }
