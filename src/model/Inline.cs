@@ -308,6 +308,17 @@ interface ILawyer : IFormattedText {
 
 }
 
+interface IDocJurisdiction : IInlineContainer {
+
+    string Id { get; }
+
+    string LongName { get; }
+
+    string ShortName { get; }
+
+}
+
+
 interface ILocation : IFormattedText {
 
     string Name { get {

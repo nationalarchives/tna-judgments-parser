@@ -370,6 +370,23 @@ internal class WLawyer : WText, ILawyer {
 
 }
 
+abstract class WInlineContainer : IInlineContainer {
+
+    public IEnumerable<IInline> Contents { get; internal init; }
+
+}
+
+internal class WDocJurisdiction : WInlineContainer, IDocJurisdiction {
+
+    public string Id { get => "jurisdiction-" + ShortName.ToLower(); }
+
+    public string LongName { get; internal init; }
+
+    public string ShortName { get; internal init; }
+
+}
+
+
 internal class WLocation : WText, ILocation {
 
     public WLocation(string text, RunProperties props) : base(text, props) { }

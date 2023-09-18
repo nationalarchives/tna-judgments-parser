@@ -446,6 +446,8 @@ abstract class Builder {
             AddJudge(parent, judge);
         else if (model is ILawyer lawyer)
             AddLawyer(parent, lawyer);
+        else if (model is IDocJurisdiction juris)
+            AddDocJurisdiction(parent, juris);
         else if (model is ILocation loc)
             AddLocation(parent, loc);
         else if (model is IHyperlink1 link)
@@ -664,6 +666,17 @@ abstract class Builder {
             lawyer.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
         lawyer.AppendChild(text);
+    }
+    private void AddDocJurisdiction(XmlElement parent, IDocJurisdiction model) {
+        XmlElement juris = doc.CreateElement("docJurisdiction", ns);
+        parent.AppendChild(juris);
+        juris.SetAttribute("refersTo", "#" + model.Id);
+        if (model.Contents.Count() == 1 && model.Contents.First() is IFormattedText text) {
+            TextAndFormatting(juris, text);
+        } else {
+            foreach (var inline in model.Contents)
+                AddInline(juris, inline);
+        }
     }
     private void AddLocation(XmlElement parent, ILocation model) {
         XmlElement loc = doc.CreateElement("location", ns);
