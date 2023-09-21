@@ -22,6 +22,7 @@ internal class Hyperlink {
         return Regex.IsMatch(fieldCode, regex);
     }
 
+    [Obsolete]
     internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, List<OpenXmlElement> withinField, int i) {
         Match match = Regex.Match(fieldCode, regex);
         if (!match.Success)
