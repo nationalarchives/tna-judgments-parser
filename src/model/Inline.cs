@@ -149,7 +149,10 @@ interface IFormattedText : ITextOrWhitespace {
     static bool IsFormattedTextAndNothingElse(IInline inline) {
         if (inline is not IFormattedText)
             return false;
-        return inline.GetType().GetInterfaces().Length == 1;
+        var type = inline.GetType();
+        var allInterfaces = type.GetInterfaces();
+        var ancestorInterfaces = type.GetInterface("IFormattedText").GetInterfaces();
+        return allInterfaces.Length == ancestorInterfaces.Length + 1;
     }
 
 }
