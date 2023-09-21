@@ -410,6 +410,17 @@ internal class WRef : WHyperlink1, IRef {
 
 }
 
+internal abstract class InlineContainer : IInlineContainer {
+
+    public IEnumerable<IInline> Contents { get; internal init; }
+
+}
+
+internal class WPageReference : InlineContainer, IPageReference { }
+
+
+/* whitespace */
+
 internal class WLineBreak : ILineBreak {
 
     internal WLineBreak() { }

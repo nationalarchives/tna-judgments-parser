@@ -20,7 +20,7 @@ class SpecialCharacter : WText {
     private SpecialCharacter(string text, RunProperties rProps, StringValue font) : base(text, rProps) {
         this.font = font;
     }
-    internal SpecialCharacter(string text, RunProperties rProps, string font, float fSize) : base(text, rProps) {
+    internal SpecialCharacter(string text, RunProperties rProps, string font, float? fSize) : base(text, rProps) {
         this.font = font;
         this.fontSize = fSize;
     }

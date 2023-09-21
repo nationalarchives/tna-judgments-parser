@@ -23,6 +23,8 @@ class Util {
         }
         if (block is IDivWrapper wrapper)
             return GetBlocksFromDivision(wrapper.Division).SelectMany(GetLines);
+        if (block is ITableOfContents2 toc)
+            return toc.Contents;
         throw new Exception();
     };
 
