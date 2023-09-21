@@ -26,10 +26,6 @@ class Inline2 {
 
     internal static List<IInline> ParseRuns(MainDocumentPart main, OpenXmlElementList elements) {
         var instance = new Inline2 { Main = main, Elements = elements };
-        // List<IInline> parsed = new List<IInline>();
-        // while (instance.i < elements.Count)
-        //     parsed.AddRange(instance.ParseRuns());
-        // return parsed;
         List<IInline> parsed = instance.ParseRuns();
         if (instance.i < elements.Count)
             throw new Exception();
