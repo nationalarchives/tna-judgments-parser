@@ -16,7 +16,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse {
 internal class Fields2 {
 
     /*
-    /* " tc " // table of contents entry
+    " tc " // table of contents entry
     " TA " // table of authorities entry
     " XE " // index entry
     " INDEX "
@@ -71,7 +71,7 @@ internal class Fields2 {
         if (ShouldUseContents(code))
             return _UseContents(code, contents);
         if (IsCritical(code)) {
-            Logger.LogCritical($"unsupported field code { code }: static contents are { IInline.ToString(contents) }");
+            Logger.LogCritical("unsupported field code {}: static contents are {}", code, IInline.ToString(contents));
             return contents;
         }
         foreach (var f in FieldHandlers) {
@@ -79,9 +79,8 @@ internal class Fields2 {
             if (converted != null)
                 return converted;
         }
-        Logger.LogWarning($"ignoring unrecognized field code: { code }");
-        throw new Exception(code);
-        // return contents;
+        Logger.LogWarning("ignoring unrecognized field code: {}", code);
+        return contents;
     }
 
     /* */
