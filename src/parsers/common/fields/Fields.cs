@@ -12,6 +12,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments.Parse.Fieldss;
+using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -68,6 +69,7 @@ class Fields {
     //     return Normalize(raw);
     // }
 
+    [Obsolete]
     internal static IEnumerable<IInline> ParseFieldContents(MainDocumentPart main, List<OpenXmlElement> withinField) {
         if (withinField.Count == 0)
             return Enumerable.Empty<IInline>();
@@ -335,6 +337,7 @@ class Fields {
         throw new Exception($"unknown field code: { fieldCode }");
     }
 
+    [Obsolete]
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
         if (!rest.Any())
             throw new Exception();
@@ -345,6 +348,7 @@ class Fields {
             throw new Exception();
         return Inline.ParseRuns(main, rest.Skip(1));
     }
+    [Obsolete]
     internal static IEnumerable<IInline> RestOptional(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
         if (!rest.Any()) {
             logger.LogWarning("field code with no text content");
@@ -364,6 +368,7 @@ class Fields {
     /// <param name="withinField">the field conents</param>
     /// <param name="i">the index of the next element in <paramref name="withinField"/> to be processed</param>
     /// <returns></returns>
+    [Obsolete]
     internal static bool HasRest(List<OpenXmlElement> withinField, int i) {
         if (i == withinField.Count)
             return false;
@@ -373,6 +378,7 @@ class Fields {
         IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
         return remaining.Any();
     }
+    [Obsolete]
     internal static IEnumerable<IInline> Rest(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
         if (i == withinField.Count)
             throw new Exception();
@@ -384,6 +390,7 @@ class Fields {
             throw new Exception();
         return Inline.ParseRuns(main, remaining);
     }
+    [Obsolete]
     internal static IEnumerable<IInline> RestOptional(MainDocumentPart main, List<OpenXmlElement> withinField, int i) {
         if (i == withinField.Count)
             return Enumerable.Empty<IInline>();
@@ -444,12 +451,11 @@ class Fields {
         return new DOCX.WNumber2(n.ToString() + ".", run.RunProperties, main, paragraph.ParagraphProperties);
     }
 
-    [Obsolete]
     internal static IEnumerable<IInline> ParseSimple(MainDocumentPart main, SimpleField fldSimple) {
-        logger.LogWarning("simple field: " + fldSimple.Instruction);
+        logger.LogWarning("simple field: {}", fldSimple.Instruction);
         if (!fldSimple.ChildElements.Any())
             logger.LogError("simple field has no child content");
-        return Inline.ParseRuns(main, fldSimple.ChildElements);
+        return Inline2.ParseRuns(main, fldSimple.ChildElements);
     }
 
 }
