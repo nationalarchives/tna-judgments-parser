@@ -35,6 +35,7 @@ internal class Time {
         }
     }
 
+    [Obsolete]
     private static IEnumerable<IInline> DateOnly(MainDocumentPart main, IEnumerable<OpenXmlElement> rest) {
         IEnumerable<IInline> parsed = Fields.Rest(main, rest);
         if (parsed.All(inline => inline is IFormattedText)) {

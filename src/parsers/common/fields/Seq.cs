@@ -21,6 +21,7 @@ class Seq {
         return fieldCode.StartsWith(" SEQ ") || fieldCode.StartsWith(" seq ");
     }
 
+    [Obsolete]
     internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, IEnumerable<OpenXmlElement> rest) {
         return Fields.RestOptional(main, rest);
     }
