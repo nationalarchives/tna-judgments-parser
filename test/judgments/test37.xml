@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/99/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/99/data.xml" />
-          <FRBRdate date="2023-08-08T17:29:33" name="transform" />
+          <FRBRdate date="2023-09-21T18:57:39" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -52,8 +52,8 @@
         <uk:year>2022</uk:year>
         <uk:number>99</uk:number>
         <uk:cite>[2022] EWFC 99</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
-        <uk:hash>5b79a27e5b0237c7af2e91bad587f20a97535e5b63c8d0dfb8e0593cb927f3e4</uk:hash>
+        <uk:parser>0.17.2</uk:parser>
+        <uk:hash>5cb25c8545a526217cd029f39f7b040a5dce1689cf09ad323a8c99573c289f32</uk:hash>
       </proprietary>
       <presentation source="#">
         <style xmlns="http://www.w3.org/1999/xhtml">
@@ -196,20 +196,26 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <paragraph>
           <content>
             <p class="TOCHeading"><span style="font-family:Tahoma;font-size:11pt;color:initial">Contents</span></p>
-            <p class="TOC1"><span class="Hyperlink">INTRODUCTION</span></p>
-            <p class="TOC1"><span class="Hyperlink">REPRESENTATION AND PARTIES</span></p>
-            <p class="TOC1"><span class="Hyperlink">ESSENTIAL BACKGROUND</span></p>
-            <p class="TOC1"><span class="Hyperlink">ISSUES THAT MUST BE DECIDED</span></p>
-            <p class="TOC1"><span class="Hyperlink">PARTIES’ POSITIONS</span></p>
-            <p class="TOC1"><span class="Hyperlink">THE LAW AND LEGAL PRINCIPLES</span></p>
-            <p class="TOC1"><span class="Hyperlink">THE FACT-FINDING HEARING</span></p>
-            <p class="TOC1"><span class="Hyperlink">KEY FEATURES OF THE EVIDENCE</span></p>
-            <p class="TOC1"><span class="Hyperlink">CLOSING SUBMISSIONS</span></p>
-            <p class="TOC1"><span class="Hyperlink">DISCUSSION</span></p>
-            <p class="TOC1"><span class="Hyperlink">FINDINGS OF FACT ON SIGNIFICANT DISPUTED MATTERS</span></p>
+            <toc>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">INTRODUCTION</span><marker name="tab" /><inline name="page">2</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">REPRESENTATION AND PARTIES</span><marker name="tab" /><inline name="page">2</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">ESSENTIAL BACKGROUND</span><marker name="tab" /><inline name="page">2</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">ISSUES THAT MUST BE DECIDED</span><marker name="tab" /><inline name="page">6</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">PARTIES’ POSITIONS</span><marker name="tab" /><inline name="page">7</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">THE LAW AND LEGAL PRINCIPLES</span><marker name="tab" /><inline name="page">7</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">THE FACT-FINDING HEARING</span><marker name="tab" /><inline name="page">13</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">KEY FEATURES OF THE EVIDENCE</span><marker name="tab" /><inline name="page">14</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">CLOSING SUBMISSIONS</span><marker name="tab" /><inline name="page">30</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">DISCUSSION</span><marker name="tab" /><inline name="page">34</inline></tocItem>
+              <tocItem class="TOC1" level="0" href="#"><span class="Hyperlink">FINDINGS OF FACT ON SIGNIFICANT DISPUTED MATTERS</span><marker name="tab" /><inline name="page">39</inline></tocItem>
+            </toc>
+          </content>
+        </paragraph>
+        <level>
+          <content>
             <p><span style="font-weight:bold;font-family:Tahoma;font-size:11pt">His Honour Judge Richard Clarke :</span></p>
             <p class="Heading1"><span style="font-size:11pt">INTRODUCTION</span></p>
           </content>
