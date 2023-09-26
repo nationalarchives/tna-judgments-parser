@@ -385,6 +385,8 @@ class Inline {
             return new WImageRef(main, draw);
         if (e is Picture pict)
             return WImageRef.Make(main, pict);
+        if (e is OpenXmlUnknownElement && e.LocalName == "pict" && e.NamespaceUri == "http://schemas.openxmlformats.org/wordprocessingml/2006/main") // ukftt/grc/2023/782
+            return WImageRef.Make(main, new Picture(e.OuterXml));
         if (e.LocalName == "object") {
             DocumentFormat.OpenXml.Vml.Shape shape = e.ChildElements.OfType<DocumentFormat.OpenXml.Vml.Shape>().FirstOrDefault();
             if (shape is not null)
