@@ -174,6 +174,7 @@ public class Parser {
 
     internal static Meta ConvertInternalMetadata(UK.Gov.Legislation.Judgments.AkomaNtoso.Meta meta) {
         return new Meta() {
+            DocumentType = meta.DocElementName,
             Uri = URI.IsEmpty(meta.WorkUri) ? null : meta.WorkUri,
             Court = meta.UKCourt,
             Cite = meta.UKCite,
@@ -207,26 +208,30 @@ public class Parser {
     }
 
     internal static void Log(Api.Meta meta) {
+        if (string.IsNullOrEmpty(meta.DocumentType))
+            Logger.LogWarning("The document type is null");
+        else
+            Logger.LogInformation("The document type is {}", meta.DocumentType);
         if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
-            Logger.LogWarning(@"The judgment uri is null");
+            Logger.LogWarning("The judgment uri is null");
         else
-            Logger.LogInformation($"The judgment uri is { meta.Uri }");
+            Logger.LogInformation("The judgment uri is {}", meta.Uri);
         if (meta.Court is null)
-            Logger.LogWarning(@"The court is null");
+            Logger.LogWarning("The court is null");
         else
-            Logger.LogInformation($"The court is { meta.Court }");
+            Logger.LogInformation("The court is {}", meta.Court);
         if (meta.Cite is null)
-            Logger.LogWarning(@"The case citation is null");
+            Logger.LogWarning("The case citation is null");
         else
-            Logger.LogInformation($"The case citation is { meta.Cite }");
+            Logger.LogInformation("The case citation is {}", meta.Cite);
         if (meta.Date is null)
-            Logger.LogWarning(@"The judgment date is null");
+            Logger.LogWarning("The judgment date is null");
         else
-            Logger.LogInformation($"The judgment date is { meta.Date }");
+            Logger.LogInformation("The judgment date is {}", meta.Date);
         if (meta.Name is null)
-            Logger.LogWarning(@"The case name is null");
+            Logger.LogWarning("The case name is null");
         else
-            Logger.LogInformation($"The case name is { meta.Name }");
+            Logger.LogInformation("The case name is {}", meta.Name);
     }
 
 }
