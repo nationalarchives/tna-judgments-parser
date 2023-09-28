@@ -7,6 +7,13 @@ namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 public class Meta {
 
+    /// <summary>
+    /// the name of the only child of the root <akomaNtoso> element
+    /// but if it's "doc", then the value of the @name attribute
+    /// e.g., 'judgment' or 'pressSummary'
+    /// </summary>
+    public string DocElementName { get; init; }
+
     public string WorkUri { get; init; }
 
     public string WorkDate { get; init; }
@@ -27,6 +34,9 @@ public class MetadataExtractor {
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(judgment.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         nsmgr.AddNamespace("uk", Metadata.ukns);
+        string docName = (judgment.SelectSingleNode("/akn:akomaNtoso/akn:*", nsmgr) as XmlElement).LocalName;
+        if (docName == "doc")
+            docName = judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/@name", nsmgr).Value;
         string uri = judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRthis/@value", nsmgr)?.Value;
         if (string.IsNullOrEmpty(uri))
             uri = null;
@@ -34,6 +44,7 @@ public class MetadataExtractor {
         if (date == Metadata.DummyDate)
             date = null;
         return new Meta() {
+            DocElementName = docName,
             WorkUri = uri,
             WorkDate = date,
             WorkName = judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRname/@value", nsmgr)?.Value,
