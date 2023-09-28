@@ -5,6 +5,8 @@ namespace UK.Gov.NationalArchives.Judgments.Api {
 
 public class Meta {
 
+    public string DocumentType { get; set; }
+
     public string Uri { get; set; }
 
     public string Court { get; set; }
