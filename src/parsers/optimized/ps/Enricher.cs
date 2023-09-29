@@ -12,8 +12,7 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parsers;
 
 namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries {
-
-class Enricher {
+partial class Enricher {
 
     internal static bool IsRestriction(WLine line) {
         if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase))
@@ -30,10 +29,13 @@ class Enricher {
             return false;
         if (string.IsNullOrWhiteSpace(text.Text))
             return true;
-        if (text.FontColor is not null && Regex.IsMatch(text.FontColor, "^[0-9A-F]{2}0{4}$", RegexOptions.IgnoreCase))
+        if (text.FontColor is not null && RedRegex().IsMatch(text.FontColor))
             return true;
         return false;
     }
+
+    [GeneratedRegex("^[1-9A-F][0-9A-F]0{4}$", RegexOptions.IgnoreCase)]
+    private static partial Regex RedRegex();
 
     internal static WLine EnrichDate(WLine line) {
         return Date0.Enrich(line, "release", 1);
