@@ -46,11 +46,13 @@ class Parser : OptimizedParser {
     private List<IDivision> Body2() {
         List<IDivision> parsed = new List<IDivision>();
         while (i < PreParsed.Body.Count) {
+            int save = i;
             IDivision xhead = ParseCrossHeading();
             if (xhead is not null) {
                 parsed.Add(xhead);
                 continue;
             }
+            i = save;  // 00053_ukait_2008_sb_pakistan
             IDivision para = ParseParagraph();
             parsed.Add(para);
         }
