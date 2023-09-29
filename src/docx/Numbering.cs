@@ -69,8 +69,10 @@ class Numbering {
         if (level is null && abs.NumberingStyleLink is not null) {    // // EWHC/Ch/2012/190
             string numStyleId = abs.NumberingStyleLink.Val.Value;
             Style numStyle = Styles.GetStyle(main, StyleValues.Numbering, numStyleId);
-            numberingId = numStyle.StyleParagraphProperties.NumberingProperties.NumberingId.Val.Value;
-            level = GetLevel(main, numberingId, ilvl);
+            if (numStyle is not null) { // style does not exist in 00393_ukut_iac_2012_mf_nigeria
+                int styleNumId = numStyle.StyleParagraphProperties.NumberingProperties.NumberingId.Val.Value;
+                level = GetLevel(main, styleNumId, ilvl);
+            }
         }
         return level;
     }
