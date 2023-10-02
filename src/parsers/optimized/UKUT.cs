@@ -191,10 +191,11 @@ class OptimizedUKUTParser : OptimizedParser {
     }
 
     protected override List<IDecision> Body() {
+        // should allow for multiple decisions
         List<IDivision> contents = Divisions();
         if (contents is null)
             contents = new List<IDivision>();
-        contents.AddRange(ParagraphsUntilEndOfDecision());
+        contents.AddRange(ParagraphsUntilEndOfBody());
         Decision decision = new Decision { Author = null, Contents = contents };
         return new List<IDecision>(1) { decision };
     }
