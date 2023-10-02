@@ -42,6 +42,8 @@ class OptimizedUKUTParser : OptimizedParser {
 
         "DETERMINATION AND REASONS",
 
+        "RULING AND DIRECTIONS", // [2012] UKUT 218 (IAC)
+
         "JUDGMENT",
         "APPROVED JUDGMENT",
 
