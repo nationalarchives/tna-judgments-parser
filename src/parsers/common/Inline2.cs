@@ -111,6 +111,11 @@ class Inline2 {
                 i += 1;
                 continue;
             }
+            if (e is SdtProperties) {  // ukftt/grc/2023/816
+                Logger.LogDebug("ignoring SDT properties");
+                i += 1;
+                continue;
+            }
             if (e is Hyperlink link) {
                 var parsedLink = ParseHyperlink(Main, link);
                 parsed.AddRange(parsedLink);
