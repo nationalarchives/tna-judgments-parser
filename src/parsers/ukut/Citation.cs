@@ -21,6 +21,8 @@ class Citation : FirstMatch2 {
             Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ ?\((AAC|IAC|LC|TCC)\)) *$");
             if (!match.Success)
                 match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ ?\((TC|GRC)\)) *$");
+            if (!match.Success)
+                match = Regex.Match(last.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
             if (match.Success) {
                 List<IInline> enriched = Helper.SplitOnGroup(last, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(line.SkipLast(1), enriched);
@@ -29,6 +31,8 @@ class Citation : FirstMatch2 {
                 Match match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKUT \d+ ?\((AAC|IAC|LC|TCC)\)) *$");
                 if (!match2.Success)
                     match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ ?\((TC|GRC)\)) *$");
+                if (!match2.Success)
+                    match2 = Regex.Match(penult.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
                 if (match2.Success) {
                     List<IInline> enriched = Helper.SplitOnGroup(penult, match2.Groups[1], (text, props) => new WNeutralCitation(text, props));
                     return Enumerable.Concat(line.SkipLast(2), enriched).Append(last);

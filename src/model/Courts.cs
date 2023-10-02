@@ -16,7 +16,7 @@ public readonly struct Court {
 
 }
 
-public readonly struct Courts {
+public readonly partial struct Courts {
 
     public static readonly Court SupremeCourt = new Court() {
         Code = "UKSC",
@@ -268,6 +268,17 @@ public readonly struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber",
         CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(AAC\)$")
     };
+
+    public static readonly Court OldAsylumAndImmigrationTribunal = new Court {
+        Code = "UKAIT",
+        LongName = "United Kingdom Asylum and Immigration Tribunal",
+        ShortName = "Asylum and Immigration Tribunal",
+        URL = "http://www.tribunals.gov.uk/ImmigrationAsylum/",  // no longer active but should be unique?
+        CitationPattern = UKAITRegex()
+    };
+    [GeneratedRegex("^\\[\\d{4}\\] UKAIT \\d+$")]
+    private static partial Regex UKAITRegex();
+
     public static readonly Court UpperTribunal_ImmigrationAndAsylumChamber = new Court {
         Code = "UKUT-IAC",
         LongName = "United Kingdom Upper Tribunal (Immigration and Asylum Chamber)",
@@ -347,7 +358,7 @@ public readonly struct Courts {
         EWFC,
 
         UpperTribunal_AdministrativeAppealsChamber,
-        UpperTribunal_ImmigrationAndAsylumChamber,
+        UpperTribunal_ImmigrationAndAsylumChamber, OldAsylumAndImmigrationTribunal,
         UpperTribunal_LandsChamber,
         UpperTribunal_TaxAndChanceryChamber,
 
@@ -377,4 +388,3 @@ public readonly struct Courts {
 }
 
 }
-
