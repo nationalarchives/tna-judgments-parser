@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2021/116/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2021/116/data.xml" />
-          <FRBRdate date="2023-05-25T21:52:37" name="transform" />
+          <FRBRdate date="2023-10-02T17:02:12" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -48,7 +48,7 @@
         <uk:year>2021</uk:year>
         <uk:number>116</uk:number>
         <uk:cite>[2021] UKUT 116 (IAC)</uk:cite>
-        <uk:parser>0.14.7</uk:parser>
+        <uk:parser>0.17.4</uk:parser>
         <uk:hash>cbcfe835bf32594c2480cd9504bbd0475181acd877d6d93f47e1fa81ec2fad68</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -506,14 +506,16 @@
             </content>
           </level>
         </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="font-family:'Lucida Handwriting'">Mr Justice Lane</span></p>
+            <p style="text-align:justify"><docDate date="2021-04-12" refersTo="#decision" style="font-family:'Book Antiqua'">12 April 2021</docDate></p>
+            <p><span style="font-family:'Book Antiqua';color:#000000">The Hon. Mr Justice Lane</span></p>
+            <p><span style="font-family:'Book Antiqua';color:#000000">President of the Upper Tribunal</span></p>
+            <p><span style="font-family:'Book Antiqua';color:#000000">Immigration and Asylum Chamber</span></p>
+          </content>
+        </level>
       </decision>
     </judgmentBody>
-    <conclusions>
-      <p style="text-align:justify"><span style="font-family:'Lucida Handwriting'">Mr Justice Lane</span></p>
-      <p style="text-align:justify"><docDate date="2021-04-12" refersTo="#decision" style="font-family:'Book Antiqua'">12 April 2021</docDate></p>
-      <p><span style="font-family:'Book Antiqua';color:#000000">The Hon. Mr Justice Lane</span></p>
-      <p><span style="font-family:'Book Antiqua';color:#000000">President of the Upper Tribunal</span></p>
-      <p><span style="font-family:'Book Antiqua';color:#000000">Immigration and Asylum Chamber</span></p>
-    </conclusions>
   </judgment>
 </akomaNtoso>
