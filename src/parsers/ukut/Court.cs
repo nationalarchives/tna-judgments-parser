@@ -57,6 +57,10 @@ class CourtType : AbstractCourtType {
                 Court = Courts.UpperTribunal_ImmigrationAndAsylumChamber
             },
             new Combo1 {
+                Re = new (@"^Asylum and Immigration Tribunal$", RegexOptions.IgnoreCase),
+                Court = Courts.OldAsylumAndImmigrationTribunal
+            },
+            new Combo1 {
                 Re = new Regex(@"^(IN THE )?UPPER TRIBUNAL \(LANDS CHAMBER\)$", RegexOptions.IgnoreCase),
                 Court = Courts.UpperTribunal_LandsChamber
             },
