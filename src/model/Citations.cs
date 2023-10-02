@@ -55,6 +55,12 @@ public class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] UKUT { num } ({ sub })";
         }
+        match = Regex.Match(cite, @"^\[?(\d{4})\]? (UKAIT) (\d+)$", RegexOptions.IgnoreCase);
+        if (match.Success) {
+            string num = match.Groups[3].Value.TrimStart('0');
+            if (!string.IsNullOrEmpty(num))
+                return $"[{ match.Groups[1].Value }] { match.Groups[2].Value.ToUpper() } { num }";
+        }
         match = Regex.Match(cite, @"^\[?(\d{4})\]? (EAT) (\d+)$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[3].Value.TrimStart('0');
@@ -88,6 +94,9 @@ public class Citations {
         match = Regex.Match(normalized, @"^\[(\d{4})\] (UKUT) (\d+) \((AAC|IAC|LC|TCC)\)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value };
+        match = Regex.Match(normalized, @"^\[(\d{4})\] (UKAIT) (\d+)$");
+        if (match.Success)
+            return new string[] { match.Groups[2].Value, match.Groups[1].Value, match.Groups[3].Value };
         match = Regex.Match(normalized, @"^\[(\d{4})\] (EAT) (\d+)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[1].Value, match.Groups[3].Value };
