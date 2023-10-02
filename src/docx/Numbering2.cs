@@ -115,7 +115,9 @@ class Numbering2 {
                 return format.Val.Value;
             if (format.Val.Value == Char.ConvertFromUtf32(0xf0d5))    // "right arrow?" EWCA/Civ/2004/1294
                 return format.Val.Value;
-            logger.LogWarning("unknown bullet text: " + format.Val.Value);
+            // if (format.Val.Value == "%1")  // 00223_ukut_iac_2015_mk_sierra leone
+            logger.LogWarning("unknown bullet text: {}", format.Val.Value);
+            return Char.ConvertFromUtf32(0x2022);  // default bullet
         }
 
         /* Other */
