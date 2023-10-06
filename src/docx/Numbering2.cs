@@ -23,7 +23,16 @@ class Numbering2 {
 
     public static bool HasOwnNumber(Paragraph paragraph) {
         int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-        return numId.HasValue && numId.Value != 0;
+        if (!numId.HasValue)
+            return false;
+        if (numId.Value == 0)
+            return false;
+        var vanish = paragraph.ParagraphProperties?.ParagraphMarkRunProperties?.ChildElements.OfType<Vanish>().FirstOrDefault();
+        if (vanish is null)
+            return true;
+        if (vanish.Val is null)
+            return false;
+        return !vanish.Val.Value;
     }
     // has style number and that number is not canceled
     public static bool HasEffectiveStyleNumber(Paragraph paragraph) {
