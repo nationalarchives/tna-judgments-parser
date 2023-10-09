@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
+[Obsolete]
 class Attachment : IInternalAttachment {
 
     public AttachmentType Type { get; init; }
