@@ -23,7 +23,7 @@ To invoke the parser programatically, clients should use the classes in the [UK.
         - Attachments (optional), an array of [ExternalAttachment](./src/api/Meta.cs) objects, having the following properties:
             - Name (required), a string, the name of the attachment for display
             - Link (optional), a string, a URL for the attachment
-    - Hint (optional), an [enum](./src/api/Parser.cs), with the following possibe values: UKSC, UKCA, UKHC, UKUT. If present, the parser will attempt to parse a judgment only of the specified type.
+    - Hint (optional), an [enum](./src/api/Parser.cs), with the following possibe values: UKSC, UKCA, UKHC, UKUT, Judgment, PressSummary. If present, the parser will attempt to parse a judgment only of the specified type.
 2. Pass it to the Parse method in the [Parser](./src/api/Parser.cs) class,
 3. Receive a [Response](./src/api/Response.cs) object, which will have the following properties:
     - Xml, a string, the judgment in LegalDocML
@@ -49,18 +49,18 @@ The parser can also be invoked from the command line, as follows:
 
 So, for example, the following command will parse the included test document and direct the output to the console:
 
-    dotnet run --input test/test1.docx
+    dotnet run --input test/judgments/test1.docx
 
 To direct the XML output to a file, use the `--output` option, like so:
 
-    dotnet run --input test/test1.docx --output something.xml
+    dotnet run --input test/judgments/test1.docx --output something.xml
 
 To save the XML and all of the embedded images to a .zip file, use the `--output-zip` option, like so:
 
-    dotnet run --input test/test1.docx --output-zip something.zip
+    dotnet run --input test/judgments/test1.docx --output-zip something.zip
 
 If the `--log` option is used, the parser will log its progress to the specified file. For example:
 
-    dotnet run --input test/test1.docx --output something.xml --log log.txt
+    dotnet run --input test/judgments/test1.docx --output something.xml --log log.txt
 
 And if the `--test` option is used, the parser will perform a few tests and display the results either in the console or, if logging is enabled, to the log file.
