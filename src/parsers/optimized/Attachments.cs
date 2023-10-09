@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using DocumentFormat.OpenXml.Packaging;
@@ -10,6 +11,22 @@ using UK.Gov.Legislation.Judgments.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parse {
+
+class Attachment : IInternalAttachment {
+
+    public AttachmentType Type { get; init; }
+
+    public int Number { get; init; }
+
+    public IEnumerable<IBlock> Contents { get; init; }
+
+    public Dictionary<string, Dictionary<string, string>> Styles { private get; init; }
+
+    public Dictionary<string, Dictionary<string, string>> CSSStyles() => this.Styles;
+
+    public IEnumerable<IImage> Images { get; init; }
+
+}
 
 class AttachmentParser {
 
