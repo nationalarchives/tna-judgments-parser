@@ -12,6 +12,8 @@ using System.IO;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
+namespace Old {
+
 class Tester {
 
     public struct Result {
@@ -234,5 +236,7 @@ class Tester {
 
     }
 
+
+}
 
 }
