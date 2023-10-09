@@ -84,11 +84,12 @@ class Program {
     }
 
     private static void Print(Api.Meta meta) {
-        Console.WriteLine($"The judgment's uri is { meta.Uri }");
+        Console.WriteLine($"The document type is { meta.DocumentType }");
+        Console.WriteLine($"The document's uri is { meta.Uri }");
         Console.WriteLine($"The court is { meta.Court }");
         Console.WriteLine($"The case citation is { meta.Cite }");
-        Console.WriteLine($"The judgment date is { meta.Date }");
-        Console.WriteLine($"The case name is { meta.Name }");
+        Console.WriteLine($"The doc date is { meta.Date }");
+        Console.WriteLine($"The doc name is { meta.Name }");
     }
 
 }
