@@ -18,11 +18,13 @@ class Metadata : DocumentMetadata {
         string number = HeaderSplitter.GetDocumentNumber(header);
         string uri = number is null ? null : RegulationNumber.MakeURI(number) + "/em";
         // Tuple<string, int> altNum = RegulationNumber.ExtractAltNumber(number);
+        DateTime? modified = doc.PackageProperties.Modified;
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
         return new Metadata {
-            Name = name,
             ShortUriComponent = uri,
-            // AltNum = altNum,
+            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDateName = modified is null ? null : "lastModified",
+            Name = name,
             CSS = css
         };
     }
