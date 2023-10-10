@@ -1,4 +1,5 @@
 
+using System;
 using System.Xml;
 using System.Linq;
 
@@ -10,6 +11,13 @@ namespace UK.Gov.Legislation {
 class Builder : AkN.Builder {
 
     override protected string UKNS => "https://legislation.gov.uk/akn";
+
+    private static string FormatDateOnly(DateTime? date) {
+        return date?.ToString("s")[..10];
+    }
+    public static string FormatDateAndTime(DateTime? date) {
+        return date?.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture);
+    }
 
     public static XmlDocument Build(IDocument document) {
         Builder builder = new();
@@ -49,14 +57,16 @@ class Builder : AkN.Builder {
         workThis.SetAttribute("value", data.WorkUri);
         XmlElement workURI = CreateAndAppend("FRBRuri", work);
         workURI.SetAttribute("value", data.WorkUri);
+
         XmlElement workDate = CreateAndAppend("FRBRdate", work);
         if (data.WorkDate is null) {
-            workDate.SetAttribute("date", System.DateTime.UtcNow.ToString("s").Substring(0, 10));
+            workDate.SetAttribute("date", FormatDateOnly(DateTime.UtcNow));
             workDate.SetAttribute("name", "generated");
         } else {
             workDate.SetAttribute("date", data.WorkDate);
             workDate.SetAttribute("name", data.WorkDateName);
         }
+
         XmlElement workAuthor = CreateAndAppend("FRBRauthor", work);
         workAuthor.SetAttribute("href", "#");
         XmlElement workCountry = CreateAndAppend("FRBRcountry", work);
@@ -67,14 +77,16 @@ class Builder : AkN.Builder {
         expThis.SetAttribute("value", data.ExpressionUri);
         XmlElement expURI = CreateAndAppend("FRBRuri", expression);
         expURI.SetAttribute("value",data.ExpressionUri);
+
         XmlElement expDate = CreateAndAppend("FRBRdate", expression);
         if (data.ExpressionDate is null) {
-            expDate.SetAttribute("date", System.DateTime.UtcNow.ToString("s").Substring(0, 10));
-            expDate.SetAttribute("name", "generated");
+            expDate.SetAttribute("date", workDate.GetAttribute("date"));
+            expDate.SetAttribute("name", workDate.GetAttribute("name"));
         } else {
             expDate.SetAttribute("date", data.ExpressionDate);
             expDate.SetAttribute("name", data.ExpressionDateName);
         }
+
         XmlElement expAuthor = CreateAndAppend("FRBRauthor", expression);
         expAuthor.SetAttribute("href", "#");
         XmlElement expLanguage = CreateAndAppend("FRBRlanguage", expression);
@@ -86,7 +98,7 @@ class Builder : AkN.Builder {
         XmlElement maniURI = CreateAndAppend("FRBRuri", manifestation);
         maniURI.SetAttribute("value",  data.ExpressionUri + "/data.xml");
         XmlElement maniDate = CreateAndAppend("FRBRdate", manifestation);
-        maniDate.SetAttribute("date", System.DateTime.UtcNow.ToString("s"));
+        maniDate.SetAttribute("date", FormatDateAndTime(DateTime.UtcNow));
         maniDate.SetAttribute("name", "transform");
         XmlElement maniAuthor = CreateAndAppend("FRBRauthor", manifestation);
         maniAuthor.SetAttribute("href", "#tna");
