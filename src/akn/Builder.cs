@@ -495,7 +495,7 @@ abstract class Builder {
             e.SetAttribute("class", model.Style is null ? "hidden" : model.Style + " hidden");
             return;
         }
-        if (model.BackgroundColor is not null && model.BackgroundColor != "auto") {
+        if (model.BackgroundColor is not null && model.BackgroundColor != "auto" && model.BackgroundColor != "FFFFFF" && model.BackgroundColor != "white") {
             logger.LogInformation("text with background color (" + model.BackgroundColor + "): " + model.Text);
         }
         TextWithoutFormatting(e, model);
