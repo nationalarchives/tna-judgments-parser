@@ -40,6 +40,9 @@ class OptimizedUKUTParser : OptimizedParser {
         "DECISION in PRINCIPLE",
         "DECISION OF THE UPPER TRIBUNAL",
 
+        "Interlocutory Decision", // [2016] UKUT 00337 (IAC)
+        "DECISION ON APPLICATIONS", // [2016] UKUT 00559 (IAC)
+
         "DETERMINATION AND REASONS",
 
         "RULING AND DIRECTIONS", // [2012] UKUT 218 (IAC)
@@ -126,6 +129,8 @@ class OptimizedUKUTParser : OptimizedParser {
                     }
                 }
             }
+            if (line.NormalizedContent.StartsWith("Decision: "))  // [2016] UKUT 00507 (IAC)
+                return header;
         }
         return null;
     }
