@@ -108,6 +108,8 @@ class NetrualCitation : Enricher2 {
                 if (group is null)
                     group = Match2(fText2.Text);
                 if (group is not null) {
+                    if (first is WText fText1 && fText1.Text.StartsWith("This judgment is linked "))  //  [2023] EWFC 169 & 170
+                        return line;
                     IEnumerable<IInline> before = line.SkipLast(1);
                     List<IInline> replacement = Replace(fText2, group);
                     return Enumerable.Concat(before, replacement);
