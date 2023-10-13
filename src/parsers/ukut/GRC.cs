@@ -103,104 +103,126 @@ Welfare of Animals.
         new() {
             Name = "Charity",
             Abbreviation = "Charity",
-            Patterns = new string[] { "Charity", "charities" }
+            Patterns = new string[] { "Charity", "Charities" },
+            Prefix = "CA"
         },
         new() {
             Name = "Claims Management",
             Abbreviation = "Claims-Management",
-            Patterns = new string[] { "Claims" }
+            Patterns = new string[] { "Claims" },
+            Prefix = null
         },
         new() {
-            Name = "Community Right to Bid",
-            Abbreviation = "Community-Right-to-Bid",
-            Patterns = new string[] { "Community", "Right to Bid" }
+            Name = "Community Right to Bid", // "Community Rights"
+            Abbreviation = "Community-Right-to-Bid", // "Community-Rights"
+            Patterns = new string[] { "Community", "Right to Bid" },
+            Prefix = "CR"
         },
         new() {
             Name = "Consultant Lobbyists",
             Abbreviation = "Consultant-Lobbyists",
-            Patterns = new string[] { "Consultant", "lobbyists" }
+            Patterns = new string[] { "Consultant", "lobbyists" },
+            Prefix = null
         },
         new() {
             Name = "Conveyancing",
             Abbreviation = "Conveyancing",
-            Patterns = new string[] { "Conveyancing" }
+            Patterns = new string[] { "Conveyancing" },
+            Prefix = null
         },
         new() {
             Name = "Copyright Licensing",
             Abbreviation = "Copyright-Licensing",
-            Patterns = new string[] { "Copyright" }
+            Patterns = new string[] { "Copyright" },
+            Prefix = null
         },
         new() {
             Name = "Electronic communications and postal services",
             Abbreviation = "",
-            Patterns = new string[] { "Electronic communications", "postal services" }
+            Patterns = new string[] { "Electronic communications", "postal services" },
+            Prefix = null
         },
         new() {
             Name = "Environment",
             Abbreviation = "Environment",
-            Patterns = new string[] { "Environment" }
+            Patterns = new string[] { "Environment" },
+            Prefix = "NV" // NVZ
         },
         new() {
             Name = "Estate Agents",
             Abbreviation = "Estate-Agents",
-            Patterns = new string[] { "Estate agent" }
+            Patterns = new string[] { "Estate agent" },
+            Prefix = null
         },
         new() {
             Name = "Examination Boards",
             Abbreviation = "Exam-Boards",
-            Patterns = new string[] { "Examination boards", "Exam boards" }
+            Patterns = new string[] { "Examination boards", "Exam boards" },
+            Prefix = null
         },
         new() {
             Name = "Food Labelling",
             Abbreviation = "Food",
-            Patterns = new string[] { "Food labelling", "food safety" }
+            Patterns = new string[] { "Food labelling", "food safety" },
+            Prefix = null
         },
         new() {
             Name = "Gambling",
             Abbreviation = "Gambling",
-            Patterns = new string[] { "Gambling" }
+            Patterns = new string[] { "Gambling" },
+            Prefix = null
         },
         new() {
             Name = "Immigration Services",
             Abbreviation = "Immigration-Services",
-            Patterns = new string[] { "Immigration services" }
+            Patterns = new string[] { "Immigration services" },
+            Prefix = null
         },
         new() {
             Name = "Individual Electoral Registration",
             Abbreviation = "Individual-Electoral-Registration",
-            Patterns = new string[] { "individual electoral registration" } // Individual Electronic
+            Patterns = new string[] { "individual electoral registration" }, // Individual Electronic
+            Prefix = null
         },
         new() {
             Name = "Information Rights",
             Abbreviation = "InfoRights",
-            Patterns = new string[] { "Information Rights" }
+            Patterns = new string[] { "Information Rights", "Section 166 DPA 1998" },
+            Prefix = "EA"
         },
         new() {
             Name = "Letting and Managing agents",
             Abbreviation = "Letting and managing Agents",
-            Patterns = new string[] { "Letting and managing agents", "Letting", "managing agent" }
+            Patterns = new string[] { "Letting and managing agents", "Letting", "managing agent" },
+            Prefix = null
         },
         new() {
             Name = "Local Government Standards",
             Abbreviation = "Local Government",
-            Patterns = new string[] { "Local government standards" }
+            Patterns = new string[] { "Local government standards" },
+            Prefix = null
         },
         new() {
             Name = "Pensions Regulation",
             Abbreviation = "Pensions",
-            Patterns = new string[] { "Pensions Regulation" }
+            Patterns = new string[] { "Pensions Regulation", "Pensions" },
+            Prefix = "PEN"
         },
         new() {
             Name = "Secondary Ticketing",
             Abbreviation = "Secondary ticketing",
-            Patterns = new string[] { "Secondary ticketing" }
+            Patterns = new string[] { "Secondary ticketing" },
+            Prefix = null
         },
         new() {
             Name = "Welfare of Animals",
             Abbreviation = "AnimalWelfare",
-            Patterns = new string[] { "Welfare of animals" }
+            Patterns = new string[] { "Welfare of animals" },
+            Prefix = "WA"
         }
     };
+
+
 
     // static readonly IDictionary<string, string> Jurisdictions3 = new Dictionary<string, string>() {
     //     { "charity", "Charity" },
@@ -240,6 +262,8 @@ class GRCJurisdiction {
     internal string Abbreviation { get; init; }
 
     internal string[] Patterns { get; init; }
+
+    internal string Prefix { get; init; }
 
 }
 
