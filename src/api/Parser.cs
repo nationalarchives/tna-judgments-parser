@@ -213,9 +213,9 @@ public class Parser {
         else
             Logger.LogInformation("The document type is {}", meta.DocumentType);
         if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
-            Logger.LogWarning("The judgment uri is null");
+            Logger.LogWarning("The {} uri is null", meta.DocumentType);
         else
-            Logger.LogInformation("The judgment uri is {}", meta.Uri);
+            Logger.LogInformation("The {} uri is {}", meta.DocumentType, meta.Uri);
         if (meta.Court is null)
             Logger.LogWarning("The court is null");
         else
@@ -225,13 +225,13 @@ public class Parser {
         else
             Logger.LogInformation("The case citation is {}", meta.Cite);
         if (meta.Date is null)
-            Logger.LogWarning("The judgment date is null");
+            Logger.LogWarning("The {} date is null", meta.DocumentType);
         else
-            Logger.LogInformation("The judgment date is {}", meta.Date);
+            Logger.LogInformation("The {} date is {}", meta.DocumentType, meta.Date);
         if (meta.Name is null)
-            Logger.LogWarning("The case name is null");
+            Logger.LogWarning("The {} name is null", meta.DocumentType);
         else
-            Logger.LogInformation("The case name is {}", meta.Name);
+            Logger.LogInformation("The {} name is {}", meta.DocumentType, meta.Name);
     }
 
 }
