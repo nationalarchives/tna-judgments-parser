@@ -478,11 +478,10 @@ abstract class OptimizedParser {
             i += 1;
             return new WDummyDivision(table);
         }
-        // if (block is ITableOfContents toc) {
-        //     i += 1;
-        //     return new WDummyDivision();
-        // }
-        // table of contents???
+        if (block is TableOfContents toc) {
+            i += 1;
+            return new WTableOfContents(toc.Contents);
+        }
         throw new System.Exception(block.GetType().ToString());
     }
 
