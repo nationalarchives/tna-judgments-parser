@@ -1,4 +1,5 @@
 
+using System;
 using System.IO;
 
 using SixLabors.ImageSharp;
@@ -6,6 +7,15 @@ using SixLabors.ImageSharp;
 namespace UK.Gov.NationalArchives.Imaging {
 
 class Convert {
+
+    internal static bool IsImage(byte[] source) {
+        try {
+            Image.Identify(source);
+            return true;
+        } catch (Exception) {
+            return false;
+        }
+    }
 
     internal static byte[] ConvertToPng(byte[] source) {
         using var image = Image.Load(source);

@@ -42,19 +42,28 @@ class EMF {
             }
         }
         if (!records.Any()) {
-            logger.LogWarning($"no EMF bitmap records");
+            logger.LogWarning("no EMF bitmap records");
             return null;
         }
         if (records.Count != 1) {
-            logger.LogWarning($"more than one EMF bitmap record");
-            return null;
+            logger.LogWarning("more than one EMF bitmap record");
         }
-        try {
-            return records.First().DIB.Convert();
-        } catch (Exception e) {
-            logger.LogError(e, "error converting bitmap EMF record");
-            return null;
+        foreach (var record in records) {
+            Tuple<WMF.ImageType, byte[]> converted;
+            try {
+                converted = record.DIB.Convert();
+            } catch (Exception e) {
+                logger.LogError(e, "error converting EMF bitmap record");
+                continue;
+            }
+            // if (converted.Item1 != WMF.ImageType.BMP) currently impossible
+            //     continue;
+            if (Imaging.Convert.IsImage(converted.Item2))
+                return converted;
+            logger.LogWarning("skipping EMF bitmap because it is not a recognizable image");
         }
+        logger.LogWarning("no EMF bitmaps are recognizable images");
+        return null;
     }
 
 internal interface EmfBitmapRecord {
