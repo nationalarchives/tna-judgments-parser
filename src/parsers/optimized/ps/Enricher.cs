@@ -68,9 +68,21 @@ partial class Enricher {
     }
 
     internal static WLine EnrichCite(WLine line) {
-        string pattern = @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$";
+        string[] patterns = {
+            @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$",
+            @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *on appeal from \[\d{4}\] EWHC \d+ \([A-Za-z]+\) *$"
+        };
         var constructor = (string text, RunProperties rProps) => new WNeutralCitation(text, rProps);
-        return EnrichFromEnd(line, pattern, constructor, true);
+        return EnrichFromEnd(line, patterns, constructor, true);
+    }
+
+    private static WLine EnrichFromEnd(WLine line, string[] patterns, Func<string, RunProperties, IInline> constructor, bool wrapBeforeInDocTitle = false) {
+        foreach (string pattern in patterns) {
+            WLine enriched = EnrichFromEnd(line, pattern, constructor, wrapBeforeInDocTitle);
+            if (!Object.ReferenceEquals(enriched, line))
+                return enriched;
+        }
+        return line;
     }
 
     private static WLine EnrichFromEnd(WLine line, string pattern, Func<string, RunProperties, IInline> constructor, bool wrapBeforeInDocTitle = false) {
