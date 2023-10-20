@@ -78,8 +78,11 @@ class HardNumbers {
             return null;
         if (line.Contents.Skip(1).FirstOrDefault() is not WTab)
             return null;
-        if (!Regex.IsMatch(first.Text, PlainNumberFormat))
+        string trimmed = first.Text.Trim();
+        if (!Regex.IsMatch(trimmed, PlainNumberFormat))
             return null;
+        if (trimmed != first.Text)
+            first = new WText(trimmed, first.properties);
         return new WOldNumberedParagraph(first, line.Contents.Skip(2), line);
     }
 
