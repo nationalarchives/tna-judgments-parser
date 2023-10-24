@@ -362,7 +362,7 @@ class Combo4 : Combo {
         },
         new Combo4 {
             Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re2 = new Regex("^(THE )?BUSINESS AND PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial

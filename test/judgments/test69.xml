@@ -7,7 +7,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2023/2638" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2023/2638" />
           <FRBRdate date="2023-10-23" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="2638" />
           <FRBRname value="THE FEDERAL REPUBLIC OF NIGERIA v PROCESS &amp; INDUSTRIAL DEVELOPMENTS LIMITED" />
@@ -16,13 +16,13 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2638" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2638" />
           <FRBRdate date="2023-10-23" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2638/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2638/data.xml" />
-          <FRBRdate date="2023-10-24T16:51:20" name="transform" />
+          <FRBRdate date="2023-10-24T17:18:56" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -31,6 +31,7 @@
         <eventRef date="2023-10-23" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd-commercial" href="https://www.gov.uk/courts-tribunals/commercial-court" showAs="The Business and Property Courts (Commercial Court)" shortForm="The Commercial Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="the-federal-republic-of-nigeria" href="" showAs="THE FEDERAL REPUBLIC OF NIGERIA" />
@@ -40,6 +41,7 @@
         <TLCPerson eId="judge-the-hon-mr-justice-robin-knowles-cbe" href="/judge-the-hon-mr-justice-robin-knowles-cbe" showAs="THE HON MR JUSTICE ROBIN KNOWLES CBE" />
       </references>
       <proprietary source="#">
+        <uk:court>EWHC-KBD-Commercial</uk:court>
         <uk:year>2023</uk:year>
         <uk:number>2638</uk:number>
         <uk:cite>[2023] EWHC 2638 (Comm)</uk:cite>
@@ -113,10 +115,10 @@
       <p class="CoverText" style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
       <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2023] EWHC 2638 (Comm)</neutralCitation></p>
       <p class="CoverText">Claim Nos. CL-2019-000752 and CL-2018-000182</p>
-      <p class="CoverText" style="text-align:left"><span style="font-weight:bold">IN THE HIGH COURT OF JUSTICE</span></p>
-      <p class="CoverMain">THE BUSINESS AND PROPERTY COURTS OF ENGLAND &amp; WALES</p>
-      <p class="CoverMain">KING’S BENCH DIVISION</p>
-      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT</span></p>
+      <p class="CoverText" style="text-align:left"><courtType refersTo="#ewhc-kbd-commercial" style="font-weight:bold">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-commercial">THE BUSINESS AND PROPERTY COURTS OF ENGLAND &amp; WALES</courtType></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-commercial">KING’S BENCH DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT</courtType></p>
       <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">In an Arbitration Claim</span></p>
       <p class="CoverText">Rolls Building, </p>
       <p class="CoverText">Royal Courts of Justice,</p>
