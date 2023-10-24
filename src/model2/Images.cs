@@ -118,6 +118,10 @@ public class WImageRef : IImageRef {
             logger.LogWarning("skipping picture because its 'image data' has no relationship");
             return null;
         }
+        if (datum.Parent is Vml.Shape shape && shape.EncodedPackage is not null) {  // && shape.EncodedPackage.HasValue
+            logger.LogWarning("skipping picture because its parent shape has an encoded package");
+            return null;
+        }
         return new WImageRef(main, picture, datum, relId);
     }
     private WImageRef(MainDocumentPart main, Picture picture, Vml.ImageData data, string relId) {
