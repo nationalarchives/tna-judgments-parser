@@ -137,14 +137,14 @@ class Builder : AkN.Builder {
         }
     }
 
-    protected override void AddDivision(XmlElement parent, Judgments.IDivision div) {
-        if (div is Model.IParagraph para)
-            base.AddDivision(parent, div);
-        else if (div is Model.ISubparagraph subpara)
-            base.AddDivision(parent, div);
-        else
-            base.AddDivision(parent, div);
-    }
+    // protected override void AddDivision(XmlElement parent, Judgments.IDivision div) {
+    //     if (div is Model.IParagraph para)
+    //         base.AddDivision(parent, div);
+    //     else if (div is Model.ISubparagraph subpara)
+    //         base.AddDivision(parent, div);
+    //     else
+    //         base.AddDivision(parent, div);
+    // }
 
     protected override void AddInline(XmlElement parent, Judgments.IInline model) {
         if (model is Model.DocType2 docType) {

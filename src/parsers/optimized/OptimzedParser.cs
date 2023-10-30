@@ -551,6 +551,15 @@ abstract class OptimizedParser {
 
     internal static float MarginOfError = 0.099f;
 
+    /// <summary>
+    /// Allows subclass to specify that a line is outside of whatever paragraph came before it.
+    /// </summary>
+    /// <param name="line">The line to test</param>
+    /// <returns>Whether the line must be outside of any open paragraph</returns>
+    virtual protected bool CannotBeSubparagraph(WLine line) {
+        return false;
+    }
+
     protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
         ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)
@@ -585,6 +594,10 @@ abstract class OptimizedParser {
                 continue;
             }
             if (next is WLine nextLine) {
+
+                if (CannotBeSubparagraph(nextLine))
+                    break;
+
                 float nextIndent1 = GetEffectiveIndent(nextLine);
                 if (nextIndent1 - MarginOfError <= indent1)
                     break;
