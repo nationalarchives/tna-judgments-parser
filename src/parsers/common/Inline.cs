@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -9,7 +10,6 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using OMML = DocumentFormat.OpenXml.Math;
 
 using Microsoft.Extensions.Logging;
-using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -383,8 +383,10 @@ class Inline {
             return new WFootnote(main, en);
         if (e is Drawing draw)
             return new WImageRef(main, draw);
-        if (e is Picture pict)
+        if (e is Picture pict) {
+            // look for text box?
             return WImageRef.Make(main, pict);
+        }
         if (e is OpenXmlUnknownElement && e.LocalName == "pict" && e.NamespaceUri == "http://schemas.openxmlformats.org/wordprocessingml/2006/main") // ukftt/grc/2023/782
             return WImageRef.Make(main, new Picture(e.OuterXml));
         if (e.LocalName == "object") {

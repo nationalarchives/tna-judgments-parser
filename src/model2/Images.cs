@@ -13,6 +13,7 @@ using Vml = DocumentFormat.OpenXml.Vml;
 using Microsoft.Extensions.Logging;
 
 using Imaging = UK.Gov.NationalArchives.Imaging;
+using Word2 = UK.Gov.NationalArchives.WordImpl;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -52,7 +53,10 @@ public class WImageRef : IImageRef {
     private readonly Uri uri;
 
     public WImageRef(MainDocumentPart main, Drawing drawing) {
-        DocumentFormat.OpenXml.Drawing.Blip blip = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().FirstOrDefault();
+        bool isAbsolutelyPositioned = drawing.ChildElements.OfType<DrawingML.Wordprocessing.Anchor>().Any(); // types are WrapSquare, WrapTight, WrapThrough, WrapTopBottom and WrapNone
+        if (isAbsolutelyPositioned)
+            logger.LogWarning("image is absolutely positioned");
+        DrawingML.Blip blip = drawing.Descendants<DrawingML.Blip>().FirstOrDefault();
         if (blip is null) {
             logger.LogWarning("unable to represent drawing");
             logger.LogWarning(drawing.OuterXml);
@@ -105,6 +109,16 @@ public class WImageRef : IImageRef {
             if (drawing is not null) {
                 logger.LogWarning("drawing within picture");
                 return new WImageRef(main, drawing);
+            }
+            if (picture.Descendants<Vml.TextBox>().Any()) {
+                logger.LogCritical("skipping text box");
+                Word2.WTextBox textBox = Word2.WTextBox.Extract(main, picture);
+                if (textBox is null) {
+                    logger.LogCritical("couldn't extract text from text box");
+                    return null;
+                }
+                textBox.Lines.ForEach(line => logger.LogCritical("skipped text: {}", line.NormalizedContent));
+                return null;
             }
             logger.LogWarning("skipping picture because it has no 'image data'");
             return null;
