@@ -145,7 +145,7 @@ class PreParser {
         throw new System.Exception(e.GetType().ToString());
     }
 
-    private static WLine ParseParagraph(MainDocumentPart main, Paragraph p) {
+    internal static WLine ParseParagraph(MainDocumentPart main, Paragraph p) {
         DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, p);
         if (info.HasValue)
             return new WOldNumberedParagraph(info.Value, main, p);
