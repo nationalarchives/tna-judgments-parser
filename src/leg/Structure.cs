@@ -20,6 +20,20 @@ internal class Section : IBranch {
 
 }
 
+internal class Subheading : IBranch {
+
+    public string Name => null;
+
+    public IFormattedText Number => null;
+
+    public ILine Heading { get; internal init; }
+
+    public IEnumerable<IBlock> Intro => null;
+
+    public IEnumerable<IDivision> Children { get; internal set; }
+
+}
+
 interface IParagraph : Judgments.IDivision { }
 
 interface IBranchParagraph : IParagraph, Judgments.IBranch { }
