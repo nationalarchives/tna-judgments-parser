@@ -169,7 +169,101 @@ partial class Parser : CaseLaw.OptimizedParser {
         IBlock block = PreParsed.Body.ElementAt(i).Block;
         if (IsSectionHeading(block))
             return null;
+        if (IsLevel1Subheading(block))
+            return ParseLevel1Subheading(block as WLine);
         return ParseParagraph();
+    }
+
+    /* sub-headings */
+
+    private static bool IsLevel1Subheading(IBlock block) {
+        if (block is not WLine line)
+            return false;
+        if (block is WOldNumberedParagraph)
+            return false;
+        if (line.Style != "EMLevel1Subheading")
+            return false;
+        return true;
+    }
+
+    private Model.Subheading ParseLevel1Subheading(WLine subhead) {
+        i += 1;
+        List<IDivision> children = ParseLevel1SubheadingChildren();
+        return new Model.Subheading { Heading = subhead, Children = children };
+    }
+
+    private List<IDivision> ParseLevel1SubheadingChildren() {
+        List<IDivision> children = new();
+        IDivision child = ParseLevel1SubheadingChild();
+        while (child is not null) {
+            children.Add(child);
+            child = ParseLevel1SubheadingChild();
+        }
+        return children;
+    }
+
+    private IDivision ParseLevel1SubheadingChild() {
+        if (i == PreParsed.Body.Count)
+            return null;
+        IBlock block = PreParsed.Body.ElementAt(i).Block;
+        if (IsSectionHeading(block))
+            return null;
+        if (IsLevel1Subheading(block))
+            return null;
+        if (IsLevel2Subheading(block))
+            return ParseLevel2Subheading(block as WLine);
+        return ParseParagraph();
+    }
+
+    private static bool IsLevel2Subheading(IBlock block) {
+        if (block is not WLine line)
+            return false;
+        if (block is WOldNumberedParagraph)
+            return false;
+        if (line.Style != "EMLevel2Subheading")
+            return false;
+        return true;
+    }
+
+    private Model.Subheading ParseLevel2Subheading(WLine subhead) {
+        i += 1;
+        List<IDivision> children = ParseLevel2SubheadingChildren();
+        return new Model.Subheading { Heading = subhead, Children = children };
+    }
+
+    private List<IDivision> ParseLevel2SubheadingChildren() {
+        List<IDivision> children = new();
+        IDivision child = ParseLevel2SubheadingChild();
+        while (child is not null) {
+            children.Add(child);
+            child = ParseLevel2SubheadingChild();
+        }
+        return children;
+    }
+
+    private IDivision ParseLevel2SubheadingChild() {
+        if (i == PreParsed.Body.Count)
+            return null;
+        IBlock block = PreParsed.Body.ElementAt(i).Block;
+        if (IsSectionHeading(block))
+            return null;
+        if (IsLevel1Subheading(block))
+            return null;
+        if (IsLevel2Subheading(block))
+            return null;
+        return ParseParagraph();
+    }
+
+    /* paragraphs */
+
+    override protected bool CannotBeSubparagraph(WLine line) {
+        if (IsSectionHeading(line))
+            return true;
+        if (IsLevel1Subheading(line))
+            return true;
+        if (IsLevel2Subheading(line))
+            return true;
+        return false;
     }
 
 }
