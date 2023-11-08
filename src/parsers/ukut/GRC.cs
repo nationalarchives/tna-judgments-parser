@@ -76,123 +76,87 @@ class GRCCombo : Combo3 {
             Patterns = new string[] { "Charity", "Charities" },
             Prefix = "CA"
         },
-        // new() {
-        //     Name = "Claims Management",
-        //     Abbreviation = "Claims-Management",
-        //     Patterns = new string[] { "Claims" },
-        //     Prefix = null
-        // },
         new() {
             LongName = "Community Right to Bid",
-            Abbreviation = "CommunityRights",
-            Patterns = new string[] { "Community", "Right to Bid" },
+            Abbreviation = "CommunityRightToBid",
+            Patterns = new string[] { "Community", "Right to Bid", "Assets of Community Value" },
             Prefix = "CR"
         },
-        // new() {
-        //     Name = "Consultant Lobbyists",
-        //     Abbreviation = "Consultant-Lobbyists",
-        //     Patterns = new string[] { "Consultant", "lobbyists" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Conveyancing",
-        //     Abbreviation = "Conveyancing",
-        //     Patterns = new string[] { "Conveyancing" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Copyright Licensing",
-        //     Abbreviation = "CopyrightLicensing",
-        //     Patterns = new string[] { "Copyright" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Electronic communications and postal services",
-        //     Abbreviation = "",
-        //     Patterns = new string[] { "Electronic communications", "postal services" },
-        //     Prefix = null
-        // },
+        new() {
+            LongName = "Electronic Communications Postal Services and Network Information Systems",
+            Abbreviation = "NetworkInformationSystems",
+            Patterns = new string[] { "Electronic communications", "postal services", "Network Information Systems" },
+            Prefix = "NIS"
+        },
         new() {
             LongName = "Environment",
             Abbreviation = "Environment",
             Patterns = new string[] { "Environment" },
-            Prefix = "NV" // NVZ
+            Prefix = "NV"
         },
-        // new() {
-        //     Name = "Estate Agents",
-        //     Abbreviation = "Estate-Agents",
-        //     Patterns = new string[] { "Estate agent" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Examination Boards",
-        //     Abbreviation = "Exam-Boards",
-        //     Patterns = new string[] { "Examination boards", "Exam boards" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Food Labelling",
-        //     Abbreviation = "Food",
-        //     Patterns = new string[] { "Food labelling", "food safety" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Gambling",
-        //     Abbreviation = "Gambling",
-        //     Patterns = new string[] { "Gambling" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     LongName = "Immigration Services",
-        //     Abbreviation = "ImmigrationServices",
-        //     Patterns = new string[] { "Immigration services" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Individual Electoral Registration",
-        //     Abbreviation = "Individual-Electoral-Registration",
-        //     Patterns = new string[] { "individual electoral registration" }, // Individual Electronic
-        //     Prefix = null
-        // },
+        new() {
+            LongName = "Estate Agents",
+            Abbreviation = "EstateAgents",
+            Patterns = new string[] { "Estate agent" },
+            Prefix = "EEA"
+        },
+        new() {
+            LongName = "Examination Boards",
+            Abbreviation = "ExamBoards",
+            Patterns = new string[] { "Examination boards", "Exam boards" },
+            Prefix = "EB"
+        },
+        new() {
+            LongName = "Food Safety",
+            Abbreviation = "FoodSafety",
+            Patterns = new string[] { "Food safety", "Food labelling" },
+            Prefix = "FD"
+        },
+        new() {
+            LongName = "Gambling",
+            Abbreviation = "Gambling",
+            Patterns = new string[] { "Gambling" },
+            Prefix = "GA"
+        },
+        new() {
+            LongName = "Immigration Services",
+            Abbreviation = "ImmigrationServices",
+            Patterns = new string[] { "Immigration services" },
+            Prefix = "IMS"
+        },
+        new() {
+            LongName = "Individual Electoral Registration",
+            Abbreviation = "IndividualElectoralRegistration",
+            Patterns = new string[] { "individual electoral registration" },
+            Prefix = "IR"
+        },
         new() {
             LongName = "Information Rights",
             Abbreviation = "InformationRights",
-            Patterns = new string[] { "Information Rights", "Section 166 DPA 1998" },
+            Patterns = new string[] { "Information Rights", "Freedom of Information", "Section 166 DPA 1998" },
             Prefix = "EA"
         },
-        // new() {
-        //     Name = "Letting and Managing agents",
-        //     Abbreviation = "Letting and managing Agents",
-        //     Patterns = new string[] { "Letting and managing agents", "Letting", "managing agent" },
-        //     Prefix = null
-        // },
-        // new() {
-        //     Name = "Local Government Standards",
-        //     Abbreviation = "LocalGovernment",
-        //     Patterns = new string[] { "Local government standards" },
-        //     Prefix = null
-        // },
         new() {
             LongName = "Pensions Regulation",
             Abbreviation = "Pensions",
             Patterns = new string[] { "Pensions Regulation", "Pensions" },
             Prefix = "PEN"
         },
-        // new() {
-        //     Name = "Secondary Ticketing",
-        //     Abbreviation = "SecondaryTicketing",
-        //     Patterns = new string[] { "Secondary ticketing" },
-        //     Prefix = null
-        // },
+        new() {
+            LongName = "Standards and Licensing",
+            Abbreviation = "StandardsAndLicensing",
+            Patterns = new string[] { "Standards and Licensing", "Standards & Licensing", "Professional Regulation" },
+            Prefix = "PR"
+        },
         new() {
             LongName = "Transport",
             Abbreviation = "Transport",
             Patterns = new string[] { "Transport" },
-            Prefix = null
+            Prefix = "D"
         },
         new() {
             LongName = "Welfare of Animals",
-            Abbreviation = "AnimalWelfare",
+            Abbreviation = "WelfareOfAnimals",
             Patterns = new string[] { "Welfare of animals", "Animal Welfare" },
             Prefix = "WA"
         }
