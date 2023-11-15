@@ -12,26 +12,39 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parsers;
 
 namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries {
+
 partial class Enricher {
 
     internal static bool IsRestriction(WLine line) {
         if (line.NormalizedContent.StartsWith(@"Reporting Restrictions Apply", StringComparison.InvariantCultureIgnoreCase))
             return true;
-        if (IsRed(line))
+        var contents = line.Contents;
+        if (contents.FirstOrDefault() is WImageRef)
+            contents = line.Contents.Skip(1);
+        return contents.Any(IsRedAndNotEmpty) && contents.All(IsRedOrEmpty);
+    }
+    private static bool IsRedAndNotEmpty(IInline inline) {
+        if (inline is not WText text)
+            return false;
+        if (string.IsNullOrWhiteSpace(text.Text))
+            return false;
+        if (IsRed(text))
             return true;
         return false;
-    }
-    internal static bool IsRed(WLine line) {
-        return line.Contents.All(IsRedOrEmpty);
     }
     private static bool IsRedOrEmpty(IInline inline) {
         if (inline is not WText text)
             return false;
         if (string.IsNullOrWhiteSpace(text.Text))
             return true;
-        if (text.FontColor is not null && RedRegex().IsMatch(text.FontColor))
+        if (IsRed(text))
             return true;
         return false;
+    }
+    private static bool IsRed(WText text) {
+        if (text.FontColor is null)
+            return false;
+        return RedRegex().IsMatch(text.FontColor);
     }
 
     [GeneratedRegex("^[1-9A-F][0-9A-F]0{4}$", RegexOptions.IgnoreCase)]
@@ -60,9 +73,11 @@ partial class Enricher {
             return true;
         if (line.NormalizedContent.Contains(@"In the matter of ", StringComparison.InvariantCultureIgnoreCase))
             return true;
-        if (line.NormalizedContent.Contains("(Appellant)") && line.NormalizedContent.Contains("(Respondent)"))
+        // if (line.NormalizedContent.Contains(@"R (on the application of ", StringComparison.InvariantCultureIgnoreCase))
+        //     return true;
+        if (line.NormalizedContent.Contains("(Appellant") && line.NormalizedContent.Contains("(Respondent"))
             return true;
-        if (line.NormalizedContent.Contains("(Applicant)") && line.NormalizedContent.Contains("(Intervener)"))
+        if (line.NormalizedContent.Contains("(Applicant") && line.NormalizedContent.Contains("(Intervener"))
             return true;
         return false;
     }
