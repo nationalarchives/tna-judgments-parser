@@ -642,18 +642,20 @@ abstract class OptimizedParser {
         if (block is not WLine line)
             return false;
         String text = line.NormalizedContent;
-        if (Regex.IsMatch(text, @"^\s*ANNEX\s+\d+\s*$", RegexOptions.IgnoreCase))
+        if (text.Equals("Annex" , StringComparison.InvariantCultureIgnoreCase))
             return true;
-        if (Regex.IsMatch(text, @"^\s*Appendix\s*$", RegexOptions.IgnoreCase))
+        if (text.Equals("- Annex -" , StringComparison.InvariantCultureIgnoreCase))
             return true;
-        if (Regex.IsMatch(text, @"^\s*-\sANNEX\s-\s*$", RegexOptions.IgnoreCase))
+        if (Regex.IsMatch(text, @"^Annex \d+$", RegexOptions.IgnoreCase))
+            return true;
+        if (text.Equals("Appendix" , StringComparison.InvariantCultureIgnoreCase))
             return true;
         // if (Regex.IsMatch(text, @"^\s*Appendix\s+No\.?\s*\d+\s*$", RegexOptions.IgnoreCase))
         //     return true;
         return false;
     }
 
-    private List<IAnnex> Annexes() {
+    protected List<IAnnex> Annexes() {
         List<IAnnex> annexes = new List<IAnnex>();
         while (i < PreParsed.Body.Count) {
             int save = i;

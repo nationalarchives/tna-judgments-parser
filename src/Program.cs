@@ -10,8 +10,10 @@ using System.CommandLine.NamingConventionBinder;
 
 using Microsoft.Extensions.Logging;
 
+using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
+using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 
@@ -26,20 +28,25 @@ class Program {
             new Option<FileInfo>("--output-zip", description: "the .zip file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
             new Option<bool>("--test", description: "whether to test the result"),
-            new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" }
+            new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
+            new Option<string>("--hint", description: "the type of document: 'em'")
         };
-        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool, FileInfo>(Transform);
+        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool, FileInfo, string>(Transform);
     }
 
     static int Main(string[] args) {
         return command.InvokeAsync(args).Result;
     }
 
-    static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+    static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment, string hint) {
         if (log is not null) {
             Logging.SetFile(log, LogLevel.Debug);
             ILogger logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
+        }
+        if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            TransformEM(input, output, outputZip, log, test, attachment);
+            return;
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
@@ -61,6 +68,19 @@ class Program {
             Print(response.Meta);
     }
 
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+        if (attachment is not null)
+            throw new Exception();
+        byte[] docx = File.ReadAllBytes(input.FullName);
+        var parsed = EM.Helper.Parse(docx);
+        if (outputZip is not null)
+            SaveZip(parsed, outputZip);
+        else if (output is not null)
+            File.WriteAllText(output.FullName, parsed.Serialize());
+        else
+            Console.WriteLine(parsed.Serialize());
+    }
+
     private static void SaveZip(Api.Response response, FileInfo file) {
         using var stream = new FileStream(file.FullName, FileMode.Create);
         using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
@@ -78,8 +98,24 @@ class Program {
         }
         foreach (var image in response.Images) {
             entry = archive.CreateEntry(image.Name);
-            using (var zip = entry.Open())
-                zip.Write(image.Content, 0, image.Content.Length);
+            using var zip = entry.Open();
+            zip.Write(image.Content, 0, image.Content.Length);
+        }
+    }
+
+    private static void SaveZip(IXmlDocument em, FileInfo file) {
+        using var stream = new FileStream(file.FullName, FileMode.Create);
+        using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
+        var entry = archive.CreateEntry("judgment.xml");
+        using (var zip = entry.Open()) {
+            byte[] bytes = Encoding.UTF8.GetBytes(em.Serialize());
+            zip.Write(bytes, 0, bytes.Length);
+        }
+        foreach (var image in em.Images) {
+            entry = archive.CreateEntry(image.Name);
+            using var zip = entry.Open();
+            byte[] bytes = EM.Helper.ReadImage(image);
+            zip.Write(bytes, 0, bytes.Length);
         }
     }
 
