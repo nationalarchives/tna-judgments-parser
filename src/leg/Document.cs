@@ -13,6 +13,8 @@ interface IDocument {
 
     IEnumerable<IImage> Images { get; }
 
+    IEnumerable<IAnnex> Annexes { get; }
+
 }
 
 interface IDocument<T> : IDocument {
@@ -33,6 +35,8 @@ internal class DividedDocument : IDividedDocument {
 
     public IEnumerable<IDivision> Body { get; internal init; }
 
+    public IEnumerable<IAnnex> Annexes { get; internal init; }
+
     public IEnumerable<IImage> Images { get; internal set; }
 
 }
@@ -44,6 +48,8 @@ internal class UndividedDocument : IUndividedDocument {
     public IEnumerable<IBlock> Header { get; internal init; }
 
     public IEnumerable<IBlock> Body { get; internal init; }
+
+    public IEnumerable<IAnnex> Annexes { get; internal init; }
 
     public IEnumerable<IImage> Images { get; internal set; }
 
@@ -66,6 +72,15 @@ internal class DocumentMetadata {
     public string ExpressionAuthor { get; init; }
 
     public Dictionary<string, Dictionary<string, string>> CSS { get; init; }
+
+}
+
+internal class AnnexMetadata : DocumentMetadata {
+
+    internal AnnexMetadata(DocumentMetadata main, int n) {
+        Name = "Annex";
+        ShortUriComponent = main.ShortUriComponent + "/annex/" + n;
+    }
 
 }
 

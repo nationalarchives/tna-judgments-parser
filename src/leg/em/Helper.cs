@@ -29,6 +29,12 @@ class Helper {
         return new XmlDocument_ { Document = xml };
     }
 
+    public static byte[] ReadImage(Judgments.IImage image) {
+        using var stream = new MemoryStream();
+        image.Content().CopyTo(stream);
+        return stream.ToArray();
+    }
+
 }
 
 }
