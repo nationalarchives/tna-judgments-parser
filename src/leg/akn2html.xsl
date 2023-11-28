@@ -49,7 +49,7 @@
 <xsl:template name="style">
 	<style>
 article { margin: 0.5in 1in }
-.preface &gt; p.center { text-align: center }
+p.center { text-align: center }
 section { position: relative }
 h2 { font-size: inherit; font-weight: normal }
 .section &gt; h2 &gt; .num { display: inline-block; width: 0.5in }
@@ -58,10 +58,14 @@ h2 { font-size: inherit; font-weight: normal }
 .subparagraph { margin-left: 0.5in }
 .subparagraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
 section &gt; .level &gt; h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
 .footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
 </style>
 <!--	
 td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
@@ -80,6 +84,12 @@ td > p:last-child { margin-bottom: 0 }
 		<xsl:apply-templates />
 		<xsl:call-template name="footnotes" />
 	</article>
+</xsl:template>
+
+<xsl:template match="attachment/doc">
+	<section class="attachment" data-name="{ @name }">
+		<xsl:apply-templates />
+	</section>
 </xsl:template>
 
 <xsl:template match="meta" />
