@@ -386,7 +386,7 @@ abstract class Builder {
         foreach (IInline inline in line.Contents)
             AddInline(block, inline);
     }
-    private void p(XmlElement parent, ILine line) {
+    protected void p(XmlElement parent, ILine line) {
         if (line is IRestriction restriction)
             AddNamedBlock(parent, line, "restriction");
         else

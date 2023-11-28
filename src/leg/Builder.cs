@@ -43,6 +43,7 @@ class Builder : AkN.Builder {
             blocks(body, undivided.Body);
         else
             throw new System.Exception();
+        AddAnnexes(main, document);
         AddHash(doc);
     }
 
@@ -105,6 +106,9 @@ class Builder : AkN.Builder {
         XmlElement maniFormat = CreateAndAppend("FRBRformat", manifestation);
         maniFormat.SetAttribute("value", "application/xml");
 
+        if (data is AnnexMetadata)
+            return;
+
         XmlElement references = CreateAndAppend("references", meta);
         references.SetAttribute("source", "#tna");
         XmlElement tna = CreateAndAppend("TLCOrganization", references);
@@ -162,6 +166,32 @@ class Builder : AkN.Builder {
 
     protected override string MakeDivisionId(IDivision div) {
         return null;
+    }
+
+    /* annexes */
+
+    protected void AddAnnexes(XmlElement main, IDocument document) {
+        if (document.Annexes is null)
+            return;
+        if (!document.Annexes.Any())
+            return;
+        XmlElement attachments = doc.CreateElement("attachments", ns);
+        main.AppendChild(attachments);
+        foreach (var annex in document.Annexes.Select((value, i) => new { i, value }))
+            AddAnnex(attachments, annex.value, annex.i + 1, document.Meta);
+    }
+
+    private void AddAnnex(XmlElement attachments, IAnnex annex, int n, DocumentMetadata meta) {
+        XmlElement attachment = doc.CreateElement("attachment", ns);
+        attachments.AppendChild(attachment);
+        XmlElement main = doc.CreateElement("doc", ns);
+        main.SetAttribute("name", "annex");
+        attachment.AppendChild(main);
+        AddMetadata(main, new AnnexMetadata(meta, n));
+        XmlElement body = doc.CreateElement("mainBody", ns);
+        main.AppendChild(body);
+        p(body, annex.Number);
+        blocks(body, annex.Contents);
     }
 
 }

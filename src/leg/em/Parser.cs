@@ -31,6 +31,9 @@ partial class Parser : CaseLaw.OptimizedParser {
         header.InsertRange(0, PreParsed.Header);
 
         List<IDivision> body = Body2();
+        IEnumerable<IAnnex> annexes = Annexes();
+        if (i != PreParsed.Body.Count)
+            logger.LogCritical("parsing did not complete: {}", i);
 
         IEnumerable<IImage> images = WImage.Get(doc);
         DocumentMetadata metadata = Metadata.Make(header, doc);
@@ -39,6 +42,7 @@ partial class Parser : CaseLaw.OptimizedParser {
         return new DividedDocument {
             Header = header,
             Body = body,
+            Annexes = annexes,
             Images = images,
             Meta = metadata 
         };
@@ -57,6 +61,8 @@ partial class Parser : CaseLaw.OptimizedParser {
     private List<IDivision> Body2() {       
         List<IDivision> body = new List<IDivision>();
         while (i < PreParsed.Body.Count()) {
+            if (NextBlockIsAnnexHeading())
+                break;
             IDivision div = ParseDivsion();
             body.Add(div);
         }
@@ -167,6 +173,8 @@ partial class Parser : CaseLaw.OptimizedParser {
         if (i == PreParsed.Body.Count)
             return null;
         IBlock block = PreParsed.Body.ElementAt(i).Block;
+        if (IsFirstLineOfAnnex(block))
+            return null;
         if (IsSectionHeading(block))
             return null;
         if (IsLevel1Subheading(block))
@@ -257,6 +265,8 @@ partial class Parser : CaseLaw.OptimizedParser {
     /* paragraphs */
 
     override protected bool CannotBeSubparagraph(WLine line) {
+        if (IsFirstLineOfAnnex(line))
+            return true;
         if (IsSectionHeading(line))
             return true;
         if (IsLevel1Subheading(line))
@@ -264,6 +274,15 @@ partial class Parser : CaseLaw.OptimizedParser {
         if (IsLevel2Subheading(line))
             return true;
         return false;
+    }
+
+    /* annexes */
+
+    private bool NextBlockIsAnnexHeading() {
+        if (i == PreParsed.Body.Count)
+            return false;
+        IBlock block = PreParsed.Body.ElementAt(i).Block;
+        return IsFirstLineOfAnnex(block);
     }
 
 }

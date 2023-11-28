@@ -107,7 +107,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
         {
             Dictionary<string, string> copy = new(this.State);
             UpdateStateAndRemoveStyleAttributes(e);
-            AddClassToPrefaceParagraph(e);
+            AddClassToPrefaceOrAttachmentParagraph(e);
             e.ChildNodes.Cast<XmlNode>().ToList().ForEach(VisitNode);
             RemoveSpan(e);
             State = copy;
@@ -122,8 +122,24 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             e.RemoveAttribute("style");
         }
 
-        private void AddClassToPrefaceParagraph(XmlElement p) {
-            if (p.ParentNode.LocalName != "preface")
+        private static bool IsPrefaceParagraph(XmlElement p) {
+            if (p.LocalName != "p")
+                return false;
+            return p.ParentNode.LocalName == "preface";
+        }
+        private static bool IsAttachmentParagraph(XmlElement p) {
+            if (p.LocalName != "p")
+                return false;
+            if (p.ParentNode.LocalName != "mainBody")
+                return false;
+            if (p.ParentNode.ParentNode.LocalName != "doc")
+                return false;
+            if (p.ParentNode.ParentNode.ParentNode.LocalName != "attachment")
+                return false;
+            return true;
+        }
+        private void AddClassToPrefaceOrAttachmentParagraph(XmlElement p) {
+            if (!IsPrefaceParagraph(p) && !IsAttachmentParagraph(p))
                 return;
             State.TryGetValue("text-align", out string align);
             if (align == "center" || align == "right")
