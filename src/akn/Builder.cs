@@ -170,11 +170,9 @@ abstract class Builder {
         if (div.Heading is not null)
             Block(level, div.Heading, "heading");
         if (div is IBranch branch) {
-            if (branch.Intro is not null && branch.Intro.Any()) {
-                XmlElement intro = CreateAndAppend("intro", level);
-                blocks(intro, branch.Intro);
-            }
+            AddIntro(level, branch);
             AddDivisions(level, branch.Children);
+            AddWrapUp(level, branch);
         } else if (div is ILeaf leaf) {
             XmlElement content = doc.CreateElement("content", ns);
             level.AppendChild(content);
@@ -182,6 +180,19 @@ abstract class Builder {
         } else {
             throw new Exception();
         }
+    }
+
+    private void AddIntro(XmlElement level, IBranch branch) {
+        if (branch.Intro is null || !branch.Intro.Any())
+            return;
+        XmlElement intro = CreateAndAppend("intro", level);
+        blocks(intro, branch.Intro);
+    }
+    private void AddWrapUp(XmlElement level, IBranch branch) {
+        if (branch.WrapUp is null || !branch.WrapUp.Any())
+            return;
+        XmlElement wrapUp = CreateAndAppend("wrapUp", level);
+        blocks(wrapUp, branch.WrapUp);
     }
 
     private void AddTableOfContents(XmlElement parent, ITableOfContents toc) {

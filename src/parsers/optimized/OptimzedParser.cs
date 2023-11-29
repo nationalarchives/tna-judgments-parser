@@ -560,6 +560,15 @@ abstract class OptimizedParser {
         return false;
     }
 
+    /// <summary>
+    /// Allows subclass to specify that a line is part of the <wrapUp> of the current <paragraph>.
+    /// </summary>
+    /// <param name="line">The line to test</param>
+    /// <returns>Whether the line should be within the wrapUp</returns>
+    virtual protected bool IsWrapUp(WLine line) {
+        return false;
+    }
+
     protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
         ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)
@@ -597,6 +606,12 @@ abstract class OptimizedParser {
 
                 if (CannotBeSubparagraph(nextLine))
                     break;
+
+                if (IsWrapUp(nextLine) && !sub && div.Number is not null && subparagraphs.Any()) {
+                    List<WLine> wrapUp = new(1) { nextLine };
+                    i += 1;
+                    return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs, WrapUp = wrapUp };
+                }
 
                 float nextIndent1 = GetEffectiveIndent(nextLine);
                 if (nextIndent1 - MarginOfError <= indent1)

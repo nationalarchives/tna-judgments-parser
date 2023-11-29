@@ -51,6 +51,8 @@ interface IBranch : IDivision {
 
     IEnumerable<IDivision> Children { get; }
 
+    IEnumerable<IBlock> WrapUp { get; }
+
 }
 
 interface ILeaf : IDivision {
