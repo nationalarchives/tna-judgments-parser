@@ -96,6 +96,10 @@ class OptimizedUKSCParser : OptimizedParser {
         return false;
     }
 
+    override protected bool IsWrapUp(WLine line) {
+        return line.Style == "ParaNoNumber";
+    }
+
 }
 
 }

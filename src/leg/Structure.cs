@@ -18,6 +18,8 @@ internal class Section : IBranch {
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
+    public IEnumerable<IBlock> WrapUp => null;
+
 }
 
 internal class Subheading : IBranch {
@@ -31,6 +33,8 @@ internal class Subheading : IBranch {
     public IEnumerable<IBlock> Intro => null;
 
     public IEnumerable<IDivision> Children { get; internal set; }
+
+    public IEnumerable<IBlock> WrapUp => null;
 
 }
 
@@ -63,6 +67,8 @@ class BranchParagraph : IBranchParagraph {
     public IEnumerable<IBlock> Intro => null;
 
     public IEnumerable<Judgments.IDivision> Children { get; internal init; }
+
+    public IEnumerable<IBlock> WrapUp => null;
 
 }
 
