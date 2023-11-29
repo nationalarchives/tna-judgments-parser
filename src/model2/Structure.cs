@@ -18,6 +18,8 @@ internal class BigLevel : IBranch {
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
+    public IEnumerable<IBlock> WrapUp => null;
+
 }
 
 internal class CrossHeading : IBranch {
@@ -32,6 +34,8 @@ internal class CrossHeading : IBranch {
 
     public IEnumerable<IDivision> Children { get; internal set; }
 
+    public IEnumerable<IBlock> WrapUp => null;
+
 }
 
 internal class GroupOfParagraphs : IBranch {
@@ -45,6 +49,8 @@ internal class GroupOfParagraphs : IBranch {
     public IEnumerable<IBlock> Intro { get; internal init; }
 
     public IEnumerable<IDivision> Children { get; internal set; }
+
+    public IEnumerable<IBlock> WrapUp => null;
 
 }
 
