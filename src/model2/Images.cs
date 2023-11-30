@@ -131,8 +131,8 @@ public class WImageRef : IImageRef {
             logger.LogWarning("skipping picture because its 'image data' has no relationship");
             return null;
         }
-        if (datum.Parent is Vml.Shape shape && shape.EncodedPackage is not null) {  // && shape.EncodedPackage.HasValue
-            logger.LogWarning("skipping picture because its parent shape has an encoded package");
+        if (datum.Parent is Vml.Shape shape && IsOffThePage(shape)) {  // see test 69
+            logger.LogWarning("skipping picture because it is located off the page");
             return null;
         }
         return new WImageRef(main, picture, datum, relId);
@@ -228,6 +228,29 @@ public class WImageRef : IImageRef {
         if (!xfrm.Rotation.HasValue)
             return null;
         return xfrm.Rotation.Value / 60000;
+    }
+
+    internal static bool IsOffThePage(Vml.Shape shape) {
+        string style = shape.Style?.Value;
+        if (string.IsNullOrEmpty(style))
+            return false;
+        Dictionary<string, string> styles = DOCX.CSS.ParseInline(style);
+        if (!styles.ContainsKey("position"))
+            return false;
+        string position = styles["position"];
+        if (position != "absolute")
+            return false;
+        if (styles.ContainsKey("margin-left")) {
+            string raw = styles["margin-left"];
+            try {
+                float inches = DOCX.CSS.ConvertToInches(raw);
+                if (inches > 8.5f)
+                    return true;
+            } catch {
+                logger.LogWarning("can't convert to inches: {}", raw);
+            }
+        }
+        return false;
     }
 
 }
