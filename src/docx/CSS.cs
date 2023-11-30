@@ -357,6 +357,14 @@ public class CSS {
             .ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 
+    public static float ConvertToInches(string value) {
+        if (value.EndsWith("pt")) {
+            string pt = value[..^2];
+            return float.Parse(pt) / 72f;
+        }
+        throw new NotImplementedException(value);
+    }
+
 }
 
 }
