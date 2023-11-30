@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 
 using Imaging = UK.Gov.NationalArchives.Imaging;
 using Word2 = UK.Gov.NationalArchives.WordImpl;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -102,6 +103,7 @@ public class WImageRef : IImageRef {
         }
         Rotate = GetRotation(drawing);
     }
+
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
         IEnumerable<Vml.ImageData> data = picture.Descendants<Vml.ImageData>();
         if (!data.Any()) {
@@ -125,7 +127,7 @@ public class WImageRef : IImageRef {
         }
         if (data.Skip(1).Any())
             logger.LogCritical("picture contains more than one image data");
-        Vml.ImageData datum = data.First();
+        Vml.ImageData datum = data.Last();  // !?
         string relId = datum.RelationshipId?.Value;
         if (relId is null) {
             logger.LogWarning("skipping picture because its 'image data' has no relationship");
@@ -137,6 +139,7 @@ public class WImageRef : IImageRef {
         }
         return new WImageRef(main, picture, datum, relId);
     }
+
     private WImageRef(MainDocumentPart main, Picture picture, Vml.ImageData data, string relId) {
         this.uri = DOCX.Relationships.GetUriForImage(relId, picture);
         if (data.CropTop is not null || data.CropRight is not null || data.CropBottom is not null || data.CropLeft is not null) {   // e.g., ukut/aac/2022/207
@@ -147,29 +150,21 @@ public class WImageRef : IImageRef {
             double left = CropValue(data.CropLeft);
             Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
         }
-        string tempStyle = picture.Descendants<Vml.Shape>().FirstOrDefault().Style?.Value;
-        if (!string.IsNullOrEmpty(tempStyle)) {
-            Dictionary<string, string> parsed = DOCX.CSS.ParseInline(tempStyle);
-            Dictionary<string, string> filtered = parsed
-                .Where(pair => pair.Key.Equals("width", StringComparison.OrdinalIgnoreCase) || pair.Key.Equals("height", StringComparison.OrdinalIgnoreCase))
-                .ToDictionary(pair => pair.Key, pair => pair.Value);
-            tempStyle = DOCX.CSS.SerializeInline(filtered);
+        if (data.Parent is Vml.Shape shape) {
+            Style = ExtractStyles(shape.Style?.Value);
+            if (shape.Parent is Vml.Group group) {
+                var groupStyle = ExtractStyles(group.Style?.Value);
+                if (groupStyle is not null)  // [2023] EWHC 3056 (Ch)
+                    Style = groupStyle;
+            }
         }
-        Style = tempStyle;
         Rotate = GetRotation(picture);
     }
+
     public WImageRef(MainDocumentPart main, Vml.Shape shape) {
         StringValue relId = shape.Descendants<Vml.ImageData>().First().RelationshipId;
         this.uri = DOCX.Relationships.GetUriForImage(relId, shape);
-        string tempStyle = shape.Style?.Value;
-        if (!string.IsNullOrEmpty(tempStyle)) {
-            Dictionary<string, string> parsed = DOCX.CSS.ParseInline(tempStyle);
-            Dictionary<string, string> filtered = parsed
-                .Where(pair => pair.Key.Equals("width", StringComparison.OrdinalIgnoreCase) || pair.Key.Equals("height", StringComparison.OrdinalIgnoreCase))
-                .ToDictionary(pair => pair.Key, pair => pair.Value);
-            tempStyle = DOCX.CSS.SerializeInline(filtered);
-        }
-        Style = tempStyle;
+        Style = ExtractStyles(shape.Style?.Value);
     }
 
     private string _src;
@@ -186,6 +181,19 @@ public class WImageRef : IImageRef {
     }
 
     public string Style { get; }
+
+    private static string ExtractStyles(string style) {
+        if (string.IsNullOrEmpty(style))
+            return null;
+        Dictionary<string, string> all = DOCX.CSS.ParseInline(style);
+        Dictionary<string, string> filtered = all
+            .Where(pair => pair.Key.Equals("width", StringComparison.OrdinalIgnoreCase) || pair.Key.Equals("height", StringComparison.OrdinalIgnoreCase))
+            .Where(pair => !Regex.IsMatch(@"^\d+$", pair.Value))
+            .ToDictionary(pair => pair.Key, pair => pair.Value);
+        if (!filtered.Any())
+            return null;
+        return DOCX.CSS.SerializeInline(filtered);
+    }
 
     public Imaging.Inset? Crop { get; private set; }
 
@@ -219,6 +227,7 @@ public class WImageRef : IImageRef {
 
     public int? Rotate { get; private set; }
 
+    // see test 64
     private int? GetRotation(OpenXmlElement ancestor) {
         DrawingML.Transform2D xfrm = ancestor.Descendants().OfType<DrawingML.Transform2D>().FirstOrDefault();
         if (xfrm is null)
