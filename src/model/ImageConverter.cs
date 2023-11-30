@@ -86,8 +86,8 @@ class ImageConverter {
     private static void ConvertTiffFiles(IEnumerable<IImage> unconverted, IEnumerable<IImageRef> refs, Action<List<IImage>> setter) {
         if (!unconverted.Any(image => image.ContentType == "image/tiff"))
             return;
-        List<IImage> images = new List<IImage>();
-        foreach (IImage image in images) {
+        List<IImage> images = new();
+        foreach (IImage image in unconverted) {
             if (image.ContentType != "image/tiff") {
                 images.Add(image);
                 continue;
