@@ -35,6 +35,8 @@ class Date2 : Enricher {
             return EnrichBranch(branch);
         if (division is ILeaf leaf)
             return EnrichLeaf(leaf);
+        if (division is ITableOfContents)
+            return division;
         throw new NotImplementedException();
     }
 
