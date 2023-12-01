@@ -759,6 +759,7 @@ abstract class Builder {
     private void AddRef(XmlElement parent, IRef model) {
         var x = AddAndWrapText(parent, "ref", model);
         x.SetAttribute("href", model.Href);
+        x.SetAttribute("origin", Metadata.ukns, "parser");
         x.SetAttribute("canonical", Metadata.ukns, model.Canonical);
         if (model.Type.HasValue)
             x.SetAttribute("type", Metadata.ukns, Enum.GetName(typeof(RefType), model.Type.Value).ToLower());
