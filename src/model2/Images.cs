@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -14,7 +15,6 @@ using Microsoft.Extensions.Logging;
 
 using Imaging = UK.Gov.NationalArchives.Imaging;
 using Word2 = UK.Gov.NationalArchives.WordImpl;
-using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
@@ -188,7 +188,7 @@ public class WImageRef : IImageRef {
         Dictionary<string, string> all = DOCX.CSS.ParseInline(style);
         Dictionary<string, string> filtered = all
             .Where(pair => pair.Key.Equals("width", StringComparison.OrdinalIgnoreCase) || pair.Key.Equals("height", StringComparison.OrdinalIgnoreCase))
-            .Where(pair => !Regex.IsMatch(@"^\d+$", pair.Value))
+            .Where(pair => !Regex.IsMatch(pair.Value, @"^\d+$"))
             .ToDictionary(pair => pair.Key, pair => pair.Value);
         if (!filtered.Any())
             return null;
