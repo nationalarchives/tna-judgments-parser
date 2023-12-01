@@ -97,7 +97,18 @@ class OptimizedUKSCParser : OptimizedParser {
     }
 
     override protected bool IsWrapUp(WLine line) {
-        return line.Style == "ParaNoNumber";
+        if (line.Style != "ParaNoNumber")
+            return false;
+        if (i == PreParsed.Body.Count - 1)
+            return true;
+        IBlock nextBlock = PreParsed.Body.ElementAt(i + 1).Block;
+        if (nextBlock is not WLine nextLine)
+            return false;
+        if (nextLine.Style == "Quote")
+            return false;
+        if (nextLine is not WOldNumberedParagraph)
+            return false;
+        return true;
     }
 
 }
