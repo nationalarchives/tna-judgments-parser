@@ -17,6 +17,33 @@ namespace UK.Gov.NationalArchives.Enrichment
     class EnrichFromEnd
     {
 
+        // internal static WLine Enrich(WLine raw, string[] patterns, Constructor constructor)
+        // {
+        //     IEnumerable<IInline> enriched = Enrich(raw.Contents, patterns, constructor);
+        //     if (!ReferenceEquals(enriched, raw))
+        //         return WLine.Make(raw, enriched);
+        //     return raw;
+        // }
+
+        internal static WLine Enrich(WLine raw, string pattern, Constructor constructor)
+        {
+            IEnumerable<IInline> enriched = Enrich(raw.Contents, pattern, constructor);
+            if (!ReferenceEquals(enriched, raw))
+                return WLine.Make(raw, enriched);
+            return raw;
+        }
+
+        // internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string[] patterns, Constructor constructor)
+        // {
+        //     foreach (var pattern in patterns)
+        //     {
+        //         IEnumerable<IInline> enriched = Enrich(raw, pattern, constructor);
+        //         if (!ReferenceEquals(enriched, raw))
+        //             return enriched;
+        //     }
+        //     return raw;
+        // }
+
         internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string pattern, Constructor constructor)
         {
             IEnumerator<IInline> reversed = raw.Reverse().GetEnumerator();
