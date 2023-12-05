@@ -96,7 +96,7 @@ class NetrualCitation : Enricher2 {
             IInline first = line.First();
             if (first is WText fText) {
                 if (fText.Text.Contains("linked"))  // [2023] EWFC 194 & 195
-                    return CaseLawRef.Enrich(line, @"(\[\d{4}\] EWFC \d+)\.?$");
+                    return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+)\.?$");
                 Group group = Match(fText.Text);
                 if (group is null)
                     group = Match2(fText.Text);
@@ -113,7 +113,7 @@ class NetrualCitation : Enricher2 {
                     group = Match2(fText2.Text);
                 if (group is not null) {
                     if (first is WText fText1 && fText1.Text.Contains("linked"))  // [2023] EWFC 169 & 170
-                        return CaseLawRef.Enrich(line, @"(\[\d{4}\] EWFC \d+)\.?$");
+                        return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+)\.?$");
                     IEnumerable<IInline> before = line.SkipLast(1);
                     List<IInline> replacement = Replace(fText2, group);
                     return Enumerable.Concat(before, replacement);
