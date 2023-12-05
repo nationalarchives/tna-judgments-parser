@@ -46,11 +46,12 @@ class OptimizedUKSCParser : OptimizedParser {
     private List<Enricher> headerEnrichers = new List<Enricher>() {
         // new UKSC.SealRemover(),
         new RestrictionsEnricher(),
-        new UK.Gov.Legislation.Judgments.Parse.UKSC.CiteEnricher(),
-        new UK.Gov.Legislation.Judgments.Parse.UKSC.DateEnricher(),
-        new UK.Gov.Legislation.Judgments.Parse.UKSC.PartyEnricher(),
-        new UK.Gov.Legislation.Judgments.Parse.UKSC.LocationEnricher(),
-        new UK.Gov.Legislation.Judgments.Parse.UKSC.JudgeEnricher()
+        new Legislation.Judgments.Parse.UKSC.CiteEnricher(),
+        new UKSC.OnAppealFromRefEnricher(),
+        new Legislation.Judgments.Parse.UKSC.DateEnricher(),
+        new Legislation.Judgments.Parse.UKSC.PartyEnricher(),
+        new Legislation.Judgments.Parse.UKSC.LocationEnricher(),
+        new Legislation.Judgments.Parse.UKSC.JudgeEnricher()
     };
 
     protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {

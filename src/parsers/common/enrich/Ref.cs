@@ -26,9 +26,19 @@ namespace UK.Gov.NationalArchives.Enrichment
             };
         }
 
-        internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string pattern)
+        // internal static WLine EnrichFromEnd(WLine raw, string[] patterns)
+        // {
+        //     return Enrichment.EnrichFromEnd.Enrich(raw, patterns, MakeRef);
+        // }
+
+        internal static WLine EnrichFromEnd(WLine raw, string pattern)
         {
-            return EnrichFromEnd.Enrich(raw, pattern, MakeRef);
+            return Enrichment.EnrichFromEnd.Enrich(raw, pattern, MakeRef);
+        }
+
+        internal static IEnumerable<IInline> EnrichFromEnd(IEnumerable<IInline> raw, string pattern)
+        {
+            return Enrichment.EnrichFromEnd.Enrich(raw, pattern, MakeRef);
         }
 
     }
