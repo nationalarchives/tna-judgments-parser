@@ -31,40 +31,51 @@ class HeaderSplitter {
 
     private State state = State.Start;
 
-    private readonly IEnumerable<IBlock> Blocks;
+    private readonly List<IBlock> Blocks;
+
+    private int I = 0;
 
     private readonly List<IBlock> Enriched = new List<IBlock>(3);
 
     private HeaderSplitter(IEnumerable<IBlock> blocks) {
-        Blocks = blocks;
+        Blocks = blocks is List<IBlock> list ? list : new List<IBlock>(blocks);
     }
 
     private void Enrich() {
-        foreach (var block in Blocks)
-            switch (state) {
-                case State.Start:
-                    Start(block);
-                    break;
-                case State.AfterDocType:
-                    AfterDocType(block);
-                    break;
-                case State.AfterRegulationTitle:
-                    AfterRegulationTitle(block);
-                    break;
-                case State.AfterDocNumber:
-                    AfterDocNumber(block);
-                    break;
-                case State.Done:
-                    return;
-                case State.Fail:
-                    Enriched.Clear();
-                    return;
-                default:
-                    throw new System.Exception();
+        while (I < Blocks.Count) {
+            var block = Blocks[I];
+            if (state == State.Start) {
+                Start(block);
+                I += 1;
+                continue;
             }
+            if (state == State.AfterDocType) {
+                AfterDocType(block);
+                I += 1;
+                continue;
+            }
+            if (state == State.AfterRegulationTitle) {
+                AfterRegulationTitle(block);
+                I += 1;
+                continue;
+            }
+            if (state == State.AfterDocNumber) {
+                AfterDocNumber(block);
+                I += 1;
+                continue;
+            }
+            if (state == State.Done) {
+                break;
+            }
+            if (state == State.Fail) {
+                Enriched.Clear();
+                return;
+            }
+            throw new System.NotImplementedException();
+        }
     }
 
-    string[] Titles = { "Explanatory Memorandum To", "Policy Note" };
+    readonly string[] Titles = { "Explanatory Memorandum To", "Policy Note" };
 
     internal static string GetDocumentType(List<IBlock> header) {
         Model.DocType2 docType = Util.Descendants<Model.DocType2>(header).FirstOrDefault();
@@ -153,7 +164,58 @@ class HeaderSplitter {
             Enriched.Add(line);
             return;
         }
+        TryParseSecondTitleAndNumber();
         state = State.Done;
+    }
+
+    private void TryParseSecondTitleAndNumber() {
+        List<WLine> temp = new();
+
+        /* this first line must be "AND" */
+        if (I == Blocks.Count)
+            return;
+        IBlock next0 = Blocks[I];
+        if (next0 is not WLine line0)
+            return;
+        if (!line0.NormalizedContent.Equals("AND", System.StringComparison.InvariantCultureIgnoreCase))
+            return;
+        temp.Add(line0);
+
+        /* the next line can be either the type again or a title */
+        if (I + 1 == Blocks.Count)
+            return;
+        IBlock next1 = Blocks[I + 1];
+        if (next1 is not WLine line1)
+            return;
+        bool isTitle = Titles.Any(title => title.Equals(line1.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
+        if (isTitle) {
+            Model.DocType2 docType2 = new Model.DocType2 { Contents = line1.Contents };
+            WLine newLine1 = WLine.Make(line1, new List<IInline>(1) { docType2 });
+            temp.Add(newLine1);
+            if (I + 2 == Blocks.Count)
+                return;
+            IBlock next1bis = Blocks[I + 2];
+            if (next1bis is not WLine line1bis)
+                return;
+            temp.Add(line1bis);
+        } else {
+            temp.Add(line1);
+        }
+
+        /* the last line must be a document number */
+        if (I + temp.Count == Blocks.Count)
+            return;
+        IBlock next2 = Blocks[I + temp.Count];
+        if (next2 is not WLine line2)
+            return;
+        if (!RegulationNumber.Is(line2.NormalizedContent))
+            return;
+        Model.DocNumber2 docNumber2 = new Model.DocNumber2 { Contents = line2.Contents };
+        WLine newLine2 = WLine.Make(line2, new List<IInline>(1) { docNumber2 });
+        temp.Add(newLine2);
+
+        Enriched.AddRange(temp);
+        I += temp.Count;
     }
 
 }
