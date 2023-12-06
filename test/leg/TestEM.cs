@@ -13,7 +13,7 @@ namespace UK.Gov.Legislation.ExplanatoryMemoranda.Test {
 
 public class TestEM {
 
-    private static readonly int N = 8;
+    private static readonly int N = 9;
 
     public static readonly IEnumerable<object[]> Indices = Enumerable.Range(1, N)
         .Select(i => new object[] { i });
