@@ -126,13 +126,13 @@ class Judge : Enricher {
     private bool IsAJudgeName(WText text) {
         string normalized = Regex.Replace(text.Text, @"\s+", " ").Trim();
         ISet<string> starts = new HashSet<string> {
-            "LORD JUSTICE ", "THE RIGHT HONOURABLE LORD JUSTICE ",
-            "(LORD JUSTICE ",
-            "LADY JUSTICE ",
+            "LORD JUSTICE ", "THE RIGHT HONOURABLE LORD JUSTICE ", "(LORD JUSTICE ",
+            "LADY JUSTICE ", "THE RIGHT HONOURABLE LADY JUSTICE ", "(LADY JUSTICE ",
             "MR JUSTICE ", "MR. JUSTICE ",
             "MRS JUSTICE ", "MRS. JUSTICE ",
             "THE HONOURABLE MR JUSTICE ", "THE HONOURABLE MR. JUSTICE ", "THE HON. MR JUSTICE ", "THE HON MR JUSTICE ",
-            "HIS HONOUR JUDGE ", "His Honour Judge ",
+            "THE HONOURABLE MRS JUSTICE ", "THE HONOURABLE MRS. JUSTICE ", "THE HON. MRS JUSTICE ", "THE HON MRS JUSTICE ",
+            "HIS HONOUR JUDGE ", "His Honour Judge ", "HER HONOUR JUDGE ", "Her Honour Judge ",
             "SENIOR COSTS JUDGE ",
             "SIR "
             };
