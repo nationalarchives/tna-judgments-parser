@@ -116,6 +116,11 @@ class Inline2 {
                 i += 1;
                 continue;
             }
+            if (e is SdtEndCharProperties) {  // [2023] UKFTT 1022 (GRC)
+                Logger.LogDebug("ignoring <w:sdtEndPr>");
+                i += 1;
+                continue;
+            }
             if (e is Hyperlink link) {
                 var parsedLink = ParseHyperlink(Main, link);
                 parsed.AddRange(parsedLink);
