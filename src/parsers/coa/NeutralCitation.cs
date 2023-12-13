@@ -25,7 +25,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EHWC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",   // [2022] EHWC 950 (Ch)
         @"^Neutral Citation( Number| No)?:? (\[\d{4}\] EWCOP \d+)",
-        @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+)",
+        @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EAT \d+)"
@@ -39,7 +39,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
         @"^NCN:? (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2021] EWCA Crim 1412
         @"^NCN No: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2022] EWCA Crim 39
-        @"(\[\d{4}\] EWFC \d+)",
+        @"(\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation Number: (\[\d{4}\[ EWCA (Civ|Crim) \d+)",   // [2018[ EWCA Civ 1744
         @"^(\[\d{4}\] EWCOP \d+)$", //[2021] EWCOP 67
         @"^ *(\[?\d{4}\]? EAT \d+)$"
@@ -96,7 +96,7 @@ class NetrualCitation : Enricher2 {
             IInline first = line.First();
             if (first is WText fText) {
                 if (fText.Text.Contains("linked"))  // [2023] EWFC 194 & 195
-                    return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+)\.?$");
+                    return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$");
                 Group group = Match(fText.Text);
                 if (group is null)
                     group = Match2(fText.Text);
@@ -113,7 +113,7 @@ class NetrualCitation : Enricher2 {
                     group = Match2(fText2.Text);
                 if (group is not null) {
                     if (first is WText fText1 && fText1.Text.Contains("linked"))  // [2023] EWFC 169 & 170
-                        return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+)\.?$");
+                        return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$");
                     IEnumerable<IInline> before = line.SkipLast(1);
                     List<IInline> replacement = Replace(fText2, group);
                     return Enumerable.Concat(before, replacement);
