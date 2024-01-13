@@ -80,6 +80,12 @@ public class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] UKFTT { num } ({ sub })";
         }
+        match = Regex.Match(cite, @"^\[(\d{4})\] UKIPTrib (\d+)$", RegexOptions.IgnoreCase);
+        if (match.Success) {
+            string num = match.Groups[2].Value.TrimStart('0');
+            if (!string.IsNullOrEmpty(num))
+                return $"[{ match.Groups[1].Value }] UKIPTrib { num }";
+        }
         return null;
     }
 
@@ -112,6 +118,9 @@ public class Citations {
         match = Regex.Match(normalized, @"^\[(\d{4})\] (UKFTT) (\d+) \((TC|GRC)\)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value };
+        match = Regex.Match(normalized, @"^\[(\d{4})\] (UKIPTrib) (\d+)$");
+        if (match.Success)
+            return new string[] { match.Groups[2].Value, match.Groups[1].Value, match.Groups[3].Value };
         return null;
     }
 
