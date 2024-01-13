@@ -56,6 +56,8 @@ class OptimizedEWHCParser : OptimizedParser {
         "SUBSTANTIVE JUDGMENT", // [2023] EWHC 323 (Ch)
         "REDACTED JUDGMENT",  // [2023] EWHC 654 (Ch)
 
+        "OPEN JUDGMENT", // IPT
+
         /* EAT */
         "TRANSCRIPT OF ORAL JUDGMENT",
         "TRANSRIPT OF ORAL JUDGMENT"

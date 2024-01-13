@@ -325,6 +325,12 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/employment-tribunal"
     };
 
+    public static readonly Court InvestigatoryPowersTribunal = new() {
+        Code = "UKIPT",
+        LongName = "The Investigatory Powers Tribunal",
+        URL = "https://investigatorypowerstribunal.org.uk/"
+    };
+
     public static readonly Court[] All = {
         SupremeCourt,
         PrivyCouncil,
@@ -367,7 +373,9 @@ public readonly partial struct Courts {
         FirstTierTribunal_Tax,
         FirstTierTribunal_GRC,
 
-        EmploymentTribunal
+        EmploymentTribunal,
+
+        InvestigatoryPowersTribunal
     };
 
     public static readonly ImmutableDictionary<string, Court> ByCode =
