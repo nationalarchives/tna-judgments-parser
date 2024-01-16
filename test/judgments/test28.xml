@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199/data.xml" />
-          <FRBRdate date="2023-08-08T15:21:53" name="transform" />
+          <FRBRdate date="2024-01-16T20:16:03" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1199</uk:number>
         <uk:cite>[2022] EWHC 1199 (QB)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>3711e3a04086f49deb18d4ebbb01a29844464ceabc9d835623e8dad2f485fac5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -303,15 +303,19 @@
         </paragraph>
         <paragraph eId="para_12">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">12.</num>
-          <intro>
+          <content>
             <p class="NoSpacing" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">While D was out of the meeting room, GG and JR say they had what is described as an “unguarded and candid” private conversation in relation to the negotiation, including their plans for EN and their ongoing negotiating strategy. I will return to the broad subject-matter of what they say they discussed but they cannot now recall with any precision the detail. That is not surprising given that these were oral discussions some 20 months ago. In their pleaded case, supported by the witness statements, their private conversation is said to be on the following 4 broad topics (I will call these “the four areas” below):</span></p>
-          </intro>
-          <subparagraph>
-            <num>“(i)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">the progress of the Purchase Negotiations generally, and at the August Meeting; (ii) the Second and Third Claimants' strategy for the remainder of the August Meeting and the Purchase Negotiations; (iii) the First Claimant's plans for the future of the Target and associated commercially sensitive information; and (iv) the Second and Third Claimants' impressions of the Defendant, his negotiating strategy, his lack of fitness to remain as Chief Executive Officer of the Target in the event that the Purchase Negotiations were successful, and the associated possibility that the Defendant might be fired if the Target was acquired by the First Claimant”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(i)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">the progress of the Purchase Negotiations generally, and at the August Meeting; (ii) the Second and Third Claimants' strategy for the remainder of the August Meeting and the Purchase Negotiations; (iii) the First Claimant's plans for the future of the Target and associated commercially sensitive information; and (iv) the Second and Third Claimants' impressions of the Defendant, his negotiating strategy, his lack of fitness to remain as Chief Executive Officer of the Target in the event that the Purchase Negotiations were successful, and the associated possibility that the Defendant might be fired if the Target was acquired by the First Claimant”.</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_13">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.25in">13.</num>

@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
-          <FRBRdate date="2023-08-08T15:17:28" name="transform" />
+          <FRBRdate date="2024-01-16T20:13:36" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>45</uk:number>
         <uk:cite>[2023] UKFTT 45 (TC)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>7653fcf040c1d7f55f82082fef299fc6cf7090d63a7ff2a351feee4d4990cb13</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -1202,14 +1202,18 @@
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Secondly, and far more pertinently I am bound by the High Court in <span style="font-style:italic">R(oao ToTel Limited)</span><span> </span><span style="font-style:italic">v the FTT and another</span> [2011] EWHC 652 where Mr Justice Simon, having referred to those two paragraphs stated that:-</p>
           </intro>
           <subparagraph>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">“130…In <span style="font-style:italic">Jussila v Finland</span> (2006) (A/73053/01) the Court at [29], and by 13 votes to 4, made clear its views about the impact of the civil aspect of Article 6 in relation to taxes. </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:0.79in">The assessment of tax and the imposition of surcharges fall outside the scope of Article 6 under its civil head (see <span style="font-style:italic">Ferrazzini v. Italy</span> ...  §29).</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in">The assessment of tax and the imposition of surcharges fall outside the scope of Article 6 under its civil head (see <span style="font-style:italic">Ferrazzini v. Italy</span> ...  §29).</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num>131.</num>
