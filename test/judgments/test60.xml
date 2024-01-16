@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/657/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/657/data.xml" />
-          <FRBRdate date="2023-08-08T17:30:31" name="transform" />
+          <FRBRdate date="2024-01-16T20:14:24" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2023</uk:year>
         <uk:number>657</uk:number>
         <uk:cite>[2023] EWCA Civ 657</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>40e7d138e12f0b335d3609d6b77e1cd819183479743934148bbf1a9fc5fa912f</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -549,21 +549,25 @@
           <heading class="BodyCL"><span style="font-style:italic">The judgment of HHJ Pearce</span></heading>
           <paragraph eId="para_18">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
-            <intro>
+            <content>
               <p class="BodyCL" style="margin-left:0.5in">The Appellants argued before the judge that the case was settled in their favour by the decision of this court in <span style="font-style:italic">Hoddinott</span><span> </span><span style="font-style:italic">v Persimmon Homes (Wessex) Ltd </span>[2008] 1 WLR 806, where Dyson LJ said:-</p>
-            </intro>
-            <subparagraph>
-              <num>“27.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In our judgment, the meaning of paragraph (5) is clear and unqualified. If the conditions stated in subparagraphs (a) and (b) are satisfied, then the defendant is treated as having accepted that ‘the court has jurisdiction to try the claim’. The conditions include that the defendant does not make an application for an order pursuant to CPR 11(1) within 14 days after filing an acknowledgment of service. An application to set aside an order extending the time for service made before the filing of an acknowledgement of service is not an application under CPR 11(1) nor is it an application made within 14 days after the filing of the acknowledgment of service. The district judge (rightly) did not hold that the application to set aside the order extending time for service was an application under CPR 11(1). Rather, he said that the earlier application to set aside the order rendered it unnecessary to make an application under CPR 11(1). But in our judgment, there is no warrant for holding that, if an application is made before the filing of an acknowledgment of service to set aside an order extending the time for service, this has the effect of disapplying the requirement for an application under CPR 11(1). There is no such express disapplication, nor does one arise by necessary implication.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>28.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In our view, a defendant is fixed with the consequences stated in paragraph (5) if the two stated conditions are satisfied…”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“27.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In our judgment, the meaning of paragraph (5) is clear and unqualified. If the conditions stated in subparagraphs (a) and (b) are satisfied, then the defendant is treated as having accepted that ‘the court has jurisdiction to try the claim’. The conditions include that the defendant does not make an application for an order pursuant to CPR 11(1) within 14 days after filing an acknowledgment of service. An application to set aside an order extending the time for service made before the filing of an acknowledgement of service is not an application under CPR 11(1) nor is it an application made within 14 days after the filing of the acknowledgment of service. The district judge (rightly) did not hold that the application to set aside the order extending time for service was an application under CPR 11(1). Rather, he said that the earlier application to set aside the order rendered it unnecessary to make an application under CPR 11(1). But in our judgment, there is no warrant for holding that, if an application is made before the filing of an acknowledgment of service to set aside an order extending the time for service, this has the effect of disapplying the requirement for an application under CPR 11(1). There is no such express disapplication, nor does one arise by necessary implication.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_28">
+                    <num>28.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In our view, a defendant is fixed with the consequences stated in paragraph (5) if the two stated conditions are satisfied…”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_19">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
@@ -573,188 +577,200 @@
           </paragraph>
           <paragraph eId="para_20">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
-            <intro>
+            <content>
               <p class="BodyCL" style="margin-left:0.5in">Judge Pearce said at paragraph 51:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“…..I conclude that the judgment of the Court of Appeal in <span style="font-style:italic">Hoddinott</span> is authority for the proposition that a defendant who files an Acknowledgment of Service, but does not apply under CPR 11.1 for an order declaring that the court has no jurisdiction or that the court should not exercise any jurisdiction which it may have, is to be treated as accepting that the court has jurisdiction to try the claim. On the face of it, this would appear to dispose of the issue of the proper construction and application of CPR 11 to the facts of this case, since the County Court is bound by a judgment of the Court of Appeal.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“…..I conclude that the judgment of the Court of Appeal in <span style="font-style:italic">Hoddinott</span> is authority for the proposition that a defendant who files an Acknowledgment of Service, but does not apply under CPR 11.1 for an order declaring that the court has no jurisdiction or that the court should not exercise any jurisdiction which it may have, is to be treated as accepting that the court has jurisdiction to try the claim. On the face of it, this would appear to dispose of the issue of the proper construction and application of CPR 11 to the facts of this case, since the County Court is bound by a judgment of the Court of Appeal.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_21">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">21.</num>
-            <intro>
+            <content>
               <p class="BodyCL" style="margin-left:0.5in">He then went on to consider the Respondent’s argument that <span style="font-style:italic">Hoddinott</span> was impliedly overruled by the Supreme Court in <span style="font-style:italic">Barton. </span>He held that Lord Sumption’s use of the word “expired” did not mean that the validity of a claim form was to be determined by analogy to a creature which is either living or dead, but by application of procedural rules and practice which provide that, while usually a claim form that has not been served within its period of validity has no continuing validity there are circumstances such as those referred to in CPR 7.6 or cases where the defendant has accepted jurisdiction, where it can continue to have or can resume validity. He went on:-</p>
-            </intro>
-            <subparagraph>
-              <num>“58.</num>
-              <intro>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">If the judgment of <span style="font-style:italic">Hoddinott</span> on the effect of CPR 11 is looked at in this way, the position becomes clearer:</p>
-              </intro>
-              <subparagraph>
-                <num>a.</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">Where the time for service of the Claim form under CPR 7.5 has expired and the court has not granted an extension of time for service under CPR 7.6, the Claim form is normally no longer valid and proceedings cannot be commenced in reliance upon late service of it unless the defendant has accepted the jurisdiction of the Court;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>b.</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">However, if the defendant has lost the right to challenge the validity of the Claim form by submitting to the jurisdiction of the court, it remains valid;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>c.</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">If the Claim form has been served and an Acknowledgment of Service is filed, the Defendant does not thereby lose any right to dispute the court’s jurisdiction;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>d.</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">However, a Defendant who serves an Acknowledgment of Service but does not make an application under CPR 11 for an order declaring that the court has no jurisdiction or that the court should not exercise any jurisdiction which it may have is to be treated as accepting that the court has jurisdiction to try the claim and hence will not be able to dispute the continued validity of the Claim form.”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>59.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">These conclusions are not inconsistent with the judgment of the majority of the Supreme Court in <span style="font-style:italic">Barton v Wright Hassall</span> so as to cause the court to conclude that <span style="font-style:italic">Hoddinott</span> has been impliedly overruled. I reject that proposition.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>60.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">I should add, since it is relevant to some of the argument advanced in this case, that it is clear that the failure to tick the box in a Claim form indicating an intention to contest the court’s jurisdiction is neither a necessary nor a sufficient basis to do so. It is not necessary because an application under CPR 11(1) is not predicated on the defendant having done so; it is not sufficient because, once the Acknowledgment of Service is served, CPR 11(1) sets out a different procedure that must be adopted in order to contest the court’s jurisdiction. However, the court will not doubt be alert in the appropriate case to the possibility that, by failing to tick the relevant box, the defendant may in fact be taken to have accepted that the court has jurisdiction to hear the case. That matter will be fact specific. It would certainly not apply here where the Acknowledgment of Service was accompanied by a letter specifically raising that issue.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>61.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">It will be noted that the consequence of this is that failing to comply with CPR 11(1) is a discrete way of submission to the jurisdiction that arises by virtue of CPR 11(5). A party may make application under CPR 11(1) but be treated as submitting to the jurisdiction by reason of other factors (though given the need for such submission to be unequivocal, this may be rare). But equally a party who has unequivocally <span style="text-decoration-line:underline;text-decoration-style:solid">not</span> submitted to the jurisdiction may be treated as having done so by virtue of the failure to comply with CPR 11(1). The court needs to be astute not to confuse the two, though matters that are relevant to the determination of whether the defendant has submitted to the jurisdiction on one of the grounds may equally be relevant to submission on the other.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>62.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">I turn to the second issue here which is whether, on the material before, the District Judge came to the correct conclusion on whether the Respondent had submitted to the jurisdiction. The first point to make is that, by reference to anything other than the terms of CPR Part 11, the Judge was undoubtedly entitled to find that there was no submission to the jurisdiction. The Respondent repeatedly made clear its intention to argue that it disputed the Appellants’ right to rely on the Claim form on the grounds that its validity had expired; indeed, it applied to strike the claim out on this basis. Disregarding for the moment the effect of Part 11, the District Judge was clearly entitled to come to the conclusion that “there had been no waiver, express or implied, of its right to challenge the jurisdiction<span style="font-style:italic">.”</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>63.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">But, the Appellants say, regard must be had to the procedural provision of CPR 11 in the light of <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Hoddinott</span>. The simple fact is that an Acknowledgment of Service was filed but no application was made under CPR 11 and, in light of CPR 11(5), the court is bound to treat it as having accepted that it has jurisdiction to try the claim.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>64.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In my judgment this is correct. The Court below was bound by the decision in <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Hoddinott</span> to find that the Respondent was to be treated as having accepted the jurisdiction of the court unless it had made the requisite application under CPR 11(1).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“58.</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">If the judgment of <span style="font-style:italic">Hoddinott</span> on the effect of CPR 11 is looked at in this way, the position becomes clearer:</p>
+                    </intro>
+                    <subparagraph>
+                      <num>a.</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">Where the time for service of the Claim form under CPR 7.5 has expired and the court has not granted an extension of time for service under CPR 7.6, the Claim form is normally no longer valid and proceedings cannot be commenced in reliance upon late service of it unless the defendant has accepted the jurisdiction of the Court;</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>b.</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">However, if the defendant has lost the right to challenge the validity of the Claim form by submitting to the jurisdiction of the court, it remains valid;</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>c.</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">If the Claim form has been served and an Acknowledgment of Service is filed, the Defendant does not thereby lose any right to dispute the court’s jurisdiction;</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>d.</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.28in;text-indent:0.22in">However, a Defendant who serves an Acknowledgment of Service but does not make an application under CPR 11 for an order declaring that the court has no jurisdiction or that the court should not exercise any jurisdiction which it may have is to be treated as accepting that the court has jurisdiction to try the claim and hence will not be able to dispute the continued validity of the Claim form.”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph eId="para_59">
+                    <num>59.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">These conclusions are not inconsistent with the judgment of the majority of the Supreme Court in <span style="font-style:italic">Barton v Wright Hassall</span> so as to cause the court to conclude that <span style="font-style:italic">Hoddinott</span> has been impliedly overruled. I reject that proposition.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_60">
+                    <num>60.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">I should add, since it is relevant to some of the argument advanced in this case, that it is clear that the failure to tick the box in a Claim form indicating an intention to contest the court’s jurisdiction is neither a necessary nor a sufficient basis to do so. It is not necessary because an application under CPR 11(1) is not predicated on the defendant having done so; it is not sufficient because, once the Acknowledgment of Service is served, CPR 11(1) sets out a different procedure that must be adopted in order to contest the court’s jurisdiction. However, the court will not doubt be alert in the appropriate case to the possibility that, by failing to tick the relevant box, the defendant may in fact be taken to have accepted that the court has jurisdiction to hear the case. That matter will be fact specific. It would certainly not apply here where the Acknowledgment of Service was accompanied by a letter specifically raising that issue.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_61">
+                    <num>61.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">It will be noted that the consequence of this is that failing to comply with CPR 11(1) is a discrete way of submission to the jurisdiction that arises by virtue of CPR 11(5). A party may make application under CPR 11(1) but be treated as submitting to the jurisdiction by reason of other factors (though given the need for such submission to be unequivocal, this may be rare). But equally a party who has unequivocally <span style="text-decoration-line:underline;text-decoration-style:solid">not</span> submitted to the jurisdiction may be treated as having done so by virtue of the failure to comply with CPR 11(1). The court needs to be astute not to confuse the two, though matters that are relevant to the determination of whether the defendant has submitted to the jurisdiction on one of the grounds may equally be relevant to submission on the other.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_62">
+                    <num>62.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">I turn to the second issue here which is whether, on the material before, the District Judge came to the correct conclusion on whether the Respondent had submitted to the jurisdiction. The first point to make is that, by reference to anything other than the terms of CPR Part 11, the Judge was undoubtedly entitled to find that there was no submission to the jurisdiction. The Respondent repeatedly made clear its intention to argue that it disputed the Appellants’ right to rely on the Claim form on the grounds that its validity had expired; indeed, it applied to strike the claim out on this basis. Disregarding for the moment the effect of Part 11, the District Judge was clearly entitled to come to the conclusion that “there had been no waiver, express or implied, of its right to challenge the jurisdiction<span style="font-style:italic">.”</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_63">
+                    <num>63.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">But, the Appellants say, regard must be had to the procedural provision of CPR 11 in the light of <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Hoddinott</span>. The simple fact is that an Acknowledgment of Service was filed but no application was made under CPR 11 and, in light of CPR 11(5), the court is bound to treat it as having accepted that it has jurisdiction to try the claim.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_64">
+                    <num>64.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In my judgment this is correct. The Court below was bound by the decision in <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Hoddinott</span> to find that the Respondent was to be treated as having accepted the jurisdiction of the court unless it had made the requisite application under CPR 11(1).”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_22">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">22.</num>
-            <intro>
+            <content>
               <p class="BodyCL" style="margin-left:0.5in">Judge Pearce then turned to the argument, raised in the Respondent’s Notice, that the decision of DJ Matharu ought to be upheld on the basis that the Respondent’s application to strike out the claim should have been treated as an application under CPR 11. He was referred to the decision of Dingemans J in <span style="font-style:italic">Caine v Advertiser and Times Ltd </span>[2019] EWHC 39 (QB), but distinguished it on the facts. In <span style="font-style:italic">Caine</span> two different applications had been made, the second of which had expressly referred to CPR Part 11 even though the first had not. In the present case, by contrast, the Defendant’s application had not referred to CPR Part 11 at all. Judge Pearce went on to consider the Respondent’s alternative argument, that the failure of the application expressly to refer to CPR 11 was an error of procedure capable of being rectified under CPR 3.10. He held:-</p>
-            </intro>
-            <subparagraph>
-              <num>“71.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The following matters support the argument that the error of procedure should be rectified under CPR 3.10:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>a.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The Respondent in all documents other than the Acknowledgement of Service itself, always made clear that it disputed the court’s jurisdiction on the ground that the Claim form was served out of time;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>b.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The letter under cover of which the Acknowledgement of Service was served itself raised the issue of late service of the Claim form and stated an intention to apply to strike out;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>c.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The application to strike out was made within the 14 days prescribed for application under CPR 11(1);</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>d.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Had the application notice bore additional words to the effect that an application was being made for an order declaring that the court had not jurisdiction because of the late service of the claim form, it would have been compliant with CPR 11(1); yet it is clear from the witness statement of Mr Parker in support of the application that this was the very argument being advanced.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>72.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The following matters militate against the exercise of the power under CPR 3.10.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>a.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Generally, the Respondent knew the case being advanced by the Appellants and received an unsealed claim form in time. It would be wrong to deprive the Appellants of the opportunity to advance this case by a procedural device that would leave the claim struck out.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>b.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Specifically, the Appellants’ application for an extension of time for service of the Claim form was unsuccessful because of a technical failure on their part to serve the sealed Claim form in time; the Respondent should be held to the same standards of procedural rigour.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>73.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In her judgment, the District Judge spoke of the Appellants’ “dilatory or lax approach to good and proper service.” In the light of the procedural failings found in her judgment (which though initially the subject of an application for permission to appeal, were not pursued to an oral hearing of the application), it is impossible to find some kind of equivalence with the criticism that is to be made of the Respondent. The Respondent would not have fallen foul of CPR Part 11 if it had added one line to an Application Notice so as to set out expressly an argument that it was clearly seeking to make in any event, albeit by a different procedural route. In contrast, the District Judge found much to be critical of in the Claimant’s approach to service of originating process. Every litigation lawyer knows (or at least should know) the importance of timely service of originating process. It has been repeatedly spelt out by the court, for example by Lord Sumption in <span style="font-style:italic">Barton v Wright Hassall</span>. In those circumstances, the mere fact that a defendant may know in detail the case that the claimant wishes to advance is not a ground to refuse to exercise the power under CPR 3.10 to regularise the defendant’s attempt to strike the claim out, achieving the result that the claimant is permitted to pursue its claim notwithstanding late service of the Claim form. Equally, there is no basis for concluding that to find for the Respondent on the issue in question would be to hold it to a different standard than the Appellants (and other litigants) are held to.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>74.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Once these arguments are dispensed with, the argument in favour of exercising the power to rectify the procedure error under CPR 3.10 by treating the Application Notice dated 24 January 2020 as including an application for a declaration that the court has no jurisdiction to hear the claim on the ground of the expiry of the validity of the Claim form before service of it is overwhelming. The right to such a declaration was clearly inherent to the application that the Respondent was making; the application was made in time; it was supported by a witness statement making clear that the basis of the application was the failure to serve the Claim form within the term of its validity; and compliance with CPR 11(1) would have been achieved by the addition of minimal additional wording which was implicit in the application that was being made in any event. The court should exercise its power to rectify the procedural failing so as to render this an application under CPR 11(1). Any other result would be a triumph of form over substance.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>75.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">It follows from the above that:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>a.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">This court is bound by the decision of the Court of Appeal in <span style="font-style:italic">Hoddinott</span> as to the procedural requirement of a defendant who has served an Acknowledgment of Service to apply under CPR 11(1) for an order declaring that the court has no jurisdiction to try the claim, otherwise the defendant is to be treated as having accepted that the court has jurisdiction to try the claim;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>b.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The District Judge was right to find that, other than in failing to make explicit reference to its application to strike out being made pursuant to CPR 11(1), the Respondent did not either expressly or impliedly waive its right to challenge the court’s jurisdiction;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>c.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In all the circumstances, the Respondent’s application dated 24 January 2020 should be treated as an application made in compliance with the provision of CPR 11(1).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>d.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Accordingly, it was open to the Respondent to challenge the jurisdiction of the court on the basis of late service of the Claim form;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>e.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">On the District Judge’s other findings, and in particular on her refusing either to dispense with service or retrospectively to extend time for service, she was right to find that the claim must be struck out.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“71.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The following matters support the argument that the error of procedure should be rectified under CPR 3.10:</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>a.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The Respondent in all documents other than the Acknowledgement of Service itself, always made clear that it disputed the court’s jurisdiction on the ground that the Claim form was served out of time;</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>b.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The letter under cover of which the Acknowledgement of Service was served itself raised the issue of late service of the Claim form and stated an intention to apply to strike out;</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>c.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The application to strike out was made within the 14 days prescribed for application under CPR 11(1);</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>d.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Had the application notice bore additional words to the effect that an application was being made for an order declaring that the court had not jurisdiction because of the late service of the claim form, it would have been compliant with CPR 11(1); yet it is clear from the witness statement of Mr Parker in support of the application that this was the very argument being advanced.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_72">
+                    <num>72.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The following matters militate against the exercise of the power under CPR 3.10.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>a.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Generally, the Respondent knew the case being advanced by the Appellants and received an unsealed claim form in time. It would be wrong to deprive the Appellants of the opportunity to advance this case by a procedural device that would leave the claim struck out.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>b.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Specifically, the Appellants’ application for an extension of time for service of the Claim form was unsuccessful because of a technical failure on their part to serve the sealed Claim form in time; the Respondent should be held to the same standards of procedural rigour.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_73">
+                    <num>73.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In her judgment, the District Judge spoke of the Appellants’ “dilatory or lax approach to good and proper service.” In the light of the procedural failings found in her judgment (which though initially the subject of an application for permission to appeal, were not pursued to an oral hearing of the application), it is impossible to find some kind of equivalence with the criticism that is to be made of the Respondent. The Respondent would not have fallen foul of CPR Part 11 if it had added one line to an Application Notice so as to set out expressly an argument that it was clearly seeking to make in any event, albeit by a different procedural route. In contrast, the District Judge found much to be critical of in the Claimant’s approach to service of originating process. Every litigation lawyer knows (or at least should know) the importance of timely service of originating process. It has been repeatedly spelt out by the court, for example by Lord Sumption in <span style="font-style:italic">Barton v Wright Hassall</span>. In those circumstances, the mere fact that a defendant may know in detail the case that the claimant wishes to advance is not a ground to refuse to exercise the power under CPR 3.10 to regularise the defendant’s attempt to strike the claim out, achieving the result that the claimant is permitted to pursue its claim notwithstanding late service of the Claim form. Equally, there is no basis for concluding that to find for the Respondent on the issue in question would be to hold it to a different standard than the Appellants (and other litigants) are held to.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_74">
+                    <num>74.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Once these arguments are dispensed with, the argument in favour of exercising the power to rectify the procedure error under CPR 3.10 by treating the Application Notice dated 24 January 2020 as including an application for a declaration that the court has no jurisdiction to hear the claim on the ground of the expiry of the validity of the Claim form before service of it is overwhelming. The right to such a declaration was clearly inherent to the application that the Respondent was making; the application was made in time; it was supported by a witness statement making clear that the basis of the application was the failure to serve the Claim form within the term of its validity; and compliance with CPR 11(1) would have been achieved by the addition of minimal additional wording which was implicit in the application that was being made in any event. The court should exercise its power to rectify the procedural failing so as to render this an application under CPR 11(1). Any other result would be a triumph of form over substance.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_75">
+                    <num>75.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">It follows from the above that:</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>a.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">This court is bound by the decision of the Court of Appeal in <span style="font-style:italic">Hoddinott</span> as to the procedural requirement of a defendant who has served an Acknowledgment of Service to apply under CPR 11(1) for an order declaring that the court has no jurisdiction to try the claim, otherwise the defendant is to be treated as having accepted that the court has jurisdiction to try the claim;</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>b.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The District Judge was right to find that, other than in failing to make explicit reference to its application to strike out being made pursuant to CPR 11(1), the Respondent did not either expressly or impliedly waive its right to challenge the court’s jurisdiction;</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>c.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In all the circumstances, the Respondent’s application dated 24 January 2020 should be treated as an application made in compliance with the provision of CPR 11(1).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>d.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Accordingly, it was open to the Respondent to challenge the jurisdiction of the court on the basis of late service of the Claim form;</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>e.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">On the District Judge’s other findings, and in particular on her refusing either to dispense with service or retrospectively to extend time for service, she was right to find that the claim must be struck out.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_23">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
@@ -773,25 +789,33 @@
           <heading class="BodyCL" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">Submissions in this court</span></heading>
           <paragraph eId="para_25">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">25.</num>
-            <intro>
+            <content>
               <p class="BodyCL" style="margin-left:0.5in">Mr Trotman, for the Appellants, submits that Judge Pearce’s decision to dismiss his client’s appeal was based on an impermissible use of the rectification power under CPR 3.10, which must not be used to achieve something expressly prohibited by other Rules. He cited <span style="font-style:italic">Vinos</span><span> </span><span style="font-style:italic">v Marks &amp; Spencer plc </span>[2001] 3 All ER 784. The claimant had failed to serve the claim form in time. After the four month period had expired he sought a retrospective extension of time and an order remedying the error which his solicitors had made. This court held that CPR 3.10 was not available for this purpose. May LJ said at paragraph 20:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“The meaning of rule 7.6(3) is plain. The court has power to extend the time for serving the claim form after the period for its service has run out "only if" the stipulated conditions are fulfilled. That means that the court does not have power to do so otherwise. The discretionary power in the rules to extend time periods – rule 3.1(2)(a) - does not apply because of the introductory words. The general words of Rule 3.10 cannot extend to enable the court to do what rule 7.6(3) specifically forbids, nor to extend time when the specific provision of the rules which enables extensions of time specifically does not extend to making this extension of time.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“The meaning of rule 7.6(3) is plain. The court has power to extend the time for serving the claim form after the period for its service has run out "only if" the stipulated conditions are fulfilled. That means that the court does not have power to do so otherwise. The discretionary power in the rules to extend time periods – rule 3.1(2)(a) - does not apply because of the introductory words. The general words of Rule 3.10 cannot extend to enable the court to do what rule 7.6(3) specifically forbids, nor to extend time when the specific provision of the rules which enables extensions of time specifically does not extend to making this extension of time.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_26">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
-            <intro>
+            <content>
               <p class="BodyCL" style="margin-left:0.5in">Similarly Peter Gibson LJ said at paragraph 27:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“A principle of construction is that general words do not derogate from specific words. Where there is an unqualified specific provision, a general provision is not to be taken to override that specific provision. Rule 7.6 is a specific sub-code dealing with the extension of time in all cases where the time limits in rule 7.5 have not been or are likely not to be met. The sub-code sets out in some detail what the claimant must do if he wants an extension of time and the circumstances in which the court may exercise the discretion conferred on it to extend the time: rule 7.6(3). That the circumstances specified in sub-paragraphs (a), (b) and (c) of rule 7.6(3) are the sole relevant conditions for the discretion to be exercisable seems to me to be made crystal clear by the words "only if". It is plain that the general power in paragraph 3.1(2)(a) to extend time cannot override rule 7.6. Nor, in my judgment, could the general power in rule 3.10 to remedy a failure to comply with a rule be pressed into service to perform the like function of, in effect, extending time. Even though rule 3.10 differs from rule 3.1(2) in not having wording to the effect of "except where the rules provide otherwise", that is too slight an indication to make rule 3.10 override the unambiguous and restrictive conditions of rule 7.6(3).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“A principle of construction is that general words do not derogate from specific words. Where there is an unqualified specific provision, a general provision is not to be taken to override that specific provision. Rule 7.6 is a specific sub-code dealing with the extension of time in all cases where the time limits in rule 7.5 have not been or are likely not to be met. The sub-code sets out in some detail what the claimant must do if he wants an extension of time and the circumstances in which the court may exercise the discretion conferred on it to extend the time: rule 7.6(3). That the circumstances specified in sub-paragraphs (a), (b) and (c) of rule 7.6(3) are the sole relevant conditions for the discretion to be exercisable seems to me to be made crystal clear by the words "only if". It is plain that the general power in paragraph 3.1(2)(a) to extend time cannot override rule 7.6. Nor, in my judgment, could the general power in rule 3.10 to remedy a failure to comply with a rule be pressed into service to perform the like function of, in effect, extending time. Even though rule 3.10 differs from rule 3.1(2) in not having wording to the effect of "except where the rules provide otherwise", that is too slight an indication to make rule 3.10 override the unambiguous and restrictive conditions of rule 7.6(3).”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_27">
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
@@ -799,7 +823,7 @@
               <p class="BodyCL" style="margin-left:0.5in">In <span style="font-style:italic">Ideal Shopping Direct Ltd v Visa Europe Ltd </span>[2022] 1 WLR 1541 the claimants had served unsealed claim forms promptly, but sealed claim forms were not served until the period prescribed by the rules had expired. They accepted that they had made an application that contained an error (the absence of a seal) but argued that this put them in a better position than if they had erroneously failed to make an application at all. This court held that in order to remedy the defect in service the Appellants were “asking the court to do the very thing which <span style="font-style:italic">Vinos</span> and the line of authority which follows it does not permit. The general provision in Rule 3.10 cannot be used to override a specific provision.”</p>
             </content>
           </paragraph>
-          <paragraph eId="para_28">
+          <paragraph>
             <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
             <intro>
               <p class="BodyCL" style="margin-left:0.5in">Mr Trotman places much reliance on <span style="font-style:italic">Hoddinott</span>. In that case the sequence of events in the litigation was as follows:</p>

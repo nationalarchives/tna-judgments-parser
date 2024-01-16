@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/90/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/90/data.xml" />
-          <FRBRdate date="2023-08-08T15:19:49" name="transform" />
+          <FRBRdate date="2024-01-16T20:12:05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>90</uk:number>
         <uk:cite>[2022] EWHC 90 (QB)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>24c6667882b34ccf6227936b271b52c24a17246439e084cc3b19e27cc630a186</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -360,55 +360,63 @@
         </paragraph>
         <paragraph eId="para_30">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">There was no dispute between the parties as to the applicable law.  Section 57 of the Criminal Justice and Courts Act 2015 provides: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“<span style="font-style:italic">Personal Injury claims; cases of Fundamental Dishonesty:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">This Section applies where, in proceedings on a claim for damages in respect of personal injury (“The primary claim”) – (a).  The Court finds that the Claimant is entitled to damages in respect of the claim, but (b) on an application by the Defendant for the dismissal of the claim under this section, the Court satisfied on the balance of probabilities that the Claimant has been fundamentally dishonest in relation to the primary claim or a related claim.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The Court must dismiss the primary claim unless it is satisfied that the Claimant would suffer substantial injustice if the claim were dismissed.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The duty under sub-section (2) includes the dismissal of any element of the primary claim in respect of which the Claimant has not been dishonest.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The Court’s order dismissing the claim must record the amount of damages that the Court would have awarded to the Claimant in respect of the primary claim but for the dismissal of the claim.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">When assessing costs in the proceedings, a Court which dismisses a claim under this section must deduct the amount recorded in accordance with sub-section (4) from the amount which it would otherwise order the Claimant to pay in respect of costs incurred by the Defendant…</span> ”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“<span style="font-style:italic">Personal Injury claims; cases of Fundamental Dishonesty:</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">This Section applies where, in proceedings on a claim for damages in respect of personal injury (“The primary claim”) – (a).  The Court finds that the Claimant is entitled to damages in respect of the claim, but (b) on an application by the Defendant for the dismissal of the claim under this section, the Court satisfied on the balance of probabilities that the Claimant has been fundamentally dishonest in relation to the primary claim or a related claim.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The Court must dismiss the primary claim unless it is satisfied that the Claimant would suffer substantial injustice if the claim were dismissed.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The duty under sub-section (2) includes the dismissal of any element of the primary claim in respect of which the Claimant has not been dishonest.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The Court’s order dismissing the claim must record the amount of damages that the Court would have awarded to the Claimant in respect of the primary claim but for the dismissal of the claim.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">When assessing costs in the proceedings, a Court which dismisses a claim under this section must deduct the amount recorded in accordance with sub-section (4) from the amount which it would otherwise order the Claimant to pay in respect of costs incurred by the Defendant…</span> ”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_31">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The test for dishonesty is that set out at Paragraphs 62 and 74 of the Judgment of Lord Hughes in <span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Ivey v Genting Casinos Limited T/A Crockfords Club </span><span style="font-weight:bold">[2016] UKSC 67.  </span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“Although a dishonest state of mind is a subjective mental state, the standard by which the law determines whether it is dishonest is objective.  If by ordinary standards a defendant’s mental state will be characterised as dishonest, it is irrelevant that the defendant judges by different standards”. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“When dishonesty is in question the fact-finding tribunal must first ascertain (subjectively) the actual state of the individual’s knowledge or belief as to the facts.  The reasonableness or otherwise of his belief is a matter of evidence (often in practice determinative) referring to whether he held the belief, but it is not an additional requirement that his belief must be reasonable; the question is whether it is genuinely held.  When once his actual state of mind as to knowledge or belief as to fact is established, the question whether his conduct was honest or dishonest is to be determined by the factfinder by applying the (objective) standards of ordinary decent people.  There is no requirement that the defendant must appreciate that what he has done is, by those standards, dishonest.”  </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“Although a dishonest state of mind is a subjective mental state, the standard by which the law determines whether it is dishonest is objective.  If by ordinary standards a defendant’s mental state will be characterised as dishonest, it is irrelevant that the defendant judges by different standards”. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“When dishonesty is in question the fact-finding tribunal must first ascertain (subjectively) the actual state of the individual’s knowledge or belief as to the facts.  The reasonableness or otherwise of his belief is a matter of evidence (often in practice determinative) referring to whether he held the belief, but it is not an additional requirement that his belief must be reasonable; the question is whether it is genuinely held.  When once his actual state of mind as to knowledge or belief as to fact is established, the question whether his conduct was honest or dishonest is to be determined by the factfinder by applying the (objective) standards of ordinary decent people.  There is no requirement that the defendant must appreciate that what he has done is, by those standards, dishonest.”  </p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The burden of proving that a Claimant (and/or any other witness) has been dishonest lies upon the party alleging it: see <span style="text-decoration-line:underline;text-decoration-style:solid">Robins V National Trust</span> [1927] AC 515 as is clear from Section 57 (1)(b) the standard of proof is the balance of probability but an allegation of dishonesty being a serious allegation requires appropriately cogent evidence to persuade the Court: <span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Re H</span> [1996] AC563.</p>
@@ -417,14 +425,18 @@
         </paragraph>
         <paragraph eId="para_32">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">London Organising Committee of the Olympic and Para Olympic Games (in liquidation) v Sinfield</span> [2018] EWHC 51, Julian Knowles J held:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“In my judgment, a Claimant should be found to be fundamentally dishonest within the meaning of Section 57(1)(b) if the Defendant proves on a balance of probabilities that the Claimant has acted dishonestly in relation to the primary claim and/or a related claim (as defined in Section 57(a)) and that he has thus substantially affected the presentation of his case, either in respect of liability or quantum, in a way which potentially adversely affected the Defendant in a significant way, judging the context of the particular facts and circumstances of the litigation.  Dishonesty is to be judged according to the test set out by the Supreme Court in <span style="text-decoration-line:underline;text-decoration-style:solid">Ivey v Genting Casinos Limited (T/A Crockfords Club</span>”.  There is therefore a twofold test, namely whether the Defendant has firstly established on the balance of probabilities that the Claimant’s conduct in respect of the litigation was dishonest, and secondly whether it was “fundamental”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“In my judgment, a Claimant should be found to be fundamentally dishonest within the meaning of Section 57(1)(b) if the Defendant proves on a balance of probabilities that the Claimant has acted dishonestly in relation to the primary claim and/or a related claim (as defined in Section 57(a)) and that he has thus substantially affected the presentation of his case, either in respect of liability or quantum, in a way which potentially adversely affected the Defendant in a significant way, judging the context of the particular facts and circumstances of the litigation.  Dishonesty is to be judged according to the test set out by the Supreme Court in <span style="text-decoration-line:underline;text-decoration-style:solid">Ivey v Genting Casinos Limited (T/A Crockfords Club</span>”.  There is therefore a twofold test, namely whether the Defendant has firstly established on the balance of probabilities that the Claimant’s conduct in respect of the litigation was dishonest, and secondly whether it was “fundamental”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_33">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">33.</num>
@@ -838,14 +850,18 @@
         </paragraph>
         <paragraph eId="para_98">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">98.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">HHJ Pierce QC stated in <span style="text-decoration-line:underline;text-decoration-style:solid">Long</span> at Paragraph 146: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">“In my Judgment, so long as genuine PTA is found to have a reason, neither the length of the PTA nor the lack of other symptoms excludes the possibility of a diagnosis of mTBI… the Mayo classification makes clear that the accepted thinking (which was not disputed by any of the Defendant’s experts) is that even momentarily PTA, so long as genuine, is a sufficient symptom to justify the diagnosis of mTBI”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">“In my Judgment, so long as genuine PTA is found to have a reason, neither the length of the PTA nor the lack of other symptoms excludes the possibility of a diagnosis of mTBI… the Mayo classification makes clear that the accepted thinking (which was not disputed by any of the Defendant’s experts) is that even momentarily PTA, so long as genuine, is a sufficient symptom to justify the diagnosis of mTBI”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_99">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">99.</num>
@@ -972,14 +988,18 @@
         </paragraph>
         <paragraph eId="para_112">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">112.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Aderemi v London and South Eastern Railway Ltd</span> [2013] ICR 591, Langstaff J stated at Paragraph 14:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“<span style="font-style:italic">Because the effect is adverse, the focus of a Tribunal must necessarily be upon that which a Claimant maintains he cannot do as a result of his physical or mental impairment.  Once he has established that there is an effect, that it is adverse, that it is an effect upon his ability, that is to carry out normal day-to-day activities, a Tribunal has then to assess whether that is or is not substantial.  Here, however, it has to bear in mind the definitions of substantial which is contained in Section 212(1) of the Act.  It means more than minor or trivial.  In other words, the Act itself does not create a spectrum running smoothly from those matters which are clearly or substantially effect to those matters which are clearly trivial but provides for verification: Unless a matter can be classified as within the heading “trivial” or “insubstantial”, it must be treated as substantial.  There is therefore little room for any form of sliding scale between one and the other.</span>”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“<span style="font-style:italic">Because the effect is adverse, the focus of a Tribunal must necessarily be upon that which a Claimant maintains he cannot do as a result of his physical or mental impairment.  Once he has established that there is an effect, that it is adverse, that it is an effect upon his ability, that is to carry out normal day-to-day activities, a Tribunal has then to assess whether that is or is not substantial.  Here, however, it has to bear in mind the definitions of substantial which is contained in Section 212(1) of the Act.  It means more than minor or trivial.  In other words, the Act itself does not create a spectrum running smoothly from those matters which are clearly or substantially effect to those matters which are clearly trivial but provides for verification: Unless a matter can be classified as within the heading “trivial” or “insubstantial”, it must be treated as substantial.  There is therefore little room for any form of sliding scale between one and the other.</span>”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_113">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">113.</num>
@@ -995,19 +1015,23 @@
         </paragraph>
         <paragraph eId="para_115">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">115.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Grant referred me to <span style="text-decoration-line:underline;text-decoration-style:solid">Inglis v Ministry of Defence</span> [2019] EWHC 1153 where Peter Marquand, sitting as a Deputy High Court Judge, considered whether the award should be on the basis of <span style="text-decoration-line:underline;text-decoration-style:solid">Smith v Manchester</span> referring to <span style="text-decoration-line:underline;text-decoration-style:solid">Billet</span> and the earlier decision of <span style="text-decoration-line:underline;text-decoration-style:solid">Connor v Bradman</span> [2007] EWHC 2789 before reaching the following conclusions at Paragraphs 213 to 214:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“<span style="font-style:italic">I derive the following principle from the authorities.  The multiplier / multiplicand method is the convention method of calculating future loss of earnings and should normally be used.  However, where a Claimant has a handicap in the labour market a </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Smith v Manchester</span><span style="font-style:italic"> award will be appropriate where there are many uncertainties which mean the multiplier/multiplicand method cannot be used and the matter is one for a broad judgment.  Such a circumstance will be where the Claimant has a disability within the meaning of the Ogden Tables, but it is one with a minimal impact on the Claimant’s ability to carry out his employment.  In such a case, any adjustment to the Reduction Factors (RF) would be a matter of broad judgment.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The RF may be adjusted where evidence is available, and the broad judgment is not required.  The RFs are averages based on population data and may be adjusted upwards or downwards from the starting point derived from Tables A to D, if there is evidence to point to such changes for the particular Claimant.</span>”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“<span style="font-style:italic">I derive the following principle from the authorities.  The multiplier / multiplicand method is the convention method of calculating future loss of earnings and should normally be used.  However, where a Claimant has a handicap in the labour market a </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Smith v Manchester</span><span style="font-style:italic"> award will be appropriate where there are many uncertainties which mean the multiplier/multiplicand method cannot be used and the matter is one for a broad judgment.  Such a circumstance will be where the Claimant has a disability within the meaning of the Ogden Tables, but it is one with a minimal impact on the Claimant’s ability to carry out his employment.  In such a case, any adjustment to the Reduction Factors (RF) would be a matter of broad judgment.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-style:italic">The RF may be adjusted where evidence is available, and the broad judgment is not required.  The RFs are averages based on population data and may be adjusted upwards or downwards from the starting point derived from Tables A to D, if there is evidence to point to such changes for the particular Claimant.</span>”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_116">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">116.</num>
