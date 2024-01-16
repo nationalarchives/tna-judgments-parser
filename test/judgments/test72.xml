@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2023/42/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2023/42/data.xml" />
-          <FRBRdate date="2023-12-05T21:37:21" name="transform" />
+          <FRBRdate date="2024-01-16T20:15:26" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -49,7 +49,7 @@
         <uk:year>2023</uk:year>
         <uk:number>42</uk:number>
         <uk:cite>[2023] UKSC 42</uk:cite>
-        <uk:parser>0.19.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>fe44c739208392907ce63435c854bcf323e8c68573970f0de53b691b20960bb3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -160,38 +160,42 @@
         </paragraph>
         <paragraph eId="para_4">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">4.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The criteria for designation as a safe third country are set out in paragraph 345B:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A country is a safe third country for a particular applicant, if:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(i)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the applicant’s life and liberty will not be threatened on account of race, religion, nationality, membership of a particular social group or political opinion in that country;</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(ii)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the principle of non-refoulement will be respected in that country in accordance with the Refugee Convention;</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(iii)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the prohibition of removal, in violation of the right to freedom from torture and cruel, inhuman or degrading treatment as laid down in international law, is respected in that country; and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(iv)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the possibility exists to request refugee status and, if found to be a refugee, to receive protection in accordance with the Refugee Convention in that country.”  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A country is a safe third country for a particular applicant, if:</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(i)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the applicant’s life and liberty will not be threatened on account of race, religion, nationality, membership of a particular social group or political opinion in that country;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(ii)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the principle of non-refoulement will be respected in that country in accordance with the Refugee Convention;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(iii)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the prohibition of removal, in violation of the right to freedom from torture and cruel, inhuman or degrading treatment as laid down in international law, is respected in that country; and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(iv)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the possibility exists to request refugee status and, if found to be a refugee, to receive protection in accordance with the Refugee Convention in that country.”  </span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_5">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">5.</num>
@@ -225,15 +229,19 @@
         </paragraph>
         <paragraph eId="para_9">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">9.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Under paragraph 9 of the MOU, Rwanda undertakes that “it will treat each Relocated Individual, and process their claim for asylum, in accordance with the Refugee Convention, Rwandan immigration laws and international and Rwandan standards, including under international and Rwandan human rights law, and including, but not limited to ensuring their protection from inhuman and degrading treatment and refoulement”. Paragraph 9 also sets out a number of procedural guarantees, including access to an interpreter and to procedural or legal assistance, and to an independent and impartial process of appeal. Paragraph 10 makes provision for persons whose asylum claims are refused. Unless they are found to have another humanitarian protection need, or are granted permission to remain in Rwanda under its domestic immigration law, they are to be treated in accordance with paragraph 10.4:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“10.4</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">For those Relocated Individuals who are neither recognised as refugees nor to have a protection need or other basis upon which to remain in Rwanda, Rwanda will only remove such a person to a country in which they have a right to reside.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“10.4</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">For those Relocated Individuals who are neither recognised as refugees nor to have a protection need or other basis upon which to remain in Rwanda, Rwanda will only remove such a person to a country in which they have a right to reside.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_10">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">10.</num>
@@ -321,42 +329,50 @@
         </paragraph>
         <paragraph eId="para_20">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">20.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The Refugee Convention, which has 146 states parties including the United Kingdom, provides in article 33(1):</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“No Contracting State shall expel or return (‘refouler’) a refugee in any manner whatsoever to the frontiers of territories where his life or freedom would be threatened on account of his race, religion, nationality, membership of a particular social group or political opinion.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“No Contracting State shall expel or return (‘refouler’) a refugee in any manner whatsoever to the frontiers of territories where his life or freedom would be threatened on account of his race, religion, nationality, membership of a particular social group or political opinion.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Article 33(1) has long been interpreted by the courts of this country as prohibiting not only the direct return of refugees to the country where they fear persecution, but also their indirect return via a third country: </span><span style="font-style:italic;font-family:'Times New Roman'">R v Secretary of State for the Home Department, Ex p Bugdaycay </span><span style="font-family:'Times New Roman'">[1987] AC 514, 532. </span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_21">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">21.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The United Nations Convention against Torture and Other Cruel, Inhuman or Degrading Treatment or Punishment of 1984 (“UNCAT”), which has 173 states parties including the United Kingdom, provides in article 3(1): </span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“No State Party shall expel, return (‘refouler’) or extradite a person to another State where there are substantial grounds for believing that he would be in danger of being subjected to torture.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“No State Party shall expel, return (‘refouler’) or extradite a person to another State where there are substantial grounds for believing that he would be in danger of being subjected to torture.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_22">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">22.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The United Nations International Covenant on Civil and Political Rights of 1966 (“ICCPR”), also with 173 states parties including the United Kingdom, is interpreted by the United Nations Human Rights Committee, which monitors implementation of the Covenant, as imposing a similar obligation:   </span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“[T]he article 2 obligation requiring that States Parties respect and ensure the Covenant rights for all persons in their territory and all persons under their control entails an obligation not to extradite, deport, expel or otherwise remove a person from their territory, where there are substantial grounds for believing that there is a real risk of irreparable harm, such as that contemplated by articles 6 and 7 of the Covenant, either in the country to which removal is to be effected or in any country to which the person may subsequently be removed.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“[T]he article 2 obligation requiring that States Parties respect and ensure the Covenant rights for all persons in their territory and all persons under their control entails an obligation not to extradite, deport, expel or otherwise remove a person from their territory, where there are substantial grounds for believing that there is a real risk of irreparable harm, such as that contemplated by articles 6 and 7 of the Covenant, either in the country to which removal is to be effected or in any country to which the person may subsequently be removed.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">(General Comment 31 (2004), para 12). Article 6 of the Covenant protects the right to life, and article 7 prohibits torture or cruel, inhuman or degrading treatment or punishment. </span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_23">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">23.</num>
@@ -390,17 +406,19 @@
         </paragraph>
         <paragraph eId="para_27">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">27.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The principle of non-refoulement has also been given effect in our domestic law by a number of statutes enacted by Parliament. First, section 2 of the Asylum and Immigration Appeals Act 1993 (“the 1993 Act”) provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Nothing in the immigration rules (within the meaning of the 1971 Act) shall lay down any practice which would be contrary to the Convention.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Nothing in the immigration rules (within the meaning of the 1971 Act) shall lay down any practice which would be contrary to the Convention.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">In that context, “the Convention” is defined in section 1 as meaning the Refugee Convention. The Immigration Rules are the rules laid down by the Secretary of State as to the practice to be followed in the administration of the 1971 Act for regulating the entry into and stay in the United Kingdom of persons required to have leave to enter: section 3 of the 1971 Act (quoted in para 122 below). Asylum claims fall within the scope of that provision, since they are claims for leave to remain in the United Kingdom, made by persons who require leave to enter. It is therefore unlawful, under section 2 of the 1993 Act, for the Secretary of State to lay down a rule as to practice in relation to asylum claims which would be contrary to the principle of non-refoulement laid down in article 33(1) of the Refugee Convention. In the event, as we have explained, paragraph 345B of the Immigration Rules fulfils that requirement by providing that a country is a safe third country only if, inter alia, “the principle of non-refoulement will be respected in that country in accordance with the Refugee Convention”. </span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_28">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">28.</num>
@@ -416,70 +434,74 @@
         </paragraph>
         <paragraph eId="para_30">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">30.</num>
-          <intro>
-            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">It is also relevant to note section 94(7) of the 2002 Act, under which, read with section 94(1), the Secretary of State may certify a protection claim or human rights claim as clearly unfounded, and thereby remove the claimant’s rights of appeal, if:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">it is proposed to remove the person to a country of which he is not a national or citizen, and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">there is no reason to believe that the person’s rights under the Human Rights Convention [ie the ECHR] will be breached in that country.”</span></p>
-            </content>
-          </subparagraph>
-        </paragraph>
-        <level>
-          <heading class="ParaNoNumber"><span style="font-family:'Times New Roman'">Section 94(8) provides:</span></heading>
-          <paragraph>
-            <intro>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In determining whether a person in relation to whom a certificate has been issued under subsection (7) may be removed from the United Kingdom, the country specified in the certificate is to be regarded as—</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-family:'Times New Roman'">(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a place where a person’s life and liberty is not threatened by reason of his race, religion, nationality, membership of a particular social group, or political opinion, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman'">(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a place from which a person will not be sent to another country otherwise than in accordance with the Refugee Convention or with the United Kingdom’s obligations in relation to persons eligible for a grant of humanitarian protection.”</span></p>
-              </content>
-            </subparagraph>
-          </paragraph>
-        </level>
-        <level>
           <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">It is also relevant to note section 94(7) of the 2002 Act, under which, read with section 94(1), the Secretary of State may certify a protection claim or human rights claim as clearly unfounded, and thereby remove the claimant’s rights of appeal, if:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">it is proposed to remove the person to a country of which he is not a national or citizen, and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">there is no reason to believe that the person’s rights under the Human Rights Convention [ie the ECHR] will be breached in that country.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Section 94(8) provides:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <heading class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In determining whether a person in relation to whom a certificate has been issued under subsection (7) may be removed from the United Kingdom, the country specified in the certificate is to be regarded as—</span></heading>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman'">(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a place where a person’s life and liberty is not threatened by reason of his race, religion, nationality, membership of a particular social group, or political opinion, and</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman'">(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a place from which a person will not be sent to another country otherwise than in accordance with the Refugee Convention or with the United Kingdom’s obligations in relation to persons eligible for a grant of humanitarian protection.”</span></p>
+                    </content>
+                  </paragraph>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">The premise of these provisions appears to be that if there is no reason to believe that a person’s rights under the ECHR will be breached in the country to which he is proposed to be removed, then it follows that the person will not be removed from that country to another country otherwise than in accordance with the Refugee Convention. That is consistent with the view that the ECHR protects against refoulement, as the European Court and domestic courts have held.</span></p>
           </content>
-        </level>
+        </paragraph>
         <paragraph eId="para_31">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">31.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Fourthly, as we have explained, paragraph 17 of Schedule 3 to the 2004 Act enables the Secretary of State to certify, where it is proposed to remove an asylum seeker to a country (“a specified state”) of which he is not a national or citizen, that:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“(c)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">in the Secretary of State’s opinion the specified State is a place –</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-family:'Times New Roman'">(i)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">where the person’s life and liberty will not be threatened by reason of his race, religion, nationality, membership of a particular social group or political opinion, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman'">(ii)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">from which the person will not be sent to another State otherwise than in accordance with the Refugee Convention.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“(c)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">in the Secretary of State’s opinion the specified State is a place –</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(i)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">where the person’s life and liberty will not be threatened by reason of his race, religion, nationality, membership of a particular social group or political opinion, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(ii)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">from which the person will not be sent to another State otherwise than in accordance with the Refugee Convention.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_32">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">32.</num>
@@ -558,17 +580,19 @@
         </paragraph>
         <paragraph eId="para_39">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">39.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Several passages in the judgment of the Divisional Court suggest that the members of the court misunderstood their function. For example, they began their consideration of the adequacy of Rwanda’s asylum system, at para 62 of their judgment, by stating:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Next we consider whether the Home Secretary was entitled to conclude that there were sufficient guarantees to ensure that asylum-seekers relocated to Rwanda would have their asylum claims properly determined there and did not run a risk of refoulement ...”. </span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Next we consider whether the Home Secretary was entitled to conclude that there were sufficient guarantees to ensure that asylum-seekers relocated to Rwanda would have their asylum claims properly determined there and did not run a risk of refoulement ...”. </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">That statement seems to suggest that the court saw its function as reviewing the Secretary of State’s assessment and deciding whether it was a tenable view, rather than making its own assessment of the grounds for apprehending a risk of refoulement in the light of the evidence as a whole. Similarly, at para 70, the Divisional Court defined “the question we must address” as “whether, notwithstanding the opinion the UNHCR has now expressed, the Home Secretary was entitled to hold the contrary opinion”. Many other passages containing similar statements could be cited. These are not accurate ways of expressing the</span><span style="font-style:italic;font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman'">test which the court was required to apply. The question whether the Secretary of State was entitled to reach a particular conclusion is a different question from whether the court assesses that there are in fact substantial grounds for thinking that there is a real risk of refoulement. </span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_40">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">40.</num>
@@ -608,25 +632,33 @@
         </paragraph>
         <paragraph eId="para_44">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">44.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">There are a number of decisions of the European Court and of domestic courts which bear on the correct approach to adopt to the evidence in a case of the present kind. First, the judgment of the European Court in </span><span style="font-style:italic;font-family:'Times New Roman'">Ilias v Hungary </span><span style="font-family:'Times New Roman'">makes it clear that a state party cannot remove asylum seekers to a third country without determining their asylum status unless it has established that there are adequate procedures in place in that country to ensure that their asylum claims are properly determined and that they do not face a risk of refoulement to their country of origin. The court stated in that case (para 134): </span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… in all cases of removal of an asylum seeker from a contracting state to a third intermediary country without examination of the asylum requests on the merits … it is the duty of the removing state to examine thoroughly the question whether or not there is a real risk of the asylum-seeker being denied access, in the receiving third country, to an adequate asylum procedure, protecting him or her against refoulement. If it is established that the existing guarantees in this regard are insufficient, article 3 [of the ECHR] implies a duty that the asylum-seekers should not be removed to the third country concerned.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… in all cases of removal of an asylum seeker from a contracting state to a third intermediary country without examination of the asylum requests on the merits … it is the duty of the removing state to examine thoroughly the question whether or not there is a real risk of the asylum-seeker being denied access, in the receiving third country, to an adequate asylum procedure, protecting him or her against refoulement. If it is established that the existing guarantees in this regard are insufficient, article 3 [of the ECHR] implies a duty that the asylum-seekers should not be removed to the third country concerned.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_45">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">45.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The European Court made it clear that this requires an assessment of how the asylum system in the receiving state operates in practice, having regard to deficiencies identified by bodies such as UNHCR. In that regard it stated (para 141):</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… the national authorities … must carry out of their own motion an up-to-date assessment, notably, of the accessibility and functioning of the receiving country’s asylum system and the safeguards it affords in practice. The assessment must be conducted primarily with reference to the facts which were known to the national authorities at the time of expulsion but it is the duty of those authorities to seek all relevant generally available information to that effect. General deficiencies well documented in authoritative reports, notably of the UNHCR, Council of Europe and EU bodies are in principle considered to have been known. The expelling state cannot merely assume that the asylum-seeker will be treated in the receiving third country in conformity with the Convention standards but, on the contrary, must first verify how the authorities of that country apply their legislation on asylum in practice.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… the national authorities … must carry out of their own motion an up-to-date assessment, notably, of the accessibility and functioning of the receiving country’s asylum system and the safeguards it affords in practice. The assessment must be conducted primarily with reference to the facts which were known to the national authorities at the time of expulsion but it is the duty of those authorities to seek all relevant generally available information to that effect. General deficiencies well documented in authoritative reports, notably of the UNHCR, Council of Europe and EU bodies are in principle considered to have been known. The expelling state cannot merely assume that the asylum-seeker will be treated in the receiving third country in conformity with the Convention standards but, on the contrary, must first verify how the authorities of that country apply their legislation on asylum in practice.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_46">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">46.</num>
@@ -636,14 +668,18 @@
         </paragraph>
         <paragraph eId="para_47">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">47.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The approach to be adopted in circumstances of that kind was considered by the European Court in </span><span style="font-style:italic;font-family:'Times New Roman'">Othman v United Kingdom </span><span style="font-family:'Times New Roman'">(2012) 55 EHRR 1 (“</span><span style="font-style:italic;font-family:'Times New Roman'">Othman</span><span style="font-family:'Times New Roman'">”). The case concerned the sufficiency of assurances given by the Kingdom of Jordan to the United Kingdom in the context of a contention that deporting the applicant to Jordan would put him at real risk of ill-treatment. The court observed at para 187 that assurances are not in themselves sufficient to ensure adequate protection against the risk of ill treatment: </span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“There is an obligation to examine whether assurances provide, in their practical application, a sufficient guarantee that the applicant will be protected against the risk of ill-treatment. The weight to be given to assurances from the receiving state depends, in each case, on the circumstances prevailing at the material time.” </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“There is an obligation to examine whether assurances provide, in their practical application, a sufficient guarantee that the applicant will be protected against the risk of ill-treatment. The weight to be given to assurances from the receiving state depends, in each case, on the circumstances prevailing at the material time.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_48">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">48.</num>
@@ -653,21 +689,25 @@
         </paragraph>
         <paragraph eId="para_49">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">49.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The approach to be adopted where diplomatic assurances are relied on was discussed by this court more recently in </span><span style="font-style:italic;font-family:'Times New Roman'">Zabolotnyi v Mateszalka District Court, Hungary </span><span style="font-family:'Times New Roman'">[2021] UKSC 14; [2021] 1 WLR 2569. There, the court considered the sufficiency of assurances given by the government of Hungary to the United Kingdom in the context of a contention that extraditing Mr Zabolotnyi to Hungary would put him at real risk of ill-treatment. It was held that the court was required to undertake a free evaluation of the assurance, which required the court to examine and assess all relevant evidence (para 50). In particular, past breaches of similar assurances by the requesting state, whether provided to the United Kingdom or to a third state, were relevant to the question whether the requesting state could be relied upon to comply with its assurance on the present occasion (ibid). In that regard, Lord Lloyd-Jones stated, in a judgment with which the other members of the court agreed (paras 46-47): </span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“46.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">… In deciding whether an assurance can be relied upon, evidence of past compliance or non-compliance with an earlier assurance will obviously be relevant. A state’s failure to fulfil assurances in the past may be a powerful reason to disbelieve that they will be fulfilled in the future ....</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">47.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">I am unable to accept that a sound distinction can be drawn in this regard between breach of a prior assurance given to the United Kingdom and breach of a prior assurance given to a third state. On the contrary, the fact of a prior breach of such an assurance, if established, is clearly relevant regardless of the identity of the state to which it was provided. As Mr Hall submits on behalf of the appellant, such a distinction would be illogical and unprincipled. The same requesting state is acting in the same context and there is no material distinction between a willingness to breach assurances given to state A and assurances given to state B.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“46.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">… In deciding whether an assurance can be relied upon, evidence of past compliance or non-compliance with an earlier assurance will obviously be relevant. A state’s failure to fulfil assurances in the past may be a powerful reason to disbelieve that they will be fulfilled in the future ....</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">47.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">I am unable to accept that a sound distinction can be drawn in this regard between breach of a prior assurance given to the United Kingdom and breach of a prior assurance given to a third state. On the contrary, the fact of a prior breach of such an assurance, if established, is clearly relevant regardless of the identity of the state to which it was provided. As Mr Hall submits on behalf of the appellant, such a distinction would be illogical and unprincipled. The same requesting state is acting in the same context and there is no material distinction between a willingness to breach assurances given to state A and assurances given to state B.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph>
           <num style="text-decoration-line:none;font-family:'Times New Roman'">(ii)</num>
@@ -713,17 +753,19 @@
         </paragraph>
         <paragraph eId="para_56">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">56.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">We are therefore unable to accept the suggestion, made on behalf of the Secretary of State, that assessing the value of assurances given by another country, in the present context, is analogous to assessing whether a particular course of action is in the interests of national security, and that the role of the court is correspondingly limited, as explained in cases such as </span><span style="font-style:italic;font-family:'Times New Roman'">Secretary of State for the Home Department v Rehman </span><span style="font-family:'Times New Roman'">[2001] UKHL 47; [2003] 1 AC 920 (“</span><span style="font-style:italic;font-family:'Times New Roman'">Rehman</span><span style="font-family:'Times New Roman'">”) and </span><span style="font-style:italic;font-family:'Times New Roman'">R (Begum) v Special Immigration Appeals Commission </span><span style="font-family:'Times New Roman'">[2021] UKSC 7; [2021] AC 765 (“</span><span style="font-style:italic;font-family:'Times New Roman'">Begum</span><span style="font-family:'Times New Roman'">”). In </span><span style="font-style:italic;font-family:'Times New Roman'">Rehman </span><span style="font-family:'Times New Roman'">itself, the House of Lords made it clear that, even in the context of questions of national security, an appeal to the courts may turn upon issues which at no point lie within the exclusive province of the executive. As Lord Hoffmann stated (para 54):</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A good example is the question … as to whether deporting someone would infringe his rights under article 3 of the Convention because there was a substantial risk that he would suffer torture or inhuman or degrading treatment. The European jurisprudence makes it clear that whether deportation is in the interests of national security is irrelevant to rights under article 3. If there is a danger of torture, the Government must find some other way of dealing with a threat to national security. </span><span style="font-style:italic;font-family:'Times New Roman'">Whether a sufficient risk exists is a question of evaluation and prediction based on evidence. In answering such a question, the executive enjoys no constitutional prerogative</span><span style="font-family:'Times New Roman'">.” (emphasis added)</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A good example is the question … as to whether deporting someone would infringe his rights under article 3 of the Convention because there was a substantial risk that he would suffer torture or inhuman or degrading treatment. The European jurisprudence makes it clear that whether deportation is in the interests of national security is irrelevant to rights under article 3. If there is a danger of torture, the Government must find some other way of dealing with a threat to national security. </span><span style="font-style:italic;font-family:'Times New Roman'">Whether a sufficient risk exists is a question of evaluation and prediction based on evidence. In answering such a question, the executive enjoys no constitutional prerogative</span><span style="font-family:'Times New Roman'">.” (emphasis added)</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Similarly, in </span><span style="font-style:italic;font-family:'Times New Roman'">Begum </span><span style="font-family:'Times New Roman'">Lord Reed (with whose judgment the other members of the court agreed) stated (para 69) that “if a question arises as to whether the Secretary of State has acted incompatibly with the appellant’s Convention rights, contrary to section 6 of the Human Rights Act, [the court] has to determine that matter objectively on the basis of its own assessment”.</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_57">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">57.</num>
@@ -733,14 +775,18 @@
         </paragraph>
         <paragraph eId="para_58">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">58.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Furthermore, as the Lord Chief Justice pointed out in the present case (para 471), even if the court is not institutionally as well equipped as the government to carry out an evaluation of a diplomatic assurance, the position is different “where the assessment of future conduct engages practical considerations which arise from past conduct”. As he observed (ibid): </span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In this case there is very detailed evidence of the way in which the Rwandan asylum system has operated when considering individual claims before the summer of 2022. There were undoubted deficiencies. Whether they are capable of being made good is not an issue on which the government has special institutional expertise.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In this case there is very detailed evidence of the way in which the Rwandan asylum system has operated when considering individual claims before the summer of 2022. There were undoubted deficiencies. Whether they are capable of being made good is not an issue on which the government has special institutional expertise.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_59">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">59.</num>
@@ -750,14 +796,18 @@
         </paragraph>
         <paragraph eId="para_60">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">60.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The first was evidence that Rwanda had failed to abide by assurances which it had given to the government of Israel under an agreement for the removal of asylum seekers from Israel to Rwanda. In that regard, the Divisional Court stated (para 68):</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“There is no evidence that during its negotiations with the Rwandan government, the United Kingdom government sought to investigate either the terms of the Rwanda/Israel agreement or the way it had worked in practice. It is also apparent from [a FCDO official’s] statement that the merits of the MOU and Notes Verbales have been assessed on their own terms, not by way of comparison with the Rwanda/Israel agreement. This was a permissible approach; we do not consider it discloses any error of law.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“There is no evidence that during its negotiations with the Rwandan government, the United Kingdom government sought to investigate either the terms of the Rwanda/Israel agreement or the way it had worked in practice. It is also apparent from [a FCDO official’s] statement that the merits of the MOU and Notes Verbales have been assessed on their own terms, not by way of comparison with the Rwanda/Israel agreement. This was a permissible approach; we do not consider it discloses any error of law.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_61">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">61.</num>
@@ -791,14 +841,18 @@
         </paragraph>
         <paragraph eId="para_66">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">66.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The second factor, mentioned in that dictum, is UNHCR’s expertise and experience. That factor was also emphasised by this court in </span><span style="font-style:italic;font-family:'Times New Roman'">R (EM (Eritrea)) v Secretary of State for the Home Department </span><span style="font-family:'Times New Roman'">[2014] UKSC 12; [2014] AC 1321, when considering the approach which should be adopted to evidence provided by UNHCR in relation to the risks involved in removing asylum seekers to another country. Lord Kerr of Tonaghmore, with whose judgment the other members of the court agreed, referred (para 72) to “the unique and unrivalled expertise of UNHCR in the field of asylum and refugee law”, and expressed agreement with the observations of Sir Stephen Sedley in the court below [2013] 1 WLR 576, para 41, which he quoted at para 71:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“It seems to us that there was a reason for [the European Court in </span><span style="font-style:italic;font-family:'Times New Roman'">MSS v Belgium and Greece</span><span style="font-family:'Times New Roman'">] according the UNHCR a special status in this context. The finding of facts by a court of law on the scale involved here is necessarily a problematical exercise, prone to influence by accidental factors such as the date of a report, or its sources, or the quality of its authorship, and conducted in a single intensive session. The High Commissioner for Refugees, by contrast, is today the holder of an internationally respected office with an expert staff (numbering 7,190 in 120 different states, according to its website), able to assemble and monitor information from year to year and to apply to it standards of knowledge and judgment which are ordinarily beyond the reach of a court. In doing this, and in reaching his conclusions, he has the authority of the General Assembly of the United Nations, by whom he is appointed and to whom he reports. It is intelligible in this situation that a supranational court should pay special regard both to the facts which the High Commissioner reports and to the value judgments he arrives at within his remit.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“It seems to us that there was a reason for [the European Court in </span><span style="font-style:italic;font-family:'Times New Roman'">MSS v Belgium and Greece</span><span style="font-family:'Times New Roman'">] according the UNHCR a special status in this context. The finding of facts by a court of law on the scale involved here is necessarily a problematical exercise, prone to influence by accidental factors such as the date of a report, or its sources, or the quality of its authorship, and conducted in a single intensive session. The High Commissioner for Refugees, by contrast, is today the holder of an internationally respected office with an expert staff (numbering 7,190 in 120 different states, according to its website), able to assemble and monitor information from year to year and to apply to it standards of knowledge and judgment which are ordinarily beyond the reach of a court. In doing this, and in reaching his conclusions, he has the authority of the General Assembly of the United Nations, by whom he is appointed and to whom he reports. It is intelligible in this situation that a supranational court should pay special regard both to the facts which the High Commissioner reports and to the value judgments he arrives at within his remit.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_67">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">67.</num>
@@ -964,19 +1018,23 @@
         </paragraph>
         <paragraph eId="para_90">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">90.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The review of the CPIN on asylum processing in Rwanda carried out on behalf of the IAGCI found that Home Office officials had failed to engage with Rwanda’s return practices, and with documented instances of refoulement. It listed sources of information which were available in the public domain and which it considered that it was important for the Home Office to consider. It commented:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Very limited critical information has been included on the current shortcomings of the Rwandan asylum system and/or its proposed practical application in the context of the UK-Rwanda Memorandum of Understanding. For example, there is no information included on how possible challenges will be overcome in relation to lack of resources in terms of decision-makers (especially in light of there only being one Eligibility Officer); lack of reasons or transcripts provided to asylum seekers to base their appeal on; delays in decisions; protection assurances against refoulement including indirect or chain refoulement leading to denial of access to the Rwandan territory let alone to the asylum process; lack of information regarding provisions for asylum seekers, and access to interpretation services to mention just a few. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Moreover, fundamental gaps of information remain, leaving unanswered questions with regards to procedural practicalities and implications.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Very limited critical information has been included on the current shortcomings of the Rwandan asylum system and/or its proposed practical application in the context of the UK-Rwanda Memorandum of Understanding. For example, there is no information included on how possible challenges will be overcome in relation to lack of resources in terms of decision-makers (especially in light of there only being one Eligibility Officer); lack of reasons or transcripts provided to asylum seekers to base their appeal on; delays in decisions; protection assurances against refoulement including indirect or chain refoulement leading to denial of access to the Rwandan territory let alone to the asylum process; lack of information regarding provisions for asylum seekers, and access to interpretation services to mention just a few. </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Moreover, fundamental gaps of information remain, leaving unanswered questions with regards to procedural practicalities and implications.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_91">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">91.</num>
@@ -1028,17 +1086,19 @@
         </paragraph>
         <paragraph eId="para_98">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">98.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Although ministers and officials were aware of the Israel/Rwanda agreement and the problems which arose under it, they do not appear to have investigated why it had failed, or attempted to obtain information about the terms of the agreement or the assurances which the Rwandan government had given. The subject was not mentioned in the CPIN on asylum processing in Rwanda. This omission was the subject of criticism in the review carried out on behalf of the IAGCI. It stated (citing Wilbourn and Kloos “A Commentary on the UK Home Office </span><span style="font-style:italic;font-family:'Times New Roman'">Country Policy and Information Note: Rwanda, asylum system</span><span style="font-family:'Times New Roman'">, and the related </span><span style="font-style:italic;font-family:'Times New Roman'">Country Policy and Information Note: Rwanda, assessment</span><span style="font-family:'Times New Roman'">”:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“... ‘the risk of deportation of asylum seekers back to their country of origin was not adequately addressed in the Home Office publications. Under a bilateral deal between the Israeli and Rwandan governments to relocate asylum seekers from Israel to Rwanda, the majority of asylum seekers were not able to access asylum in Rwanda, and were therefore forced to travel onward from Rwanda, in what may amount to a situation of indirect refoulement. By failing to consider such information, important issues and risks are minimised and the state of the Rwandan asylum system is presented in a way that is incoherent with the available information’ … Although slightly different in nature than the UK-Rwanda Memorandum of Understanding, [the Israel-Rwanda agreement] provides a useful comparator and has been the subject of critical literature documenting its challenges, shortcomings, and ultimately its closure.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“... ‘the risk of deportation of asylum seekers back to their country of origin was not adequately addressed in the Home Office publications. Under a bilateral deal between the Israeli and Rwandan governments to relocate asylum seekers from Israel to Rwanda, the majority of asylum seekers were not able to access asylum in Rwanda, and were therefore forced to travel onward from Rwanda, in what may amount to a situation of indirect refoulement. By failing to consider such information, important issues and risks are minimised and the state of the Rwandan asylum system is presented in a way that is incoherent with the available information’ … Although slightly different in nature than the UK-Rwanda Memorandum of Understanding, [the Israel-Rwanda agreement] provides a useful comparator and has been the subject of critical literature documenting its challenges, shortcomings, and ultimately its closure.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">The review noted that concern about the treatment of asylum seekers under the Israel/Rwanda agreement, and other reported expulsions by the Rwandan government, had been expressed by the United Nations Committee Against Torture. It listed numerous publicly available sources of information.</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_99">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">99.</num>
@@ -1150,50 +1210,52 @@
         </paragraph>
         <paragraph eId="para_111">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">111.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The Procedures Directive establishes certain minimum standards on procedures for granting and withdrawing refugee status which are required to be met by EU Member States as part of a common EU policy on asylum. Articles 25 and 27 provide in relevant part:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Article 25 Inadmissible applications</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">1</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In addition to cases in which an application is not examined in accordance with Regulation (EC) No 343/2003, Member States are not required to examine whether the applicant qualifies as a refugee in accordance with Directive 2004/83/EC where an application is considered inadmissible pursuant to this Article.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">2</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Member States may consider an application for asylum as inadmissible pursuant to this Article if: …</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(c)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a country which is not a Member State is considered as a safe third country for the applicant, pursuant to Article 27; …</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Article 27 The safe third country concept</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">… 2 The application of the safe third country concept shall be subject to rules laid down in national legislation, including:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">rules requiring a connection between the person seeking asylum and the third country concerned on the basis of which it would be reasonable for that person to go to that country; …”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Article 25 Inadmissible applications</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">1</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In addition to cases in which an application is not examined in accordance with Regulation (EC) No 343/2003, Member States are not required to examine whether the applicant qualifies as a refugee in accordance with Directive 2004/83/EC where an application is considered inadmissible pursuant to this Article.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">2</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Member States may consider an application for asylum as inadmissible pursuant to this Article if: …</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(c)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a country which is not a Member State is considered as a safe third country for the applicant, pursuant to Article 27; …</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Article 27 The safe third country concept</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">… 2 The application of the safe third country concept shall be subject to rules laid down in national legislation, including:</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">rules requiring a connection between the person seeking asylum and the third country concerned on the basis of which it would be reasonable for that person to go to that country; …”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">The Procedures Directive came into came into effect on 2 January 2006 and Member States were required to implement the relevant provisions of the Directive by 1 December 2007. (Certain aspects of substantive EU asylum law are addressed in Council Directive 2004/83/EU of 29 April 2004 on minimum standards for the qualification and status of third country nationals or stateless persons as refugees or as persons who otherwise need international protection and the content of the protection granted (“the Qualification Directive”) which came into effect on 20 October 2004. Member States were required to implement its provisions before 10 October 2006.)</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_112">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">112.</num>
@@ -1209,49 +1271,53 @@
         </paragraph>
         <paragraph eId="para_113">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">113.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Section 4 of the 2018 Act (as amended by the European Union (Withdrawal Agreement) Act 2020) provides in relevant part:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“4</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Saving for rights etc under section 2(1) of the ECA</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(1)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Any rights, powers, liabilities, obligations, restrictions, remedies and procedures which, immediately before IP completion day –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">are recognised and available in domestic law by virtue of section 2(1) of the European Communities Act 1972, and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">are enforced, allowed and followed accordingly,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">continue on and after IP completion day to be recognised and available in domestic law (and to be enforced, allowed and followed accordingly).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Subsection (1) does not apply to any rights, powers, liabilities, obligations, restrictions, remedies or procedures so far as they –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">… (b) arise under an EU directive … and are not of a kind recognised by the European Court or any court or tribunal in the United Kingdom in a case decided before IP completion day (whether or not as an essential part of the decision in the case). …”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“4</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Saving for rights etc under section 2(1) of the ECA</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(1)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Any rights, powers, liabilities, obligations, restrictions, remedies and procedures which, immediately before IP completion day –</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">are recognised and available in domestic law by virtue of section 2(1) of the European Communities Act 1972, and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">are enforced, allowed and followed accordingly,</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">continue on and after IP completion day to be recognised and available in domestic law (and to be enforced, allowed and followed accordingly).</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Subsection (1) does not apply to any rights, powers, liabilities, obligations, restrictions, remedies or procedures so far as they –</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">… (b) arise under an EU directive … and are not of a kind recognised by the European Court or any court or tribunal in the United Kingdom in a case decided before IP completion day (whether or not as an essential part of the decision in the case). …”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_114">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">114.</num>
@@ -1267,14 +1333,18 @@
         </paragraph>
         <paragraph eId="para_115">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">115.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The long title of the 2020 Act is:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“An Act to make provision to end rights to free movement of persons under retained EU law and to repeal other retained EU law relating to immigration; to confer power to modify retained direct EU legislation relating to social security co-ordination; and for connected purposes.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“An Act to make provision to end rights to free movement of persons under retained EU law and to repeal other retained EU law relating to immigration; to confer power to modify retained direct EU legislation relating to social security co-ordination; and for connected purposes.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_116">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">116.</num>
@@ -1284,180 +1354,192 @@
         </paragraph>
         <paragraph eId="para_117">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">117.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Within Part 1, section 1 gives effect to Schedule 1. Section 1 provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“1 Repeal of the main retained EU law relating to free movement etc</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Schedule 1 makes provision to –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">end rights to free movement of persons under retained EU law, including by repealing the main provisions of retained EU law relating to free movement, and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">end other EU-derived rights, and repeal other retained EU law, relating to immigration.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“1 Repeal of the main retained EU law relating to free movement etc</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Schedule 1 makes provision to –</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">end rights to free movement of persons under retained EU law, including by repealing the main provisions of retained EU law relating to free movement, and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">end other EU-derived rights, and repeal other retained EU law, relating to immigration.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Sections 2 and 3 are concerned with specific aspects of the ending of the right of free movement. Section 2 relates to the entitlement of Irish citizens to enter or remain without leave. Section 3 relates to legal routes from the EU and family reunion in the case of protection claimants.</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_118">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">118.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Schedule 1 is headed:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Repeal of the main retained EU law relating to free movement etc”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Repeal of the main retained EU law relating to free movement etc”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Part 1 of Schedule 1 is headed “EU-derived domestic legislation” and revokes, omits or modifies specified provisions of primary and secondary domestic legislation. Part 2 of Schedule 1 is headed “Retained direct EU legislation” and it repeals Regulation (EU) No 492/2011 of the European Parliament and of the Council of 5 April 2011 on freedom of movement for workers within the Union (“the Workers Regulation”).</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_119">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">119.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Part 3 of Schedule 1 is headed “EU-derived rights etc” and comprises paragraphs 5 and 6. Paragraph 5 is concerned with rights derived from the EU agreement with Switzerland on freedom of movement. Paragraph 6 provides:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“6</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">(1) Any other EU-derived rights, powers, liabilities, obligations, restrictions, remedies and procedures cease to be recognised and available in domestic law so far as –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">they are inconsistent with, or are otherwise capable of affecting the interpretation, application or operation of, any provision made by or under the Immigration Acts (including, and as amended by, this Act), or</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">they are otherwise capable of affecting the exercise of functions in connection with immigration.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The reference in sub-paragraph (1) to any other EU-derived rights, powers, liabilities, obligations, restrictions, remedies and procedures is a reference to any rights, powers, liabilities, obligations, restrictions, remedies and procedures which –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">continue to be recognised and available in domestic law by virtue of section 4 of the European Union (Withdrawal) Act 2018 (including as they are modified by domestic law from time to time), and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">are not those described in paragraph 5 of this Schedule.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(3)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The reference in sub-paragraph (1) to provision made by or under the Immigration Acts includes provision made after that sub-paragraph comes into force.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“6</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">(1) Any other EU-derived rights, powers, liabilities, obligations, restrictions, remedies and procedures cease to be recognised and available in domestic law so far as –</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">they are inconsistent with, or are otherwise capable of affecting the interpretation, application or operation of, any provision made by or under the Immigration Acts (including, and as amended by, this Act), or</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">they are otherwise capable of affecting the exercise of functions in connection with immigration.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The reference in sub-paragraph (1) to any other EU-derived rights, powers, liabilities, obligations, restrictions, remedies and procedures is a reference to any rights, powers, liabilities, obligations, restrictions, remedies and procedures which –</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">continue to be recognised and available in domestic law by virtue of section 4 of the European Union (Withdrawal) Act 2018 (including as they are modified by domestic law from time to time), and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">are not those described in paragraph 5 of this Schedule.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The reference in sub-paragraph (1) to provision made by or under the Immigration Acts includes provision made after that sub-paragraph comes into force.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_120">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">120.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The effect of paragraph 6(1)(a) is to disapply EU-derived rights so far as they are inconsistent with, or are otherwise capable of affecting the interpretation, application or operation of, any provision made by or under “the Immigration Acts”. This is to be taken as a reference to the statutes listed in section 61(2) of the UK Borders Act 2007 (as adopted and amended, inter alia, by section 4(1) of the 2020 Act). (See Schedule 1 to the Interpretation Act 1978.) It was common ground before us that at the relevant time when the decisions relevant to this appeal were made, these statutes were:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">“(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 1971 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 1988 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(c)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Asylum and Immigration Appeals Act 1993 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(d)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Asylum and Immigration Act 1996 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(e)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration and Asylum Act 1999 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(f)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Nationality, Immigration and Asylum Act 2002 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(g)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Asylum and Immigration (Treatment of Claimants, etc) Act 2004 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(h)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration, Asylum and Nationality Act 2006 …, </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(i)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">this Act …, [ie UK Borders Act 2007]</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(j)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 2014 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(k)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 2016 …,</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(l)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Part 1 of the Immigration and Social Security Co-ordination (EU Withdrawal) Act 2020 (and Part 3 so far as relating to that Part), and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:'Times New Roman'">(m)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Nationality and Borders Act 2022.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 1971 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 1988 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(c)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Asylum and Immigration Appeals Act 1993 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(d)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Asylum and Immigration Act 1996 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(e)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration and Asylum Act 1999 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(f)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Nationality, Immigration and Asylum Act 2002 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(g)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Asylum and Immigration (Treatment of Claimants, etc) Act 2004 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(h)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration, Asylum and Nationality Act 2006 …, </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(i)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">this Act …, [ie UK Borders Act 2007]</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(j)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 2014 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(k)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Immigration Act 2016 …,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(l)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Part 1 of the Immigration and Social Security Co-ordination (EU Withdrawal) Act 2020 (and Part 3 so far as relating to that Part), and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(m)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the Nationality and Borders Act 2022.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_121">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">121.</num>
@@ -1473,25 +1555,33 @@
         </paragraph>
         <paragraph eId="para_122">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">122.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The Immigration Rules are made under the 1971 Act, section 3(2) of which provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The Secretary of State shall from time to time … lay before Parliament statements of the rules, or of any changes in the rules, laid down by him as to the practice to be followed in the administration of this Act for regulating the entry into and stay in the United Kingdom of persons required by this Act to have leave to enter…”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The Secretary of State shall from time to time … lay before Parliament statements of the rules, or of any changes in the rules, laid down by him as to the practice to be followed in the administration of this Act for regulating the entry into and stay in the United Kingdom of persons required by this Act to have leave to enter…”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_123">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">123.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Paragraphs 345A to 345D of the Immigration Rules in an amended form were introduced by Statement of Changes HC 1043, dated 10 December 2020, to take effect on IP Completion Day. Paragraph 345C in this amended form, which is said on behalf of ASM to be incompatible with retained EU law, provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“When an application is treated as inadmissible, the Secretary of State will attempt to remove the applicant to the safe third country in which they were previously present or to which they have a connection, or to any other safe third country which may agree to their entry.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“When an application is treated as inadmissible, the Secretary of State will attempt to remove the applicant to the safe third country in which they were previously present or to which they have a connection, or to any other safe third country which may agree to their entry.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph>
           <num style="font-weight:normal;font-family:'Times New Roman'">(3)</num>
@@ -1537,23 +1627,29 @@
         </paragraph>
         <paragraph eId="para_129">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">129.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The process of statutory interpretation seeks to establish the meaning of the words used by Parliament in their particular context (</span><span style="font-style:italic;font-family:'Times New Roman'">Black-Clawson International Ltd v Papierwerke Waldhof-Aschaffenburg AG</span><span style="font-family:'Times New Roman'"> [1975] AC 591, per Lord Reid at 613; </span><span style="font-style:italic;font-family:'Times New Roman'">R v Secretary of State for the Environment, Transport and the Regions, Ex p Spath Holme Ltd</span><span style="font-family:'Times New Roman'"> [2001] 2 AC 349, per Lord Nicholls at 396). In </span><span style="font-style:italic;font-family:'Times New Roman'">R (Project for the Registration of Children as British Citizens) v Secretary of State for the Home Department</span><span style="font-family:'Times New Roman'"> [2022] UKSC 3; [2023] AC 255 Lord Hodge explained (at para 29):</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Words and passages in a statute derive their meaning from their context. A phrase or passage must be read in the context of the section as a whole and in the wider context of a relevant group of sections. Other provisions in a statute and the statute as a whole may provide the relevant context. They are the words which Parliament has chosen to enact as an expression of the purpose of the legislation and are therefore the primary source by which meaning is ascertained.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Words and passages in a statute derive their meaning from their context. A phrase or passage must be read in the context of the section as a whole and in the wider context of a relevant group of sections. Other provisions in a statute and the statute as a whole may provide the relevant context. They are the words which Parliament has chosen to enact as an expression of the purpose of the legislation and are therefore the primary source by which meaning is ascertained.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Lord Hodge endorsed Lord Nicholls’s observation in </span><span style="font-style:italic;font-family:'Times New Roman'">Spath Holme</span><span style="font-family:'Times New Roman'"> at p397 that citizens, with the assistance of their advisers, are intended to be able to understand Parliamentary enactments so that they can regulate their conduct accordingly and that they should, therefore, be able to rely upon what they read in an Act of Parliament. Lord Hodge then went on to state (at para 30):</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“External aids to interpretation therefore must play a secondary role. Explanatory Notes, prepared under the authority of Parliament, may cast light on the meaning of particular statutory provisions. Other sources, such as Law Commission reports, reports of Royal Commissions and advisory committees, and Government White Papers may disclose the background to a statute and assist the court to identify not only the mischief which it addresses but also the purpose of the legislation, thereby assisting a purposive interpretation of a particular statutory provision. The context disclosed by such materials is relevant to assist the court to ascertain the meaning of the statute, whether or not there is ambiguity and uncertainty, and indeed may reveal ambiguity or uncertainty: </span><span style="font-style:italic;font-family:'Times New Roman'">Bennion, Bailey and Norbury on Statutory Interpretation</span><span style="font-family:'Times New Roman'">, 8th ed (2020), para 11.2. But none of these external aids displace the meanings conveyed by the words of a statute that, after consideration of that context, are clear and unambiguous and which do not produce absurdity.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <level>
-          <heading class="ParaNoNumber"><span style="font-family:'Times New Roman'">Lord Hodge endorsed Lord Nicholls’s observation in </span><span style="font-style:italic;font-family:'Times New Roman'">Spath Holme</span><span style="font-family:'Times New Roman'"> at p397 that citizens, with the assistance of their advisers, are intended to be able to understand Parliamentary enactments so that they can regulate their conduct accordingly and that they should, therefore, be able to rely upon what they read in an Act of Parliament. Lord Hodge then went on to state (at para 30):</span></heading>
-          <paragraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“External aids to interpretation therefore must play a secondary role. Explanatory Notes, prepared under the authority of Parliament, may cast light on the meaning of particular statutory provisions. Other sources, such as Law Commission reports, reports of Royal Commissions and advisory committees, and Government White Papers may disclose the background to a statute and assist the court to identify not only the mischief which it addresses but also the purpose of the legislation, thereby assisting a purposive interpretation of a particular statutory provision. The context disclosed by such materials is relevant to assist the court to ascertain the meaning of the statute, whether or not there is ambiguity and uncertainty, and indeed may reveal ambiguity or uncertainty: </span><span style="font-style:italic;font-family:'Times New Roman'">Bennion, Bailey and Norbury on Statutory Interpretation</span><span style="font-family:'Times New Roman'">, 8th ed (2020), para 11.2. But none of these external aids displace the meanings conveyed by the words of a statute that, after consideration of that context, are clear and unambiguous and which do not produce absurdity.”</span></p>
-            </content>
-          </paragraph>
-        </level>
         <paragraph eId="para_130">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">130.</num>
           <content>
@@ -1679,17 +1775,19 @@
         </paragraph>
         <paragraph eId="para_141">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">141.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">ASM submits that the conclusion that the legislative intention behind the 2020 Act did not extend to removing asylum rights is further supported by the principle of legality as a special rule of construction. The principle was stated in the following terms by Lord Browne-Wilkinson in </span><span style="font-style:italic;font-family:'Times New Roman'">R v Secretary of State for the Home Department Ex p Pierson</span><span style="font-family:'Times New Roman'"> [1998] AC 539, 575:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A power conferred by Parliament in general terms is not to be taken to authorise the doing of acts by the donee of the power which adversely affect the legal rights of the citizen or the basic principles on which the law of the United Kingdom is based unless the statute conferring the power makes it clear that such was the intention of Parliament.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A power conferred by Parliament in general terms is not to be taken to authorise the doing of acts by the donee of the power which adversely affect the legal rights of the citizen or the basic principles on which the law of the United Kingdom is based unless the statute conferring the power makes it clear that such was the intention of Parliament.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Mr Drabble submits that in the present case the principle of legality operates to preserve the rights conferred by articles 25 and 27 of the Procedures Directive because of the absence of clear and unambiguous wording in the 2020 Act demonstrating that Parliament intended to remove them.</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_142">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">142.</num>
@@ -1723,17 +1821,19 @@
         </paragraph>
         <paragraph eId="para_146">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">146.</num>
-          <intro>
+          <content>
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In the Supreme Court, the only judgment was that of Lord Stephens (with whom Lord Lloyd-Jones, Lord Hamblen, Lord Leggatt and Lord Burrows agreed). Lord Stephens recorded (at para 84):</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The Secretary of State accepts, for the purposes of this appeal, and I agree, that the relevant provisions of the [Procedures Directive and the Qualification Directive] are directly effective and remain extant in domestic law as “retained EU law” after the United Kingdom’s withdrawal from the EU.”</span></p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The Secretary of State accepts, for the purposes of this appeal, and I agree, that the relevant provisions of the [Procedures Directive and the Qualification Directive] are directly effective and remain extant in domestic law as “retained EU law” after the United Kingdom’s withdrawal from the EU.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Lord Stephens also noted (at para 107) that the Secretary of State’s procedures governing the approach to processing and determining claims for asylum had as their objective ensuring that the United Kingdom’s obligations under the Refugee Convention, the Qualification Directive and the Procedures Directive were in practice met. (In this regard, Mr Drabble also referred us to </span><span style="font-style:italic;font-family:'Times New Roman'">Secretary of State for the Home Department v</span><span style="font-family:'Times New Roman'"> </span><span style="font-style:italic;font-family:'Times New Roman'">Ainte (material deprivation – Art 3 – AM (Zimbabwe))</span><span style="font-family:'Times New Roman'"> [2021] UKUT 203 (IAC), at paras 63-65 and </span><span style="font-style:italic;font-family:'Times New Roman'">NM (Art 15(b) – Intention Requirement (Iraq)) v Secretary of State for the Home Department</span><span style="font-family:'Times New Roman'"> [2021] UKUT 259 (IAC) at paras 13-15. In both cases, following </span><span style="font-style:italic;font-family:'Times New Roman'">G v G</span><span style="font-family:'Times New Roman'">, it was common ground between the parties and the Upper Tribunal accepted that the Qualification Directive was retained EU law.)</span></p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_147">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">147.</num>

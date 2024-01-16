@@ -21,6 +21,10 @@ class Util {
             var blocks = cells.SelectMany(cell => cell.Contents);
             return blocks.SelectMany(GetLines);
         }
+        if (block is IQuotedStructure)
+            return Enumerable.Empty<ILine>();
+        if (block is IDivWrapper wrapper)
+            return GetBlocksFromDivision(wrapper.Division).SelectMany(GetLines);
         if (block is ITableOfContents2 toc)
             return toc.Contents;
         throw new Exception();

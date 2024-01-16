@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3/data.xml" />
-          <FRBRdate date="2023-08-08T17:29:56" name="transform" />
+          <FRBRdate date="2024-01-16T20:13:45" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2023</uk:year>
         <uk:number>3</uk:number>
         <uk:cite>[2023] EWCOP 3</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>f3f59c869e23d9f4d489620fb69ba400fcb43b6d01a4b3e4cf8ee27ace5c5b9f</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -663,41 +663,53 @@
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">3.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">In 2020 HHJ Moir made various findings against the Defendant during the course of Court of Protection proceedings. In her, as yet unpublished judgment of 21 October 2020, she noted the Defendant’s evidence that in her view, FP had been:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“ ‘tortured and abused for years’, that the fluctuation in FP’s mental state was because her medication was not properly reviewed. The Defendant referred to the conspiracy between the doctors and the nurses to experiment with FP’s medication. She told me the Social Services influenced the hospital:</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The social worker interferes, tittle tattle again, turning the nurses against me. I’ve been through so much. They are just bullies. They put me through daily stress, 1 have been deliberately aggravated. I have been excluded. I have had aggravation since day one, I don’t know why. Statements by the social workers are not accurate; they are just not. They are a lot of lies, 1 just try my best for my daughter. I have not done anything wrong”.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">There is no recognition of the effect her behaviour has upon other people, including FP, or any acceptance of any responsibility for the distress occasioned to FP…”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
           <subparagraph>
             <content>
-              <p class="Quote" style="margin-left:1in">“ ‘tortured and abused for years’, that the fluctuation in FP’s mental state was because her medication was not properly reviewed. The Defendant referred to the conspiracy between the doctors and the nurses to experiment with FP’s medication. She told me the Social Services influenced the hospital:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“The social worker interferes, tittle tattle again, turning the nurses against me. I’ve been through so much. They are just bullies. They put me through daily stress, 1 have been deliberately aggravated. I have been excluded. I have had aggravation since day one, I don’t know why. Statements by the social workers are not accurate; they are just not. They are a lot of lies, 1 just try my best for my daughter. I have not done anything wrong”.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">There is no recognition of the effect her behaviour has upon other people, including FP, or any acceptance of any responsibility for the distress occasioned to FP…”</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
               <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant and FP had an “enmeshed relationship” characterized by what she called, “high expressed emotion” and that,</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“the dynamics of the relationship contribute to an unhealthy cycle of FP and the Defendant ’s level of emotion and distress, increasing distress in the other and, in FP’s case, leading to increased agitation and a decline in her mental health.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“the dynamics of the relationship contribute to an unhealthy cycle of FP and the Defendant ’s level of emotion and distress, increasing distress in the other and, in FP’s case, leading to increased agitation and a decline in her mental health.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant,</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“has often behaved towards care workers in an abusive and unpleasant fashion which may be intended and is likely to demoralise them.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“has often behaved towards care workers in an abusive and unpleasant fashion which may be intended and is likely to demoralise them.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <content>
@@ -760,86 +772,96 @@
         </paragraph>
         <paragraph eId="para_10">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">10.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">Accordingly, the Court has made orders, which I extended on 30 June 2022, prohibiting the Defendant from publishing such material. The relevant orders that I made on 30 June 2022 were as follows:</p>
-          </intro>
-          <subparagraph>
-            <num>“1.</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">[The Defendant] shall not:</p>
-            </intro>
-            <subparagraph>
-              <num>a.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">record FP by video or audio for any purpose or in any way.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>b.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">Record whether by video, audio or photographing staff from placement 3, or any other health or social care staff concerned with FP.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>c.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">in any way publicise these proceedings or any evidence filed in the proceedings, including by way of posting on social media, YouTube, or any internet platform or website, including private or public sites.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>d.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">cause to be publicised on any social media, video or streaming service including YouTube any video or audio recording of FP, recorded at any date.</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>2.</num>
-            <content>
-              <p class="Quote" style="margin-left:1.18in">[The Defendant] shall forthwith remove from any social   media video or streaming service including YouTube and from any website or other location on the internet, including private or public sites, any video or audio recording of FP, and/or staff supporting FP, which is present on any of those sites or services.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“1.</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">[The Defendant] shall not:</p>
+                  </intro>
+                  <subparagraph>
+                    <num>a.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">record FP by video or audio for any purpose or in any way.</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>b.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">Record whether by video, audio or photographing staff from placement 3, or any other health or social care staff concerned with FP.</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>c.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">in any way publicise these proceedings or any evidence filed in the proceedings, including by way of posting on social media, YouTube, or any internet platform or website, including private or public sites.</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>d.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">cause to be publicised on any social media, video or streaming service including YouTube any video or audio recording of FP, recorded at any date.</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1.18in">[The Defendant] shall forthwith remove from any social   media video or streaming service including YouTube and from any website or other location on the internet, including private or public sites, any video or audio recording of FP, and/or staff supporting FP, which is present on any of those sites or services.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_11">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">11.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The application to commit was originally brought in three applications made November and December 2022. Those application contained eleven separate alleged breaches of the injunctive orders made on 30 June 2022. As I shall explain in more detail below, those eleven alleged breaches were all admitted by the Defendant at the first hearing of the committal applications on 8 December 2022. I set out the admitted breaches with sequential numbering in my order of that date. However, at the hearing on 16 January 2023 the Claimant indicated that it did not seek to persuade the court that six of the admitted breaches constituted contempt of court – the Claimant relies only on the allegations numbered 1, 3, 4, 5 and 11. For the sake of economy therefore I shall not repeat the other six breaches in this judgment. I have disregarded them. The admitted breaches said to constitute contempts of court are put by the Claimant as follows:</span></p>
-          </intro>
-          <subparagraph>
-            <intro>
-              <p class="Quote" style="margin-left:1in">“[The Defendant] has uploaded various materials to social media including Facebook and Twitter, specifically:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">i.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.43in">[No. 1] [The Defendant] has posted two YouTube videos although one video, titled The 21st Century Disgrace' has been removed. The second video, titled ‘The hospital number 2’, uploaded 29 October 2022, records the Defendant on the phone to FP, on loudspeaker, breaching paragraph 1 (d) and 2. Both of these videos had been posted to Twitter, with a link to the Defendant’s Facebook.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">ii.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.43in">[No. 3] On 02 November 2022, the Defendant retweeted a link to an article posted on Facebook 'on 01 April' - the text demonstrates this was posted either in 2021 or 2022 - which explains the background of these proceedings and contained links to videos of FP, although the face is blurred, and the Defendant on the telephone. This post was still visible on Facebook on 18 November 2022 thus breaching paragraphs 1(d) and 2 of the injunction order.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">iii.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">[No. 4] On 31 October 2022 the Defendant retweeted a further link to an article she posted on Facebook ‘on 03 June’ – it is not clear which year this was posted which publicises these proceedings breaching paragraph 1(c) , 1(d) and paragraph 2. The Article details how she has been in Court of Protection proceedings for four years and that the court did not protect FP but was used to hid crimes. Videos are also linked in the Article…”</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">iv.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.43in">[No. 5] On 24 October 2022, the Defendant retweeted a link to an additional article she had posted on Facebook dated ’21 October’ - it is unclear which year this was posted - which talks about the Court of Protection. The article also links a video of an interview of FP dated 22 September 2019 where FP can be physically seen speaking, therefore breaching paragraphs 1(c), 1(d) and paragraph 2.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">v.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.43in">[No. 11] The Defendant has posted a further video to YouTube on 02 December 2022 titled ‘Movie on 17 06 2022 at 13:57’ which records the Defendant on the phone on loudspeaker to someone who is believed to be FP. Within this video recording, the Defendant also records staff speaking on the telephone, therefore breaching paragraph 1(d) and paragraph 2.”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <heading class="Quote" style="margin-left:1in">“[The Defendant] has uploaded various materials to social media including Facebook and Twitter, specifically:</heading>
+                  <paragraph>
+                    <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">i.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.43in">[No. 1] [The Defendant] has posted two YouTube videos although one video, titled The 21st Century Disgrace' has been removed. The second video, titled ‘The hospital number 2’, uploaded 29 October 2022, records the Defendant on the phone to FP, on loudspeaker, breaching paragraph 1 (d) and 2. Both of these videos had been posted to Twitter, with a link to the Defendant’s Facebook.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">ii.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.43in">[No. 3] On 02 November 2022, the Defendant retweeted a link to an article posted on Facebook 'on 01 April' - the text demonstrates this was posted either in 2021 or 2022 - which explains the background of these proceedings and contained links to videos of FP, although the face is blurred, and the Defendant on the telephone. This post was still visible on Facebook on 18 November 2022 thus breaching paragraphs 1(d) and 2 of the injunction order.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">iii.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">[No. 4] On 31 October 2022 the Defendant retweeted a further link to an article she posted on Facebook ‘on 03 June’ – it is not clear which year this was posted which publicises these proceedings breaching paragraph 1(c) , 1(d) and paragraph 2. The Article details how she has been in Court of Protection proceedings for four years and that the court did not protect FP but was used to hid crimes. Videos are also linked in the Article…”</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">iv.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.43in">[No. 5] On 24 October 2022, the Defendant retweeted a link to an additional article she had posted on Facebook dated ’21 October’ - it is unclear which year this was posted - which talks about the Court of Protection. The article also links a video of an interview of FP dated 22 September 2019 where FP can be physically seen speaking, therefore breaching paragraphs 1(c), 1(d) and paragraph 2.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:12pt;margin-left:1.43in;text-indent:-0.25in">v.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.43in">[No. 11] The Defendant has posted a further video to YouTube on 02 December 2022 titled ‘Movie on 17 06 2022 at 13:57’ which records the Defendant on the phone on loudspeaker to someone who is believed to be FP. Within this video recording, the Defendant also records staff speaking on the telephone, therefore breaching paragraph 1(d) and paragraph 2.”</p>
+                    </content>
+                  </paragraph>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_12">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">12.</num>
@@ -932,116 +954,140 @@
         </paragraph>
         <paragraph eId="para_21">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">21.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The Court of Protection Rules [COPR] in force prior to 1 January 2023 provided at rule 21.8:</span></p>
-          </intro>
-          <subparagraph>
-            <num>“21.8.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) In the case of a judgment or order requiring a person not to do an act, the court may dispense with service of a copy of the judgment or order in accordance with rules 21.5 to 21.7 if it is satisfied that the person has had notice of it by -</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <intro>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">being present when the judgment or order was given or made; or</p>
-            </intro>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">being in attendance at court where notice of the order or judgment was displayed; or</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>(c)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">being notified of its terms by telephone, email or otherwise.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“21.8.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) In the case of a judgment or order requiring a person not to do an act, the court may dispense with service of a copy of the judgment or order in accordance with rules 21.5 to 21.7 if it is satisfied that the person has had notice of it by -</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>(a)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">being present when the judgment or order was given or made; or</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">being in attendance at court where notice of the order or judgment was displayed; or</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>(c)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">being notified of its terms by telephone, email or otherwise.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_22">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">22.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The Practice Direction 21A applicable before 1 January 2023 stated,</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Striking out, procedural defects and discontinuance</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>11.1.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">On application by the respondent or on its own initiative, the court may strike out a committal application if it appears to the court—</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">that the application and the evidence served in support of it disclose no reasonable ground for alleging that the respondent is guilty of a contempt of court;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">that the application is an abuse of the court’s process or, if made in existing proceedings, is otherwise likely to obstruct the just disposal of those proceedings; or</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(c)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">that there has been a failure to comply with a rule, practice direction or court order.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>11.2.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">The court may waive any procedural defect in the commencement or conduct of a committal application if satisfied that no injustice has been caused to the respondent by the defect.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Striking out, procedural defects and discontinuance</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>11.1.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">On application by the respondent or on its own initiative, the court may strike out a committal application if it appears to the court—</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">that the application and the evidence served in support of it disclose no reasonable ground for alleging that the respondent is guilty of a contempt of court;</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">that the application is an abuse of the court’s process or, if made in existing proceedings, is otherwise likely to obstruct the just disposal of those proceedings; or</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(c)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">that there has been a failure to comply with a rule, practice direction or court order.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>11.2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">The court may waive any procedural defect in the commencement or conduct of a committal application if satisfied that no injustice has been caused to the respondent by the defect.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_23">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">23.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The new Part 21 of the COPR applicable from 1 January 2023 provides:</span></p>
-          </intro>
-          <subparagraph>
-            <num>“21.4.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) Unless and to the extent that the court directs otherwise, every contempt application must be supported by written evidence given by affidavit or affirmation.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(2)</num>
-            <intro>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">A contempt application must include statements of all the following, unless (in the case of (b) to (g)) wholly inapplicable -</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0.57in;text-indent:0.32in">the nature of the alleged contempt (for example, breach of an order or undertaking or contempt in the face of the court);</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <intro>
-              <p class="Quote" style="margin-left:0.86in;margin-right:0.57in;text-indent:0.46in">the date and terms of any order allegedly breached or disobeyed;</p>
-            </intro>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0.57in;text-indent:0.32in">confirmation that any such order was personally served, and the date it was served, unless the court or the parties dispensed with personal service;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(d)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0.57in;text-indent:0.32in">if the court dispensed with personal service, the terms and date of the court’s order dispensing with personal service;”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“21.4.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) Unless and to the extent that the court directs otherwise, every contempt application must be supported by written evidence given by affidavit or affirmation.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(2)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">A contempt application must include statements of all the following, unless (in the case of (b) to (g)) wholly inapplicable -</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0.57in;text-indent:0.32in">the nature of the alleged contempt (for example, breach of an order or undertaking or contempt in the face of the court);</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>(b)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.86in;margin-right:0.57in;text-indent:0.46in">the date and terms of any order allegedly breached or disobeyed;</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0.57in;text-indent:0.32in">confirmation that any such order was personally served, and the date it was served, unless the court or the parties dispensed with personal service;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0.57in;text-indent:0.32in">if the court dispensed with personal service, the terms and date of the court’s order dispensing with personal service;”</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_24">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
@@ -1122,37 +1168,53 @@
         </paragraph>
         <paragraph eId="para_32">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The then Lord Chief Justice’s Practice Direction: Committal for Contempt of Court - Open Court, March 2015, provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Open Justice</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>3.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.39in">Open justice is a fundamental principle. The general rule is that hearings are carried out in, and judgments and orders are made in, public. This rule applies to all hearings, whether on application or otherwise, for committal for contempt irrespective of the court in which they are heard or of the proceedings in which they arise.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>4.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Derogations from the general principle can only be justified in exceptional circumstances, when they are strictly necessary as measures to secure the proper administration of justice. Derogations shall, where justified, be no more than strictly necessary to achieve their purpose.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Committal Hearings – in Public</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>5.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">(1) All committal hearings, whether on application or otherwise and whether for contempt in the face of the court or any other form of contempt, shall be listed and heard in public. (2) They shall, except where paragraph 5(3) applies, be listed in the public court list as follows: FOR HEARING IN OPEN COURT Application by (full name of Claimant) for the Committal to prison of (full name of the person alleged to be in contempt).”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Open Justice</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>3.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.39in">Open justice is a fundamental principle. The general rule is that hearings are carried out in, and judgments and orders are made in, public. This rule applies to all hearings, whether on application or otherwise, for committal for contempt irrespective of the court in which they are heard or of the proceedings in which they arise.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>4.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Derogations from the general principle can only be justified in exceptional circumstances, when they are strictly necessary as measures to secure the proper administration of justice. Derogations shall, where justified, be no more than strictly necessary to achieve their purpose.</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Committal Hearings – in Public</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>5.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">(1) All committal hearings, whether on application or otherwise and whether for contempt in the face of the court or any other form of contempt, shall be listed and heard in public. (2) They shall, except where paragraph 5(3) applies, be listed in the public court list as follows: FOR HEARING IN OPEN COURT Application by (full name of Claimant) for the Committal to prison of (full name of the person alleged to be in contempt).”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_33">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">33.</num>
@@ -1164,30 +1226,34 @@
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">34.</num>
           <intro>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">I subsequently received correspondence from Mr Farmer, of PA Media, and Professor Celia Kitzinger of the Open Justice Court of Protection Project. They expressed concerns that the case had not been listed publicly, but it had been listed in the public list in the court where the hearing took place. The problem appears to be that in Courtserve, a service which allows subscribers to access court lists from around the country, the listing of the case was different from that in the local court. I do not know how that occurred but am aware that it is something that has happened on other occasions. Since journalists, bloggers and observers may rely on Courtserve to access information about cases listed in the Court of Protection and other courts, it is important that the lists on the service match those published by the courts themselves. Mr Farmer and Professor Kitzinger also expressed their disquiet that the Defendant’s identity had  not been allowed to be reported. I invited them to make written or oral submissions that the reporting restrictions should be varied. I have received written submissions from Mr Farmer. In those very helpful submissions he draws my attention to  </span><span style="font-style:italic;text-decoration-line:none">PA Media Group v London Borough of Haringey</span><span style="text-decoration-line:none"> [2020] EWHC 1282 (Fam) in which Hayden J said of a family case (not in the Court of Protection):</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“16.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Ubiquitously, it is now recognised that the primary risk to children's privacy arises in consequence of public postings on social media. Ms Wilson speculates that the crowd funding scheme, organised by the mother with great effect, most probably involved a significant number of small donations rather than a few particularly generous individual benefactors. Ms Wilson reasons from this that many donors might be alerted by the judgment to investigate, by search engine, whether this was the family they gave financial support to. This, it is hypothesised, might lead to a plethora of social media posts which would be difficult to monitor. Ms Wilson also states, that whilst Ms Tickle focuses on the risk to child B by way of "playground taunts" the greater risk probably arises online and insidiously.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>17.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.28in">Mr Farmer considers that these concerns, though intellectually sustainable, are not, as he puts it, "rooted in the real world". Mr Farmer is a seasoned journalist, he argues the following:</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">"I don't think the concerns are enough to justify the Council's anonymisation. I think, in the real world, the chances of people putting together an identity jigsaw are small and the chances of someone putting together that jigsaw and causing harm, smaller still."</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>18.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">In admirably simple language, Mr Farmer makes the important link between "jigsaw identification" and the likelihood of "harm" (i.e. emotional distress) to the children. He is correct to emphasise the indivisibility of the two. Furthermore, both Ms Tickle and Mr Farmer respectfully suggest that very few members of the public will take the time to seek out and read my actual judgments, relying instead on what they read in the media. I have no doubt, at all, that this is largely true. Whilst it may mean that the public has an incomplete understanding of the case, it also follows that they may not be alerted to the pieces of information which might provide a jigsaw to identification.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“16.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Ubiquitously, it is now recognised that the primary risk to children's privacy arises in consequence of public postings on social media. Ms Wilson speculates that the crowd funding scheme, organised by the mother with great effect, most probably involved a significant number of small donations rather than a few particularly generous individual benefactors. Ms Wilson reasons from this that many donors might be alerted by the judgment to investigate, by search engine, whether this was the family they gave financial support to. This, it is hypothesised, might lead to a plethora of social media posts which would be difficult to monitor. Ms Wilson also states, that whilst Ms Tickle focuses on the risk to child B by way of "playground taunts" the greater risk probably arises online and insidiously.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>17.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.28in">Mr Farmer considers that these concerns, though intellectually sustainable, are not, as he puts it, "rooted in the real world". Mr Farmer is a seasoned journalist, he argues the following:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">"I don't think the concerns are enough to justify the Council's anonymisation. I think, in the real world, the chances of people putting together an identity jigsaw are small and the chances of someone putting together that jigsaw and causing harm, smaller still."</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>18.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">In admirably simple language, Mr Farmer makes the important link between "jigsaw identification" and the likelihood of "harm" (i.e. emotional distress) to the children. He is correct to emphasise the indivisibility of the two. Furthermore, both Ms Tickle and Mr Farmer respectfully suggest that very few members of the public will take the time to seek out and read my actual judgments, relying instead on what they read in the media. I have no doubt, at all, that this is largely true. Whilst it may mean that the public has an incomplete understanding of the case, it also follows that they may not be alerted to the pieces of information which might provide a jigsaw to identification.”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="CoverText" style="text-align:justify;margin-left:0.39in;margin-right:0.57in"><span style="text-decoration-line:none">Similar considerations apply to a case in the Court of Protection. Professor Kitzinger attended the hearing today, 16 January 2023, in person. In fact, all three Counsel agreed that I should permit the Defendant to be named in reporting of these committal proceedings. I indicated that I had too formed that view. I therefore did not need to hear from Professor Kitzinger.</span></p>
@@ -1196,180 +1262,216 @@
         </paragraph>
         <paragraph eId="para_35">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">35.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The court must consider Articles 8 and 10 of the European Convention on Human Rights and Fundamental Freedoms:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Article 8</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Right to respect for private and family life</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>1.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Everyone has the right to respect for his private and family life, his home and his correspondence.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>2.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">There shall be no interference by a public authority with the exercise of this right except such as is in accordance with the law and is necessary in a democratic society in the interests of national security, public safety or the economic well-being of the country, for the prevention of disorder or crime, for the protection of health or morals, or for the protection of the rights and freedoms of others.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Article 10</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Freedom of expression</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>1.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Everyone has the right to freedom of expression. This right shall include freedom to hold opinions and to receive and impart information and ideas without interference by public authority and regardless of frontiers. This Article shall not prevent States from requiring the licensing of broadcasting, television or cinema enterprises.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>2.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">The exercise of these freedoms, since it carries with it duties and responsibilities, may be subject to such formalities, conditions restrictions or penalties as are prescribed by law and are necessary in a democratic society, in the interests of national security, territorial integrity or public safety, for the prevention of disorder or crime, for the protection of health or morals, for the protection of the reputation or rights of others, for preventing the disclosure of information received in confidence or for maintaining the authority and impartiality of the judiciary.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Article 8</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Right to respect for private and family life</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>1.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Everyone has the right to respect for his private and family life, his home and his correspondence.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">There shall be no interference by a public authority with the exercise of this right except such as is in accordance with the law and is necessary in a democratic society in the interests of national security, public safety or the economic well-being of the country, for the prevention of disorder or crime, for the protection of health or morals, or for the protection of the rights and freedoms of others.</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Article 10</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Freedom of expression</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>1.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Everyone has the right to freedom of expression. This right shall include freedom to hold opinions and to receive and impart information and ideas without interference by public authority and regardless of frontiers. This Article shall not prevent States from requiring the licensing of broadcasting, television or cinema enterprises.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">The exercise of these freedoms, since it carries with it duties and responsibilities, may be subject to such formalities, conditions restrictions or penalties as are prescribed by law and are necessary in a democratic society, in the interests of national security, territorial integrity or public safety, for the prevention of disorder or crime, for the protection of health or morals, for the protection of the reputation or rights of others, for preventing the disclosure of information received in confidence or for maintaining the authority and impartiality of the judiciary.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_36">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">36.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Section 12 (4) of the Human Rights Act 1998 provides that:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“The court must have particular regard to the importance of the Convention right to freedom of expression and, where the proceedings relate to material which the respondent claims, or which appear to the court, to be journalistic, literary or artistic material (or to conduct connected with such material) to (a) the extent to which (i) the material has, or is about to, become available to the public, or (ii) it is, or would be, in the public interest for the material to be published, [and] (b) any relevant privacy code.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“The court must have particular regard to the importance of the Convention right to freedom of expression and, where the proceedings relate to material which the respondent claims, or which appear to the court, to be journalistic, literary or artistic material (or to conduct connected with such material) to (a) the extent to which (i) the material has, or is about to, become available to the public, or (ii) it is, or would be, in the public interest for the material to be published, [and] (b) any relevant privacy code.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_37">
           <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.57in;text-indent:-0.5in">37.</num>
           <intro>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Under the Court of Protection (Amendment) Rules 2022 ,which came into force on 1 January 2023,and therefore after the hearing on 8 December 2022 but before the hearing listed for sentencing on 16 January 2023, the new r 21.8(1) to (5) of the COPR provide as follows:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“21.8.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) All hearings of contempt proceedings shall, irrespective of the parties’ consent, be listed and heard in public unless the court otherwise directs, applying the provisions of paragraph (4).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">In deciding whether to hold a hearing in private, the court must consider any duty to protect or have regard to a right to freedom of expression which may be affected.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">The court shall take reasonable steps to ensure that all hearings are of an open and public character, save when a hearing is held in private.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(4)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">A hearing, or any part of it, must be held in private if, and only to the extent that, the court is satisfied of one or more of the matters set out in sub-paragraphs (a) to (g) and that it is necessary to sit in private to secure the proper administration of justice:</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">publicity would defeat the object of the hearing;</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(b)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">it involves matters relating to national security;</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">it involves confidential information (including information relating to personal financial matters) and publicity would damage that confidentiality;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">a private hearing is necessary to protect the interests of P, a protected party or any child;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(e)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">it is a hearing of an application made without notice and it would be unjust to any respondent for there to be a public hearing;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(f)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">it involves uncontentious matters arising in the administration of the affairs of P or in the administration of P’s estate; or</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(g)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">the court for any other reason considers this to be necessary to secure the proper administration of justice.</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(5)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">The court must order that the identity of any party or witness shall not be disclosed if, and only if, it considers non-disclosure necessary to secure the proper administration of justice and in order to protect the interests of that party or witness.”</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
           <subparagraph>
-            <num>“21.8.</num>
             <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) All hearings of contempt proceedings shall, irrespective of the parties’ consent, be listed and heard in public unless the court otherwise directs, applying the provisions of paragraph (4).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">In deciding whether to hold a hearing in private, the court must consider any duty to protect or have regard to a right to freedom of expression which may be affected.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(3)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">The court shall take reasonable steps to ensure that all hearings are of an open and public character, save when a hearing is held in private.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(4)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">A hearing, or any part of it, must be held in private if, and only to the extent that, the court is satisfied of one or more of the matters set out in sub-paragraphs (a) to (g) and that it is necessary to sit in private to secure the proper administration of justice:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">publicity would defeat the object of the hearing;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <intro>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">it involves matters relating to national security;</p>
-            </intro>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">it involves confidential information (including information relating to personal financial matters) and publicity would damage that confidentiality;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(d)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">a private hearing is necessary to protect the interests of P, a protected party or any child;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(e)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">it is a hearing of an application made without notice and it would be unjust to any respondent for there to be a public hearing;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(f)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">it involves uncontentious matters arising in the administration of the affairs of P or in the administration of P’s estate; or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(g)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">the court for any other reason considers this to be necessary to secure the proper administration of justice.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(5)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">The court must order that the identity of any party or witness shall not be disclosed if, and only if, it considers non-disclosure necessary to secure the proper administration of justice and in order to protect the interests of that party or witness.”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <intro>
               <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those new rules apply to the hearing today. The court may therefore sit in private if one of the conditions under r 21.8(4) is met. For example, if the court determined that a private hearing was necessary to protect the interests of FP and that it was necessary to sit in private to secure the proper administration of justice. Ordinarily, contempt proceedings will be heard in public but the court clearly has the power to direct that contempt proceedings be heard in private. If so, then COPR r 4.2 applies:</p>
-            </intro>
-            <subparagraph>
-              <num>4.2.</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) For the purposes of the law relating to contempt of court, information relating to proceedings held in private (whether or not contained in a document filed with the court) may be communicated in accordance with paragraph (2) or (3).</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>4.2.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) For the purposes of the law relating to contempt of court, information relating to proceedings held in private (whether or not contained in a document filed with the court) may be communicated in accordance with paragraph (2) or (3).</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num>(2)</num>
-            <intro>
+            <content>
               <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">The court may make an order authorising:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(a)the publication or communication of such information or material relating to the proceedings as it may specify; or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(b)the publication of the text or a summary of the whole or part of a judgment or order made by the court.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(3)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Subject to any direction of the court, information referred to in paragraph (1) may be communicated in accordance with Practice Direction 4A.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(4)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Where the court makes an order under paragraph (2) it may do so on such terms as it thinks fit, and in particular may:</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(a)the publication or communication of such information or material relating to the proceedings as it may specify; or</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(b)the publication of the text or a summary of the whole or part of a judgment or order made by the court.</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>(3)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Subject to any direction of the court, information referred to in paragraph (1) may be communicated in accordance with Practice Direction 4A.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(4)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Where the court makes an order under paragraph (2) it may do so on such terms as it thinks fit, and in particular may:</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num>(a)</num>
@@ -1397,27 +1499,31 @@
           </subparagraph>
           <subparagraph>
             <num>(iv)</num>
-            <intro>
+            <content>
               <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any other person;</p>
-            </intro>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">prohibit the publication of any information that may lead to any such person being identified;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">prohibit the further publication of any information relating to the proceedings from such date as the court may specify; or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(d)</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">impose such other restrictions on the publication of information relating to the proceedings as the court may specify.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">prohibit the publication of any information that may lead to any such person being identified;</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">prohibit the further publication of any information relating to the proceedings from such date as the court may specify; or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">impose such other restrictions on the publication of information relating to the proceedings as the court may specify.</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <content>
@@ -1535,12 +1641,16 @@
             <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.57in">In his written submissions Mr Lews contended that the committal proceedings should be adjourned to allow Mrs Macpherson to appeal the orders made on 30 June 2022, breaches of which form the basis of the committal applications. He contended that the orders were not lawfully made. The difficulty with that submission is that Mrs Macpherson sought permission to appeal all the orders made on 30 June 2022, including the injunctive orders, and permission to appeal was refused by the Court of Appeal as being totally without merit. In refusing permission, the single judge of the Court of Appeal wrote:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“These conclusions [of fact] were clearly open to the judge on the evidence and having reached them he was entirely justified in making the orders, including restricting the appellant’s contact with FP, restraining her from making certain recordings and publishing information relating to the proceedings as set out in paragraphs 1 to 2 of the order … Contrary to the appellant’s argument the orders made do not amount to an unjustifiable breach of human rights … The restrictions imposed on the appellant were based on the evidence and history of her conduct and on that basis were fully justified in FP’s best interests.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">“These conclusions [of fact] were clearly open to the judge on the evidence and having reached them he was entirely justified in making the orders, including restricting the appellant’s contact with FP, restraining her from making certain recordings and publishing information relating to the proceedings as set out in paragraphs 1 to 2 of the order … Contrary to the appellant’s argument the orders made do not amount to an unjustifiable breach of human rights … The restrictions imposed on the appellant were based on the evidence and history of her conduct and on that basis were fully justified in FP’s best interests.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Although Mrs Macpherson was a litigant in person when she sought and was refused permission to appeal, the very issues that Mr Lewis now says she ought to be able to raise by way of an application for permission to appeal, have already been raised and rejected. Mr Lewis did not press for an adjournment in order to allow the Defendant time to seek for a second time permission to appeal the orders of 30 June 2022. It would have been wholly wrong to delay the conclusion of these committal proceedings on that basis. I am satisfied that it was fair to the Defendant to proceed to sentence on 16 January 2023.</p>
@@ -1560,68 +1670,76 @@
           </subparagraph>
           <subparagraph>
             <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">50.</num>
-            <intro>
+            <content>
               <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">COPR r 21.9, in force since 1 January 2023 and therefore binding on me for the purposes of sentencing provides:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:0.5in;margin-right:0.57in;text-indent:0.32in">“Powers of the court in contempt proceedings</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>21.9.</num>
-              <content>
-                <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">- (1) If the court finds the defendant in contempt of court, the court may impose a period of imprisonment (an order of committal), a fine, confiscation of assets or other punishment permitted under the law.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:0.5in;margin-right:0.57in;text-indent:0.32in">“Powers of the court in contempt proceedings</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>21.9.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">- (1) If the court finds the defendant in contempt of court, the court may impose a period of imprisonment (an order of committal), a fine, confiscation of assets or other punishment permitted under the law.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">51.</num>
-            <intro>
+            <content>
               <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">The general principles which I adopt are those set out by MacDonald J in </span><span style="font-style:italic;text-decoration-line:none">Re Dahlia Griffith (application to Commit)</span><span style="text-decoration-line:none"> [2020] EWCOP 46:</span></p>
-            </intro>
-            <subparagraph>
-              <num>“42.</num>
-              <content>
-                <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">As Marcus-Smith J made clear in Patel v Patel and Ors [2017] EWHC 3229 (Ch) at [22] and [23] a penalty for contempt has two primary functions.  First, it upholds the authority of the court by marking the disapproval of the court and deterring others from engaging in the conduct comprising the contempt. Secondly, it acts to ensure future compliance. …</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>43.</num>
-              <intro>
-                <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">In considering the appropriate penalty in this matter, I have had regard to the following principles applicable to that exercise:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">i) The penalty chosen must be proportionate to the seriousness of the contempt.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">ii) Imprisonment is not the starting point and is not the automatic response to a contempt of court.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">iii) Equally, there is no principle that a sentence of imprisonment cannot be imposed on a contemnor who has not previously committed a contempt.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">iv) In circumstances where the disposal chosen must be proportionate to the seriousness of the contempt, where an immediate term of imprisonment is appropriate it should be as short as possible having regard to the gravity of the contempt and must bear some reasonable relationship to the maximum sentence of two years imprisonment that is available to the court.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">v) Where a term of imprisonment is the appropriate sentence, the length of the term should be determined without reference to whether the term is to be suspended or not.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">vi) Having determined the length of the term of imprisonment, the court should expressly ask itself whether a sentence of imprisonment might be suspended.”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“42.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">As Marcus-Smith J made clear in Patel v Patel and Ors [2017] EWHC 3229 (Ch) at [22] and [23] a penalty for contempt has two primary functions.  First, it upholds the authority of the court by marking the disapproval of the court and deterring others from engaging in the conduct comprising the contempt. Secondly, it acts to ensure future compliance. …</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_43">
+                    <num>43.</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:0.82in;margin-right:0.57in;text-indent:0.18in">In considering the appropriate penalty in this matter, I have had regard to the following principles applicable to that exercise:</p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">i) The penalty chosen must be proportionate to the seriousness of the contempt.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">ii) Imprisonment is not the starting point and is not the automatic response to a contempt of court.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">iii) Equally, there is no principle that a sentence of imprisonment cannot be imposed on a contemnor who has not previously committed a contempt.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">iv) In circumstances where the disposal chosen must be proportionate to the seriousness of the contempt, where an immediate term of imprisonment is appropriate it should be as short as possible having regard to the gravity of the contempt and must bear some reasonable relationship to the maximum sentence of two years imprisonment that is available to the court.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">v) Where a term of imprisonment is the appropriate sentence, the length of the term should be determined without reference to whether the term is to be suspended or not.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.22in;margin-right:0.57in">vi) Having determined the length of the term of imprisonment, the court should expressly ask itself whether a sentence of imprisonment might be suspended.”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">52.</num>

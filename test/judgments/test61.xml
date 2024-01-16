@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/637/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/637/data.xml" />
-          <FRBRdate date="2023-08-08T15:15:48" name="transform" />
+          <FRBRdate date="2024-01-16T20:14:27" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2023</uk:year>
         <uk:number>637</uk:number>
         <uk:cite>[2023] EWCA Civ 637</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>55a7e341088ff12424e211c40a5b5e80c42fe9d8a40ca28de4431f1e73e27cde</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -394,14 +394,18 @@
           </paragraph>
           <paragraph eId="para_30">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">At page 3 lines 14–27 Zimmerling describes a second embodiment in which the implant includes a housing and “[a]t least one magnet is free to turn in the housing such that the at least one magnet is capable of aligning at least partially with an external magnetic field.” Although not expressly mentioned here, the skilled team would understand that this reduces torque, as stated in the abstract. Zimmerling goes on to say:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“The at least one magnet may be spherical or cylindrical in shape … The at least one magnet may be a plurality of spherically shaped magnets.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“The at least one magnet may be spherical or cylindrical in shape … The at least one magnet may be a plurality of spherically shaped magnets.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_31">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
@@ -425,14 +429,18 @@
           </paragraph>
           <paragraph eId="para_33">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">33.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Zimmerling goes on to say at page 8 lines 6-19:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“Instead of a spherical magnet 302, magnet 302 may be of a variety of shapes. For example, magnet 302 may be, without limitation, a cylinder that can rotate about its axis. The cylindrical magnet carries a magnetization being normal to its axis. This axis can be arranged horizontally parallel to the skin in the plane of the implanted coil. This allows the magnet to turn around its axis, so that it may turn its magnetic moment either towards the external holding magnet (as is typically the case during normal use) or so as to align with the field generated, for example, by a high field MRI scanner, whose field lines in a typical examination position run along the patient’s axis. In a slightly different arrangement, the axis of the cylinder is still mounted in the plane of the implanted coil, but at approximately up to 45° off the horizontal plane to be able to partially adjust to (lower field) MRI-machines which use vertical magnetic fields. The advantage of a cylindrical magnet is that its aspect ratio (i.e. diameter vs. length) can be chosen such that for a given volume (which is necessary to generate an adequate holding force) the thickness of the magnet is smaller than that of a spherically shaped magnet.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“Instead of a spherical magnet 302, magnet 302 may be of a variety of shapes. For example, magnet 302 may be, without limitation, a cylinder that can rotate about its axis. The cylindrical magnet carries a magnetization being normal to its axis. This axis can be arranged horizontally parallel to the skin in the plane of the implanted coil. This allows the magnet to turn around its axis, so that it may turn its magnetic moment either towards the external holding magnet (as is typically the case during normal use) or so as to align with the field generated, for example, by a high field MRI scanner, whose field lines in a typical examination position run along the patient’s axis. In a slightly different arrangement, the axis of the cylinder is still mounted in the plane of the implanted coil, but at approximately up to 45° off the horizontal plane to be able to partially adjust to (lower field) MRI-machines which use vertical magnetic fields. The advantage of a cylindrical magnet is that its aspect ratio (i.e. diameter vs. length) can be chosen such that for a given volume (which is necessary to generate an adequate holding force) the thickness of the magnet is smaller than that of a spherically shaped magnet.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_34">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">34.</num>
@@ -483,12 +491,16 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">39.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">Page 12 lines 18-29 describes by reference to Figure 9 an embodiment in which permanent magnet 901 is a cylinder which is “free to turn around its rotational axis”.  As Zimmerling explains:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“A magnetic field orienting in a vertical direction (radially through the cylindrical magnet 901 and vertically through the magnetically soft part 902) would cause an attractive force between the cylindrical magnet 901 and the magnetically soft part 902, whereas a magnetic field orienting in radial direction (horizontally) would cause a repulsive force between the two parts 901, 902. A magnetic field in an axial direction (parallel to the axis of the cylindrical magnet 901) could cause either an attractive or repulsive force, depending on the magnetic properties of the magnetized cylinder 901.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“A magnetic field orienting in a vertical direction (radially through the cylindrical magnet 901 and vertically through the magnetically soft part 902) would cause an attractive force between the cylindrical magnet 901 and the magnetically soft part 902, whereas a magnetic field orienting in radial direction (horizontally) would cause a repulsive force between the two parts 901, 902. A magnetic field in an axial direction (parallel to the axis of the cylindrical magnet 901) could cause either an attractive or repulsive force, depending on the magnetic properties of the magnetized cylinder 901.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaLevel1" style="margin-left:0.5in"><span>                       </span><img src="image13.gif" style="width:303pt;height:177pt" /></p>
@@ -546,14 +558,18 @@
           </paragraph>
           <paragraph eId="para_46">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">46.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Further embodiments are described at [0008]-[0009]. The invention is described in more detail in [0010]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“The first attachment magnet may be adapted to rotate within the coil housing in response to an external magnetic field, and there may be a lubrication coating covering at least a portion of the first attachment magnet and reducing friction between the first attachment magnet and the coil housing to promote the rotation of the first attachment magnet. At least one of the attachment magnets may have a planar disk shape, a rectangular beam shape, a cylindrical beam shape, or a cut away disk shape. Or at least one of the attachment magnets may comprise a pair of complementary cylindrical attachment magnets, which optionally may further include a magnetic flux guide connecting the pair of complementary cylindrical attachment magnets.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“The first attachment magnet may be adapted to rotate within the coil housing in response to an external magnetic field, and there may be a lubrication coating covering at least a portion of the first attachment magnet and reducing friction between the first attachment magnet and the coil housing to promote the rotation of the first attachment magnet. At least one of the attachment magnets may have a planar disk shape, a rectangular beam shape, a cylindrical beam shape, or a cut away disk shape. Or at least one of the attachment magnets may comprise a pair of complementary cylindrical attachment magnets, which optionally may further include a magnetic flux guide connecting the pair of complementary cylindrical attachment magnets.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_47">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">47.</num>
@@ -613,14 +629,18 @@
           </paragraph>
           <paragraph eId="para_53">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">53.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The specification compares the invention with spherical magnet designs at [0026]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“Non-spherical shaped magnets with a magnet field oriented in the plane of the coil housing (i.e., parallel to the skin) basically [have] the same advantages with regards to MR systems as with spherical magnet designs, with the main limitation being that the disk-shape attachment magnet design described above allows for rotation of the magnet in only one plane. Still when the implant is placed inside the body in a sagittal plane orientation (as with a hearing implant) and with a standard MRI examination position of the patient (i.e. in supine position with the head kept straight), the implant attachment magnet can align quite well with the static magnetic field both in closed MR scanners (with a horizontal main magnetic field) as well as i[n] open MR scanners (with the main magnetic field in vertical direction).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“Non-spherical shaped magnets with a magnet field oriented in the plane of the coil housing (i.e., parallel to the skin) basically [have] the same advantages with regards to MR systems as with spherical magnet designs, with the main limitation being that the disk-shape attachment magnet design described above allows for rotation of the magnet in only one plane. Still when the implant is placed inside the body in a sagittal plane orientation (as with a hearing implant) and with a standard MRI examination position of the patient (i.e. in supine position with the head kept straight), the implant attachment magnet can align quite well with the static magnetic field both in closed MR scanners (with a horizontal main magnetic field) as well as i[n] open MR scanners (with the main magnetic field in vertical direction).”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_54">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">54.</num>
@@ -633,53 +653,61 @@
           <heading class="ParaHeading"><span style="text-decoration-line:underline;text-decoration-style:solid">The claim</span></heading>
           <paragraph eId="para_55">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">55.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The claims in issue before the judge were claims 1 and 10 as granted and claim 14 as unconditionally proposed to be amended. Since the judge found claim 1 valid, he did not need to consider whether claims 10 and 14 were independently valid. Claim 1 as maintained by the Board of Appeal incorporates both the additional feature of claim 10 and a feature (integer [6] below) which was not present in any of the granted claims. Omitting reference numerals and broken down into integers, it reads as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">“[1]<marker name="tab" />An implant system for a recipient patient, said implant system comprising:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[2]<marker name="tab" />a planar implant coil housing for implanting under the skin of said patient containing a receiver coil for transcutaneous communication of an implant communication signal, and containing a first attachment magnet within the plane of the implant coil housing,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[3]<marker name="tab" />a planar external transmitter coil housing for placement on the skin of the patient over said implant coil housing, said external transmitter coil housing comprising a second attachment magnet within the plane of the external transmitter coil housing;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[4]<marker name="tab" />characterized in that said first attachment magnet is rotatable in said plane of the implant coil housing, </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[5]<marker name="tab" />and the first and second attachment magnets have a magnetic dipole parallel to the respective plane of the implant coil housing or external transmitter coil housing for transcutaneous magnetic interaction with each other allowing to form a magnetic attraction connection between them in which the magnetic dipole of said first attachment magnet is parallel to said plane of the implant coil housing and said magnetic dipole of said second attachment magnet is parallel to said plane of said external transmitter coil housing, </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[6]<marker name="tab" />wherein said first attachment magnet has a planar disc shape or a cut away disc shape.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">“[1]<marker name="tab" />An implant system for a recipient patient, said implant system comprising:</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[2]<marker name="tab" />a planar implant coil housing for implanting under the skin of said patient containing a receiver coil for transcutaneous communication of an implant communication signal, and containing a first attachment magnet within the plane of the implant coil housing,</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[3]<marker name="tab" />a planar external transmitter coil housing for placement on the skin of the patient over said implant coil housing, said external transmitter coil housing comprising a second attachment magnet within the plane of the external transmitter coil housing;</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[4]<marker name="tab" />characterized in that said first attachment magnet is rotatable in said plane of the implant coil housing, </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[5]<marker name="tab" />and the first and second attachment magnets have a magnetic dipole parallel to the respective plane of the implant coil housing or external transmitter coil housing for transcutaneous magnetic interaction with each other allowing to form a magnetic attraction connection between them in which the magnetic dipole of said first attachment magnet is parallel to said plane of the implant coil housing and said magnetic dipole of said second attachment magnet is parallel to said plane of said external transmitter coil housing, </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">[6]<marker name="tab" />wherein said first attachment magnet has a planar disc shape or a cut away disc shape.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level>
           <heading class="ParaHeading"><span style="text-decoration-line:underline;text-decoration-style:solid">The judge’s judgment</span></heading>
           <paragraph eId="para_56">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">56.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The judge considered what Zimmerling would teach the skilled team at [205]-[215]. Having noted at [205] that there was little difference between the experts about this, and that the dispute mainly focussed on what the biomedical engineer would do in the light of the teaching, he summarised the teaching of Zimmerling at [206] as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“Zimmerling is about problems that can arise when a patient with a cochlear implant has an MRI. The solutions taught are: (1) a magnetic switch that functions in response to an external magnetic field, and (2) that the implant magnets can rotate to align with an external magnetic field. …”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“Zimmerling is about problems that can arise when a patient with a cochlear implant has an MRI. The solutions taught are: (1) a magnetic switch that functions in response to an external magnetic field, and (2) that the implant magnets can rotate to align with an external magnetic field. …”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_57">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">57.</num>
@@ -689,50 +717,62 @@
           </paragraph>
           <paragraph eId="para_58">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">58.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The judge considered the teaching of Zimmerling with regard to rotation and orientation of the magnets in more detail in the following passages:</p>
-            </intro>
-            <subparagraph>
-              <num>“208.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">Zimmerling discloses the ‘perfect’ internal magnet for dealing with torque. The reason is that a sphere is the only shape that can fully align with an external field in any direction. With a sphere the definitions used for axial and diametric magnets – which are contextual definitions – become less helpful. It can be both.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>211.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">Zimmerling also acknowledges the need to consider how the rotation of the internal magnet interacts with different types of MRI external magnetic fields with different directions of field lines …. It teaches that a variety of shapes of internal magnets can be used. Also that varying the orientation of the axis of the rotation of an internal magnet (here a cylinder) to 45 degrees off the horizontal plane provides a compromise position that would rotate sufficiently in an external magnetic field to partially adjust to align with the directions of the different external MRI fields of the two noted MRI systems and provide a thinner magnet than a spherical one. The Skilled Person would recognise that this cylindrical magnet set-up foregoes the ability to rotate in three dimensions and so achieve complete alignment with the external magnetic field. …</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>212.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.01in">Zimmerling teaches that the external magnets for attaching to the internal rotating one all have an axial magnetic orientation. It is not common ground that Zimmerling teaches this to be a requirement.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>213.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.01in">Zimmerling presents the CGK position with fig. 2 showing an axial magnet and the problem of torque twisting/rotating the axial magnet. … As noted above, I have assessed therefore that the key to rotating a permanent magnet in an external magnetic field is to have the magnetic dipole across the axis of rotation and that this is CGK.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>214.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">In the circumstances, this may not matter if Zimmerling teaches that changing the orientation of the magnetic dipole to one that is across the axis of rotation allows the magnet to turn in an external magnetic field. This is what [Advanced Bionics] says it does. Med-El’s counsel appears to accept this also. In cross examination Professor Suaning accepts this in the context of the cylinder magnet [the judge cited an answer in which the witness accepted that the cylindrical magnet was diametrically magnetised perpendicular to its axis of rotation].</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>215.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">So, Zimmerling teaches how to arrange and rotate a variety of shapes of magnets in an external magnetic field such that they are arranged with their dipole across their axis of rotation and are trying to align to some extent to reduce torque in an external magnetic field such as an MRI. All the taught orientations (other than spheres where it appears to depend) have the axis of rotation perpendicular to the skin. I note that Professor Suaning believes the thrust of Zimmerling is to provide a solution that gives a perfect alignment with an MRI field. This does not change the fact that it also discloses the compromise of a partial alignment.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“208.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">Zimmerling discloses the ‘perfect’ internal magnet for dealing with torque. The reason is that a sphere is the only shape that can fully align with an external field in any direction. With a sphere the definitions used for axial and diametric magnets – which are contextual definitions – become less helpful. It can be both.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">…</p>
+                    </content>
+                  </level>
+                  <paragraph eId="para_211">
+                    <num>211.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">Zimmerling also acknowledges the need to consider how the rotation of the internal magnet interacts with different types of MRI external magnetic fields with different directions of field lines …. It teaches that a variety of shapes of internal magnets can be used. Also that varying the orientation of the axis of the rotation of an internal magnet (here a cylinder) to 45 degrees off the horizontal plane provides a compromise position that would rotate sufficiently in an external magnetic field to partially adjust to align with the directions of the different external MRI fields of the two noted MRI systems and provide a thinner magnet than a spherical one. The Skilled Person would recognise that this cylindrical magnet set-up foregoes the ability to rotate in three dimensions and so achieve complete alignment with the external magnetic field. …</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph eId="para_212">
+                    <num>212.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.01in">Zimmerling teaches that the external magnets for attaching to the internal rotating one all have an axial magnetic orientation. It is not common ground that Zimmerling teaches this to be a requirement.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_213">
+                    <num>213.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.01in">Zimmerling presents the CGK position with fig. 2 showing an axial magnet and the problem of torque twisting/rotating the axial magnet. … As noted above, I have assessed therefore that the key to rotating a permanent magnet in an external magnetic field is to have the magnetic dipole across the axis of rotation and that this is CGK.</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph eId="para_214">
+                    <num>214.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">In the circumstances, this may not matter if Zimmerling teaches that changing the orientation of the magnetic dipole to one that is across the axis of rotation allows the magnet to turn in an external magnetic field. This is what [Advanced Bionics] says it does. Med-El’s counsel appears to accept this also. In cross examination Professor Suaning accepts this in the context of the cylinder magnet [the judge cited an answer in which the witness accepted that the cylindrical magnet was diametrically magnetised perpendicular to its axis of rotation].</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_215">
+                    <num>215.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">So, Zimmerling teaches how to arrange and rotate a variety of shapes of magnets in an external magnetic field such that they are arranged with their dipole across their axis of rotation and are trying to align to some extent to reduce torque in an external magnetic field such as an MRI. All the taught orientations (other than spheres where it appears to depend) have the axis of rotation perpendicular to the skin. I note that Professor Suaning believes the thrust of Zimmerling is to provide a solution that gives a perfect alignment with an MRI field. This does not change the fact that it also discloses the compromise of a partial alignment.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_59">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">59.</num>
@@ -742,46 +782,58 @@
           </paragraph>
           <paragraph eId="para_60">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">60.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The judge identified the differences between Zimmerling and the claimed invention at [220] as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“The teaching does not describe the use of a rotatable diametric implant magnet in the plane of the implant coil housing with a magnetic dipole parallel to the plane of the implant coil housing/skin. It also does not teach the use of a diametric magnet as the external magnet in the headpiece.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“The teaching does not describe the use of a rotatable diametric implant magnet in the plane of the implant coil housing with a magnetic dipole parallel to the plane of the implant coil housing/skin. It also does not teach the use of a diametric magnet as the external magnet in the headpiece.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_61">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">61.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The judge added at [221]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“A key difference for Professor Suaning seems to be one of geometry. I have set out below some diagrams provided by AB to explain. These show a representation of the Zimmerling cylinder magnet. It then shows a representation of what a disk magnet would look like (this is to demonstrate the geometry point – it is not an acceptance that the Skilled Person would think of shortening the cylinder as shown). Although this disk magnet has its magnetic dipole across its axis of rotation the geometry is such that it is perpendicular to the skin. The final diagram shows the Patent's solution. This is a disk magnet with its magnetic dipole across its axis of rotation. The geometry is now that the plane of rotation is parallel to the skin. Disk magnets were what was used in the cochlear implants at the Priority Date and were CGK. There is no serious dispute that if you wanted to make/buy a relevant disk magnet which was magnetized across its axis of rotation (diametric) this would not be available at the Priority Date. The evidence supports this position. It is not suggested this needed any invention.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in"><img src="image21.jpeg" style="width:231pt;height:88.5pt" /></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in"><img src="image22.jpeg" style="width:227.25pt;height:88.5pt" /><br /><img src="image23.jpeg" style="width:241.5pt;height:40.5pt" />”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“A key difference for Professor Suaning seems to be one of geometry. I have set out below some diagrams provided by AB to explain. These show a representation of the Zimmerling cylinder magnet. It then shows a representation of what a disk magnet would look like (this is to demonstrate the geometry point – it is not an acceptance that the Skilled Person would think of shortening the cylinder as shown). Although this disk magnet has its magnetic dipole across its axis of rotation the geometry is such that it is perpendicular to the skin. The final diagram shows the Patent's solution. This is a disk magnet with its magnetic dipole across its axis of rotation. The geometry is now that the plane of rotation is parallel to the skin. Disk magnets were what was used in the cochlear implants at the Priority Date and were CGK. There is no serious dispute that if you wanted to make/buy a relevant disk magnet which was magnetized across its axis of rotation (diametric) this would not be available at the Priority Date. The evidence supports this position. It is not suggested this needed any invention.</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><img src="image21.jpeg" style="width:231pt;height:88.5pt" /></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><img src="image22.jpeg" style="width:227.25pt;height:88.5pt" /><br /><img src="image23.jpeg" style="width:241.5pt;height:40.5pt" />”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_62">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">62.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">At [223]-[233] the judge considered and, as I have noted above, rejected Med-El’s criticism of Prof Parker’s evidence as being tainted by hindsight. He concluded at [233] by quoting from the following paragraph in Prof Parker’s expert report:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“When I was first shown Zimmerling and asked what the skilled person would do, and before I had seen the Patent, it immediately struck me that there were other straightforward shapes which could be used to take advantage of the rotatable design disclosed by Zimmerling, In particular, the first suggestion I made was the use of a flat disk-shaped magnet instead of the bulkier magnets shown in Zimmerling. The reason I thought of this is because flat, disk shaped magnets were the most commonly used type in the common general knowledge (indeed, almost universally used to my knowledge) and so the easiest way to implement Zimmerling would be to use the designs and components already being used.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“When I was first shown Zimmerling and asked what the skilled person would do, and before I had seen the Patent, it immediately struck me that there were other straightforward shapes which could be used to take advantage of the rotatable design disclosed by Zimmerling, In particular, the first suggestion I made was the use of a flat disk-shaped magnet instead of the bulkier magnets shown in Zimmerling. The reason I thought of this is because flat, disk shaped magnets were the most commonly used type in the common general knowledge (indeed, almost universally used to my knowledge) and so the easiest way to implement Zimmerling would be to use the designs and components already being used.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_63">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">63.</num>
@@ -797,88 +849,112 @@
           </paragraph>
           <paragraph eId="para_65">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">65.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">At [240] the judge quoted from a paragraph in Prof Parker’s second report:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“In reaching my conclusion that a disk-shaped magnet would be an obvious choice of magnet shape to use at the Priority Date when presented with Zimmerling, I relied only on what would have been known to the skilled medical device engineer at the Priority Date. If a skilled medical device engineer decided to implement Zimmerling, they would be highly motivated to do so within the existing coil assembly form factor, in particular if possible using the shapes of the magnets and the housings, due to a combination of the regulatory factors described in my first report and the non-negotiable requirement to design a coil assembly that could be implanted without the need for bone excavation. It is clear that the existing shape and housing used at the Priority Date meets the clinical requirements<span style="font-style:italic">.</span>”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“In reaching my conclusion that a disk-shaped magnet would be an obvious choice of magnet shape to use at the Priority Date when presented with Zimmerling, I relied only on what would have been known to the skilled medical device engineer at the Priority Date. If a skilled medical device engineer decided to implement Zimmerling, they would be highly motivated to do so within the existing coil assembly form factor, in particular if possible using the shapes of the magnets and the housings, due to a combination of the regulatory factors described in my first report and the non-negotiable requirement to design a coil assembly that could be implanted without the need for bone excavation. It is clear that the existing shape and housing used at the Priority Date meets the clinical requirements<span style="font-style:italic">.</span>”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_66">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">66.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">At [242] the judge considered a series of steps which Prof Suaning postulated would be required to get from Zimmerling to the claimed invention. For present purposes it is only necessary to set out the judge’s comments on two of these steps:</p>
-            </intro>
-            <subparagraph>
-              <num>“(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">Implement a diametrically magnetized disk shaped magnet. Professor Suaning’s view is that there is no motivation to try with the existing CGK disk-shaped magnet used in cochlear implants. He says, it would be a eureka moment to come across it and then say ‘Ah, you flip it’ (the dipole). His view is that no-one was thinking about anything other than axial (implant magnets) previously as no-one was thinking about rotating. However, he accepted this type of rotation was taught by Zimmerling. The CGK or Zimmerling taught that it was known – but not that it had been so used in the context of a flat disk-shaped implant magnet. Regulatory considerations may point to considering [the] existing shape [of] magnet.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(g)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">Consider using a diametrically magnetized external magnet, … Professor Suaning accepted in cross examination the choice of diametric implant magnet means the Skilled Person would choose a diametric external magnet without invention. This obvious ‘knock-on’ impact was confirmed by Professor Parker. …”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">Implement a diametrically magnetized disk shaped magnet. Professor Suaning’s view is that there is no motivation to try with the existing CGK disk-shaped magnet used in cochlear implants. He says, it would be a eureka moment to come across it and then say ‘Ah, you flip it’ (the dipole). His view is that no-one was thinking about anything other than axial (implant magnets) previously as no-one was thinking about rotating. However, he accepted this type of rotation was taught by Zimmerling. The CGK or Zimmerling taught that it was known – but not that it had been so used in the context of a flat disk-shaped implant magnet. Regulatory considerations may point to considering [the] existing shape [of] magnet.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>(g)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">Consider using a diametrically magnetized external magnet, … Professor Suaning accepted in cross examination the choice of diametric implant magnet means the Skilled Person would choose a diametric external magnet without invention. This obvious ‘knock-on’ impact was confirmed by Professor Parker. …”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_67">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">67.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Having discussed Prof Suaning’s evidence about Figure 4 of Zimmerling, the judge went on at [246]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“At its core, the critical dispute is whether it is obvious at the Priority Date for the uninventive skilled person to think of using the CGK cochlear product's implant disk-magnet shape and then to ‘flip the dipole’ from axial to diametric. Even this second aspect – to flip the dipole from axial to diametric –is argued to be obvious in the light of the teaching in Zimmerling once you have the idea of using the CGK disk-implant magnet. This is partly because it is argued using the CGK magnet brings with it the orientation parallel to the coil housing and then the question is – how do I make that rotate? The geometry then dictates that the magnet must be magnetised across its axis of rotation in order to rotate. This is both CGK and taught in Zimmerling. Professor Suaning accepted much of this analysis but not this critical point.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“At its core, the critical dispute is whether it is obvious at the Priority Date for the uninventive skilled person to think of using the CGK cochlear product's implant disk-magnet shape and then to ‘flip the dipole’ from axial to diametric. Even this second aspect – to flip the dipole from axial to diametric –is argued to be obvious in the light of the teaching in Zimmerling once you have the idea of using the CGK disk-implant magnet. This is partly because it is argued using the CGK magnet brings with it the orientation parallel to the coil housing and then the question is – how do I make that rotate? The geometry then dictates that the magnet must be magnetised across its axis of rotation in order to rotate. This is both CGK and taught in Zimmerling. Professor Suaning accepted much of this analysis but not this critical point.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_68">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">68.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">At [250]-[260] the judge considered Med-El’s case that there had been a long-felt want for a solution to the problem of MRI compatibility which the invention had solved but Zimmerling had not. After citing, among other authorities, <span style="font-style:italic">Halliburton Energy Services Inc v Smith International (North Sea) Ltd </span>[2005] EWHC 1623 (Pat), [2006] RPC 2 at [172] (Pumfrey J), he said at [257]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“Med-El argue that Zimmerling was known to the three main cochlear implant companies. The only evidence of fact on this comes from Professor Parker. Zimmerling was published 7 years before the Priority Date. Professor Parker was the Chief Technology Officer at Cochlear until 2007 when he left. Professor Suaning left Cochlear in 1997 although he did maintain connection with the industry. After cross examination little more was known than the fact Zimmerling had been picked up by Cochlear in around 2003 in a patent watch and had not been considered in any substance by Professor Parker. He did not know, although helpfully assumed it may be the case, that the other competitors would keep a close eye on documents like this. That is not enough to support the contention the document was well known to all the relevant parties in the industry. At that point, following the guidance in <span style="font-style:italic">Halliburton</span> the contention on long felt want is looking difficult.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“Med-El argue that Zimmerling was known to the three main cochlear implant companies. The only evidence of fact on this comes from Professor Parker. Zimmerling was published 7 years before the Priority Date. Professor Parker was the Chief Technology Officer at Cochlear until 2007 when he left. Professor Suaning left Cochlear in 1997 although he did maintain connection with the industry. After cross examination little more was known than the fact Zimmerling had been picked up by Cochlear in around 2003 in a patent watch and had not been considered in any substance by Professor Parker. He did not know, although helpfully assumed it may be the case, that the other competitors would keep a close eye on documents like this. That is not enough to support the contention the document was well known to all the relevant parties in the industry. At that point, following the guidance in <span style="font-style:italic">Halliburton</span> the contention on long felt want is looking difficult.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_69">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">69.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Having discussed the evidence at [258]-[259], the judge reached the following conclusion on this sub-issue at [260]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“In the circumstances, weighing the limited evidence, my decision is that either there is not enough evidence to show what the industry knew and how it was reacting or the evidence demonstrates a set of multi-factorial reasons for the situation which do not provide sufficient support for the arguments to displace the primary case on obviousness. There is simply not enough relevant information to give rise to finding of a ‘long felt want’. Had this secondary evidence relating to obviousness been found to support a ‘long felt want’ in this case that would have increased its relevance to the overall obviousness assessment. However, as has been explained in the authorities considering this issue, it is secondary evidence and therefore must be kept in its place.  The question would be how would that evidence (had it been made out) have assisted the court in understanding the view of the uninventive skilled person. Based on my conclusions on the approach to the problem here by the skilled person it would not have been enough to change my final assessment on obviousness. I also note militating against the relevancy of this secondary evidence is the fact that various solutions available before the Priority Date (for example removable implant magnets) continue to be used after the Priority date – including in later commercialised Med-El products.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“In the circumstances, weighing the limited evidence, my decision is that either there is not enough evidence to show what the industry knew and how it was reacting or the evidence demonstrates a set of multi-factorial reasons for the situation which do not provide sufficient support for the arguments to displace the primary case on obviousness. There is simply not enough relevant information to give rise to finding of a ‘long felt want’. Had this secondary evidence relating to obviousness been found to support a ‘long felt want’ in this case that would have increased its relevance to the overall obviousness assessment. However, as has been explained in the authorities considering this issue, it is secondary evidence and therefore must be kept in its place.  The question would be how would that evidence (had it been made out) have assisted the court in understanding the view of the uninventive skilled person. Based on my conclusions on the approach to the problem here by the skilled person it would not have been enough to change my final assessment on obviousness. I also note militating against the relevancy of this secondary evidence is the fact that various solutions available before the Priority Date (for example removable implant magnets) continue to be used after the Priority date – including in later commercialised Med-El products.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_70">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">70.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The judge expressed his overall conclusion as follows:</p>
-            </intro>
-            <subparagraph>
-              <num>“262.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">Zimmerling contains relevant teaching responding to the MRI compatibility problem for cochlear implants. It provides information on rotating implant magnets which have their dipoles across their axis of rotation to minimise the issue of the interaction with the external fields. The problem here is not to focus on a solution to create a system that can align perfectly. That ideal needs to be looked at in the practical context. The problem is to solve a real world issue for patients. That means a solution that works at clinically relevant angles i.e. works for the patient.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>263.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.02in">In essence I accept [Advanced Bionics’] case on obviousness and evidence and reasoning from Professor Parker. It is obvious to choose the existing CGK disk-shaped magnet implant as one obvious option of a shape of implant magnet to progress in the light of Zimmerling’s teaching. My reasons for this include the following factors; (1) this is a known entity – the shape of the magnet is known to the Skilled Person– ‘it is lying around on the desk’, (2) it is known to have the required magnetic volume to attach to the external magnet – no or minimal extra work is needed, (3) the choice of using the same shape as existing products would be motivated in part by the expectation the regulatory issues may be more straightforward than a new shape (or shapes like spheres), (4) using the existing ‘thin’ shape should avoid the needs for any additional risk of bone drilling which may be required if a bulkier magnet was used, (5) the orientation of the existing assembly housing can be used along with pre-existing system components. Once chosen, the teaching in Zimmerling or the CGK dictates (it is obvious) that the magnetization for the disk-magnet should be changed to being across the axis of rotation to provide for rotation. The Skilled Person would have been able to appreciate the choice of magnet shape and orientation would provide sufficient alignment with an external magnetic field. Based on the teaching in Zimmerling and the views of the experts, once the decision to have the disk-shaped diametrically magnetised magnet is reached the rest of the implementation is obvious and workmanlike and would be expected to succeed. As part of this final consideration my finding is that the choice of a matching external diametric magnet is also obvious for the reasons discussed above. It is a ‘knock-on’ requirement from the earlier decision. …”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“262.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">Zimmerling contains relevant teaching responding to the MRI compatibility problem for cochlear implants. It provides information on rotating implant magnets which have their dipoles across their axis of rotation to minimise the issue of the interaction with the external fields. The problem here is not to focus on a solution to create a system that can align perfectly. That ideal needs to be looked at in the practical context. The problem is to solve a real world issue for patients. That means a solution that works at clinically relevant angles i.e. works for the patient.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph eId="para_263">
+                    <num>263.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.02in">In essence I accept [Advanced Bionics’] case on obviousness and evidence and reasoning from Professor Parker. It is obvious to choose the existing CGK disk-shaped magnet implant as one obvious option of a shape of implant magnet to progress in the light of Zimmerling’s teaching. My reasons for this include the following factors; (1) this is a known entity – the shape of the magnet is known to the Skilled Person– ‘it is lying around on the desk’, (2) it is known to have the required magnetic volume to attach to the external magnet – no or minimal extra work is needed, (3) the choice of using the same shape as existing products would be motivated in part by the expectation the regulatory issues may be more straightforward than a new shape (or shapes like spheres), (4) using the existing ‘thin’ shape should avoid the needs for any additional risk of bone drilling which may be required if a bulkier magnet was used, (5) the orientation of the existing assembly housing can be used along with pre-existing system components. Once chosen, the teaching in Zimmerling or the CGK dictates (it is obvious) that the magnetization for the disk-magnet should be changed to being across the axis of rotation to provide for rotation. The Skilled Person would have been able to appreciate the choice of magnet shape and orientation would provide sufficient alignment with an external magnetic field. Based on the teaching in Zimmerling and the views of the experts, once the decision to have the disk-shaped diametrically magnetised magnet is reached the rest of the implementation is obvious and workmanlike and would be expected to succeed. As part of this final consideration my finding is that the choice of a matching external diametric magnet is also obvious for the reasons discussed above. It is a ‘knock-on’ requirement from the earlier decision. …”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level>
@@ -921,14 +997,18 @@
           <heading class="ParaHeading"><span style="text-decoration-line:underline;text-decoration-style:solid">Ground 0</span></heading>
           <paragraph eId="para_76">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">76.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Counsel for Med-El relied upon the principle stated by Floyd J in <span style="font-style:italic">Ratiopharm GmbH v Napp Pharmaceutical Holdings Ltd </span>[2008] EWHC 3070 (Pat), [2009] RPC 11 at [158]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“… allegations of obviousness in the light of common general knowledge alone need to be treated with a certain amount of care. They can be favoured by parties attacking the patent because the starting point is not obviously encumbered with inconvenient details of the kind found in documentary disclosures, such as misleading directions or distracting context. It is vitally important to make sure that the whole picture presented by the common general knowledge is considered, and not a partial one.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“… allegations of obviousness in the light of common general knowledge alone need to be treated with a certain amount of care. They can be favoured by parties attacking the patent because the starting point is not obviously encumbered with inconvenient details of the kind found in documentary disclosures, such as misleading directions or distracting context. It is vitally important to make sure that the whole picture presented by the common general knowledge is considered, and not a partial one.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_77">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">77.</num>
@@ -956,14 +1036,18 @@
           </paragraph>
           <paragraph eId="para_81">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">81.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">As for what the skilled engineer would take from Zimmerling, the judge’s finding reflected common ground between the experts. Prof Parker stated in his first report that Zimmerling’s “main teaching is the idea of permitting the implant magnet to rotate, such that it can align at least partially with the MRI field”. Similarly, Prof Suaning stated in his first report under the heading “What the Skilled Biomedical Engineer would do in light of Zimmerling”:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“Broadly speaking, Zimmerling sets out two proposals: (i) a magnetic switch (that functions in response to an external magnetic field); and (ii) a magnet (or magnets) that rotate(s) to align with an external magnetic field.  These proposals are directed in particular to cochlear implants, where they may be used in conjunction with each other.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“Broadly speaking, Zimmerling sets out two proposals: (i) a magnetic switch (that functions in response to an external magnetic field); and (ii) a magnet (or magnets) that rotate(s) to align with an external magnetic field.  These proposals are directed in particular to cochlear implants, where they may be used in conjunction with each other.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_82">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">82.</num>

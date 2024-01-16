@@ -93,4 +93,10 @@ interface ITableOfContents2 : IBlock {
 
 }
 
+interface IQuotedStructure : IBlock {
+
+    IList<IDivision> Contents { get; }
+
+}
+
 }
