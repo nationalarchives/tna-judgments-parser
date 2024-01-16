@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2022/2363/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2022/2363/data.xml" />
-          <FRBRdate date="2023-08-08T15:14:38" name="transform" />
+          <FRBRdate date="2024-01-16T20:13:22" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2363</uk:number>
         <uk:cite>[2022] EWHC 2363 (Pat)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>7283b66963897b43c44a48da617ea68a836402a464ae505c164702c042b7d677</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -907,84 +907,96 @@
         </paragraph>
         <paragraph eId="para_67">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">67.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The Claimant also referred me to the decision of Norris J in <span style="font-style:italic">Fabio Perini SPA v LPC Group plc </span>[2012] EWHC 911 at [61]-[63] in support of the submission that where a patentee is established in the market and does not grant licences, the court should assume that sales made by an infringer (particularly one that is a newcomer to the market) would have been sales made by the patentee unless the infringer proves to the contrary. The case concerned a patent for a process rather than a product. One of the heads of damage related to the loss of contracts for the sale of machinery that operated the process that were awarded to the defendant. Norris J said:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:normal;font-size:11pt">61.</num>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">LPC and PCMC submit that the burden lies on Perini to show exactly why the use of its patented method was causative of the loss of the contracts entered into by LPC and Georgia-Pacific. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:normal;font-size:11pt">62.</num>
-            <intro>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">In the </span><span style="font-size:11pt">General Tire</span><span style="font-style:normal;font-size:11pt"> Case [1976] RPC 197 Lord Wilberforce explained at p.212 </span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in"><span style="font-style:normal;font-size:11pt">“Many patents of inventions belong to manufacturers, who exploit the invention to make articles or products which they sell at a profit. The benefit of the invention in such cases is realised through the sale of the article or product. In these cases, if the invention is infringed, the effect of the infringement will be to divert sales from the owner of the patent to the infringer. The measure of damages will then normally be the profit which would have been realised by the owner of the patent if the sales had been made by him…..” </span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:normal;font-size:11pt">63.</num>
-            <intro>
-              <p class="Quote" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">In </span><span style="font-size:11pt">Catnic Components v Hill &amp; Smith Ltd</span><span style="font-style:normal;font-size:11pt"> [1983] FSR 512 the claimant held a patent for cavity wall lintels which the defendant infringed by its product. The claimant sought in the inquiry as to damages loss of profits in respect of all lintel sales lost to the defendant. The defendant argued that had it not sold infringing lintels (a) it would instead have provided each of the customers with its own non-infringing lintels, or (b) such customers would have bought lintels from other competitors of Catnic, so that the defendant’s infringement caused no loss. Falconer J (relying on the passage from General Tire which I have just cited) dealt with this argument at p.524 of the report in this way:- </span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in"><span style="font-style:normal;font-size:11pt">“For the [claimants] [counsel] submitted that it would be consistent with the attitude of the law to any infringer for the law to assume that the claimants would have made, with their patented lintels, those sales made by the defendants with the infringing lintels unless and insofar as the defendants prove the contrary. In a case such as this, where the [claimants] had been established for a number of years as the market leaders with their patented construction, having available ample production capacity and stocks … but never having granted any licence under the patent, and where defendants not previously in business in this field at all, entered the market with the object of doing so at the expense of the [claimants] and using an infringing version of the [claimants’] patented construction, in my judgment that is the proper approach for the court to adopt”. </span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.5in"><span style="font-style:normal;font-size:11pt">The endorsement of the approach (that the law should assume that the patentee would have made those sales actually made by the infringer unless and insofar as the infringer proves the contrary) was thus qualified.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:normal;font-size:11pt">61.</num>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">LPC and PCMC submit that the burden lies on Perini to show exactly why the use of its patented method was causative of the loss of the contracts entered into by LPC and Georgia-Pacific. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:normal;font-size:11pt">62.</num>
+                  <intro>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">In the </span><span style="font-size:11pt">General Tire</span><span style="font-style:normal;font-size:11pt"> Case [1976] RPC 197 Lord Wilberforce explained at p.212 </span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in"><span style="font-style:normal;font-size:11pt">“Many patents of inventions belong to manufacturers, who exploit the invention to make articles or products which they sell at a profit. The benefit of the invention in such cases is realised through the sale of the article or product. In these cases, if the invention is infringed, the effect of the infringement will be to divert sales from the owner of the patent to the infringer. The measure of damages will then normally be the profit which would have been realised by the owner of the patent if the sales had been made by him…..” </span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:normal;font-size:11pt">63.</num>
+                  <intro>
+                    <p class="Quote" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">In </span><span style="font-size:11pt">Catnic Components v Hill &amp; Smith Ltd</span><span style="font-style:normal;font-size:11pt"> [1983] FSR 512 the claimant held a patent for cavity wall lintels which the defendant infringed by its product. The claimant sought in the inquiry as to damages loss of profits in respect of all lintel sales lost to the defendant. The defendant argued that had it not sold infringing lintels (a) it would instead have provided each of the customers with its own non-infringing lintels, or (b) such customers would have bought lintels from other competitors of Catnic, so that the defendant’s infringement caused no loss. Falconer J (relying on the passage from General Tire which I have just cited) dealt with this argument at p.524 of the report in this way:- </span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in"><span style="font-style:normal;font-size:11pt">“For the [claimants] [counsel] submitted that it would be consistent with the attitude of the law to any infringer for the law to assume that the claimants would have made, with their patented lintels, those sales made by the defendants with the infringing lintels unless and insofar as the defendants prove the contrary. In a case such as this, where the [claimants] had been established for a number of years as the market leaders with their patented construction, having available ample production capacity and stocks … but never having granted any licence under the patent, and where defendants not previously in business in this field at all, entered the market with the object of doing so at the expense of the [claimants] and using an infringing version of the [claimants’] patented construction, in my judgment that is the proper approach for the court to adopt”. </span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.5in"><span style="font-style:normal;font-size:11pt">The endorsement of the approach (that the law should assume that the patentee would have made those sales actually made by the infringer unless and insofar as the infringer proves the contrary) was thus qualified.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_68">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">68.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The Defendant accepted that <span style="font-style:italic">General Tire</span> was right on the facts, but cautioned me in applying it as a rule of law in different factual circumstances. I heed this caution, which I think is reflected in [68] of the decision where Norris J said: </p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:normal">68.</num>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal">As Aldous L.J. observed in </span>Coflexip<span style="font-style:normal"> (at p.735) many reported cases in this field are useful illustrations of judicial reasoning, but are apt to mislead if decisions on particular sets of facts (or observations in judgments leading up to such decisions) are later relied on as establishing rules of the law. I would hold only:- </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">i) that the legal burden of establishing that the loss claimed was caused by the infringement proved lies on [the claimant]; </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">ii) that in general, since the object of a patent is to confer a monopoly of profit and advantage, any infringement of that monopoly is likely to cause some loss or damage by the loss of actual sales or the chance of sales or through the appropriation of something of value; </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">iii) that in general, where the patent belongs to a manufacturer who exploits the invention by selling products at a profit (whether the products embody a patented invention, or in their operation employ a patented process, or are themselves produced by a patented process) the legal burden will be discharged (and the nexus between infringement and loss established) by the inference which the court is prepared to draw that the effect of the infringement is to divert sales from the owner of the patent to the infringer; </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">iv) that the infringer may adduce evidence which demonstrates that the usual inference does not hold good in a particular case, so that whether the claimed loss is caused by the proven infringement must simply be decided on the proved facts and the inferences properly drawn from those facts; </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">v) that is to be done using commercial common-sense, avoiding overrefined analysis, but taking account of all factors which may reasonably bear on the issue and (in particular) giving full weight to the consideration that the patent owner has a right to a monopoly in respect of the invention and that the infringer’s putting into the marketplace the infringing product or process has destroyed that monopoly; </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">vi) that the focus of any such inquiry is not why the infringer or infringers actually entered the real contract, but whether (on the assumption that the infringing product or service was not available) the owner of the patent would or might have secured the infringer’s contract for himself.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:normal">68.</num>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal">As Aldous L.J. observed in </span>Coflexip<span style="font-style:normal"> (at p.735) many reported cases in this field are useful illustrations of judicial reasoning, but are apt to mislead if decisions on particular sets of facts (or observations in judgments leading up to such decisions) are later relied on as establishing rules of the law. I would hold only:- </span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">i) that the legal burden of establishing that the loss claimed was caused by the infringement proved lies on [the claimant]; </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">ii) that in general, since the object of a patent is to confer a monopoly of profit and advantage, any infringement of that monopoly is likely to cause some loss or damage by the loss of actual sales or the chance of sales or through the appropriation of something of value; </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">iii) that in general, where the patent belongs to a manufacturer who exploits the invention by selling products at a profit (whether the products embody a patented invention, or in their operation employ a patented process, or are themselves produced by a patented process) the legal burden will be discharged (and the nexus between infringement and loss established) by the inference which the court is prepared to draw that the effect of the infringement is to divert sales from the owner of the patent to the infringer; </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">iv) that the infringer may adduce evidence which demonstrates that the usual inference does not hold good in a particular case, so that whether the claimed loss is caused by the proven infringement must simply be decided on the proved facts and the inferences properly drawn from those facts; </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">v) that is to be done using commercial common-sense, avoiding overrefined analysis, but taking account of all factors which may reasonably bear on the issue and (in particular) giving full weight to the consideration that the patent owner has a right to a monopoly in respect of the invention and that the infringer’s putting into the marketplace the infringing product or process has destroyed that monopoly; </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">vi) that the focus of any such inquiry is not why the infringer or infringers actually entered the real contract, but whether (on the assumption that the infringing product or service was not available) the owner of the patent would or might have secured the infringer’s contract for himself.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level>
           <content>
@@ -999,38 +1011,46 @@
         </paragraph>
         <paragraph eId="para_70">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">70.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">However, a claimant cannot recover damages for losses that are too remote. This principle was explained by Lord Nicholls in <span style="font-style:italic">Kuwait Airways Corpn v Iraqi Airways (Nos 4 and 5)</span> [2002] UKHL 19 at [69]–[71] as follows:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:normal;font-size:11pt">69.</num>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">How, then, does one identify a plaintiff's 'true loss' in cases of tort? This question has generated a vast amount of legal literature. I take as my starting point the commonly accepted approach that the extent of a defendant's liability for the plaintiff's loss calls for a twofold inquiry: whether the wrongful conduct causally contributed to the loss and, if it did, what is the extent of the loss for which the defendant ought to be held liable. …</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:normal;font-size:11pt">70.</num>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">The second inquiry, although this is not always openly acknowledged by the courts, involves a value judgment (“</span><span style="font-size:11pt">ought</span><span style="font-style:normal;font-size:11pt"> to be held liable”). Written large, the second inquiry concerns the extent of the loss for which the defendant ought fairly or reasonably or justly to be held liable (the epithets are interchangeable). … The law has to set a limit to the causally connected losses for which a defendant is to be held responsible. In the ordinary language of lawyers, losses outside the limit may bear one of several labels. They may be described as too remote because the wrongful conduct was not a substantial or proximate cause, or because the loss was the product of an intervening cause. … </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:normal;font-size:11pt">71.</num>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">In most cases, how far the responsibility of the defendant ought fairly to extend evokes an immediate intuitive response. This is informed common sense by another name. Usually, there is no difficulty in selecting, from the sequence of events leading to the plaintiff’s loss, the happening which should be regarded as the cause of the loss for the purpose of allocating responsibility. In other cases, when the outcome of the … inquiry is not obvious, it is of crucial importance to identify the purpose of the relevant cause of action and the nature and scope of the defendant’s obligation in the particular circumstances. What was the ambit of the defendant’s duty? In respect of what risks or damage does the law seek to afford protection by means of the particular tort?”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:normal;font-size:11pt">69.</num>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">How, then, does one identify a plaintiff's 'true loss' in cases of tort? This question has generated a vast amount of legal literature. I take as my starting point the commonly accepted approach that the extent of a defendant's liability for the plaintiff's loss calls for a twofold inquiry: whether the wrongful conduct causally contributed to the loss and, if it did, what is the extent of the loss for which the defendant ought to be held liable. …</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:normal;font-size:11pt">70.</num>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">The second inquiry, although this is not always openly acknowledged by the courts, involves a value judgment (“</span><span style="font-size:11pt">ought</span><span style="font-style:normal;font-size:11pt"> to be held liable”). Written large, the second inquiry concerns the extent of the loss for which the defendant ought fairly or reasonably or justly to be held liable (the epithets are interchangeable). … The law has to set a limit to the causally connected losses for which a defendant is to be held responsible. In the ordinary language of lawyers, losses outside the limit may bear one of several labels. They may be described as too remote because the wrongful conduct was not a substantial or proximate cause, or because the loss was the product of an intervening cause. … </span></p>
+                  </content>
+                </paragraph>
+                <paragraph eId="para_71">
+                  <num style="font-style:normal;font-size:11pt">71.</num>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in;text-indent:0.4in"><span style="font-style:normal;font-size:11pt">In most cases, how far the responsibility of the defendant ought fairly to extend evokes an immediate intuitive response. This is informed common sense by another name. Usually, there is no difficulty in selecting, from the sequence of events leading to the plaintiff’s loss, the happening which should be regarded as the cause of the loss for the purpose of allocating responsibility. In other cases, when the outcome of the … inquiry is not obvious, it is of crucial importance to identify the purpose of the relevant cause of action and the nature and scope of the defendant’s obligation in the particular circumstances. What was the ambit of the defendant’s duty? In respect of what risks or damage does the law seek to afford protection by means of the particular tort?”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <paragraph eId="para_71">
+        <paragraph>
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">71.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The Defendant submitted that the burden of proving that damages are not too remote rests on the claimant, relying on the following passage from <span style="font-style:italic">McGregor</span><span> </span><span style="font-style:italic">on Damages </span>(footnotes omitted):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal;font-size:11pt">52-004.  On the issue of remoteness there are conflicting dicta in the House of Lords as to where the burden of proof lies. Thus Lord Sumner said in </span><span style="font-size:11pt">SS Singleton Abbey v SS Paludina</span><span style="font-style:normal;font-size:11pt"> that the claimant must show that a particular item of damage is not too remote before they can recover for it, while Lord Haldane and Lord Dunedin in </span><span style="font-size:11pt">The Metagama</span><span style="font-style:normal;font-size:11pt"> said that the defendant must show that a particular item of damage is too remote if they are not to be held liable for it. Lord Merriman P in </span><span style="font-size:11pt">The Guildford</span><span style="font-style:normal;font-size:11pt">, after considering the earlier dicta, expressed preference, obiter, for the view that the burden of proof lay on the claimant, but there remains a tendency at first instance in ship collision cases, where the issue has generally arisen, to take into account only the dicta which favour placing the onus on the defendant. This conflict of views essentially arises from the fact that, although it is clear law that the party alleging must prove, it is not always clear what particular allegations form an essential part of a party’s case. It is submitted that, consistently with the dictum of Lord Sumption in </span><span style="font-size:11pt">Hughes-Holland</span><span style="font-style:normal;font-size:11pt">, on the issue of remoteness the claimant must allege the items for which they may properly recover: hence the burden of proving them is on them. </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal;font-size:11pt">52-004.  On the issue of remoteness there are conflicting dicta in the House of Lords as to where the burden of proof lies. Thus Lord Sumner said in </span><span style="font-size:11pt">SS Singleton Abbey v SS Paludina</span><span style="font-style:normal;font-size:11pt"> that the claimant must show that a particular item of damage is not too remote before they can recover for it, while Lord Haldane and Lord Dunedin in </span><span style="font-size:11pt">The Metagama</span><span style="font-style:normal;font-size:11pt"> said that the defendant must show that a particular item of damage is too remote if they are not to be held liable for it. Lord Merriman P in </span><span style="font-size:11pt">The Guildford</span><span style="font-style:normal;font-size:11pt">, after considering the earlier dicta, expressed preference, obiter, for the view that the burden of proof lay on the claimant, but there remains a tendency at first instance in ship collision cases, where the issue has generally arisen, to take into account only the dicta which favour placing the onus on the defendant. This conflict of views essentially arises from the fact that, although it is clear law that the party alleging must prove, it is not always clear what particular allegations form an essential part of a party’s case. It is submitted that, consistently with the dictum of Lord Sumption in </span><span style="font-size:11pt">Hughes-Holland</span><span style="font-style:normal;font-size:11pt">, on the issue of remoteness the claimant must allege the items for which they may properly recover: hence the burden of proving them is on them. </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_72">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">72.</num>
@@ -1177,49 +1197,51 @@
         </level>
         <paragraph eId="para_78">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">78.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">Pursuant to s.35A Senior Courts Act 1981, the court has a discretion to award simple interest for such period and at such rate as it thinks fit. Both parties referred me to the approach to determining the amount to award as was summarised by Hamblen J in <span style="font-style:italic">Carrasco v Johnson </span>[2018] EWCA Civ 87 at [87]:</p>
-          </intro>
-          <subparagraph>
-            <intro>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal;font-size:11pt">[17]</span><marker name="tab" /><span style="font-style:normal;font-size:11pt">The guidance to be derived from these cases includes the following:</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:normal;font-size:11pt">(1)</num>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">Interest is awarded to compensate claimants for being kept out of money which ought to have been paid to them rather than as compensation for damage done or to deprive defendants of profit they may have made from the use of the money.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:normal;font-size:11pt">(2)</num>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">This is a question to be approached broadly. The court will consider the position of persons with the claimants' general attributes, but will not have regard to claimants' particular attributes or any special position in which they may have been.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:normal;font-size:11pt">(3)</num>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">In relation to commercial claimants the general presumption will be that they would have borrowed less and so the court will have regard to the rate at which persons with the general attributes of the claimant could have borrowed. This is likely to be a percentage over base rate and may be higher for small businesses than for first class borrowers.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:normal;font-size:11pt">(4)</num>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">In relation to personal injury claimants the general presumption will be that the appropriate rate of interest is the investment rate.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:normal;font-size:11pt">(5)</num>
-              <content>
-                <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">Many claimants will not fall clearly into a category of those who would have borrowed or those who would have put money on deposit and a fair rate for them may often fall somewhere between those two rates.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal;font-size:11pt">[18]</span><marker name="tab" /><span style="font-style:normal;font-size:11pt">Challinor and Reinhard are examples of cases which were held to fall within that mid-category, justifying a blending between rates, and in both cases interest was awarded at 3% over base rate.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <heading class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal;font-size:11pt">[17]</span><marker name="tab" /><span style="font-style:normal;font-size:11pt">The guidance to be derived from these cases includes the following:</span></heading>
+                  <paragraph>
+                    <num style="font-style:normal;font-size:11pt">(1)</num>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">Interest is awarded to compensate claimants for being kept out of money which ought to have been paid to them rather than as compensation for damage done or to deprive defendants of profit they may have made from the use of the money.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:normal;font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">This is a question to be approached broadly. The court will consider the position of persons with the claimants' general attributes, but will not have regard to claimants' particular attributes or any special position in which they may have been.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:normal;font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">In relation to commercial claimants the general presumption will be that they would have borrowed less and so the court will have regard to the rate at which persons with the general attributes of the claimant could have borrowed. This is likely to be a percentage over base rate and may be higher for small businesses than for first class borrowers.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:normal;font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">In relation to personal injury claimants the general presumption will be that the appropriate rate of interest is the investment rate.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:normal;font-size:11pt">(5)</num>
+                    <content>
+                      <p class="Quote" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:normal;font-size:11pt">Many claimants will not fall clearly into a category of those who would have borrowed or those who would have put money on deposit and a fair rate for them may often fall somewhere between those two rates.</span></p>
+                    </content>
+                  </paragraph>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal;font-size:11pt">[18]</span><marker name="tab" /><span style="font-style:normal;font-size:11pt">Challinor and Reinhard are examples of cases which were held to fall within that mid-category, justifying a blending between rates, and in both cases interest was awarded at 3% over base rate.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level>
           <content>
@@ -1409,14 +1431,18 @@
         </paragraph>
         <paragraph eId="para_100">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">100.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">By late 2013, and even though the Claimant successfully challenged the First Tender, Mr Donald had formed the view that the Defendant would be likely to win the Second Tender. He realised that would effectively exclude the Claimant from making direct sales of Tracktex to Network Rail and mean that the only sales route available to it was via sub-contractors. He was concerned to ensure that the Claimant was not left without a route to market and recognised that Aqua was better placed than it was to maintain this line of Tracktex sales. In this context, in the MD Report of the Board Meeting of 23 September 2013, Mr Donald recorded as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">“We have little knowledge or exposure to the front line of railway business in the UK. Contractors, rail consultants and Network Rail itself are more or less strangers to us. It will take years to build up a network of contacts. Aqua already has that network.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:justify;margin-left:0.6in"><span style="font-style:normal">“We have little knowledge or exposure to the front line of railway business in the UK. Contractors, rail consultants and Network Rail itself are more or less strangers to us. It will take years to build up a network of contacts. Aqua already has that network.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_101">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">101.</num>

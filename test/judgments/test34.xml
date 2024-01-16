@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/1872/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/1872/data.xml" />
-          <FRBRdate date="2023-08-08T17:29:27" name="transform" />
+          <FRBRdate date="2024-01-16T20:13:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -57,7 +57,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1872</uk:number>
         <uk:cite>[2022] EWHC 1872 (Comm)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.20.0</uk:parser>
         <uk:hash>1558f98a8a6c020f0b0ba0a83a5f2c62c3a5554982268a2c5f14117be808affa</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -389,12 +389,16 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The only claim advanced against the VP Defendants is a claim in unlawful means conspiracy. It is advanced against all ten Defendants. In the Amended Particulars of Claim (AmPOC) it is alleged that the Defendants combined or acted in concert with a common intention of maintaining the façade that the Skew Base Fund was independent of XY and managed by the VP Defendants without any connection to or involvement form XY or persons connected to the VP Defendants, and that pursuant to this combination the Defendants used unlawful means with the intention of injuring GIG and/or MDM. Paragraph 102 of the AmPOC pleads the facts from which it is said the combination is to be inferred, and paragraph 103 pleads the unlawful means, namely (a) the fraudulent Independence Representations (but not the Investment Representation), (b) the breaches of fiduciary duty by XY, and (c) the dishonest assistance by Mr Migani in facilitating XY’s breaches of fiduciary duty. Under a heading “Intention to injure, causation, loss and damage”, paragraph 104 of the AmPOC alleges that the Defendants realised that by combining as they did</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">… they exposed GIG and MDM to harm or alternatively a risk of harm because GIG and MDM (i) engaged the services of XY without knowledge of the Connections [between Migani and the various defendants]; and/or (ii) were deprived of the benefit of independent investment advice prior to deciding whether to invest in the [fund], in circumstances where such investments stood to benefit the Defendants with directly or indirectly, through the payment of the [various payments received by the Defendants]. In the premises, it is to be inferred that the Defendants acted with the requisite intention to injure GIG and MDM.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">… they exposed GIG and MDM to harm or alternatively a risk of harm because GIG and MDM (i) engaged the services of XY without knowledge of the Connections [between Migani and the various defendants]; and/or (ii) were deprived of the benefit of independent investment advice prior to deciding whether to invest in the [fund], in circumstances where such investments stood to benefit the Defendants with directly or indirectly, through the payment of the [various payments received by the Defendants]. In the premises, it is to be inferred that the Defendants acted with the requisite intention to injure GIG and MDM.</span></p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">One of the issues I need to decide is whether this particular allegation is sufficient to disclose a cause of action in unlawful means conspiracy. </p>
@@ -639,67 +643,71 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">There was no dispute between the parties about the elements of a claim for conspiracy to injure by unlawful means. There must be (1) a combination, (2) to use unlawful means, (3) with the intention to injure and (4) actual injury. Cockerill J described these elements in <span style="text-decoration-line:underline;text-decoration-style:solid">FM Capital v Marino</span> [2018] EWHC 1768 (Comm) at #94 thus:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">The elements of the cause of action are as follows:</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic">(1)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">A combination, arrangement or understanding between two or more people. It is not necessary for the conspirators all to join the conspiracy at the same time, but the parties to it must be sufficiently aware of the surrounding circumstances and share the same object for it properly to be said that they were acting in concert at the time of the acts complained of: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Kuwait Oil Tanker</span><span style="font-style:italic"> at [111].</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">(2)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">An intention to injure another individual or separate legal entity, albeit with no need for that to be the sole or predominant intention: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Kuwait Oil Tanker</span><span style="font-style:italic"> at [108]. Moreover:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">a) The necessary intent can be inferred, and often will need to be inferred, from the primary facts – see </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Kuwait Oil Tanker</span><span style="font-style:italic"> at [120-121], citing </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Bourgoin SA v Minister of Agriculture</span><span style="font-style:italic"> [1986] 1 QB: “[i]f an act is done deliberately and with knowledge of the consequences, I do not think that the actor can say that he did not 'intend' the consequences or that the act was not 'aimed' at the person who, it is known, will suffer them”.</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">b) Where conspirators intentionally injure the claimant and use unlawful means to do so, it is no defence for them to show that their primary purpose was to further or protect their own interests: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Lonrho Plc v Fayed</span><span style="font-style:italic"> [1992] 1AC 448, 465-466, [1991] B.C.C. 641 ; see also </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">OBG v Allan</span><span style="font-style:italic"> [2008] 1AC 1 at [164-165] .</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">c) Foresight that his unlawful conduct may or will probably damage the claimant cannot be equated with intention: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">OBG</span><span style="font-style:italic"> at [166]. </span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">(3)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">In some cases, there may be no specific intent but intention to injure results from the inevitability of loss: see Lord Nicholls at [167] in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">OBG v Allan</span><span style="font-style:italic">, referring to cases where:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">“The defendant's gain and the claimant's loss are, to the defendant's knowledge, inseparably linked. The defendant cannot obtain the one without bringing about the other. If the defendant goes ahead in such a case in order to obtain the gain he seeks, his state of mind will satisfy the mental ingredient of the unlawful interference tort.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">[…]</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic">(5)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Use of unlawful means as part of the concerted action. There is no requirement that the unlawful means themselves are independently actionable: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Revenue and Customs Commissioners v Total Network</span><span style="font-style:italic"> [2008] 1 AC 1174 at [104].</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">(6)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Loss being caused to the target of the conspiracy.</span>”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">The elements of the cause of action are as follows:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">(1)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">A combination, arrangement or understanding between two or more people. It is not necessary for the conspirators all to join the conspiracy at the same time, but the parties to it must be sufficiently aware of the surrounding circumstances and share the same object for it properly to be said that they were acting in concert at the time of the acts complained of: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Kuwait Oil Tanker</span><span style="font-style:italic"> at [111].</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">(2)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">An intention to injure another individual or separate legal entity, albeit with no need for that to be the sole or predominant intention: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Kuwait Oil Tanker</span><span style="font-style:italic"> at [108]. Moreover:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">a) The necessary intent can be inferred, and often will need to be inferred, from the primary facts – see </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Kuwait Oil Tanker</span><span style="font-style:italic"> at [120-121], citing </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Bourgoin SA v Minister of Agriculture</span><span style="font-style:italic"> [1986] 1 QB: “[i]f an act is done deliberately and with knowledge of the consequences, I do not think that the actor can say that he did not 'intend' the consequences or that the act was not 'aimed' at the person who, it is known, will suffer them”.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">b) Where conspirators intentionally injure the claimant and use unlawful means to do so, it is no defence for them to show that their primary purpose was to further or protect their own interests: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Lonrho Plc v Fayed</span><span style="font-style:italic"> [1992] 1AC 448, 465-466, [1991] B.C.C. 641 ; see also </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">OBG v Allan</span><span style="font-style:italic"> [2008] 1AC 1 at [164-165] .</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">c) Foresight that his unlawful conduct may or will probably damage the claimant cannot be equated with intention: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">OBG</span><span style="font-style:italic"> at [166]. </span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">(3)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">In some cases, there may be no specific intent but intention to injure results from the inevitability of loss: see Lord Nicholls at [167] in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">OBG v Allan</span><span style="font-style:italic">, referring to cases where:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;margin-right:0in"><span style="font-style:italic">“The defendant's gain and the claimant's loss are, to the defendant's knowledge, inseparably linked. The defendant cannot obtain the one without bringing about the other. If the defendant goes ahead in such a case in order to obtain the gain he seeks, his state of mind will satisfy the mental ingredient of the unlawful interference tort.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">[…]</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">(5)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Use of unlawful means as part of the concerted action. There is no requirement that the unlawful means themselves are independently actionable: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Revenue and Customs Commissioners v Total Network</span><span style="font-style:italic"> [2008] 1 AC 1174 at [104].</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">(6)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Loss being caused to the target of the conspiracy.</span>”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">This summary has been adopted and applied since by Butcher J in <span style="text-decoration-line:underline;text-decoration-style:solid">Iranian Offshore v Dean Investments</span><span style="font-style:italic"> </span>[2019] EWHC 472 (Comm) and by Calver J in <span style="text-decoration-line:underline;text-decoration-style:solid">ED&amp;F Man Capital Markets v Come Harvest Holdings</span> [2022] EWHC 229 (“<span style="text-decoration-line:underline;text-decoration-style:solid">Come Harvest</span>”) and I do likewise.</p>
@@ -822,33 +830,37 @@
         </paragraph>
         <paragraph eId="para_45">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">45.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Blakeley relies on the judgment of Lord Nicholls in <span style="text-decoration-line:underline;text-decoration-style:solid">OBG v Allan</span> [2007] UKHL 21 dealing with intent in the torts of inducing breach of contract and unlawful interference, comments which have been held, most recently by Calver J in <span style="text-decoration-line:underline;text-decoration-style:solid">Come Harvest</span>, to apply equally to unlawful means conspiracy.</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic">164.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">I turn next, and more shortly, to the other key ingredient of this tort: the defendant’s intention to harm the claimant. A defendant may intend to harm the claimant’s business either as an end in itself or as a means to an end. A defendant may intend to harm the claimant as an end in itself where, for instance, he has a grudge against the claimant. More usually a defendant intentionally inflicts harm on a claimant’s business as a means to an end. He inflicts damage as the means whereby to protect or promote his own economic interests.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">165.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Intentional harm inflicted against a claimant in either of these circumstances satisfies the mental ingredient of this tort. This is so even if the defendant does not wish to harm the claimant, in the sense that he would prefer that the claimant were not standing in his way.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">166.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Lesser states of mind do not suffice. A high degree of blameworthiness is called for, because intention serves as the factor which justifies imposing liability on the defendant for loss caused by a wrong otherwise not actionable by the claimant against the defendant. The defendant’s conduct in relation to the loss must be deliberate. In particular, a defendant’s foresight that his unlawful conduct may or will probably damage the claimant cannot be equated with intention for this purpose. The defendant must intend to injure the claimant. This intent must be a cause of the defendant’s conduct, in the words of Cooke J in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Van Camp Chocolates Ltd v Aulsebrooks Ltd</span><span style="font-style:italic"> [1984] 1 NZLR 354, 360. The majority of the Court of Appeal fell into error on this point in the interlocutory case of </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Miller v Bassey</span><span style="font-style:italic"> [1994] EMLR 44. Miss Bassey did not breach her recording contract with the intention of thereby injuring any of the plaintiffs.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">167.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">I add one explanatory gloss to the above. Take a case where a defendant seeks to advance his own business by pursuing a course of conduct which he knows will, in the very nature of things, necessarily be injurious to the claimant. In other words, a case where loss to the claimant is the obverse side of the coin from gain to the defendant. The defendant’s gain and the claimant’s loss are, to the defendant’s knowledge, inseparably linked. The defendant cannot obtain the one without bringing about the other. If the defendant goes ahead in such a case in order to obtain the gain he seeks, his state of mind will satisfy the mental ingredient of the unlawful interference tort.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph eId="para_164">
+                  <num style="font-style:italic">164.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">I turn next, and more shortly, to the other key ingredient of this tort: the defendant’s intention to harm the claimant. A defendant may intend to harm the claimant’s business either as an end in itself or as a means to an end. A defendant may intend to harm the claimant as an end in itself where, for instance, he has a grudge against the claimant. More usually a defendant intentionally inflicts harm on a claimant’s business as a means to an end. He inflicts damage as the means whereby to protect or promote his own economic interests.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph eId="para_165">
+                  <num style="font-style:italic">165.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Intentional harm inflicted against a claimant in either of these circumstances satisfies the mental ingredient of this tort. This is so even if the defendant does not wish to harm the claimant, in the sense that he would prefer that the claimant were not standing in his way.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph eId="para_166">
+                  <num style="font-style:italic">166.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Lesser states of mind do not suffice. A high degree of blameworthiness is called for, because intention serves as the factor which justifies imposing liability on the defendant for loss caused by a wrong otherwise not actionable by the claimant against the defendant. The defendant’s conduct in relation to the loss must be deliberate. In particular, a defendant’s foresight that his unlawful conduct may or will probably damage the claimant cannot be equated with intention for this purpose. The defendant must intend to injure the claimant. This intent must be a cause of the defendant’s conduct, in the words of Cooke J in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Van Camp Chocolates Ltd v Aulsebrooks Ltd</span><span style="font-style:italic"> [1984] 1 NZLR 354, 360. The majority of the Court of Appeal fell into error on this point in the interlocutory case of </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Miller v Bassey</span><span style="font-style:italic"> [1994] EMLR 44. Miss Bassey did not breach her recording contract with the intention of thereby injuring any of the plaintiffs.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph eId="para_167">
+                  <num style="font-style:italic">167.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">I add one explanatory gloss to the above. Take a case where a defendant seeks to advance his own business by pursuing a course of conduct which he knows will, in the very nature of things, necessarily be injurious to the claimant. In other words, a case where loss to the claimant is the obverse side of the coin from gain to the defendant. The defendant’s gain and the claimant’s loss are, to the defendant’s knowledge, inseparably linked. The defendant cannot obtain the one without bringing about the other. If the defendant goes ahead in such a case in order to obtain the gain he seeks, his state of mind will satisfy the mental ingredient of the unlawful interference tort.</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_46">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">46.</num>
@@ -882,25 +894,33 @@
         </paragraph>
         <paragraph eId="para_47">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">47.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Blakeley also relies on <span style="text-decoration-line:underline;text-decoration-style:solid">British Airways v Emerald</span> [2015] EWCA Civ 1024 where it was held that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">An intention to harm the claimant cannot properly or sensibly be described as a cause of the defendant’s conduct if the defendant is not even sure that the Claimant will suffer loss at all. In this context, as Lord Nicholls said in terms, it is not enough that the defendant foresees that the claimant will probably suffer harm</span>”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">An intention to harm the claimant cannot properly or sensibly be described as a cause of the defendant’s conduct if the defendant is not even sure that the Claimant will suffer loss at all. In this context, as Lord Nicholls said in terms, it is not enough that the defendant foresees that the claimant will probably suffer harm</span>”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_48">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I will repeat how the Claimants plead their case on the VP Defendants’ intent:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">they exposed GIG and MDM to harm or alternatively a risk of harm because GIG and MDM (i) engaged the services of XY without knowledge of the Connections [between Migani and the various defendants]; and/or (ii) were deprived of the benefit of independent investment advice prior to deciding whether to invest in the [fund], in circumstances where such investments stood to benefit the Defendants with directly or indirectly, through the payment of the [various payments received by the Defendants]. In the premises, it is to be inferred that the Defendants acted with the requisite intention to injure GIG and MDM.</span>”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">they exposed GIG and MDM to harm or alternatively a risk of harm because GIG and MDM (i) engaged the services of XY without knowledge of the Connections [between Migani and the various defendants]; and/or (ii) were deprived of the benefit of independent investment advice prior to deciding whether to invest in the [fund], in circumstances where such investments stood to benefit the Defendants with directly or indirectly, through the payment of the [various payments received by the Defendants]. In the premises, it is to be inferred that the Defendants acted with the requisite intention to injure GIG and MDM.</span>”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_49">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">49.</num>
@@ -916,14 +936,18 @@
         </paragraph>
         <paragraph eId="para_51">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">51.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I also accept Mr Saoul’s submission that where the viability of a claim depends on a substantial issue of law, the general rule is that it is not normally appropriate in a summary procedure to decide a controversial question of law in a developing area, it being desirable that “<span style="font-style:italic">any further development of the law [is] on the basis of actual and not hypothetical facts</span>” and it being no part of the court’s function “<span style="font-style:italic">to decide difficult questions of law which call for detailed argument and mature consideration</span>”: <span style="text-decoration-line:underline;text-decoration-style:solid">Altimo Holdings and Investment Ltd v Kyrgyz Mobil Tel Limited</span> [2012] 1 WLR 1804 at [84]. Similarly in <span style="text-decoration-line:underline;text-decoration-style:solid">Vedanta Resources v Lungowe</span> [2019] UKSC 20 at [48], Lord Briggs observed that: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">It might be thought that an assertion that the claim against Vedanta raised a novel and controversial issue in the common law of negligence made it inherently unsuitable for summary determination. It is well settled that difficult issues of law of that kind are best resolved once all the facts have been ascertained at a trial, rather than upon the necessarily abbreviated and hypothetical basis of pleadings or assumed facts.</span>”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">It might be thought that an assertion that the claim against Vedanta raised a novel and controversial issue in the common law of negligence made it inherently unsuitable for summary determination. It is well settled that difficult issues of law of that kind are best resolved once all the facts have been ascertained at a trial, rather than upon the necessarily abbreviated and hypothetical basis of pleadings or assumed facts.</span>”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_52">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">52.</num>
@@ -945,44 +969,48 @@
         </paragraph>
         <paragraph eId="para_55">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">55.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">A similar point arose in <span style="text-decoration-line:underline;text-decoration-style:solid">Hotel Portfolio v Ruhan</span> [2022] EWHC 383 (Comm), where Foxton J also had cause to consider the dictum in <span style="text-decoration-line:underline;text-decoration-style:solid">Emerald Airways</span> relied on by Mr Blakeley. Foxton J said this:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.5in;margin-right:0in"><span style="font-style:italic">Intention to injure</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">245.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Both Defendants deny that the necessary intention to injure is made out. They contend that, in the absence of evidence that the price paid for the Hyde Park Hotels under the Cambulo Madeira Transaction was less than their market value, or that HPII could have realised the development opportunity itself, there is no basis for concluding that they intended to cause any harm to HPII, as opposed to gain for themselves.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">246.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">In the present case, I am satisfied that the purpose of the agreement or combination between the Defendants was to use unlawful means for the purposes of avoiding a potential obstacle to the acquisition of the Hyde Park Hotels from HPII, and to deprive HPII (and its stakeholders, acting through it) of the opportunity to seek more advantageous terms on the sale. To this extent, I am satisfied that the object of the conspiracy was to interfere with HPII's rights in and relation to the Hyde Park Hotels, but I am unable to find that, in so doing, the Defendants intended that HPII should be paid less for the Hyde Park Hotels than they were then worth, or that they had concluded that HPII would be able to realise the development opportunity itself but for their intervention.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">247.</num>
-            <intro>
-              <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">The decision of the Court of Appeal in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Emerald Supplies Ltd v British Airways (No 1)</span><span style="font-style:italic"> [2015] EWCA Civ 1024, [167]-[168] provides support for the view that there is no intention to injure in these circumstances. The issue in that case was whether the requisite intent to injure could be established, in circumstances in which the defendants had operated an unlawful cartel for airfreight services, but any increased costs might well be passed on by the claimants to their customers. The Court observed:</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“167.</num>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;margin-right:0in;text-indent:0.21in"><span style="font-style:italic">The critical point, in our view, is whether Mr Milligan is right to say that the possibility of laying off the cost goes solely to damage and not to intent … As to the legal merit of the submission, in our judgment the authorities demonstrate clearly that the possibility of passing on the loss goes to intent … An intention to harm the claimant cannot properly or sensibly be described as a cause of the defendant's conduct if the defendant is not even sure that the claimant will suffer loss at all”.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">248.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">However, in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Lonrho Plc v Fayed</span><span style="font-style:italic"> the claim advanced by Lonrho Plc was that the defendants' unlawful actions were “directed as the plaintiff's business by depriving the plaintiff of the business asset of the opportunity to bid for House of Fraser” ([1990] QB, 495) or “the right to bid for House of Fraser undisturbed by wrongdoing” (ibid, 497), and the action was permitted to proceed to trial once the House of Lords had confirmed that it need not be the defendant's predominant intention to injure the claimant if unlawful means were used ([1992] 1 AC 448). The argument that someone who wishes to obtain an asset from the claimant, and who uses unlawful means to keep the claimant in ignorance of a basis for refusing to entertain the offer or asking for more favourable terms, does not intend to injure is one which I do not find attractive, particularly given the recognition that “negotiating damages”, when awarded, represent compensation for a real loss in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">One Step (Support) Ltd v Morris-Garnier</span><span style="font-style:italic"> [2019] AC 649 . In the present case, however, there is an element of artificiality in considering the issue of intention to injure independently of the issue of whether HPII has suffered loss as a result of the unlawful means conspiracy alleged. I turn to that issue now.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.5in;margin-right:0in"><span style="font-style:italic">Intention to injure</span></p>
+                  </content>
+                </level>
+                <paragraph eId="para_245">
+                  <num style="font-style:italic">245.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Both Defendants deny that the necessary intention to injure is made out. They contend that, in the absence of evidence that the price paid for the Hyde Park Hotels under the Cambulo Madeira Transaction was less than their market value, or that HPII could have realised the development opportunity itself, there is no basis for concluding that they intended to cause any harm to HPII, as opposed to gain for themselves.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph eId="para_246">
+                  <num style="font-style:italic">246.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">In the present case, I am satisfied that the purpose of the agreement or combination between the Defendants was to use unlawful means for the purposes of avoiding a potential obstacle to the acquisition of the Hyde Park Hotels from HPII, and to deprive HPII (and its stakeholders, acting through it) of the opportunity to seek more advantageous terms on the sale. To this extent, I am satisfied that the object of the conspiracy was to interfere with HPII's rights in and relation to the Hyde Park Hotels, but I am unable to find that, in so doing, the Defendants intended that HPII should be paid less for the Hyde Park Hotels than they were then worth, or that they had concluded that HPII would be able to realise the development opportunity itself but for their intervention.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph eId="para_247">
+                  <num style="font-style:italic">247.</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">The decision of the Court of Appeal in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Emerald Supplies Ltd v British Airways (No 1)</span><span style="font-style:italic"> [2015] EWCA Civ 1024, [167]-[168] provides support for the view that there is no intention to injure in these circumstances. The issue in that case was whether the requisite intent to injure could be established, in circumstances in which the defendants had operated an unlawful cartel for airfreight services, but any increased costs might well be passed on by the claimants to their customers. The Court observed:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-style:italic">“167.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;margin-right:0in;text-indent:0.21in"><span style="font-style:italic">The critical point, in our view, is whether Mr Milligan is right to say that the possibility of laying off the cost goes solely to damage and not to intent … As to the legal merit of the submission, in our judgment the authorities demonstrate clearly that the possibility of passing on the loss goes to intent … An intention to harm the claimant cannot properly or sensibly be described as a cause of the defendant's conduct if the defendant is not even sure that the claimant will suffer loss at all”.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph eId="para_248">
+                  <num style="font-style:italic">248.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.5in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">However, in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Lonrho Plc v Fayed</span><span style="font-style:italic"> the claim advanced by Lonrho Plc was that the defendants' unlawful actions were “directed as the plaintiff's business by depriving the plaintiff of the business asset of the opportunity to bid for House of Fraser” ([1990] QB, 495) or “the right to bid for House of Fraser undisturbed by wrongdoing” (ibid, 497), and the action was permitted to proceed to trial once the House of Lords had confirmed that it need not be the defendant's predominant intention to injure the claimant if unlawful means were used ([1992] 1 AC 448). The argument that someone who wishes to obtain an asset from the claimant, and who uses unlawful means to keep the claimant in ignorance of a basis for refusing to entertain the offer or asking for more favourable terms, does not intend to injure is one which I do not find attractive, particularly given the recognition that “negotiating damages”, when awarded, represent compensation for a real loss in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">One Step (Support) Ltd v Morris-Garnier</span><span style="font-style:italic"> [2019] AC 649 . In the present case, however, there is an element of artificiality in considering the issue of intention to injure independently of the issue of whether HPII has suffered loss as a result of the unlawful means conspiracy alleged. I turn to that issue now.</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_56">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">56.</num>
@@ -1027,21 +1055,25 @@
         </level>
         <paragraph eId="para_62">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">62.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I begin with Issue 6, which considers VP Lux’s contentions that the claims against it must be litigated in Luxembourg because there are exclusive jurisdiction clauses to that effect, relying on Art 25 of the BRR which provides, so far as relevant:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic">1.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">If the parties, regardless of their domicile, have agreed that a court or the courts of a Member State are to have jurisdiction to settle any disputes which have arisen or which may arise in connection with a particular legal relationship, that court or those courts shall have jurisdiction, unless the agreement is null and void as to its substantive validity under the law of that Member State. Such jurisdiction shall be exclusive unless the parties have agreed otherwise. The agreement conferring jurisdiction shall be either:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">in writing or evidenced in writing;</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic">1.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">If the parties, regardless of their domicile, have agreed that a court or the courts of a Member State are to have jurisdiction to settle any disputes which have arisen or which may arise in connection with a particular legal relationship, that court or those courts shall have jurisdiction, unless the agreement is null and void as to its substantive validity under the law of that Member State. Such jurisdiction shall be exclusive unless the parties have agreed otherwise. The agreement conferring jurisdiction shall be either:</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">in writing or evidenced in writing;</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_63">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">63.</num>
@@ -1121,20 +1153,24 @@
         </level>
         <paragraph eId="para_72">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">72.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I begin with a consideration of the Letter Agreement EJC. It is critical to understand what that Letter was about. It took the form of a letter from Emmediemme to VP Lux and Skew Base GP, in which Emmediemme said that it was “interested in an investment programme addressed to a few investors” and said that Emmediemme “would be grateful if you could send us the Offering memorandum and subscription documentation.” At clause 1.3 Emmediemme declared that it was willing to subscribe for shares in the HFPO Centaurus compartment of the Fund, and Emmediemme committed to do so, subject to a series of conditions precedent which were then set out. Then Emmediemme said:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">[1.4]</span><authorialNote class="footnote" marker="1"><p class="FootnoteText"><span> </span>the numbering has been omitted in the Letter Agreement but this sentence is clearly intended to have been numbered 1.4</p></authorialNote><span style="font-style:italic"> We understand that the subscription of Emmediemme Tre Srl shall, once the Conditions are met, be formalised in a subscription agreement, to be delivered by Emmediemme Tre Srl and that such subscription, upon acceptance by the General Partner, will then be subject to the terms and conditions described therein as well as in the articles of association of the Fund and in the Offering Memorandum of the Fund, and agreed therewith. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">1.5</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">We set forth below the terms and conditions of the subscription commitment in the HFPO compartment of the Fund.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">[1.4]</span><authorialNote class="footnote" marker="1"><p class="FootnoteText"><span> </span>the numbering has been omitted in the Letter Agreement but this sentence is clearly intended to have been numbered 1.4</p></authorialNote><span style="font-style:italic"> We understand that the subscription of Emmediemme Tre Srl shall, once the Conditions are met, be formalised in a subscription agreement, to be delivered by Emmediemme Tre Srl and that such subscription, upon acceptance by the General Partner, will then be subject to the terms and conditions described therein as well as in the articles of association of the Fund and in the Offering Memorandum of the Fund, and agreed therewith. </span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic">1.5</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">We set forth below the terms and conditions of the subscription commitment in the HFPO compartment of the Fund.</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_73">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">73.</num>
@@ -1144,26 +1180,30 @@
         </paragraph>
         <paragraph eId="para_74">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">74.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Finally Section 5 provided as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">Governing Law and Jurisdiction</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">5.1</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">We confirm that the Commitment and this letter agreement shall be governed by and construed in accordance with Luxembourg law. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">5.2</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">We confirm that any dispute or conflict arising from the Commitment and this letter agreement, their execution, enforceability or interpretation shall be submitted to the exclusive jurisdiction of the Courts of the district of Luxembourg, Grand-Duchy of Luxembourg. </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">Governing Law and Jurisdiction</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic">5.1</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">We confirm that the Commitment and this letter agreement shall be governed by and construed in accordance with Luxembourg law. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">5.2</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">We confirm that any dispute or conflict arising from the Commitment and this letter agreement, their execution, enforceability or interpretation shall be submitted to the exclusive jurisdiction of the Courts of the district of Luxembourg, Grand-Duchy of Luxembourg. </span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_75">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">75.</num>
@@ -1238,36 +1278,48 @@
         </paragraph>
         <paragraph eId="para_80">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">80.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Subscription Form is defined in clause 3 of the Offering Document as:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">the forms and other documents, as issued or accepted by the Fund from time to time, which the Fund requires the investor or the person acting on behalf of the investor to complete, sign, and return to the Fund or its agent, with the supporting documentation, in order to make an initial and/or additional application for subscription to Shares.</span>”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in">“<span style="font-style:italic">the forms and other documents, as issued or accepted by the Fund from time to time, which the Fund requires the investor or the person acting on behalf of the investor to complete, sign, and return to the Fund or its agent, with the supporting documentation, in order to make an initial and/or additional application for subscription to Shares.</span>”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_81">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">81.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Clause 10.3 of the Offering Document is headed “<span style="font-style:italic">Investors’ rights</span>” and in its second paragraph it said: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">The Subscription Form is expressed to be governed by, and construed in accordance with, the laws currently into force in Luxembourg, and contains a choice of international competence of the courts of Luxembourg.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">The Subscription Form is expressed to be governed by, and construed in accordance with, the laws currently into force in Luxembourg, and contains a choice of international competence of the courts of Luxembourg.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_82">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">82.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Subscription Form did contain a Luxembourg choice of law clause in these terms:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">Notwithstanding the place where this Application Form may be executed or the citizenship, domicile or residency of applicants or Shareholders, the rights and obligations of applicants and Shareholders of the Fund shall be governed and construed in accordance with the laws of the Grand-Duchy of Luxembourg.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in"><span style="font-style:italic">Notwithstanding the place where this Application Form may be executed or the citizenship, domicile or residency of applicants or Shareholders, the rights and obligations of applicants and Shareholders of the Fund shall be governed and construed in accordance with the laws of the Grand-Duchy of Luxembourg.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_83">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">83.</num>
@@ -1289,14 +1341,18 @@
         </paragraph>
         <paragraph eId="para_86">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">86.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The first question is the formal requirement under Art 23. This is a question to be answered applying the autonomous principles of EU law. The leading case is Case 24/76 <span style="text-decoration-line:underline;text-decoration-style:solid">Estasis Salotti v RUwA Polstereimaschinen GmbH</span> (“<span style="text-decoration-line:underline;text-decoration-style:solid">Salotti</span>”). In <span style="text-decoration-line:underline;text-decoration-style:solid">Salotti</span> the court held as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in">“The way in which that provision [Article 17(1)(a), being the forerunner of what is now Art 23 of BRR] is to be applied must be interpreted in the light of the effect of the conferment of jurisdiction by consent, which is to exclude both the jurisdiction determined by the general principle laid down in Article 2 and the special jurisdictions provided for in Articles 5 and 6 of the Convention. In view of the consequences that such an option may have on the position of the parties to the action, the requirements set out in Article 17 governing the validity of clauses conferring jurisdiction must be strictly construed. By making such validity subject to the existence of an “agreement” between the parties, Article 17 imposes on the court before which the matter is brought the duty of examining, first, whether the clause conferring jurisdiction upon it was in fact the subject of a consensus between the parties, which must be clearly and precisely demonstrated. The purpose of the formal requirements imposed by Article 17 is to ensure that the consensus between the parties is in fact established.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in">“The way in which that provision [Article 17(1)(a), being the forerunner of what is now Art 23 of BRR] is to be applied must be interpreted in the light of the effect of the conferment of jurisdiction by consent, which is to exclude both the jurisdiction determined by the general principle laid down in Article 2 and the special jurisdictions provided for in Articles 5 and 6 of the Convention. In view of the consequences that such an option may have on the position of the parties to the action, the requirements set out in Article 17 governing the validity of clauses conferring jurisdiction must be strictly construed. By making such validity subject to the existence of an “agreement” between the parties, Article 17 imposes on the court before which the matter is brought the duty of examining, first, whether the clause conferring jurisdiction upon it was in fact the subject of a consensus between the parties, which must be clearly and precisely demonstrated. The purpose of the formal requirements imposed by Article 17 is to ensure that the consensus between the parties is in fact established.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_87">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">87.</num>
@@ -1398,39 +1454,43 @@
         </paragraph>
         <paragraph eId="para_92">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">92.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="text-decoration-line:underline;text-decoration-style:solid">MRG (Japan) Ltd v Engelhard Metals Japan Ltd</span> [2003] EWHC 3418 (Comm) Toulson J set out the following guidance (I have removed the some of the internal citations):</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic">23.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">The starting point is that an applicant for an order on a without notice application must make full and frank disclosure of all material facts, that is, facts known to the applicant which might reasonably be taken into account by the judge in deciding whether to grant the application.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">24.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">It is for the court to determine what is material according to its own judgment and not the assessment of the applicant. This means that if the court considers there to have been material non-disclosure, it is not an answer that the applicant in good faith took a different view, although that may affect the court's exercise of its discretion in deciding what to do in the light of the non-disclosure. It does not mean that an applicant is under a duty to disclose facts which could not reasonably have a bearing on the decision which the judge has to make. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">25.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Materiality therefore depends in every case on the nature of the application and the matters relevant to be known by the judge when hearing it. I was referred to a number of statements on the duty of disclosure in the context of applications for freezing injunctions. In such cases the court is being asked to make an order of an exceptional kind, prohibiting or restricting a defendant's use of its own assets before any adjudication has been made against it. Because of its draconian nature, it is a jurisdiction which requires great caution and a wide range of factors may have a bearing on the court's decision. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">26.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">An application for permission to serve out of the jurisdiction is of a very different nature. The general principles about disclosure on without notice applications still apply, but the context is different. The focus of the inquiry is on whether the court should assume jurisdiction over a dispute. The court needs to be satisfied that there is a dispute properly to be heard (i.e. that there is a serious issue to be tried); that there is a good arguable case that the court has jurisdiction to hear it; and that England is clearly the appropriate forum. Beyond that, the court is not concerned with the merits of the case. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">27.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Authority supports this approach. In </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">BP Exploration Co (Libya) Limited v Hunt</span><span style="font-style:italic"> [1976] 3 AER 879 (which concerned an application for leave to serve out of the jurisdiction) Kerr J said at 893: In my view, a failure to refer to arguments on the merits which the defendant may seek to raise in answer to the plaintiff's claim at the trial should not generally be characterised as a failure to make a full and fair disclosure, unless they are of such weight that their omission may mislead the court in exercising its jurisdiction under the rule and its discretion whether or not to grant leave.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic">23.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">The starting point is that an applicant for an order on a without notice application must make full and frank disclosure of all material facts, that is, facts known to the applicant which might reasonably be taken into account by the judge in deciding whether to grant the application.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">24.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">It is for the court to determine what is material according to its own judgment and not the assessment of the applicant. This means that if the court considers there to have been material non-disclosure, it is not an answer that the applicant in good faith took a different view, although that may affect the court's exercise of its discretion in deciding what to do in the light of the non-disclosure. It does not mean that an applicant is under a duty to disclose facts which could not reasonably have a bearing on the decision which the judge has to make. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">25.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Materiality therefore depends in every case on the nature of the application and the matters relevant to be known by the judge when hearing it. I was referred to a number of statements on the duty of disclosure in the context of applications for freezing injunctions. In such cases the court is being asked to make an order of an exceptional kind, prohibiting or restricting a defendant's use of its own assets before any adjudication has been made against it. Because of its draconian nature, it is a jurisdiction which requires great caution and a wide range of factors may have a bearing on the court's decision. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">26.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">An application for permission to serve out of the jurisdiction is of a very different nature. The general principles about disclosure on without notice applications still apply, but the context is different. The focus of the inquiry is on whether the court should assume jurisdiction over a dispute. The court needs to be satisfied that there is a dispute properly to be heard (i.e. that there is a serious issue to be tried); that there is a good arguable case that the court has jurisdiction to hear it; and that England is clearly the appropriate forum. Beyond that, the court is not concerned with the merits of the case. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">27.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;margin-right:0in;text-indent:0.5in"><span style="font-style:italic">Authority supports this approach. In </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">BP Exploration Co (Libya) Limited v Hunt</span><span style="font-style:italic"> [1976] 3 AER 879 (which concerned an application for leave to serve out of the jurisdiction) Kerr J said at 893: In my view, a failure to refer to arguments on the merits which the defendant may seek to raise in answer to the plaintiff's claim at the trial should not generally be characterised as a failure to make a full and fair disclosure, unless they are of such weight that their omission may mislead the court in exercising its jurisdiction under the rule and its discretion whether or not to grant leave.</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_93">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">93.</num>

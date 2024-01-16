@@ -43,22 +43,37 @@ public class Serializer {
     }
 
     private int blockDepth = 0;
+    private Stack<int> DepthOfEmbeddedStructure = new();
 
     private void SerializeElement(XmlElement e) {
         writer.WriteStartElement(e.Prefix, e.LocalName, e.NamespaceURI);
         foreach (XmlAttribute attr in e.Attributes)
             writer.WriteAttributeString(attr.Prefix, attr.LocalName, attr.NamespaceURI, attr.Value);
-        if (blocks.Contains(e.LocalName)) {
+        if (blocks.Contains(e.LocalName) && e.GetAttribute("name") != "embeddedStructure") {
             if (blockDepth == 0)
                 writer.Formatting = Formatting.None;
             blockDepth += 1;
         }
+        // if (e.LocalName == "embeddedStructure") {
+        if (e.GetAttribute("name") == "embeddedStructure") {
+            writer.Formatting = Formatting.Indented;
+            DepthOfEmbeddedStructure.Push(blockDepth);
+            blockDepth = 0;
+        }
         SerializeNodes(e.ChildNodes);
         writer.WriteEndElement();
-        if (blocks.Contains(e.LocalName)) {
+        if (blocks.Contains(e.LocalName) && e.GetAttribute("name") != "embeddedStructure") {
             blockDepth -= 1;
             if (blockDepth == 0)
                 writer.Formatting = Formatting.Indented;
+        }
+        // if (e.LocalName == "embeddedStructure") {
+        if (e.GetAttribute("name") == "embeddedStructure") {
+            blockDepth = DepthOfEmbeddedStructure.Pop();
+            if (blockDepth == 0)
+                writer.Formatting = Formatting.Indented;
+            else
+                writer.Formatting = Formatting.None;
         }
     }
 
