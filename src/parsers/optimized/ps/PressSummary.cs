@@ -8,9 +8,11 @@ class PressSummary : IAknDocument {
 
     public DocType Type => DocType.PressSummary;
 
-    public Metadata Metadata { get; internal init; }
+    public Metadata InternalMetadata { get; internal init; }
 
-    IAknMetadata IAknDocument.Metadata { get => Metadata; }
+    public IOutsideMetadata ExternalMetadata { get; internal init; }
+
+    IAknMetadata IAknDocument.Metadata => ExternalMetadata is null ? InternalMetadata : new CombinedMetadata(InternalMetadata, ExternalMetadata);
 
     public IEnumerable<IBlock> Preface { get; internal init; }
 

@@ -40,8 +40,18 @@ class WMetadata2 : WMetadata {
     } }
 
     override public INamedDate Date { get {
-        return base.Date ?? new WNamedDate(){ Date = meta2.Date, Name = "judgment" };
+        return base.Date ?? new WNamedDate { Date = meta2.Date, Name = MakeDateName(Court()) };
     } }
+
+    internal static string MakeDateName(Court? court) {
+        if (!court.HasValue)
+            return "judgment";
+        if (court.Value.Code.StartsWith("UKUT"))
+            return "decision";
+        if (court.Value.Code.StartsWith("UKFTT"))
+            return "decision";
+        return "judgment";
+    }
 
     override public string Name { get {
         if (meta2.NameTrumps)
@@ -80,7 +90,7 @@ class WMetadata3 : WMetadata {
     override public INamedDate Date { get {
         if (outside.Date is null)
             return base.Date;
-        return new WNamedDate(){ Date = outside.Date, Name = "judgment" };
+        return new WNamedDate { Date = outside.Date, Name = WMetadata2.MakeDateName(Court()) };
     } }
 
     override public string Name { get {
