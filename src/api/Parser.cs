@@ -19,7 +19,8 @@ using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.Attachm
 using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
 
 using AttachmentPair1 = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
-using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.IJudgment>;
+using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.Parse.Judgment>;
+using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
@@ -100,19 +101,19 @@ public class Parser {
         return new AkN.Bundle(doc, judgment);
     }
 
-    private static IJudgment BestJudgment(WordDocument preParsed, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+    private static Judgment BestJudgment(WordDocument preParsed, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
         IEnumerable<AttachmentPair1> attach2 = AkN.Parser.ConvertAttachments(attachments);
         OptimizedParseFunction first = OptimizedEWHCParser.Parse;
         List<OptimizedParseFunction> others = new List<OptimizedParseFunction>(2) {
             OptimizedUKSCParser.Parse,
             OptimizedUKUTParser.Parse
         };
-        IJudgment judgment1 = first(preParsed.Docx, preParsed, meta, attach2);
+        Judgment judgment1 = first(preParsed.Docx, preParsed, meta, attach2);
         int score1 = Score(judgment1);
         if (score1 == PerfectScore)
             return judgment1;
         foreach (var other in others) {
-            IJudgment judgment2 = other(preParsed.Docx, preParsed, meta, attach2);
+            Judgment judgment2 = other(preParsed.Docx, preParsed, meta, attach2);
             int score2 = Score(judgment2);
             if (score2 == PerfectScore)
                 return judgment2;
@@ -128,12 +129,12 @@ public class Parser {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         WordDocument preParsed = new PreParser().Parse(doc);
 
-        IJudgment judgment = BestJudgment(preParsed, meta, attachments);
+        Judgment judgment = BestJudgment(preParsed, meta, attachments);
         if (Score(judgment) == PerfectScore)
             return new AkN.Bundle(doc, judgment);
 
-        PS.PressSummary ps = PS.Parser.Parse(preParsed);
-        if (ps.Metadata.DocType is not null)
+        PS.PressSummary ps = PS.Parser.Parse(preParsed, meta);
+        if (ps.InternalMetadata.DocType is not null)
             return new AkN.PSBundle(doc, ps);
 
         return new AkN.Bundle(doc, judgment);
@@ -141,26 +142,26 @@ public class Parser {
 
     private static int PerfectScore = 7;
 
-    private static int Score(IJudgment judgment) {
+    private static int Score(Judgment judgment) {
         int score = 0;
         if (judgment.Header is not null && judgment.Header.Any())
             score += 2;
-        if (judgment.Metadata.ShortUriComponent is not null)
+        if (judgment.InternalMetadata.ShortUriComponent is not null)
             score += 1;
-        if (judgment.Metadata.Court() is not null)
+        if (judgment.InternalMetadata.Court() is not null)
             score += 1;
-        if (judgment.Metadata.Cite is not null)
+        if (judgment.InternalMetadata.Cite is not null)
             score += 1;
-        if (judgment.Metadata.Date is not null)
+        if (judgment.InternalMetadata.Date is not null)
             score += 1;
-        if (judgment.Metadata.Name is not null)
+        if (judgment.InternalMetadata.Name is not null)
             score += 1;
         return score;
     }
 
     private static AkN.ILazyBundle ParsePressSummary(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
-        PS.PressSummary ps = PS.Parser.Parse(doc);
+        PS.PressSummary ps = PS.Parser.Parse(doc, meta);
         return new AkN.PSBundle(doc, ps);
     }
 

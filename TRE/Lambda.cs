@@ -78,17 +78,26 @@ public class Lambda {
         }
         Api.Hint? hint;
         try {
-            hint = GetHint(inputs);
+            hint = InputHelper.GetHint(inputs, logger);
         } catch (Exception e) {
-            errors.Add(e.Message);
-            hint = null;
+            logger.LogError(e, "error reading document type");
+            errors.Add("error reading document type");
+            return ClearAndSaveLogAndReturnErrors(inputs, errors);
+        }
+
+        Api.Meta meta;
+        try {
+            meta = InputHelper.GetMetadata(inputs, logger);
+        } catch (Exception e) {
+            logger.LogError(e, "error reading metadata");
+            errors.Add("error reading metadata");
+            return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
 
         Api.Response response;
         try {
-            response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments, Hint = hint });
+            response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments, Hint = hint, Meta = meta });
         } catch (Exception e) {
-            logger.LogError(e, e.Message);
             logger.LogError(e, "parse error");
             errors.Add("error parsing document");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
@@ -97,7 +106,6 @@ public class Lambda {
         try {
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, xmlFilename, Encoding.UTF8.GetBytes(response.Xml), "application/xml");
         } catch (Exception e) {
-            logger.LogError(e, e.Message);
             logger.LogError(e, "error saving xml");
             errors.Add("error saving xml");
             xmlFilename = null;
@@ -107,7 +115,6 @@ public class Lambda {
             byte[] metadata = JsonSerializer.SerializeToUtf8Bytes(response.Meta, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, metadataFilename, metadata, "application/json");
         } catch (Exception e) {
-            logger.LogError(e, e.Message);
             logger.LogError(e, "error saving metadata");
             errors.Add("error saving metadata");
             metadataFilename = null;
@@ -118,7 +125,7 @@ public class Lambda {
                 Save(inputs.S3Bucket, inputs.S3OutputPrefix, image.Name, image.Content, image.Type);
                 imageFilenames.Add(image.Name);
             } catch (Exception e) {
-                logger.LogError(e, e.Message);
+                // logger.LogError(e, e.Message);
                 logger.LogError(e, "error saving image { name }", image.Name);
                 errors.Add("error saving image " + image.Name);
             }
@@ -190,58 +197,6 @@ public class Lambda {
             return ms.ToArray();
         }
     }
-
-    private Api.Hint? GetHint(ParserInputs inputs) {
-        if (string.IsNullOrEmpty(inputs.DocumentType)) {
-            logger.LogInformation("document type is null");
-            return null;
-        }
-        Api.Hint hint;
-        if (Enum.TryParse(inputs.DocumentType, true, out hint)) {
-            logger.LogInformation("document type is {0}", Enum.GetName(typeof(Api.Hint), hint));
-            return hint;
-        }
-        var warning = "unrecognized document type: " + inputs.DocumentType;
-        logger.LogWarning(warning);
-        throw new Exception(warning);
-    }
-
-}
-
-public class Request {
-
-    [JsonPropertyName("parser-inputs")]
-    public ParserInputs Inputs { get; set; }
-
-}
-
-public class ParserInputs {
-
-    [JsonPropertyName("consignment-reference")]
-    public string ConsignmentReference { get; set; }
-
-    [JsonPropertyName("document-url")]
-    public string DocumentUrl { get; set; }
-
-    [JsonPropertyName("attachment-urls")]
-    public IEnumerable<string> AttachmentURLs { get; set; }
-
-    [JsonPropertyName("s3-bucket")]
-    public string S3Bucket { get; set; }
-
-    [JsonPropertyName("s3-output-prefix")]
-    public string S3OutputPrefix { get; set; }
-
-    /* new params for TREv2 */
-
-    [JsonPropertyName("s3-input-bucket")]
-    public string S3InputBucket { get; set; }
-
-    [JsonPropertyName("s3-input-key")]
-    public string S3InputKey { get; set; }
-
-    [JsonPropertyName("document-type")]
-    public string DocumentType { get; set; }
 
 }
 

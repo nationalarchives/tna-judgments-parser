@@ -23,56 +23,30 @@ internal class MetaWrapper : IOutsideMetadata {
         return Courts.ByCode[Meta.Court];
     } }
 
-    public static int? ExtractYearFromUri(string uri) {
-        if (uri is null)
-            return null;
-        string[] components = uri.Split('/');
-        try {
-            string year = components[components.Length - 2];
-            return int.Parse(year);
-        } catch (Exception) {
-            return null;
-        }
-    }
-    public static int? ExtractNumberFromUri(string uri) {
-        if (uri is null)
-            return null;
-        string[] components = uri.Split('/');
-        try {
-            string year = components[components.Length - 1];
-            return int.Parse(year);
-        } catch (Exception) {
-            return null;
-        }
-    }
 
     public int? Year { get {
-        if (Meta.Uri is null)
+        if (ShortUriComponent is null)
             return null;
-        string[] components = Meta.Uri.Split('/');
-        try {
-            string year = components[components.Length - 2];
-            return int.Parse(year);
+        try { // necessary ?
+            return Citations.YearFromUriComponent(ShortUriComponent);
         } catch (Exception) {
             return null;
         }
     } }
 
     public int? Number { get {
-        if (Meta.Uri is null)
+        if (ShortUriComponent is null)
             return null;
-        string[] components = Meta.Uri.Split('/');
-        try {
-            string year = components[components.Length - 1];
-            return int.Parse(year);
+        try { // necessary ?
+            return Citations.NumberFromUriComponent(ShortUriComponent);
         } catch (Exception) {
             return null;
         }
     } }
 
-    public string Cite => Meta.Cite;
+    public string Cite => Meta.Cite; // validation?
 
-    public string Date => Meta.Date;
+    public string Date => Meta.Date; // validation?
 
     public string Name => Meta.Name;
 

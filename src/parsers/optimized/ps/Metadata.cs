@@ -171,4 +171,71 @@ class Metadata : IAknMetadata {
 
 }
 
+class CombinedMetadata : IAknMetadata {
+
+    private Metadata InternalMetadata { get; init; }
+
+    private IOutsideMetadata ExternalMetadata { get; init; }
+
+    internal CombinedMetadata(Metadata intMeta, IOutsideMetadata extMeta) {
+        InternalMetadata = intMeta;
+        ExternalMetadata = extMeta;
+
+        /* set ShortUriComponent */
+        if (extMeta.ShortUriComponent is not null)
+            ShortUriComponent = extMeta.ShortUriComponent;
+        else if (extMeta.Cite is not null)
+            ShortUriComponent = Citations.MakeUriComponent(extMeta.Cite) + "/press-summary/1";
+        else
+            ShortUriComponent = intMeta.ShortUriComponent;
+
+        /* set Proprietary */
+        string court = extMeta.Court?.Code ?? intMeta.Proprietary.Where(t => t.Item1 == "court").Select(t => t.Item2).FirstOrDefault();
+        string year = ShortUriComponent is not null ? Citations.YearFromUriComponent(ShortUriComponent).ToString() : null;
+        string summaryOfCite = extMeta.Cite ?? intMeta.Proprietary.Where(t => t.Item1 == "summaryOfCite").Select(t => t.Item2).FirstOrDefault();
+        string summaryOf;
+        if (extMeta.Cite is not null)
+            summaryOf = Citations.MakeUriComponent(extMeta.Cite);
+        else if (extMeta.ShortUriComponent is not null)
+            summaryOf = "https://caselaw.nationalarchives.gov.uk/id/" + extMeta.ShortUriComponent.Substring(0, extMeta.ShortUriComponent.IndexOf("/press-summary"));
+        else
+            summaryOf = intMeta.Proprietary.Where(t => t.Item1 == "summaryOf").Select(t => t.Item2).FirstOrDefault();
+        Proprietary = new List<Tuple<String, String>>();
+        if (court is not null)
+            Proprietary.Add(new Tuple<string, string>("court", court));
+        if (year is not null)
+            Proprietary.Add(new Tuple<string, string>("year", year));
+        if (summaryOf is not null)
+            Proprietary.Add(new Tuple<string, string>("summaryOf", summaryOf));
+        if (summaryOfCite is not null)
+            Proprietary.Add(new Tuple<string, string>("summaryOfCite", summaryOfCite));
+        Proprietary.Add(new Tuple<string, string>("parser", Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion()));
+    }
+
+    public IResource Source => InternalMetadata.Source;
+
+    public IResource Author => InternalMetadata.Author;
+
+    private string ShortUriComponent { get; init; }
+
+    public string WorkURI => "https://caselaw.nationalarchives.gov.uk/id/" + ShortUriComponent;
+
+    public string ExpressionURI => "https://caselaw.nationalarchives.gov.uk/" + ShortUriComponent;
+
+    public INamedDate Date => ExternalMetadata.Date is not null
+        ? new WNamedDate { Name = "release", Date = ExternalMetadata.Date }
+        : InternalMetadata.Date;
+
+    public string Name => ExternalMetadata.Name ?? InternalMetadata.Name;
+
+    public IEnumerable<IResource> References => InternalMetadata.References;
+
+    public string ProprietaryNamespace => InternalMetadata.ProprietaryNamespace;
+
+    public IList<Tuple<string, string>> Proprietary { get; init; }
+
+    public Dictionary<string, Dictionary<string, string>> CSSStyles => InternalMetadata.CSSStyles;
+
+}
+
 }
