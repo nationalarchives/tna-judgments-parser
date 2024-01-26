@@ -22,7 +22,7 @@ abstract class OptimizedParser {
 
     protected readonly WordprocessingDocument doc;
     protected readonly MainDocumentPart Main;
-    private readonly IOutsideMetadata meta;
+    protected readonly IOutsideMetadata meta;
     private readonly IEnumerable<AttachmentPair> attachments;
     protected readonly WordDocument PreParsed;
     protected int i = 0;

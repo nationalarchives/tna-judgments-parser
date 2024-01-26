@@ -65,7 +65,7 @@ internal class PSBundle : ILazyBundle {
         ImageConverter.ConvertImages(PS);
     }
 
-    public string ShortUriComponent { get => PS.Metadata.ShortUriComponent; }
+    public string ShortUriComponent { get => PS.InternalMetadata.ShortUriComponent; }
 
     private XmlDocument _xml;
     public XmlDocument Judgment {

@@ -131,13 +131,17 @@ public class Citations {
         return string.Join('/', components).ToLower();
     }
 
+    public static bool IsValidUriComponent(string uri) {
+        return Regex.IsMatch(uri, @"^[a-z]+(/[a-z]+)?/\d{4}/\d+(/press-summary/\d+)?$");
+    }
+
     internal static int YearFromUriComponent(string uri) {
-        string year = Regex.Match(uri, @"/(\d+)/\d+$").Groups[1].Value;
+        string year = Regex.Match(uri, @"^[a-z]+(/[a-z]+)?/(\d{4})/\d+").Groups[2].Value;
         return int.Parse(year);
     }
 
     internal static int NumberFromUriComponent(string uri) {
-        string num = Regex.Match(uri, @"/(\d+)$").Groups[1].Value;
+        string num = Regex.Match(uri, @"^[a-z]+(/[a-z]+)?/\d{4}/(\d+)").Groups[2].Value;
         return int.Parse(num);
     }
 
