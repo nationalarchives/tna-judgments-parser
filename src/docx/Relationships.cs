@@ -15,10 +15,11 @@ class Relationships {
 
     private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.DOCX.Relationships>();
 
-    public static readonly RelationshipErrorHandler.Rewriter MalformedUriRewriter = (part, id, uri) => {
-        logger.LogError("malformed URI: {uri}", uri);
-        return "http://error?original=" + uri;
-    };
+    // no longer needed in DocumentFormat.OpenXml 3.0; see https://github.com/dotnet/Open-XML-SDK/issues/1637
+    // public static readonly RelationshipErrorHandler.Rewriter MalformedUriRewriter = (part, id, uri) => {
+    //     logger.LogError("malformed URI: {uri}", uri);
+    //     return "http://error?original=" + uri;
+    // };
 
     public static Uri GetUriForImage(StringValue relationshipId, OpenXmlElement context) {
         OpenXmlElement root = context;
@@ -36,14 +37,12 @@ class Relationships {
     }
 
     public static Uri GetUriForImage(MainDocumentPart main, StringValue relationshipId) {
-        OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relationshipId.Value).FirstOrDefault()?.OpenXmlPart;
-        if (part is not null)
-            return part.Uri;
-        logger.LogCritical("potentially missing image: relationship id = " + relationshipId);
-        return main.ExternalRelationships.Where(r => r.Id == relationshipId.Value).First().Uri; // EWCA/Civ/2003/1067
-        // if (r is not null)
-        //     return r.Uri;
-        // return main.HyperlinkRelationships.Where(r => r.Id == relationshipId.Value).FirstOrDefault()?.Uri;
+        var part = main.Parts.Where(part => part.RelationshipId == relationshipId.Value).FirstOrDefault();
+        if (part != default)
+            return part.OpenXmlPart?.Uri;
+        // IdPartPair changed from class to a readonly struct in DocumentFormat.OpenXml 3.0
+        logger.LogCritical("potentially missing image: relationship id = {}", relationshipId);
+        return main.ExternalRelationships.Where(r => r.Id == relationshipId.Value).FirstOrDefault()?.Uri; // EWCA/Civ/2003/1067
     }
 
     public static Uri GetUriForImage(HeaderPart header, StringValue relationshipId) {

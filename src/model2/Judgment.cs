@@ -51,8 +51,8 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
         }
     }
 
-    public void Close() {
-        doc.Close();
+    public void Dispose() {
+        doc.Dispose();
     }
 
 }
