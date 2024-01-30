@@ -78,10 +78,7 @@ public class Parser {
             return WordprocessingDocument.Open(ms, false);
         } catch (OpenXmlPackageException) {
             ms.Seek(0, SeekOrigin.Begin);
-            var settings = new OpenSettings() {
-                RelationshipErrorHandlerFactory = RelationshipErrorHandler.CreateRewriterFactory(DOCX.Relationships.MalformedUriRewriter)
-            };
-            return WordprocessingDocument.Open(ms, true, settings);
+            return WordprocessingDocument.Open(ms, true);
         }
     }
     internal static WordprocessingDocument Read(Stream docx) {

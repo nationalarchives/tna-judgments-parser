@@ -58,7 +58,7 @@ public class Parser {
         Log(meta2);
         List<Image> images = bundle.Images.Select(i => ConvertImage(i)).ToList();
 
-        bundle.Close();
+        bundle.Dispose();
 
         return new Response() {
             Xml = xml,

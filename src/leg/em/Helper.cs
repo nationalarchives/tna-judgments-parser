@@ -23,7 +23,7 @@ class Helper {
     private static IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
         IDocument doc = ExplanatoryMemoranda.Parser.Parse(docx);
         XmlDocument xml = Builder.Build(doc);
-        docx.Close();
+        docx.Dispose();
         if (simplify)
             Simplifier.Simplify(xml);
         return new XmlDocument_ { Document = xml };
