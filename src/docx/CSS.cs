@@ -117,8 +117,13 @@ public class CSS {
         Justification just = style.GetInheritedProperty(style => style.StyleParagraphProperties?.Justification);
         if (just is null)
             return;
+        // if (just.Val is null)
+        //     return;
+        // if (!just.Val.HasValue)
+        //     return;
         string key = "text-align";
-        string value = (just.Val == JustificationValues.Both) ? "justify" : just.Val.Value.ToString().ToLower();
+        // changed from System.Enum to EnumValue<T> in DocumentFormat.OpenXml 3.0
+        string value = (just.Val == JustificationValues.Both) ? "justify" : just.Val.InnerText;
         css[key] = value;
     }
 

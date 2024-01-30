@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -17,6 +18,7 @@ public interface ILazyBundle : System.IDisposable {
 
     IEnumerable<IImage> Images { get; }
 
+    [Obsolete("use Dispose()")]
     void Close();
 
 }
@@ -45,11 +47,12 @@ internal class Bundle : ILazyBundle {
 
     public IEnumerable<IImage> Images { get => judgment.Images; }
 
+    [Obsolete("use Dispose()")]
     public void Close() {
-        doc.Close();
+        Dispose();
     }
     public void Dispose() {
-        Close();
+        doc.Dispose();
     }
 
 }
@@ -79,11 +82,12 @@ internal class PSBundle : ILazyBundle {
 
     public IEnumerable<IImage> Images { get => PS.Images; }
 
+    [Obsolete("use Dispose()")]
     public void Close() {
-        doc.Close();
+        Dispose();
     }
     public void Dispose() {
-        Close();
+        doc.Dispose();
     }
 
 }
