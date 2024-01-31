@@ -46,9 +46,9 @@ class ImageConverter {
             }
             System.Tuple<WMF.ImageType, byte[]> converted = null;
             if (image.Name.EndsWith(".emf"))
-                converted = EMF.Convert(image.Content());
+                converted = EMF.Convert(image.Read());
             else if (image.Name.EndsWith(".wmf"))
-                converted = WMF.Convert(image.Content());
+                converted = WMF.Convert(image.Read());
 
             if (converted is null) {
                 logger.LogDebug("{name} not converted", image.Name);
@@ -92,7 +92,7 @@ class ImageConverter {
                 images.Add(image);
                 continue;
             }
-            byte[] png = Imaging.Convert.ConvertToPng(image.Content());
+            byte[] png = Imaging.Convert.ConvertToPng(image.Read());
             string newName = image.Name + ".png";
             foreach (var iRef in refs.Where(r => r.Src == image.Name)) {
                 iRef.Src = newName;
@@ -130,11 +130,9 @@ class ImageConverter {
                 byte[] data;
                 if (changedRef.Crop is not null) {
                     logger.LogInformation("cropping {0} to ({1}, {2}, {3}, {4})", changedRef.Src, changedRef.Crop.Value.Top, changedRef.Crop.Value.Right, changedRef.Crop.Value.Bottom, changedRef.Crop.Value.Left);
-                    data = Mutate.Crop(image.Content(), changedRef.Crop.Value);
+                    data = Mutate.Crop(image.Read(), changedRef.Crop.Value);
                 } else {
-                    using var stream = new MemoryStream();
-                    image.Content().CopyTo(stream);
-                    data = stream.ToArray();
+                    data = image.Read();
                 }
                 if (changedRef.Rotate.HasValue) {
                     logger.LogInformation("rotating {0} by {1}", changedRef.Src, changedRef.Rotate.Value);
@@ -162,6 +160,8 @@ class ConvertedImage : UK.Gov.Legislation.Judgments.IImage {
     internal byte[] Data { get; init; }
 
     public Stream Content() => new MemoryStream(Data);
+
+    public byte[] Read() => Data;
 
 }
 

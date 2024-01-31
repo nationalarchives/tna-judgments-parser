@@ -14,9 +14,8 @@ internal class WMF {
 
     private static ILogger logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<WMF>();
 
-    internal static Tuple<ImageType, byte[]> Convert(Stream emf) {
-        using MemoryStream ms = new MemoryStream();
-        emf.CopyTo(ms);
+    internal static Tuple<ImageType, byte[]> Convert(byte[] wmf) {
+        using MemoryStream ms = new MemoryStream(wmf);
         ms.Position = 0;
 
         byte[] firstFourBytes = new byte[4];

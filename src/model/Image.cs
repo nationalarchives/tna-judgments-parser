@@ -10,6 +10,8 @@ public interface IImage {
 
     Stream Content();
 
+    byte[] Read();
+
 }
 
 interface IExternalImage : IInline {

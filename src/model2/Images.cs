@@ -34,6 +34,15 @@ class WImage : IImage {
 
     public Stream Content() => part.GetStream();
 
+    public byte[] Read() {
+        using Stream content = Content();
+        if (content is MemoryStream ms1)
+            return ms1.ToArray();
+        using MemoryStream ms2 = new MemoryStream();
+        content.CopyTo(ms2);
+        return ms2.ToArray();
+    }
+
     private WImage(ImagePart part) {
         this.part = part;
     }
