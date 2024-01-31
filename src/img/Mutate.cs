@@ -25,17 +25,17 @@ class Mutate {
         return new Rectangle(x, y, w, h);
     }
 
-    internal static byte[] Crop(Stream source, Inset inset) {
-        IImageFormat format;
-        using var image = Image.Load(source, out format);
+    internal static byte[] Crop(byte[] data, Inset inset) {
+        IImageFormat format = Image.DetectFormat(data);
+        using var image = Image.Load(data);
         Rectangle rect = ToRect(inset, image.Width, image.Height);
         image.Mutate(img => img.Crop(rect));
         return ToByteArray(image, format);
     }
 
     internal static byte[] Rotate(byte[] data, int angle) {
-        IImageFormat format;
-        using var image = Image.Load(data, out format);
+        IImageFormat format = Image.DetectFormat(data);
+        using var image = Image.Load(data);
         image.Mutate(img => img.Rotate(angle));
         return ToByteArray(image, format);
     }

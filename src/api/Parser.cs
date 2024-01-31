@@ -185,12 +185,10 @@ public class Parser {
     }
 
     internal static Image ConvertImage(IImage image) {
-        using var memStream = new MemoryStream();
-        image.Content().CopyTo(memStream);
         return new Image() {
             Name = image.Name,
             Type = image.ContentType,
-            Content = memStream.ToArray()
+            Content = image.Read()
         };
     }
 
