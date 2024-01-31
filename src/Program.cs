@@ -114,7 +114,7 @@ class Program {
         foreach (var image in em.Images) {
             entry = archive.CreateEntry(image.Name);
             using var zip = entry.Open();
-            byte[] bytes = EM.Helper.ReadImage(image);
+            byte[] bytes = image.Read();
             zip.Write(bytes, 0, bytes.Length);
         }
     }

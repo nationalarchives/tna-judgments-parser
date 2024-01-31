@@ -14,9 +14,8 @@ class EMF {
 
     private static ILogger logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<EMF>();
 
-    internal static Tuple<WMF.ImageType, byte[]> Convert(Stream emf) {
-        using MemoryStream ms = new MemoryStream();
-        emf.CopyTo(ms);
+    internal static Tuple<WMF.ImageType, byte[]> Convert(byte[] emf) {
+        using MemoryStream ms = new MemoryStream(emf);
         ms.Position = 0;
         using BinaryReader reader = new BinaryReader(ms);
         List<EmfBitmapRecord> records = new List<EmfBitmapRecord>(1);
