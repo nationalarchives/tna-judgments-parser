@@ -48,9 +48,9 @@ public class MetadataExtractor {
             WorkUri = uri,
             WorkDate = date,
             WorkName = judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:identification/akn:FRBRWork/akn:FRBRname/@value", nsmgr)?.Value,
-            UKCourt = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:court", nsmgr)?.InnerText,
-            UKCite = judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:cite", nsmgr)?.InnerText,
-            ExternalAttachments = judgment.SelectNodes("/akn:akomaNtoso/akn:judgment/akn:meta/akn:references/akn:hasAttachment", nsmgr).Cast<XmlNode>()
+            UKCourt = judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary/uk:court", nsmgr)?.InnerText,
+            UKCite = judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary/uk:cite", nsmgr)?.InnerText,
+            ExternalAttachments = judgment.SelectNodes("/akn:akomaNtoso/akn:*/akn:meta/akn:references/akn:hasAttachment", nsmgr).Cast<XmlNode>()
                 .Select(e => new ExternalRef() { Href = e.Attributes["href"].Value, ShowAs = e.Attributes["showAs"]?.Value })
         };
     }
@@ -59,14 +59,14 @@ public class MetadataExtractor {
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(judgment.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         nsmgr.AddNamespace("uk", Metadata.ukns);
-        return judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:hash", nsmgr)?.InnerText;
+        return judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary/uk:hash", nsmgr)?.InnerText;
     }
 
     public static string ExtractJurisdiction(XmlDocument judgment) {
         XmlNamespaceManager nsmgr = new (judgment.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         nsmgr.AddNamespace("uk", Metadata.ukns);
-        return judgment.SelectSingleNode("/akn:akomaNtoso/akn:judgment/akn:meta/akn:proprietary/uk:jurisdiction", nsmgr)?.InnerText;
+        return judgment.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary/uk:jurisdiction", nsmgr)?.InnerText;
     }
 
 }
