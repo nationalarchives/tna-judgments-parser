@@ -162,10 +162,6 @@ class Header {
             Enriched.Add(restriction);
             return;
         }
-        if (line.NormalizedContent.StartsWith("Reference ", StringComparison.InvariantCultureIgnoreCase)) {
-            Enriched.Add(line);
-            return;
-        }
         WLine enriched1 = Enricher.EnrichCite(line);
         if (!Object.ReferenceEquals(enriched1, line)) {
             Enriched.Add(enriched1);

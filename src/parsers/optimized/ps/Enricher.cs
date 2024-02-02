@@ -79,6 +79,8 @@ partial class Enricher {
             return true;
         if (line.NormalizedContent.Contains("(Applicant") && line.NormalizedContent.Contains("(Intervener"))
             return true;
+        if (line.NormalizedContent.Contains("Bill", StringComparison.InvariantCultureIgnoreCase) && line.NormalizedContent.Contains("Reference", StringComparison.InvariantCultureIgnoreCase))
+            return true;
         return false;
     }
 
