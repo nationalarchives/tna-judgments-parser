@@ -57,8 +57,7 @@ public class Lambda {
         try {
             docx = ReadDocx(inputs);
         } catch (Exception e) {
-            logger.LogError(e, e.Message);
-            logger.LogError(e, "error reading .docx file");
+            logger.LogError(e, "error reading .docx file: {}", e.Message);
             errors.Add("error reading .docx file");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
@@ -70,8 +69,7 @@ public class Lambda {
                     byte[] content = http.GetByteArrayAsync(url).Result;
                     attachments.Add(new Api.Attachment { Content = content });
                 } catch (Exception e) {
-                    logger.LogError(e, e.Message);
-                    logger.LogError(e, "error reading attachment");
+                    logger.LogError(e, "error reading attachment: {}", e.Message);
                     errors.Add("error reading attachment");
                 }
             }
@@ -80,7 +78,7 @@ public class Lambda {
         try {
             hint = InputHelper.GetHint(inputs, logger);
         } catch (Exception e) {
-            logger.LogError(e, "error reading document type");
+            logger.LogError(e, "error reading document type: {}", e.Message);
             errors.Add("error reading document type");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
@@ -89,7 +87,7 @@ public class Lambda {
         try {
             meta = InputHelper.GetMetadata(inputs, logger);
         } catch (Exception e) {
-            logger.LogError(e, "error reading metadata");
+            logger.LogError(e, "error reading metadata: {}", e.Message);
             errors.Add("error reading metadata");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
@@ -98,7 +96,7 @@ public class Lambda {
         try {
             response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments, Hint = hint, Meta = meta });
         } catch (Exception e) {
-            logger.LogError(e, "parse error");
+            logger.LogError(e, "parse error: {}", e.Message);
             errors.Add("error parsing document");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
@@ -106,7 +104,7 @@ public class Lambda {
         try {
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, xmlFilename, Encoding.UTF8.GetBytes(response.Xml), "application/xml");
         } catch (Exception e) {
-            logger.LogError(e, "error saving xml");
+            logger.LogError(e, "error saving xml: {}", e.Message);
             errors.Add("error saving xml");
             xmlFilename = null;
         }
@@ -115,7 +113,7 @@ public class Lambda {
             byte[] metadata = JsonSerializer.SerializeToUtf8Bytes(response.Meta, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             Save(inputs.S3Bucket, inputs.S3OutputPrefix, metadataFilename, metadata, "application/json");
         } catch (Exception e) {
-            logger.LogError(e, "error saving metadata");
+            logger.LogError(e, "error saving metadata: {}", e.Message);
             errors.Add("error saving metadata");
             metadataFilename = null;
         }
@@ -125,8 +123,7 @@ public class Lambda {
                 Save(inputs.S3Bucket, inputs.S3OutputPrefix, image.Name, image.Content, image.Type);
                 imageFilenames.Add(image.Name);
             } catch (Exception e) {
-                // logger.LogError(e, e.Message);
-                logger.LogError(e, "error saving image { name }", image.Name);
+                logger.LogError(e, "error saving image {}: {}", image.Name, e.Message);
                 errors.Add("error saving image " + image.Name);
             }
         }
