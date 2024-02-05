@@ -190,7 +190,8 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 State["text-decoration"] = "underline";
                 return;
             }
-            if (State.GetValueOrDefault("text-decoration-line") == "underline")
+            string decor = State.GetValueOrDefault("text-decoration-line");
+            if (decor == "underline")
             {
                 var u = text.OwnerDocument.CreateElement("u", Builder.ns);
                 text.ParentNode.ReplaceChild(u, text);
@@ -200,6 +201,20 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 State["text-decoration-line"] = "underline";
                 return;
             }
+            // if (decor is not null && decor.StartsWith("underline"))
+            // {
+            //     var u = text.OwnerDocument.CreateElement("u", Builder.ns);
+            //     text.ParentNode.ReplaceChild(u, text);
+            //     u.AppendChild(text);
+            //     var remaining = decor[9..].TrimEnd();
+            //     if (string.IsNullOrEmpty(remaining))
+            //         State.Remove("text-decoration-line");
+            //     else
+            //         State["text-decoration-line"] = remaining;
+            //     VisitText(text);
+            //     State["text-decoration-line"] = decor;
+            //     return;
+            // }
             if (State.GetValueOrDefault("text-transform") == "uppercase") {
                 text.Value = text.Value.ToUpper();
                 return;
