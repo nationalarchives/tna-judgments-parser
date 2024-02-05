@@ -213,11 +213,11 @@ public class WImageRef : IImageRef {
         try {
             v = Int32.Parse(value.Value.TrimEnd('f'));
         } catch (FormatException) {
-            logger.LogError("error parsing crop value: {0}", value.Value);
+            logger.LogError("error parsing crop value: {}", value.Value);
             return 0.0d;
         }
         if (v < 0) {
-            logger.LogWarning("negative crop value: {0}", value.Value);
+            logger.LogWarning("negative crop value: {}", value.Value);
             return 0.0d;
         }
         if (value.Value.EndsWith('f'))
