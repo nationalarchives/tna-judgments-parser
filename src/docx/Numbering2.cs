@@ -145,7 +145,7 @@ class Numbering2 {
 
         Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
         if (match.Success) {
-            OneCombinator combine = num => num ;
+            OneCombinator combine = num => num;
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.$");
@@ -642,8 +642,9 @@ class Numbering2 {
                     numIdOfStartOverride = -1;
                 }
 
-                // the strange case of [2023] EWCA Civ 657
-                if (!prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
+                // the strange case of [2023] EWCA Civ 657 (test60)
+                // prevIlvl > 0 needed for test76
+                if (prevIlvl > 0 && !prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
                     Style prevStyle =  Styles.GetStyle(main, prev);
                     string prevBasedOn = prevStyle?.BasedOn?.Val?.Value;
                     string thisStyleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
