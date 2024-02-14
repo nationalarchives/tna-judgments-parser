@@ -109,7 +109,7 @@ partial class Enricher {
             if (reversed.Current is not WText wText)
                 return line;
             end = wText.Text + end;
-            Match match = Regex.Match(end, pattern);
+            Match match = Regex.Match(end.Replace('\u00A0',' '), pattern);  // replace non-breaking spaces
             if (match.Success) {
                 List<IInline> before = new List<IInline>();
                 List<IInline> replacement = new List<IInline>();
