@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/637/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/637/data.xml" />
-          <FRBRdate date="2024-01-16T20:14:27" name="transform" />
+          <FRBRdate date="2024-02-14T16:27:07" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2023</uk:year>
         <uk:number>637</uk:number>
         <uk:cite>[2023] EWCA Civ 637</uk:cite>
-        <uk:parser>0.20.0</uk:parser>
+        <uk:parser>0.21.3</uk:parser>
         <uk:hash>55a7e341088ff12424e211c40a5b5e80c42fe9d8a40ca28de4431f1e73e27cde</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -732,7 +732,7 @@
                       <p class="Quote" style="margin-left:1.02in;text-indent:-0.51in">…</p>
                     </content>
                   </level>
-                  <paragraph eId="para_211">
+                  <paragraph>
                     <num>211.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.02in">Zimmerling also acknowledges the need to consider how the rotation of the internal magnet interacts with different types of MRI external magnetic fields with different directions of field lines …. It teaches that a variety of shapes of internal magnets can be used. Also that varying the orientation of the axis of the rotation of an internal magnet (here a cylinder) to 45 degrees off the horizontal plane provides a compromise position that would rotate sufficiently in an external magnetic field to partially adjust to align with the directions of the different external MRI fields of the two noted MRI systems and provide a thinner magnet than a spherical one. The Skilled Person would recognise that this cylindrical magnet set-up foregoes the ability to rotate in three dimensions and so achieve complete alignment with the external magnetic field. …</p>
@@ -742,13 +742,13 @@
               </block>
               <block name="embeddedStructure">
                 <embeddedStructure>
-                  <paragraph eId="para_212">
+                  <paragraph>
                     <num>212.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.01in">Zimmerling teaches that the external magnets for attaching to the internal rotating one all have an axial magnetic orientation. It is not common ground that Zimmerling teaches this to be a requirement.</p>
                     </content>
                   </paragraph>
-                  <paragraph eId="para_213">
+                  <paragraph>
                     <num>213.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.01in">Zimmerling presents the CGK position with fig. 2 showing an axial magnet and the problem of torque twisting/rotating the axial magnet. … As noted above, I have assessed therefore that the key to rotating a permanent magnet in an external magnetic field is to have the magnetic dipole across the axis of rotation and that this is CGK.</p>
@@ -758,13 +758,13 @@
               </block>
               <block name="embeddedStructure">
                 <embeddedStructure>
-                  <paragraph eId="para_214">
+                  <paragraph>
                     <num>214.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.02in">In the circumstances, this may not matter if Zimmerling teaches that changing the orientation of the magnetic dipole to one that is across the axis of rotation allows the magnet to turn in an external magnetic field. This is what [Advanced Bionics] says it does. Med-El’s counsel appears to accept this also. In cross examination Professor Suaning accepts this in the context of the cylinder magnet [the judge cited an answer in which the witness accepted that the cylindrical magnet was diametrically magnetised perpendicular to its axis of rotation].</p>
                     </content>
                   </paragraph>
-                  <paragraph eId="para_215">
+                  <paragraph>
                     <num>215.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.02in">So, Zimmerling teaches how to arrange and rotate a variety of shapes of magnets in an external magnetic field such that they are arranged with their dipole across their axis of rotation and are trying to align to some extent to reduce torque in an external magnetic field such as an MRI. All the taught orientations (other than spheres where it appears to depend) have the axis of rotation perpendicular to the skin. I note that Professor Suaning believes the thrust of Zimmerling is to provide a solution that gives a perfect alignment with an MRI field. This does not change the fact that it also discloses the compromise of a partial alignment.”</p>
@@ -946,7 +946,7 @@
                       <p class="Quote" style="margin-left:1.02in">Zimmerling contains relevant teaching responding to the MRI compatibility problem for cochlear implants. It provides information on rotating implant magnets which have their dipoles across their axis of rotation to minimise the issue of the interaction with the external fields. The problem here is not to focus on a solution to create a system that can align perfectly. That ideal needs to be looked at in the practical context. The problem is to solve a real world issue for patients. That means a solution that works at clinically relevant angles i.e. works for the patient.</p>
                     </content>
                   </paragraph>
-                  <paragraph eId="para_263">
+                  <paragraph>
                     <num>263.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.02in">In essence I accept [Advanced Bionics’] case on obviousness and evidence and reasoning from Professor Parker. It is obvious to choose the existing CGK disk-shaped magnet implant as one obvious option of a shape of implant magnet to progress in the light of Zimmerling’s teaching. My reasons for this include the following factors; (1) this is a known entity – the shape of the magnet is known to the Skilled Person– ‘it is lying around on the desk’, (2) it is known to have the required magnetic volume to attach to the external magnet – no or minimal extra work is needed, (3) the choice of using the same shape as existing products would be motivated in part by the expectation the regulatory issues may be more straightforward than a new shape (or shapes like spheres), (4) using the existing ‘thin’ shape should avoid the needs for any additional risk of bone drilling which may be required if a bulkier magnet was used, (5) the orientation of the existing assembly housing can be used along with pre-existing system components. Once chosen, the teaching in Zimmerling or the CGK dictates (it is obvious) that the magnetization for the disk-magnet should be changed to being across the axis of rotation to provide for rotation. The Skilled Person would have been able to appreciate the choice of magnet shape and orientation would provide sufficient alignment with an external magnetic field. Based on the teaching in Zimmerling and the views of the experts, once the decision to have the disk-shaped diametrically magnetised magnet is reached the rest of the implementation is obvious and workmanlike and would be expected to succeed. As part of this final consideration my finding is that the choice of a matching external diametric magnet is also obvious for the reasons discussed above. It is a ‘knock-on’ requirement from the earlier decision. …”</p>
