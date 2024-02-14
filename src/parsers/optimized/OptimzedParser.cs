@@ -43,7 +43,7 @@ abstract class OptimizedParser {
             header = new List<IBlock>();
             i = save;
         }
-        IEnumerable<IDecision> body = Body();
+        List<IDecision> body = Body();
         save = i;
         IEnumerable<IBlock> conclusions = Conclusions();
         if (conclusions is null)
@@ -56,7 +56,7 @@ abstract class OptimizedParser {
         IEnumerable<IBlock> coverPage = EnrichCoverPage(PreParsed.Header);
         if (header is not null)
             header = EnrichHeader(header);
-        body = EnrichBody(body);
+        body = EnrichBody(body).ToList();
         if (conclusions is not null)
             conclusions = EnrichConclusions(conclusions);
         if (annexes is not null)
