@@ -35,7 +35,7 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public IEnumerable<IBlock> Header { get; internal set; }
 
-    public IEnumerable<IDecision> Body { get; internal set; }
+    public IList<IDecision> Body { get; internal set; }
 
     public IEnumerable<IBlock> Conclusions { get; internal set; }
 
