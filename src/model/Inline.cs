@@ -352,6 +352,14 @@ interface IHyperlink2 : IInline {
 
 }
 
+interface IInternalLink : IInline {
+
+    string Target { get; }
+
+    IList<IInline> Contents { get; }
+
+}
+
 enum RefType { Case, Legislation }
 
 /// a <ref> in LegalDocML is an inline element "containing a legal reference"
@@ -372,5 +380,16 @@ interface IRef : IHyperlink1 {
 interface ILineBreak : ITextOrWhitespace { }
 
 interface ITab : ITextOrWhitespace { }
+
+
+/* markers */
+
+interface IMarker : IInline { }
+
+interface IBookmark : IMarker {
+
+    string Name { get; }
+
+}
 
 }

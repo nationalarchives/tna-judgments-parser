@@ -14,6 +14,7 @@ class WLine : ILine {
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties properties;
     private IEnumerable<IInline> contents;
+    internal IEnumerable<WBookmark> Bookmarks { get; private init; }
 
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
@@ -28,13 +29,9 @@ class WLine : ILine {
     internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
-        this.contents = UK.Gov.NationalArchives.CaseLaw.Parse.Inline2.ParseRuns(main, paragraph.ChildElements);
-        Paragraph = paragraph;
-    }
-    internal WLine(MainDocumentPart main, Paragraph paragraph, IEnumerable<IInline> contents) {
-        this.main = main;
-        this.properties = paragraph.ParagraphProperties;
-        this.contents = contents;
+        var combined = NationalArchives.CaseLaw.Parse.Inline2.ParseContents(main, paragraph);
+        this.contents = combined.Where(i => i is not WBookmark);
+        Bookmarks = combined.Where(i => i is WBookmark).Cast<WBookmark>();
         Paragraph = paragraph;
     }
 
@@ -42,6 +39,7 @@ class WLine : ILine {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents;
+        Bookmarks = prototype.Bookmarks;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
     }
@@ -49,6 +47,7 @@ class WLine : ILine {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = prototype.contents;
+        Bookmarks = prototype.Bookmarks;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
     }

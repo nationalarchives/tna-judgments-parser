@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 
+using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
+using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
@@ -74,6 +77,86 @@ class JudgmentBuilder : Builder {
                 continue;
             GenerateIds(branch.Children, id);
         }
+    }
+
+    private string GetIdForInternalLinkTarget(string target) {
+        foreach (var dec in Judgment.Body) {
+            foreach (var div in dec.Contents) {
+                string id = GetIdForInternalLinkTarget(div, target);
+                if (id is not null)
+                    return id;
+            }
+        }
+        return null;
+    }
+
+    private string GetIdForInternalLinkTarget(IDivision div, string target) {
+        if (div is ILeaf leaf) {
+            if (GetBookmarks(leaf).Any(bkmrk => bkmrk.Name == target))
+                return MakeDivisionId(div);
+        } else if (div is IBranch branch) {
+            if (GetBookmarks(branch.Heading).Any(bkmrk => bkmrk.Name == target))
+                return MakeDivisionId(div);
+            if (GetBookmarks(branch.Intro).Any(bkmrk => bkmrk.Name == target))
+                return MakeDivisionId(div);
+            foreach (var sub in branch.Children) {
+                string id = GetIdForInternalLinkTarget(sub, target);
+                if (id is not null)
+                    return id;
+            }
+            if (GetBookmarks(branch.WrapUp).Any(bkmrk => bkmrk.Name == target))
+                return MakeDivisionId(div);
+        }
+        return null;
+    }
+
+    private static IEnumerable<WBookmark> GetBookmarks(IDivision div) {
+        if (div is ILeaf leaf)
+            return GetBookmarks(leaf);
+        if (div is IBranch branch)
+            return GetBookmarks(branch);
+        throw new System.Exception();
+    }
+    private static IEnumerable<WBookmark> GetBookmarks(ILeaf leaf) {
+        var heading = GetBookmarks(leaf.Heading);
+        var conents = GetBookmarks(leaf.Contents);
+        return heading.Concat(conents);
+    }
+    private static IEnumerable<WBookmark> GetBookmarks(IBranch branch) {
+        var heading = (branch.Heading is WLine line) ? line.Bookmarks : Enumerable.Empty<WBookmark>();
+        var intro = GetBookmarks(branch.Intro);
+        var children = branch.Children.SelectMany(GetBookmarks);
+        var wrapUp = GetBookmarks(branch.WrapUp);
+        return heading.Concat(intro).Concat(children).Concat(wrapUp);
+    }
+    private static IEnumerable<WBookmark> GetBookmarks(IEnumerable<IBlock> contents) {
+        if (contents is null)
+            return Enumerable.Empty<WBookmark>();
+        return contents.SelectMany(Util.GetLines)  // ignores embedded structures
+            .Where(line => line is WLine).Cast<WLine>()
+            .SelectMany(line => line.Bookmarks);
+    }
+    private static IEnumerable<WBookmark> GetBookmarks(ILine heading) {
+        // if (heading is null)
+        //     return Enumerable.Empty<WBookmark>();
+        if (heading is WLine line)
+            return line.Bookmarks;
+        return Enumerable.Empty<WBookmark>();
+    }
+
+    private readonly ILogger Logger = Logging.Factory.CreateLogger<JudgmentBuilder>();
+
+    protected override void AddInternalLink(XmlElement parent, IInternalLink link) {
+        var id = GetIdForInternalLinkTarget(link.Target);
+        if (id is null) {
+            Logger.LogWarning("can't find id for link target {}", link.Target);
+            base.AddInternalLink(parent, link);
+            return;
+        }
+        XmlElement a = CreateAndAppend("a", parent);
+        a.SetAttribute("href", "#" + id);
+        foreach (IInline inline in link.Contents)
+            AddInline(a, inline);
     }
 
 }
