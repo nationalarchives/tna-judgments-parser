@@ -419,6 +419,8 @@ abstract class Builder {
             AddHperlink(parent, link);
         else if (model is IHyperlink2 link2)
             AddHperlink(parent, link2);
+        else if (model is IInternalLink iLink)
+            AddInternalLink(parent, iLink);
         else if (model is IFormattedText fText)
             AddOrWrapText(parent, fText);
         else if (model is IDocDate docDate)
@@ -439,8 +441,9 @@ abstract class Builder {
             AddInlineContainer(parent, page, "page");
         else if (model is ILineBreak)
             AddLineBreak(parent);
-        else if (model is ITab tab)
+        else if (model is ITab)
             AddTab(parent);
+        else if (model is IBookmark) { ; }
         else
             throw new Exception(model.GetType().ToString());
     }
@@ -719,6 +722,11 @@ abstract class Builder {
             a.SetAttribute("title", link.ScreenTip);
         foreach (IInline inline in link.Contents)
             AddInline(a, inline);
+    }
+
+    protected virtual void AddInternalLink(XmlElement parent, IInternalLink link) {
+        foreach (IInline inline in link.Contents)
+            AddInline(parent, inline);
     }
 
     private void AddRef(XmlElement parent, IRef model) {
