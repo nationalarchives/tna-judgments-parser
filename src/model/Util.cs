@@ -55,10 +55,11 @@ class Util {
                 blocks.Add(branch.Heading);
             if (branch.Intro is not null)
                 blocks.AddRange(branch.Intro);
-            return Enumerable.Concat<IBlock>(
-                blocks,
-                branch.Children.SelectMany(GetBlocksFromDivision)
-            );
+            foreach (var child in branch.Children)
+                blocks.AddRange(GetBlocksFromDivision(child));
+            if (branch.WrapUp is not null)
+                blocks.AddRange(branch.WrapUp);
+            return blocks;
         }
         if (div is ITableOfContents toc)
             return toc.Contents;
