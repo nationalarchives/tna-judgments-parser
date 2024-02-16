@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Judgments {
 
 class Util {
 
-    private static Func<IBlock, IEnumerable<ILine>> GetLines = (block) => {
+    internal static Func<IBlock, IEnumerable<ILine>> GetLines = (block) => {
         if (block is ILine line)
             return new List<ILine>(1) { line };
         if (block is IOldNumberedParagraph np)

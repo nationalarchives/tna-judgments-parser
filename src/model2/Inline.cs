@@ -415,6 +415,28 @@ internal class WHyperlink2 : IHyperlink2 {
 
 }
 
+internal class InternalLink : IInternalLink {
+
+    public string Target { get; internal init; }
+
+    public List<IInline> Contents { get; internal init; }
+
+    IList<IInline> IInternalLink.Contents { get => Contents; }
+
+}
+
+internal class WRef : WHyperlink1, IRef {
+
+    public WRef(string text, RunProperties props) : base(text, props) { }
+
+    public string Canonical { get; internal init; }  // required
+
+    public bool? IsNeutral { get; internal init; }
+
+    public RefType? Type { get; internal init; }
+
+}
+
 internal abstract class InlineContainer : IInlineContainer {
 
     public IEnumerable<IInline> Contents { get; internal init; }
@@ -435,6 +457,15 @@ internal class WLineBreak : ILineBreak {
     internal WLineBreak(CarriageReturn cr) { }
 
     internal WLineBreak(OpenXmlElement e) { }   // should be an unknown br
+
+}
+
+
+/* markers */
+
+internal class WBookmark : IBookmark {
+
+    public string Name { get; internal init; }
 
 }
 

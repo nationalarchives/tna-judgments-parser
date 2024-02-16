@@ -352,10 +352,46 @@ interface IHyperlink2 : IInline {
 
 }
 
+interface IInternalLink : IInline {
+
+    string Target { get; }
+
+    IList<IInline> Contents { get; }
+
+}
+
+enum RefType { Case, Legislation }
+
+/// a <ref> in LegalDocML is an inline element "containing a legal reference"
+/// the properties below are part of the Find Case Law enrichment model
+interface IRef : IHyperlink1 {
+
+    string Canonical { get; }  // required
+
+    bool? IsNeutral { get; }
+
+    RefType? Type { get; }
+
+    string Origin { get => "parser"; }
+
+}
+
+
 interface IPageReference : IInlineContainer { }
 
 interface ILineBreak : ITextOrWhitespace { }
 
 interface ITab : ITextOrWhitespace { }
+
+
+/* markers */
+
+interface IMarker : IInline { }
+
+interface IBookmark : IMarker {
+
+    string Name { get; }
+
+}
 
 }
