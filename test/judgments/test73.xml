@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056/data.xml" />
-          <FRBRdate date="2023-11-30T20:59:59" name="transform" />
+          <FRBRdate date="2024-02-16T18:09:08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>3056</uk:number>
         <uk:cite>[2023] EWHC 3056 (Ch)</uk:cite>
-        <uk:parser>0.18.3</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>9e8d8e35ba95486c9bf89b2e4d4757b475afe4f478f663dbdd0ba4c87f0513c0</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -201,7 +201,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p style="text-align:center;margin-left:0.01in;margin-right:0.09in;text-indent:-0.01in"><span style="font-weight:bold;font-size:10pt">THE HONOURABLE MR JUSTICE HILDYARD</span></p>
             <p><span style="font-weight:bold">The Honourable Mr Justice Hildyard:</span></p>
@@ -226,7 +226,7 @@
             <p class="BodyText" style="margin-left:0.39in">An updated estimated outcome statement published by the PLC JAs on the PLC website as of June 2023 indicated a base case recovery for subordinated creditors of some £233 million and a high case recovery of some £490 million. It is common ground that, though considerable, these funds are not enough to satisfy all subordinated claims. Issues of priority as between different classes of subordinated debt have arisen accordingly.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="BodyText"><span style="font-style:italic">The subordinated debt and the contesting parties</span></p>
           </content>
@@ -339,7 +339,7 @@
             <p class="BodyText" style="margin-left:0.39in">As to DB, under the structure summarised in paragraph [4(2)] above, the economic interest in the PLC Sub-Notes lies in the ECAPS. DB’s skeleton argument described its interest as being an economic one in the distributions to be paid by PLC to GP1; and DB is (so the PLC JAs understand it) the beneficial owner of a quantity of ECAPS. In the <span style="font-style:italic">ECAPS1 Proceedings</span>, DB participated as an informal representative of the beneficial owners of the ECAPS, and the PLC JAs remain content for them to continue to do so. DB has been joined and participated in this application accordingly.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="BodyText"><span style="font-style:italic">The ECAPS1 Proceedings</span></p>
           </content>
@@ -433,7 +433,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">The present application</span></p>
           </content>
@@ -492,7 +492,7 @@
             <p class="BodyText" style="margin-left:0.39in">Thus, only Issue (1) is extant and requires determination. Its context and importance is that the PLC JAs anticipate that the funds available within PLC’s estate for distribution will be insufficient to discharge both the statutory interest on Claim D (the PLC Sub-Notes) and principal of Claim C (the PLC Sub-Debt) in full. The priority between them must be determined.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="BodyText"><span style="font-style:italic">Ambit of Issue (1)</span></p>
           </content>
@@ -515,7 +515,7 @@
             <p class="BodyText" style="margin-left:0.39in">The determination of Issue (1), and thus what directions should be given to the PLC JAs, requires the analysis of (a) the respective provisions of the PLC Sub-Debt (Claim C) and the PLC Sub-Notes 18 June 2018 (Claim D); (b) the relevant IR and (c) the rationale of the judgments both of the Court of Appeal in <span style="font-style:italic">ECAPS1</span> and of the Supreme Court in <span style="font-style:italic">In re Lehman Brothers International (Europe) (in administration) (No 4) </span>[2018] AC 465, [2017] UKSC 38 (often, and below, referred to as <span style="font-style:italic">“Waterfall I”</span>)<authorialNote class="footnote" marker="3"><p class="FootnoteText" style="margin-left:0.39in"><span> </span><marker name="tab" />The order of priority for payment out of the company’s assets is often referred to as the insolvency ‘waterfall’ (see <span style="font-style:italic">In re Nortel Networks UK Ltd (No 2) </span>[2018] Bus LR 206<span> </span>at [25]). The various<span> </span>sequentially numbered <span style="font-style:italic">‘Waterfall’ </span>cases referred to in this judgment all concerned the proper application of surplus in Lehman Brothers International (Europe), an unlimited company, which was the Lehman Group’s main trading company in Europe.<span style="font-style:italic"> </span></p></authorialNote>.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="BodyText"><span style="font-style:italic">The subordination provisions of Claim C and Claim D respectively</span></p>
           </content>
@@ -674,7 +674,7 @@
             <p class="BodyText" style="margin-left:0.39in"><span class="Heading1Char" style="font-weight:normal;text-transform:none;font-family:'Times New Roman'">Another difference which is possibly significant in this case (though not in </span><span class="Heading1Char" style="font-style:italic;font-weight:normal;text-transform:none;font-family:'Times New Roman'">ECAPS1) </span><span class="Heading1Char" style="font-weight:normal;text-transform:none;font-family:'Times New Roman'">is the extension of the definition in Claim D to all </span><span class="Heading1Char" style="font-style:italic;font-weight:normal;text-transform:none;font-family:'Times New Roman'">“Liabilities to Noteholders in respect of the Notes”</span><span class="Heading1Char" style="font-weight:normal;text-transform:none;font-family:'Times New Roman'">, whereas the definition in Claim C is confined to </span><span class="Heading1Char" style="font-style:italic;font-weight:normal;text-transform:none;font-family:'Times New Roman'">“all Liabilities to the Lender in respect of each Advance made under this Agreement and all interest payable thereon”. </span><span class="Heading1Char" style="font-weight:normal;text-transform:none;font-family:'Times New Roman'">I return to this latter difference later. </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="BodyText"><span style="font-style:italic">The Court of Appeal’s analysis in ECAPS1 of the contractual provisions of Claim C and Claim D</span></p>
           </content>
@@ -745,7 +745,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">Relevance and application of the IR as to payment of interest: IR 14.23</span></p>
           </content>
@@ -821,7 +821,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="BodyText" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-style:italic">The decision of the Supreme Court in Waterfall I</span></p>
           </content>
@@ -862,7 +862,7 @@
             <p class="BodyText" style="margin-left:0.39in">These submissions were considerably elaborated; and I turn next to a more detailed analysis of the parties’ competing submissions.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="BodyText"><span style="font-style:italic">The parties’ submissions on contractual interpretation and IR 14.23 in more detail </span></p>
             <p class="BodyText"><span style="font-style:italic">LBHI</span></p>
@@ -1053,7 +1053,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="BodyText" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-style:italic">GP1 and DB</span></p>
           </content>
@@ -1219,7 +1219,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">My approach and conclusions on the substantive issue</span></p>
           </content>
@@ -1440,7 +1440,7 @@
             <p class="BodyText" style="margin-left:0.39in">It seems to me that this third “route” does not on analysis add more than the contractual analysis in the light of<span style="font-style:italic"> Waterfall I </span>and <span style="font-style:italic">ECAPS1 </span>already undertaken. It is not really a third “route” but another way of expressing the same conclusion, with which I agree.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="BodyText"><span style="font-style:italic">My conclusion on the substantive question in Issue (1)</span></p>
           </content>
@@ -1457,7 +1457,7 @@
             <p class="BodyText" style="margin-left:0.39in">Standing back, I do not regard this result as counter-intuitive; nor as contrary to any regulatory requirement, or undermining of any regulatory objective or concern. On the contrary, I think it would be more counter-intuitive to dissociate and relegate the payment of statutory interest on a proved debt in order to give priority to that extent to a debt, possibly a whole series of debts, lower down in a long queue, which have not yet been proved or permitted to be proved. All the more so, to my mind, given the function of statutory interest which is to serve as compensation for the delay after the commencement of the administration until paying out on <span style="text-decoration-line:underline;text-decoration-style:solid">proved </span>debts <span style="font-style:italic">“for the periods during which they have been outstanding since the relevant date</span><authorialNote class="footnote" marker="7"><p class="FootnoteText" style="margin-left:0.39in"> Defined in IR<span> </span>14.1(3), and in this context meaning the date on which the company entered administration.</p></authorialNote><span style="font-style:italic">” </span>(IR 14.23(7)(a)). Statutory interest may not be the fruit of the tree; but it is paid in respect of the tree nonetheless.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="BodyText"><span style="font-style:italic">Res judicata or abuse of process?</span></p>
           </content>
@@ -1532,7 +1532,7 @@
             <p class="BodyText" style="margin-left:0.39in">The parties’ respective submissions were considerably elaborated by reference to numerous authorities. However, in the course of the hearing it became clear, and although I consider more briefly the issue of estoppel, I took it to be accepted, that the real battleground was whether LBHI’s conduct amounted to an abuse of process.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="BodyText"><span style="font-style:italic">Cause of action estoppel, issue estoppel and abuse of process distinguished</span></p>
           </content>
@@ -1593,7 +1593,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="BodyText" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-style:italic">Res judicata </span></p>
           </content>
@@ -1610,7 +1610,7 @@
             <p class="BodyText" style="margin-left:0.39in">Indeed, my understanding was and is that Ms Tolaney accepted in her oral submissions on the second day of the substantive hearing that the point was not expressly argued or determined in either case,<span style="font-style:italic"> </span>and that she instead relied on issue estoppel or abuse of process. In my judgment, her concession that this is not a case of <span style="font-style:italic">res judicata </span>or cause of action estoppel was correct.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="BodyText"><span style="font-style:italic">Issue estoppel</span></p>
           </content>
@@ -1681,7 +1681,7 @@
             <p class="BodyText" style="margin-left:0.39in">In my judgment, therefore, no issue estoppel has been shown such as to preclude the argument that LBHI has raised in this case. I accept, however, that the confluence between the issues raised and the approach of the Court of Appeal in <span style="font-style:italic">ECAPS1,</span> and the issue and the approach I have adopted to it in this case, is marked; and the question whether LBHI’s argument now is <span style="font-style:italic">Henderson v Henderson abuse</span> is more arguable.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="BodyText"><span style="font-style:italic">Abuse of Process</span></p>
           </content>

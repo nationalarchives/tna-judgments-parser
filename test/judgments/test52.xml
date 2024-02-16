@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/263/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/263/data.xml" />
-          <FRBRdate date="2024-01-16T20:13:41" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:18" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -48,7 +48,7 @@
         <uk:year>2023</uk:year>
         <uk:number>263</uk:number>
         <uk:cite>[2023] EWHC 263 (Admin)</uk:cite>
-        <uk:parser>0.20.0</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>9934c9fd7d782638b1db767ae7fea76a77ea51ec9131d64489a9ea5e6ce6b9a8</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -171,7 +171,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p><span style="font-weight:bold">Introduction</span></p>
           </content>
@@ -400,7 +400,7 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">A summary of the grounds for judicial review</span>. </p>
           </content>
@@ -442,7 +442,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I will address those grounds in the following order: ground 1, then ground 3, ground 2 and ground 4, because the questions of legal principle raised under ground 3 affect ground 2. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Legal Principles</span></p>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">Material planning considerations</span></p>
@@ -490,7 +490,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">A failure to take into account a relevant consideration in category (iii) is not unlawful unless the court considers that it was so obviously material “that it was irrational not to take it into account”. A decision-maker is not obliged to work through every relevant consideration in category (iii) in order to decide whether or not to take it into account. If a consideration in category (iii) is taken into account, the weight to be given to it is a matter for the decision-maker, who might decide, for example, to give it no weight. Such a decision on weight can only be challenged if irrational (<span style="font-style:italic">R (Friends of the Earth Limited) v Secretary of State for Transport</span> [2021] PTSR 190 at [116] to [121]).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">Planning obligations</span></p>
           </content>
@@ -620,7 +620,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">It is common ground that for the obligation sought by the Trust to have been material to the determination of the planning application for the SDA, HDC had to be satisfied that each of the three tests in reg.122(2) was met. Regulation 122 made the application of those tests, including the necessity test in sub para. (a), a legal requirement, rather than a policy requirement as had previously been the case (<span style="font-style:italic">R (Working Title Films Limited) v Westminster City Council</span> [2017] JPL 173 at [20]; <span style="font-style:italic">Good Energy Generation Limited v Secretary of State for Communities and Local Government</span> [2018] JPL 1248 at [71]-[72] and [75]). The application of each of those tests is a matter of evaluative judgment for the local planning authority, subject only to judicial review applying the <span style="font-style:italic">Wednesbury</span> standard (see e.g. <span style="font-style:italic">Smyth v Secretary of State for Communities and Local Government</span> [2015] PTSR 1417 at [118]; <span style="font-style:italic">Working Title Films </span>at [25]). Although the application of the three tests in reg.122(2) is a matter of judgment for the decision-maker, the interpretation of the language used in para.(2) is a matter of law for the court. The Trust alleges under ground 3 that HDC misinterpreted reg.122(2)(a). I will deal with that point below.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Judicial review of the decisions of local planning authorities</span></p>
           </content>
@@ -631,7 +631,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in"> The principles are well-established and do not need to be rehearsed here. An officer’s report should be read and considered in accordance with the principles summarised in <span style="font-style:italic">Mansell v Tonbridge and Malling Borough Council</span> [2019] PTSR 1452 at [41] to [42]; <span style="font-style:italic">R (Hayes) v Wychavon District Council</span> [2019] PTSR 1163 at [26] to [27]; and <span style="font-style:italic">R (Plant) v Lambeth Borough Council</span> [2017] PTSR 453 at [66] to [72]. A report should be read with reasonable benevolence and flexibility. It does not have to summarise each and every representation made to the authority. A key consideration is whether the officer’s advice was significantly misleading (<span style="font-style:italic">R v Selby District Council ex parte Oxton Farms</span> [2017] PTSR 1103, 1111).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 3 and the speech of Lord Hoffmann in the </span><span style="font-style:italic;font-weight:bold">Tesco</span><span style="font-weight:bold"> case</span></p>
           </content>
@@ -753,7 +753,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I agree with Mr Kolinsky KC that the present case is concerned with the application of reg.122 and that <span style="font-style:italic">DB Symmetry</span> does not assist in the resolution of the issues which have to be determined here. I did not understand the written submissions of the claimant to take a different view on those points or attempt to resurrect its earlier reliance upon Lord Hoffmann in <span style="font-style:italic">Tesco </span>at pp.776G to 777A. For completeness I note that the Supreme Court did not endorse that passage.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The statutory framework for funding NHS Services</span></p>
           </content>
@@ -978,7 +978,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Chronology</span></p>
             <p class="ParaLevel1"><span style="font-style:italic">Overview</span></p>
@@ -1092,7 +1092,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I will set out a summary of certain passages in the Trust’s consultation responses and the officers’ reports in July 2020. However, I have considered all the material identified by counsel as relevant and read the material referred to as a whole. I will deal with relevant aspects of the correspondence between the Trust and HDC following the resolution passed on 28 July 2020 under ground 4.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The Trust’s consultation response dated 23 July 2020</span></p>
           </content>
@@ -1327,7 +1327,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">In response to question 9 in Appendix 7, the Trust said that it would be willing to give an undertaking to allocate the monies paid under the s.106 contribution requested “towards the new activity created by the proposed development” and to negotiate an appropriate clause for inclusion in the s.106 agreement. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The officers’ report for the meeting on 28 July 2020</span></p>
           </content>
@@ -1441,7 +1441,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">In relation to the third test, officers took the view that the cost of using agency staff was a function of recruitment and capacity issues within the NHS, rather than being directly attributable to the development (paras. 6.68 to 6.69). The report also referred back to the issue summarised in [114] above. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-style:italic">The supplementary information reported to the Committee meeting on 28 July 2020</span></p>
           </content>
@@ -1502,7 +1502,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">Mr. Cairnes KC rightly pointed out that HDC’s officers accepted the Trust’s assumption that 38.5% of the occupiers of the dwellings on the SDA would be people moving into the Trust’s catchment area. But as Mr. Kolinsky KC pointed out, HDC raised a number of technical issues and concerns about the derivation of the population projections to which that figure of 38.5% was applied (see p. 4 of the report). In other words, officers remained unsatisfied about the prior stage of the Trust’s analysis concerned with the population estimates themselves.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 1</span></p>
           </content>
@@ -1658,7 +1658,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">The Trust’s contention that HDC misinterpreted policy and excluded, or failed to have regard to, impacts upon treatment services is impossible. Ground 1 must be rejected. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="ParaLevel1" style="text-indent:0.25in"><span style="font-weight:bold">Ground 3</span></p>
             <p class="ParaLevel1" style="text-indent:0.25in"><span style="font-style:italic">The short answer</span></p>
@@ -1721,7 +1721,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">The members were advised by officers, and they are to be taken as having agreed, that the Trust failed to provide sufficient information to show that there was any funding gap. The request for a financial contribution did not satisfy the necessity test in reg.122(2)(a) of the CIL Regulations 2010 (see e.g. [111] above). Those were matters of judgment for HDC and the claimant has not shown any public law error in that respect. Indeed, it was a perfectly rational and unsurprising judgment for the authority to have made. That is sufficient to dispose of ground 3. However, the arguments in this case have raised wider issues and it would be helpful for me to address them. If it had been necessary for me to do so I would have relied upon my conclusions below (excluding [147]-[151]) as further reasons upon which to reject ground 3.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-style:italic">Wider issues</span></p>
           </content>
@@ -1774,7 +1774,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">When the officers’ reports and the correspondence between the parties are read fairly and as a whole, it is absurd for the Trust to claim that HDC attempted to dictate how it should be funded. This suggestion appears to rely upon the final paragraph of the letter from HDC’s Chief Executive dated 9 December 2021. By that stage HDC had taken advice from leading counsel specialising in NHS law to assist its understanding of NHS funding and the Trust had failed over a long period to explain why the annual review of block contract payments could not satisfactorily address the funding issue raised by the Trust. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-style:italic">What if a funding gap could be demonstrated for a particular NHS trust?</span></p>
           </content>
@@ -1815,7 +1815,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">Ground 3 must be rejected.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Ground 2 </span></p>
           </content>
@@ -1916,7 +1916,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">For the above reasons, ground 2 must be rejected. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Ground 4</span></p>
           </content>
@@ -2033,7 +2033,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">There was nothing of any substance in the post-resolution material which officers were legally obliged to report back to the committee before planning permission could be granted in accordance with the members’ resolution. Accordingly, ground 4 must be rejected. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Delay</span></p>
           </content>
@@ -2044,7 +2044,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">If any ground of challenge had been made out, HDC and LCC invited the court to reject the claim on the grounds of delay, by treating the letter from HDC dated 9 December 2021 as the effective decision, rather than the issuing of the decision notice on 17 May 2022. Counsel recognised that this would involve creating an exception to the principle laid down by the House of Lords in <span style="font-style:italic">R (Burkett) v Hammersmith and Fulham London Borough Council</span> [2002] 1 WLR 1593. The justification for, and extent of, any such exception would be closely related and would require full argument. In the absence of such argument it would be inappropriate for this court to consider the point. In any event, because I have rejected each of the grounds of challenge, there is no need to do so. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Conclusion</span></p>
           </content>

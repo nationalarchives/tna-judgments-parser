@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/tcc/2021/133/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/tcc/2021/133/data.xml" />
-          <FRBRdate date="2023-08-08T15:14:15" name="transform" />
+          <FRBRdate date="2024-02-16T18:05:59" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2021</uk:year>
         <uk:number>133</uk:number>
         <uk:cite>[2021] UKUT 133 (TCC)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>aa45fe95407c0bf080be8034643be5edef49d0c89829f826faeef02f072c6a87</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -182,7 +182,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <num style="font-weight:bold">A.</num>
           <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">INTRODUCTION</span></heading>
           <paragraph eId="para_1">
@@ -264,7 +264,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <num style="font-weight:bold">B.</num>
           <heading style="text-align:justify;text-indent:0.39in"><span style="font-weight:bold">THE RELEVANT STATUTORY PROVISIONS</span></heading>
           <paragraph eId="para_12">
@@ -285,7 +285,7 @@
               <p class="Bodytexttax1" style="text-indent:0.39in">Section 850 is expressly made subject to “sections 850A to 850D”. For the purposes of this appeal, the critical section is section 850C, although the parties did make reference to a number of other provisions of ITTOIA. So far as is material, section 850C provides: </p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_1">
             <num style="font-size:11pt">“(1)</num>
             <intro>
               <p style="text-align:justify;text-indent:0.5in"><span style="font-size:11pt">Subsections (4) and (5) apply if –</span></p>
@@ -321,13 +321,13 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_2">
             <num style="font-size:11pt">(2)</num>
             <content>
               <p style="text-align:justify;text-indent:0.5in"><span style="font-size:11pt">Condition X is that…</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_3">
             <num style="font-size:11pt">(3)</num>
             <intro>
               <p style="text-align:justify;text-indent:0.5in"><span style="font-size:11pt">Condition Y is that –</span></p>
@@ -363,7 +363,7 @@
               </subparagraph>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_4">
             <num style="font-size:11pt">(4)</num>
             <intro>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">A’s profit share is increased by so much of the amount of B’s profit share as, it is reasonable to suppose, is attributable to – </span></p>
@@ -391,43 +391,43 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_5">
             <num style="font-size:11pt">(5)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">… </span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_6">
             <num style="font-size:11pt">(6)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">A partner in a firm is an “individual partner” if the partner is an individual and “non- individual partner” is to be read accordingly; but “non-individual partner” does not include the firm itself where it is treated as a partner under section 863I (allocation of profit to a firm).</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_7">
             <num style="font-size:11pt">(7)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">B’s profit share is to be determined by applying section 850 and, if relevant, section 850A in relation to B for the relevant period of account (whether or not B is chargeable to income tax) on the assumption that the calculation under section 849 in relation to B produces the profit for the firm mentioned in subsection (1)(a)(i).</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_8">
             <num style="font-size:11pt">(8)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">…</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_9">
             <num style="font-size:11pt">(9)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">“The relevant tax amount” is the total amount of tax which, apart from this section, would be chargeable in respect of A and B’s income as partners in the firm.</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_10">
             <num style="font-size:11pt">(10)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">“The appropriate notional profit” is the sum of the appropriate notional return on capital and the appropriate notional consideration for services.</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_11">
             <num style="font-size:11pt">(11)</num>
             <intro>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">“The appropriate notional return on capital” is – </span></p>
@@ -445,7 +445,7 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_12">
             <num style="font-size:11pt">(12)</num>
             <intro>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The return mentioned in subsection (11)(a) is to be calculated on the basis that it is a return which is –</span></p>
@@ -463,13 +463,13 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_13">
             <num style="font-size:11pt">(13)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">For the purposes of subsections (11) and (12) B’s contribution to the firm is amount A determined under section 108 of ITA 2007 (meaning of “contribution to the LLP”).</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_14">
             <num style="font-size:11pt">(14)</num>
             <intro>
               <p style="text-align:justify;text-indent:0.5in"><span style="font-size:11pt">That section is to be applied – </span></p>
@@ -499,7 +499,7 @@
               </subparagraph>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_15">
             <num style="font-size:11pt">(15)</num>
             <intro>
               <p style="text-align:justify;text-indent:0.5in"><span style="font-size:11pt">“The appropriate notional consideration for services” is – </span></p>
@@ -517,19 +517,19 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_16">
             <num style="font-size:11pt">(16)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The consideration mentioned in subsection 15(a) is to be calculated on the basis that B is not a partner in the firm and is acting at arm’s length from the firm.</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_17">
             <num style="font-size:11pt">(17)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">Any services, the provision of which involves any partner in the firm in addition to B, are to be ignored for the purposes of subsection (15).</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_18">
             <num style="font-size:11pt">(18)</num>
             <intro>
               <p style="text-align:justify;text-indent:0.5in"><span style="font-size:11pt">A has the power to enjoy B’s profit share if – </span></p>
@@ -565,13 +565,13 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_19">
             <num style="font-size:11pt">(19)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">In subsection (18)(b) “arrangements” includes any agreement, understanding, scheme, transaction or series of transactions (whether or not legally enforceable). </span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_20">
             <num style="font-size:11pt">(20)</num>
             <intro>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The enjoyment conditions are – </span></p>
@@ -607,17 +607,17 @@
               </content>
             </subparagraph>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_21">
             <num style="font-size:11pt">(21)</num>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">In subsection (2) references to A include any person connected with A apart from B</span><span style="font-style:italic;font-size:11pt">.</span><span style="font-size:11pt">”</span></p>
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <num style="font-weight:bold">C.</num>
           <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">APPLICATION TO THE PRESENT CASE</span></heading>
-          <level>
+          <level eId="lvl_3_1">
             <num style="font-weight:bold">(1)</num>
             <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">Approach</span></heading>
             <paragraph eId="para_15">
@@ -633,7 +633,7 @@
               </content>
             </paragraph>
           </level>
-          <level>
+          <level eId="lvl_3_2">
             <num style="font-weight:bold">(2)</num>
             <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">The background facts</span></heading>
             <paragraph eId="para_17">
@@ -642,55 +642,55 @@
                 <p class="Bodytexttax1" style="text-indent:0.39in">The background facts were stated by the FTT at [7] to [16] of the Decision. They are set out below:</p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_1">
               <num style="font-size:11pt">“7.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">Mr Walewski is a successful investment adviser in London. Having managed funds for other people, in 2005 he set up his own equity fund, the Alken Fund, a Luxembourg SICAV (an open-ended vehicle).</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_2">
               <num style="font-size:11pt">8.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">That fund was managed by AAM in the UK which was set up on 5 July 2005. Trade execution was carried out by AF which was set up on 19 November 2010. AAM was a member of AF until 5 December 2011.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_3">
               <num style="font-size:11pt">9.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">For the relevant years, AAM’s total profits were £19,040,069. AF’s total profits were £3,165,813.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_4">
               <num style="font-size:11pt">10.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">Mr Walewski was a partner in AM and AF and also set up a company, W Ltd, in June 2006 which was a partner of both AAM and AF. Mr Walewski was W Ltd’s only director. Mr Walewski became an employee of W Ltd on 1 April 2007. W Ltd had no other employees or directors.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_5">
               <num style="font-size:11pt">11.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">AAM was a partner in AF until 5 July 2011 and was its managing member. AF’s only other member was Mr Walewski. W Ltd took over AM’s partnership interest in AF on 5 July 2011.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_6">
               <num style="font-size:11pt">12.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">AAM and AF had other employees as well as Mr Walewski and clients other than the Alken Fund, but that fund generated more than 80% of AAM’s income for the 2014-15 tax year and Mr Walewski was the only member of AAM’s management committee.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_7">
               <num style="font-size:11pt">13.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The “mixed partnership” rules are anti-avoidance rules which were introduced in April 2014 having effect for tax years starting from 6 April 2014. They apply to LLPs such as AAM and AF if the partnership includes both individual and non-individual members.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_8">
               <num style="font-size:11pt">14.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The shares in W Ltd are held by an offshore company Molinos Capital Limited in the British Virgin Islands. Shares in that company are held by a trust, the Kleber Trust, in which Mr Walewski’s children are named beneficiaries.</span></p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_9">
               <num style="font-size:11pt">15.</num>
               <intro>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">During the relevant tax year 2014-15, Mr Walewski’s role and involvement in AAM, AF and W Ltd changed:</span></p>
@@ -726,14 +726,14 @@
                 </content>
               </subparagraph>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_2_10">
               <num style="font-size:11pt">16.</num>
               <content>
                 <p style="text-align:justify;margin-left:0.5in"><span style="font-size:11pt">The profit allocations with which we are concerned were made on 24 March 2015 for AAM and 28 October 2015 for AF and represented profits for the 2014-15 tax year during which (i) W Ltd was a partner in AAM and AF (until their incorporation in November 2014) and (ii) Mr Walewski was also a partner, in AAM (from April 2014 until July 2014), and in AF (from April 2014 until November 2014).”</span></p>
               </content>
             </paragraph>
           </level>
-          <level>
+          <level eId="lvl_3_3">
             <num style="font-weight:bold">(3)</num>
             <heading style="text-align:justify;margin-left:0.39in"><span style="font-weight:bold">A parsing of the relevant provisions</span></heading>
             <paragraph eId="para_18">
@@ -742,7 +742,7 @@
                 <p class="Bodytexttax1" style="text-indent:0.39in">The relevant provisions relied upon by the FTT to confirm HMRC’s decision to increase the Appellant’s profit share, and hence income tax liability, are set out in Section B above. The provisions are complex, and it is appropriate to set out the various requirements that have to be met before setting out the FTT’s approach.</p>
               </content>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_3_1">
               <num style="font-style:italic;font-weight:bold">(i)</num>
               <content>
                 <p class="Bodytexttax1" style="text-indent:0.39in"><span style="font-style:italic;font-weight:bold">Section 850C(1)</span></p>
@@ -778,7 +778,7 @@
                 </content>
               </subparagraph>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_3_2">
               <num style="font-style:italic;font-weight:bold">(ii)</num>
               <content>
                 <p class="Bodytexttax1" style="text-indent:0.39in"><span style="font-style:italic;font-weight:bold">Condition Y</span></p>
@@ -814,7 +814,7 @@
                 </content>
               </subparagraph>
             </paragraph>
-            <paragraph>
+            <paragraph eId="lvl_3_3_3">
               <num style="font-style:italic;font-weight:bold">(iii)</num>
               <content>
                 <p class="Bodytexttax1" style="text-indent:0.39in"><span style="font-style:italic;font-weight:bold">Section 850C(4)</span></p>
@@ -839,7 +839,7 @@
               </content>
             </paragraph>
           </level>
-          <level>
+          <level eId="lvl_3_4">
             <num style="font-weight:bold">(4)</num>
             <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">The FTT’s consideration and the grounds of appeal</span></heading>
             <paragraph eId="para_25">
@@ -874,7 +874,7 @@
             </paragraph>
           </level>
         </level>
-        <level>
+        <level eId="lvl_4">
           <num style="font-weight:bold">D.</num>
           <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">GROUND 1</span></heading>
           <paragraph eId="para_27">
@@ -889,7 +889,7 @@
               <p class="Bodytexttax1" style="text-indent:0.39in">Paragraph 11 of the Appellant’s written submissions put the point thus:</p>
             </content>
           </paragraph>
-          <level>
+          <level eId="lvl_4_1">
             <content>
               <p class="Bodytexttax1"><span style="font-size:11pt">“Under Ground 1 the Appellant contends that to the extent W Ltd’s profit share was attributable to the period of time when the Appellant was not a partner of AAM, the profits cannot have been reallocated to him. Section 850C envisages cases where individual partners divert their share of profits arising from an LLP to a partner that is a company, and this is relevant because an individual cannot divert that which he does not have to divert in the first place. In other words, to the extent that W Ltd’s profit share relates to the period when the Appellant was not a member of AAM, the profits were those of the then member (i.e. excluding the Appellant) and thus they could not have been diverted by the Appellant to W Ltd. The FTT should either have held (a) that the legislation simply did not apply to such profits, or alternatively (b) that such profits could not be reallocated pursuant to section 850C(4).”</span></p>
             </content>
@@ -955,7 +955,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <num style="font-weight:bold">E.</num>
           <heading class="Bodytexttax1" style="text-indent:0.39in"><span style="font-weight:bold">GROUND 2</span></heading>
           <paragraph eId="para_35">
@@ -970,7 +970,7 @@
               <p class="Bodytexttax1" style="text-indent:0.39in">It is appropriate to set out the relevant paragraphs of the Decision:</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_1">
             <num style="font-size:11pt">“170.</num>
             <content>
               <p class="Bodytexttax1" style="margin-left:0.39in"><span style="font-size:11pt">Our overall conclusion, based on these findings of fact, is that Mr Walewski's work for W Ltd, AAM and AF was fungible; it is not possible on the basis of any evidence which we saw, to separate his role into discrete components; his work for one was his work for each and all of those entities. Mr Tsatsaris described Mr Walewski's roles for the three entities as “very interlinked”, we think they were more than interlinked, we think Mr Walewski was essentially playing only a single role, but for the benefit of all three entities.</span></p>
@@ -1049,7 +1049,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <num style="font-weight:bold">F.</num>
           <heading style="text-align:justify;text-indent:0.5in"><span style="font-weight:bold">DISPOSITION</span></heading>
           <paragraph eId="para_44">
@@ -1058,7 +1058,7 @@
               <p class="Bodytexttax1" style="text-indent:0.39in">For the reasons we have given, Grounds 1 and 2 both fail and this appeal must be dismissed. HMRC did file a respondent’s notice, but given the nature of our conclusions in relation to Grounds 1 and 2 it is unnecessary to consider this further.</p>
             </content>
           </paragraph>
-          <level>
+          <level eId="lvl_6_1">
             <heading class="Heading4" style="text-align:left;margin-right:-0.04in"><img src="image2.change1.jpeg" style="width:75.7pt;height:35.29pt" /><marker name="tab" /><span style="color:#000000">     </span><img src="image3.png" style="width:122.42pt;height:40.1pt" /></heading>
             <paragraph>
               <content>
@@ -1066,12 +1066,12 @@
               </content>
             </paragraph>
           </level>
-          <level>
+          <level eId="lvl_6_2">
             <content>
               <p class="Heading4" style="margin-right:-0.04in">UPPER TRIBUNAL JUDGES</p>
             </content>
           </level>
-          <level>
+          <level eId="lvl_6_3">
             <content>
               <p class="Heading4" style="margin-right:-0.04in">RELEASE DATE: <docDate date="2021-06-15" refersTo="#decision">15 June 2021</docDate></p>
             </content>

@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/grc/2023/916/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/grc/2023/916/data.xml" />
-          <FRBRdate date="2023-11-01T18:26:39" name="transform" />
+          <FRBRdate date="2024-02-16T18:09:00" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,7 +41,7 @@
         <uk:number>916</uk:number>
         <uk:cite>[2023] UKFTT 916 (GRC)</uk:cite>
         <uk:jurisdiction>InformationRights</uk:jurisdiction>
-        <uk:parser>0.18.0</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>134025e65cf965cd195d28246b1713ee78d93731fe751d724fc236b90626f9bc</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -95,7 +95,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Introduction:    </span></heading>
           <paragraph eId="para_1">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">1.</num>
@@ -104,7 +104,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Factual Background to this Appeal:</span></heading>
           <paragraph eId="para_2">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">2.</num>
@@ -129,7 +129,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">The Grounds of Appeal:</span></heading>
           <paragraph eId="para_4">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">4.</num>
@@ -163,7 +163,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_4">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">The Commissioner’s Response:</span></heading>
           <paragraph eId="para_5">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">5.</num>
@@ -208,9 +208,9 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Legal Framework:</span></heading>
-          <level>
+          <level eId="lvl_5_1">
             <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua';color:#000000">Section 40(5) – Personal Information:</span></p>
             </content>
@@ -246,7 +246,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">The Commissioners’ reasoning:</span></heading>
           <paragraph eId="para_14">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">14.</num>
@@ -261,7 +261,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_7">
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua'">Conclusions:</span></heading>
           <paragraph eId="para_16">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">16.</num>
@@ -306,7 +306,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="NormalWeb" style="text-align:justify"><span style="font-family:'Book Antiqua'">Brian Kennedy KC                                                                          30 October 2023.</span></p>
           </content>
