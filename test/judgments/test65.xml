@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/1481/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/1481/data.xml" />
-          <FRBRdate date="2023-08-01T18:22:11" name="transform" />
+          <FRBRdate date="2024-02-16T18:08:27" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -70,7 +70,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1481</uk:number>
         <uk:cite>[2023] EWHC 1481 (Comm)</uk:cite>
-        <uk:parser>0.15.2</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>d828cb59472c0506412c9c3fc197144d3f387e773c3b71738f83c42e6e49b8b8</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -586,7 +586,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <table class="TableGrid" uk:widths="5.51in 0.75in">
               <tr>
@@ -1318,7 +1318,7 @@
             <p style="text-align:justify;margin-left:0.5in">As the oral argument in the various cases developed, there was relatively little reference to the detail contained within the agreed and assumed facts, and it is unnecessary to set out much of that detail in this judgment. The following sections (A2 and A3), which are drawn from the Excel agreed and assumed facts, provide sufficient factual background for the purposes of the issues which require resolution. Where necessary, later sections refer to particular agreed facts relevant to certain issues, such as the “Medical Officer for Health of the Public Authority” issue.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p><span style="font-weight:bold">A2:</span><marker name="tab" /><span style="font-weight:bold">Factual background: Covid-19 and the UK government’s response</span></p>
             <p><span style="font-style:italic">Covid 19, its emergence and spread</span></p>
@@ -1447,7 +1447,7 @@
             <p style="text-align:justify;margin-left:0.5in">The UK Government Scientific Advisory Group for Emergencies (“SAGE”) was provided with various reports and models for the spread of SARS-CoV-2 in February and March 2020.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p><span style="font-style:italic">UK Government response to Covid 19</span></p>
           </content>
@@ -1595,7 +1595,7 @@
             <p style="text-align:justify;margin-left:0.5in"><span style="color:#000000">The “Licence” referred to the fact that, after 20 March 2020, the Excel Centre was repurposed under a licence with the NHS Commissioning Board dated 24 April 2020, although retrospectively effective from 24 March 2020, granted by Excel as a field or ‘Nightingale’ hospital to provide the NHS with 4,000 additional hospital beds in London to deal with the high number of people then anticipated to be hospitalised with COVID-19 infections.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p><span style="font-weight:bold">A3: The statutory context</span></p>
           </content>
@@ -1702,7 +1702,7 @@
             <p style="text-align:justify;margin-left:0.5in">Pursuant to Section 45F, such regulations may “(a) confer functions on local authorities and other persons; ... (d) provide for the execution and enforcement of restrictions and requirements imposed by or under the regulations” and, pursuant to Section 45P(2), the power to make regulations “includes power to make different provision for different cases or different areas”.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p><span style="font-style:italic">Notifiable diseases</span></p>
           </content>
@@ -1728,7 +1728,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p><span style="font-style:italic">Current Position of Local Authorities</span></p>
           </content>
@@ -1769,7 +1769,7 @@
             <p style="text-align:justify;margin-left:0.5in">The 10 February Regulations were repealed by the Coronavirus Act 2020 (Schedule 24). This Act came into force on 25 March 2020 and included provisions for public health officers to impose restrictions on potentially infectious individuals (Schedule 21). The latter provisions of the Coronavirus Act 2020 expired on 10 December 2021 under the Coronavirus Act 2020 (Early Expiry) (No 2) Regulations 2021.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">A4:</span><marker name="tab" /><span style="font-weight:bold">The UK Government’s response after March 2020</span></p>
           </content>
@@ -1851,7 +1851,7 @@
             <p style="text-align:justify;margin-left:0.5in">On 5 January 2021, the December Regulations were amended pursuant to The Health Protection (Coronavirus, Restrictions) (No. 3) and (All Tiers) (England) (Amendment) Regulations 2021 (SI 2021/8) with the effect that from 6 January 2021 a nationwide lockdown was reintroduced for the third time. It was implemented by expanding Tier 4 to include the whole of England. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p><span style="font-weight:bold">A5:</span><marker name="tab" /><span style="font-weight:bold">The Mayfair agreed and assumed facts</span></p>
           </content>
@@ -1868,7 +1868,7 @@
             <p style="text-align:justify;margin-left:0.5in">In addition, the Mayfair parties agreed the facts which had previously been agreed in the <span style="font-style:italic">FCA test case</span>, as well as the summary of the agreed facts contained in the judgment of the Divisional Court. Accordingly, I did not think that there could be any material difference between the facts on which the <span style="font-style:italic">FCA test case</span> decision on causation was based, and the facts relevant for the purposes of determining the central causation issue in the Mayfair proceedings. I address below, in section D3, a particular argument advanced by the Mayfair insurers (but not the other insurers) which was referable to certain facts agreed in the <span style="font-style:italic">FCA test case</span>.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p><span style="font-weight:bold">B:</span><marker name="tab" /><span style="font-weight:bold">The policyholders and the policies</span></p>
           </content>
@@ -1879,7 +1879,7 @@
             <p style="text-align:justify;margin-left:0.5in">This section describes the various policyholders, the policies and the principal relevant terms, and the assumed facts as to disease at the premises. Appendix 1 contains a more complete list of the terms of the policies to which reference was made in the course of argument. In this section, I use capitalised terms and bold text where they have been so used in the relevant policies. Although the policies were issued by various different insurers, the format was similar: each policy included a policy schedule and, separately, standard policy wording.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p><span style="font-weight:bold">B1:</span><marker name="tab" /><span style="font-weight:bold">Excel</span></p>
           </content>
@@ -2031,7 +2031,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p><span style="font-weight:bold">B2: Hairlab, Muscleworks and Bodylines</span></p>
           </content>
@@ -2252,7 +2252,7 @@
             <p style="text-align:justify;margin-left:0.5in">In each of the periods referred to above, there was at least one case of Covid-19 at the Claimants' premises that was not diagnosed and/or not reported or otherwise known to the government and/or any local authority which might have been authorised to take measures in relation to the Claimants' premises. Where cases were reported and/or known to the relevant authorities, including the government, the relevant governmental measures relied upon by the claimant were not specifically directed at and/or taken in specific response to such case(s) of Covid-19 occurring at the Premises.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p><span style="font-weight:bold">B3: Mayfair</span></p>
           </content>
@@ -2290,7 +2290,7 @@
             <p style="text-align:justify;margin-left:0.5in">It was an assumed fact that there was at least one visitor or employee who suffered Covid-19 at the Premises prior to 24 March 2020. Mayfair’s factual case relies, amongst other things, on evidence relating to two employees, Maurice Marshall and Myrna Obillo, who suffered from Covid-19 at the premises on 8 March 2020. Maurice Marshall was hospitalised on 12 March 2020 due to Covid-19, and Myrna Obillo was also subsequently hospitalised and then died due to Covid-19 on 2 April 2020.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p><span style="font-weight:bold">B4: Kaizen </span></p>
           </content>
@@ -2480,7 +2480,7 @@
             <p style="text-align:justify;margin-left:0.5in">Alternatively to the previous two paragraphs, during each of the periods referred to in those paragraphs, there was at least one person on each of the premises who had a case of Covid-19 but where this was not reported or otherwise made known to the Government and/or was not taken into account in decision-making.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p><span style="font-weight:bold">B5: Why Not Bar and Lounge Limited </span></p>
           </content>
@@ -2595,7 +2595,7 @@
             <p style="text-align:justify;margin-left:0.5in">In relation to those assumed manifestations of Covid-19, it is to be further assumed that at least one such manifestation was no longer infectious at the time that the relevant closure or restriction was placed on the Premises (and it is to be assumed in the alternative that at least one such manifestation was still infectious).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p><span style="font-weight:bold">B6: PizzaExpress </span></p>
           </content>
@@ -2753,7 +2753,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p><span style="font-weight:bold">C:</span><marker name="tab" /><span style="font-weight:bold">Legal background</span></p>
             <p style="text-align:justify"><span style="font-style:italic">The FCA test case in summary </span></p>
@@ -2822,7 +2822,7 @@
             <p style="text-align:justify;margin-left:0.5in">In contrast, the majority of the Supreme Court (Lord Reed PSC and Lords Hamblen and Leggatt JJSC) decided that all disease clauses did indeed only provide cover limited to the effects of infectious diseases within a radius of 1 or 25 miles of the relevant premises. Consequently, an analysis of causation was essential. On the basis of its consideration of causation, as a matter of construction of the policies in question, infectious diseases occurring within the relevant radius were a concurrent cause of the closures and restrictions, and the consequent BI losses, along with all the other infectious diseases elsewhere in the UK. The minority of the Supreme Court (Lord Hodge DPSC and Lord Briggs JSC) agreed with the causation analysis of the majority, but would also have upheld coverage on a wider basis similar to the reasoning of the Divisional Court.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">The decision of the Divisional Court</span></p>
           </content>
@@ -2894,7 +2894,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">The Supreme Court - overview</span></p>
           </content>
@@ -2965,7 +2965,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">The Supreme Court – the detailed causation reasoning</span></p>
           </content>
@@ -3149,7 +3149,7 @@
             <p style="text-align:justify;margin-left:0.5in">In consequence of its judgment, which dismissed the insurers’ appeals and allowed aspects of the appeals by the policyholders [313], the Supreme Court made a number of declarations. I shall refer to some of these in particular contexts later in this judgment.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">Subsequent decisions</span></p>
           </content>
@@ -3184,7 +3184,7 @@
             <p style="text-align:justify;margin-left:0.5in">156 I was also referred to a well-reasoned Financial Ombudsman Service (“FOS”) decision of Mr Sam Thomas in a complaint relating to AllianzInsurance plc. This decision is consistent with the arguments of the policyholders on two of the issues with which I am concerned. It was submitted that whilst this decision had no status as precedent, its reasoning was persuasive and should be adopted. An analogy was drawn between this decision and a good journal article or textbook. I think that this is a fair analogy, and that in fact the same applies to the arbitration award of Lord Mance. Both the FOS decision and the Lord Mance arbitration award have the benefit of having been reached after substantial adversarial arguments, so that the decision-maker could see both sides of the case.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p><span style="font-weight:bold">D:</span><marker name="tab" /><span style="font-weight:bold">The causation issue </span></p>
             <p><span style="font-weight:bold">D1:</span><marker name="tab" /><span style="font-weight:bold">The parties’ arguments</span></p>
@@ -3202,7 +3202,7 @@
             <p style="text-align:justify;margin-left:0.5in">The insurers were not wholly united in their approach. Some insurers submitted that a “but for” test of causation should be applied in the present context. The proponents of this argument were Mr Scorey KC for the PizzaExpress insurers, and Mr Christie KC for the insurers in <span style="font-style:italic">Hairlab </span>and <span style="font-style:italic">Why Not Bar</span>. The essence of the argument sufficiently appears from Mr Scorey’s submissions summarised below.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p><span style="font-style:italic">The “but for” causation argument</span></p>
           </content>
@@ -3261,7 +3261,7 @@
             <p style="text-align:justify;margin-left:0.5in">There were a number of situations where this could be proved. A straightforward case was an individual occurrence of disease, for example food poisoning or Legionnaire’s disease, at only the specific insured premises, leading to a closure of the premises by the authorities. An outbreak of disease in a localised area, with occurrences of the disease at more than one premises, could lead to closure of each location where there had been an occurrence of disease, in response to those occurrences. Even on a national scale, there could be coverage: if the authorities instructed particular premises to close and/or clean, where occurrences of disease have been reported at such premises. The coverage in respect of notifiable diseases was therefore in respect of occurrences at the Premises itself, and business interruption resulting from restrictions specifically targeted at those occurrences.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p><span style="font-style:italic">The alternative argument: direct, distinct, palpable and discernible causation</span></p>
           </content>
@@ -3284,7 +3284,7 @@
             <p style="text-align:justify;margin-left:0.5in">The insurers represented by Mr Scorey and Mr Christie adopted the distinct causation test in the event that I rejected their “but for” causation argument. There was some dispute as to whether it was permissible for RSA in the <span style="font-style:italic">Excel </span>case, in the light of certain admissions made concerning the applicability of the Supreme Court test, to advance the distinct causation argument. However, it was ultimately agreed that this issue can if necessary be addressed at a subsequent stage of the proceedings.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_24">
           <content>
             <p><span style="font-weight:bold">D2:</span><marker name="tab" /><span style="font-weight:bold">Discussion</span></p>
             <p><span style="font-style:italic">Approach to construction</span></p>
@@ -3336,7 +3336,7 @@
             <p style="text-align:justify;margin-left:0.5in">Against this background, the question is whether the logic and rationale of the Supreme Court’s decision in relation to radius clauses should be applied to the “at the premises” wordings. I start with some initial points.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_25">
           <content>
             <p><span style="font-style:italic">Initial points</span></p>
           </content>
@@ -3437,7 +3437,7 @@
             <p style="text-align:justify;margin-left:0.5in">In fact, for present purposes, the question of whether paragraph [250] applies to the whole of the Supreme Court’s reasoning is not critical, since many insurers (correctly in my view) accepted that the size of the radius did not matter, and that in a radius clause there did not come a point where the Supreme Court’s reasoning was inapplicable. In so far as some insurers did not expressly accept this, no principled argument was advanced which identified the point at which the size of a radius would become so small that the Supreme Court’s reasoning would not apply, and indeed it is difficult to see how any such point could be identified. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_26">
           <content>
             <p><span style="font-style:italic">The Supreme Court reasoning</span></p>
           </content>
@@ -3577,7 +3577,7 @@
             <p style="text-align:justify;margin-left:0.5in">In reaching that conclusion, I have considered the large variety of arguments advanced by insurers, and will address the principal points (to the extent that I have not already done so) below.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_27">
           <content>
             <p><span style="font-weight:bold">D3:</span><marker name="tab" /><span style="font-weight:bold">The insurers’ arguments in support of a different test of causation</span></p>
           </content>
@@ -3827,7 +3827,7 @@
             <p style="text-align:justify;margin-left:0.5in">It also seems to me that the argument must also fail because (as further discussed below), the RSA Infectious Diseases Extension in the present case expressly refers both to the actions or advice of a governmental authority (in addition to a local authority) and to an “outbreak” as well as the “occurrence” at the premises. The policy therefore expressly contemplates that the national government may be responding to an outbreak, which the Supreme Court appear to have considered to be a wider concept than an occurrence: see [66]. The insurers’ argument, based on the NDDA clause, that there is no coverage under the RSA Infectious Diseases Extension, for the consequences of a wide scale emergency is in any event defeated by this language.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_28">
           <content>
             <p><span style="font-weight:bold">D4:</span><marker name="tab" /><span style="font-weight:bold">Conclusions</span></p>
           </content>
@@ -3861,7 +3861,7 @@
             <p style="text-align:justify;margin-left:0.5in">Finally, in the <span style="font-style:italic">Excel </span>proceedings, Mr Kramer placed reliance upon the specific reference in the relevant policy wording to “closure … on the order or advice of any local or governmental authority as a result of an outbreak or occurrence …”. The reference to “governmental authority” was, here, clearly a reference to a national government response, and not simply a local authority response. The reference to “outbreak” was wider than occurrence. Both points led to the conclusion that there would be coverage for a wide-scale response at a national level, and therefore provided reasons why the insurers’ contrary argument should be rejected. I consider that there was force in these submissions, and that (in the case of Excel) they are further reasons for rejecting the insurers’ argument. However, those policyholders who do not have equivalent wording are in no worse position: the Supreme Court’s concurrent causation analysis applies whether or not these or equivalent words are present.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_29">
           <content>
             <p><span style="font-weight:bold">E:</span><marker name="tab" /><span style="font-weight:bold">Occurrences prior to Covid-19 becoming notifiable</span></p>
           </content>
@@ -3890,7 +3890,7 @@
             <p style="text-align:justify;margin-left:0.5in">The effect of making Covid-19 notifiable in England was that, from 6.15 pm on 5 March 2020, a registered medical practitioner was obliged to notify the proper officer where he or she had “reasonable grounds for suspecting that a patient ... whom [he or she] is attending has Covid-19”. The relevant regulation in this regard is Regulation 2 (1) of the 2010 Regulations. The position was similar in Wales and Scotland.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_30">
           <content>
             <p><span style="font-style:italic">The parties’ arguments</span></p>
           </content>
@@ -3955,7 +3955,7 @@
             <p style="text-align:justify;margin-left:0.5in">In a brief but effective argument on behalf of the Hairlab insurers, Mr Christie’s main point was similar. The peril is any consequence of a notifiable disease. It is not any disease: it is a notifiable disease which has to occur before the insured peril is triggered. There must therefore be an occurrence of a disease which is actually notifiable at the time it occurs.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_31">
           <content>
             <p><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -4082,7 +4082,7 @@
             <p style="text-align:justify;margin-left:0.5in">Accordingly, I accept the arguments of the insurers in <span style="font-style:italic">Excel </span>and <span style="font-style:italic">Hairlab</span> on this issue. The arguments in <span style="font-style:italic">Kaizen </span>and <span style="font-style:italic">Why Not Bar </span>on each side were not materially different, and I therefore accept the insurers’ argument in those cases as well.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_32">
           <content>
             <p><span style="font-weight:bold">F: </span><marker name="tab" /><span style="font-weight:bold">The “Medical Officer of Health of/for the Public Authority” issue</span></p>
             <p><span style="font-weight:bold">F1:</span><marker name="tab" /><span style="font-weight:bold">The issue</span></p>
@@ -4111,7 +4111,7 @@
             <p style="text-align:justify;margin-left:0.5in">In summary, the policyholders contend that the relevant expression includes the Chief Medical Officer and/or Deputy Chief Medical Officer in England and each of the other nations in the UK. The insurers contend that neither of these individuals comes within that expression, because the words “Medical Officer of Health for the Public Authority” do not concern those who advise the UK government or the governments of the other UK nations. These words refer, and refer exclusively, to officers carrying out functions and duties on behalf of local government.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_33">
           <content>
             <p><span style="font-weight:bold">F2: The statutory context</span></p>
           </content>
@@ -4122,7 +4122,7 @@
             <p style="text-align:justify;margin-left:0.5in">The following summary is based upon the agreed facts in the Kaizen proceedings. The agreed facts in the Why Not Bar proceedings were not drafted in precisely the same way, but there was no difference which was material to the issue requiring resolution.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_34">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">The role of “Medical Officers of Health”</span></p>
           </content>
@@ -4181,7 +4181,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_35">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">Public Health England, the UKHSA and the Chief Medical Officer</span></p>
           </content>
@@ -4234,7 +4234,7 @@
             <p style="text-align:justify;margin-left:0.5in">The CMO plays a key role in working with the Department of Health and Social Care public health agencies, and the National Health Service, to convert the scientific advice from expert committees into a policy response.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_36">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">Response to notifiable diseases</span></p>
           </content>
@@ -4287,7 +4287,7 @@
             <p style="text-align:justify;margin-left:0.5in">All registered medical practitioners have a statutory duty to report every case of a notifiable infectious disease to the ‘proper officer’ of the local authority or local UKHSA Health Protection Team via a Statutory Notification form. This is in accordance with Section 45C(3)(a) of the 1984 Act and the Health Protection (Notification) Regulations 2010.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_37">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">F3:</span><marker name="tab" /><span style="font-weight:bold">The parties’ arguments</span></p>
           </content>
@@ -4334,7 +4334,7 @@
             <p style="text-align:justify;margin-left:0.5in">Although the terms of the Why Not Bar Policy are not precisely the same, Mr Christie’s argument relied upon essentially the main themes in Mr Howie’s argument. For example, the Why Not Bar Policy only referred to the “Public Authority” in two parts of clause 6: the notifiable disease cover in 6A and the defects in drains cover in 6C, rather than in each of the parts of the equivalent cover in the Kaizen policies. Mr Christie submitted that the drains cover in 6C showed the local context of “Public Authority” and must refer to the local authority. The same meaning should therefore be given to the phrase in 6A. To construe clause 6 as encompassing national governments and those advising them would be (wrongly) to give no weight to the immediate contractual context. Mr Christie’s submission also emphasised that the authority that is responsible for and would be expected to act in respect of each of the matters identified in the extensions immediately surrounding 6A is a local authority or local police; for example to address injury or illness arising from foreign or injurious matter in food or drink sold from the premises, or to deal with a murder or suicide at the premises. He accepted that both central and local authorities had powers to impose restrictions on premises in response to manifestations of notifiable disease at the premises. However, it did not follow that the relevant clause was concerned at all with the powers of central government.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_38">
           <content>
             <p style="text-align:justify"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -4522,7 +4522,7 @@
             <p style="text-align:justify;margin-left:0.5in">Accordingly, I accept the case of the Kaizen and Why Not Bar policyholders on this issue.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_39">
           <content>
             <p><span style="font-weight:bold">G:</span><marker name="tab" /><span style="font-weight:bold">The Mayfair wording</span></p>
             <p><span style="font-style:italic;font-family:'Times New Roman (Body CS)'">The issues and the parties’ arguments</span></p>
@@ -4604,7 +4604,7 @@
             <p style="text-align:justify;margin-left:0.5in">Axa also submitted that their interpretation of “suffered by”, when viewed in conjunction with the need for the disease to be suffered by “a visitor or employee”, reinforced and demonstrated the correctness of their submission as to the appropriate causation test discussed in section D above. In his oral submissions, Mr Davie emphasised that the words told the reader that the clause was concerned with people who had a “particular relationship with the premises”. Furthermore, these words were deliberately identifying a relationship with the premises that could be seen to be relevant to the health and safety obligations which are imposed on a business owner who has obligations in relation to employees but also obligations to anybody who might be affected by the working practices which, therefore, covers visitors. They were therefore concerned with a specific category of person at a specific place. In support of this submission on causation, the insurers also referred to the fact that, at the end of the schedule to the policy, there was wording in which policyholders were specifically reminded of their obligations in respect of health and safety.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_40">
           <content>
             <p><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -4826,7 +4826,7 @@
             <p style="text-align:justify;margin-left:0.5in">This reminder does not amount to a contractual term, and in any event, I do not see how it can have any bearing on the causation analysis. All of the claimants in the present cases are businesses which are likely to have employees, and duties will be owed to those employees (and indeed to visitors under, for example, the Occupiers Liability Act 1957). The fact that one aspect of Mayfair’s legal obligations is referred to at the end of the Mayfair Policy schedule, but not the other policies, is of no significance.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_41">
           <content>
             <p><span style="font-weight:bold">H: Answers to the preliminary issues.</span></p>
           </content>
@@ -4837,12 +4837,12 @@
             <p style="text-align:justify;margin-left:0.5in">This section contains my answers to the various preliminary issues in the light of the reasons set out in the earlier sections of this judgment. As previously stated, there were some preliminary issues which were no longer live at the time of the hearing, or were resolved by agreement of the parties. The preliminary issues are numbered in the order in which they appear in the order made at the CMC on 6 December 2022, but with some adjustment in order to reflect an amendment to the <span style="font-style:italic">Hairlab</span> preliminary issues, and the addition of issues in <span style="font-style:italic">Why Not Bar</span>. Ordinary text sets out the preliminary issue, and my answer is in bold text.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_42">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Excel </span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_43">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">1.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">For the purposes of the Infectious Diseases Extension, in order to show that loss resulting from interruption of or interference with the Claimant’s business at the Premises was proximately caused by closure of the Premises or part thereof on the order or advice of any local or governmental authority as a result of an occurrence of COVID-19 at the Premises, is it sufficient to prove that the order or advice was made or continued in response to cases of COVID-19 which included at least one case of COVID-19 at the Premises which had occurred by the date of the order or advice?</p>
@@ -4853,7 +4853,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_44">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">2.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">If so, does that one case of COVID-19 need to have occurred within a certain period of time before the date of the order or advice (and how in principle is that period of time to be ascertained)? </p>
@@ -4864,7 +4864,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_45">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">3.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">For the purposes of the Infectious Diseases Extension, in order to show that loss resulting from interruption of or interference with the Claimant’s business at the Premises was proximately caused by closure of the Premises or part thereof on the order or advice of any local or governmental authority as a result of an occurrence of COVID-19 at the Premises, is it necessary to prove:</p>
@@ -4903,7 +4903,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_46">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">4.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">Does an occurrence of COVID-19 at the Premises before it was made a notifiable disease on 5 March 2020 in England constitute an “<span style="font-style:italic">occurrence … of any human contagious or infectious disease … an outbreak of which is required by law or stipulated by the governmental authority to be notified</span>” within the meaning of the Infectious Diseases Extension?</p>
@@ -4914,12 +4914,12 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_47">
           <content>
             <p><span style="font-style:italic;font-weight:bold">PizzaExpress </span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_48">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">5.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">In relation to Extension 2(a)(i), and on its proper construction, is the causal requirement in that Extension satisfied:</p>
@@ -4954,7 +4954,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_49">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">6.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">On the proper construction of Extension 2(a)(i), what must the Claimants prove to establish a relevant “<span style="font-style:italic">occurrence of a Notifiable Human Disease at the Premises</span>”? Specifically:</p>
@@ -4989,12 +4989,12 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_50">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Kaizen Cuisine</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_51">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">7.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">For purposes of the Premises Closure or Restrictions Extension to Section 2 of the Policies, in order to show that loss from interruption or interference with the Claimant’s business was proximately caused by closure or restrictions placed on the Premises on the advice of or with the approval of the Medical Officer of Health for the Public Authority as a result of COVID-19 occurring at the Premises, is it sufficient to prove either:</p>
@@ -5022,7 +5022,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_52">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">8.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">If the answer to issue 7 is ‘no’, is it necessary to prove that the interruption or interference was in consequence of closure or restrictions which would not have been placed on the Premises but for the occurrence of COVID-19 at the Premises, or does the Premises Closure or Restrictions Extension impose some other causal requirement (and if so, what)?</p>
@@ -5033,7 +5033,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_53">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">9.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">What (if anything) is the effect of the requirement in the Premises Closure or Restrictions Extension that any closure or restrictions must be placed on the Premises “<span style="font-style:italic">on the advice or with the approval of the Medical Officer of Health for the Public Authority</span>”?</p>
@@ -5044,7 +5044,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_54">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">10.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">Does an occurrence of COVID-19 constitute an occurrence of a “Notifiable Human Disease” (being “An illness sustained by any person caused by … any human infectious or contagious disease an outbreak of which the competent public authority has stipulated shall be notified to them”) within the meaning of the Policy only if it takes place after COVID-19 had been designated as a notifiable disease by the competent public authority?</p>
@@ -5055,12 +5055,12 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_55">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Hairlab</span><authorialNote class="footnote" marker="4"><p class="FootnoteText"> The issues were originally numbered 11 and 12 in the CMC order dated 6 December. They were subsequently revised so as to give rise to three issues. I have renumbered these 11, 12 and 12A.</p></authorialNote></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_56">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">11.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">On the proper construction of the Disease Extension, is the causal requirement in that Extension between the occurrence of a Notifiable Disease at the Premises and the interruption or interference satisfied: </p>
@@ -5105,7 +5105,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_57">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">12.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">‘On the proper construction of the ‘any occurrence of a Notifiable Disease … at the Premises’, is there an ‘occurrence’: </p>
@@ -5133,7 +5133,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_58">
           <heading style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">12A.    Subject to the above, on the proper construction of the Disease Extension within the policy as whole, </heading>
           <paragraph>
             <num style="margin-left:0.75in;text-indent:-0.25in">(a)</num>
@@ -5192,12 +5192,12 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_59">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Mayfair </span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_60">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">13.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">For the purposes of the Disease Clause in <span style="font-style:italic">Mayfair </span>do the words “<span style="font-style:italic">suffered by any visitor or employee…at the Premises</span>” when applied to COVID-19 mean the “<span style="font-style:italic">manifestation</span>” of symptoms (requiring a person to have displayed symptoms of and/or was diagnosed with COVID-19 whilst at the Premises) or do they mean a person was displaying symptoms of COVID-19 while at the Premises?</p>
@@ -5208,7 +5208,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_61">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">14.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">For the purposes of the Disease Clause in <span style="font-style:italic">Mayfair, </span>in order to show that loss from interruption of the insured business was proximately caused by closure of the Premises by Government due to any visitor or employee suffering from COVID-19 at the Premises is it sufficient to prove that the closure of the Premises by Government was due to at least one case of COVID-19 being suffered by a visitor or employee at the Premises which had occurred by the date of such Government action?</p>
@@ -5219,7 +5219,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_62">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">15.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">For the purposes of the Disease Clause in <span style="font-style:italic">Mayfair, </span>in order to show that loss from interruption of the insured business was proximately caused by closure of the Premises by Government due to any visitor or employee suffering from COVID-19 at the Premises is it necessary for the Claimant to prove that the closure of the Premises by Government was proximately caused by at least one case of COVID-19 being suffered by a visitor or employee at the Premises: </p>
@@ -5242,7 +5242,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_63">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">16.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">Is it the case that the Disease Clause in <span style="font-style:italic">Mayfair</span> does not provide an indemnity in respect of the effects of national or regional closure measures by Government:</p>
@@ -5265,12 +5265,12 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_64">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Why Not Bar</span><authorialNote class="footnote" marker="6"><p class="FootnoteText"> These issues were agreed subsequent to the order made at the 6 December CMC. In the relevant order, they were issues 1-4, which I have renumbered 17 – 20.</p></authorialNote></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_65">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">17.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">On the proper construction of Extension 6A, what must the Claimant prove to establish “notifiable human disease manifesting itself at the Premises”? Specifically, in circumstances where it is common ground that a notifiable human disease, such as Covid-19, was “manifesting itself at the Premises” whenever a person attended such Premises and was medically diagnosed as having been infected with the notifiable human disease and/or displayed symptoms of the notifiable human disease at the time of that attendance: </p>
@@ -5309,7 +5309,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_66">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">18.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">On the proper construction of Extension 6A, is the causal requirement in that Extension between the manifestation at the Premises and the closure or restrictions satisfied: </p>
@@ -5376,7 +5376,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_67">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">19.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">As regards the authority identified in Extension 6A, on the proper construction of Extension 6A: </p>
@@ -5404,7 +5404,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_68">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;margin-left:0.5in;text-indent:-0.5in">20.</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">Does the (or any) Indemnity Period in respect of the Claimant’s claim last for 24 months, as alleged by the Claimant, or, save possibly for a short period of time after its end, is there no cover under the Policy for any of the Claimant’s claimed losses after the end of the Period of Insurance on 1 November 2020, as the Defendants contend? </p>
@@ -5415,13 +5415,13 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_69">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Appendix 1</span></p>
             <p style="text-align:justify"><span style="font-style:italic;font-weight:bold">Excel</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_70">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Property Policy Schedule </span></p>
             <table class="TableGrid" uk:widths="1.77in 4.53in">
@@ -5452,7 +5452,7 @@
             </table>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_71">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Your Policy Dates:</span></p>
             <table class="TableGrid" uk:widths="3.15in 3.25in">
@@ -5467,7 +5467,7 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_72">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Policy Wordings</span></p>
             <p style="text-align:justify">It is here noted and agreed that the following Policy Wordings apply</p>
@@ -5478,13 +5478,13 @@
             <p style="text-align:justify">…</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_73">
           <num style="margin-left:0.25in;text-indent:-0.25in">4)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">any consequence of labour disputes, infectious or contagious diseases drought</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_74">
           <content>
             <p style="text-align:justify">…</p>
             <p style="text-align:justify">Special Condition</p>
@@ -5498,48 +5498,48 @@
             <p style="text-align:justify">The word Damage is extended to include closure of the Premises or part thereof on the order or advice of any local or governmental authority as a result of an outbreak or occurrence at the Premises of </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_75">
           <num style="margin-left:0.25in;text-indent:-0.25in">A)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">Any human contagious or infectious disease other than Acquired Immune Deficiency Syndrome (AIDS) or any AIDS related condition, an outbreak of which is required by law or stipulated by the governmental authority to be notified </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_76">
           <num style="margin-left:0.25in;text-indent:-0.25in">B)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">Food or drink poisoning</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_77">
           <num style="margin-left:0.25in;text-indent:-0.25in">C)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">Vermin or pests</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_78">
           <num style="margin-left:0.25in;text-indent:-0.25in">D)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">Defective sanitation</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_79">
           <content>
             <p style="text-align:justify">Provided that</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_80">
           <num style="margin-left:0.25in;text-indent:-0.25in">1)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">the Maximum Indemnity Period is limited to three months and shall apply from the date from which the closure order is enforced</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_81">
           <num style="margin-left:0.25in;text-indent:-0.25in">2)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">the Company shall not be liable under this Extension for more than the limit stated below in respect of any one loss</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_82">
           <content>
             <p style="text-align:justify">Limit £15,000,000</p>
             <p style="text-align:justify">Subject otherwise to the terms Exclusions and Conditions of this Policy</p>
@@ -5555,7 +5555,7 @@
             <p style="text-align:justify">Subject to the special provisions below the Company will pay as indemnity:</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_83">
           <num style="margin-left:0.5in;text-indent:-0.25in">1</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">In respect of <span style="font-weight:bold">Reduction in Turnover</span></p>
@@ -5566,7 +5566,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_84">
           <num style="margin-left:0.5in;text-indent:-0.25in">2</num>
           <intro>
             <p style="text-align:justify;margin-left:0.5in">In respect of <span style="font-weight:bold">Increase in Cost of Working</span></p>
@@ -5577,7 +5577,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_85">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Definitions</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Indemnity Period</span></p>
@@ -5590,7 +5590,7 @@
             <p style="text-align:justify"><span style="font-style:italic;font-weight:bold">Hairlab</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_86">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Shopkeepers Statement of Fact and Schedule</span></p>
             <table class="TableGrid" uk:widths="1.63in 1.25in 0.38in 1.63in 1.4in 0.23in">
@@ -5661,12 +5661,12 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_87">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Business Interruption Extension</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_88">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Cover</span></p>
             <table class="TableGrid" uk:widths="5.41in 1.08in">
@@ -5681,7 +5681,7 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_89">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Commercial Guard – Shopkeepers</span></p>
             <p style="text-align:justify"><span style="font-weight:bold">Policy Wording</span></p>
@@ -5689,7 +5689,7 @@
             <p style="text-align:justify">The <span style="font-weight:bold">Company</span> will indemnify the <span style="font-weight:bold">Insured</span> in respect of loss resulting from the interruption or interference with the <span style="font-weight:bold">Business</span> in consequence of:</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_90">
           <num>(a)</num>
           <intro>
             <p style="text-align:justify;margin-right:0.5in;text-indent:0.5in" />
@@ -5707,30 +5707,30 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_91">
           <num style="margin-left:0.25in;text-indent:-0.25in">(e)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">the discovery of vermin or pests at the <span style="font-weight:bold">Premises</span> which causes restrictions on the use of the <span style="font-weight:bold">Premises</span> on the order or advice of the Local Authority</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_92">
           <num style="margin-left:0.25in;text-indent:-0.25in">(f)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">any accident causing defects in the drains or other sanitary arrangements in the <span style="font-weight:bold">Premises</span> which causes restrictions on the use of the <span style="font-weight:bold">Premises</span> on the order or advice of the Local Authority</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_93">
           <num style="margin-left:0.25in;text-indent:-0.25in">(g)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">any occurrence of murder or suicide at the <span style="font-weight:bold">Premises</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_94">
           <content>
             <p style="text-align:justify;margin-right:0.5in"><span style="font-weight:bold">Special Provisions</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_95">
           <num style="margin-left:0.25in;text-indent:-0.25in">(c)</num>
           <intro>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">Notifiable Disease shall mean illness sustained by any person resulting from:</p>
@@ -5748,7 +5748,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_96">
           <num style="margin-left:0.25in;text-indent:-0.25in">(d)</num>
           <intro>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">For the purpose of this Extension the Definition of Indemnity Period is amended to read:</p>
@@ -5786,7 +5786,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_97">
           <content>
             <p style="text-align:justify;margin-right:0.5in"><span style="font-style:italic;font-weight:bold">Muscleworks</span></p>
             <table class="TableGrid" uk:widths="1.57in 0.08in 0.03in 1.52in 1.55in 0.47in 0.88in 0.2in 0.1in">
@@ -5843,7 +5843,7 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_98">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Commercial Guard – Leisure</span></p>
             <p style="text-align:justify"><span style="font-weight:bold">Policy Wording </span></p>
@@ -5851,7 +5851,7 @@
             <p style="text-align:justify">The <span style="font-weight:bold">Company</span> will indemnify the <span style="font-weight:bold">Insured</span> in respect of loss resulting from the interruption or interference with the <span style="font-weight:bold">Business</span> in consequence of:</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_99">
           <num>(a)</num>
           <intro>
             <p style="text-align:justify;margin-right:0.5in;text-indent:0.5in" />
@@ -5869,30 +5869,30 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_100">
           <num style="margin-left:0.25in;text-indent:-0.25in">(h)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">the discovery of vermin or pests at the <span style="font-weight:bold">Premises</span> which causes restrictions on the use of the <span style="font-weight:bold">Premises</span> on the order or advice of the Local Authority</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_101">
           <num style="margin-left:0.25in;text-indent:-0.25in">(i)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">any accident causing defects in the drains or other sanitary arrangements in the <span style="font-weight:bold">Premises</span> which causes restrictions on the use of the <span style="font-weight:bold">Premises</span> on the order or advice of the Local Authority</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_102">
           <num style="margin-left:0.25in;text-indent:-0.25in">(j)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">any occurrence of murder or suicide at the <span style="font-weight:bold">Premises</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_103">
           <content>
             <p style="text-align:justify;margin-right:0.5in"><span style="font-weight:bold">Special Provisions</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_104">
           <num style="margin-left:0.25in;text-indent:-0.25in">(e)</num>
           <intro>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">Notifiable Disease shall mean illness sustained by any person resulting from:</p>
@@ -5910,7 +5910,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_105">
           <num style="margin-left:0.25in;text-indent:-0.25in">(f)</num>
           <intro>
             <p style="text-align:justify;margin-left:0.25in;margin-right:0.5in;text-indent:0.12in">For the purpose of this Extension the Definition of Indemnity Period is amended to read:</p>
@@ -5948,7 +5948,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_106">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Bodylines</span></p>
             <table class="TableGrid" uk:widths="1.57in 0.08in 0.03in 1.52in 1.55in 0.46in 0.89in 0.2in 0.1in">
@@ -6005,7 +6005,7 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_107">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Commercial Guard – Leisure</span></p>
             <p style="text-align:justify"><span style="font-weight:bold">Policy Wording </span></p>
@@ -6014,7 +6014,7 @@
             <p style="text-align:justify"><span style="font-style:italic;font-weight:bold">Mayfair </span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_108">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Schedule of Insurance</span></p>
             <table class="TableGrid" uk:widths="1.77in 3.99in 0.84in">
@@ -6089,7 +6089,7 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_109">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">CPM10 Murder, suicide and infectious diseases extension 2006</span></p>
             <p style="text-align:justify">Section B (loss of Profits) is extended to included losses arising from the closure of the Premises by a competent authority due to an human notifiable infectious disease or food poisoning suffered by any visitor or employee or by defective sanitation vermin or pests at the Premises as specified in the schedule or by murder or suicide occurring at the Premises.</p>
@@ -6097,7 +6097,7 @@
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Page 13 of 13</span></p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_110">
           <heading style="text-align:justify">We also remind you of your obligations under the <span style="font-weight:bold">Health &amp; Safety at Work Act 1974</span> to protect the health safety and welfare of your Employees which includes</heading>
           <paragraph>
             <num style="font-family:'Times New Roman';margin-left:0.5in;text-indent:-0.25in">-</num>
@@ -6124,12 +6124,12 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_111">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic;font-weight:bold">Kaizen</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_112">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">Restaurant Package Insurance</p>
             <table class="TableGrid" uk:widths="2.17in 3.6in">
@@ -6163,13 +6163,13 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_113">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Small Commercial/SME Package Cover Policy Document</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Definitions</span></p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_114">
           <heading style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Notifiable Human Disease – An illness sustained by any person caused by</span></heading>
           <paragraph>
             <num style="margin-left:0.5in;text-indent:-0.25in">a)</num>
@@ -6194,13 +6194,13 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_115">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">General Exclusions</span></p>
             <p style="text-align:justify">This Policy does not cover</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_116">
           <num style="margin-left:0.25in;text-indent:-0.25in">1)</num>
           <intro>
             <p style="text-align:justify;margin-left:0.25in">War Government Action Radioactive Contamination and Sonic Bangs</p>
@@ -6226,7 +6226,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_117">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">SECTION 1 – MATERIAL DAMAGE</span></p>
             <p style="text-align:justify">In the event of <span style="font-weight:bold">Damage</span> to <span style="font-weight:bold">Property</span> insured at the <span style="font-weight:bold">Premises</span> from an <span style="font-weight:bold">Insured Peril</span> during the Period of Insurance the <span style="font-weight:bold">Insurer</span> will indemnify the Insured for the loss or amount of <span style="font-weight:bold">Damage</span> or at its option replace or reinstate such <span style="font-weight:bold">Property</span> in accordance with the provisions of the Policy.</p>
@@ -6238,13 +6238,13 @@
             <p style="text-align:justify">Excluding damage</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_118">
           <num style="margin-left:0.25in;text-indent:-0.25in">a)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">Arising from cessation of work or due to confiscation nationalisation seizure requisition or destruction by order of the government or any public authority</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_119">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Basis of Settlement Clauses</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">…</p>
@@ -6255,32 +6255,32 @@
             <p style="text-align:justify">For the purposes of this clause, the <span style="font-style:italic">Declared Value</span> shall mean the <span style="font-weight:bold">Insured’s</span> assessment of the <span style="font-style:italic">Cost of Reinstatement</span> of the items specified on the Schedule showing a <span style="font-style:italic">Declared Value</span> at the level of costs applying at the inception of the Period of Insurance including the extent to which indemnity is provided for</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_120">
           <num style="margin-left:0.25in;text-indent:-0.25in">a)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">the additional <span style="font-style:italic">cost of reinstatement</span> to comply with European Union and Public Authority requirements </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_121">
           <content>
             <p style="text-align:justify">…</p>
             <p style="text-align:justify">6) European Union and Public Authorities</p>
             <p style="text-align:justify">The <span style="font-weight:bold">Insurer</span> will indemnify the <span style="font-weight:bold">Insured</span> for the additional cost of</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_122">
           <num style="margin-left:0.25in;text-indent:-0.25in">a)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">reinstating the damaged parts of the <span style="font-weight:bold">Buildings</span></p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_123">
           <num style="margin-left:0.25in;text-indent:-0.25in">b)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in">upgrading any undamaged parts of the <span style="font-weight:bold">Buildings</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_124">
           <content>
             <p style="text-align:justify">for an amount not exceeding the amount that would have been payable if the <span style="font-weight:bold">Buildings</span> had been totally destroyed incurred solely by the necessity to comply with any building or other statutory regulations or Public Authority Bylaw or European Community Legislation in force at the time of such <span style="font-weight:bold">Damage</span> excluding… </p>
             <p style="text-align:justify"><span style="font-weight:bold">Conditions</span></p>
@@ -6297,7 +6297,7 @@
             <p style="text-align:justify">The liability of the <span style="font-weight:bold">Insurer</span> includes loss as insured by this Section resulting from interruption or interference with the <span style="font-weight:bold">Business</span> in consequence of</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_125">
           <num style="margin-left:0.25in;text-indent:-0.25in">1)</num>
           <intro>
             <p style="text-align:justify;margin-left:0.25in">Premises Closure or Restrictions</p>
@@ -6343,7 +6343,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_126">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic;font-weight:bold">Why Not Bar </span></p>
             <table class="TableGrid" uk:widths="2.07in 4.23in">
@@ -6386,19 +6386,19 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_127">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">G99 – Licenced Premises Conditions</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">You must comply with the following conditions</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_128">
           <num style="margin-left:0.39in;text-indent:-0.39in">1)</num>
           <content>
             <p style="text-align:justify;margin-left:0.39in">You must maintain all necessary licences with the Local Authority and comply with all licence requirements as detailed by the Local Authority</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_129">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Policy booklet Commercial Combined</span></p>
             <p style="text-align:justify"><span style="font-weight:bold">General Definitions</span></p>
@@ -6411,26 +6411,26 @@
             <p style="text-align:justify">…</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_130">
           <num style="margin-left:0.5in;text-indent:-0.25in">3</num>
           <content>
             <p style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold">Riot, civil commotion, strikers, locked-out workers</span> or <span style="font-weight:bold">persons taking part in labour disturbances</span> or <span style="font-weight:bold">malicious persons</span> excluding Damage</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_131">
           <num style="margin-left:0.5in;text-indent:-0.25in">a)</num>
           <content>
             <p style="text-align:justify;margin-left:0.5in">arisingfrom confiscation, requisition or destruction by order of the government or any public authority.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_132">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">…</p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">Basis of Settlement</p>
             <p style="text-align:justify">In respect of Buildings and General Contents (other than motor vehicles, directors’, partners’, and Employees’ personal effects)</p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_133">
           <heading style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">…</heading>
           <paragraph>
             <content>
@@ -6438,7 +6438,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_134">
           <content>
             <p style="text-align:justify">…</p>
             <p style="text-align:justify">Special Conditions</p>
@@ -6449,13 +6449,13 @@
             <p style="text-align:justify">…</p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_135">
           <num style="margin-left:0.25in;text-indent:-0.25in">10)</num>
           <content>
             <p style="text-align:justify;margin-left:0.25in;text-indent:0.12in">in the event that You receive any notification:</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_136">
           <heading style="text-align:justify">…</heading>
           <paragraph>
             <num style="margin-left:0.5in;text-indent:-0.25in">b)</num>
@@ -6474,7 +6474,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_137">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Business Interruption</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">Extensions </p>
@@ -6482,7 +6482,7 @@
             <p style="text-align:justify">…</p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_138">
           <heading style="text-align:justify">6</heading>
           <paragraph>
             <num style="margin-left:0.5in;text-indent:-0.25in">A)</num>
@@ -6515,12 +6515,12 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_139">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic;font-weight:bold">Pizza Express</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_140">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Schedule</span></p>
             <table class="TableGrid" uk:widths="1.47in 4.92in">
@@ -6543,13 +6543,13 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_141">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Trio</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Property and Business Interruption policy</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_142">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">General Definitions</span></p>
             <table class="TableGrid" uk:widths="1.97in 4.53in">
@@ -6564,14 +6564,14 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_143">
           <content>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Endorsement</span></p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">Pages 27 &amp; 28 of the Trio Property and Business Interruption Policy <span style="font-weight:bold">Extended Incident</span> is amended as follows – </p>
             <p style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">2 Extended Incident</span></p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_144">
           <heading style="text-align:justify;margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Incident</span> for the purpose of all cover provided by Section 2 includes:</heading>
           <paragraph>
             <num style="font-weight:bold;margin-left:0.5in;text-indent:-0.25in">a.</num>
@@ -6665,7 +6665,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_145">
           <content>
             <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Appendix 2 – Policy Wording in the </span><span style="font-style:italic;font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">FCA Test Case</span></p>
             <p style="text-align:justify">The policy wording identified by Supreme Court declarations 5 and 10:  </p>
@@ -6673,37 +6673,37 @@
             <p style="text-align:justify">The COMPANY will also indemnify the INSURED as provided in The Insurance of this Section for such interruption as a result of … Defective Sanitation NOTIFIABLE HUMAN DISEASE Murder or Suicide </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_146">
           <num>(a)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">closure or restriction on the use of the PREMISES by order of a Public Authority consequent upon vermin pests defects in drains or defective sanitation at the PREMISES </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_147">
           <num>(b)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any occurrence of a NOTIFIABLE HUMAN DISEASE at the PREMISES or attributable to food or drink supplied from the PREMISES </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_148">
           <num>(c)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any discovery of an organism at the PREMISES likely to result in the occurrence of a NOTIFIABLE HUMAN DISEASE </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_149">
           <num>(d)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any occurrence of a NOTIFIABLE HUMAN DISEASE within a radius of 25 miles of the PREMISES </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_150">
           <num>(e)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any occurrence of murder or suicide at the PREMISES.<span style="vertical-align:super;font-size:smaller">113</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_151">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">Hiscox4</span></p>
             <p style="text-align:justify">We will insure you for your financial losses and any other items specified in the schedule, resulting solely and directly from an interruption to your business caused by:   …    </p>
@@ -6714,55 +6714,55 @@
             <p style="text-align:justify">(d) defects in the drains or other sanitary arrangements; or     </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_152">
           <num>(e)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">vermin or pests at the premises </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_153">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold">MSAmlin1-2 </span></p>
             <p style="text-align:justify">Consequential loss as a result of interruption of or interference with the business carried on by you at the premises following: </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_154">
           <num>(a)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">i. any notifiable disease at the premises or due to food or drink supplied from the premises; ii. any discovery of an organism at the premises likely to result in the event of a notifiable disease; iii. any notifiable disease within a radius of twenty five miles of the premises; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_155">
           <num>(b)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">the discovery of vermin or pests at the premises which causes restrictions on the use of the premises on the order of the competent local authority; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_156">
           <num>(c)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any accident causing defects in the drains or other sanitary arrangements at the premises which causes restrictions on the use of the premises on the order of the competent local authority; or </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_157">
           <num>(d)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any murder or suicide at the premises. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_158">
           <content>
             <p><span style="font-weight:bold">QBE1</span></p>
             <p style="text-align:justify">[Loss resulting from] interruption of or interference with the business arising from: </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_159">
           <num>(a)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any human infectious or human contagious disease (excluding Acquired Immune Deficiency Syndrome (AIDS) or an AIDS related condition) an outbreak of which the local authority has stipulated shall be notified to them manifested by any person whilst in the premises or within a twenty five (25) mile radius of it; </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_160">
           <content>
             <p style="text-align:justify">(b)  actual or suspected murder, suicide or sexual assault at the premises; </p>
             <p style="text-align:justify">(c)  injury or illness sustained by any person arising from or traceable to foreign or injurious matter in food or drink provided in the premises; </p>
@@ -6772,43 +6772,43 @@
             <p>Loss resulting from interruption of or interference with the business in consequence of any of the following events: </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_161">
           <num>(a)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any occurrence of a notifiable disease at the premises or attributable to food or drink supplied from the premises; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_162">
           <num>(b)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any discovery of any organism at the premises likely to result in the occurrence of a notifiable disease; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_163">
           <num>(c)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any occurrence of a notifiable disease within a radius of 25 miles of the premises; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_164">
           <num>(d)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">the discovery of vermin or pests at the premises which cause restrictions on the use of the premises on the order or advice of the competent local authority; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_165">
           <num>(e)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any accident causing defects in the drains or other sanitary arrangements at the premises which causes restrictions on the use of the premises on the order of the competent local authority; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_166">
           <num>(f)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">any occurrence of murder or suicide at the premises </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_167">
           <content>
             <p><span style="font-weight:bold">QBE3 </span></p>
             <p>Loss resulting from interruption of or interference with the business as covered by this section in consequence of any of the following events: </p>
@@ -6822,37 +6822,37 @@
             <p style="text-align:justify">Loss as a result of </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_168">
           <num>(a)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">closure or restrictions placed on the Premises as a result of a notifiable human disease manifesting itself at the Premises or within a radius of 25 miles of the Premises. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_169">
           <num>(b)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">injury or illness sustained by any customer or Employee arising from or traceable to foreign or injurious matter in food or drink sold from the Premises. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_170">
           <num>(c)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">closing of the whole or part of the Premises by order of the Public Authority for the area in which the Premises are situate as a result of defects in the drains and other sanitary arrangements at the Premises </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_171">
           <num>(d)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">murder, rape or suicide occurring at the Premises. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_172">
           <num>(e)</num>
           <content>
             <p style="text-align:justify;text-indent:0.5in">closure or restrictions placed on the Premises on the advice or with the approval of the Medical Officer of Health or the Public Authority as a result of vermin and pests at the Premises. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_173">
           <content>
             <p><span style="font-weight:bold">RSA3 </span></p>
             <p>We shall indemnify You in respect of interruption or interference with the Business during the Indemnity Period following … any  </p>
@@ -6864,31 +6864,31 @@
             <p>… Notifiable Diseases &amp; Other Incidents  </p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_174">
           <num>(a)</num>
           <content>
             <p style="text-indent:0.5in">discovered at an Insured Location; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_175">
           <num>(b)</num>
           <content>
             <p style="text-indent:0.5in">attributable to food or beverages supplied at or from the Insured Locations; </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_176">
           <num>(c)</num>
           <content>
             <p style="text-indent:0.5in">which are reasonably likely to result from an organism discovered at an Insured Location; and/or </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_177">
           <num>(d)</num>
           <content>
             <p style="text-indent:0.5in">occurring within the Vicinity of an Insured Location, </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_178">
           <content>
             <p>during the Period of Insurance … within the Territorial Limits, the Insurer agrees to pay the Insured the resulting Business Interruption Loss.  </p>
           </content>

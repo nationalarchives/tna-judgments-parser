@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99/data.xml" />
-          <FRBRdate date="2023-08-08T15:16:14" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:17" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2023</uk:year>
         <uk:number>99</uk:number>
         <uk:cite>[2023] UKFTT 99 (TC)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>0f75ddf793168bfea5b24bd6e3a3aaea4df4b13969087cb6c9db2f259f18c2c6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -121,7 +121,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <heading class="Taxheading1">Introduction</heading>
           <paragraph eId="para_1">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">1.</num>
@@ -148,7 +148,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <heading class="Taxheading1">Notifiable Arrangements</heading>
           <paragraph eId="para_5">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">5.</num>
@@ -214,7 +214,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <heading class="Taxheading1">The Arrangements</heading>
           <paragraph eId="para_6">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">6.</num>
@@ -307,7 +307,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_4">
           <heading class="Taxheading3">Do the arrangements fall within any description prescribed by the Treasury by regulations?</heading>
           <paragraph eId="para_13">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">13.</num>
@@ -321,7 +321,7 @@
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in"><span class="markedcontent">The</span><span> </span><span class="markedcontent">arrangements need only fall within one of the descriptions for the requirement in</span><span> </span><span class="markedcontent">section 306(1)(a) to be met.</span></p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_4_1">
             <num class="Taxheading3Char" style="font-family:'Times New Roman'">(i)</num>
             <content>
               <p class="Taxbodytext1" style="text-indent:0.39in"><span class="Taxheading3Char" style="font-family:'Times New Roman'">Regulation 8, description 3: Premium Fee</span></p>
@@ -416,68 +416,68 @@
               <p class="Taxbodytext1" style="text-align:left;margin-left:0in;text-indent:0.39in">I agree with HMRC that the arrangements therefore fall within the description in regulation 8.</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_4_2">
             <num class="Taxheading3Char" style="font-family:'Times New Roman'">(ii)</num>
             <content>
               <p class="Taxbodytext1" style="text-indent:0.39in"><span class="Taxheading3Char" style="font-family:'Times New Roman'">Regulation 10, description 5: Standardised Tax Products</span></p>
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <heading class="Taxbodytext1">The Standardised Tax Products description was amended in 2016 by SI 2016/99.</heading>
-          <level>
+          <level eId="lvl_5_1">
             <content>
               <p class="Taxquotation" style="margin-left:0.79in"><span class="Taxbodytext1Char" style="font-family:'Times New Roman'">Regulation 10, description 5: Standardised tax products</span><br /><span class="Taxbodytext1Char" style="font-family:'Times New Roman'">Prior to 23 February 2016, description 5 of regulation 10 provided as follows:</span><br />(1) Arrangements are prescribed if the arrangements are a standardised tax product...<br />(2) For the purposes of paragraph (1) arrangements are a product if—</p>
             </content>
           </level>
-          <paragraph>
+          <paragraph eId="lvl_5_2">
             <num>(a)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the arrangements have standardised, or substantially standardised,<br />documentation—<br />(i) the purpose of which is to enable the implementation, by the client, of the<br />arrangements; and<br />(ii) the form of which is determined by the promoter, and not tailored, to any<br />material extent, to reflect the circumstances of the client;<br />(b) a client must enter into a specific transaction or series of transactions; and<br />(c) that transaction or that series of transactions are standardised, or substantially<span style="font-family:'Times New Roman'"> </span>standardised in form.</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_3">
             <num>(3)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purpose of paragraph (1) arrangements are a tax product if it would be<span style="font-family:'Times New Roman'"> </span>reasonable for an informed observer (having studied the arrangements) to conclude<span style="font-family:'Times New Roman'"> </span>that the main purpose of the arrangements was to enable a client to obtain a tax<span style="font-family:'Times New Roman'"> </span>advantage.</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_4">
             <num>(4)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purpose of paragraph (1) arrangements are standardised if a promoter makes<span style="font-family:'Times New Roman'"> </span>the arrangements available for implementation by more than one other person.</p>
             </content>
           </paragraph>
-          <level>
+          <level eId="lvl_5_5">
             <content>
               <p class="Taxquotation" style="margin-left:0.79in">Since 23 February 2016, description 5 of regulation 10 provides as follows:</p>
             </content>
           </level>
-          <paragraph>
+          <paragraph eId="lvl_5_6">
             <num>(1)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Subject to regulation 11, arrangements are prescribed if a promoter makes the<span style="font-family:'Times New Roman'"> </span>arrangements available for implementation by more than one person and the<span style="font-family:'Times New Roman'"> </span>conditions in paragraph (2) are met.</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_7">
             <num>(2)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The conditions are that an informed observer (having studied the arrangements and<span style="font-family:'Times New Roman'"> </span>having regard to all relevant circumstances) could reasonably be expected to conclude that –</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_8">
             <num>(a)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the arrangements have standardised, or substantially standardised,<br />documentation—<br />(i) the purpose of which is to enable a person to implement the<br />arrangements;<br />(ii) the form of which is determined by the promoter; and<br />(iii) the substance of which does not need to be tailored, to any material<br />extent, to enable a person to implement the arrangements;<br />(b) a person implementing the arrangements must enter into a specific transaction<span style="font-family:'Times New Roman'"> </span>or series of transactions;</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_9">
             <num>(c)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the transaction or series of transactions is standardised, or substantially<br />standardised, in form; and</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_5_10">
             <num>(d)</num>
             <content>
               <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">either the main purpose of the arrangements is to enable a person to obtain a<span style="font-family:'Times New Roman'"> </span>tax advantage or the arrangements would be unlikely to be entered into but for<span style="font-family:'Times New Roman'"> </span>the expectation of obtaining a tax advantage.</p>
@@ -550,7 +550,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <heading class="Taxheading3">s306 (1) (b) and (c)</heading>
           <paragraph eId="para_38">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">38.</num>
@@ -631,7 +631,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_7">
           <heading class="Taxheading1">Promoter</heading>
           <paragraph eId="para_49">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">49.</num>
@@ -870,7 +870,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_8">
           <heading class="Taxheading1">decision</heading>
           <paragraph eId="para_59">
             <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">59.</num>
@@ -890,17 +890,17 @@
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">By virtue of article 3(i) of the Appeals (Excluded Decisions) Order 2009 (SI 2009/275) any decision of this Tribunal about the applicability of section 314A and section 306A of the Finance Act 2004 is an excluded decision for the purposes of section 11(1) of the Tribunals, Courts and Enforcement Act 2007 and accordingly there is no right of appeal against this decision.</p>
             </content>
           </paragraph>
-          <level>
+          <level eId="lvl_8_1">
             <content>
               <p style="text-align:center"><span style="font-weight:bold">SARAH ALLATT</span></p>
             </content>
           </level>
-          <level>
+          <level eId="lvl_8_2">
             <content>
               <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE</span></p>
             </content>
           </level>
-          <level>
+          <level eId="lvl_8_3">
             <content>
               <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2023-02-02" refersTo="#decision"><span style="font-weight:bold">02</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">nd</span><span style="font-weight:bold"> FEBRUARY 2023</span></docDate></p>
             </content>

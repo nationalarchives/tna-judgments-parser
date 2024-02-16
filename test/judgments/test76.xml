@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2024/198/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2024/198/data.xml" />
-          <FRBRdate date="2024-02-14T16:26:46" name="transform" />
+          <FRBRdate date="2024-02-16T18:09:10" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2024</uk:year>
         <uk:number>198</uk:number>
         <uk:cite>[2024] EWHC 198 (Fam)</uk:cite>
-        <uk:parser>0.21.3</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>f63b14f5295b34f9fd4d1fc351922670cfae6dfef9f4281233eaf9c63d8d69fa</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -170,7 +170,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <heading><span style="font-weight:bold">Paul Bowen KC (sitting as a Deputy Judge of the High Court)</span></heading>
           <paragraph>
             <content>
@@ -254,7 +254,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">F was born in Egypt but is an Italian national and is now 34.  M is a Moldovan national aged 33.  M moved to Italy in 2010 where she met and began a relationship with F in 2016.  They are unmarried.  They moved to the United Kingdom for work in 2018.  TKJ, their only child, was born in London in January 2019 and is now 5.  The family moved to Italy when TKJ was six months old where they lived until M removed her to the United Kingdom on 13 December 2022.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="Heading2">The mother’s allegations of domestic abuse prior to 13 December 2022</p>
           </content>
@@ -370,7 +370,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">M did not report these incidents of domestic abuse to Italian police or any other authorities as she feared she would not be taken seriously.  She says that F has a relationship with local police officers who used to visit his father’s restaurant and would eat there for free.  </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="Heading2">M’s threats after F’s arrival in the United Kingdom on 13 December 2022</p>
           </content>
@@ -381,7 +381,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">M arrived in the UK with TKJ on 13 December 2022 and was collected from the airport by another sister, MSO, and MSO’s husband, MBL, who live England with their children.  MBL has provided a witness statement describing how, following M’s arrival, F repeatedly tried to contact him and MSO and left threatening text and audio messages that he will ‘come to London and fuck me and my family’.  I have read transcripts of all these messages which contain abusive and graphic threats of violence, including sexual violence, towards M, M’s mother in Moldova, MSO and MBL.  There are dozens of these messages on 16 and 17 December 2022.  I have set out some examples in Appendix 1.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="Heading2">F’s report to police on 16 and 19 December 2022</p>
           </content>
@@ -392,7 +392,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">After receiving the messages from F on 16 December 2022, MBL and MSO helped M contact UK police given their concern that F would come to the UK and harm them.  I have seen a record of that report made to Thames Valley Police.  MBL spoke to the police call handler on 16 December 2022.  Police then attended on 19 December 2022, with an interpreter.  At Appendix 2 I have set out the police record of the call on 16 December and their attendance on 19 December 2023, in which M sets out an account of the abuse she suffered at F’s hands.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="Heading2">The non-molestation order on 23 December 2022</p>
           </content>
@@ -418,7 +418,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">As will be seen, there have been numerous breaches of this prohibition since the order was made.  F maintains that he was unaware of the terms of the order before 9 May 2023, the first time that he appeared (remotely) in the proceedings in Milton Keynes and when he was legally represented.  However, it is clear that he had received notice of these proceedings by 15 February 2023, at the latest, because on that day F made a supplementary complaint to the police in Italy in which the proceedings in Milton Keynes are referred to.  However, I will proceed on the basis that F was not aware of the non-molestation order until 9 May 2023.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="Heading2">F’s conduct since the non-molestation order</p>
           </content>
@@ -496,7 +496,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">While this is offensive in any language, I understand it is particularly offensive in Arabic.  The father’s denial (through his counsel) that this message was offensive was therefore a lie.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="Heading2">The father’s case</p>
           </content>
@@ -507,7 +507,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">F disputes all of M’s allegations which he claims are not true.  He also denies he has any problem with alcohol or that he is bankrupt.  He points out that there is no independent evidence of any of the injuries M alleges that she suffered or any evidence from social services, police or criminal justice authorities to substantiate her claims.  That, he says, is because they are ‘made up’.  So far as threatening to take TKJ to Egypt to raise her with the help of his mother, he says his mother in fact lives with him in Italy.  F has also offered a number of undertakings by way of protective measures, which I consider at paragraph 56, below.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="Heading2">Psychiatric evidence of Dr. Van Velsen</p>
           </content>
@@ -547,7 +547,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">In this section I set out the relevant legal principles.  These closely follow those I identified in <span style="font-style:italic">Re. EF (Abduction: Hague Convention (Slovakia)) </span>[2023] EWHC 505 (Fam), [20-25, 30-39] and which both Dr. Proudman and Ms. Kumar accepted was an accurate summary of the relevant law, although each emphasised aspects (in some cases supported by additional authority) that tended to support their case.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="Heading2">Overview</p>
           </content>
@@ -636,7 +636,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="Heading2">Article 13(b): grave risk of harm or an intolerable situation</p>
           </content>
@@ -736,7 +736,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="Heading2">Domestic abuse, controlling or coercive behaviour and Article 13(b)</p>
           </content>
@@ -753,7 +753,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">Dr. Proudman drew my attention to a further important matter that the Court should bear in mind when assessing allegations of domestic abuse.  The court cannot infer that allegations are not true simply because a victim has not reported allegations of domestic abuse or because she has remained in an allegedly abusive relationship.  She referred to observations to that effect by Judd J in <span style="font-style:italic">M (A Child)</span> [2021] EWHC 3225 (Fam), [81-82], by Cobb J in <span style="font-style:italic">Re B-B (Domestic Abuse: Fact-Finding</span>) [2022] EWHC 108 (Fam), [98] and by Knowles J in <span style="font-style:italic">A v B </span>[2022] EWHC 3089 (Fam), [63-64].  A victim of abuse may remain in a relationship because they have ‘lost any objective sense of what is acceptable and unacceptable in a relationship’ (per Cobb J in <span style="font-style:italic">B-B</span>, [98]) or because their ability to resist their abuser has been compromised.  As Hayden J noted in <span style="font-style:italic">F v M</span>, [83, 113], there may be no need for an abuser to lock a victim of abuse in their home; eventually, the victim may effectively ‘lock themselves in’.  And a victim of abuse may not report abuse for the same reasons or because of ‘shame, fear of being disbelieved or fear that the process of reporting an assault will itself be traumatic’: per Knowles J in <span style="font-style:italic">A v B</span>, [64].</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="Heading2">Discretion</p>
           </content>
@@ -764,7 +764,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">Where the court is satisfied one of the exceptions in Article 13 is made out it is no longer under a duty to order the return of the child to the requesting state under Article 12.  However, the court retains a discretion to return the child.  This discretion is ‘at large’, that is to say it is not exercised within limits set down by the Hague Convention: per Baroness Hale in <span style="font-style:italic">Re. M (Abduction: Zimbabwe)</span> [2008] 1 FLR 251, giving a speech with which the rest of the House of Lords agreed: [43].  The underlying purposes of the Hague Convention are relevant to the exercise of the discretion, but should not always be given more weight than other considerations, which may include wider considerations of the child’s rights and welfare: [43].  The exercise of discretion will be determined by the court’s findings as to why there is no obligation to return the child.  For example, where the decision has been taken under Article 13(b) that there is a ‘grave risk’ of harm to the child if they are returned it will be ‘inconceivable’ that the court will nevertheless in its discretion order their return: [45] (a point she had also made in <span style="font-style:italic">Re. D</span> [2007] 1 A.C. 619, [55]).  Different considerations may apply in consent cases, although as a general principle ‘the further one gets from the speedy return envisaged by the Convention, the less weighty those general Convention considerations must be’: [44].</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="Heading2">Domestic abuse, the Hague Convention and Articles 2 and 3 ECHR</p>
           </content>
@@ -836,7 +836,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">In the light of that dictum Dr Proudman conceded, in my view rightly, that an argument that a return order will expose a victim of domestic abuse to a risk of a breach of Article 2 or 3 is to be determined indirectly through the operation of Article 13(b) and not directly through Article 20.  Both parties accepted that the distinctions between the two are likely to be more theoretical than real.  Both approaches require an assessment of the risk to the victim of domestic abuse on return and whether the available protective measures are adequate to address that risk.  The only dispute between the parties was whether I should conduct a separate Article 3 analysis as part of the Article 13(b) exercise: Dr. Proudman submitted that I should, Ms. Kumar that I should not.  In my judgment, such an analysis will not be necessary in most cases.  As the cited passage demonstrates, ‘the issues that could be raised under Article 20 are amply reflected in the operation of article 13(b)’ which ‘ensures that the court is not acting in a way which is incompatible with the ECHR’.  A proper analysis under Article 13(b), applying the <span style="font-style:italic">Re. S </span>approach, should ensure compliance with Articles 2 and 3.  However, there may be cases where an Article 2 or 3 analysis illuminates the Article 13(b) analysis. If the Court considers the risk on return is sufficient to meet the threshold of ‘inhuman and degrading treatment’ – or worse - then the effectiveness of the protective measures to address that risk will need to be commensurate with the gravity of that risk.  ‘The clearer the need for protection, the more effective the protective measures must be’: above, paragraph 33.4.  In my judgment, there will be cases where it is appropriate for the Court to consider the Article 2 or 3 case-law when conducting the Article 13(b) analysis.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="Heading2">Relevant principles in making findings on the evidence</p>
           </content>
@@ -876,7 +876,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="Heading2">Whether M has been the victim of domestic abuse by F</p>
           </content>
@@ -947,7 +947,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">I make no positive finding that F has alcohol problems as there is no evidence of this beyond M’s testimony, which is denied by F.  However, I cannot confidently dismiss that allegation and I therefore assume it to be true for the purposes of Article 13(b).  Similarly, I make no positive finding that F subjected M to sexual abuse given that M has given no detailed evidence of such abuse.  M explains that she gave no details because it is too painful for her to talk about and because she fears retribution from F if she does so.  In view of that explanation, which is plausible, and my other findings I am not able confidently to dismiss the allegations of sexual abuse, which I therefore assume to be true.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="Heading2">Whether M is suffering from a mental disorder as a result of the domestic abuse that she has suffered</p>
           </content>
@@ -958,7 +958,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">In the light of Dr. Van Velsen’s psychiatric evidence I find that M is suffering from a mental disorder, namely an adjustment disorder, which is the consequence of the domestic abuse from which she has suffered.  That mental disorder is likely to deteriorate if M is returned to Italy, particularly if protective measures are not adequate to protect her from continuing abuse by F or the fear of such abuse.  That deterioration may take the form of depression, anxiety and symptoms consistent with a diagnosis of PTSD and active suicidal ideation. I return to this in the context of my conclusions under Article 13(b).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="Heading2">Whether F has acted in breach of the non-molestation order made on 23 December 2022</p>
           </content>
@@ -980,7 +980,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">Against that background I now turn to the determination of the substantive issues.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="Heading2">Article 13(b): grave risk of harm to TKJ</p>
           </content>
@@ -1099,7 +1099,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">For these reasons, I find that M has established the exception under Article 13(b).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="Heading2">Discretion</p>
           </content>
@@ -1110,7 +1110,7 @@
             <p class="ListParagraph" style="margin-left:0.39in">Given my conclusions in relation to Article 13(b) it is ‘inconceivable’ that I would go on to order TKJ’s return as a matter of discretion: above, paragraph 37.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="Heading2">M’s Part 25 application</p>
           </content>
@@ -1167,7 +1167,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="Appendix">16 December 2022</p>
             <p class="Appendix">F: Remember that I’ll treat you the same way you treat me.</p>
@@ -1197,7 +1197,7 @@
             <p class="Appendix">F: Tell that slut of [M] to write to me in Italian, since I don’t understand.</p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_22">
           <heading class="Appendix">F: And to let me talk to my daughter, bitch!</heading>
           <paragraph>
             <content>
@@ -1205,7 +1205,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="Appendix">MBL spoke to the police call handler on 16 December 2022 and is recorded as saying the following:</p>
             <p class="Appendix">‘In Italy the suspect drank often and beat her and ‘hurt her’.  He took a knife and said he would kill her with the knife, in front of their children.  He said that he had friend [sic] in police and that he could hurt her, thrown her from a balcony or anything.  He told her that his connections to police would protect him.  The suspect is in Italy at the moment.  He has messaged caller to say that he will kill caller and his family.  Caller thinks that suspect knows that [M] is at his house. … Suspect has said that he will go to [REDACTED] and kill [M]’s mother.’</p>
