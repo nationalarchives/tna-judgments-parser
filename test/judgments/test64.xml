@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
-          <FRBRdate date="2024-01-16T20:14:42" name="transform" />
+          <FRBRdate date="2024-02-16T18:08:19" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1495</uk:number>
         <uk:cite>[2023] EWHC 1495 (Pat)</uk:cite>
-        <uk:parser>0.20.0</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>f5a256994f9d5137dc3cf3f27441337c260612a54cc6ddcf9a6fa3e5c715c1d6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -199,7 +199,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p>This judgment was handed down by the judge remotely by circulation to the parties’ representatives by e-mail and release to The National Archives. The date and time for hand-down is deemed to be 10.30am on 26 June 2023. </p>
             <p><span style="font-weight:bold">Miss Charlotte May KC (sitting as a Deputy High Court Judge):</span></p>
@@ -266,7 +266,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendants also argue that, even if the Claimant’s construction of this integer is correct, there is still no infringement because the claims require one message and one server, whereas the Shell system deploys two messages, and in the case of the second and third iteration, two servers. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="Heading1">CONDUCT OF THE TRIAL</p>
           </content>
@@ -277,7 +277,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Claimant was represented by Mr Martin Howe KC leading Dr Geoffrey Pritchard and the Defendants were represented by Ms Lindsay Lane KC leading Ms Beth Collett. The trial was conducted live and there were no Covid issues. I had the benefit of written opening and closing skeleton arguments, as well as an oral opening and closing from both parties. I am grateful to counsel and their instructing solicitors for the work put into preparing their cases. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="Heading1">the issues </p>
           </content>
@@ -342,7 +342,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="Heading1">the witnesses</p>
           </content>
@@ -353,7 +353,7 @@
             <p class="BodyText" style="margin-left:0.39in">Each side called one expert. The Claimant’s expert was Prof Keith Martin and the Defendants’ expert was Dr Kevin Berisso. Neither side criticised the way in which the other side’s expert gave oral evidence, and in my judgment they were right not to do so. I found both experts gave clear answers and did their best to assist the court on issues within their expertise. However, both sides criticised the way in which the other’s expert had been instructed and/or prepared his evidence.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="Heading3">Prof Martin </p>
           </content>
@@ -412,7 +412,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendants also criticised what was said to be Prof Martin’s apparent reluctance to put himself in the position of the skilled person implementing the prior art. This was in the context of questions put to Prof Martin about ways to implement various embodiments which were said to be obvious. The Claimant in turn criticised this line of questioning, saying that it was unsupported by evidence and was based on the ingenuity of counsel alone. These points are best dealt with in the context of obviousness, below. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="Heading3">Dr Berisso </p>
           </content>
@@ -441,7 +441,7 @@
             <p class="BodyText" style="margin-left:0.39in">Second, the Claimant criticised Dr Berisso’s approach to the prior art, accusing him of picking integers out of the prior art without considering the proper context in which they arose, or the other factors required by the claims. This is said to undermine his evidence on obviousness, and so again is best dealt with in that context, below. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="Heading1">the skilled person</p>
           </content>
@@ -585,7 +585,7 @@
             <p class="BodyText" style="margin-left:0.39in">In my judgment, the skilled person is a general information security professional who has an interest and experience in implementing computer related security systems. They will have gained that experience either working in AutoID or in the broader field of information security.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="Heading1">the common general knowledge</p>
           </content>
@@ -596,7 +596,7 @@
             <p class="BodyText" style="margin-left:0.39in">There was no dispute about the relevant principles. I was referred to <span style="font-style:italic">KCI Licensing Inc v Smith &amp; Nephew plc</span> [2010] EWHC 1487 (Pat), [2010] FSR 31 at [105]-[112] (as approved by the Court of Appeal at [2010] EWCA Civ 1260, [2011] FSR 8 at [6]). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="Heading2">Agreed CGK </p>
           </content>
@@ -925,7 +925,7 @@
             <p class="BodyText" style="margin-left:0.39in">The associated passenger will also have been given a boarding pass with a barcode, which is linked to the luggage ID. The scanning of the boarding pass is recorded at the gate because the scanner at the gate will send the boarding pass ID together with the scanner ID to the database. Because the boarding pass ID and the luggage ID are linked, the database is able to verify that there is no baggage on board that does not have an associated passenger in the aircraft. If a passenger fails to board on time, the relevant luggage can be easily identified and removed.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="Heading2">Disputed CGK</p>
           </content>
@@ -1020,7 +1020,7 @@
             <p class="BodyText" style="margin-left:0.39in"><span style="font-size:11.5pt">However, the Claimant did not accept that the content of the Gao paper and the disclosure of the Gumball Machine were CGK. As noted above, the Defendants did not suggest that they were either, so I do not need to address these materials further. </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="Heading1">the patent</p>
           </content>
@@ -1226,7 +1226,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="Heading1">Construction </p>
             <p class="Heading3">General principles of construction </p>
@@ -1343,7 +1343,7 @@
             <p class="BodyText" style="margin-left:0.39in">I reject the Defendants’ submission for the following reasons. First, I do not think that the passage to which I was referred in <span style="font-style:italic">Kirin-Amgen</span> is on point. That passage emphasises that construction is determined through the eyes of the skilled person and is based on what he/she would understand the words of the claim to mean. However, it says nothing about the skilled person ignoring parts of the description for that purpose. Secondly, the submission is contrary to principles (ii) to (iv) of <span style="font-style:italic">Virgin </span>as quoted above, which require construction of the claims in the context of the description as a whole (as argued by the Claimant). Thirdly, it is also contrary to common sense. In my judgment, the skilled person will take heed of the parts of the description which are expressed to fall outside the claim just as much as those parts which fall within it. This is because they still serve to help the skilled person understand the scope of the claim and what the words of the claim mean in that context. Fourthly, if the express teaching that an embodiment is outside the claim impacts on what the claim means and that teaching was added by amendment, it may be that matter has been added or protection has been extended, but that is a different point. It does not provide a basis for ignoring that teaching for the purposes of construction. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="Heading3">The Claims in Issue </p>
           </content>
@@ -1420,7 +1420,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="Heading3">Issues of construction</p>
           </content>
@@ -1437,7 +1437,7 @@
             <p class="BodyText" style="margin-left:0.39in">I also bear in mind the limited role that expert evidence can play in relation to the question of construction. Beyond evidence relating to terms of art, construction is a matter for the court and not the experts: see <span style="font-style:italic">Qualcomm v Nokia </span>[2008] EWHC 329 per Floyd J (as he then was) at [9]-[10].</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="Heading3">Meaning of “wherein the computing apparatus comprises the display and an electronic apparatus, and<span style="font-style:italic"> </span>wherein the display is a sign”</p>
           </content>
@@ -1666,7 +1666,7 @@
             <p class="BodyText" style="margin-left:0.39in">It is important to note some consequences of the Claimant’s construction, since they have a bearing on some of the other issues that I have to decide. First, the Claimant’s construction is predicated on the fact that a sign which cannot be updated is not electronic. However, the corollary of that argument is that a sign which can be updated is necessarily electronic. That is something which the Claimant’s counsel accepted in oral closings.  This concession is important in the context of added matter and extent of protection (see further below). Second, the Claimant’s construction is based on a broad interpretation of “computing apparatus” which necessarily includes the situation where the display and electronic apparatus are not in direct communication with each other and where the display has been generated independently of the electronic apparatus. This is important in the context of anticipation and obviousness (see further below). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="Heading3">The First Identifier Issue </p>
           </content>
@@ -1711,7 +1711,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that the claim is not limited to a situation where the server identifies the user or device once and once only. All that it requires is that the “first message” is transmitted to the server and that it includes the decoded information and the means to identify the device or user. It does not limit how many messages are sent or whether other messages can be sent to the server identifying the user before the “first message”. Whilst multiple messages would be less efficient, they do not undermine the purpose of the invention which is to provide secure access to services. In my judgment, the word “first” is used as a means of differentiating the message and the server from other messages and servers, and no more. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="Heading1">added matter </p>
             <p class="Heading3">Relevant principles  </p>
@@ -1729,7 +1729,7 @@
             <p class="BodyText" style="margin-left:0.39in">Both parties also referred me to <span style="font-style:italic">Nokia OYJ (Nokia Corporation) v IPCom GmbH &amp; Co KG </span>[2012] EWCA Civ 567 where Kitchin LJ (as he then was) explained the concept of an intermediate generalisation at [56]-[60]. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="Heading3">The Issue </p>
           </content>
@@ -1818,7 +1818,7 @@
             <p class="BodyText" style="margin-left:0.39in">It is worth noting the chronology in respect of these amendments. The Patent was granted on 8 May 2013. The first iteration of the Shell system was introduced on 22 July 2015 and the Claimant notified the Defendants of the existence of the Patent sometime in the second half of 2017. Subsequently, the second iteration of the Shell system was introduced in 2017 and the third iteration was introduced in about September 2018. The amendments to the C specification were published on 2 August 2018. The fourth iteration (not said to infringe) was introduced on 19 August 2019. Pursuant to s.27(3) Patents Act 1977 the amendments have the effect and are deemed always to have had effect from the grant of the patent. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="Heading3">Disclosure that the display can be static? </p>
           </content>
@@ -1954,7 +1954,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that if the claims of the Patent in the C Specification are limited to a static sign (as I have held), they disclose matter which is central to the invention but was not part of the application as filed. In the circumstances, the claims are bad for added matter and must be revoked. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="Heading3">Intermediate generalisation </p>
           </content>
@@ -1983,7 +1983,7 @@
             <p class="BodyText" style="margin-left:0.39in">I prefer the submissions of the Claimant on this issue and agree that if (contrary to what I have held above), the application had disclosed both electronic and non-electronic displays, the amended claims would not amount to an intermediate generalisation. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="Heading3">Electronic Apparatus</p>
           </content>
@@ -2018,7 +2018,7 @@
             <p class="BodyText" style="margin-left:0.39in">Accordingly, this provides a further reason why the claims are invalid for added matter. I should note that this point of added matter arises regardless of the issue of construction of “wherein the display is a sign” and whether the claim is limited to a static sign. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p class="Heading1">extended protection </p>
           </content>
@@ -2124,7 +2124,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that a non-electronic sign or display did not fall within the scope of claim 1 as granted, but now falls within the scope of the claim as amended post grant. As a result, the protection of the Patent has been extended by an amendment which should not have been allowed and is invalid for this reason.  This reasoning applies equally to claims 2, 7 and 8, which are also invalid accordingly. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="Heading1">schmidt</p>
             <p class="Heading3">Disclosure</p>
@@ -2271,7 +2271,7 @@
             <p class="BodyText" style="margin-left:0.39in">With the solarium embodiment, the user selects a time for which they wish to use the solarium. The terminal connected to the solarium thereupon creates a multidimensional barcode which is provided to the user (although the description does not state whether this is by means of a display or a printout). The user photographs the barcode with their mobile phone and transmits the data to a central server. If payment is made, this is communicated by the server to the terminal. The terminal then activates the solarium for the paid time. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_24">
           <content>
             <p class="Heading3">Anticipation – relevant principles</p>
           </content>
@@ -2282,7 +2282,7 @@
             <p class="BodyText" style="margin-left:0.39in">The applicable legal principles were not in dispute: in order for a piece of prior art to anticipate a patent, it must clearly and unambiguously disclose all the features of the claims in issue (<span style="font-style:italic">General Tire &amp; Rubber Co v Firestone Tyre &amp; Rubber Co Ltd </span>[1972] RPC 457 at 485). Disclosure can be implicit as well as explicit (<span style="font-style:italic">Edwards v Boston Scientific </span>[2017] EWHC 405 (Pat) at [139]). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_25">
           <content>
             <p class="Heading3">Anticipation – arguments and analysis</p>
           </content>
@@ -2387,7 +2387,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that if I am wrong in respect of claims 1 and 7, and those claims are anticipated by Schmidt on the Claimant’s construction, claims 2 and 8 are also anticipated. Moreover, since the Claimant accepts that claims 1 and 7 are anticipated by Schmidt on the Defendants’ construction, based on what I have said above, it follows that claims 2 and 8 are anticipated by Schmidt on the Defendants’ construction. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_26">
           <content>
             <p class="Heading3">Obviousness – relevant principles</p>
           </content>
@@ -2440,7 +2440,7 @@
             <p class="BodyText" style="margin-left:0.39in">I have all these principles well in mind. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_27">
           <content>
             <p class="Heading3">Obviousness – arguments and analysis </p>
           </content>
@@ -2613,7 +2613,7 @@
             <p class="BodyText" style="margin-left:0.39in">In the circumstances, I would not have held that the Patent is obvious over the solarium embodiment if it had been necessary to reach a decision on this issue. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_28">
           <content>
             <p class="Heading1">kilicCote </p>
             <p class="Heading3">Disclosure</p>
@@ -2701,7 +2701,7 @@
             <p class="BodyText" style="margin-left:0.39in">There was also some cross-examination on the embodiments described by reference to Figures 10 and 11, but the Defendants disavowed any reliance on those embodiments as part of their closing arguments and so I do not need to address them. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_29">
           <content>
             <p class="Heading3">Anticipation – relevant principles</p>
           </content>
@@ -2712,7 +2712,7 @@
             <p class="BodyText" style="margin-left:0.39in">I have set out the relevant principles in the context of Schmidt, above. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_30">
           <content>
             <p class="Heading3">Anticipation – argument and analysis </p>
           </content>
@@ -2813,7 +2813,7 @@
             <p class="BodyText" style="margin-left:0.39in">For completeness, and in case this matter goes further, I should also deal briefly with the argument in respect of the Defendants’ construction. This was based on the disclosure in relation to Figure 3, where there is express disclosure that the server is configured to present the image to the user via a computer (col 3 lines 16-17). As I noted above, there is also this disclosure in the context of the Figure 9 embodiment. However, this makes no difference to my conclusion that Kiliccote does not anticipate claims 1 and 7, since the integer that is missing is not one which turns on this issue of construction in any event. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_31">
           <content>
             <p class="Heading3">Obviousness – general principles</p>
           </content>
@@ -2824,7 +2824,7 @@
             <p class="BodyText" style="margin-left:0.39in">I have set out the relevant principles in the context of Schmidt, above. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_32">
           <content>
             <p class="Heading3">Obviousness – argument and analysis </p>
           </content>
@@ -2847,7 +2847,7 @@
             <p class="BodyText" style="margin-left:0.39in">In the circumstances, I can see why the Defendants did not spend much time on this part of their case. However, despite what Prof Martin said in his written evidence, in my judgment the Defendants have not discharged the evidential burden in respect of this attack. First, neither expert addressed the Figure 9 embodiment in writing by reference to the integers of the claim. Second, whilst the Defendants’ counsel addressed some of the integers with Prof Martin in cross-examination, she did not address them all. I agree with the Claimant that the relevant questions were not put to the Professor. In particular, counsel for the Defendants did not put to him that it would be obvious to the skilled reader implementing the third-party server/printed sign variant of Figure 9 to include a first identifier identifying the device or user of the device in the message sent from the secure device to the server. As a result, there was no evidence to support this part of the Defendants’ case and I reject the attack of obviousness over Kiliccote. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_33">
           <content>
             <p class="Heading1">insufficiency </p>
           </content>
@@ -2906,7 +2906,7 @@
             <p class="BodyText" style="margin-left:0.39in">Accordingly, I reject the attacks on the Patent in respect of insufficiency. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_34">
           <content>
             <p class="Heading1">infringement</p>
           </content>
@@ -3019,7 +3019,7 @@
             <p class="BodyText" style="margin-left:0.39in">As a result, in my judgment the first iteration of the Shell system would infringe the Patent (if it were valid) on the Claimant’s construction of “wherein the display is a sign”. By contrast, the second and third iterations of the Shell system would not.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_35">
           <content>
             <p class="Heading1">conclusions</p>
           </content>
@@ -3084,7 +3084,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_36">
           <content>
             <p><span style="font-weight:bold">Annex – Relevant Figures from Kiliccote</span></p>
             <p><img src="image7.emf.png" style="width:415.45pt;height:535.6pt" /></p>

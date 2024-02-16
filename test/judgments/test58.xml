@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/537/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/537/data.xml" />
-          <FRBRdate date="2023-08-08T17:30:01" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:26" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,7 +41,7 @@
         <uk:year>2023</uk:year>
         <uk:number>537</uk:number>
         <uk:cite>[2023] EWHC 537 (Ch)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>750d12f927466fc89ee555de230ff8dae452f95c8b3161881ce94dd5f06d2f76</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -159,7 +159,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p><span style="font-weight:bold">Deputy Insolvency and Companies Court Judge Addy KC:</span></p>
           </content>
@@ -326,7 +326,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Before addressing the Company’s asserted grounds of opposition, it is necessary to identify the sums claimed by the invoices relied upon in the statutory demand and the Petition and to set out some of the relevant provisions of the underlying agreements which I have referred to above.  </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaLevel1" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-weight:bold">The invoices and the agreements</span></p>
           </content>
@@ -943,7 +943,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaLevel2"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">The court’s jurisdiction to wind up a company</span></p>
           </content>
@@ -1116,7 +1116,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The applicable law and lack of evidence of foreign law</span></p>
           </content>
@@ -1127,7 +1127,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I should note at the outset that notwithstanding the fact that the Software Licence Agreement was expressly governed by the laws of Singapore and that the Custodian Agreements were all expressly governed by the laws of Hong Kong, neither side sought to adduce any evidence of such foreign law and each party proceeded on the basis that in the absence of such evidence English law should simply be applied by default (reference being made to Rule 25 in <span style="font-style:italic">Dicey, Morris &amp; Collins</span><span> </span><span style="font-style:italic">on the Conflict of Laws, 15</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> ed,</span> to that effect).  Having drawn the parties’ attention during the course of the hearing to the Supreme Court’s relatively recent decision in <span style="font-style:italic">Brownlie v FS Cairo (Nile Plaza) LLC</span> [2021] UKSC 45 and in particular to the terms of the J<span style="color:#000000">udgment of Lord Leggatt at [96] – [149] (with whom Lord Reed PSC, Lord Lloyd-Jones, Lord Briggs and Lord Burrows JJSC agreed on the foreign law issue)</span> and taking account of the Petitioners’ and the Company’s then essentially agreed position that I could and should regard both Singaporean and Hong Kong law of contract as materially similar to English law on the matters in issue, I am satisfied that that is a fair and reasonable assumption to make in the present case and I have proceeded on that basis.  In particular, I take account of the fact that both Singapore and Hong Kong are common law jurisdictions and that the issues which arise are essentially issues of contractual construction and factual operation (there being no dispute that the agreements I have identified above were entered into by the parties) and that the underlying documents were drafted in the English language.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">The Company’s grounds of opposition</span></p>
           </content>
@@ -1192,7 +1192,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Although the Company’s position was that each of these 7 grounds were successive alternative reasons why the Petition should be dismissed, there was inevitably some overlap between them.  Nevertheless, I address them below in the order in which they were presented.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_6">
           <num style="font-weight:bold">(i)</num>
           <content>
             <p class="ParaLevel1" style="text-indent:0.5in"><span style="font-weight:bold">The CIGA ground</span></p>
@@ -1564,7 +1564,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in"><span style="color:#000000">Furthermore, I accept the Petitioners’ submission that in relation to the claimed debts which fell due for payment in the months prior to 1 March 2020 it is extremely difficult for the Company to contend that any inability to pay those debts at the time they fell due was attributable to any financial effect of coronavirus (which the Company has not shown, other than by mere assertion, in any event).    </span></p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_7">
           <num style="font-weight:bold">(ii)</num>
           <content>
             <p class="ParaLevel1" style="text-indent:0.5in"><span style="font-weight:bold">the wrong venue ground</span></p>
@@ -1635,7 +1635,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In short, even leaving aside the fact that the material question is whether or not the claimed debts are bona fide disputed on substantial grounds, contrary to its claims the Company has not adduced evidence of its asserted solvency.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_8">
           <num>(iii)</num>
           <content>
             <p class="ParaLevel1" style="text-indent:0.5in"><span style="font-weight:bold">the wrong forum ground</span></p>
@@ -1689,7 +1689,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The jurisdiction clauses in the contractual documentation</span></p>
           </content>
@@ -1759,7 +1759,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The one overall agreement argument</span></p>
           </content>
@@ -1812,7 +1812,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">There is therefore no basis to regard any dispute in relation to the debts claimed pursuant the Custodian Agreements as being subject to the exclusive jurisdiction clause contained in the Software License Agreement.  On the contrary, the Company Custodian Agreement is subject to the expressly <span style="font-style:italic">non</span>-exclusive jurisdiction clause recited in paragraph 16(vi) above and the relevant jurisdiction clause for the purposes of the Company Custodian Agreement  Client Custodian Agreements is Clause 25.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The construction of Clause 25</span></p>
           </content>
@@ -1851,7 +1851,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Indeed, the fact that the Company thought it necessary to advance the one overall agreement argument was most likely a reflection of its recognition that, when the Client Custodian Agreements are read in isolation, properly construed they are subject only to a non-exclusive jurisdiction clause.  It would otherwise have been unnecessary to advance the one overall agreement argument.  </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Al Saad and the effect of an exclusive jurisdiction clause</span></p>
           </content>
@@ -1930,7 +1930,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In any event, in light of the conclusion which I have reached above in relation to the construction of Clause 25, if I am wrong about whether I should follow <span style="font-style:italic">Al Saad</span>, it would only affect the debt claimed pursuant to the Software License Agreement and not the debts claimed pursuant to the Custodian Agreements which exceed USD 100,000.00.  However, <span style="font-style:italic">if</span> the Custodian Agreements had also contained exclusive jurisdiction clauses, I would have granted permission to appeal in respect of the <span style="font-style:italic">Al Saad</span> issue and invited the parties to address me in relation to whether it would be appropriate to grant a leapfrog certificate (given the arguably different approaches in 2 judgments of the Court of Appeal and that the point is obviously one of general importance).   </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_13">
           <num style="font-weight:bold">(iv)</num>
           <content>
             <p class="ParaLevel1" style="text-indent:0.5in"><span style="font-weight:bold">the disputed debt ground</span></p>
@@ -1966,7 +1966,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The Company has sought to dispute these debts on essentially 2 alternative bases: (i) frustration and (ii) termination.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Frustration</span></p>
           </content>
@@ -2027,7 +2027,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In my judgment, there is no merit in the Company’s claim that the Client Custodian Agreements and/or the Software License Agreement and the Company Custodian Agreement were frustrated by any non-payment to the Company by SGH.   The Software License Agreement and the Company Custodian Agreement were free-standing contractual arrangements between the Company and Technologies Pte and the Company and Trust respectively, under which the Company was obliged to pay for the services which it contracted to be provided with.  As regards the Client Custodian Agreements, only one of these directly involved SGH.  Whilst it appeared to be common ground that the other Clients were in some way associated with or investors in SGH, and that digital tokens in the wallets had initially been provided by SGH, the payment obligations which fell upon the Company pursuant to the Client Custodian Agreements were not dependent upon the performance of any payment obligations by SGH (or others).  The Company’s position was that its role under the Client Custodian Agreements was merely one of facilitation; being obliged only to pass on to Trust payments which it received from clients without it having any independent liabilities.  However, that was plainly not what the terms of the Client Custodian Agreements which I have set out in paragraphs 17 to 19 above provided for.   Under the terms which were agreed, the Company clearly promised to pay the Fees on behalf of the Clients on an unconditional basis. Effectively, the Company indemnified Trust in the event of default by the Clients, an arrangement which made objective commercial sense in terms of allocation of risk.  Essentially, the Company’s position now is that it made a bad bargain but it is not the role of the Court to rewrite its terms.  The fact that even the Company recognised that its payment obligations under the Client Custodian Agreements were not contingent upon receipt from the corresponding Client is also evidenced by the fact that in various WhatsApp communications during March 2020 between Mr Angelo and Mr Quaglini, Mr Angelo repeatedly made reference to the Company seeking investment in response to Mr Quaglini’s requests for payment.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Termination</span></p>
           </content>
@@ -2080,7 +2080,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Accordingly these arguments, or more accurately complaints of unfairness, amount to no more than the Company inviting the Court to rewrite what it now considers to be a bad bargain.   They do not constitute a bona fide dispute on substantial grounds in relation to the debts which I have found are due pursuant to the relevant terms of the contractual agreements. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_16">
           <num style="font-weight:bold">(v)</num>
           <content>
             <p class="ParaLevel2" style="text-indent:0.5in"><span style="font-weight:bold">the asserted solvency ground.</span></p>
@@ -2098,7 +2098,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In any event, having concluded that there are debts which are above the statutory minimum and are indisputable, that is sufficient to establish insolvency for the purposes of section 123 of the Act, as the Court of Appeal made clear in <span style="font-style:italic">Re Taylor’s Industrial Flooring Ltd</span> [1990] BCC 44 at 48H-51B.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_17">
           <num style="font-weight:bold">(vi)</num>
           <content>
             <p class="ParaLevel2" style="text-indent:0.5in"><span style="font-weight:bold">the abuse of process ground and (vii) the motivation ground.</span></p>
@@ -2134,7 +2134,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">As I have held above, it cannot be said to have been improper for the Petitioners to have elected not to accept the repudiatory breach of the contractual arrangements by the Company.  In choosing not to terminate, particularly in circumstances where the Company was effectively seeking time and proposing to make late payments (as is apparent from the course of WhatsApp communications to which I was referred), it cannot be said (to adopt the words used in the Company’s Skeleton Argument) that the Petitioners were “<span style="font-style:italic">accruing an extortionate and illegitimate debt”</span> and by pursuing the present Petition engaging  in “<span style="font-style:italic">blackmail</span>”<span style="font-style:italic">.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Conclusion</span></p>
           </content>
@@ -2163,7 +2163,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel6"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Postscript</span></p>
           </content>

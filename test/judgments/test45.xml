@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
-          <FRBRdate date="2024-01-16T20:13:30" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:12" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2578</uk:number>
         <uk:cite>[2022] EWHC 2578 (Ch)</uk:cite>
-        <uk:parser>0.20.0</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>79d2f5213b7678ab85ed006ba34f880f77e241ede67a9b9868b24bca6aa292a5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -160,7 +160,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p><span style="font-weight:bold">Mr Simon Gleeson :</span></p>
           </content>
@@ -189,7 +189,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The First Respondent (who is the largest unsecured creditor of the Company) argues that the Charge, although validly created, was invalid under s.245 at its moment of creation, and that it is not validated by any of the subsequent actions of the Second Respondent. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">Introduction</span></p>
           </content>
@@ -272,7 +272,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The joint administrators of the Company were appointed pursuant to an Order of ICC Judge Prentis on 30 June 2021.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">The Law</span></p>
           </content>
@@ -385,7 +385,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">The DMCC Transaction</span></p>
           </content>
@@ -426,7 +426,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">There was a second round of amendments to the terms of the Notes in October 2020, but this does not seem to have been substantive.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">The Issues </span></p>
           </content>
@@ -524,7 +524,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_6">
           <num style="font-weight:bold">1.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">The Validity of the Charge</span></p>
@@ -536,7 +536,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Section 245(2)(a) of the Act provides that a charge will be valid to the extent of the value of so much of the consideration for its creation as consists of  “money paid, goods or services” which are “supplied to the company at the same time as, or after, the creation of the charge”. In order to apply this rule to these facts, we need to know the date of the Charge’s creation, the date of the provision of any consideration to the Company, whether that consideration falls within the limited range of consideration which can be recognised as such by the section, and what the value of that consideration should be taken to have been.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">The Date of creation of the Charge. </span></p>
           </content>
@@ -625,7 +625,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">This takes us to four further issues</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Did the transfer constitute “consideration” specifically for the grant of the charge?</span></p>
           </content>
@@ -671,7 +671,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">This seems to me to support the argument that for the purposes of this section “consideration” means value actually supplied, regardless of the contractual position.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Was the value that was given, given “by reason of” the charge?</span></p>
           </content>
@@ -700,7 +700,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in"> It is entirely true that at any time after the failure of the First Debenture Mr Farah was contractually bound to transfer the shares, and could in equity have been compelled to do so. However, at the same time the Company was obliged to create a charge, had not done so, and could in equity have been compelled to do so. It is highly implausible that any order could have been secured to mandate one without mandating the other. To my mind this emphasises the fact that the performance of each obligation was in fact dependent on the performance of the other. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Were the shares capable of constituting “consideration”?</span></p>
           </content>
@@ -775,7 +775,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In this context, it seems to me that in the circumstances the shares in DMCC satisfy that criterion. The Second Respondent also points out that since the Company was a holding company, its stock in trade was shares of other companies, and it seems extremely strange to argue that the acquisition of shares in a subsidiary by a holding company does not constitute the conduct of its day-to-day activities.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">What was the value of the consideration given?</span></p>
           </content>
@@ -808,7 +808,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I therefore think that, if a valuation cannot be agreed between the parties, it is a matter which should be determined at a further hearing.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The Administrator’s Second and Third Questions</span></p>
           </content>
@@ -843,7 +843,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_13">
           <num style="font-weight:bold">2.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">Did The Renegotiation Constitute New Consideration? </span></p>
@@ -945,7 +945,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Farah argues that simply by consenting to the Renegotiation he gave value to the Company, and that value should be counted as “consideration” for the purposes of s. 245. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">Can conduct constitute consideration for s.245?</span></p>
           </content>
@@ -974,7 +974,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I also note Mr Brockman’s point that, as set out in paragraph [55] above, the consequence of a failure of the Renegotiation would potentially have been the liquidation of the Company. This demonstrates the significance and importance of the agreement eventually reached to the Company. However, it does not mean that entry into that agreement is capable of constituting consideration here. The point is not that the concessions made by Mr Farah in the Renegotiation were not valuable- they clearly were. The point is that they did not have the effect of swelling the assets of the company available to creditors by any measurable amount, and therefore cannot constitute consideration for the purposes of s.245. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_15">
           <num style="font-weight:bold">3.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">Did the Note Exchange Result in a Discharge of Debts of the Company? </span></p>
@@ -992,7 +992,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">There are two questions here; one being as to whether the Note Exchange did constitute an entirely new transaction, and the other being as to whether, even if it did, that transaction would satisfy the requirements of s.245.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">Did the Note Exchange Constitute a New Transaction?</span></p>
           </content>
@@ -1033,7 +1033,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">If the transaction was simply a restructuring of the terms of the existing Notes, then I think it is clear that, for the reasons given above, merely consenting to such a restructuring would not constitute good consideration for the purposes of s.245.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">Would the transaction constitute good consideration even if the Note Exchange were a new transaction?</span></p>
           </content>
@@ -1205,7 +1205,7 @@
             </block>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_18">
           <num style="font-weight:bold">4.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">Did the Release of DMCC Funds after the Renegotiation Constitute Consideration?</span></p>
@@ -1275,7 +1275,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Procedural History </span></p>
           </content>

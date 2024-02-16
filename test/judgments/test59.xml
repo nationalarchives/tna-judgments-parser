@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/data.xml" />
-          <FRBRdate date="2023-08-08T17:30:18" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:49" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>117</uk:number>
         <uk:cite>[2023] UKUT 117 (IAC)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>4afdf77dc3a67ee855f57c3529ae689f3979f0d099366aa71b781dea67f5ca18</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -195,7 +195,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">INTRODUCTION</span></heading>
           <paragraph eId="para_1">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
@@ -279,7 +279,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 1</span><marker name="tab" /><span style="font-weight:bold">The background</span></heading>
           <paragraph eId="para_2">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">2.</num>
@@ -348,7 +348,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 2</span><marker name="tab" /><span style="font-weight:bold">The Issues</span></heading>
           <paragraph eId="para_3">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">3.</num>
@@ -404,7 +404,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_4">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 3</span><marker name="tab" /><span style="font-weight:bold">The current country guidance</span></heading>
           <paragraph eId="para_5">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
@@ -520,7 +520,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 4</span><marker name="tab" /><span style="font-weight:bold">The Legal Framework</span></heading>
           <paragraph eId="para_13">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
@@ -535,7 +535,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 5 </span><marker name="tab" /><span style="font-weight:bold">A summary of the 2018 elections in the DRC</span></heading>
           <paragraph eId="para_15">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
@@ -600,14 +600,14 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_7">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 6</span><marker name="tab" /><span style="font-weight:bold">The evidence before us</span></heading>
-          <level>
+          <level eId="lvl_7_1">
             <content>
               <p class="p" style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Dr Muzong W Kodi</span></p>
             </content>
           </level>
-          <level>
+          <level eId="lvl_7_2">
             <content>
               <p class="p" style="margin-left:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid">Written reports and expertise</span></p>
             </content>
@@ -649,7 +649,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_8">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic">The first report</span></heading>
           <paragraph eId="para_20">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
@@ -700,7 +700,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_9">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">The second report</span></heading>
           <paragraph eId="para_28">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
@@ -901,7 +901,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_10">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Front commun  pour le Congo (“FCC”)</span></heading>
           <paragraph eId="para_37">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">37.</num>
@@ -916,7 +916,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_11">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Bundu dia Kongo (“BDK”) or Bundu dia Mayala (“BDM”)</span></heading>
           <paragraph eId="para_39">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">39.</num>
@@ -925,7 +925,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_12">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">‘Union Sacrée’ (“The Sacred Union”)</span></heading>
           <paragraph eId="para_40">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">40.</num>
@@ -934,7 +934,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_13">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The CSG</span></heading>
           <paragraph eId="para_41">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">41.</num>
@@ -943,7 +943,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_14">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">Civil society activists, journalists and other media professionals</span></heading>
           <paragraph eId="para_42">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">42.</num>
@@ -952,7 +952,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_15">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">Monitoring and the risk for failed asylum seekers</span></heading>
           <paragraph eId="para_43">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>
@@ -1101,7 +1101,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_16">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Third Report</span></heading>
           <paragraph eId="para_52">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">52.</num>
@@ -1170,7 +1170,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_17">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">The oral evidence of Dr Kodi</span></heading>
           <paragraph eId="para_58">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">58.</num>
@@ -1507,7 +1507,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_18">
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 7</span><marker name="tab" /><span style="font-weight:bold">The parties’ submissions</span></heading>
           <paragraph eId="para_102">
             <num style="font-style:normal;font-family:'Book Antiqua';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">102.</num>
@@ -1516,7 +1516,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">The appellant</span></p>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic">Issues 1, 1A and 1B</span></p>
@@ -1563,7 +1563,7 @@
             <p class="p" style="margin-left:0.5in">Mr Bazini submits that though there has clearly been a change to the treatment of UDPS activists, at this point in time, it cannot be found to be a lasting durable change.  As such, the previous CG in relation to the risk to UDPS activists etc remains binding.  There can be no presumption of any lasting stability in respect of the UDPS’ hold on power. A shift towards former President Kabila could result in the UDPS losing their position as a ruling party, resulting in their classification, once again, as an opposition party.  Although UDPS activists are not “opposition activists”, should former President Kabila attempt to wrest control from President Tshisekedi they would be in a particularly vulnerable position. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Issue 1D</span></p>
           </content>
@@ -1586,7 +1586,7 @@
             <p class="p" style="margin-left:0.5in">Mr Bazini submits there is clear evidence that those who do not support the regime are at real risk of persecution. President Tshisekedi has shown that he will continue to attempt to silence the opposition, whether through the military and police or through the violent actions of UDPS supporters. He submits, given the military and police are still controlled by former President Kabila, it is likely that they will continue to target those who oppose him. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Issue 2</span></p>
           </content>
@@ -1627,7 +1627,7 @@
             <p class="p" style="margin-left:0.5in">Finally, Mr Bazini submits that even in circumstances where a FAS is able to travel through the airport without being detained, those who have returned with an ETD will, as such, be at real risk of Article 3 harm due to their inability to access basic services.  They would not have a ‘voters card’ which serves as the national identity card and is required to obtain housing, employment, and to travel internally in the country.<span style="font-style:italic"> </span>Voters’ cards are only issued during the registration of voters by the National Independent Electoral Commission (Commission Electorale Nationale Indépendante or CENI).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">The respondent</span></p>
           </content>
@@ -1682,7 +1682,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Part 8</span></p>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">General observations upon the evidence of Dr Kodi</span></p>
@@ -1700,7 +1700,7 @@
             <p class="p" style="margin-left:0.5in">We will return to the evidence of Dr Kodi as far as it is necessary to do so in considering the issues before us.  We have no doubt that Dr Kodi was doing his best to assist the Tribunal.  However, we note from the outset that having had the opportunity of hearing the evidence of Dr Kodi, and of observing his opinions comprehensively tested in cross examination, we agree with the submission made by Mr Hansen that Dr Kodi was prone to speculate and make (invariably) adverse assumptions, and that his general approach substantially undermines his evidence and the weight we attach to his opinions.  Much of the evidence set out in his written reports predates the formation of the Sacred Union.  He relies on anonymous or unreliable sources and his opinions are not grounded in concrete, credible or current examples. We did not find Dr Kodi to be objective in his evidence and although he made some concessions when he was bound to, he did not appear to be prepared to attach due weight to credible background material that pointed in the other direction to the unsubstantiated and vague claims made by sources that he consulted.    We therefore prefer the submissions made by Mr Hansen regarding the correct approach to Mr Kodi’s evidence.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_24">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part  9</span></p>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Whether the change in Presidency following the election on 30 December 2018, and in particular, following the formation of the Sacred Union in April 2021 has led to a durable change in the risk on return; (Issue 1)</span></p>
@@ -1783,7 +1783,7 @@
             <p class="p" style="margin-left:0.5in">In his closing written submissions Mr Bazini referred to background country evidence suggesting that President Tshisekedi was happy for opponents to be targeted.   We address this evidence in more detail below.  Having considered the wealth of background material before us, and the evidence of Dr Kodi, we are left in no doubt, and find that there has been a durable political change following the change in Presidency in 2019, and in particular following the formation of the Sacred Union in April 2021 marking the end of what began as a power sharing agreement between President Tshisekedi and the former President Kabila.  We find the change in Presidency following the elections held on 30 December 2018 and the announcement on 10 January 2019 that Felix Tshisekedi was the winner of the elections, has led to a durable change in the risk on return.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_25">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 10</span><marker name="tab" /><span style="font-weight:bold">Are those having or being perceived to have a political profile in opposition to former President former President Kabila at risk on return (Issue 1A) </span></p>
           </content>
@@ -1794,7 +1794,7 @@
             <p class="p" style="margin-left:0.5in">When it was put to him by Mr Hansen that opponents of former President Kabila are not at risk upon return to the DRC, Dr Kodi agreed.  He agreed that they are not at risk of persecution whether they are in the DRC or abroad.  Having considered all the evidence in the round we are satisfied that the durable change that we refer to following the elections held on 30 December 2018 is such that actual or perceived opponents of former President Kabila are not at real risk of persecution upon return to the DRC.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_26">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 11</span><marker name="tab" /><span style="font-weight:bold">Are those having or being perceived to have a political profile in opposition to President Tshisekedi at risk on return; (Issue 1B).</span></p>
           </content>
@@ -2006,7 +2006,7 @@
             <p class="p" style="margin-left:0.5in">Simply being a journalist, media worker or blogger is not likely to lead to a person facing treatment that amounts to persecution or serious harm unless they are considered to be a sufficiently high-profile opponent of President Tshisekedi.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_27">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 12 </span><marker name="tab" /><span style="font-weight:bold">Whether the change in Presidency following the election on 30 December 2018 has led to a durable change in the risk of persecution of UDPS activists as previously held in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">AB and DM Democratic Republic of Congo CG</span><span style="font-style:italic;font-weight:bold"> </span><span style="font-weight:bold">[2005] UKAIT 00118, endorsed in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">MK DRC CG</span><span style="font-style:italic;font-weight:bold"> </span><span style="font-weight:bold">[2006] UKAIT 00001 and re-affirmed in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">MM (UDPS members – Risk on return) Democratic Republic of Congo CG</span><span style="font-style:italic;font-weight:bold"> </span><span style="font-weight:bold">[2007] UKAIT 00023; (Issue 1C)</span></p>
           </content>
@@ -2034,7 +2034,7 @@
             <p class="p" style="margin-left:0.5in">We are entirely satisfied that the change in Presidency following the election on 30 December 2018 has led to a durable change in the risk of persecution of UDPS activists as previously held in <span style="text-decoration-line:underline;text-decoration-style:solid">AB and DM</span>. <span style="font-weight:bold"> </span>We accept the evidence before us that the risk faced by UDPS members and supporters has considerably diminished since President Tshisekedi took power and senior members of the party were appointed to posts in the government. It follows that the country guidance set out in <span style="text-decoration-line:underline;text-decoration-style:solid">AB and DM Democratic Republic of Congo CG</span><span style="font-style:italic"> </span>[2005] UKAIT 00118, endorsed in <span style="text-decoration-line:underline;text-decoration-style:solid">MK DRC CG</span><span style="font-style:italic"> </span>[2006] UKAIT 00001 and re-affirmed in <span style="text-decoration-line:underline;text-decoration-style:solid">MM (UDPS members – Risk on return) Democratic Republic of Congo CG</span><span style="font-style:italic"> </span>[2007] UKAIT 00023, as far as it relates to the risk of persecution of UDPS members and activists should no longer be followed.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_28">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 13</span><marker name="tab" /><span style="font-weight:bold">Whether in light of the new government, persons who have a significant and visible profile within APARECO (UK) and/or the CSG are at real risk of persecution for a Convention reason or serious harm or treatment proscribed by Article 3 ECHR. (Issue 1D)</span></p>
           </content>
@@ -2215,7 +2215,7 @@
             <p class="p" style="margin-left:0.5in">We find that the leaders, members and activists associated with the CSG are not at risk upon return to the DRC on account of their actual or perceived political opinion or sur place activities in the UK.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_29">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 14</span><marker name="tab" /><span style="font-weight:bold">Whether failed asylum seekers are at risk of treatment amounting to a breach of the Refugee Convention or of Article 3 ECHR on return to DRC, simply because they are failed asylum seekers. (Issue 2)</span></p>
           </content>
@@ -2554,7 +2554,7 @@
             <p class="p" style="margin-left:0.5in">We remind ourselves that we should only depart from the extant country guidance where we conclude that (i) material circumstances have changed; and (ii) such changes are well established evidentially and durable.  Standing back, we do not accept that FAS are at risk on return simply because they are failed asylum seekers and there is no basis in the evidence before us to depart from the guidance set out in <span style="text-decoration-line:underline;text-decoration-style:solid">BM and Others</span>.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_30">
           <content>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 15</span></p>
             <p class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">DISPOSAL</span></p>
@@ -2624,7 +2624,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/data.xml" />
-                <FRBRdate date="2023-08-08T17:30:28" name="transform" />
+                <FRBRdate date="2024-02-16T18:08:03" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

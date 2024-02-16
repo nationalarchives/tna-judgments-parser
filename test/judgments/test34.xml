@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/1872/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/1872/data.xml" />
-          <FRBRdate date="2024-02-14T16:27:14" name="transform" />
+          <FRBRdate date="2024-02-16T18:06:45" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -57,7 +57,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1872</uk:number>
         <uk:cite>[2022] EWHC 1872 (Comm)</uk:cite>
-        <uk:parser>0.21.3</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>1558f98a8a6c020f0b0ba0a83a5f2c62c3a5554982268a2c5f14117be808affa</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -195,7 +195,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p class="CoverDesc" style="text-align:justify"><span style="font-size:12pt">This judgment was handed down by the judge remotely by circulation to the parties’ representatives by email and release to The National Archives. The date and time for hand-down is deemed to be Tuesday 19 July 2022 at 10:30.</span></p>
             <p><span style="font-weight:bold">Nicholas Vineall QC :</span></p>
@@ -213,7 +213,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The only claim brought against VP Lux and VP Liecht is a claim brought by C1 and C2 which alleges an unlawful means conspiracy in which all the Defendants are said to have been conspirators. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">BACKGROUND AND THE PARTIES’ ROLES</span></p>
           </content>
@@ -356,7 +356,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">The Claimants’ claims</span></p>
           </content>
@@ -405,7 +405,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">The Procedural History</span></p>
           </content>
@@ -452,7 +452,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">On 22 October 2021, the VP Defendants filed the Jurisdiction Challenge and Set-Aside Application which is before me. The VP Defendants filed Mr Burbeary’s first witness statement in support of the applications. On 28 January 2022, the Claimants filed Mr Oldnall’s fifth and Mr Nuzzo’s first witness statements in response. On 1 April 2022, the VP Defendants filed Burbeary 2 in reply to the Claimants’ evidence and also raised an additional ground of alleged material non-disclosure. On 27 April 2022, the Claimants filed Oldnall 6 addressing the additional ground of alleged material non-disclosure.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">THE COMPETING CONTENTIONS IN RELATION TO JURISDICTION AND SERVICE OUT</span></p>
           </content>
@@ -475,7 +475,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">As against VP Lux the Claimants say that MDM is a consumer for BRR purposes and so is entitled to sue VP Lux here because MDM is resident here. If that is wrong, and in any event in relation to the claim by GIG (which, being a corporate, is clearly not a consumer) VP Lux, which accepts the burden on this issue falls on it, seeks to rely on what it says are exclusive jurisdiction clause (“EJCs”). VP Lux relies, as against MDM, on an EJC in a letter, between Emmediemme, Skew Base GP, and VP Lux. VP Lux also relies, against both C1 and C2 on what it says is an EJC contained in the Subscription documents under which the investments were made. If either of those EJC arguments prevail, as to which the parties agree that the standard is simply whether VP Lux has the better of the argument, the EJCs mean that this Court can have no jurisdiction. If not, the question is whether an exception to BRR applies. The Claimants rely on BRR Art 8(1), saying that the claim against VP Lux is so closely connected with the claim against XY and/or Mr Migani that is expedient to hear and determine them together; and/or on BRR Art 7(2) on the basis that the damage occurred, or alternatively say that the place of the event which gave rise to the damage is England.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">THE ISSUES</span></p>
           </content>
@@ -486,12 +486,12 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The fact that different regimes are applicable requires particular care to be exercised in defining the issues which arise for decision, but by the close of the hearing the parties were agreed that the following list of issues and route map accurately captures the issues which might arise for decision, although of course some outcomes on certain issues would obviate the need to decide other issues, and for reasons which I shall explain I do not need, in the event, need to decide every one of these issues in order to deal with these applications. It is also important to note that the VP Lux and VP Liecht issues are to some extent interdependent since (for instance) the decision whether to exercise discretion to permit service out on VP Liecht might be exercised differently depending on whether VP Lux were going to be sued here.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">VP Liecht – common law rules </span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_8">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">1.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.89in">As against VP Liecht, is there a serious issue to be tried? In particular, do the following allegations fail to meet that threshold:</p>
@@ -520,7 +520,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_9">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">2.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.89in">Is there a good arguable case the claim falls within a CPR PD6B Gateway, in particular either:</p>
@@ -543,7 +543,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_10">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">3.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.89in">Is England and Wales clearly and distinctly the appropriate forum, and if so should the court exercise its discretion to permit service out?</p>
@@ -554,18 +554,18 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_11">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">4.</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.89in">Was there a breach by Cs of their duty of fair presentation and if so should permission to serve out be set aside?</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-weight:bold">VP LUX – Brussels Recast</span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_13">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">5.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.89in">Is MDM a consumer for BRR purposes?</p>
@@ -576,7 +576,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_14">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">6.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.89in">In relation to the Letter Agreement EJC (for the MDM claim in respect of the €10m originally invested by Emmediemme) and in relation to the Subscription EJC (for all the claims) can VP Lux show that it has the better of the argument that </p>
@@ -599,7 +599,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_15">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.89in;text-indent:-0.5in">7.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.89in">Do either of the following exceptions apply:</p>
@@ -622,7 +622,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">VP LIECHT</span></p>
           </content>
@@ -1048,7 +1048,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">For reasons which I shall explain later I am satisfied that the VP Lux claim should continue in this court, and in those circumstances the only remaining point for decision on the VP Licht claim is the application to set aside service out for material non-disclosure. But I will deal with this at the end of my judgment because some of the heads of nondisclosure relate to issues which are more readily understood after I have dealt with the VP Lux issues.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">VP LUX</span></p>
           </content>
@@ -1146,7 +1146,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">GIG invested a further €5 million in each of the HFPO and MIN compartments of the Fund on 26 November 2018 and MDM subscribed for US$1,499,990 in the MIN (USD) compartment. The subscription form and offering document were in the same form as before. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="ParaLevel1">The Letter Agreement EJC</p>
           </content>
@@ -1265,7 +1265,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Accordingly the Defendants must look to the subscription agreement terms if they are to find an EJC to assist them.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The Subscription Agreement Terms</span></p>
           </content>
@@ -1401,7 +1401,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Issue 5</span></p>
           </content>
@@ -1412,7 +1412,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Issue 5 was the question of whether MDM is a consumer for BRR purposes. That issue does not seem to me to be entirely straightforward and since it is not necessary to resolve it in the light of my conclusions about EJCs, I prefer not to decide it.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Issue 7</span></p>
           </content>
@@ -1423,7 +1423,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The final issue which I have to decide in relation to VP Lux is Issue 7, which asks whether either BRR Art 8(1) (expedient to hear together) or BRR Art 7(2) (place of harm) applies. But Mr Blakeley realistically agreed that if the conspiracy claims against XY and Dr Migani were going to proceed in this court (as, on the basis of my findings, they are) it would indeed be expedient for the conspiracy claims against VBP Lux to be tried here alongside those claims arising from the same alleged conspiracy.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Material non-disclosure</span></p>
           </content>
@@ -1546,7 +1546,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">It would have been much better had the Claimants disclosed their profitable investments, because the failure to do so inevitably left the court on the ex parte application with an incomplete view of the overall factual matrix, but given that the non-disclosure was in fact irrelevant and given that, even if it ought to have been disclosed the disclosure would have made no difference, it does not seem to me that VP Liecht is entitled to have the order for service out set aside.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">CONCLUSION</span></p>
           </content>

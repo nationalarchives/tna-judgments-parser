@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2022/2363/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2022/2363/data.xml" />
-          <FRBRdate date="2024-02-14T16:27:30" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2363</uk:number>
         <uk:cite>[2022] EWHC 2363 (Pat)</uk:cite>
-        <uk:parser>0.21.3</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>7283b66963897b43c44a48da617ea68a836402a464ae505c164702c042b7d677</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -195,7 +195,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p>This judgment was handed down by the judge remotely by circulation to the parties’ representatives by e-mail and release to The National Archives. The date and time for hand-down is deemed to be 10.30am on 27 September 2022. </p>
             <p><span style="font-weight:bold">Miss Charlotte May KC (sitting as a Deputy High Court Judge):</span></p>
@@ -274,7 +274,7 @@
             <p class="BodyText" style="margin-left:0.39in">By the end of trial, the parties had agreed a list of issues for me to decide. However, for that list to make sense, it is necessary first to provide a summary of the witnesses and the relevant factual background. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="Heading2">The Witnesses </p>
           </content>
@@ -345,7 +345,7 @@
             <p class="BodyText" style="margin-left:0.39in">It is convenient at this stage to note that both experts built detailed financial models which they used to calculate the overall damages figure based on their opinions of the suggested input parameters.  However, the parties agreed that it was not necessary for me to learn how to operate the models or to reach a determination of the final damages sum as part of this judgment. Instead, the parties will work with their experts to input the necessary parameters that arise from my decision into the models and agree the resulting figure. It may be necessary for me to give directions about this, and I will hear from counsel as to the appropriate way forward in due course. However, since the experts agreed on the methodology for doing the calculations, this should be a reasonably straightforward exercise and I am confident that the parties will co-operate effectively.  The only downside with this approach, at least from my perspective, is that I have not been able to sense check the consequences of my judgment in terms of the overall damages figure. This has felt rather uncomfortable but is the necessary consequence of the way in which the evidence was prepared and presented. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="Heading2">Factual Background</p>
           </content>
@@ -566,7 +566,7 @@
             <p class="BodyText" style="margin-left:0.39in">As noted above, the work of installing geocomposites was carried out by contractors. The contractor could source the product by ordering directly from the manufacturer (the Claimant or the Defendant) or from their distributors (Aqua or Keyline respectively) or via Network Rail. The evidence was that for track renewal work, the contractor typically sourced the product from Network Rail (via its portal) whereas for specific projects they would typically source the product from the manufacturer or distributor. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="Heading2">The Issues </p>
           </content>
@@ -577,7 +577,7 @@
             <p class="BodyText" style="margin-left:0.39in">As I have said, by the end of trial the parties had helpfully agreed a list of seven issues which I have to decide, as follows. Some of the issues contain a number of sub-issues that will need to be addressed in turn.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="Heading2">Issue 1 - What structure should be assumed for the Claimant’s trading arrangements in the counterfactual?</p>
           </content>
@@ -594,7 +594,7 @@
             <p class="BodyText" style="margin-left:0.39in">The parties agreed that in this context, the actions of the Claimant are to be determined on the balance of probabilities, but where quantification of damages is dependent the actions of Aqua or Network Rail, such are assessed proportionately according to the chances. I will come back to this in the context of the relevant legal principles below.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="Heading2">Issue 2 - What prices would Geofabrics have been able to achieve for Tracktex in the counterfactual world?</p>
           </content>
@@ -623,7 +623,7 @@
             <p class="BodyText" style="margin-left:0.39in">In addition, the Defendant argued that sales to Aqua in the counterfactual should be subject to the same rebate scheme that the Claimant had agreed in the actual. The Claimant disagreed and said there should be no rebate. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="Heading2">Issue 3 - Number of sales of Tracktex in the counterfactual</p>
           </content>
@@ -640,7 +640,7 @@
             <p class="BodyText" style="margin-left:0.39in">There was also a question of whether the Claimant would have had capacity in the counterfactual to meet all the additional demand for Tracktex, and if not, what, if any, allowance should be made.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="Heading2">Issue 4 - Costs of production/sale of Tracktex</p>
           </content>
@@ -651,7 +651,7 @@
             <p class="BodyText" style="margin-left:0.39in">The costs of production were agreed. Whilst there had been a dispute about whether transport costs in respect of sales to Network Rail should also be included, by the end of the trial, the parties agreed that an additional 5.6% should be added to the costs of sales to Network Rail to allow for this. However, there remained a dispute about what allowance, if any, should be made for cost savings as a result of redundancies. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="Heading2">Issue 5 - Lost profits on future sales</p>
           </content>
@@ -680,7 +680,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="Heading2">Issue 6 - Was any loss attributable to the Crossrail deal too remote?</p>
           </content>
@@ -691,7 +691,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Claimant had agreed a price of £6.50 per sqm to supply Tracktex for the Crossrail project. The issue here is whether the Defendant was responsible for the additional losses caused by that lower price (as compared with the price that the Claimant would otherwise have sold Tracktex in the counterfactual), or whether such additional loss was too remote because it was not reasonably foreseeable.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="Heading2">Issue 7 - How much interest should be awarded?</p>
           </content>
@@ -702,7 +702,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Claimant argued that it should be 2% above base, whereas the Defendant said it should be 1% above base. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="Heading2">Points which fell away</p>
           </content>
@@ -737,7 +737,7 @@
             <p class="BodyText" style="margin-left:0.39in">Within his But For Scenario B, Mr MacGregor considered three different scenarios which he referred to as “the primary calculation”, “the alternative calculation” and “the instructed calculation”. The alternative calculation was based on a situation where there was 0% price growth, but a modified price adjustment mechanism based on quantities purchased. This scenario was also not pursued. The difference between the primary calculation and the instructed calculation relates to whether Network Rail sales in the counterfactual were made directly by the Claimant or via Aqua. This is addressed under Issue 1. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="Heading2">Legal Principles</p>
           </content>
@@ -748,7 +748,7 @@
             <p class="BodyText" style="margin-left:0.39in">There was no dispute between the parties as to the relevant legal principles applicable in this case. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="Heading4">General approach to damages</p>
           </content>
@@ -877,7 +877,7 @@
             <p class="BodyText" style="margin-left:0.39in">I echo the sentiment that the exercise is harder than it looks. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="Heading4">Burden of proof</p>
           </content>
@@ -998,7 +998,7 @@
             </block>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="Heading4"> Causation and Remoteness</p>
           </content>
@@ -1058,7 +1058,7 @@
             <p class="BodyText" style="margin-left:0.39in">I accept that the legal burden to prove the damages claim rests on the Claimant.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="Heading4">Loss of a chance</p>
           </content>
@@ -1190,7 +1190,7 @@
             <p class="BodyText" style="margin-left:0.39in">These authorities make clear that the “loss of chance” analysis applies if the uncertainty on quantum rests on hypothetical future events or the actions of a third party. By contrast, where the uncertainty on quantum rests on what the claimant hypothetically would have done, then this is determined on the balance of probabilities. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="Heading4">Interest </p>
           </content>
@@ -1243,7 +1243,7 @@
             </block>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="Heading2">Determination of the issues </p>
           </content>
@@ -1254,7 +1254,7 @@
             <p class="BodyText" style="margin-left:0.39in">Against that background, and with the relevant legal principles in mind, I now turn to the issues I must decide. In some cases, I have renamed the issue to reflect more accurately what remained in dispute by the end of trial. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="Heading2">Issue 1 - Would the Claimant have entered into an exclusive distribution agreement with Aqua?</p>
           </content>
@@ -1271,7 +1271,7 @@
             <p class="BodyText" style="margin-left:0.39in">In order to evaluate and determine this issue, it is necessary to recount the evidence about the nature of the Claimant and its business and the market for anti-pumping solutions, and to delve in more detail into why matters evolved as they did between the Claimant and Aqua. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="Heading4">The Claimant and its business</p>
           </content>
@@ -1288,7 +1288,7 @@
             <p class="BodyText" style="margin-left:0.39in">Geocomposites are multi-layered combinations of geosynthetics. They account for approximately half of the Claimant’s overall business. Within this side of the business, the Claimant sells three products to the rail industry. Two of these are reinforcement products used for placement under the railway (but do not replace a sand blanket or address the problem of pumping erosion). The third is Tracktex. Tracktex accounts for about 15% of the Claimant’s total sales. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p class="Heading4">The anti-pumping geocomposite market</p>
           </content>
@@ -1305,7 +1305,7 @@
             <p class="BodyText" style="margin-left:0.39in">As noted above, Tracktex has a number of perceived advantages over sand. These include (a) lower materials costs; (b) lower transportation costs; (c) lower installation costs; (d) lower removal costs; and (e) less track downtime to perform installation. In addition, a geotextile brings environmental advantages of decreased excavation depth (thereby reducing spoil for landfill and the volume of traffic involved in removing materials). Mr Donald gave evidence that he marketed these advantages to Network Rail as benefits of Tracktex. As he pointed out, since Network Rail adopted the product, it is only reasonable to assume that they accepted these benefits as genuine. This view is also supported by a document from Network Rail dated 18 October 2010 which shows the cost benefit of using Tracktex over a sand blanket (a Tracktex roll priced at £11.45/m<span style="vertical-align:super;font-size:smaller">2</span> produced a cost saving of approximately £765,908 over a stretch of track of about 24km). Mr Donald also said that Network Rail told him that Tracktex reduced track possession time by about 33%. This can represent an even greater saving than the materials costs saving, as possession of a mainline typically costs approximately £200,000 per day.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="Heading4">Aqua</p>
           </content>
@@ -1418,7 +1418,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_24">
           <content>
             <p class="Heading4">The Exclusive Distribution Agreement with Aqua</p>
           </content>
@@ -1468,7 +1468,7 @@
             <p class="BodyText" style="margin-left:0.39in">It was for all these reasons that the Claimant decided to cement relations with Aqua and entered into the exclusive distribution arrangement of 6 December 2013 referred to at paragraphs 33-34 above. This arrangement covered all sales of Tracktex, including sales which were in fact made to Network Rail (despite the Second Tender).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_25">
           <content>
             <p class="Heading4">Would the Claimant have offered Aqua an exclusive arrangement in the counterfactual?</p>
           </content>
@@ -1515,7 +1515,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that I reject the Defendant’s arguments that the Claimant would have offered an exclusive distribution agreement to Aqua in respect of all Tracktex sales. On the balance of probabilities, the Claimant would have continued the supply arrangements that were in place immediately before Hydrotex 2 came onto the market, which comprised direct supply to Network Rail and exclusive distribution via Aqua to contractors, specific projects, and non-Network rail customers.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_26">
           <content>
             <p class="Heading4">Would Aqua have demanded an exclusive distribution agreement in the counterfactual?</p>
           </content>
@@ -1568,7 +1568,7 @@
             <p class="BodyText" style="margin-left:0.39in">I should note for completeness that Mr Hicks also argued that even if there was a chance that Aqua would have demanded an exclusive distribution agreement in the counterfactual, then the Claimant would have refused that demand on the balance of probabilities. It was not put to Mr Donald in cross-examination that the Claimant would have agreed to an exclusive distribution agreement if Aqua had demanded one, and there was no other evidence to support this part of the Defendant’s case. Based on what I have held above, I do not have to decide this point. However, in case it matters, I would have held that it is more likely than not that the Claimant would have refused the demand if it had been made. This is essentially for the same reasons that I have given above in support of my view that the Claimant would not have been likely to offer an exclusive distribution agreement. The Claimant would not have needed to accede to such a demand, and it would not have been in its commercial interest to do so. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_27">
           <content>
             <p class="Heading2">Issue 3 – Number of sales of Tracktex in the counterfactual</p>
           </content>
@@ -1615,7 +1615,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendant argued that a proportion of the Hydrotex 2 sales that it made were sales that the Claimant could never have achieved. There were a number of aspects to this argument. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_28">
           <content>
             <p class="Heading4">Marketing efforts by the Defendant in a reluctant market</p>
           </content>
@@ -1662,7 +1662,7 @@
             <p class="BodyText" style="margin-left:0.39in">Based on this evidence, the Claimant submitted that in the counterfactual, where Tracktex was the only player in the market, the Claimant and Aqua would have been equally effective in “converting” contractors to use it as the Defendant had been in the actual. I think that there is force in this submission, particularly bearing in mind the significant savings of cost and installation time over sand. It is also consistent with the contemporaneous evidence to the effect that Aqua were good at converting contractors, for example as noted by Mr Donald in his MD Report of the Board Meeting of 21<span style="vertical-align:super;font-size:smaller">st</span> February 2011 (see paragraph 91 above), and as confirmed by him in cross-examination.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_29">
           <content>
             <p class="Heading4">Additional market expansion in a duopoly</p>
           </content>
@@ -1738,7 +1738,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendant did not attempt to quantify how much, on its case, the market had grown by reason of the duopoly situation in the actual. I found that telling. It was not clear to me how I was expected to be able to put a figure on it when the Defendant could not. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_30">
           <content>
             <p class="Heading4">Tension between market size and price</p>
           </content>
@@ -1767,7 +1767,7 @@
             <p class="BodyText" style="margin-left:0.39in">In my view, this particular point is better addressed in the context of price growth under Issue 2 (see below) and is why I have addressed Issue 3 first. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_31">
           <content>
             <p class="Heading4">Marketing power of Aqua</p>
           </content>
@@ -1778,7 +1778,7 @@
             <p class="BodyText" style="margin-left:0.39in">Fourthly, the Defendant argued that the total sales the Claimant would have achieved in the counterfactual should be reduced “to reflect the absence of Aqua’s marketing power”. However, I do not think that this is a separate point to the point about marketing efforts I have addressed above. It also seemed to be presented on the false premise that Aqua would not have been part of the counterfactual, which is contrary to what the parties agreed. There was no dispute that the Claimant would have continued to use Aqua in the counterfactual to sell Tracktex to contractors and other non-Network Rail customers. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_32">
           <content>
             <p class="BodyText"><span style="font-style:italic">Assessment</span></p>
           </content>
@@ -1795,7 +1795,7 @@
             <p class="BodyText" style="margin-left:0.39in">I reject this submission. In my judgment, all the sales of Hydrotex 2 in the actual would have been sales of Tracktex in the counterfactual. For the reasons set out above, I was not persuaded that the Defendant had won any meaningful sales through its marketing efforts with contractors which would not have otherwise come to the Claimant via Aqua. The 15% figure proffered by Mr Hancock in this regard was speculation and was not supported by any objective evidence. The Claimant would have achieved the direct orders from Network Rail in any event. I was also not persuaded that the duopoly situation in the actual grew the overall size of the market more than it would have done in a monopoly situation in the counterfactual. I gave this point particular consideration as I am aware that this argument has found favour in other cases (see in particular Jacob J (as he then was) in <span style="font-style:italic">Gerber v Lectra </span>at p.415). But I must decide this case on the materials before me and in my view the overall balance of the evidence did not support it. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_33">
           <content>
             <p class="Heading3">Capacity? </p>
           </content>
@@ -1990,7 +1990,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that I hold that the Claimant would have had capacity to manufacture the additional Tracktex product it would have sold in the counterfactual. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_34">
           <content>
             <p class="Heading2">Issue 2 – What prices would the Claimant have achieved for Tracktex in the counterfactual?  </p>
           </content>
@@ -2013,7 +2013,7 @@
             <p class="BodyText" style="margin-left:0.39in">Both parties accepted that it is not possible to determine what the prices would have been with any kind of precision. I must do the best I can based on the evidence before me, which was largely provided by the experts on this issue. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_35">
           <content>
             <p class="Heading3">The pricing matrices</p>
           </content>
@@ -2024,7 +2024,7 @@
             <p class="BodyText" style="margin-left:0.39in">As noted above, the parties agreed that the prices in the counterfactual should be assessed on the basis of notional pricing matrices running from 1<span style="vertical-align:super;font-size:smaller">st</span> April in one calendar year to 31<span style="vertical-align:super;font-size:smaller">st</span> March in the following calendar year, with 2011/2012 being taken as the “baseline” pricing matrix for the first 2 years. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_36">
           <content>
             <p class="Heading4">Network Rail</p>
           </content>
@@ -2052,7 +2052,7 @@
             <p class="BodyText" style="margin-left:0.39in">I prefer Mr MacGregor’s approach on this issue, for no other reason than it is anchored in the actual. I think it is likely that the Claimant would have approached the first year of pricing with Network Rail in the counterfactual in the same way that it did in the actual. The task of estimating what would have happened in the counterfactual is uncertain enough as it is, and it would be foolish to exacerbate that by ignoring what happened in the real world.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_37">
           <content>
             <p class="Heading4">Aqua</p>
           </content>
@@ -2117,7 +2117,7 @@
             <p class="BodyText" style="margin-left:0.39in">For all these reasons, I reject the Defendant’s suggested approach. In my judgment, it is more likely than not that in the counterfactual the Claimant would have used the pricing matrix that it agreed with Aqua in the actual, and that should be used as the baseline for calculating the average sales price to Aqua.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_38">
           <content>
             <p class="Heading3">What would the annual price increase have been? </p>
           </content>
@@ -2134,7 +2134,7 @@
             <p class="BodyText" style="margin-left:0.39in">Mr Chapman calculated the average annual Hydrotex 2 sales growth as follows:</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_39">
           <content>
             <p class="BodyText"><img src="image6.png" style="width:396.75pt;height:324.85pt" /></p>
           </content>
@@ -2156,7 +2156,7 @@
             <p class="BodyText" style="margin-left:0.39in">Whilst the experts presented their calculations differently in their reports, I understand that their methodology is the same. They both use the following growth rate formula, where FP = Average final sales price, SP = Average starting sales price and P = Period of sales price growth:</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_40">
           <content>
             <p class="BodyText" style="text-align:center"><subFlow name="math"><foreign><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><mml:mi mathvariant="bold-italic">G</mml:mi><mml:mi mathvariant="bold-italic">r</mml:mi><mml:mi mathvariant="bold-italic">o</mml:mi><mml:mi mathvariant="bold-italic">w</mml:mi><mml:mi mathvariant="bold-italic">t</mml:mi><mml:mi mathvariant="bold-italic">h</mml:mi><mml:mi mathvariant="normal"> </mml:mi><mml:mi mathvariant="bold-italic">r</mml:mi><mml:mi mathvariant="bold-italic">a</mml:mi><mml:mi mathvariant="bold-italic">t</mml:mi><mml:mi mathvariant="bold-italic">e</mml:mi><mml:mi mathvariant="normal"> </mml:mi><mml:mo>(</mml:mo><mml:mi mathvariant="normal">%</mml:mi><mml:mo>)</mml:mo><mml:mo>=</mml:mo><mml:mfenced separators="|"><mml:mrow><mml:mo>(</mml:mo><mml:msup><mml:mrow><mml:mfrac><mml:mrow><mml:mi mathvariant="bold-italic">F</mml:mi><mml:mi mathvariant="bold-italic">P</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">S</mml:mi><mml:mi mathvariant="bold-italic">P</mml:mi></mml:mrow></mml:mfrac><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">P</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:msup><mml:mo>-</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfenced><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mi mathvariant="normal"> </mml:mi><mml:mn>100</mml:mn></mml:math></foreign></subFlow></p>
           </content>
@@ -2243,7 +2243,7 @@
             <p class="BodyText" style="margin-left:0.39in">So far as I understand it, the approach set out in Mr Chapman’s first report has been superseded by the approach he set out in his second report. I therefore focus my analysis on the competing approaches as summarised in the second and third columns in the table above (MacGregor 1 vs Chapman 2). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_41">
           <content>
             <p class="Heading4">Same or different figures for Network Rail and Aqua? </p>
           </content>
@@ -2278,7 +2278,7 @@
             <p class="BodyText" style="margin-left:0.39in">It is clear that there are differences between the actual and the counterfactual which make any comparison less than perfect. But in my view, assessing the price increase of Tracktex sales to Network Rail and Aqua separately is the most logical approach in all the circumstances of the case. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_42">
           <content>
             <p class="Heading4">Annual price increase - Network Rail</p>
           </content>
@@ -2403,7 +2403,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendant also argued that the annual average price increase would not be much more than around 1.7% - 2% because of price pressures from Network Rail. It relied on the fact that in the actual, the Claimant had succumbed to significant pressure from Network Rail to reduce the Tracktex price in 2011. It also relied on the evidence from Mr MacGregor where he said that in a one seller one buyer market, he would expect the larger entity (in this case Network Rail) to have significantly more bargaining power. Mr MacGregor did not support this opinion with any further reasoning or evidence, and so it is difficult to place much weight on it. Whilst there is no doubt that Network Rail was by far the larger commercial entity, and it would have been the Claimant’s primary customer for Tracktex, there is no objective evidence to suggest that these factors would have given it the upper hand in its negotiations with the Claimant in the counterfactual. In this context, I bear in mind that the Claimant would have been the only supplier of an anti-pumping geocomposite in the counterfactual and that the product offered several advantages over the only alternative of a sand blanket, including significant cost savings. Network Rail was behind the product and would have wanted to buy it. I also bear in mind that the Defendant was able to resist pressure from Network Rail to reduce its prices as between the First and Second Tenders and won the Second Tender even though its prices for Hydrotex 2 were the same as the First Tender. As a result, I consider that the Claimant and Network Rail would have had equal bargaining positions in the counterfactual. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_43">
           <content>
             <p class="Heading3">Analysis </p>
           </content>
@@ -2531,7 +2531,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_44">
           <content>
             <p class="Heading4">Annual price increase - Aqua</p>
           </content>
@@ -2644,7 +2644,7 @@
             <p class="BodyText" style="margin-left:0.39in">In the circumstances, the only evidence that provides any assistance on this issue is the 2% figure from Mr Donald. This was one of the other figures that Mr Chapman had considered in his report (see above). It was also the figure that the Defendant had submitted was generally the most reliable (again, see above). Accordingly, doing the best I can on the material before me, I hold that the likely annual price increase of non-Network Rail sales of Tracktex in the counterfactual would have been 2%. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_45">
           <content>
             <p class="Heading3">How frequently would the pricing matrices be revised? </p>
           </content>
@@ -2679,7 +2679,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that I hold that in the counterfactual, the Trackex price to Network Rail would have increased every two years whereas the Tracktex price to Aqua would have increased every year.  This is because it reflects what happened in the actual, albeit that the matrices were only used over a limited period. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_46">
           <content>
             <p class="Heading3">Should Aqua sales be subject to a rebate scheme? </p>
           </content>
@@ -2702,7 +2702,7 @@
             <p class="BodyText" style="margin-left:0.39in">In my judgment, there would have been no need for the Claimant to provide the same rebate scheme in the counterfactual since Aqua would have been purchasing Tracktex pursuant to the Aqua pricing matrix and that already provided an incentive to buy more by means of the pricing bands. Accordingly, I reject the Defendant’s argument on this issue. The Aqua sales should not be subject to a rebate as part of the damages calculation. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_47">
           <content>
             <p class="Heading3">Metres squared vs number of rolls</p>
           </content>
@@ -2719,7 +2719,7 @@
             <p class="BodyText" style="margin-left:0.39in">I agree that Mr MacGregor’s approach is preferable, and that the damages calculation should be undertaken on the basis of number of rolls.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_48">
           <content>
             <p class="Heading3">Application of a consistent annual growth rate after March 2019?</p>
           </content>
@@ -2736,7 +2736,7 @@
             <p class="BodyText" style="margin-left:0.39in">I found this point difficult to follow and it was not very well explained in the evidence. In particular, it was not clear why one assumption was any better than the other in circumstances where the maximum sales price that the Claimant could have charged was itself calculated by reference to the estimated % annual growth. Moreover, I am not convinced that the point requires determination in light of the other findings I have already made. In the circumstances, I prefer not to express a view but will wait to hear further from the parties in the context of providing directions for the damages determination as needs be. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_49">
           <content>
             <p class="Heading2">Issue 4 – What allowance, if any, should be made for redundancies?</p>
           </content>
@@ -2777,7 +2777,7 @@
             <p class="BodyText" style="margin-left:0.39in">I must therefore decide on the balance of probabilities which redundancies would and would not have been made in the counterfactual. Depending on that finding, I must then assess the quantum of the costs savings from those redundancies that should be deducted from the overall damages figure that the Claimant can recover. The parties are agreed that it is only costs savings that the Claimant made in the actual from redundancies that would not have occurred in the counterfactual that should be deducted. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_50">
           <content>
             <p class="Heading4">Evidence about the redundancies</p>
           </content>
@@ -2882,7 +2882,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_51">
           <content>
             <p class="Heading4">Analysis</p>
           </content>
@@ -2929,7 +2929,7 @@
             <p class="BodyText" style="margin-left:0.39in">Accordingly, I hold that the Claimant’s damages should be reduced by a figure of £189,008 to reflect the savings that it made from redundancies that would not have occurred in the counterfactual. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_52">
           <content>
             <p class="Heading2">Issue 5 - Lost profits on future sales</p>
           </content>
@@ -2982,7 +2982,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_53">
           <content>
             <p class="Heading4">Time over which price depression occurs?</p>
           </content>
@@ -3058,7 +3058,7 @@
             <p class="BodyText" style="margin-left:0.39in">Stepping back and assessing the material in the round, I consider the Tracktex price depression would likely have happened over a two-year period from May 2021. This is because it is consistent with the evidence as I have set out above. The Defendant’s suggestion that the price would immediately fall to a new low was unrealistic. I also note that the Defendant did not suggest an alternative period by way of a fall-back position. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_54">
           <content>
             <p class="Heading4">Actual estimated future sales price</p>
           </content>
@@ -3093,7 +3093,7 @@
             <p class="BodyText" style="margin-left:0.39in">In the circumstances and doing the best I can on the paucity of helpful material on this issue, I have formed the view that Mr Chapman’s approach to calculating the ASP is the better one. The primary reason for this view is that he has approached the assessment separately for Network Rail and Aqua, which is consistent with my findings above. As a result, I think it is more convenient to use his calculations (subject to the necessary amendments in light of my other decisions) thereby making the process of calculating the overall damages figure more efficient and proportionate. I think that it is legitimate to take these considerations into account when there is so little else to go on. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_55">
           <content>
             <p class="Heading2">Issue 6 – Was the damage caused by the lower price for Crossrail too remote?</p>
           </content>
@@ -3187,7 +3187,7 @@
             <p class="BodyText" style="margin-left:0.39in">I understand that Mr MacGregor’s loss model allows for the Crossrail price to be adjusted to an average sales price that the Claimant charged Aqua in the year of the transaction, that average sales price itself based on sales figures that exclude Crossrail. This has been done so that the Crossrail price anomaly does not skew the average value. Based on this approach, when the loss on the Crossrail sales is calculated, the Defendant will only pay for any price depression caused by the infringement. This approach was not challenged by the Claimant, and so I take it that it is not in dispute. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_56">
           <content>
             <p class="Heading2">Issue 7 – What interest rate should be applied? </p>
           </content>
@@ -3281,7 +3281,7 @@
             <p class="BodyText" style="margin-left:0.39in">Taken together, in my judgment this evidence justifies a departure from the conventional starting point of 1% above base. I consider a fair rate in all the circumstances to be 2% above base. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_57">
           <content>
             <p class="Heading2">Conclusion</p>
           </content>
