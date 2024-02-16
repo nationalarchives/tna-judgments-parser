@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2023-08-09T13:35:30" name="transform" />
+          <FRBRdate date="2024-02-16T18:08:34" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
-        <uk:parser>0.16.2</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>5bcbfa5ad6c93073a2a31a4b88a45fe9766462749c88947665cef2f4ea3f5308</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -137,7 +137,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">Introduction</span></heading>
           <paragraph eId="para_1">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">1.</num>
@@ -158,7 +158,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">background</span></heading>
           <paragraph eId="para_4">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">4.</num>
@@ -172,7 +172,7 @@
               <p class="Taxbodytext1" style="margin-left:0.39in">The default surcharge subject to the appeal amounts to <span style="font-weight:bold">£1,913.62</span>. The details are as follows:</p>
             </content>
           </paragraph>
-          <paragraph>
+          <paragraph eId="lvl_2_1">
             <content>
               <p class="Taxbodytext1" style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">VAT Default Surcharge</span></p>
               <table class="TableGrid" uk:widths="1.18in 0.98in 1.18in 1.08in 1.08in 0.98in">
@@ -283,7 +283,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">The issues </span></heading>
           <paragraph eId="para_9">
             <num>9.</num>
@@ -316,7 +316,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_4">
           <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:13pt">Discussion and decision</span></heading>
           <paragraph eId="para_12">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">12.</num>
@@ -337,7 +337,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <heading class="Taxbodytext1"><span style="font-weight:bold">Whether the default surcharge assessments were correctly issued (and whether the  notices were served on the Appellant)</span></heading>
           <paragraph eId="para_15">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">15.</num>
@@ -457,7 +457,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <heading class="Taxbodytext1"><span style="font-weight:bold">Whether the Appellant has established a reasonable excuse for the late payment of VAT.</span></heading>
           <paragraph eId="para_26">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">26.</num>
@@ -639,7 +639,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_7">
           <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:12pt">Conclusion</span></heading>
           <paragraph eId="para_38">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">38.</num>
@@ -648,7 +648,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_8">
           <heading class="Taxheading1"><span style="font-family:'Times New Roman';font-size:12pt">Right to apply for permission to appeal</span></heading>
           <paragraph eId="para_39">
             <num style="font-style:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.39in;text-indent:-0.39in">39.</num>
@@ -656,17 +656,17 @@
               <p class="Taxbodytext1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">This document contains full findings of fact and reasons for the decision.  Any party dissatisfied with this decision has a right to apply for permission to appeal against it pursuant to Rule 39 of the Tribunal Procedure (First-tier Tribunal) (Tax Chamber) Rules 2009.  The application must be received by this Tribunal not later than 56 days after this decision is sent to that party.  The parties are referred to “Guidance to accompany a Decision from the First-tier Tribunal (Tax Chamber)” which accompanies and forms part of this decision notice.</span></p>
             </content>
           </paragraph>
-          <level>
+          <level eId="lvl_8_1">
             <content>
               <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase">Judge jennifer lee</span></p>
             </content>
           </level>
-          <level>
+          <level eId="lvl_8_2">
             <content>
               <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL </span><span style="font-weight:bold;text-transform:uppercase">JUDGE</span></p>
             </content>
           </level>
-          <level>
+          <level eId="lvl_8_3">
             <content>
               <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2023-07-24" refersTo="#decision"><span style="font-weight:bold">24</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">th</span><span style="font-weight:bold"> July 2023</span></docDate></p>
             </content>
@@ -696,7 +696,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk//annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-                <FRBRdate date="2023-08-09T13:35:34" name="transform" />
+                <FRBRdate date="2024-02-16T18:08:34" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

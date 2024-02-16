@@ -1,5 +1,4 @@
 
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,7 +6,6 @@ using System.Xml;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
-using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw {
 
@@ -32,8 +30,8 @@ class JudgmentBuilder : Builder {
 
     private JudgmentBuilder(IJudgment judgment) {
         Judgment = judgment;
-        foreach (IDecision decision in judgment.Body)
-            GenerateIds(decision.Contents);
+        IEnumerable<IDivision> divisions = judgment.Body.SelectMany(dec => dec.Contents);
+        GenerateIds(divisions);
     }
 
     /* generate ids */
@@ -58,6 +56,7 @@ class JudgmentBuilder : Builder {
     readonly Dictionary<int, string> DivHashToId = new();
 
     private void GenerateIds(IEnumerable<IDivision> divisions, string parent = null) {
+        int lvl = 0;
         foreach (var div in divisions) {
             int hash = div.GetHashCode();
             string para = MakeParagraphnId(div);
@@ -65,13 +64,16 @@ class JudgmentBuilder : Builder {
                 DivHashToId.Add(hash, para);
                 continue;
             }
+            string prefix = parent ?? "lvl";
+            lvl += 1;
+            string id = prefix + "_"+ lvl;
+            DivHashToId.Add(hash, id);
             if (div.Name == "paragraph")
                 continue;
             if (div is not IBranch branch)
                 continue;
-            GenerateIds(branch.Children, null);
+            GenerateIds(branch.Children, id);
         }
-
     }
 
 }
