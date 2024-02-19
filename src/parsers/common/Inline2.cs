@@ -68,21 +68,13 @@ class Inline2 {
                 i += 1;
                 continue;
             }
-            if (e is BookmarkStart bkmrk) {
-                string name = bkmrk.Name;
-                WBookmark made = new() { Name = name };
+
+            if (Bookmarks.IsBookmark(e)) {
+                i += 1;
+                WBookmark made = Bookmarks.Parse(e);
+                if (made is null)
+                    continue;
                 parsed.Add(made);
-                i += 1;
-                continue;
-            }
-            if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkStart") {
-                try {
-                    string name = e.GetAttribute("name", "http://schemas.openxmlformats.org/wordprocessingml/2006/main").Value;
-                    WBookmark made = new() { Name = name };
-                    parsed.Add(made);
-                } catch (KeyNotFoundException) {
-                }
-                i += 1;
                 continue;
             }
 
