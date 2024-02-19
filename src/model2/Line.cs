@@ -14,7 +14,11 @@ class WLine : ILine {
     private readonly MainDocumentPart main;
     private readonly ParagraphProperties properties;
     private IEnumerable<IInline> contents;
-    internal IEnumerable<WBookmark> Bookmarks { get; private init; }
+
+    internal IEnumerable<WBookmark> Bookmarks { get; private set; }
+    internal void PrependBookmarksFromPrecedingSkippedLines(IEnumerable<WBookmark> skipped) {
+        Bookmarks = skipped.Concat(Bookmarks);
+    }
 
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
