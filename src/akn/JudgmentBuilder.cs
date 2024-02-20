@@ -155,8 +155,7 @@ class JudgmentBuilder : Builder {
         }
         XmlElement a = CreateAndAppend("a", parent);
         a.SetAttribute("href", "#" + id);
-        foreach (IInline inline in link.Contents)
-            AddInline(a, inline);
+        AddInlineContainerContents(a, link.Contents);
     }
 
 }
