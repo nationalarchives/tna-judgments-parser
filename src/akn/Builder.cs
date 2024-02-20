@@ -728,8 +728,7 @@ abstract class Builder {
         a.SetAttribute("href", link.Href);
         if (link.ScreenTip is not null)
             a.SetAttribute("title", link.ScreenTip);
-        foreach (IInline inline in link.Contents)
-            AddInline(a, inline);
+        AddInlineContainerContents(a, link.Contents);
     }
 
     protected virtual void AddInternalLink(XmlElement parent, IInternalLink link) {
