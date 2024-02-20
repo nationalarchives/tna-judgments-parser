@@ -365,15 +365,23 @@ abstract class Builder {
         //     return;
         XmlElement container = CreateAndAppend("inline", parent);
         container.SetAttribute("name", name);
-        if (!model.Contents.All(inline => IFormattedText.IsFormattedTextAndNothingElse(inline))) {
-            foreach (IInline child in model.Contents)
-                AddInline(container, child);
+        AddInlineContainerContents(container, model.Contents);
+    }
+    protected void AddInlineContainerContents(XmlElement container, IEnumerable<IInline> contents) {
+        if (!contents.All(IFormattedText.IsFormattedTextAndNothingElse)) {
+            AddInlines(container, contents);
             return;
         }
-        if (model.Contents.Count() == 1)
-            TextAndFormatting(container, model.Contents.Cast<IFormattedText>().First());
+        var texts = contents.Cast<IFormattedText>();
+        if (texts.Count() == 1)
+            TextAndFormatting(container, texts.First());
         else
-            AddOrWrapText(container, model.Contents.Cast<IFormattedText>());
+            AddOrWrapText(container, texts);
+    }
+
+    protected virtual void AddInlines(XmlElement parent, IEnumerable<IInline> models) {
+        foreach (IInline model in models)
+            AddInline(parent, model);
     }
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
@@ -723,8 +731,7 @@ abstract class Builder {
     }
 
     protected virtual void AddInternalLink(XmlElement parent, IInternalLink link) {
-        foreach (IInline inline in link.Contents)
-            AddInline(parent, inline);
+        AddInlines(parent, link.Contents);
     }
 
     private void AddRef(XmlElement parent, IRef model) {
