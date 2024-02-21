@@ -230,9 +230,10 @@ class Numbering2 {
             ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3; };
             return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
         }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.$");
+        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)[\.)]$");
         if (match.Success) {
-            ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3 + "."; };
+            char last = format.Val.Value[^1];
+            string three(string num1, string num2, string num3) { return num1 + "." + num2 + "." + num3 + last; }
             return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
         }
         match = Regex.Match(format.Val.Value, @"^\(%(\d)\.%(\d)\.%(\d)$");  // EWHC/Admin/2010/3192
