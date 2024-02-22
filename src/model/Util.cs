@@ -22,9 +22,14 @@ class Util {
             return blocks.SelectMany(GetLines);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         if (block is IQuotedStructure)
             return Enumerable.Empty<ILine>();
+=======
+        if (block is IQuotedStructure quote)
+            return quote.Contents.SelectMany(GetBlocksFromDivision).SelectMany(GetLines);
+>>>>>>> 1057f4f (images within quoted structures)
         if (block is IDivWrapper wrapper)
             return GetBlocksFromDivision(wrapper.Division).SelectMany(GetLines);
 >>>>>>> be3d5cd (quoted structures)
