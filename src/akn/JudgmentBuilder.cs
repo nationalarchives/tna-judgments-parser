@@ -132,7 +132,7 @@ class JudgmentBuilder : Builder {
     private static IEnumerable<WBookmark> GetBookmarks(IEnumerable<IBlock> contents) {
         if (contents is null)
             return Enumerable.Empty<WBookmark>();
-        return contents.SelectMany(Util.GetLines)  // ignores embedded structures
+        return contents.SelectMany(Util.GetLines)
             .Where(line => line is WLine).Cast<WLine>()
             .SelectMany(line => line.Bookmarks);
     }
