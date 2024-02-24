@@ -592,8 +592,30 @@ class Numbering2 {
         return c > 1;
     }
 
+    class PrevAbsStartAccumulator {
+
+        private readonly Dictionary<int, Dictionary<int, int>> Map = new();
+
+        internal int? Get(int pevNumId, int prevIlvl) {
+            if (!Map.TryGetValue(pevNumId, out Dictionary<int, int> prevAbsStartsByIlvl))
+                return null;
+            if (!prevAbsStartsByIlvl.TryGetValue(prevIlvl, out int prevAbsStart))
+                return null;
+            return prevAbsStart;
+        }
+
+        internal void Put(int prevNumId, int prevIlvl, int prevAbsStart) {
+            if (!Map.ContainsKey(prevNumId))
+                Map.Add(prevNumId, new Dictionary<int, int>());
+            if (!Map[prevNumId].ContainsKey(prevIlvl))
+                Map[prevNumId].Add(prevIlvl, prevAbsStart);
+        }
+
+    }
+
     /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
+
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
 
@@ -607,8 +629,10 @@ class Numbering2 {
 
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
+        var prevAbsStarts = new PrevAbsStartAccumulator();
         int count = 0;
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
+
             if (Paragraphs.IsDeleted(prev))
                 continue;
             if (Paragraphs.IsEmptySectionBreak(prev))
@@ -662,11 +686,12 @@ class Numbering2 {
                     count += 1;
 
                 int? prevStartOverride = GetStartOverride(prevNumbering, prevIlvl);
-                if (prevStartOverride.HasValue) { // see tests 38, 47, 66 & 67
-                    bool condition1 = prevIlvl - ilvl > 1 && prevStartOverride.Value > 1;
-                    bool condition2 = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != thisNumIdOfStyle.Value;
-                    if (condition1 || condition2) {
-                        start = absStart; // not sure why
+                if (prevStartOverride.HasValue) { // see tests 38, 47, 66, 67, & 77
+                    if (prevNumIdWithoutStyle.HasValue)
+                        prevAbsStarts.Put(prevNumIdWithoutStyle.Value, prevIlvl, absStart);
+                    bool forTest67 = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != thisNumIdOfStyle.Value;
+                    if (forTest67) {
+                        start = absStart;
                         numIdOfStartOverride = -2;
                     }
                 }
@@ -674,6 +699,14 @@ class Numbering2 {
                 if (prevNumIdWithoutStyle == numberingId && LevelFormatIsCompound(main, numberingId, prevIlvl))
                     prevContainsLowerCompound = true;
                 continue;
+            }
+
+            if (prevNumIdWithoutStyle.HasValue) {
+                var prevAbsStart = prevAbsStarts.Get(prevNumIdWithoutStyle.Value, prevIlvl + 2);
+                if (prevAbsStart.HasValue) {
+                    start = prevAbsStart.Value;
+                    numIdOfStartOverride = -2;
+                }
             }
 
             // prevIlvl == ilvl
@@ -690,6 +723,14 @@ class Numbering2 {
             }
 
             count += 1;
+        }
+
+        if (thisNumIdWithoutStyle.HasValue) {
+            var prevAbsStart = prevAbsStarts.Get(thisNumIdWithoutStyle.Value, ilvl + 2);
+            if (prevAbsStart.HasValue) {
+                start = prevAbsStart.Value;
+                numIdOfStartOverride = -2;
+            }
         }
 
         if (isHigher)
