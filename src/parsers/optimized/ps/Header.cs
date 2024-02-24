@@ -38,8 +38,11 @@ class Header {
 
     private State state = State.Start;
 
+    private int Idx = 0;
+
     private void Split() {
-        foreach (var block in All)
+        while (Idx < All.Count - 1) {
+            IBlock block = All[Idx];
             switch (state) {
                 case State.Start:
                     Start(block);
@@ -67,6 +70,9 @@ class Header {
                 default:
                     throw new System.Exception();
             }
+            Idx += 1;
+        }
+        Enriched.Clear();
     }
 
     private void Start(IBlock block) {
@@ -173,8 +179,23 @@ class Header {
             Enriched.Add(title);
             return;
         }
+        if (NextLineIsCiteOnly()) {
+            WLine title = WDocTitle2.ConvertContents(line);
+            Enriched.Add(title);
+            return;
+        }
         Enriched.Add(line);
         state = State.Done;
+    }
+
+    private bool NextLineIsCiteOnly() {
+        int nextIdx = Idx + 1;
+        if (nextIdx == All.Count)
+            return false;
+        IBlock nextBlock = All[nextIdx];
+        if (nextBlock is not WLine line)
+            return false;
+        return Enricher.IsCiteOnly(line);
     }
 
     private void AfterCiteBeforeOnAppealFrom(IBlock block) {
