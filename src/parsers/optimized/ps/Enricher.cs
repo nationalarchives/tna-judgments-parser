@@ -84,6 +84,11 @@ partial class Enricher {
         return false;
     }
 
+    internal static bool IsCiteOnly(WLine line) {
+        string pattern =  @"^\[\d{4}\] (UKSC|UKPC) \d+$";
+        return Regex.IsMatch(line.NormalizedContent, pattern);
+    }
+
     internal static WLine EnrichCite(WLine line) {
         string[] patterns = {
             @"(\[\d{4}\] (UKSC|UKPC) \d+)\.? *$",

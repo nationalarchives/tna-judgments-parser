@@ -10,7 +10,7 @@ namespace UK.Gov.NationalArchives.CaseLaw {
 
 public class TestsPS {
 
-    private static int N = 19;
+    private static int N = 20;
 
     public static IEnumerable<object[]> indices = Enumerable.Range(1, N)
         .Select(i => new object[] { i });
