@@ -22,7 +22,7 @@ abstract class OptimizedParser {
 
     protected readonly WordprocessingDocument doc;
     protected readonly MainDocumentPart Main;
-    private readonly IOutsideMetadata meta;
+    protected readonly IOutsideMetadata meta;
     private readonly IEnumerable<AttachmentPair> attachments;
     protected readonly WordDocument PreParsed;
     protected int i = 0;
@@ -43,7 +43,7 @@ abstract class OptimizedParser {
             header = new List<IBlock>();
             i = save;
         }
-        IEnumerable<IDecision> body = Body();
+        List<IDecision> body = Body();
         save = i;
         IEnumerable<IBlock> conclusions = Conclusions();
         if (conclusions is null)
@@ -56,7 +56,7 @@ abstract class OptimizedParser {
         IEnumerable<IBlock> coverPage = EnrichCoverPage(PreParsed.Header);
         if (header is not null)
             header = EnrichHeader(header);
-        body = EnrichBody(body);
+        body = EnrichBody(body).ToList();
         if (conclusions is not null)
             conclusions = EnrichConclusions(conclusions);
         if (annexes is not null)
@@ -569,7 +569,7 @@ abstract class OptimizedParser {
         return false;
     }
 
-    protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false) {
+    protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false, bool quote = false) {
         ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)
             return div;
@@ -607,18 +607,55 @@ abstract class OptimizedParser {
                 if (CannotBeSubparagraph(nextLine))
                     break;
 
-                if (IsWrapUp(nextLine) && !sub && div.Number is not null && subparagraphs.Any()) {
+                if (!quote && !subparagraphs.Any() && IsQuotedStructure(nextLine, indent1)) {
+                    QuotedStructure qs = ParseQuotedStructure(nextLine);
+                    intro.Add(qs);
+                    continue;
+                }
+
+                if (IsWrapUp(nextLine) && !sub && !quote && div.Number is not null && subparagraphs.Any()) {
                     List<WLine> wrapUp = new(1) { nextLine };
                     i += 1;
                     return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs, WrapUp = wrapUp };
                 }
+                if (IsWrapUp(nextLine) && !sub && !quote && div.Number is not null && !subparagraphs.Any() && intro.LastOrDefault() is QuotedStructure) {
+                    intro.Add(nextLine);
+                    i += 1;
+                    break;  // could return new WNewNumberedParagraph(div.Number, intro);
+                }
 
                 float nextIndent1 = GetEffectiveIndent(nextLine);
+
+                /* quoted structures */
+                if (!sub && !quote && nextIndent1 == indent1 && !subparagraphs.Any() && intro.LastOrDefault() is QuotedStructure) {
+                    int save2 = i;
+                    IDivision nextparagraph = ParseParagraphAndSubparagraphs(nextLine, false);
+                    if (nextparagraph.Number is not null) {
+                        i = save2;
+                        break;
+                    }
+                    if (nextparagraph.Heading is not null) {
+                        i = save2;
+                        break;
+                    }
+                    if (nextparagraph is not ILeaf leaf) {
+                        i = save2;
+                        break;
+                    }
+                    if (leaf.Contents.LastOrDefault() is not QuotedStructure) {
+                        i = save2;
+                        break;
+                    }
+                    intro.AddRange(leaf.Contents);
+                    continue;
+                }
+
                 if (nextIndent1 - MarginOfError <= indent1)
                     break;
 
                 int save = i;
                 IDivision subparagraph = ParseParagraphAndSubparagraphs(nextLine, true);
+
                 // it would be better not to need this, b/c big levels would already have been recognized
                 if (!sub && !HasProperParagraphNumber(div) && HasProperParagraphNumber(subparagraph)) {
                     i = save;
@@ -649,6 +686,37 @@ abstract class OptimizedParser {
             return new WNewNumberedParagraph(np.Number, WLine.RemoveNumber(np));
         return new WDummyDivision(line);
     }
+
+
+    /* quoted structures */
+
+    private static bool IsQuotedStructure(WLine line, float parentIndent) {
+        if (line.Style != "Quote")
+            return false;
+        float indent = GetEffectiveIndent(line);
+        if (indent - MarginOfError <= parentIndent)
+            return false;
+        return true;
+    }
+
+    private QuotedStructure ParseQuotedStructure(WLine line1) {
+        float indent1 = GetEffectiveIndent(line1);
+        List<IDivision> contents = new();
+        IDivision div1 = ParseParagraphAndSubparagraphs(line1, false, true);
+        contents.Add(div1);
+        while (i < PreParsed.Body.Count) {
+            IBlock nextBlock = PreParsed.Body.ElementAt(i).Block;
+            if (nextBlock is not WLine nextLine)
+                break;
+            float nextIndent = GetEffectiveIndent(nextLine);
+            if (nextIndent != indent1)
+                break;
+            IDivision nextDiv = ParseParagraphAndSubparagraphs(nextLine, false, true);
+            contents.Add(nextDiv);
+        }
+        return new QuotedStructure() { Contents = contents };
+    }
+
 
     /* annexes */
 

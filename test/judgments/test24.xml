@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/39/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/39/data.xml" />
-          <FRBRdate date="2023-08-08T15:16:32" name="transform" />
+          <FRBRdate date="2024-02-16T18:06:37" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>39</uk:number>
         <uk:cite>[2022] EWFC 39</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>f068aadbd0b3631d2db468f15eadba0bfc9b656d63966317c83bf7dcae9c3a7e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -720,7 +720,7 @@
             <p><span style="font-weight:bold">Mr Justice Poole:</span></p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_1">
           <paragraph eId="para_1">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
             <content>
@@ -797,12 +797,16 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">A capacity assessment of KB by Dr Clarke, Consultant Obstetrician and Gynaecologist, on 20 January 2021 reported that:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">KB was affected by a birth injury, which resulted in a hypoxic ischaemic injury to the brain. This has left her effectively with extremely limited language and extremely limited comprehension…. She is barely verbal …. She is able to do basic tasks but finds it impossible to demonstrate understanding of the concepts of birth and parenthood, even explored with pictures, using sign language (Makaton). … She is not able to understand even simple concepts. She is unable to confirm her name and give spontaneous answers…. She would be completely unable to make anyone, even her close family, aware of her views or opinions due to her existing severe learning disability.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">KB was affected by a birth injury, which resulted in a hypoxic ischaemic injury to the brain. This has left her effectively with extremely limited language and extremely limited comprehension…. She is barely verbal …. She is able to do basic tasks but finds it impossible to demonstrate understanding of the concepts of birth and parenthood, even explored with pictures, using sign language (Makaton). … She is not able to understand even simple concepts. She is unable to confirm her name and give spontaneous answers…. She would be completely unable to make anyone, even her close family, aware of her views or opinions due to her existing severe learning disability.</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaLevel1" style="margin-left:0.5in">KB has epilepsy, controlled by medication, and autism. Her IQ has been assessed as being between 39 and 45. She has physical disability meaning that she requires support for walking more than short distances. She suffers from bilateral optical nerve atrophy.</p>
@@ -823,35 +827,43 @@
           </paragraph>
           <paragraph eId="para_8">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">8.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">AB took KB to her GP on 14 February 2020 reporting a cough but no vomiting. The national lockdown due to the Covid-19 pandemic began a few weeks later. In subsequent months KB’s GP records show some on-line requests made by AB for letters about KB, but no requests for appointments until 30 July 2020. On that date AB used the GP surgery’s online system to request an appointment. She was telephoned by a GP at the surgery on the same date who recorded,</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">Secondary amenorrhea…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">Telephone call to a patient’s mum … Several months of amen, used to have slightly irregular periods but was every month before this, some brown discharge in underwear, no itch, no urinary syx, not weight loss, not sexually active and never has been but noticed breasts are swollen and stomach is swollen – adv to do pregnancy test asap just to be sure, to call us back if positive. Otherwise have booked for examination Monday.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">Secondary amenorrhea…</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">Telephone call to a patient’s mum … Several months of amen, used to have slightly irregular periods but was every month before this, some brown discharge in underwear, no itch, no urinary syx, not weight loss, not sexually active and never has been but noticed breasts are swollen and stomach is swollen – adv to do pregnancy test asap just to be sure, to call us back if positive. Otherwise have booked for examination Monday.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_9">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">On Monday 3 August 2020, the same GP saw KB with AB who had brought in two pregnancy tests, both positive. A further pregnancy test was conducted in the surgery which was also positive. The GP noted, </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">KB said very little during the consultation – was unable to ascertain if she understood if she was pregnant …</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">Discussed what thoughts were regarding pregnancy – Mum AB seemed initially cheerful in the consultation – stated that she would have to look after the baby and that she was glad KB was not suffering from any sickness. Mum AB seemed to be expecting KB to continue the pregnancy. Discussed implications of pregnancy  - discussed concerns around AB’s ability to consent, discussed if she has fallen pregnancy [sic.] and she is unable to consent to sexual intercourse we would be concerned about rape. This seems to have come as a shock to AB/ AB does not think KB has got a partner and they are together all the time since the lockdown in March …. AB discussed that she knows sometimes periods can be irregular and that is why she did not think about it much more … and only after noticing the stomach swelling and breast swelling she thought something is not right.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">KB said very little during the consultation – was unable to ascertain if she understood if she was pregnant …</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">Discussed what thoughts were regarding pregnancy – Mum AB seemed initially cheerful in the consultation – stated that she would have to look after the baby and that she was glad KB was not suffering from any sickness. Mum AB seemed to be expecting KB to continue the pregnancy. Discussed implications of pregnancy  - discussed concerns around AB’s ability to consent, discussed if she has fallen pregnancy [sic.] and she is unable to consent to sexual intercourse we would be concerned about rape. This seems to have come as a shock to AB/ AB does not think KB has got a partner and they are together all the time since the lockdown in March …. AB discussed that she knows sometimes periods can be irregular and that is why she did not think about it much more … and only after noticing the stomach swelling and breast swelling she thought something is not right.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_10">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
@@ -893,12 +905,16 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">In the pre-sentence report prepared by a Probation Officer, GH is reported as having said that although he had told the police that he was never at AB’s house without AB being present, that was not true. </p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">He said that KB would often get up in the night and wander around and on the night of the offence he said that he had heard her awake and he had gone to her room … He said, “I don’t know what happened to me” and told me that KB had “grabbed me” and that sexual intercourse had taken place.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">He said that KB would often get up in the night and wander around and on the night of the offence he said that he had heard her awake and he had gone to her room … He said, “I don’t know what happened to me” and told me that KB had “grabbed me” and that sexual intercourse had taken place.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaLevel1" style="margin-left:0.5in">The Probation Officer noted that this version of events was difficult to reconcile with what he knew about KB’s condition. The sentencing judge did not accept that KB “was in any way responsible” and said to GH that this was “but another example of failing to acknowledge your own actions.”</p>
@@ -906,7 +922,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <heading class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">The Hearing</span></heading>
           <paragraph eId="para_17">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
@@ -921,7 +937,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <heading class="ParaLevel1"><span style="font-weight:bold">The Witnesses</span></heading>
           <paragraph eId="para_19">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
@@ -972,7 +988,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_4">
           <heading class="ParaLevel1"><span style="font-weight:bold">The Law</span></heading>
           <paragraph eId="para_27">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
@@ -987,14 +1003,18 @@
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
-              <intro>
+              <content>
                 <p class="ParaLevel2" style="margin-left:0.98in">The standard of proof is the balance of probabilities, <span style="font-style:italic">Re B</span> [2008] UKHL 35. If the standard is met, the fact is proved. If it is not met, the fact is not proved. As Lord Hoffman observed in <span style="font-style:italic">Re B</span>: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">“If a legal rule requires facts to be proved, a judge must decide whether or not it happened. There is no room for a finding that it might have happened. The law operates a binary system in which the only values are nought and one.”</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">“If a legal rule requires facts to be proved, a judge must decide whether or not it happened. There is no room for a finding that it might have happened. The law operates a binary system in which the only values are nought and one.”</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
@@ -1016,25 +1036,33 @@
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">vi)</num>
-              <intro>
+              <content>
                 <p class="ParaLevel2" style="margin-left:0.98in">The court must take into account all the evidence and consider each piece of evidence in the context of all the other evidence. This is sometimes described as a need to view the evidence as a broad canvas. As Dame Elizabeth Butler-Sloss, President observed in <span style="font-style:italic">Re T</span> [2004] EWCA Civ. 558, [2004] 2 FLR 838 at paragraph 33: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">“Evidence cannot be evaluated and assessed in separate compartments. A judge in these difficult cases must have regard to the relevance of each piece of evidence to the other evidence and to exercise an overview of the totality of the evidence in order to come to the conclusion of whether the case put forward by the Local Authority has been made out to the appropriate standard of proof.”</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">“Evidence cannot be evaluated and assessed in separate compartments. A judge in these difficult cases must have regard to the relevance of each piece of evidence to the other evidence and to exercise an overview of the totality of the evidence in order to come to the conclusion of whether the case put forward by the Local Authority has been made out to the appropriate standard of proof.”</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">vii)</num>
               <intro>
                 <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">In a case where the alleged perpetrator of violence or abuse, or a person accused of dishonesty or fraud, is or may be the subject of criminal prosecution arising out of the same alleged facts, it is important to emphasise that the family court is not determining whether the person concerned is guilty of a specific criminal offence. As Cobb J 81. As I said in <span style="font-style:italic">F v M</span> [2019] EWHC 3177 at [29], in a passage endorsed by the Court of Appeal in <span style="font-style:italic">Re H-N</span> [2021] EWCA Civ 448,</p>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">"There is a risk in a case such as this, where the alleged conduct at the heart of the fact-finding enquiry is, or could be, of a criminal nature, for the family court to become too distracted by criminal law concepts. Although the family court may be tempted to consider the ingredients of an offence, and any defence available, when considering conduct which may also represent an offence, it is not of course directly concerned with the prosecution of crime."</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
               </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">"There is a risk in a case such as this, where the alleged conduct at the heart of the fact-finding enquiry is, or could be, of a criminal nature, for the family court to become too distracted by criminal law concepts. Although the family court may be tempted to consider the ingredients of an offence, and any defence available, when considering conduct which may also represent an offence, it is not of course directly concerned with the prosecution of crime."</p>
-                </content>
-              </subparagraph>
               <subparagraph>
                 <content>
                   <p class="ParaLevel2" style="margin-left:0.98in">The role of the Judge in a family case determining findings of fact is fundamentally different from the role of the judge and jury in the Crown Court. As the Court of Appeal said in <span style="font-style:italic">Re R</span> [2018] EWCA Civ 198:  </p>
@@ -1048,14 +1076,18 @@
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">viii)</num>
-              <intro>
+              <content>
                 <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.13in">The opinions of medical experts need to be considered in the context of all the other evidence. In <span style="font-style:italic">A County Council v KD &amp;</span> L [2005] EWHC 144 Fam. at paragraphs 39 to 44, Mr Justice Charles observed: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">“It is important to remember that (1) the roles of the court and the expert are distinct and (2) it is the court that is in the position to weigh up the expert evidence against its findings on the other evidence. The judge must always remember that he or she is the person who makes the final decision.”</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">“It is important to remember that (1) the roles of the court and the expert are distinct and (2) it is the court that is in the position to weigh up the expert evidence against its findings on the other evidence. The judge must always remember that he or she is the person who makes the final decision.”</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ix)</num>
@@ -1067,12 +1099,16 @@
               <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">x)</num>
               <intro>
                 <p class="ParaLevel2" style="margin-left:0.98in">It is not uncommon for witnesses in these cases to tell lies in the course of the investigation and the hearing. The court must be careful to bear in mind that a witness may lie for various reasons, such as shame, misplaced loyalty, panic, fear, distress and the fact that the witness has lied about some matters does not mean that he or she has lied about everything:  see <span style="font-style:italic">R v Lucas</span> [1981] QB 720. In the recent Court of Appeal judgment in <span style="font-style:italic">A, B, and C (Children)</span> [2021] EWCA 451, Macur LJ advised at [57],</p>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">“I venture to suggest that it would be good practice when the tribunal is invited to proceed on the basis, or itself determines, that such a direction is called for, to seek Counsel’s submissions to identify: (i) the deliberate lie(s) upon which they seek to rely; (ii) the significant issue to which it/they relate(s), and (iii) on what basis it can be determined that the only explanation for the lie(s) is guilt. The principles of the direction will remain the same, but they must be tailored to the facts and circumstances of the witness before the court.”</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
               </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">“I venture to suggest that it would be good practice when the tribunal is invited to proceed on the basis, or itself determines, that such a direction is called for, to seek Counsel’s submissions to identify: (i) the deliberate lie(s) upon which they seek to rely; (ii) the significant issue to which it/they relate(s), and (iii) on what basis it can be determined that the only explanation for the lie(s) is guilt. The principles of the direction will remain the same, but they must be tailored to the facts and circumstances of the witness before the court.”</p>
-                </content>
-              </subparagraph>
               <subparagraph>
                 <content>
                   <p class="ParaLevel1" style="margin-left:0.98in">In this case the Local Authority alleges that AB, CD and EF are lying about the arrangements for KB’s care, including financial arrangements,  to cover up the truth of what they did and how KB came to be raped and then to carry her child to term. </p>
@@ -1084,12 +1120,16 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">Amongst the findings that the Local Authority invites the court to make are allegations of dishonesty. In <span style="font-style:italic">Ivey v Genting Casinos (UK) (trading as Crockfords Club)</span> [2017] UKSC 67, Lord Hughes, with whom the other Supreme Court Justices agreed, held at [74],</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“When dishonesty is in question the fact-finding tribunal must first ascertain (subjectively) the actual state of the individual’s knowledge or belief as to the facts. The reasonableness or otherwise of his belief is a matter of evidence (often in practice determinative) going to whether he held the belief, but it is not an additional requirement that his belief must be reasonable; the question is whether it is genuinely held. When once his actual state of mind as to knowledge or belief as to facts is established, the question whether his conduct was honest or dishonest is to be determined by the fact-finder by applying the (objective) standards of ordinary decent people. There is no requirement that the defendant must appreciate that what he has done is, by those standards, dishonest.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“When dishonesty is in question the fact-finding tribunal must first ascertain (subjectively) the actual state of the individual’s knowledge or belief as to the facts. The reasonableness or otherwise of his belief is a matter of evidence (often in practice determinative) going to whether he held the belief, but it is not an additional requirement that his belief must be reasonable; the question is whether it is genuinely held. When once his actual state of mind as to knowledge or belief as to facts is established, the question whether his conduct was honest or dishonest is to be determined by the fact-finder by applying the (objective) standards of ordinary decent people. There is no requirement that the defendant must appreciate that what he has done is, by those standards, dishonest.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaLevel1" style="margin-left:0.5in">That is the approach that I apply when considering in this case whether any person has been dishonest.</p>
@@ -1103,7 +1143,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <heading class="ParaLevel1"><span style="font-weight:bold">Evaluation of the Evidence</span></heading>
           <paragraph eId="para_30">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
@@ -1112,7 +1152,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Key Background Facts</span></heading>
           <paragraph eId="para_31">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
@@ -1157,7 +1197,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_7">
           <heading class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid">Financial Arrangements</span></heading>
           <paragraph eId="para_32">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
@@ -1522,7 +1562,7 @@
             </subparagraph>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_8">
           <heading class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Findings on the Local Authority’s Allegations</span></heading>
           <paragraph eId="para_43">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>

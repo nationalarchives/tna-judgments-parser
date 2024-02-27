@@ -13,7 +13,8 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public Judgment(WordprocessingDocument doc, IOutsideMetadata meta = null, bool metadataTrumps = true) {
         this.doc = doc;
-        // WordprocessingDocumentType type = doc.DocumentType;
+        InternalMetadata = new WMetadata(doc.MainDocumentPart, this);
+        // ExternalMetadata = meta;
         if (meta is null)
             Metadata = new WMetadata(doc.MainDocumentPart, this);
         else if (metadataTrumps)
@@ -26,11 +27,15 @@ class Judgment : UK.Gov.Legislation.Judgments.IJudgment {
 
     public IMetadata Metadata { get; }
 
+    internal IMetadata InternalMetadata { get; private init; }
+
+    // public IOutsideMetadata ExternalMetadata { get; init; }
+
     public IEnumerable<IBlock> CoverPage { get; internal set; }
 
     public IEnumerable<IBlock> Header { get; internal set; }
 
-    public IEnumerable<IDecision> Body { get; internal set; }
+    public IList<IDecision> Body { get; internal set; }
 
     public IEnumerable<IBlock> Conclusions { get; internal set; }
 

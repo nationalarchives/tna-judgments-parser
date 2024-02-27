@@ -43,9 +43,7 @@ class Inline2 {
             return true;
         if (e is ProofError || e.LocalName == "proofErr")
             return true;
-        if (e is BookmarkStart || e is BookmarkEnd)
-            return true;
-        if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkStart")
+        if (e is BookmarkEnd)
             return true;
         if (e is OpenXmlUnknownElement && e.LocalName == "bookmarkEnd")
             return true;
@@ -70,6 +68,16 @@ class Inline2 {
                 i += 1;
                 continue;
             }
+
+            if (Bookmarks.IsBookmark(e)) {
+                i += 1;
+                WBookmark made = Bookmarks.Parse(e);
+                if (made is null)
+                    continue;
+                parsed.Add(made);
+                continue;
+            }
+
             if (Fields.IsFieldStart(e)) {
                 i += 1;
                 IEnumerable<IInline> sub = ParseFieldStart();
@@ -206,15 +214,20 @@ class Inline2 {
         if (link.Id is not null) {
             Uri uri = DOCX.Relationships.GetUriForHyperlink(link);
             if (uri.IsAbsoluteUri) {
-                contents = UK.Gov.Legislation.Judgments.Parse.Merger.Merge(contents);
+                contents = Merger.Merge(contents);
                 WHyperlink2 link2 = new  WHyperlink2() { Href = uri.AbsoluteUri, Contents = contents };
                 return new List<IInline>(1) { link2 };
             } else {
                 return contents;
             }
         }
+        if (link.Anchor is not null) {
+            contents = Merger.Merge(contents);
+            InternalLink iLink = new() { Target = link.Anchor, Contents = contents.ToList() };
+            return new List<IInline>(1) { iLink };
+        }
         if (Uri.IsWellFormedUriString(link.InnerText, UriKind.Absolute)) {
-            contents = UK.Gov.Legislation.Judgments.Parse.Merger.Merge(contents);
+            contents = Merger.Merge(contents);
             WHyperlink2 link2 = new  WHyperlink2() { Href = link.InnerText, Contents = contents };
             return new List<IInline>(1) { link2 };
         }

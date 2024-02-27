@@ -204,14 +204,14 @@ public class CSS {
                 styleValue = "wavy";
             }
         }
-        if (singleStrike is not null && singleStrike.Val.HasValue && singleStrike.Val.Value) {
+        if (singleStrike is not null && singleStrike?.Val?.Value != false) {
             string lineValue = "line-through";
             lineValues.Add(lineValue);
-            // styleValue =  styleValue ?? "solid";
-        } else if (doubleStrike is not null && doubleStrike.Val.HasValue && doubleStrike.Val.Value) {
+            // styleValue ??= "solid";
+        } else if (doubleStrike is not null && doubleStrike?.Val?.Value != false) {
             string lineValue = "line-through";
             lineValues.Add(lineValue);
-            styleValue =  styleValue ?? "double";
+            styleValue ??= "double";
         }
         if (!lineValues.Any())
             return;
@@ -363,6 +363,8 @@ public class CSS {
     }
 
     public static float ConvertToInches(string value) {
+        if (value == "0")
+            return 0.0f;
         if (value.EndsWith("pt")) {
             string pt = value[..^2];
             return float.Parse(pt) / 72f;

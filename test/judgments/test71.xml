@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/195/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/195/data.xml" />
-          <FRBRdate date="2023-12-01T18:59:06" name="transform" />
+          <FRBRdate date="2024-02-16T18:09:02" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,7 +41,7 @@
         <uk:year>2023</uk:year>
         <uk:number>195</uk:number>
         <uk:cite>[2023] EWFC 195</uk:cite>
-        <uk:parser>0.18.4</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>e18839e09355ff4d8a8b763ca5b6eccbfb5ba2fb816b194c228368e24764da44</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -106,7 +106,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p class="Heading1"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Introduction</span></p>
           </content>
@@ -580,7 +580,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The local authority issued care proceedings on 15 December 2021. </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="Heading1"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Events since the issue of care proceedings</span></p>
           </content>
@@ -687,7 +687,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">Sasha recently spent a weekend with her father which went very well.  She is reported to be a great deal more settled than she has been for some time.  The local authority is not seeking to extend the authorisation for deprivation of her liberty.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="Heading1"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">The law </span></p>
           </content>
@@ -761,7 +761,7 @@
             <p class="Body1" style="margin-left:0.5in"><span style="font-family:'Times New Roman'">Any findings of fact are for the Court to make based on the evidence before it. No weight should be given to the opinions of others about the credibility of a particular witness.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="Heading1"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">The evidence</span></p>
           </content>
@@ -1152,7 +1152,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="Heading1"><span style="font-family:'Times New Roman';font-size:12pt">Findings</span></p>
             <p class="Heading1"><span style="font-family:'Times New Roman';font-size:12pt">Sasha</span></p>
@@ -1164,7 +1164,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">The first set of findings concern Sasha, and can be grouped together.  </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <heading class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Finding 1: </span></heading>
           <paragraph>
             <content>
@@ -1201,7 +1201,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">Finding 1 is essentially derived from Dr Sawyer and Ms Rogers’ expert report.  I find it proved to the standard of a balance of probabilities.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Finding 2: Sasha does not have an autistic spectrum disorder.</span></p>
           </content>
@@ -1230,7 +1230,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">[The mother] has sought labels and diagnoses so as to enable her or her daughters to be entitled to receive particular support which she has identified.  Her focus has then become on the battle to obtain that support or treatment.  But in terms of her interactions with the children she has not shown an ability to be curious about what they might be feeling, or to be able to respond in a way that provides her children with the reassurance they needed.  </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <heading class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Findings 3 and 4</span></heading>
           <paragraph>
             <content>
@@ -1463,7 +1463,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <heading class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Finding 5: </span></heading>
           <paragraph>
             <content>
@@ -1507,7 +1507,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">[The mother] has struggled to manage basic routines and set boundaries for the girls.  Her </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">‘attributions that Sasha could not sleep, or manage basic routines, rather than being unable to manage boundaries and routines herself have led to a situation where Sasha was not really being parented’</span><span style="font-family:'Times New Roman';font-size:12pt"> (Dr Sawyer and Ms Rogers).</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Self-harming</span></p>
           </content>
@@ -1608,7 +1608,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">I accept the submissions on behalf of the guardian that the mother’s assertion to this effect is ‘further evidence of her lack of insight and dogged pursuit of her own agenda for Sasha.’</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="Heading3"><span style="font-family:'Times New Roman'">Weight/body image</span></p>
           </content>
@@ -1635,7 +1635,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Findings 6, 7 and 8 </span></p>
           </content>
@@ -1684,7 +1684,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <heading class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Findings 9 and 10</span></heading>
           <paragraph>
             <intro>
@@ -1882,7 +1882,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="Heading1"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Tara</span></p>
             <p class="Heading2"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Findings 11, 12, 13 and 14</span></p>
@@ -1996,7 +1996,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">In her oral evidence, Ms B recalled that to her [the mother] and Tara seemed </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">‘quite aligned with one another’</span><span style="font-family:'Times New Roman';font-size:12pt">, </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">‘best friends’.  </span><span style="font-family:'Times New Roman';font-size:12pt">She said [the mother] would make comments to Tara about Sasha, like, </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">‘Sasha wouldn’t like this would she?</span><span style="font-family:'Times New Roman';font-size:12pt">’  In subsequent contacts, Ms B observed Sasha to be </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">‘very much on the periphery – she would be walking behind’.</span><span style="font-family:'Times New Roman';font-size:12pt">  Ms B considers the girls have a complex relationship and although they have wanted to spend time with one another, at other times, Tara has blamed Sasha for having to come and live with her father, when she saw Sasha as being the one to have the problems.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <heading class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Finding 14</span></heading>
           <paragraph>
             <content>
@@ -2037,7 +2037,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">I am satisfied that finding 14 is proved to the standard of a balance of probabilities.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Finding 15: in respect of [the father]</span></p>
           </content>
@@ -2303,7 +2303,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="Heading1"><span style="font-family:'Times New Roman';font-size:12pt">Finding 16: Education </span></p>
           </content>
@@ -2348,7 +2348,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">During periods where the girls were on the school roll, [the mother] frequently took them out of school, or they were late.  This was very frequently on a day the girls were due to see their father, and either the girls or their mother would tell staff that this was the reason they had not come in to school.  Otherwise, the mother either gave no explanation, or explanations that were casual, (</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">‘not in school as Tara’s head and overall well-being very much needs a bit of TLC today’, ‘she needs a break from school she is a little stressed so she is having one day off’, ‘you can write what you want Mrs S</span><span style="font-family:'Times New Roman';font-size:12pt">).  On other occasions she took the girls on holiday during term time without reference to the teacher.  When they went to Spain it prevented the children from having time with their father at the start of the Christmas holidays as provided for in the private law order.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="Heading1"><span style="font-family:'Times New Roman';font-size:12pt">Additional findings </span></p>
           </content>
@@ -2359,7 +2359,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">I am invited by Miss Farquhar on behalf of the guardian and Mr Lorie on behalf of the father to make some additional findings, which are not covered by the local authority’s schedule. </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="Heading2"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Finding 17: Failure to protect </span></p>
           </content>
@@ -2462,7 +2462,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">By failing to report to Sasha’s father or others caring for her, she failed to ensure that they were informed of the risks, thus hampering them in their abilities to protect her.  </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="Heading2"><span style="font-family:'Times New Roman';font-size:12pt">Finding 18: Head-shaving</span></p>
           </content>
@@ -2503,7 +2503,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt"> I find that [the mother] did not prepare Sasha for having her head shaved, that it was not something that was Sasha’s choice, that it caused her distress, and further contributed to her low self-esteem.  This amounts to significant emotional harm.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="Heading1"><span style="font-family:'Times New Roman';font-size:12pt">Next steps</span></p>
           </content>
@@ -2532,7 +2532,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The girls have been the subject of a series of Family Court proceedings for many years, and the current public law proceedings have lasted more than fifteen months.  There is a pressing need to avoid any further delay so that the girls’ futures may be settled and they can begin to process and recover from the experiences of the past and look forward to the future.</span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p style="text-align:right"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">HHJ Joanna Vincent, Family Court, Oxford</span></p>
             <p style="text-align:right"><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#000000">Draft sent by email: 17 March 2023</span></p>

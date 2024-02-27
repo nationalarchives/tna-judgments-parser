@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
-          <FRBRdate date="2023-08-08T15:15:33" name="transform" />
+          <FRBRdate date="2024-02-16T18:07:12" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2578</uk:number>
         <uk:cite>[2022] EWHC 2578 (Ch)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>79d2f5213b7678ab85ed006ba34f880f77e241ede67a9b9868b24bca6aa292a5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -160,7 +160,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p><span style="font-weight:bold">Mr Simon Gleeson :</span></p>
           </content>
@@ -189,7 +189,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The First Respondent (who is the largest unsecured creditor of the Company) argues that the Charge, although validly created, was invalid under s.245 at its moment of creation, and that it is not validated by any of the subsequent actions of the Second Respondent. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">Introduction</span></p>
           </content>
@@ -272,7 +272,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The joint administrators of the Company were appointed pursuant to an Order of ICC Judge Prentis on 30 June 2021.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">The Law</span></p>
           </content>
@@ -309,14 +309,18 @@
         </paragraph>
         <paragraph eId="para_19">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">S.235(3) provides:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.5in;margin-right:0in">“the time at which a floating charge is created by a company is a relevant time for the purposes of this section if the charge is created – in the case of a charge which is created in favour of a person who is connected with the company, at a time in the period of 2 years ending with the onset of insolvency”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.5in;margin-right:0in">“the time at which a floating charge is created by a company is a relevant time for the purposes of this section if the charge is created – in the case of a charge which is created in favour of a person who is connected with the company, at a time in the period of 2 years ending with the onset of insolvency”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_20">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
@@ -381,7 +385,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">The DMCC Transaction</span></p>
           </content>
@@ -422,21 +426,25 @@
             <p class="ParaLevel1" style="margin-left:0.5in">There was a second round of amendments to the terms of the Notes in October 2020, but this does not seem to have been substantive.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaHeading"><span style="font-weight:bold">The Issues </span></p>
           </content>
         </level>
         <paragraph eId="para_34">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">34.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The joint administrator’s application before this court is set out at para 6.1 of the application notice</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“Giving directions (pursuant to paragraph 63 of Schedule B1 of the Insolvency Act 1986) in relation to the following matters arising in the administration of the Company, namely: the validity and enforceability of a debenture dated 22 January 2020 (“the 2020 Debenture”), created between the Company (as chargor) and the second respondent, Nader Hamoud and Jonathan Woods (as chargees); specifically whether, and if so the extent to which, Section 245 of the Insolvency Act 1986 applies to the second respondent so as to invalidate his security under any floating charge created by the 2020 Debenture”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“Giving directions (pursuant to paragraph 63 of Schedule B1 of the Insolvency Act 1986) in relation to the following matters arising in the administration of the Company, namely: the validity and enforceability of a debenture dated 22 January 2020 (“the 2020 Debenture”), created between the Company (as chargor) and the second respondent, Nader Hamoud and Jonathan Woods (as chargees); specifically whether, and if so the extent to which, Section 245 of the Insolvency Act 1986 applies to the second respondent so as to invalidate his security under any floating charge created by the 2020 Debenture”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_35">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">35.</num>
@@ -516,7 +524,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_6">
           <num style="font-weight:bold">1.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">The Validity of the Charge</span></p>
@@ -528,7 +536,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Section 245(2)(a) of the Act provides that a charge will be valid to the extent of the value of so much of the consideration for its creation as consists of  “money paid, goods or services” which are “supplied to the company at the same time as, or after, the creation of the charge”. In order to apply this rule to these facts, we need to know the date of the Charge’s creation, the date of the provision of any consideration to the Company, whether that consideration falls within the limited range of consideration which can be recognised as such by the section, and what the value of that consideration should be taken to have been.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">The Date of creation of the Charge. </span></p>
           </content>
@@ -617,7 +625,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">This takes us to four further issues</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Did the transfer constitute “consideration” specifically for the grant of the charge?</span></p>
           </content>
@@ -663,7 +671,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">This seems to me to support the argument that for the purposes of this section “consideration” means value actually supplied, regardless of the contractual position.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Was the value that was given, given “by reason of” the charge?</span></p>
           </content>
@@ -692,7 +700,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in"> It is entirely true that at any time after the failure of the First Debenture Mr Farah was contractually bound to transfer the shares, and could in equity have been compelled to do so. However, at the same time the Company was obliged to create a charge, had not done so, and could in equity have been compelled to do so. It is highly implausible that any order could have been secured to mandate one without mandating the other. To my mind this emphasises the fact that the performance of each obligation was in fact dependent on the performance of the other. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Were the shares capable of constituting “consideration”?</span></p>
           </content>
@@ -767,7 +775,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In this context, it seems to me that in the circumstances the shares in DMCC satisfy that criterion. The Second Respondent also points out that since the Company was a holding company, its stock in trade was shares of other companies, and it seems extremely strange to argue that the acquisition of shares in a subsidiary by a holding company does not constitute the conduct of its day-to-day activities.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">What was the value of the consideration given?</span></p>
           </content>
@@ -800,7 +808,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I therefore think that, if a valuation cannot be agreed between the parties, it is a matter which should be determined at a further hearing.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The Administrator’s Second and Third Questions</span></p>
           </content>
@@ -835,7 +843,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_13">
           <num style="font-weight:bold">2.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">Did The Renegotiation Constitute New Consideration? </span></p>
@@ -918,14 +926,18 @@
         </paragraph>
         <paragraph eId="para_83">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">83.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">It is also clear that the alternative to the new arrangement was not a continuation of the status quo as Mr Farah said in his email dated 14 April 2020:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“Again, if you want to have a call we can. But be clear: the company cannot and will not be allowed to operate as what you think is ‘normal’ when our bridge money is still stuck in there with no prospect of redeeming it short of a liquidation – which is in no-one’s interest.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“Again, if you want to have a call we can. But be clear: the company cannot and will not be allowed to operate as what you think is ‘normal’ when our bridge money is still stuck in there with no prospect of redeeming it short of a liquidation – which is in no-one’s interest.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_84">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">84.</num>
@@ -933,7 +945,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Farah argues that simply by consenting to the Renegotiation he gave value to the Company, and that value should be counted as “consideration” for the purposes of s. 245. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">Can conduct constitute consideration for s.245?</span></p>
           </content>
@@ -962,7 +974,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I also note Mr Brockman’s point that, as set out in paragraph [55] above, the consequence of a failure of the Renegotiation would potentially have been the liquidation of the Company. This demonstrates the significance and importance of the agreement eventually reached to the Company. However, it does not mean that entry into that agreement is capable of constituting consideration here. The point is not that the concessions made by Mr Farah in the Renegotiation were not valuable- they clearly were. The point is that they did not have the effect of swelling the assets of the company available to creditors by any measurable amount, and therefore cannot constitute consideration for the purposes of s.245. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_15">
           <num style="font-weight:bold">3.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">Did the Note Exchange Result in a Discharge of Debts of the Company? </span></p>
@@ -980,7 +992,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">There are two questions here; one being as to whether the Note Exchange did constitute an entirely new transaction, and the other being as to whether, even if it did, that transaction would satisfy the requirements of s.245.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">Did the Note Exchange Constitute a New Transaction?</span></p>
           </content>
@@ -1021,21 +1033,25 @@
             <p class="ParaLevel1" style="margin-left:0.5in">If the transaction was simply a restructuring of the terms of the existing Notes, then I think it is clear that, for the reasons given above, merely consenting to such a restructuring would not constitute good consideration for the purposes of s.245.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="ParaHeading"><span style="font-style:italic">Would the transaction constitute good consideration even if the Note Exchange were a new transaction?</span></p>
           </content>
         </level>
         <paragraph eId="para_97">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">97.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">On a plain reading of s.245, this would clearly be the case. Section 245(2)(b) is unconditional in its form – any discharge of any debt of the company constitutes consideration. However s. 245 and its predecessors have in this regard been given a heavily purposive interpretation by the courts. The problem is stated in Sealy &amp; Millman (25<span style="vertical-align:super;font-size:smaller">th</span> Ed. in the general notes to s.245 IA 1986)</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“Difficulties may also occur where the indebtedness discharged is that of the creditor to whom the floating charge is granted. An existing creditor would be able to avoid the consequences of s.245 by the simple expedient of requiring a notional repayment of the existing debt in return for a new advance of the same amount. To avoid this conclusion either the reference to discharge or reduction of debt must be construed as meaning debt owed to a person other than the creditor making the new advance, or the courts would need to regard the “repayment” and “new advance” as in substance effecting no change at all and therefore being outside the ambit of category (b).”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“Difficulties may also occur where the indebtedness discharged is that of the creditor to whom the floating charge is granted. An existing creditor would be able to avoid the consequences of s.245 by the simple expedient of requiring a notional repayment of the existing debt in return for a new advance of the same amount. To avoid this conclusion either the reference to discharge or reduction of debt must be construed as meaning debt owed to a person other than the creditor making the new advance, or the courts would need to regard the “repayment” and “new advance” as in substance effecting no change at all and therefore being outside the ambit of category (b).”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_98">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">98.</num>
@@ -1045,14 +1061,18 @@
         </paragraph>
         <paragraph eId="para_99">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">99.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Re Peak Hotels and Resorts Ltd (In Liquidation)</span> [2019] EWCA Civ 345; [2019] Bus. L.R. 1758, the Court of Appeal had to consider the operation of section 245(2), IA 1986, and specifically the issue of the valuation of the provision of services for the purposes of section 245(2)(a). At [31], Henderson LJ explained that “it is important to begin by placing section 245 in its statutory context in the law of insolvency and examining how the section operates”. At [32], he explained that “section 245 is one of a group of sections which enable transactions entered into during a specified period before the onset of insolvency to be set aside or adjusted. Parliament has decided that these powers are needed in order to strike a fair balance between the creditors of a company which enters liquidation or administration”. At [33], he then expanded on this. </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“The critical distinction between fixed and floating charges, at least in the present context, is that a fixed charge necessarily attaches from its inception to existing property of the company, whereas a floating charge remains in suspense until the happening of a crystallising event, whereupon it will attach to the company’s assets of the types specified in the charge as at the date of crystallisation, whether or not they were in existence when the floating charge was created. This has the potential to cause unfairness between the holder of a floating charge and the company’s unsecured creditors if the charge is created at a time when the company is of doubtful solvency and it later goes into liquidation or administration. In particular, the secured creditor would be likely to gain an unfair advantage if it were thus able to obtain priority for any part of the company’s indebtedness to it which in substance preceded the date of the charge, or which post-dated the charge but exceeded the further value actually provided by the creditor to the company before the charge crystallised. In general terms, that is the mischief which section 245 seeks to combat. It does so, like its predecessors in the Companies Acts of 1908 and 1948, by providing that a floating charge over the company’s property or undertaking, created during the specified “relevant period”, is invalid except to the extent specified in the section. […]”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The critical distinction between fixed and floating charges, at least in the present context, is that a fixed charge necessarily attaches from its inception to existing property of the company, whereas a floating charge remains in suspense until the happening of a crystallising event, whereupon it will attach to the company’s assets of the types specified in the charge as at the date of crystallisation, whether or not they were in existence when the floating charge was created. This has the potential to cause unfairness between the holder of a floating charge and the company’s unsecured creditors if the charge is created at a time when the company is of doubtful solvency and it later goes into liquidation or administration. In particular, the secured creditor would be likely to gain an unfair advantage if it were thus able to obtain priority for any part of the company’s indebtedness to it which in substance preceded the date of the charge, or which post-dated the charge but exceeded the further value actually provided by the creditor to the company before the charge crystallised. In general terms, that is the mischief which section 245 seeks to combat. It does so, like its predecessors in the Companies Acts of 1908 and 1948, by providing that a floating charge over the company’s property or undertaking, created during the specified “relevant period”, is invalid except to the extent specified in the section. […]”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_100">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">100.</num>
@@ -1092,19 +1112,23 @@
         </paragraph>
         <paragraph eId="para_102">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">102.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Nourse J considered the law, as it then applied, under Section 322(1) of the Companies Act 1948. Given its materiality, it is worth quoting in full, beginning at p.316g. He explained that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"> “I was referred to five earlier authorities in which the meaning of the expression 'cash paid to the company' was considered. They were <span style="font-style:italic">Re Orleans Motor Co Ltd </span>[1911] 2 Ch 41; <span style="font-style:italic">Re Hayman, Christy &amp; Lilly Ltd </span>[1917] 1 Ch 283; <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458, CA; Re Destone Fabrics Ltd [1941] Ch 319; and <span style="font-style:italic">Re Ambassadors (Bournemouth) Ltd</span> (1961) 105 Sol Jo 969. In some of those cases learned judges expressed general views as to the transactions which the section was intended to defeat. Thus, in <span style="font-style:italic">Re Orleans Motor Co Ltd</span> [1911] 2 Ch 41 at 45, Parker J said that one of the apparent objects of the provision was to prevent companies on their last legs from creating floating charges for moneys which do not go to swell their assets and become available for creditors. In <span style="font-style:italic">Re Hayman, Christy &amp; Lilly Ltd</span> [1917] 1 Ch 283 at 285, Astbury J thought that the expression meant 'except the amount of any cash absolutely and unconditionally paid to the company'. In <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458 at 464–5, Eve J at first instance disapproved the view of Astbury J, but then excluded from the expression any payments of cash made upon the condition that the cash should be applied in discharge of an existing, as opposed to a future, liability of the company. The Court of Appeal disapproved all the views above mentioned and held that a floating charge will not be invalidated merely by reason of the imposition of a condition that the money advanced is to be applied by the company in discharge of an existing liability, provided that the transaction is in substance for the benefit of the company and not merely the substitution of a secured for an unsecured debt and thus of benefit to one creditor at the expense of others. The question was expressed in much the same way by Simonds J in <span style="font-style:italic">Re Destone Fabrics Ltd</span> [1941] Ch 319 at 324. He said that the ultimate test might well be whether the transaction is to be regarded as one intended bona fide for the benefit of the company, or whether it is intended merely to provide certain moneys for the benefit of certain of the company's creditors to the prejudice of others. Finally, I should record that in <span style="font-style:italic">Re Orleans Motor Co Ltd</span> [1911] 2 Ch 41 at 45, Parker J had said that another of the apparent objects of the section was to prevent companies on their last legs from creating floating charges to secure past debts. There has never, I think, been any doubt about that. Indeed, that part of Parker J's views was expressly approved by the Court of Appeal in <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458 which remains the most authoritative decision on the subject. Accordingly, the primary question in each case is whether the transaction is in substance for the benefit of the company and not merely the substitution of a secured for an unsecured debt.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">In <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458 it was held that the charge was valid. In each of the other four cases it was held that the charge was invalid. And each of them appears to me to have been a case where it could be said that there had been a blatant attempt to obtain a benefit for one creditor at the expense of others. In other words, there had been underhand conduct of one kind or another. In my judgment, however, conduct of that kind is not a pre-requisite to the operation of the section. In the present case it is not suggested that there was any such conduct on the part of Lloyds in procuring the execution by Whyte of the floating charge of 2 April 1974. For myself, I would like to say that any such suggestion would have been manifestly unsustainable. Nevertheless, the primary submission made by counsel for the liquidator (Mr Scott) was that, to the extent of the first £12·75m, the floating charge was in substance created to secure Whyte's past indebtedness to Lloyds. On that simple ground, submitted counsel for the liquidator (Mr Scott), the charge was to that extent invalid.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"> “I was referred to five earlier authorities in which the meaning of the expression 'cash paid to the company' was considered. They were <span style="font-style:italic">Re Orleans Motor Co Ltd </span>[1911] 2 Ch 41; <span style="font-style:italic">Re Hayman, Christy &amp; Lilly Ltd </span>[1917] 1 Ch 283; <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458, CA; Re Destone Fabrics Ltd [1941] Ch 319; and <span style="font-style:italic">Re Ambassadors (Bournemouth) Ltd</span> (1961) 105 Sol Jo 969. In some of those cases learned judges expressed general views as to the transactions which the section was intended to defeat. Thus, in <span style="font-style:italic">Re Orleans Motor Co Ltd</span> [1911] 2 Ch 41 at 45, Parker J said that one of the apparent objects of the provision was to prevent companies on their last legs from creating floating charges for moneys which do not go to swell their assets and become available for creditors. In <span style="font-style:italic">Re Hayman, Christy &amp; Lilly Ltd</span> [1917] 1 Ch 283 at 285, Astbury J thought that the expression meant 'except the amount of any cash absolutely and unconditionally paid to the company'. In <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458 at 464–5, Eve J at first instance disapproved the view of Astbury J, but then excluded from the expression any payments of cash made upon the condition that the cash should be applied in discharge of an existing, as opposed to a future, liability of the company. The Court of Appeal disapproved all the views above mentioned and held that a floating charge will not be invalidated merely by reason of the imposition of a condition that the money advanced is to be applied by the company in discharge of an existing liability, provided that the transaction is in substance for the benefit of the company and not merely the substitution of a secured for an unsecured debt and thus of benefit to one creditor at the expense of others. The question was expressed in much the same way by Simonds J in <span style="font-style:italic">Re Destone Fabrics Ltd</span> [1941] Ch 319 at 324. He said that the ultimate test might well be whether the transaction is to be regarded as one intended bona fide for the benefit of the company, or whether it is intended merely to provide certain moneys for the benefit of certain of the company's creditors to the prejudice of others. Finally, I should record that in <span style="font-style:italic">Re Orleans Motor Co Ltd</span> [1911] 2 Ch 41 at 45, Parker J had said that another of the apparent objects of the section was to prevent companies on their last legs from creating floating charges to secure past debts. There has never, I think, been any doubt about that. Indeed, that part of Parker J's views was expressly approved by the Court of Appeal in <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458 which remains the most authoritative decision on the subject. Accordingly, the primary question in each case is whether the transaction is in substance for the benefit of the company and not merely the substitution of a secured for an unsecured debt.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">In <span style="font-style:italic">Re Matthew Ellis Ltd</span> [1933] Ch 458 it was held that the charge was valid. In each of the other four cases it was held that the charge was invalid. And each of them appears to me to have been a case where it could be said that there had been a blatant attempt to obtain a benefit for one creditor at the expense of others. In other words, there had been underhand conduct of one kind or another. In my judgment, however, conduct of that kind is not a pre-requisite to the operation of the section. In the present case it is not suggested that there was any such conduct on the part of Lloyds in procuring the execution by Whyte of the floating charge of 2 April 1974. For myself, I would like to say that any such suggestion would have been manifestly unsustainable. Nevertheless, the primary submission made by counsel for the liquidator (Mr Scott) was that, to the extent of the first £12·75m, the floating charge was in substance created to secure Whyte's past indebtedness to Lloyds. On that simple ground, submitted counsel for the liquidator (Mr Scott), the charge was to that extent invalid.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_103">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">103.</num>
@@ -1132,25 +1156,33 @@
         </paragraph>
         <paragraph eId="para_107">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">107.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">It was suggested in argument that any transaction which substitutes one debt obligation for another is “a transparent subterfuge”, and therefore cannot constitute the provision of consideration under s.245. In this context, reliance was placed on two cases. In <span style="font-style:italic">Re Matthew Ellis, Ltd</span> [1933] Ch. 458, at 477, Romer LJ said that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"> “There are, of course, certain considerations for the issue of a debenture which plainly do not amount to payments in cash. Where, for instance, an existing creditor of a company takes a debenture from the company to secure the amount of his debt on the terms that he shall not immediately press for payment of his debt, or where he takes a debenture for the amount of his debt on the terms that the debt itself is to be extinguished, obviously no cash passes from the debenture holder to the company. If in such a case he goes through the form of drawing a cheque in favour of the company for the amount of his debt on the terms that the company shall forthwith itself hand to him in exchange a cheque for the same amount, there has in form been a payment in cash. But in such a case there has not been a payment in cash if one looks at the substance and not at the form, and in considering whether there has been a payment of cash within the meaning of s. 266  it is always the question of substance that must be regarded and not the question of form.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"> “There are, of course, certain considerations for the issue of a debenture which plainly do not amount to payments in cash. Where, for instance, an existing creditor of a company takes a debenture from the company to secure the amount of his debt on the terms that he shall not immediately press for payment of his debt, or where he takes a debenture for the amount of his debt on the terms that the debt itself is to be extinguished, obviously no cash passes from the debenture holder to the company. If in such a case he goes through the form of drawing a cheque in favour of the company for the amount of his debt on the terms that the company shall forthwith itself hand to him in exchange a cheque for the same amount, there has in form been a payment in cash. But in such a case there has not been a payment in cash if one looks at the substance and not at the form, and in considering whether there has been a payment of cash within the meaning of s. 266  it is always the question of substance that must be regarded and not the question of form.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_108">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">108.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Re Destone Fabrics Ltd</span> [1941] Ch. 319, at 324, Simonds J reviewed <span style="font-style:italic">Re Matthew Ellis Ltd</span>, and then said: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“I think that I too am entitled to say that in this case the Court will not be misled by a transparent subterfuge. I find it impossible to believe that the purpose of this transaction was anything else but, by the issue of this security, to procure the payment to certain directors of the sums due to them in preference to other creditors of the company, and payment also to Davis who was himself advancing the money on the security of the debenture. The ultimate test in such cases may well be whether the transaction is to be regarded as one intended bona fide for the benefit of the company, or whether it is intended merely to provide certain moneys for the benefit of certain creditors of the company to the prejudice of other creditors of the company.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“I think that I too am entitled to say that in this case the Court will not be misled by a transparent subterfuge. I find it impossible to believe that the purpose of this transaction was anything else but, by the issue of this security, to procure the payment to certain directors of the sums due to them in preference to other creditors of the company, and payment also to Davis who was himself advancing the money on the security of the debenture. The ultimate test in such cases may well be whether the transaction is to be regarded as one intended bona fide for the benefit of the company, or whether it is intended merely to provide certain moneys for the benefit of certain creditors of the company to the prejudice of other creditors of the company.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_109">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">109.</num>
@@ -1160,16 +1192,20 @@
         </paragraph>
         <paragraph eId="para_110">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:12pt;margin-left:0.5in;text-indent:-0.5in">110.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Finally, it was suggested by the Joint Administrators, in their position as neutral assistants of the court, that <span style="font-style:italic">Re Fairway Magazines Ltd</span> and the authorities cited therein addressed the position under s.245(2)(a), and that these authorities might not be applicable to s.245(2)(b). I am grateful to them for raising the point – which would not otherwise have occurred to me – but I cannot think that it is correct. Leaving aside the basic point that there is no imaginable reason why the approach under section 245(2)(a) and 245(2)(b) should differ, the applicability of this line of authorities to section 245(2)(b) was considered (albeit briefly and apparently obiter) in <span style="font-style:italic">Re Comet Group Ltd (In Liquidation) </span>[2018] EWHC 1378 (Ch), at [142] and [167]. At [142], Sir Nicholas Warren explained that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“Ms Hilliard addressed section 245 in paragraphs 5 to 7 of the Hilliard Opinion. I do not set out or even summarise what she says. But, in response to any suggestion that the sentiment behind what Mummery J said in Re Fairway Magazines Ltd [1992] BCC 924 at 932 (“If the effect of a payment, which in form made to the company, is merely to substitute secured debt for unsecured debt, then the payment is not in substance a payment to the company”) is not applicable where the relevant consideration falls within section 245(2)(b), she expressed the view that such a suggestion would be wrong. As to that, like her, I do not understand that section 245(2)(b) has altered the general purposes of section 245, which is to prevent a company that is on its last legs from creating a floating charge to secure past debts or to secure moneys which do not go to swell its assets and become available for creditors.” </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“Ms Hilliard addressed section 245 in paragraphs 5 to 7 of the Hilliard Opinion. I do not set out or even summarise what she says. But, in response to any suggestion that the sentiment behind what Mummery J said in Re Fairway Magazines Ltd [1992] BCC 924 at 932 (“If the effect of a payment, which in form made to the company, is merely to substitute secured debt for unsecured debt, then the payment is not in substance a payment to the company”) is not applicable where the relevant consideration falls within section 245(2)(b), she expressed the view that such a suggestion would be wrong. As to that, like her, I do not understand that section 245(2)(b) has altered the general purposes of section 245, which is to prevent a company that is on its last legs from creating a floating charge to secure past debts or to secure moneys which do not go to swell its assets and become available for creditors.” </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_18">
           <num style="font-weight:bold">4.</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in"><span style="font-weight:bold">Did the Release of DMCC Funds after the Renegotiation Constitute Consideration?</span></p>
@@ -1239,7 +1275,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Procedural History </span></p>
           </content>

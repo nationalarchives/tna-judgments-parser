@@ -44,7 +44,7 @@ class PreParser {
     private ILogger Logger = Logging.Factory.CreateLogger<PreParser>();
 
     internal WordDocument Parse(WordprocessingDocument doc) {
-        Logger.LogTrace($"pre-parsing { doc.DocumentType.ToString() }");
+        Logger.LogTrace("pre-parsing { }", doc.DocumentType.ToString());
         return new WordDocument {
             Docx = doc,
             Header = Header(doc.MainDocumentPart),
@@ -84,6 +84,8 @@ class PreParser {
             if (DOCX.Paragraphs.IsDeleted(p))
                 return true;
             if (DOCX.Paragraphs.IsEmptySectionBreak(p))
+                return true;
+            if (DOCX.Paragraphs.IsEmptyPageBreak(p))
                 return true;
             if (DOCX.Numbering2.HasOwnNumber(p))
                 return false;
@@ -205,15 +207,19 @@ class PreParser {
 
         private int i = 0;
 
-        private FirstPass1(MainDocumentPart main) { this.Main = main; }
+        private FirstPass1(MainDocumentPart main) { Main = main; }
+
+        private readonly ILogger Logger = Logging.Factory.CreateLogger<FirstPass1>();
 
         private List<MergedBlockWithBreak> DoPass() {
             List<MergedBlockWithBreak> unmerged = new List<MergedBlockWithBreak>();
             bool lineBreakBefore = false;
+            List<OpenXmlElement> skpdBkmrks = new();
             while (i < Main.Document.Body.ChildElements.Count) {
                 OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
                 lineBreakBefore = lineBreakBefore || Util.IsSectionOrPageBreak(e);
                 if (IsSkippable(e)) {
+                    skpdBkmrks.AddRange(e.Descendants().Where(Bookmarks.IsBookmark));
                     i += 1;
                     continue;
                 }
@@ -223,12 +229,16 @@ class PreParser {
                 if (toc is not null) {
                     unmerged.Add(new MergedBlockWithBreak { Block = toc, LineBreakBefore = lineBreakBefore });
                     lineBreakBefore = false;
+                    AddSkippedBookmarksToFirstLine(skpdBkmrks, new List<IBlock>(1) { toc });
+                    skpdBkmrks = new();
                     continue;
                 } else {
                     i = save;
                 }
 
                 List<IBlock> blocks = ParseElement(Main, e);
+                AddSkippedBookmarksToFirstLine(skpdBkmrks, blocks);
+                skpdBkmrks = new();
                 foreach (IBlock block in blocks.SkipLast(1)) {
                     unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore });
                     lineBreakBefore = false;
@@ -241,6 +251,19 @@ class PreParser {
                 i += 1;
             }
             return unmerged;
+        }
+
+        private void AddSkippedBookmarksToFirstLine(List<OpenXmlElement> skpdBkmrks, List<IBlock> blocks) {
+            if (!skpdBkmrks.Any())
+                return;
+            List<WBookmark> parsed = Bookmarks.Parse(skpdBkmrks);
+            ILine iLine = blocks.SelectMany(Util.GetLines).FirstOrDefault();
+            if (iLine is not WLine wLine) {
+                foreach (var bkmk in parsed)
+                    Logger.LogWarning("cannot move bookmark from skipped line: {}", bkmk.Name);
+                return;
+            }
+            wLine.PrependBookmarksFromPrecedingSkippedLines(parsed);
         }
 
         private TableOfContents ParseTableOfContents(OpenXmlElement e1) {

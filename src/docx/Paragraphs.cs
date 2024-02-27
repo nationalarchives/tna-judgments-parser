@@ -314,6 +314,20 @@ static class Paragraphs {
             && p.ChildElements.All(child => child is ParagraphProperties);
     }
 
+    internal static bool IsEmptyPageBreak(Paragraph p) { // [2023] EWHC 3367 (Comm), test78
+        if (p.ChildElements.Count != 2)
+            return false;
+        if (p.ChildElements[0] is not ParagraphProperties)
+            return false;
+        if (p.ChildElements[1] is not Run run)
+            return false;
+        if (run.ChildElements.Count != 1)
+            return false;
+        if (run .ChildElements[0] is not Break)
+            return false;
+        return true;
+    }
+
     internal static bool IsDeleted(Paragraph p) {
         if (!p.ChildElements.OfType<DeletedRun>().Any())
             return false;

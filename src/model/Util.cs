@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Judgments {
 
 class Util {
 
-    private static Func<IBlock, IEnumerable<ILine>> GetLines = (block) => {
+    internal static Func<IBlock, IEnumerable<ILine>> GetLines = (block) => {
         if (block is ILine line)
             return new List<ILine>(1) { line };
         if (block is IOldNumberedParagraph np)
@@ -21,6 +21,8 @@ class Util {
             var blocks = cells.SelectMany(cell => cell.Contents);
             return blocks.SelectMany(GetLines);
         }
+        if (block is IQuotedStructure quote)
+            return quote.Contents.SelectMany(GetBlocksFromDivision).SelectMany(GetLines);
         if (block is IDivWrapper wrapper)
             return GetBlocksFromDivision(wrapper.Division).SelectMany(GetLines);
         if (block is ITableOfContents2 toc)
@@ -53,10 +55,11 @@ class Util {
                 blocks.Add(branch.Heading);
             if (branch.Intro is not null)
                 blocks.AddRange(branch.Intro);
-            return Enumerable.Concat<IBlock>(
-                blocks,
-                branch.Children.SelectMany(GetBlocksFromDivision)
-            );
+            foreach (var child in branch.Children)
+                blocks.AddRange(GetBlocksFromDivision(child));
+            if (branch.WrapUp is not null)
+                blocks.AddRange(branch.WrapUp);
+            return blocks;
         }
         if (div is ITableOfContents toc)
             return toc.Contents;

@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
-          <FRBRdate date="2023-09-21T19:03:24" name="transform" />
+          <FRBRdate date="2024-02-16T18:08:19" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1495</uk:number>
         <uk:cite>[2023] EWHC 1495 (Pat)</uk:cite>
-        <uk:parser>0.17.2</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>f5a256994f9d5137dc3cf3f27441337c260612a54cc6ddcf9a6fa3e5c715c1d6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -199,7 +199,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p>This judgment was handed down by the judge remotely by circulation to the parties’ representatives by e-mail and release to The National Archives. The date and time for hand-down is deemed to be 10.30am on 26 June 2023. </p>
             <p><span style="font-weight:bold">Miss Charlotte May KC (sitting as a Deputy High Court Judge):</span></p>
@@ -266,7 +266,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendants also argue that, even if the Claimant’s construction of this integer is correct, there is still no infringement because the claims require one message and one server, whereas the Shell system deploys two messages, and in the case of the second and third iteration, two servers. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="Heading1">CONDUCT OF THE TRIAL</p>
           </content>
@@ -277,7 +277,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Claimant was represented by Mr Martin Howe KC leading Dr Geoffrey Pritchard and the Defendants were represented by Ms Lindsay Lane KC leading Ms Beth Collett. The trial was conducted live and there were no Covid issues. I had the benefit of written opening and closing skeleton arguments, as well as an oral opening and closing from both parties. I am grateful to counsel and their instructing solicitors for the work put into preparing their cases. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="Heading1">the issues </p>
           </content>
@@ -342,7 +342,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="Heading1">the witnesses</p>
           </content>
@@ -353,7 +353,7 @@
             <p class="BodyText" style="margin-left:0.39in">Each side called one expert. The Claimant’s expert was Prof Keith Martin and the Defendants’ expert was Dr Kevin Berisso. Neither side criticised the way in which the other side’s expert gave oral evidence, and in my judgment they were right not to do so. I found both experts gave clear answers and did their best to assist the court on issues within their expertise. However, both sides criticised the way in which the other’s expert had been instructed and/or prepared his evidence.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="Heading3">Prof Martin </p>
           </content>
@@ -412,7 +412,7 @@
             <p class="BodyText" style="margin-left:0.39in">The Defendants also criticised what was said to be Prof Martin’s apparent reluctance to put himself in the position of the skilled person implementing the prior art. This was in the context of questions put to Prof Martin about ways to implement various embodiments which were said to be obvious. The Claimant in turn criticised this line of questioning, saying that it was unsupported by evidence and was based on the ingenuity of counsel alone. These points are best dealt with in the context of obviousness, below. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="Heading3">Dr Berisso </p>
           </content>
@@ -441,77 +441,77 @@
             <p class="BodyText" style="margin-left:0.39in">Second, the Claimant criticised Dr Berisso’s approach to the prior art, accusing him of picking integers out of the prior art without considering the proper context in which they arose, or the other factors required by the claims. This is said to undermine his evidence on obviousness, and so again is best dealt with in that context, below. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="Heading1">the skilled person</p>
           </content>
         </level>
         <paragraph eId="para_27">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">27.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">There was no dispute between the parties as to the relevant law. The skilled person is someone who is likely to have a practical interest in the subject matter of the invention, which includes putting it into practice. I was reminded of the useful summary from Meade J in <span style="font-style:italic">Optis Cellular Technology Ltd v Apple Retail UK Ltd </span>[2021] EWHC 3121 (Pat)<span style="font-style:italic"> </span>in which he said at [29]-[31]:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">“29.  <marker name="tab" />I considered the applicable law recently in Alcon v. Actavis [2021] EWHC 1026 (Pat), drawing heavily on the decision of Birss J, as he then was, in <span style="font-style:italic">Illumina v. Latvia</span> [2021] EWHC 57 (Pat). The particularly relevant passages are [68]-[70] in <span style="font-style:italic">Illumina</span> and [31] in <span style="font-style:italic">Alcon</span>.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="Quote" style="margin-left:0.6in">30.  <marker name="tab" />At [68] in <span class="coitalic" style="font-style:italic">Illumina</span> Birss J provided the following approach:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">"68.  <marker name="tab" />I conclude that in a case in which it is necessary to define the skilled person for the purposes of obviousness in a different way from the skilled person to whom the patent is addressed, the approach to take, bringing <span class="coitalic">Schlumberger</span> and <span class="coitalic">Medimmune</span> together, is:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:'Times New Roman';font-size:12pt;margin-left:1.5in;text-indent:-0.5in">i)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.5in;margin-right:0.66in">To start by asking what problem does the invention aim to solve?</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">ii)  <marker name="tab" />That leads one in turn to consider what the established field which existed was, in which the problem in fact can be located.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">iii)  <marker name="tab" />It is the notional person or team in that established field which is the relevant team making up the person skilled in the art."</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="Quote" style="margin-left:0.6in">31.  <marker name="tab" />And in <span style="font-style:italic">Alcon</span> at [31] I said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">"31.  <marker name="tab" />I intend to apply that approach. I take particular note of:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">i)  <marker name="tab" />The requirements not to be unfair to the patentee by allowing an artificially narrow definition, or unfair to the public (and the defendant) by going so broad as to "dilute" the CGK. Thus, as Counsel for Alcon accepted, there is an element of value judgment in the assessment.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">ii)  <marker name="tab" />The fact that I must consider the real situation at the priority date, and in particular what teams existed.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">iii)  <marker name="tab" />The need to look for an 'established field', which might be a research field or a field of manufacture.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">iv)  <marker name="tab" />The starting point is the identification of the problem that the invention aims to solve."”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">“29.  <marker name="tab" />I considered the applicable law recently in Alcon v. Actavis [2021] EWHC 1026 (Pat), drawing heavily on the decision of Birss J, as he then was, in <span style="font-style:italic">Illumina v. Latvia</span> [2021] EWHC 57 (Pat). The particularly relevant passages are [68]-[70] in <span style="font-style:italic">Illumina</span> and [31] in <span style="font-style:italic">Alcon</span>.</p>
+                  </content>
+                </level>
+                <level>
+                  <heading class="Quote" style="margin-left:0.6in">30.  <marker name="tab" />At [68] in <span class="coitalic" style="font-style:italic">Illumina</span> Birss J provided the following approach:</heading>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">"68.  <marker name="tab" />I conclude that in a case in which it is necessary to define the skilled person for the purposes of obviousness in a different way from the skilled person to whom the patent is addressed, the approach to take, bringing <span class="coitalic">Schlumberger</span> and <span class="coitalic">Medimmune</span> together, is:</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic;font-family:'Times New Roman';font-size:12pt;margin-left:1.5in;text-indent:-0.5in">i)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;margin-right:0.66in">To start by asking what problem does the invention aim to solve?</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">ii)  <marker name="tab" />That leads one in turn to consider what the established field which existed was, in which the problem in fact can be located.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">iii)  <marker name="tab" />It is the notional person or team in that established field which is the relevant team making up the person skilled in the art."</p>
+                    </content>
+                  </paragraph>
+                </level>
+                <level>
+                  <heading class="Quote" style="margin-left:0.6in">31.  <marker name="tab" />And in <span style="font-style:italic">Alcon</span> at [31] I said:</heading>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">"31.  <marker name="tab" />I intend to apply that approach. I take particular note of:</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">i)  <marker name="tab" />The requirements not to be unfair to the patentee by allowing an artificially narrow definition, or unfair to the public (and the defendant) by going so broad as to "dilute" the CGK. Thus, as Counsel for Alcon accepted, there is an element of value judgment in the assessment.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">ii)  <marker name="tab" />The fact that I must consider the real situation at the priority date, and in particular what teams existed.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">iii)  <marker name="tab" />The need to look for an 'established field', which might be a research field or a field of manufacture.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">iv)  <marker name="tab" />The starting point is the identification of the problem that the invention aims to solve."”</p>
+                    </content>
+                  </paragraph>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_28">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">28.</num>
@@ -585,7 +585,7 @@
             <p class="BodyText" style="margin-left:0.39in">In my judgment, the skilled person is a general information security professional who has an interest and experience in implementing computer related security systems. They will have gained that experience either working in AutoID or in the broader field of information security.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="Heading1">the common general knowledge</p>
           </content>
@@ -596,7 +596,7 @@
             <p class="BodyText" style="margin-left:0.39in">There was no dispute about the relevant principles. I was referred to <span style="font-style:italic">KCI Licensing Inc v Smith &amp; Nephew plc</span> [2010] EWHC 1487 (Pat), [2010] FSR 31 at [105]-[112] (as approved by the Court of Appeal at [2010] EWCA Civ 1260, [2011] FSR 8 at [6]). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="Heading2">Agreed CGK </p>
           </content>
@@ -925,7 +925,7 @@
             <p class="BodyText" style="margin-left:0.39in">The associated passenger will also have been given a boarding pass with a barcode, which is linked to the luggage ID. The scanning of the boarding pass is recorded at the gate because the scanner at the gate will send the boarding pass ID together with the scanner ID to the database. Because the boarding pass ID and the luggage ID are linked, the database is able to verify that there is no baggage on board that does not have an associated passenger in the aircraft. If a passenger fails to board on time, the relevant luggage can be easily identified and removed.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="Heading2">Disputed CGK</p>
           </content>
@@ -1020,21 +1020,25 @@
             <p class="BodyText" style="margin-left:0.39in"><span style="font-size:11.5pt">However, the Claimant did not accept that the content of the Gao paper and the disclosure of the Gumball Machine were CGK. As noted above, the Defendants did not suggest that they were either, so I do not need to address these materials further. </span></p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="Heading1">the patent</p>
           </content>
         </level>
         <paragraph eId="para_92">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">92.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The Patent starts by identifying the field of the invention which (as noted above) is said to relate to the handling of encoded information. The next section is headed “Background to the Invention”, where it states:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in"><span style="font-size:10pt;color:initial;background-color:#FFFFFF">Identity cloning is an increasingly common phenomenon. Fraudsters use a wide variety of mechanisms to in order to illegally elicit personal information such as usernames, passwords, dates of birth and addresses with a view to cloning identities. One such mechanism is where a fraudster provides a spoof (or clone) of a website, which to an unsuspecting user appears identical to the original. Believing that the website is the original, the user provides personal information, such as login details or credit card details, which are recorded by the fraudster. A more sophisticated approach is a "man-in-the-middle attack" in which a fraudster provides the clone website and records the personal information, but also passes the personal information to the real website, which logs the user in as normal. In this way, the user does not notice anything different and the fraudster is able to obtain the personal information without alerting the user. This invention was made with a view to preventing these and other similar types of fraudulent activity.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in"><span style="font-size:10pt;color:initial;background-color:#FFFFFF">Identity cloning is an increasingly common phenomenon. Fraudsters use a wide variety of mechanisms to in order to illegally elicit personal information such as usernames, passwords, dates of birth and addresses with a view to cloning identities. One such mechanism is where a fraudster provides a spoof (or clone) of a website, which to an unsuspecting user appears identical to the original. Believing that the website is the original, the user provides personal information, such as login details or credit card details, which are recorded by the fraudster. A more sophisticated approach is a "man-in-the-middle attack" in which a fraudster provides the clone website and records the personal information, but also passes the personal information to the real website, which logs the user in as normal. In this way, the user does not notice anything different and the fraudster is able to obtain the personal information without alerting the user. This invention was made with a view to preventing these and other similar types of fraudulent activity.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_93">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">93.</num>
@@ -1137,14 +1141,18 @@
         </paragraph>
         <paragraph eId="para_107">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">107.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The issue is where and how the GO or other encoded information is displayed. This is addressed in the description in the context of this embodiment as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in"><span style="font-size:10pt">In such an embodiment, the computing apparatus 10 may comprise an electronic door lock. The encoded information item 112, 312, such as a GO as described above, may be displayed on a sign geographically proximate to the electronic door lock. In embodiments outside the scope of the claims, the GO 112, 312 may be provided on an electronic display geographically proximate to the electronic door lock. In such embodiments, the encoded information item may be periodically updated following receipt of signals from the first server apparatus 14.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in"><span style="font-size:10pt">In such an embodiment, the computing apparatus 10 may comprise an electronic door lock. The encoded information item 112, 312, such as a GO as described above, may be displayed on a sign geographically proximate to the electronic door lock. In embodiments outside the scope of the claims, the GO 112, 312 may be provided on an electronic display geographically proximate to the electronic door lock. In such embodiments, the encoded information item may be periodically updated following receipt of signals from the first server apparatus 14.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_108">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">108.</num>
@@ -1218,7 +1226,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="Heading1">Construction </p>
             <p class="Heading3">General principles of construction </p>
@@ -1226,64 +1234,68 @@
         </level>
         <paragraph eId="para_114">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">114.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">Save for one point considered below, there was no dispute as to the relevant principles. The parties referred me to <span style="font-style:italic">Saab Seaeye Ltd v Atlas Elektronik GmbH </span>[2017] EWCA Civ 2175 at [18], citing <span style="font-style:italic">Virgin Atlantic v Premium Aircraft </span>[2010] RPC 8 at [5] which summarises the main principles of construction. These are: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">“(i) <marker name="tab" />The first overarching principle is that contained in Article 69 of the European Patent Convention.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(ii)  <marker name="tab" />Article 69 says that the extent of protection is determined by the claims. It goes on to say that the description and drawings shall be used to interpret the claims. In short the claims are to be construed in context.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(iii)  <marker name="tab" />It follows that the claims are to be construed purposively – the inventor's purpose being ascertained from the description and drawings.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(iv)  <marker name="tab" />It further follows that the claims must not be construed as if they stood alone – the drawings and description only being used to resolve any ambiguity. Purpose is vital to the construction of claims.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(v)  <marker name="tab" />When ascertaining the inventor's purpose, it must be remembered that he may have several purposes depending on the level of generality of his invention. Typically, for instance, an inventor may have one, generally more than one, specific embodiment as well as a generalised concept. But there is no presumption that the patentee necessarily intended the widest possible meaning consistent with his purpose be given to the words that he used: purpose and meaning are different.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(vi)  <marker name="tab" />Thus purpose is not the be-all and end-all. One is still at the end of the day concerned with the meaning of the language used. Hence the other extreme of the Protocol – a mere guideline – is also ruled out by Article 69 itself. It is the terms of the claims which delineate the patentee's territory.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(vii)  <marker name="tab" />It follows that if the patentee has included what is obviously a deliberate limitation in his claims, it must have a meaning. One cannot disregard obviously intentional elements.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(viii)  It also follows that where a patentee has used a word or phrase which, acontextually, might have a particular meaning (narrow or wide) it does not necessarily have that meaning in context.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(ix)  <marker name="tab" />It further follows that there is no general 'doctrine of equivalents.'</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(x)  <marker name="tab" />On the other hand purposive construction can lead to the conclusion that a technically trivial or minor difference between an element of a claim and the corresponding element of the alleged infringement nonetheless falls within the meaning of the element when read purposively. This is not because there is a doctrine of equivalents: it is because that is the fair way to read the claim in context.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:0.6in">(xi)  <marker name="tab" />Finally purposive construction leads one to eschew the kind of meticulous verbal analysis which lawyers are too often tempted by their training to indulge.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">“(i) <marker name="tab" />The first overarching principle is that contained in Article 69 of the European Patent Convention.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(ii)  <marker name="tab" />Article 69 says that the extent of protection is determined by the claims. It goes on to say that the description and drawings shall be used to interpret the claims. In short the claims are to be construed in context.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(iii)  <marker name="tab" />It follows that the claims are to be construed purposively – the inventor's purpose being ascertained from the description and drawings.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(iv)  <marker name="tab" />It further follows that the claims must not be construed as if they stood alone – the drawings and description only being used to resolve any ambiguity. Purpose is vital to the construction of claims.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(v)  <marker name="tab" />When ascertaining the inventor's purpose, it must be remembered that he may have several purposes depending on the level of generality of his invention. Typically, for instance, an inventor may have one, generally more than one, specific embodiment as well as a generalised concept. But there is no presumption that the patentee necessarily intended the widest possible meaning consistent with his purpose be given to the words that he used: purpose and meaning are different.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(vi)  <marker name="tab" />Thus purpose is not the be-all and end-all. One is still at the end of the day concerned with the meaning of the language used. Hence the other extreme of the Protocol – a mere guideline – is also ruled out by Article 69 itself. It is the terms of the claims which delineate the patentee's territory.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(vii)  <marker name="tab" />It follows that if the patentee has included what is obviously a deliberate limitation in his claims, it must have a meaning. One cannot disregard obviously intentional elements.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(viii)  It also follows that where a patentee has used a word or phrase which, acontextually, might have a particular meaning (narrow or wide) it does not necessarily have that meaning in context.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(ix)  <marker name="tab" />It further follows that there is no general 'doctrine of equivalents.'</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(x)  <marker name="tab" />On the other hand purposive construction can lead to the conclusion that a technically trivial or minor difference between an element of a claim and the corresponding element of the alleged infringement nonetheless falls within the meaning of the element when read purposively. This is not because there is a doctrine of equivalents: it is because that is the fair way to read the claim in context.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in">(xi)  <marker name="tab" />Finally purposive construction leads one to eschew the kind of meticulous verbal analysis which lawyers are too often tempted by their training to indulge.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_115">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">115.</num>
@@ -1305,15 +1317,19 @@
         </paragraph>
         <paragraph eId="para_118">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">118.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The Claimant argued that it is trite law that the claims must be construed by reference to the Patent as a whole, including those parts of the specification which relate to an embodiment (or parts of an embodiment) that are no longer claimed. In this regard, I was referred to <span style="font-style:italic">Wood v Capita Insurance Services Ltd </span>[2017] 2 WLR 1095 at [10] where Lord Hodge said:</p>
-          </intro>
-          <subparagraph>
-            <num>10.</num>
-            <content>
-              <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">The court’s task is to ascertain the objective meaning of the language which the parties have chosen to express their agreement. It has long been accepted that this is not a literalist exercise focused solely on a parsing of the wording of the particular clause but that the court must consider the contract as a whole and, depending on the nature, formality and quality of drafting of the contract, give more or less weight to elements of the wider context in reaching its view as to that objective meaning. …</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>10.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">The court’s task is to ascertain the objective meaning of the language which the parties have chosen to express their agreement. It has long been accepted that this is not a literalist exercise focused solely on a parsing of the wording of the particular clause but that the court must consider the contract as a whole and, depending on the nature, formality and quality of drafting of the contract, give more or less weight to elements of the wider context in reaching its view as to that objective meaning. …</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_119">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;color:initial;margin-left:0.39in;text-indent:-0.39in">119.</num>
@@ -1327,7 +1343,7 @@
             <p class="BodyText" style="margin-left:0.39in">I reject the Defendants’ submission for the following reasons. First, I do not think that the passage to which I was referred in <span style="font-style:italic">Kirin-Amgen</span> is on point. That passage emphasises that construction is determined through the eyes of the skilled person and is based on what he/she would understand the words of the claim to mean. However, it says nothing about the skilled person ignoring parts of the description for that purpose. Secondly, the submission is contrary to principles (ii) to (iv) of <span style="font-style:italic">Virgin </span>as quoted above, which require construction of the claims in the context of the description as a whole (as argued by the Claimant). Thirdly, it is also contrary to common sense. In my judgment, the skilled person will take heed of the parts of the description which are expressed to fall outside the claim just as much as those parts which fall within it. This is because they still serve to help the skilled person understand the scope of the claim and what the words of the claim mean in that context. Fourthly, if the express teaching that an embodiment is outside the claim impacts on what the claim means and that teaching was added by amendment, it may be that matter has been added or protection has been extended, but that is a different point. It does not provide a basis for ignoring that teaching for the purposes of construction. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="Heading3">The Claims in Issue </p>
           </content>
@@ -1404,7 +1420,7 @@
             </subparagraph>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="Heading3">Issues of construction</p>
           </content>
@@ -1421,7 +1437,7 @@
             <p class="BodyText" style="margin-left:0.39in">I also bear in mind the limited role that expert evidence can play in relation to the question of construction. Beyond evidence relating to terms of art, construction is a matter for the court and not the experts: see <span style="font-style:italic">Qualcomm v Nokia </span>[2008] EWHC 329 per Floyd J (as he then was) at [9]-[10].</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="Heading3">Meaning of “wherein the computing apparatus comprises the display and an electronic apparatus, and<span style="font-style:italic"> </span>wherein the display is a sign”</p>
           </content>
@@ -1650,7 +1666,7 @@
             <p class="BodyText" style="margin-left:0.39in">It is important to note some consequences of the Claimant’s construction, since they have a bearing on some of the other issues that I have to decide. First, the Claimant’s construction is predicated on the fact that a sign which cannot be updated is not electronic. However, the corollary of that argument is that a sign which can be updated is necessarily electronic. That is something which the Claimant’s counsel accepted in oral closings.  This concession is important in the context of added matter and extent of protection (see further below). Second, the Claimant’s construction is based on a broad interpretation of “computing apparatus” which necessarily includes the situation where the display and electronic apparatus are not in direct communication with each other and where the display has been generated independently of the electronic apparatus. This is important in the context of anticipation and obviousness (see further below). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="Heading3">The First Identifier Issue </p>
           </content>
@@ -1695,7 +1711,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that the claim is not limited to a situation where the server identifies the user or device once and once only. All that it requires is that the “first message” is transmitted to the server and that it includes the decoded information and the means to identify the device or user. It does not limit how many messages are sent or whether other messages can be sent to the server identifying the user before the “first message”. Whilst multiple messages would be less efficient, they do not undermine the purpose of the invention which is to provide secure access to services. In my judgment, the word “first” is used as a means of differentiating the message and the server from other messages and servers, and no more. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="Heading1">added matter </p>
             <p class="Heading3">Relevant principles  </p>
@@ -1713,7 +1729,7 @@
             <p class="BodyText" style="margin-left:0.39in">Both parties also referred me to <span style="font-style:italic">Nokia OYJ (Nokia Corporation) v IPCom GmbH &amp; Co KG </span>[2012] EWCA Civ 567 where Kitchin LJ (as he then was) explained the concept of an intermediate generalisation at [56]-[60]. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="Heading3">The Issue </p>
           </content>
@@ -1802,7 +1818,7 @@
             <p class="BodyText" style="margin-left:0.39in">It is worth noting the chronology in respect of these amendments. The Patent was granted on 8 May 2013. The first iteration of the Shell system was introduced on 22 July 2015 and the Claimant notified the Defendants of the existence of the Patent sometime in the second half of 2017. Subsequently, the second iteration of the Shell system was introduced in 2017 and the third iteration was introduced in about September 2018. The amendments to the C specification were published on 2 August 2018. The fourth iteration (not said to infringe) was introduced on 19 August 2019. Pursuant to s.27(3) Patents Act 1977 the amendments have the effect and are deemed always to have had effect from the grant of the patent. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="Heading3">Disclosure that the display can be static? </p>
           </content>
@@ -1938,7 +1954,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that if the claims of the Patent in the C Specification are limited to a static sign (as I have held), they disclose matter which is central to the invention but was not part of the application as filed. In the circumstances, the claims are bad for added matter and must be revoked. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="Heading3">Intermediate generalisation </p>
           </content>
@@ -1967,7 +1983,7 @@
             <p class="BodyText" style="margin-left:0.39in">I prefer the submissions of the Claimant on this issue and agree that if (contrary to what I have held above), the application had disclosed both electronic and non-electronic displays, the amended claims would not amount to an intermediate generalisation. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="Heading3">Electronic Apparatus</p>
           </content>
@@ -2002,7 +2018,7 @@
             <p class="BodyText" style="margin-left:0.39in">Accordingly, this provides a further reason why the claims are invalid for added matter. I should note that this point of added matter arises regardless of the issue of construction of “wherein the display is a sign” and whether the claim is limited to a static sign. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p class="Heading1">extended protection </p>
           </content>
@@ -2108,7 +2124,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that a non-electronic sign or display did not fall within the scope of claim 1 as granted, but now falls within the scope of the claim as amended post grant. As a result, the protection of the Patent has been extended by an amendment which should not have been allowed and is invalid for this reason.  This reasoning applies equally to claims 2, 7 and 8, which are also invalid accordingly. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="Heading1">schmidt</p>
             <p class="Heading3">Disclosure</p>
@@ -2255,7 +2271,7 @@
             <p class="BodyText" style="margin-left:0.39in">With the solarium embodiment, the user selects a time for which they wish to use the solarium. The terminal connected to the solarium thereupon creates a multidimensional barcode which is provided to the user (although the description does not state whether this is by means of a display or a printout). The user photographs the barcode with their mobile phone and transmits the data to a central server. If payment is made, this is communicated by the server to the terminal. The terminal then activates the solarium for the paid time. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_24">
           <content>
             <p class="Heading3">Anticipation – relevant principles</p>
           </content>
@@ -2266,7 +2282,7 @@
             <p class="BodyText" style="margin-left:0.39in">The applicable legal principles were not in dispute: in order for a piece of prior art to anticipate a patent, it must clearly and unambiguously disclose all the features of the claims in issue (<span style="font-style:italic">General Tire &amp; Rubber Co v Firestone Tyre &amp; Rubber Co Ltd </span>[1972] RPC 457 at 485). Disclosure can be implicit as well as explicit (<span style="font-style:italic">Edwards v Boston Scientific </span>[2017] EWHC 405 (Pat) at [139]). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_25">
           <content>
             <p class="Heading3">Anticipation – arguments and analysis</p>
           </content>
@@ -2371,7 +2387,7 @@
             <p class="BodyText" style="margin-left:0.39in">It follows that if I am wrong in respect of claims 1 and 7, and those claims are anticipated by Schmidt on the Claimant’s construction, claims 2 and 8 are also anticipated. Moreover, since the Claimant accepts that claims 1 and 7 are anticipated by Schmidt on the Defendants’ construction, based on what I have said above, it follows that claims 2 and 8 are anticipated by Schmidt on the Defendants’ construction. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_26">
           <content>
             <p class="Heading3">Obviousness – relevant principles</p>
           </content>
@@ -2424,7 +2440,7 @@
             <p class="BodyText" style="margin-left:0.39in">I have all these principles well in mind. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_27">
           <content>
             <p class="Heading3">Obviousness – arguments and analysis </p>
           </content>
@@ -2597,7 +2613,7 @@
             <p class="BodyText" style="margin-left:0.39in">In the circumstances, I would not have held that the Patent is obvious over the solarium embodiment if it had been necessary to reach a decision on this issue. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_28">
           <content>
             <p class="Heading1">kilicCote </p>
             <p class="Heading3">Disclosure</p>
@@ -2685,7 +2701,7 @@
             <p class="BodyText" style="margin-left:0.39in">There was also some cross-examination on the embodiments described by reference to Figures 10 and 11, but the Defendants disavowed any reliance on those embodiments as part of their closing arguments and so I do not need to address them. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_29">
           <content>
             <p class="Heading3">Anticipation – relevant principles</p>
           </content>
@@ -2696,7 +2712,7 @@
             <p class="BodyText" style="margin-left:0.39in">I have set out the relevant principles in the context of Schmidt, above. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_30">
           <content>
             <p class="Heading3">Anticipation – argument and analysis </p>
           </content>
@@ -2797,7 +2813,7 @@
             <p class="BodyText" style="margin-left:0.39in">For completeness, and in case this matter goes further, I should also deal briefly with the argument in respect of the Defendants’ construction. This was based on the disclosure in relation to Figure 3, where there is express disclosure that the server is configured to present the image to the user via a computer (col 3 lines 16-17). As I noted above, there is also this disclosure in the context of the Figure 9 embodiment. However, this makes no difference to my conclusion that Kiliccote does not anticipate claims 1 and 7, since the integer that is missing is not one which turns on this issue of construction in any event. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_31">
           <content>
             <p class="Heading3">Obviousness – general principles</p>
           </content>
@@ -2808,7 +2824,7 @@
             <p class="BodyText" style="margin-left:0.39in">I have set out the relevant principles in the context of Schmidt, above. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_32">
           <content>
             <p class="Heading3">Obviousness – argument and analysis </p>
           </content>
@@ -2831,7 +2847,7 @@
             <p class="BodyText" style="margin-left:0.39in">In the circumstances, I can see why the Defendants did not spend much time on this part of their case. However, despite what Prof Martin said in his written evidence, in my judgment the Defendants have not discharged the evidential burden in respect of this attack. First, neither expert addressed the Figure 9 embodiment in writing by reference to the integers of the claim. Second, whilst the Defendants’ counsel addressed some of the integers with Prof Martin in cross-examination, she did not address them all. I agree with the Claimant that the relevant questions were not put to the Professor. In particular, counsel for the Defendants did not put to him that it would be obvious to the skilled reader implementing the third-party server/printed sign variant of Figure 9 to include a first identifier identifying the device or user of the device in the message sent from the secure device to the server. As a result, there was no evidence to support this part of the Defendants’ case and I reject the attack of obviousness over Kiliccote. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_33">
           <content>
             <p class="Heading1">insufficiency </p>
           </content>
@@ -2890,7 +2906,7 @@
             <p class="BodyText" style="margin-left:0.39in">Accordingly, I reject the attacks on the Patent in respect of insufficiency. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_34">
           <content>
             <p class="Heading1">infringement</p>
           </content>
@@ -3003,7 +3019,7 @@
             <p class="BodyText" style="margin-left:0.39in">As a result, in my judgment the first iteration of the Shell system would infringe the Patent (if it were valid) on the Claimant’s construction of “wherein the display is a sign”. By contrast, the second and third iterations of the Shell system would not.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_35">
           <content>
             <p class="Heading1">conclusions</p>
           </content>
@@ -3068,7 +3084,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_36">
           <content>
             <p><span style="font-weight:bold">Annex – Relevant Figures from Kiliccote</span></p>
             <p><img src="image7.emf.png" style="width:415.45pt;height:535.6pt" /></p>

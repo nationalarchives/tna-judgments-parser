@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukpc/2014/37/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukpc/2014/37/data.xml" />
-          <FRBRdate date="2023-12-01T20:31:32" name="transform" />
+          <FRBRdate date="2024-02-16T18:05:58" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2014</uk:year>
         <uk:number>37</uk:number>
         <uk:cite>[2014] UKPC 37</uk:cite>
-        <uk:parser>0.19.0</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>148bacf0740b950202935fa95d3ba9099fafc83c0ce89ff5c7c0d6ade052f7c5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -206,7 +206,7 @@
             <p class="NewSpeech">LORD CLARKE: </p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p class="ParaHeading">Introduction</p>
           </content>
@@ -241,7 +241,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The action was tried by Bannister J (“the judge”). After a trial lasting 29 days, on 21 December 2012 the judge held that the answer to the above question was no and that the Brothers’ interests in Chemtrade were not included in the Offer Letter and were thus not included in the Sale Agreement. Sheikh Abdullah appealed to the Court of Appeal of the Eastern Caribbean Supreme Court, to which the Board will refer as the ECCA in order to avoid possible confusion with the Court of Appeal of the Board of Grievances in Saudi Arabia. On 18 September 2013, in a judgment delivered by Mitchell JA (Ag), with whom Blenman and Michel JAA agreed, the ECCA reached the opposite conclusion to that of the judge. It held that the answer to the question was yes and that the Offer Letter and the Sale Agreement included the Brothers’ interests in Chemtrade. It accordingly allowed the appeal. In this appeal the Brothers invite the Board to reverse the decision of the ECCA and to restore the decision and order of the judge. Their case in essence is that the issues at trial were issues of fact upon which the judge made clear findings and that the ECCA ought not to have interfered with them.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaHeading">The background to the dispute and to the Offer Letter</p>
           </content>
@@ -256,21 +256,29 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">7.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The judge set out the background to the dispute at paras 5 to 22 of his judgment. It is not necessary to repeat that account here. What follows is a summary of the findings of fact made by the judge between paras 23 and 33, which cover the period in February, March and early April 2008 before the date of the Offer Letter, namely 12 April 2008. The origin of the proposal in the Offer Letter was a suggestion made by the Court of Appeal of the Board of Grievances that the parties should explore the possibility of mediation or conciliation. On 10 February it proposed what is sometimes called a shotgun agreement. The proposal, which was made to Sheikh Abdullah and the Sisters, was that Sheikh Mohamed, who had the current management of the companies and the other assets, and was thus better equipped for that task than Sheikh Abdullah, should value each separate Sharia share in the jointly owned assets, with Sheikh Abdullah and the Sisters having the choice either of selling their shares to the Brothers or of buying the Brothers out, in each case at a price equivalent to the Brothers’ valuation. The minute of the meeting (as copied by Sheikh Abdullah) showed that Sheikh Abdullah and the Sisters accepted the Court of Appeal’s proposal that Sheikh Mohamed would value:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“all the companies, partnerships, shareholdings, funds and all trades and investments in Saudi Arabia and abroad as registered in the financial statements”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
           <subparagraph>
             <content>
-              <p class="Quote" style="margin-left:1in">“all the companies, partnerships, shareholdings, funds and all trades and investments in Saudi Arabia and abroad as registered in the financial statements”</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">and that Sheikh Abdullah and the Sisters should have the choice of either selling their shares to or buying the shares of the Brothers</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“in all the partnerships mentioned above in Saudi Arabia and abroad”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“in all the partnerships mentioned above in Saudi Arabia and abroad”.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_8">
@@ -303,28 +311,32 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The judge resolved that issue in para 31. He accepted the evidence of Sheikh Mohamed that the Brothers would never have concluded an important family agreement in the presence of employees. He held that no concluded agreement on the price was reached between the attending Brothers in the presence of Mr Sajid. The final agreement on the price and on the contents of the offer was reached between the time when DTBA and the Group employees withdrew from the meeting on 25 March and 12 April, when the offer was submitted to the Court of Appeal. The Brothers’ evidence was that there was a succession of informal discussions during that period before final agreement was reached. For reasons given in his paras 31-32 the judge accepted the Brothers’ evidence (and case) that the final agreement was not made on 25 March but sometime later. It is not necessary to revisit that issue in order to resolve this appeal.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaLevel1" style="margin-left:0in"><span style="font-style:italic">The Offer Letter and the Sale Agreement</span></p>
           </content>
         </level>
         <paragraph eId="para_13">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">13.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Offer Letter is the critical document in this case. It was submitted to the Chairman of the Board of Grievances by the Brothers on 12 April 2008. A copy of Sheikh Abdullah’s preferred translation of it was appended to the judge’s judgment and, for convenience, is appended to this judgment. The judge summarised the terms of the Offer Letter in para 34 and made some further comments on it between paras 35 and 41. For example, he noted in paras 38 and 39 that the offer was based on a price and not a value and that the Offer Letter conspicuously avoided stating the value either of the assets as a whole or of a single asset. He noted that it did not therefore comply with the proposal put forward by the Court of Appeal in February. In the first sentence of para 40, he summarised the first sentence of para (8) of the Offer Letter, then added further comments in the remainder of para 40 and in para 41 as follows:</p>
-          </intro>
-          <subparagraph>
-            <num>“40.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">…. [T]he letter not only omits Chemtrade from the list of companies in Appendix 1, it draws the attention of the Court of Appeal to the fact that the valuation was restricted to all the funds, properties and partnerships contained in shares in the companies, real estates and movable property located inside KSA [ie the Kingdom of Saudi Arabia] in accordance with the contents of Appendix 1. That too, if read in accordance with the ordinary and common meaning of words, was not true. Chemtrade was on no sensible view ‘located’ in KSA. Its bearer shares were there and its administration was carried on from there, but it was a foreign company whose commercial activities were carried on and could only be carried on in territories other than KSA. It was non-resident for Saudi tax purposes and the evidence showed an anxiety amongst the family members that its non-resident status should not become open to challenge. Yet while Appendix 1 omitted Chemtrade, FOMEL had been included in the DTBA valuation.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>41.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">Finally, because of the nature of the process in which the Court of Appeal and the parties were engaged, neither Sheikh Abdullah nor the Court of Appeal had any means of testing the accuracy of the statements made in the offer letter - or if they had such means, they were never resorted to. Certainly, and importantly, neither the Court of Appeal nor Sheikh Abdullah ever saw any of the valuations prepared by DTBA, nor were they privy to the affordability calculation which determined the price.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“40.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">…. [T]he letter not only omits Chemtrade from the list of companies in Appendix 1, it draws the attention of the Court of Appeal to the fact that the valuation was restricted to all the funds, properties and partnerships contained in shares in the companies, real estates and movable property located inside KSA [ie the Kingdom of Saudi Arabia] in accordance with the contents of Appendix 1. That too, if read in accordance with the ordinary and common meaning of words, was not true. Chemtrade was on no sensible view ‘located’ in KSA. Its bearer shares were there and its administration was carried on from there, but it was a foreign company whose commercial activities were carried on and could only be carried on in territories other than KSA. It was non-resident for Saudi tax purposes and the evidence showed an anxiety amongst the family members that its non-resident status should not become open to challenge. Yet while Appendix 1 omitted Chemtrade, FOMEL had been included in the DTBA valuation.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>41.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">Finally, because of the nature of the process in which the Court of Appeal and the parties were engaged, neither Sheikh Abdullah nor the Court of Appeal had any means of testing the accuracy of the statements made in the offer letter - or if they had such means, they were never resorted to. Certainly, and importantly, neither the Court of Appeal nor Sheikh Abdullah ever saw any of the valuations prepared by DTBA, nor were they privy to the affordability calculation which determined the price.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_14">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
@@ -350,7 +362,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">None of the post-Agreement material is of any great significance in the context of this appeal until some exchanges in April and May 2009, which are of some importance: see below. It should be noted that the Brothers did not take the point that FOMEL was excluded from the sale until it was raised by their Jersey advocates towards the end of June 2009.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaHeading">The correct approach to contractual interpretation</p>
           </content>
@@ -365,21 +377,29 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The position is, as ever, put with clarity in <span style="font-style:italic">Dicey, Morris &amp; Collins </span>on <span style="font-style:italic">The Conflict of Laws</span>, 15<span style="vertical-align:super;font-size:smaller">th</span> ed, (2012) at para 9-019:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The function of the expert witness in relation to the interpretation of foreign statutes must be contrasted with his function in relation to the construction of foreign documents. In the former case, the expert tells the court what the statute means, explaining his opinion, if necessary, by reference to foreign rules of construction. In the latter case, the expert merely proves the foreign rules of construction, and the court itself, in the light of these rules, determines the meaning of the documents.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
           <subparagraph>
             <content>
-              <p class="Quote" style="margin-left:1in">“The function of the expert witness in relation to the interpretation of foreign statutes must be contrasted with his function in relation to the construction of foreign documents. In the former case, the expert tells the court what the statute means, explaining his opinion, if necessary, by reference to foreign rules of construction. In the latter case, the expert merely proves the foreign rules of construction, and the court itself, in the light of these rules, determines the meaning of the documents.”</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">See also paras 32-143 to 145. The point was again put with clarity by Lord Greene MR in one of the cases cited in <span style="font-style:italic">Dicey</span>, <span style="font-style:italic">Rouyer Guillet &amp; Cie v Rouyer Guillet &amp; Co Ltd</span> [1949] 1 All ER 244 (CA):</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in"><span style="color:#000000">“I must make it clear </span>that<span style="color:#000000"> the evidence of French law is subject to a certain differentiation as between the evidence of the meaning of the law of 1925 and the evidence of the meaning of the articles. As I understand the law of England, evidence as to the meaning of the statute is to be obtained from the evidence of expert French witnesses and the decisions of the French courts. On a matter of French law the decision of a French court would be most persuasive. On the other hand, evidence on the construction of a private document, such as articles of association, is admissible so far as it deals with French rules of construction or French rules of law or the explanation of French technical terms, but evidence as to its meaning after those aids have been taken into account is not admissible. It is for the court to construe the document, having fortified itself with the permissible evidence.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span style="color:#000000">“I must make it clear </span>that<span style="color:#000000"> the evidence of French law is subject to a certain differentiation as between the evidence of the meaning of the law of 1925 and the evidence of the meaning of the articles. As I understand the law of England, evidence as to the meaning of the statute is to be obtained from the evidence of expert French witnesses and the decisions of the French courts. On a matter of French law the decision of a French court would be most persuasive. On the other hand, evidence on the construction of a private document, such as articles of association, is admissible so far as it deals with French rules of construction or French rules of law or the explanation of French technical terms, but evidence as to its meaning after those aids have been taken into account is not admissible. It is for the court to construe the document, having fortified itself with the permissible evidence.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <wrapUp>
             <p class="ParaNoNumber" style="margin-left:0.49in">See also, to the same effect, two more recent first instance decisions: <span style="font-style:italic">Svenska Petroleum Exploration AB v Government of the Republic of Lithuania</span> [2005] EWHC 2437 (Comm), per Gloster J at para 29, and <span style="font-style:italic">Toomey v Banco Vitalicio de Espana SA de Seguros y Reaseguros</span> [2003] EWHC 1102 (Comm), per Andrew Smith J at para 37.</p>
@@ -391,7 +411,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The Board was referred to Scott LJ’s judgment in <span style="font-style:italic">A/S Tallinna Laevauhisus v Estonian State Shipping Line </span>(1947) 80 LL Rep 99 (CA), at pp 107-108. However, Scott LJ was there discussing the position in relation to the need to prove the existence and effect of Estonian legislation. He does at one point speak in general terms about the interpretation and application of a <span style="font-style:italic">“</span>foreign document<span style="font-style:italic">”</span> (top of p 108), but then goes back to referring to <span style="font-style:italic">“</span>foreign statutes<span style="font-style:italic">”</span>, so that it seems tolerably clear that he is not addressing his mind to the distinction between statutes and private documents such as contracts (where the intention of the parties rather than the foreign State is in issue). The issue in the instant case is not what is the correct approach to the interpretation of a foreign statute or decree but what is the correct approach to the interpretation of a contract governed by a foreign law.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaHeading">The expert evidence</p>
           </content>
@@ -426,7 +446,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">For the reasons given above, the distinction between the role of the expert witnesses and that of the judge, the ECCA and indeed the Board, is that the evidence of the experts is relevant and admissible in order to identify what questions should be asked and what evidence is relevant to answer the questions but is not admissible on questions of interpretation, which include these questions: (1) whether, having regard to the terms of the Offer Letter construed in its context, there was a relevant ambiguity, and, if not, what the parties objectively intended; and (2) if there was a relevant ambiguity, what the parties objectively intended in the light of the wider considerations relevant to this question described above. These questions have been regarded as being asked at stage 1 and stage 2 respectively. They are questions for the judge and, on appeal, for the ECCA, and not for the experts.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="ParaHeading">The approach of the ECCA in principle </p>
           </content>
@@ -443,32 +463,40 @@
             <p class="ParaLevel1" style="margin-left:0.5in">As the Board sees it, the proper meaning of a contract governed by foreign law is not a finding of primary fact which an appeal court is particularly cautious about overturning in view of the advantage of the trial judge in seeing and hearing the witnesses. It is an application to the primary facts of the principles of interpretation of the foreign law identified by the experts. That is an exercise which the appeal court, whether it is the ECCA or the Board, is in as good a position to carry out as the trial judge.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p class="ParaHeading">The approach of the judge and the ECCA to the expert evidence and their conclusions on ambiguity</p>
           </content>
         </level>
         <paragraph eId="para_28">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">28.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">As the Board reads the judgment, the judge treated the answer to the question whether the Offer Letter (and therefore the Agreement) was ambiguous as dependent (at any rate in the first place) upon the evidence of the expert witnesses. This is clear from the judge’s paras 111 to 113. Thus he said at para 111 that his conclusions must be based in large part upon his assessment of the expert evidence and that he preferred the evidence of Dr Al-Ghazzawi to that of Sheikh AlGasim. In the opinion of the Board, for the reasons already given, it was wrong in principle to approach the matter in this way as a matter for the experts.  However, to be fair to the judge, he also considered the matter for himself. He said at para 113:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“I prefer the evidence of Dr Al-Ghazzawi that there is no ambiguity in the offer letter or in Sheikh Abdullah’s acceptance of it to the evidence of Sheikh Al-Gasim, not only because of the authoritative manner in which it was given but also because, unless the word ‘ambiguous’ has some special definition for the purposes of Saudi law, which no one suggested is the case, it is plainly correct. It is not possible to read the offer letter as amounting to anything other than an offer to sell property in KSA listed in Appendix 1. Chemtrade was neither listed in Appendix 1 nor situate in KSA. The offer letter flagged up to the Court of Appeal (and thus to Sheikh Abdullah) that the offer was confined to assets within the Kingdom.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“I prefer the evidence of Dr Al-Ghazzawi that there is no ambiguity in the offer letter or in Sheikh Abdullah’s acceptance of it to the evidence of Sheikh Al-Gasim, not only because of the authoritative manner in which it was given but also because, unless the word ‘ambiguous’ has some special definition for the purposes of Saudi law, which no one suggested is the case, it is plainly correct. It is not possible to read the offer letter as amounting to anything other than an offer to sell property in KSA listed in Appendix 1. Chemtrade was neither listed in Appendix 1 nor situate in KSA. The offer letter flagged up to the Court of Appeal (and thus to Sheikh Abdullah) that the offer was confined to assets within the Kingdom.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_29">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">29.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">So it appears that the judge did not rely entirely on the evidence of Dr Al-Ghazzawi but considered the question for himself. Moreover he gave further reasons for his view at paras 114 to 127. However, he focused on the construction and meaning of the Offer Letter without regard to the factual matrix, which (as was common ground in the ECCA) was not the correct approach. This is clear from his para 112, where he said this:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“The whole foundation, as expounded in his Report, of Sheikh Al-Gasim's evidence that material outside the four corners of the offer letter would be admissible in a Saudi Court to identify the parties’ intentions was based upon the contention that because the Court of Appeal in February 2008 was looking for a settlement covering all jointly owned property, both within and outside the Kingdom, the terms of the offer letter were ambiguous, because it did not enable the reader to know whether or not Chemtrade was included in the offer. Although his acceptance of the fact that the parties were free to contract or otherwise following the February meetings with the Court of Appeal largely destroyed the factual basis for this proposition, it is inherently specious, because it is based upon an <span style="font-style:italic">a priori </span>assumption that Chemtrade ought to have been among the assets sold. Without that assumption, there is no ambiguity at all. An otherwise unambiguous contract may require to be rectified to include property not referred to within it, but no claim for rectification is made in this case. As elsewhere, Sheikh Al-Gasim is relying upon what is required to be proved as a step in reasoning.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The whole foundation, as expounded in his Report, of Sheikh Al-Gasim's evidence that material outside the four corners of the offer letter would be admissible in a Saudi Court to identify the parties’ intentions was based upon the contention that because the Court of Appeal in February 2008 was looking for a settlement covering all jointly owned property, both within and outside the Kingdom, the terms of the offer letter were ambiguous, because it did not enable the reader to know whether or not Chemtrade was included in the offer. Although his acceptance of the fact that the parties were free to contract or otherwise following the February meetings with the Court of Appeal largely destroyed the factual basis for this proposition, it is inherently specious, because it is based upon an <span style="font-style:italic">a priori </span>assumption that Chemtrade ought to have been among the assets sold. Without that assumption, there is no ambiguity at all. An otherwise unambiguous contract may require to be rectified to include property not referred to within it, but no claim for rectification is made in this case. As elsewhere, Sheikh Al-Gasim is relying upon what is required to be proved as a step in reasoning.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_30">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">30.</num>
@@ -478,14 +506,18 @@
         </paragraph>
         <paragraph eId="para_31">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">31.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">It was the case for Sheikh Abdullah before the ECCA and before the Board that the judge was wrong to hold that letter was unambiguous and wrong to construe the letter as he did. The ECCA disagreed with the judge. It held at para 71 that the acceptance of the judge that the Offer Letter, the resulting Sale Agreement and Judgment 1080 were not ambiguous flew in the face of “what on any plain reading of them was an obvious inconsistency”. It gave these reasons:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“That the price per share proposed in the Offer Letter was based on the inclusion of the Alhamrani Group's share of FOMEL's assets should have been clear. First the Brothers had agreed to include all the assets in arriving at a valuation and a price. Second, [DTBA] had come up with a valuation per share of SR150m on the basis that FOMEL was included. Third, the income of FOMEL was demonstrated by [DTBA] in the evidence to be necessary for the Brothers to be able to afford to buy out Sheikh Abdullah and the Sisters. Fourth, the Offer Letter stated throughout its body that it was a valuation of all the assets inside KSA. It seems clear that the list of companies that had been valued by the Brothers given at Appendix 1 was mistaken in omitting Chemtrade/FOMEL The resulting contradiction between the body of the Offer Letter and the list in Appendix 1 created an ambiguity. The agreement and the judgments that followed were all affected by the same ambiguity.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“That the price per share proposed in the Offer Letter was based on the inclusion of the Alhamrani Group's share of FOMEL's assets should have been clear. First the Brothers had agreed to include all the assets in arriving at a valuation and a price. Second, [DTBA] had come up with a valuation per share of SR150m on the basis that FOMEL was included. Third, the income of FOMEL was demonstrated by [DTBA] in the evidence to be necessary for the Brothers to be able to afford to buy out Sheikh Abdullah and the Sisters. Fourth, the Offer Letter stated throughout its body that it was a valuation of all the assets inside KSA. It seems clear that the list of companies that had been valued by the Brothers given at Appendix 1 was mistaken in omitting Chemtrade/FOMEL The resulting contradiction between the body of the Offer Letter and the list in Appendix 1 created an ambiguity. The agreement and the judgments that followed were all affected by the same ambiguity.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_32">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">32.</num>
@@ -513,17 +545,19 @@
         </paragraph>
         <paragraph eId="para_36">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">36.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">However that may be, the Board concludes that Appendix 1 and the Offer Letter, especially para (8), when read together, are ambiguous. For the reasons already given, the February arrangements are plainly part of the factual matrix which led to the Offer Letter. As further discussed below, it was originally intended by the Board of Grievances and by the parties that all the Sharia property, including FOMEL, should be included in any settlement achieved through the court. Yet para (8) was in these terms:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“It goes without saying that the valuation was restricted to all the funds, properties and partnerships contained in shares in the companies, real estates, and movable property, located inside the Kingdom of Saudi Arabia in accordance with what is stated in the enclosed appendix No 1.”</p>
-            </content>
-          </subparagraph>
-          <wrapUp>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“It goes without saying that the valuation was restricted to all the funds, properties and partnerships contained in shares in the companies, real estates, and movable property, located inside the Kingdom of Saudi Arabia in accordance with what is stated in the enclosed appendix No 1.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
             <p class="ParaNoNumber" style="margin-left:0.5in">One construction of that sentence is that only the Sharia properties identified in Appendix 1 were to be included, whereas it had originally been intended that they should all be included, including FOMEL, which meant that Chemtrade would also be included. Yet on the face of it the list of companies in Appendix 1 does not include FOMEL. It was not included by name in Appendix 1 and could only have been included if it could properly be described as a Saudi company. Yet if it was not a Saudi company (and it was certainly not formally a Saudi company) it appears that investment in it (or Chemtrade) it could not properly be described as a “foreign investment” because that expression was limited to the Jersey Trusts.</p>
-          </wrapUp>
+          </content>
         </paragraph>
         <paragraph eId="para_37">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">37.</num>
@@ -537,7 +571,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">When regard is had to those circumstances, the Board is of the opinion that the case for Sheikh Abdullah that it was intended that FOMEL/Chemtrade should be included is almost overwhelming.  In the language of para (8) of the Offer Letter, the parties must have seen FOMEL as “located in the Kingdom of Saudi Arabia” (as opposed to a “foreign investment”, a term which the parties agreed referred only to the Jersey assets), and must have overlooked its omission from the annex. This is principally because: (1) the February arrangement was to disengage on the basis of a valuation of everything; (2) only the Jersey trusts were later excluded, and then only by permission of the Board of Grievances; (3) the agreement on the price was plainly made on the assumption that it was the price of assets which included FOMEL; (4) the 10 May 2009 letter admits of no other explanation; and (5) there are concurrent findings that all parties thought in May that FOMEL was included. The Board turns briefly to each of those considerations.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_8">
           <num style="font-style:italic;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">(1)</num>
           <content>
             <p class="ParaHeading" style="margin-left:0.5in">The February arrangements</p>
@@ -549,7 +583,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The February arrangements are described in paras 7 to 10 above. The extract of the minute of 10 February quoted at para 7 above shows that it was proposed to Sheikh Abdullah and the Sisters that all the investments in Saudi Arabia and abroad were to be valued for incorporation in any settlement. As stated in para 9, on 11 February the same proposal was made to the Brothers. The proposition was that Sheikh Abdullah and the Sisters should have the choice of either selling shares to the Brothers or buying shares from the Brothers. There can be no doubt that FOMEL (and Chemtrade) were included. Moreover, as stated in para 10, that they were included is evidenced by DTBA’s preliminary presentation on 24 February and by its complete valuation on 15 March, both of which included them.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_9">
           <num style="font-style:italic;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">(2)</num>
           <content>
             <p class="ParaHeading" style="margin-left:0.5in">Only the Jersey Trusts were excluded</p>
@@ -561,7 +595,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">FOMEL (and Chemtrade) were at no stage excluded from the total valuation which was used as a base for making a reduction of a certain figure in order to ensure that the sum ultimately chosen was affordable by the Brothers if Sheikh Abdullah and the Sisters opted to sell: see paras 10 and 11 above. Only the Jersey Trusts were excluded and then only by permission of the Board of Grievances after a request on behalf of the Brothers by letter dated 11 March because of the litigation in Jersey.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_10">
           <num style="font-style:italic;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">(3)</num>
           <content>
             <p class="ParaHeading" style="margin-left:0.5in">Agreement on the price</p>
@@ -609,7 +643,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The Board accepts the submissions made on behalf of Sheikh Abdullah that there is no coherent basis for removing the FOMEL interests. As it is put in the case for Sheikh Abdullah at para 123.7, having justified the price of SR150 million on the 25 March 2008 on the basis of affordability and the unquantified risks they had identified, and expecting to be buyers rather than sellers, the Brothers cannot seriously have conducted further meetings in order to ensure that they received fewer assets for their money. In all these circumstances, it makes no sense to hold that the FOMEL interests were excluded.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_11">
           <num>(4)</num>
           <content>
             <p class="ParaHeading" style="text-indent:0.5in">The 10 May 2009 letter</p>
@@ -629,24 +663,28 @@
         </paragraph>
         <paragraph eId="para_50">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">50.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Sheikh Siraj replied in these terms on 10 May:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“I am in receipt of your letter dated 27th April 2009 referring to the above subject. I regret to inform you that we will not be able to meet in the capacity of Board Directors of the aforementioned company - Fuchs Oil Middle East Co - for we were forced to transfer the assets and all shares of CHEMTRADE and therefore the ‘Company’ to Sheikh Abdullah A Alhamrani.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">On the other hand, I believe the relationship we built for the past two decades is a solid relation far beyond a normal business relation. Together we have witnessed growth and successes and set the stage to grow even further, it is unfortunate that we had to part for extenuating circumstances.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">Accept our apologies for any inconvenience the above may have cause, wishing you continued success and good health.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“I am in receipt of your letter dated 27th April 2009 referring to the above subject. I regret to inform you that we will not be able to meet in the capacity of Board Directors of the aforementioned company - Fuchs Oil Middle East Co - for we were forced to transfer the assets and all shares of CHEMTRADE and therefore the ‘Company’ to Sheikh Abdullah A Alhamrani.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">On the other hand, I believe the relationship we built for the past two decades is a solid relation far beyond a normal business relation. Together we have witnessed growth and successes and set the stage to grow even further, it is unfortunate that we had to part for extenuating circumstances.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">Accept our apologies for any inconvenience the above may have cause, wishing you continued success and good health.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_51">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">51.</num>
@@ -660,7 +698,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In the opinion of the Board, the judge’s findings relating to the May letter, which involved rejecting the evidence tendered on behalf of the Brothers as untrue, are strong pointers in support of the conclusion reached by the ECCA and against that reached by the judge. As the Board sees it, there is no sensible reason for holding that, although (as the judge held at paras 66 and 68) both Sheikh Siraj and Sheikh Mohamed believed that FOMEL was included as at May 2009, they were mistaken, as he said at para 117. He gives no reason for or basis of such mistake. It appears that throughout the period between after the acceptance of the Offer Letter in 2008 and June 2009, when the point was first taken, everyone on both sides proceeded on the basis that FOMEL was included.  It seems to the Board to be little short of incredible that they could all have made the same mistake.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_12">
           <num style="font-style:italic;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">(5)</num>
           <content>
             <p class="ParaHeading" style="margin-left:0.5in">Concurrent findings</p>
@@ -680,21 +718,25 @@
         </paragraph>
         <paragraph eId="para_55">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">55.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The conclusions of the judge in this regard were echoed by the ECCA, which summarised its conclusions in paras 73 and 74:</p>
-          </intro>
-          <subparagraph>
-            <num>“73.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It was evident from the conduct of the Brothers and their correspondence, both prior to and subsequent to the agreement to engage in the process of takharuj, that they expected FOMEL to be included. The evidence accepted by the learned trial judge was that the Brothers at all times prior to and subsequent to their agreement intended to include FOMEL This evidence included not only the May 2009 Letter in which the Brothers indicated to Fuchs that they had sold Chemtrade, but also their other statements and writings related above in which the same admission was made. They allowed Sheikh Abdullah to take possession of the FOMEL premises and assets in KSA without once raising an objection until a year had passed. The experts were agreed that such acknowledgments are admissible by a Saudi court as proof of original intention, though Dr Al-Ghazzawi was more cautious in applying the principle given that he had already made up his mind that there was no ambiguity. The learned trial judge not only disbelieved the explanations of the Brothers as to their erroneous statements to Fuchs that they had included Chemtrade in the sale, but he held they were deliberately false. He also found as a fact that the Brothers had campaigned to stop Sheikh Abdullah from buying rather than selling. This included, he found, their putting together false evidence in Saudi Arabia in order to make them appear to be the victims of a serious wrong. These findings were compelling evidence of the unreliability of the testimony of the Brothers that they had <span style="font-style:italic">never </span>intended to include Chemtrade.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>74.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It is the function of a Saudi court, and therefore of the court below, to determine from the context what the intention of the parties was at the time they made the contract, and not to place reliance on some of the words of the contract to the exclusion of the context. There was no dispute between the experts on Saudi law on the importance of the court discovering intention of the parties in the formation of a contract. The preponderance of the evidence was that the effect of the Buy/Sell Agreement did not depend on the clearly erroneous list of companies in Appendix 1 which omitted FOMEL/Chemtrade. The essence of the agreement was for total disassociation in respect of everything recorded in the financial statements, ie everything in which the siblings were partners. The Brothers had at all times done what the Board of Grievances had proposed and what they had agreed to do, as their actions subsequent to Sheikh Abdullah’s acceptance indicated. There was no evidence, other than the Brothers’ assertion that their valuation of a share at SR150m depended on the exclusion of FOMEL to produce an affordable price. The documentary evidence was clear that [DTBA’s] original variation of SR168m was reduced to SR150m solely to take account of various uncertainties and other considerations put forward by the Brothers, which at no time included the omission of FOMEL. Judgment 1080 says that the Offer Letter was the ‘required assessment’ by the Brothers of all the companies and other property in which the persons concerned were partners. This was powerful evidence that the Offer Letter did not flag up to the Board of Grievances that it was something different from the agreement which had been reached in February.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“73.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It was evident from the conduct of the Brothers and their correspondence, both prior to and subsequent to the agreement to engage in the process of takharuj, that they expected FOMEL to be included. The evidence accepted by the learned trial judge was that the Brothers at all times prior to and subsequent to their agreement intended to include FOMEL This evidence included not only the May 2009 Letter in which the Brothers indicated to Fuchs that they had sold Chemtrade, but also their other statements and writings related above in which the same admission was made. They allowed Sheikh Abdullah to take possession of the FOMEL premises and assets in KSA without once raising an objection until a year had passed. The experts were agreed that such acknowledgments are admissible by a Saudi court as proof of original intention, though Dr Al-Ghazzawi was more cautious in applying the principle given that he had already made up his mind that there was no ambiguity. The learned trial judge not only disbelieved the explanations of the Brothers as to their erroneous statements to Fuchs that they had included Chemtrade in the sale, but he held they were deliberately false. He also found as a fact that the Brothers had campaigned to stop Sheikh Abdullah from buying rather than selling. This included, he found, their putting together false evidence in Saudi Arabia in order to make them appear to be the victims of a serious wrong. These findings were compelling evidence of the unreliability of the testimony of the Brothers that they had <span style="font-style:italic">never </span>intended to include Chemtrade.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>74.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It is the function of a Saudi court, and therefore of the court below, to determine from the context what the intention of the parties was at the time they made the contract, and not to place reliance on some of the words of the contract to the exclusion of the context. There was no dispute between the experts on Saudi law on the importance of the court discovering intention of the parties in the formation of a contract. The preponderance of the evidence was that the effect of the Buy/Sell Agreement did not depend on the clearly erroneous list of companies in Appendix 1 which omitted FOMEL/Chemtrade. The essence of the agreement was for total disassociation in respect of everything recorded in the financial statements, ie everything in which the siblings were partners. The Brothers had at all times done what the Board of Grievances had proposed and what they had agreed to do, as their actions subsequent to Sheikh Abdullah’s acceptance indicated. There was no evidence, other than the Brothers’ assertion that their valuation of a share at SR150m depended on the exclusion of FOMEL to produce an affordable price. The documentary evidence was clear that [DTBA’s] original variation of SR168m was reduced to SR150m solely to take account of various uncertainties and other considerations put forward by the Brothers, which at no time included the omission of FOMEL. Judgment 1080 says that the Offer Letter was the ‘required assessment’ by the Brothers of all the companies and other property in which the persons concerned were partners. This was powerful evidence that the Offer Letter did not flag up to the Board of Grievances that it was something different from the agreement which had been reached in February.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_56">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-size:13pt;margin-left:0.5in;text-indent:-0.5in">56.</num>
@@ -702,7 +744,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">All this is powerful support for the submission that, although the judge and the ECCA did not reach the same conclusion on the ultimate question, they made concurrent findings of fact on important aspects of the case in which they both held that the Brothers’ evidence was in significant respects incredible.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="ParaLevel1" style="margin-left:0in"><span style="font-style:italic">Conclusions</span></p>
           </content>
@@ -743,7 +785,7 @@
             <p class="ParaLevel1" style="margin-left:0.49in">For all these reasons, subject to an argument based on <span style="font-style:italic">res judicata</span>, the Board concludes that the appeal should be dismissed.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="ParaLevel1" style="margin-left:0in"><span style="font-style:italic">Res judicata</span></p>
           </content>
@@ -754,7 +796,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The Brothers did not formally abandon their fifth ground of appeal, in which they urged that this dispute is governed by the principle of <span style="font-style:italic">res judicata</span> arising out of Judgment 1080 and/or Judgment 1220. However, that submission was not dignified before the Board by oral argument and is hopeless, for the reasons identified by the ECCA at para 77. In short, neither Judgment 1080 nor Judgment 1220 involved any adjudication on what was included in the Agreement. As stated above, the suggestion that FOMEL was excluded was not made until very much later, in June 2009.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="ParaLevel1" style="margin-left:0in"><span style="font-style:italic">Disposal</span></p>
           </content>
@@ -775,7 +817,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in">Date:<marker name="tab" />6.4.9 AH</p>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in">corresponding to: 12.4.2008 AD</p>
@@ -805,7 +847,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukpc/2014/37/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukpc/2014/37/data.xml" />
-                <FRBRdate date="2023-12-01T20:31:32" name="transform" />
+                <FRBRdate date="2024-02-16T18:05:58" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

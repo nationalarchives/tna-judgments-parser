@@ -15,7 +15,7 @@ interface IJudgment {
 
     IEnumerable<IBlock> Header { get; }
 
-    IEnumerable<IDecision> Body { get; }
+    IList<IDecision> Body { get; }
 
     IEnumerable<IBlock> Conclusions { get; }
 

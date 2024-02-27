@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/1526/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/1526/data.xml" />
-          <FRBRdate date="2023-08-08T17:30:32" name="transform" />
+          <FRBRdate date="2024-02-16T18:08:10" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1526</uk:number>
         <uk:cite>[2023] EWHC 1526 (Admin)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>b5b6b2adf244515bd82deaa89ade3d7084240e4b04818b298f5a24bf2e57c775</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -184,7 +184,7 @@
     </header>
     <judgmentBody>
       <decision>
-        <level>
+        <level eId="lvl_1">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Introduction</span></p>
           </content>
@@ -412,51 +412,55 @@
             </table>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_2">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The grounds of challenge</span></p>
           </content>
         </level>
         <paragraph eId="para_19">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In summary the claimant seeks to advance the following grounds of challenge: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 1</span>: Contrary to reg.63(1) of the Habitats Regulations the defendant failed to assess the environmental impacts of the “project” (including the necessary permanent potable water supply solution). </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 2</span>: In the alternative, contrary to reg.63(1), the defendant failed to assess cumulatively the environmental impacts of the power station together with those of the permanent potable water supply solution. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 3</span>: The defendant failed to supply lawfully adequate reasons for departing from the advice of NE that the permanent water supply should be considered to be a fundamental component of the “operation of the project” and its effects at this stage.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 4</span>: Contrary to reg.64(1) of the Habitats Regulations, the defendant also failed lawfully to consider “alternative solutions” to the power station before concluding that there were imperative reasons of overriding public interest justifying the environmental harm it would cause. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 5</span>: The defendant took into account a legally irrelevant consideration (because it was supported by no evidence), namely the contribution the power station might make to reducing greenhouse gas (“GHG”) emissions by 78% from 1990 levels by 2035. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 6</span>: The defendant also acted irrationally in concluding that the power station site would be clear of nuclear material by 2140 and/or failed to supply adequate reasons for rejecting the claimant’s case on that point. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 7</span>: The defendant also erred in law in concluding that the power station’s operational GHG emissions would not have a significant effect on the UK’s ability to meet its climate change obligations.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 1</span>: Contrary to reg.63(1) of the Habitats Regulations the defendant failed to assess the environmental impacts of the “project” (including the necessary permanent potable water supply solution). </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 2</span>: In the alternative, contrary to reg.63(1), the defendant failed to assess cumulatively the environmental impacts of the power station together with those of the permanent potable water supply solution. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 3</span>: The defendant failed to supply lawfully adequate reasons for departing from the advice of NE that the permanent water supply should be considered to be a fundamental component of the “operation of the project” and its effects at this stage.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 4</span>: Contrary to reg.64(1) of the Habitats Regulations, the defendant also failed lawfully to consider “alternative solutions” to the power station before concluding that there were imperative reasons of overriding public interest justifying the environmental harm it would cause. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 5</span>: The defendant took into account a legally irrelevant consideration (because it was supported by no evidence), namely the contribution the power station might make to reducing greenhouse gas (“GHG”) emissions by 78% from 1990 levels by 2035. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 6</span>: The defendant also acted irrationally in concluding that the power station site would be clear of nuclear material by 2140 and/or failed to supply adequate reasons for rejecting the claimant’s case on that point. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-weight:bold">Ground 7</span>: The defendant also erred in law in concluding that the power station’s operational GHG emissions would not have a significant effect on the UK’s ability to meet its climate change obligations.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_20">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
@@ -478,16 +482,20 @@
         </paragraph>
         <paragraph eId="para_23">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Projects such as Sizewell C may attract both strong opposition and strong support. It is therefore necessary to reiterate what was said by the Divisional Court in <span style="font-style:italic">R (Rights: Community: Action) v Secretary of State for Housing, Communities and Local Government</span> [2021] PTSR 553 at [6]:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“6.  It is important to emphasise at the outset what this case is and is not about. Judicial review is the means of ensuring that public bodies act within the limits of their legal powers and in accordance with the relevant procedures and legal principles governing the exercise of their decision-making functions. The role of the court in judicial review is concerned with resolving questions of law. The court is not responsible for making political, social, or economic choices. Those decisions, and those choices, are ones that Parliament has entrusted to ministers and other public bodies. The choices may be matters of legitimate public debate, but they are not matters for the court to determine. The court is only concerned with the legal issues raised by the claimant as to whether the defendant has acted unlawfully. The claimant contends that the changes made by the SIs are radical and have been the subject of controversy. But it is not the role of the court to assess the underlying merits of the proposals. Similarly, criticism has been made of the way in which, or the speed with which, these changes were made. Again, these are not matters for the court to determine save and in so far as they involve questions concerning whether or not the appropriate legal procedures for making the changes were followed.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“6.  It is important to emphasise at the outset what this case is and is not about. Judicial review is the means of ensuring that public bodies act within the limits of their legal powers and in accordance with the relevant procedures and legal principles governing the exercise of their decision-making functions. The role of the court in judicial review is concerned with resolving questions of law. The court is not responsible for making political, social, or economic choices. Those decisions, and those choices, are ones that Parliament has entrusted to ministers and other public bodies. The choices may be matters of legitimate public debate, but they are not matters for the court to determine. The court is only concerned with the legal issues raised by the claimant as to whether the defendant has acted unlawfully. The claimant contends that the changes made by the SIs are radical and have been the subject of controversy. But it is not the role of the court to assess the underlying merits of the proposals. Similarly, criticism has been made of the way in which, or the speed with which, these changes were made. Again, these are not matters for the court to determine save and in so far as they involve questions concerning whether or not the appropriate legal procedures for making the changes were followed.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <level>
+        <level eId="lvl_3">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Statutory framework</span></p>
             <p class="ParaLevel1"><span style="font-style:italic">The Planning Act 2008</span></p>
@@ -559,7 +567,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">There is no dispute that the NPSs were material considerations for the defendant to take into account under s.105 when determining SZC’s application. Section 106 applies to a determination by the Secretary of State under s.105 just as it does to a decision under s.104. Accordingly, the provisions in the 2008 Act preventing challenges to the merits of policy in a NPS were applicable. Although a review of EN-6 under s.6 of the 2008 Act is being carried out, the defendant has decided not to exercise the power in s.11 to suspend either EN-1 or EN-6 pending the completion of that review. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_4">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Water Industry Act 1991</span></p>
           </content>
@@ -568,30 +576,34 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">35.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">Section 37(1) lays down a general duty on every water undertaker in the following terms:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(1)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It shall be the duty of every water undertaker to develop and maintain an efficient and economical system of water supply within its area and to ensure that all such arrangements have been made—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">for providing supplies of water to premises in that area and for making such supplies available to persons who demand them; and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">for maintaining, improving and extending the water undertaker’s water mains and other pipes, </p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">as are necessary for securing that the undertaker is and continues to be able to meet its obligations under this Part.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“(1)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It shall be the duty of every water undertaker to develop and maintain an efficient and economical system of water supply within its area and to ensure that all such arrangements have been made—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">for providing supplies of water to premises in that area and for making such supplies available to persons who demand them; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">for maintaining, improving and extending the water undertaker’s water mains and other pipes, </p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">as are necessary for securing that the undertaker is and continues to be able to meet its obligations under this Part.”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">This primary duty is enforceable by the Secretary of State or OFWAT under s.18 of the 1991 Act. </p>
@@ -600,110 +612,114 @@
         </paragraph>
         <paragraph eId="para_36">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">36.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Water undertakers are legally obliged to plan to meet demand within their area through a Water Resource Management Plan. Section 37A provides so far as material:</p>
-          </intro>
-          <subparagraph>
-            <num>“(1)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It shall be the duty of each water undertaker to prepare, publish and maintain a water resources management plan.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">A water resources management plan is a plan for how the water undertaker will manage and develop water resources so as to be able, and continue to be able, to meet its obligations under this Part.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(3)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">A water resources management plan shall address in particular—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the water undertaker’s estimate of the quantities of water required to meet those obligations;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the measures which the water undertaker intends to take or continue for the purpose set out in subsection (2) above (also taking into account for that purpose the introduction of water into the undertaker’s supply system by or on behalf of water supply licensees);</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the likely sequence and timing for implementing those measures; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(d)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">such other matters as the Secretary of State may specify in directions (and see also section 37AA).</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>(4)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The procedure for preparing and publishing a water resources management plan (including a revised plan) is set out in section 37B below.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(5)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">Before each anniversary of the date when its plan (or revised plan) was last published, the water undertaker shall —</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">review its plan; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">send a statement of the conclusions of its review to the Secretary of State.</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>(6)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The water undertaker shall prepare and publish a revised plan in each of the following cases—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">following conclusion of its annual review, if the review indicated a material change of circumstances;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">if directed to do so by the Secretary of State;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">in any event, not later than the end of the period of five years beginning with the date when the plan (or revised plan) was last published, </p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">and shall follow the procedure in section 37B below (whether or not the revised plan prepared by the undertaker includes any proposed alterations to the previous plan).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(7)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">….”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(1)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It shall be the duty of each water undertaker to prepare, publish and maintain a water resources management plan.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">A water resources management plan is a plan for how the water undertaker will manage and develop water resources so as to be able, and continue to be able, to meet its obligations under this Part.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(3)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">A water resources management plan shall address in particular—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the water undertaker’s estimate of the quantities of water required to meet those obligations;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the measures which the water undertaker intends to take or continue for the purpose set out in subsection (2) above (also taking into account for that purpose the introduction of water into the undertaker’s supply system by or on behalf of water supply licensees);</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the likely sequence and timing for implementing those measures; and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">such other matters as the Secretary of State may specify in directions (and see also section 37AA).</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>(4)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The procedure for preparing and publishing a water resources management plan (including a revised plan) is set out in section 37B below.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(5)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">Before each anniversary of the date when its plan (or revised plan) was last published, the water undertaker shall —</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">review its plan; and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">send a statement of the conclusions of its review to the Secretary of State.</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>(6)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The water undertaker shall prepare and publish a revised plan in each of the following cases—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">following conclusion of its annual review, if the review indicated a material change of circumstances;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">if directed to do so by the Secretary of State;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">in any event, not later than the end of the period of five years beginning with the date when the plan (or revised plan) was last published, </p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">and shall follow the procedure in section 37B below (whether or not the revised plan prepared by the undertaker includes any proposed alterations to the previous plan).</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(7)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">….”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_37">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">37.</num>
@@ -727,31 +743,33 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">40.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">Where the owner or occupier of premises in the area of a water undertaker requests a supply of water for non-domestic purposes it is the undertaker’s duty, in accordance with terms and conditions determined under s.56, to take steps to provide that supply. Those terms and conditions are to be determined by agreement between the parties or, in default, by OFWAT according to what appears to it to be reasonable. Section 55(3) qualifies the duty under s.55: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <heading class="Quote" style="margin-left:1in">“A water undertaker shall not be required by virtue of this section to provide a new supply to any premises, or to take any steps to enable it to provide such a supply, if the provision of that supply or the taking of those steps would—</heading>
+                  <paragraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">require the undertaker, in order to meet all its existing obligations to supply water for domestic or other purposes, together with its probable future obligations to supply buildings and parts of buildings with water for domestic purposes, to incur unreasonable expenditure in carrying out works; or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">otherwise put at risk the ability of the undertaker to meet any of the existing or probable future obligations mentioned in paragraph (a) above.”</p>
+                    </content>
+                  </paragraph>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <intro>
-              <p class="Quote" style="margin-left:1in">“A water undertaker shall not be required by virtue of this section to provide a new supply to any premises, or to take any steps to enable it to provide such a supply, if the provision of that supply or the taking of those steps would—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">require the undertaker, in order to meet all its existing obligations to supply water for domestic or other purposes, together with its probable future obligations to supply buildings and parts of buildings with water for domestic purposes, to incur unreasonable expenditure in carrying out works; or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">otherwise put at risk the ability of the undertaker to meet any of the existing or probable future obligations mentioned in paragraph (a) above.”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Any dispute arising under s.55(3) is determined by OFWAT (s.56(2)).</p>
             </content>
           </subparagraph>
         </paragraph>
-        <level>
+        <level eId="lvl_5">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">The Nuclear Installations Act 1965 </span></p>
           </content>
@@ -762,7 +780,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The use of a site for the installation and operation of a nuclear reactor is prohibited unless authorised by a nuclear site licence by the “appropriate national authority”, the ONR (ss. 1 and 3). When granting a licence the ONR must attach such conditions as it considers necessary or desirable in the interests of safety and may also attach conditions to the licence at any time (s.4(1)). Conditions may be attached providing for <span style="font-style:italic">inter alia</span> the design, construction, operation, siting or modification of any plant or other installation on the site (s.4(3)(b)). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_6">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The Conservation of Habitats and Species Regulations 2017</span></p>
           </content>
@@ -777,65 +795,69 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">43.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">In so far as is material, reg.63 provides:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(1)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">A competent authority, before deciding to undertake, or give any consent, permission or other authorisation for, a plan or project which—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">is likely to have a significant effect on a European site or a European offshore marine site (either alone or in combination with other plans or projects), and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">is not directly connected with or necessary to the management of that site,</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">must make an appropriate assessment of the implications of the plan or project for that site in view of that site’s conservation objectives.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">A person applying for any such consent, permission or other authorisation must provide such information as the competent authority may reasonably require for the purposes of the assessment or to enable it to determine whether an appropriate assessment is required.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The competent authority must for the purposes of the assessment consult the appropriate nature conservation body and have regard to any representations made by that body within such reasonable time as the authority specifies.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(4)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It must also, if it considers it appropriate, take the opinion of the general public, and if it does so, it must take such steps for that purpose as it considers appropriate.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(5)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">In the light of the conclusions of the assessment, and subject to regulation 64, the competent authority may agree to the plan or project only after having ascertained that it will not adversely affect the integrity of the European site or the European offshore marine site (as the case may be).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(6)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">In considering whether a plan or project will adversely affect the integrity of the site, the competent authority must have regard to the manner in which it is proposed to be carried out or to any conditions or restrictions subject to which it proposes that the consent, permission or other authorisation should be given.</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">…”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“(1)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">A competent authority, before deciding to undertake, or give any consent, permission or other authorisation for, a plan or project which—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">is likely to have a significant effect on a European site or a European offshore marine site (either alone or in combination with other plans or projects), and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">is not directly connected with or necessary to the management of that site,</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">must make an appropriate assessment of the implications of the plan or project for that site in view of that site’s conservation objectives.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">A person applying for any such consent, permission or other authorisation must provide such information as the competent authority may reasonably require for the purposes of the assessment or to enable it to determine whether an appropriate assessment is required.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(3)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The competent authority must for the purposes of the assessment consult the appropriate nature conservation body and have regard to any representations made by that body within such reasonable time as the authority specifies.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(4)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It must also, if it considers it appropriate, take the opinion of the general public, and if it does so, it must take such steps for that purpose as it considers appropriate.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(5)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">In the light of the conclusions of the assessment, and subject to regulation 64, the competent authority may agree to the plan or project only after having ascertained that it will not adversely affect the integrity of the European site or the European offshore marine site (as the case may be).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(6)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">In considering whether a plan or project will adversely affect the integrity of the site, the competent authority must have regard to the manner in which it is proposed to be carried out or to any conditions or restrictions subject to which it proposes that the consent, permission or other authorisation should be given.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">…”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The “appropriate nature conservation” body in this case was NE (reg.5(1)). </p>
@@ -846,13 +868,17 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">44.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">Regulation 64(1) provides: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(1)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">If the competent authority is satisfied that, there being no alternative solutions, the plan or project must be carried out for imperative reasons of overriding public interest (which, subject to paragraph (2), may be of a social or economic nature), it may agree to the plan or project notwithstanding a negative assessment of the implications for the European site or the European offshore marine site (as the case may be).”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“(1)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">If the competent authority is satisfied that, there being no alternative solutions, the plan or project must be carried out for imperative reasons of overriding public interest (which, subject to paragraph (2), may be of a social or economic nature), it may agree to the plan or project notwithstanding a negative assessment of the implications for the European site or the European offshore marine site (as the case may be).”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">It is not suggested that reg.64(2) was engaged in this case. </p>
@@ -861,17 +887,21 @@
         </paragraph>
         <paragraph eId="para_45">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">45.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In relation to the application of regs.63 and 64 to the development consent procedure, reg.84(2) provides: </p>
-          </intro>
-          <subparagraph>
-            <num>“(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">Where those provisions apply, the competent authority may, if it considers that any adverse effects of the plan or project on the integrity of a European site or a European offshore marine site would be avoided if the order granting development consent included requirements under section 120 of the Planning Act 2008 (what may be included in order granting development consent), make an order subject to those requirements.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">Where those provisions apply, the competent authority may, if it considers that any adverse effects of the plan or project on the integrity of a European site or a European offshore marine site would be avoided if the order granting development consent included requirements under section 120 of the Planning Act 2008 (what may be included in order granting development consent), make an order subject to those requirements.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <level>
+        <level eId="lvl_7">
           <content>
             <p><span style="font-style:italic">The Infrastructure Planning (Environmental Impact Assessment) Regulations 2017</span></p>
           </content>
@@ -884,109 +914,119 @@
         </paragraph>
         <paragraph eId="para_47">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">47.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Regulation 5(2) and (3) of the EIA Regulations provides:</p>
-          </intro>
-          <subparagraph>
-            <num>“(2)</num>
-            <intro>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The EIA must identify, describe and assess in an appropriate manner, in light of each individual case, the direct and indirect significant effects of the proposed development on the following factors—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">population and human health;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">biodiversity, with particular attention to species and habitats protected under Directive 92/43/EEC and Directive 2009/147/EC;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">land, soil, water, air and climate;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(d)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">material assets, cultural heritage and the landscape;</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(e)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the interaction between the factors referred to in sub-paragraphs (a) to (d).</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>(3)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The effects referred to in paragraph (2) on the factors set out in that paragraph must include the operational effects of the proposed development, where the proposed development will have operational effects.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(2)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The EIA must identify, describe and assess in an appropriate manner, in light of each individual case, the direct and indirect significant effects of the proposed development on the following factors—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">population and human health;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">biodiversity, with particular attention to species and habitats protected under Directive 92/43/EEC and Directive 2009/147/EC;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">land, soil, water, air and climate;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">material assets, cultural heritage and the landscape;</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(e)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">the interaction between the factors referred to in sub-paragraphs (a) to (d).</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The effects referred to in paragraph (2) on the factors set out in that paragraph must include the operational effects of the proposed development, where the proposed development will have operational effects.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_48">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">48.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Regulation 14 prescribes the contents of an ES. It must include a description of “the likely significant effects of the proposed development on the environment” (reg.14(2)(b)). By reg.14(2)(f) the ES must contain any additional information specified in sched. 4 relevant to “the specific characteristics of the particular development or type of development and to the environmental features likely to be significantly affected”. Paragraph 5 of sched. 4 refers to:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“A description of the likely significant effects of the development on the environment resulting from, <span style="font-style:italic">inter alia</span> – </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">…</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(e)</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">the cumulation of effects with other existing and/or approved projects, taking into account any existing environmental problems relating to areas of particular environmental importance likely to be affected or the use of natural resources;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">…”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“A description of the likely significant effects of the development on the environment resulting from, <span style="font-style:italic">inter alia</span> – </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">…</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(e)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">the cumulation of effects with other existing and/or approved projects, taking into account any existing environmental problems relating to areas of particular environmental importance likely to be affected or the use of natural resources;</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">…”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_49">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">49.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Regulation 14(3) provides (so far as is relevant): </p>
-          </intro>
-          <subparagraph>
-            <intro>
-              <p class="Quote" style="margin-left:1in">“The environmental statement referred to in paragraph (1) must– </p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">… </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">include the information reasonably required for reaching a reasoned conclusion on the significant effects of the development on the environment, taking into account current knowledge and methods of assessment; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">… ”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <heading class="Quote" style="margin-left:1in">“The environmental statement referred to in paragraph (1) must– </heading>
+                  <paragraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">… </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">include the information reasonably required for reaching a reasoned conclusion on the significant effects of the development on the environment, taking into account current knowledge and methods of assessment; and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">… ”</p>
+                    </content>
+                  </paragraph>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <level>
+        <level eId="lvl_8">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Ground 1</span></p>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">A summary of the claimant’s submissions</span></p>
@@ -1016,7 +1056,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The reasons advanced by the defendant as to why the permanent water supply did not form part of the power station project are irrelevant. The claimant relies in particular upon <span style="font-style:italic">R (Ashchurch Parish Council) v Tewksbury Borough Council</span> [2023] EWCA Civ 101. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_9">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">NWL’s position on water supply</span></p>
           </content>
@@ -1102,19 +1142,23 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">62.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">On 8 April 2022 SZC provided its response to the defendant’s request dated 18 March 2022 for further information. The document summarised the submissions and information already supplied and stated that there was no difference between the positions of SZC and NWL. SZC summarised the range of options being considered by NWL, which included water transfer. It emphasised that WRMP24 would be subject to SEA and HRA. NWL had said that after submitting its plan for consultation it would work with SZC to negotiate an agreement under s.55 of the 1991 Act. Paragraphs 2.1.16 and 2.1.17 read as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“2.1.16</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It is  because  the  long-term  planning  of  water  supply  is  the  subject  of separate statutory provisions and processes that the identification of the source of  Sizewell’s  long-term  supply  cannot  be  known  at  this  stage.  Indeed, the source may well change during the lifetime of the power station as the undertaker develops and manages its water resources in response to changing demand and other considerations.  For the same reasons, and because on the evidence the source of supply is unlikely to be a constraint to the construction and operation of the new power station, the source does not need to be known for the purposes of the DCO.  </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>2.1.17</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">NPS EN-1 is clear that that the DCO decision maker should work on the assumption that other regimes and regulatory processes will be properly applied and enforced so that decisions  on  DCO  applications  should complement  but  not  seek  to  duplicate  other  processes (NPS  EN-1 paragraph 4.10.3).  That same principle is clear from paragraph 188 of the NPPF, i.e.  planning decisions should assume that regimes will operate effectively.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“2.1.16</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It is  because  the  long-term  planning  of  water  supply  is  the  subject  of separate statutory provisions and processes that the identification of the source of  Sizewell’s  long-term  supply  cannot  be  known  at  this  stage.  Indeed, the source may well change during the lifetime of the power station as the undertaker develops and manages its water resources in response to changing demand and other considerations.  For the same reasons, and because on the evidence the source of supply is unlikely to be a constraint to the construction and operation of the new power station, the source does not need to be known for the purposes of the DCO.  </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>2.1.17</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">NPS EN-1 is clear that that the DCO decision maker should work on the assumption that other regimes and regulatory processes will be properly applied and enforced so that decisions  on  DCO  applications  should complement  but  not  seek  to  duplicate  other  processes (NPS  EN-1 paragraph 4.10.3).  That same principle is clear from paragraph 188 of the NPPF, i.e.  planning decisions should assume that regimes will operate effectively.”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">SZC stated that it had put in place plans for a temporary desalination unit which would cover the project’s water requirements up to the commissioning of unit 1 of the power station. That would give NWL 10 years to plan for and deliver a permanent water supply. </p>
@@ -1133,7 +1177,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">On 16 June 2022 SZC responded to the defendant’s request for further information about any progress made with NWL. They said that NWL had confirmed that draft WRMP24 would make full provision for the long-term demand from Sizewell C and that, subject to the necessary approvals from Defra and OFWAT, it is likely to be possible to deliver the necessary infrastructure. NWL and SZC had agreed to begin negotiations under the 1991 Act in October 2022 for funding the design and delivery of infrastructure specific to Sizewell C, so as to be ready to sign an agreement once NWL’s Business Plan had been approved by OFWAT, most likely in early 2024. SZC said that there was no reason to think that a new water supply scheme for a “critical NSIP” would not be approved in the 2024 Price Review and every reason to expect that NWL, using reasonable endeavours, would be able to deliver the necessary infrastructure for the permanent water supply connection before the end of construction of Sizewell C (see also DL 4.42).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_10">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The decision letter</span></p>
           </content>
@@ -1162,7 +1206,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Part 6 of Sched.19 to the Order contains provisions for the protection of NWL. Paragraph 70 states that subject to either condition 1 or condition 2 being satisfied, and subject to the terms of any agreement made under s.55 or determination made by OFWAT under s.56 of the 1991 Act, NWL will use its reasonable endeavours to supply Sizewell C with the quantities of water required for its operational phase as soon as reasonably practicable. Condition 1 is that the EA confirms the new annual licensed quantities which may be abstracted from the River Waveney and NWL confirms to SZC that there is a sufficient resource in the Northern/Central WRZ to meet forecast demand from its existing and future customers, including demand for Sizewell C (paras.71 to 72). Condition 2 is satisfied if there are new supply schemes in WRMP24, the Secretary of State for Environment, Food and Rural Affairs approves the publication of the final version of WRMP24 and OFWAT approves “the required supply schemes” from the approved WRMP24 in its Final Determination for the 2024 Price Review (paras. 73 to 75). </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_11">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -1195,33 +1239,37 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">73.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Wingfield</span> at [64] Lang J indicated some factors which <span style="font-style:italic">may</span> be taken into account in determining the extent of a project:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“64.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">Relevant factors may include: </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">i) Common ownership – where two sites are owned or promoted by the same person, this may indicate that they constitute a single project (<span style="font-style:italic">Larkfleet</span> at [60])</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">ii) Simultaneous determinations – where two applications are considered and determined by the same committee on the same day and subject to reports which cross refer to one another, this may indicate that they constitute a single project (<span style="font-style:italic">Burridge</span> at [41] and [79]); </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">iii) Functional interdependence – where one part of a development could not function without another, this may indicate that they constitute a single project (<span style="font-style:italic">Burridge</span> at [32], [42] and [78]); </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">iv) Stand-alone projects – where a development is justified on its own merits and would be pursued independently of another development, this may indicate that it constitutes a single individual project that is not an integral part of a more substantial scheme (<span style="font-style:italic">Bowen-West</span> at [24 – 25])”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“64.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">Relevant factors may include: </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">i) Common ownership – where two sites are owned or promoted by the same person, this may indicate that they constitute a single project (<span style="font-style:italic">Larkfleet</span> at [60])</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">ii) Simultaneous determinations – where two applications are considered and determined by the same committee on the same day and subject to reports which cross refer to one another, this may indicate that they constitute a single project (<span style="font-style:italic">Burridge</span> at [41] and [79]); </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">iii) Functional interdependence – where one part of a development could not function without another, this may indicate that they constitute a single project (<span style="font-style:italic">Burridge</span> at [32], [42] and [78]); </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">iv) Stand-alone projects – where a development is justified on its own merits and would be pursued independently of another development, this may indicate that it constitutes a single individual project that is not an integral part of a more substantial scheme (<span style="font-style:italic">Bowen-West</span> at [24 – 25])”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The judge made it clear that these factors were not exhaustive. The weight to be given to them will depend upon the circumstances of each case and is a matter for the decision maker. </p>
@@ -1420,7 +1468,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">For all these reasons ground 1 must be rejected. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_12">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 2</span></p>
           </content>
@@ -1443,7 +1491,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In this case the grant of development consent depended upon the IROPI test being satisfied. Mr. Wolfe submits that if assessment of the cumulative effects of power station and water supply are left to a subsequent decision, the IROPI test cannot be applied properly at that stage. By that he means that it cannot be applied in the same way as if the cumulative impacts were being assessed before the decision on whether to grant the development consent order was made. He suggests that the prior grant of the Order under the 2008 Act will make it easier for the public interest in Sizewell C going ahead to override cumulative harm or, indeed, that that would “automatically” be the outcome. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_13">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -1502,7 +1550,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Accordingly, ground 2 must be rejected.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_14">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 3</span></p>
           </content>
@@ -1527,21 +1575,25 @@
         </paragraph>
         <paragraph eId="para_109">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">109.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The views of NE shown to the court were sent in a submission dated 12 October 2021. They provided comments to the defendant on a Report by the Panel on the implications of the proposed development for European protected sites and species which had been submitted to the defendant. The claimant has not relied upon any other document from NE. In paragraphs 2.1.1. and 2.1.2. NE said:</p>
-          </intro>
-          <subparagraph>
-            <num>“2.1.1.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">It is Natural England’s advice that pushing any Habitats Regulations Assessment (HRA) conclusions for integral and inextricably linked elements of the project down the line into other consenting regimes beyond the Development Consent Order (DCO) raises the likelihood that cumulative and ‘in combination’ impacts in these regards may get missed/ downplayed, and we wish to draw the Examining Authority’s attention to this point.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>2.1.2.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">For example, the current Water Supply Strategy proposes a mains pipeline to the site from the central/ northern Suffolk Water Resource Zone (WRZ). The environmental impacts of this pipeline have not yet been fully assessed through the HRA process. Neither have the interim solutions of a desalination plant as proposed through Change 19 [PD-050] (not considered within the RIES) and tankered water supply. Currently, the Applicant’s position is ‘no likely significant effects (LSE)’ to any European sites from water use as stated in [REP7 -073] and summarised in paragraph 3.2.55 of the REIS. Clearly, such works could lead to a LSE on those European sites already scoped into the HRA or European sites further afield through the pipeline works, abstraction of this magnitude and other associated works to facilitate it. The water supply is a fundamental component of the eventual operation of the project, and the potential impacts of its construction should be clearly assessed in accordance with sections 4.2 and 5.15 of National Policy Statement EN-1 (NPS EN-1), sections 3.7 and 3.9 of NPS EN-6 and paragraph 3.3.9 of the Planning Inspectorate’s Scoping Opinion for the Proposed Sizewell C Nuclear Development (July 2019) [APP-169]…”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“2.1.1.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">It is Natural England’s advice that pushing any Habitats Regulations Assessment (HRA) conclusions for integral and inextricably linked elements of the project down the line into other consenting regimes beyond the Development Consent Order (DCO) raises the likelihood that cumulative and ‘in combination’ impacts in these regards may get missed/ downplayed, and we wish to draw the Examining Authority’s attention to this point.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>2.1.2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">For example, the current Water Supply Strategy proposes a mains pipeline to the site from the central/ northern Suffolk Water Resource Zone (WRZ). The environmental impacts of this pipeline have not yet been fully assessed through the HRA process. Neither have the interim solutions of a desalination plant as proposed through Change 19 [PD-050] (not considered within the RIES) and tankered water supply. Currently, the Applicant’s position is ‘no likely significant effects (LSE)’ to any European sites from water use as stated in [REP7 -073] and summarised in paragraph 3.2.55 of the REIS. Clearly, such works could lead to a LSE on those European sites already scoped into the HRA or European sites further afield through the pipeline works, abstraction of this magnitude and other associated works to facilitate it. The water supply is a fundamental component of the eventual operation of the project, and the potential impacts of its construction should be clearly assessed in accordance with sections 4.2 and 5.15 of National Policy Statement EN-1 (NPS EN-1), sections 3.7 and 3.9 of NPS EN-6 and paragraph 3.3.9 of the Planning Inspectorate’s Scoping Opinion for the Proposed Sizewell C Nuclear Development (July 2019) [APP-169]…”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_110">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">110.</num>
@@ -1590,7 +1642,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">In my judgment the defendant did adequately explain in DL 4.65 why he disagreed with the bare assertions of NE, all the more so when that paragraph is read properly in the context of the other parts of the decision letter dealing with the same subject. The present case illustrates the inappropriateness of relying upon statements in the <span style="font-style:italic">Akester </span>line of authority as a mantra, rather than looking properly at the materials in any given case in context. Ground 3 should never have been raised by the claimant. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_15">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Ground 4</span></p>
           </content>
@@ -1625,7 +1677,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Lastly, the claimant suggests that the defendant erred in law by treating NPS EN-6 as determinative in deciding what were the appropriate policy objectives and alternative solutions. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_16">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -1708,7 +1760,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">For these reasons, ground 4 must be rejected. In my order providing for a rolled up hearing, I directed the claimant to review the legal merits of its various grounds, taking as an example its failure to address (a) the content of the Government’s policy on nuclear power as part of a mix of energy sources and (b) the decision in <span style="font-style:italic">Plan B Earth</span>. The claimant should have abandoned ground 4, but chose instead, in effect, to try to continue its challenge to the merits of Government policy through the means of judicial review. The use of the court’s process in that way is wholly inappropriate. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_17">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Ground 5</span></p>
           </content>
@@ -1737,7 +1789,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The claimant also submits that the defendant could not maintain that there was insufficient information about the eventual water supply to assess its environmental impacts (under ground 2) and at the same time rely upon the environmental benefits of Sizewell C where its operation is dependent upon that supply. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_18">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -1855,7 +1907,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">For all these reasons, ground 5 must be rejected. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 6</span></p>
           </content>
@@ -1884,7 +1936,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The claimant submits that it was irrational for the defendant to proceed on the basis that spent fuel would be removed from the site by 2140. The modelling of future sea levels, storm events and the adequacy of the coastal defences only ran to 2140. It was irrational for the defendant not to engage with the risk of the site being flooded from the sea while spent fuel remains on site after 2140 and before the site is decontaminated. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_20">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -1982,13 +2034,17 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">167.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">Participants continued to make representations after the close of the Examination. For example, a Mr. Parker returned to the subject of the lifetime and adequacy of the sea defences at Sizewell C. The EA and ONR provided a joint response dated 7 June 2022 which was forwarded to the defendant. At DL 4.366 the Secretary of State relied upon this response which he had summarised at DL 4.365:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“4.365</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The Secretary of State notes the post-Examination representations submitted by IPs related to flood risk, including Mr Bill Parker who raised concerns regarding the protection from flooding during operation, decommissioning and the residual time spent fuel is stored on site. The Secretary of State notes the EA’s letter to Mr Bill Parker of 7 June 2022 which confirmed that the FRA extended to 2190, and that for the Reasonably Foreseeable actual risk up to 2190, there would be no inundation of the main platform or SSSI crossing from overtopping of the HCDF or the remaining lower northern and southern sand dunes/shingle defences in all events up to the 0.1% annual probability flood events in 2019. The EA’s letter also included a subsection titled ‘ONR’ response, confirming that during the operation of a nuclear licenced site, it is a regulatory expectation for the licensee to periodically review the validity of the safety case for all facilities on site against external hazards, to ensure the site remains protected, including the dry fuel store and taking updated climate change projections into account for coastal flood hazard.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“4.365</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The Secretary of State notes the post-Examination representations submitted by IPs related to flood risk, including Mr Bill Parker who raised concerns regarding the protection from flooding during operation, decommissioning and the residual time spent fuel is stored on site. The Secretary of State notes the EA’s letter to Mr Bill Parker of 7 June 2022 which confirmed that the FRA extended to 2190, and that for the Reasonably Foreseeable actual risk up to 2190, there would be no inundation of the main platform or SSSI crossing from overtopping of the HCDF or the remaining lower northern and southern sand dunes/shingle defences in all events up to the 0.1% annual probability flood events in 2019. The EA’s letter also included a subsection titled ‘ONR’ response, confirming that during the operation of a nuclear licenced site, it is a regulatory expectation for the licensee to periodically review the validity of the safety case for all facilities on site against external hazards, to ensure the site remains protected, including the dry fuel store and taking updated climate change projections into account for coastal flood hazard.”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The ONR specifically said that the design of the sea defences had been based upon the period running up to 2140, but if the life-time of the station extended beyond that year, SZC would need to demonstrate that the sea defences will continue to protect the site adequately, and if not provide additional protection.</p>
@@ -2005,13 +2061,17 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">169.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The defendant returned to these issues at DL 4.279 which summarised the Panel’s views as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“4.279</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">The ExA considers [ER 5.8.232 et seq.] the adequacy of the proposed climate change adaptation measures and the resilience of the Proposed Development to ongoing and potential future coastal change during its operational life and any decommissioning period including the scope for the HCDF to undergo design adaptation to maintain nuclear safety against predicted sea level rises. The Sizewell Coastal Defences Design Report [REP8-096] provides a design description of the HCDF Adaptive Design at section 3.11 and is designed to protect the Proposed Development from a 1 in 10,000 year storm event with reasonably foreseeable (“RF”) climate change effects up to the end of its design life in 2140. The ExA consider that the Applicant recognises that, given the inherently uncertain nature of climate change, the RF climate change scenario may be exceeded. ONR and EA guidance requires that the sea defence be capable of adaptation to a credible maximum sea level rise [ER 5.8.252]. The sea defences have therefore been designed to allow for future adaptation to accommodate the credible maximum scenario, should it develop. The Adaptive Design would provide a simple means of increasing the crest height of the HCDF to reach a crest level of 16.4m OD [ER 5.8.252]. The implementation of measures to enact the Adaptive Design would be driven by progressively observed effects of climate change, specifically mean sea level rise. The MDS FRA [AS-018] confirms that the impacts of climate change on sea level rise would be monitored and assessed at set intervals to determine the trajectory of the projections, and consider whether there is any change from either the current considered projections or the climate change guidance as applied in the application [ER 5.8.253]. A number of issues were raised by IPs in relation to Adaptive design and its implementation [ER 5.8.254 et seq.]. Having considered the submissions and responses from the Applicant [ER 5.8.252 et seq.] the ExA takes the view that as indicated in relation to the SMP, and having regard to the details and explanation provided by the Applicant, that the HCDF, including the Adapted Design, would be positioned as landward as possible. In addition, the requirement 19 in the Order would provide a means whereby the design details of various aspects of the HCDF would require ESC approval in consultation with the MMO and the EA before commencement of that work. The ExA considers that this would provide an appropriate safeguard at detailed design stage in relation to matters relating to layout, scale and external appearance of the HCDF, and its integration with other marine infrastructure [ER 5.8.256].”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <num>“4.279</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">The ExA considers [ER 5.8.232 et seq.] the adequacy of the proposed climate change adaptation measures and the resilience of the Proposed Development to ongoing and potential future coastal change during its operational life and any decommissioning period including the scope for the HCDF to undergo design adaptation to maintain nuclear safety against predicted sea level rises. The Sizewell Coastal Defences Design Report [REP8-096] provides a design description of the HCDF Adaptive Design at section 3.11 and is designed to protect the Proposed Development from a 1 in 10,000 year storm event with reasonably foreseeable (“RF”) climate change effects up to the end of its design life in 2140. The ExA consider that the Applicant recognises that, given the inherently uncertain nature of climate change, the RF climate change scenario may be exceeded. ONR and EA guidance requires that the sea defence be capable of adaptation to a credible maximum sea level rise [ER 5.8.252]. The sea defences have therefore been designed to allow for future adaptation to accommodate the credible maximum scenario, should it develop. The Adaptive Design would provide a simple means of increasing the crest height of the HCDF to reach a crest level of 16.4m OD [ER 5.8.252]. The implementation of measures to enact the Adaptive Design would be driven by progressively observed effects of climate change, specifically mean sea level rise. The MDS FRA [AS-018] confirms that the impacts of climate change on sea level rise would be monitored and assessed at set intervals to determine the trajectory of the projections, and consider whether there is any change from either the current considered projections or the climate change guidance as applied in the application [ER 5.8.253]. A number of issues were raised by IPs in relation to Adaptive design and its implementation [ER 5.8.254 et seq.]. Having considered the submissions and responses from the Applicant [ER 5.8.252 et seq.] the ExA takes the view that as indicated in relation to the SMP, and having regard to the details and explanation provided by the Applicant, that the HCDF, including the Adapted Design, would be positioned as landward as possible. In addition, the requirement 19 in the Order would provide a means whereby the design details of various aspects of the HCDF would require ESC approval in consultation with the MMO and the EA before commencement of that work. The ExA considers that this would provide an appropriate safeguard at detailed design stage in relation to matters relating to layout, scale and external appearance of the HCDF, and its integration with other marine infrastructure [ER 5.8.256].”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The defendant agreed (DL 4.293) (and see also DL 4.280, 4.284, 4.285 and DL 4.290). </p>
@@ -2034,12 +2094,16 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">172.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">The claimant relied upon DL 4.590 which states: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The issues of coastal defences, and the impact of climate change on the modelling for the safety of those defences, were considered by the ExA in section 5.8 and section 5.7 of the ExA Report respectively. The ExA considers [ER 5.20.101] that the coastal defences have been designed so they can be modified if it is necessary to do so, with the monitoring of the sea levels secured through the CPMMP, and this is further reinforced by the obligations required by the NSL regime regulated by the ONR and the permits regulated by the EA. The ExA is persuaded [ER 5.20.102] that the Applicant’s conclusions are predicated on the basis that the site will be clear of nuclear material by 2140, the period which has been modelled for coastal defences, and under these circumstances the ExA consider the tests set out in paragraph 2.11.5 of NPS EN-6 would be met.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“The issues of coastal defences, and the impact of climate change on the modelling for the safety of those defences, were considered by the ExA in section 5.8 and section 5.7 of the ExA Report respectively. The ExA considers [ER 5.20.101] that the coastal defences have been designed so they can be modified if it is necessary to do so, with the monitoring of the sea levels secured through the CPMMP, and this is further reinforced by the obligations required by the NSL regime regulated by the ONR and the permits regulated by the EA. The ExA is persuaded [ER 5.20.102] that the Applicant’s conclusions are predicated on the basis that the site will be clear of nuclear material by 2140, the period which has been modelled for coastal defences, and under these circumstances the ExA consider the tests set out in paragraph 2.11.5 of NPS EN-6 would be met.”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The claimant places a good deal of emphasis on the last sentence, and also upon DL 4.245. These paragraphs refer to an assumption that spent fuel will be removed from Sizewell C by 2140, which is also the year to which the modelling for predicted extreme sea levels runs. </p>
@@ -2076,21 +2140,25 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Accordingly, ground 6 must be rejected. In reaching that conclusion, I have not found it necessary to consider the application of s.31(2A) or (3C) and (3D) of the Senior Court Act 1981.</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_21">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 7</span></p>
           </content>
         </level>
         <paragraph eId="para_178">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">178.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">This ground is concerned with GHG emissions from the operation of Sizewell C. The claimant refers to DL 4.248 and DL 4.250 in which the defendant agreed with the Panel that “emissions of the magnitude demonstrated would not have a significant effect on the UK’s ability to meet its carbon budget commitments or the ability of the Government to meet the UK’s obligations under the Paris Agreement”. The claimant then says that that conclusion is inconsistent with this part of DL 8.9: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“Operational emissions will be addressed in a managed, economy-wide manner, to ensure consistency with carbon budgets, net zero and our international climate commitments. The Secretary of State does not, therefore need to assess individual applications for planning consent against operational carbon emissions and their contribution to carbon budgets, net zero and our international climate commitments.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“Operational emissions will be addressed in a managed, economy-wide manner, to ensure consistency with carbon budgets, net zero and our international climate commitments. The Secretary of State does not, therefore need to assess individual applications for planning consent against operational carbon emissions and their contribution to carbon budgets, net zero and our international climate commitments.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_179">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">179.</num>
@@ -2098,7 +2166,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The claimant submits firstly, that DL 8.9 should be read as meaning that the defendant has made no assessment of the contribution of <span style="font-style:italic">operational</span> GHG emissions to the carbon budgets and secondly, there was no evidential basis upon which he could conclude in DL 4.248 and DL 4.250 that operational emissions from Sizewell C would not have a significant effect on the UK’s ability to meet its climate change obligations (skeleton paras. 106 to 110).</p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_22">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Discussion</span></p>
           </content>
@@ -2111,15 +2179,19 @@
         </paragraph>
         <paragraph eId="para_181">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">181.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">EN-1 states that carbon emissions from a new nuclear power station are likely to be much less than from a fossil fuelled plant (para. 3.5.5.). New nuclear power forms one of the three key elements of the Government’s strategy for moving towards a decarbonised, diverse electricity sector by 2050, along with <span style="font-style:italic">inter alia</span> renewable electricity generation (para. 3.5.6 and see also para 3.5.10). I agree with the defendant and SZC that the part of DL 8.9 which the claimant seeks to criticise is entirely consistent with para 5.2.2 of EN-1 which states: </p>
-          </intro>
-          <subparagraph>
-            <num>“5.2.2.</num>
-            <content>
-              <p class="Quote" style="margin-left:1in;text-indent:0.5in">CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions are a significant adverse impact from some types of energy infrastructure which cannot be totally avoided (even with full deployment of CCS technology). However, given the characteristics of these and other technologies, as noted in Part 3 of this NPS, and the range of non-planning policies aimed at decarbonising electricity generation such as EU ETS (see Section 2.2 above), Government has determined that CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions are not reasons to prohibit the consenting of projects which use these technologies or to impose more restrictions on them in the planning policy framework than are set out in the energy NPSs (e.g. the CCR and, for coal, CCS requirements). Any ES on air emissions will include an assessment of CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions, but the policies set out in Section 2, including the EU ETS, apply to these emissions. The IPC does not, therefore need to assess individual applications in terms of carbon emissions against carbon budgets and this section does not address CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions or any Emissions Performance Standard that may apply to plant.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“5.2.2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions are a significant adverse impact from some types of energy infrastructure which cannot be totally avoided (even with full deployment of CCS technology). However, given the characteristics of these and other technologies, as noted in Part 3 of this NPS, and the range of non-planning policies aimed at decarbonising electricity generation such as EU ETS (see Section 2.2 above), Government has determined that CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions are not reasons to prohibit the consenting of projects which use these technologies or to impose more restrictions on them in the planning policy framework than are set out in the energy NPSs (e.g. the CCR and, for coal, CCS requirements). Any ES on air emissions will include an assessment of CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions, but the policies set out in Section 2, including the EU ETS, apply to these emissions. The IPC does not, therefore need to assess individual applications in terms of carbon emissions against carbon budgets and this section does not address CO<span style="vertical-align:sub;font-size:smaller">2</span> emissions or any Emissions Performance Standard that may apply to plant.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_182">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">182.</num>
@@ -2137,12 +2209,16 @@
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">184.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">At PR 5.7.90 the Panel concluded: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The ExA concludes that the ES [APP-342], as updated by [AS-181, REP2-110], and [REP10-152], demonstrates that construction emissions from the Proposed Development would be less than 1% of the UK Government’s carbon budget for the relevant period, and would not be significant in accordance with the criteria as described in Chapter 26 [APP-342]. The ExA is therefore content that those emissions would not materially affect the ability of the Government to meet the UK’s obligations under the Paris Agreement. Similarly, the gross emissions associated with the operational phase have been found to be less than 1% of relevant periods in which they arise. The ExA also recognises the support provided by national policy for low carbon power generation projects such as the Proposed Development, and that the importance for the UK’s carbon budgets should also be considered from the perspective of the carbon emissions that would otherwise be produced by other sources, if they were not generating. The national policy support for such low carbon generation projects has been considered in detail in section 5.19 of this Report.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="Quote" style="margin-left:1in">“The ExA concludes that the ES [APP-342], as updated by [AS-181, REP2-110], and [REP10-152], demonstrates that construction emissions from the Proposed Development would be less than 1% of the UK Government’s carbon budget for the relevant period, and would not be significant in accordance with the criteria as described in Chapter 26 [APP-342]. The ExA is therefore content that those emissions would not materially affect the ability of the Government to meet the UK’s obligations under the Paris Agreement. Similarly, the gross emissions associated with the operational phase have been found to be less than 1% of relevant periods in which they arise. The ExA also recognises the support provided by national policy for low carbon power generation projects such as the Proposed Development, and that the importance for the UK’s carbon budgets should also be considered from the perspective of the carbon emissions that would otherwise be produced by other sources, if they were not generating. The national policy support for such low carbon generation projects has been considered in detail in section 5.19 of this Report.”</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.5in">That conclusion was then carried forward to PR 5.7.100. It is also relevant to note the reference here to the policy support for new nuclear power generation because of the contribution it makes to reducing GHGs that would otherwise be produced from other sources (as opposed to the “gross” emissions from a nuclear power station taken in isolation). </p>
@@ -2167,7 +2243,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Ground 7 is utterly hopeless and must be rejected. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_23">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Conclusions</span></p>
           </content>
@@ -2196,151 +2272,151 @@
             <p class="ParaLevel1" style="margin-left:0.5in">The application for permission to apply for judicial review is dismissed. </p>
           </content>
         </paragraph>
-        <level>
+        <level eId="lvl_24">
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">Annex: Paragraphs 4.43 – 4.69 of the Secretary of State’s Decision Letter</span></p>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-style:italic">The Secretary of State’s Consideration of Water Supply </span></p>
           </content>
         </level>
-        <paragraph>
+        <paragraph eId="lvl_25">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.43</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State has considered the supply of water during the construction period. He is satisfied with the Applicant’s assurance that potable water will be supplied via a combination of tankers and a temporary desalination plant. The Secretary of State notes that the Applicant reaffirmed its commitments in the Water Supply Strategy for supply of non-potable water throughout the construction period. The Secretary of State is satisfied that there will be an adequate supply of both potable and non-potable water during the construction period and that the impacts of the water supply during the construction period have been properly assessed as part of this application and where relevant are considered elsewhere in this letter.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_26">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.44</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State has considered the Applicant’s response to his questions on the matter of long-term water supply, as well as the comments submitted by IPs on this matter in light of the ExA’s report. The Secretary of State notes that paragraph 8 of the letter from Walker Morris on behalf of NWL, of 23 February 2022, provides that, in addition to demand management options, NWL is also appraising other options that include (but are not limited to): an import from Anglian Water; nitrate removal at Barsham WTWs; effluent reuse and desalination; and longer term (post-2035) winter storage reservoirs. The Secretary of State considers that these represent potentially viable solutions for the water supply strategy as would the fall back of the Applicant’s own permanent desalination plant if those solutions cannot be used. The Secretary of State is therefore content that if consent is granted for the development, there is a reasonable level of certainty that a permanent water supply solution can be found before the first reactor is commissioned. </p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_27">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.45</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">With regard to the Applicant's case that the permanent water supply to be supplied by Essex &amp; Suffolk Water/NWL will be assessed as part of the separate regulatory processes associated with WRMP24, the Secretary of State has considered the relevant policy. Paragraph 4.10.3 of NPS EN-1 (EN-1), states that the decision-maker ‘should work on the assumption that the relevant pollution control regime and other environmental regulatory regimes, including those on land drainage, water abstraction and biodiversity, will be properly applied and enforced by the relevant regulator. It should act to complement but not seek to duplicate them.’ This text is carried forward in paragraph 4.11.5 of the draft revision of EN-1.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_28">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.46</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Paragraph 5.15.4 of EN-1 states ‘The considerations set out in Section 4.10 on the interface between planning and pollution control therefore apply. These considerations will also apply in an analogous way to the abstraction licensing regime regulating activities that take water from the water environment, and to the control regimes relating to works to, and structures in, on, or under  controlled water.’ This text is carried forward to paragraph 5.16.6 of the draft revision of EN-1. Paragraph 5.15.6 states that the decision-maker ‘should also consider the interactions of the proposed project with other plans such as Water Resources Management Plans’. This text is carried forward to paragraph 5.16.9 of the draft revision of EN-1.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_29">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.47</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes the EA’s water resources planning guideline, updated on 4 April 20227, which states that water companies in England or Wales must prepare and maintain an WRMP that sets out how a water company intends to achieve a secure supply of water for its customers and a protected and enhanced environment. This guideline notes that the duty to prepare and maintain a WRMP is set out in sections 37A to 37D of the WIA and that a water company must prepare a plan at least every 5 years and review it annually. Part 3.1 of this guideline details the legal requirements relevant to the preparation and publication of a WRMP, including the need to take account of relevant legislation including the Conservation of Habitats and Species Regulations 2017. Part 3.3.1 notes that statutory consultees for the WRMP process includes the EA, and also notes that if possible options affect a designated site in England then the water company must contact NE. Part 4.1.1 notes that a water company should carry out a HRA as part of the WRMP process, including an appropriate assessment, as set out in the Conservation of Habitats and Species Regulations 2017 (as amended), if a preferred plan would be likely to have a significant effect on a European site (either alone or in combination with other plans or projects).</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_30">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.48</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes the policy in Section 4.2 of EN-1. Paragraph 4.2.7 acknowledges that ‘In some instances, it may not be possible at the time of the application for development consent for all aspects of the proposal to have been settled in precise detail.’ This text has been carried forward to paragraph 4.2.5 of the draft revision of EN-1.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_31">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.49</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State considers that the Proposed Development and the WRMP24 process for the sourcing of water are separate projects. This is evident from their separate ownership and because they are subject to distinct and asynchronous determination processes. The Secretary of State also considers that these projects are stand-alone, given that NWL has a duty to undertake its WRMP24 regardless of whether or not the Proposed Development proceeds</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_32">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.50</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State has considered the ExA’s view [ER 7.5.7] that, even if the Proposed Development and the water supply are considered to be two separate projects, the cumulative effects associated with it should be assessed at this stage. As set out below, the Secretary of State has considered the cumulative assessment of the proposed pipeline from the North/Central WRZ and agrees with the Applicant’s assessment that the pipeline is not likely to give rise to new or significant effects to those already identified in the ES. In addition, the Secretary of State agrees with the Applicant that the detail of the potential environmental impacts (including cumulative impacts) associated with the proposed permanent water supply to be provided by NWL will be sufficiently assessed and that the WRMP24 process is the appropriate means of undertaking that assessment. The Secretary of State agrees that further detailed assessment cannot be undertaken by the Applicant at this stage as the preferred option for long-term supply is not yet known given the current status of the separate WRMP24 process, which falls to be considered as a separate plan or project. The Secretary of State considers that it is because the long-term planning of water supply is subject to separate statutory provisions and processes, including those set out in paragraph 4.47 above, that the identification of the source of the Proposed Development’s long-term water supply cannot be known by the Applicant at this stage.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_33">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.51</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Applicant’s original and preferred water supply connection was a direct link from Barsham and the Applicant provided information about this, the cumulative effects of its preferred water supply solution of in Table 1.1 of the ES Addendum, Volume 3, Chapter 2, Appendix 2.2.D Water Supply Strategy submitted in January 2021. This refers to potable water transfer options and envisages that a supply of potable water via a direct link from Barsham would be provided by Essex and Suffolk Water. Table 1.1 notes that the provision of this link does not form part of the Application, however it provides a cumulative assessment of the Proposed Development with this link at Chapter 10 of the ES Addendum at paragraphs 10.4.229-10.4.250. The cumulative assessment states that “it is proposed that the detailed route alignment of the pipeline will follow existing roads and boundaries where possible” and that “it is anticipated that the earthworks for the cut and fill, and the pipelaying task for the preferred water supply proposal will progress quickly along the route and works would only impact upon a single receptor for a small number of days at most”. In relation to Terrestrial ecology and ornithology it finds that “Given the footprint of the works and the proposed locations for working, ecological impacts would be minimal and avoidable or mitigable” and for all the other impacts assessed concludes that “no significant cumulative effects are anticipated in relation to the preferred water supply proposal and there would be no change to the residual cumulative effects as presented in Volume 10, Chapter 4 of the ES”.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_34">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.52</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State has seen no subsequent evidence to suggest that anything has changed in that regard. The Secretary of State is satisfied that, based on current knowledge, there are no additional cumulative impacts if the Barsham pipeline were to be pursued. The Secretary of State has considered the information provided by the Applicant on cumulative effects and does not agree with the ExA’s criticisms and considers there is sufficient information on which he can base his conclusion.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_35">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.53</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Section 3.2.3. of the revised Water Supply Strategy submitted at Deadline 7 in September 2021 stated that ‘there is some potential spare capacity in the WRZ at NWL’s Barsham Water Treatment Works near Beccles which is located in their Northern /Central WRZ, from which water is proposed to be transferred to Sizewell via a 28km pipeline. This transfer will also require other water network enhancements, which NWL are currently investigating. The proposed transfer main would connect into the local Blyth distribution network at Saxmundham Water Tower, and at other locations subject to detailed design. These local connections have the potential to provide significant legacy benefit by increasing capacity and resilience of the distribution network.’</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_36">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.54</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Statement of Common Ground agreed between NWL and the Applicant records that the proposal to transfer water from Barsham relies on abstraction from the River Waveney and its associated Waveney Augmentation Groundwater Scheme (WAGS) operated by the EA. It further records that on 26 August 2021 the EA informed NWL that a sustainability reduction may be applied to NWL’s abstraction licence for the River Waveney and WAGS abstraction licenses which could reduce NWL’s allowable annual quantities of abstraction by up to 60% and that further modelling work is being carried out by NWL to investigate this.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_37">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.55</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State further notes the letter from Walker Morris on behalf of NWL on 23 February 2022 states that NWL will not be able to supply all forecast household and non-household demand, including the Proposed Development’s long-term demand, from existing water resources, and that NWL will need to identify new water resources to meet the forecast demand. The Secretary of State notes that the letter states that in addition to demand management options, NWL is appraising options including (but not limited to) nitrate removal at Barsham WTWs to reduce raw water quality driven water treatment works outage. While noting that the ultimate source of supply has yet to be identified by NWL, the Secretary of State considers that the information provided demonstrates sufficiently, in principle, the viability of a mains connection pipeline to the Proposed Development if some or all of the supply were able to come from that location.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_38">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.56</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State is satisfied that if NWL, through the regulatory processes associated with the WRMP24, put forwards a solution to the supply of potable water supply which requires a change to the pipeline connection to the Proposed Development (once it has established where it will source the water for the Proposed Development from) any such solution will be subject to its own environmental assessments, including those under the HRA. The Secretary of State has not seen any information at this stage to suggest that a different pipeline connection (if it were to be required) would not be viable or its impacts unacceptable. However, this will be for NWL to assess once the source of the permanent water supply is known.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_39">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.57</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes that any such pipeline or connection will be applied for separately to the Proposed Development once there is certainty around its route and specification.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_40">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.58</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">As set out above, the Secretary of State does not have detailed information as to the route or specification of the pipeline that would convey water to the Proposed Development given that it is subject to the outcome of the WRMP24 process which has not yet been completed. However, the Secretary of State considers that he has sufficient information for the purposes of taking a decision on the Proposed Development to conclude that there is the potential for a viable connection to be provided in principle. The Secretary of State considers that if the pipeline connects to a supply at Barsham it is not likely to give rise to significant environmental effects additional to those already identified in the Environmental Statement, but this will also fall to be re-examined and be subject to assessment once any such pipeline connection is finalised. If a different solution is required, then any such different solution will need to be the subject of its own assessments in due course.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_41">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.59</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes that in light of the matters identified above it is not possible for the Applicant to provide more specific details regarding the route or specification of the pipeline, or other connection, that will provide the Proposed Development with a connection to the water main or water supply at this stage, and notes that such a pipeline or alternative connection does not form part of the Application. This is due to the fact that the specific details of the route remain unknown until NWL identifies the source of the water that the pipeline will connect the Proposed Development to. The Secretary of State considers that such a pipeline or alternative connection cannot be subject to more detailed assessment as part of this Application given it is subject to the WRMP24. The Secretary of State notes that whilst the Water Supply Strategy submitted in January 2021 identified that the pipeline between Barsham and the Proposed Development did not form part of the Application, a cumulative assessment of the Proposed Development with that pipeline was undertaken, and that the Application was accepted on that basis. The Secretary of State agrees that in light of the present state of knowledge, it is not possible for the Applicant to conduct any meaningful assessment of any different solution to emerge from the WRMP24 process but that any such different solution will necessarily be subject to its own assessment before it can proceed.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_42">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.60</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The policy set out in NPS EN-1 is clear that a decision-maker should work on the assumption that relevant environmental regulatory regimes, including the abstraction licencing regime regulating activities that take water from the water environment, will be properly applied and enforced by the relevant regulator, and that a decision-maker should not seek to duplicate these regimes. The policy is also clear that the decision-maker should have regard to the interaction between the proposed project and other plans, and references Water Resource Management Plans as a specific example of such plans. The Secretary of State notes the acknowledgement in Section 4.2 of EN-1 that it is not always possible for all aspects of a proposal to be settled in precise detail. The fact that there is a lack of detailed information available regarding the source of a permanent water supply via NWL means that it is not possible for the Applicant to have assessed the effect, including the cumulative effects of all of the potential means of conveying water to the Proposed Development. The WRMP process is conducted by the water company and is not something that the Applicant can dictate. If (and only if) the WRMP process fails to provide a solution, the Applicant will have to consider its own permanent desalination plant.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_43">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.61</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes the concerns raised by IPs regarding the prospect of a permanent desalination plant. The Secretary of State agrees with the Applicant that further detailed assessment of the impacts associated with a permanent desalination plant would be required if the Applicant were ultimately to pursue this option as part of its water supply strategy which is not the current intention. The Secretary of State has not requested further detailed assessment from the Applicant of this option given that it does not form part of the Proposed Development and the Applicant’s position is that a bespoke permanent desalination plant for the Proposed Development is unlikely to be required. The Secretary of State notes the Applicant’s position that a permanent desalination plant is not likely to generate any materially new or materially different significant environmental effects on the marine environment (see paragraph 2.2.8 of the Applicant’s response to the Secretary of State’s letter of 18 March 2022) and on the terrestrial environment (see paragraph 2.2.10 of the Applicant’s response to the Secretary of State’s letter of 18 March 2022). The Secretary of State has also considered the concerns raised by IPs regarding the fact that the Applicant had previously discounted desalination from its water supply options. The Secretary of State notes that the revision 1.0 of the Applicant’s Water Supply Strategy produced in May 2020 noted that benefits of desalination include potentially short lead times with equipment available for hire, and that it could be useful for temporary top-ups or in times of drought. The limitations of desalination were listed as ‘desalinated water being aggressive in pipe network and may require remineralisation’.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_44">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.62</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State acknowledges (above) that the Applicant’s conclusion in January 2021, in Appendix 2.2.D Water Supply Strategy of the ES Addendum Volume 3 Chapter 2, was to discount the installation of a modular desalination plant on the MDS and the abstraction of seawater for treatment and notes that the Applicant also stated in the same document that Essex and Suffolk Water had ‘identified means to provide a viable supply of potable water to Sizewell C’ with this option referred to as ‘transfer of surplus potable water via a new pipeline from Barsham’. This reflected the Applicant’s position that a new mains pipeline is preferable to a permanent desalination plant.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_45">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.64</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes that revision 2.0 of the Water Supply Strategy published in September 2021 sets out the important role that a temporary desalination plant would play in the overall strategy. The Secretary of State acknowledges that the Applicant’s position on desalination has therefore changed between January 2021 and September 2021 as a result of new information becoming available to the Applicant regarding the preferred mains connection via NWL. The Secretary of State is content that it is reasonable for the Applicant to rely on revision 2.0 of the Water Supply Strategy submitted during the Planning Inspectorate’s examination of the Proposed Development in light of the new information that became available via NWL in terms of the important role that a temporary desalination plant would play in the overall strategy. The Secretary of State considers that if, contrary to expectation, the Applicant were to seek to provide water from a permanent desalination plant, that would require its own consent and would be subject to further detailed assessment at that stage before it could proceed. Accordingly, for essentially the same reasons as identified above in respect of the other potential solutions to the supply water strategy, the Secretary of State does not consider it necessary for the effects of any such solution to be assessed in more detail as a permanent desalination plant does not form part of the Proposed Development and the Applicant is not relying on it as an integral part of the Proposed Development.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_46">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.64</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State notes and agrees with the position of the ONR that in order to fulfil the Licence Conditions of any nuclear site licence necessary to operate the power station, the Applicant will have to put in place a reliable source of water before any nuclear safety related activities can take place that are dependent on such a supply. Accordingly, the Secretary of State is satisfied that the issue of a sustainable water supply solution will be subject to control through the nuclear site licence application and a reliable source of water will need to be demonstrated before any nuclear safety related activities can take place. The Secretary of State notes that NWL has included the demand from the Proposed Development in its WRMP24 Demand Forecast and NWL remains committed to providing the Proposed Development with a long term water supply and is therefore satisfied that there is a requisite degree of confidence that a long term solution is deliverable, that any such long term solution will be subject to its own environmental assessment, including any required under the Habitats Regulations, which will consider cumulative and incombination effects before it can proceed, and that the ability to deliver that solution will need to be demonstrated to fulfil the Licence Conditions of any nuclear site licence to enable the Proposed Development to generate power.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_47">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.65</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In relation to the Habitats Regulations, the Secretary of State does not agree with Natural England that the source of any permanent water supply is, in itself, integral to the application. There will need to be a permanent water supply solution and the Secretary of State is satisfied that such a solution can be found before the first reactor is commissioned. However, the Secretary of State does not consider that the source of that supply is an integral part of this application. There is no current certainty as to the final source of the permanent water supply, which does not need to be in place until the early 2030s. The Applicant has carried out a cumulative assessment of the potential pipeline route from Barsham/the North/Central WRZ which identifies that this will result in no new or different significant cumulative effects. However, it is not currently known whether this or some other means of connecting the development to the water supply network will be required and this is something that will only become known through the WINEP process. The Secretary of State agrees with the position of the Applicant that an assessment of the Habitats Regulations implications of the proposed permanent water supply solution will be undertaken by NWL. The Secretary of State does not agree with NE that any such assessment is likely to miss or underplay any effects of any kind, including any cumulative or in-combination effects.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_48">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.66</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.5in">In the unlikely event that NWL can find no solution, then the Applicant has confirmed that it would seek to take forward its own solution of the construction of a permanent desalination plant. As already noted, this in itself would require a further application, either to amend the DCO or for another form of planning consent and such an application would similarly trigger the requirement for the necessary environmental assessments including any required under the Habitats Regulations. Such assessment would consider the proposed permanent water supply solution in combination with the Proposed Development and address any cumulative effects</p>
@@ -2351,19 +2427,19 @@
             </content>
           </subparagraph>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_49">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.67</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State is satisfied that the Applicant has established an acceptable water supply strategy for the construction period. The Secretary of State is also satisfied that a long-term water supply is viable and that any proposed water supply solution to be supplied by NWL will be properly assessed under the WRMP24 process and/or other relevant regulatory regimes and considers that no further information is required regarding the proposed water supply solution for a decision to be taken on the Application.</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_50">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.68</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State therefore disagrees with the ExA’s conclusions on this matter and considers that the uncertainty over the permanent water supply strategy is not a barrier to granting consent to the Proposed Development</p>
           </content>
         </paragraph>
-        <paragraph>
+        <paragraph eId="lvl_51">
           <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">4.69</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Secretary of State considers that the matter of the water supply does not weigh for or against the Order being made, and attributes this matter neutral weight in the overall planning balance.</p>

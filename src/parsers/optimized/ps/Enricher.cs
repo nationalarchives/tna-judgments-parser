@@ -79,7 +79,14 @@ partial class Enricher {
             return true;
         if (line.NormalizedContent.Contains("(Applicant") && line.NormalizedContent.Contains("(Intervener"))
             return true;
+        if (line.NormalizedContent.Contains("Bill", StringComparison.InvariantCultureIgnoreCase) && line.NormalizedContent.Contains("Reference", StringComparison.InvariantCultureIgnoreCase))
+            return true;
         return false;
+    }
+
+    internal static bool IsCiteOnly(WLine line) {
+        string pattern =  @"^\[\d{4}\] (UKSC|UKPC) \d+$";
+        return Regex.IsMatch(line.NormalizedContent, pattern);
     }
 
     internal static WLine EnrichCite(WLine line) {
@@ -107,7 +114,7 @@ partial class Enricher {
             if (reversed.Current is not WText wText)
                 return line;
             end = wText.Text + end;
-            Match match = Regex.Match(end, pattern);
+            Match match = Regex.Match(end.Replace('\u00A0',' '), pattern);  // replace non-breaking spaces
             if (match.Success) {
                 List<IInline> before = new List<IInline>();
                 List<IInline> replacement = new List<IInline>();

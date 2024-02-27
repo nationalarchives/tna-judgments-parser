@@ -239,6 +239,8 @@ abstract class Builder {
                 AddTable(parent, table);
             } else if (block is ITableOfContents2 toc) {
                 AddTableOfContents(parent, toc);
+            } else if (block is IQuotedStructure qs) {
+                AddQuotedStructure(parent, qs);
             } else if (block is IDivWrapper wrapper) {
                 AddDivision(parent, wrapper.Division);
             } else {
@@ -247,64 +249,16 @@ abstract class Builder {
         }
     }
 
-    // private void AddTable1(XmlElement parent, ITable model) {
-    //     XmlElement table = doc.CreateElement("table", ns);
-    //     if (model.Style is not null)
-    //         table.SetAttribute("class", model.Style);
-    //     parent.AppendChild(table);
-    //     List<float> columnWidths = model.ColumnWidthsIns;
-    //     if (columnWidths.Any()) {
-    //         IEnumerable<string> s = columnWidths.Select(w => CSS2.ConvertSize(w, "in"));
-    //         string s2 = string.Join(" ", s);
-    //         table.SetAttribute("widths", Metadata.ukns, s2);
-    //     }
-    //     List<ICell> mergedContentsHandled = new List<ICell>();
-    //     List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
-    //     int iRow = 0;
-    //     foreach (List<ICell> row in rows) {
-    //         bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
-    //         XmlElement tr = doc.CreateElement("tr", ns);
-    //         int iCell = 0;
-    //         foreach (ICell cell in row) {
-    //             if (cell.VMerge == VerticalMerge.Continuation) {
-    //                 logger.LogDebug("skipping merged cell");
-    //                 bool found = mergedContentsHandled.Remove(cell);
-    //                 if (!found)
-    //                     throw new Exception();
-    //                 iCell += 1;
-    //                 continue;
-    //             }
-    //             XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
-    //             if (cell.ColSpan is not null)
-    //                 td.SetAttribute("colspan", cell.ColSpan.ToString());
-    //             Dictionary<string, string> styles = cell.GetCSSStyles();
-    //             if (styles.Any())
-    //                 td.SetAttribute("style", CSS.SerializeInline(styles));
-    //             tr.AppendChild(td);
-    //             this.blocks(td, cell.Contents);
-    //             if (cell.VMerge == VerticalMerge.Start) {
-    //                 IEnumerable<ICell> merged = rows.Skip(iRow + 1)
-    //                     .Select(r => r.Skip(iCell).FirstOrDefault())    // can be null, e.g., in ukut/aac/2022/122
-    //                     .TakeWhile(c => c is not null && c.VMerge == VerticalMerge.Continuation);
-    //                 td.SetAttribute("rowspan", (merged.Count() + 1).ToString());
-    //                 foreach (ICell c in merged) {
-    //                     this.blocks(td, c.Contents);
-    //                     logger.LogDebug("handling merged cell");
-    //                     mergedContentsHandled.Add(c);
-    //                 }
-    //             }
-    //             iCell += 1;
-    //         }
-    //         if (tr.HasChildNodes)   // some rows might contain nothing but merged cells
-    //             table.AppendChild(tr);
-    //         iRow += 1;
-    //     }
+    /* quoted structures */
 
-    //     if (mergedContentsHandled.Any()) {
-    //         logger.LogCritical("error handling merged cells");
-    //         throw new Exception();  // perhaps ther
-    //     }
-    // }
+    private void AddQuotedStructure(XmlElement blockContext, IQuotedStructure qs) {
+        XmlElement block = CreateAndAppend("block", blockContext);
+        block.SetAttribute("name", "embeddedStructure");
+        XmlElement embeddedStructure = CreateAndAppend("embeddedStructure", block);
+        AddDivisions(embeddedStructure, qs.Contents);
+    }
+
+    /* tables */
 
     private int getColspan(XmlElement td) {
         string attr = td.GetAttribute("colspan");
@@ -413,15 +367,23 @@ abstract class Builder {
         //     return;
         XmlElement container = CreateAndAppend("inline", parent);
         container.SetAttribute("name", name);
-        if (!model.Contents.All(inline => IFormattedText.IsFormattedTextAndNothingElse(inline))) {
-            foreach (IInline child in model.Contents)
-                AddInline(container, child);
+        AddInlineContainerContents(container, model.Contents);
+    }
+    protected void AddInlineContainerContents(XmlElement container, IEnumerable<IInline> contents) {
+        if (!contents.All(IFormattedText.IsFormattedTextAndNothingElse)) {
+            AddInlines(container, contents);
             return;
         }
-        if (model.Contents.Count() == 1)
-            TextAndFormatting(container, model.Contents.Cast<IFormattedText>().First());
+        var texts = contents.Cast<IFormattedText>();
+        if (texts.Count() == 1)
+            TextAndFormatting(container, texts.First());
         else
-            AddOrWrapText(container, model.Contents.Cast<IFormattedText>());
+            AddOrWrapText(container, texts);
+    }
+
+    protected virtual void AddInlines(XmlElement parent, IEnumerable<IInline> models) {
+        foreach (IInline model in models)
+            AddInline(parent, model);
     }
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
@@ -465,6 +427,8 @@ abstract class Builder {
             AddHperlink(parent, link);
         else if (model is IHyperlink2 link2)
             AddHperlink(parent, link2);
+        else if (model is IInternalLink iLink)
+            AddInternalLink(parent, iLink);
         else if (model is IFormattedText fText)
             AddOrWrapText(parent, fText);
         else if (model is IDocDate docDate)
@@ -485,8 +449,9 @@ abstract class Builder {
             AddInlineContainer(parent, page, "page");
         else if (model is ILineBreak)
             AddLineBreak(parent);
-        else if (model is ITab tab)
+        else if (model is ITab)
             AddTab(parent);
+        else if (model is IBookmark) { ; }
         else
             throw new Exception(model.GetType().ToString());
     }
@@ -763,8 +728,11 @@ abstract class Builder {
         a.SetAttribute("href", link.Href);
         if (link.ScreenTip is not null)
             a.SetAttribute("title", link.ScreenTip);
-        foreach (IInline inline in link.Contents)
-            AddInline(a, inline);
+        AddInlineContainerContents(a, link.Contents);
+    }
+
+    protected virtual void AddInternalLink(XmlElement parent, IInternalLink link) {
+        AddInlines(parent, link.Contents);
     }
 
     private void AddRef(XmlElement parent, IRef model) {

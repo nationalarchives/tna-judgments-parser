@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2010/465/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2010/465/data.xml" />
-          <FRBRdate date="2023-08-08T17:28:53" name="transform" />
+          <FRBRdate date="2024-02-16T18:05:58" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2010</uk:year>
         <uk:number>465</uk:number>
         <uk:cite>[2010] EWHC 465 (Comm)</uk:cite>
-        <uk:parser>0.16.1</uk:parser>
+        <uk:parser>0.22.0</uk:parser>
         <uk:hash>8e3b493fd77f5aa46a4835df964a9d19d96ecae447e1c8a4b227fcf02e7547bd</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -154,7 +154,7 @@
             <p><span style="font-weight:bold">Mr Justice Tomlinson:</span></p>
           </content>
         </level>
-        <level>
+        <level eId="lvl_1">
           <paragraph eId="para_1">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">1.</num>
             <content>
@@ -183,43 +183,47 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">5.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">The arbitrators described the background in this way: </p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“21.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">On 29 June 2005 Centurion entered into concession agreements with the Egyptian Government, an Egyptian state owned company known as ‘EGAS’, and CTIP Oil and Gas (‘CTIP’) in respect of the West El Manzala and West El Qantara areas (‘the Concession Agreements’).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>22.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Under the Concession Agreements Centurion and CTIP were appointed as ‘Contractor’ in respect of the concession areas and were granted, along with EGAS, an exclusive concession to engage in petroleum exploration and exploitation activities.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>23.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">As between Centurion and CTIP, Centurion held 75% of the Contractor’s interest; and CTIP held 25%.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>24.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">After securing the concessions, Centurion approached Shell to discuss whether Shell would be prepared to participate in the venture.  Discussions between the parties, which led to the making of the FIA, took place between about September 2005 and March 2006.  Shell’s deal team was led by Mr Eggink, who reported indirectly to Ms Powell.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>25.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">As Ms Powell explained in her evidence, the Nile Delta had been explored extensively over the previous two decades, mainly in the shallower horizons.  Shell considered that there was a good chance of successfully finding gas in the shallow horizons, as well as significant additional potential in the deeper levels.  The main objective for Shell in entering the joint venture was to explore for gas and develop the gas for export as Liquefied Natural Gas (‘LNG’), although Shell also hoped to supply the Egyptian domestic market.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>26.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In entering into the FIA, the intention of the parties was that Shell should acquire a 50% interest in each of the concessions.  This was to be achieved by CTIP assigning its interest in the concessions to Centurion, and Centurion then assigning half of the whole interest to Shell.  In fact, as explained below, Closing under the FIA never occurred.  It follows that Shell’s anticipated 50% interest in the concessions never vested.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <num>“21.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">On 29 June 2005 Centurion entered into concession agreements with the Egyptian Government, an Egyptian state owned company known as ‘EGAS’, and CTIP Oil and Gas (‘CTIP’) in respect of the West El Manzala and West El Qantara areas (‘the Concession Agreements’).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>22.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Under the Concession Agreements Centurion and CTIP were appointed as ‘Contractor’ in respect of the concession areas and were granted, along with EGAS, an exclusive concession to engage in petroleum exploration and exploitation activities.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>23.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">As between Centurion and CTIP, Centurion held 75% of the Contractor’s interest; and CTIP held 25%.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>24.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">After securing the concessions, Centurion approached Shell to discuss whether Shell would be prepared to participate in the venture.  Discussions between the parties, which led to the making of the FIA, took place between about September 2005 and March 2006.  Shell’s deal team was led by Mr Eggink, who reported indirectly to Ms Powell.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>25.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">As Ms Powell explained in her evidence, the Nile Delta had been explored extensively over the previous two decades, mainly in the shallower horizons.  Shell considered that there was a good chance of successfully finding gas in the shallow horizons, as well as significant additional potential in the deeper levels.  The main objective for Shell in entering the joint venture was to explore for gas and develop the gas for export as Liquefied Natural Gas (‘LNG’), although Shell also hoped to supply the Egyptian domestic market.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>26.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In entering into the FIA, the intention of the parties was that Shell should acquire a 50% interest in each of the concessions.  This was to be achieved by CTIP assigning its interest in the concessions to Centurion, and Centurion then assigning half of the whole interest to Shell.  In fact, as explained below, Closing under the FIA never occurred.  It follows that Shell’s anticipated 50% interest in the concessions never vested.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaNoNumber" style="margin-left:0.5in">The arbitrators had earlier identified Ms Ceri Powell as Vice President responsible for Shell’s exploration activities in the Middle East, Caspian and South Asia regions.  Mr Eggink was at the relevant time Shell’s Project Manager, Acquisition and Divestment.  </p>
@@ -246,116 +250,122 @@
           </paragraph>
           <paragraph eId="para_9">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">9.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The arbitrators summarise the further relevant provisions of the FIA as follows: </p>
-            </intro>
-            <subparagraph>
-              <num>“34.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 4.3, Shell agreed to pay 50% of all exploration and development costs with effect from the Effective Date (1 January 2006) in respect of the Joint Account, covering for example, wells which were drilled as Joint Operations.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <intro>
-                <p class="Quote" style="margin-left:1in">35.Clause 4 set out the obligations of the parties until Closing Period (defined in Clause 1.1 as the period from the date of the FIA until Closing).  Centurion was obliged to carry on its activities in relation to the Farm-In Interest in the ordinary and usual course of business so as to protect and maintain the Farm-In Interest to the extent it was able to do so, having regard to the provisions of the Concessions.  Without prejudice to the generality of that, clauses 4.1(a)-(n) set out specific obligations on Centurion.  These included: </p>
-              </intro>
-              <subparagraph>
-                <num>(1)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(c) an agreement during the Closing Period not to ‘propose, approve or participate in any sole risk operations in respect of the Farm-In Interest’.  </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(2)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(l), to act in accordance with the JOAs [the Joint Operating Agreements] and ‘to the extent possible’ treat Shell as party to the Concessions and in addition treat Shell as a party to each JOA as though Shell was the owner of the Farm-In Interest.  </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(3)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(m), to continue to carry out its activities as Operator of the Concessions in the ordinary and usual course in accordance with the terms of the Concession Interest Documents (as defined) and the JOAs and in accordance with good international oil and gas industry standards.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(4)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(n) it was agreed that the location and architecture of the third and subsequent wells to be drilled under the Concessions was subject to the agreement of Centurion and Shell in accordance with the terms of the JOA.</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>36.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Centurion gave a number of warranties pursuant to Clause 5.1.  These included a warranty that no operations had been conducted under sole risk or non-consent provisions, and that no notice to conduct sole risk operations had been given (see Clause 5.1(i)).  Centurion’s warranties were deemed to be repeated on the Closing Date, save to the extent that any matter had been advised in Centurion’s Disclosure Letter (see the concluding paragraph of Clause 5.1).  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>37.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 4.1(a) Centurion agreed that it would not do or voluntarily omit to do anything which would constitute a breach of any of the warranties during the Closing Period. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>38.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 5.2(b), in the event of a breach of any of the Centurion warranties prior to Closing, Shell was given a right to rescind the FIA.  By Clause 5.5(a), it was agreed that Centurion would not be liable for any claim in relation to breach of warranty unless Shell had given a written notice.  There was also a requirement for the claim to exceed US$1m.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>39.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">In the event of rescission pursuant to Clause 5.2(b), Centurion was obliged by Clause 13.4 to repay to Shell its initial US$15 million investment, together with interest thereon, and to indemnify Shell against all costs and liabilities incurred or accrued in respect of the interest to be acquired under the FIA since 1 January 2006 (except for costs of and associated with the preparation and execution of the FIA).  It was also agreed that Shell should not be entitled to any revenues attributable to the Farm-In Interest and that it should return certain data and documents.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>40.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 11.4, in the event of a direct or indirect change of control of Centurion during the Closing Period, Centurion was required to advise Shell as soon as reasonably practicable, and Shell then had the option to assume the operatorship from Centurion.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“34.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 4.3, Shell agreed to pay 50% of all exploration and development costs with effect from the Effective Date (1 January 2006) in respect of the Joint Account, covering for example, wells which were drilled as Joint Operations.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <heading class="Quote" style="margin-left:1in">35.Clause 4 set out the obligations of the parties until Closing Period (defined in Clause 1.1 as the period from the date of the FIA until Closing).  Centurion was obliged to carry on its activities in relation to the Farm-In Interest in the ordinary and usual course of business so as to protect and maintain the Farm-In Interest to the extent it was able to do so, having regard to the provisions of the Concessions.  Without prejudice to the generality of that, clauses 4.1(a)-(n) set out specific obligations on Centurion.  These included: </heading>
+                    <paragraph>
+                      <num>(1)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(c) an agreement during the Closing Period not to ‘propose, approve or participate in any sole risk operations in respect of the Farm-In Interest’.  </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num>(2)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(l), to act in accordance with the JOAs [the Joint Operating Agreements] and ‘to the extent possible’ treat Shell as party to the Concessions and in addition treat Shell as a party to each JOA as though Shell was the owner of the Farm-In Interest.  </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num>(3)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(m), to continue to carry out its activities as Operator of the Concessions in the ordinary and usual course in accordance with the terms of the Concession Interest Documents (as defined) and the JOAs and in accordance with good international oil and gas industry standards.</p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num>(4)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(n) it was agreed that the location and architecture of the third and subsequent wells to be drilled under the Concessions was subject to the agreement of Centurion and Shell in accordance with the terms of the JOA.</p>
+                      </content>
+                    </paragraph>
+                  </level>
+                  <paragraph>
+                    <num>36.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Centurion gave a number of warranties pursuant to Clause 5.1.  These included a warranty that no operations had been conducted under sole risk or non-consent provisions, and that no notice to conduct sole risk operations had been given (see Clause 5.1(i)).  Centurion’s warranties were deemed to be repeated on the Closing Date, save to the extent that any matter had been advised in Centurion’s Disclosure Letter (see the concluding paragraph of Clause 5.1).  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>37.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 4.1(a) Centurion agreed that it would not do or voluntarily omit to do anything which would constitute a breach of any of the warranties during the Closing Period. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>38.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 5.2(b), in the event of a breach of any of the Centurion warranties prior to Closing, Shell was given a right to rescind the FIA.  By Clause 5.5(a), it was agreed that Centurion would not be liable for any claim in relation to breach of warranty unless Shell had given a written notice.  There was also a requirement for the claim to exceed US$1m.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>39.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">In the event of rescission pursuant to Clause 5.2(b), Centurion was obliged by Clause 13.4 to repay to Shell its initial US$15 million investment, together with interest thereon, and to indemnify Shell against all costs and liabilities incurred or accrued in respect of the interest to be acquired under the FIA since 1 January 2006 (except for costs of and associated with the preparation and execution of the FIA).  It was also agreed that Shell should not be entitled to any revenues attributable to the Farm-In Interest and that it should return certain data and documents.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>40.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 11.4, in the event of a direct or indirect change of control of Centurion during the Closing Period, Centurion was required to advise Shell as soon as reasonably practicable, and Shell then had the option to assume the operatorship from Centurion.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_10">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">10.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The arbitrators described the JOAs as follows: </p>
-            </intro>
-            <subparagraph>
-              <num>“41.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Under Schedule B, paragraph 3 of the FIA, the Closing Documents included the JOAs.  In fact the JOAs between Shell and Centurion were signed in July 2006.  Schedule C of the FIA set out the JOA principles.  By Clause 12.4 of the FIA it was provided that in the event of any conflict between the terms of the FIA and, inter alia, the JOAs it was agreed that the terms of the FIA should prevail.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>42.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">The broad structure of the JOAs (which are each on materially identical terms) was as follows.  The JOAs were effective as from 1 January 2006, being the Effective Date.  By Article 3.1, the Participating Interests of Shell and Centurion respectively were stated to be 50% each.  By Article 4.1 Centurion was designated Operator.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>43.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Provision was made for the establishment of an Operating Committee to provide for the supervision and direction of Joint Operations – defined as meaning those operations and activities conducted by the Operator on behalf of the parties, the cost of which was chargeable to the parties.  (See Article 5.1 and the definition of Joint Operations in Article 1.1).  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>44.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Pursuant to Article 3.2(B) and (C), all liabilities and expenses incurred by the Operator in connection with Joint Operations were to be charged to a Joint Account, and each party was required to contribute to the Joint Account in accordance with its Participating Interest.  At Article 5.9 provision was made for the weight of voting required to carry different types of decision.  By Article 5.9B the drilling of Exploration Wells and the conducting of seismic surveys required the unanimous vote of the parties’ representatives.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>45.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Provision was made in Article 8 for the circumstances in which operations may be conducted, other than as Joint Operations.  The broad scheme of the provisions in Article 8 was that certain operations could be proposed as Exclusive Operations, but only after they had been proposed as Joint Operations.  A party wishing to propose an Exclusive Operation had to give notice to the other of its intention to do so.  The other party then had the right, within the notice period, to participate, in which case the operation became a Joint Operation.  If the party receiving the notice elected not to participate, then the party which had proposed the operation could proceed with it as an Exclusive Operation.  However, in that event, the non-participating party retained the right subsequently to participate upon the giving of notice, and upon the payment of a hefty cash premium – for the privilege of reinstating rights which had been relinquished.  In the case of the drilling of an Exploration Well, the cash premium was 600% of the non-consenting party’s share of the costs and expenses incurred in relation to the operation.  See, in particular, Articles 8.4 and 8.5, especially 8.5(B).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>46.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Article 13 of the JOAs contained provisions relating to change of control.  In summary, Article 13.1 provided that any transfer of all or a portion of a Participating Interest, whether directly or indirectly by assignment, merger, consolidation, or sale of stock representing a Change of Control, other than with or to an Affiliate, should be subject to a set procedure.  Under that procedure, once the transferor and a proposed transferee had agreed upon the final terms and conditions of a transfer, such final terms and conditions had to be disclosed in detail to all other parties to the JOA in a notice from the transferor.  The party receiving such a notice then had the right to acquire the Participating Interest from the transferor on the same terms and conditions agreed to by the proposed transferee.  Article 13.3 of the JOAs further contained express provisions to enable the Participating Interest of a Party subject to a Change of Control to be acquired by the other party.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“41.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Under Schedule B, paragraph 3 of the FIA, the Closing Documents included the JOAs.  In fact the JOAs between Shell and Centurion were signed in July 2006.  Schedule C of the FIA set out the JOA principles.  By Clause 12.4 of the FIA it was provided that in the event of any conflict between the terms of the FIA and, inter alia, the JOAs it was agreed that the terms of the FIA should prevail.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>42.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">The broad structure of the JOAs (which are each on materially identical terms) was as follows.  The JOAs were effective as from 1 January 2006, being the Effective Date.  By Article 3.1, the Participating Interests of Shell and Centurion respectively were stated to be 50% each.  By Article 4.1 Centurion was designated Operator.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>43.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Provision was made for the establishment of an Operating Committee to provide for the supervision and direction of Joint Operations – defined as meaning those operations and activities conducted by the Operator on behalf of the parties, the cost of which was chargeable to the parties.  (See Article 5.1 and the definition of Joint Operations in Article 1.1).  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>44.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Pursuant to Article 3.2(B) and (C), all liabilities and expenses incurred by the Operator in connection with Joint Operations were to be charged to a Joint Account, and each party was required to contribute to the Joint Account in accordance with its Participating Interest.  At Article 5.9 provision was made for the weight of voting required to carry different types of decision.  By Article 5.9B the drilling of Exploration Wells and the conducting of seismic surveys required the unanimous vote of the parties’ representatives.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>45.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Provision was made in Article 8 for the circumstances in which operations may be conducted, other than as Joint Operations.  The broad scheme of the provisions in Article 8 was that certain operations could be proposed as Exclusive Operations, but only after they had been proposed as Joint Operations.  A party wishing to propose an Exclusive Operation had to give notice to the other of its intention to do so.  The other party then had the right, within the notice period, to participate, in which case the operation became a Joint Operation.  If the party receiving the notice elected not to participate, then the party which had proposed the operation could proceed with it as an Exclusive Operation.  However, in that event, the non-participating party retained the right subsequently to participate upon the giving of notice, and upon the payment of a hefty cash premium – for the privilege of reinstating rights which had been relinquished.  In the case of the drilling of an Exploration Well, the cash premium was 600% of the non-consenting party’s share of the costs and expenses incurred in relation to the operation.  See, in particular, Articles 8.4 and 8.5, especially 8.5(B).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>46.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Article 13 of the JOAs contained provisions relating to change of control.  In summary, Article 13.1 provided that any transfer of all or a portion of a Participating Interest, whether directly or indirectly by assignment, merger, consolidation, or sale of stock representing a Change of Control, other than with or to an Affiliate, should be subject to a set procedure.  Under that procedure, once the transferor and a proposed transferee had agreed upon the final terms and conditions of a transfer, such final terms and conditions had to be disclosed in detail to all other parties to the JOA in a notice from the transferor.  The party receiving such a notice then had the right to acquire the Participating Interest from the transferor on the same terms and conditions agreed to by the proposed transferee.  Article 13.3 of the JOAs further contained express provisions to enable the Participating Interest of a Party subject to a Change of Control to be acquired by the other party.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_11">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">11.</num>
@@ -364,7 +374,7 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_2">
           <heading class="ParaHeading"><span style="font-weight:bold">The Initial Five Wells </span></heading>
           <paragraph eId="para_12">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">12.</num>
@@ -380,196 +390,208 @@
           </paragraph>
           <paragraph eId="para_14">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">14.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The immediately relevant detailed provisions of the contract which bear on this issue are: </p>
-            </intro>
-            <subparagraph>
-              <num>“3.</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">CONSIDERATION </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">In consideration for the Assignment, Shell undertakes the following: </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>3.1</num>
-              <content>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Payment Commitment</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>3.1.1</num>
-              <intro>
-                <p class="Quote" style="margin-left:1in;text-indent:0.5in">Shell shall pay to Centurion: </p>
-              </intro>
-              <subparagraph>
-                <num>(a)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.88in">Within thirty (30) days following the Agreement Date, the sum of fifteen million US Dollars ($15m); </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(b)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.88in">Twenty million US Dollars ($20m) if, following the completion of the Initial Five Wells, Shell does not exercise its right, provided for in Clause 13.3, to withdraw from this Agreement.  Such payment (if any) shall become due thirty (30) days following the release of the rig after the drilling of the fifth well, provided however that if by such date the CTIP Acquisition is not completed, then this sum shall be payable by Shell within thirty (30) days of submission to the Government of the deed of assignment relating to the Assignment.  Notwithstanding the foregoing Shell shall not be liable to make any payment under this Clause 3.1.1(b) unless and until Centurion provides evidence satisfactory to Shell, acting reasonably, that Standard Bank plc as referred to in Clause 5.1(b), has consented to the Assignment free and clear of its interest;</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:0.79in;text-indent:0.18in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>3.1.8</num>
-              <intro>
-                <p class="Quote" style="margin-left:1.47in">Without prejudice to Clauses 3.1.6 and 3.1.9, if the Closing Date has not occurred within nine (9) months following the Agreement Date, then Shell may elect, by thirty (30) days notice in writing to Centurion, to terminate this Agreement.  </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.18in;text-indent:0.29in">In such event: </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(a)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the terms of the JOAs, its share of any and all costs incurred in respect of Joint Operations up to the date of withdrawal;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(b)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Centurion shall not be obliged to repay to Shell any amounts paid under Clause 3.1.1;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(c)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the JOAs, its participating interest share of any costs relating to completing the Concession Work Programmes.  Shell shall have the benefit of any cost recovery of any sums paid by Shell pursuant to this Clause 3.1.8(c).  Notwithstanding the foregoing, Shell shall have no liability of whatsoever nature for, and Centurion shall indemnify Shell against, any losses or damages arising out of any operations performed following termination of this Agreement; and </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(d)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Other than as provided for in this Clause 3.1.8, Shell shall have no obligations or liabilities under this Agreement of whatsoever nature. </p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>3.1.9</num>
-              <content>
-                <p class="Quote" style="margin-left:1.47in">If the Closing Date has not occurred within the nine (9) months referred to in Clause 3.1.8 because the condition precedent described in Clause 2.2(e) has not occurred and Shell has elected to terminate this Agreement in accordance with the terms of Clause 3.1.8, then the provisions of Clauses 3.1.8(a), (b) and (c) shall not apply and the termination will be treated as if Government Consents had not been received under Clause 3.1.6.  Accordingly Centurion shall refund any and all payments made to Shell. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.47in;text-indent:-0.5in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold">13.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.47in"><span style="font-weight:bold">TERMINATION </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1.47in;text-indent:-0.5in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>13.3</num>
-              <intro>
-                <p class="Quote" style="margin-left:1.47in">Shell shall have the right to withdraw from the Agreement and the JOA upon thirty (30) days notice following the release of the rig after the drilling of the fifth well of the Initial Five Wells.  </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.47in">In such event: </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(a)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the terms of the JOAs, its share of any and all costs incurred in respect of Joint Operations up to the date of withdrawal; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(b)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Centurion shall not be obliged to repay to Shell any amounts paid under Clause 3.1.1; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(c)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the JOAs, its participating interest share of any costs relating to completing the Concession Work Programmes.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(d)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Notwithstanding the foregoing, Shell shall have no further obligations or liabilities under this Agreement or the JOA of whatsoever nature and shall have no liability of whatsoever nature for, and Centurion shall indemnify Shell against, any losses or damages arising out of any operations performed following termination of this Agreement pursuant to this Clause 13.”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“3.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">CONSIDERATION </p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">In consideration for the Assignment, Shell undertakes the following: </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>3.1</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Payment Commitment</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>3.1.1</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">Shell shall pay to Centurion: </p>
+                    </intro>
+                    <subparagraph>
+                      <num>(a)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.88in">Within thirty (30) days following the Agreement Date, the sum of fifteen million US Dollars ($15m); </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(b)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.88in">Twenty million US Dollars ($20m) if, following the completion of the Initial Five Wells, Shell does not exercise its right, provided for in Clause 13.3, to withdraw from this Agreement.  Such payment (if any) shall become due thirty (30) days following the release of the rig after the drilling of the fifth well, provided however that if by such date the CTIP Acquisition is not completed, then this sum shall be payable by Shell within thirty (30) days of submission to the Government of the deed of assignment relating to the Assignment.  Notwithstanding the foregoing Shell shall not be liable to make any payment under this Clause 3.1.1(b) unless and until Centurion provides evidence satisfactory to Shell, acting reasonably, that Standard Bank plc as referred to in Clause 5.1(b), has consented to the Assignment free and clear of its interest;</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:0.79in;text-indent:0.18in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>3.1.8</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1.47in">Without prejudice to Clauses 3.1.6 and 3.1.9, if the Closing Date has not occurred within nine (9) months following the Agreement Date, then Shell may elect, by thirty (30) days notice in writing to Centurion, to terminate this Agreement.  </p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.18in;text-indent:0.29in">In such event: </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(a)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the terms of the JOAs, its share of any and all costs incurred in respect of Joint Operations up to the date of withdrawal;</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(b)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Centurion shall not be obliged to repay to Shell any amounts paid under Clause 3.1.1;</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(c)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the JOAs, its participating interest share of any costs relating to completing the Concession Work Programmes.  Shell shall have the benefit of any cost recovery of any sums paid by Shell pursuant to this Clause 3.1.8(c).  Notwithstanding the foregoing, Shell shall have no liability of whatsoever nature for, and Centurion shall indemnify Shell against, any losses or damages arising out of any operations performed following termination of this Agreement; and </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(d)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Other than as provided for in this Clause 3.1.8, Shell shall have no obligations or liabilities under this Agreement of whatsoever nature. </p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num>3.1.9</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.47in">If the Closing Date has not occurred within the nine (9) months referred to in Clause 3.1.8 because the condition precedent described in Clause 2.2(e) has not occurred and Shell has elected to terminate this Agreement in accordance with the terms of Clause 3.1.8, then the provisions of Clauses 3.1.8(a), (b) and (c) shall not apply and the termination will be treated as if Government Consents had not been received under Clause 3.1.6.  Accordingly Centurion shall refund any and all payments made to Shell. </p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.47in;text-indent:-0.5in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-weight:bold">13.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.47in"><span style="font-weight:bold">TERMINATION </span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1.47in;text-indent:-0.5in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>13.3</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1.47in">Shell shall have the right to withdraw from the Agreement and the JOA upon thirty (30) days notice following the release of the rig after the drilling of the fifth well of the Initial Five Wells.  </p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.47in">In such event: </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(a)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the terms of the JOAs, its share of any and all costs incurred in respect of Joint Operations up to the date of withdrawal; </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(b)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Centurion shall not be obliged to repay to Shell any amounts paid under Clause 3.1.1; </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(c)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall pay, in accordance with the JOAs, its participating interest share of any costs relating to completing the Concession Work Programmes.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(d)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Notwithstanding the foregoing, Shell shall have no further obligations or liabilities under this Agreement or the JOA of whatsoever nature and shall have no liability of whatsoever nature for, and Centurion shall indemnify Shell against, any losses or damages arising out of any operations performed following termination of this Agreement pursuant to this Clause 13.”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_3">
           <heading class="ParaHeading"><span style="font-weight:bold">Change of control</span></heading>
           <paragraph eId="para_15">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">15.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">On this issue the arbitrators made the following findings: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“C: The Dana Gas Acquisition </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">69.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 31 October 2006 CEI (Centurion’s then publicly owned indirect parent) issued a press release that it had been approached by a third party and was in discussions with that party with a view to a ‘possible corporate transaction’.  The third party was Dana Gas.  Mr Eggink saw this press announcement and circulated it within Shell.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">70.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 12 November 2006 Dana Gas and CEI entered into an arrangement agreement in connection with a proposed offer to be made by a wholly-owned subsidiary of Dana Gas to the shareholders of CEI.  The agreement and completion were conditional – being subject to court and regulatory approval by CEI’s shareholders.  It was anticipated that completion would take place in January 2007.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">71.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">The proposed deal, if the conditions were met and if CEI’s shareholders accepted, did not involve any transfer of Centurion’s interest in the Concessions.  Further, Centurion’s 100% shareholder continued to be Centurion Red Sea Corporation, the shares in which continued to be held as to 100% by CEI, defined in the FIA as the Ultimate Parent Entity.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">72.</num>
-              <intro>
-                <p class="Quote" style="margin-left:1.29in">On the same date as the arrangement agreement, CEI issued a Disclosure Letter to Dana Gas in relation to ‘material adverse change’.  The Disclosure Letter made express disclosure of Shell’s right of election to become the operator where there was an indirect change of control of Centurion.  It also made disclosure of Shell’s election to rescind the FIA in the event of a breach of Centurion’s warranties prior to closing.  In his evidence Mr Agrawal accepted that Dana Gas had agreed to take the risk of Shell electing to rescind the FIA, and had taken legal advice in relation to the Arrangement Agreement and Disclosure Letter.  </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.29in">…</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">76.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 7 December 2006 Shell wrote to Centurion requesting that Centurion provide a notice upon agreement of the final terms and conditions of the Dana Gas acquisition so as to facilitate Shell’s election under Article 13 of the JOAs (pre-emption rights upon a change of control) and under clause 11.4 of the FIA (right to assume the operatorship upon a change of control).  Also on that day, Centurion mobilised the rig from South Gamasa to Marzouk, without Shell’s approval.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">77.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">Centurion replied on 10 December 2006 explaining that Dana Gas was acquiring CEI not Centurion, and that Centurion accordingly did not intend to issue notices.  It is this letter that is relied upon by Shell in support of its case.  It contends that Centurion, by denying any obligation to notify Shell of a change of control and/or in failing to do so, was in breach of the FIA.  It further contends that this breach was repudiatory and deprived Shell of the opportunity to acquire Centurion’s Participating Interest in the concessions and/or to assume the operatorship.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“C: The Dana Gas Acquisition </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">69.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 31 October 2006 CEI (Centurion’s then publicly owned indirect parent) issued a press release that it had been approached by a third party and was in discussions with that party with a view to a ‘possible corporate transaction’.  The third party was Dana Gas.  Mr Eggink saw this press announcement and circulated it within Shell.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">70.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 12 November 2006 Dana Gas and CEI entered into an arrangement agreement in connection with a proposed offer to be made by a wholly-owned subsidiary of Dana Gas to the shareholders of CEI.  The agreement and completion were conditional – being subject to court and regulatory approval by CEI’s shareholders.  It was anticipated that completion would take place in January 2007.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">71.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">The proposed deal, if the conditions were met and if CEI’s shareholders accepted, did not involve any transfer of Centurion’s interest in the Concessions.  Further, Centurion’s 100% shareholder continued to be Centurion Red Sea Corporation, the shares in which continued to be held as to 100% by CEI, defined in the FIA as the Ultimate Parent Entity.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">72.</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1.29in">On the same date as the arrangement agreement, CEI issued a Disclosure Letter to Dana Gas in relation to ‘material adverse change’.  The Disclosure Letter made express disclosure of Shell’s right of election to become the operator where there was an indirect change of control of Centurion.  It also made disclosure of Shell’s election to rescind the FIA in the event of a breach of Centurion’s warranties prior to closing.  In his evidence Mr Agrawal accepted that Dana Gas had agreed to take the risk of Shell electing to rescind the FIA, and had taken legal advice in relation to the Arrangement Agreement and Disclosure Letter.  </p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.29in">…</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">76.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 7 December 2006 Shell wrote to Centurion requesting that Centurion provide a notice upon agreement of the final terms and conditions of the Dana Gas acquisition so as to facilitate Shell’s election under Article 13 of the JOAs (pre-emption rights upon a change of control) and under clause 11.4 of the FIA (right to assume the operatorship upon a change of control).  Also on that day, Centurion mobilised the rig from South Gamasa to Marzouk, without Shell’s approval.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">77.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">Centurion replied on 10 December 2006 explaining that Dana Gas was acquiring CEI not Centurion, and that Centurion accordingly did not intend to issue notices.  It is this letter that is relied upon by Shell in support of its case.  It contends that Centurion, by denying any obligation to notify Shell of a change of control and/or in failing to do so, was in breach of the FIA.  It further contends that this breach was repudiatory and deprived Shell of the opportunity to acquire Centurion’s Participating Interest in the concessions and/or to assume the operatorship.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_16">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">16.</num>
@@ -578,136 +600,152 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_4">
           <heading class="ParaHeading"><span style="font-weight:bold">Sole risk operations </span></heading>
           <paragraph eId="para_17">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">17.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">On this issue the arbitrators found: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“D:  The Marzouk-1 Operations and Acquisition of Additional 3D Seismic </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">78.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 14 November 2006 Centurion sent Shell a well proposal and composite display for a site named Marzouk-1.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">79.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">The well proposal was formally presented at the Technical Committee meeting on 15 November 2006.  At the same meeting Shell and Centurion also discussed a small extension to the 3D seismic acquisition.  Action point 6 from the meeting provided ‘submit to Shell additional 3D program over Matariya’.  At the meeting of the Operating Committee on the same day, Mr Bloomfield [Shell’s Exploration Manager] indicated that the drilling activities were not approved and that any approval for additional studies required further information as to scope, drilling, timing and cost definition.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">80.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">Centurion wrote to Shell on 26 November 2006 confirming that the site at Marzouk-1 was under construction and expected to be ready within 7 to 10 days.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">81.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 30 November 2006 Mr Bloomfield of Shell sent a letter to Dr El Sharkawai of Centurion.  The letter indicated that Shell had not been given an opportunity to vote on a number of proposals prior to the start of activity including a proposal for the extension of the seismic acquisition programme and a proposal for new drilling activity.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">82.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">Centurion sent an authorisation for expenditure (‘AFE’) in respect of Marzouk-1 on 30 November 2006.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">83.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">As regards the 3D extension, Centurion sent preliminary further information by e-mail on 27 November 2006 and sent a further e-mail requesting Shell’s comments on 4 December 2006.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">84.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 6 December 2006, Shell wrote two letters.  In the first letter it stated that it did not support the drilling of Marzouk-1 at that time.  In the second letter it stated that it had not received a formal request to participate in, but in any event did not approve, the expanded seismic work programme.  In each case Shell stated that it wished to postpone the activities pending the outcome of existing reviews and further consideration.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">85.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">Following a meeting on 12 December 2006, Shell wrote again on 13 December 2006.  The letter stated again that neither the expanded seismic programme nor the drilling of Marzouk-1 was approved.  In each case it was stated that ‘… any and all liabilities of whatsoever nature arising out of [the activities] will be for Centurion’s account.’  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">86.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 14 December 2006 Mr Thomas spoke with Ms Powell. Mr Thomas made it clear that Centurion intended to conduct the drilling of Marzouk-1 and seismic activities as Exclusive Operations within the meaning of the JOAs.  In response to Mr Thomas’s concern that Shell had not approved the seismic, Ms Powell accepted that she could ‘well see’ why Shell should participate in the seismic, but that ‘approval had not been asked’.  Mr Thomas’s evidence, which we accept, is that he understood that Shell had no fundamental objection to the acquisition of the additional seismic.  According to Ms Powell’s note: ‘I asked in a roundabout way whether he thought he could sole risk; he said he thought so but that if he couldn’t he was sure that Shell legal would tell him.’  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">87.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.29in">On 14 and 15 December 2006 Centurion served notices on Shell of their intention to carry out the Marzouk-1 and seismic activities as Exclusive Operations under the JOAs.  Reliance was placed on Article 8 of the West Manzala JOA.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">88.</num>
-              <intro>
-                <p class="Quote" style="margin-left:1.29in">On 18 December 2006 Shell wrote to Centurion saying: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1.58in">‘At the time at which we entered into the Farm-In and LNG Cooperation Agreement (the “FIA”) it was agreed that during the period between the date of the FIA and the Closing Date, Centurion would not propose any sole risk operations in respect of the Farm-In Interest.  Centurion is attempting to do exactly that: please clarify your position.’ ”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“D:  The Marzouk-1 Operations and Acquisition of Additional 3D Seismic </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">78.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 14 November 2006 Centurion sent Shell a well proposal and composite display for a site named Marzouk-1.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">79.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">The well proposal was formally presented at the Technical Committee meeting on 15 November 2006.  At the same meeting Shell and Centurion also discussed a small extension to the 3D seismic acquisition.  Action point 6 from the meeting provided ‘submit to Shell additional 3D program over Matariya’.  At the meeting of the Operating Committee on the same day, Mr Bloomfield [Shell’s Exploration Manager] indicated that the drilling activities were not approved and that any approval for additional studies required further information as to scope, drilling, timing and cost definition.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">80.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">Centurion wrote to Shell on 26 November 2006 confirming that the site at Marzouk-1 was under construction and expected to be ready within 7 to 10 days.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">81.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 30 November 2006 Mr Bloomfield of Shell sent a letter to Dr El Sharkawai of Centurion.  The letter indicated that Shell had not been given an opportunity to vote on a number of proposals prior to the start of activity including a proposal for the extension of the seismic acquisition programme and a proposal for new drilling activity.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">82.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">Centurion sent an authorisation for expenditure (‘AFE’) in respect of Marzouk-1 on 30 November 2006.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">83.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">As regards the 3D extension, Centurion sent preliminary further information by e-mail on 27 November 2006 and sent a further e-mail requesting Shell’s comments on 4 December 2006.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">84.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 6 December 2006, Shell wrote two letters.  In the first letter it stated that it did not support the drilling of Marzouk-1 at that time.  In the second letter it stated that it had not received a formal request to participate in, but in any event did not approve, the expanded seismic work programme.  In each case Shell stated that it wished to postpone the activities pending the outcome of existing reviews and further consideration.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">85.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">Following a meeting on 12 December 2006, Shell wrote again on 13 December 2006.  The letter stated again that neither the expanded seismic programme nor the drilling of Marzouk-1 was approved.  In each case it was stated that ‘… any and all liabilities of whatsoever nature arising out of [the activities] will be for Centurion’s account.’  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">86.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 14 December 2006 Mr Thomas spoke with Ms Powell. Mr Thomas made it clear that Centurion intended to conduct the drilling of Marzouk-1 and seismic activities as Exclusive Operations within the meaning of the JOAs.  In response to Mr Thomas’s concern that Shell had not approved the seismic, Ms Powell accepted that she could ‘well see’ why Shell should participate in the seismic, but that ‘approval had not been asked’.  Mr Thomas’s evidence, which we accept, is that he understood that Shell had no fundamental objection to the acquisition of the additional seismic.  According to Ms Powell’s note: ‘I asked in a roundabout way whether he thought he could sole risk; he said he thought so but that if he couldn’t he was sure that Shell legal would tell him.’  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">87.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.29in">On 14 and 15 December 2006 Centurion served notices on Shell of their intention to carry out the Marzouk-1 and seismic activities as Exclusive Operations under the JOAs.  Reliance was placed on Article 8 of the West Manzala JOA.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.29in;text-indent:-0.29in">88.</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1.29in">On 18 December 2006 Shell wrote to Centurion saying: </p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="Quote" style="margin-left:1.58in">‘At the time at which we entered into the Farm-In and LNG Cooperation Agreement (the “FIA”) it was agreed that during the period between the date of the FIA and the Closing Date, Centurion would not propose any sole risk operations in respect of the Farm-In Interest.  Centurion is attempting to do exactly that: please clarify your position.’ ”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_18">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">18.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The further detailed provisions of the FIA which bear on this issue are: </p>
-            </intro>
-            <subparagraph>
-              <num>“5.2</num>
-              <content>
-                <p class="Quote" style="margin-left:1.75in">(b)<marker name="tab" />in the event of (i) a breach of any of the Centurion Warranties prior to Closing or (ii) Shell receiving Centurion’s Disclosure Letter pursuant to Clause 4.1(i) advising of a matter, which, in either case, has or is likely to have a material adverse effect on the benefits it is acquiring under this Agreement, Shell shall be entitled to rescind this Agreement and shall in addition have the right to require the Closing Date to be delayed by seven (7) days in order to consider whether or not to exercise such right of entitlement to rescind this Agreement; </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.57in;text-indent:-0.57in">13.4</num>
-              <intro>
-                <p class="Quote" style="margin-left:1.57in">If this Agreement is rescinded pursuant to Clause 5.2(b): </p>
-              </intro>
-              <subparagraph>
-                <num>(a)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Centurion shall indemnify Shell against all costs, claims, expenses and liabilities incurred or accrued in respect of the Farm-In Interest after the Effective Date except for those arising under Clause 9.1; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(b)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall be repaid all amounts paid by Shell to Centurion pursuant to the terms of Clause 3.1 together with interest thereon at LIBOR; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(c)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall not be entitled to any revenues attributable to the Farm-In Interest; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(d)</num>
-                <content>
-                  <p class="Quote" style="margin-left:1.97in">Shell shall return (and not and not [sic] retain any copies of) any data and documents in its possession relating to the Farm-In Interest except to the extent that such data and documentation was already legitimately in its possession other than pursuant to the transaction contemplated hereby.”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“5.2</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.75in">(b)<marker name="tab" />in the event of (i) a breach of any of the Centurion Warranties prior to Closing or (ii) Shell receiving Centurion’s Disclosure Letter pursuant to Clause 4.1(i) advising of a matter, which, in either case, has or is likely to have a material adverse effect on the benefits it is acquiring under this Agreement, Shell shall be entitled to rescind this Agreement and shall in addition have the right to require the Closing Date to be delayed by seven (7) days in order to consider whether or not to exercise such right of entitlement to rescind this Agreement; </p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">…</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.57in;text-indent:-0.57in">13.4</num>
+                    <intro>
+                      <p class="Quote" style="margin-left:1.57in">If this Agreement is rescinded pursuant to Clause 5.2(b): </p>
+                    </intro>
+                    <subparagraph>
+                      <num>(a)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Centurion shall indemnify Shell against all costs, claims, expenses and liabilities incurred or accrued in respect of the Farm-In Interest after the Effective Date except for those arising under Clause 9.1; </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(b)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall be repaid all amounts paid by Shell to Centurion pursuant to the terms of Clause 3.1 together with interest thereon at LIBOR; </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(c)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall not be entitled to any revenues attributable to the Farm-In Interest; </p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(d)</num>
+                      <content>
+                        <p class="Quote" style="margin-left:1.97in">Shell shall return (and not and not [sic] retain any copies of) any data and documents in its possession relating to the Farm-In Interest except to the extent that such data and documentation was already legitimately in its possession other than pursuant to the transaction contemplated hereby.”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_19">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">19.</num>
@@ -716,61 +754,65 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_5">
           <heading class="ParaHeading"><span style="font-weight:bold">Meeting on 18 December 2006 </span></heading>
           <paragraph eId="para_20">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">20.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Against this background of the three unresolved disputes there took place an important meeting on 18 December 2006 at the Shell centre in London.  At the meeting Shell indicated that Centurion was in breach of the FIA in at least the three respects discussed above.  A settlement agreement was reached at the meeting, subject to approval by CEI and Dana Gas.  The terms were: </p>
-            </intro>
-            <subparagraph>
-              <num>“1.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Shell will be able to drill one deep well, jointly with Centurion, after which election is due and a bonus will be payable.  This well would then be ‘well #5’.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>2.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Bonus payment would be split USD 10 mln on completion of well #5 and USD 10 mln would be added to (USD30mln) production bonus. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>3.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Shell will forego any right to pre-empt or takeover operatorship following change of control.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>4.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Shell will allow Centurion to sole risk Marzouk, as under the JOA, hence Shell will keep a back-in option at 600%.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>5.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Shell will allow the 3D seismic acquisition to proceed and likely will agree to co-fund.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>6.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Centurion will ensure that operators (sic) responsibilities will be carried out in accordance with good oilfield practice.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>7.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">Parties will review the status of the drilling contract (whether call-off or firmly contracted).  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>8.</num>
-              <content>
-                <p class="Quote" style="margin-left:1.3in">We will contact each other Tuesday at 11.30am with a view to agree and draft letter for signature Wednesday.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“1.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Shell will be able to drill one deep well, jointly with Centurion, after which election is due and a bonus will be payable.  This well would then be ‘well #5’.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>2.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Bonus payment would be split USD 10 mln on completion of well #5 and USD 10 mln would be added to (USD30mln) production bonus. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>3.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Shell will forego any right to pre-empt or takeover operatorship following change of control.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>4.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Shell will allow Centurion to sole risk Marzouk, as under the JOA, hence Shell will keep a back-in option at 600%.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>5.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Shell will allow the 3D seismic acquisition to proceed and likely will agree to co-fund.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>6.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Centurion will ensure that operators (sic) responsibilities will be carried out in accordance with good oilfield practice.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>7.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">Parties will review the status of the drilling contract (whether call-off or firmly contracted).  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>8.</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.3in">We will contact each other Tuesday at 11.30am with a view to agree and draft letter for signature Wednesday.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_21">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">21.</num>
@@ -779,82 +821,90 @@
             </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_6">
           <heading class="ParaHeading"><span style="font-weight:bold">The Termination Letter and Centurion’s response</span></heading>
           <paragraph eId="para_22">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">22.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">On 22 December 2006 Shell wrote to Centurion in these terms: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“… </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">Following our meeting of the 18<span style="vertical-align:super;font-size:smaller">th</span> December 2006 (Thomas/Eggink/Crichton) and the various communications between our companies since then, we have further reviewed Shell’s interest in the Concessions.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">We note that the Closing Date has not occurred within nine months of the Agreement Date and Shell now issues notice of its election to terminate the FIA.  Termination will become effective thirty days after the date of this letter. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">We also note that we have not received information from Centurion that Centurion has received formal notification from the Government of its consent to the CTIP Acquisition and we therefore understand that the CTIP Acquisition has not been completed.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">In the circumstances, in accordance with the terms of Clause 3.1.9, Centurion shall refund any and all payments made by Shell.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">With regard to the discovery made by the Luzi-1 well, Shell retains all its rights as stated in the JOA.  We therefore propose that the Parties meet early in 2007 to discuss the commercial arrangements for the Luzi discovery.  We ask Centurion to set up such a meeting.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">With regard to the Marzouk-1 well, which we understand is currently drilling, and to the acquisition of additional seismic (your letter of 15<span style="vertical-align:super;font-size:smaller">th</span> December refers), we confirm our view previously advised to you, that neither operation is a Joint Operation or an Exclusive Operation and that both are therefore being carried out in breach of the JOA.  Consequently, Shell shall have no liability or obligation in respect of either operation and Centurion will indemnify Shell against any liability arising therefrom.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“… </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">Following our meeting of the 18<span style="vertical-align:super;font-size:smaller">th</span> December 2006 (Thomas/Eggink/Crichton) and the various communications between our companies since then, we have further reviewed Shell’s interest in the Concessions.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">We note that the Closing Date has not occurred within nine months of the Agreement Date and Shell now issues notice of its election to terminate the FIA.  Termination will become effective thirty days after the date of this letter. </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">We also note that we have not received information from Centurion that Centurion has received formal notification from the Government of its consent to the CTIP Acquisition and we therefore understand that the CTIP Acquisition has not been completed.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">In the circumstances, in accordance with the terms of Clause 3.1.9, Centurion shall refund any and all payments made by Shell.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">With regard to the discovery made by the Luzi-1 well, Shell retains all its rights as stated in the JOA.  We therefore propose that the Parties meet early in 2007 to discuss the commercial arrangements for the Luzi discovery.  We ask Centurion to set up such a meeting.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">With regard to the Marzouk-1 well, which we understand is currently drilling, and to the acquisition of additional seismic (your letter of 15<span style="vertical-align:super;font-size:smaller">th</span> December refers), we confirm our view previously advised to you, that neither operation is a Joint Operation or an Exclusive Operation and that both are therefore being carried out in breach of the JOA.  Consequently, Shell shall have no liability or obligation in respect of either operation and Centurion will indemnify Shell against any liability arising therefrom.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_23">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">23.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">On the following day, 23 December 2006, Centurion responded in these terms: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“… </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">We acknowledge and accept your notice to terminate the Farm-In and LNG Co-operation Agreement (the ‘FIA’) entered into between Centurion Petroleum Corporation (‘Centurion’), Shell West Manzala GmbH and Shell West Qantara GmbH (collectively, ‘Shell’) on the 17<span style="vertical-align:super;font-size:smaller">th</span> March 2006.  Furthermore, Centurion hereby waives the 30 day termination notice period.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">With respect to your comments regarding the CTIP Acquisition, we would like to clarify that this transaction was completed earlier this year.  By definition in the FIA, the CTIP Acquisition was complete when Centurion received delivery of the deeds of assignment, duly signed by the Government, transferring the interest from CTIP to Centurion.  It is also worth noting that Shell has been provided with a copy of the signed deeds of assignment by Centurion and Shell confirmed receipt of same at an Operating Committee Meeting held on the 15<span style="vertical-align:super;font-size:smaller">th</span> November 2006.  Under the FIA, Centurion is under no obligation to refund any payments made by Shell.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">With regard to the Luzi-1 gas discovery, Centurion will review the respective rights of the parties under the agreements and be happy to meet with Shell in the New Year to discuss any rights which Shell may retain and the associated commercial arrangements.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">Finally, Centurion has a statutory requirement to make public the fact that Shell has withdrawn from the FIA and we will need to issue a press release to that effect.  We will keep this as brief as possible and, out of courtesy, will provide you with an advance copy before it is released.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“… </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">We acknowledge and accept your notice to terminate the Farm-In and LNG Co-operation Agreement (the ‘FIA’) entered into between Centurion Petroleum Corporation (‘Centurion’), Shell West Manzala GmbH and Shell West Qantara GmbH (collectively, ‘Shell’) on the 17<span style="vertical-align:super;font-size:smaller">th</span> March 2006.  Furthermore, Centurion hereby waives the 30 day termination notice period.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">With respect to your comments regarding the CTIP Acquisition, we would like to clarify that this transaction was completed earlier this year.  By definition in the FIA, the CTIP Acquisition was complete when Centurion received delivery of the deeds of assignment, duly signed by the Government, transferring the interest from CTIP to Centurion.  It is also worth noting that Shell has been provided with a copy of the signed deeds of assignment by Centurion and Shell confirmed receipt of same at an Operating Committee Meeting held on the 15<span style="vertical-align:super;font-size:smaller">th</span> November 2006.  Under the FIA, Centurion is under no obligation to refund any payments made by Shell.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">With regard to the Luzi-1 gas discovery, Centurion will review the respective rights of the parties under the agreements and be happy to meet with Shell in the New Year to discuss any rights which Shell may retain and the associated commercial arrangements.  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">Finally, Centurion has a statutory requirement to make public the fact that Shell has withdrawn from the FIA and we will need to issue a press release to that effect.  We will keep this as brief as possible and, out of courtesy, will provide you with an advance copy before it is released.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
-        <level>
+        <level eId="lvl_7">
           <heading class="ParaHeading"><span style="font-weight:bold">Discussion and conclusions</span></heading>
           <paragraph eId="para_24">
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">24.</num>
@@ -872,12 +922,16 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">26.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">The short but interesting point which arises is whether the Termination Letter can properly be regarded as Shell’s acceptance of Centurion’s repudiatory breach as terminating the contract.  Shell accepts that that is not what their Termination Letter by its clear terms purported to do.  However, they rely upon the general principle stated in Chitty on Contracts, 30<span style="vertical-align:super;font-size:smaller">th</span> Edition, volume I, paragraph 24-014: </p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“<span style="font-weight:bold">No reason or bad reason given.  </span>The general rule is well established that, if a party refuses to perform a contract, giving therefore (sic) a wrong or inadequate reason or no reason at all, he may yet justify his refusal if there were at the time facts in existence which would have provided a good reason, even if he did not know of them at the time of his refusal.  …  The general rule is the subject of a number of exceptions.  …  Secondly, a party may be precluded by the operation of the doctrines of waiver or estoppel from relying on a ground which he did not specify at the time of his refusal to perform.  …  However there does not appear to be any separate principle which would preclude a party from setting up a different ground simply because it would be unfair or unjust to allow him to do so.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“<span style="font-weight:bold">No reason or bad reason given.  </span>The general rule is well established that, if a party refuses to perform a contract, giving therefore (sic) a wrong or inadequate reason or no reason at all, he may yet justify his refusal if there were at the time facts in existence which would have provided a good reason, even if he did not know of them at the time of his refusal.  …  The general rule is the subject of a number of exceptions.  …  Secondly, a party may be precluded by the operation of the doctrines of waiver or estoppel from relying on a ground which he did not specify at the time of his refusal to perform.  …  However there does not appear to be any separate principle which would preclude a party from setting up a different ground simply because it would be unfair or unjust to allow him to do so.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaNoNumber" style="margin-left:0.5in">As pointed out in those passages from Chitty and by Lloyd LJ in <span style="font-style:italic">Reinwood v Brown </span>[2008] EWCA Civ 1090 at paragraph 51, a party may be precluded by operation of the doctrines of waiver or estoppel from relying on a ground which he did not specify at the time of his refusal to perform.  However, the arbitrators make no finding of any waiver or estoppel so precluding Shell.  </p>
@@ -888,12 +942,16 @@
             <num style="font-style:normal;font-weight:normal;text-decoration-line:none;font-family:'Times New Roman';font-size:12pt;margin-left:0.5in;text-indent:-0.5in">27.</num>
             <intro>
               <p class="ParaLevel1" style="margin-left:0.5in">Centurion for their part contend that Shell did not in fact refuse to perform the contract or contend that it was immediately terminated.  They point out that Shell gave a notice which indicated that the contract would remain in force for a further thirty days, terminating only on expiry of the notice period.  Shell they say thereby affirmed the contract rather than terminating it.  In <span style="font-style:italic">Norwest Holst Ltd v Harrison</span> [1985] ICR 668 at 683 Sir Denys Buckley said: </p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in">“The effect of an acceptance of an anticipatory repudiation must, in my view, be the immediate termination of the contract.  By accepting repudiation, the innocent party elects to treat the contract as abrogated at the moment when he exercises his election.  He cannot, in my judgment, affirm the contract for a limited time down to some future date and treat it as abrogated only from that future date.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="Quote" style="margin-left:1in">“The effect of an acceptance of an anticipatory repudiation must, in my view, be the immediate termination of the contract.  By accepting repudiation, the innocent party elects to treat the contract as abrogated at the moment when he exercises his election.  He cannot, in my judgment, affirm the contract for a limited time down to some future date and treat it as abrogated only from that future date.”</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaNoNumber" style="margin-left:0.5in">Centurion remind me that I applied that principle in <span style="font-style:italic">Walkinshaw v Diniz</span> [2001] 1 Lloyd’s LR 632 at 643.  There must I think be limits to that principle, which did not need to be explored in either of those two cases.  It would perhaps be surprising if there were an inflexible rule that an acceptance of a repudiation can only be effective if it purports to bring about immediate termination in circumstances where the contract calls for no performance from either party in the interval before termination is expressed to take effect.  In such circumstances there would surely be no affirmation.  </p>
@@ -943,14 +1001,18 @@
             </subparagraph>
             <subparagraph>
               <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iv)</num>
-              <intro>
+              <content>
                 <p class="ParaLevel2" style="margin-left:0.98in">The threads were drawn together by Moore-Bick LJ in <span style="font-style:italic">Stocznia Gdynia SA v Gearbulk Holdings Ltd</span> [2010] QB 27, 46 at paragraph 44 of his judgment: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">“It must be borne in mind that all that is required for acceptance of a repudiation at common law is for the injured party to communicate clearly and unequivocally his intention to treat the contract as discharged: see <span style="font-style:italic">Vitol SA v Norelf Ltd</span>… per Lord Steyn.  If the contract and the general law provide the injured party with alternative rights which have different consequences, as was held to be the case in <span style="font-style:italic">Dalkia Utilities</span><span> </span><span style="font-style:italic">v Celtech</span>, he will necessarily have to elect between them and the precise terms in which he informs the other party of his decision will be significant, but where the contract provides a right to terminate which corresponds to a right under the general law (because the breach goes to the root of the contract or the parties have agreed that it should be treated as doing so) no election is necessary.  In such cases it is sufficient for the injured party simply to make it clear that he is treating the contract as discharged…  If he gives a bad reason for doing so, his action is nonetheless effective if the circumstances support it.  That, as I understand it, is what Rix LJ was saying in paragraph 32 of his judgment in <span style="font-style:italic">Stocznia Gdanska SA v Latvian Shipping Co, </span>with which I respectfully agree.”</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">“It must be borne in mind that all that is required for acceptance of a repudiation at common law is for the injured party to communicate clearly and unequivocally his intention to treat the contract as discharged: see <span style="font-style:italic">Vitol SA v Norelf Ltd</span>… per Lord Steyn.  If the contract and the general law provide the injured party with alternative rights which have different consequences, as was held to be the case in <span style="font-style:italic">Dalkia Utilities</span><span> </span><span style="font-style:italic">v Celtech</span>, he will necessarily have to elect between them and the precise terms in which he informs the other party of his decision will be significant, but where the contract provides a right to terminate which corresponds to a right under the general law (because the breach goes to the root of the contract or the parties have agreed that it should be treated as doing so) no election is necessary.  In such cases it is sufficient for the injured party simply to make it clear that he is treating the contract as discharged…  If he gives a bad reason for doing so, his action is nonetheless effective if the circumstances support it.  That, as I understand it, is what Rix LJ was saying in paragraph 32 of his judgment in <span style="font-style:italic">Stocznia Gdanska SA v Latvian Shipping Co, </span>with which I respectfully agree.”</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
           </paragraph>
           <paragraph eId="para_32">
