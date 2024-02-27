@@ -14,7 +14,8 @@ RUN dotnet publish TRE/TRE.csproj -c Release -o /src --no-restore
 
 FROM base AS final
 
-RUN yum -y update && yum clean all
+RUN dnf upgrade
+RUN dnf clean all --enablerepo=\*
 
 WORKDIR /var/task
 
