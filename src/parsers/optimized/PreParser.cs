@@ -85,6 +85,8 @@ class PreParser {
                 return true;
             if (DOCX.Paragraphs.IsEmptySectionBreak(p))
                 return true;
+            if (DOCX.Paragraphs.IsEmptyPageBreak(p))
+                return true;
             if (DOCX.Numbering2.HasOwnNumber(p))
                 return false;
             if (DOCX.Numbering2.HasEffectiveStyleNumber(p))
