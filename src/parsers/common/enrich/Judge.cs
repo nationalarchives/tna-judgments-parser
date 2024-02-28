@@ -133,7 +133,7 @@ class Judge : Enricher {
             "THE HONOURABLE MR JUSTICE ", "THE HONOURABLE MR. JUSTICE ", "THE HON. MR JUSTICE ", "THE HON MR JUSTICE ",
             "THE HONOURABLE MRS JUSTICE ", "THE HONOURABLE MRS. JUSTICE ", "THE HON. MRS JUSTICE ", "THE HON MRS JUSTICE ",
             "HIS HONOUR JUDGE ", "His Honour Judge ", "HER HONOUR JUDGE ", "Her Honour Judge ",
-            "SENIOR COSTS JUDGE ",
+            "SENIOR COSTS JUDGE ", "DISTRICT JUDGE ", "DEPUTY DISTRICT JUDGE ",
             "SIR "
             };
         foreach (string start in starts)
