@@ -194,43 +194,44 @@ class DocDate : Enricher {
 
     /* one */
 
+    private static readonly string Month = "January|Jan|February|Feb|March|April|May|June|July|August|September|Sept|October|Oct|November|Nov|December|Dec";
+
     private static readonly string[] cardinalDatePatterns1 = {
         @"^(\s*Date: *)?\d{1,2}/\d{1,2}/\d{4}( *)$",
         @"^(\s*Date:? *)?\d{1,2}\.\d{1,2}\.\d{4}( *)$",
-        /* add other month abbreviations */
-        @"^(\s*Date ?:? *)?\d{1,2} ?(January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",   // comma after month in EWHC/Ch/2003/812
-        // @"^(\s*Date ?:? *)?\d{1,2} ?(January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
-        @"^(\s+)?\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December),? \d{4}( *)$",
-        @"^(Date of Redacted Judgment: )\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$",
-        @"^(Handed down )\d{1,2} (January|February|Feb|March|April|May|June|July|August|September|October|November|December) \d{4}( *)$"
+        @"^(\s*Date ?:? *)?\d{1,2} ?(" + Month + @"),? \d{4}( *)$",   // comma after month in EWHC/Ch/2003/812
+        @"^(\s+)?\d{1,2} (" + Month + @"),? \d{4}( *)$",
+        @"^(Date of Redacted Judgment: )\d{1,2} (" + Month + @") \d{4}( *)$",
+        @"^(Handed down )\d{1,2} (" + Month + @") \d{4}( *)$",
+        @"^(Judgment given on )\d{1,2} (" + Month + @") \d{4}( *)$"
     };
 
     private static readonly string strangeDatePattern1 = @"^Date: (\d{1,2} \d{1,2} \d{4})$";    // EWHC/QB/2007/369
 
     private static readonly string[] cardinalDatePatterns2 = {
-        @"^Date[\|:]? ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}))$",
-        @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),\s(\d{1,2}\s(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}))$"   // strange whitespace characters in [2019] EWHC 3963 (QB)
+        @"^Date[\|:]? ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2} +(" + Month + @") \d{4}))$",
+        @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday),\s(\d{1,2}\s(" + Month + @")\s\d{4}))$"   // strange whitespace characters in [2019] EWHC 3963 (QB)
     };
 
     private static readonly string[] cardinalDatePatternsUS = {
-        @"^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$"  // EWHC/Ch/2003/2985
+        @"^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (" + Month + @") \d{1,2}, \d{4}$"  // EWHC/Ch/2003/2985
     };
 
     private static readonly string[] twoDigitYearCardinalDatePatterns = {
         @"^Date: (\d{1,2}/\d{1,2}/\d{2})$"
     };
     private static readonly string[] ordinalDatePatterns1 = {   // space before comma in [2021] EWHC 3592 (Fam)
-        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) ?,? +(\d{1,2})(st|nd|rd|th)? +(January|February|March|April|May|June|July|August|September|October|November|December),? +\d{4}( *)$"   // comman after month in EWHC/Admin/2007/12
+        @"^(\s*Date: *)?(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) ?,? +(\d{1,2})(st|nd|rd|th)? +(" + Month + @"),? +\d{4}( *)$"   // comman after month in EWHC/Admin/2007/12
     };
     private static readonly string[] ordinalDatePatterns2 = {   // mistake in EWHC/Fam/2010/64
-        @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})( *)$",
+        @"^Date: (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday), (\d{1,2})(st|nd|rd|th)? (" + Month + @") (\d{4})( *)$",
     };
     private static readonly string[] ordinalDatePatterns3 = {   // EWHC/Admin/2014/1564
-        @"^(\s*Date: *)?(\d{1,2})(st|nd|rd|th) +(January|February|March|April|May|June|July|August|September|October|November|December) +\d{4}( *)$"
+        @"^(\s*Date: *)?(\d{1,2})(st|nd|rd|th) +(" + Month + @") +\d{4}( *)$"
     };
 
     private static readonly string[] doubleCardinalDatePatterns = { // EWCA/Civ/2003/607
-        @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}) and ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4})$"
+        @"^((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (" + Month + @") \d{4}) and ((Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \d{1,2} (" + Month + @") \d{4})$"
     };
 
     private static List<IInline> Split(WText wText, Group display, Group parse) {
