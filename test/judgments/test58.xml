@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/537/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/537/data.xml" />
-          <FRBRdate date="2024-02-16T18:07:26" name="transform" />
+          <FRBRdate date="2024-03-06T17:02:19" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -36,12 +36,13 @@
         <TLCPerson eId="hex-trust-limited" href="" showAs="HEX TRUST LIMITED" />
         <TLCPerson eId="hex-technologies-pte-limited" href="" showAs="HEX TECHNOLOGIES PTE LIMITED" />
         <TLCRole eId="petitioner" href="" showAs="Petitioner" />
+        <TLCPerson eId="judge-deputy-insolvency-and-companies-court-judge-addy-kc" href="/judge-deputy-insolvency-and-companies-court-judge-addy-kc" showAs="Deputy Insolvency and Companies Court Judge Addy KC" />
       </references>
       <proprietary source="#">
         <uk:year>2023</uk:year>
         <uk:number>537</uk:number>
         <uk:cite>[2023] EWHC 537 (Ch)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.1</uk:parser>
         <uk:hash>750d12f927466fc89ee555de230ff8dae452f95c8b3161881ce94dd5f06d2f76</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -99,7 +100,7 @@
       <p class="CoverText">Rolls Building, Fetter Lane, EC4A 1NL</p>
       <p class="CoverText">Date: <docDate date="2023-03-21" refersTo="#judgment">21 March 2023</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
-      <p class="CoverMain" style="text-align:center">Deputy Insolvency and Companies Court Judge Addy KC</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-deputy-insolvency-and-companies-court-judge-addy-kc">Deputy Insolvency and Companies Court Judge Addy KC</judge></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
       <table uk:widths="1.45in 3.7in 1.19in">

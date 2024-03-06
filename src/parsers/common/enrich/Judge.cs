@@ -110,18 +110,18 @@ partial class Judge : Enricher {
                 continue;
             }
             if (IsALawyerName(text)) {
-                IBlock next = blocks.Skip(1).FirstOrDefault();
-                if (next is not null)
-                    if (next is WLine line2)
-                        if (line2.Contents.Count() == 1)
-                            if (line2.Contents.First() is WText text2)
-                                if (text2.Text.StartsWith("(sitting as", System.StringComparison.InvariantCultureIgnoreCase) || text2.Text.StartsWith("SITTING AS", System.StringComparison.InvariantCultureIgnoreCase)) {
+                // IBlock next = blocks.Skip(1).FirstOrDefault();
+                // if (next is not null)
+                    // if (next is WLine line2)
+                        // if (line2.Contents.Count() == 1)
+                            // if (line2.Contents.First() is WText text2)
+                                // if (text2.Text.StartsWith("(sitting as", System.StringComparison.InvariantCultureIgnoreCase) || text2.Text.StartsWith("SITTING AS", System.StringComparison.InvariantCultureIgnoreCase)) {
                                     found = true;
                                     WJudge judge = new WJudge(text.Text, text.properties);
                                     enriched.Add(WLine.Make(line, [judge]));
                                     blocks = blocks.Skip(1);
                                     continue;
-                                }
+                                // }
             }
             return found ? enriched : null;
         }
@@ -148,7 +148,8 @@ partial class Judge : Enricher {
     }
 
     private static bool IsALawyerName(WText text) {
-        return text.Text.EndsWith(" Q.C.") || text.Text.EndsWith(" QC");
+        return text.Text.EndsWith(" Q.C.") || text.Text.EndsWith(" QC") ||
+            text.Text.EndsWith(" K.C.") || text.Text.EndsWith(" KC");
     }
 
     private List<IBlock> BeforeAndJudgeNameOnSameLine(IEnumerable<IBlock> blocks) {

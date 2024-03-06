@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2022/2363/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2022/2363/data.xml" />
-          <FRBRdate date="2024-02-16T18:07:06" name="transform" />
+          <FRBRdate date="2024-03-06T17:02:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="fiberweb-geosynthetics-limited" href="" showAs="FIBERWEB GEOSYNTHETICS LIMITED" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-miss-charlotte-may-kc" href="/judge-miss-charlotte-may-kc" showAs="MISS CHARLOTTE MAY KC" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-Chancery-Patents</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>2363</uk:number>
         <uk:cite>[2022] EWHC 2363 (Pat)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.1</uk:parser>
         <uk:hash>7283b66963897b43c44a48da617ea68a836402a464ae505c164702c042b7d677</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -145,7 +146,7 @@
       <p class="CoverText"><span style="text-decoration-line:none">London, EC4A 1NL</span></p>
       <p class="CoverText"><docDate date="2022-09-27" refersTo="#judgment">27 September 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
-      <p class="CoverMain" style="text-align:center"><span style="text-decoration-line:none">MISS CHARLOTTE MAY KC</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-miss-charlotte-may-kc" style="text-decoration-line:none">MISS CHARLOTTE MAY KC</judge></p>
       <p class="CoverMain" style="text-align:center"><span style="text-decoration-line:none">(Sitting as a Deputy High Court Judge)</span></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
