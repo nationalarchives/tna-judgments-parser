@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
-          <FRBRdate date="2024-02-16T18:07:22" name="transform" />
+          <FRBRdate date="2024-03-06T17:02:16" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="london-borough-of-hackney" href="" showAs="London Borough of Hackney" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-mr-timothy-corner-kc" href="/judge-mr-timothy-corner-kc" showAs="Mr Timothy Corner, KC" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-KBD-Admin</uk:court>
         <uk:year>2023</uk:year>
         <uk:number>488</uk:number>
         <uk:cite>[2023] EWHC 488 (Admin)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.1</uk:parser>
         <uk:hash>b6b56a9aae17eee317f0db0336ed6b59c497faf8dc67e08634ac759f93d267b6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -107,7 +108,7 @@
       <p class="CoverText">Strand, London, WC2A 2LL</p>
       <p class="CoverText">Date: <docDate date="2023-03-08" refersTo="#judgment">08/03/2023</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
-      <p class="CoverMain" style="text-align:center">Mr Timothy Corner, KC</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-timothy-corner-kc">Mr Timothy Corner, KC</judge></p>
       <p class="CoverMain" style="text-align:center">Sitting as a Deputy High Court Judge</p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
