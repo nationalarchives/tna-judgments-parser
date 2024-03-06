@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/195/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/195/data.xml" />
-          <FRBRdate date="2024-02-16T18:09:02" name="transform" />
+          <FRBRdate date="2024-02-29T19:23:52" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -36,12 +36,13 @@
         <TLCPerson eId="through-their-childrens-guardian-nandi-sutherland" href="" showAs="(through their Children’s Guardian NANDI SUTHERLAND)" />
         <TLCRole eId="applicant" href="" showAs="Applicant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-hhj-vincent-sitting-as-a-s9-deputy-high-court-judge" href="/judge-hhj-vincent-sitting-as-a-s9-deputy-high-court-judge" showAs="HHJ Vincent sitting as a s9 Deputy High Court Judge" />
       </references>
       <proprietary source="#">
         <uk:year>2023</uk:year>
         <uk:number>195</uk:number>
         <uk:cite>[2023] EWFC 195</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.1</uk:parser>
         <uk:hash>e18839e09355ff4d8a8b763ca5b6eccbfb5ba2fb816b194c228368e24764da44</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -78,7 +79,7 @@
       <p style="text-align:justify"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">IN THE FAMILY COURT AT OXFORD IN THE MATTER OF [SASHA] AND [TARA] AND IN THE MATTER OF s31 THE CHILDREN ACT 1989 AND IN THE MATTER OF THE INHERENT JURISDICTION OF THE HIGH COURT</span></p>
       <p style="text-align:right"><span style="font-family:'Times New Roman';font-size:12pt">Neutral Citation Number: </span><neutralCitation style="font-family:'Times New Roman';font-size:12pt">[2023] EWFC 195</neutralCitation></p>
       <p style="text-align:right"><span style="font-family:'Times New Roman'">Judgment date: </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">24 March 2023</span></p>
-      <p style="text-align:center"><span style="font-family:'Times New Roman'">Before: </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">HHJ Vincent sitting as a s9 Deputy High Court Judge</span></p>
+      <p style="text-align:center"><span style="font-family:'Times New Roman'">Before: </span><judge refersTo="#judge-hhj-vincent-sitting-as-a-s9-deputy-high-court-judge" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">HHJ Vincent sitting as a s9 Deputy High Court Judge</judge></p>
       <p style="text-align:justify"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Between: </span></p>
       <p style="text-align:center"><party refersTo="#royal-borough-of-windsor-and-maidenhead-[rbwm]" as="#applicant" style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">ROYAL BOROUGH OF WINDSOR AND MAIDENHEAD [RBWM]</party></p>
       <p style="text-align:right;text-indent:0.5in"><role refersTo="#applicant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Applicant</role></p>

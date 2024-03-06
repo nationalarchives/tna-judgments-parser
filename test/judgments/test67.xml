@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
-          <FRBRdate date="2024-02-19T19:40:29" name="transform" />
+          <FRBRdate date="2024-02-29T19:23:34" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -37,12 +37,13 @@
         <TLCPerson eId="transport-for-west-midlands" href="" showAs="TRANSPORT FOR WEST MIDLANDS" />
         <TLCRole eId="applicant" href="" showAs="Applicant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-hhj-cawson-kc" href="/judge-hhj-cawson-kc" showAs="HHJ CAWSON KC" />
       </references>
       <proprietary source="#">
         <uk:year>2023</uk:year>
         <uk:number>2099</uk:number>
         <uk:cite>[2023] EWHC 2099 (Comm)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.1</uk:parser>
         <uk:hash>bd45fd11e1b91c13821ff28b7bd759a3f458041ba3aa19566d9628e800930fb3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -93,7 +94,7 @@
       <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid">Manchester M60 9DJ</span></p>
       <p class="CoverText">Date: <docDate date="2023-08-18" refersTo="#judgment">18/08/2023</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
-      <p class="CoverMain" style="text-align:center">HHJ CAWSON KC</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-hhj-cawson-kc">HHJ CAWSON KC</judge></p>
       <p class="CoverMain" style="text-align:center">SITTING AS A JUDGE OF THE HIGH COURT</p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
@@ -1634,7 +1635,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
-                <FRBRdate date="2024-02-19T19:40:29" name="transform" />
+                <FRBRdate date="2024-02-29T19:23:35" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>
