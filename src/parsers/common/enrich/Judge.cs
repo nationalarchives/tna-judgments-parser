@@ -117,11 +117,21 @@ partial class Judge : Enricher {
                             // if (line2.Contents.First() is WText text2)
                                 // if (text2.Text.StartsWith("(sitting as", System.StringComparison.InvariantCultureIgnoreCase) || text2.Text.StartsWith("SITTING AS", System.StringComparison.InvariantCultureIgnoreCase)) {
                                     found = true;
-                                    WJudge judge = new WJudge(text.Text, text.properties);
+                                    WJudge judge = new(text.Text, text.properties);
                                     enriched.Add(WLine.Make(line, [judge]));
                                     blocks = blocks.Skip(1);
                                     continue;
                                 // }
+            }
+            Match match = Regex.Match(text.Text, @"([A-Z].*? [KQ]\.?C\.?) \(?Sitting As", RegexOptions.IgnoreCase);
+            if (match.Success) {
+                found = true;
+                Group group = match.Groups[1];
+                WJudge judge = new(group.Value, text.properties);
+                WText rest = new(text.Text[group.Length..], text.properties);
+                enriched.Add(WLine.Make(line, [judge, rest]));
+                blocks = blocks.Skip(1);
+                continue;
             }
             return found ? enriched : null;
         }
@@ -152,7 +162,7 @@ partial class Judge : Enricher {
             text.Text.EndsWith(" K.C.") || text.Text.EndsWith(" KC");
     }
 
-    private List<IBlock> BeforeAndJudgeNameOnSameLine(IEnumerable<IBlock> blocks) {
+    private static List<IBlock> BeforeAndJudgeNameOnSameLine(IEnumerable<IBlock> blocks) {
         if (!blocks.Any())
             return null;
         IBlock block = blocks.First();

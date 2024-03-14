@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/1918/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/1918/data.xml" />
-          <FRBRdate date="2024-02-16T18:06:46" name="transform" />
+          <FRBRdate date="2024-03-14T14:02:35" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,13 +47,14 @@
         <TLCPerson eId="ge-worthington-limited" href="" showAs="G.E. WORTHINGTON LIMITED" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-philip-marshall-qc" href="/judge-philip-marshall-qc" showAs="Philip Marshall QC" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-QBD-Commercial</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>1918</uk:number>
         <uk:cite>[2022] EWHC 1918 (Comm)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.2</uk:parser>
         <uk:hash>01b39ea8e87aec7f595c23194bd9ecea4a582ce4b50fa4a5deb10ed875f966e3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -118,7 +119,7 @@
       <p class="CoverText">Rolls Building, London, EC4A 1NL</p>
       <p class="CoverText">Date: <docDate date="2022-07-25" refersTo="#judgment">25 July 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">Philip Marshall QC (sitting as a Deputy Judge of the High Court)</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-philip-marshall-qc" style="font-weight:bold">Philip Marshall QC</judge><span style="font-weight:bold"> (sitting as a Deputy Judge of the High Court)</span></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>
       <p style="text-align:center"><party refersTo="#euler-hermes-sa-nv" as="#claimant" style="font-weight:bold">EULER HERMES SA (NV)</party></p>
