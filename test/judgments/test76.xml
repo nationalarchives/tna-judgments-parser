@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2024/198/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/fam/2024/198/data.xml" />
-          <FRBRdate date="2024-02-20T18:55:35" name="transform" />
+          <FRBRdate date="2024-03-14T14:04:56" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="a-mother" href="" showAs="A mother" />
         <TLCRole eId="applicant" href="" showAs="Applicant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-paul-bowen-kc" href="/judge-paul-bowen-kc" showAs="Paul Bowen KC" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-Family</uk:court>
         <uk:year>2024</uk:year>
         <uk:number>198</uk:number>
         <uk:cite>[2024] EWHC 198 (Fam)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.2</uk:parser>
         <uk:hash>f63b14f5295b34f9fd4d1fc351922670cfae6dfef9f4281233eaf9c63d8d69fa</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -118,7 +119,7 @@
       <p class="CoverText">Strand, London, WC2A 2LL</p>
       <p class="CoverText">Date: <docDate date="2024-02-02" refersTo="#judgment">2 February 2024</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
-      <p class="CoverMain" style="text-align:center">Paul Bowen KC (sitting as a Deputy Judge of the High Court)</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-paul-bowen-kc">Paul Bowen KC</judge> (sitting as a Deputy Judge of the High Court)</p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>
       <table uk:widths="1.23in 3.87in 1.24in">
