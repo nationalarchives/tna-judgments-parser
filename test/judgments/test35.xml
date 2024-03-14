@@ -47,6 +47,7 @@
         <TLCPerson eId="ge-worthington-limited" href="" showAs="G.E. WORTHINGTON LIMITED" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-philip-marshall-qc" href="/judge-philip-marshall-qc" showAs="Philip Marshall QC" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-QBD-Commercial</uk:court>
@@ -118,7 +119,7 @@
       <p class="CoverText">Rolls Building, London, EC4A 1NL</p>
       <p class="CoverText">Date: <docDate date="2022-07-25" refersTo="#judgment">25 July 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">Philip Marshall QC (sitting as a Deputy Judge of the High Court)</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-philip-marshall-qc" style="font-weight:bold">Philip Marshall QC</judge><span style="font-weight:bold"> (sitting as a Deputy Judge of the High Court)</span></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>
       <p style="text-align:center"><party refersTo="#euler-hermes-sa-nv" as="#claimant" style="font-weight:bold">EULER HERMES SA (NV)</party></p>
