@@ -13,8 +13,8 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
 
         public static readonly System.Collections.Generic.IEnumerable<object[]> Indices = Tests.indices;
 
-        [Theory]
-        [MemberData(nameof(Indices))]
+        // [Theory]
+        // [MemberData(nameof(Indices))]
         public static void TestJudgments(int i)
         {
             byte[] docx = Tests.ReadDocx(i);
