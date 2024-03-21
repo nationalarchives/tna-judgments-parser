@@ -92,8 +92,10 @@ internal class Ref {
 
     private static List<IInline> IgnoreFollowing(MainDocumentPart main, string bookmarkName, bool rSwitch, bool pSwitch, bool wSwitch, Run field) {
         BookmarkStart bookmark = DOCX.Bookmarks.Get(main, bookmarkName);
-        if (bookmark is null)
-            throw new Exception();
+        if (bookmark is null) {
+            logger.LogWarning("can't find bookmark {}", bookmarkName);
+            return [];
+        }
         Paragraph bookmarkParagraph = bookmark.Ancestors<Paragraph>().First();
         string num;
         if (wSwitch) {  // EWHC/Comm/2018/1368
