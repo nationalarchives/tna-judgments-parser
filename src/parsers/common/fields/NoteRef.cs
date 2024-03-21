@@ -30,6 +30,8 @@ internal class NoteRef {
         /* In EWHC/Ch/2014/1316, the \p switch is present, but the surrounding text includes the word "above" */
         bool pSwitch = false;
         BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkName);
+        if (bkmk is null)
+            throw new Exception();
         Run run = (Run) bkmk.NextSibling();
         FootnoteEndnoteReferenceType note = run.ChildElements.OfType<FootnoteEndnoteReferenceType>().First();
         string marker = WFootnote.GetMarker(note);
@@ -50,6 +52,8 @@ internal class NoteRef {
         /* In EWHC/Ch/2014/1316, the \p switch is present, but the surrounding text includes the word "above" */
         bool pSwitch = false;
         BookmarkStart bkmk = DOCX.Bookmarks.Get(main, bkmkName);
+        if (bkmk is null)
+            throw new Exception();
         FootnoteEndnoteReferenceType note = bkmk.NextSibling().ChildElements.OfType<FootnoteEndnoteReferenceType>().First();
         string marker = WFootnote.GetMarker(note);
         if (pSwitch) {
