@@ -95,17 +95,22 @@ class JudgmentBuilder : Builder {
             if (GetBookmarks(leaf).Any(bkmrk => bkmrk.Name == target))
                 return MakeDivisionId(div);
         } else if (div is IBranch branch) {
-            if (GetBookmarks(branch.Heading).Any(bkmrk => bkmrk.Name == target))
-                return MakeDivisionId(div);
-            if (GetBookmarks(branch.Intro).Any(bkmrk => bkmrk.Name == target))
-                return MakeDivisionId(div);
-            foreach (var sub in branch.Children) {
-                string id = GetIdForInternalLinkTarget(sub, target);
-                if (id is not null)
-                    return id;
+            if (div.Name == "paragraph") {
+                if (GetBookmarks(branch).Any(bkmrk => bkmrk.Name == target))
+                    return MakeDivisionId(div);
+            } else {
+                if (GetBookmarks(branch.Heading).Any(bkmrk => bkmrk.Name == target))
+                    return MakeDivisionId(div);
+                if (GetBookmarks(branch.Intro).Any(bkmrk => bkmrk.Name == target))
+                    return MakeDivisionId(div);
+                foreach (var sub in branch.Children) {
+                    string id = GetIdForInternalLinkTarget(sub, target);
+                    if (id is not null)
+                        return id;
+                }
+                if (GetBookmarks(branch.WrapUp).Any(bkmrk => bkmrk.Name == target))
+                    return MakeDivisionId(div);
             }
-            if (GetBookmarks(branch.WrapUp).Any(bkmrk => bkmrk.Name == target))
-                return MakeDivisionId(div);
         }
         return null;
     }
