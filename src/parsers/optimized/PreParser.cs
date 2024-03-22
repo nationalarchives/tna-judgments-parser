@@ -219,7 +219,10 @@ class PreParser {
                 OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
                 lineBreakBefore = lineBreakBefore || Util.IsSectionOrPageBreak(e);
                 if (IsSkippable(e)) {
-                    skpdBkmrks.AddRange(e.Descendants().Where(Bookmarks.IsBookmark));
+                    if (Bookmarks.IsBookmark(e))
+                        skpdBkmrks.Add(e);
+                    else
+                        skpdBkmrks.AddRange(e.Descendants().Where(Bookmarks.IsBookmark));
                     i += 1;
                     continue;
                 }
