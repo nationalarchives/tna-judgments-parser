@@ -69,9 +69,13 @@ internal class Hyperlink {
         string location = match.Groups[4].Value;
         string screenTip = match.Groups[6].Value;
         // \t switch ???
-        if (string.IsNullOrEmpty(href)) {   // EWHC/Ch/2018/2285
-            Fields.logger.LogWarning("cross-references are not yet supported: " + fieldCode);
-            return contents;
+        if (string.IsNullOrEmpty(href)) {
+            if (string.IsNullOrEmpty(location)) {
+                Fields.logger.LogWarning("HYPERLINK with neither href nor location: {}", fieldCode);
+                return contents;
+            }
+            InternalLink iLink = new() { Target = location, Contents = contents };
+            return [ iLink ];
         }
         if (string.IsNullOrEmpty(location))
             href += "";
