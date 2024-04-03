@@ -7,7 +7,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewfc/2023/142" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewfc/2023/142" />
           <FRBRdate date="2023-06-02" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewfc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="142" />
         </FRBRWork>
@@ -15,13 +15,13 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/142" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/142" />
           <FRBRdate date="2023-06-02" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewfc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/142/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/142/data.xml" />
-          <FRBRdate date="2024-02-16T18:08:36" name="transform" />
+          <FRBRdate date="2024-04-03T16:14:05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -30,15 +30,17 @@
         <eventRef date="2023-06-02" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
+        <TLCOrganization eId="ewfc" href="https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/" showAs="The Family Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="judge-his-honour-judge-parker" href="/judge-his-honour-judge-parker" showAs="HIS HONOUR JUDGE PARKER" />
       </references>
       <proprietary source="#">
+        <uk:court>EWFC</uk:court>
         <uk:year>2023</uk:year>
         <uk:number>142</uk:number>
         <uk:cite>[2023] EWFC 142</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.23.5</uk:parser>
         <uk:hash>1bcf6cf388761481dc75a5e3202a08976b031f9424a7690f89a52846cee31dc2</uk:hash>
       </proprietary>
       <presentation source="#">
