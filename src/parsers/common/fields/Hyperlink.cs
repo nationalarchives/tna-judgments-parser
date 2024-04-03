@@ -32,7 +32,7 @@ internal class Hyperlink {
         string screenTip = match.Groups[6].Value;
         // \t switch ???
         if (string.IsNullOrEmpty(href)) {   // EWHC/Ch/2018/2285
-            Fields.logger.LogWarning("cross-references are not yet supported: " + fieldCode);
+            Logger.LogWarning("cross-references are not yet supported: " + fieldCode);
             return Fields.RestOptional(main, withinField, i);   // optional for EWCA/Civ/2009/296
         }
         if (string.IsNullOrEmpty(location))
@@ -61,6 +61,8 @@ internal class Hyperlink {
         }
     }
 
+    private static ILogger Logger = Logging.Factory.CreateLogger<Hyperlink>();
+
     internal static List<IInline> Parse(string fieldCode, List<IInline> contents) {
         Match match = Regex.Match(fieldCode, regex);
         if (!match.Success)
@@ -71,7 +73,7 @@ internal class Hyperlink {
         // \t switch ???
         if (string.IsNullOrEmpty(href)) {
             if (string.IsNullOrEmpty(location)) {
-                Fields.logger.LogWarning("HYPERLINK with neither href nor location: {}", fieldCode);
+                Logger.LogWarning("HYPERLINK with neither href nor location: {}", fieldCode);
                 return contents;
             }
             InternalLink iLink = new() { Target = location, Contents = contents };
@@ -83,6 +85,11 @@ internal class Hyperlink {
             href += location.Substring(location.IndexOf('#'));
         else
             href += "#" + location;
+        var valid = Uri.TryCreate(href, UriKind.Absolute, out _);
+        if (!valid) {
+            Logger.LogWarning("HYPERLINK URI is not valid: {}", href);
+            return contents;
+        }
         var mergedContents = UK.Gov.Legislation.Judgments.Parse.Merger.Merge(contents);
         WHyperlink2 hyperlink = new WHyperlink2() { Contents = mergedContents, Href = href, ScreenTip = screenTip };
         return new List<IInline>(1) { hyperlink };
