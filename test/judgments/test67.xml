@@ -7,7 +7,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2023/2099" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2023/2099" />
           <FRBRdate date="2023-08-18" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="2099" />
           <FRBRname value="DIAMOND BUS LIMITED v TRANSPORT FOR WEST MIDLANDS" />
@@ -16,13 +16,13 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099" />
           <FRBRdate date="2023-08-18" name="judgment" />
-          <FRBRauthor href="#" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
-          <FRBRdate date="2024-02-29T19:23:34" name="transform" />
+          <FRBRdate date="2024-04-03T16:14:04" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -31,6 +31,7 @@
         <eventRef date="2023-08-18" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd-commercial" href="https://www.gov.uk/courts-tribunals/commercial-court" showAs="The Business and Property Courts (Commercial Court)" shortForm="The Commercial Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="diamond-bus-limited" href="" showAs="DIAMOND BUS LIMITED" />
@@ -40,10 +41,11 @@
         <TLCPerson eId="judge-hhj-cawson-kc" href="/judge-hhj-cawson-kc" showAs="HHJ CAWSON KC" />
       </references>
       <proprietary source="#">
+        <uk:court>EWHC-KBD-Commercial</uk:court>
         <uk:year>2023</uk:year>
         <uk:number>2099</uk:number>
         <uk:cite>[2023] EWHC 2099 (Comm)</uk:cite>
-        <uk:parser>0.23.1</uk:parser>
+        <uk:parser>0.23.5</uk:parser>
         <uk:hash>bd45fd11e1b91c13821ff28b7bd759a3f458041ba3aa19566d9628e800930fb3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -1622,20 +1624,20 @@
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2023/2099/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2023/2099" />
                 <FRBRdate date="2023-08-18" name="judgment" />
-                <FRBRauthor href="#" />
+                <FRBRauthor href="#ewhc-kbd-commercial" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099" />
                 <FRBRdate date="2023-08-18" name="judgment" />
-                <FRBRauthor href="#" />
+                <FRBRauthor href="#ewhc-kbd-commercial" />
                 <FRBRlanguage language="eng" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
-                <FRBRdate date="2024-02-29T19:23:35" name="transform" />
+                <FRBRdate date="2024-04-03T16:14:04" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>
