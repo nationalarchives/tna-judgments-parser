@@ -36,13 +36,15 @@ public readonly partial struct Courts {
         Code = "EWCA-Criminal",
         LongName = "The Court of Appeal of England and Wales (Criminal Division)",
         ShortName = "Court of Appeal Criminal Division",
-        URL = "https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division"
+        URL = "https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCA Crim \d+$")
     };
     public static readonly Court CoA_Civil = new Court {
         Code = "EWCA-Civil",
         LongName = "The Court of Appeal of England and Wales (Civil Division)",
         ShortName = "Court of Appeal Criminal Division",
-        URL = "https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division"
+        URL = "https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCA Civ \d+$")
     };
     
     /* The High Court */
@@ -68,14 +70,16 @@ public readonly partial struct Courts {
         Code = "EWHC-Chancery",
         LongName = "The Chancery Division of the High Court",
         ShortName = "The Chancery Division",
-        URL = "https://www.gov.uk/courts-tribunals/chancery-division-of-the-high-court"
+        URL = "https://www.gov.uk/courts-tribunals/chancery-division-of-the-high-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(Ch\)$")
     };
 
     public static readonly Court EWHC_Family = new Court {
         Code = "EWHC-Family",
         LongName = "The Family Division of the High Court",
         ShortName = "The Family Division",
-        URL = "https://www.gov.uk/courts-tribunals/family-division-of-the-high-court"
+        URL = "https://www.gov.uk/courts-tribunals/family-division-of-the-high-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(Fam\)$")
     };
 
     /* The four courts (non-specialist) within the Queen's Bench Division */
@@ -90,7 +94,8 @@ public readonly partial struct Courts {
         Code = "EWHC-QBD-Admin",
         LongName = "The Administrative Court (Queen's Bench Division)",
         ShortName = "The Administrative Court",
-        URL = "https://www.gov.uk/courts-tribunals/administrative-court"
+        URL = "https://www.gov.uk/courts-tribunals/administrative-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(Admin\)$")
     };
     public static readonly Court EWHC_QBD_Planning = new Court {
         Code = "EWHC-QBD-Planning",
@@ -111,21 +116,24 @@ public readonly partial struct Courts {
         Code = "EWHC-QBD-Commercial",
         LongName = "The Business and Property Courts (Commercial Court)",
         ShortName = "The Commercial Court",
-        URL = "https://www.gov.uk/courts-tribunals/commercial-court"
+        URL = "https://www.gov.uk/courts-tribunals/commercial-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(Comm\)$")
     };
 
     public static readonly Court EWHC_QBD_Admiralty = new Court {
         Code = "EWHC-QBD-Admiralty",
         LongName = "The Business and Property Courts (Admiralty Court)",
         ShortName = "The Admiralty Court",
-        URL = "https://www.gov.uk/courts-tribunals/admiralty-court"
+        URL = "https://www.gov.uk/courts-tribunals/admiralty-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(Admlty\)$")
     };
 
     public static readonly Court EWHC_QBD_TCC = new Court {
         Code = "EWHC-QBD-TCC",
         LongName = "The Business and Property Courts (Technology and Construction Court)",
         ShortName = "The Technology and Construction Court",
-        URL = "https://www.gov.uk/courts-tribunals/technology-and-construction-court"
+        URL = "https://www.gov.uk/courts-tribunals/technology-and-construction-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(TCC\)$")
     };
 
     public static readonly Court EWHC_QBD_Commercial_Financial = new Court {
@@ -149,7 +157,8 @@ public readonly partial struct Courts {
             Code = court.Code.Replace("-QBD", "-KBD"),
             LongName = court.LongName.Replace("Queen", "King").Replace("QBD", "KBD"),
             ShortName = court.ShortName.Replace("Queen", "King").Replace("QBD", "KBD"),
-            URL = court.URL
+            URL = court.URL,
+            CitationPattern = court.CitationPattern is null ? null : new Regex(court.CitationPattern.ToString().Replace(@"\(QB\)", @"\(KB\)"))
         };
     }
     public static readonly Court EWHC_KBD = ConvertQueensToKings(EWHC_QBD);
@@ -224,14 +233,16 @@ public readonly partial struct Courts {
         Code = "EWHC-Chancery-Patents",
         LongName = "The Business and Property Courts (Patents Court)",
         ShortName = "The Patents Court",
-        URL = "https://www.gov.uk/courts-tribunals/patents-court"
+        URL = "https://www.gov.uk/courts-tribunals/patents-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(Pat\)$")
     };
 
     public static readonly Court EWHC_Chancery_IPEC = new Court {
         Code = "EWHC-Chancery-IPEC",
         LongName = "The Business and Property Courts (Intellectual Property Enterprise Court)",
         ShortName = "The Intellectual Property Enterprise Court",
-        URL = "https://www.gov.uk/courts-tribunals/intellectual-property-enterprise-court"
+        URL = "https://www.gov.uk/courts-tribunals/intellectual-property-enterprise-court",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(IPEC\)$")
     };
 
     public static readonly Court EWHC_Chancery_Appeals = new Court {
@@ -247,19 +258,22 @@ public readonly partial struct Courts {
         Code = "EWHC-SeniorCourtsCosts",
         LongName = "The England and Wales High Court (Senior Courts Costs Office)",
         ShortName = "The Senior Courts Costs Office",
-        URL = "https://www.gov.uk/courts-tribunals/senior-courts-costs-office"
+        URL = "https://www.gov.uk/courts-tribunals/senior-courts-costs-office",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(SCCO\)$")
     };
 
     public static readonly Court EWCOP = new Court {
         Code = "EWCOP",
         LongName = "The Court of Protection",
-        URL = "https://www.gov.uk/courts-tribunals/court-of-protection"
+        URL = "https://www.gov.uk/courts-tribunals/court-of-protection",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCOP \d+$")
     };
 
     public static readonly Court EWFC = new Court {
         Code = "EWFC",
         LongName = "The Family Court",
-        URL = "https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/"
+        URL = "https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWFC \d+$")
     };
 
     public static readonly Court UpperTribunal_AdministrativeAppealsChamber = new Court {
@@ -328,7 +342,8 @@ public readonly partial struct Courts {
     public static readonly Court InvestigatoryPowersTribunal = new() {
         Code = "UKIPT",
         LongName = "The Investigatory Powers Tribunal",
-        URL = "https://investigatorypowerstribunal.org.uk/"
+        URL = "https://investigatorypowerstribunal.org.uk/",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKIPTrib \d+$")
     };
 
     public static readonly Court[] All = {
