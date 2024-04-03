@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
-          <FRBRdate date="2024-03-06T17:02:58" name="transform" />
+          <FRBRdate date="2024-04-03T17:45:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1495</uk:number>
         <uk:cite>[2023] EWHC 1495 (Pat)</uk:cite>
-        <uk:parser>0.23.1</uk:parser>
+        <uk:parser>0.23.5</uk:parser>
         <uk:hash>f5a256994f9d5137dc3cf3f27441337c260612a54cc6ddcf9a6fa3e5c715c1d6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -453,63 +453,72 @@
             <p class="BodyText" style="margin-left:0.39in">There was no dispute between the parties as to the relevant law. The skilled person is someone who is likely to have a practical interest in the subject matter of the invention, which includes putting it into practice. I was reminded of the useful summary from Meade J in <span style="font-style:italic">Optis Cellular Technology Ltd v Apple Retail UK Ltd </span>[2021] EWHC 3121 (Pat)<span style="font-style:italic"> </span>in which he said at [29]-[31]:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
+                <paragraph>
+                  <num>“29.</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">“29.  <marker name="tab" />I considered the applicable law recently in Alcon v. Actavis [2021] EWHC 1026 (Pat), drawing heavily on the decision of Birss J, as he then was, in <span style="font-style:italic">Illumina v. Latvia</span> [2021] EWHC 57 (Pat). The particularly relevant passages are [68]-[70] in <span style="font-style:italic">Illumina</span> and [31] in <span style="font-style:italic">Alcon</span>.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">I considered the applicable law recently in Alcon v. Actavis [2021] EWHC 1026 (Pat), drawing heavily on the decision of Birss J, as he then was, in <span style="font-style:italic">Illumina v. Latvia</span> [2021] EWHC 57 (Pat). The particularly relevant passages are [68]-[70] in <span style="font-style:italic">Illumina</span> and [31] in <span style="font-style:italic">Alcon</span>.</p>
                   </content>
-                </level>
-                <level>
-                  <heading class="Quote" style="margin-left:0.6in">30.  <marker name="tab" />At [68] in <span class="coitalic" style="font-style:italic">Illumina</span> Birss J provided the following approach:</heading>
-                  <paragraph>
+                </paragraph>
+                <paragraph>
+                  <num>30.</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">At [68] in <span class="coitalic" style="font-style:italic">Illumina</span> Birss J provided the following approach:</p>
+                  </intro>
+                  <subparagraph>
+                    <num>"68.</num>
                     <content>
-                      <p class="Quote" style="margin-left:1in">"68.  <marker name="tab" />I conclude that in a case in which it is necessary to define the skilled person for the purposes of obviousness in a different way from the skilled person to whom the patent is addressed, the approach to take, bringing <span class="coitalic">Schlumberger</span> and <span class="coitalic">Medimmune</span> together, is:</p>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">I conclude that in a case in which it is necessary to define the skilled person for the purposes of obviousness in a different way from the skilled person to whom the patent is addressed, the approach to take, bringing <span class="coitalic">Schlumberger</span> and <span class="coitalic">Medimmune</span> together, is:</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="font-style:italic;font-family:'Times New Roman';font-size:12pt;margin-left:1.5in;text-indent:-0.5in">i)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;margin-right:0.66in">To start by asking what problem does the invention aim to solve?</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:1in">ii)  <marker name="tab" />That leads one in turn to consider what the established field which existed was, in which the problem in fact can be located.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:1in">iii)  <marker name="tab" />It is the notional person or team in that established field which is the relevant team making up the person skilled in the art."</p>
                     </content>
-                  </paragraph>
-                </level>
-                <level>
-                  <heading class="Quote" style="margin-left:0.6in">31.  <marker name="tab" />And in <span style="font-style:italic">Alcon</span> at [31] I said:</heading>
-                  <paragraph>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>31.</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">And in <span style="font-style:italic">Alcon</span> at [31] I said:</p>
+                  </intro>
+                  <subparagraph>
+                    <num>"31.</num>
                     <content>
-                      <p class="Quote" style="margin-left:1in">"31.  <marker name="tab" />I intend to apply that approach. I take particular note of:</p>
+                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">I intend to apply that approach. I take particular note of:</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:1in">i)  <marker name="tab" />The requirements not to be unfair to the patentee by allowing an artificially narrow definition, or unfair to the public (and the defendant) by going so broad as to "dilute" the CGK. Thus, as Counsel for Alcon accepted, there is an element of value judgment in the assessment.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:1in">ii)  <marker name="tab" />The fact that I must consider the real situation at the priority date, and in particular what teams existed.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:1in">iii)  <marker name="tab" />The need to look for an 'established field', which might be a research field or a field of manufacture.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:1in">iv)  <marker name="tab" />The starting point is the identification of the problem that the invention aims to solve."”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -1239,61 +1248,72 @@
             <p class="BodyText" style="margin-left:0.39in">Save for one point considered below, there was no dispute as to the relevant principles. The parties referred me to <span style="font-style:italic">Saab Seaeye Ltd v Atlas Elektronik GmbH </span>[2017] EWCA Civ 2175 at [18], citing <span style="font-style:italic">Virgin Atlantic v Premium Aircraft </span>[2010] RPC 8 at [5] which summarises the main principles of construction. These are: </p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
+                <paragraph>
+                  <num>“(i)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">“(i) <marker name="tab" />The first overarching principle is that contained in Article 69 of the European Patent Convention.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">The first overarching principle is that contained in Article 69 of the European Patent Convention.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(ii)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(ii)  <marker name="tab" />Article 69 says that the extent of protection is determined by the claims. It goes on to say that the description and drawings shall be used to interpret the claims. In short the claims are to be construed in context.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">Article 69 says that the extent of protection is determined by the claims. It goes on to say that the description and drawings shall be used to interpret the claims. In short the claims are to be construed in context.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(iii)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(iii)  <marker name="tab" />It follows that the claims are to be construed purposively – the inventor's purpose being ascertained from the description and drawings.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">It follows that the claims are to be construed purposively – the inventor's purpose being ascertained from the description and drawings.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(iv)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(iv)  <marker name="tab" />It further follows that the claims must not be construed as if they stood alone – the drawings and description only being used to resolve any ambiguity. Purpose is vital to the construction of claims.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">It further follows that the claims must not be construed as if they stood alone – the drawings and description only being used to resolve any ambiguity. Purpose is vital to the construction of claims.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(v)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(v)  <marker name="tab" />When ascertaining the inventor's purpose, it must be remembered that he may have several purposes depending on the level of generality of his invention. Typically, for instance, an inventor may have one, generally more than one, specific embodiment as well as a generalised concept. But there is no presumption that the patentee necessarily intended the widest possible meaning consistent with his purpose be given to the words that he used: purpose and meaning are different.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">When ascertaining the inventor's purpose, it must be remembered that he may have several purposes depending on the level of generality of his invention. Typically, for instance, an inventor may have one, generally more than one, specific embodiment as well as a generalised concept. But there is no presumption that the patentee necessarily intended the widest possible meaning consistent with his purpose be given to the words that he used: purpose and meaning are different.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(vi)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(vi)  <marker name="tab" />Thus purpose is not the be-all and end-all. One is still at the end of the day concerned with the meaning of the language used. Hence the other extreme of the Protocol – a mere guideline – is also ruled out by Article 69 itself. It is the terms of the claims which delineate the patentee's territory.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">Thus purpose is not the be-all and end-all. One is still at the end of the day concerned with the meaning of the language used. Hence the other extreme of the Protocol – a mere guideline – is also ruled out by Article 69 itself. It is the terms of the claims which delineate the patentee's territory.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(vii)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(vii)  <marker name="tab" />It follows that if the patentee has included what is obviously a deliberate limitation in his claims, it must have a meaning. One cannot disregard obviously intentional elements.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">It follows that if the patentee has included what is obviously a deliberate limitation in his claims, it must have a meaning. One cannot disregard obviously intentional elements.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(viii)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(viii)  It also follows that where a patentee has used a word or phrase which, acontextually, might have a particular meaning (narrow or wide) it does not necessarily have that meaning in context.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">It also follows that where a patentee has used a word or phrase which, acontextually, might have a particular meaning (narrow or wide) it does not necessarily have that meaning in context.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(ix)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(ix)  <marker name="tab" />It further follows that there is no general 'doctrine of equivalents.'</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">It further follows that there is no general 'doctrine of equivalents.'</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(x)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(x)  <marker name="tab" />On the other hand purposive construction can lead to the conclusion that a technically trivial or minor difference between an element of a claim and the corresponding element of the alleged infringement nonetheless falls within the meaning of the element when read purposively. This is not because there is a doctrine of equivalents: it is because that is the fair way to read the claim in context.</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">On the other hand purposive construction can lead to the conclusion that a technically trivial or minor difference between an element of a claim and the corresponding element of the alleged infringement nonetheless falls within the meaning of the element when read purposively. This is not because there is a doctrine of equivalents: it is because that is the fair way to read the claim in context.</p>
                   </content>
-                </level>
-                <level>
+                </paragraph>
+                <paragraph>
+                  <num>(xi)</num>
                   <content>
-                    <p class="Quote" style="margin-left:0.6in">(xi)  <marker name="tab" />Finally purposive construction leads one to eschew the kind of meticulous verbal analysis which lawyers are too often tempted by their training to indulge.”</p>
+                    <p class="Quote" style="margin-left:0.6in;text-indent:0.4in">Finally purposive construction leads one to eschew the kind of meticulous verbal analysis which lawyers are too often tempted by their training to indulge.”</p>
                   </content>
-                </level>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
