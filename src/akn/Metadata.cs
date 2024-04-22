@@ -52,7 +52,7 @@ class Metadata {
     public static XmlElement make(XmlDocument doc, IJudgment judgment, IMetadata metadata, bool includeReferences) {
 
         INamedDate mainDate = metadata.Date;
-        Court? court = metadata.Court();
+        Court? court = metadata.Court;
 
         XmlElement meta = doc.CreateElement("meta", ns);
 
@@ -281,7 +281,7 @@ class AttachmentMetadata : IMetadata {
         this.n = n;
     }
 
-    public Court? Court() { return prototype.Court(); }
+    public Court? Court => prototype.Court;
 
     public int? Year { get => prototype.Year; }
 
