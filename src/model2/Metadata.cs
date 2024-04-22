@@ -1,9 +1,6 @@
 
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -25,7 +22,7 @@ class WMetadata : IMetadata {
     internal WMetadata(MainDocumentPart main, Judgment judgment) {
         this.main = main;
         this.judgment = judgment;
-        ExternalAttachments = Enumerable.Empty<IExternalAttachment>();
+        ExternalAttachments = [];
     }
     protected WMetadata(MainDocumentPart main, Judgment judgment, IEnumerable<IExternalAttachment> attachments) {
         this.main = main;
@@ -33,26 +30,24 @@ class WMetadata : IMetadata {
         ExternalAttachments = attachments;
     }
 
+    private Court? _court = null;
+
     virtual public Court? Court() {
+        if (_court is not null)
+            return _court;
         WCourtType courtType1 = Util.Descendants<WCourtType>(judgment.Header).FirstOrDefault();
-        if (courtType1 is not null) {
-            if (courtType1.Code is null)
-                return null;
-            return Courts.ByCode[courtType1.Code];
+        if (courtType1?.Code is not null)
+            _court = Courts.ByCode[courtType1.Code];
+        if (_court is null) {
+            WCourtType2 courtType2 = Util.Descendants<WCourtType2>(judgment.Header).FirstOrDefault();
+            if (courtType2?.Code is not null)
+                _court = Courts.ByCode[courtType2.Code];
         }
-        WCourtType2 courtType2 = Util.Descendants<WCourtType2>(judgment.Header).FirstOrDefault();
-        if (courtType2 is not null) {
-            if (courtType2.Code is null)
-                return null;
-            return Courts.ByCode[courtType2.Code];
-        }
-        string cite = this.Cite;
-        if (cite is not null) {
-            Court? c = UK.Gov.Legislation.Judgments.Courts.ExtractFromCitation(cite);
-            if (c is not null)
-                return c;
-        }
-        return null;
+        if (_court?.Code == Courts.EWFC.Code && Courts.EWFC_B.CitationPattern.IsMatch(Cite))
+            _court = Courts.EWFC_B;
+        if (_court is null && Cite is not null)
+            _court = Courts.ExtractFromCitation(Cite);
+        return _court;
     }
 
     virtual public int? Year { get {
@@ -117,11 +112,11 @@ class WMetadata : IMetadata {
 
     virtual public INamedDate Date { get {
         IEnumerable<IDocDate> dates = Util.Descendants<IDocDate>(judgment);
-        return dates.OrderByDescending<IDocDate, string>(dd => (dd as IDate).Date).FirstOrDefault();
+        return dates.OrderByDescending(dd => (dd as IDate).Date).FirstOrDefault();
     } }
 
     virtual public string Name { get {
-        return UK.Gov.Legislation.Judgments.CaseName.Extract(judgment);
+        return CaseName.Extract(judgment);
     } }
 
     public Dictionary<string, Dictionary<string, string>> CSSStyles() {
