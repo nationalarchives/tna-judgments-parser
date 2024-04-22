@@ -17,9 +17,7 @@ class WMetadata2 : WMetadata {
         this.meta2 = meta2;
     }
 
-    override public Court? Court() {
-        return base.Court() ?? meta2.Court;
-    }
+    override public Court? Court => base.Court ?? meta2.Court;
 
     override public int? Year { get {
         return base.Year ?? meta2.Year;
@@ -40,7 +38,7 @@ class WMetadata2 : WMetadata {
     } }
 
     override public INamedDate Date { get {
-        return base.Date ?? new WNamedDate { Date = meta2.Date, Name = MakeDateName(Court()) };
+        return base.Date ?? new WNamedDate { Date = meta2.Date, Name = MakeDateName(Court) };
     } }
 
     internal static string MakeDateName(Court? court) {
@@ -69,9 +67,7 @@ class WMetadata3 : WMetadata {
         this.outside = outside;
     }
 
-    override public Court? Court() {
-        return outside.Court ?? base.Court();
-    }
+    override public Court? Court { get => outside.Court ?? base.Court; }
 
     override public int? Year { get {
         return outside.Year ?? base.Year;
@@ -90,7 +86,7 @@ class WMetadata3 : WMetadata {
     override public INamedDate Date { get {
         if (outside.Date is null)
             return base.Date;
-        return new WNamedDate { Date = outside.Date, Name = WMetadata2.MakeDateName(Court()) };
+        return new WNamedDate { Date = outside.Date, Name = WMetadata2.MakeDateName(Court) };
     } }
 
     override public string Name { get {
