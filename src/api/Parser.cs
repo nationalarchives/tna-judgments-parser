@@ -148,7 +148,7 @@ public class Parser {
             score += 2;
         if (judgment.InternalMetadata.ShortUriComponent is not null)
             score += 1;
-        if (judgment.InternalMetadata.Court() is not null)
+        if (judgment.InternalMetadata.Court is not null)
             score += 1;
         if (judgment.InternalMetadata.Cite is not null)
             score += 1;
