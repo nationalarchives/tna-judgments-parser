@@ -13,7 +13,7 @@ interface INamedDate {
 
 interface IMetadata {
 
-    Court? Court();
+    Court? Court { get; }
 
     int? Year { get; }
 

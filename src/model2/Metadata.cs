@@ -32,7 +32,7 @@ class WMetadata : IMetadata {
 
     private Court? _court = null;
 
-    virtual public Court? Court() {
+    virtual public Court? Court { get {
         if (_court is not null)
             return _court;
         WCourtType courtType1 = Util.Descendants<WCourtType>(judgment.Header).FirstOrDefault();
@@ -48,7 +48,7 @@ class WMetadata : IMetadata {
         if (_court is null && Cite is not null)
             _court = Courts.ExtractFromCitation(Cite);
         return _court;
-    }
+    } }
 
     virtual public int? Year { get {
         if (ShortUriComponent is null)
