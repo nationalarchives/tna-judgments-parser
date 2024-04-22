@@ -275,6 +275,11 @@ public readonly partial struct Courts {
         URL = "https://www.judiciary.uk/you-and-the-judiciary/going-to-court/family-law-courts/",
         CitationPattern = new Regex(@"^\[\d{4}\] EWFC \d+$")
     };
+    public static readonly Court EWFC_B = new Court {
+        Code = "EWFC-B",
+        LongName = "Family Court judgments with \"B\" in their NCN",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWFC \d+ \(B\)$")
+    };
 
     public static readonly Court UpperTribunal_AdministrativeAppealsChamber = new Court {
         Code = "UKUT-AAC",
@@ -375,8 +380,9 @@ public readonly partial struct Courts {
         EWHC_Chancery_IPEC,
         EWHC_Chancery_Appeals,
         EWHC_SeniorCourtsCosts,
+
         EWCOP,
-        EWFC,
+        EWFC, EWFC_B,
 
         UpperTribunal_AdministrativeAppealsChamber,
         UpperTribunal_ImmigrationAndAsylumChamber, OldAsylumAndImmigrationTribunal,
