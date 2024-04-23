@@ -12,7 +12,7 @@ class CaseName {
 
     internal static string Extract(IJudgment judgment) {
 
-        Court? court = judgment.Metadata.Court();
+        Court? court = judgment.Metadata.Court;
 
         IEnumerable<IParty> parties = Enumerable.Concat(
             Util.Descendants<IParty>(judgment.CoverPage),
