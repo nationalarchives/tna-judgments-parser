@@ -44,8 +44,8 @@ class OptimizedUKSCParser : OptimizedParser {
     }
 
     private List<Enricher> headerEnrichers = new List<Enricher>() {
-        // new UKSC.SealRemover(),
         new RestrictionsEnricher(),
+        new CrestSplitter(),
         new Legislation.Judgments.Parse.UKSC.CiteEnricher(),
         new UKSC.OnAppealFromRefEnricher(),
         new Legislation.Judgments.Parse.UKSC.DateEnricher(),
