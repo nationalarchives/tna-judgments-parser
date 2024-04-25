@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
-class RestrictionsEnricher : Enricher {
+partial class RestrictionsEnricher : Enricher {
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks) {
         if (!blocks.Any())
@@ -47,10 +48,10 @@ class RestrictionsEnricher : Enricher {
             return true;
         if (block is not WLine line)
             return false;
-        string color = ((ILine) line).GetCSSStyles().GetValueOrDefault("color");
-        if (color is not null && color == "red")
+        if (line.Style == "CourtOrder")
             return true;
-        if (color is not null && color.ToLower() == "#ff0000")
+        string color = ((ILine) line).GetCSSStyles().GetValueOrDefault("color");
+        if (IsRed(color))
             return true;
         if (line.Contents.Count() != 1)
             return false;
@@ -58,9 +59,7 @@ class RestrictionsEnricher : Enricher {
         if (first is not IFormattedText text)
             return false;
         color = text.GetCSSStyles().GetValueOrDefault("color");
-        if (color is not null && color == "red")
-            return true;
-        if (color is not null && color.ToLower() == "#ff0000")
+        if (IsRed(color))
             return true;
         string content = line.NormalizedContent;
         if (content == "IN CONFIDENCE")
@@ -80,6 +79,18 @@ class RestrictionsEnricher : Enricher {
             return true;
         return false;
     }
+
+    static bool IsRed(string color) {
+        if (color is null)
+            return false;
+        if (color.Equals("red", StringComparison.OrdinalIgnoreCase))
+            return true;
+        return RedRegex().IsMatch(color);
+    }
+
+    [GeneratedRegex("^[1-9A-F][0-9A-F]0{4}$", RegexOptions.IgnoreCase)]
+    private static partial Regex RedRegex();
+
 
     private static bool IsTableWithRestriction(IBlock block) {
         if (block is not WTable table)
