@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
-internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
+internal class WText : IFormattedText {
 
     public readonly RunProperties properties;
     private readonly string text;
@@ -179,6 +181,28 @@ internal class WText : UK.Gov.Legislation.Judgments.IFormattedText {
         var first = text.Substring(0, i);
         var second = text.Substring(i);
         return new Tuple<WText, WText>( new WText(first, properties), new WText(second, properties) );
+    }
+
+    virtual public Dictionary<string, string> GetCSSStyles(string paragraphStyle) {
+        Dictionary<string, string> formatting = CSS.GetCSSStyles(this);
+        if (paragraphStyle is null)
+            return formatting;
+        if (Style is null)
+            return formatting;
+        MainDocumentPart main = DOCX.Main.Get(properties);
+        Dictionary<string, string> formattingFromParagraphStyle = DOCX.CSS.ExtractCharacterFormatting(main, paragraphStyle);
+        Dictionary<string, string> formattingFromCharacterStyle = DOCX.CSS.ExtractCharacterFormatting(main, Style);
+        foreach(KeyValuePair<string, string> entry in formattingFromCharacterStyle) {
+            if (formatting.ContainsKey(entry.Key))
+                continue;
+            bool existsInParagraphStyle = formattingFromParagraphStyle.TryGetValue(entry.Key, out string valueFromParagraphStyle);
+            if (!existsInParagraphStyle)
+                continue;
+            if (entry.Value == valueFromParagraphStyle)
+                continue;
+            formatting.Add(entry.Key, valueFromParagraphStyle);
+        }
+        return formatting;
     }
 
 }

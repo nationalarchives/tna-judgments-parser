@@ -113,6 +113,26 @@ public class CSS {
         return selectors;
     }
 
+    internal static Dictionary<string, string> ExtractCharacterFormatting(MainDocumentPart main, string styleId) {
+        Style style = main.StyleDefinitionsPart.Styles.ChildElements
+            .OfType<Style>()
+            .Where(s => s.StyleId.Equals(styleId)).FirstOrDefault();
+        Dictionary<string, string> properties = new Dictionary<string, string>();
+        if (style is null)
+            return properties;
+        AddFontStyle(style, properties);
+        AddFontWeight(style, properties);
+        AddTextDecoration(style, properties);
+        AddTextTransform(style, properties);
+        AddFontVariant(style, properties);
+        AddVerticalAlign(style, properties);
+        AddFontFamily(style, properties);
+        AddFontSize(style, properties);
+        AddColor(style, properties);
+        AddBackgroundColor(style, properties);
+        return properties;
+    }
+
     private static void AddAlignment(Style style, Dictionary<string, string> css, MainDocumentPart main) {
         Justification just = style.GetInheritedProperty(style => style.StyleParagraphProperties?.Justification);
         if (just is null)

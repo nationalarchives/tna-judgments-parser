@@ -142,9 +142,7 @@ interface IFormattedText : ITextOrWhitespace {
         return true;
     }
 
-    Dictionary<string, string> GetCSSStyles() {
-        return CSS.GetCSSStyles(this);
-    }
+    Dictionary<string, string> GetCSSStyles(string paragraphStyle);
 
     static bool IsFormattedTextAndNothingElse(IInline inline) {
         if (inline is not IFormattedText)

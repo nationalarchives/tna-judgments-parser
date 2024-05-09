@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/uksc/2024/14" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/uksc/2024/14" />
+          <FRBRdate date="2024-05-08" name="judgment" />
+          <FRBRauthor href="#uksc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="14" />
+          <FRBRname value="Sharp Corp Ltd v Viterra BV" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2024/14" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2024/14" />
+          <FRBRdate date="2024-05-08" name="judgment" />
+          <FRBRauthor href="#uksc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2024/14/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2024/14/data.xml" />
+          <FRBRdate date="2024-05-09T16:02:32" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2024-05-08" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The Supreme Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="sharp-corp-ltd" href="" showAs="Sharp Corp Ltd" />
+        <TLCPerson eId="viterra-bv" href="" showAs="Viterra BV" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCPerson eId="judge-lord-reed-president" href="/judge-lord-reed-president" showAs="Lord Reed, President" />
+        <TLCPerson eId="judge-lord-hodge-deputy-president" href="/judge-lord-hodge-deputy-president" showAs="Lord Hodge, Deputy President" />
+        <TLCPerson eId="judge-lord-briggs" href="/judge-lord-briggs" showAs="Lord Briggs" />
+        <TLCPerson eId="judge-lord-hamblen" href="/judge-lord-hamblen" showAs="Lord Hamblen" />
+        <TLCPerson eId="judge-lord-leggatt" href="/judge-lord-leggatt" showAs="Lord Leggatt" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKSC</uk:court>
+        <uk:year>2024</uk:year>
+        <uk:number>14</uk:number>
+        <uk:cite>[2024] UKSC 14</uk:cite>
+        <uk:parser>0.23.8</uk:parser>
+        <uk:hash>13afde9f782d9046396599b3742020dae6b8cdb420757be9dec859c8efd82ae3</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 13pt; font-family: 'Times New Roman'; }
+#judgment .Normal { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Footer { font-family: Univers; font-size: 13pt; }
+#judgment .Caveat { text-align: justify; font-weight: bold; font-family: 'Times New Roman'; font-size: 10pt; }
+#judgment .Header { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaHeading1 { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaNoNumber { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaLevel1 { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaLevel2 { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Quote { margin-left: 1in; margin-right: 0.87in; font-family: Calibri, sans-serif; font-size: 13pt; }
+#judgment .NewSpeech { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading2 { font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading3 { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Embargo { text-align: justify; font-weight: bold; font-family: 'Times New Roman'; font-size: 10pt; }
+#judgment .JudgmentReferences { text-align: right; font-size: 13pt; }
+#judgment .Bulletpara { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading4 { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading5 { font-style: italic; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading6 { font-style: italic; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .CourtOrder { font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; color: #C00000; }
+#judgment .JudgmentTitle { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 20pt; }
+#judgment .JudgmentDetail1 { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 20pt; }
+#judgment .ParaSubHeading1 { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaSubHeading2 { font-style: italic; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaSubHeading3 { font-style: italic; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaApprovedLevel1 { margin-left: 0in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaApprovedLevel2 { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaNoNumberApproved { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .JudgmentJudges { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 17pt; }
+#judgment .JudgmentAppRespInt { text-align: center; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 13pt; }
+#judgment .ParaLevel3 { margin-left: 0.98in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .QuoteChar { font-family: Calibri, sans-serif; font-size: 13pt; }
+#judgment .fontstyle01 { font-style: normal; font-weight: normal; font-family: TimesNewRomanPSMT; font-size: 12pt; color: #000000; }
+#judgment .fontstyle21 { font-style: normal; font-weight: bold; font-family: TimesNewRomanPS-BoldMT; font-size: 12pt; color: #000000; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="JudgmentReferences"><img src="image1.png" style="width:99.35pt;height:99.35pt" /></p>
+      <p class="JudgmentReferences"><span style="font-weight:bold;font-family:'Times New Roman'">Easter Term</span><br /><neutralCitation style="font-weight:bold;font-family:'Times New Roman'">[2024] UKSC 14</neutralCitation><br /><span style="font-style:italic;font-family:'Times New Roman'">On appeal from: </span><ref style="font-style:italic;font-family:'Times New Roman'" href="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/7" uk:origin="parser" uk:canonical="[2023] EWCA Civ 7" uk:type="case" uk:isNeutral="true">[2023] EWCA Civ 7</ref></p>
+      <p class="JudgmentTitle"><span style="font-family:'Times New Roman'">JUDGMENT</span></p>
+      <p class="JudgmentJudges"><party refersTo="#sharp-corp-ltd" as="#respondent" style="font-family:'Times New Roman';font-size:20pt">Sharp Corp Ltd</party><span style="font-family:'Times New Roman';font-size:20pt"> (</span><role refersTo="#respondent" style="font-family:'Times New Roman';font-size:20pt">Respondent</role><span style="font-family:'Times New Roman';font-size:20pt">) </span><span style="font-style:italic;font-family:'Times New Roman';font-size:20pt">v</span><span style="font-family:'Times New Roman';font-size:20pt"> </span><party refersTo="#viterra-bv" as="#appellant" style="font-family:'Times New Roman';font-size:20pt">Viterra BV</party><span style="font-family:'Times New Roman';font-size:20pt"> (previously known as Glencore Agriculture BV) (</span><role refersTo="#appellant" style="font-family:'Times New Roman';font-size:20pt">Appellant</role><span style="font-family:'Times New Roman';font-size:20pt">)</span></p>
+      <p class="JudgmentJudges"><span style="font-weight:normal;font-family:'Times New Roman'">before</span><br /><br /><judge refersTo="#judge-lord-reed-president" style="font-family:'Times New Roman'">Lord Reed, President</judge><br /><judge refersTo="#judge-lord-hodge-deputy-president" style="font-family:'Times New Roman'">Lord Hodge, Deputy President</judge><br /><judge refersTo="#judge-lord-briggs" style="font-family:'Times New Roman'">Lord Briggs</judge><br /><judge refersTo="#judge-lord-hamblen" style="font-family:'Times New Roman'">Lord Hamblen</judge><br /><judge refersTo="#judge-lord-leggatt" style="font-family:'Times New Roman'">Lord Leggatt</judge></p>
+      <p class="JudgmentJudges"><span style="font-family:'Times New Roman'">JUDGMENT GIVEN ON</span><br /><docDate date="2024-05-08" refersTo="#judgment" style="font-family:'Times New Roman'">8 May 2024</docDate><br /><br /><span style="font-family:'Times New Roman'">Heard on 21 and 22 February 2024</span></p>
+      <p class="JudgmentAppRespInt"><span style="font-style:italic;font-family:'Times New Roman'">Appellant</span><br /><span style="font-family:'Times New Roman'">Michael Collett KC</span><br /><span style="font-family:'Times New Roman'">Talia Zybutz</span><br /><span style="font-family:'Times New Roman'">(Instructed by Reed Smith LLP (London))</span></p>
+      <p class="JudgmentAppRespInt"><span style="font-style:italic;font-family:'Times New Roman'">Respondent</span><br /><span style="font-family:'Times New Roman'">Chirag Karia KC</span><br /><span style="font-family:'Times New Roman'">Ben Gardner</span><br /><span style="font-family:'Times New Roman'">(Instructed by Zaiwalla &amp; Co Ltd)</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p class="NewSpeech">Lord Hamblen (<span style="text-transform:none">with whom Lord Reed, Lord Hodge, Lord Briggs and Lord Leggatt agree</span>): </p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">1.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This appeal and cross-appeal arise out of two Grain and Feed Trade Association (“GAFTA”) appeal awards relating to Cost &amp; Freight free out (“C&amp;FFO”) Mundra sales made of pulses by the appellant seller, Viterra BV (“the Sellers”), to the respondent buyer, Sharp Corporation Ltd (“the Buyers”).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">2.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The appeal concerns the jurisdiction of the court on appeals from arbitration awards under the Arbitration Act 1996 (“the Act”). In particular, it is contended that the Court of Appeal erred in (i) amending the question of law for which permission to appeal had been given; (ii) deciding a question of law which the GAFTA Appeal Board (“the Appeal Board”) was not asked to determine and on which it did not make a decision, and (iii) in making findings of fact on matters on which the Appeal Board had made no finding.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">3.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The cross-appeal concerns the Appeal Board’s award of damages to the Sellers. Pursuant to the GAFTA Contract No 24 Default Clause, damages were awarded on the basis of the estimated C&amp;FFO Mundra value of the goods. At the date of default the goods had been landed, warehoused and customs cleared in Mundra. In such circumstances the Buyers contend that damages should have been awarded on an “as is, where is” basis, being the estimated ex warehouse Mundra value of the goods.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_1">
+          <content>
+            <p class="ParaHeading1"><span style="text-transform:none">The Facts</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_4">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">4.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">The Sellers (formerly known as Glencore Agriculture BV) and </span><span class="fontstyle21" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt">the Buyers</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> entered into two contracts dated 20 January 2017 for the </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">sale</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> of pulses by the Sellers to the Buyers. </span>The contracts were in identical terms save as to commodity, quantity and price.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">5.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The lentils contract was for 20,000 metric tons (“mt”) of Canadian Crimson Lentils of Canadian origin in bulk, +/- 5 % at the Sellers’ option, at a price of US$600 per mt C&amp;FFO Mundra (“the Lentils Contract”).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">6.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The peas contract was for 45,000 mt of Canadian Yellow Peas of Canadian origin, +/-5% at the Sellers’ option, at a price of US$339 per mt C&amp;FFO Mundra (“the Peas Contract”).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">7.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The contracts provided for payment on the basis of letter of credit at sight or cash against documents (“CAD”) at the Buyers’ option. They also contained the following bespoke clause: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Non Payment Clause: (“the Non-Payment Clause”)</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">If buyer fails to make payment of the documents as per contract the seller reserves the right to protect their interest and accordingly this contract acts as implied no objection/confirmation from buyers to seller to transfer / resell to alternate buyer.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">This clause also serves as buyers’ confirmation for the cargo clearance without any undue distress or financial penalty to sellers.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Under these circumstances, sellers can unconditionally choose to cancel the contract and withdraw or re-direct the documents and sell the cargo as per sellers’ choice.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">The buyers shall forfeit the advance given (if any) to the sellers under this contract, and shall unconditionally extend full cooperation to the sellers by way of providing documents and/or letters as required by all the authorities concerned to enable change of buyer’s details with the shipping line, customs, Bill of Entry, etc.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">8.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Each contract provided that all terms and conditions not conflicting with the express <span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">terms of the contracts should be as per GAFTA Contract No 24. GAFTA Contract No 24 has a default clause at Clause 25 (“the Default Clause”) which is common to many of the GAFTA standard contract forms. The material terms of clause 25 are set out in para 81 below. Under clause 25(c) the damages payable are based on the difference between the contract price and </span>“the actual or estimated value of the goods, on the date of default”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">9.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">On 26 April 2017, the Sellers nominated the vessel RB LEAH (“</span><span class="fontstyle21" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt">the Vessel</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">”) under both contracts.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">10.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">On 10 May 2017, a total quantity of 21,000 mt of lentils and 47,</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">250</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> mt of peas was loaded on board the Vessel in Vancouver under bills of lading dated 10 May 2017.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">11.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 18 May 2017, the Buyers stated that payment would be CAD for both contracts. Payment was therefore due within 5 days prior to the Vessel’s arrival at Mundra.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">12.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Sellers presented the documents to the Buyers’ bank under cover of a letter dated 31 May 2017, which stated:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… Payment as per due date 13 June 2017 per SWIFT transfer to our account …</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">For good order’s sake we point out that the documents respectively the goods remain our property until the payment has been effected.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">13.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">On 16 June 2017, Glencore India informed the Buyers that the ETA of the Vessel was 19 June 2017 and stated that payment had already fallen due on 14 June 2017.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">14.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 19 June 2017, the Buyers advised the Sellers as follows: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Thank you for your kind support in accommodating the discharge of this cargo on LOI. This gesture will go a long way and will strengthen our relationship further and stronger. We assure you that payment of the above will be paid on and before 31 July.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">I also confirm that we will pay an interest of 4% PA on the above. I again thank you for your support for previous cargo on LOI whose payment schedule has been shared with your team.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">15.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Buyers did not pay for the goods before the Vessel’s arrival at Mundra. On 20 June 2017, the Buyers filed bills of entry for the full quantity of 21,000 mt lentils and 47,250 mt peas. All of the lentils and 15,000 mt of the peas were customs cleared and out of charge orders for these quantities were issued in favour of the Buyers.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">16.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 23 June 2017, following a request from the Sellers on 22 June 2017, the Buyers issued a letter (“the Buyers’ LOI”) addressed to the Sellers as follows: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The subject vessel has arrived at Mundra on 19 June 2017 and since the cargo is not paid yet, we request the sellers to discharge the cargo against buyers’ LOI in order to mitigate demurrage exposure.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Please find below the schedule of the BL numbers per the subject vessel. The payments will be made within July 2017.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">…</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">Since cargo will need to be Custom cleared for shifting the cargo out of port due to space shortage inside the port, we hereby irrevocably and unconditionally confirm that all cargo will be discharged and stored in custody of Mundra Port and no delivery shall be taken by M/s Sharp Corp Ltd or any party related to M/s Sharp Corp Ltd or representing M/s Sharp Corp Ltd or acting on behalf of M/s Sharp Corp Ltd against above mentioned Bs/L unless written instructions are received from Glencore Agriculture BV after cargo has been made with Original Bs/L having been submitted to vessel agent.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">We irrevocably and unconditionally confirm to comply with the above conditions and shall remain liable for all consequences for not adhering to the above.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">17.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">On 25 September 2017, the parties signed a “washout” agreement in respect of the 32,500 mt of the peas cargo, terminating the Peas Contract to that extent, with the Buyers agreeing to pay compensation in </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">the</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> total sum of US$967,500 in two instalments on 1 March and 1 September 2018</span><span class="fontstyle01" style="font-weight:bold;font-family:'Times New Roman';font-size:13pt">.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">18.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 26 September 2017, the parties signed addenda in respect of both contracts giving the Buyers further time to make payment for the remaining goods in instalments (“the Addenda”). These provided that the lentils price of US$600 per mt C&amp;FFO Mundra would be paid in instalments of $518 per mt by 15 October 2017, US$41 per mt by 1 March 2018 and US$41 per mt by 1 September 2018, and that the peas price of US$339 per mt C&amp;FFO Mundra would be paid in instalments of US$309 per mt by 15 October 2017, US$15 per mt by 1 March 2018 and US$15 per mt by 1 September 2018. The Addenda further provided that “[e]ach bill of lading to be released after receipt of the corresponding first instalment” and that all other terms and conditions of the contracts were to remain unchanged.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">19.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 13 October 2017, the Buyers said that they would not be able to make the payments when due on 15 October 2017, and now planned to make payments between 3 and 20 November 2017.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">20.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 18 October 2017, the Sellers demanded payment by 25 October 2017 at the latest, making clear that time was of the essence and reserving the right to declare the Buyers in default if payment of the first instalment under the Addenda was not made by that date.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">21.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 8 November 2017, the Government of India imposed an import tariff on Yellow Peas of 50% with immediate effect.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">22.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 9 November 2017, the Sellers declared the Buyers in default under both contracts, claiming damages, of which details would be provided in due course. They further notified the Buyers that it was the Sellers’ intention to sell the goods to a third party, as they were entitled to do under the Non-Payment Clause, and indicated that the Sellers intended to enforce the co-operation undertaking in the Non-Payment Clause strictly to enable a change in the buyer.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">23.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 29 November 2017, the Sellers made a without prejudice proposal to the Buyers. This proposed reinstating the original contracts with payment against copy documents and that, once payment was received, the Sellers “would present original documents as per your instruction”. It further provided that “f<span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">ull payment of both 15,000 mt peas and 21,000 mt lentils to be received prior to releasing original documents”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">24.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Meanwhile the goods were stored by Adani Port, who refused to release them to the Sellers without the Buyers’ permission. In breach of the Non-Payment Clause of the contracts (as the Appeal Board found), the Buyers refused to co-operate to allow the goods to be released to the Sellers.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">25.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 18 December 2017, the Sellers commenced proceedings in the High Court of Gujarat against the Buyers and Adani Port in order to obtain possession of the goods.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">26.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 21 December 2017, the Government of India imposed an import tariff of 30.9% on lentils with immediate effect.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">27.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 2 February 2018, a consent order in the Gujarat proceedings provided for the Sellers to obtain possession of the goods.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">28.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">By a contract dated 7 February 2018, the Sellers re-sold the peas to their associated company Agricore Commodities Ltd (“Agricore”) for US$ 378 per mt (inclusive of storage charges up to 6 February 2018 and handling and waterfront royalty charges) C&amp;FFO Mundra.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">29.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">By a contract dated 9 February 2018, the Sellers re-sold the lentils to Agricore for US$431 per mt on the same terms.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">30.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">The Board found that value of the goods on the </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">domestic</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> market had “undoubtedly increased” since the imposition of the import tariffs.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_2">
+          <content>
+            <p class="ParaHeading1"><span class="fontstyle01" style="text-transform:none;font-family:'Times New Roman';font-size:13pt;font-weight:bold">Proceedings</span></p>
+            <p class="ParaSubHeading1"><span class="fontstyle01" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;font-style:italic">The Awards</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_31">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">31.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Awards, as amended, are dated 1 April 2021.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">32.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Appeal Board rejected the Buyers’ argument that the Sellers were in default by taking back the goods and reselling them.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">33.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Appeal Board found that the Buyers were in default by their failure to pay for the goods in accordance with the terms and conditions of the contracts, and liable to pay damages for default in accordance with the Default Clause.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">34.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As to the date of default, the Appeal Board found that, while the date of the Sellers’ declaration of default on 9 November 2017 was the “apparent date of default”, it was impossible for the Sellers to re-sell the goods until they were able to obtain possession of the goods on 2 February 2018. The Appeal Board accordingly found that 2 February 2018 was the date of default.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">35.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Sellers contended that damages should be based on the market value C&amp;FFO Mundra on 2 February 2018. There was, however, no evidence of independent trades of goods of the contract description C&amp;FFO Mundra. The Sellers’ case was the best evidence of such market value was the Free on Board (“FOB”) Vancouver price of the goods on 2 February 2018 and the market freight rate on that date for carriage from Vancouver to Mundra. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">36.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Buyers contended that the damages should be assessed by reference to the market value of the goods on the domestic market in India. That was said to be in the region of US$532 per mt for the lentils and US$398 per mt for the peas.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">37.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Appeal Board found that the damages should be assessed “on the market value of the goods on or about 2 February 2018 C&amp;FFO Mundra in bulk”. They rejected the Buyers’ case that the relevant market value was that of the domestic market. They stated as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The contract which is the subject of this arbitration was not a contract for the sale of varying quantities of goods ex-warehouse into the domestic market in India over a lengthy period of time but was for the sale of goods in bulk on the international market. Sellers had undertaken to ship the goods in bulk from Vancouver to Mundra and Buyers had undertaken to pay for those goods before arrival… Buyers having failed to perform their obligation to pay, the formula for assessment of damages was that set out in the default clause whereby the market value of the goods was to be assessed by reference to the terms of the contract, ie for [goods of the contract description] in Bulk traded C&amp;FFO Mundra on the international market.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">38.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Appeal Board found that “the estimated value of the goods on or about the date of default” was US$ 401.75 per mt (lentils) and US$ 278.00 per mt (peas). That was composed of: </p>
+          </intro>
+          <subparagraph>
+            <num>(1)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The FOB market price of lentils in Vancouver (found to be US$ 375.00 per mt) “on or around 2 February 2018” (ie the default date); and</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The market freight rate for the carriage of those lentils from Vancouver to Mundra for a voyage commencing “on or around 2 February 2018” (found to be US$ 26.75 per mt).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(3)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The FOB price of peas in Vancouver (found to be US$252.00 per mt) “on or around 2 February 2018”; and</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(4)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The market freight rate for the carriage of those peas from Vancouver to Mundra for a voyage commencing “on or around 2 February 2018” (found to be US$26.75 per mt).</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">39.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The damages for default awarded to the Sellers were US$ 4,163,250 (lentils) and US$ 903,750 (peas).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">40.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In addition, the Appeal Board awarded the Sellers their costs of storing the cargo between discharge and 12 February 2018 and legal costs incurred in securing the release of the goods, as damages for breach of the Non-Payment Clause. These damages were:</p>
+          </intro>
+          <subparagraph>
+            <num>(1)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">Lentils: US$ 433,000 for storage costs and US$ 50,793.61 for legal costs.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">Peas: US$ 305,000 for storage costs and US$ 50,793.61 for legal costs.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">41.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Buyers made a counterclaim for reimbursement of their costs incurred in discharging the goods at Mundra, in the sum of US$ 259,814.90 plus interest (lentils) and US$ 56,453 plus interest (peas). The Appeal Board accepted the Sellers’ submission that the Buyers were responsible for these expenses under the terms of the contracts, but they held that the Buyers were entitled to recover these expenses from the Sellers because “the goods were returned to Sellers and resold by them”.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_3">
+          <content>
+            <p class="ParaSubHeading1"><span style="font-weight:normal">The decisions of the courts below</span></p>
+            <p class="ParaSubHeading2"><span style="text-decoration-line:none">Jacobs J</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_42">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">42.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">By an order dated 13 May 2021, Jacobs J granted the Buyers permission to appeal the Awards under section 69 of the Act on the following question of law:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <heading class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Where goods sold C&amp;F free out are located at their discharge port on the date of the buyer’s default, is “the actual or estimated value of the goods, on the date of default” under sub-clause (c) of the GAFTA Default Clause to be assessed by reference to</span></heading>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman'">(A)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the market value of goods at that discharge port (where they are located on the date of default); or</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Times New Roman'">(B)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the theoretical cost on the date of default of (i) buying those goods FOB at the original port of shipment plus (ii) the market freight rate for transporting the goods from that port to the discharge port free out?”</span></p>
+                    </content>
+                  </paragraph>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">43.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Jacobs J considered that the appeal raised a question of general public importance but that in any event the decision of the Appeal Board was obviously wrong. He stated as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“…the essential question is whether ‘the actual or estimated value of the goods, on the date of default’ should, in a case of nonacceptance of goods which have been shipped to the buyers, be determined by reference to the realisable value of the goods which have been left in the seller’s hands in consequence of the non-acceptance. …</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">[The determination of the default date] makes clear the relevance and importance, to the calculation of damages under Gafta 24 in the present case, of the actual goods at the place of discharge and therefore their realisable value upon resale. It follows that, in determining ‘the actual or estimated value of the goods, on the date of default’, the Board should have paid regard … to the market price at the place where the goods were on the date of default. The Board’s decision, which is based upon the cost of a new shipment on the default date from the original load port, does not do so. If the actual goods, which were released on 2 February 2018, had risen in value by that time (as the Board held at para 7.41), because of the effect of the imposition of import duties, then the damages calculation should have reflected that increased value.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <level eId="lvl_4">
+          <content>
+            <p class="ParaSubHeading2"><span style="text-decoration-line:none">Cockerill J</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_44">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">44.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">By a judgment dated 18 February 2022, Cockerill J held that </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">the</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> Buyers had not shown that the Appeal Board had erred in law and so she dismissed the appeal: [2023] 1 All ER (Comm) 321. She considered that, in the absence of any C&amp;FFO Mundra market evidence, the Appeal Board was faced with two imperfect proxies, and was entitled to conclude that the Sellers’ evidence offered the better match. Cockerill J granted permission to appeal on the stated question of law.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_5">
+          <content>
+            <p class="ParaSubHeading2"><span class="fontstyle01" style="text-decoration-line:none;font-family:'Times New Roman';font-size:13pt;font-style:italic">The Court of Appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_45">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">45.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The judgment of the Court of Appeal dated 11 January 2023 was given by Popplewell LJ, with whom Asplin and Phillips LJJ agreed: [2023] 2 All ER (Comm) 457. Popplewell LJ concluded that the damages payable under the default clause were to be assessed on the basis of a notional substitute contract for the goods on the same terms as the parties’ contract, save as to price, at the date of default. This, however, was not a C&amp;FFO Mundra contract because by the date of default the contracts had been varied so as to become contracts for the sale of the goods ex warehouse, subject to the same qualification in relation to risk, and on the instalment payment terms set out in the addenda. In support of this finding of variation the Court of Appeal found that delivery of the goods had been given against presentation to the Vessel’s agent of the original bills of lading which had thereby ceased to be documents of title and had become “accomplished”. They considered that this conclusion was supported by the terms of the Buyers’ LOI which contained a missing word, namely “discharge” so that it should read: “after cargo [discharge] has been made with Original Bs/L having been submitted to vessel agent.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">46.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the light of this variation of the contracts it was held that the Appeal Board had erred in treating the notional substitute contract as one on C&amp;FFO Mundra terms and that the case should be remitted to the Appeal Board to determine the damages on the correct basis. This was held to fall within the question of law as the Court amended it by adding “in the circumstances as found by the Appeal Board in the Awards,” after the opening words “Where goods sold C&amp;F free out are located at their discharge port on the date of the buyer’s default, …”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">47.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">By an order dated 24 May 2023, the Supreme Court granted the Sellers permission to appeal the Court of Appeal’s judgment. Permission to cross appeal was given by order dated 25 January 2024.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_6">
+          <content>
+            <p class="ParaHeading1"><span class="fontstyle01" style="text-transform:none;font-family:'Times New Roman';font-size:13pt;font-weight:bold">The Issues</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_48">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">48.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The appeal concerns whether the Court of Appeal was entitled to determine that the contracts had been varied and in particular whether the Court erred in (i) amending the question of law for which permission to appeal had been given; (ii) deciding a question of law which the Appeal Board was not asked to determine and on which it did not make a decision, and (iii) making findings of fact on matters on which the Appeal Board had made no finding.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">49.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The issue which arises on the cross appeal is whether damages should have been awarded on an “as is, where is” basis, being the estimated ex warehouse Mundra value of the goods. It has always been and remains the Buyers’ case that this is the correct approach under the Default Clause. Although this produces a similar result to the decision of the Court of Appeal, it is not dependent on the Court of Appeal’s conclusion that the contracts were varied, a conclusion which, if the appeal succeeds, was not open to the Court.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_7">
+          <content>
+            <p class="ParaHeading1"><span style="text-transform:none">The appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_50">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">50.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Appeals on points of law arising out of an arbitration award are governed by section 69 of the Act which provides as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“</span><span style="font-weight:bold;font-family:'Times New Roman'">69 </span><marker name="tab" /><span style="font-weight:bold;font-family:'Times New Roman'"> Appeal on point of law.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(1)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Unless otherwise agreed by the parties, a party to arbitral proceedings may (upon notice to the other parties and to the tribunal) appeal to the court on a question of law arising out of an award made in the proceedings.</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">An agreement to dispense with reasons for the tribunal’s award shall be considered an agreement to exclude the court’s jurisdiction under this section.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(2)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">An appeal shall not be brought under this section except—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">with the agreement of all the other parties to the proceedings, or </span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:1in"><span style="font-family:'Times New Roman'">with the leave of the court.</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">The right to appeal is also subject to the restrictions in section 70(2) and (3).</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(3)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Leave to appeal shall be given only if the court is satisfied—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(a)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">that the determination of the question will substantially affect the rights of one or more of the parties,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(b)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">that the question is one which the tribunal was asked to determine, </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">that, on the basis of the findings of fact in the award—</span></p>
+                      <block name="embeddedStructure">
+                        <embeddedStructure>
+                          <paragraph>
+                            <num style="font-family:'Times New Roman'">(i)</num>
+                            <content>
+                              <p class="Quote" style="margin-left:2in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the decision of the tribunal on the question is obviously wrong, or</span></p>
+                            </content>
+                          </paragraph>
+                          <paragraph>
+                            <num style="font-family:'Times New Roman'">(ii)</num>
+                            <content>
+                              <p class="Quote" style="margin-left:2in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the question is one of general public importance and the decision of the tribunal is at least open to serious doubt, and</span></p>
+                            </content>
+                          </paragraph>
+                        </embeddedStructure>
+                      </block>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">that, despite the agreement of the parties to resolve the matter by arbitration, it is just and proper in all the circumstances for the court to determine the question.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(4)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">An application for leave to appeal under this section shall identify the question of law to be determined and state the grounds on which it is alleged that leave to appeal should be granted.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(5)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The court shall determine an application for leave to appeal under this section without a hearing unless it appears to the court that a hearing is required.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(6)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The leave of the court is required for any appeal from a decision of the court under this section to grant or refuse leave to appeal.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(7)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">On an appeal under this section the court may by order—</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:1in"><span style="font-family:'Times New Roman'">confirm the award,</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in;text-indent:1in"><span style="font-family:'Times New Roman'">vary the award,</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(c)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">remit the award to the tribunal, in whole or in part, for reconsideration in the light of the court’s determination, or </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Times New Roman'">(d)</num>
+                    <content>
+                      <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">set aside the award in whole or in part.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">The court shall not exercise its power to set aside an award, in whole or in part, unless it is satisfied that it would be inappropriate to remit the matters in question to the tribunal for reconsideration.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(8)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The decision of the court on an appeal under this section shall be treated as a judgment of the court for the purposes of a further appeal.</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">But no such appeal lies without the leave of the court which shall not be given unless the court considers that the question is one of general importance or is one which for some other special reason should be considered by the Court of Appeal”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">51.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The principles relevant to the present appeal are:</p>
+          </intro>
+          <subparagraph>
+            <num>(1)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">A party may appeal on “a question of law arising out of an award”<span style="font-style:italic"> </span>(section 69(1)).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The question must be one “which the tribunal was asked to determine”<span style="font-style:italic"> </span>(section 69(3)(b)).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(3)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The application for permission to appeal must “identify the question of law to be determined” (section 69(4)).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(4)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">At the permission to appeal stage, the court must be satisfied (inter alia) that “on the basis of the findings of fact in the award”, the decision of the tribunal is “obviously wrong” or “the question is one of general public importance and the decision of the tribunal is at least open to serious doubt” (section 69(3)(c)).</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(5)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">When determining whether the tribunal made an error of law in relation to the question of law, the court must proceed on the basis of the findings of fact in the award.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">52.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It is apparent from these principles, and from section 69 as a whole, that a number of limitations are placed on the right to appeal on questions of law. As is made clear by the Report on the Arbitration Bill of the Departmental Advisory Committee (“the DAC Report”) which led to the enactment of the Act, the abolition of the right of appeal was considered but it was instead decided to retain a limited right subject to the “safeguards” set out in section 69. It is important and indeed necessary that these safeguards are respected and applied, consistently with the general principle set out in section 1(c) of the Act that “the court should not intervene except as provided” in Part 1 of the Act (which includes section 69).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">53.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Of relevance to this appeal is the DAC Report’s explanation of the following limitations in particular:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“286.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">In these circumstances what we propose is a right to apply to the court to decide a point of law arising out of an award. This right is limited, however, in several ways.</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">…</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(ii)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The point of law must be one that was raised before the tribunal. The responses showed that in some cases applications for leave to appeal have been made and granted on the basis that an examination of the reasons for the award shows an error on a point of law that was not raised or debated in the arbitration. This method of proceeding has echoes of the old and long discarded common law rules relating to error of law on the face of the award, and is in our view a retrograde step. In our view the right to appeal should be limited [as] we suggest.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(iii)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">There have been attempts, both before and after the enactment of the Arbitration Act 1979, to dress up questions of fact as questions of law and by that means to seek an appeal on the tribunal’s decision on the facts. Generally these attempts have been resisted by the courts, but to make the position clear, we propose to state expressly that consideration by the court of the suggested question of law is made on the basis of the findings of fact in the award.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <level eId="lvl_8">
+          <content>
+            <p class="ParaSubHeading1"><span style="font-weight:normal">Ground (1): Did the Court of Appeal err in amending the question of law for which permission to appeal had been given?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_54">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">54.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It is common for applicants for permission to appeal to identify the question of law in broad or general terms in order to support the contention that the question is one of general public importance. At the hearing of the appeal refinements are often made to the question of law in order better to reflect the substance of the question of law raised.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">55.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It was common ground between the parties, as appears to be generally accepted, that the proper approach to refinements to the question of law is that set out in my judgment at first instance in <span style="font-style:italic">Cottonex Anstalt v Patriot Spinning Mills Ltd </span>[2014] 1 Lloyd’s Rep 615 at para 20, where I stated that amendments were permissible provided that “the substance of the question of law remains the same”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">56.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In <span style="font-style:italic">Cottonex</span>, for example, the issue of law was one of contractual incorporation and it had been framed in terms of whether “a clause in a contract” which contained a stated clause made that incorporation. I allowed an amendment which related the question to the actual contract rather than to “a” clause in “a” contract. As I stated at para 19, “<span style="color:#242021">permission was obviously being given in relation to how that question is to be answered in relation to the contract under appeal”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">57.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the present case the question has similarly been framed in abstract terms: “Where goods sold C&amp;F free out are located at their discharge port on the date of the buyer’s default…”. The effect of the amendment made by the Court of Appeal is to tie that generally expressed question to the facts found in the Awards. The additional words “in the circumstances as found by the Appeal Board in the Awards” are referring to the Appeal Board’s factual findings as made clear by the reference to what was “found”. In my judgment that is permissible. Any question of law for which permission to appeal is sought under section 69 falls to be considered “on the basis of the findings of fact in the award” (section 69(3)(c)). The amendment was expressly stating what is implicit in any arbitration appeal. It did not change the substance of the question of law.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">58.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Mr Michael Collett KC for the Sellers argued that the only facts stated in the question of law are that the goods were (i) sold C&amp;F free out and (ii) located at their discharge port on the date of the buyer’s default and that the permission to appeal given was limited to those facts. I reject that submission. These are the key facts identified in the question of law but that question is necessarily being asked by reference to the findings of fact in the Awards. Indeed, Jacobs J referred to further facts in his reasons for giving permission, such as the rise in value as a result of the imposition of import tariffs.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">59.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I conclude that the Court of Appeal did not err in amending the question of law for which permission had been given. Indeed, in oral argument Mr Collett realistically acknowledged that his real complaint was the use to which the amended question was put rather than the amendment itself.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_9">
+          <content>
+            <p class="ParaSubHeading1"><span style="font-weight:normal">Ground (2): Did the Court of Appeal err in deciding a question of law which the Appeal Board were not asked to determine and on which it did not make a decision?</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_60">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">60.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Section 69(3)(b) provides that leave to appeal may only be given in relation to a question of law “which the tribunal was asked to determine”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">61.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As explained by Lewison J <span style="font-style:italic">in Safeway Stores v Legal and General Assurance Society Ltd</span> [2004] EWHC 415 (Ch), [2005] 1 P&amp;CR 9 at para 8:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“…the tribunal must have been asked to determine the question, but I do not think that the question needs to have been raised with the precision of a construction summons. All that is needed, in my judgment, is that the point was fairly and squarely before the arbitrator, whether or not it was actually articulated as a question of law.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">62.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I agree with that approach to section 69(3)(b), save that I would add that the point has to be fairly and squarely before the arbitration tribunal <span style="font-style:italic">for determination</span>.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">63.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Court of Appeal’s decision was that “the value of the goods under paragraph (c) of the Default Clause falls to be measured by reference to a notional sale of the goods in bulk ex warehouse Mundra on 2 February 2018, on instalment payment terms as per the addenda, but with risk passing to the buyer at the date of contract” (para 85).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">64.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">That decision was founded on their conclusion that the contracts had been varied: “the contracts had become contracts for the sale of the specific goods ex warehouse Mundra, subject to the same qualification in relation to risk, and on the instalment payment terms set out in the addenda” (para 72).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">65.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Sellers contend that the question of whether the contracts had been varied in this way was not before the Appeal Board, fairly, squarely or at all.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">66.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As Mr Chirag Karia KC for the Buyers accepted, it was never argued before the Board of Appeal that whether the contract had been varied was relevant to the issue of damages, still less how the contracts had been so varied. Indeed, it remains the Buyers’ position that their case on damages does not require or depend upon a finding of variation.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_67">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">67.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The only suggested relevance of the Buyers’ LOI was in relation to liability. The Buyers argued that it involved a waiver of the Sellers’ rights under the Non-Payment Clause of the contracts or more generally. This case was rejected by the Appeal Board.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">68.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The question of whether and, if so, how the contracts had been varied was neither argued before nor addressed by the Appeal Board. They were not asked to consider it, still less to determine it.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_69">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">69.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It follows that this is not a question of law for which permission to appeal could be given under section 69 of the Act. That being so, it is certainly not open to the Court of Appeal to introduce such a question on an appeal.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">70.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I therefore conclude that the Court of Appeal did err in deciding a question of law which the Appeal Board were not asked to determine.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_10">
+          <content>
+            <p class="ParaSubHeading1"><span style="font-weight:normal">Ground (3): Did the Court of Appeal err in making findings of fact on matters on which the Appeal Board had made no finding? </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_71">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">71.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The court’s jurisdiction under section 69 of the Act is limited to appeals on questions of law. It has no jurisdiction in relation to errors of fact and no power to make its own findings of fact.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">72.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">There may, however, be circumstances in which it is possible to infer that the tribunal has made a finding of fact even though it is not expressly set out in the award. That does not involve the court making a finding of fact. It is the recognition of a finding of fact which the tribunal has made.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">73.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The circumstances in which it may be appropriate to draw such an inference are limited. It is not enough that it is reasonable to draw such an inference. In <span style="font-style:italic;color:#000000">Geogas SA v Trammo</span><span style="font-style:italic"> </span><span style="font-style:italic;color:#000000">Gas Ltd (The Baleares) (No 2)</span><span style="color:#000000"> [1993] 1 Lloyd’s Rep 215, 228, </span>Steyn LJ said that<span style="color:#000000">:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… it is contrary to well established principle for the court to draw inferences from findings of fact in an award on the basis that it would be reasonable to do so. The only inferences which a court might arguably be able to draw from arbitrators’ findings of fact are those which are truly beyond rational argument”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_74">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">74.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">To say that the inference must be “<span style="color:#000000">truly beyond rational argument” may be to put the test too high. But in my judgment i</span>t is necessary to show that the inferred finding is one which inevitably follows from the findings which have been made.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">75.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">There may be cases, for example, in which in order to make express finding A the tribunal must have made finding B, or where finding B is the inevitable consequence of making finding A. So, by way of example, <span style="font-style:italic">Bem Dis A Turk Ticaret S/A TR v International Agri Trade Co Ltd (“The Selda”) </span>[1999] 1 Lloyd’s Rep 729 concerned a seller’s claim for damages for wasted expenditure incurred as a result of the buyer’s default under a sale of tapioca C&amp;FFO two safe Turkish ports. After the contract was concluded import of tapioca into Turkey was banned. The buyer argued that a claim for wasted expenditure could not be made if there was an available market for the goods in Turkey and that there was no express finding that there was no such market. Hirst LJ rejected this argument, stating at p 732 that:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“…it is abundantly manifest that such a finding is implicit in the arbitrators' award, having regard to their express finding …that importation of tapioca into Turkey was prohibited.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">76.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the present case the Sellers contend that there are two findings of fact which were impermissibly made by the Court of Appeal: (i) the finding that the cargo had been discharged from the Vessel against presentation of the original bills of lading to the Vessel’s agent and (ii) the finding that the word missing from the Buyers’ LOI was “discharge”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_77">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">77.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As the Buyers eventually accepted, the finding that discharge was made against presentation of the original bills of lading is a finding of fact. The Court of Appeal considered that this was an “obvious” inference from the Awards but they did not find that the Appeal Board had inferentially made such a finding. It was not relevant to any issue addressed by the Appeal Board and it by no means inevitably follows from the findings which were made. As Ms Talia Zybutz for the Sellers pointed out:</p>
+          </intro>
+          <subparagraph>
+            <num>(1)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">On 31 May 2017, the Sellers presented the original documents (which included the bills of lading) to the Buyers’ bank, but there is no finding that the documents were returned to the Sellers through the banking chain at all, let alone by about 19 June 2017, when the Vessel was discharged.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(2)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The Addenda dated 26 September 2017 provided: “Each bill of lading to be released after receipt of the corresponding first instalment”. This is consistent with the Sellers retaining the original bills of lading at that date.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(3)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">The without prejudice email of 29 November 2017 is inconsistent with discharge against bills of lading because it referred to the Sellers presenting original documents after payment was received. Discharge had occurred on or around 19 June 2017, long before this email and the Addenda.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>(4)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">There are alternative possible interpolations into the Buyers’ LOI, such as: (i): “after cargo [payment] has been made with Original Bs/L having been submitted vessel agent” or (ii) “after cargo has been made [available] with Original Bs/L having been submitted to vessel agent”.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_78">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">78.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Mr Ben Gardner for the Buyers submitted that the issue of whether the missing word in the Buyers’s LOI was “discharge” is a matter of construction and therefore a matter of law. It was this which was critical to the Court of Appeal’s conclusion that the contract was varied and so it did not matter if the finding of discharge being made against presentation of the bills of lading was a matter of fact. I reject that submission. It is clear that the Court of Appeal’s finding of discharge against bills of lading was central to its conclusion that there was a variation. It is addressed at length in the judgment. It is set out in terms in para 70 of the judgment and in the very next sentence the Court of Appeal held that “therefore” the contract had ceased to be a C&amp;F contract. In any event, I doubt that it is correct to characterise the task of determining what word was missing from the one-off terms of the Buyers’ LOI in the particular factual background circumstances of this case (as to which there are no specific findings because the issue was not raised before the Appeal Board) as a matter of construction, nor was it approached by the Court of Appeal in that way. The case relied upon by Mr Gardner, <span style="font-style:italic;color:#000000">Homburg Houtimport BV v Agrosin Private Ltd (“The Starsin”) </span><span style="color:#000000">[2004] 1 AC 715,</span> is clearly distinguishable as it concerned a word missing from a standard form contract. It is not, however, necessary to reach a conclusion on this issue since on any view the finding that discharge was made against the original bills of lading is a finding of fact which it was not open to the Court of Appeal to make and this was critical to the Court’s conclusion that the contracts had been varied.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_79">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">79.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I conclude that the Court of Appeal did err in making a finding of fact on a matter on which the Appeal Board had made no finding and this is a further reason why it was not open to them to conclude that the contracts had been varied.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_11">
+          <content>
+            <p class="ParaSubHeading1"><span style="font-weight:normal">Conclusion on the appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_80">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">80.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">I would dismiss the appeal on ground (1) but allow the appeal on grounds (2) and (3). It follows that that the appeal succeeds.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_12">
+          <content>
+            <p class="ParaHeading1"><span style="text-transform:none">The cross-appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_81">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">81.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">So far as material the Default Clause </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">provides</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> as follows: </span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“25.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">DEFAULT</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">In default of fulfilment of contract by either party, the following provisions shall apply:</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">[a] The party other than the defaulter shall, at their discretion have the right, after serving a notice on the defaulter to sell or purchase, as the case may be, against the defaulter, and such sale or purchase shall establish the default price.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">[b] If either party be dissatisfied with such default price or if the right at [a] is not exercised and damages cannot be mutually agreed, then the assessment of damages shall be settled by arbitration.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">[c] The damages payable shall be based on, but not limited to, the difference between the contract price of the goods and either the default price established under [a] above or upon the actual or estimated value of the goods, on the date of default, established under [b] above.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_82">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">82.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In <span style="font-style:italic">Bunge SA v Nidera BV </span>[2015] UKSC 43, [2015] Bus LR 987, para 28 Lord Sumption (with whose judgment Lord Neuberger P, Lord Mance and Lord Clarke agreed) provided the following summary of how sub-clauses (a) to (c) operate (in that case it was clause 20 of GAFTA Form 49 but it was in the same terms as the Default Clause):</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“(1)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">The clause applies, as its opening words declare, ‘in default of fulfilment of contract by either party’. As a matter of ordinary language, the ‘fulfilment’ of the contract means its performance, and ‘default of fulfilment’ means its non-performance. This is the sense in which ‘fulfilment’ is used throughout GAFTA 49… The use of the same term in the opening words of clause 20 indicates that that clause is concerned with non-performance. For this purpose, it does not matter whether the contract has not been performed because it was repudiated in advance of the time for performance, or because it was simply not performed when that time arrived. In either case, there is nothing other than contractual performance which can be said not to have been ‘fulfilled’.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(2)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Clause 20(a) gives the injured party the option, at its discretion, of selling or buying (as the case may be) against the defaulter, in which case the sale or purchase price will be the ‘default price’. Either party is at liberty to reject the default price, if there is one, as the basis for assessing damages. If either (i) there is no default price, because the injured party did not go into the market to buy or sell against the defaulter, or else (ii) there is a default price but one of the parties is dissatisfied with it, then damages must go to arbitration in accordance with sub-clause (c).</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Sub-clause (c) provides for two alternative bases of assessment by the arbitrators. The first, which applies if a default price has been established but not accepted, is the difference between the default price and the contract price. In other words, if the injured party has gone into the market and bought or sold against the defaulter, the arbitrators may accept that the default price should be used to calculate damages, notwithstanding the objections of one or other party or even both of them. The second basis of assessment is the difference between the contract price and the ‘actual or estimated value’ of the contract goods at the ‘date of default’. This means the date of the ‘default of fulfilment’ referred to in the opening words of clause 20, ie the date on which the contract should have been ‘fulfilled’ by performance in accordance with its terms. (The words ‘established under (b) above’ merely refer to the value ‘settled by arbitration’, that being the only basis on which (b) provides for a value to be fixed.)”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">83.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Two fundamental principles of the law of damages are the compensatory principle and the principle of mitigation of damage.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">84.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The compensatory principle aims to put the injured party in the same position as if the breach of duty had not occurred. In relation to contractual damages this means that the injured party is “so <span style="color:#242021">far as money can do it, to be placed in the same situation, with respect to damages, as if the contract had been performed”: </span><span style="font-style:italic;color:#242021">Robinson v Harman </span><span style="color:#242021">(1848) 1 Exch 850 at 855, (1848) 154 ER 363 at 365 (Parke B); </span><span style="font-style:italic;color:#242021">Bunge v Nidera </span><span style="color:#242021">at para 14.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_85">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">85.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The principle of mitigation requires the injured party to take all reasonable steps to avoid the consequences of a wrong. This means that (i) there is no recovery for loss which should reasonably have been avoided; (ii) there is recovery for loss incurred in taking reasonable mitigating steps, even if that increases the loss and (iii) if the loss is successfully reduced by the taking of reasonable mitigating steps then the party in breach is entitled to the benefit of that - there is no recovery for avoided loss – see, for example, the judgment of Robert Goff J in <span style="font-style:italic">Koch Marine Inc v d’Amica Societa di Navigazione arl (The Elena d’Amico) </span>[1980] 1 Lloyd’s Rep 75 at p 88. In <span style="font-style:italic">McGregor on Damages </span>21st<span style="vertical-align:super;font-size:smaller"> </span>ed (2021), paras 9.002-9.007 these are described as the “three rules” of mitigation. Andrew Dyson and Adam Kramer suggest that there is one underlying rule: “damages are assessed as if the claimant acted reasonably, if in fact it did not act reasonably” - <span style="color:#3D3D3D;background-color:#FFFFFF">see </span><span style="font-style:italic;color:#3D3D3D;background-color:#FFFFFF">A Dyson and A Kramer, “There is No ‘Breach Date Rule’”</span><span style="color:#3D3D3D;background-color:#FFFFFF"> (2014) 130 LQR 259, 263.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">86.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In many cases the compensatory principle and the principle of mitigation work together and it is reasonable steps taken in mitigation which fix the measure of compensatory damages. So, for example, in the sale of goods the mitigatory step of obtaining a reasonable substitute sale (where the injured party is the seller) or purchase (where the injured party is the buyer) will generally be the basis of the compensatory damages recoverable.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">87.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It is clear that both the compensatory principle and the principle of mitigation are reflected in the default clause. The starting point for damages is sub-clause (a) which addresses the situation where the injured party goes into the market and makes a substitute sale or purchase, as the case may be. As is well established, and as recognised in sections 50(3) and 51(3) of the Sale of Goods Act 1979, this is what the injured party would be expected to do in reasonable mitigation of its loss where there is an available market for the goods. If neither party is dissatisfied with the default price under the substitute transaction (see sub-clause (b)) then that will fix the default price and, under sub-clause (c), the damages payable will be the difference between the contract price and the default price. The damages will thereby be established by reasonable steps taken by the injured party in mitigation of its loss. As Lord Sumption stated in <span style="font-style:italic">Bunge v Nidera </span>at para 32: “sub-clauses <span style="color:#242021">(a) and (b) cover the territory occupied by the common law principles concerning the mitigation of losses arising from price movements.” </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_88">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">88.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">If either party is dissatisfied with the default price then the assessment of damages is settled by arbitration. The arbitration tribunal may decide that it is appropriate to take the default price of the substitute contract as the basis for the assessment of damages. Alternatively, it may decide that that is not appropriate, in which case the default price will be based on “the actual or estimated value of the goods, on the date of default”. On what basis is the arbitration tribunal to decide whether or not it is appropriate to take the substitute contract default price as the basis for assessment of damages? The answer is by application of the principle of mitigation and the compensatory principle – ie whether that default price derived from a substitute contract reasonably made so as to result in a reasonable measure of the injured party’s loss in accordance with the compensatory principle.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_89">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">89.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">By way of example, in the present case, although substitute sales of the lentils and peas were made, neither party suggested that they should be taken as the basis for establishing the default price under sub-clause (a). This is because they were sales to a related company and so were not arms-length transactions. If, however, the Sellers had sought to rely on those sales, and the Buyers had expressed dissatisfaction with the resulting default prices, then the fact that they were not arms-length transactions would be a good example of why an arbitration tribunal might refuse to accept those prices as establishing the default price under sub-clause (c). They would not reflect the market price and therefore would not be an appropriate means of establishing the default price in accordance with the principle of mitigation and the compensatory principle.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_90">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">90.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">If no substitute sale or purchase is made, or, as in this case, none which it is appropriate to rely upon as a substitute transaction, then under sub-clause (c) the damages are assessed on the basis of “the actual or estimated value of the goods, on the date of default”. As Lord Sumption stated in <span style="font-style:italic">Bunge v Nidera </span>at para 32: “<span style="color:#242021">Sub-clause (c) covers the same territory as sections 50(3) and 51(3) of the Sales of Goods Act.” As such, it reflects the principle of mitigation. Sections 50(3) and 51(3) assume that, where there is an available market, the reasonable injured party will go into that market and make a substitute sale or purchase, and normally that market price will then establish the default price. As has often been observed, this is based on a deemed mitigation – see, for example, </span><span style="font-style:italic;color:#242021">Hussey v Eels </span><span style="color:#242021">[1990] 2 QB 227 at p 233A-B per Mustill LJ.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_91">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:#000000;margin-left:0in;text-indent:0in">91.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Section 50 concerns damages for non-acceptance and section 51 concerns damages for non-delivery.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_92">
+          <num style="font-family:'Times New Roman';font-size:13pt;color:#000000;margin-left:0in;text-indent:0in">92.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Section 50(3) provides:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Where there is an available market for the goods in question the measure of damages is prima facie to be ascertained by the difference between the contract price and the market or current price at the time or times when the goods ought to have been accepted or (if no time was fixed for acceptance) at the time of the refusal to accept.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_93">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">93.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Section 51(3) provides:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“(3)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Where there is an available market for the goods in question the measure of damages is prima facie to be ascertained by the difference between the contract price and the market or current price of the goods at the time or times when they ought to have been delivered or (if no time was fixed) at the time of the refusal to deliver.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_94">
+          <num style="font-family:'Times New Roman';font-size:10pt;color:#242021;margin-left:0in;text-indent:0in">94.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Sections 50(3) and 51(3) were first enacted in the Sale of Goods Act 1893 (56 &amp; 57 Vict c 71) and reflected the existing common law. For example, in <span style="font-style:italic">Barrow v Arnaud </span>(1846) 8 QB 604, 609-610 Tindal CJ stated as follows: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Where a contract to deliver goods at a certain price is broken, the proper measure of damages in general is the difference between the contract price and the market price of such goods at the time when the contract is broken, because the purchaser, having the money in his hands, may go into the market and buy. So, if a contract to accept and pay for goods is broken, the same rule may be properly applied; for the seller may take his goods into the market and obtain the current price for them”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_95">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">95.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Provided there is an available market, the market price establishes the default price regardless of what the injured party actually does and even if a decision to delay in entering the market is a commercially reasonable business decision. A decision to delay is the injured party’s voluntary and independent commercial decision and its consequences are irrelevant to the damages payable, however well or badly it works out – see, for example, the discussion and the cases cited in <span style="font-style:italic">The Elena d’Amico </span>at p 89. As explained by Lord Brown of Eaton-under-Heywood in <span style="font-style:italic">Golden Strait Corpn v Nippon Yusen Kubishika Kaisha (The Golden Victory) </span>[2007] UKHL 12, [2007] 2 AC 353 at para 79:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman';color:#000000">“…</span><span style="font-family:'Times New Roman'">whenever there is an available market … the injured party should ordinarily go out into that market to make a substitute contract to mitigate (and generally thereby crystallise) his loss. Market prices move, both up and down. If the injured party delays … in re-entering the market, he does so at his own risk: future speculation is to his account – ‘the buyer’s decision is (in the vernacular) down to him’: per Bingham LJ in </span><span style="font-style:italic;font-family:'Times New Roman'">Kaines (UK) Ltd v Österreichische Warrenhandelsgesellschaft</span><span style="font-family:'Times New Roman'"> [1993] 2 Lloyd’s Rep 1, 11.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_96">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">96.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Establishing damages in this way is consistent with and reflects the compensatory principle. As stated in <span style="font-style:italic">Benjamin’s Sale of Goods </span>12th<span style="vertical-align:super;font-size:smaller"> </span>ed (2024)<span style="font-style:italic"> </span>at para 16-064, the “rationale” of sections 50(3) and 51(3) “is to provide a straightforward and readily applicable measure of damages which will enable the innocent party to be put into the same financial position as it would have been in had the contract been performed and which does not depend upon the action actually taken by the innocent party”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_97">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">97.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As sub-clause (c) “covers the same territory” as sections 50(3) and 51(3), and the common law, where there is an available market the normal or prima facie means of establishing the “actual or estimated value of the goods” under sub-clause (c) is by reference to the price of a substitute sale or purchase in that market. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_98">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">98.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> If there is an available market for a substitute transaction on the same terms as the contract then that will be the appropriate market price to take. In some cases there will be no substitute transaction on identical terms available. If the difference in terms is of no economic significance then that will not matter; if it is of some economic significance then that can often be addressed by making an appropriate adjustment so as to ensure that the contract price and the default price are comparing like with like. A degree of flexibility is built into sub-clause (c) by its reference to establishing the default price upon the “actual <span style="text-decoration-line:underline;text-decoration-style:solid">or estimated</span> value of the goods” (emphasis added) – see Lord Sumption’s judgment in <span style="font-style:italic">Bunge v Nidera </span>at para 28(4).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_99">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">99.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the present case there was no evidence before the Appeal Board of an available market for a substitute transaction on C&amp;FFO Mundra terms and the issue which then arises is by reference to what market is the estimated value of the goods to be established. The Sellers contend that it should be the FOB Vancouver market with appropriate adjustments being made to arrive at a C&amp;FFO Mundra price, as the Appeal Board accepted. The Buyers contend that it should be the ex warehouse Mundra market.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_100">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">100.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Given the importance of the principle of mitigation to clauses 25(a) to (c) in general, and to sub-clause (c) in particular, the proper approach is to be guided by that principle and to consider the market in which it would be reasonable for the Sellers to sell the goods. In the present case, on the default date the Sellers were left with goods which had been landed, customs cleared and stored and were situated in a warehouse in Mundra. Moreover, the goods so situated had significantly increased in value because of the imposition of customs tariffs. In such circumstances the obvious market in which to sell the goods, and in which it would clearly be reasonable to do so, is the ex warehouse Mundra market. Indeed, this was the market into which the Sellers did sell the goods, albeit to a related company. Conversely, it is difficult to see how it could be reasonable to sell those goods in the international market involving, as it would, the costs of re-exporting the goods and losing the increase in value resulting from the goods being customs cleared before the significant increase in tariffs.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_101">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">101.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">A number of further considerations support this approach.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_102">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">102.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">First, it is consistent with the common law approach to damages for non-acceptance in CIF contracts. <span style="font-style:italic">Benjamin</span>, under the heading “Damages for non-acceptance: the market rule”, states as follows at para 19-384:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In the case of a CIF contract, the acceptance referred to in section 50(1) is probably, by analogy to the similar rules in cases of non-delivery, the acceptance of the shipping documents, and not of the goods themselves. Accordingly, the time at which the market price is relevant for the purpose of assessing damages is the time (if any) fixed for acceptance of the documents or if no such time is fixed the time of the buyer’s refusal to accept and pay against documents. If at that time there is a market for goods afloat at the place where the documents should have been accepted, that would prima facie be the market by reference to which damages are to be assessed. But this is by no means an invariable rule and it is submitted that any other market in which it would be reasonable for the seller to dispose of the goods would be relevant if there was no market where the documents should have been accepted. If there is no market for goods afloat, the market at the destination will be the relevant one, since that will be that market in which the seller will normally dispose of the goods; and if at the time of the buyer’s breach the goods are still afloat the time at which that market is relevant will be the time of the arrival of the goods or such reasonable time thereafter as is needed by the seller for disposing of the goods.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_103">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">103.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This passage has appeared in the same terms in numerous editions of <span style="font-style:italic">Benjamin </span>and relates back to the time when this section was written and then edited by Professor Treitel. It recognises that, in the event of a buyer’s default where the goods are still afloat, then that is the market in which the goods should be sold. If, however, there is no such market then the relevant market is likely to be that at the destination. It also recognises that the governing principle is which market it is “reasonable for the seller to dispose of the goods”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_104">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">104.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In support of looking to the market at the destination <span style="font-style:italic">Benjamin </span>cites <span style="font-style:italic">Muller, Maclean &amp; Co v Leslie &amp; Anderson </span>(1921) 8 Ll L Rep 328. In that case the buyer had wrongfully failed to accept a consignment of padlocks purchased FOB New York and shipped to India. Although there had been no fall in the price of the goods in London (where documents were tendered), the market price in India (where the goods had been discharged) had fallen. Roche J awarded the sellers substantial damages on the basis that the market price in India had fallen at least to the extent claimed by the sellers.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_105">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">105.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Roche J reached a similar conclusion (obiter) in <span style="font-style:italic">F E</span><span> </span><span style="font-style:italic">Napier v Dexters Ltd </span>(1926) 26 Ll L Rep 62. That case concerned the wrongful rejection of the goods by the buyer under a FOB London contract for the sale of sweet fat. Roche J held that the buyer was liable for the price but went on to consider the damages position and whether damages should be assessed by reference to the price of the goods in London (from where they were shipped) or Hamburg (where they had been discharged) on the date of default. He stated as follows at p 64: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The first point is whether, if the price were not recoverable, which of two measures of damages is the proper measure of damages … If I had to decide it I think I should have decided without doubt that the proper measure of damages is the Hamburg measure of damages, the larger sum, and for this reason, that it seems to me that the goods when taken on board this ship nominated by the buyers were irrevocably committed - if I may use that expression- to the voyage to Hamburg, and that the proper measure is the difference in price they would realise there.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_106">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">106.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-style:italic">Benjamin </span>also cites <span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt">Aryeh v Lawrence Kostoris &amp; Son Ltd</span><span class="fontstyle21" style="font-style:italic;font-weight:normal;font-family:'Times New Roman';font-size:13pt"> </span><span class="fontstyle21" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt">[1967] 1 Lloyd's Rep 63 at p71 in which Diplock LJ stated as </span><span class="fontstyle21" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial">follows</span><span class="fontstyle21" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt">:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span class="fontstyle21" style="font-weight:normal;font-family:'Times New Roman';font-size:13pt">“. . .where, to the knowledge of both buyer and seller, goods are bought CIF or FOB for shipment to a particular market (in this case Iran), the relevant values to be taken into consideration are the values of the goods upon that market on arrival there . . .”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaNoNumber">This passage was cited with apparent approval by the Court of Appeal in <span style="font-style:italic">The Selda </span>at p 732. As <span style="font-style:italic">Benjamin </span>observes at footnote 1721, the position might be different if at the time of the buyer’s breach the goods had not yet been shipped.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_107">
+          <num style="font-family:'Times New Roman';font-size:12pt;margin-left:0in;text-indent:0in">107.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Secondly, it is consistent with the fact that where it is the buyer which is in default the goods are left in the seller’s hands and the question is what reasonable steps should be taken to sell those goods. This necessarily means taking into account where those goods are situated at that time and how they are circumstanced. Where goods have been appropriated to the contract, the “actual or estimated value of <span style="text-decoration-line:underline;text-decoration-style:solid">the goods”</span> means the contract goods. As Lloyd J held in a case concerning the GAFTA default clause: <span style="font-style:italic">R</span><span> </span><span style="font-style:italic;color:#000000">Pagnan &amp; Fratelli v Lebanese Organisation for International Commerce (The Caloric) </span><span style="color:#000000">[1981] 2 Lloyd’s Rep 675 at p 677:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“… ‘the goods’ in the third sentence of the default [clause] means, in this case, the goods which had been appropriated to the contract”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaNoNumber">In that case it was goods on board the vessel and the Appeal Board had to estimate the value of those goods “where they lay”. In this case it is customs cleared goods lying in a warehouse in Mundra.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_108">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">108.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This is consistent with the approach at common law. As stated in <span style="font-style:italic">Barrow v Arnaud</span>, the market measure of damages recognises that in a case of non-acceptance “the seller may take his goods into the market and obtain the current price for them”. In such a case, the damages are determined by reference to the realisable value of the goods left in the seller’s hands in consequence of the non-acceptance.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_109">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">109.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">By contrast, the approach of the Appeal Board involves ignoring the fact that the Sellers were left with the contract goods. Their approach to damages does not involve a substitute sale of goods, still less the contract goods. It involves the notional purchase of a further consignment of goods in a different market in a different continent (FOB Vancouver) resulting in the arrival of the goods at Mundra weeks after the date of default. Such an approach reflects neither the principle of mitigation nor the commercial realities of a seller left with contract goods following a buyer’s default. Further, the Sellers were unable to provide any authority to support this approach to damages in a case involving goods being left in the seller’s hands. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_110">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">110.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Thirdly, it means that sub-clauses (a) and (c) are interpreted and applied in a consistent manner. There can be little doubt that had the substitute sales made by the Sellers been made on an arms-length basis then such sales would likely have been taken to establish the default price under sub-clause (a), or, if disputed, sub-clause (c). These sales were of the goods as they lay, customs cleared and warehoused in Mundra, to a domestic buyer. Although nominally sold on C&amp;FFO terms, it was the Sellers’ own case that they were not priced on that basis since the sale price took into account the fact that they had been customs cleared and also storage costs. They were in effect ex warehouse Mundra sales. It would clearly have been reasonable for the Sellers to enter into an arms-length mitigation sale on that basis. If they had done so then the default price would be likely to have been established thereby. If an actual ex warehouse Mundra sale would have been reasonable mitigation under sub-clause (a) so as to establish the default price, it would be surprising if a deemed mitigation sale under sub-clause (c) on the same terms could not do so. One would expect deemed mitigation under sub-clause (c) to reflect what would have been reasonable actual mitigation under sub-clause (a) and for both to relate to the same market.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_111">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">111.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The importance of treating mitigation sales under sub-clauses (a) and (c) consistently and to have regard to what can be done in actual mitigation when considering what should be done in deemed mitigation is borne out by the treatment of damages in the House of Lords decision in <span style="font-style:italic">Bremer Handelsgesellschaft GmbH v Vanden Avenne Izegem PV BA </span>[1978] 2 Lloyd’s Rep 109. One of the issues in that case was the date of default under the then version of the GAFTA default clause. The sellers were in default and the choice was between the date on which the default was made or the date on which it could first be said that the seller was in default. The House of Lords decided it was the latter because the provision allowing the buyer to buy in the market could not be exercised until that date. As Lord Wilberforce stated at p 117:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“To hold that if the buyer does not buy in he can recover damages based on the price of…a day before he could have bought…would create injustices… </span><span style="font-family:'Times New Roman';color:#000000">To hold that the damages are to be fixed at the price at which he could first have bought makes the clause consistent and workable</span><span style="font-family:'Times New Roman'">”. </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_112">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">112.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Fourthly, it is consistent <span style="color:#000000">with </span>the compensatory principle. The imposition of the tariffs had significantly increased the value of the goods in the domestic market in India. The Sellers were in a position to take advantage of that uplift in value when they were left with the goods in Mundra and it is reasonable to assume that their associated company did so. That is a benefit which should be brought into account on the assessment of damages in accordance with the compensatory principle. It is also consistent with the principle of mitigation. If an arms-length mitigation sale into the domestic market had been made and established the default price then the uplift in value would have reduced the damages. A deemed mitigation sale should do likewise.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_113">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">113.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Conversely, the Appeal Board’s approach to damages is contrary to the compensatory principle as it leaves out of account the fact that the Sellers were left with goods on their hands which had benefited from a significant uplift in value. The Sellers argued that this uplift was irrelevant as it was not accrued by virtue of the terms of the contract. What matters, however, is the fact of the uplift, not its cause. There are any number of reasons why the market price may rise or fall and there is no principled reason for distinguishing between different reasons for it doing so. The resulting benefit may flow in either direction but it should be taken into account. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_114">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">114.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Fifthly, it is consistent with the findings made by the Appeal Board relating to other aspects of damages. For example, the Appeal Board found that the date of default was not, as would usually be the case, governed by the Seller’s declaration of default but rather was 2 February 2018 as “the goods were not available to Sellers to resell until 2 February 2018”. Until “they were able to obtain possession of the goods” “it was clearly impossible for Sellers to resell the goods, and thus establish damages in accordance with the Default Clause”. The Appeal Board thereby recognised that the damages recoverable were necessarily linked to the ability of the Sellers to resell the contract goods. But this logic applies to place as well as time. The goods became available to Sellers to resell on 2 February 2018 at which time they were stored, customs cleared, in a warehouse in Mundra.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_115">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">115.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Appeal Board also recognised that there were benefits for the Sellers in having the goods returned to them as and when they were and that these should be taken into account. The Buyers claimed reimbursement of the costs of discharging the goods. Although the Buyers were responsible for these expenses under the terms of the contracts that claim was upheld because “the goods were returned to Sellers and resold by them”. In other words, the return of the goods to the Sellers meant that they benefited from the fact that the goods had been discharged free of expense to them and the Appeal Board considered that that should be taken into account in relation to damages. The same should apply to other benefits for the Sellers resulting from the return of the goods to them.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_116">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">116.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> The principal contrary argument advanced by the Sellers was that under sub-clause (c) the damages are to be assessed on the basis of a true substitute contract – ie a substitute contract on the exact same terms save as to price. This means a C&amp;FFO Mundra contract or its closest proxy. This is what the Appeal Board did and their decision involved no error of law.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_117">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">117.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Reliance was placed on various passages in <span style="font-style:italic">Bunge v Nidera</span> such as Lord Sumption’s statement in para 14 that in a contract of sale where there is an available market, the common law compensatory principle “is ordinarily achieved by comparing the contract price with the price that would have been agreed under a notional substitute contract assumed to have been entered into in its place at the market rate but otherwise on the same terms”.<span style="font-style:italic;font-size:12pt"> </span>Similarly, Lord Toulson stated at para 82 that the “measurement of damages by reference to an available market … presupposes that the substitute contract is a true substitute”.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_118">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">118.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As explained at para 98 above, where there is an available market for a true substitute contract then that is no doubt the correct approach. However, these passages should not be interpreted as if they are a statutory text. They are not laying down the approach which must be adopted in all cases regardless of the circumstances. There will be many cases where the available market is not for an exact substitute but it will nevertheless be reasonable to rely on that market to establish the default price. A more flexible approach is permissible both at common law and under the GAFTA default clause such as through making reasonable adjustments so as to arrive at a like for like value.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_119">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">119.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As also explained above, once goods sold on CIF or C&amp;F terms have been shipped the only market potentially available for a “true” substitute sale is by selling the goods afloat and often there will be no such market. In such cases it will be necessary to look to some other market, usually that at the destination, as the case law illustrates. The guiding principle is that of mitigation and to look to the market in which it would be reasonable for the seller to sell the contract goods.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_120">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">120.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the present case there was no available C&amp;FFO Mundra market, still less one for these goods which had been landed and customs cleared. Following the guiding principle of mitigation, as explained above, the market in which it would have been reasonable to sell the goods was the ex warehouse Mundra market, the market into which the Sellers did in fact sell the goods.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_121">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">121.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">For all these reasons I consider that the Appeal Board erred in law in its assessment of damages. The answer to the question of law is that <span style="color:#000000">the value of the goods under paragraph (c) of the Default Clause falls to be measured by reference to a</span><span> </span><span style="color:#000000">notional sale of the goods in bulk ex warehouse Mundra on 2 February 2018.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_122">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">122.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This answer assumes that there was an available market for sale of the goods in bulk ex warehouse Mundra on or about the default date. There are suggestions in the Awards that the evidence did not show that there was a market for a sale of the goods in bulk but only of parcels over time which would mean by reference to market prices which would no longer reflect that prevailing on the default date. It may nevertheless be possible to extrapolate a bulk price from the market evidence of prices on the default date. Even if it is not and it is concluded that there was no available market, the estimated value of the goods should be assessed on the basis of the goods as and where they were on the date of default – ie customs cleared in a warehouse in Mundra. Those were the goods which were left in the Sellers’ hands and it is their realisable value that should be used to establish the default price. That reflects the reality of the position in which the Sellers found themselves as a result of the Buyers’ non-acceptance.</p>
+          </content>
+        </paragraph>
+        <level eId="lvl_13">
+          <content>
+            <p class="ParaSubHeading1"><span style="font-weight:normal">Conclusion on the cross-appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_123">
+          <num style="font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">123.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> For all these reasons I would allow the cross-appeal and remit the Awards to the Appeal Board for reconsideration in the light of the answer given above to the question of law and the guidance provided in this judgment.</p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
