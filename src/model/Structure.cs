@@ -29,10 +29,6 @@ interface INumber : IFormattedText {
         return styles;
     }
 
-    Dictionary<string, string> IFormattedText.GetCSSStyles() {
-        return INumber.GetCSSStyles(this);
-    }
-
 }
 
 interface IDivision {

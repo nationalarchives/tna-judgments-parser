@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using DocumentFormat.OpenXml;
@@ -170,6 +171,11 @@ abstract internal class WNumText : IFormattedText {
 
     public string Text { get; private init; }
 
+    virtual public Dictionary<string, string> GetCSSStyles(string paragraphStyle)
+    {
+        return JudgmentsNS.CSS.GetCSSStyles(this);
+    }
+
 }
 
 internal class WNumber : WNumText, INumber {
@@ -194,6 +200,11 @@ internal class WNumber : WNumText, INumber {
             float? inches = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, pProps);
             return JudgmentsNS.CSS.ConvertSize(inches, "in");
         }
+    }
+
+    override public Dictionary<string, string> GetCSSStyles(string paragraphStyle)
+    {
+        return INumber.GetCSSStyles(this);
     }
 
 }
@@ -238,6 +249,11 @@ internal class WNumber2 : ParseNS.WText, INumber {
             //     return null;
             // return inches.Value.ToString("F2") + "in";
         }
+    }
+
+    override public Dictionary<string, string> GetCSSStyles(string paragraphStyle)
+    {
+        return INumber.GetCSSStyles(this);
     }
 
 }
