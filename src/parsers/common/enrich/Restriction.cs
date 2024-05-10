@@ -58,7 +58,7 @@ partial class RestrictionsEnricher : Enricher {
         IInline first = line.Contents.First();
         if (first is not IFormattedText text)
             return false;
-        color = text.GetCSSStyles().GetValueOrDefault("color");
+        color = text.GetCSSStyles(null).GetValueOrDefault("color");
         if (IsRed(color))
             return true;
         string content = line.NormalizedContent;

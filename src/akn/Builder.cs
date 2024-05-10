@@ -330,6 +330,8 @@ abstract class Builder {
         }
     }
 
+    private string ContainingParagraphStyle;
+
     private XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
@@ -338,8 +340,10 @@ abstract class Builder {
         Dictionary<string, string> styles = line.GetCSSStyles();
         if (styles.Count > 0)
             block.SetAttribute("style", CSS.SerializeInline(styles));
+        ContainingParagraphStyle = line.Style;
         foreach (IInline inline in line.Contents)
             AddInline(block, inline);
+        ContainingParagraphStyle = null;
         return block;
     }
     private void AddNamedBlock(XmlElement parent, ILine line, string name) {
@@ -350,8 +354,10 @@ abstract class Builder {
         Dictionary<string, string> styles = line.GetCSSStyles();
         if (styles.Count > 0)
             block.SetAttribute("style", CSS.SerializeInline(styles));
+        ContainingParagraphStyle = line.Style;
         foreach (IInline inline in line.Contents)
             AddInline(block, inline);
+        ContainingParagraphStyle = null;
     }
     protected void p(XmlElement parent, ILine line) {
         if (line is IRestriction restriction)
@@ -465,7 +471,7 @@ abstract class Builder {
     private void TextAndFormatting(XmlElement e, IFormattedText model) {
         if (model.Style is not null)
             e.SetAttribute("class", model.Style);
-        Dictionary<string, string> styles = model.GetCSSStyles();
+        Dictionary<string, string> styles = model.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0)
             e.SetAttribute("style", CSS.SerializeInline(styles));
         if (model.IsHidden) {
@@ -510,7 +516,7 @@ abstract class Builder {
         date.SetAttribute("date", model.Date);
         if (model.Contents.Count() == 1) {
             IFormattedText fText = model.Contents.First();
-            Dictionary<string, string> styles = fText.GetCSSStyles();
+            Dictionary<string, string> styles = fText.GetCSSStyles(ContainingParagraphStyle);
             if (styles.Count > 0)
                 date.SetAttribute("style", CSS.SerializeInline(styles));
             XmlText text = doc.CreateTextNode(fText.Text);
@@ -527,7 +533,7 @@ abstract class Builder {
         e.SetAttribute("time", attr);
         if (model.Contents.Count() == 1) {
             IFormattedText fText = model.Contents.First();
-            Dictionary<string, string> styles = fText.GetCSSStyles();
+            Dictionary<string, string> styles = fText.GetCSSStyles(ContainingParagraphStyle);
             if (styles.Count > 0)
                 e.SetAttribute("style", CSS.SerializeInline(styles));
             XmlText text = doc.CreateTextNode(fText.Text);
@@ -544,7 +550,7 @@ abstract class Builder {
         docDate.SetAttribute("refersTo", "#" + Metadata.MakeDateId(model));
         if (model.Contents.Count() == 1) {
             IFormattedText fText = model.Contents.First();
-            Dictionary<string, string> styles = fText.GetCSSStyles();
+            Dictionary<string, string> styles = fText.GetCSSStyles(ContainingParagraphStyle);
             if (styles.Count > 0)
                 docDate.SetAttribute("style", CSS.SerializeInline(styles));
             XmlText text = doc.CreateTextNode(fText.Text);
@@ -572,7 +578,7 @@ abstract class Builder {
         party.SetAttribute("refersTo", "#" + model.Id);
         if (model.Role.HasValue)
             party.SetAttribute("as", "#" + ((PartyRole) model.Role).EId());
-        Dictionary<string, string> styles = model.GetCSSStyles();
+        Dictionary<string, string> styles = model.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0)
             party.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(((IParty) model).Text);
@@ -606,7 +612,7 @@ abstract class Builder {
     private void AddDocTitle(XmlElement parent, IDocTitle model) {
         XmlElement docTitle = doc.CreateElement("docTitle", ns);
         parent.AppendChild(docTitle);
-        Dictionary<string, string> styles = model.GetCSSStyles();
+        Dictionary<string, string> styles = model.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0)
             docTitle.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
@@ -627,7 +633,7 @@ abstract class Builder {
         XmlElement judge = doc.CreateElement("judge", ns);
         parent.AppendChild(judge);
         judge.SetAttribute("refersTo", "#" + model.Id);
-        Dictionary<string, string> styles = model.GetCSSStyles();
+        Dictionary<string, string> styles = model.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0)
             judge.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
@@ -637,7 +643,7 @@ abstract class Builder {
         XmlElement lawyer = doc.CreateElement("lawyer", ns);
         parent.AppendChild(lawyer);
         lawyer.SetAttribute("refersTo", "#" + model.Id);
-        Dictionary<string, string> styles = model.GetCSSStyles();
+        Dictionary<string, string> styles = model.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0)
             lawyer.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
@@ -658,7 +664,7 @@ abstract class Builder {
         XmlElement loc = doc.CreateElement("location", ns);
         parent.AppendChild(loc);
         loc.SetAttribute("refersTo", "#" + model.Id);
-        Dictionary<string, string> styles = model.GetCSSStyles();
+        Dictionary<string, string> styles = model.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0)
             loc.SetAttribute("style", CSS.SerializeInline(styles));
         XmlText text = doc.CreateTextNode(model.Text);
@@ -683,7 +689,7 @@ abstract class Builder {
             AddAndWrapText(parent, "span", fText);
             return;
         }
-        Dictionary<string, string> styles = fText.GetCSSStyles();
+        Dictionary<string, string> styles = fText.GetCSSStyles(ContainingParagraphStyle);
         if (styles.Count > 0) {
             AddAndWrapText(parent, "span", fText);
             return;
