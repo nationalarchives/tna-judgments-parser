@@ -64,3 +64,5 @@ If the `--log` option is used, the parser will log its progress to the specified
     dotnet run --input test/judgments/test1.docx --output something.xml --log log.txt
 
 And if the `--test` option is used, the parser will perform a few tests and display the results either in the console or, if logging is enabled, to the log file.
+
+
