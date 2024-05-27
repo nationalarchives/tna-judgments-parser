@@ -11,8 +11,8 @@ namespace UK.Gov.Legislation.Judgments.Parse {
 
 class WLine : ILine {
 
-    private readonly MainDocumentPart main;
-    private readonly ParagraphProperties properties;
+    internal readonly MainDocumentPart main;
+    internal readonly ParagraphProperties properties;
     private IEnumerable<IInline> contents;
 
     internal IEnumerable<WBookmark> Bookmarks { get; private set; }

@@ -113,11 +113,50 @@ public class CSS {
         return selectors;
     }
 
+    internal static Dictionary<string, string> ExtractDefaultCharacterFormatting(MainDocumentPart main) {
+        Dictionary<string, string> formatting = [];
+
+        Wordprocessing.Styles styles = main.StyleDefinitionsPart.Styles;
+        var x = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle;
+        AddFontFamily(x?.RunFonts, formatting);
+        AddFontSize(x?.FontSize?.Val, formatting);
+        RunFonts themeRunFonts = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts;
+        if (themeRunFonts.AsciiTheme is not null) {
+            ThemeFontValues themeFont = themeRunFonts.AsciiTheme;
+            string fontName = Themes.GetFontName(main, themeFont);
+            AddFontFamily(fontName, formatting);
+        }
+
+        Style style = Styles.GetDefaultParagraphStyle(main);
+        AddFontStyle(style, formatting);
+        AddFontWeight(style, formatting);
+        AddTextDecoration(style, formatting);
+        AddTextTransform(style, formatting);
+        AddFontVariant(style, formatting);
+        AddVerticalAlign(style, formatting);
+        AddFontFamily(style, formatting);
+        AddFontSize(style, formatting);
+        AddColor(style, formatting);
+        AddBackgroundColor(style, formatting);
+        style = Styles.GetDefaultCharacterStyle(main);
+        AddFontStyle(style, formatting);
+        AddFontWeight(style, formatting);
+        AddTextDecoration(style, formatting);
+        AddTextTransform(style, formatting);
+        AddFontVariant(style, formatting);
+        AddVerticalAlign(style, formatting);
+        AddFontFamily(style, formatting);
+        AddFontSize(style, formatting);
+        AddColor(style, formatting);
+        AddBackgroundColor(style, formatting);
+        return formatting;
+    }
+
     internal static Dictionary<string, string> ExtractCharacterFormatting(MainDocumentPart main, string styleId) {
         Style style = main.StyleDefinitionsPart.Styles.ChildElements
             .OfType<Style>()
             .Where(s => s.StyleId.Equals(styleId)).FirstOrDefault();
-        Dictionary<string, string> properties = new Dictionary<string, string>();
+        Dictionary<string, string> properties = [];
         if (style is null)
             return properties;
         AddFontStyle(style, properties);
