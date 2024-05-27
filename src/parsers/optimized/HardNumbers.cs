@@ -83,7 +83,8 @@ class HardNumbers {
             return null;
         if (trimmed != first.Text)
             first = new WText(trimmed, first.properties);
-        return new WOldNumberedParagraph(first, line.Contents.Skip(2), line);
+        Legislation.Judgments.DOCX.WNumber2 num2 = new(first.Text, first.properties, line.main, line.properties);
+        return new WOldNumberedParagraph(num2, line.Contents.Skip(2), line);
     }
 
     private WOldNumberedParagraph ExtractNumberWithFormat(WLine line, string format) {
@@ -121,7 +122,8 @@ class HardNumbers {
                 rest = rest.Skip(1).Prepend(replacement);
             }
         }
-        return new WOldNumberedParagraph(num, rest, line);
+        Legislation.Judgments.DOCX.WNumber2 num2 = new(num.Text, num.properties, line.main, line.properties);
+        return new WOldNumberedParagraph(num2, rest, line);
     }
 
     private int GetIndent(WLine line) {
