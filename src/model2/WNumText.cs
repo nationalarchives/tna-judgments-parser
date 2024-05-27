@@ -205,9 +205,11 @@ internal class WNumber : WNumText, INumber {
     // public string ParagraphStyle => pProps?.ParagraphStyleId?.Val?.Value;
 
     internal static void AddIndentFormatting(INumber that, Dictionary<string, string> styles) {
-        if (that.LeftIndent is not null) //  && that.LeftIndent != "0in"
+        if (that.LeftIndent is not null && that.FirstLineIndent is not null && "-" + that.LeftIndent == that.FirstLineIndent)
+            return;
+        if (that.LeftIndent is not null && that.LeftIndent != "0in")
             styles.Add("margin-left", that.LeftIndent);
-        if (that.FirstLineIndent is not null) //  && that.FirstLineIndent != "0in"
+        if (that.FirstLineIndent is not null && that.FirstLineIndent != "0in")
             styles.Add("text-indent", that.FirstLineIndent);
     }
 
@@ -222,11 +224,21 @@ internal class WNumber : WNumText, INumber {
                 formatting.Remove(entry.Key);
             if (defaultValue is null && entry.Key == "font-weight" && entry.Value == "normal")
                 formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "font-variant" && entry.Value == "normal")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "text-decoration-line" && entry.Value == "none") {
+                formatting.Remove(entry.Key);
+                formatting.Remove("text-decoration-style");
+            }
+            if (defaultValue is null && entry.Key == "text-transform" && entry.Value == "none")
+                formatting.Remove(entry.Key);
             if (defaultValue is null && entry.Key == "color" && entry.Value == "initial")
                 formatting.Remove(entry.Key);
             if (defaultValue is null && entry.Key == "color" && entry.Value == "#000000")
                 formatting.Remove(entry.Key);
             if (defaultValue is null && entry.Key == "background-color" && entry.Value == "initial")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "vertical-align" && entry.Value == "baseline")
                 formatting.Remove(entry.Key);
         }
     }
@@ -236,8 +248,7 @@ internal class WNumber : WNumText, INumber {
         paragraphStyle ??= pProps?.ParagraphStyleId?.Val?.Value;
         Dictionary<string, string> styles = base.GetCSSStyles(paragraphStyle);
         AddIndentFormatting(this, styles);
-        // AddCharacterFormattingFromParagraphStyle(main, paragraphStyle, styles);
-        // RemoveDefaultCharacterFormatting(main, styles);
+        RemoveDefaultCharacterFormatting(main, styles);
         return styles;
     }
 
@@ -291,7 +302,6 @@ internal class WNumber2 : ParseNS.WText, INumber {
         if (pStyle is null)
             return;
         Dictionary<string, string> charFormatting = CSS.ExtractCharacterFormatting(main, pStyle);
-        WNumber.RemoveDefaultCharacterFormatting(main, charFormatting);
         if (charFormatting.Count == 0)
             return;
         foreach(KeyValuePair<string, string> entry in charFormatting) {
@@ -309,7 +319,7 @@ internal class WNumber2 : ParseNS.WText, INumber {
         Dictionary<string, string> styles = base.GetCSSStyles(paragraphStyle);
         WNumber.AddIndentFormatting(this, styles);
         AddCharacterFormattingFromParagraphStyle(main, paragraphStyle, styles);
-        // WNumber.RemoveDefaultCharacterFormatting(main, styles);
+        WNumber.RemoveDefaultCharacterFormatting(main, styles);
         return styles;
     }
 
