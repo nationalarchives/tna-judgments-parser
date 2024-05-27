@@ -205,9 +205,54 @@ internal class WNumber : WNumText, INumber {
         }
     }
 
+    // public string ParagraphStyle => pProps?.ParagraphStyleId?.Val?.Value;
+
+    internal static void AddIndentFormatting(INumber that, Dictionary<string, string> styles) {
+        if (that.LeftIndent is not null && that.FirstLineIndent is not null && "-" + that.LeftIndent == that.FirstLineIndent)
+            return;
+        if (that.LeftIndent is not null && that.LeftIndent != "0in")
+            styles.Add("margin-left", that.LeftIndent);
+        if (that.FirstLineIndent is not null && that.FirstLineIndent != "0in")
+            styles.Add("text-indent", that.FirstLineIndent);
+    }
+
+    internal static void RemoveDefaultCharacterFormatting(MainDocumentPart main, Dictionary<string, string> formatting) {
+        if (formatting.Count == 0)
+            return;
+        Dictionary<string, string> defaultCharFormatting = DOCX.CSS.ExtractDefaultCharacterFormatting(main);
+        foreach(KeyValuePair<string, string> entry in formatting) {
+            if (defaultCharFormatting.TryGetValue(entry.Key, out string defaultValue) && defaultValue == entry.Value)
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "font-style" && entry.Value == "normal")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "font-weight" && entry.Value == "normal")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "font-variant" && entry.Value == "normal")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "text-decoration-line" && entry.Value == "none") {
+                formatting.Remove(entry.Key);
+                formatting.Remove("text-decoration-style");
+            }
+            if (defaultValue is null && entry.Key == "text-transform" && entry.Value == "none")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "color" && entry.Value == "initial")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "color" && entry.Value == "#000000")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "background-color" && entry.Value == "initial")
+                formatting.Remove(entry.Key);
+            if (defaultValue is null && entry.Key == "vertical-align" && entry.Value == "baseline")
+                formatting.Remove(entry.Key);
+        }
+    }
+
     override public Dictionary<string, string> GetCSSStyles(string paragraphStyle)
     {
-        return INumber.GetCSSStyles(this);
+        paragraphStyle ??= pProps?.ParagraphStyleId?.Val?.Value;
+        Dictionary<string, string> styles = base.GetCSSStyles(paragraphStyle);
+        AddIndentFormatting(this, styles);
+        RemoveDefaultCharacterFormatting(main, styles);
+        return styles;
     }
 
 }
@@ -254,9 +299,31 @@ internal class WNumber2 : ParseNS.WText, INumber {
         }
     }
 
+    // public string ParagraphStyle => pProps?.ParagraphStyleId?.Val?.Value;
+
+    internal static void AddCharacterFormattingFromParagraphStyle(MainDocumentPart main, string pStyle, Dictionary<string, string> formatting) {
+        if (pStyle is null)
+            return;
+        Dictionary<string, string> charFormatting = CSS.ExtractCharacterFormatting(main, pStyle);
+        if (charFormatting.Count == 0)
+            return;
+        foreach(KeyValuePair<string, string> entry in charFormatting) {
+            if (formatting.ContainsKey(entry.Key))
+                continue;
+            if (entry.Key == "text-decoration-style" && formatting.ContainsKey("text-decoration-line") && formatting["text-decoration-line"] == "none")
+                continue;
+            formatting[entry.Key] = entry.Value;
+        }
+    }
+
     override public Dictionary<string, string> GetCSSStyles(string paragraphStyle)
     {
-        return INumber.GetCSSStyles(this);
+        paragraphStyle ??= pProps?.ParagraphStyleId?.Val?.Value;
+        Dictionary<string, string> styles = base.GetCSSStyles(paragraphStyle);
+        WNumber.AddIndentFormatting(this, styles);
+        AddCharacterFormattingFromParagraphStyle(main, paragraphStyle, styles);
+        WNumber.RemoveDefaultCharacterFormatting(main, styles);
+        return styles;
     }
 
 }

@@ -18,44 +18,9 @@ public class CSS {
 
     public static Dictionary<string, Dictionary<string, string>> Extract(MainDocumentPart main, string rootSelector) {
         Wordprocessing.Styles styles = main.StyleDefinitionsPart.Styles;
-        Dictionary<string, Dictionary<string, string>> selectors = new Dictionary<string, Dictionary<string, string>>();
+        Dictionary<string, Dictionary<string, string>> selectors = new();
 
-        Dictionary<string, string> defaultProperties = new Dictionary<string, string>();
-
-        var x = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle;
-        AddFontFamily(x?.RunFonts, defaultProperties);
-        AddFontSize(x?.FontSize?.Val, defaultProperties);
-
-        RunFonts themeRunFonts = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts;
-        // ThemeFontValues? y = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts?.AsciiTheme;
-        if (themeRunFonts.AsciiTheme is not null) {
-            ThemeFontValues themeFont = themeRunFonts.AsciiTheme;
-            string fontName = Themes.GetFontName(main, themeFont);
-            AddFontFamily(fontName, defaultProperties);
-        }
-
-        Style defaultParagraphStyle = Styles.GetDefaultParagraphStyle(main);
-        AddFontStyle(defaultParagraphStyle, defaultProperties);
-        AddFontWeight(defaultParagraphStyle, defaultProperties);
-        AddTextDecoration(defaultParagraphStyle, defaultProperties);
-        AddTextTransform(defaultParagraphStyle, defaultProperties);
-        AddFontVariant(defaultParagraphStyle, defaultProperties);
-        AddFontFamily(defaultParagraphStyle, defaultProperties);
-        AddFontSize(defaultParagraphStyle, defaultProperties);
-        AddColor(defaultParagraphStyle, defaultProperties);
-        AddBackgroundColor(defaultParagraphStyle, defaultProperties);
-
-        Style defaultCharacterStyle = Styles.GetDefaultCharacterStyle(main);
-        AddFontStyle(defaultCharacterStyle, defaultProperties);
-        AddFontWeight(defaultCharacterStyle, defaultProperties);
-        AddTextDecoration(defaultCharacterStyle, defaultProperties);
-        AddTextTransform(defaultCharacterStyle, defaultProperties);
-        AddFontVariant(defaultCharacterStyle, defaultProperties);
-        AddFontFamily(defaultCharacterStyle, defaultProperties);
-        AddFontSize(defaultCharacterStyle, defaultProperties);
-        AddColor(defaultCharacterStyle, defaultProperties);
-        AddBackgroundColor(defaultCharacterStyle, defaultProperties);
-        selectors.Add(rootSelector, defaultProperties);
+        selectors.Add(rootSelector, ExtractDefaultCharacterFormatting(main));
 
         IEnumerable<Style> paragraphStyles = styles.ChildElements
             .OfType<Style>()
@@ -113,11 +78,50 @@ public class CSS {
         return selectors;
     }
 
+    internal static Dictionary<string, string> ExtractDefaultCharacterFormatting(MainDocumentPart main) {
+        Dictionary<string, string> formatting = [];
+
+        Wordprocessing.Styles styles = main.StyleDefinitionsPart.Styles;
+        var x = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle;
+        AddFontFamily(x?.RunFonts, formatting);
+        AddFontSize(x?.FontSize?.Val, formatting);
+        RunFonts themeRunFonts = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts;
+        if (themeRunFonts.AsciiTheme is not null) {
+            ThemeFontValues themeFont = themeRunFonts.AsciiTheme;
+            string fontName = Themes.GetFontName(main, themeFont);
+            AddFontFamily(fontName, formatting);
+        }
+
+        Style style = Styles.GetDefaultParagraphStyle(main);
+        AddFontStyle(style, formatting);
+        AddFontWeight(style, formatting);
+        AddTextDecoration(style, formatting);
+        AddTextTransform(style, formatting);
+        AddFontVariant(style, formatting);
+        AddVerticalAlign(style, formatting);
+        AddFontFamily(style, formatting);
+        AddFontSize(style, formatting);
+        AddColor(style, formatting);
+        AddBackgroundColor(style, formatting);
+        style = Styles.GetDefaultCharacterStyle(main);
+        AddFontStyle(style, formatting);
+        AddFontWeight(style, formatting);
+        AddTextDecoration(style, formatting);
+        AddTextTransform(style, formatting);
+        AddFontVariant(style, formatting);
+        AddVerticalAlign(style, formatting);
+        AddFontFamily(style, formatting);
+        AddFontSize(style, formatting);
+        AddColor(style, formatting);
+        AddBackgroundColor(style, formatting);
+        return formatting;
+    }
+
     internal static Dictionary<string, string> ExtractCharacterFormatting(MainDocumentPart main, string styleId) {
         Style style = main.StyleDefinitionsPart.Styles.ChildElements
             .OfType<Style>()
             .Where(s => s.StyleId.Equals(styleId)).FirstOrDefault();
-        Dictionary<string, string> properties = new Dictionary<string, string>();
+        Dictionary<string, string> properties = [];
         if (style is null)
             return properties;
         AddFontStyle(style, properties);
@@ -284,10 +288,10 @@ public class CSS {
 
     internal static string ToFontFamily(string fontName) {
         if (fontName.EndsWith(" (W1)"))
-            fontName = fontName.Substring(0, fontName.Length - 5);
+            fontName = fontName[..^5];
         if (fontName == "Calibri")
-            return fontName + ", sans-serif";
-        if (fontName.Contains(" "))
+            fontName += ", sans-serif";
+        if (fontName.Contains(' '))
             return "'" + fontName + "'";
         return fontName;
     }
