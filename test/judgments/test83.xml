@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/uksc/2024/18" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/uksc/2024/18" />
+          <FRBRdate date="2024-05-15" name="judgment" />
+          <FRBRauthor href="#uksc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="18" />
+          <FRBRname value="RTI Ltd v MUR Shipping BV" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2024/18" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2024/18" />
+          <FRBRdate date="2024-05-15" name="judgment" />
+          <FRBRauthor href="#uksc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2024/18/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2024/18/data.xml" />
+          <FRBRdate date="2024-05-27T14:52:39" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2024-05-15" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="uksc" href="https://www.supremecourt.uk/" showAs="The Supreme Court" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="rti-ltd" href="" showAs="RTI Ltd" />
+        <TLCPerson eId="mur-shipping-bv" href="" showAs="MUR Shipping BV" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCPerson eId="judge-lord-hodge-deputy-president" href="/judge-lord-hodge-deputy-president" showAs="Lord Hodge, Deputy President" />
+        <TLCPerson eId="judge-lord-lloyd-jones" href="/judge-lord-lloyd-jones" showAs="Lord Lloyd-Jones" />
+        <TLCPerson eId="judge-lord-hamblen" href="/judge-lord-hamblen" showAs="Lord Hamblen" />
+        <TLCPerson eId="judge-lord-burrows" href="/judge-lord-burrows" showAs="Lord Burrows" />
+        <TLCPerson eId="judge-lord-richards" href="/judge-lord-richards" showAs="Lord Richards" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKSC</uk:court>
+        <uk:year>2024</uk:year>
+        <uk:number>18</uk:number>
+        <uk:cite>[2024] UKSC 18</uk:cite>
+        <uk:parser>0.24.0</uk:parser>
+        <uk:hash>0730aae971ee59f22789a8c68658cb89e24798885b9946deab8715aa07b9f099</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 13pt; font-family: 'Times New Roman'; }
+#judgment .Normal { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Footer { font-family: Univers; font-size: 13pt; }
+#judgment .Caveat { text-align: justify; font-weight: bold; font-family: 'Times New Roman'; font-size: 10pt; }
+#judgment .Header { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaHeading1 { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaNoNumber { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaLevel1 { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaLevel2 { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Quote { margin-left: 1in; margin-right: 0.87in; font-family: Calibri, sans-serif; font-size: 13pt; }
+#judgment .NewSpeech { font-weight: bold; text-transform: uppercase; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading2 { font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading3 { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Embargo { text-align: justify; font-weight: bold; font-family: 'Times New Roman'; font-size: 10pt; }
+#judgment .JudgmentReferences { text-align: right; font-size: 13pt; }
+#judgment .Bulletpara { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading4 { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading5 { font-style: italic; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Paraheading6 { font-style: italic; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .CourtOrder { font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; color: #C00000; }
+#judgment .JudgmentTitle { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 20pt; }
+#judgment .JudgmentDetail1 { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 20pt; }
+#judgment .ParaSubHeading1 { font-style: italic; font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaSubHeading2 { font-style: italic; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaSubHeading3 { font-style: italic; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaApprovedLevel1 { margin-left: 0in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaApprovedLevel2 { margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .ParaNoNumberApproved { font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .JudgmentJudges { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 17pt; }
+#judgment .JudgmentAppRespInt { text-align: center; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 13pt; }
+#judgment .ParaLevel3 { margin-left: 0.98in; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .QuoteChar { font-family: Calibri, sans-serif; font-size: 13pt; }
+#judgment .fontstyle01 { font-style: normal; font-weight: normal; font-family: Times-Roman; font-size: 9pt; color: #242021; }
+#judgment .fontstyle21 { font-style: italic; font-weight: normal; font-family: TimesNewRomanPS-ItalicMT; font-size: 12pt; color: #000000; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="JudgmentReferences"><img src="image1.png" style="width:99.35pt;height:99.35pt" /></p>
+      <p class="JudgmentReferences"><span style="font-weight:bold;font-family:'Times New Roman'">Easter Term</span><br /><neutralCitation style="font-weight:bold;font-family:'Times New Roman'">[2024] UKSC 18</neutralCitation><br /><span style="font-style:italic;font-family:'Times New Roman'">On appeal from: </span><ref style="font-style:italic;font-family:'Times New Roman'" href="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/1406" uk:origin="parser" uk:canonical="[2022] EWCA Civ 1406" uk:type="case" uk:isNeutral="true">[2022] EWCA Civ 1406</ref></p>
+      <p class="JudgmentTitle"><span style="font-family:'Times New Roman'">JUDGMENT</span></p>
+      <p class="JudgmentDetail1"><party refersTo="#rti-ltd" as="#respondent" style="font-family:'Times New Roman'">RTI Ltd</party><span style="font-family:'Times New Roman'"> (</span><role refersTo="#respondent" style="font-family:'Times New Roman'">Respondent</role><span style="font-family:'Times New Roman'">) </span><span style="font-style:italic;font-family:'Times New Roman'">v</span><span style="font-family:'Times New Roman'"> </span><party refersTo="#mur-shipping-bv" as="#appellant" style="font-family:'Times New Roman'">MUR Shipping BV</party><span style="font-family:'Times New Roman'"> (</span><role refersTo="#appellant" style="font-family:'Times New Roman'">Appellant</role><span style="font-family:'Times New Roman'">)</span></p>
+      <p class="JudgmentJudges"><span style="font-weight:normal;font-family:'Times New Roman'">before</span><br /><br /><judge refersTo="#judge-lord-hodge-deputy-president" style="font-family:'Times New Roman'">Lord Hodge, Deputy President</judge><br /><judge refersTo="#judge-lord-lloyd-jones" style="font-family:'Times New Roman'">Lord Lloyd-Jones</judge><br /><judge refersTo="#judge-lord-hamblen" style="font-family:'Times New Roman'">Lord Hamblen</judge><br /><judge refersTo="#judge-lord-burrows" style="font-family:'Times New Roman'">Lord Burrows</judge><br /><judge refersTo="#judge-lord-richards" style="font-family:'Times New Roman'">Lord Richards</judge></p>
+      <p class="JudgmentJudges"><span style="font-family:'Times New Roman'">JUDGMENT GIVEN ON</span><br /><docDate date="2024-05-15" refersTo="#judgment" style="font-family:'Times New Roman'">15 May 2024</docDate><br /><br /><span style="font-family:'Times New Roman'">Heard on 6 and 7 March 2024</span></p>
+      <p class="JudgmentAppRespInt"><span style="font-style:italic;font-family:'Times New Roman'">Appellant</span><br /><span style="font-family:'Times New Roman'">Nigel Eaton KC</span><br /><span style="font-family:'Times New Roman'">Adam Woolnough</span><br /><span style="font-family:'Times New Roman'">(Instructed by Rosling King LLP (London))</span></p>
+      <p class="JudgmentAppRespInt"><span style="font-style:italic;font-family:'Times New Roman'">Respondent</span><br /><span style="font-family:'Times New Roman'">Vasanti Selvaratnam KC</span><br /><span style="font-family:'Times New Roman'">James Shirley</span><br /><span style="font-family:'Times New Roman'">(Instructed by Campbell Johnston Clark Ltd (London))</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p class="NewSpeech">Lord hamblen and Lord Burrows (<span style="text-transform:none">with whom Lord Hodge, Lord Lloyd-Jones and Lord Richards agree</span>): </p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-weight:bold;text-transform:uppercase">1.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">Introduction</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_1">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">1.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Force majeure clauses relieve a party from its obligation to perform under a contract on the occurrence of a specified event or state of affairs. Such clauses commonly provide, expressly or impliedly, that the clause cannot be relied upon if the effects of what would otherwise be a force majeure event or state of affairs could be avoided by the exercise of reasonable endeavours by the party affected.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">2.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The central issue which arises on this appeal is whether the exercise of reasonable endeavours may require the party affected, if it is to be entitled to rely on the clause, to accept an offer of non-contractual performance from the other contracting party in order to overcome the effects of the event or state of affairs. The majority of the Court of Appeal (Males and Newey LJJ) [2022] EWCA Civ 1406, [2023] Bus LR 355, [2023] 1 Lloyd’s Rep 463, held that it may do so in certain circumstances and that it did so on the facts found by the arbitrators in this case. Jacobs J in the High Court [2022] EWHC 476 (Comm), [2022] Bus LR 473, [2022] 2 Lloyd’s Rep 297, and Arnold LJ, dissenting in the Court of Appeal, held that it could not do so, absent clear wording to that effect. So, according to the majority of the Court of Appeal (overturning Jacobs J, Arnold LJ dissenting), the force majeure clause could not be relied on by the affected party in this case. That party now appeals to the Supreme Court. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_2">
+          <num style="text-transform:none;font-weight:bold">2.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">The facts</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">3.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 9 June 2016, MUR Shipping BV (“MUR”), a Dutch company, and RTI Limited (“RTI”), a Jersey company, entered into a contract of affreightment based on an amended Gencon form voyage charterparty. MUR was the shipowner (and is the appellant before us) and RTI the charterer. The contract provided for the carriage of about 280,000 tonnes per month, 15% more or less in RTI’s option, of bauxite in bulk in lots of 30,000 tonnes up to 40,000 tonnes, 10% more or less in MUR's option, from Conakry in Guinea to Dneprobugsky in Ukraine, between 1 July 2016 and 30 June 2018. The monthly quantities and the loading rate meant that, in practice, there would be a continuous flow of vessels loading at Conakry, and a corresponding flow of freight payments from RTI to MUR. The specified freight payments were to be made in US dollars. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">4.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Clause 36 of the contract provided as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">“36.1.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Subject to the terms of this Clause 36, neither Owners nor Charterers shall be liable to the other for loss, damage, delay or failure in performance caused by a Force Majeure Event as hereinafter defined. While such Force Majeure Event is in operation the obligation of each Party to perform this Charter Party (other than an accrued obligation to pay monies in respect of a previous voyage) shall be suspended.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">36.2.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Following the end of the Force Majeure Event, the Parties shall consult in good faith to make such adjustments as may be appropriate to the shipment schedule under this Charter Party.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">36.3.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">A Force Majeure Event is an event or state of affairs which meets all of the following criteria:</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">It is outside the immediate control of the Party giving the Force Majeure Notice;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">It prevents or delays the loading of the cargo at the loading port and/or the discharge of the cargo at the discharging port;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(c)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">It is caused by one or more of acts of God, extreme weather conditions, war, lockout, strikes or other labour disturbances, explosions, fire, invasion, insurrection, blockade, embargo, riot, flood, earthquake, including all accidents to piers, shiploaders, and/or mills, factories, barges, or machinery, railway and canal stoppage by ice or frost, any rules or regulations of governments or any interference or acts or directions of governments, the restraint of princes, restrictions on monetary transfers and exchanges;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(d)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">It cannot be overcome by reasonable endeavors from the Party affected.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">36.4.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">A Party wishing to claim force majeure in respect of a Force Majeure Event must give the other Party a Force Majeure Notice within 48 hours (Saturdays, Sundays and holidays excepted) of becoming aware of the Force Majeure Event. Such Force Majeure Notice shall be a notice in writing which:</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">sets out or attaches details of the Force Majeure Event, and</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(b)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">states that the Party giving the Force Majeure Notice wishes to claim force majeure in respect of such Force Majeure Event.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">(c)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">give reasonable estimated duration of the Force Majeure Event to the extend [sic] it is reasonably possible to do so at the time of giving the Force Majeure Notice.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">36.5.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">A Party which fails to give a Force Majeure Notice upon the occurrence of a Force Majeure Event in accordance with Clause 36.4 shall not be permitted to claim force majeure in respect of such Force Majeure Event.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:'Times New Roman'">36.6.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'">Without prejudice to the generality of this Force Majeure Clause, time lost while waiting for berth at or off the loading port or discharge port and/or time lost while at berth at the loading port or discharge port by reason of a Force Majeure Event or one or more of the port authority imposing restrictions in relation to safe navigation in the port, the restraint of Princes, strikes, riots, lockouts of men, accidents, vessel being inoperative or rendered inoperative due to the terms and conditions of employments of the Officers and Crew, shall not count as laytime or time on demurrage.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">5.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 6 April 2018, the relevant US authority (the US Department of the Treasury’s Office of Foreign Assets Control, “OFAC”) applied sanctions to RTI’s parent company (United Company Rusal plc). Although RTI itself was not listed, a majority-owned subsidiary of a listed entity was subject to the same restrictions as its parent. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">6.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 10 April 2018, MUR sent a force majeure notice invoking clause 36 and noting that payment in US dollars (as required under the contract) was prevented by the sanctions. For the purposes of clause 36.3(a) and 36.4, MUR was the party “giving the force majeure notice”; and MUR was alleging that, under clause 36.3(d), it was the “party affected”. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">7.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">RTI rejected the force majeure notice and offered to pay in euros instead of US dollars and to bear any additional costs or exchange rate losses suffered by MUR in converting euros to US dollars. MUR maintained its right to payment in US dollars and insisted that it was entitled to suspend performance under clause 36. It therefore refused to nominate vessels. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">8.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On 23 April 2018, OFAC extended permission for parties to carry out activities ordinarily incident and necessary to the maintenance or wind down of operations or contracts that were subject to sanctions until 23 October 2018. On 25 April 2018, MUR resumed nominations of vessels under the contract of affreightment and henceforth did accept payments from RTI of euros which were converted into US dollars by MUR’s bank on receipt.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">9.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It is now common ground that, although the sanctions did not prohibit payment of US dollars under the contract, it was highly probable that there would have been difficulties in RTI making timely contractual payments in US dollars and that any such payments would have been delayed. Any US dollar transfer would have had to pass through a US intermediary bank which would have initially stopped the transfer on the basis of RTI’s status as a sanctioned party until the bank could investigate whether the transaction complied with the US sanctions requirements. It would not have been practicable to avoid these difficulties in making timely contractual payments in US dollars by using a bank located outside the USA.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_3">
+          <num style="font-weight:bold;text-transform:uppercase">3.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">The Arbitral Award</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">10.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The contract contained an arbitration clause and RTI commenced arbitration claiming damages for the cost of chartering-in seven replacement vessels in the period during which MUR suspended performance. MUR argued that it had been entitled to suspend performance under the force majeure clause (clause 36).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">11.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The arbitrators (dealing briefly with this issue in two paragraphs in an award comprising 156 paragraphs, and without any reference to case law) decided that, although the imposition of sanctions on RTI’s parent company causing probable delay by RTI in paying US dollars would otherwise constitute a force majeure event or state of affairs, MUR could not rely on the force majeure clause because that event or state of affairs could have been overcome by MUR’s reasonable endeavours (applying clause 36.3(d)). That was because, although RTI’s contractual obligation was to pay US dollars, MUR should have accepted RTI’s offer to pay in euros which would have been credited to MUR in US dollars as soon as the euros were received. There would have been no detriment to MUR because, as has been explained in para 7 above, RTI had made clear that it would bear any additional costs or exchange rate losses in converting euros to US dollars. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">12.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> The arbitrators therefore decided that RTI was entitled to damages for breach of contract by MUR in failing to nominate vessels thereby causing RTI to incur the cost of chartering-in replacement vessels. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_4">
+          <num style="font-weight:bold;text-transform:uppercase">4.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">The judgments below</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_5">
+          <num style="font-style:normal;font-weight:bold">(1)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">Jacobs J</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">13.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Before Jacobs J, MUR submitted that a reasonable endeavours proviso, whether express or implied, was directed to a situation in which the impediment could be surmounted so that the contract could be performed according to its terms. Such a proviso did not extend to varying the terms of the contract and/or performance. Reliance was placed on <span style="font-style:italic">Bulman &amp; Dickson v Fenwick &amp; Co </span>[1894] 1 QB 179 (“<span style="font-style:italic">Bulman</span>”) and <span style="font-style:italic">Reardon Smith Line Ltd v Ministry of Agriculture, Fisheries and Food</span> [1963] AC 691 (“the<span style="font-style:italic"> Vancouver Strikes </span>case”). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">14.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">RTI put forward a broad argument and a narrower argument. The broad argument was that the exercise of reasonable endeavours was a factual question which it was for the arbitrators to determine. Whether in any particular case reasonable endeavours would require a party to accept non-contractual performance was simply one factor to be weighed in the balance in deciding the overall question of reasonableness. Jacobs J rejected this argument, observing that there was no authority supporting it. Moreover, in <span style="font-style:italic">Bulman </span>and the<span style="font-style:italic"> Vancouver Strikes </span>case, the courts appeared to accept, as a matter of legal principle, that reasonable endeavours did not require a party to accept an offer of non-contractual performance. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">15.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">RTI’s narrower argument was that a party might be required to accept non-contractual performance of any obligation other than one which related to loading or discharging, that being the main focus of clause 36. Jacobs J rejected the suggestion that a distinction could be drawn between different contractual obligations for this purpose and emphasised that the payment obligation was an important contractual obligation.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">16.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Accepting MUR’s submissions, Jacobs J’s concluding reasoning was that the contractual right to payment in US dollars formed part of the parties’ bargain. <span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">The exercise of reasonable endeavours required endeavours towards the performance of that bargain; not towards a performance directed to achieving a different result which formed no part of the parties’ agreement. He also reasoned that, if the loss of a contractual right turns purely on what is reasonable in a case, then the contractual right becomes tenuous, and the contract is </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">then</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> necessarily beset by uncertainty which is generally to be avoided in commercial transactions.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_6">
+          <num class="fontstyle01" style="font-style:normal;font-family:'Times New Roman';font-size:13pt;color:initial;font-weight:bold">(2)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span class="fontstyle01" style="font-style:normal;font-family:'Times New Roman';font-size:13pt;color:initial;font-weight:bold">The Court of Appeal</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">17.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">RTI repeated their broad and narrower arguments before the Court of Appeal. Males LJ (with whom Newey and Arnold LJJ agreed on this point) observed as follows at para 52:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">“…both the broad submission and the narrower submission … must be rejected. According to the broad submission, all that matters is whether reasonable endeavours have been exercised (or … whether the party affected has acted reasonably). But that is not what clause 36.3(d) says. The submission leaves out of account whether the endeavours in question have been successful in overcoming the force majeure event or state of affairs. So too does the narrower submission, for which there is in any event no warrant in the terms of clause 36.3.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">18.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Males LJ considered that the appeal concerned the specific terms of clause 36 and that “the real question” was not what reasonable endeavours required but whether <span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">acceptance of the proposal to pay freight in euros and to bear the cost of converting those euros into dollars would “overcome” the state of affairs caused by the imposition of sanctions (para 55). He said the following, at para 56:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">“Terms such as ‘state of affairs’ and ‘overcome’ are broad and non-technical terms and clause 36 should be applied in a common sense way which achieves the purpose underlying the parties’ obligations – in this case, concerned with payment obligations, that MUR should receive the right quantity of US dollars in its bank account at the right time. I see no reason why a solution which ensured the achievement of this purpose should not be regarded as overcoming the state of affairs resulting from the imposition of sanctions. It is an ordinary and acceptable use of language to say that a problem or state of affairs is overcome if its adverse consequences are completely avoided.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">19.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">He further said that, on the arbitrators’ findings, MUR would have suffered no damage as a result of RTI’s breach consisting of </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">payment</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> in euros; that the word “overcome” does not necessarily mean that the contract must be performed in strict accordance with its terms; and that the finding that the force majeure state of affairs could have been overcome by the exercise of reasonable endeavours was one with which the court should not interfere. He also observed that the position would have been different if “RTI’s proposal would have resulted in any detriment to MUR or in something different from what was required by the contract” (para 59). He went on to say that he did not think there was anything in </span><span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt">Bulman </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">or in the </span><span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt">Vancouver Strikes </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">case to cast doubt on his analysis and he observed that, in neither case, was there an equivalent of clause 36.3(d). </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">20.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">Males LJ further said, at para 54, that, while MUR had a contractual right to payment in US dollars, “[t]here was no question of it being required to abandon or vary that right”. The central question at issue may, however, be described (see para 2 above) as one of whether MUR was “required” to abandon or vary that right in the obvious sense that MUR would not be entitled </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">to</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> rely on the force majeure clause unless it accepted RTI’s offer of non-contractual performance. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">21.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Newey LJ agreed with Males LJ’s judgment and with his characterisation of the issue as concerning the specific terms of clause 36 and not general principle. He held that it was sufficient that the force majeure event could be “overcome” in a “practical sense, such that all its adverse consequences would be avoided” (para 78).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">22.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Arnold LJ dissented. In his view, <span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">an “event or state of affairs” is not “overcome” by an offer of non-contractual performance. He gave the example of a contract which required carriage to port A which was strike-bound and an offer to divert the vessel to port B which would not in fact be detrimental to the party invoking the force majeure clause (because, for example, the goods being carried were required at place C equidistant between port A and port B). He considered that in such circumstances the party invoking the clause would not be required to accept that offer. This was because the party invoking the clause was entitled to insist on contractual performance by the other party and, if the parties to the contract intended a force majeure clause to extend to a requirement to accept non-contractual performance, clear express words were required. Although he accepted that </span><span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt">Bulman </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">and the </span><span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt">Vancouver Strikes </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">case could be distinguished from the present case, the underlying principle of those cases (that it is a question of contractual rights not reasonableness) was applicable. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_7">
+          <num style="font-weight:bold;text-transform:uppercase">5.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">The parties’ main submissions to this court</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">23.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Nigel Eaton KC, for MUR, submitted that the appeal raises a fundamental point of principle in relation to reasonable endeavours provisos in force majeure clauses. He submitted that in the interests of certainty, and for other reasons of principle, reasonable endeavours provisos should not be extended to offers of non-contractual performance unless the parties expressly agree. The majority of the Court of Appeal was mistaken to cloud the answer to a clear-cut question of general principle with uncertain inquiries into whether, on the facts of individual cases, the purpose underlying particular contractual obligations has been achieved or detriment has been suffered. He further submitted that this conclusion from principle is supported by the reasoning of the Court of Appeal in <span style="font-style:italic">Bulman</span> and of the House of Lords in the <span style="font-style:italic">Vancouver Strikes</span> case.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">24.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> Vasanti Selvaratnam KC, for RTI, supported the reasoning and the decision of the majority of the Court of Appeal. She submitted that a reasonable endeavours proviso will require the party invoking the force majeure clause to accept an offer of non-contractual performance if: (i) it involves no detriment or other prejudice to the party seeking to invoke force majeure, and (ii) it achieves the same result as performance of the contractual obligation in question. She further submitted that this approach is supported by the Court of Appeal decision in <span class="fontstyle21" style="font-family:'Times New Roman';font-size:13pt">B &amp; S Contracts and Design Ltd v Victor Green Publications Ltd </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">[1984] ICR 419 (“</span><span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt">B &amp; S Contracts</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">”) and by analogy with cases on mitigation and frustration. She also clarified that she was not suggesting that </span><span style="font-style:italic;color:#242021">Bulman </span><span style="color:#242021">and the </span><span style="font-style:italic;color:#242021">Vancouver Strikes </span><span style="color:#242021">case should be overruled. Rather, as </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">there were many material points of distinction between them and the present case, they could be, and should be, distinguished. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_8">
+          <num style="font-weight:bold;text-transform:uppercase">6.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">A narrow issue of interpretation</span>?</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">25.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The majority of the Court of Appeal considered that it was dealing with an issue of interpretation that turned on the specific terms of clause 36 and, in particular, the use of the word “overcome” in the reasonable endeavours proviso. This was disputed by MUR who submitted before us that reasonable endeavours provisos are commonly found in force majeure clauses, either expressly or impliedly, and in materially similar terms to the clause in this case. It followed that the issue raised is one of general application which should be addressed as a matter of principle.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">26.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">We agree with MUR. It is well established that a force majeure clause will generally be interpreted (or a term will be implied to the same effect) as applicable only if the party invoking it can show that the event or state of affairs was beyond its reasonable control and could not be avoided by the taking of reasonable steps. We are therefore not dealing with an unusual feature, but rather a very common feature, of a force majeure clause. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">27.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The following examples of statements from leading textbooks (footnotes omitted) support this view:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(i)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Chitty on Contracts, </span>35th<span style="vertical-align:super;font-size:smaller"> </span>ed (2023), vol 1, para 27-066:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">“</span><span class="fontstyle21" style="font-style:normal;font-family:'Times New Roman';font-size:13pt;color:initial">Although much will depend on the wording of the particular clause it is possible to deduce from the authorities some general propositions in relation to the type of event that is likely to fall within the scope of the words ‘force majeure’ where they are used without further amplification in the contract itself. In such a case a court is likely to conclude that the type of event that will fall within the scope of the clause is an event that was: (i) beyond the reasonable control of the parties (and so would not include an event caused by the negligence, omission or default of one of the contracting parties); (ii) causative of the non-performance; and (iii) could not have been overcome or avoided</span><span class="fontstyle21" style="font-weight:bold;font-family:'Times New Roman';font-size:13pt;color:initial"> </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">by the taking of reasonable steps.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(ii)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">Benjamin’s Sale of Goods, 12th ed (2023), para 8-075:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">A seller able to invoke the [force majeure] clause must in addition to proving the event has occurred further prove: (i) that his non-performance was due to circumstances beyond his control; and (ii) that there were no reasonable steps that he could have taken to avoid or mitigate the event or its consequences.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(iii)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.62in">Treitel, The Law of Contract, 15th<span style="vertical-align:super;font-size:smaller"> </span>ed (2020), para 19.079:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">“… the contract may include a ‘force majeure’ clause which provides for discharge on the occurrence of specified events usually described as being ‘beyond the control’ of the parties, or of one of them. The concept of something beyond a person's control sets a ‘comparatively high hurdle’ and a force majeure clause is normally construed so as to protect the party relying on it only if he has taken all reasonable steps to avoid the operation of the event, or to mitigate its results.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">28.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Relevant judicial statements supporting the same view include:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.5in;text-indent:0.5in">In <span style="font-style:italic">Bulman,</span> in the context of whether an exceptions clause excused charterers for late unloading caused by a strike, the Court of Appeal indicated that a reasonable endeavours requirement was implied. In the words of Lord Esher MR (Lopes and Kay LJJ concurring) at p 185:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“a strike would in itself not be sufficient to exonerate the charterers from doing the best they could to accept delivery, and would not entitle them to fold their arms and do nothing. If, notwithstanding the strike, they could by reasonable exertion have taken delivery of the cargo within the proper time, the strike would not have afforded them any defence.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(ii)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in">In <span style="font-style:italic">B &amp; S Contracts </span>per Griffiths LJ at p 426: </p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Clauses of this kind [ie force majeure clauses] have to be construed upon the basis that those relying on them will have taken all reasonable efforts to avoid the effect of the various matters set out in the clause… see </span><span style="font-style:italic;font-family:'Times New Roman'">Bulman &amp; Dickson v Fenwick &amp; Co </span><span style="font-family:'Times New Roman'">[1894] 1 QB 179, in the speech of Lord Esher MR</span><span style="font-weight:bold;font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman'">at p 185. Quite apart from that general principle this particular clause starts with the following wording: ‘Every effort will be made to carry out any contract based on an estimate,’ which is saying in express terms that which the law will imply when construing such a clause.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaNoNumber" style="text-indent:0.5in">To similar effect were the following words of Kerr LJ at p 427:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“[I]t is clear that where an exception of strikes is invoked, then like all other exceptions it is subject to the principle that the party seeking to rely on it must show that the strike and its consequences could not have been avoided by taking steps which were reasonable in the particular circumstances: see … in particular the judgment of Lord Esher MR</span><span style="font-weight:bold;font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman'">in </span><span style="font-style:italic;font-family:'Times New Roman'">Bulman &amp; Dickson v Fenwick &amp; Co </span><span style="font-family:'Times New Roman'">[1894] 1 QB 179, 185 to which Griffiths LJ has already referred. …</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">All these matters are really implicit in the words ‘force majeure,’ the heading of this clause. The situation and its consequences must be beyond the reasonable control of the party seeking to rely on the exceptions clause. In the present case the situation is still simpler, because what I have been referring to as being implied by law generally, is expressed in the opening words of the clause: ‘Every effort will be made to carry out any contract.’”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(iii)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.62in">I<span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">n </span><span style="font-style:italic">Channel Island Ferries Ltd v Sealink UK Ltd </span>[1988] 1 Lloyd’s Rep 323 <span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">per Parker LJ at p 327:</span></p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Quote" style="margin-left:1in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">“… a party must not only bring himself within the [force majeure] clause but must show that he has taken all reasonable steps to avoid its operation or mitigate its results”.</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">29.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt">It follows that, even if clause 36 had not contained 36.3(d), it would have been interpreted as containing a reasonable endeavours proviso to like effect. It also follows that no particular significance can be attached to the use of the word “overcome”. The equivalent wording used in several of the textbooks and judicial statements (see paras 27-28 above) is “avoid” or “avoided” but in this context it has the same meaning, as would other synonyms such as to “negate”, “neutralise”, “nullify, “defeat”, “prevent”, or “remove” the effects of the event or state </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">of</span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt"> affairs. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">30.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">The majority of the Court of Appeal was therefore wrong to approach the case as if it simply involved the interpretation of the particular reasonable endeavours proviso in this particular contract. If its decision were correct, it would be applicable to force majeure provisions generally.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">31.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">To an extent this was implicitly recognised by the majority when it sought to explain in what circumstances the reasonable endeavours proviso might require the acceptance of non-contractual performance. This was explained in generalised terms, namely: (i) where the “purpose underlying” the relevant obligation will be achieved, and (ii) where there is no “detriment” or “adverse consequence” to the party invoking the clause. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">32.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">As stated by Professor Edwin Peel in his instructive case note on the Court of Appeal’s decision, “Overcoming force majeure by reasonable endeavours”</span><span class="fontstyle01" style="font-style:italic;font-family:'Times New Roman';font-size:13pt;color:initial"> </span><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">[2023] LMCLQ 177, the appeal raises a “fundamental point of principle” namely “</span><span style="color:#242021">whether the requirement of overcoming by reasonable endeavours extends to the party affected having to accept some form of non-contractual performance by the other party.”</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">33.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">MUR’s case is that, absent express wording, a reasonable endeavours proviso does not require acceptance of an offer of non-contractual performance. RTI’s case is that it will do so in the circumstances set out in para 24 above – ie if </span><span style="color:#000000">(i) it involves no detriment or other prejudice to the party seeking to invoke force majeure, and (ii) it achieves the same result as performance of the contractual obligation in question.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">34.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">In order to decide which approach is correct it is appropriate to have regard both to considerations of principle and to the authorities said to be relevant.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_9">
+          <num style="font-weight:bold;text-transform:uppercase">7.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">Considerations of principle</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">35.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In our view, there are several principles which provide good reasons for accepting MUR’s case.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_10">
+          <num style="font-style:normal;font-weight:bold">(1)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">The object of reasonable endeavours provisos</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">36.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">We accept the submission of Mr Eaton KC that the underlying reason why a force majeure clause is interpreted as applicable only if the party invoking it can show that the event or state of affairs was beyond its reasonable control, and could not be avoided by the taking of reasonable steps, is one of causation. A party is excused from performance by a force majeure event where the failure to perform is caused thereby. It will not be so caused if the affected party can reasonably prevent the failure of performance. In such circumstances the cause of the failure to perform will be the affected party’s inadequate response to the force majeure event rather than the event itself. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">37.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It follows that force majeure clauses in general, and reasonable endeavours provisos in particular, concern the causal effect of impediments to contractual performance. To be able to rely on the clause, and subject to there being clear words to the contrary, the party affected must be able to show that the force majeure event caused the failure to perform. That means establishing that the failure to perform could not have been avoided by the exercise of reasonable endeavours. Contractual performance means performance of the contract according to its terms. Failure to perform means failing to perform in accordance with those terms. The causal question is to be addressed by reference to the parameters of the contract. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">38.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This means that the relevant question is whether reasonable endeavours could have secured the continuation or resumption of contractual performance. It is reasonable steps towards that end with which the reasonable endeavours proviso is concerned. It is concerned with the steps which the affected party should have reasonably taken to enable the contract to continue to be performed. It is not concerned with the steps that could or should have been taken to secure some different, non-contractual, performance. The object of the reasonable endeavours proviso is to maintain contractual performance, not to substitute a different performance.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">39.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the present case, the relevant contractual performance was payment in US dollars. The impediment to performance was banking delay resulting from the imposition of sanctions. Under the reasonable endeavours proviso the relevant question is whether the exercise of reasonable endeavours by MUR would have enabled the payment of US dollars to be made without delay. This is the only way in which the impediment to contractual performance could have been “overcome”. So, for example, if a specific licence for continued performance of the contract by payment of US dollars could, and should, reasonably have been obtained then the impediment to performance would likely have been overcome. Making arrangements for non-contractual payment does not, however, enable the contract to be performed. The impediment to contractual performance remains and is not affected thereby, still less overcome. The banking delay for US dollar payments resulting from the imposition of sanctions remained in place and was not “overcome” by offering non-contractual performance. Put another way, it would be absurd to say that MUR caused the non-performance of the contract by failing to accept an offer of non-contractual performance. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">40.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As Mr Eaton KC submitted, in terms of the particular language of clause 36.3(d), one can say that an offer of non-contractual performance is beyond the scope of “reasonable endeavours”, as there is no reasonable basis for requiring any steps which do not achieve the relevant object; and/or that an offer of non-contractual performance does not “overcome” the impediment, as it does not have the relevant causal impact.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_11">
+          <num style="font-style:normal;font-weight:bold">(2)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">Freedom of contract</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">41.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The principle of freedom of contract is fundamental to the English law of contract. One aspect of that principle is that (subject to where the consent of a party is impaired by factors such as mistake, misrepresentation, duress, undue influence, or incapacity) parties are generally free to contract on whatever terms they choose. As Lord Diplock put it in <span style="font-style:italic">Photo Production Ltd v Securicor Transport Ltd </span>[1980] AC 827, at p 848: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“A basic principle of the common law of contract … is that parties to a contract are free to determine for themselves what primary obligations they will accept.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaNoNumber">And in the words of Lord Toulson in <span style="font-style:italic">Prime Sight Ltd v Lavarello </span>[2013] UKPC 22, [2014] AC 436, at para 47: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Parties are ordinarily free to contract on whatever terms they choose and the court’s role is to enforce them.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">42.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> The principle of freedom of contract includes freedom not to contract; and freedom not to contract includes freedom not to accept the offer of a non-contractual performance of the contract. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_12">
+          <num style="font-style:normal;font-weight:bold">(3)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">Clear words needed to forego valuable contractual rights</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">43.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the present case the core obligation undertaken by RTI was the payment of freight. As is expected and indeed necessary, the contract set out when and how payment of freight was to be made. As is common in international trade, the currency of payment was US dollars. RTI was obliged to pay freight in US dollars and MUR was entitled to refuse any tender of payment which was not in US dollars. Subject to the possible effect of the reasonable endeavours proviso, this was accepted by Ms Selvaratnam KC. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">44.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">MUR therefore had an undoubted right to insist on payment of freight in US dollars and to refuse payment in any other currency. The effect of RTI’s argument is that, in certain circumstances, the reasonable endeavours proviso required MUR to forego that valuable right and accept the offer of non-contractual performance. But, in our view, in principle a party should not be required to do so unless the contract makes clear (whether expressly or by necessary implication) that the party has given up that right. Indeed, one may regard it as a general principle of contractual interpretation that parties do not forego valuable rights without it being made clear that that was their intention. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">45.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">There was a debate at the hearing whether such an approach reflects that set out in <span style="font-style:italic">Modern Engineering (Bristol) Ltd v Gilbert-Ash (Northern) Ltd </span>[1974] AC 689 (“<span style="font-style:italic">Gilbert-Ash”</span>) or whether the <span style="font-style:italic">Gilbert-Ash </span>presumption against the abandonment of valuable rights is limited to the giving up of common law or statutory rights that are non-contractual. On the facts of <span style="font-style:italic">Gilbert-Ash </span>it was the giving up of a common law right to an abatement of price that was in issue (whereby a person can set up, in diminution or extinction of the price for goods or work done, defects in those goods or that work). We do not think it greatly matters whether the applicable principle is that set out in <span style="font-style:italic">Gilbert-Ash </span>or an analogous principle applicable to valuable contractual rights. In the present case there can be no doubt that MUR had a contractual right to be paid freight in US dollars. It therefore had a contractual right to refuse to accept payment in any other currency. In our judgment, clear words would be necessary for MUR to be required to forego that valuable right, including making clear the circumstances in which that would be so required. Neither of these matters are addressed by clause 36.3(d).</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">46.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The need for clear words to be used for there to be any contractually required change to the parties’ rights (“required” meaning if the party affected is to be entitled to rely on the force majeure clause) is borne out in clause 36 itself. Thus clause 36.2 provides that, following the end of a force majeure event, “the Parties shall consult in good faith to make such adjustments as may be appropriate to the shipment schedule”. The parties thereby recognised the need for clear provision to be made for there to be any contractually required change in contract terms. The same applies to either of the parties being required to accept an offer of non-contractual performance.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_13">
+          <num style="font-style:normal;font-weight:bold">(4)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">The importance of certainty in commercial contracts</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">47.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As was recently observed by Lord Hamblen, giving the sole judgment of this court, in <span style="font-style:italic">JTI Polska sp z oo v Jakubowski</span> [2023] UKSC 19, [2023] 3 WLR 50, at para 39: “Certainty and predictability are of particular importance in the context of English commercial law, all the more so given the frequent choice of English law as the governing law in international commercial transactions”. There have been many other authoritative statements to the same effect. For example, in <span style="font-style:italic">Golden Strait Corpn v Nippon Yusen Kubishika Kaisha (The Golden Victory)</span> [2007] 2 UKHL 12, [2007] 2 AC 353, Lord Bingham of Cornhill said as follows at para 23: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“The importance of certainty and predictability in commercial transactions has been a constant theme of English commercial law at any rate since the judgment of Lord Mansfield CJ in </span><span style="font-style:italic;font-family:'Times New Roman'">Vallejo v Wheeler</span><span style="font-family:'Times New Roman'"> (1774) 1 Cowp 143, 153, and has been strongly asserted in recent years in cases such as </span><span style="font-style:italic;font-family:'Times New Roman'">Scandinavian Trading Tanker Co AB v Flota Petrolera Ecuatoriana (The Scaptrade)</span><span style="font-family:'Times New Roman'"> [1983] QB 529, 540–541, [1983] 2 AC 694, 703–704; </span><span style="font-style:italic;font-family:'Times New Roman'">Homburg Houtimport BV v Agrosin Private Ltd (The Starsin)</span><span style="font-family:'Times New Roman'"> [2004] 1 AC 715, 738; </span><span style="font-style:italic;font-family:'Times New Roman'">Jindal Iron and Steel Co Ltd v Islamic Solidarity Shipping Co Jordan Inc (The Jordan II)</span><span style="font-family:'Times New Roman'"> [2005] 1 WLR 1363, 1370.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">48.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">MUR’s case is straightforward: absent clear wording, a reasonable endeavours proviso does not require acceptance of an offer of non-contractual performance. The focus of the reasonable endeavours inquiry is clear: what steps can reasonably be taken to ensure contractual performance. The limits to that inquiry are also clear; they are provided by the contract. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">49.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">By contrast, RTI’s case is not anchored to the contract. It begs a number of questions and gives rise to considerable legal and factual uncertainty. It requires inquiries into whether the acceptance of non-contractual performance would: </span><span style="color:#000000">(i) involve no detriment or other prejudice to the party seeking to invoke force majeure, and (ii) achieve the same result as performance of the contractual obligation in question.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">50.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial"> As to (i), it is unclear what exactly is meant by detriment; whether the existence of some detriment, however minor, will be a bar on requiring non-contractual performance to be accepted; and, if not, the nature and extent of detriment required before there is a bar. For example, in this case there would have been currency exchange costs involved in paying in euros and converting that payment to US dollars. Would minor costs of that nature be sufficient to constitute detriment? If so, then is that overcome by an offer to pay those costs and, if so, in what terms does such an offer have to be made and does it have to be contractually enforceable? </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">51.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">A further example given by Mr Eaton KC is whether </span>all types of consequential harm qualify, even if they are not connected to the contract as such. For example, adapting Arnold LJ’s example of ports A and B and destination C, if goods have to be transported from B to C by rail, and that costs more than carriage from A to C by road, does the extra cost count as detriment? Or is detriment confined more narrowly to cases where the immediate outcome of the proposed solution is less advantageous than the outcome of a strict contractual performance, for example, because discharge costs or import charges are higher at B than at A? </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">52.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">Questions also arise as to when the issue of detriment is to be assessed and over what period of time. Any inquiry into consequential detriment is likely to involve a retrospective evidential inquiry. Much will depend on </span><span style="color:#000000">the facts of individual cases. Any such inquiry will be potentially time-consuming and costly, may well involve unpredictable results, and may also lead to the need for resolution by arbitration or adjudication.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">53.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">As to (ii) (in para 49 above), this is RTI’s rewording of Males LJ’s suggested inquiry into “the purpose underlying” the relevant obligation and whether that purpose would be met by the alternative performance offered. The inquiry into purpose is potentially problematic because there may be no clear purpose. It also appears to assume that there will be a single purpose underlying any particular obligation. Often, however, that may not be the case. There may be a variety of purposes and it is unclear what is then required. Do all those purposes have to be met or is it sufficient if the main or predominant purpose is met, assuming that there is one and that it can be identified? </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">54.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">If the relevant purpose or purposes can be identified, there then has to be an inquiry into whether they would be met by the alternative performance offered. Questions would then arise as to whether complete correspondence with the contractual purpose is required or whether a reasonable correspondence is sufficient and, if so, what the applicable limits are. Is the limit a de minimis departure or is it some other standard? </span><span style="color:#000000">Whether an outcome is within reasonable bounds of the identified contractual purpose is inevitably a question of fact and degree, on which judgments may reasonably differ.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;color:initial;margin-left:0in;text-indent:0in">55.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span class="fontstyle01" style="font-family:'Times New Roman';font-size:13pt;color:initial">All of these questions arise in the context of a clause which requires immediate judgments to be made. Parties need to know with reasonable confidence whether or not a force majeure clause can be relied upon at the relevant time, not after some retrospective inquiry.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">56.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As Professor Peel observes in his LMCLQ case-note at pp 181-182:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“At no point did Males LJ... really address Jacobs J's concern that if the party affected by the force majeure can be required not to insist on its strict contractual rights in an attempt to overcome it, some uncertainty has been introduced which is best avoided in commercial transactions”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">57.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"> It is of course true that the very concept of “reasonable endeavours” imports an evaluative judgment and therefore some element of uncertainty. So, for example, if a specific licence for continued performance of the contract by payment of US dollars could, and should, by reasonable endeavours have been obtained then the impediment to performance would likely have been overcome. The determination of what constitutes “reasonable endeavours” in that example involves an evaluative judgment. But that evaluation is geared towards achieving contractual performance: it is concerned with reasonable efforts to overcome the sanctions by achieving payment in US dollars. In contrast, there is no justification for creating needless additional uncertainty by departing from the standard provided by the terms of the contract and hence by what constitutes contractual performance. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">58.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Counsel for RTI sought to present her submissions as ones that reasonable business people would favour; and at first sight some may think it an attractive feature of her submissions that they appear to favour reasonableness (and one might add “justice”) over certainty. Indeed, Arnold LJ said at the start of his dissenting judgment in the Court of Appeal, at para 66: “On the facts of this case, MUR’s position has no merit”. With respect, we consider that statement, and the dichotomy in this context between reasonableness and certainty, to be misplaced. It is not in dispute that “reasonable efforts” import some degree of uncertainty. But for that concept to be allowed to ride rough-shod over the required contractual performance would be to introduce unwarranted uncertainty and would thereby, it might be said, undermine the expectations of reasonable business people. It is not unmeritorious or unjust to insist on contractual performance, all the more so if being precluded from doing so would introduce uncertainty contrary to the expectations of reasonable business people.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">59.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Two final points should be emphasised about the certainty that being tied to the contract provides. The first is that it is not in dispute that, by clear wording, the parties can themselves provide for reasonable endeavours to include accepting an offer of non-contractual performance from the other party (see para 46 above). Secondly, there is often some flexibility in the very notion of what counts as contractual performance. On these facts, the position would have been different if RTI had been able to perform the contract by paying in either US dollars or euros. But it is now common ground that the contract required payment in US dollars and the importance of certainty is maintained so long as the reasonable endeavours proviso is interpreted as focusing on that as the relevant contractual performance.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_14">
+          <num style="text-transform:none;font-weight:bold">8.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">The Authorities</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">60.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It is common ground that there has been no case which has directly and explicitly answered the question posed in this appeal, ie there is no case that has decided whether or not reasonable endeavours in a force majeure clause requires the affected party to accept an offer of non-contractual performance from the other party. Nevertheless counsel for MUR and for RTI each relied on cases which they submitted implicitly supported their arguments. It is our view that the authorities relied on by MUR do indeed provide strong, albeit implicit, support for its submissions. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_15">
+          <num style="font-style:normal;font-weight:bold">(1)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">The two cases relied on by MUR</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_16">
+          <num style="font-style:normal;font-weight:bold;text-decoration-line:none">(a)</num>
+          <content>
+            <p class="ParaSubHeading2" style="text-indent:0.5in"><span style="font-weight:bold;text-decoration-line:none">Bulman </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">61.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">A voyage charterparty provided that, once loaded with coal in Newcastle, the vessel “Ashdene” should proceed to London to discharge the coal at one of certain named berths (including Regent’s Canal) on the Thames as ordered by the charterers. The charterers nominated Regent’s Canal before the vessel left the Tyne. They nominated that berth because the coal was being sold to a company which required the coal to be near Regent’s Canal. There was an exceptions clause in the charterparty which included delay occasioned by strikes. The vessel sailed on 10 February at 01.00. At 12.00, the Regent’s Canal coal porters began a strike. The charterers learned of the strike at 16.00 the same day. The vessel arrived at Regent’s Canal on 11 February but the coal could not be unloaded because of the strike. On 16 February the charterers ordered the vessel to Beckton, which was one of the other berths named in the charterparty and where there was no strike. The coal was unloaded at Beckton on 19 February. The shipowners claimed demurrage for the delay in unloading. The essential question was whether the exceptions clause covering strikes excused the charterers for the delay in unloading. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">62.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It was decided by the Court of Appeal, upholding Pollock B at first instance, that the exceptions clause did excuse the charterers for the delay in unloading caused by the strike. Although there was no express reasonable endeavours clause in respect of the exceptions, the Court of Appeal indicated that that was implied (see para 28 above). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">63.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The shipowners had argued that, once the charterers knew of the strike at Regent’s Canal, they should reasonably have ordered the vessel to a berth not affected by the strike (eg Beckton). And, at first instance, to a question posed by Pollock B, the jury had answered that, because the charterers knew of the strike, it was not reasonable for the charterers to order the vessel to Regent’s Canal. But Pollock B had reasoned that what mattered was that the charterers had a contractual right to order the vessel to Regent’s Canal and they were not required to give up that right even if it was reasonable to do so (and despite the fact that there was an option in the charterparty for the charterers to order the vessel to a berth where there was no strike). In an important and pithy phrase, he said at p 183:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“It is not a question between the plaintiffs and defendants as to what is reasonable or unreasonable, it is a question of contract between the parties.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">64.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Although the case did not deal with an offer of non-contractual performance by the other party, it supports the view that a reasonable endeavours qualification (here implied) in respect of an exceptions clause does not require the affected party to give up its contractual right (including by exercising an option in the contract) even if it would be reasonable to do so. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">65.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The decision is therefore strong implicit support for the appellant’s submissions. Just as the charterers in <span style="font-style:italic">Bulman </span>could rely on the exceptions clause by insisting on their contractual right to have the ship unload at Regent’s Canal, even though that was unreasonable, so on the facts of the instant case it can be said that MUR was not required to give up its contractual entitlement to be paid in US dollars even if it would have been reasonable to accept RTI’s offer of payment in euros. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_17">
+          <num style="font-style:normal;font-weight:bold">(b)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">The </span>Vancouver Strikes<span style="font-style:normal"> case</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">66.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Under voyage charterparties, the owners of various vessels (the appeal to the House of Lords concerned three vessels but focused on the “Queen City”) were ordered by the charterers to Vancouver to receive on board a full cargo of wheat. The charterers had an option of loading up to one-third of barley and up to one-third of flour. The owners of the “Queen City” gave notice of readiness to load on 18 February. On 16-17 February a strike broke out at the grain elevators in Vancouver which lasted until 7 May. The strike prevented a full cargo of wheat being loaded until 12 May. The shipowners claimed demurrage for the delay in loading. There was an exceptions clause covering strikes and the essential question was whether that exceptions clause excused the charterers for the delay in loading. In particular, were the charterers required to exercise their options to load one third barley and one third flour along with one third wheat (which, for the purposes of the argument, it was assumed was available) instead of insisting on the full cargo being wheat? </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_67">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">67.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The House of Lords, upholding McNair J and the Court of Appeal, held that the charterers were entitled not to exercise the options they had to load other cargo. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">68.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In the words of Viscount Radcliffe at p 718:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“the exceptions clause covers delay in the shipping of wheat, and there is no obligation on the charterers to lose that protection by exercising their option to provide another kind of cargo that is not affected by a cause of delay, even assuming such a cargo to be readily available.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_69">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">69.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Lord Cohen, at pp 724-725, agreed with the charterers’ contention that the charters: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“confer true and unfettered options which leave the charterers free to exercise them or not as they find convenient.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">70.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Lord Evershed said at p 727 that: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“it was a</span><span style="font-weight:bold;font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman'">matter entirely for the free choice of the charterers whether … they should ship any barley or flour.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_71">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">71.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Lord Keith of Avonholme agreed with the decision of the other Lords on this issue without adding any comments of his own. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">72.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Lord Devlin, in the most sophisticated analysis, clarified that the option as to cargo in this case was what he referred to as a “business option” (or a “true option” using the language of counsel for the charterers). This was to be contrasted with a contractual obligation to perform in alternative ways. He said at p 730:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Where there is no option in the business sense, the consequence of damming one channel is simply that the flow of duty is diverted into others and the freedom of choice thus restricted. If then a shipper cannot ship wheat, he must ship either barley or flour. The width of the alternatives is in the contract for the benefit of both parties and it can be a liability as well as a benefit for the shipper.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">But where there is a ‘business option’ the legal position is quite different. There is not then one contractual obligation to be performed in alternative ways, but one obligation to be performed in one way, unless the option holder chooses to substitute another way and does so by the effective exercise of his option. In exercising the option, which he has acquired solely for his own advantage, the holder is not bound to consider the convenience or the interest of the other party. If the obligation is to ship a full and complete cargo of wheat with the option to change to barley or flour and the shipment of wheat is impeded, he is not obliged to change to barley or flour simply because that is the only way in which he could ship a full and complete cargo.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">73.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">As a matter of interpretation, Lord Devlin regarded the charterparty in this case as conferring a business option to load barley or flour instead of wheat and, even though that was the only way in which a full cargo could be loaded in time, the charterer was under no obligation to exercise that option. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_74">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">74.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Although there was no mention in their Lordships’ reasoning of reasonable endeavours, whether express or implied, the importance of the <span style="font-style:italic">Vancouver Strikes </span>case is that the charterers were able to rely on the exceptions clause to excuse the delay in loading even though they could have exercised express options as to the cargo in the charterparty that would have enabled them to perform on time, and hence would have avoided the delay, caused by the strike. Although their Lordships did not refer to, let alone rely on, <span style="font-style:italic">Bulman,</span> the <span style="font-style:italic">Vancouver Strikes </span>case again implicitly, and strongly, supports MUR’s submissions. The intervention of a peril did not require the charterers to give up their contractual entitlement to load a full cargo of wheat, and there was no suggestion that the position would have been different even if it had been found reasonable for the charterers to load the alternative cargos. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">75.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Indeed, one can argue that the emphasis on the charterers having true options in the <span style="font-style:italic">Vancouver Strikes </span>case makes the facts of the instant case even stronger than that case. That is because in our case, the performance required by RTI was payment in US dollars and there was no business or true option for MUR to accept payment in euros. Had there been, the <span style="font-style:italic">Vancouver Strikes </span>case indicates that MUR would still have been entitled not to exercise that option and to insist on payment in dollars. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_18">
+          <num style="font-style:normal;font-weight:bold">(2)</num>
+          <content>
+            <p class="ParaSubHeading1" style="text-indent:0.5in"><span style="font-style:normal">The main cases relied on by RTI</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_19">
+          <num style="font-style:normal;font-weight:bold;text-decoration-line:none">(a)</num>
+          <content>
+            <p class="ParaSubHeading2" style="text-indent:0.5in"><span style="font-weight:bold;text-decoration-line:none">B &amp; S Contracts</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">76.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The claimants agreed to erect exhibition stands for the defendants at Olympia for a price of £11,731.50. There was a force majeure clause in the contract providing for variation or cancellation in the event of, inter alia, a strike. The clause read as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Every effort will be made to carry out any contract based on an estimate, but the due performance of it is subject to variation or cancellation owing to an act of God, war, strikes, civil commotions, work to rule or go-slow or overtime bans, lock-out, fire, flood, drought or any other cause beyond our control, or owing to our inability to procure materials or articles except at increased prices due to any of the foregoing causes.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_77">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">77.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The claimants’ workers went on strike and refused to carry out the work under the contract unless paid an extra £9,000. The defendants became aware that, while the claimants were willing to pay the workers £4,500, the claimants had cash flow difficulties in respect of the remaining £4,500 that was being demanded by the workers. The defendants therefore offered to pay the claimants £4,500 of the agreed contract price in advance. But the claimants refused to accept that offer and insisted that £4,500 should be paid by the defendants as an additional sum to the agreed contract price. They also made clear that, if that additional money was not paid, the contract would not be performed. Considering themselves to be “over a barrel”, the defendants went ahead and paid the £4,500 as an additional sum over and above the agreed contract price. The workers were paid, called off the strike, and the work was completed. After the completion of the work, the defendants deducted £4,500 from the contract price owing and sent a cheque for the balance to the claimants. The claimants sued the defendants for £4,500 and the defendants argued, as a defence, that that sum was not owing because they were entitled to repayment of the £4,500 as paid under economic duress. The Court of Appeal held that economic duress was here established so that the defendants were entitled to deduct the £4,500. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_78">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">78.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">This is a well-known and important case in the development of the English law of economic duress. But for our purposes in this case, there are two important points to note in relation to the relevance of the force majeure clause. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_79">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">79.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">First, the force majeure clause in the contract expressly required that every effort would be made to carry it out albeit that it provided for variation or cancellation should there be a force majeure event, such as a strike. But the Court of Appeal made clear, relying on <span style="font-style:italic">Bulman</span>, that, even if there had been no such express words requiring “every effort”, the requirement to use “reasonable efforts” would have been implied. See the quotations from Griffiths and Kerr LJJ set out at para 28 above. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_80">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">80.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Secondly, in deciding whether the claimants’ threat was illegitimate, as being a threat to break the contract, so that that element of economic duress was established, the Court of Appeal considered whether the claimants could rely on the force majeure clause. If they could rely on the clause, there would be no threatened breach of contract. But it was decided that the clause could not be relied on because reasonable efforts had not been taken by the claimants to avert the strike. On the facts, it would have been reasonable for the claimants to accept the offer of partial advance payment made by the defendants. However, the claimants had unreasonably refused that offer and insisted instead that the payment should be an additional sum over and above the contract price. As Griffiths LJ said at pp 426-427:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“[T]he plaintiffs were perfectly prepared to pay what the men were demanding save for the fact, they said, they did not have the money available. Well, then there came the offer of the defendants to make the money available by giving them an advance. In those circumstances I can see no reason why they should not have accepted the money and paid the workforce save their own immediate economic interests, and they chose not to do that but to put pressure on the defendants by refusing the offer and indicating that the only way out was for the defendants to hand over the £4,500 as a gift rather than as an advance.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">I think that was thoroughly unreasonable behaviour, and that being so they are not entitled to rely upon the force majeure clause…”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_81">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">81.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Counsel for RTI rely on this case as showing that an extra-contractual solution to the force majeure event served to defeat the force majeure defence. That is, the defendants’ offer to pay earlier than required under the contract was an offer that it was reasonable for the claimants to accept and their failure to do so meant that they could not rely on the force majeure clause. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_82">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">82.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In our view, however, this is a weak authority in support of RTI’s case. This is for three linked reasons. First, there was no discussion by the Court of Appeal of the performance being non-contractual and of the relevance of <span style="font-style:italic">Bulman </span>to that issue. Secondly, the clause expressly referred to “variation” of the contract. Thirdly, and most fundamentally, the offer made was not to render a non-contractual performance in any real sense. Rather it was to render the contractual performance earlier than required. The defendants were simply offering to pay in advance the money that they were bound to pay anyway under the contract. The contrast with the facts of our case is clear. RTI was not offering early contractual performance. It was offering non-contractual performance. So it was that RTI supplemented its offer to pay in euros by the offer to indemnify MUR for loss caused by the non-contractual performance of not paying in US dollars. Plainly in <span style="font-style:italic">B &amp; S Contracts </span>there was no possible detriment to the claimants in being paid early so that what was being offered was in effect full performance and, in contrast to our case, there was no conceivable loss that required indemnification. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_20">
+          <num style="font-style:normal;font-weight:bold;text-decoration-line:none">(b)</num>
+          <content>
+            <p class="ParaSubHeading2" style="text-indent:0.5in"><span style="font-weight:bold;text-decoration-line:none">Payzu Ltd v Saunders </span><span style="font-style:normal;font-weight:bold;text-decoration-line:none">[1919] 2 KB 581</span><span style="font-weight:bold;text-decoration-line:none"> (“Payzu”)</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">83.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The defendants contracted to sell in instalments 400 pieces of silk to the claimants, with delivery as specified by the claimants over a nine month period, and payment at a fixed price (minus a discount) to be made on the twentieth of the month following delivery. The claimants failed to pay on time for the first delivery of silk that they had received although they had sent a cheque which never arrived and a further cheque that was delayed. When the claimants then gave the next order for delivery, the defendants refused to deliver unless the claimants paid cash for each order. The claimants refused to do this and brought a claim for damages for breach of contract alleging that the defendants had repudiated the contract by requiring the new terms, and that the claimants were entitled to damages based on the difference between the now higher price of silk and the contract price. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">84.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The Court of Appeal held that the defendants were in repudiatory breach of contract by insisting on cash and that the claimants were entitled to damages. However, after citing the leading case on the principles concerned with mitigation of loss, <span style="font-style:italic">British Westinghouse Electric and Manufacturing Co v Underground Electric Railways Co of London</span> [1912] AC 673, it was decided that the claimants should have mitigated their loss by accepting the offer of the defendants to deliver on payment of cash. That was because, on the facts, the claimants ought reasonably to have accepted that offer. The damages were therefore limited to £50 comprising a sum for business inconvenience plus what the claimants would have lost by having to pay cash rather than having a month’s credit. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_85">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">85.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The principle that, following a breach, a claimant must take reasonable steps to minimise its loss is long-established in the law of damages and <span style="font-style:italic">Payzu </span>is a particular factual application of it. It is certainly true that, in that context, it shows that the required reasonable steps can include accepting a non-contractual offer of performance by the party in breach. We are conscious that, even in that context, the decision has not been free of criticism: see Michael Bridge, “Mitigation of damages in contract and the meaning of avoidable loss” (1989) 105 LQR 398. However, the important point is that we firmly reject the submission of counsel for RTI that the <span style="font-style:italic">Payzu </span>decision on mitigation is analogous to the situation with which we are concerned. Mitigation is concerned with the remedy of damages once breach has been established. It has little if anything to do with the prior question, with which we are dealing, of whether there has been a breach of the primary obligations under the contract. Put another way, the legal principles and policies applicable to the assessment of (unliquidated) damages are not the same as those applicable to determining what is the performance required under the contract.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">86.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">There is in any event a very clear distinction between <span style="font-style:italic">Payzu </span>and the facts of this case. In this case, it is RTI that is suing MUR for damages for breach not vice versa. The duty to mitigate its loss therefore fell on RTI and not on MUR so that, on the facts, <span style="font-style:italic">Payzu </span>plainly had no role to play in respect of MUR’s conduct in not accepting RTI’s offer of non-contractual performance. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_21">
+          <num style="font-style:normal;font-weight:bold;text-decoration-line:none">(c)</num>
+          <content>
+            <p class="ParaSubHeading2" style="text-indent:0.5in"><span style="font-style:normal;font-weight:bold;text-decoration-line:none">The Suez cases on frustration </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">87.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Counsel for RTI relied by way of analogy on what were described as the “Suez cases” dealing with the contractual doctrine of frustration. Two cases were being relied on under this heading. These were the Court of Appeal’s decision in <span style="font-style:italic">Ocean Tramp Tankers Corpn v V/O Sovfracht, The Eugenia </span>[1964] 2 QB 226; and the first instance decision in <span style="font-style:italic">Palmco Shipping Inc v Continental Ore Corpn, The Captain George K </span>[1970] 2 Lloyd’s Rep 21, which applied <span style="font-style:italic">The Eugenia</span>. Reference was also made to <span style="font-style:italic">Societe Franco Tunisienne D’Armement v Sidermar SpA, The Massalia </span>[1961] 2 QB 278, which was overruled in <span style="font-style:italic">The Eugenia</span>.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_88">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">88.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The essential argument made by counsel for RTI was that <span style="font-style:italic">The Eugenia </span>and <span style="font-style:italic">The Captain George K </span>showed that the closure of the Suez Canal did not result in the charterparties in those cases being frustrated. The shipowners had instead taken the alternative route via the Cape of Good Hope and it was held, according to RTI’s submission, that the charterers were bound to accept that reasonable alternative performance even though, at least arguably, it was not the contracted-for route. RTI submitted that, by analogy, the force majeure clause in the present case did not excuse MUR because MUR should have accepted the reasonable alternative performance of payment in euros. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_89">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">89.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In assessing this submission, it is helpful to look at the three Suez cases chronologically. In <span style="font-style:italic">The Massalia, </span>a voyage charterparty was entered into to carry iron ore from Masulipatam in India to Genoa. The fastest and usual route would have been via the Suez Canal but that was shut. The vessel therefore took the longer route via the Cape of Good Hope. The shipowners argued that the contract was frustrated, and was therefore terminated, because of the closure of the Suez Canal and that they were instead entitled to payment (above the agreed contract sum) on a non-contractual quantum meruit basis. That argument succeeded. Pearson J held that the charterparty was frustrated because: the Suez Canal route was a term of the contract (p 306); the fact that closure of the Canal was foreseen as a possibility did not preclude the operation of frustration (p 299); and the route via the Cape of Good Hope was a fundamentally different voyage (pp 306-307). </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_90">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">90.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In <span style="font-style:italic">The Eugenia </span>the Court of Appeal took a different view. This concerned a time charterparty for a trip from Genoa to India. The vessel entered the Suez Canal and became trapped for several months and, once freed, had to go back and take the longer route via the Cape of Good Hope. The charterers claimed that the charterparty was frustrated and thereby terminated but the owners denied that and claimed the agreed hire. The Court of Appeal held that the contract was not frustrated either by the vessel being trapped in the canal or, once freed, by having to go via the Cape of Good Hope. As regards the latter, <span style="font-style:italic">The Massalia </span>was overruled. While the Court of Appeal agreed with Pearson J that, unless the event had been provided for in the contract, the foreseeability of the event did not preclude frustration, the Court of Appeal disagreed with him that the contract was made radically different by having to take the route via the Cape of Good Hope rather than via the Suez Canal. Pearson J was also incorrect to have decided that the contract had a term requiring that the Suez Canal was the route. In the words of Lord Denning MR, at p 240: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“I think that there, as here, there was no obligation to go through the Suez Canal, but only to go by the route which was customary at the time of performance; and that there is no legitimate distinction to be drawn between that case and this.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_91">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">91.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Finally, in <span style="font-style:italic">The Captain George K </span>a voyage charterparty was entered into for the carriage of a cargo of sulphur from Mexico to India. The direct route via the Suez Canal became impossible because of the closure of the Canal and the vessel therefore proceeded via the Cape of Good Hope. The vessel travelled twice as many miles as it would have done had it been able to go through the Suez Canal. The shipowners claimed that the contract was frustrated, and thereby terminated, and that they were entitled to a higher payment than agreed under the contract. With considerable reluctance, Mocatta J held that he was bound by <span style="font-style:italic">The Eugenia </span>and that, therefore, the contract was not frustrated. Applying <span style="font-style:italic">The Eugenia</span>, the voyage round the Cape of Good Hope was not radically different and was merely more expensive than the voyage via the Suez Canal. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_92">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">92.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In our view, these cases, most importantly <span style="font-style:italic">The Eugenia</span>, provide little, if any support, for RTI. This is for two main reasons. First, whether the doctrine of frustration is made out is a different question than deciding on the application of a force majeure clause. While it is true that there is a close connection between the two, because both deal with a change of circumstances after the contract is made for which neither party is responsible, the doctrine of frustration is the default position laid down by law. It sets out a doctrine that is applicable in a narrow range of changed circumstances and has the drastic consequence that the contract is automatically terminated. Force majeure clauses can cover a far wider set of circumstances with a range of different and flexible consequences, including temporary suspension of the contract for a period of time. It follows that, even if it were the general rule in the law of frustration that the doctrine of frustration cannot be made out where the affected party could have reasonably accepted an offer of non-contractual performance, that does not mean that a force majeure clause could not be relied on in the same circumstances. So on the facts of this case, it is not being suggested that the charterparty was frustrated but that leaves open whether MUR can rely on the force majeure clause. As counsel for MUR expressed it in his written submissions, it is “inappropriate to try to draw conclusions about force majeure (or exceptions) clauses from the frustration case-law. After all, if FM clauses simply mirrored the common law of frustration, they would be pointless.”</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_93">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">93.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Secondly, on the best analysis, <span style="font-style:italic">The Eugenia </span>does not suggest that the charterers reasonably had to accept a different contractual performance (ie that they reasonably had to accept a voyage via the Cape rather than via the Suez Canal). Rather Lord Denning MR was at pains to make clear that it was not a term of the contract that the voyage had to be via the Suez Canal. He precisely said that the performance only required the customary route at the time of performance to be taken; and the customary route had become via the Cape of Good Hope. What was being offered by the shipowners was a contractual performance and it is incorrect to view <span style="font-style:italic">The Eugenia </span>(or, on the best analysis, <span style="font-style:italic">The Captain George K</span>) as being a case where the charterers were held bound to accept, because reasonable to do so, a non-contractual performance. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_22">
+          <num style="font-style:normal;font-weight:bold;text-decoration-line:none">(d)</num>
+          <content>
+            <p class="ParaSubHeading2" style="text-indent:0.5in"><span style="font-style:normal;font-weight:bold;text-decoration-line:none">Two other cases mentioned by RTI</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_94">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">94.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">While not central to her submissions, counsel for RTI drew to our attention two further English cases and, for completeness, we now briefly explain why they provide very limited assistance in relation to what we have to decide. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_95">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">95.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In <span style="font-style:italic">Seadrill Ghana Operations Ltd v Tullow Ghana Ltd </span>[2018] EWHC 1640 (Comm), [2018] 2 Lloyd’s Rep 628 (“<span style="font-style:italic">Seadrill</span>”), the defendant had hired from the claimant an oil rig for a term of nearly seven years at a daily rate of the order of US$600,000 when in operation. The contract contained a force majeure clause which included various events among which was a drilling moratorium imposed by the government of Ghana. It also included a reasonable endeavours proviso. Following the decision of an arbitration tribunal, on a dispute between states, that no new drilling in a particular oil field should take place, the defendant invoked the force majeure clause arguing that, under that clause, the contract for the hire of the rig had been terminated. Teare J held that the defendant could not rely on force majeure as, although there had been a government drilling moratorium that prevented work being carried out in an oil field as intended, it did not prevent the defendant issuing drilling instructions in relation to another oil field. That work had been prevented by the government’s failure to approve a drilling programme, which was not a force majeure event. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_96">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">96.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Teare J further found that, even if (contrary to his view) there had been a force majeure event, there had been a failure to exercise reasonable endeavours by the defendant so that the defendant could not rely on the force majeure clause. That was because the defendant was contractually bound to take up other drilling opportunities even though that may have involved the defendant acting against its commercial interests. It was argued that the defendant’s choice in relation to the giving of drilling instructions was akin to a true option (what Lord Devlin in the <span style="font-style:italic">Vancouver Strikes </span>case called a “business option”) which it was able to exercise purely in its own interests. This argument was rejected. Teare J noted that <span style="color:#242021">where there is a business option and the method of performance chosen by the option holder becomes impossible to perform the holder of the option is not bound to perform in any other way. However, in this case the defendant had an obligation to provide drilling instructions which could be performed in a number of ways; if one way became impossible then the obligation was to give instructions which could be performed in another way. The defendant was not entitled to act purely in its own commercial interests and to ignore those of the claimant. Teare J cited and applied the words of Lord Devlin in </span><span style="font-style:italic;color:#242021">Vancouver Strikes </span><span style="color:#242021">set out at para 72 above: “the consequence of damming one channel is simply that the flow of duty is diverted into the others and the freedom of choice is restricted”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_97">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">97.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in"><span style="font-style:italic">Seadrill </span>does not assist RTI because it does not contradict the idea that reasonable endeavours must be geared towards the contractual performance. In <span style="font-style:italic">Seadrill</span>, in contrast to the <span style="font-style:italic">Vancouver Strikes</span> case and our case, the contractual performance required the defendant to perform in an alternative way that was beneficial to the claimant.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_98">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">98.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The recent case of <span style="font-style:italic">Gravelor Shipping Ltd v GTLK Asia M5 Ltd</span> [2023] EWHC 131 (Comm), [2023] 2 Lloyd’s Rep 239 <span style="font-style:italic">(“Gravelor”)</span>, concerned bareboat charterparties of two ships. The charterparties were financing leases under which the charterers had an option to purchase the vessels from the owners. Clause 18.3 of the charterparty provided that, once certain sums had been paid, title in the vessels was to be transferred to the charterers. The charterers wished to purchase the vessels but the parent company of the owners was made the subject of EU and US sanctions which meant that the charterers faced difficulties in making payment to the owners. Under clause 8.10, where a payment was incapable of being processed by the relevant bank because of sanctions against the owners, the charterers and owners were to “cooperate and promptly take all necessary steps in order for the payments to be resumed.” </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_99">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">99.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">On a summary judgment application by the charterers seeking specific performance of the owners’ obligations to transfer the vessels, one of the issues raised was whether the charterers had fulfilled their payment obligations. Foxton J (at paras 69-93) decided that there was a valid payment by the charterers even if it was made into a bank account from which the owners would have great difficulty accessing the funds because of the sanctions imposed. This was so even though he accepted that to treat the payment as validly made, when it could not be withdrawn, would mean that the owners would suffer real prejudice. But in any event, he held that clause 8.10 required the owners to nominate a new bank account and to accept payment in euros instead of US dollars. Following the majority decision of the Court of Appeal in this case, Foxton J reasoned that it did not matter that this would involve the owners accepting a non-contractual performance. As the payment had been validly made, the charterers were entitled to specific performance of the obligation to deliver the vessels. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_100">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">100.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">There are at least two points of significant distinction between <span style="font-style:italic">Gravelor</span> and the present case. First, the sanctions clause in question, clause 8.10, was much more specific and targeted than the general force majeure clause with which we are concerned. Not only was it confined to dealing with sanctions, it was also directed to the payment obligation. Secondly, in contrast to the “reasonable endeavours” clause relating to the affected party in our case, the sanctions clause was directed to both parties having to “cooperate” and to take “all necessary steps” in order for payments to be resumed. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_101">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">101.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">In our view, therefore, <span style="font-style:italic">Gravelor</span> is distinguishable from this case. In any event, Foxton J was bound, as a matter of precedent, to apply what the majority of the Court of Appeal had laid down in MUR so that his judgment should not be read as providing independent support for the majority’s approach in this case. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_23">
+          <num style="text-transform:none;font-weight:bold">9.</num>
+          <content>
+            <p class="ParaHeading1" style="text-indent:0.5in"><span style="text-transform:none">Summary and conclusion </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_102">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">102.</num>
+          <intro>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Our examination of relevant principles and authorities can be summarised as follows:</p>
+          </intro>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(i)</num>
+            <content>
+              <p class="ParaLevel2" style="margin-left:0.5in;text-indent:0.5in">There are good reasons of principle supporting MUR’s case that “reasonable endeavours” to overcome a force majeure event do not include accepting an offer of non-contractual performance absent clear wording to that effect. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-style:normal;font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0.5in;text-indent:0in">(ii)</num>
+            <content>
+              <p class="ParaApprovedLevel2" style="margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Bulman </span>and the <span style="font-style:italic">Vancouver Strikes </span>case provide strong implicit support for MUR’s case and it has not been suggested by counsel for RTI that those two cases should be overruled. In contrast any support in the authorities for RTI’s case is weak. </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_103">
+          <num style="font-weight:normal;font-family:'Times New Roman';font-size:13pt;margin-left:0in;text-indent:0in">103.</num>
+          <content>
+            <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">It follows that we agree with the case put forward by MUR, which was accepted by Jacobs J and by Arnold LJ dissenting in the Court of Appeal. We would therefore allow MUR’s appeal. </p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

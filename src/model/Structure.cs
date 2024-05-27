@@ -20,15 +20,6 @@ interface INumber : IFormattedText {
         styles.Add("text-align", "right");
     }
 
-    static Dictionary<string, string> GetCSSStyles(INumber that) {
-        Dictionary<string, string> styles = CSS.GetCSSStyles(that);
-        if (that.LeftIndent is not null)
-            styles.Add("margin-left", that.LeftIndent);
-        if (that.FirstLineIndent is not null)
-            styles.Add("text-indent", that.FirstLineIndent);
-        return styles;
-    }
-
 }
 
 interface IDivision {
