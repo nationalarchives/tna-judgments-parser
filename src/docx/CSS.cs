@@ -288,10 +288,10 @@ public class CSS {
 
     internal static string ToFontFamily(string fontName) {
         if (fontName.EndsWith(" (W1)"))
-            fontName = fontName.Substring(0, fontName.Length - 5);
+            fontName = fontName[..^5];
         if (fontName == "Calibri")
-            return fontName + ", sans-serif";
-        if (fontName.Contains(" "))
+            fontName += ", sans-serif";
+        if (fontName.Contains(' '))
             return "'" + fontName + "'";
         return fontName;
     }
