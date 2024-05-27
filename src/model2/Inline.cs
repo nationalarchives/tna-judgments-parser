@@ -183,15 +183,20 @@ internal class WText : IFormattedText {
         return new Tuple<WText, WText>( new WText(first, properties), new WText(second, properties) );
     }
 
-    virtual public Dictionary<string, string> GetCSSStyles(string paragraphStyle) {
-        Dictionary<string, string> formatting = CSS.GetCSSStyles(this);
+    /// <summary>
+    /// This functions adds CSS formatting values derived from a paragraph style to override those from a run style
+    /// </summary>
+    /// <param name="formatting">a dictionary of CSS key-values pairs, including some ad hoc inline formatting from a run (which is not to be overridden)</param>
+    /// <param name="paragraphStyle">the paragraph style</param>
+    /// <param name="runStyle">the character style</param>
+    /// <param name="main"></param>
+    public static void OverrideRunStyleWithParagraphStyle(Dictionary<string, string> formatting, string paragraphStyle, string runStyle, MainDocumentPart main) {
         if (paragraphStyle is null)
-            return formatting;
-        if (Style is null)
-            return formatting;
-        MainDocumentPart main = DOCX.Main.Get(properties);
+            return;
+        if (runStyle is null)
+            return;
         Dictionary<string, string> formattingFromParagraphStyle = DOCX.CSS.ExtractCharacterFormatting(main, paragraphStyle);
-        Dictionary<string, string> formattingFromCharacterStyle = DOCX.CSS.ExtractCharacterFormatting(main, Style);
+        Dictionary<string, string> formattingFromCharacterStyle = DOCX.CSS.ExtractCharacterFormatting(main, runStyle);
         foreach(KeyValuePair<string, string> entry in formattingFromCharacterStyle) {
             if (formatting.ContainsKey(entry.Key))
                 continue;
@@ -201,6 +206,14 @@ internal class WText : IFormattedText {
             if (entry.Value == valueFromParagraphStyle)
                 continue;
             formatting.Add(entry.Key, valueFromParagraphStyle);
+        }
+    }
+
+    virtual public Dictionary<string, string> GetCSSStyles(string paragraphStyle) {
+        Dictionary<string, string> formatting = CSS.GetCSSStyles(this);
+        if (properties is not null) {
+            MainDocumentPart main = DOCX.Main.Get(properties);
+            OverrideRunStyleWithParagraphStyle(formatting, paragraphStyle, Style, main);
         }
         return formatting;
     }
