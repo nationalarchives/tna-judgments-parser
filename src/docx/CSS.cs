@@ -18,44 +18,9 @@ public class CSS {
 
     public static Dictionary<string, Dictionary<string, string>> Extract(MainDocumentPart main, string rootSelector) {
         Wordprocessing.Styles styles = main.StyleDefinitionsPart.Styles;
-        Dictionary<string, Dictionary<string, string>> selectors = new Dictionary<string, Dictionary<string, string>>();
+        Dictionary<string, Dictionary<string, string>> selectors = new();
 
-        Dictionary<string, string> defaultProperties = new Dictionary<string, string>();
-
-        var x = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle;
-        AddFontFamily(x?.RunFonts, defaultProperties);
-        AddFontSize(x?.FontSize?.Val, defaultProperties);
-
-        RunFonts themeRunFonts = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts;
-        // ThemeFontValues? y = styles.DocDefaults.RunPropertiesDefault.RunPropertiesBaseStyle?.RunFonts?.AsciiTheme;
-        if (themeRunFonts.AsciiTheme is not null) {
-            ThemeFontValues themeFont = themeRunFonts.AsciiTheme;
-            string fontName = Themes.GetFontName(main, themeFont);
-            AddFontFamily(fontName, defaultProperties);
-        }
-
-        Style defaultParagraphStyle = Styles.GetDefaultParagraphStyle(main);
-        AddFontStyle(defaultParagraphStyle, defaultProperties);
-        AddFontWeight(defaultParagraphStyle, defaultProperties);
-        AddTextDecoration(defaultParagraphStyle, defaultProperties);
-        AddTextTransform(defaultParagraphStyle, defaultProperties);
-        AddFontVariant(defaultParagraphStyle, defaultProperties);
-        AddFontFamily(defaultParagraphStyle, defaultProperties);
-        AddFontSize(defaultParagraphStyle, defaultProperties);
-        AddColor(defaultParagraphStyle, defaultProperties);
-        AddBackgroundColor(defaultParagraphStyle, defaultProperties);
-
-        Style defaultCharacterStyle = Styles.GetDefaultCharacterStyle(main);
-        AddFontStyle(defaultCharacterStyle, defaultProperties);
-        AddFontWeight(defaultCharacterStyle, defaultProperties);
-        AddTextDecoration(defaultCharacterStyle, defaultProperties);
-        AddTextTransform(defaultCharacterStyle, defaultProperties);
-        AddFontVariant(defaultCharacterStyle, defaultProperties);
-        AddFontFamily(defaultCharacterStyle, defaultProperties);
-        AddFontSize(defaultCharacterStyle, defaultProperties);
-        AddColor(defaultCharacterStyle, defaultProperties);
-        AddBackgroundColor(defaultCharacterStyle, defaultProperties);
-        selectors.Add(rootSelector, defaultProperties);
+        selectors.Add(rootSelector, ExtractDefaultCharacterFormatting(main));
 
         IEnumerable<Style> paragraphStyles = styles.ChildElements
             .OfType<Style>()
