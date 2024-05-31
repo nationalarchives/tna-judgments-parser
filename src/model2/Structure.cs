@@ -115,6 +115,8 @@ internal class WDummyDivision : ILeaf {
 
 internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
 
+    public readonly int TabsRemoved;
+
     internal WOldNumberedParagraph(DOCX.NumberInfo info, MainDocumentPart main, Paragraph paragraph) : base(main, paragraph) {
         Number = new DOCX.WNumber(main, info, paragraph);
         IsFirstLineOfNumberedParagraph = true;
@@ -129,9 +131,10 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
         IsFirstLineOfNumberedParagraph = proto.IsFirstLineOfNumberedParagraph;
     }
     // here proto is used only for ParagraphProperties and a link to the MainDocumentPart
-    internal WOldNumberedParagraph(IFormattedText number, IEnumerable<IInline> contents, WLine proto) : base(proto, contents) {
+    internal WOldNumberedParagraph(IFormattedText number, IEnumerable<IInline> contents, WLine proto, int tabsRemoved = 0) : base(proto, contents) {
         Number = number;
         IsFirstLineOfNumberedParagraph = true;
+        TabsRemoved = tabsRemoved;
     }
 
     public IFormattedText Number { get; }
@@ -143,6 +146,21 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
                 _textContent = Number.Text + " " + base.TextContent;
             return _textContent;
         }
+    }
+
+    internal float GetEffectiveFirstLineIndent() {
+        float left = LeftIndentWithNumber ?? 0f;
+        var first = FirstLineIndentWithNumber ?? 0f;
+        first = first > 0 ? left : left + first;
+        for (int i = 0; i < TabsRemoved; i++)
+        {
+            float tab = GetFirstTabAfter(first) ?? GetFirstDefaultTabAfter(first);
+            if (first < left && tab > left)
+                first = left;
+            else
+                first = tab;
+        }
+        return first;
     }
 
 }
