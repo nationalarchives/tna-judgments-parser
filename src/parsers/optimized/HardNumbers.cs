@@ -90,6 +90,10 @@ class HardNumbers {
     private WOldNumberedParagraph ExtractNumberWithFormat(WLine line, string format) {
         if (line is WOldNumberedParagraph)
             return null;
+        int tabsRemoved = line.Contents.TakeWhile(first => first is WTab || first is WLineBreak)
+            .Reverse()
+            .TakeWhile(last => last is not WLineBreak)
+            .Count();
         IEnumerable<IInline> contents = line.Contents;
         contents = contents.SkipWhile(first => first is WTab || first is WLineBreak);
         if (contents.FirstOrDefault() is not WText first)
@@ -123,7 +127,7 @@ class HardNumbers {
             }
         }
         Legislation.Judgments.DOCX.WNumber2 num2 = new(num.Text, num.properties, line.main, line.properties);
-        return new WOldNumberedParagraph(num2, rest, line);
+        return new WOldNumberedParagraph(num2, rest, line, tabsRemoved);
     }
 
     private int GetIndent(WLine line) {

@@ -516,11 +516,8 @@ abstract class OptimizedParser {
     // }
 
     internal static float GetEffectiveIndent(WLine line) {
-        if (line is WOldNumberedParagraph) {
-            float leftWithNum = line.LeftIndentWithNumber ?? 0f;
-            var firstWithNum = line.FirstLineIndentWithNumber ?? 0f;
-            return firstWithNum > 0 ? leftWithNum : leftWithNum + firstWithNum;
-        }
+        if (line is WOldNumberedParagraph old)
+            return old.GetEffectiveFirstLineIndent();
         return GetEffectiveFirstLineIndent(line);
         // float left = line.LeftIndentInches ?? 0f;
         // float first = GetEffectiveFirstLineIndent(line);
@@ -549,7 +546,7 @@ abstract class OptimizedParser {
         return sp;
     }
 
-    internal static float MarginOfError = 0.099f;
+    internal static float MarginOfError = 0.099f;  // test19 wants 0.11
 
     /// <summary>
     /// Allows subclass to specify that a line is outside of whatever paragraph came before it.
