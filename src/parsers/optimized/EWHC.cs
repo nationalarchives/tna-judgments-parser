@@ -173,7 +173,11 @@ class OptimizedEWHCParser : OptimizedParser {
 
     /* enrich */
 
-    private List<Enricher> headerEnrichers = new List<Enricher>() {
+    override protected IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage) {
+        return new NetrualCitation().Enrich(coverPage);
+    }
+
+    private readonly List<Enricher> headerEnrichers = [
         new RestrictionsEnricher(),
         new NetrualCitation(),
         new CaseNo(),
@@ -182,7 +186,7 @@ class OptimizedEWHCParser : OptimizedParser {
         new PartyEnricher(),
         new Judge(),
         new LawyerEnricher()
-    };
+    ];
 
     protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {
         return Enricher.Enrich(header, headerEnrichers);
