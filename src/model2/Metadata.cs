@@ -43,7 +43,7 @@ class WMetadata : IMetadata {
             if (courtType2?.Code is not null)
                 _court = Courts.ByCode[courtType2.Code];
         }
-        if (_court?.Code == Courts.EWFC.Code && Courts.EWFC_B.CitationPattern.IsMatch(Cite))
+        if (_court?.Code == Courts.EWFC.Code && Cite is not null && Courts.EWFC_B.CitationPattern.IsMatch(Cite))
             _court = Courts.EWFC_B;
         if (_court is null && Cite is not null)
             _court = Courts.ExtractFromCitation(Cite);
