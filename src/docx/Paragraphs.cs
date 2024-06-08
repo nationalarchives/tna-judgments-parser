@@ -193,6 +193,12 @@ static class Paragraphs {
         if (indentation?.FirstLine is not null)
             return indentation.FirstLine.Value;
 
+        indentation = Numbering.GetLevel(main, style)?.PreviousParagraphProperties?.Indentation;
+        if (indentation?.Hanging is not null)
+            return "-" + indentation.Hanging.Value;
+        if (indentation?.FirstLine is not null)
+            return indentation.FirstLine.Value;
+
         return null;
     }
 
