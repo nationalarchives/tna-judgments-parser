@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewfc/b/2024/127" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewfc/b/2024/127" />
+          <FRBRdate date="2024-06-05" name="judgment" />
+          <FRBRauthor href="#ewfc-b" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="127" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/b/2024/127" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/b/2024/127" />
+          <FRBRdate date="2024-06-05" name="judgment" />
+          <FRBRauthor href="#ewfc-b" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/b/2024/127/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/b/2024/127/data.xml" />
+          <FRBRdate date="2024-06-07T19:55:06" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2024-06-05" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewfc-b" href="" showAs="Family Court judgments with &quot;B&quot; in their NCN" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="judge-hhj-vincent" href="/judge-hhj-vincent" showAs="HHJ Vincent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWFC-B</uk:court>
+        <uk:year>2024</uk:year>
+        <uk:number>127</uk:number>
+        <uk:cite>[2024] EWFC 127 (B)</uk:cite>
+        <uk:parser>0.24.4</uk:parser>
+        <uk:hash>7afb03194fbeaa7a186451b53783a3e06af2e4d346d5d97f2c182c7b8d8a745f</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { text-align: justify; margin-left: 0.64in; font-size: 12pt; }
+#judgment .Heading1 { text-align: justify; margin-left: 0.64in; font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { text-align: justify; margin-left: 0.64in; font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; margin-left: 0.64in; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { text-align: justify; margin-left: 0.64in; font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; margin-left: 0.64in; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { text-align: justify; margin-left: 0.64in; font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; margin-left: 0.64in; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 0.5in; font-size: 12pt; }
+#judgment .Header { text-align: justify; margin-left: 0.64in; font-family: Univers; font-size: 12pt; }
+#judgment .Footer { text-align: justify; margin-left: 0.64in; font-family: Univers; font-size: 12pt; }
+#judgment .Heading { text-align: justify; margin-left: 0.64in; font-size: 12pt; }
+#judgment .Title { text-align: center; margin-left: 0.64in; font-weight: bold; font-size: 10pt; }
+#judgment .ListParagraph { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .eMailBlock { text-align: center; margin-left: 0.64in; font-weight: bold; font-size: 13pt; }
+#judgment .Revision { font-size: 12pt; }
+#judgment .CommentText { text-align: justify; margin-left: 0.64in; font-size: 10pt; }
+#judgment .CommentSubject { text-align: justify; margin-left: 0.64in; font-weight: bold; font-size: 10pt; }
+#judgment .CommentReference { font-size: 8pt; }
+#judgment .CommentTextChar { }
+#judgment .CommentSubjectChar { font-weight: bold; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .HeaderChar { font-family: Univers; font-size: 12pt; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p style="margin-left:0.64in"><span style="font-style:italic">This approved judgment was handed down by the Judge at a hearing and by circulation to the parties’ representatives by email.  The time and date of hand down is 2.30 p.m. on 5 June 2024.</span></p>
+      <p style="margin-left:0.64in"><span style="font-weight:bold">IMPORTANT NOTICE This judgment is published in accordance with the Practice Direction on Committal for Contempt of Court: Open Court. However, as there are ongoing proceedings under the Children Act 1989, the names of the parties and their child have been anonymised. The anonymity of the child and members of their family must be strictly preserved. All persons must ensure that this condition is strictly complied with. Failure to do so will be a contempt of court. </span></p>
+    </coverPage>
+    <header>
+      <p class="CoverText" style="text-align:left;margin-left:0.64in"><span style="text-decoration-line:none;font-size:10pt">Application for committal for Contempt of Court </span></p>
+      <p class="CoverText" style="margin-left:0.64in">Neutral citation: <neutralCitation>[2024] EWFC 127 (B)</neutralCitation></p>
+      <p class="CoverText" style="margin-left:0.64in">Case No: <docketNumber>OX20P00370</docketNumber></p>
+      <p class="CoverMain" style="margin-left:0.64in"><courtType refersTo="#ewfc">IN THE FAMILY COURT AT OXFORD</courtType></p>
+      <p class="CoverText" style="margin-left:0.64in">Date: <docDate date="2024-06-05" refersTo="#judgment">5 June 2024</docDate></p>
+      <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center;margin-left:0.64in"><judge refersTo="#judge-hhj-vincent">HHJ Vincent</judge></p>
+      <p style="text-align:center;margin-left:0.64in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p style="margin-left:0.64in" />
+          </td>
+          <td>
+            <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">A father</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right;margin-left:0.64in">Applicant father</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="margin-left:0.64in" />
+          </td>
+          <td>
+            <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">- and –</span></p>
+            <p style="text-align:center;margin-left:0.64in" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right;margin-left:0.64in" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="margin-left:0.64in" />
+          </td>
+          <td>
+            <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">A mother</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right;margin-left:0.64in">Respondent mother</p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center;margin-left:0.64in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.64in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">Miss Logan Green </span>(instructed by<span style="font-weight:bold"> WBW Solicitors</span>) for the <span style="font-weight:bold">applicant father</span></p>
+      <p style="text-align:center;margin-left:0.64in"><span style="font-weight:bold">Miss Rainsford</span> (instructed by Blackfords LLP) for the <span style="font-weight:bold">respondent mother</span></p>
+      <p style="text-align:center;margin-left:0.64in">Hearing date: 5 June 2024</p>
+      <p style="text-align:center;margin-left:0.64in">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc" style="margin-left:0.64in">JUDGMENT</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level eId="lvl_1">
+          <content>
+            <p style="margin-left:0.64in"><span style="font-weight:bold">HHJ Vincent :</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="margin-left:0.64in;text-indent:-0.25in">1.</num>
+          <content>
+            <p style="margin-left:0.64in">This is the final hearing of the father’s application, issued on 18 March 2024, for committal of the respondent mother arising out of breaches of Court orders made in associated and long-running private law proceedings, concerning the parties’ daughter, Z. The mother admits the breaches.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="margin-left:0.64in;text-indent:-0.25in">2.</num>
+          <content>
+            <p style="margin-left:0.64in">The hearing is in public and has been recorded. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="margin-left:0.64in;text-indent:-0.25in">3.</num>
+          <content>
+            <p style="margin-left:0.64in">The father is represented by Miss Logan Green, the mother by Miss Rainsford. Each of the parties has been assisted by a Slovakian interpreter.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="margin-left:0.64in;text-indent:-0.25in">4.</num>
+          <content>
+            <p style="margin-left:0.64in">The breaches are set out in the affidavit of the father’s solicitor, Katherine Wright, and are here recorded as accepted by the respondent.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="margin-left:0.64in;text-indent:-0.25in">5.</num>
+          <content>
+            <p style="margin-left:0.64in">By order of 17 May 2023, the respondent was directed to send to the applicant (via his solicitors) a written update in respect of Z’s welfare by 4pm on 31 May 2023, such update to be personal, and include relevant information in respect of Z’s likes and interests, her health, education and development, and to continue to send written welfare updates to the applicant in respect of Z monthly thereafter.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="margin-left:0.64in;text-indent:-0.25in">6.</num>
+          <content>
+            <p style="margin-left:0.64in">A penal notice was attached to the order. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="margin-left:0.64in;text-indent:-0.25in">7.</num>
+          <content>
+            <p style="margin-left:0.64in">The direction was repeated on 15 August 2023, 23 August 2023, 22 November 2023, each time with a penal notice attached.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="margin-left:0.64in;text-indent:-0.25in">8.</num>
+          <content>
+            <p style="margin-left:0.64in">The respondent admits that she has not complied with any of these orders. She has not sent any information at all to the applicant about their daughter.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="margin-left:0.64in;text-indent:-0.25in">9.</num>
+          <content>
+            <p style="margin-left:0.64in">By further order made on 17 May 2023, the respondent was directed to allow the guardian to meet with Z to carry out storyboard work about her father, the paternal family and the private law proceedings, such work to take place by 15 June 2023.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="margin-left:0.64in;text-indent:-0.25in">10.</num>
+          <content>
+            <p style="margin-left:0.64in">This order was repeated on 15 August 2023, 23 August 2023 and 22 November 2023. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="margin-left:0.64in;text-indent:-0.25in">11.</num>
+          <content>
+            <p style="margin-left:0.64in">At a hearing on 8 January 2024 the court repeated both orders; to send updates to the father about Z, and to allow Z to meet with the guardian for storyboard work to be carried out. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="margin-left:0.64in;text-indent:-0.25in">12.</num>
+          <content>
+            <p style="margin-left:0.64in">The court attached a penal notice to both directions. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="margin-left:0.64in;text-indent:-0.25in">13.</num>
+          <content>
+            <p style="margin-left:0.64in">The respondent has not complied with these orders. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="margin-left:0.64in;text-indent:-0.25in">14.</num>
+          <content>
+            <p style="margin-left:0.64in">The respondent accepts that by breaching these orders she is in contempt of court. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="margin-left:0.64in;text-indent:-0.25in">15.</num>
+          <content>
+            <p style="margin-left:0.64in">In the circumstances I did not need to hear oral evidence. I have read the contents of the bundle, containing the relevant orders, the application and affidavit in support. In addition, I have read the fact-finding judgment of HHJ Lloyd-Jones in the Children Act proceedings dated 6 September 2021, and a note of the welfare judgment dated 17 May 2023.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="margin-left:0.64in;text-indent:-0.25in">16.</num>
+          <content>
+            <p style="margin-left:0.64in">The essential facts of the case are that the parents lived in Slovakia at the time of Z’s birth. They were in an extra-marital relationship. They separated in 2017 while Z was still a baby. The mother then relocated with Z to this country. Since then the father has served a term of imprisonment in Slovakia following a conviction for fraud. Since the parents’ separation, Z has had no contact with her father and has no idea who he is. Z is now 8 years old.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="margin-left:0.64in;text-indent:-0.25in">17.</num>
+          <content>
+            <p style="margin-left:0.64in">The outcome of the proceedings before HHJ Lloyd-Jones was that she did not find the mother’s allegations of domestic abuse against the father to be proven. She directed that it was in Z’s welfare to be supported to understand her life story, and in particular to be supported to learn who her father is. It is to this end that the orders that are the subject of this application were made.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="margin-left:0.64in;text-indent:-0.25in">18.</num>
+          <content>
+            <p style="margin-left:0.64in">The mother has made it clear that she has no intention of complying with the orders. She understands that it is open to the court to punish her. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="margin-left:0.64in;text-indent:-0.25in">19.</num>
+          <content>
+            <p style="margin-left:0.64in">Her position is that complying with the orders would cause her daughter significant harm. She maintains that the relationship was one where she was subject to domestic abuse. She fears that her daughter is at risk of domestic abuse at the hands of the applicant should contact eventually progress.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="margin-left:0.64in;text-indent:-0.25in">20.</num>
+          <content>
+            <p style="margin-left:0.64in">She says that if the applicant were to receive updates about Z, he would misuse the information in a way that would abuse her and their daughter.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="margin-left:0.64in;text-indent:-0.25in">21.</num>
+          <content>
+            <p style="margin-left:0.64in">She considers that the storyboard work would force topics of discussion onto her daughter that are not age appropriate. She says that she herself will give that information to her child only when she asks about her father.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="margin-left:0.64in;text-indent:-0.25in">22.</num>
+          <content>
+            <p style="margin-left:0.64in">In my judgment, none of these points amounts to a reasonable excuse for failing to comply with the orders.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="margin-left:0.64in;text-indent:-0.25in">23.</num>
+          <intro>
+            <p style="margin-left:0.64in">There is no evidence to support the assertion that the father poses a risk to the mother or the child. There is no evidence that he would misuse any information provided to him. Extracts from the fact-finding judgment are clear that the respondent’s allegations were rejected: </p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.79in"><span style="font-style:italic">‘[I]t was difficult for the court to understand the hyperbole with which she spoke as against the allegations she made, apart from the allegation of damage to her car which was not in fact in her Scott Schedule’.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaHeading" style="margin-left:0.79in"><span style="font-style:italic">As a witness, she did not impress me. I was satisfied that her anxiety was genuine, but it was extreme. She said that she did not become fearful of the father until after the damage to her car, which was after their separation and therefore after the end of the relationship. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-style:italic">From her evidence, it seems that she is now terrified of the father because someone poured acid on her car in early 2017. She believes the perpetrator was the father, but she has no evidence at all to support that. She relies solely on her firm belief.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-style:italic">The extreme manifestations of anxiety by the mother are not justified by the evidence before the court and the limited findings made by the court, and they are not even explained by the allegations she makes.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-style:italic">I have made very limited findings in which I can see no evidence of control, rather an unhappy relationship that was dishonest in which she had hopes that were not realised. On her own evidence, she did not perceive control during the relationship, only in retrospect. That, in itself, does not mean it was not happening. It is a characteristic of coercive control that the person controlled may not realise it, at least to start with. The individual findings I have been able to make do not paint that picture, nor does she give any other picture of a pattern of behaviour beyond the dishonesty that I have already dealt with.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-style:italic">The mother’s fear is damaging to the welfare of the child. It is preventing a relationship between the child and father, and I find it difficult to accept it does not have an impact on other areas of her life.’</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="margin-left:0.64in;text-indent:-0.25in">24.</num>
+          <content>
+            <p style="margin-left:0.64in;margin-right:-0.43in">It is not for the respondent to put her feelings and opinions before her obligation to comply with Court orders. The conclusion that it is in Z’s welfare interest to engage in storyboard work to understand in due course the identity of her father and her own life story, was reached by the judge following lengthy proceedings, having heard evidence from the parties and professionals.  The resulting orders have not been successfully appealed and remain in force.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="margin-left:0.64in;text-indent:-0.25in">25.</num>
+          <content>
+            <p style="margin-left:0.64in;margin-right:-0.43in">It is of concern that the respondent says she alone should be responsible for informing her daughter about her father, in circumstances where her characterisation of the applicant father has been found to be at odds with the facts.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="margin-left:0.64in;text-indent:-0.25in">26.</num>
+          <content>
+            <p style="margin-left:0.64in;margin-right:-0.43in">The mother says that she is acting to protect her daughter, but in fact there is mounting concern among professionals that, as HHJ Lloyd-Jones feared, Z is becoming more isolated. She is now home-schooled. The mother has continued to refuse to allow Z to meet with the guardian. I am told by Ms Logan Green that the local authority is having difficulties in gaining access to Z and is contemplating applying for a child assessment order pursuant to section 43 of the Children Act 1989.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="margin-left:0.64in;text-indent:-0.25in">27.</num>
+          <content>
+            <p style="margin-left:0.64in;margin-right:-0.43in">The penal notices attached to the orders make clear the potential consequences of failing to comply, which I now turn to consider. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="color:#252526;margin-left:0.64in;text-indent:-0.25in">28.</num>
+          <content>
+            <p style="margin-left:0.64in;margin-right:-0.43in">The Court’s sentencing powers are found at Part 37 of the Family Procedure Rules 2010, and in the associated Practice Direction. I have also had regard to the Family Court (Contempt of Court) (Powers) Regulations 2014 SI 2014/833 and the <span style="color:#252526">Practice Direction on Committal for Contempt of Court in Open Court, updated in August 2020.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">29.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The Court may impose a term of committal, of up to two years, and/or may impose a fine of up to level 5 on the standard scale, which is up to £5,000. The court may confiscate assets, or make such other punishment as is permitted under the law.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">30.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">If a term of committal is imposed immediately, the contemnor is entitled to automatic release, without conditions, after serving half the term of the committal.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">31.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The Court may also order that its execution will be suspended for such period or on such terms or conditions as it may specify. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">32.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">In imposing any sentence, the court should have in mind the purpose of its powers. Firstly, in respect of punishing the breach. Secondly, such sanction as is necessary to ensure compliance with the existing orders or future orders.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">33.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The court should first consider whether or not the custody threshold is passed (Liverpool Victoria Insurance Company Limited v Zafar [2019] EWCA Civ 392). Secondly, whether it is unavoidable that a term of committal ought to be imposed, and thirdly what is the shortest term commensurate with the seriousness of the offence. Lastly the court must consider whether the term can be suspended or not. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">34.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The court is to have regard to the nature of the allegations and whether there have been admissions. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">35.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The breaches of orders have been persistent and repeated.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">36.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The respondent has made clear that she has no intention of complying with the court’s orders. She has made no apology to the court for her actions.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">37.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The impact has been that a further year’s delay has occurred in which Z’s father remains wholly excluded from her life, and does not even know what she looks like, what she is like as a person, or what she likes doing. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">38.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">Professionals have been prevented from working with Z in order to support her in building an understanding of her own identity. While the mother will say that she is protecting her from harm, the risk is that Z continues to suffer harm every day that her mother is allowing her to grow up with a false understanding of her history and her identity.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">39.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">Concerns are mounting that the mother will not work with professionals in the best interests of her daughter, and that if the Court takes no action in response to her repeated flouting of court orders, this will only strengthen her resolve.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">40.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The threshold for imposing a term of committal is crossed, and this is accepted by the mother. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">41.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The next question is whether it is unavoidable that a term of committal ought to be imposed. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">42.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">This is more difficult to answer. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">43.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">I must have regard to the impact of the term of committal on the respondent mother but also on others. The respondent is the sole carer of Z and she does not have any family network living in this country. If she were in prison, Z would be without a carer and at risk of being placed into foster care. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">44.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">There is a possibility that maternal grandmother and aunt could come over to this country to look after Z. Even so, that would deprive Z of her primary carer. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">45.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">Whether the term was imposed immediately, or triggered after being suspended, it would be unlikely that alternative care arrangements could be made, so there is a real risk that Z would be placed in foster care.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="margin-left:0.5in;text-indent:-0.25in">46.</num>
+          <content>
+            <p style="margin-left:0.5in;margin-right:-0.43in">Imposing a term of committal will not achieve compliance with the order, nor would suspending the order subject to conditions. The mother has made it clear that she will not comply with the order, even if she is sent to prison.</p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_47">
+          <num style="margin-left:0.5in;text-indent:-0.25in">47.</num>
+          <content>
+            <p style="margin-left:0.5in;margin-right:-0.43in">In the short term, the impact of imposing a term of committal could enable the local authority and guardian to start work with Z in her mother’s absence, but is unlikely to result in the mother’s co-operation thereafter. Attempts by the local authority or guardian to engage with the mother will be delayed by her being in prison. </p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">48.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The father has brought this application because he does not know what else to do, but he has no enthusiasm for sending the mother to prison and leaves the decision in the Court’s hands.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">49.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">I have to balance the harm that would be caused to the mother and to Z, and the need to preserve their article 8 rights, against what would be achieved by imposing imprisonment, and the need for the court to punish the contempt. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">50.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">In all the circumstances, while the repeated breaches are serious, I have not been persuaded that a term of committal is unavoidable in this case. In my judgment it is not the appropriate response to the breach at this stage.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">51.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The private law proceedings are ongoing, Z has a guardian, there is an interim supervision order to the local authority, who may well seek to escalate matters if their concerns about the mother’s ability to work with them remain. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_52">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">52.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">Those actions should serve to achieve the objectives of the Family Court orders.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">53.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">Those actions will not be taken to penalise or punish the mother, but to ensure that Z’s welfare is safeguarded.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">54.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">I must consider whether a fine or other punishment is appropriate. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">55.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">The mother is in receipt of universal credit and child benefit. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">56.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">As was pointed out by Ms Logan Green on behalf of the father, any fine imposed is likely to impact her ability to provide for her daughter. Again, the father had little enthusiasm for the court to impose such an order in light of the impact upon Z.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">57.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">I have this in mind, but also note this as the only realistic means of imposing a consequence upon this mother, who has repeatedly refused to comply with Court orders. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">58.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">I shall impose a fine of £250 upon the mother to be paid within 14 days to the Court office. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">59.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">There is no other punishment that has been put forward or that I can identify that would be appropriate in this case.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">60.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">In conclusion, the Court has found the respondent to be in contempt of court on the basis of the admissions she has made. I have concluded that the breaches are serious such that they meet the threshold for a term of committal. However, I have considered the various statutory guidance and authorities and in all the circumstances it is not appropriate for that penalty to be imposed in this case. Instead, I order the respondent to pay a fine of £250 to be paid in 14 days. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="color:#252526;margin-left:0.5in;text-indent:-0.25in">61.</num>
+          <content>
+            <p class="ListParagraph" style="margin-left:0.5in;margin-right:-0.43in"><span style="color:#252526">I have set out this decision at length to reflect the level of the court’s concern about the ongoing flouting of orders and the continuing harm that is being caused to Z as a result. </span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_2">
+          <content>
+            <p class="ListParagraph" style="text-align:right;margin-left:0.25in"><span style="color:#252526">HHJ Vincent</span></p>
+            <p class="ListParagraph" style="text-align:right;margin-left:0.25in"><span style="color:#252526">Family Court, Oxford </span></p>
+            <p class="ListParagraph" style="text-align:right;margin-left:0.25in"><span style="color:#252526">5 June 2024 </span></p>
+          </content>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
