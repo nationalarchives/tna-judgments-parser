@@ -105,7 +105,7 @@ class Numbering {
         return GetOwnLevel(main, pProps);
     }
 
-    private static Level GetLevel(MainDocumentPart main, Style style) {
+    internal static Level GetLevel(MainDocumentPart main, Style style) {
         if (style is null)
             return null;
         int? id = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
@@ -168,6 +168,8 @@ class Numbering {
         int? ilvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
         if (!id.HasValue || !ilvl.HasValue) {
             Style style = Styles.GetStyle(main, paragraph);
+            if (style is null)
+                style = Styles.GetDefaultParagraphStyle(main);
             if (!id.HasValue)
                 id = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
             if (!ilvl.HasValue)

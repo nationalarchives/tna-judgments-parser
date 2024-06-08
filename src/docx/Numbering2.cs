@@ -39,7 +39,10 @@ class Numbering2 {
         int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         if (numId.HasValue && numId.Value == 0)
             return false;
-        Style style = Styles.GetStyle(Main.Get(paragraph), paragraph);
+        var main = Main.Get(paragraph);
+        Style style = Styles.GetStyle(main, paragraph);
+        if (style is null)
+            style = Styles.GetDefaultParagraphStyle(main);
         if (style is null)
             return false;
         numId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
