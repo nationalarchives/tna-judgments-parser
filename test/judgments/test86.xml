@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRdate date="2024-06-06" name="judgment" />
+          <FRBRauthor href="#ewcop" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="" />
+          <FRBRname value="A LOCAL AUTHORITY v ZX" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRdate date="2024-06-06" name="judgment" />
+          <FRBRauthor href="#ewcop" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+          <FRBRdate date="2024-06-07T13:37:14" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2024-06-06" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewcop" href="https://www.gov.uk/courts-tribunals/court-of-protection" showAs="The Court of Protection" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="a-local-authority" href="" showAs="A LOCAL AUTHORITY" />
+        <TLCPerson eId="zx" href="" showAs="ZX" />
+        <TLCRole eId="applicant" href="" showAs="Applicant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-his-honour-judge-burrows" href="/judge-his-honour-judge-burrows" showAs="HIS HONOUR JUDGE BURROWS" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWCOP</uk:court>
+        <uk:parser>0.24.4</uk:parser>
+        <uk:hash>f9422bd6351acc0095b634579a76f2ceabdbdc4e2e6cdb5f19bee5eb42c11d67</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 12pt; font-family: 'Times New Roman'; }
+#judgment .Normal { font-family: 'Times New Roman'; }
+#judgment .Heading2 { font-weight: bold; font-family: 'Times New Roman'; font-size: 18pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-family: 'Calibri, sans-serif'; font-size: 11pt; color: #000000; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-family: 'Times New Roman'; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-family: 'Times New Roman'; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-family: 'Times New Roman'; font-size: 13pt; }
+#judgment .Title { font-size: 28pt; }
+#judgment .Header { font-family: 'Times New Roman'; }
+#judgment .Footer { font-family: 'Times New Roman'; }
+#judgment .Heading2Char { font-weight: bold; font-family: 'Times New Roman'; font-size: 18pt; }
+#judgment .ListParagraphChar { font-family: 'Calibri, sans-serif'; font-size: 11pt; color: #000000; }
+#judgment .TitleChar { font-size: 28pt; }
+#judgment .HeaderChar { font-family: 'Times New Roman'; }
+#judgment .FooterChar { font-family: 'Times New Roman'; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p class="Header" style="text-align:right"><span style="font-family:Garamond;font-size:8pt">A local authority v ZX</span></p>
+    </coverPage>
+    <header>
+      <p class="CoverText" style="text-align:left"><span style="font-weight:bold;text-decoration-line:none;font-family:Garamond;color:#000000;background-color:#F8F8F8">[2024] EWCOP 30 (T2)</span></p>
+      <p class="CoverText"><span style="font-family:Garamond">Case No: </span><docketNumber style="font-family:Garamond">14203804</docketNumber></p>
+      <p class="CoverMain"><courtType refersTo="#ewcop" style="font-family:Garamond">IN THE COURT OF PROTECTION</courtType></p>
+      <p class="CoverText"><span style="font-family:Garamond">The Civil Justice Centre,</span></p>
+      <p class="CoverText"><span style="font-family:Garamond">1, Bridge Street West,</span></p>
+      <p class="CoverText"><span style="font-family:Garamond">MANCHESTER</span></p>
+      <p class="CoverText"><span style="font-family:Garamond">M60 </span></p>
+      <p class="CoverText"><span style="font-family:Garamond">Date: </span><docDate date="2024-06-06" refersTo="#judgment"><span style="font-family:Garamond">6</span><span style="vertical-align:super;font-size:smaller;font-family:Garamond">th</span><span style="font-family:Garamond"> June 2024</span></docDate><span style="font-family:Garamond">  </span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond">Before</span><span style="font-family:Garamond"> :</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-his-honour-judge-burrows" style="font-family:Garamond">HIS HONOUR JUDGE BURROWS</judge></p>
+      <p class="CoverMain" style="text-align:center"><span style="font-family:Garamond">Sitting as a nominated Judge of the Court of Protection at Tier 2</span></p>
+      <p style="text-align:center"><span style="font-family:Garamond">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond">Between :</span></p>
+      <table uk:widths="1.23in 3.86in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#a-local-authority" as="#applicant" style="font-weight:bold;font-family:Garamond">A LOCAL AUTHORITY</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#applicant" style="font-family:Garamond">Applicant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond">- and -</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#zx" as="#respondent" style="font-weight:bold;font-family:Garamond">ZX</party></p>
+            <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond">(by his litigation friend, the Official Solicitor)</span></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent" style="font-family:Garamond">Respondent</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center"><span style="font-family:Garamond">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-family:Garamond">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond">Lucinda France-Hayhurst </span><span style="font-family:Garamond">(instructed by</span><span style="font-weight:bold;font-family:Garamond"> the Local Authority Solicitor</span><span style="font-family:Garamond">) for the </span><span style="font-weight:bold;font-family:Garamond">Applicant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Garamond">Francesca Gardner</span><span style="font-family:Garamond"> (instructed by </span><span style="font-weight:bold;font-family:Garamond">Irwin Mitchell </span><span style="font-family:Garamond">on behalf of</span><span style="font-weight:bold;font-family:Garamond"> the Official Solicitor</span><span style="font-family:Garamond">) for the </span><span style="font-weight:bold;font-family:Garamond">Respondent</span></p>
+      <p style="text-align:center"><span style="font-family:Garamond">Hearing dates: 2-3 May 2024</span></p>
+      <p style="text-align:center"><span style="font-family:Garamond">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p class="CoverDesc"><span style="font-family:Garamond;font-size:16pt">APPROVED JUDGMENT</span></p>
+      <p class="CoverDesc" style="text-align:left"><span style="font-family:Garamond;font-size:13.5pt;color:#FF0000">This judgment was delivered in public, but a Transparency Order dated 31st January 2024 is in force. The judge has given leave for this version of the judgment to be published on condition that (irrespective of what is contained in the judgment) in any published version of the judgment the anonymity of ZX must be strictly preserved. All persons, including representatives of the media and legal bloggers, must ensure that this condition is strictly complied with. Failure to do so may be a contempt of court.</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level eId="lvl_1">
+          <content>
+            <p><span style="font-weight:bold;font-family:Garamond">HIS HONOUR JUDGE BURROWS:</span></p>
+            <p><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">PRIVATE PROCEEDINGS &amp; JUDGMENT: PRELIMINARY </span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-family:Garamond">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">This case concerns a young man of 18 I will call ZX. There was a private hearing on the 2 and 3 May 2024 and this judgment was initially to be handed down in private. That is because there is a need to prevent the identification of a number of people in this case for various reasons.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-family:Garamond">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">ZX should not be capable of identification because he is P in these proceedings, and it would clearly not be in his best interests for his identity to be widely known.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-family:Garamond">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The same applies to ZX’s brother who may be a victim of serious sexual abuse, and may be a perpetrator, as well. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-family:Garamond">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">However, there is also a need to protect the identity of others who are potentially the victims of sexual crimes.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-family:Garamond">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Finally, there are ZX’s adoptive parents who have been accused of serious sexual offences. Those are still under investigation and a prosecution, and therefore the integrity of a potential future trial, must also be protected.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-family:Garamond">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The facts of this case are quite singular, and if too much of the detail about ZX are spelled out in a public judgment, the likelihood of “jigsaw” identification is very high.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-family:Garamond">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">What I have tried to do is to outline only so much of the factual background as necessary in order to produce a judgment that can be published to the wider world. I have sought to deal with the details only where necessary. These extremely disturbing and lurid details are outlined sufficiently in the documents I have read and are known to the parties and the limited readership directly affected by this judgment. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-family:Garamond">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">However, the parties agreed the draft I sent them was suitable for publication, and hence this judgment can be handed down as a public judgment and it will be uploaded onto the National Archive as soon as practicable after hand down.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-family:Garamond">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">What follows is subject to that editing. However, the wider readership can, I hope, still be enabled to “see that justice is being done in a particular case by scrutinising the judicial process and the conduct of the parties and others involved in litigation (Jack Beatson “</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">The Rule of Law and the Separation of Powers</span><span style="font-family:Garamond">” (Hart 2021, p. 50)).</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_2">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">INTRODUCTION &amp; OUTLINE</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_10">
+          <num style="font-family:Garamond">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The essence of this judgment is my determination of one issue. That is whether ZX lacks the capacity to engage in sexual activity, which includes, but is not limited to, intercourse (vaginal and anal).</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-family:Garamond">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There was a two day private hearing in Manchester at the beginning of May 2024 in which I heard and read evidence and submissions. I am extremely grateful to counsel, Ms France-Hayhurst and Ms Gardner for their excellent written work and their approach to the oral hearing and submissions, the economy of which in no way reduced their effectiveness. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-family:Garamond">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In particular, Ms France-Hayhurst produced a chronology running to 94 pages, which must have taken her an enormous amount of time, but which is extremely helpful, and reduced judicial reading time and means that I do not need to go through the history of this case in any great detail.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-family:Garamond">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There has been a little delay in this judgment because the transcript of Dr Ince’s evidence that I directed did not materialise by the end of May, and I therefore proceeded on the basis of the agreed note prepared by the parties. I am, once again, very grateful for their diligence.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-family:Garamond">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">ZX was born to parents who are thought to have had mental health and substance abuse problems. His older brother, YX had sustained significant physical injuries and was extremely neglected. The brothers were made subject to care proceedings when ZX was 3 weeks old. They were adopted together when ZX was a baby, in 2007. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-family:Garamond">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">They lived with their adoptive parents until the brothers were removed from their care in November 2019. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_16">
+          <num style="font-family:Garamond">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The brothers became the subject of attention from the Local Authority again in 2012. They were both displaying harmful sexual behaviours towards each other, which were both violent and aggressive.  There were concerns at that stage as to whether the adoptive parents were able to protect them or indeed, cope with them. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-family:Garamond">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There were ongoing concerns, raised by what the children told the authorities, about the boys engaging in oral sex. It was thought that what happened in their early months may have left them damaged and resulted in the development of sexually dysfunctional attitudes and behaviours. In addition, there were concerns about sexually sadistic behaviours towards farm animals, to whom the boys had daily access. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-family:Garamond">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Initially, the adoptive parents agreed that ZX should be placed in a specialised residential placement for young people who display sexually harmful behaviours. This was under the provisions of s. 20 of the Children Act 1989.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-family:Garamond">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">However, during therapy sessions, ZX “disclosed”/alleged that he and his brother had engaged in sexual activity with farm animals. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-family:Garamond">20.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">A “robust safety plan” with the adoptive parents was agreed in Summer of 2020.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-family:Garamond">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Then, again during therapy sessions, the brothers made further allegations that sexual activity was ongoing with both animals and people. Further care proceedings were brought and a full care order, with the brothers’ final removal from the adoptive parents, in May 2021.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-family:Garamond">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">ZX disclosed that he had sexual thoughts that were often violent, controlling, and coercive and that was the only way he could satisfy his sexual urges. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-family:Garamond">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There were further disclosures/allegations of the brothers having sex with people whilst at their adoptive parents’, and at their placement. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-family:Garamond">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Late in 2022, the allegations within therapy turned to the adoptive parents who, according to ZX perpetrated frequent and regular sexual abuse of both brothers from when ZX was 8.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-family:Garamond">25.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">These allegations have naturally prompted a police investigation into the adoptive parents. No charges have yet been brought. ZX has not yet been the subject of an ABE interview. It seems unclear, even unlikely whether there will ever be charges brought against the adoptive parents. Nevertheless, it is still possible, hence the Court’s great caution not adversely to affect possible criminal proceedings.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-family:Garamond">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">ZX now continues to live in a placement for children, which he will have to leave soon. These proceedings have been prompted by the need to formulate a plan as he moves into adulthood.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_3">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">DISCLOSURES/ALLEGATIONS</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_27">
+          <num style="font-family:Garamond">27.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">One aspect of the evidence in this case is that much of it emanates from what ZX (and his brother) have said to therapists and social workers. A lot of the evidence is entirely grounded in those “disclosures”. The Court has not been asked by either party to carry out a fact-finding exercise. Indeed, it is almost impossible to see how such an exercise would have been even remotely practicable. However, this does mean that this Court, as well as the LA, has to base its decision on a factual matrix that could potentially be largely illusory. The Court, however, has no option but to do so.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-family:Garamond">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I have read and considered the entire chronology and the documents referred to therein. I will outline only a small number of the entries to illustrate the seriousness of the allegations made by and against ZX.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-family:Garamond">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In November 2012, for instance, the brothers’ school made a referral to Childrens Services because of their “displaying harmful sexual behaviours towards each other”. Over time, concerns included sibling oral sex, anal rape, the filming of sex acts, extreme violence leading to crying and screaming, regular sex with farm animals and exposure to pornography from a young age.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-family:Garamond">30.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There was also an “admission” that ZX and XY had engaged in shoplifting together over many years.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-family:Garamond">31.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There were regular injuries the brothers sustained some of which were explained as being the result of the other brother’s violent behaviour.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-family:Garamond">32.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In 2016 and 2017 both brothers were found “terrorising lambs and their mothers using pitch forks to goad the mother ewes”. ZX was said to be “delirious with excitement”. He also set two fires on the farm in the cow shed and elsewhere.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-family:Garamond">33.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In 2017, ZX’s brother made an allegation that during a game of rugby. ZX had tackled him, he said, and in the process pulled his trousers down and put his penis in to his mouth and would not stop when asked. The brother alleged he was frightened of ZX.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-family:Garamond">34.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Once in the placement, the records seem to give good and indisputable evidence of very concerning behaviours. For instance, in December 2020, ZX was observed by a member of staff pulling his penis from side to side inside his trousers. In January 2020, a letter was found in which ZX had stated the size of a penis and how he wanted to “stick it up a girl’s ass”. He later went into the communal kitchen with a “noticeable erection” which it seemed to the member of staff present at the time he wanted to show off.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-family:Garamond">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">There are episodes of him making sexual movements towards other residents, referred to as “dry humping”. There is a suggestion he was trying to groom that person. There is also evidence in March 2021 that ZX was searching “Pornhub, foot fetish, lesbian, anal sex, Milf and heterosexual material” and (more worryingly) had searched for a particular staff member online.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-family:Garamond">36.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The details of the allegations against the adoptive parents I will not outline in any detail, but they appear to have involved “sexual touch, sexual assault, oral rape, and anal rape”. Violence and threats were allegedly used.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-family:Garamond">37.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The Court proceeds on the basis that although there may be some exaggeration in some of the reports ZX and his brother give of their activities, what is probably true is that both have been engaged in overtly sexualised behaviour which has involved abuse towards themselves, other people, and animals.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-family:Garamond">38.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">By early 2022 there was a Youth Justice Report which stated (as summarised in the chronology):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-family:Garamond">“It is my assessment that the risk of serious harm to others is imminent should ZX create an opportunity, or be represented with an opportunity to offend, however, whilst the frequency and prevalence of ZX perpetrating harm has reduced this is simply due to the presence of such stringent external controls, which currently restrict the opportunity to offend and provide a high level of supervision. Concerns surrounding ZX’s immediate safety and well-being would severely increase should the current restrictions reduce and ZX is granted unsupervised access to the internet or the community”.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-family:Garamond">39.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">It is all the more shocking, therefore, that the same entry in the chronology records that there is no option for ZX to be involved with forensic CAMHS or Youth Justice because he was about to turn 18. As at the time of the hearing, despite being considered as a considerable risk to others of serious sexual harm, ZX was not subject to any proceedings or restrictions within the criminal justice system. There were also no provisions of the </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">Mental Health Act 1983</span><span style="font-family:Garamond"> (MHA) in place to keep him and others safe.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_4">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">THERAPEUTIC INPUT</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_40">
+          <num style="font-family:Garamond">40.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">That risk has been the subject of evaluation by professionals as part of the therapeutic input offered to ZX. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-family:Garamond">41.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Ms A, a cognitive behavioural psychotherapist, rates him as high risk (although that may have been lowered to medium for a few weeks). She was concerned that ZX was not really aware of what he is doing when engaging in sexualised behaviour. Fortunately, in the three years after her first report, she was able to state at the end of November 2023 that ZX had engaged and made progress. However, he was still “at high risk of displaying further harmful sexual behaviours if left in a risky situation”. Her objective has been to reduce those risks to “medium”. She considers that these harmful behaviours “are a symptom of his attachment and social skills difficulties, distorted sexual scripts, emotional dysregulation or anti-social beliefs as well as the sexual abuse he was victim of…”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-family:Garamond">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In her report, Ms A stated that now ZX had completed EMDR he “fully understands sexual harm and searching inappropriate things, he is now appropriate overly appropriate with all online issues, and healthy sexual needs are met”. She notes that he has capacity to “manage his behaviours both sexual and non sexual”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-family:Garamond">43.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr B, a clinical psychologist has also assessed ZX after three years of therapeutic intervention. Her report of July 2023 contains an even more explicit and particularised history of harmful behaviour by ZX. The LA in their PS describe this as “a more reliable source of information about [ZX]’s level of risk”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_44">
+          <num style="font-family:Garamond">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">From (4.24) onwards there is a list of “victims” beginning with his brother. In the case of ZX’s brother the allegations have already been outlined above and include oral and anal rape. It also particularises abuse, both sexual and violent towards animals. There then follows an outline of sexual behaviour with another male including oral and anal rape. There was sexual assault on a girl who was the same age as ZX at the time (between 11 and 13). Another girl was the victim of sexual assault, including anal rape at the same time, this all happened at the victim’s home. There was then sexual touching and oral rape of another boy in the same home. Later another boy was engaged in a consensual relationship of sexual touch and oral sex. With another boy who was at school with ZX, he had what appears to have been a consensual relationship involving oral and anal penetration. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_45">
+          <num style="font-family:Garamond">45.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Interestingly, from what Dr B. says ZX’s engagement in harmful sexual behaviours against several victims within the school and home settings over a period of years “tended to have occurred when adults are not present which suggests a degree of planning or at the very least opportunism” (see 6.2)). To me, this connotes an appreciation, maybe an understanding on the part of ZX that what he is doing is wrong. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_46">
+          <num style="font-family:Garamond">46.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr B’s reports are very explicit in both the perpetuating and protective factors and what the ongoing risks are. Most worryingly, to the LA and the Court is (6.15):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-family:Garamond">“A scenario of future harmful sexual behaviour by ZX where he is alone with a potential victim. The victim is likely to be of a similar age to him, no more than 3 years difference, but vulnerable individuals would be at greater risk regardless of age. The nature of such harmful sexual behaviour is likely to be due to a need to increase his self-worth, to remove negative mood states or sexual satisfaction. In regard to severity of harm, the psychological harm and physical harm to the victim would be expected to be high. The imminence of his risk is likely when ZX is experiencing heightened low self-worth, alongside experiencing a negative mood state or is seeking sexual release. This imminence is likely to escalate if he is struggling to manage his negative mood state. The frequency of his harmful sexual behaviour is likely to be on at least several occasions if the context presents and is expected to be chronic. The likelihood is expected to be common, and based on his history, and without intervention, it is likely to re-occur”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level eId="lvl_5">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">RESTRICTIONS ON ZX</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_47">
+          <num style="font-family:Garamond">47.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Naturally enough, the LA is particularly alarmed that ZX says he has a “girlfriend” with whom he is in communication and probably actual contact. More alarming, in view of Dr B’s “scenario of future harm” is that the girl is said to be 15 years of age. Not only is she therefore at the lower end of the range Dr B. identified, but she is also, critically, underage. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_48">
+          <num style="font-family:Garamond">48.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">ZX appears to flaunt the existence of this “relationship” by wearing a neckless with the girl’s initials on. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_49">
+          <num style="font-family:Garamond">49.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Furthermore, as recently as the end of April 2024, ZX was engaging in risky behaviour. He was absconding from his carers when in the community. He was in touch with an ex-employee from his placement at her home. This was regarded as unsafe for him. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_50">
+          <num style="font-family:Garamond">50.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">As a result of the perceived risk the LA wishes to continue with the battery of restrictions presently imposed upon ZX. These have been approved by this Court on an interim basis until now, and before that by the High Court when it was asked to invoke its inherent jurisdiction to deprive ZX of his liberty. I would add that the High Court appears to have scrutinised the restrictions imposed upon ZX very carefully and painstakingly.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_51">
+          <num style="font-family:Garamond">51.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Additional restrictions were imposed on ZX at the end of April suspending unsupervised time in the community, online activity, and activities such as football unless supervised directly by his placement.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_6">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">CAPACITY: THE LAW</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_52">
+          <num style="font-family:Garamond">52.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The basic law on capacity is very familiar to all those who work in or around this Court. Usually, I would deal with the law briefly. However, I have found the central issue in this case very challenging, and I have found it important to go back to the basics of the jurisdiction when considering the issue of ZX’s capacity to engage in sexual activity or relations.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_53">
+          <num style="font-family:Garamond">53.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The first four sections of the </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">Mental Capacity Act 2005</span><span style="font-family:Garamond"> (MCA) are foundational to the jurisdiction. I shall not set them out here in full. However, I remind myself that section 1 lays down the principles. It establishes the presumption of capacity (sub-s 2) and the obligation to ensure that a person is not to be regarded as lacking capacity to make a decision until “all practicable steps to help him to do so have been taken without success” (sub-s 3).  P making an unwise decision does not mean he lacks capacity (sub-s 4) (at least not without more). Finally, any act done, or decision made on P’s behalf where he lacks capacity must be made or done in his best interests (sub-s 5). Sub-section 6 states the principle of least restriction.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_54">
+          <num style="font-family:Garamond">54.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Sections 2 and 3 of the Act deal with the diagnostic and functional “tests” for incapacity. This means that a person lacks capacity “in relation to a matter if at the material time he is unable to make a decision for himself in relation to the matter because of an impairment of or a disturbance in the functioning of, the mind or brain”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_55">
+          <num style="font-family:Garamond">55.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Section 3 is the only section I will lay out in full. It provides:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.75in;text-indent:-0.25in">(1)</num>
+            <intro>
+              <p class="ParaLevel1" style="margin-left:0.75in;text-indent:0.12in"><span style="font-family:Garamond">For the purposes of section 2, a person is unable to make a decision for himself if he is unable to-</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:Garamond;margin-left:0.89in;text-indent:-0.2in">(a)</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:0.89in;text-indent:0.18in"><span style="font-family:Garamond">To understand the information relevant to the decision,</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Garamond;margin-left:0.89in;text-indent:-0.2in">(b)</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:0.89in;text-indent:0.18in"><span style="font-family:Garamond">To retain that information,</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Garamond;margin-left:0.89in;text-indent:-0.2in">(c)</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:0.89in;text-indent:0.18in"><span style="font-family:Garamond">To use or weigh that information as part of the process of making the decision, or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Garamond;margin-left:0.89in;text-indent:-0.2in">(d)</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:0.89in;text-indent:0.18in"><span style="font-family:Garamond">To communicate his decision (whether by talking using sign language or any other means).</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.75in;text-indent:-0.25in">(2)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.75in;text-indent:0.12in"><span style="font-family:Garamond">A person is not to be regarded as unable to understand the information relevant to a decision if he is able to understand the information relevant to a decision if he is able to understand an explanation of it given to him in a way that is appropriate to his circumstances (using simply language, visual aids or any other means)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.75in;text-indent:-0.25in">(3)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.75in;text-indent:0.12in"><span style="font-family:Garamond">The fact that a person is able to retain the information relevant to a decision for a short period only does not present him from being regarded as able to make the decision.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.75in;text-indent:-0.25in">(4)</num>
+            <intro>
+              <p class="ParaLevel5" style="margin-left:0.75in;text-indent:0.12in"><span style="font-family:Garamond">The information relevant to a decision includes information about the reasonably foreseeable consequences of-</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.3in">(a)</num>
+              <content>
+                <p class="ParaLevel7" style="margin-left:0.98in;text-indent:0.08in"><span style="font-family:Garamond">Deciding one way or another, or</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.3in">(b)</num>
+              <content>
+                <p class="ParaLevel7" style="margin-left:0.98in;text-indent:0.08in"><span style="font-family:Garamond">Failing to make a decision.</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_56">
+          <num style="font-family:Garamond">56.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In relation to sections 2 and 3 a number of authorities now make it clear that the functional exercise needs to be considered first (i.e. whether P can make the decision) before moving on to consider the diagnostic test (i.e. is that inability due to a disturbance in the functioning of the mind or brain).</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_57">
+          <num style="font-family:Garamond">57.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Section 4 deals with best interests. This does not concern me in this hearing. However, what is important in this case is that for all but one aspect of decision-making, if ZX lacks capacity the LA and others are able to make decisions that are in his best interests. However, in the case of sexual relations, s. 27(1)(a) MCA intervenes, which prohibits the making of a best interest decision to enable P to consent to sexual relations. As Sir Brian Leveson, President QBD put it in</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond"> IM v LM</span><span style="font-family:Garamond"> [2014] EWCA Civ 37, where P lacks capacity to consent to sexual relations the LA must do everything it can to ensure he does not engage in sexual relations.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_58">
+          <num style="font-family:Garamond">58.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The law around capacity to consent to sexual relations has proven difficult, not least because the stakes are so high in the event P is found to lack such capacity. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_59">
+          <num style="font-family:Garamond">59.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The Supreme Court has given its judgment in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">A Local Authority v JB</span><span style="font-family:Garamond"> [2021] UKSC 35, with the leading judgment being that of Lord Stephens. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_60">
+          <num style="font-family:Garamond">60.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">First, what is the relevant information. I list what the Supreme Court said:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Garamond">(1)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.69in;text-indent:0.31in"><span style="font-family:Garamond">the sexual nature and character of the act of sexual intercourse, including the mechanics of the act;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond">(2)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.69in;text-indent:0.31in"><span style="font-family:Garamond">the fact that the other person must have the capacity to consent to the sexual activity and must in fact consent before and throughout the sexual activity;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond">(3)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.69in;text-indent:0.31in"><span style="font-family:Garamond">the fact that P can say yes or no to having sexual relations and is able to decide whether to give or withhold consent;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond">(4)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.69in;text-indent:0.31in"><span style="font-family:Garamond">that a reasonably foreseeable consequence of sexual intercourse between a man and woman is that the woman will become pregnant.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond">(5)</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.69in;text-indent:0.31in"><span style="font-family:Garamond">That there are health risks involved, particularly the acquisition of sexually transmitted and transmissible infections, and that the risk of sexually transmitted infection can be reduced by the taking of precautions such as the use of a condom.”</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-family:Garamond">Whilst (1), (3), (4) and (5) reflect the approach taken by the Courts in earlier cases, (2) is new. Whereas (1), (3), (4) and (5) are concerned entirely with the implications for the decision-maker alone, (2) introduces the interests of another person, namely the person with whom P may be engaging in sexual relations. This means that where a person satisfies the other requirements but not (2), he (or, less likely, she) will be assessed as lacking capacity to engage in sexual relations because of the need to prevent that other person being the victim of a sexual assault and/or rape. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_61">
+          <num style="font-family:Garamond">61.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">This is recognised by Lord Stephens. At [75] he states:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.98in"><span style="font-family:Garamond"> “The importance of P’s ability under section 3(1)(a) MCA to understand information relevant to a decision is also specifically affected by whether there could be “serious grave consequences” flowing from the decision. Paragraph 4.19 of the Mental Capacity Act 2005 Code of Practice provides: “If a decision could have serious or grave consequences, it is even more important that a person understands the information relevant to that decision.” This again illustrates the importance of “the specific factual context of the case.” In this case, for instance, there would be “serious or grave consequences” for JB’s mental health if he was incarcerated, see para 40 above. Other potential “serious or grave consequences” for JB would include anxiety, depression, self- harm and retaliatory harm requiring hospitalisation, see paras 10, 17, 38 and 40 above. There could also be “serious or grave consequences” for others if they were the victims of sexual assaults or of rapes perpetrated by JB. These “serious or grave consequences" make it "even more important [in this case] that [ JB] understands the information relevant to" the decision to engage in or consent to sexual relations.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_62">
+          <num style="font-family:Garamond">62.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In ZX’s case, therefore, if he were to have sexual relations with a person who did not consent, or, did initially consent, but then withdrew that consent, but ZX carried on regardless, he could face the grave consequences of criminal prosecution, and/or MHA detention with restrictions on his discharge under ss 37 and 41 MHA.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_63">
+          <num style="font-family:Garamond">63.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Of course, there are many people who commit serious sexual offences including rape who are fully capacitous. They initiate or force sexual activity on others knowing that to be against that person’s wishes. There are some who, once engaged in consensual sexual activity with another, will not accept “no” for an answer, and will carry on regardless of the withdrawal of consent. Not all perpetrators of sexual offences lack capacity to engage in sexual relations. There must be a connection between the disturbance in the functioning of the mind and brain and using and weighing of the relevant information in (2).</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_64">
+          <num style="font-family:Garamond">64.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">This is the subject of Mr Justice Poole’s decision in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">PN (Capacity: Sexual Relations and Disclosure)</span><span style="font-family:Garamond"> [2023] EWCOP 44. The judge had clearly in his mind the need to avoid the protection imperative. Although, when considering requirement (2) in JB it leads to the somewhat odd conclusion that one should allow those the Court is considering to be able to commit serious sexual offences unless they lack the capacity to understand that the other person’s consent to sexual activity is needed: see [11].</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_65">
+          <num style="font-family:Garamond">65.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In PN, Poole, J. was dealing with an impulsive P. There is a difference between impulsivity outside the sexual “arena”, i.e. the usual social boundaries, and those inside that arena. Of PN’s case, the Judge states at [16] (my emphasis added):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in"><span style="font-family:Garamond">“There is </span><span style="font-weight:bold;font-family:Garamond">no pattern of impulsivity due to his impairments of which his sexual offending is a part</span><span style="font-family:Garamond">. When with his brother or others whose disapprobation he might want to avoid, he controls any impulses to sexually touch women. He disregards the need for consent but he is able to use the information he retains, namely that the consent of the other person is necessary”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_66">
+          <num style="font-family:Garamond">66.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In ZX’s case we know very little of the detail of his sexual offending other than what he, his brother and adoptive parents have told us and that which is recorded in the notes as I have outlined above. One question I need to consider is whether, in ZX’s case there is in his sexual history “a pattern of impulsivity due to his impairments of which sexual offending is a part”. I am also mindful of the need to avoid falling into (or being imprisoned within) what the Courts refer to as “silos”. By this term, I understand a reference to becoming stuck with a list of “relevant information” for one particular decision without taking into account what needs to be known from other lists concerning other, overlapping decisions. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_67">
+          <num style="font-family:Garamond">67.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Clearly, there will always be overlaps between the thought processes, and the information that has to be understood, retained, and used and weighed between decisions. For instance, residence and care often overlap, as do residence and entering into a tenancy agreement. Any capacity decision that ignores this can lead to impossible care planning for those responsible for P’s care. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_68">
+          <num style="font-family:Garamond">68.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">As Poole, J. said in another case, </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">Hull CC v KF</span><span style="font-family:Garamond"> [2022] EWCOP33 (at [24}): “Decisions about capacity must be coherent and allow those responsible for caring for and safeguarding KF to make practical arrangements”. As was pointed out during argument in this case, but was also made clear by Mrs Justice Theis in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">A Local Authority v. ZZ</span><span style="font-family:Garamond"> [2024] EWCOP 21, this need for coherence is closely linked to the way in which a decision is formulated. For instance, the argument goes, take a case in which residence for P includes the need to have a package of care to be in place. Let us assume P does not understand his need for care, but is able to choose between two properties which provide him with that care but are in different places. To say that P has capacity to make decisions as to residence, provided care is taken care of, does not mean he has capacity to make decisions as to residence in any meaningful way. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_69">
+          <num style="font-family:Garamond">69.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">More problematic is the relationship between contact and sexual relations. If P’s disinhibition with members of the public is a reason to conclude he lacks capacity over contact, how could he have capacity to consent to sexual relations if that same disinhibition may lead to him ignoring their right to refuse/withdraw their consent to sexual relations? The answer is that there needs to be a justification for distinguishing between the two closely related decisions. If there is no justification, but P is found to have capacity in respect of sexual relations but not in respect of contact, then the Court is in danger of falling into a silo, as it were. Which is what I did in ZZ at first instance (see [2023] EWCOP 61). </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_70">
+          <num style="font-family:Garamond">70.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">PN</span><span style="font-family:Garamond">, Poole, J. saw no inconsistency, and, less so, a contradiction between a finding that P lacks capacity in respect of contact but not sexual relations. At [28] he says (my emphasis added): </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.89in"><span style="font-family:Garamond">“[PN] sometimes stares at other people and he stares at women’s breasts. He knows, as I have found, that he ought not to touch them without their consent. He retains that understanding, and can weigh or use the information even when the urge takes him to touch the other person. However, he does not have the same understanding in relation to staring at or speaking to others. </span><span style="font-weight:bold;font-family:Garamond">He does not understand the foreseeable consequences of speaking offensively to others, but he does understand the foreseeable consequences of touching them without consent</span><span style="font-family:Garamond">. His lack of understanding in relation to non-sexual contact with others is because of his impairments. That was the conclusion of Dr Ince. Mr Curran’s evidence is consistent with that conclusion. </span><span style="font-weight:bold;font-family:Garamond">Sexual boundaries are perhaps clearer and so more easily understood by PN even with his impairments, whereas social boundaries are less clear to him and are not understood by him because of his impairments</span><span style="font-family:Garamond">.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_71">
+          <num style="font-family:Garamond">71.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In other words, His Lordship was able to demonstrate an evidence-based reason to distinguish between PN’s ability to make decision about contact with others and engaging in sexual activity (widely defined) with other people.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_72">
+          <num style="font-family:Garamond">72.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">During Dr Ince’s evidence in this case, and in argument, mention was made of the case of </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">Manchester City Council v LC &amp; KR</span><span style="font-family:Garamond"> [2018] EWCOP 30. In that case a young married woman was found to lack capacity in relation to contact with others, because she was apparently wholly incapable of assessing the risk they posed to her. However, she was found to have capacity to consent to sexual relations. Earlier in the proceedings Peter Jackson, J. had found that she satisfied the pre-JB test for capacity in that area (i.e. (1)(3),(4) and (5) of the JB factors)- it is highly likely she would have satisfied (2) as well if assessed at the time). </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_73">
+          <num style="font-family:Garamond">73.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In the reported part of the case, when referring to Peter Jackson, J’s determination, Hayden, J. at [10] said: “though it may not be intuitive, it is perfectly logical, looking at capacity in an issue-specific contact (as the MCA requires), to possess the decision-making facility to embark on sexual relations whilst, at the same time, not being able to judge with whom it is safe to have those relations”. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_74">
+          <num style="font-family:Garamond">74.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I wonder if now, post-JB, this may be characterised as falling into “silos”. LC lacked the capacity to make decisions about contact with men because of “</span><span style="font-family:Garamond;color:#000000">an obsessional interest which was sexual in motivation in relation to men. This it requires to be said, in unambiguous terms, is a feature of her Autism” [3]. This led to what Hayden, J, somewhat euphemistically referred to as her behaviour being “‘socially inappropriate’…….when she is out in the community”. As a result, LC lacked capacity in relation to contact. However, she did not lack capacity to consent to sexual relations. Care planning for her was extremely challenging for the LA as is clearly outlined in that case.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_75">
+          <num style="font-family:Garamond">75.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">It seems to me the state of the law is clear. When making assessments of a person’s mental capacity concerning decisions across a range of domains, the Court (and any assessor, for that matter) must strike a balance between treating each domain as a distinct area of assessment without taking into account other domains ( the “silo” error) on the one hand, but on the other, approaching the assessment in such a general manner, taking into account too many diffuse issues, leading the assessor to lose sight of what is being assessed. Being stuck in a silo represents overly strict rigidity. The opposite however leads to flexibility that verges on arbitrariness. The former leads to extremely difficult management issues for P’s carers and care planners. The latter leads to a large number of people with difficulties in decision making in one area being found to lack capacity in others when they may not need to. The burden is on the assessor to strike a properly reasoned balance.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_76">
+          <num style="font-family:Garamond">76.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I would take this argument further when dealing with capacity to engage in sexual relations. By placing capacity to engage in sexual activity away from most other decision making domains by removing the possibility of a decision being made on behalf of P, Parliament has created its own statutory silo. By placing the threshold so low, as the caselaw does, the assessor is directed to ensure factors that would be relevant to one decision making area (such as contact, for instance) may not be relevant to sexual relations. This appears to be what Hayden, J. is referring to in the LC case.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_7">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">DR INCE: WRITTEN EVIDENCE</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_77">
+          <num style="font-family:Garamond">77.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince’s evidence, as a jointly instructed expert falls into two parts: before ZZ and after ZZ. I do not think I oversimplify the situation or do Dr Ince an injustice in saying that.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_78">
+          <num style="font-family:Garamond">78.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince prepared a report dated 24 January 2024. There was an additional email from him on ZX’s cognition and communication assessment on 3 February 2024. He was then asked questions on 23 February 2024, additional “legal instruction” dated 14 April 2024. His addendum report is dated 22 April 2024.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_79">
+          <num style="font-family:Garamond">79.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In his earliest report, a detailed and comprehensive one, Dr Ince concluded that ZX lacked the capacity to make decisions in relation to residence, care and support, internet and social media use, contact with others, property and affairs, entering into and terminating a tenancy and information sharing in particular with his parents. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_80">
+          <num style="font-family:Garamond">80.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In respect of engaging in sexual relations Dr Ince initially said ZX did not lack capacity. The report contained an extremely thorough review of the proceedings and ZX’s history including the views of the therapists involved in his case. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_81">
+          <num style="font-family:Garamond">81.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">It also included an extensive interview with ZX on 7 December 2023 which featured a structured series of questions concerning sexual capacity in accordance with JB. In particular here was a focus on images of various types of sexual activity, including those in which coercion was used by one party. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_82">
+          <num style="font-family:Garamond">82.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">It is clear, ZX “passed” those tests for capacity. In the part of his report dealing with that issue (para 11.12), ZX was able to recognise the functional aspects of sexual acts, including the risk of pregnancy and contracting sexually transmitted and other infections. At 11.12.2.6 “[ZX] was able to articulate the concepts of ‘consent’ and further that both parties would need to consent; this was reinforced by his ability to identify and comment upon pictures depicting unwanted physical and sexual contact”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_83">
+          <num style="font-family:Garamond">83.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Furthermore, at 11.12.2.7 “[ZX] understood that consent could be withdrawn at any time and that consent needed to be validly given; this was shown by his understanding that a person could not consent if they were drunk or asleep”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_84">
+          <num style="font-family:Garamond">84.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Interestingly, when considering the issue of ZX’s ability to use social media he “displayed an understanding of the consequences of posting offensive material to social media and was also aware of the legal age and consequences of sharing images that may be illegal; he was aware that you could not share ‘dick pics’ with anyone under 18 years” (11.10.6). </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_85">
+          <num style="font-family:Garamond">85.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">However, he did not show an understanding of the specific risks with social media, namely that they could be shared onwards to others. In other words, he did not understand the “dynamic risks” associated with social media use.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_86">
+          <num style="font-family:Garamond">86.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Equally, in respect of Contact with Others (11.11) Dr Ince applied the </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">LBX v K (etc)</span><span style="font-family:Garamond"> [2013] EWHC 3230 (Fam.) . This meant who the person was and in broad terms the nature of their relationship. It included the sort of contact ZX would have with the person, in different locations, differing durations, the different arrangements in place as well as the presence of a support worker. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_87">
+          <num style="font-family:Garamond">87.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In addition, regarding his ability to understand/retain/use and weigh the positive and negative aspects of contact with each person. Dr Ince concludes (at 11.11.4):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-family:Garamond">“I note [ZX]’s presentation and the collateral records that confirm that he does not recognise risks related to his contact with younger makes and he has made numerous threats to harm others; thus, he does not understand the necessity of for staff support to minimise the risk to others in the community and to further protect him from said exploitation and abuse”.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_88">
+          <num style="font-family:Garamond">88.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Interestingly, the focus of Dr Ince’s report is the risk posed to ZX by contact and his inability to identify it. This includes with his adoptive parents. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_89">
+          <num style="font-family:Garamond">89.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The mental disorder is dealt with in the report. There is clear evidence over time that ZX has ADHD. His violent and aggressive behaviour and breaches of societal norms confirm that in Dr Ince’s’ view. There is also evidence confirming conduct disorder- in particular, there is evidence of lack of remorse or guilt after his acts of violence or sexual coercion. There is also evidence confirming limited pre-social emotions consistent with early developmental trauma, attachment difficulties compounded by trauma within childhood and adolescence. On the basis of the evidence, there was not enough for Dr Ince to reach a diagnosis of Autistic Spectrum Disorder. This was largely in keeping with Dr B’s views.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_90">
+          <num style="font-family:Garamond">90.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The parties then asked further questions and also sent a summary of Mrs Justice Theis’s decision in ZZ (see above), and Dr Ince was asked to reconsider his position of capacity to engage in sexual activity.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_91">
+          <num style="font-family:Garamond">91.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince did change his mind. In a report written shortly before the hearing he answered the earlier written questions and referred to ZZ. In particular, he was asked about how ZX’s “distorted sexual scripts and relationship deficits affect [ZX]’s ability to understand and weigh up the consent of a proposed sexual partner” (see 3.8- at [E175]). And “how does ZX’s difficulty assessing social boundaries….impact on his understanding whether a person would be  able to consent and must in fact consent before and throughout the sexual activity?” </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_92">
+          <num style="font-family:Garamond">92.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince says this at (3.10.6):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:0.79in"><span style="font-family:Garamond">“In the case of Z.X, I would opine that the diagnostic formulation is very much analogous to the ZZ case, with Z.X displaying clear impulsivity that I would consider to be due to his diagnoses of Conduct Disorder, ADHD and attachment difficulties, and contextualised (on a dynamic basis, AKA ‘in the moment’) by his underlying social scripts and broader narratives regarding relationships and sexual encounters that, to date, have not been fully explored or therapeutically addressed – this formulation differs from DY and P.N, in that those cases were associated with a greater chronological age, settled presentation, and chronicity of behaviours despite longitudinal (and in the case of P.N) prolonged psychological therapy regarding sexual offending.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_93">
+          <num style="font-family:Garamond">93.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Later, and consequently, at 3.17.1, Dr Ince goes on to say:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.79in"><span style="font-family:Garamond">“…..in the context of the most recent case law threshold, and that I have, accordingly, altered my view and prior conclusion such that I have now updated my opinion and conclude that ZX is unable to effectively use and weigh the information relevant to the decision and lacks capacity to enter into sexual relations as a result of the causative nexus as set out”.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_94">
+          <num style="font-family:Garamond">94.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince gave evidence before the Court. He was taxed, by the Court as well as the Official Solicitor’s counsel, as to why he had changed his mind. It is important at the outset to make two things clear. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_95">
+          <num style="font-family:Garamond">95.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">First, Dr Ince was confronted with a very complex and difficult case, not helped by being referred to caselaw (ZZ) as if that case had somehow changed the law. In fact, that case was an application of the pre-existing law. The Vice President did not propose to change the law. Her criticism of my judgment in ZZ was that I had not given adequate reasons for my decisions, or perhaps had not given proper scrutiny to the evidence across the case,  and had taken an approach that was too silo-ed (if that is a word). </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_96">
+          <num style="font-family:Garamond">96.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Secondly, I am not approaching this case so as to decide whether Dr Ince has properly applied ZZ to his early reports. I consider his evidence as a whole, as I am required to do.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_8">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">DR INCE: ORAL EVIDENCE</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_97">
+          <num style="font-family:Garamond">97.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Naturally, Ms France-Hayhurst began her questioning of Dr Ince by asking him to explain his change of mind. As I have already said, I will not deal with his evidence that way. In my view, the crux of the issue came in the part of his cross-examination where Dr Ince was asked about the JB “test” by Ms Gardner. She then went on:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">You showed an image of a woman being raped? </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR</span><marker name="tab" /><span style="font-family:Garamond">It’s an image wherein. If it helps you can have copies of the PDF</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">Yes please</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR</span><marker name="tab" /><span style="font-family:Garamond">Woman lying down, man holding looking angry</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">ZX said don’t think she wants to. You said what’s it called, and he said rape</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR </span><marker name="tab" /><span style="font-family:Garamond">Yes</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">During act if they change their mind, he said probably yes, have to stop. Understands rape and that consent to be withdrawn during the act</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR </span><marker name="tab" /><span style="font-family:Garamond">Yes</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">Ask about sex when drunk, he says no drunk don’t know what doing, Understands level of consent</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR </span><marker name="tab" /><span style="font-family:Garamond">Yes</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">When asleep, no, indicative of understanding of consent?</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR </span><marker name="tab" /><span style="font-family:Garamond">Yes</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">Am I right that ZX understood can’t have sex with someone under 16 ?</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.98in;text-indent:-0.3in"><span style="font-family:Garamond">DR</span><marker name="tab" /><span style="font-family:Garamond">He has that knowledge yes</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_98">
+          <num style="font-family:Garamond">98.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Having confirmed that ZX satisfied him at the time of the assessment that he had capacity to engage in sexual relations, Dr Ince then goes on to confirm that having considered ZZ he had now changed his mind. Ms Gardner went on:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;text-indent:-0.31in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">Am I right that having read decision in ZZ you now consider the evidence to suggest that in the moment ZX is unable to use and weigh relevant information in relation to consent</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in;text-indent:-0.2in"><span style="font-family:Garamond">DR </span><marker name="tab" /><span style="font-family:Garamond">Yes.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in;text-indent:-0.2in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">Where do we find evidence for that?</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;text-indent:-0.31in"><span style="font-family:Garamond">DR</span><marker name="tab" /><span style="font-family:Garamond">In the moment. As I said earlier, in cases that have a degree of similarity, not wholly similar, previously the issue of impulsive sexually harmful behaviours perpetrated by P against others which has a PP component but also risks their health and safety such that you end up with complicated TZ care plans has been framed within care and support needs and also usually the domain of contact with others, ie the contact with others leads to the risk of offending and has ramifications with that. That was essentially my starting point, on the questions asked originally. That’s where viewed direction of travel likely to go</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.89in;text-indent:-0.2in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">In T’s case direction of TZ plan?</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">[a TZ care plan is a plan whereby those concerned with a person lacking capacity in the domain of contact have to manage P where P does not lack capacity to engage in sexual relations].</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_99">
+          <num style="font-family:Garamond">99.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince’s response is important (my emphasis added):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1.18in;text-indent:-0.49in"><span style="font-family:Garamond">DR </span><marker name="tab" /><span style="font-family:Garamond">Yes that’s where were in terms of case law, and yes my understanding of the application of </span><span style="font-weight:bold;font-family:Garamond">the threshold in ZX is that its low, so as not to exclude people with LDs etc, so reading summary of judgment in ZZ that resonated with me as a neater or more linear and obvious way of conceptualising the risk issues to and from ZX and conceptualising in terms of relevant domains</span><span style="font-family:Garamond">. Rather than addressing through domain of contact, ability to consent in the moment or understand other person’s ability to consent in the moment. </span><span style="font-weight:bold;font-family:Garamond">I don’t know direction of travel, and I don’t know if ZX will develop way of managing own compulsive behaviours or if will require life long supervision and management.</span><span style="font-family:Garamond"> He is very young, a lot can change, a lot has already changed. What we see in the chronology and continue to see in the updating chronology is a repetition of incidents that are thematically similar if not exactly the same, </span><span style="font-weight:bold;font-family:Garamond">without any evidence of an ability to use or weigh or apply the consequences of prior incidents to inform his understanding of risk and his actual behaviour</span><span style="font-family:Garamond">. So my expectation is, and we see it with the information about [the 15 year old “girlfriend”], this repetition of offending behaviour, moves into criminality, my view would be that the manner in </span><span style="font-weight:bold;font-family:Garamond">which ZX currently acts is a consequence of his ND disorders and without evidence of a premeditated recidivistic kind of sexual offending, he is sexually offensive in what he does but I would view that as currently different to PN</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_100">
+          <num style="font-family:Garamond">100.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">In other words, it is ZX’s neurodevelopmental disorder (principally ADHD) that causes him to act as he does, viz. impulsively. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_101">
+          <num style="font-family:Garamond">101.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Ms Gardner then asked:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1.18in"><span style="font-family:Garamond">What is difficult, we say impossible, is [to find] examples of ZX being in position about to have sexual encounter and he is unable to use and weigh concept of consent in way could use in assessment. Have you seen any evidence to that effect?</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1.18in;text-indent:-0.49in"><span style="font-family:Garamond">DR</span><marker name="tab" /><span style="font-family:Garamond">The position that ZX is in, is such that he hasn’t been able to have the opportunity to form a normal legal sexual relationship. So in terms of concrete evidence, yes I’d agree. Not that evidence that he has been placed, with a sexual behaviour and the issue of consent has been fully explored in the moment. We know that he has received significant education regarding sexual offending, internet safety, appropriate behaviour and yet he has still recently perpetrated, admitted sent indecent images to child under age of 16, which is itself an offence, not here to say meets criminal threshold. Given education received to date on that matter, I would view that as an example, and yet in that moment he has sent those pictures without a full understanding of the ramifications</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1.18in;text-indent:-0.49in"><span style="font-family:Garamond">FG</span><marker name="tab" /><span style="font-family:Garamond">Why say not full understanding of the ramifications? Sorry 2 parts, why not understand the ramifications, and secondly how is that relevant to capacity to engage</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.69in"><span style="font-family:Garamond">Judge: </span><marker name="tab" /><span style="font-family:Garamond">Answer in that order (please)</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1.18in;text-indent:-0.49in"><span style="font-family:Garamond">DR</span><marker name="tab" /><span style="font-family:Garamond">Valid in that I haven’t asked him that question. Therefore, there is an extrapolation in that globally, he engages in a range of acts, in a range of behaviours without a tangible understanding of immediate and longer term consequences, in terms of absconding, interactions with peers, in terms of contact with brother. Universally I would say, ZX does not weigh the medium, long term, not within those precise seconds, he doesn’t weigh the consequences of his actions across all domains, therefore based on evidence in the bundle, based on likelihood of unlikely to understand and use and weigh, sexual relations in the moment, where heightened level, make capacitous decisions and reasons there, is illogical</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_102">
+          <num style="font-family:Garamond">102.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince went on to indicate that there is evidence in the assessments undertaken with ZX that he has suffered from “clear issues of impulse control, an inability to understand the views of others to change events and understand conclusions and the various scripts that have essentially normalised a significant amount of sexually unhealthy behaviour as part of what ZX had understood and experienced and come to understand as normal in relationships, set within ADHD, trauma and conduct disorder”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_103">
+          <num style="font-family:Garamond">103.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Dr Ince indicated that he had not put the specific scenario to ZX he had asked about in the questions above. He was not clear whether it would make any difference to his opinion whatever ZX’s answer was.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_9">
+          <content>
+            <p class="ParaLevel1"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">DISCUSSION &amp; CONCLUSIONS</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_104">
+          <num style="font-family:Garamond">104.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I did not find it easy to follow Dr Ince’s evidence. However, I am satisfied that I understand his conclusion and how he reached it. ZX has thought a lot about sexual activity during his life. This may be due to early trauma, or perhaps ongoing trauma throughout his childhood. There is compelling evidence in the papers that he has been engaged in sexual activity throughout much of his life, often a victim but also a perpetrator of significant sexual abuse on other people and animals. There appears to be something of a sadistic excitement associated with coercive sex recorded at times. The risk of sexually offending, probably with a vulnerable person, either a female or male a little younger than him is still significant. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_105">
+          <num style="font-family:Garamond">105.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">However, when asked the JB questions in an interview he gave answers that indicated that he understands all the information needed to avoid being found to lack capacity. However, Dr Ince is concerned that because of mental disorders, particularly ADHD, he is impulsive, and that impulsivity is something that removes from him the ability to use and weigh the information he understands in the moment. In other words, during sexual activity, if the partner does not give, or withdraws consent to carry on, ZX might be unable, because of his mental disorder, to make a decision about whether to carry on or not. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_106">
+          <num style="font-family:Garamond">106.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">This position reminds me of the situation in ZZ. At [47] in the first instance judgment, quoted at [48] in that of Theis, J. , I said this (emphasis added):</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.69in"><span style="font-family:Garamond">“A person can have the capacity to engage in sexual relations, understanding that his partner may withdraw her consent at any moment, and that with that he must stop the sexual act. </span><span style="font-weight:bold;font-family:Garamond">If, however, when that withdrawal of consent happens the person is unable to overcome his urges, that is nothing to do with capacity to consent to sexual relations</span><span style="font-family:Garamond">”.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_107">
+          <num style="font-family:Garamond">107.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I made a mistake in characterising the actions of a person acting like that as being those of someone making an unwise decision. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_108">
+          <num style="font-family:Garamond">108.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I was also mistaken in what I said about urges. Sexual urges are, by their very nature, challenging to overcome. Many do not overcome those urges, perhaps by choice and sometimes because they simply find it difficult to do so. However, what I did not consider in ZZ was the extent to which the evidence as a whole, including that of the expert, was whether, at the time the decision is to be taken P would not be able to use and weigh the relevant information they obviously understood about the other person’s consent, because of those urges and the effect of their mental disorder. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_109">
+          <num style="font-family:Garamond">109.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">It seems to me that this is not about creating a new limb of the JB test, it is simply a question of applying the JB test. The best illustration of this is the passage from Poole, J. quoted above from PN at [16]. It seems to me that if P’s impulsivity is due to the mental disorder, or the inability to resist an urge is due to the mental disorder, the situation is not as straightforward as I characterised it in ZZ.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_110">
+          <num style="font-family:Garamond">110.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The question I have to ask myself about ZX and the second limb of JB is this:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.75in"><span style="font-family:Garamond">If ZX is engaged in sexual activity or is in a situation where sexual activity is anticipated/expected by him with a person and consent from the other party is either not forthcoming or is withdrawn will ZX be able to make a capacitous decision about whether to stop that sexual activity accordingly?</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_111">
+          <num style="font-family:Garamond">111.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">“Capacitous” in this context means as per the five-limb test in JB.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_112">
+          <num style="font-family:Garamond">112.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The answer to that question must be based on the evidence I have read and heard. It seems quite likely that ZX may find himself alone with a vulnerable would-be sexual partner, quite likely by design. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_113">
+          <num style="font-family:Garamond">113.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">Once in that position, the question is not whether he would respect the refusal of the other party to consent to sexual activity, or the withdrawal of consent once sexual activity had begun. The question is whether he would be able to respect that refusal, or whether, because of his mental disorder as described by Dr Ince he would not be able to use and weigh (or process) his understanding of their right to refuse being respected. That would be what Dr Ince refers to as “in the moment”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_114">
+          <num style="font-family:Garamond">114.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">The evidence I have seen and read, leads me to conclude:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(1)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">ZX has developed a longstanding appetite for sexual experience in which the coercive nature of the experience is part of the appeal, the thrill. Indeed, due to his trauma it may have become a necessary part of the experience in order for him to feel fulfilled.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(2)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">Although Dr. Ince identifies impulsivity, or at least he infers the existence of impulsivity, I am not satisfied that impulsivity is what I see. I see in ZX a young man who is cunning and opportunistic but is also capable of planning sexual contact with other people within the context of such liaisons being forbidden. Hence the reference made about his waiting until adults are out of the way before initiating sexual contacts.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(3)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">ZX was able to satisfy the JB test in his assessments with Dr Ince. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(4)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">However, and on reflection in the light of Theis, J’s judgment in ZZ, he concludes that “there is sufficient evidence within the chronology and [ZX]’s recent acts to demonstrate that firstly what he says within an assessment setting cannot be relied upon, and also that he continues to display a range of behaviours that disregard the norms and education provided to him”. (see the exchange with the Judge).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(5)</num>
+            <intro>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">It is not clear to me whether Dr Ince only refers to “in the moment” here. In his first report (from 11.5.20) onwards, he refers to a ZX’s “range of deficits within his executive functioning- and causally- would rely upon the presence of a neurodevelopmental disorder as an explanation for his observed difficulties”, and then identifies the areas in which this affects. These are:</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-family:Symbol;margin-left:1.58in;text-indent:-0.39in">•</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.58in"><span style="font-family:Garamond">Impaired working memory (impacting upon his ability to retain and use information)</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Symbol;margin-left:1.58in;text-indent:-0.39in">•</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.58in"><span style="font-family:Garamond">Poor impulse control (as evidenced in the chronology and risk assessments)</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Symbol;margin-left:1.58in;text-indent:-0.39in">•</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.58in"><span style="font-family:Garamond">In attention (and the impact upon learning and decision-making)</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Symbol;margin-left:1.58in;text-indent:-0.39in">•</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.58in"><span style="font-family:Garamond">Difficulties with planning, organisation and consequential decision-making</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Symbol;margin-left:1.58in;text-indent:-0.39in">•</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.58in"><span style="font-family:Garamond">Cognitive flexibility (and the ability to transition between tasks and transfer learning from one situation to another)</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-family:Symbol;margin-left:1.58in;text-indent:-0.39in">•</num>
+              <content>
+                <p class="ParaLevel5" style="margin-left:1.58in"><span style="font-family:Garamond">Emotional regulations (and the ability to transition between tasks and transfer learning from one situation to another)</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(6)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">It seems to me these features would apply to any situation in which ZX had the urge to engage in sexual activity with another person. It may lead to him planning to enable him to be alone with that person. It would certainly apply where he was involved in sexual activity and there was an absence or withdrawal of consent by the other party.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(7)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">Dr Ince is a jointly instructed expert, and his expert evidence is not countered by another expert. Although it is for me as the Judge to reach a conclusion of his own, and not blithely to follow what the expert says, I need to give a good reason if I come to a different conclusion. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(8)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">In order for me to reach the conclusion that ZX lacks capacity to consent to sexual activity I need to be satisfied on the basis of all the evidence I have read and heard that ZX is not be able to satisfy the JB test and particularly “in the moment” in the real world, rather than in a mental capacity assessment with Dr Ince.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(9)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in"><span style="font-family:Garamond">I am concerned this may involve speculation on my part as to what ZX may do if those circumstances arose. As Ms Gardner put it both in her questioning of Dr Ince, but also in her closing submissions, there is no evidence base for this. In other words, the Court has no evidence of what ZX does or would do when confronted with the absence or withdrawal of consent during sexual activity.  </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(10)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in;text-indent:0.11in"><span style="font-family:Garamond">The response to that is twofold. First, there is a good deal of evidence from ZX himself and his brother that he has engaged in non-consensual sexual activity with other people over the years. Secondly, Ms France-Hayhurst would invite the Court not to allow ZX to engage in activity that provides an evidence base, at the expense of ZX’s liberty and the devastating experiences of his victims.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(11)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in;text-indent:0.11in"><span style="font-family:Garamond">In response to the first of these, my answer is that the evidence considered within Dr Ince’s conceptual framework (post ZZ, in any event) does allow me to conclude that ZX does not “pass” the test in JB at limb (2). I am extremely concerned about doing so. It seems to me this is an hormonal 18 year old man with a considerable sexual appetite. If I conclude he lacks the capacity to engage in sexual activity, he will be subjected to an extremely restrictive regime where his only sexual “outlet” will be masturbation whilst watching selected on-line pornography; censored, I would imagine, to avoid images of violent rape, children and animals.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(12)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in;text-indent:0.11in"><span style="font-family:Garamond">On the other hand, I have to avoid what has been called the protection imperative. I must not tailor my formulation of the capacity assessment to ensure a particular outcome. Normally, that means trying to protect a vulnerable person who would otherwise be exploited or harmed unless protective measures can be put in place. Here, the same applies except it is ZX’s potential as a perpetrator in a serious sexual offence, and the consequences that flow for him, rather than his potential victim is what he is being protected against. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Garamond;margin-left:0.98in;text-indent:-0.39in">(13)</num>
+            <content>
+              <p class="ParaLevel5" style="margin-left:0.98in;text-indent:0.11in"><span style="font-family:Garamond">At first glance, this is a somewhat perverse use of the MCA. However, it is explicitly sanctioned by the Supreme Court in JB. Naturally, I must follow that judgment.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level eId="lvl_10">
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">DECISION</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_115">
+          <num style="font-family:Garamond">115.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">For all those reasons, I am satisfied that the presumption of capacity in respect of his engaging in sexual relations is displaced in ZX’s case. At the moment this judgment is written, I am satisfied that his behaviour in connection with sexual activity in combination with his mental disorder means that he is unable to use and weigh relevant information concerning his would be or actual sexual partner’s refusal to, or withdrawal of, consent in in real time. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_116">
+          <num style="font-family:Garamond">116.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I would add that I am intensely uncomfortable about the need for the LA to have to resort to the Court of Protection in a case of this sort. In the absence of the ongoing and active involvement of mental health services, and the absence of anything it seems the criminal justice system is able to do, they are required to use this Court. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_117">
+          <num style="font-family:Garamond">117.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">However, what now follows is the LA will have to comply with their positive obligation to ensure that ZX gains capacity (if he can) in this domain: see, for instance, </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:Garamond">CH v A Metropolitan Council </span><span style="font-family:Garamond">[2017] EWCOP 12 (Hedley, J.). </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_118">
+          <num style="font-family:Garamond">118.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">At the same time, they will have to implement a care plan that is restrictive enough to remove ZX’s opportunity for sex, with other people at least, whilst, at the same time ensuring he is able to engage in the normal activities of an 18 year old person. The Court will scrutinise both during the process.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_119">
+          <num style="font-family:Garamond">119.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">I assume there will need to be consideration of this judgment by both parties. There may be an application for permission to appeal. There may be a request for the matter to be allocated to Tier 3. There will certainly need to be consideration of the editing of this judgment for the purposes of publication. There will be a need for a further hearing relatively shortly.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_120">
+          <num style="font-family:Garamond">120.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:Garamond">That concludes this judgment.</span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

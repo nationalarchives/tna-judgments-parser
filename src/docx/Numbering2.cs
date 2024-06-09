@@ -627,6 +627,9 @@ class Numbering2 {
         // -1 means not set
         // -2 meanss trumped, even numbering instance's own start value doesn't matter
         // any positive integer is the numbering id of the previous paragraph that set the value of 'start'
+        int? numIdOfStartOverrideStyle = null;
+        int? numIdOfStartOverrideWithoutStyle = null;
+        bool numOverrideShouldntApplyToStyleOnly = false;
 
         bool prevContainsLowerCompound = false; // see setter below
 
@@ -634,6 +637,7 @@ class Numbering2 {
 
         var prevAbsStarts = new PrevAbsStartAccumulator();
         int count = 0;
+
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
 
             if (Paragraphs.IsDeleted(prev))
@@ -704,6 +708,8 @@ class Numbering2 {
                 continue;
             }
 
+            // now prevIlvl == ilvl
+
             if (prevNumIdWithoutStyle.HasValue) {
                 var prevAbsStart = prevAbsStarts.Get(prevNumIdWithoutStyle.Value, prevIlvl + 2);
                 if (prevAbsStart.HasValue) {
@@ -712,13 +718,21 @@ class Numbering2 {
                 }
             }
 
-            // prevIlvl == ilvl
-            if (prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
+            bool numOverrideShouldntApplyToPrev = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle;
+
+            if (!numOverrideShouldntApplyToPrev && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
                 if (!isHigher || prevNumIdOfStyle.HasValue) {  // test68
                     int? prevOver = GetStartOverride(prevNumbering, ilvl);
                     if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                         start = prevOver.Value;
                         numIdOfStartOverride = prevNumId.Value;
+                        if (prevNumIdOfStyle == numIdOfStartOverrideStyle && prevNumIdWithoutStyle.HasValue && !numIdOfStartOverrideWithoutStyle.HasValue) {
+                            numOverrideShouldntApplyToStyleOnly = true;
+                            // When the number override comes from a paragraph that has a style but also numbering of its own,
+                            // then the number override shouldn't apply to paragraphs with only that style. See test 86.
+                        }
+                        numIdOfStartOverrideStyle = prevNumIdOfStyle;
+                        numIdOfStartOverrideWithoutStyle = prevNumIdWithoutStyle;
                         if (!prevContainsLowerCompound)  // only test37 needs this condition
                             count = 0;
                     }
@@ -739,7 +753,9 @@ class Numbering2 {
         if (isHigher)
             prevContainsLowerCompound = true;
 
-        if (numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
+        bool numOverrideShouldntApply = numOverrideShouldntApplyToStyleOnly && !thisNumIdWithoutStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle;
+
+        if (!numOverrideShouldntApply && numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
             int? over = GetStartOverride(main, numberingId, ilvl);
             if (start is null)
                 start = GetStart(main, numberingId, ilvl);
