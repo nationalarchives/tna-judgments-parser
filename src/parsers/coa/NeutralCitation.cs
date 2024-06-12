@@ -24,7 +24,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC))",  // EWHC/Admin/2003/301
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",   // EWHC/Admin/2006/2373
         @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EHWC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))",   // [2022] EHWC 950 (Ch)
-        @"^Neutral Citation( Number| No)?:? (\[\d{4}\] EWCOP \d+)",
+        @"^Neutral Citation( Number| No)?:? (\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))",
@@ -41,7 +41,7 @@ class NetrualCitation : Enricher2 {
         @"^NCN No: (\[\d{4}\] EWCA (Civ|Crim) \d+)$",    // [2022] EWCA Crim 39
         @"(\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation Number: (\[\d{4}\[ EWCA (Civ|Crim) \d+)",   // [2018[ EWCA Civ 1744
-        @"^(\[\d{4}\] EWCOP \d+)$", //[2021] EWCOP 67
+        @"^(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$",
         @"^ *(\[?\d{4}\]? EAT \d+)$",
         @"^Neutral Citation Number:? (\[\d{4}\] UKIPTrib \d+)"
     };
