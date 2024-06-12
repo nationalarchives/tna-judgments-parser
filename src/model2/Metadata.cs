@@ -45,6 +45,12 @@ class WMetadata : IMetadata {
         }
         if (_court?.Code == Courts.EWFC.Code && Cite is not null && Courts.EWFC_B.CitationPattern.IsMatch(Cite))
             _court = Courts.EWFC_B;
+        if (_court?.Code == Courts.EWCOP.Code && Cite is not null && Courts.EWCOP_T1.CitationPattern.IsMatch(Cite))
+            _court = Courts.EWCOP_T1;
+        if (_court?.Code == Courts.EWCOP.Code && Cite is not null && Courts.EWCOP_T2.CitationPattern.IsMatch(Cite))
+            _court = Courts.EWCOP_T2;
+        if (_court?.Code == Courts.EWCOP.Code && Cite is not null && Courts.EWCOP_T3.CitationPattern.IsMatch(Cite))
+            _court = Courts.EWCOP_T3;
         if (_court is null && Cite is not null)
             _court = Courts.ExtractFromCitation(Cite);
         return _court;

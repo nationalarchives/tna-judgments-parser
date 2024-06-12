@@ -54,6 +54,13 @@ public class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] EWFC { num } (B)";
         }
+        match = Regex.Match(cite, @"^\[(\d{4})\] EWCOP (\d+) \((T[1-3])\)$", RegexOptions.IgnoreCase);
+        if (match.Success) {
+            string num = match.Groups[2].Value.TrimStart('0');
+            string sub = match.Groups[3].Value.ToUpper();
+            if (!string.IsNullOrEmpty(num))
+                return $"[{ match.Groups[1].Value }] EWCOP { num } ({ sub })";
+        }
         match = Regex.Match(cite, @"^\[?(\d{4})[\]\[] UKUT (\d+) ?\((AAC|IAC|LC|TCC)\)$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[2].Value.TrimStart('0');
@@ -106,6 +113,9 @@ public class Citations {
         match = Regex.Match(normalized, @"^\[(\d{4})\] EWFC (\d+) \(B\)$");
         if (match.Success)
             return new string[] { "EWFC", "B", match.Groups[1].Value, match.Groups[2].Value };
+        match = Regex.Match(normalized, @"^\[(\d{4})\] EWCOP (\d+) \((T[1-3])\)$");
+        if (match.Success)
+            return new string[] { "EWCOP", match.Groups[3].Value, match.Groups[1].Value, match.Groups[2].Value };
         match = Regex.Match(normalized, @"^\[(\d{4})\] (UKUT) (\d+) \((AAC|IAC|LC|TCC)\)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value };
@@ -132,16 +142,16 @@ public class Citations {
     }
 
     public static bool IsValidUriComponent(string uri) {
-        return Regex.IsMatch(uri, @"^[a-z]+(/[a-z]+)?/\d{4}/\d+(/press-summary/\d+)?$");
+        return Regex.IsMatch(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/\d{4}/\d+(/press-summary/\d+)?$");
     }
 
     internal static int YearFromUriComponent(string uri) {
-        string year = Regex.Match(uri, @"^[a-z]+(/[a-z]+)?/(\d{4})/\d+").Groups[2].Value;
+        string year = Regex.Match(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/(\d{4})/\d+").Groups[2].Value;
         return int.Parse(year);
     }
 
     internal static int NumberFromUriComponent(string uri) {
-        string num = Regex.Match(uri, @"^[a-z]+(/[a-z]+)?/\d{4}/(\d+)").Groups[2].Value;
+        string num = Regex.Match(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/\d{4}/(\d+)").Groups[2].Value;
         return int.Parse(num);
     }
 
