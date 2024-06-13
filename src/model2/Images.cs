@@ -74,7 +74,7 @@ public class WImageRef : IImageRef {
             this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
         }
 
-        // for alt text
+        /* alt text */
         // var props = drawing.Descendants().OfType<DrawingML.Wordprocessing.DocProperties>().FirstOrDefault();
         // see also DrawingML.Pictures.NonVisualDrawingProperties>().FirstOrDefault()?.Description;
         // var name = props?.Name;
@@ -83,22 +83,38 @@ public class WImageRef : IImageRef {
         // StringValue relId = drawing.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().First().Embed;
         // OpenXmlPart part = main.Parts.Where(part => part.RelationshipId == relId.Value).First().OpenXmlPart;
         // this.uri = part.Uri;
+
+        /* width and height */
+        string width = null;
+        string height = null;
         DrawingML.Extents ext = drawing.Descendants().OfType<DrawingML.Extents>().FirstOrDefault();
         if (ext is not null) {
-            List<string> styles = new List<string>(2);
             Int64Value cx = ext.Cx;
             if (cx.HasValue) {
                 double widthInPoints = cx.Value / 12700d;
-                styles.Add("width:" + CSS.ConvertSize(widthInPoints, "pt"));
+                width = CSS.ConvertSize(widthInPoints, "pt");
             }
             Int64Value cy = ext.Cy;
             if (cy.HasValue) {
                 double heightInPoints = cy.Value / 12700d;
-                styles.Add("height:" + CSS.ConvertSize(heightInPoints, "pt"));
+                height = CSS.ConvertSize(heightInPoints, "pt");
             }
-            if (styles.Any())
-                Style = string.Join(';', styles);
         }
+
+        /* rotatation */
+        Rotate = GetRotation(drawing);
+        if (Rotate == 90)
+            (width, height) = (height, width);
+
+        List<string> styles = new(2);
+        if (width is not null)
+            styles.Add("width:"+width);
+        if (height is not null)
+            styles.Add("height:"+height);
+        if (styles.Count != 0)
+            Style = string.Join(';', styles);
+
+        /* crop */
         DrawingML.SourceRectangle srcRect = drawing.Descendants().OfType<DrawingML.SourceRectangle>()
             .Where(sr => sr.Top is not null || sr.Right is not null || sr.Bottom is not null || sr.Left is not null)
             .FirstOrDefault();
@@ -110,7 +126,6 @@ public class WImageRef : IImageRef {
             double left = CropValue(srcRect.Left);
             Crop = new Imaging.Inset { Top = top, Right = right, Bottom = bottom, Left = left };
         }
-        Rotate = GetRotation(drawing);
     }
 
     public static WImageRef Make(MainDocumentPart main, Picture picture) {
