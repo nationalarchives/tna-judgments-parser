@@ -4,25 +4,25 @@
     <meta>
       <identification source="#tna">
         <FRBRWork>
-          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/" />
-          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewcop/t2/2024/30" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewcop/t2/2024/30" />
           <FRBRdate date="2024-06-06" name="judgment" />
-          <FRBRauthor href="#ewcop" />
+          <FRBRauthor href="#ewcop-t2" />
           <FRBRcountry value="GB-UKM" />
-          <FRBRnumber value="" />
+          <FRBRnumber value="30" />
           <FRBRname value="A LOCAL AUTHORITY v ZX" />
         </FRBRWork>
         <FRBRExpression>
-          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/" />
-          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewcop/t2/2024/30" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewcop/t2/2024/30" />
           <FRBRdate date="2024-06-06" name="judgment" />
-          <FRBRauthor href="#ewcop" />
+          <FRBRauthor href="#ewcop-t2" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
-          <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2024-06-07T13:37:14" name="transform" />
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewcop/t2/2024/30/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewcop/t2/2024/30/data.xml" />
+          <FRBRdate date="2024-06-10T15:34:22" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -31,7 +31,7 @@
         <eventRef date="2024-06-06" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
-        <TLCOrganization eId="ewcop" href="https://www.gov.uk/courts-tribunals/court-of-protection" showAs="The Court of Protection" />
+        <TLCOrganization eId="ewcop-t2" href="https://www.gov.uk/courts-tribunals/court-of-protection" showAs="The Court of Protection (Tier 2 cases)" shortForm="The Court of Protection" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="a-local-authority" href="" showAs="A LOCAL AUTHORITY" />
@@ -41,8 +41,11 @@
         <TLCPerson eId="judge-his-honour-judge-burrows" href="/judge-his-honour-judge-burrows" showAs="HIS HONOUR JUDGE BURROWS" />
       </references>
       <proprietary source="#">
-        <uk:court>EWCOP</uk:court>
-        <uk:parser>0.24.4</uk:parser>
+        <uk:court>EWCOP-T2</uk:court>
+        <uk:year>2024</uk:year>
+        <uk:number>30</uk:number>
+        <uk:cite>[2024] EWCOP 30 (T2)</uk:cite>
+        <uk:parser>0.24.5</uk:parser>
         <uk:hash>f9422bd6351acc0095b634579a76f2ceabdbdc4e2e6cdb5f19bee5eb42c11d67</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -79,7 +82,7 @@
       <p class="Header" style="text-align:right"><span style="font-family:Garamond;font-size:8pt">A local authority v ZX</span></p>
     </coverPage>
     <header>
-      <p class="CoverText" style="text-align:left"><span style="font-weight:bold;text-decoration-line:none;font-family:Garamond;color:#000000;background-color:#F8F8F8">[2024] EWCOP 30 (T2)</span></p>
+      <p class="CoverText" style="text-align:left"><neutralCitation style="font-weight:bold;text-decoration-line:none;font-family:Garamond;color:#000000;background-color:#F8F8F8">[2024] EWCOP 30 (T2)</neutralCitation></p>
       <p class="CoverText"><span style="font-family:Garamond">Case No: </span><docketNumber style="font-family:Garamond">14203804</docketNumber></p>
       <p class="CoverMain"><courtType refersTo="#ewcop" style="font-family:Garamond">IN THE COURT OF PROTECTION</courtType></p>
       <p class="CoverText"><span style="font-family:Garamond">The Civil Justice Centre,</span></p>

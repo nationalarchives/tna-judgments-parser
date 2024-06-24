@@ -268,6 +268,27 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/court-of-protection",
         CitationPattern = new Regex(@"^\[\d{4}\] EWCOP \d+$")
     };
+    public static readonly Court EWCOP_T1 = new Court {
+        Code = "EWCOP-T1",
+        LongName = "The Court of Protection (Tier 1 cases)",
+        ShortName = "The Court of Protection",
+        URL = "https://www.gov.uk/courts-tribunals/court-of-protection",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCOP \d+ \(T1\)$")
+    };
+    public static readonly Court EWCOP_T2 = new Court {
+        Code = "EWCOP-T2",
+        LongName = "The Court of Protection (Tier 2 cases)",
+        ShortName = "The Court of Protection",
+        URL = "https://www.gov.uk/courts-tribunals/court-of-protection",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCOP \d+ \(T2\)$")
+    };
+    public static readonly Court EWCOP_T3 = new Court {
+        Code = "EWCOP-T3",
+        LongName = "The Court of Protection (Tier 3 cases)",
+        ShortName = "The Court of Protection",
+        URL = "https://www.gov.uk/courts-tribunals/court-of-protection",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCOP \d+ \(T3\)$")
+    };
 
     public static readonly Court EWFC = new Court {
         Code = "EWFC",
@@ -277,7 +298,8 @@ public readonly partial struct Courts {
     };
     public static readonly Court EWFC_B = new Court {
         Code = "EWFC-B",
-        LongName = "Family Court judgments with \"B\" in their NCN",
+        LongName = "The Family Court (B cases)",
+        ShortName = "The Family Court",
         CitationPattern = new Regex(@"^\[\d{4}\] EWFC \d+ \(B\)$")
     };
 
@@ -381,7 +403,7 @@ public readonly partial struct Courts {
         EWHC_Chancery_Appeals,
         EWHC_SeniorCourtsCosts,
 
-        EWCOP,
+        EWCOP, EWCOP_T1, EWCOP_T2, EWCOP_T3,
         EWFC, EWFC_B,
 
         UpperTribunal_AdministrativeAppealsChamber,
