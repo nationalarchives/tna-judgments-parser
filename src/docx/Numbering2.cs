@@ -585,16 +585,6 @@ class Numbering2 {
         return true;
     }
 
-    private static bool LevelFormatIsCompound(MainDocumentPart main, int numberingId, int ilvl) {
-        LevelText format = Numbering.GetLevel(main, numberingId, ilvl)?.LevelText;
-        if (format is null)
-            return false;
-        if (!format.Val.HasValue)
-            return false;
-        int c = format.Val.Value.Count(c => (c == '%'));
-        return c > 1;
-    }
-
     class PrevAbsStartAccumulator {
 
         private readonly Dictionary<int, Dictionary<int, int>> Map = new();
@@ -631,7 +621,7 @@ class Numbering2 {
         int? numIdOfStartOverrideWithoutStyle = null;
         bool numOverrideShouldntApplyToStyleOnly = false;
 
-        bool prevContainsLowerCompound = false; // see setter below
+        bool prevContainsNumOverrideAtLowerLevel = false;
 
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
@@ -701,10 +691,11 @@ class Numbering2 {
                         start = absStart;
                         numIdOfStartOverride = -2;
                     }
+                    // prevNumIdWithoutStyle.HasValue && ... is not good enough
+                    if (prevNumIdWithoutStyle == numberingId && prevStartOverride.Value > 1)
+                        prevContainsNumOverrideAtLowerLevel = true;
                 }
 
-                if (prevNumIdWithoutStyle == numberingId && LevelFormatIsCompound(main, numberingId, prevIlvl))
-                    prevContainsLowerCompound = true;
                 continue;
             }
 
@@ -733,7 +724,7 @@ class Numbering2 {
                         }
                         numIdOfStartOverrideStyle = prevNumIdOfStyle;
                         numIdOfStartOverrideWithoutStyle = prevNumIdWithoutStyle;
-                        if (!prevContainsLowerCompound)  // only test37 needs this condition
+                        if (!prevContainsNumOverrideAtLowerLevel)  // tests 37 and 87 need this condition
                             count = 0;
                     }
                 }
@@ -750,8 +741,8 @@ class Numbering2 {
             }
         }
 
-        if (isHigher)
-            prevContainsLowerCompound = true;
+        if (isHigher) // why ???
+            prevContainsNumOverrideAtLowerLevel = true;
 
         bool numOverrideShouldntApply = numOverrideShouldntApplyToStyleOnly && !thisNumIdWithoutStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle;
 
@@ -761,7 +752,7 @@ class Numbering2 {
                 start = GetStart(main, numberingId, ilvl);
             else if (over.HasValue)
                 start = over.Value;
-            if (over.HasValue && !prevContainsLowerCompound)  // only test37 needs second condition
+            if (over.HasValue && !prevContainsNumOverrideAtLowerLevel)  // test 37 (and 87?) needs second condition
                 count = 0;
         }
         return count + start.Value;
