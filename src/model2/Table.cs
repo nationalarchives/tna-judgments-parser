@@ -15,7 +15,7 @@ class WTable : ITable {
     internal TableProperties Properties { get; private init; }
     internal TableGrid Grid { get; private init; }
 
-    public IEnumerable<WRow> TypedRows { get; private init; }
+    public List<WRow> TypedRows { get; private init; }
     public IEnumerable<IRow> Rows { get => TypedRows; }
 
     public List<float> ColumnWidthsIns {
@@ -27,7 +27,7 @@ class WTable : ITable {
         Properties = table.ChildElements.OfType<TableProperties>().FirstOrDefault();
         Grid = table.ChildElements.OfType<TableGrid>().FirstOrDefault();
         Style = Properties?.TableStyle?.Val?.Value;
-        TypedRows = ParseTableContents(this, table.ChildElements);
+        TypedRows = ParseTableContents(this, table.ChildElements).ToList();
     }
 
     public WTable(MainDocumentPart main, TableProperties props, TableGrid grid, IEnumerable<WRow> rows) {
@@ -35,10 +35,10 @@ class WTable : ITable {
         Properties = props;
         Grid = grid;
         Style = Properties?.TableStyle?.Val?.Value;
-        TypedRows = rows.Select(row => new WRow(this, row.TablePropertyExceptions, row.Properties, row.TypedCells));
+        TypedRows = rows.Select(row => new WRow(this, row.TablePropertyExceptions, row.Properties, row.TypedCells)).ToList();
     }
 
-    internal static IEnumerable<WRow> ParseTableContents(WTable table, IEnumerable<OpenXmlElement> elements) {
+    private static IEnumerable<WRow> ParseTableContents(WTable table, IEnumerable<OpenXmlElement> elements) {
         return elements.Select(e => ParseTableChild(table, e)).Where(e => e is not null);
     }
 
@@ -73,7 +73,7 @@ class WRow : IRow {
         return DOCX.Util.OnOffToBool(tblHeader.Val) ?? true;
     } }
 
-    public IEnumerable<WCell> TypedCells { get; private init; }
+    public List<WCell> TypedCells { get; private init; }
     public IEnumerable<ICell> Cells { get => TypedCells; }
 
     internal WRow(WTable table, TableRow row) {
@@ -81,17 +81,17 @@ class WRow : IRow {
         Table = table;
         TablePropertyExceptions = row.TablePropertyExceptions;
         Properties = row.TableRowProperties;
-        TypedCells = ParseRowContents(this, row.ChildElements);
+        TypedCells = ParseRowContents(this, row.ChildElements).ToList();
     }
     internal WRow(WTable table, TablePropertyExceptions exceptions, TableRowProperties props, IEnumerable<WCell> cells) {
         Main = table.Main;
         Table = table;
         TablePropertyExceptions = exceptions;
         Properties = props;
-        TypedCells = cells.Select(c => new WCell(this, c.Props, c.Contents));
+        TypedCells = cells.Select(c => new WCell(this, c.Props, c.Contents)).ToList();
     }
 
-    internal static IEnumerable<WCell> ParseRowContents(WRow row, IEnumerable<OpenXmlElement> elements) {
+    private static IEnumerable<WCell> ParseRowContents(WRow row, IEnumerable<OpenXmlElement> elements) {
         return elements.Select(e => ParseRowChild(row, e)).Where(e => e is not null);
     }
 
@@ -140,13 +140,13 @@ class WCell : ICell {
         Main = row.Main;
         Row = row;
         Props = cell.TableCellProperties;
-        Contents = ParseCellContents(this, cell.ChildElements);
+        Contents = ParseCellContents(this, cell.ChildElements).ToList();
     }
     internal WCell(WRow row, TableCellProperties props, IEnumerable<IBlock> contents) {
         Main = row.Main;
         Row = row;
         Props = props;
-        Contents = contents;
+        Contents = contents.ToList();
     }
 
     public VerticalMerge? VMerge { get {
@@ -261,11 +261,11 @@ class WCell : ICell {
         throw new Exception(valign.ToString());
     } }
 
-    internal static IEnumerable<IBlock> ParseCellContents(WCell cell, IEnumerable<OpenXmlElement> elements) {
+    private static IEnumerable<IBlock> ParseCellContents(WCell cell, IEnumerable<OpenXmlElement> elements) {
         return elements.SelectMany(e => ParseCellChild(cell, e));
     }
 
-    internal static IEnumerable<IBlock> ParseCellChild(WCell cell, OpenXmlElement e) {
+    private static IEnumerable<IBlock> ParseCellChild(WCell cell, OpenXmlElement e) {
         if (e is TableCellProperties)
             return Enumerable.Empty<IBlock>();
         if (e is BookmarkStart || e is BookmarkEnd)
