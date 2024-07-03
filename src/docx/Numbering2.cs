@@ -249,6 +249,11 @@ class Numbering2 {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4; };
             return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
         }
+        match = Regex.Match(format.Val.Value, @"^%(\d)-%(\d)-%(\d)-%(\d)$");
+        if (match.Success) {
+            FourCombinator four = (num1, num2, num3, num4) => { return num1 + "-" + num2 + "-" + num3 + "-" + num4; };
+            return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
+        }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)\.$");
         if (match.Success) {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "."; };
