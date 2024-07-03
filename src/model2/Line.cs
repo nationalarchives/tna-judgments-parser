@@ -152,46 +152,53 @@ class WLine : ILine {
         return (float) ((Math.Floor(left * 2) + 1) / 2);
     }
 
+    private float? CalculateFirstLineIndentInches() {
+        if (!IsFirstLineOfNumberedParagraph)
+            return DOCX.Paragraphs.GetFirstLineIndentWithoutNumberingOrStyleInInches(main, properties);
+
+        float relative = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties) ?? 0;
+
+        float? minNumWidth = CalculateMinNumberWidth();
+
+        if (relative < 0) {
+            var abs = Math.Abs(relative);
+            if (minNumWidth.HasValue && minNumWidth.Value > abs)
+                return minNumWidth.Value - abs;
+            return null;
+        }
+
+        float leftIndent = this.LeftIndentInches ?? 0f;
+        float defaultTab = GetFirstDefaultTabAfter(leftIndent) - Math.Abs(leftIndent); // relative
+        if (minNumWidth.HasValue && minNumWidth.Value > defaultTab)
+            defaultTab = minNumWidth.Value;
+
+        float? firstTab = DOCX.Paragraphs.GetFirstTabAfter(main, properties, leftIndent); // absolute
+        if (!firstTab.HasValue)
+            return relative + defaultTab;
+        float hardFirst = leftIndent + relative;
+        float firstTabRelative = firstTab.Value - hardFirst;
+        if (firstTabRelative > defaultTab)
+            return relative + defaultTab;
+        if (minNumWidth.HasValue && minNumWidth.Value > firstTabRelative)   // necessary?
+            return relative + minNumWidth.Value;
+        return relative + firstTabRelative;
+    }
+
+    private float? firstLineIndentInches;
+
     public float? FirstLineIndentInches {
         get {
-            if (!IsFirstLineOfNumberedParagraph)
-                return DOCX.Paragraphs.GetFirstLineIndentWithoutNumberingOrStyleInInches(main, properties);
-
-            float relative = DOCX.Paragraphs.GetFirstLineIndentWithNumberingAndStyleInInches(main, properties) ?? 0;
-
-            float? minNumWidth = CalculateMinNumberWidth();
-
-            if (relative < 0) {
-                var abs = Math.Abs(relative);
-                if (minNumWidth.HasValue && minNumWidth.Value > abs)
-                    return minNumWidth.Value - abs;
-                return null;
-            }
-
-            float leftIndent = this.LeftIndentInches ?? 0f;
-            float defaultTab = GetFirstDefaultTabAfter(leftIndent) - Math.Abs(leftIndent); // relative
-            if (minNumWidth.HasValue && minNumWidth.Value > defaultTab)
-                defaultTab = minNumWidth.Value;
-
-            float? firstTab = DOCX.Paragraphs.GetFirstTabAfter(main, properties, leftIndent); // absolute
-            if (!firstTab.HasValue)
-                return relative + defaultTab;
-            float hardFirst = leftIndent + relative;
-            float firstTabRelative = firstTab.Value - hardFirst;
-            if (firstTabRelative > defaultTab)
-                return relative + defaultTab;
-            if (minNumWidth.HasValue && minNumWidth.Value > firstTabRelative)   // necessary?
-                return relative + minNumWidth.Value;
-            return relative + firstTabRelative;
+            firstLineIndentInches ??= CalculateFirstLineIndentInches();
+            return firstLineIndentInches;
         }
     }
 
     public string FirstLineIndent {
         get {
-            float? inches = this.FirstLineIndentInches;
+            float? inches = FirstLineIndentInches;
             if (!inches.HasValue)
                 return null;
-            return CSS.ConvertSize(inches, "in");
+            return CSS.ConvertSize(inches.Value, "in");
         }
     }
 
