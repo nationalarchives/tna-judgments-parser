@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/kb/2024/1680" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/kb/2024/1680" />
+          <FRBRdate date="2024-07-09" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="1680" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/1680" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/1680" />
+          <FRBRdate date="2024-07-09" name="judgment" />
+          <FRBRauthor href="#ewhc-kbd" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/1680/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/1680/data.xml" />
+          <FRBRdate date="2024-07-09T18:00:03" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2024-07-09" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-kbd" href="https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court" showAs="The King's Bench Division of the High Court" shortForm="The King's Bench Division" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-KBD</uk:court>
+        <uk:year>2024</uk:year>
+        <uk:number>1680</uk:number>
+        <uk:cite>[2024] EWHC 1680 (KB)</uk:cite>
+        <uk:parser>0.25.4</uk:parser>
+        <uk:hash>bfcc8d852aea830e65c5c94f30b9355c178f0bfd956f92df86957f034d033d4a</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 11pt; font-family: 'Calibri, sans-serif'; }
+#judgment .Heading1 { font-size: 20pt; color: #2F5496; }
+#judgment .Heading2 { font-size: 16pt; color: #2F5496; }
+#judgment .Heading3 { font-size: 14pt; color: #2F5496; }
+#judgment .Heading4 { font-style: italic; color: #2F5496; }
+#judgment .Heading5 { color: #2F5496; }
+#judgment .Heading6 { font-style: italic; color: #595959; }
+#judgment .Heading7 { color: #595959; }
+#judgment .Heading8 { font-style: italic; color: #272727; }
+#judgment .Heading9 { color: #272727; }
+#judgment .Title { font-size: 28pt; }
+#judgment .Subtitle { font-size: 14pt; color: #595959; }
+#judgment .Quote { text-align: center; font-style: italic; color: #404040; }
+#judgment .ListParagraph { margin-left: 0.5in; }
+#judgment .IntenseQuote { text-align: center; margin-left: 0.6in; margin-right: 0.6in; font-style: italic; color: #2F5496; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaHeading { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .BodyText { margin-left: 0.35in; font-family: Algerian; font-size: 12pt; }
+#judgment .TableParagraph { }
+#judgment .Heading1Char { font-size: 20pt; color: #2F5496; }
+#judgment .Heading2Char { font-size: 16pt; color: #2F5496; }
+#judgment .Heading3Char { font-size: 14pt; color: #2F5496; }
+#judgment .Heading4Char { font-style: italic; color: #2F5496; }
+#judgment .Heading5Char { color: #2F5496; }
+#judgment .Heading6Char { font-style: italic; color: #595959; }
+#judgment .Heading7Char { color: #595959; }
+#judgment .Heading8Char { font-style: italic; color: #272727; }
+#judgment .Heading9Char { color: #272727; }
+#judgment .TitleChar { font-size: 28pt; }
+#judgment .SubtitleChar { font-size: 14pt; color: #595959; }
+#judgment .QuoteChar { font-style: italic; color: #404040; }
+#judgment .IntenseEmphasis { font-style: italic; color: #2F5496; }
+#judgment .IntenseQuoteChar { font-style: italic; color: #2F5496; }
+#judgment .IntenseReference { font-weight: bold; font-variant: small-caps; color: #2F5496; }
+#judgment .HeaderChar { font-family: Univers; font-size: 12pt; }
+#judgment .FooterChar { font-family: Univers; font-size: 12pt; }
+#judgment .BodyTextChar { font-family: Algerian; font-size: 12pt; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="CoverText" style="text-align:left"><span style="font-family:'Times New Roman'">Neutral Citation Number: </span><neutralCitation style="font-family:'Times New Roman'">[2024] EWHC 1680 (KB)</neutralCitation></p>
+      <p class="CoverText"><span style="font-family:'Times New Roman'">Case No: </span><docketNumber style="font-family:'Times New Roman'">2023/2/YOR</docketNumber></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd" style="font-family:'Times New Roman'">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">KING'S BENCH DIVISION</courtType></p>
+      <p class="CoverText"><span style="font-family:'Times New Roman'">Royal Courts of Justice</span></p>
+      <p class="CoverText"><span style="font-family:'Times New Roman'">Strand, London, WC2A 2LL</span></p>
+      <p class="CoverText"><span style="font-family:'Times New Roman'">Date: </span><docDate date="2024-07-09" refersTo="#judgment" style="font-family:'Times New Roman'">9 July 2024</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Before</span><span style="font-family:'Times New Roman';font-size:12pt">:</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">     </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Mr JUSTICE GARNHAM</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">IN THE MATTER OF</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Jimmy Connors</span></p>
+      <p style="text-align:right;margin-left:0.79in;text-indent:0.39in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Applicant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">_____________________________</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">REVIEW OF TARIFF</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">________________________________</span></p>
+      <p><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Mr Justice Garnham:</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level eId="lvl_1">
+          <content>
+            <p><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-family:'Times New Roman';font-size:12pt">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">In the early hours of 21 September 2013, the Applicant, Jimmy Connors, who was then aged 16, stabbed Joe Walker, a 23 year old man previously unknown to Mr Connors, in the back, causing injuries from which Mr Walker died.  On 24 March 2014, at Sheffield Crown Court, the Applicant was found guilty of murder.  On </span><span style="font-family:'Times New Roman';color:#000000">25 March 2014</span><span style="font-family:'Times New Roman'">, he was sentenced  by Mr Justice Griffith Williams to detention during Her Majesty’s Pleasure, with a minimum term, or tariff, of 15 years (less 181 days spent on remand).  </span><span style="font-family:'Times New Roman';color:#000000">The applicant had served 9 years 8 months when this reference was made to me.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-family:'Times New Roman';font-size:12pt">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">In </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">R (Smith) v The Secretary of State for the Home Department</span><span style="font-family:'Times New Roman'"> [2005] UKHL 51, the House of Lords held that the tariff for a person sentenced to be detained during Her Majesty’s Pleasure is reviewable and may be reduced on a number of specific grounds, including where there is clear evidence that the prisoner has made exceptional and unforeseen progress during the course of his sentence.  The rationale of such reviews was described by Lord Phillips of Worth Matravers CJ in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Smith</span><span style="font-family:'Times New Roman'"> at [70] as follows:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="text-align:left;margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt">“The requirements of the welfare of the offender must be taken into account when deciding for how long a young person sentenced to detention during Her Majesty’s Pleasure should remain in custody.  Those requirements will change, depending upon the development of that young person while in custody.  Accordingly, even if a provisional tariff is set to reflect the elements of punishment and deterrence, the position of the offender must be kept under review before the provisional tariff period has expired.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-family:'Times New Roman';font-size:12pt">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">Section 27A(2) of the Crime (Sentences) Act 1997 (as amended by s128(1) of the Police, Crime, Sentencing and Courts Act 2022), provides that a person serving a sentence of detention at Her Majesty’s Pleasure (“DHMP), who was under the age of 18 when sentenced, may make an application for a “minimum term review” to the Secretary of State after serving half of the minimum term. On receipt of such an application the Secretary of State must consider it and, unless he forms the view that it is frivolous or vexatious, must refer it to the High Court.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_4">
+          <num style="font-family:'Times New Roman';font-size:12pt">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">The Applicant has made such an application to the Secretary of State and that application has been referred to me under s27A.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-family:'Times New Roman';font-size:12pt">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">Section 27 B of the 1997 Act provides that where an application for minimum term review is made to the High Court, the court may (a) make “a reduction order” or (b) confirm the minimum term in respect of the offenders DHMP sentence and a decision of the court under this subsection is final.  A “reduction order” is an order that the young offenders minimum term is to be reduced to such part of the offenders DHMP sentence as the court considers appropriate and is specified in the reduction order.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-family:'Times New Roman';font-size:12pt">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">It deciding whether to make a reduction order I am required, by s27B(4), to take into account, in particular, any evidence (a) that the young offenders rehabilitation has been exceptional and (b) that the continued detention or imprisonment of the offender for the remainder of the minimum term is likely to give rise to a serious risk to the welfare or continued rehabilitation of the offender which cannot be eliminated or mitigated to a significant degree</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_2">
+          <content>
+            <p><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">The Relevant Criteria</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_7">
+          <num style="font-family:'Times New Roman';font-size:12pt">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">The criteria for reduction of minimum term in respect of HMP detainees, published by the Ministry of Justice and relevant to the present case, are as follows:</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-family:'Times New Roman';font-size:12pt">8.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">In order for a minimum term imposed in respect of a person detained at Her Majesty’s Pleasure to be reduced, evidence of one or more of the following should be present:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.5in"><span style="font-family:'Times New Roman';font-size:12pt">Exceptional progress in prison, resulting in a significant alteration in the detainee’s maturity and outlook since the commission of the offence.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.5in"><span style="font-family:'Times New Roman';font-size:12pt">Risk to the detainee’s continued development that cannot be significantly mitigated or removed in the custodial environment.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.5in"><span style="font-family:'Times New Roman';font-size:12pt">Any matter that calls into question the basis of the original decision to set the minimum term at a particular level (for example, about the circumstances of the offence itself or the detainee’s state of mind at the time), together with any other matter which appears relevant.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-family:'Times New Roman';font-size:12pt">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">It is the first of those characteristics which is said to be present here.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-family:'Times New Roman';font-size:12pt">10.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">Specific factors indicative of exceptional progress may include a prisoner having demonstrated:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">1)</num>
+            <content>
+              <p style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">an exemplary work and disciplinary record in prison;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">2)</num>
+            <content>
+              <p style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">genuine remorse and accepted an appropriate level of responsibility for the part played in the offence; </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">3)</num>
+            <content>
+              <p style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">the ability to build and maintain successful relationships with fellow prisoners and prison staff; and </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">4)</num>
+            <content>
+              <p style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">successful engagement in work (including offending behaviour/offence-related courses).</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-family:'Times New Roman';font-size:12pt">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">All of these should ideally have been sustained over a lengthy period and in more than one prison.  It is not to be assumed that the presence of one or all of these factors will be conclusive of exceptional progress having been made in any individual case. Whether the necessary progress has been made will be a matter to be determined taking into account the specific factors present in each case.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-family:'Times New Roman';font-size:12pt">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">To reach the threshold of exceptional progress there would also need to be some extra element to show that the detainee had assumed responsibility and shown himself to be trustworthy when given such responsibility. Such characteristics may well be demonstrated by the detainee having done good works for the benefit of others.  Examples would be acting as a Listener (helping vulnerable prisoners), helping disabled people use prison facilities, raising money for charities, and helping to deter young people from crime.  Again, ideally, there would need to be evidence of sustained involvement in more than one prison over a lengthy period.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_3">
+          <content>
+            <p class="ParaLevel1"><span style="font-family:'Times New Roman'"> </span><span style="font-weight:bold;font-family:'Times New Roman'">The Offence</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_13">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.02in"><span style="font-family:'Times New Roman';color:#000000">On 21 September 2013 the applicant and a friend visited a house in the Manor area of Sheffield where a party was taking place.</span><span style="font-family:'Times New Roman'"> An </span><span style="font-family:'Times New Roman';color:#000000">altercation developed between the applicant and a Mr Joe Walker when Mr Walker objected to the applicant using cocaine in the house. The applicant and Mr Walker went outside to continue their argument whereupon Mr Walker  punched the applicant in the face knocking him off balance. Mr Walker then ran off.  He was followed by the applicant and a number of other young people. The applicant was seen to remove a knife from inside his trousers and stab Mr Walker in the back. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.02in"><span style="font-family:'Times New Roman';color:#000000">The applicant indicated, through his counsel, that he would be willing to plead guilty to a charge of manslaughter, but that was not acceptable to the CPS.  The matter then went to trial and the applicant was found guilty of Murder.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-family:'Times New Roman';font-size:12pt">15.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">In sentencing the applicant, the judge said this:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">If you were 21 years old, the starting point would have been 25 years because you had a knife on you available to use as a weapon and you, in fact, used it as a weapon.  It follows that the 12 year starting point must be increased to  reflect the use of the  knife.  While the offence was not premeditated, you were clearly prepared to use extreme violence and your offending was aggravated by the fact that you chased after Joe Walker at the head of a gang.  As there was only the one stab I cannot be sure you intended to kill.    </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Your previous convictions include one for a Public Order Act offence in 2009 and  one for possessing an offensive weapon in 2012, and you were subject to a Youth  Rehabilitation Order when you committed the murder.  Those are relevant  considerations for the purposes of sentence, but I have decided that none should be regarded as an aggravating factor.  </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">I have concluded the starting point should be increased to 18 years to reflect the use  of the knife but I reduce it to 15 years because of the absence of the intent to kill  and the other very limited mitigation in the case.  It follows that the minimum term  you will serve is 15 years, less the time you have spent on remand in custody.  </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level eId="lvl_4">
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;font-family:'Times New Roman'">The Applicant’s Background</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_16">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman'">At the time of the offence, the applicant was living with his father.  He had been there for the previous few weeks following the breakdown in his relationship with his long term girlfriend, D.  They </span><span style="font-family:'Times New Roman';color:#000000">had been  in a long term, stable relationship and had</span><span style="font-family:'Times New Roman';color:#010302"> a </span><span style="font-family:'Times New Roman';color:#000000"> daughter, S, who was born in February 2013. D's mother and grandmother had been an important source of support to the two of them.  The applicant was said to be a proud father who took his parental responsibility seriously, and was previously involved in all aspects of S's care.  Both the applicant and D were from an Irish traveller background. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#010302">At the time of the offence, the applicant had 11 previous convictions for 11 offences, committed  between 2009 and 2014, namely one offence against the person (in 2014), seven theft and kindred offences (2009-2013), one public order offence (2009), one drug offence (cannabis) (2012) and one offensive weapon (an extendable baton) offence (2012).</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_5">
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;font-family:'Times New Roman';color:#010302">The Applicant’s Representations</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_18">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">The Applicant’s solicitor has made representations on his behalf, for consideration in the Minimum Term  Review process.  Those representations sought</span><span style="font-family:'Times New Roman';color:#010302"> t</span><span style="font-family:'Times New Roman';color:#000000">o demonstrate that he has made “</span><span style="font-style:italic;font-family:'Times New Roman';color:#454545">exceptional and unforeseen progress  in prison, resulting in a significant alteration to his maturity and outlook since the commission of the  offence</span><span style="font-family:'Times New Roman';color:#454545">”.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.75in"><span style="font-family:'Times New Roman';color:#000000">It was said that the applicant accepts full responsibility for the victim’s death and  maintains he never intended to kill him. He “</span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">understands the harm caused to the victim’s family and  deeply regrets the victim passing away</span><span style="font-family:'Times New Roman';color:#000000">”.   </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">20.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.66in"><span style="font-family:'Times New Roman';color:#000000">It is said that the applicant comes from a Travellers background. His mother was an alcoholic and attacked him as a  child. His brother introduced him to drugs at age 12. He was not encouraged to go to school and did  not seek an education. As a result, he achieved no qualifications.  At the time of the offence, the applicant was estranged from his partner with whom he had had a baby. He had  no employment and was homeless. He states he was on a four day binge of alcohol and drugs when  he committed the index offence.   </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.59in"><span style="font-family:'Times New Roman';color:#000000">His solicitors contend that initially, Mr Connors made a good start to his sentence, having completing educational courses, such  as Maths and English. However, he accepts that until around 2019, his behaviour in the prison was “problematic”.  He states he had given up on himself. When he started ADHD medication at the start of 2020, he  became much more settled and his behaviour significantly improved. It is said that the last adjudication against Mr  Connors was in 2019.   </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">22.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.69in"><span style="font-family:'Times New Roman';color:#000000">It is contended that Mr Connors realises that there is more to life than just impressing others. He now wants to be a  positive role model and make his daughter, with whom he maintains daily telephone contact, proud of him.   Given the very difficult early life events in his childhood, compounded by a lack of schooling and  the need to adapt to a life sentence as a child, it is said that Mr Connors has made significant progress during this  prison sentence.   Particular reliance is placed on the following:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">He states his reading and writing was very limited when he started his sentence but, with help through  the prisons’ Education departments and Shannon Trust mentors, he has gained confidence and is now  fully literate.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">Mr Connors states he has been most recently engaged with business studies. He has completed a  course in IT skills.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">To reduce his risk to others, Mr Connors has successfully completed the following offending behaviour courses: Thinking Skills Programme (TSP), Victim Awareness, Sycamore Tree, Timewise, A-Z (gang programme) and ROAD (gang programme). These programmes  will, it is said, have substantially decreased Mr Connors’ risk of violence to members of the public.    </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">As to his understanding and level of remorse, he has engaged with Restorative Justice in  2018/2019 with a view to understanding the implications of his offending.  He has written a letter to the victim’s family.  Mr Connors has also completed in-cell work on ‘Victim Awareness’.  </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">Having received help from other prisoners over the years, he has supported other prisoners on the  TSP course to keep them engaged with the course.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">Mr Connors has been a carer for an elderly prisoner on his wing since the middle of 2022 which  involves the collecting of food, maintaining a tidy cell and helps him in and out of the shower. Mr  Connors enjoys being employed in the prison.   </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">In addition to offending behaviour programmes, he has successfully completed a number of  vocational courses including, Manual Handling, Tiling, Bricklaying, Mechanics on Bicycles, Joinery and  Tailoring.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">Mr Connors has worked with drug and alcohol services across several prisons. He has become drugs  and alcohol free. He has not touched either substance for many years.  That, for him, is a complete turnaround from the time in the community when he was heavily reliant on such substances.   </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">Mr Connors was a Gypsy and Traveller representative at HMP Doncaster for approximately one year.  </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">He has been enhanced IEP status since 15 February 2022. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;color:#010302;margin-left:1in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.57in"><span style="font-family:'Times New Roman';color:#000000">He continues to be compliant with his ADHD medication.   </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.63in"><span style="font-family:'Times New Roman';color:#000000">It is argued that Mr Connors progress has much improved over the past few years. His behaviour and approach to his sentence over this period has been excellent. Given his age at the time, his unsettled background, his extremely low level of education and discipline when he entered the prison system and the high levels of disorder and violence experienced across the estate, the progress he  has made in recent years is substantial evidence of his motivation, maturation and commitment to changing his behaviour and lifestyle. It is submitted that he is now a responsible young man who wishes to continue his constructive activities in the prison, build upon his strengths and identify as being able to contribute “pro-socially” in the future.   </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_24">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.63in"><span style="font-family:'Times New Roman';color:#000000">In those circumstances, it is submitted that Mr Connors meets the criteria for a reduction in tariff.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_6">
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold;font-family:'Times New Roman';color:#010302">Prison Reviews and Reports</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_25">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">25.</num>
+          <content>
+            <p class="ParaLevel1" style="text-align:left;margin-left:0.39in"><span style="font-family:'Times New Roman';color:#010302">In the notes from a Sentence Planning and Review meeting on 27 November 2017 it was recorded that he did not</span><span style="font-family:'Times New Roman';color:#000000"> appear to have completed any courses,   or work whilst in custody.  The exception to that appears to be his work  as a Gypsy and Traveller Representative,    a trusted employment which meant he was allowed to visit other wings.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">26.</num>
+          <content>
+            <p class="ParaLevel1" style="text-align:left;margin-left:0.39in"><span style="font-family:'Times New Roman';color:#010302">As at November 2017, he had five proven adjudications against him for offences including possession of unauthorised items, verbal aggression towards an officer and  presence of cannabis traces in his urine.  There were noted to be </span><span style="font-family:'Times New Roman';color:#000000">previous adjudications for the harm of other prisoners.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">27.</num>
+          <intro>
+            <p class="ParaLevel1" style="text-align:left;margin-left:0.39in"><span style="font-family:'Times New Roman';color:#010302">More than three years later, an OASyS assessment, dated 19 August 2021, addressed his employment and employability:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">4.3</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.03in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Previous OASys stated Mr Connors has had various jobs in the past as wing worker and Traveller Representative in custody. However, he has recently gone through a stage of unemployment due to spending time on Basic regime for lack of compliance with the prison regime and poor behaviour. However, he reported 'getting a job' and 'keeping a job' as not a problem. Despite this, he was unemployed prior to custody and had not had a job before his arrest.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">4.4</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Previous OASys stated that whilst in custody, Mr Connors has completed several different educational courses.  He has completed level 1 in Maths and English. He also completed a woodwork course. Since the previous review, Mr Connors has engaged in A-Z, Timewise and  ROAD programme which will have allowed him to enhance skills he can use on his release both in work and social environments. He has also</span><span style="font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman';color:#000000">had various jobs including server and wing worker since his last review.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">4.9</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.3in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Previous OASys states Mr Connors has completed some education courses in custody (L1 maths and English, manual handling, tiling,  bricklaying, mechanics on bicycles, joinery and tailoring). Since the last review, Mr Connors had also completed A-Z and Timewise course at</span><span style="font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman';color:#000000">HMP Doncaster.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">4.10</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.3in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Previous OASys suggests that Mr Connors has some issues with engaging in educational work whilst in custody. During the interview he  appeared to be more open to working with education enhancing his skills. There are no changes from current interview as Mr Connors  believes he has already "done loads" of education/training.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">28.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#000000">In a tariff assessment report dated 11 November 2021, the Probation Offender Manager (“POM”), Lee Chapman, said that his behaviour from the outset of his sentence </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in"><span style="font-family:'Times New Roman';color:#000000">“was problematic and he accrued numerous proven adjudications when in HMP Doncaster, HMP  Wetherby, HMP Moorland and then again back in HMP Doncaster. The majority of these were for fighting, being under the influence or assaulting other prisoners. Since transferring to HMP Woodhill on 14 November 2019, the number and frequency of adjudications is much improved. This </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">could be</span><span style="font-family:'Times New Roman';color:#000000"> evidence of a growing maturity as he ages and it is recognised that he has made improvements in his presentation and behaviour (emphasis added).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.07in"><span style="font-family:'Times New Roman';color:#000000">Nevertheless his behaviour has, at times, been poor.… there are two proven adjudications for threatening behaviour on 04/08/2020 and having a Zanco mobile phone on  his person when he arrived at HMP Woodhill. There are also further recent adjudications which have not concluded for picking up items from a throw over, biting an officer on the hand (referred to police), punching an officer several  times in the face (referred to police), punching an officer to the side of the  head (police) and refusing a direct order to leave the staff office several times leading to restraint.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.07in"><span style="font-family:'Times New Roman';color:#000000">In summary, I believe Mr Connors has matured since sentence and this is  documented and evidenced by the reduction in adjudications and improvement  in behaviour. However, irrespective of the difficulties he is going through  personally, and taking into the account the impact of the pandemic, there is still more work to be done in order for me to confidently say his maturity has  </span><span style="font-style:italic;font-family:'Times New Roman';color:#000000">significantly</span><span style="font-family:'Times New Roman';color:#000000"> changed.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">29.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-family:'Times New Roman';color:#000000">The author also noted </span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in"><span style="font-family:'Times New Roman';color:#000000">“He also sometimes has issues with NPS - spice, and further work with our substance misuse provider,  CNWL is important to try and provide him with the tools and ability to refrain  from substance misuse. Finally, it is positive to note that I take Mr Connors  remorse for his actions with regards to the index offence genuinely, and this and his growing maturity give me a level of confidence that he is on the right  course to progress as he continues his sentence towards his tariff date.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">30.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-family:'Times New Roman';color:#010302">As to his insight and ability to address his past offending, the report notes:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">12.6</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Mr Connors appears to have gained some insight into why he committed the offence, however this requires exploring through offence focussed work as he does maintain that he was provoked at the time and that drugs and alcohol impacted his behaviour.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt">12.8</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:1in;margin-right:0.12in;text-indent:0.5in"><span style="font-family:'Times New Roman';color:#000000">Mr Connors does display (that) he is motivated to address his offending behaviour and is willing to engage in programmes/courses to do so.  He is awaiting a transfer currently to complete courses to address offending behaviour. However, his poor behaviour and violent acts in  custody reflect elements of his offending behaviour which he is aware will impact him being accepted for transfer. This aggressive/violent  behaviour must be addressed to reduce risk of harm/reoffending. He also does not engage with SIT despite being aware drugs and alcohol  was a trigger for his offending, though he does not consider this a current problem.  </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-family:'Times New Roman';font-size:12pt;color:#010302">33.</num>
+          <content>
+            <p style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">When identifying the </span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">circumstances likely to increase risk, the report refers to the problems anticipated when he is released into the community, to continued problematic alcohol/drug misuse, failure to raise awareness of impact of alcohol/drug abuse on his offending behaviour, his perception of confrontation/threat from others, association with negative peers, failure to complete sentence plan targets</span><span style="font-family:'Times New Roman';font-size:12pt"> and c</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">ontinued rigid thinking and attitudes</span><span style="font-family:'Times New Roman';font-size:12pt">.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_34">
+          <num style="font-family:'Times New Roman';font-size:12pt">34.</num>
+          <content>
+            <p style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">When asked to </span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">indicate how likely the offender is to cause serious harm on release, the report says the risk to the public is high and the risk to known adults is medium.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-family:'Times New Roman';font-size:12pt">35.</num>
+          <intro>
+            <p style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">On 15 December 2021, in an update to POM Lee Champion’s report of 11 November 2021, Joanna Whelan, the applicant’s POM since his transfer from HMP Woodhill to HMP Full Sutton, said this:</span></p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.98in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">“He informed me that he was  working with the mental health team and that he felt calmer and was managing his behaviour  better since starting on medication for ADHD/low mood a few months previously.  He also  said that he was engaging with the drugs team to prevent relapse because he said he had  used spice at his previous establishment and didn’t want this to happen again.  </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="margin-left:0.98in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Mr Connors has had no negative behaviour entries and one positive behaviour entry on  NOMIS since the previous report.  The positive behaviour entry was on 12/11/2021 at HMP  Woodhill for volunteering to hand out food while the servery workers were on the exercise  yard.  Mr Connors has had no adjudications since September 2021.”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_36">
+          <num style="font-family:'Times New Roman';font-size:12pt">36.</num>
+          <intro>
+            <p style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The report on a Thinking Skills programme dated 15 September 2022 noted that in a previous report there had been an indication of a lack of goal setting and consequential thinking, impulsive behaviour and anger, and inability to recognise problems, a lack of problem solving skills and reduced perspective taking.  This report said that the applicant:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">“demonstrated good insight into many of the skills presented within TSP. Encouragingly, Mr Connors was open to learning and engaged in sessions well, developing in the areas with outstanding needs…”</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">In the self-control module it was said Mr Connors showed good awareness of control over thinking and decision chains…</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">within the problem solving module Mr Connors … was receptive to feedback, completed all of his work and caused little disruption in the group….</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Symbol;font-size:12pt;margin-left:1.5in;text-indent:-0.25in">•</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">In the positive relation module Mr Connors worked with encouragement on his social circle and identify people who were...(risky) for him and (positives) to him.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-family:'Times New Roman';font-size:12pt">37.</num>
+          <content>
+            <p style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Mr Connors identified the following risk factors for his offending over the duration of the programme - sofa surfing, wanting to please people, taking drugs, drinking alcohol, carry weapons, money and lifestyle.  It was said that the applicant “showed further insight in his risk factors as the programme progressed.  He was able to identify more with each module that was completed, demonstrating his ability to be more open and honest which in turn showed progression towards one of his goals which is positive.... He identified a range of management strategies for these risk factors and he is encouraged to practise and embed these skills moving forward.”</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-family:'Times New Roman';font-size:12pt">38.</num>
+          <content>
+            <p style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The applicant also demonstrated his ability to support others both with the content of the programme and the benefits of completing it.  It was noted that the applicant had set himself goals, adding to them as the programme progressed. Those goals relate both to his time in custody and for the future when in the community.  It was said to be positive that he had set himself both short and long term goals which would increase his ability to manage both his risks and strengthen his protective factors.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_7">
+          <content>
+            <p style="margin-right:0.12in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Analysis</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_39">
+          <num style="font-family:'Times New Roman';font-size:12pt">39.</num>
+          <intro>
+            <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';color:#000000">In the light of that review of the material made available to me, I draw the following factual conclusions:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(i)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in"><span style="font-family:'Times New Roman';color:#000000">In the first three and a half years after sentence (March 2014 to November 2017), the applicant’s attitude and behaviour were poor and he was guilty of a number of infringements of prison discipline (see for example #26 and #28 above);</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(ii)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in;text-indent:0.01in"><span style="font-family:'Times New Roman';color:#000000">In that same period the only employment he obtained in prison was as Gypsy and Traveller Representative (#25);</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(iii)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in;text-indent:0.13in"><span style="font-family:'Times New Roman';color:#000000">In that same period, there is no evidence of his successful completion of any course work (#25).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(iv)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in;text-indent:0.01in"><span style="font-family:'Times New Roman';color:#000000">There has been a continuing problem of drug misuse. That was still a problem at least as late as November 2021 (#29);</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(v)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in"><span style="font-family:'Times New Roman';color:#000000">After 2017 his behaviour and engagement with the prison authorities improved but there were still significant instances of indiscipline and aggressive  behaviour (#28).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(vi)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in;text-indent:0.01in"><span style="font-family:'Times New Roman';color:#000000">In recent years, he has completed a number of useful courses, notably educational courses in maths and English; and trade courses in woodwork, manual handling, tiling, bricklaying, bicycle mechanics, joinery and tailoring. He has also</span><span style="font-family:'Times New Roman'"> </span><span style="font-family:'Times New Roman';color:#000000">had various jobs including server and wing worker (#27).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(vii)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in;text-indent:0.13in"><span style="font-family:'Times New Roman';color:#000000">He has also completed offender behaviour course such as Timewise and  the ROAD programme (#27). He has made progress in developing his thinking skills.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:'Times New Roman';font-size:12pt;margin-left:1.28in;text-indent:-0.49in">(viii)</num>
+            <content>
+              <p class="ParaLevel6" style="margin-left:1.28in;margin-right:0.12in;text-indent:0.26in"><span style="font-family:'Times New Roman';color:#000000">There are signs of growing maturity and the applicant appears to show genuine remorse for his offending and insight into its consequences (#36 and #38).</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-family:'Times New Roman';font-size:12pt">40.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';color:#000000">I recognise that the applicant had a difficult upbringing and an unsettled background.  I acknowledge that he had an extremely low level of education and self-discipline when he was sentenced. I accept that after a poor start, the applicant has made some real progress in prison.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_41">
+          <num style="font-family:'Times New Roman';font-size:12pt">41.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;margin-right:0.12in"><span style="font-family:'Times New Roman';color:#000000">But in my judgment, he falls a long way short of demonstrating the sort of “exceptional progress” that would justify a reduction in the minimum term. In particular, the applicant’s </span><span style="font-family:'Times New Roman'">work and disciplinary record in prison</span><span style="font-family:'Times New Roman';color:#000000"> is a long way from</span><span style="font-family:'Times New Roman'"> exemplary.  Even if the first three and a half years are disregarded, his record cannot fairly be said to be exemplary.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_42">
+          <num style="font-family:'Times New Roman';font-size:12pt">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman'">There has been some good engagement in work, including offending behaviour courses.  He has developed a degree of remorse for his actions and some acceptance of responsibility for his actions. He has more recently shown some ability to build and maintain proper relationships with fellow prisoners and prison staff. But none of this is out of the ordinary and none has not yet been sustained over a lengthy period.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_43">
+          <num style="font-family:'Times New Roman';font-size:12pt">43.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman'">There is little evidence to demonstrate that the applicant has assumed responsibility and shown himself to be trustworthy when given such responsibility. There is nothing to support a conclusion that the applicant has sustained such involvement over a lengthy period.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_8">
+          <content>
+            <p class="ParaLevel1" style="margin-right:0.12in"><span style="font-weight:bold;font-family:'Times New Roman'">Conclusions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_44">
+          <num style="font-family:'Times New Roman';font-size:12pt">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.12in"><span style="font-family:'Times New Roman';color:#000000">For all those reasons, I cannot conclude that the applicant has made e</span><span style="font-family:'Times New Roman'">xceptional progress in prison, resulting in a significant alteration in the detainee’s maturity and outlook since the commission of the offence.  Accordingly, I decline to make “a reduction order” but instead confirm the minimum term in respect of the applicant’s DHMP sentence.</span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

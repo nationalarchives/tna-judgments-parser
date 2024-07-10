@@ -625,6 +625,7 @@ class Numbering2 {
         int? numIdOfStartOverrideStyle = null;
         int? numIdOfStartOverrideWithoutStyle = null;
         bool numOverrideShouldntApplyToStyleOnly = false;
+        bool numOverrideShouldntApplyToStyleAndAdHoc = false;
 
         bool prevContainsNumOverrideAtLowerLevel = false;
 
@@ -714,11 +715,17 @@ class Numbering2 {
                 }
             }
 
-            bool numOverrideShouldntApplyToPrev = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle;
+            bool numOverrideShouldntApplyToPrev1 = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle;
+            bool numOverrideShouldntApplyToPrev2 = numOverrideShouldntApplyToStyleAndAdHoc &&
+                prevNumIdOfStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle &&
+                prevNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
-            if (!numOverrideShouldntApplyToPrev && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
+            int? prevOver = GetStartOverride(prevNumbering, ilvl);
+            if (prevOver.HasValue && prevOver.Value > 1)
+                numOverrideShouldntApplyToPrev2 = false;
+
+            if (!numOverrideShouldntApplyToPrev1 && !numOverrideShouldntApplyToPrev2 && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
                 if (!isHigher || prevNumIdOfStyle.HasValue) {  // test68
-                    int? prevOver = GetStartOverride(prevNumbering, ilvl);
                     if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                         start = prevOver.Value;
                         numIdOfStartOverride = prevNumId.Value;
@@ -727,6 +734,9 @@ class Numbering2 {
                             // When the number override comes from a paragraph that has a style but also numbering of its own,
                             // then the number override shouldn't apply to paragraphs with only that style. See test 86.
                         }
+                        if (prevOver.Value > 1 && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value == thisNumIdOfStyle && prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != thisNumIdWithoutStyle.Value)
+                            numOverrideShouldntApplyToStyleAndAdHoc = true;
+
                         numIdOfStartOverrideStyle = prevNumIdOfStyle;
                         numIdOfStartOverrideWithoutStyle = prevNumIdWithoutStyle;
                         if (!prevContainsNumOverrideAtLowerLevel)  // tests 37 and 87 need this condition
@@ -749,10 +759,16 @@ class Numbering2 {
         if (isHigher) // why ???
             prevContainsNumOverrideAtLowerLevel = true;
 
-        bool numOverrideShouldntApply = numOverrideShouldntApplyToStyleOnly && !thisNumIdWithoutStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle;
+        bool numOverrideShouldntApply1 = numOverrideShouldntApplyToStyleOnly && !thisNumIdWithoutStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle;
+        bool numOverrideShouldntApply2 = numOverrideShouldntApplyToStyleAndAdHoc &&
+            thisNumIdOfStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle &&
+            thisNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && thisNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
-        if (!numOverrideShouldntApply && numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
-            int? over = GetStartOverride(main, numberingId, ilvl);
+        int? over = GetStartOverride(main, numberingId, ilvl);
+        if (over.HasValue && over.Value > 1)
+            numOverrideShouldntApply2 = false;
+
+        if (!numOverrideShouldntApply1 && !numOverrideShouldntApply2 && numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {
             if (start is null)
                 start = GetStart(main, numberingId, ilvl);
             else if (over.HasValue)
@@ -760,6 +776,8 @@ class Numbering2 {
             if (over.HasValue && !prevContainsNumOverrideAtLowerLevel)  // test 37 (and 87?) needs second condition
                 count = 0;
         }
+        if (!start.HasValue)
+            start = 1;
         return count + start.Value;
     }
 
