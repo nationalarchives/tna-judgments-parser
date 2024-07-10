@@ -49,6 +49,14 @@ abstract class OptimizedParser {
         if (conclusions is null)
             i = save;
         IEnumerable<IAnnex> annexes = Annexes();
+        if (i != PreParsed.Body.Count && !conclusions.Any() && annexes.Any()) {
+            var converted = annexes.Select(a => new GroupOfUnnumberedParagraphs(a.Number, a.Contents)).ToList();
+            Decision decision = new() { Contents = converted };
+            body.Add(decision);
+            annexes = [];
+            List<IDecision> rest = Decisions();
+            body.AddRange(rest);
+        }
         if (i != PreParsed.Body.Count) {
             logger.LogDebug("parsing did not complete: " + i);
             throw new Exception();
