@@ -721,8 +721,10 @@ class Numbering2 {
                 prevNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
             int? prevOver = GetStartOverride(prevNumbering, ilvl);
-            if (prevOver.HasValue && prevOver.Value > 1)
+            if (prevOver.HasValue && prevOver.Value > 1) {
+                numOverrideShouldntApplyToPrev1 = false;
                 numOverrideShouldntApplyToPrev2 = false;
+            }
 
             if (!numOverrideShouldntApplyToPrev1 && !numOverrideShouldntApplyToPrev2 && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
                 if (!isHigher || prevNumIdOfStyle.HasValue) {  // test68
@@ -765,8 +767,10 @@ class Numbering2 {
             thisNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && thisNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
         int? over = GetStartOverride(main, numberingId, ilvl);
-        if (over.HasValue && over.Value > 1)
+        if (over.HasValue && over.Value > 1) {
+            numOverrideShouldntApply1 = false;
             numOverrideShouldntApply2 = false;
+        }
 
         if (!numOverrideShouldntApply1 && !numOverrideShouldntApply2 && numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {
             if (start is null)
