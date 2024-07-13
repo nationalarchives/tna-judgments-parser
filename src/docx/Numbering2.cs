@@ -49,15 +49,40 @@ class Numbering2 {
         return numId.HasValue && numId.Value != 0;
     }
 
+    private static readonly string AttrPrefix = "uk";
+    private static readonly string AttrLocalName = "number";
+    private static readonly string AttrNamespace = "https://caselaw.nationalarchives.gov.uk/";
+
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
+
+        string cached;
+        try {
+            OpenXmlAttribute attr = paragraph.GetAttribute(AttrLocalName, AttrNamespace);
+            cached = attr.Value;
+            if (string.IsNullOrEmpty(cached))
+                return null;
+        } catch (KeyNotFoundException) {
+            cached = null;
+        }
+
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
         if (!numId.HasValue)
             return null;
-        string magic = Magic2(main, paragraph, numId.Value, ilvl);
-        if (string.IsNullOrEmpty(magic))
-            return null;
+
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
-        return new NumberInfo() { Number = magic, Props = level.NumberingSymbolRunProperties };
+
+        string formatted;
+        if (cached is null) {
+            formatted = Magic2(main, paragraph, numId.Value, ilvl);
+            OpenXmlAttribute attr = new OpenXmlAttribute(AttrPrefix, AttrLocalName, AttrNamespace, formatted ?? "");
+            paragraph.SetAttribute(attr);
+            if (string.IsNullOrEmpty(formatted))
+                return null;
+        } else {
+            formatted = cached;
+        }
+
+        return new NumberInfo() { Number = formatted, Props = level.NumberingSymbolRunProperties };
     }
 
     private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
