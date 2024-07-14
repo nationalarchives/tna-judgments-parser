@@ -49,15 +49,40 @@ class Numbering2 {
         return numId.HasValue && numId.Value != 0;
     }
 
+    private static readonly string AttrPrefix = "uk";
+    private static readonly string AttrLocalName = "number";
+    private static readonly string AttrNamespace = "https://caselaw.nationalarchives.gov.uk/";
+
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
+
+        string cached;
+        try {
+            OpenXmlAttribute attr = paragraph.GetAttribute(AttrLocalName, AttrNamespace);
+            cached = attr.Value;
+            if (string.IsNullOrEmpty(cached))
+                return null;
+        } catch (KeyNotFoundException) {
+            cached = null;
+        }
+
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
         if (!numId.HasValue)
             return null;
-        string magic = Magic2(main, paragraph, numId.Value, ilvl);
-        if (string.IsNullOrEmpty(magic))
-            return null;
+
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
-        return new NumberInfo() { Number = magic, Props = level.NumberingSymbolRunProperties };
+
+        string formatted;
+        if (cached is null) {
+            formatted = Magic2(main, paragraph, numId.Value, ilvl);
+            OpenXmlAttribute attr = new OpenXmlAttribute(AttrPrefix, AttrLocalName, AttrNamespace, formatted ?? "");
+            paragraph.SetAttribute(attr);
+            if (string.IsNullOrEmpty(formatted))
+                return null;
+        } else {
+            formatted = cached;
+        }
+
+        return new NumberInfo() { Number = formatted, Props = level.NumberingSymbolRunProperties };
     }
 
     private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
@@ -625,12 +650,14 @@ class Numbering2 {
         int? numIdOfStartOverrideStyle = null;
         int? numIdOfStartOverrideWithoutStyle = null;
         bool numOverrideShouldntApplyToStyleOnly = false;
+        bool numOverrideShouldntApplyToStyleAndAdHoc = false;
 
         bool prevContainsNumOverrideAtLowerLevel = false;
 
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
         var prevAbsStarts = new PrevAbsStartAccumulator();
+        var prevAbsStartsStyle = new PrevAbsStartAccumulator();
         int count = 0;
 
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
@@ -684,18 +711,37 @@ class Numbering2 {
             }
 
             if (prevIlvl > ilvl) {
+
                 if (count == 0) // test35
                     count += 1;
 
                 int? prevStartOverride = GetStartOverride(prevNumbering, prevIlvl);
                 if (prevStartOverride.HasValue) { // see tests 38, 47, 66, 67, & 77
-                    if (prevNumIdWithoutStyle.HasValue)
+
+                    if (prevNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value > 1)
                         prevAbsStarts.Put(prevNumIdWithoutStyle.Value, prevIlvl, absStart);
-                    bool forTest67 = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != thisNumIdOfStyle.Value;
-                    if (forTest67) {
+                    if (prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value > 1)
+                        prevAbsStartsStyle.Put(prevNumIdOfStyle.Value, prevIlvl, absStart);
+
+                    bool styleNumbersDontMatch = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != thisNumIdOfStyle.Value;
+                    if (styleNumbersDontMatch) { // test 67
                         start = absStart;
                         numIdOfStartOverride = -2;
                     }
+
+                    bool styleNumbersMatch = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value == thisNumIdOfStyle.Value;
+                    bool adHocNumbersMatch = prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value == thisNumIdWithoutStyle.Value;
+                    bool forTest89 = prevIlvl == 1 && styleNumbersMatch && adHocNumbersMatch;
+                    if (prevIlvl == 1 && styleNumbersMatch && prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
+                        var prevAbsStartPlus2 = prevAbsStartsStyle.Get(prevNumIdOfStyle.Value, prevIlvl + 2);
+                        if (!prevAbsStartPlus2.HasValue) // for test 77
+                            forTest89 = true;
+                    }
+                    if (forTest89) {
+                        start = absStart;
+                        numIdOfStartOverride = -2;
+                    }
+
                     // prevNumIdWithoutStyle.HasValue && ... is not good enough
                     if (prevNumIdWithoutStyle == numberingId && prevStartOverride.Value > 1)
                         prevContainsNumOverrideAtLowerLevel = true;
@@ -714,11 +760,19 @@ class Numbering2 {
                 }
             }
 
-            bool numOverrideShouldntApplyToPrev = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle;
+            bool numOverrideShouldntApplyToPrev1 = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle;
+            bool numOverrideShouldntApplyToPrev2 = numOverrideShouldntApplyToStyleAndAdHoc &&
+                prevNumIdOfStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle &&
+                prevNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
-            if (!numOverrideShouldntApplyToPrev && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
+            int? prevOver = GetStartOverride(prevNumbering, ilvl);
+            if (prevOver.HasValue && prevOver.Value > 1) {
+                numOverrideShouldntApplyToPrev1 = false;
+                numOverrideShouldntApplyToPrev2 = false;
+            }
+
+            if (!numOverrideShouldntApplyToPrev1 && !numOverrideShouldntApplyToPrev2 && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {
                 if (!isHigher || prevNumIdOfStyle.HasValue) {  // test68
-                    int? prevOver = GetStartOverride(prevNumbering, ilvl);
                     if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
                         start = prevOver.Value;
                         numIdOfStartOverride = prevNumId.Value;
@@ -727,6 +781,9 @@ class Numbering2 {
                             // When the number override comes from a paragraph that has a style but also numbering of its own,
                             // then the number override shouldn't apply to paragraphs with only that style. See test 86.
                         }
+                        if (prevIlvl == 0 && prevOver.Value > 1 && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value == thisNumIdOfStyle && prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != thisNumIdWithoutStyle.Value)
+                            numOverrideShouldntApplyToStyleAndAdHoc = true;
+
                         numIdOfStartOverrideStyle = prevNumIdOfStyle;
                         numIdOfStartOverrideWithoutStyle = prevNumIdWithoutStyle;
                         if (!prevContainsNumOverrideAtLowerLevel)  // tests 37 and 87 need this condition
@@ -749,10 +806,18 @@ class Numbering2 {
         if (isHigher) // why ???
             prevContainsNumOverrideAtLowerLevel = true;
 
-        bool numOverrideShouldntApply = numOverrideShouldntApplyToStyleOnly && !thisNumIdWithoutStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle;
+        bool numOverrideShouldntApply1 = numOverrideShouldntApplyToStyleOnly && !thisNumIdWithoutStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle;
+        bool numOverrideShouldntApply2 = numOverrideShouldntApplyToStyleAndAdHoc &&
+            thisNumIdOfStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle &&
+            thisNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && thisNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
-        if (!numOverrideShouldntApply && numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {  // true whenever start is null
-            int? over = GetStartOverride(main, numberingId, ilvl);
+        int? over = GetStartOverride(main, numberingId, ilvl);
+        if (over.HasValue && over.Value > 1) {
+            numOverrideShouldntApply1 = false;
+            numOverrideShouldntApply2 = false;
+        }
+
+        if (!numOverrideShouldntApply1 && !numOverrideShouldntApply2 && numberingId != numIdOfStartOverride && numIdOfStartOverride != -2) {
             if (start is null)
                 start = GetStart(main, numberingId, ilvl);
             else if (over.HasValue)
@@ -760,6 +825,8 @@ class Numbering2 {
             if (over.HasValue && !prevContainsNumOverrideAtLowerLevel)  // test 37 (and 87?) needs second condition
                 count = 0;
         }
+        if (!start.HasValue)
+            start = 1;
         return count + start.Value;
     }
 
