@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 class Numbering {
 
     public static NumberingInstance GetNumbering(MainDocumentPart main, int id) {
-        return main.NumberingDefinitionsPart.Numbering.ChildElements
+        return main.NumberingDefinitionsPart?.Numbering.ChildElements
             .OfType<NumberingInstance>()
             .Where(n => n.NumberID.Equals(id))
             .FirstOrDefault();
