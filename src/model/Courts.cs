@@ -252,8 +252,6 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/chancery-division-of-the-high-court"
     };
 
-    /* other */
-
     public static readonly Court EWHC_SeniorCourtsCosts = new Court {
         Code = "EWHC-SeniorCourtsCosts",
         LongName = "The England and Wales High Court (Senior Courts Costs Office)",
@@ -261,6 +259,8 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/senior-courts-costs-office",
         CitationPattern = new Regex(@"^\[\d{4}\] EWHC \d+ \(SCCO\)$")
     };
+
+    /* other courts */
 
     public static readonly Court EWCOP = new Court {
         Code = "EWCOP",
@@ -302,6 +302,16 @@ public readonly partial struct Courts {
         ShortName = "The Family Court",
         CitationPattern = new Regex(@"^\[\d{4}\] EWFC \d+ \(B\)$")
     };
+
+    public static readonly Court EWCC = new Court {
+        Code = "EWCC",
+        LongName = "The County Court",
+        URL = "https://www.judiciary.uk/courts-and-tribunals/county-court/",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCC \d+$")
+    };
+
+
+    /* tribunals */
 
     public static readonly Court UpperTribunal_AdministrativeAppealsChamber = new Court {
         Code = "UKUT-AAC",
@@ -405,6 +415,7 @@ public readonly partial struct Courts {
 
         EWCOP, EWCOP_T1, EWCOP_T2, EWCOP_T3,
         EWFC, EWFC_B,
+        EWCC,
 
         UpperTribunal_AdministrativeAppealsChamber,
         UpperTribunal_ImmigrationAndAsylumChamber, OldAsylumAndImmigrationTribunal,
