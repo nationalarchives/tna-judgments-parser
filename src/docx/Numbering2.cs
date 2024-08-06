@@ -53,29 +53,39 @@ class Numbering2 {
     private static readonly string AttrLocalName = "number";
     private static readonly string AttrNamespace = "https://caselaw.nationalarchives.gov.uk/";
 
+    private static string GetCachedNumberQuietly(Paragraph paragraph) {
+        foreach (OpenXmlAttribute attr in paragraph.GetAttributes()) {
+            if (attr.LocalName != AttrLocalName)
+                continue;
+            if (attr.NamespaceUri != AttrNamespace)
+                continue;
+            return attr.Value;
+        }
+        return null;
+    }
+    private static void SetCachedNumber(Paragraph paragraph, string number) {
+        OpenXmlAttribute attr = new (AttrPrefix, AttrLocalName, AttrNamespace, number ?? "");
+        paragraph.SetAttribute(attr);
+    }
+
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
 
-        string cached;
-        try {
-            OpenXmlAttribute attr = paragraph.GetAttribute(AttrLocalName, AttrNamespace);
-            cached = attr.Value;
-            if (string.IsNullOrEmpty(cached))
-                return null;
-        } catch (KeyNotFoundException) {
-            cached = null;
-        }
+        string cached = GetCachedNumberQuietly(paragraph);
+        if (cached is not null && cached == "")
+            return null;
 
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
-        if (!numId.HasValue)
+        if (!numId.HasValue) {
+            SetCachedNumber(paragraph, "");
             return null;
+        }
 
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
 
         string formatted;
         if (cached is null) {
             formatted = Magic2(main, paragraph, numId.Value, ilvl);
-            OpenXmlAttribute attr = new OpenXmlAttribute(AttrPrefix, AttrLocalName, AttrNamespace, formatted ?? "");
-            paragraph.SetAttribute(attr);
+            SetCachedNumber(paragraph, formatted);
             if (string.IsNullOrEmpty(formatted))
                 return null;
         } else {
