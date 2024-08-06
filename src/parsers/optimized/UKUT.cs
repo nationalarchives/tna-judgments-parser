@@ -52,7 +52,8 @@ class OptimizedUKUTParser : OptimizedParser {
 
         "REASONS",   // must go here b/c "Decision" might be the heading of the final section: [2022] UKFTT 282 (GRC)
         "OPEN REASONS", // [2023] UKFTT 00412 (GRC)
-        "REASONS FOR DECISION" // [2024] UKUT 127 (AAC)
+        "REASONS FOR DECISION", // [2024] UKUT 127 (AAC)
+        "SUMMARY of REASONS", // [2024] UKFTT 696 (GRC)
     };
 
     Regex[] titles2 = new Regex[] {
