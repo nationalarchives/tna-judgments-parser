@@ -1317,6 +1317,10 @@ class Combo1 : Combo {
             Re = new Regex("^IN THE COUNTY COURT AT [A-Z-]+$"),
             Court = Courts.EWCC
         },
+        new() {
+            Re = new Regex("^IN THE COUNTY COURT AT [A-Z]+ [A-Z]+$"),
+            Court = Courts.EWCC
+        },
         new Combo1 {
             Re = new Regex(@"^EMPLOYMENT APPEAL TRIBUNAL$"),
             Court = Courts.EmploymentAppealTribunal
