@@ -40,9 +40,10 @@ class OptimizedUKUTParser : OptimizedParser {
         "DECISION in PRINCIPLE",
         "DECISION OF THE UPPER TRIBUNAL",
 
-        "Interlocutory Decision", // [2016] UKUT 00337 (IAC)
-        "DECISION ON APPLICATIONS", // [2016] UKUT 00559 (IAC)
-        "DECISION NOTICE", // [2024] UKFTT 00721 (GRC)
+        "Interlocutory Decision", // [2016] UKUT 337 (IAC)
+        "DECISION ON APPLICATIONS", // [2016] UKUT 559 (IAC)
+        "DECISION NOTICE", // [2024] UKFTT 721 (GRC)
+        "Decision: The appeal is refused", // [2024] UKFTT 635 (GRC) -- StartsWith("Decision: ") below won't work b/c of "REASONS" here
 
         "DETERMINATION AND REASONS",
 
@@ -52,7 +53,7 @@ class OptimizedUKUTParser : OptimizedParser {
         "APPROVED JUDGMENT",
 
         "REASONS",   // must go here b/c "Decision" might be the heading of the final section: [2022] UKFTT 282 (GRC)
-        "OPEN REASONS", // [2023] UKFTT 00412 (GRC)
+        "OPEN REASONS", // [2023] UKFTT 412 (GRC)
         "REASONS FOR DECISION", // [2024] UKUT 127 (AAC)
         "SUMMARY of REASONS", // [2024] UKFTT 696 (GRC)
     };
