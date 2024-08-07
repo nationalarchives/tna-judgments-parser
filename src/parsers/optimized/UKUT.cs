@@ -42,6 +42,7 @@ class OptimizedUKUTParser : OptimizedParser {
 
         "Interlocutory Decision", // [2016] UKUT 00337 (IAC)
         "DECISION ON APPLICATIONS", // [2016] UKUT 00559 (IAC)
+        "DECISION NOTICE", // [2024] UKFTT 00721 (GRC)
 
         "DETERMINATION AND REASONS",
 
