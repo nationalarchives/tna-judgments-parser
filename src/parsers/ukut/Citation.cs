@@ -20,7 +20,7 @@ class Citation : FirstMatch2 {
         if (line.Last() is WText last) {
             Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
             if (!match.Success)
-                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((TC|GRC)\)) *$");
+                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((GRC|TC)\)) *$");
             if (!match.Success)
                 match = Regex.Match(last.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
             if (match.Success) {
@@ -45,6 +45,8 @@ class Citation : FirstMatch2 {
                 match = Regex.Match(first.Text, @"^UT Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
             if (!match.Success)
                 match = Regex.Match(first.Text, @"^NCN: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+            if (!match.Success)
+                match = Regex.Match(first.Text, @"^NCN:? (\[\d{4}\] UKFTT \d+ \((GRC|TC)\))");
             if (!match.Success)
                 match = Regex.Match(first.Text, @"^ *(\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");  // [2023] UKUT 168 (LC)
             if (match.Success) {
