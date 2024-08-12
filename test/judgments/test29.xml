@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59/data.xml" />
-          <FRBRdate date="2024-05-27T19:11:45" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:48" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>59</uk:number>
         <uk:cite>[2022] UKUT 59 (AAC)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>678a9a582612abb5b3e6331dcac0971b9466e50e69073b66ba7e0502c80aa756</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -128,54 +128,60 @@
           </paragraph>
           <paragraph eId="para_3">
             <num style="font-family:Arial">3.</num>
-            <intro>
+            <content>
               <p class="Numbered" style="text-indent:0.39in"><span style="font-family:Arial">Section 70(1) of the Social Security Contributions and Benefits Act 1992 makes it a condition of entitlement to a carer’s allowance that the claimant “is engaged in caring for a severely disabled person”, and subsection (2) provides –</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“In this section, “severely disabled person” means a person in respect of whom there is </span><span style="font-style:italic;font-family:Arial">payable</span><span style="font-family:Arial"> either … a disability living allowance by virtue of entitlement to the care component at the highest or middle rate or personal independence payment by virtue of entitlement to the daily living component at the standard or enhanced rate …” (my emphasis).</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“In this section, “severely disabled person” means a person in respect of whom there is </span><span style="font-style:italic;font-family:Arial">payable</span><span style="font-family:Arial"> either … a disability living allowance by virtue of entitlement to the care component at the highest or middle rate or personal independence payment by virtue of entitlement to the daily living component at the standard or enhanced rate …” (my emphasis).</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_4">
             <num style="font-family:Arial">4.</num>
-            <intro>
+            <content>
               <p class="Numbered" style="text-indent:0.39in"><span style="font-family:Arial">Paragraph 4(a)(i) and (b) of Schedule 1B to the Income Support (General) Regulations 1987 (SI 1987/1967) prescribes as categories of person entitled to income support –</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-family:Arial">“4.</num>
-              <intro>
-                <p class="Numbered" style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:Arial">A person (the carer)—</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-family:Arial">(a)</num>
-                <intro>
-                  <p class="Numbered" style="margin-left:1.18in"><span style="font-family:Arial">who is regularly and substantially engaged in caring for another person if—</span></p>
-                </intro>
-                <subparagraph>
-                  <num style="font-family:Arial">(i)</num>
-                  <content>
-                    <p class="Numbered" style="margin-left:1.58in"><span style="font-family:Arial">the person being cared for is </span><span style="font-style:italic;font-family:Arial">in receipt of</span><span style="font-family:Arial"> … the daily living component of personal independence payment at the standard or enhanced rate in accordance with section 78(3) of the 2012 Act; or </span></p>
-                  </content>
-                </subparagraph>
-                <subparagraph>
-                  <content>
-                    <p class="Numbered" style="margin-left:1.47in;text-indent:-0.39in"><marker name="tab" /><span style="font-family:Arial">…; </span></p>
-                  </content>
-                </subparagraph>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Arial">(b)</num>
-                <content>
-                  <p class="Numbered" style="margin-left:1.18in"><span style="font-family:Arial">who is engaged in caring for another person and who is </span><span style="font-style:italic;font-family:Arial">both entitled to, and in receipt of,</span><span style="font-family:Arial"> a carer’s allowance or would be in receipt of that allowance but for the application of a restriction under section 6B or 7 of the Social Security Fraud Act 2001 (loss of benefit provisions)”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Numbered"><marker name="tab" /><span style="font-family:Arial">(my emphases).</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-family:Arial">“4.</num>
+                    <intro>
+                      <p class="Numbered" style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:Arial">A person (the carer)—</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-family:Arial">(a)</num>
+                      <intro>
+                        <p class="Numbered" style="margin-left:1.18in"><span style="font-family:Arial">who is regularly and substantially engaged in caring for another person if—</span></p>
+                      </intro>
+                      <subparagraph>
+                        <num style="font-family:Arial">(i)</num>
+                        <content>
+                          <p class="Numbered" style="margin-left:1.58in"><span style="font-family:Arial">the person being cared for is </span><span style="font-style:italic;font-family:Arial">in receipt of</span><span style="font-family:Arial"> … the daily living component of personal independence payment at the standard or enhanced rate in accordance with section 78(3) of the 2012 Act; or </span></p>
+                        </content>
+                      </subparagraph>
+                      <subparagraph>
+                        <content>
+                          <p class="Numbered" style="margin-left:1.47in;text-indent:-0.39in"><marker name="tab" /><span style="font-family:Arial">…; </span></p>
+                        </content>
+                      </subparagraph>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Arial">(b)</num>
+                      <content>
+                        <p class="Numbered" style="margin-left:1.18in"><span style="font-family:Arial">who is engaged in caring for another person and who is </span><span style="font-style:italic;font-family:Arial">both entitled to, and in receipt of,</span><span style="font-family:Arial"> a carer’s allowance or would be in receipt of that allowance but for the application of a restriction under section 6B or 7 of the Social Security Fraud Act 2001 (loss of benefit provisions)”</span></p>
+                      </content>
+                    </subparagraph>
+                    <wrapUp>
+                      <p class="Numbered"><marker name="tab" /><span style="font-family:Arial">(my emphases).</span></p>
+                    </wrapUp>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_5">
             <num style="font-family:Arial">5.</num>
@@ -218,15 +224,19 @@
           </paragraph>
           <paragraph eId="para_11">
             <num style="font-family:Arial">11.</num>
-            <intro>
+            <content>
               <p class="Numbered" style="margin-left:0in;text-indent:0.5in"><span style="font-family:Arial">The First-tier Tribunal dismissed the appeal and pointed out in its statement of reasons that there was no appeal against a refusal to revise a decision.  However, for reasons that I will consider below, the judge concluded that “the issue before me is whether or not the decision dated 15/8/2018 that the appellant is not entitled to IS after 19/9/2018 is correct”.  She then said –</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-family:Arial">“30.</num>
-              <content>
-                <p class="Numbered" style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:Arial">The tribunal finds that the respondent correctly made a decision on the 15/8/2018 that the appellant was not entitled to IS after 19/9/2018.  As the appellant was no longer entitled to IS the respondent correctly closed the claim.  The appellant and her representative accept that the appellant was not entitled to IS at the date of the decision made on 15/8/2019.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-family:Arial">“30.</num>
+                    <content>
+                      <p class="Numbered" style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:Arial">The tribunal finds that the respondent correctly made a decision on the 15/8/2018 that the appellant was not entitled to IS after 19/9/2018.  As the appellant was no longer entitled to IS the respondent correctly closed the claim.  The appellant and her representative accept that the appellant was not entitled to IS at the date of the decision made on 15/8/2019.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_5">
@@ -290,15 +300,19 @@
           </paragraph>
           <paragraph eId="para_21">
             <num style="font-family:Arial">21.</num>
-            <intro>
+            <content>
               <p class="Numbered" style="text-indent:0.39in"><span style="font-family:Arial">On the other hand, an application for revision may be out-of-time for the purpose of regulation 3(1) but be within time insofar as reliance is placed on other powers of revision under regulation 3 in respect of which there is no time limit and so, as is apparent from </span><span style="font-style:italic;font-family:Arial">PH</span><span style="font-family:Arial">, a refusal, or failure, to revise under such other powers does always extend the time for appealing where mandatory reconsideration applies.  The Upper Tribunal said –</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-family:Arial">“12.</num>
-              <content>
-                <p class="Numbered" style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:Arial">…  What is important is the substance of the request. The tribunal is not bound by parties’ classification as “any ground” or “any time”. Further, if an “any time” request advances no arguable case of official error and is spurious, there may be scope for the tribunal to find there has been no properly constituted “application to revise” for official error within the meaning of Regulation 3ZA of the 1999 Regulations, so there is no jurisdiction to hear an appeal, by application of Section 12(3A) of the 1998 Act (cp </span><span style="font-style:italic;font-family:Arial">Wood v SSWP</span><span style="font-family:Arial"> [2003] EWCA Civ 53). But in appropriate cases, tribunals will have jurisdiction to hear appeals, even if an application for mandatory reconsideration on the basis of official error was made more than 13 months after the original decision.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-family:Arial">“12.</num>
+                    <content>
+                      <p class="Numbered" style="margin-left:0.39in;text-indent:0.11in"><span style="font-family:Arial">…  What is important is the substance of the request. The tribunal is not bound by parties’ classification as “any ground” or “any time”. Further, if an “any time” request advances no arguable case of official error and is spurious, there may be scope for the tribunal to find there has been no properly constituted “application to revise” for official error within the meaning of Regulation 3ZA of the 1999 Regulations, so there is no jurisdiction to hear an appeal, by application of Section 12(3A) of the 1998 Act (cp </span><span style="font-style:italic;font-family:Arial">Wood v SSWP</span><span style="font-family:Arial"> [2003] EWCA Civ 53). But in appropriate cases, tribunals will have jurisdiction to hear appeals, even if an application for mandatory reconsideration on the basis of official error was made more than 13 months after the original decision.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_7">
@@ -320,23 +334,29 @@
           <heading class="Numbered"><span style="font-style:italic;font-family:Arial">Discussion – the substantive issue</span></heading>
           <paragraph eId="para_24">
             <num style="font-family:Arial">24.</num>
-            <intro>
-              <p class="Numbered" style="text-indent:0.39in"><span style="font-family:Arial">The substantive issue between the parties is really a very narrow one.  It is common ground that, as the First-tier Tribunal actually decided, the case before the First-tier Tribunal was an appeal against the decision of 15 August 2018.  Ms Tilt was right to accept in her application for permission to appeal that section 12(8)(b) of the 1998 Act was therefore important, rather than regulation 3(9)(a) of the 1999 Regulations.  The question whether the Secretary of State had had power to revise the decision under appeal was strictly irrelevant (except in relation to the jurisdictional point mentioned above).  However, although expressed in different language, section 12(8)(b) of the 1998 Act has the same practical effect in relation to appeals as regulation 3(9)(a) of the 1999 Regulations has in respect of revisions under regulation 3(1), which is to prohibit account being taken of any change of circumstance since the decision being challenged.  Section 12(8)(b) provides that, in deciding an appeal under that section, the First-tier Tribunal –</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“shall not take into account any circumstances not obtaining at the time when the decision appealed against was made”.</span></p>
-              </content>
-            </subparagraph>
-          </paragraph>
-        </level>
-        <level eId="lvl_9">
-          <heading class="Numbered"><span style="font-family:Arial">Regulation 3(9)(b) provides that the power of revision under regulation 3(1) shall not apply in respect of –</span></heading>
-          <level eId="lvl_9_1">
             <content>
-              <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“a relevant change of circumstances which occurred since the decision had effect …”.</span></p>
+              <p class="Numbered" style="text-indent:0.39in"><span style="font-family:Arial">The substantive issue between the parties is really a very narrow one.  It is common ground that, as the First-tier Tribunal actually decided, the case before the First-tier Tribunal was an appeal against the decision of 15 August 2018.  Ms Tilt was right to accept in her application for permission to appeal that section 12(8)(b) of the 1998 Act was therefore important, rather than regulation 3(9)(a) of the 1999 Regulations.  The question whether the Secretary of State had had power to revise the decision under appeal was strictly irrelevant (except in relation to the jurisdictional point mentioned above).  However, although expressed in different language, section 12(8)(b) of the 1998 Act has the same practical effect in relation to appeals as regulation 3(9)(a) of the 1999 Regulations has in respect of revisions under regulation 3(1), which is to prohibit account being taken of any change of circumstance since the decision being challenged.  Section 12(8)(b) provides that, in deciding an appeal under that section, the First-tier Tribunal –</span></p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“shall not take into account any circumstances not obtaining at the time when the decision appealed against was made”.</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+              <p class="Numbered"><span style="font-family:Arial">Regulation 3(9)(b) provides that the power of revision under regulation 3(1) shall not apply in respect of –</span></p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Numbered" style="margin-left:0.39in"><span style="font-family:Arial">“a relevant change of circumstances which occurred since the decision had effect …”.</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </content>
-          </level>
+          </paragraph>
           <paragraph eId="para_25">
             <num style="font-family:Arial">25.</num>
             <content>
@@ -413,7 +433,7 @@
               </content>
             </subparagraph>
           </paragraph>
-          <level eId="lvl_9_2">
+          <level eId="lvl_8_1">
             <content>
               <p style="text-align:right"><span style="font-family:Arial">Signed on the original on </span><docDate date="2022-03-01" refersTo="#decision" style="font-family:Arial">1 March 2022</docDate></p>
             </content>

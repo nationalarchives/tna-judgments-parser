@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/720/em" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/720/em" />
-          <FRBRdate date="2023-10-30" name="generated" />
+          <FRBRdate date="2024-07-19" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/720/em/data.xml" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/720/em/data.xml" />
-          <FRBRdate date="2023-10-30T16:18:02Z" name="transform" />
+          <FRBRdate date="2024-07-19T15:13:58Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>0.17.11</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>6cfb5ff3d24247cc773dd6cc5526f000b4a90ab842f035e81671c48f602bd17c</uk:hash>
       </proprietary>
     </meta>
@@ -93,14 +93,18 @@
         <heading><b>European Convention on Human Rights</b></heading>
         <paragraph>
           <num>5.1</num>
-          <intro>
+          <content>
             <p>The Rt Hon Alex Chalk MP, Lord Chancellor and Secretary of State has made the following statement regarding Human Rights:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p>“In my view the provisions of the Judicial Appointments (Amendment) Order 2023 are compatible with the Convention rights.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p>“In my view the provisions of the Judicial Appointments (Amendment) Order 2023 are compatible with the Convention rights.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
       </section>
       <section>

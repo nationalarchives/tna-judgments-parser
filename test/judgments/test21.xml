@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/121/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/lc/2022/121/data.xml" />
-          <FRBRdate date="2024-05-27T19:34:33" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:39" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>121</uk:number>
         <uk:cite>[2022] UKUT 121 (LC)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>4684bfd014fadda75dc2bd683fb4edf8df0f42656a2ac85013bb3dfb14ca512e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -222,27 +222,31 @@
           <heading class="Normal2"><span style="font-weight:bold">The relevant statutory provisions</span></heading>
           <paragraph eId="para_10">
             <num>10.</num>
-            <intro>
+            <content>
               <p class="Normal2" style="margin-left:0.39in">Section 196 of the Law of Property Act 1925 contains regulations respecting the form and services of notices under the Act.  So far as they are relevant to this appeal section 196(3), (4) and (5) provide:</p>
-            </intro>
-            <subparagraph>
-              <num>“(3)</num>
-              <content>
-                <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Any notice required or authorised by this Act to be served shall be sufficiently served if it is left at the last-known place of abode or business in the United Kingdom of the lessee, lessor, mortgagee, mortgagor, or other person to be served, ….</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(4)</num>
-              <content>
-                <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Any notice required or authorised by this Act to be served shall also be sufficiently served, if it is sent by post in a registered letter addressed to the lessee, …, by name, at the aforesaid place of abode …, and if that letter is not returned by the postal operator (within the meaning of Part 3 of the Postal Services Act 2011) concerned undelivered; and that service shall be deemed to be made at the time at which the registered letter would in the ordinary course be delivered. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(5)</num>
-              <content>
-                <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The provisions of this section shall extend to notices required to be served by any instrument affecting property executed or coming into operation after the commencement of this Act unless a contrary intention appears.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“(3)</num>
+                    <content>
+                      <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Any notice required or authorised by this Act to be served shall be sufficiently served if it is left at the last-known place of abode or business in the United Kingdom of the lessee, lessor, mortgagee, mortgagor, or other person to be served, ….</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(4)</num>
+                    <content>
+                      <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Any notice required or authorised by this Act to be served shall also be sufficiently served, if it is sent by post in a registered letter addressed to the lessee, …, by name, at the aforesaid place of abode …, and if that letter is not returned by the postal operator (within the meaning of Part 3 of the Postal Services Act 2011) concerned undelivered; and that service shall be deemed to be made at the time at which the registered letter would in the ordinary course be delivered. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(5)</num>
+                    <content>
+                      <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The provisions of this section shall extend to notices required to be served by any instrument affecting property executed or coming into operation after the commencement of this Act unless a contrary intention appears.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_11">
             <num>11.</num>
@@ -252,20 +256,24 @@
           </paragraph>
           <paragraph eId="para_12">
             <num>12.</num>
-            <intro>
+            <content>
               <p class="Normal2" style="margin-left:0.39in">A notice under section 166 may be sent by post, as to which section 166(6) provides:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in">“If the notice is sent by post, it must be addressed to a tenant at the dwelling unless he has notified the landlord in writing of a different address in England and Wales at which he wishes to be given notices under this section (in which case it must be addressed to him there).”</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Normal2" style="margin-left:0.39in">The clear implication is that if a notice is sent to the tenant at the dwelling or at the alternative address supplied for that purpose, the notice will have been given by the landlord and the requirement of section 166(1) satisfied, whether or not the notice comes to the attention of the tenant.  </p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in">“If the notice is sent by post, it must be addressed to a tenant at the dwelling unless he has notified the landlord in writing of a different address in England and Wales at which he wishes to be given notices under this section (in which case it must be addressed to him there).”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
+          <level eId="lvl_2_1">
+            <content>
+              <p class="Normal2" style="margin-left:0.39in">The clear implication is that if a notice is sent to the tenant at the dwelling or at the alternative address supplied for that purpose, the notice will have been given by the landlord and the requirement of section 166(1) satisfied, whether or not the notice comes to the attention of the tenant.  </p>
+            </content>
+          </level>
         </level>
         <level eId="lvl_3">
           <heading class="Normal2"><span style="font-weight:bold">The Appellant’s lease</span></heading>
@@ -412,31 +420,39 @@
           </paragraph>
           <paragraph eId="para_35">
             <num>35.</num>
-            <intro>
+            <content>
               <p class="Normal2" style="margin-left:0.39in">Lewison LJ explained, at [18], that the word “known” in the expression “last known place of abode” includes both actual knowledge and constructive knowledge:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in">“Thus a former address will only be the “last known” address if the server of the notice has taken reasonable steps to find out what the intended recipient’s current address is.  What he would have found out on making reasonable enquiries will be knowledge imputed to him.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in">“Thus a former address will only be the “last known” address if the server of the notice has taken reasonable steps to find out what the intended recipient’s current address is.  What he would have found out on making reasonable enquiries will be knowledge imputed to him.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_36">
             <num>36.</num>
             <intro>
               <p class="Normal2" style="margin-left:0.39in">One source of information the giver of a notice might consult is the land register which, as Lewison LJ said, at [23], “is an open register, capable of inspection by the public” and (quoting the Law Commission) “a source of public information about land that can be used for many purposes unconnected with conveyancing”.  Although <span style="font-style:italic">Oldham v Tanna</span> was a case about a planning notice, Lewison LJ expressed his conclusion in wide terms, at [28]:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <intro>
+                      <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in">“I would hold that as a general rule, unless there is a statutory requirement to the contrary, in a case in which</p>
+                    </intro>
+                    <subparagraph>
+                      <num>i)</num>
+                      <content>
+                        <p class="Normal2" style="margin-left:1in;margin-right:0.39in;text-indent:0.5in">a person (in this case the local planning authority rather than the council taken as a whole) wishes to serve notice relating to a particular property on the owner of that property, and</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <intro>
-                <p class="Normal2" style="margin-left:0.79in;margin-right:0.39in">“I would hold that as a general rule, unless there is a statutory requirement to the contrary, in a case in which</p>
-              </intro>
-              <subparagraph>
-                <num>i)</num>
-                <content>
-                  <p class="Normal2" style="margin-left:1in;margin-right:0.39in;text-indent:0.5in">a person (in this case the local planning authority rather than the council taken as a whole) wishes to serve notice relating to a particular property on the owner of that property, and</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
             <subparagraph>
               <num>ii)</num>
               <intro>

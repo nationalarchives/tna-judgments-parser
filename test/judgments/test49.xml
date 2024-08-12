@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/3114/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2022/3114/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:10" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:59" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>3114</uk:number>
         <uk:cite>[2022] EWHC 3114 (Admin)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>a19fb0825013f0a292b3b54f4041051448e770bc043ed0796ca46acebddf4c24</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -173,75 +173,79 @@
           <heading><span style="font-weight:bold">Introduction </span></heading>
           <paragraph eId="para_1">
             <num>1.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">This is an application to re-open an extradition appeal, pursuant to Crim PR r 50.27.  This provides:</p>
-            </intro>
-            <subparagraph>
-              <num>“1.1.</num>
-              <content>
-                <p class="N1legal" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">—</span>a)<span style="font-size:12pt"> This rule applies where a party wants the High Court to reopen a decision of that court which determines an appeal or an application for permission to appeal.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(1)</num>
-              <content>
-                <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">Such a party must—</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(a)</num>
-              <content>
-                <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">apply in writing for permission to reopen that decision, as soon as practicable after becoming aware of the grounds for doing so; and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(b)</num>
-              <content>
-                <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">serve the application on the High Court officer and every other party.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(2)</num>
-              <content>
-                <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">The application must—</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(a)</num>
-              <content>
-                <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">specify the decision which the applicant wants the court to reopen; and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(b)</num>
-              <content>
-                <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">give reasons why—</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(i)</num>
-              <content>
-                <p class="N4" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">it is necessary for the court to reopen that decision in order to avoid real injustice,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(ii)</num>
-              <content>
-                <p class="N4" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">the circumstances are exceptional and make it appropriate to reopen the decision, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(iii)</num>
-              <content>
-                <p class="N4" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">there is no alternative effective remedy.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.18in">(3)</num>
-              <content>
-                <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">The court must not give permission to reopen a decision unless each other party has had an opportunity to make representations.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“1.1.</num>
+                    <content>
+                      <p class="N1legal" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">—</span>a)<span style="font-size:12pt"> This rule applies where a party wants the High Court to reopen a decision of that court which determines an appeal or an application for permission to appeal.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(1)</num>
+                    <content>
+                      <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">Such a party must—</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(a)</num>
+                    <content>
+                      <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">apply in writing for permission to reopen that decision, as soon as practicable after becoming aware of the grounds for doing so; and</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(b)</num>
+                    <content>
+                      <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">serve the application on the High Court officer and every other party.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(2)</num>
+                    <content>
+                      <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">The application must—</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(a)</num>
+                    <content>
+                      <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">specify the decision which the applicant wants the court to reopen; and</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(b)</num>
+                    <content>
+                      <p class="N3" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">give reasons why—</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(i)</num>
+                    <content>
+                      <p class="N4" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">it is necessary for the court to reopen that decision in order to avoid real injustice,</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(ii)</num>
+                    <content>
+                      <p class="N4" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">the circumstances are exceptional and make it appropriate to reopen the decision, and</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(iii)</num>
+                    <content>
+                      <p class="N4" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="font-size:12pt">there is no alternative effective remedy.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="margin-left:1.18in">(3)</num>
+                    <content>
+                      <p class="N2" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.38in"><span style="font-size:12pt">The court must not give permission to reopen a decision unless each other party has had an opportunity to make representations.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_2">
             <num>2.</num>
@@ -383,19 +387,23 @@
           </paragraph>
           <paragraph eId="para_25">
             <num>25.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">According to Further Information from Greece dated 21 November 2022, the Applicant was sentenced to 13 years imprisonment for the outstanding matter on 8 February 2022, ie, the matter which had originally been an accusation matter.  This related to money laundering. The FI stated:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">“In respect of judgment no. 4519/20-10-2008, Ms. ILIA has been convicted for the offences related to the said judgment, in thirteen (13) years of custodial sentence by virtue of judgment no. 252/2022 dated 08-02-2022 of the Five-Member Appeal Court of Athens, which was rendered following an appeal lodged against the decision no. 1312/2020 dated 06-03-2020 rendered by the First (A’) Three-Member Appeal Court of Athens for felonies. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">Ms. ILIA was informed that the trial would take place. Consequently, she appointed lawyer Mr loannis GIATRAS by a special power of attorney document issued on 21-01-2019 and signed by her at the Consular Office of Greece in London. Her lawyer represented and defended her during the trial hearing.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">“In respect of judgment no. 4519/20-10-2008, Ms. ILIA has been convicted for the offences related to the said judgment, in thirteen (13) years of custodial sentence by virtue of judgment no. 252/2022 dated 08-02-2022 of the Five-Member Appeal Court of Athens, which was rendered following an appeal lodged against the decision no. 1312/2020 dated 06-03-2020 rendered by the First (A’) Three-Member Appeal Court of Athens for felonies. </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in">Ms. ILIA was informed that the trial would take place. Consequently, she appointed lawyer Mr loannis GIATRAS by a special power of attorney document issued on 21-01-2019 and signed by her at the Consular Office of Greece in London. Her lawyer represented and defended her during the trial hearing.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_26">
             <num>26.</num>
@@ -447,27 +455,35 @@
           </paragraph>
           <paragraph eId="para_33">
             <num>33.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Government of the</span><span> </span><span style="font-style:italic">United States v Bowen</span> [2015] EWHC 1873 (Admin), Burnett LJ (as he then was) emphasised the narrow scope of Crim PR r. 17.27, the relevant precursor provision. In particular, he held that: </p>
-            </intro>
-            <subparagraph>
-              <num>“9.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">… The jurisdiction is not designed to allow a disappointed party to the appeal to reconsider his arguments, material and evidence and come back to the court to have another go. Furthermore, we would emphasise the importance of finality in extradition cases by noting the observations of Lord Thomas in <span style="font-style:italic">Abu Hamza v Government of the United States</span> [2012] EWHC 2736 (Admin) at [21] and [22], namely that there is an overwhelming public interest in both the proper functioning of extradition arrangements and in honouring extradition treaties, as well as there being an equally high importance in the finality of litigation. Finality of litigation is particularly important in extradition cases: ‘because of the public interest in an efficient process, the need to adhere to international obligations and to avoid a recurrence of the delays which have so disfigured the extradition process in the past and to which successive appeals over time can subject it’.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“9.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">… The jurisdiction is not designed to allow a disappointed party to the appeal to reconsider his arguments, material and evidence and come back to the court to have another go. Furthermore, we would emphasise the importance of finality in extradition cases by noting the observations of Lord Thomas in <span style="font-style:italic">Abu Hamza v Government of the United States</span> [2012] EWHC 2736 (Admin) at [21] and [22], namely that there is an overwhelming public interest in both the proper functioning of extradition arrangements and in honouring extradition treaties, as well as there being an equally high importance in the finality of litigation. Finality of litigation is particularly important in extradition cases: ‘because of the public interest in an efficient process, the need to adhere to international obligations and to avoid a recurrence of the delays which have so disfigured the extradition process in the past and to which successive appeals over time can subject it’.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_34">
             <num>34.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Seprey-Hozo v Law Court of Miercurea Ciuc, Romania</span> [2016] 4 WLR 181, Cranston J (applying <span style="font-style:italic">Bowen</span>) clarified that proof of ‘injustice’ is not in itself sufficient to reopen an appeal. What is required is a nexus between reopening the appeal and the prevention of that injustice: </p>
-            </intro>
-            <subparagraph>
-              <num style="background-color:#FFFFFF">“20.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="color:initial;background-color:#FFFFFF">Just assume that an extradited appellant, who has exhausted all appeals in this jurisdiction, is unquestionably being held in prison conditions violating Article 3 and that is in breach of an assurance given by the authorities in the requesting state. I can well accept that would be a real injustice. However, CrPR 50.27(3)(b) requires not only that there be a real injustice as a consideration to reopening an extradition appeal, but that it is necessary for the court to reopen the appeal </span><span class="coitalic" style="color:initial;background-color:#FFFFFF">in order to avoid</span><span style="color:initial;background-color:#FFFFFF"> a real injustice. To my mind that requires consideration of whether reopening the appeal will provide a practical remedy for the injustice in that appellant's case.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="background-color:#FFFFFF">“20.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in"><span style="color:initial;background-color:#FFFFFF">Just assume that an extradited appellant, who has exhausted all appeals in this jurisdiction, is unquestionably being held in prison conditions violating Article 3 and that is in breach of an assurance given by the authorities in the requesting state. I can well accept that would be a real injustice. However, CrPR 50.27(3)(b) requires not only that there be a real injustice as a consideration to reopening an extradition appeal, but that it is necessary for the court to reopen the appeal </span><span class="coitalic" style="color:initial;background-color:#FFFFFF">in order to avoid</span><span style="color:initial;background-color:#FFFFFF"> a real injustice. To my mind that requires consideration of whether reopening the appeal will provide a practical remedy for the injustice in that appellant's case.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_35">
             <num>35.</num>
@@ -483,15 +499,19 @@
           </paragraph>
           <paragraph eId="para_37">
             <num>37.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">There is nothing in the Applicant’s first point that matters have somehow changed because she now stands convicted of the matter which was formerly an accusation matter as of February 2022.  Even though she herself was physically absent, she was not absent from her trial as a matter of law, because she was represented by a lawyer acting on her instructions, as the recent Further Information from Greece makes clear.  The matter is put beyond doubt by <span style="font-style:italic">Cretu</span>, [34(iii)], where Burnett LJ said:</p>
-            </intro>
-            <subparagraph>
-              <num>“(iii)</num>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">An accused who has instructed (‘mandated’) a lawyer to represent him in the trial is not, for the purposes of section 20, absent from his trial, however he may have become aware of it;”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“(iii)</num>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">An accused who has instructed (‘mandated’) a lawyer to represent him in the trial is not, for the purposes of section 20, absent from his trial, however he may have become aware of it;”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_38">
             <num>38.</num>
@@ -603,21 +623,25 @@
           </paragraph>
           <paragraph eId="para_56">
             <num>56.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Overall, this application is in part a repetition of matters which have already been raised.  She has once already unsuccessfully attempted to avail herself of the Court’s jurisdiction to reopen. Even where elements of her application relate to more recent developments (for example, her conviction in absence in 2020), it is notable that she has waited until the likely exhaustion of her asylum claim to challenge the outcome of her extradition proceedings.   I note what Ouseley J said about the interplay between extradition and asylum in <span style="font-style:italic">R (Troitino) v National Crime Agency </span>[2017] EWHC 931 (Admin):</p>
-            </intro>
-            <subparagraph>
-              <num>“56.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">Any contention by a claimant that a document or action rejected by the SSHD as constituting an asylum claim must be tested and resolved swiftly, if there is an extradition background and not left to languish in uncertainty in the appeal process, whether for tactical purposes or not. The Magistrate’' Court and Divisional Court must be kept fully informed as to the precise position with any actual or purported asylum claim. The human rights bars in ss21 and 21A, and the extraneous consideration bar in s13 of the 2003 Act should be fully presented and resolved in the extradition proceedings. They should not be reserved for any asylum claim nor should the extradition proceedings be adjourned to await the outcome of the asylum proceedings, unless very good reason to the contrary is shown. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>57.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">The extradition courts and the FtT and UTIAC should be astute to prevent any abuse of their procedures. Where the human rights issues have been resolved in the extradition proceedings, or where no bars were raised, it is difficult to see on what basis those issues should be reconsidered, let alone determined differently, in FtT or UTIAC proceedings, or why, if the human rights basis for an asylum claim has been disposed of in extradition proceedings, the empty husk of an asylum claim should not be disposed of rapidly by the Tribunal [emphasis added].”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“56.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">Any contention by a claimant that a document or action rejected by the SSHD as constituting an asylum claim must be tested and resolved swiftly, if there is an extradition background and not left to languish in uncertainty in the appeal process, whether for tactical purposes or not. The Magistrate’' Court and Divisional Court must be kept fully informed as to the precise position with any actual or purported asylum claim. The human rights bars in ss21 and 21A, and the extraneous consideration bar in s13 of the 2003 Act should be fully presented and resolved in the extradition proceedings. They should not be reserved for any asylum claim nor should the extradition proceedings be adjourned to await the outcome of the asylum proceedings, unless very good reason to the contrary is shown. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>57.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.65in;text-indent:0.32in">The extradition courts and the FtT and UTIAC should be astute to prevent any abuse of their procedures. Where the human rights issues have been resolved in the extradition proceedings, or where no bars were raised, it is difficult to see on what basis those issues should be reconsidered, let alone determined differently, in FtT or UTIAC proceedings, or why, if the human rights basis for an asylum claim has been disposed of in extradition proceedings, the empty husk of an asylum claim should not be disposed of rapidly by the Tribunal [emphasis added].”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_4">

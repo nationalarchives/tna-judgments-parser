@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2023/42/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2023/42/data.xml" />
-          <FRBRdate date="2024-05-27T19:13:17" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:32" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -49,7 +49,7 @@
         <uk:year>2023</uk:year>
         <uk:number>42</uk:number>
         <uk:cite>[2023] UKSC 42</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>fe44c739208392907ce63435c854bcf323e8c68573970f0de53b691b20960bb3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -456,21 +456,23 @@
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">Section 94(8) provides:</span></p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In determining whether a person in relation to whom a certificate has been issued under subsection (7) may be removed from the United Kingdom, the country specified in the certificate is to be regarded as—</span></heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“In determining whether a person in relation to whom a certificate has been issued under subsection (7) may be removed from the United Kingdom, the country specified in the certificate is to be regarded as—</span></p>
+                  </intro>
+                  <subparagraph>
                     <num style="font-family:'Times New Roman';font-size:13pt">(a)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a place where a person’s life and liberty is not threatened by reason of his race, religion, nationality, membership of a particular social group, or political opinion, and</span></p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="font-family:'Times New Roman';font-size:13pt">(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">a place from which a person will not be sent to another country otherwise than in accordance with the Refugee Convention or with the United Kingdom’s obligations in relation to persons eligible for a grant of humanitarian protection.”</span></p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
             <p class="ParaNoNumber"><span style="font-family:'Times New Roman'">The premise of these provisions appears to be that if there is no reason to believe that a person’s rights under the ECHR will be breached in the country to which he is proposed to be removed, then it follows that the person will not be removed from that country to another country otherwise than in accordance with the Refugee Convention. That is consistent with the view that the ECHR protects against refoulement, as the European Court and domestic courts have held.</span></p>

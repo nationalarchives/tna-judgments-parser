@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/453/em" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/453/em" />
-          <FRBRdate date="2023-12-05" name="generated" />
+          <FRBRdate date="2024-08-12" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/453/em/data.xml" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/453/em/data.xml" />
-          <FRBRdate date="2023-12-05T23:44:59Z" name="transform" />
+          <FRBRdate date="2024-08-12T19:28:45Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>0.19.2</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>55f524b2804fd938bb220682582be1e5d8d547223e3187dc9a537ddc24615164</uk:hash>
       </proprietary>
     </meta>
@@ -127,14 +127,18 @@
         <heading><b>European Convention on Human Rights</b></heading>
         <paragraph>
           <num>5.1</num>
-          <intro>
+          <content>
             <p>Amanda Solloway, the Parliamentary Under Secretary of State for Energy Consumers and Affordability has made the following statement regarding Human Rights:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p>“In my view the provisions of the Energy Bills Discount Scheme Regulations 2023 and the Energy Bills Discount Scheme (Northern Ireland) Regulations 2023 are compatible with the Convention rights.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p>“In my view the provisions of the Energy Bills Discount Scheme Regulations 2023 and the Energy Bills Discount Scheme (Northern Ireland) Regulations 2023 are compatible with the Convention rights.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
       </section>
       <section>

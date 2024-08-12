@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/tcc/2024/620/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/tcc/2024/620/data.xml" />
-          <FRBRdate date="2024-05-27T19:36:49" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:35" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,7 +41,7 @@
         <uk:year>2024</uk:year>
         <uk:number>620</uk:number>
         <uk:cite>[2024] EWHC 620 (TCC)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>16a5580425c7db9e3ef0fcf15dcc06bbe136baa7c962fa9be960802fbce1caab</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -467,50 +467,54 @@
         </paragraph>
         <paragraph eId="para_25">
           <num>25.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.25in">SEW’s case as to loss and damage is pleaded at par. 30 onwards.  Paragraph 32 is worth setting out in full:</p>
-          </intro>
-          <subparagraph>
-            <num>“(i)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs of exchanging those Products that have been supplied since 24/03/2016 and have since failed: £7,400,000</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs incurred in testing these Products: £50,000</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iii)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs incurred in manually reading these Products (meters) after they lost AMR (incurred to date, continuing): £1,932,000</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iv)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs of dealing with customers owing to faulty meter readings In these Products, including costs of investigating erroneous AMR readings in these Products: £259,000</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(v)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Loss of revenue owing to faulty AMR readings in these Products: £3,500,000</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(vi)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Anticipated costs of replacing other Products supplied after 24/03/2016 based on above percentage failure rates: £6,000,046</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.45in">GRAND TOTAL: £19,141,046”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(i)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs of exchanging those Products that have been supplied since 24/03/2016 and have since failed: £7,400,000</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs incurred in testing these Products: £50,000</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(iii)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs incurred in manually reading these Products (meters) after they lost AMR (incurred to date, continuing): £1,932,000</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(iv)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Costs of dealing with customers owing to faulty meter readings In these Products, including costs of investigating erroneous AMR readings in these Products: £259,000</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(v)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Loss of revenue owing to faulty AMR readings in these Products: £3,500,000</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(vi)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in;text-indent:0.05in">Anticipated costs of replacing other Products supplied after 24/03/2016 based on above percentage failure rates: £6,000,046</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.45in">GRAND TOTAL: £19,141,046”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_26">
           <num>26.</num>
@@ -957,7 +961,7 @@
         </paragraph>
         <paragraph eId="para_87">
           <num>87.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.25in">There then appears the following table and explanatory comment:</p>
             <table uk:widths="1.34in 2.5in 1.34in">
               <tr>
@@ -1018,12 +1022,16 @@
                 </td>
               </tr>
             </table>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.25in">“Discounted replacement formulae = purchase price prevailing at time of failure multiplied by (15 minus number of years since shipment date) divided by 15 years.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.25in">“Discounted replacement formulae = purchase price prevailing at time of failure multiplied by (15 minus number of years since shipment date) divided by 15 years.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_88">
           <num>88.</num>
@@ -1033,14 +1041,18 @@
         </paragraph>
         <paragraph eId="para_89">
           <num>89.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.25in;text-indent:0in">It then provided three worked examples to explain how the table works in practice.  Most relevant here is the second example which states: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.25in">“AMR device fails to transmit in year 8 due to a premature battery failure ~ the Supplier will supply complete ‘Elster meter &amp; AMR device at the following price: (15 – 8) / 15 = 47% discount of purchase price (at the time)”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.25in">“AMR device fails to transmit in year 8 due to a premature battery failure ~ the Supplier will supply complete ‘Elster meter &amp; AMR device at the following price: (15 – 8) / 15 = 47% discount of purchase price (at the time)”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_90">
           <num>90.</num>

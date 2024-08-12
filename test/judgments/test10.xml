@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2010/465/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2010/465/data.xml" />
-          <FRBRdate date="2024-05-27T19:32:41" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:28" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2010</uk:year>
         <uk:number>465</uk:number>
         <uk:cite>[2010] EWHC 465 (Comm)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>8e3b493fd77f5aa46a4835df964a9d19d96ecae447e1c8a4b227fcf02e7547bd</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -181,7 +181,7 @@
           </paragraph>
           <paragraph eId="para_5">
             <num>5.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The arbitrators described the background in this way: </p>
               <block name="embeddedStructure">
                 <embeddedStructure>
@@ -223,13 +223,13 @@
                   </paragraph>
                 </embeddedStructure>
               </block>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaNoNumber" style="margin-left:0.5in">The arbitrators had earlier identified Ms Ceri Powell as Vice President responsible for Shell’s exploration activities in the Middle East, Caspian and South Asia regions.  Mr Eggink was at the relevant time Shell’s Project Manager, Acquisition and Divestment.  </p>
-              </content>
-            </subparagraph>
+            </content>
           </paragraph>
+          <level eId="lvl_1_1">
+            <content>
+              <p class="ParaNoNumber" style="margin-left:0.5in">The arbitrators had earlier identified Ms Ceri Powell as Vice President responsible for Shell’s exploration activities in the Middle East, Caspian and South Asia regions.  Mr Eggink was at the relevant time Shell’s Project Manager, Acquisition and Divestment.  </p>
+            </content>
+          </level>
           <paragraph eId="para_6">
             <num>6.</num>
             <content>
@@ -260,33 +260,35 @@
                       <p class="Quote" style="margin-left:1in;text-indent:0.5in">By Clause 4.3, Shell agreed to pay 50% of all exploration and development costs with effect from the Effective Date (1 January 2006) in respect of the Joint Account, covering for example, wells which were drilled as Joint Operations.</p>
                     </content>
                   </paragraph>
-                  <level>
-                    <heading class="Quote" style="margin-left:1in">35.Clause 4 set out the obligations of the parties until Closing Period (defined in Clause 1.1 as the period from the date of the FIA until Closing).  Centurion was obliged to carry on its activities in relation to the Farm-In Interest in the ordinary and usual course of business so as to protect and maintain the Farm-In Interest to the extent it was able to do so, having regard to the provisions of the Concessions.  Without prejudice to the generality of that, clauses 4.1(a)-(n) set out specific obligations on Centurion.  These included: </heading>
-                    <paragraph>
+                  <paragraph>
+                    <intro>
+                      <p class="Quote" style="margin-left:1in">35.Clause 4 set out the obligations of the parties until Closing Period (defined in Clause 1.1 as the period from the date of the FIA until Closing).  Centurion was obliged to carry on its activities in relation to the Farm-In Interest in the ordinary and usual course of business so as to protect and maintain the Farm-In Interest to the extent it was able to do so, having regard to the provisions of the Concessions.  Without prejudice to the generality of that, clauses 4.1(a)-(n) set out specific obligations on Centurion.  These included: </p>
+                    </intro>
+                    <subparagraph>
                       <num>(1)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(c) an agreement during the Closing Period not to ‘propose, approve or participate in any sole risk operations in respect of the Farm-In Interest’.  </p>
                       </content>
-                    </paragraph>
-                    <paragraph>
+                    </subparagraph>
+                    <subparagraph>
                       <num>(2)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(l), to act in accordance with the JOAs [the Joint Operating Agreements] and ‘to the extent possible’ treat Shell as party to the Concessions and in addition treat Shell as a party to each JOA as though Shell was the owner of the Farm-In Interest.  </p>
                       </content>
-                    </paragraph>
-                    <paragraph>
+                    </subparagraph>
+                    <subparagraph>
                       <num>(3)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(m), to continue to carry out its activities as Operator of the Concessions in the ordinary and usual course in accordance with the terms of the Concession Interest Documents (as defined) and the JOAs and in accordance with good international oil and gas industry standards.</p>
                       </content>
-                    </paragraph>
-                    <paragraph>
+                    </subparagraph>
+                    <subparagraph>
                       <num>(4)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">At Clause 4.1(n) it was agreed that the location and architecture of the third and subsequent wells to be drilled under the Concessions was subject to the agreement of Centurion and Shell in accordance with the terms of the JOA.</p>
                       </content>
-                    </paragraph>
-                  </level>
+                    </subparagraph>
+                  </paragraph>
                   <paragraph>
                     <num>36.</num>
                     <content>
@@ -428,16 +430,10 @@
                         <p class="Quote" style="margin-left:1.88in">Twenty million US Dollars ($20m) if, following the completion of the Initial Five Wells, Shell does not exercise its right, provided for in Clause 13.3, to withdraw from this Agreement.  Such payment (if any) shall become due thirty (30) days following the release of the rig after the drilling of the fifth well, provided however that if by such date the CTIP Acquisition is not completed, then this sum shall be payable by Shell within thirty (30) days of submission to the Government of the deed of assignment relating to the Assignment.  Notwithstanding the foregoing Shell shall not be liable to make any payment under this Clause 3.1.1(b) unless and until Centurion provides evidence satisfactory to Shell, acting reasonably, that Standard Bank plc as referred to in Clause 5.1(b), has consented to the Assignment free and clear of its interest;</p>
                       </content>
                     </subparagraph>
-                  </paragraph>
-                </embeddedStructure>
-              </block>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
-                    <content>
+                    <wrapUp>
                       <p class="Quote" style="margin-left:0.79in;text-indent:0.18in">…</p>
-                    </content>
-                  </level>
+                    </wrapUp>
+                  </paragraph>
                   <paragraph>
                     <num>3.1.8</num>
                     <intro>
@@ -709,10 +705,6 @@
                       <p class="Quote" style="margin-left:1in">…</p>
                     </content>
                   </level>
-                </embeddedStructure>
-              </block>
-              <block name="embeddedStructure">
-                <embeddedStructure>
                   <paragraph>
                     <num style="margin-left:1.57in;text-indent:-0.57in">13.4</num>
                     <intro>
@@ -920,7 +912,7 @@
           </paragraph>
           <paragraph eId="para_26">
             <num>26.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">The short but interesting point which arises is whether the Termination Letter can properly be regarded as Shell’s acceptance of Centurion’s repudiatory breach as terminating the contract.  Shell accepts that that is not what their Termination Letter by its clear terms purported to do.  However, they rely upon the general principle stated in Chitty on Contracts, 30<span style="vertical-align:super;font-size:smaller">th</span> Edition, volume I, paragraph 24-014: </p>
               <block name="embeddedStructure">
                 <embeddedStructure>
@@ -931,16 +923,16 @@
                   </level>
                 </embeddedStructure>
               </block>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaNoNumber" style="margin-left:0.5in">As pointed out in those passages from Chitty and by Lloyd LJ in <span style="font-style:italic">Reinwood v Brown </span>[2008] EWCA Civ 1090 at paragraph 51, a party may be precluded by operation of the doctrines of waiver or estoppel from relying on a ground which he did not specify at the time of his refusal to perform.  However, the arbitrators make no finding of any waiver or estoppel so precluding Shell.  </p>
-              </content>
-            </subparagraph>
+            </content>
           </paragraph>
+          <level eId="lvl_7_1">
+            <content>
+              <p class="ParaNoNumber" style="margin-left:0.5in">As pointed out in those passages from Chitty and by Lloyd LJ in <span style="font-style:italic">Reinwood v Brown </span>[2008] EWCA Civ 1090 at paragraph 51, a party may be precluded by operation of the doctrines of waiver or estoppel from relying on a ground which he did not specify at the time of his refusal to perform.  However, the arbitrators make no finding of any waiver or estoppel so precluding Shell.  </p>
+            </content>
+          </level>
           <paragraph eId="para_27">
             <num>27.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Centurion for their part contend that Shell did not in fact refuse to perform the contract or contend that it was immediately terminated.  They point out that Shell gave a notice which indicated that the contract would remain in force for a further thirty days, terminating only on expiry of the notice period.  Shell they say thereby affirmed the contract rather than terminating it.  In <span style="font-style:italic">Norwest Holst Ltd v Harrison</span> [1985] ICR 668 at 683 Sir Denys Buckley said: </p>
               <block name="embeddedStructure">
                 <embeddedStructure>
@@ -951,13 +943,13 @@
                   </level>
                 </embeddedStructure>
               </block>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaNoNumber" style="margin-left:0.5in">Centurion remind me that I applied that principle in <span style="font-style:italic">Walkinshaw v Diniz</span> [2001] 1 Lloyd’s LR 632 at 643.  There must I think be limits to that principle, which did not need to be explored in either of those two cases.  It would perhaps be surprising if there were an inflexible rule that an acceptance of a repudiation can only be effective if it purports to bring about immediate termination in circumstances where the contract calls for no performance from either party in the interval before termination is expressed to take effect.  In such circumstances there would surely be no affirmation.  </p>
-              </content>
-            </subparagraph>
+            </content>
           </paragraph>
+          <level eId="lvl_7_2">
+            <content>
+              <p class="ParaNoNumber" style="margin-left:0.5in">Centurion remind me that I applied that principle in <span style="font-style:italic">Walkinshaw v Diniz</span> [2001] 1 Lloyd’s LR 632 at 643.  There must I think be limits to that principle, which did not need to be explored in either of those two cases.  It would perhaps be surprising if there were an inflexible rule that an acceptance of a repudiation can only be effective if it purports to bring about immediate termination in circumstances where the contract calls for no performance from either party in the interval before termination is expressed to take effect.  In such circumstances there would surely be no affirmation.  </p>
+            </content>
+          </level>
           <paragraph eId="para_28">
             <num>28.</num>
             <content>

@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/304/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/304/data.xml" />
-          <FRBRdate date="2024-05-31T17:29:00" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:54" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>304</uk:number>
         <uk:cite>[2022] UKFTT 304 (TC)</uk:cite>
-        <uk:parser>0.24.1</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>39eff708e4b595d37a77a78625497c5134fa0df37832aef48d58eea6268be110</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -233,14 +233,18 @@
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.39in">(e)</num>
-              <intro>
+              <content>
                 <p class="Taxbodytext3" style="margin-left:0.39in;text-indent:0.38in">In SEISS 2 there is then a paragraph that reads:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.69in">“By continuing into the claim service, you are confirming that you have read the relevant guidance and you meet the requirements specific to your circumstances”.</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.69in">“By continuing into the claim service, you are confirming that you have read the relevant guidance and you meet the requirements specific to your circumstances”.</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.39in">(f)</num>
@@ -251,20 +255,24 @@
           </paragraph>
           <paragraph eId="para_16">
             <num>16.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The “Declaration Page” screenshots are identical for SEISS 1 and 2 and are also clearly headed “Self-Employment Income Support Scheme”. They state amongst other things:-</p>
-            </intro>
-            <subparagraph>
-              <intro>
-                <p class="Taxbodytext1"><marker name="tab" /> “By submitting this claim you are confirming the following…</p>
-              </intro>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1in;text-indent:-0.25in">•</num>
-                <content>
-                  <p class="Taxbodytext1" style="margin-left:1in">your claim is in accordance with HMRC’s published guidance….”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <intro>
+                      <p class="Taxbodytext1"><marker name="tab" /> “By submitting this claim you are confirming the following…</p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1in;text-indent:-0.25in">•</num>
+                      <content>
+                        <p class="Taxbodytext1" style="margin-left:1in">your claim is in accordance with HMRC’s published guidance….”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_3">
@@ -343,14 +351,18 @@
           </paragraph>
           <paragraph eId="para_24">
             <num>24.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">On 22 April 2021, the appellant’s MP submitted an email complaint to HMRC on behalf of the appellant. That was not in the Bundle but we observe that paragraph 17 of HMRC’s Statement of Case reads in that regard:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“As part of the grounds to the complaint, the Appellant stated that when he applied the only requirements on the application were that he had 3 years accounts ending 2018/19 and that the requirement to be trading in 2019/20 and the intention to trade into 2020/21 were introduced after he made his claim.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“As part of the grounds to the complaint, the Appellant stated that when he applied the only requirements on the application were that he had 3 years accounts ending 2018/19 and that the requirement to be trading in 2019/20 and the intention to trade into 2020/21 were introduced after he made his claim.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_25">
             <num>25.</num>
@@ -417,61 +429,69 @@
           </paragraph>
           <paragraph eId="para_35">
             <num>35.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Paragraph 4 defines a qualifying person and the relevant conditions in this instance are:-</p>
-            </intro>
-            <subparagraph>
-              <num>“4.2</num>
-              <intro>
-                <p class="Taxbodytext1" style="margin-left:0.39in">The person must – </p>
-              </intro>
-              <subparagraph>
-                <num style="margin-left:0.79in">(a)</num>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">Carry on a trade the business of which has been adversely affected by reason of circumstances arising as a result of coronavirus or coronavirus disease,</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.79in">(b)</num>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">have delivered a tax return for a relevant tax year on or before 23 April 2020,</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.79in">(c)</num>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">have carried on a trade in the tax years 2018-19 and 2019-20,</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.79in">(d)</num>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">intend to carry on a trade in the tax year 2020-21</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.79in">…</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.79in">(f)</num>
-                <content>
-                  <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">be an individual, and”.</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“4.2</num>
+                    <intro>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">The person must – </p>
+                    </intro>
+                    <subparagraph>
+                      <num style="margin-left:0.79in">(a)</num>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">Carry on a trade the business of which has been adversely affected by reason of circumstances arising as a result of coronavirus or coronavirus disease,</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.79in">(b)</num>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">have delivered a tax return for a relevant tax year on or before 23 April 2020,</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.79in">(c)</num>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">have carried on a trade in the tax years 2018-19 and 2019-20,</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.79in">(d)</num>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">intend to carry on a trade in the tax year 2020-21</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.79in">…</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.79in">(f)</num>
+                      <content>
+                        <p class="Taxbodytext3" style="margin-left:0.79in;text-indent:0.38in">be an individual, and”.</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_36">
             <num>36.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Paragraph 13 is the Interpretation paragraph and “trade” is defined as follows:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“’trade’ means a trade, profession or vocation the profits of which are chargeable to income tax under Part 2 of ITTOIA 2005 (trading income) and in this definition ‘trade’ has the same meaning as in section 989 of ITA 2007”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“’trade’ means a trade, profession or vocation the profits of which are chargeable to income tax under Part 2 of ITTOIA 2005 (trading income) and in this definition ‘trade’ has the same meaning as in section 989 of ITA 2007”.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_37">
             <num>37.</num>
@@ -493,31 +513,39 @@
           </paragraph>
           <paragraph eId="para_40">
             <num>40.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Paragraph 2 of the Schedule to the first SEISS Direction dated 30 April 2020 reads:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“The purpose of SEISS is to provide for payments to be made to persons carrying on a trade the business of which has been adversely affected by the health, social and economic emergency in the United Kingdom resulting from coronavirus and coronavirus disease.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“The purpose of SEISS is to provide for payments to be made to persons carrying on a trade the business of which has been adversely affected by the health, social and economic emergency in the United Kingdom resulting from coronavirus and coronavirus disease.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_41">
             <num>41.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The Schedule to the second Direction modified and extended that paragraph 2 and the relevant provisions read as follows:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“… </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">Provide for payments to be made to relevant persons carrying on a trade the business of which has been adversely affected by the health, social and economic emergency in the United Kingdom resulting from coronavirus and coronavirus disease but who would not otherwise qualify for a payment under SEISS…”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“… </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">Provide for payments to be made to relevant persons carrying on a trade the business of which has been adversely affected by the health, social and economic emergency in the United Kingdom resulting from coronavirus and coronavirus disease but who would not otherwise qualify for a payment under SEISS…”.</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_5">
@@ -530,37 +558,41 @@
           </paragraph>
           <paragraph eId="para_43">
             <num>43.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Insofar as relevant, paragraph 9 Schedule 16 Finance Act 2020 reads:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“Assessments of income tax chargeable under paragraph 8</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" /><span style="font-weight:bold">9</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(1)</num>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">If an officer of Revenue and Customs considers (whether on the basis of information or documents obtained by virtue of the exercise of powers under Schedule 36 to FA 2008 or otherwise) that a person has received an amount of a coronavirus support payment to which the person is not entitled, the officer may make an assessment in the amount which ought in the officer’s opinion to be charged under paragraph 8.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(2)</num>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">An assessment under sub-paragraph (1) may be made at any time, but this is subject to sections 34 and 36 of TMA 1970.  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(3)</num>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">Parts 4 to 6 of TMA 1970 contain other provisions that are relevant to an assessment under sub-paragraph (1) (for example, section 31 makes provisions about appeals and section 59B(6) makes provision about the time to pay income tax payable by virtue of an assessment). …”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“Assessments of income tax chargeable under paragraph 8</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" /><span style="font-weight:bold">9</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num>(1)</num>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">If an officer of Revenue and Customs considers (whether on the basis of information or documents obtained by virtue of the exercise of powers under Schedule 36 to FA 2008 or otherwise) that a person has received an amount of a coronavirus support payment to which the person is not entitled, the officer may make an assessment in the amount which ought in the officer’s opinion to be charged under paragraph 8.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(2)</num>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">An assessment under sub-paragraph (1) may be made at any time, but this is subject to sections 34 and 36 of TMA 1970.  </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(3)</num>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">Parts 4 to 6 of TMA 1970 contain other provisions that are relevant to an assessment under sub-paragraph (1) (for example, section 31 makes provisions about appeals and section 59B(6) makes provision about the time to pay income tax payable by virtue of an assessment). …”.</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_6">

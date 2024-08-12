@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/263/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/263/data.xml" />
-          <FRBRdate date="2024-05-27T16:26:01" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:00" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -48,7 +48,7 @@
         <uk:year>2023</uk:year>
         <uk:number>263</uk:number>
         <uk:cite>[2023] EWHC 263 (Admin)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>9934c9fd7d782638b1db767ae7fea76a77ea51ec9131d64489a9ea5e6ce6b9a8</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -497,46 +497,48 @@
         </level>
         <paragraph eId="para_26">
           <num style="margin-left:0.5in;text-indent:-0.25in">26.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Section 106(1) of the TCPA 1990 provides: -</p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“Any person interested in land in the area of a local planning authority may, by agreement or otherwise, enter into an obligation (referred to in this section …. as a “planning obligation”), enforceable to the extent mentioned in subsection (3)–</heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“Any person interested in land in the area of a local planning authority may, by agreement or otherwise, enter into an obligation (referred to in this section …. as a “planning obligation”), enforceable to the extent mentioned in subsection (3)–</p>
+                  </intro>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">(a)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">restricting the development or use of the land in any specified way;</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">requiring specified operations or activities to be carried out in, on, under or over the land; </p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">(c)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">requiring the land to be used in any specific way; or</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">(d)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">requiring a sum or sums to be paid to the authority ….. on a specified date or dates or periodically.”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">Although, s.106(1)(d) refers to the payment of money to a local planning authority, no point is taken about the fact that the payment in this case was sought by another body, the Trust. </p>
-            </content>
-          </subparagraph>
+          </content>
         </paragraph>
+        <level eId="lvl_5">
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">Although, s.106(1)(d) refers to the payment of money to a local planning authority, no point is taken about the fact that the payment in this case was sought by another body, the Trust. </p>
+          </content>
+        </level>
         <paragraph eId="para_27">
           <num style="margin-left:0.5in;text-indent:-0.25in">27.</num>
           <content>
@@ -578,12 +580,10 @@
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">fairly and reasonably related in scale and kind to the development.</p>
                     </content>
                   </subparagraph>
-                </paragraph>
-                <level>
-                  <content>
+                  <wrapUp>
                     <p class="Quote" style="margin-left:1in">(2A) …</p>
-                  </content>
-                </level>
+                  </wrapUp>
+                </paragraph>
                 <paragraph>
                   <num>(3)</num>
                   <content>
@@ -595,21 +595,23 @@
                     <p class="Quote" style="margin-left:1in">“planning obligation”  means a planning obligation under section 106 of TCPA 1990 and includes a proposed planning obligation; and</p>
                   </content>
                 </level>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“relevant determination”  means a determination made on or after 6th April 2010—</heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“relevant determination”  means a determination made on or after 6th April 2010—</p>
+                  </intro>
+                  <subparagraph>
                     <num>(a)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">under section 70, 73, 76A or 77 of TCPA 1990 of an application for planning permission; or</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">under section 79 of TCPA 1990 of an appeal</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -620,7 +622,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">It is common ground that for the obligation sought by the Trust to have been material to the determination of the planning application for the SDA, HDC had to be satisfied that each of the three tests in reg.122(2) was met. Regulation 122 made the application of those tests, including the necessity test in sub para. (a), a legal requirement, rather than a policy requirement as had previously been the case (<span style="font-style:italic">R (Working Title Films Limited) v Westminster City Council</span> [2017] JPL 173 at [20]; <span style="font-style:italic">Good Energy Generation Limited v Secretary of State for Communities and Local Government</span> [2018] JPL 1248 at [71]-[72] and [75]). The application of each of those tests is a matter of evaluative judgment for the local planning authority, subject only to judicial review applying the <span style="font-style:italic">Wednesbury</span> standard (see e.g. <span style="font-style:italic">Smyth v Secretary of State for Communities and Local Government</span> [2015] PTSR 1417 at [118]; <span style="font-style:italic">Working Title Films </span>at [25]). Although the application of the three tests in reg.122(2) is a matter of judgment for the decision-maker, the interpretation of the language used in para.(2) is a matter of law for the court. The Trust alleges under ground 3 that HDC misinterpreted reg.122(2)(a). I will deal with that point below.</p>
           </content>
         </paragraph>
-        <level eId="lvl_5">
+        <level eId="lvl_6">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">Judicial review of the decisions of local planning authorities</span></p>
           </content>
@@ -631,7 +633,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in"> The principles are well-established and do not need to be rehearsed here. An officer’s report should be read and considered in accordance with the principles summarised in <span style="font-style:italic">Mansell v Tonbridge and Malling Borough Council</span> [2019] PTSR 1452 at [41] to [42]; <span style="font-style:italic">R (Hayes) v Wychavon District Council</span> [2019] PTSR 1163 at [26] to [27]; and <span style="font-style:italic">R (Plant) v Lambeth Borough Council</span> [2017] PTSR 453 at [66] to [72]. A report should be read with reasonable benevolence and flexibility. It does not have to summarise each and every representation made to the authority. A key consideration is whether the officer’s advice was significantly misleading (<span style="font-style:italic">R v Selby District Council ex parte Oxton Farms</span> [2017] PTSR 1103, 1111).</p>
           </content>
         </paragraph>
-        <level eId="lvl_6">
+        <level eId="lvl_7">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 3 and the speech of Lord Hoffmann in the </span><span style="font-style:italic;font-weight:bold">Tesco</span><span style="font-weight:bold"> case</span></p>
           </content>
@@ -753,7 +755,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I agree with Mr Kolinsky KC that the present case is concerned with the application of reg.122 and that <span style="font-style:italic">DB Symmetry</span> does not assist in the resolution of the issues which have to be determined here. I did not understand the written submissions of the claimant to take a different view on those points or attempt to resurrect its earlier reliance upon Lord Hoffmann in <span style="font-style:italic">Tesco </span>at pp.776G to 777A. For completeness I note that the Supreme Court did not endorse that passage.</p>
           </content>
         </paragraph>
-        <level eId="lvl_7">
+        <level eId="lvl_8">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The statutory framework for funding NHS Services</span></p>
           </content>
@@ -934,7 +936,7 @@
         </paragraph>
         <paragraph eId="para_72">
           <num style="margin-left:0.5in;text-indent:-0.25in">72.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I also note para. 7 of the same statement in which Ms. Hooper says: - </p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -945,13 +947,13 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">That passage misses the point. HDC does not contend that the guidance or rules do, or should, take into account development plan policies. Instead, the focus is on the extent to which population growth (which may include growth accommodated in new development) is, or can be, taken into account according to those documents. In any event, broad assertion is no substitute for accurate citation or analysis of the rules themselves. The same applies to para. 10 of the witness statement. </p>
-            </content>
-          </subparagraph>
+          </content>
         </paragraph>
+        <level eId="lvl_9">
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">That passage misses the point. HDC does not contend that the guidance or rules do, or should, take into account development plan policies. Instead, the focus is on the extent to which population growth (which may include growth accommodated in new development) is, or can be, taken into account according to those documents. In any event, broad assertion is no substitute for accurate citation or analysis of the rules themselves. The same applies to para. 10 of the witness statement. </p>
+          </content>
+        </level>
         <paragraph eId="para_73">
           <num style="margin-left:0.5in;text-indent:-0.25in">73.</num>
           <content>
@@ -960,7 +962,7 @@
         </paragraph>
         <paragraph eId="para_74">
           <num style="margin-left:0.5in;text-indent:-0.25in">74.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In a note produced on the second day of the hearing the Trust added:-</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -971,15 +973,11 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">That bland formulation cannot be treated as detracting from what Mr Cairnes KC had clearly accepted (see [73] above), if that is what was intended. First, it does not contradict the clear acceptance that the NT does not preclude regard being had to <span style="font-style:italic">anticipated</span> levels of activity. Second, what is meant by “not within the NT” is not explained, nor is any source cited. Third, the Technical Guidance for the allotment of funds by NHS England to CCGs allows for some population growth within a financial year. The Trust has not advanced any reason or explanation as to why money allocated for that purpose should not be taken into account <span style="font-style:italic">for that purpose</span> when a block contract comes to be negotiated by a CCG and a NHS trust. </p>
-            </content>
-          </subparagraph>
+          </content>
         </paragraph>
-        <level eId="lvl_8">
+        <level eId="lvl_10">
           <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">That bland formulation cannot be treated as detracting from what Mr Cairnes KC had clearly accepted (see [73] above), if that is what was intended. First, it does not contradict the clear acceptance that the NT does not preclude regard being had to <span style="font-style:italic">anticipated</span> levels of activity. Second, what is meant by “not within the NT” is not explained, nor is any source cited. Third, the Technical Guidance for the allotment of funds by NHS England to CCGs allows for some population growth within a financial year. The Trust has not advanced any reason or explanation as to why money allocated for that purpose should not be taken into account <span style="font-style:italic">for that purpose</span> when a block contract comes to be negotiated by a CCG and a NHS trust. </p>
             <p class="ParaLevel1"><span style="font-weight:bold">Chronology</span></p>
             <p class="ParaLevel1"><span style="font-style:italic">Overview</span></p>
           </content>
@@ -1092,7 +1090,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">I will set out a summary of certain passages in the Trust’s consultation responses and the officers’ reports in July 2020. However, I have considered all the material identified by counsel as relevant and read the material referred to as a whole. I will deal with relevant aspects of the correspondence between the Trust and HDC following the resolution passed on 28 July 2020 under ground 4.</p>
           </content>
         </paragraph>
-        <level eId="lvl_9">
+        <level eId="lvl_11">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The Trust’s consultation response dated 23 July 2020</span></p>
           </content>
@@ -1209,7 +1207,7 @@
         </paragraph>
         <paragraph eId="para_101">
           <num style="margin-left:0.5in;text-indent:-0.25in">101.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">Question 4 asked: -</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1220,30 +1218,26 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1"><marker name="tab" />    to which the Trust responded:- </p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">“The contract negotiations between UHL and the CCGs are now based on a block contract. Whilst the current contract is for one year only the block contract is now here to stay. As per the previous calculations the requested sum is based on the careful calculation based on reference costs (actual audited costs for the service), the difference only being that instead of receiving funding for a percentage of additional in year activity, the Trust receives no additional funding over and above agreed figure<span style="font-style:italic"> based on previous year’s activity and an element of ‘growth’</span>. </p>
-                    </content>
-                  </level>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">The allocated ‘growth’ is broadly intended to uplift income to accommodate the increasing costs of delivering healthcare to the existing population. This includes the cost of inflation, increased costs of an ageing population, growth in demand for certain medical technologies etc. <span style="font-style:italic">Only a very small element of growth in population is allocated to CCG based on the number of people registered in the GP practices</span>.” (emphasis added)</p>
-                    </content>
-                  </level>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1"><marker name="tab" />    to which the Trust responded:- </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The contract negotiations between UHL and the CCGs are now based on a block contract. Whilst the current contract is for one year only the block contract is now here to stay. As per the previous calculations the requested sum is based on the careful calculation based on reference costs (actual audited costs for the service), the difference only being that instead of receiving funding for a percentage of additional in year activity, the Trust receives no additional funding over and above agreed figure<span style="font-style:italic"> based on previous year’s activity and an element of ‘growth’</span>. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">The allocated ‘growth’ is broadly intended to uplift income to accommodate the increasing costs of delivering healthcare to the existing population. This includes the cost of inflation, increased costs of an ageing population, growth in demand for certain medical technologies etc. <span style="font-style:italic">Only a very small element of growth in population is allocated to CCG based on the number of people registered in the GP practices</span>.” (emphasis added)</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_102">
           <num style="margin-left:0.5in;text-indent:-0.25in">102.</num>
-          <intro>
+          <content>
             <p class="Quote" style="margin-left:0.5in;text-indent:0.12in">Question 11 asked:- </p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1254,31 +1248,27 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1"><marker name="tab" />    to which the Trust responded: -</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">“The issue is fairly straight forward. The new population will create an impact on the Trust’s services. This impact is similar that it creates on education, highways, libraries and on the additional staff costs for the Council’s own monitoring officer. The impact is potentially long term as it affects the Trust’s ability to provide services at the safe level required as explained.  The issue is how to mitigate the impact? The Developer should not be paying something that has already been paid for. The Trust has provided careful calculation methodology as required by CIL regulation. The Trust does not get paid for the additional new population creating the impact on the services as explained. The calculation methodology explains the lack of funding created by the new population. If the developer contributes towards the financial gap in the funding then the impact is mitigated. The Trust could mitigate the impact in various ways but the Trust considers that this is modest but very effective way of dealing with the direct impact as the mitigation model will take the immediate impact away as explained below.</p>
-                    </content>
-                  </level>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">As the funding is based on the previous year’s activity, and not what could be in the future created by the potential development (this includes known exciting [sic] permissions) then by contributing towards the gap in the funding it allows the Trust to function at the level which is required (this includes the extra staffing). As explained the Trust is only seeking the element over and above the standard staffing costs that is created by having to hire locums. (Please see the Spring Lane Appeal decision)</p>
-                    </content>
-                  </level>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">It would not be wholly unreasonable that the developer would not contribute towards the impact. It is not for the taxpayer to fund the impact that the development will create (please see the case of <span style="font-style:italic">Tesco</span> previously referred to.”</p>
-                    </content>
-                  </level>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1"><marker name="tab" />    to which the Trust responded: -</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“The issue is fairly straight forward. The new population will create an impact on the Trust’s services. This impact is similar that it creates on education, highways, libraries and on the additional staff costs for the Council’s own monitoring officer. The impact is potentially long term as it affects the Trust’s ability to provide services at the safe level required as explained.  The issue is how to mitigate the impact? The Developer should not be paying something that has already been paid for. The Trust has provided careful calculation methodology as required by CIL regulation. The Trust does not get paid for the additional new population creating the impact on the services as explained. The calculation methodology explains the lack of funding created by the new population. If the developer contributes towards the financial gap in the funding then the impact is mitigated. The Trust could mitigate the impact in various ways but the Trust considers that this is modest but very effective way of dealing with the direct impact as the mitigation model will take the immediate impact away as explained below.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">As the funding is based on the previous year’s activity, and not what could be in the future created by the potential development (this includes known exciting [sic] permissions) then by contributing towards the gap in the funding it allows the Trust to function at the level which is required (this includes the extra staffing). As explained the Trust is only seeking the element over and above the standard staffing costs that is created by having to hire locums. (Please see the Spring Lane Appeal decision)</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">It would not be wholly unreasonable that the developer would not contribute towards the impact. It is not for the taxpayer to fund the impact that the development will create (please see the case of <span style="font-style:italic">Tesco</span> previously referred to.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_103">
           <num style="margin-left:0.5in;text-indent:-0.25in">103.</num>
@@ -1303,7 +1293,7 @@
         </paragraph>
         <paragraph eId="para_105">
           <num style="margin-left:0.5in;text-indent:-0.25in">105.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">In question 2 HDC asked whether the Trust could show that the development would necessarily give rise to an additional burden on its services and that this would arise from the development, “as opposed to a failure in the funding mechanism, whether caused by its structure or the lack of reasonable co-ordination between CCG and the Trust in agreeing block contracts for care and treatment based on up-to-date information as to new or anticipated housing development.” The Trust responded:-</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1314,20 +1304,20 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0in">The Trust added that “the funding gap will always exist and cannot be paid back   retrospectively”. </p>
-            </content>
-          </subparagraph>
+          </content>
         </paragraph>
+        <level eId="lvl_12">
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0in">The Trust added that “the funding gap will always exist and cannot be paid back   retrospectively”. </p>
+          </content>
+        </level>
         <paragraph eId="para_106">
           <num style="margin-left:0.5in;text-indent:-0.25in">106.</num>
           <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">In response to question 9 in Appendix 7, the Trust said that it would be willing to give an undertaking to allocate the monies paid under the s.106 contribution requested “towards the new activity created by the proposed development” and to negotiate an appropriate clause for inclusion in the s.106 agreement. </p>
           </content>
         </paragraph>
-        <level eId="lvl_10">
+        <level eId="lvl_13">
           <content>
             <p class="ParaLevel1"><span style="font-style:italic">The officers’ report for the meeting on 28 July 2020</span></p>
           </content>
@@ -1358,7 +1348,7 @@
         </paragraph>
         <paragraph eId="para_111">
           <num style="margin-left:0.5in;text-indent:-0.25in">111.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">The officers’ report began to deal with the first test in reg. 122(2) at para. 6.31:-</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1388,13 +1378,13 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">As Mr Kolinsky KC submitted, the lack of information from the Trust to demonstrate a funding gap was the key issue identified by officers in para.6.32 of their report. Their suggestion in para.6.33 that there could be a “systemic problem” depended on whether further information from the Trust could demonstrate the existence and extent of such a gap.</p>
-            </content>
-          </subparagraph>
+          </content>
         </paragraph>
+        <level eId="lvl_14">
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">As Mr Kolinsky KC submitted, the lack of information from the Trust to demonstrate a funding gap was the key issue identified by officers in para.6.32 of their report. Their suggestion in para.6.33 that there could be a “systemic problem” depended on whether further information from the Trust could demonstrate the existence and extent of such a gap.</p>
+          </content>
+        </level>
         <paragraph eId="para_112">
           <num style="margin-left:0.5in;text-indent:-0.25in">112.</num>
           <content>
@@ -1441,7 +1431,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">In relation to the third test, officers took the view that the cost of using agency staff was a function of recruitment and capacity issues within the NHS, rather than being directly attributable to the development (paras. 6.68 to 6.69). The report also referred back to the issue summarised in [114] above. </p>
           </content>
         </paragraph>
-        <level eId="lvl_11">
+        <level eId="lvl_15">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-style:italic">The supplementary information reported to the Committee meeting on 28 July 2020</span></p>
           </content>
@@ -1502,7 +1492,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">Mr. Cairnes KC rightly pointed out that HDC’s officers accepted the Trust’s assumption that 38.5% of the occupiers of the dwellings on the SDA would be people moving into the Trust’s catchment area. But as Mr. Kolinsky KC pointed out, HDC raised a number of technical issues and concerns about the derivation of the population projections to which that figure of 38.5% was applied (see p. 4 of the report). In other words, officers remained unsatisfied about the prior stage of the Trust’s analysis concerned with the population estimates themselves.</p>
           </content>
         </paragraph>
-        <level eId="lvl_12">
+        <level eId="lvl_16">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">Ground 1</span></p>
           </content>
@@ -1530,7 +1520,7 @@
         </paragraph>
         <paragraph eId="para_123">
           <num style="margin-left:0.5in;text-indent:-0.25in">123.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">Chapter 8 of the NPPF is concerned with “promoting healthy and safe communities”. Paragraph 91 states:-</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1560,39 +1550,35 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.39in">   Paragraph 92 states:-</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <paragraph>
-                    <num>“92.</num>
+            <p class="ParaLevel1" style="margin-left:0.39in">   Paragraph 92 states:-</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“92.</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1in;text-indent:0.5in">To provide the social, recreational and cultural facilities and services the community needs, planning policies and decisions should:</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:1.25in;text-indent:-0.25in">(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:1.25in;text-indent:0.12in">…</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:1.25in;text-indent:-0.25in">(b)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:1.25in;text-indent:0.12in">take into account and support the delivery of local strategies to improve health, social and cultural well-being for all sections of the community;</p>
+                  </intro>
+                  <subparagraph>
                     <content>
-                      <p class="Quote" style="margin-left:1in;text-indent:0.5in">To provide the social, recreational and cultural facilities and services the community needs, planning policies and decisions should:</p>
+                      <p class="Quote" style="margin-left:1.25in">….. ”</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
-                    <num style="margin-left:1.25in;text-indent:-0.25in">(a)</num>
-                    <content>
-                      <p class="Quote" style="margin-left:1.25in;text-indent:0.12in">…</p>
-                    </content>
-                  </paragraph>
-                  <paragraph>
-                    <num style="margin-left:1.25in;text-indent:-0.25in">(b)</num>
-                    <intro>
-                      <p class="Quote" style="margin-left:1.25in;text-indent:0.12in">take into account and support the delivery of local strategies to improve health, social and cultural well-being for all sections of the community;</p>
-                    </intro>
-                    <subparagraph>
-                      <content>
-                        <p class="Quote" style="margin-left:1.25in">….. ”</p>
-                      </content>
-                    </subparagraph>
-                  </paragraph>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_124">
           <num style="margin-left:0.5in;text-indent:-0.25in">124.</num>
@@ -1658,7 +1644,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">The Trust’s contention that HDC misinterpreted policy and excluded, or failed to have regard to, impacts upon treatment services is impossible. Ground 1 must be rejected. </p>
           </content>
         </paragraph>
-        <level eId="lvl_13">
+        <level eId="lvl_17">
           <content>
             <p class="ParaLevel1" style="text-indent:0.25in"><span style="font-weight:bold">Ground 3</span></p>
             <p class="ParaLevel1" style="text-indent:0.25in"><span style="font-style:italic">The short answer</span></p>
@@ -1721,7 +1707,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">The members were advised by officers, and they are to be taken as having agreed, that the Trust failed to provide sufficient information to show that there was any funding gap. The request for a financial contribution did not satisfy the necessity test in reg.122(2)(a) of the CIL Regulations 2010 (see e.g. [111] above). Those were matters of judgment for HDC and the claimant has not shown any public law error in that respect. Indeed, it was a perfectly rational and unsurprising judgment for the authority to have made. That is sufficient to dispose of ground 3. However, the arguments in this case have raised wider issues and it would be helpful for me to address them. If it had been necessary for me to do so I would have relied upon my conclusions below (excluding [147]-[151]) as further reasons upon which to reject ground 3.</p>
           </content>
         </paragraph>
-        <level eId="lvl_14">
+        <level eId="lvl_18">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-style:italic">Wider issues</span></p>
           </content>
@@ -1774,7 +1760,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">When the officers’ reports and the correspondence between the parties are read fairly and as a whole, it is absurd for the Trust to claim that HDC attempted to dictate how it should be funded. This suggestion appears to rely upon the final paragraph of the letter from HDC’s Chief Executive dated 9 December 2021. By that stage HDC had taken advice from leading counsel specialising in NHS law to assist its understanding of NHS funding and the Trust had failed over a long period to explain why the annual review of block contract payments could not satisfactorily address the funding issue raised by the Trust. </p>
           </content>
         </paragraph>
-        <level eId="lvl_15">
+        <level eId="lvl_19">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-style:italic">What if a funding gap could be demonstrated for a particular NHS trust?</span></p>
           </content>
@@ -1815,7 +1801,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">Ground 3 must be rejected.</p>
           </content>
         </paragraph>
-        <level eId="lvl_16">
+        <level eId="lvl_20">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Ground 2 </span></p>
           </content>
@@ -1916,7 +1902,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">For the above reasons, ground 2 must be rejected. </p>
           </content>
         </paragraph>
-        <level eId="lvl_17">
+        <level eId="lvl_21">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Ground 4</span></p>
           </content>
@@ -1929,7 +1915,7 @@
         </paragraph>
         <paragraph eId="para_167">
           <num style="margin-left:0.5in;text-indent:-0.25in">167.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">It is important to note [122] of the judgment of Jonathan Parker LJ in which he stated:-</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1940,13 +1926,13 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">It is clear from [123] that the Court of Appeal had in mind a material consideration which arises for the <span style="font-style:italic">first time </span>after the Committee’s resolution to grant permission.</p>
-            </content>
-          </subparagraph>
+          </content>
         </paragraph>
+        <level eId="lvl_22">
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.5in">It is clear from [123] that the Court of Appeal had in mind a material consideration which arises for the <span style="font-style:italic">first time </span>after the Committee’s resolution to grant permission.</p>
+          </content>
+        </level>
         <paragraph eId="para_168">
           <num style="margin-left:0.5in;text-indent:-0.25in">168.</num>
           <content>
@@ -2035,7 +2021,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">There was nothing of any substance in the post-resolution material which officers were legally obliged to report back to the committee before planning permission could be granted in accordance with the members’ resolution. Accordingly, ground 4 must be rejected. </p>
           </content>
         </paragraph>
-        <level eId="lvl_18">
+        <level eId="lvl_23">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Delay</span></p>
           </content>
@@ -2046,7 +2032,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.12in">If any ground of challenge had been made out, HDC and LCC invited the court to reject the claim on the grounds of delay, by treating the letter from HDC dated 9 December 2021 as the effective decision, rather than the issuing of the decision notice on 17 May 2022. Counsel recognised that this would involve creating an exception to the principle laid down by the House of Lords in <span style="font-style:italic">R (Burkett) v Hammersmith and Fulham London Borough Council</span> [2002] 1 WLR 1593. The justification for, and extent of, any such exception would be closely related and would require full argument. In the absence of such argument it would be inappropriate for this court to consider the point. In any event, because I have rejected each of the grounds of challenge, there is no need to do so. </p>
           </content>
         </paragraph>
-        <level eId="lvl_19">
+        <level eId="lvl_24">
           <content>
             <p class="ParaLevel1" style="margin-left:0.25in"><span style="font-weight:bold">Conclusion</span></p>
           </content>

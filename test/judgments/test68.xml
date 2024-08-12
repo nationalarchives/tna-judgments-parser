@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/142/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2023/142/data.xml" />
-          <FRBRdate date="2024-05-27T19:36:15" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:19" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -40,7 +40,7 @@
         <uk:year>2023</uk:year>
         <uk:number>142</uk:number>
         <uk:cite>[2023] EWFC 142</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>1bcf6cf388761481dc75a5e3202a08976b031f9424a7690f89a52846cee31dc2</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -238,14 +238,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:2.08in;text-indent:-0.25in">19)</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:2.08in;margin-right:0.37in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt">7 October 2020, I gave judgment in proceedings relating to M.  I found that N’s mother’s then partner caused the death of N through inflicted injury.  In my judgment, I said:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:2.08in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“E…”, the partner, “…deliberately inflicted the injuries to [N’s]’s head which resulted in his death.  This was an impact injury.  He also caused acceleration and deceleration to [N]’s head which caused the extensive and numerous bilateral retinal haemorrhages.  He also deliberately inflicted bruising injuries to [N]’s forehead, ear, nose, chest, penis, pelvic area, and legs”.  </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:2.08in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“E…”, the partner, “…deliberately inflicted the injuries to [N’s]’s head which resulted in his death.  This was an impact injury.  He also caused acceleration and deceleration to [N]’s head which caused the extensive and numerous bilateral retinal haemorrhages.  He also deliberately inflicted bruising injuries to [N]’s forehead, ear, nose, chest, penis, pelvic area, and legs”.  </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_7">
@@ -500,41 +504,53 @@
         </level>
         <paragraph eId="para_10">
           <num>10.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">The burden of proof lies with the Local Authority.  It is the Local Authority that bring the proceedings and identifies the findings they invite the Court to make.  Therefore, the burden of proving the allegations rests with them.  The parents need prove nothing.  Findings of fact in these cases must be based on evidence.  As Munby LJ as he then was observed in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re A (A Child) (Fact-Finding Hearing: Speculation)</span><span style="font-family:'Times New Roman';font-size:12pt"> [2011] EWCA Civ 12:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“It is an elementary proposition that findings of fact must be based on evidence including inferences that can properly be drawn from the evidence and not on suspicion or speculation.  It is not uncommon for witnesses in these cases to tell lies in the course of investigation and the hearing.  The Court must be careful to bear in mind that the witness may lie for various reasons such as shame, misplaced loyalty, panic, fear, distress, and the fact that the witness has lied about some matters does not mean that he or she has lied about everything: </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">R v Lucas</span><span style="font-family:'Times New Roman';font-size:12pt"> [1981] QB 720”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“It is an elementary proposition that findings of fact must be based on evidence including inferences that can properly be drawn from the evidence and not on suspicion or speculation.  It is not uncommon for witnesses in these cases to tell lies in the course of investigation and the hearing.  The Court must be careful to bear in mind that the witness may lie for various reasons such as shame, misplaced loyalty, panic, fear, distress, and the fact that the witness has lied about some matters does not mean that he or she has lied about everything: </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">R v Lucas</span><span style="font-family:'Times New Roman';font-size:12pt"> [1981] QB 720”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_11">
           <num>11.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">I also take into account the decision of the Court of Appeal in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re H-C</span><span style="font-family:'Times New Roman';font-size:12pt"> [2016] EWCA Civ 136, where McFarlane, LJ, as he then was, now, of course, the President, said at paragraph 100:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“One highly important aspect of the </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Lucas</span><span style="font-family:'Times New Roman';font-size:12pt"> decision and, indeed, the approach to lies generally in the criminal jurisdiction needs to be borne fully in mind by family judges.  It is this: in the criminal jurisdiction: the lie is never taken of itself as direct proof of guilt.  As is plain from the passage quoted from Lord Lane’s judgment in</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt"> Lucas</span><span style="font-family:'Times New Roman';font-size:12pt">, where the relevant conditions are satisfied, the lie is capable of amounting to corroboration.  In recent times, the point has been most clearly made in the Court of Appeal Criminal Division in the case of </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">R v Middleton</span><span style="font-family:'Times New Roman';font-size:12pt"> [2001] Crim LR 251”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In my view, there should be no distinction between the approach taken by the Criminal Court on the issue of lies to that adopted in the Family Court.  Judges should, therefore, take care to ensure that they do not rely upon a conclusion that an individual has lied on a material issue as direct proof of guilt.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“One highly important aspect of the </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Lucas</span><span style="font-family:'Times New Roman';font-size:12pt"> decision and, indeed, the approach to lies generally in the criminal jurisdiction needs to be borne fully in mind by family judges.  It is this: in the criminal jurisdiction: the lie is never taken of itself as direct proof of guilt.  As is plain from the passage quoted from Lord Lane’s judgment in</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt"> Lucas</span><span style="font-family:'Times New Roman';font-size:12pt">, where the relevant conditions are satisfied, the lie is capable of amounting to corroboration.  In recent times, the point has been most clearly made in the Court of Appeal Criminal Division in the case of </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">R v Middleton</span><span style="font-family:'Times New Roman';font-size:12pt"> [2001] Crim LR 251”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_4">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In my view, there should be no distinction between the approach taken by the Criminal Court on the issue of lies to that adopted in the Family Court.  Judges should, therefore, take care to ensure that they do not rely upon a conclusion that an individual has lied on a material issue as direct proof of guilt.</span></p>
+          </content>
+        </level>
         <paragraph eId="para_12">
           <num>12.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">The mother’s legal team also invite me to consider the decision of the Court of Appeal in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re P (A child)</span><span style="font-family:'Times New Roman';font-size:12pt"> [2018]</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt"> </span><span style="font-family:'Times New Roman';font-size:12pt">EWCA Civ 1483 in support of their application to adjourn this final hearing and to direct an expert report from a consultant psychiatrist or psychologist to assess the risk of relapse of the mother in terms of her misuse of alcohol and cocaine.  The Court of Appeal in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re P</span><span style="font-family:'Times New Roman';font-size:12pt"> referred to the decision of Sir James Munby, the then President</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt"> </span><span style="font-family:'Times New Roman';font-size:12pt">in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re S (A Child)</span><span style="font-family:'Times New Roman';font-size:12pt"> [2014] EWCC B44 (Fam) in which he addressed the Family Drug and Alcohol Court approach to, in that case, an extension to the 26-week timetable:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“There must be a robust and realistic appraisal at the outset of what is possible within the child’s timescales and an equally robust and realistic ongoing appraisal throughout of whether what is needed is, indeed, being achieved or not within the child’s timescale.  These appraisals must be evidence-based with a solid foundation, not driven by sentiment or a hope that something may turn up.  Typically, three questions will have to be addressed: first, is there some solid, evidence-based reason to believe that the parent is committed to making the necessary changes?  If so, secondly, is there some solid evidence-based reason to believe that the parent will be able to maintain that commitment?  If so, thirdly, is there some solid evidence-based reason to believe that the parent will be able to make the necessary changes within the child’s timescale?”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“There must be a robust and realistic appraisal at the outset of what is possible within the child’s timescales and an equally robust and realistic ongoing appraisal throughout of whether what is needed is, indeed, being achieved or not within the child’s timescale.  These appraisals must be evidence-based with a solid foundation, not driven by sentiment or a hope that something may turn up.  Typically, three questions will have to be addressed: first, is there some solid, evidence-based reason to believe that the parent is committed to making the necessary changes?  If so, secondly, is there some solid evidence-based reason to believe that the parent will be able to maintain that commitment?  If so, thirdly, is there some solid evidence-based reason to believe that the parent will be able to make the necessary changes within the child’s timescale?”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_13">
           <num>13.</num>
@@ -544,20 +560,24 @@
         </paragraph>
         <paragraph eId="para_14">
           <num>14.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In addition, there was a report from a Dr Hallstrom whose uncontested evidence was as follows:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The mother has made all the progress that one could hope for and expect of her to date.  She is a very different person to the person I examined at the beginning of the proceedings.  She looks physically and mentally well and has embraced the AA process of recovery which is probably the best programme available for aiding recovery.  She has now been dry for a year”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In the present case, the mother has not been dry.  She admits to drinking socially, albeit on a limited basis when accompanying the father to watch football games at the pub.  She says that she wishes to start with AA but has not done so yet.  Her engagement with We Are With You is limited and I was less than clear about her future commitment.  On any view, her engagement with services to help address what her leading counsel described as “an addiction” is at an embryonic stage.  She had, as recently as late June 2022, drank to excess with her sister and her presentation was such that the father was driven to call the police.  I accept that that was the day of the inquest into J’s death but knowing of the issues in the case, she had returned to alcohol as a coping mechanism.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The mother has made all the progress that one could hope for and expect of her to date.  She is a very different person to the person I examined at the beginning of the proceedings.  She looks physically and mentally well and has embraced the AA process of recovery which is probably the best programme available for aiding recovery.  She has now been dry for a year”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_5">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In the present case, the mother has not been dry.  She admits to drinking socially, albeit on a limited basis when accompanying the father to watch football games at the pub.  She says that she wishes to start with AA but has not done so yet.  Her engagement with We Are With You is limited and I was less than clear about her future commitment.  On any view, her engagement with services to help address what her leading counsel described as “an addiction” is at an embryonic stage.  She had, as recently as late June 2022, drank to excess with her sister and her presentation was such that the father was driven to call the police.  I accept that that was the day of the inquest into J’s death but knowing of the issues in the case, she had returned to alcohol as a coping mechanism.</span></p>
+          </content>
+        </level>
         <paragraph eId="para_15">
           <num>15.</num>
           <content>
@@ -576,7 +596,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">I note, also, that leading counsel for the mother suggests that after the report has been obtained, there should be an assessment by an independent social worker, therefore, providing for months and months of delay.  The application is made well beyond the case management directions which provided for any application for expert evidence.  I will assume that any report could be prepared within legal aid rates but if not, then that would be a further reason for refusing it.  In my judgment, this application should fail and does so.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_4">
+        <level eId="lvl_6">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Evidence</span></p>
           </content>
@@ -587,7 +607,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">I have had regard to the extensive bundle of documents in this case: photographs, bodycam footage in the immediate aftermath of J’s death and very helpful opening and closing submissions from each of the parties.  I have also heard evidence from a number of live witnesses, including the social worker, the mother, the father, the Children’s Guardian, Q, drug and alcohol testing expert and R, friend of the mother.  </span></p>
           </content>
         </paragraph>
-        <level eId="lvl_5">
+        <level eId="lvl_7">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The father’s police interview</span></p>
           </content>
@@ -640,25 +660,25 @@
         </paragraph>
         <paragraph eId="para_20">
           <num>20.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">At F173 </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">et seq</span><span style="font-family:'Times New Roman';font-size:12pt">.:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:2in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The one thing I always said to her, ‘If you’re getting pissed, leave the kids alone’, because she’s drunk.  Just people who are drunk shouldn’t be around kids.  I mean, obviously, she’d be in the same house but don’t be like – the baby, for instance.  That baby shouldn’t have been out of the cat.  But even that night this happened, she said she wasn’t even going out to drink and then she come back in an hour later and you can – I can tell when she’s just had one.  And, obviously, when I knew she was going over to her mum’s, I just knew what was gonna happen.  She was going to get drunk”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:2in;margin-right:0.37in;text-indent:-0.42in"><span style="font-family:'Times New Roman';font-size:12pt">Q:</span><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">“Did you speak to her about that?”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:2in;margin-right:0.37in;text-indent:-0.43in"><span style="font-family:'Times New Roman';font-size:12pt">A:</span><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">“Yes, I did.  We’d had a little argument.  I said ‘D’you know what?  You do what you want’, I said, ‘Just go out this house and go and drink’, cos no matter who tells us something, she’s not going to listen.  She’s that type of person.   When she says she’s got to do something, she going to do it.  There’s nothing you can do to stop her.  And there’s no point causing a big scene because the kids hate it when I shout.  So, if I shout, the kids are gonna end up crying.  So, I just left it and said, ‘I’m going to bed with the kids’”.  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:2in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The one thing I always said to her, ‘If you’re getting pissed, leave the kids alone’, because she’s drunk.  Just people who are drunk shouldn’t be around kids.  I mean, obviously, she’d be in the same house but don’t be like – the baby, for instance.  That baby shouldn’t have been out of the cat.  But even that night this happened, she said she wasn’t even going out to drink and then she come back in an hour later and you can – I can tell when she’s just had one.  And, obviously, when I knew she was going over to her mum’s, I just knew what was gonna happen.  She was going to get drunk”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_8">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:2in;margin-right:0.37in;text-indent:-0.42in"><span style="font-family:'Times New Roman';font-size:12pt">Q:</span><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">“Did you speak to her about that?”.</span></p>
+            <p class="ListParagraph" style="text-align:justify;margin-left:2in;margin-right:0.37in;text-indent:-0.43in"><span style="font-family:'Times New Roman';font-size:12pt">A:</span><marker name="tab" /><span style="font-family:'Times New Roman';font-size:12pt">“Yes, I did.  We’d had a little argument.  I said ‘D’you know what?  You do what you want’, I said, ‘Just go out this house and go and drink’, cos no matter who tells us something, she’s not going to listen.  She’s that type of person.   When she says she’s got to do something, she going to do it.  There’s nothing you can do to stop her.  And there’s no point causing a big scene because the kids hate it when I shout.  So, if I shout, the kids are gonna end up crying.  So, I just left it and said, ‘I’m going to bed with the kids’”.  </span></p>
+          </content>
+        </level>
         <paragraph eId="para_21">
           <num>21.</num>
           <intro>
@@ -817,7 +837,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level eId="lvl_6">
+        <level eId="lvl_9">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The evidence of the social worker</span></p>
           </content>
@@ -938,40 +958,48 @@
         </paragraph>
         <paragraph eId="para_43">
           <num>43.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">At F64, is a police protection authorisation record:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“Mother was reported to be drunk in charge of the child at Pizza Plus, in (redacted).  When police attend, staff state she has been asleep on the floor.  On arrival, she was in the process of getting up.  She was clearly under the influence of intoxicants.  The child was awake in a pram watching proceedings.  Female had slurred speech.  She was unaware of her whereabouts or how she had come to be there.   The child was in a heavily soiled nappy”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">She said that A had been accommodated twice.  At I100:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The social worker reported that A was accommodated for the first time on 21 November 2008, following a referral from Liverpool’s housing manager for child protection.  It was agreed at a looked-after child review on 26 February 2009 that A would be rehabilitated to the mother’s care.  The second period of accommodation began on the following day, 30 March 2010 when a phone call informing the department that two weeks previously, when the mother was looking after her niece, the child had been seen alone, roaming the streets in Liverpool”.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“Mother was reported to be drunk in charge of the child at Pizza Plus, in (redacted).  When police attend, staff state she has been asleep on the floor.  On arrival, she was in the process of getting up.  She was clearly under the influence of intoxicants.  The child was awake in a pram watching proceedings.  Female had slurred speech.  She was unaware of her whereabouts or how she had come to be there.   The child was in a heavily soiled nappy”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">She said that A had been accommodated twice.  At I100:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The social worker reported that A was accommodated for the first time on 21 November 2008, following a referral from Liverpool’s housing manager for child protection.  It was agreed at a looked-after child review on 26 February 2009 that A would be rehabilitated to the mother’s care.  The second period of accommodation began on the following day, 30 March 2010 when a phone call informing the department that two weeks previously, when the mother was looking after her niece, the child had been seen alone, roaming the streets in Liverpool”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_44">
           <num>44.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In terms of the father, the following potential vulnerabilities were noted: he does not have his own bank account.  He has no mobile phone.  He decided he would not drink as a result of the arguments.  He had not separated at the point of the police attendance, 29 June 2022.  The father said he was frustrated with the mother and was saying she had just made up her statement.  When the mother is not there, he presents as more open and insightful.  When told of the alleged assault by T, the paternal grandmother had said that the father was very concerned, and cried and was going to call police.  The grandmother was very worried when she spoke to him.  The father gave the social worker a different picture.  Therefore, the social worker said, that:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“We cannot depend on the father to ring the alarm bells and follow the safety plan.  It is difficult to manage the risk of harm in those circumstances.  It is also a dysfunctional relationship between the mother and the maternal aunt and, in front of the mother, the father will not speak up about risk.  The father was now distancing himself from what he had said in the police interview about the mother’s alcohol misuse.  Clearly, the mother was a regular and chronic alcohol drinker, based on testing and the father’s account.  The children are at risk of physical harm, poor handling, emotional harm as the parent was not then emotionally available.  The same if the mother was under the influence of cocaine.  This could lead to a breakdown of routine.  A is likely to be uncomfortable around his mother if she is drinking and, just generally, the impact of neglect.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">If the mother was under the influence, the father would be left caring for children, and he would be using cannabis.  He is also taking codeine, providing a cocktail of drugs.  He struggles with his anxiety, and this is likely to have an impact on him as a carer.  The evidence suggests that there are often regular family fallouts with the genesis being alcohol and children would witness that.  The evidence from the police suggested that when they attended the property on 1 January, the children appeared unaffected by having numerous people in their property and a chaotic scene which suggested they were desensitised”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“We cannot depend on the father to ring the alarm bells and follow the safety plan.  It is difficult to manage the risk of harm in those circumstances.  It is also a dysfunctional relationship between the mother and the maternal aunt and, in front of the mother, the father will not speak up about risk.  The father was now distancing himself from what he had said in the police interview about the mother’s alcohol misuse.  Clearly, the mother was a regular and chronic alcohol drinker, based on testing and the father’s account.  The children are at risk of physical harm, poor handling, emotional harm as the parent was not then emotionally available.  The same if the mother was under the influence of cocaine.  This could lead to a breakdown of routine.  A is likely to be uncomfortable around his mother if she is drinking and, just generally, the impact of neglect.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">If the mother was under the influence, the father would be left caring for children, and he would be using cannabis.  He is also taking codeine, providing a cocktail of drugs.  He struggles with his anxiety, and this is likely to have an impact on him as a carer.  The evidence suggests that there are often regular family fallouts with the genesis being alcohol and children would witness that.  The evidence from the police suggested that when they attended the property on 1 January, the children appeared unaffected by having numerous people in their property and a chaotic scene which suggested they were desensitised”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_45">
           <num>45.</num>
@@ -1003,7 +1031,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In terms of D, the social worker had asked the paternal grandmother if she wished to be considered as a carer for D.  The social worker thought that the paternal grandmother wanted to but could not manage all three children due to her own health needs and was not having contact with D as a result.  If she was to be adopted, she did not wish to build a relationship with her.  The grandmother had refused to move forward with the foster carer assessment in respect of C and B as she thought she would not pass, so, the special guardianship assessment had taken place.  In terms of the question of an open adoption for D, she said the likelihood of ongoing face-to-face contact for the parents post adoption was pretty low.  They were recommending letterbox contact in any event between siblings, parents, and D.  There was a concern about open adoption when parents have contact with siblings as it can lead to placement breakdown.  If D were to be adopted, that would be devastating for C, B and A and the Local Authority would need to put appropriate support in place.  Overall, I found the worker to be an impressive witness.  I considered her to be fair, measured and balanced in her evidence.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_7">
+        <level eId="lvl_10">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The mother’s evidence</span></p>
           </content>
@@ -1046,25 +1074,29 @@
         </paragraph>
         <paragraph eId="para_56">
           <num>56.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">Historically, she said that A was subject to a child protection plan when he was seven months old.  He was moved out of her care at 10 months old.  He was later returned to her.  Alcohol was an issue in A being removed from her care.  In 2010, A was removed from her care as she was drunk in charge of him.  At L218, the following is in the Social Service records:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The police were called to the pizza parlour at 11.00pm.  When the police arrived, they found the mother on the floor outside the shop, unable to stand up, with the pram by her side.  The mother was described as being ‘disorientated and extremely drunk’.  She was swearing, slurring her words, unable to stand up and she was being aggressive towards the police.  The mother told the police that she did not know where she was and she only had some loose change on her, and this was not enough for her to make the journey home.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">The arresting officer said that A had no hat and gloves and he was wearing a tee shirt, pants, and a coat.  He had a very wet and soiled nappy and there was no rain cover in the pram.  The officer said that in addition to the wet and foggy conditions, the temperature outside was zero degrees.  The officer who changed A’s nappy at the police station said that A’s bottom was ‘red raw’ and there were signs of a nappy rash on his bottom which could indicate that he had been in a wet and soiled nappy for some time.  The officers also found an empty, dirty bottle in the mother’s bag.  The officer fed A two bottles of milk which the officer said he ‘wolfed down’, indicating that he was hungry”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">A was placed with the foster carers at 1.30am and the mother was charged with being drunk whilst having the care of a child under the age of seven.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The police were called to the pizza parlour at 11.00pm.  When the police arrived, they found the mother on the floor outside the shop, unable to stand up, with the pram by her side.  The mother was described as being ‘disorientated and extremely drunk’.  She was swearing, slurring her words, unable to stand up and she was being aggressive towards the police.  The mother told the police that she did not know where she was and she only had some loose change on her, and this was not enough for her to make the journey home.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">The arresting officer said that A had no hat and gloves and he was wearing a tee shirt, pants, and a coat.  He had a very wet and soiled nappy and there was no rain cover in the pram.  The officer said that in addition to the wet and foggy conditions, the temperature outside was zero degrees.  The officer who changed A’s nappy at the police station said that A’s bottom was ‘red raw’ and there were signs of a nappy rash on his bottom which could indicate that he had been in a wet and soiled nappy for some time.  The officers also found an empty, dirty bottle in the mother’s bag.  The officer fed A two bottles of milk which the officer said he ‘wolfed down’, indicating that he was hungry”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_11">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">A was placed with the foster carers at 1.30am and the mother was charged with being drunk whilst having the care of a child under the age of seven.</span></p>
+          </content>
+        </level>
         <paragraph eId="para_57">
           <num>57.</num>
           <content>
@@ -1085,14 +1117,18 @@
         </paragraph>
         <paragraph eId="para_60">
           <num>60.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">It was put to her that she was lying when she said she did not know that she was pregnant when she got drunk.  It was put to her that the parties had received an email from her solicitors on the Monday before, saying that she was pregnant.  The mother then replied “Yes, but we did not know if we would keep it”.  The mother is lying on this issue.  In my judgment, she well knew that she was pregnant when she got drunk.  Indeed, shortly thereafter, she said “Sorry, I did lie”.  It was put to her that she will lie to hide things if she is worried about it. She said that she could not remember what she thought.  It was put to her that her sister, T, had attacked the father in the car.  I282, the social worker statement:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-family:'Times New Roman';font-size:12pt">“The father informed that when they reached T’s home, W has likely reported this conversation to her mother, following which T came out of her home screaming and shouting and scratched his arm.  However, he said that he pushed her away first”.  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-family:'Times New Roman';font-size:12pt">“The father informed that when they reached T’s home, W has likely reported this conversation to her mother, following which T came out of her home screaming and shouting and scratched his arm.  However, he said that he pushed her away first”.  </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_61">
           <num>61.</num>
@@ -1102,14 +1138,18 @@
         </paragraph>
         <paragraph eId="para_62">
           <num>62.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">She was asked about the police photos: pictures of codeine phosphate, prescribed to a third party, X.  She said that they came from him but she was going to give them to her mother.  She did not pay him.  She did not give them to her mother.  She did not use them.  It was put to her that the blister pack was open.  She replied that she was taking codeine phosphate.  She said that she did not know what the effect of codeine plus alcohol would be.  She agreed that she should not take it with alcohol or codeine.  She was asked about I263, paragraph 10.17 in respect of the social worker:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The mother informed that she first tried cannabis when she was 26 years old and has never tried it since due to the fact that she had a panic attack.  The mother stated that she started taking cocaine when she was out with friends as a stranger had offered her to try it which she did.  The mother informed that she did not use cocaine since until after J was born.  This is concerning as the father discussed in his police interview and with the allocated social worker that the mother is known to use cocaine when she is drinking alcohol.  She said that she took cocaine before J’s birth.  She had two different dealers.  While she would message the dealers and give her address, she did not, in her message say, ‘Meet me at the bottom of the road’.  She said, ‘They would normally ring at the bottom of the street to let me know that they had arrived’”.  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“The mother informed that she first tried cannabis when she was 26 years old and has never tried it since due to the fact that she had a panic attack.  The mother stated that she started taking cocaine when she was out with friends as a stranger had offered her to try it which she did.  The mother informed that she did not use cocaine since until after J was born.  This is concerning as the father discussed in his police interview and with the allocated social worker that the mother is known to use cocaine when she is drinking alcohol.  She said that she took cocaine before J’s birth.  She had two different dealers.  While she would message the dealers and give her address, she did not, in her message say, ‘Meet me at the bottom of the road’.  She said, ‘They would normally ring at the bottom of the street to let me know that they had arrived’”.  </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_63">
           <num>63.</num>
@@ -1125,14 +1165,18 @@
         </paragraph>
         <paragraph eId="para_65">
           <num>65.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">The combination of the fact that these were somebody else’s prescription drugs being supplied illicitly, they were in the house, they had been opened, lead me, on balance, to find that they were for the mother’s own use.  She said the drugs are all in a bag in her kitchen.  She maintained that the children could not get the drugs.  She said that A is old enough not to take any medication.  I found that to be, at best, complete naivety on the part of the mother and, at worst, pure dishonesty.  She said that she was using cocaine after the birth of J.  She was shown several photographs of the home conditions as discovered by the police.  The house is clearly in an unsafe condition for the children.  The report from We Are With You dated 7 March 2023, at E277, was put to her:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“F was referred to We are We Are With You, Liverpool, on 28 November 2022 via self-referral, for support with alcohol and cocaine use.  Her first appointment with We Are With You was on 28 December 2022 whereby an initial assessment was completed.  F stated on her assessment that she has been free from substances for nine months but would like support to maintain her abstinence.  Following this, one-to-one appointments had been offered to F regularly.  F has attended two appointments with her key worker but We Are With You, in total, has cancelled one and did not attend one.  F has attended a three-day intuitive recovery course to aid with her recovery.  F has started to complete work with her key worker toward maintaining recovery.  F will continue to be offered support from ourselves regarding her recovery.  There is also a post-treatment service which F will go into before being discharged from service and she will receive an exit plan to aid her long-term recovery”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“F was referred to We are We Are With You, Liverpool, on 28 November 2022 via self-referral, for support with alcohol and cocaine use.  Her first appointment with We Are With You was on 28 December 2022 whereby an initial assessment was completed.  F stated on her assessment that she has been free from substances for nine months but would like support to maintain her abstinence.  Following this, one-to-one appointments had been offered to F regularly.  F has attended two appointments with her key worker but We Are With You, in total, has cancelled one and did not attend one.  F has attended a three-day intuitive recovery course to aid with her recovery.  F has started to complete work with her key worker toward maintaining recovery.  F will continue to be offered support from ourselves regarding her recovery.  There is also a post-treatment service which F will go into before being discharged from service and she will receive an exit plan to aid her long-term recovery”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_66">
           <num>66.</num>
@@ -1142,20 +1186,24 @@
         </paragraph>
         <paragraph eId="para_67">
           <num>67.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">She did not think that the father taking cannabis was a problem which, in my judgment, demonstrates a complete lack of insight.  She was asked, “Is it good enough for the father to come into the house smoking cannabis daily?”.  The mother replied, “No, but he is getting help”.  She said:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“He should have engaged with We Are With You and come off drugs.  He smokes outside with the door shut.  He smokes in the garden shed in the evening”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">She said that she did not think the cannabis affected his parenting.  He had no problems with other substance misuse when J died.  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“He should have engaged with We Are With You and come off drugs.  He smokes outside with the door shut.  He smokes in the garden shed in the evening”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_12">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">She said that she did not think the cannabis affected his parenting.  He had no problems with other substance misuse when J died.  </span></p>
+          </content>
+        </level>
         <paragraph eId="para_68">
           <num>68.</num>
           <content>
@@ -1235,20 +1283,24 @@
         </paragraph>
         <paragraph eId="para_80">
           <num>80.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">The statement of AA, the emergency medical technician with North West Ambulance Service was put to her at F97:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“I spoke to the mother in the kitchen and was asking her some questions about the baby’s medical history.  I first asked what time she last saw the baby well.  She shouted to the male in the living room shouting, ‘Babe, what time was it when you last fed her?’.  I heard the male shouting something like ‘Two o’clock this morning’.  The mother then responded, ‘It was two o’clock today’”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">It was put to the mother that this demonstrated that she did not know when she fed her last.  The mother replied, “I cannot remember”.  As she has given a “no comment” interview, it was suggested to her that the first time that she said that she had fed J at 10.30 to 11.00am was her statement on 14 March 2022.  She agreed with this.  She was then asked why it was that she was asking the father when he last fed J on New Year’s Day.  The mother said she was not thinking straight.  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“I spoke to the mother in the kitchen and was asking her some questions about the baby’s medical history.  I first asked what time she last saw the baby well.  She shouted to the male in the living room shouting, ‘Babe, what time was it when you last fed her?’.  I heard the male shouting something like ‘Two o’clock this morning’.  The mother then responded, ‘It was two o’clock today’”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_13">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">It was put to the mother that this demonstrated that she did not know when she fed her last.  The mother replied, “I cannot remember”.  As she has given a “no comment” interview, it was suggested to her that the first time that she said that she had fed J at 10.30 to 11.00am was her statement on 14 March 2022.  She agreed with this.  She was then asked why it was that she was asking the father when he last fed J on New Year’s Day.  The mother said she was not thinking straight.  </span></p>
+          </content>
+        </level>
         <paragraph eId="para_81">
           <num>81.</num>
           <content>
@@ -1267,7 +1319,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In terms of C and B, she would be happy for them to remain with the grandmother if they are not returned to her care.  She would want to see them more in the grandmother’s house and not at the [redacted] Centre.  The contact notes, she agreed, show structured, enjoyable the sessions generally.  The girls enjoy it.  In terms of D, she said that she was very upset that D has a plan of placement for adoption and no contact.  Overall, I found the mother to be an unimpressive witness.  She was dishonest on a number of occasions and, at times, her apparent epiphany in the witness box about the harmful effect of drink and drug use on the children appeared less than authentic when contrasted with those on the part on those on the part of her evidence.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_8">
+        <level eId="lvl_14">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">The father</span></p>
           </content>
@@ -1304,20 +1356,24 @@
         </paragraph>
         <paragraph eId="para_89">
           <num>89.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">He was referred to his statement at C194, paragraph 11:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“It is no secret that I have had a longstanding issue with cannabis misuse.  I have been smoking cannabis for around 15 years.  This was a normal way of living for me.  When I was having a bad day, it chills me out”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">He said before the baby, he had no mental health problems.  He was then asked about the account given to the social worker at I258, “G notes that he finds that this, smoking cannabis and doing drugs at night helps with his anxiety and thinks it helps his memory”.  The father maintained that he was not using it to cope with anxiety.  I do not believe him on this evidence and prefer the evidence of the social worker.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“It is no secret that I have had a longstanding issue with cannabis misuse.  I have been smoking cannabis for around 15 years.  This was a normal way of living for me.  When I was having a bad day, it chills me out”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_15">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">He said before the baby, he had no mental health problems.  He was then asked about the account given to the social worker at I258, “G notes that he finds that this, smoking cannabis and doing drugs at night helps with his anxiety and thinks it helps his memory”.  The father maintained that he was not using it to cope with anxiety.  I do not believe him on this evidence and prefer the evidence of the social worker.</span></p>
+          </content>
+        </level>
         <paragraph eId="para_90">
           <num>90.</num>
           <content>
@@ -1332,44 +1388,48 @@
         </paragraph>
         <paragraph eId="para_92">
           <num>92.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">He agreed that he was only halfway through the course, and the Local Authority was right to be concerned about his drug use.  The report from We Are With You, dated 23 March 2023, states:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“Attendance and engagement: G attended a face-to-face assessment appointment on 9 December 2022.  He was very polite and friendly and engaged well throughout the assessment.  On 3 January 2023, G did not attend our first one-to-one session.  Client stated he had forgotten about the appointment.  Rescheduled appointment for 16 January 2023, initially.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">13 January 2023, I attempted to make contact with G on this date as I had spoken with his partner’s key worker who had informed me of a home visit she had arranged with G’s partner.  I attempted to contact G to see if he was happy for me to attend this same visit that was scheduled for 24 January 2023 with his partner’s key worker but got no answer.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">16 January 2023, G presented at the office for the next scheduled appointment we were meant to have.  I explained to G that I had attempted to contact him relating to the above home visit.  He confirmed he would be happy for me to attend this visit alongside his partner’s key worker. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">24 January 2023, G’s partner cancelled the home visit due to having recently given birth and having clashed appointments.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">15 February 2023, I attempted to call G to discuss the next home visit with him.  No response.  His partner’s key worker managed to speak to his partner to confirm the next home visit.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">7 March 2023, myself and G’s partner’s key worker attended their address for the home visit, as planned.  G engaged well in conversation with me throughout the visit.  We discussed his current substance misuse and methods G can adopt to cope with triggers, urges and cravings alongside some harm-reduction work.  I issued G with a cannabis workbook which he agreed to start working through before our next appointment.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">G has answered few telephone calls yet has communicated well during our sessions and any successful telephone contact made.  He is always polite and well-mannered.  His engagement could be better as we are yet to have our first session since his assessment.  We are due to start working through the cannabis workbook which G will also be expected to take home, complete, and reflect on.  He has, currently, completed 20 out of 50 pages, according to his written statement, 5 April 2023”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“Attendance and engagement: G attended a face-to-face assessment appointment on 9 December 2022.  He was very polite and friendly and engaged well throughout the assessment.  On 3 January 2023, G did not attend our first one-to-one session.  Client stated he had forgotten about the appointment.  Rescheduled appointment for 16 January 2023, initially.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">13 January 2023, I attempted to make contact with G on this date as I had spoken with his partner’s key worker who had informed me of a home visit she had arranged with G’s partner.  I attempted to contact G to see if he was happy for me to attend this same visit that was scheduled for 24 January 2023 with his partner’s key worker but got no answer.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">16 January 2023, G presented at the office for the next scheduled appointment we were meant to have.  I explained to G that I had attempted to contact him relating to the above home visit.  He confirmed he would be happy for me to attend this visit alongside his partner’s key worker. </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">24 January 2023, G’s partner cancelled the home visit due to having recently given birth and having clashed appointments.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">15 February 2023, I attempted to call G to discuss the next home visit with him.  No response.  His partner’s key worker managed to speak to his partner to confirm the next home visit.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">7 March 2023, myself and G’s partner’s key worker attended their address for the home visit, as planned.  G engaged well in conversation with me throughout the visit.  We discussed his current substance misuse and methods G can adopt to cope with triggers, urges and cravings alongside some harm-reduction work.  I issued G with a cannabis workbook which he agreed to start working through before our next appointment.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">G has answered few telephone calls yet has communicated well during our sessions and any successful telephone contact made.  He is always polite and well-mannered.  His engagement could be better as we are yet to have our first session since his assessment.  We are due to start working through the cannabis workbook which G will also be expected to take home, complete, and reflect on.  He has, currently, completed 20 out of 50 pages, according to his written statement, 5 April 2023”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_93">
           <num>93.</num>
@@ -1421,20 +1481,24 @@
         </paragraph>
         <paragraph eId="para_101">
           <num>101.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">On one occasion, she came in drunk and he took the children out to his family to keep them safe.  He said that the safety plan will not work in the future:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“She should not be going out for days drinking, so, the plan, now, is not to go out all night.  If she was to go out, the plan is to get the children looked after by family”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">On New Year’s Day, he said he did not know that she was going out to get drunk.  The plan was for the family to have Christmas together but she did not stick to it.  Over Christmas, she went out for two and a half days and did the same on New Year.  He was left looking after the children.  She came home with a hangover and she spent nearly a full day in bed.  I found the father to be less unimpressive than the mother and, at times, he showed insight.  However, his evidence still has the shortcomings set out above.  </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“She should not be going out for days drinking, so, the plan, now, is not to go out all night.  If she was to go out, the plan is to get the children looked after by family”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_16">
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">On New Year’s Day, he said he did not know that she was going out to get drunk.  The plan was for the family to have Christmas together but she did not stick to it.  Over Christmas, she went out for two and a half days and did the same on New Year.  He was left looking after the children.  She came home with a hangover and she spent nearly a full day in bed.  I found the father to be less unimpressive than the mother and, at times, he showed insight.  However, his evidence still has the shortcomings set out above.  </span></p>
+          </content>
+        </level>
         <paragraph eId="para_102">
           <num>102.</num>
           <content>
@@ -1566,7 +1630,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">If D was to be placed for adoption, there would be a massive impact on A.  He would be likely to need a lot of help.  It would be helpful if he could see a counsellor; the one he saw previously.  The Guardian said she had not discussed with A the fact that she supports D being adopted but she agreed that it something he needs to be told.  The Guardian said that she did not know how the girls feel about A not living with them.  When she went to see them, C was in a sulk due to problems at school.  The grandmother had had words with her.  B was very quiet and neither were prepared to engage with the Guardian.  In terms of D, if she is placed for adoption, then she would be deprived of inter-sibling contact.  However, the chances of an open adoption were very difficult.  I found the Guardian an experienced Guardian with over 30 years of social work experience, to be an impressive witness.  Like the social worker, I found her to be fair and measured and balanced in her evidence.  </span></p>
           </content>
         </paragraph>
-        <level eId="lvl_9">
+        <level eId="lvl_17">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">My findings</span></p>
           </content>
@@ -1584,14 +1648,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.5in">b.</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.07in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt">The mother has a longstanding problem with cocaine use spanning 13 years.  She uses whenever she drinks.  She uses two £15 bags when she goes out which generates six lines.  She obtains cocaine from local drug dealers who are aware of the family’s address.  The mother was using prescribed codeine at the same time as drinking alcohol to excess and cocaine.  This is dangerous and can lead to significant effects on functioning.  The NHS information leaflet that was produced by the Local Authority during the hearing states as follows:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“If you take recreational drugs such as cannabis, cocaine, and heroin while you are taking co-codamol, you are more likely to get the serious side effects of the codeine and co-codamol.  These can include breathing difficulties, heart problems, fits and even going into a coma.  Some recreational drugs such as cannabis also increase common codeine side effects such as sleepiness and dizziness”.</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“If you take recreational drugs such as cannabis, cocaine, and heroin while you are taking co-codamol, you are more likely to get the serious side effects of the codeine and co-codamol.  These can include breathing difficulties, heart problems, fits and even going into a coma.  Some recreational drugs such as cannabis also increase common codeine side effects such as sleepiness and dizziness”.</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.5in">c.</num>
@@ -1630,52 +1698,60 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level eId="lvl_10">
+        <level eId="lvl_18">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.07in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Welfare</span></p>
           </content>
         </level>
         <paragraph eId="para_124">
           <num>124.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In her statement of 31 March 2023, the mother said:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“I can confirm that should no additional findings be made against myself and the second respondent father at the composite final hearing, then, of course, I agree with the Local Authority case that all four children be returned to our care.  However, if additional findings are made against myself and/or the second respondent father and the Local Authority’s plan is for the children to remain separated from us, then, my views may change.  If, at the composite final hearing, the Court accepts the Local Authority’s evidence and suggests that B and C cannot return to the care of myself and the second respondent, they should remain with the current carer, the maternal grandmother, E, under the auspices of a special guardianship order, then, I would not oppose this.  If the Court deemed it necessary for A to be made subject to a care order and remain in long-term foster care then, again, provided that this is what the Court believes is necessary, I would not oppose this.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">In respect of D, the Local Authority set out that they believe that she should be placed for adoption, and they set out that her finding permanence at her age is more important than having a continuing relationship with her parents and siblings.  I simply do not agree and entirely oppose D being placed for adoption.  My views are that the bond between the children and D are strong, and I do not believe that this has been explored thoroughly enough within the together and apart assessment.  I believe it would be extremely difficult for the children to suffer the loss of another sibling and, effectively, need to grieve for D as they are.  According to the Local Authority’s plan, they would never see their sibling again but, instead, would only be able to send indirect contact.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">I am of the view that if additional findings are made against us and the Court rules that the children cannot return to our care, then a foster placement should be found for A and D to be placed together.  I would, therefore, oppose adoption in respect of D.  I would not oppose a care order in respect of D with a long-term foster care accompanied by A if the Court deems that it is not safe for her to return to mine and the second respondent’s care”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“I can confirm that should no additional findings be made against myself and the second respondent father at the composite final hearing, then, of course, I agree with the Local Authority case that all four children be returned to our care.  However, if additional findings are made against myself and/or the second respondent father and the Local Authority’s plan is for the children to remain separated from us, then, my views may change.  If, at the composite final hearing, the Court accepts the Local Authority’s evidence and suggests that B and C cannot return to the care of myself and the second respondent, they should remain with the current carer, the maternal grandmother, E, under the auspices of a special guardianship order, then, I would not oppose this.  If the Court deemed it necessary for A to be made subject to a care order and remain in long-term foster care then, again, provided that this is what the Court believes is necessary, I would not oppose this.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">In respect of D, the Local Authority set out that they believe that she should be placed for adoption, and they set out that her finding permanence at her age is more important than having a continuing relationship with her parents and siblings.  I simply do not agree and entirely oppose D being placed for adoption.  My views are that the bond between the children and D are strong, and I do not believe that this has been explored thoroughly enough within the together and apart assessment.  I believe it would be extremely difficult for the children to suffer the loss of another sibling and, effectively, need to grieve for D as they are.  According to the Local Authority’s plan, they would never see their sibling again but, instead, would only be able to send indirect contact.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">I am of the view that if additional findings are made against us and the Court rules that the children cannot return to our care, then a foster placement should be found for A and D to be placed together.  I would, therefore, oppose adoption in respect of D.  I would not oppose a care order in respect of D with a long-term foster care accompanied by A if the Court deems that it is not safe for her to return to mine and the second respondent’s care”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_125">
           <num>125.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In written closing submissions on behalf of the mother, Mr Howling KC and Ms Mallon set out the following:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“It is accepted that Mother has tested positive for cannabis; a drug which she says that she has never used because ‘she does not get on with it’.  In his police interview, Father agreed, F185.  Mother has absolutely no reason to lie about the use of cannabis when she has so freely admitted to both cocaine and alcohol abuse.  The evidence of Q was clear: it is possible that being in an atmosphere in which cannabis smoke is present could lead to the ingestion of smoke which the body then metabolises to produce the first of the cannabis metabolites 11hydroxy-Delta(9)-THC.  The Court will note that the second metabolite, 11-Nor-9-carboxy-Delta-9C was not detected in any of the mother’s hair samples.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">It is submitted that the Court should accept Q’s unchallenged evidence as the Guardian did and make a finding that Mother has not actively consumed cannabis.  Mother has made it clear to the Court that she does not intend to take cocaine again.  Mother and Father both agree that Mother has had the occasional drink but no more since 29 June 2022, the last occasion when she admits to having drunk to excess.  There was nothing in the papers which gainsays her evidence on this point.  Mother has no reason to lie about this point.  The Court is invited to accept Mother’s evidence on this issue.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">Mother has interacted with We Are With You, E277, to address her addiction.  Mother has been criticised for not seeking help earlier and for poor engagement.  In fact, the report shows a positive level of engagement albeit, not an absolute commitment.  It is accepted that Mother requires ongoing support.  She has recently instructed, following her evidence that she intends to attend AA.  It is submitted that the mother was honest about her own addictions and showed insight into the fact that she has had an issue and what the causative triggers are; mainly her sister T.  T has moved away which can only be for the better”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“It is accepted that Mother has tested positive for cannabis; a drug which she says that she has never used because ‘she does not get on with it’.  In his police interview, Father agreed, F185.  Mother has absolutely no reason to lie about the use of cannabis when she has so freely admitted to both cocaine and alcohol abuse.  The evidence of Q was clear: it is possible that being in an atmosphere in which cannabis smoke is present could lead to the ingestion of smoke which the body then metabolises to produce the first of the cannabis metabolites 11hydroxy-Delta(9)-THC.  The Court will note that the second metabolite, 11-Nor-9-carboxy-Delta-9C was not detected in any of the mother’s hair samples.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">It is submitted that the Court should accept Q’s unchallenged evidence as the Guardian did and make a finding that Mother has not actively consumed cannabis.  Mother has made it clear to the Court that she does not intend to take cocaine again.  Mother and Father both agree that Mother has had the occasional drink but no more since 29 June 2022, the last occasion when she admits to having drunk to excess.  There was nothing in the papers which gainsays her evidence on this point.  Mother has no reason to lie about this point.  The Court is invited to accept Mother’s evidence on this issue.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">Mother has interacted with We Are With You, E277, to address her addiction.  Mother has been criticised for not seeking help earlier and for poor engagement.  In fact, the report shows a positive level of engagement albeit, not an absolute commitment.  It is accepted that Mother requires ongoing support.  She has recently instructed, following her evidence that she intends to attend AA.  It is submitted that the mother was honest about her own addictions and showed insight into the fact that she has had an issue and what the causative triggers are; mainly her sister T.  T has moved away which can only be for the better”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_126">
           <num>126.</num>
@@ -1697,29 +1773,33 @@
         </paragraph>
         <paragraph eId="para_129">
           <num>129.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In written closing submissions on his behalf, Ms Grocott KC and Ms Howard set out the following: </span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“As in the opening, the father concedes that were the events of New Year’s Day the daily experience of the children, then the facts would support the link to significant harm.  However, we continue to assert that the evidence does not support a finding that the events of New Year’s Day are likely to have been the daily lived experience.  The evidence from the school, nursery, and health visitor, together with the together and apart assessment and FGC note support a finding that the children were well-presented at school with good parental engagement, good attachments, clean, well-nourished and the home conditions are acceptable.  This picture is also supported in the evidence of E, save for home conditions as she did not visit the home.  The police describe the children as ‘delightful’.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">The father rejects that A, B or C have suffered significant harm.  The care over Christmas and New Year 2021/2022 was suboptimal arising from the binge drinking of the mother and the burden of care responsibility falling on the father.  But these conditions were outside the normal lived experience of the children.  The safety plan did work up until then as described by the father in his police interview.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">We ask the Court to accept the accounts given as true.  We agree with the position adopted by the mother that this case began as a child death case, then a neglect case and that it is now a substance misuse case which has not been adequately assessed or fairly assessed whilst the parents remain responsible, in some way, for the death of J.  </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">Whilst the father is yet to tackle his cannabis use, he has addressed the illicit pain-relief issue and is now more fully aware of the potential dangers of mixing codeine and cannabis.  He wishes to reduce his cannabis use.  The parents were living in a cramped two-bed house.  The parents now have a four-bed accommodation which they have decorated for the children to return home.  The kitchen is without cupboards and the bathroom needs updating but both are in hand.  The mother is 11 months alcohol and cocaine-free.  The children wish to return home.  The </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re B-S</span><span style="font-family:'Times New Roman';font-size:12pt"> analysis necessary to indicate nothing else other than stranger adoption will do for D with the impending consequences of further grief and loss for A, B and C and the parents has been undertaken not on evidence but on speculation and should be rejected”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">“As in the opening, the father concedes that were the events of New Year’s Day the daily experience of the children, then the facts would support the link to significant harm.  However, we continue to assert that the evidence does not support a finding that the events of New Year’s Day are likely to have been the daily lived experience.  The evidence from the school, nursery, and health visitor, together with the together and apart assessment and FGC note support a finding that the children were well-presented at school with good parental engagement, good attachments, clean, well-nourished and the home conditions are acceptable.  This picture is also supported in the evidence of E, save for home conditions as she did not visit the home.  The police describe the children as ‘delightful’.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">The father rejects that A, B or C have suffered significant harm.  The care over Christmas and New Year 2021/2022 was suboptimal arising from the binge drinking of the mother and the burden of care responsibility falling on the father.  But these conditions were outside the normal lived experience of the children.  The safety plan did work up until then as described by the father in his police interview.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">We ask the Court to accept the accounts given as true.  We agree with the position adopted by the mother that this case began as a child death case, then a neglect case and that it is now a substance misuse case which has not been adequately assessed or fairly assessed whilst the parents remain responsible, in some way, for the death of J.  </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1.67in;margin-right:0.37in"><span style="font-family:'Times New Roman';font-size:12pt">Whilst the father is yet to tackle his cannabis use, he has addressed the illicit pain-relief issue and is now more fully aware of the potential dangers of mixing codeine and cannabis.  He wishes to reduce his cannabis use.  The parents were living in a cramped two-bed house.  The parents now have a four-bed accommodation which they have decorated for the children to return home.  The kitchen is without cupboards and the bathroom needs updating but both are in hand.  The mother is 11 months alcohol and cocaine-free.  The children wish to return home.  The </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re B-S</span><span style="font-family:'Times New Roman';font-size:12pt"> analysis necessary to indicate nothing else other than stranger adoption will do for D with the impending consequences of further grief and loss for A, B and C and the parents has been undertaken not on evidence but on speculation and should be rejected”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_130">
           <num>130.</num>
@@ -1733,7 +1813,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0.39in;margin-right:0.07in"><span style="font-family:'Times New Roman';font-size:12pt">In determining issues of welfare and in respect of A, B and C, I have regard to the provisions of section 1 of the Children Act 1989.  In respect of D, and in accordance with the guidance given by McFarlane J, as he then was in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt">Re R (A Child) </span><span style="font-family:'Times New Roman';font-size:12pt">[2014] EWCA Civ 1625, I move to section 1 of the Adoption and Children Act as the superior test in respect of the question of adoption for which it will follow that if I am satisfied that a placement order should be made, then it will also follow that a care order should be made.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_11">
+        <level eId="lvl_19">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.08in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">A, B and C</span></p>
           </content>
@@ -1901,7 +1981,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level eId="lvl_12">
+        <level eId="lvl_20">
           <content>
             <p class="Body" style="text-align:justify;margin-right:0.37in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">D</span></p>
           </content>

@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:01" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:54" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,7 +39,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2231</uk:number>
         <uk:cite>[2022] EWHC 2231 (SCCO)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>36304c21d62fafa39524c8a67e8b61758e76ebe771ba97e9069e8608ae3519fc</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -84,65 +84,69 @@
         </paragraph>
         <paragraph eId="para_2">
           <num>2.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.5in">Cracked Trials and Guilty Pleas are defined, for the purposes of the 2013 Regulations, at Schedule 2 Paragraph 1(1):</p>
-          </intro>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“…cracked trial” means a case on indictment in which—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <intro>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the assisted person enters a plea of not guilty to one or more counts at the first hearing at which he or she enters a plea and—</p>
-              </intro>
-              <subparagraph>
-                <num>(i)</num>
-                <content>
-                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in;text-indent:0.32in">the case does not proceed to trial (whether by reason of pleas of guilty or for other reasons) or the prosecution offers no evidence; and</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num>(ii)</num>
-                <intro>
-                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in;text-indent:0.32in">either—</p>
-                </intro>
-                <subparagraph>
-                  <content>
-                    <p style="text-align:justify;margin-left:1.38in;margin-right:0.39in">(aa)   in respect of one or more counts to which the assisted person pleaded guilty, the assisted person did not so plead at the first hearing at which he or she entered a plea; or</p>
-                  </content>
-                </subparagraph>
-                <subparagraph>
-                  <content>
-                    <p style="text-align:justify;margin-left:1.38in;margin-right:0.39in">(bb)   in respect of one or more counts which did not proceed, the prosecution did not, before or at the first hearing at which the assisted person entered a plea, declare an intention of not proceeding with them; or</p>
-                  </content>
-                </subparagraph>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case is listed for trial without a hearing at which the assisted person enters a plea;</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“guilty plea” means a case on indictment which—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">is disposed of without a trial because the assisted person pleaded guilty to one or more counts; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">is not a cracked trial…”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“…cracked trial” means a case on indictment in which—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the assisted person enters a plea of not guilty to one or more counts at the first hearing at which he or she enters a plea and—</p>
+                    </intro>
+                    <subparagraph>
+                      <num>(i)</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in;text-indent:0.32in">the case does not proceed to trial (whether by reason of pleas of guilty or for other reasons) or the prosecution offers no evidence; and</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num>(ii)</num>
+                      <intro>
+                        <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in;text-indent:0.32in">either—</p>
+                      </intro>
+                      <subparagraph>
+                        <content>
+                          <p style="text-align:justify;margin-left:1.38in;margin-right:0.39in">(aa)   in respect of one or more counts to which the assisted person pleaded guilty, the assisted person did not so plead at the first hearing at which he or she entered a plea; or</p>
+                        </content>
+                      </subparagraph>
+                      <subparagraph>
+                        <content>
+                          <p style="text-align:justify;margin-left:1.38in;margin-right:0.39in">(bb)   in respect of one or more counts which did not proceed, the prosecution did not, before or at the first hearing at which the assisted person entered a plea, declare an intention of not proceeding with them; or</p>
+                        </content>
+                      </subparagraph>
+                    </subparagraph>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case is listed for trial without a hearing at which the assisted person enters a plea;</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“guilty plea” means a case on indictment which—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">is disposed of without a trial because the assisted person pleaded guilty to one or more counts; and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">is not a cracked trial…”</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_1">
           <content>
@@ -215,14 +219,18 @@
         </paragraph>
         <paragraph eId="para_12">
           <num>12.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">The facts in <span style="font-style:italic">Williams</span> were similar to the facts of this case. The defendant in <span style="font-style:italic">Williams </span>was not formally arraigned at an initial PTPH but indicated that a not guilty plea would be entered, so a trial date was set. Four months later, the defendant pleaded guilty, so the trial did not go ahead. Costs Judge Rowley decided that the case qualified for a cracked trial fee, saying (at paragraph 8 of his judgment):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The Legal Aid Agency’s Crown Court Fee Guidance accurately describes the essence of a cracked trial as being that after the PTPH there is still the real possibility of a trial. The express way of this occurring is of course for the defendant to plead not guilty. But the guidance refers to the court setting a trial date as being a way of marking the possibility that a trial will go ahead. That description in itself suggests that a formal plea it the PTPH is not an absolute requirement.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The Legal Aid Agency’s Crown Court Fee Guidance accurately describes the essence of a cracked trial as being that after the PTPH there is still the real possibility of a trial. The express way of this occurring is of course for the defendant to plead not guilty. But the guidance refers to the court setting a trial date as being a way of marking the possibility that a trial will go ahead. That description in itself suggests that a formal plea it the PTPH is not an absolute requirement.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_13">
           <num>13.</num>
@@ -303,59 +311,67 @@
         </paragraph>
         <paragraph eId="para_25">
           <num>25.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in" />
-          </intro>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“cracked trial”  means a case on indictment in which—</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">a plea and case management hearing takes place and—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(i)</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case does not proceed to trial (whether by reason of pleas of guilty or for other reasons) or the prosecution offers no evidence; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(ii)</num>
-              <intro>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">either—</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in">(aa)  in respect of one or more counts to which the assisted person pleaded guilty, the assisted person did not so plead at the plea and case management hearing; or</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in">(bb)  in respect of one or more counts which did not proceed, the prosecution did not, before or at the plea and case management hearing, declare an intention of not proceeding with them; or</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case is listed for trial without a plea and case management hearing taking place…”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“cracked trial”  means a case on indictment in which—</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">a plea and case management hearing takes place and—</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(i)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case does not proceed to trial (whether by reason of pleas of guilty or for other reasons) or the prosecution offers no evidence; and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(ii)</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">either—</p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in">(aa)  in respect of one or more counts to which the assisted person pleaded guilty, the assisted person did not so plead at the plea and case management hearing; or</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:1.18in;margin-right:0.39in">(bb)  in respect of one or more counts which did not proceed, the prosecution did not, before or at the plea and case management hearing, declare an intention of not proceeding with them; or</p>
+                      </content>
+                    </subparagraph>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in">the case is listed for trial without a plea and case management hearing taking place…”</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_26">
           <num>26.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in">It was in relation to that version of the 2013 Regulations that the Senior Costs Judge (then Master Gordon-Saker) in <span style="font-style:italic">R v Rahman</span> (SCCO 198/13, 17 December 2013) found that where a PCMH takes place at which the relevant defendant pleads guilty,</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in"> “…the case is (not) a cracked trial, even if a trial had been listed at an earlier preliminary hearing.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in"> “…the case is (not) a cracked trial, even if a trial had been listed at an earlier preliminary hearing.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_27">
           <num>27.</num>
