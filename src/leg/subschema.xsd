@@ -160,6 +160,7 @@
     <xs:choice maxOccurs="unbounded">
         <xs:element ref="p" />
         <xs:element ref="table"  />
+        <xs:element ref="block"  />
     </xs:choice>
 </xs:complexType>
 
@@ -168,6 +169,34 @@
 <xs:element name="content" type="block-container" />
 
 <xs:element name="wrapUp" type="block-container" />
+
+
+<!-- embedded structures -->
+
+<xs:element name="block">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="embeddedStructure" />
+        </xs:sequence>
+        <xs:attribute name="name" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="embeddedStructure" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="embeddedStructure">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="level" />
+            <xs:element ref="section" />
+            <xs:element ref="paragraph" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
 
 
 <!-- blocks -->

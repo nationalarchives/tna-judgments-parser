@@ -15,7 +15,7 @@ abstract class Branch : IBranch {
 
     public IEnumerable<IDivision> Children { get; internal init; }
 
-    public IEnumerable<IBlock> WrapUp { get; internal init; }
+    public IEnumerable<IBlock> WrapUp { get; internal set; }
 
 }
 

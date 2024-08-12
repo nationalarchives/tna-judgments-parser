@@ -139,6 +139,18 @@ td > p:last-child { margin-bottom: 0 }
 	</p>
 </xsl:template>
 
+<!-- embedded structures -->
+
+<xsl:template match="block[@name='embeddedStructure']">
+	<xsl:apply-templates />
+</xsl:template>
+
+<xsl:template match="embeddedStructure">
+	<blockquote>
+		<xsl:apply-templates />
+	</blockquote>
+</xsl:template>
+
 <!-- blocks -->
 
 <xsl:template match="p">
