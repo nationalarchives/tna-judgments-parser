@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2021/50/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2021/50/data.xml" />
-          <FRBRdate date="2024-05-27T19:11:12" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:27" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -49,7 +49,7 @@
         <uk:year>2021</uk:year>
         <uk:number>50</uk:number>
         <uk:cite>[2021] UKSC 50</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>ed865f2db49c89de0d02aba0e5c9165873cacd8c57f1020b14f16c63209556f6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -284,21 +284,23 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">The first of the eight “data protection principles” set out in Schedule 1 is that:</p>
               <block name="embeddedStructure">
                 <embeddedStructure>
-                  <level>
-                    <heading class="Quote" style="margin-left:1in"><span style="font-family:'Calibri, sans-serif'">“Personal data shall be processed fairly and lawfully and, in particular, shall not be processed unless -</span></heading>
-                    <paragraph>
+                  <paragraph>
+                    <intro>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Calibri, sans-serif'">“Personal data shall be processed fairly and lawfully and, in particular, shall not be processed unless -</span></p>
+                    </intro>
+                    <subparagraph>
                       <num style="font-size:13pt">(a)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.77in"><span style="font-family:'Calibri, sans-serif'">at least one of the conditions in Schedule 2 is met, and</span></p>
                       </content>
-                    </paragraph>
-                    <paragraph>
+                    </subparagraph>
+                    <subparagraph>
                       <num style="font-size:13pt">(b)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.77in"><span style="font-family:'Calibri, sans-serif'">in the case of sensitive personal data, at least one of the conditions in Schedule 3 is also met.”</span></p>
                       </content>
-                    </paragraph>
-                  </level>
+                    </subparagraph>
+                  </paragraph>
                 </embeddedStructure>
               </block>
               <p class="ParaNoNumber"><span style="font-family:'Calibri, sans-serif'">The other seven data protection principles, in summary, require personal data: (2) to be obtained and processed only for specified and lawful purposes; (3) to be “adequate, relevant, and not excessive” in relation to those purposes; (4) to be accurate and, where necessary, kept up to date; (5) not to be kept for longer than is necessary for those purposes; (6) to be processed in accordance with the rights of data subjects under the Act; (7) to be protected by appropriate technical and organisational security measures against unauthorised or unlawful processing and against accidental loss or destruction or damage; and (8) not to be transferred outside the European Economic Area unless the destination country or territory provides an adequate level of protection for data subjects in relation to the processing of personal data.</span></p>
@@ -459,12 +461,10 @@
                         <p class="Quote" style="margin-left:1.67in"><span style="font-family:'Calibri, sans-serif'">the court may order that the claim be continued,</span></p>
                       </content>
                     </subparagraph>
-                  </paragraph>
-                  <level>
-                    <content>
+                    <wrapUp>
                       <p class="Quote" style="margin-left:1in"><span style="font-family:'Calibri, sans-serif'">by or against one or more of the persons who have the same interest as representatives of any other persons who have that interest.</span></p>
-                    </content>
-                  </level>
+                    </wrapUp>
+                  </paragraph>
                   <paragraph>
                     <num style="font-size:13pt">(2)</num>
                     <content>
@@ -1110,10 +1110,6 @@
                       </content>
                     </subparagraph>
                   </paragraph>
-                </embeddedStructure>
-              </block>
-              <block name="embeddedStructure">
-                <embeddedStructure>
                   <paragraph>
                     <num style="font-size:13pt">(3)</num>
                     <content>
@@ -1429,26 +1425,26 @@
               <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">Nor is the claimant’s case assisted by section 14 of the DPA 1998, on which reliance is placed. Section 14(1) gives the court power, on the application of a data subject, to order a data controller to rectify, block, erase or destroy personal data if satisfied that the data are inaccurate. Section 14(4) states:</p>
               <block name="embeddedStructure">
                 <embeddedStructure>
-                  <level>
-                    <heading class="Quote" style="margin-left:1in"><span style="font-family:'Calibri, sans-serif'">“If a court is satisfied on the application of a data subject -</span></heading>
-                    <paragraph>
+                  <paragraph>
+                    <intro>
+                      <p class="Quote" style="margin-left:1in"><span style="font-family:'Calibri, sans-serif'">“If a court is satisfied on the application of a data subject -</span></p>
+                    </intro>
+                    <subparagraph>
                       <num style="font-size:13pt">(a)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Calibri, sans-serif'">that he has suffered damage by reason of any contravention by a data controller of any of the requirements of this Act in respect of any personal data, in circumstances entitling him to compensation under section 13, and</span></p>
                       </content>
-                    </paragraph>
-                    <paragraph>
+                    </subparagraph>
+                    <subparagraph>
                       <num style="font-size:13pt">(b)</num>
                       <content>
                         <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Calibri, sans-serif'">that there is a substantial risk of further contravention in respect of those data in such circumstances,</span></p>
                       </content>
-                    </paragraph>
-                  </level>
-                  <level>
-                    <content>
+                    </subparagraph>
+                    <wrapUp>
                       <p class="Quote" style="margin-left:1in"><span style="font-family:'Calibri, sans-serif'">the court may order the rectification, blocking, erasure or destruction of any of those data.”</span></p>
-                    </content>
-                  </level>
+                    </wrapUp>
+                  </paragraph>
                 </embeddedStructure>
               </block>
             </content>

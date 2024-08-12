@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056/data.xml" />
-          <FRBRdate date="2024-05-27T19:36:43" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:32" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>3056</uk:number>
         <uk:cite>[2023] EWHC 3056 (Ch)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>9e8d8e35ba95486c9bf89b2e4d4757b475afe4f478f663dbdd0ba4c87f0513c0</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -893,14 +893,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(3)</num>
-            <intro>
+            <content>
               <p class="BodyText" style="margin-left:0.79in">The overarching question for the court is how far back in the queue, and relative to each other, have Claims C and D agreed to stand. As Lewison LJ put it in <span style="font-style:italic">ECAPS1</span> at ([17]):</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:1in"><span style="font-style:italic">“Given that a creditor cannot, by agreement with the debtor, advance his position in the queue from where it would otherwise have been, the question that arises in relation to each instrument is how far back in the queue the creditor has agreed to stand.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:1in"><span style="font-style:italic">“Given that a creditor cannot, by agreement with the debtor, advance his position in the queue from where it would otherwise have been, the question that arises in relation to each instrument is how far back in the queue the creditor has agreed to stand.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(4)</num>
@@ -1095,14 +1099,18 @@
           </intro>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(1)</num>
-            <intro>
+            <content>
               <p class="BodyText" style="margin-left:0.79in">The decision in <span style="font-style:italic">Waterfall I </span>is determinative of this case. In <span style="font-style:italic">Waterfall I</span>, the subordination clauses in the loan agreements concerned (revolving credit facilities) were in exactly the same terms as those in Claim C (see [40]).  Lord Neuberger PSC concluded (at [56]) that statutory interest (a) was a Liability payable by the company, which (b) fell within the definition of <span style="font-style:italic">Senior Liabilities </span>which (c) <span style="font-style:italic">“under the terms of the loan agreements…enjoys priority over the repayment of subordinated debt”</span>. That makes clear that (i) statutory interest need not all be paid at the same time, irrespective of how the underlying claims rank, (ii) it is perfectly possible for the terms of a loan agreement to accord priority in respect of statutory interest, and (iii) the effect of the provisions was to do just that. Ranking is to be determined as between two claimants by reference to the subordination provisions governing their lending, not according to whether they are subordinated or unsubordinated as a matter of composite description. Just as Claim D could not be proved before payment in full of <span style="font-style:italic">“Senior Liabilities” </span>in the form of unsubordinated debt (including statutory interest and non-provable liabilities) so too Claim C could not be proved until Claim D, as a <span style="font-style:italic">“Senior Liability” </span>had likewise been paid in respect not only of principal, but the other liabilities due to be satisfied. In this case, Claim D is a <span style="font-style:italic">Senior Liability </span>for the purposes of Claim C’s subordination provisions, in just the same way that the unsubordinated debts were <span style="font-style:italic">Senior Liabilities </span>for the purposes of the identical subordination provisions considered in <span style="font-style:italic">Waterfall I.</span> Ms Hilliard concluded (taking this from her skeleton argument) that</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:1.18in">“Accordingly, the Supreme Court has already established that statutory interest on <span style="font-style:italic">Senior Liabilities</span>, such as Claim D in comparison to Claim C, is payable in priority to the principal on the subordinated debt of Claim C.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:1.18in">“Accordingly, the Supreme Court has already established that statutory interest on <span style="font-style:italic">Senior Liabilities</span>, such as Claim D in comparison to Claim C, is payable in priority to the principal on the subordinated debt of Claim C.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(2)</num>
@@ -1476,20 +1484,24 @@
         </paragraph>
         <paragraph eId="para_81">
           <num>81.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">As to this, DB (by Application Notice dated 27 April 2023) formally applied to strike out each of the Issues numbered (1), (4) and (5) on the basis that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in">“the bringing or pursuing of those issues is precluded by the doctrines of cause of action estoppel, issue estoppel and/or abuse of process in circumstances where Priority Issues 1, 4 and 5 seek the determination of issues that were either decided and/or could and should have been raised for determination in a previous application made by the Joint Administrators dated 16 March 2018.”</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.39in">GP1 supported this position in its Position Papers, but stated that, “to avoid duplication”, it would leave it to DB to advance those arguments.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in">“the bringing or pursuing of those issues is precluded by the doctrines of cause of action estoppel, issue estoppel and/or abuse of process in circumstances where Priority Issues 1, 4 and 5 seek the determination of issues that were either decided and/or could and should have been raised for determination in a previous application made by the Joint Administrators dated 16 March 2018.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_15">
+          <content>
+            <p class="BodyText" style="margin-left:0.39in">GP1 supported this position in its Position Papers, but stated that, “to avoid duplication”, it would leave it to DB to advance those arguments.</p>
+          </content>
+        </level>
         <paragraph eId="para_82">
           <num>82.</num>
           <content>
@@ -1532,21 +1544,25 @@
             <p class="BodyText" style="margin-left:0.39in">The parties’ respective submissions were considerably elaborated by reference to numerous authorities. However, in the course of the hearing it became clear, and although I consider more briefly the issue of estoppel, I took it to be accepted, that the real battleground was whether LBHI’s conduct amounted to an abuse of process.</p>
           </content>
         </paragraph>
-        <level eId="lvl_15">
+        <level eId="lvl_16">
           <content>
             <p class="BodyText"><span style="font-style:italic">Cause of action estoppel, issue estoppel and abuse of process distinguished</span></p>
           </content>
         </level>
         <paragraph eId="para_89">
           <num>89.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">It is necessary to distinguish (as DB’s Application Notice did) between three distinct doctrines sometimes compendiously referred to under the portmanteau <span style="font-style:italic">‘res judicata’</span>: (a) cause of action estoppel, (b) issue estoppel and (c) abuse of process. That is so even though, as Lord Bingham of Cornhill stated in <span style="font-style:italic">Johnson v Gore-Wood &amp; Co </span>[2002] 2 AC 1 (at page 31):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in"><marker name="tab" /><span style="font-style:italic">“The underlying public interest is the same: that there should be finality in litigation and that a party should not be twice vexed in the same matter. This public interest is reinforced by the current emphasis on efficiency and economy in the conduct of litigation, in the interests of parties and the public as a whole.” </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in"><marker name="tab" /><span style="font-style:italic">“The underlying public interest is the same: that there should be finality in litigation and that a party should not be twice vexed in the same matter. This public interest is reinforced by the current emphasis on efficiency and economy in the conduct of litigation, in the interests of parties and the public as a whole.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_90">
           <num>90.</num>
@@ -1593,7 +1609,7 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level eId="lvl_16">
+        <level eId="lvl_17">
           <content>
             <p class="BodyText" style="margin-left:0.39in;text-indent:-0.39in"><span style="font-style:italic">Res judicata </span></p>
           </content>
@@ -1610,21 +1626,25 @@
             <p class="BodyText" style="margin-left:0.39in">Indeed, my understanding was and is that Ms Tolaney accepted in her oral submissions on the second day of the substantive hearing that the point was not expressly argued or determined in either case,<span style="font-style:italic"> </span>and that she instead relied on issue estoppel or abuse of process. In my judgment, her concession that this is not a case of <span style="font-style:italic">res judicata </span>or cause of action estoppel was correct.</p>
           </content>
         </paragraph>
-        <level eId="lvl_17">
+        <level eId="lvl_18">
           <content>
             <p class="BodyText"><span style="font-style:italic">Issue estoppel</span></p>
           </content>
         </level>
         <paragraph eId="para_95">
           <num>95.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">In DB’s skeleton argument it had been submitted that “there can be no doubt that [the Court of Appeal’s determination in <span style="font-style:italic">ECAPS1</span>]<span style="font-style:italic"> </span>gave rise to an issue estoppel binding on all parties to the <span style="font-style:italic">ECAPS 1 Proceedings</span>, including LBHI and the PLC Administrators” given that the Court of Appeal had determined in <span style="font-style:italic">ECAPS1 </span>that (quoting from their order):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in">“<span style="font-style:italic">The claims of […] (“GP1”) under […] (the “PLC Sub-Notes”) rank for distribution in priority to the claims of LBHI under the PLC Sub-Debt”.</span><authorialNote class="footnote" marker="9"><p class="FootnoteText" style="margin-left:0.39in"><span style="font-size:10.5pt"> </span><marker name="tab" />Paragraph 4 of the Order of the Court of Appeal</p></authorialNote></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in">“<span style="font-style:italic">The claims of […] (“GP1”) under […] (the “PLC Sub-Notes”) rank for distribution in priority to the claims of LBHI under the PLC Sub-Debt”.</span><authorialNote class="footnote" marker="9"><p class="FootnoteText" style="margin-left:0.39in"><span style="font-size:10.5pt"> </span><marker name="tab" />Paragraph 4 of the Order of the Court of Appeal</p></authorialNote></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_96">
           <num>96.</num>
@@ -1681,7 +1701,7 @@
             <p class="BodyText" style="margin-left:0.39in">In my judgment, therefore, no issue estoppel has been shown such as to preclude the argument that LBHI has raised in this case. I accept, however, that the confluence between the issues raised and the approach of the Court of Appeal in <span style="font-style:italic">ECAPS1,</span> and the issue and the approach I have adopted to it in this case, is marked; and the question whether LBHI’s argument now is <span style="font-style:italic">Henderson v Henderson abuse</span> is more arguable.</p>
           </content>
         </paragraph>
-        <level eId="lvl_18">
+        <level eId="lvl_19">
           <content>
             <p class="BodyText"><span style="font-style:italic">Abuse of Process</span></p>
           </content>
@@ -1694,14 +1714,18 @@
         </paragraph>
         <paragraph eId="para_102">
           <num>102.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">To quote again Lord Bingham’s speech in <span style="font-style:italic">Johnson v Gore Wood &amp; Co </span>(at page 90, <span style="font-style:italic">supra</span>):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in">“<span style="font-style:italic">The bringing of a claim or the raising of a defence in later proceedings may, without more, amount to abuse if the court is satisfied (the onus being on the party alleging abuse) that the claim or defence should have been raised in the earlier proceedings if it was to be raised at all. I would not accept that it is necessary, before abuse may be found, to identify any additional element such as a collateral attack on a previous decision or some dishonesty, but where those elements are present the later proceedings will be much more obviously abusive, and there will rarely be a finding of abuse unless the later proceeding involves what the court regards as unjust harassment of a party. It is, however, wrong to hold that because a matter could have been raised in earlier proceedings it should have been so as to render the raising of it in later proceedings necessarily abusive. That is to adopt too dogmatic an approach to what should in my opinion be a broad, merits-based judgment which takes account of the public and private interests involved and also takes account of all the facts of the case, focusing attention on the crucial question whether, in all the circumstances, a party is misusing or abusing the process of the court by seeking to raise before it the issue which could have been raised before. As one cannot comprehensively list all possible forms of abuse, so one cannot formulate any hard and fast rule to determine whether, on given facts, abuse is to be found or not”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in">“<span style="font-style:italic">The bringing of a claim or the raising of a defence in later proceedings may, without more, amount to abuse if the court is satisfied (the onus being on the party alleging abuse) that the claim or defence should have been raised in the earlier proceedings if it was to be raised at all. I would not accept that it is necessary, before abuse may be found, to identify any additional element such as a collateral attack on a previous decision or some dishonesty, but where those elements are present the later proceedings will be much more obviously abusive, and there will rarely be a finding of abuse unless the later proceeding involves what the court regards as unjust harassment of a party. It is, however, wrong to hold that because a matter could have been raised in earlier proceedings it should have been so as to render the raising of it in later proceedings necessarily abusive. That is to adopt too dogmatic an approach to what should in my opinion be a broad, merits-based judgment which takes account of the public and private interests involved and also takes account of all the facts of the case, focusing attention on the crucial question whether, in all the circumstances, a party is misusing or abusing the process of the court by seeking to raise before it the issue which could have been raised before. As one cannot comprehensively list all possible forms of abuse, so one cannot formulate any hard and fast rule to determine whether, on given facts, abuse is to be found or not”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_103">
           <num>103.</num>
@@ -1758,14 +1782,18 @@
         </paragraph>
         <paragraph eId="para_106">
           <num>106.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">Ms Tolaney advanced this under the banner of what she referred to as <span style="font-style:italic">“the Aldi Stores rule”, </span>after the decision of Thomas LJ (as he then was) in <span style="font-style:italic">Aldi Stores Ltd v WSP Group Plc</span> [2007] EWCA Civ 1260, [2008] 1 WLR 748. In that case, although (reversing the judge at first instance) the Court of Appeal concluded that Aldi’s decision to proceed with a cause of action in a subsequent and separate claim was not a misuse or abuse of the process of the court, Thomas LJ ended his judgment with the following prescription for the future, with which the rest of the Court (Wall and Longmore LJJ), agreed:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“…for the future, if a similar issue arises in complex commercial multi-party litigation, it must be referred to the court seised of the proceedings. It is plainly not in the interests of the parties, but also in the public interest and in the interest of the efficient use of court resources that this is done. There can be no excuse for failure to do so in the future.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“…for the future, if a similar issue arises in complex commercial multi-party litigation, it must be referred to the court seised of the proceedings. It is plainly not in the interests of the parties, but also in the public interest and in the interest of the efficient use of court resources that this is done. There can be no excuse for failure to do so in the future.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_107">
           <num>107.</num>
@@ -1834,14 +1862,18 @@
           </intro>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(1)</num>
-            <intro>
+            <content>
               <p class="BodyText" style="margin-left:0.79in">There was, at the time of both <span style="font-style:italic">ECAPS1 proceedings</span>, considerable legal and economic uncertainty as to the quantum of prospective funds in the PLC estate, and correspondingly, as to whether any funds would be available for any subordinated claims. That depended upon whether there would be any amounts paid to PLC by LBHI2 and thus upon the outcome of LBHI2’s application. Put shortly, PLC had to win on the issue raised in the LBHI2 Application in order to be able to pay anything at all to its subordinated creditors. If PLC had not won on that issue, the outstanding substantive issue in these proceedings would not have arisen. This was graphically illustrated in the Lehman Funds Flow Chart dated 15 November 2019 (“the Funds Flow”) which was handed up at first instance in the <span style="font-style:italic">ECAPS1 Proceedings </span>(and is appended to this judgment as Appendix 1); the range was summarised in the PLC JAs’ Progress Report dated 10 October 2019 where it was stated that:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:1in"><span style="font-style:italic">“PLC currently estimates that it may make no significant recoveries (in which case its unsecured unsubordinated creditors will not receive full statutory interest) or may have up to £600m as a surplus after payment in full of unsecured unsubordinated creditors plus statutory interest.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:1in"><span style="font-style:italic">“PLC currently estimates that it may make no significant recoveries (in which case its unsecured unsubordinated creditors will not receive full statutory interest) or may have up to £600m as a surplus after payment in full of unsecured unsubordinated creditors plus statutory interest.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(2)</num>
@@ -1851,14 +1883,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(3)</num>
-            <intro>
+            <content>
               <p class="BodyText" style="margin-left:0.79in">In fact, it was not, for some time at least, the preferred approach of the respective JAs of LBHI2 and PLC that the PLC issues be adjudicated at the same time as the LBHI2 issues. It was principally LBHI which argued that the claims of PLC’s subordinated creditors should be determined together with the LBHI2 issues, given similarities between the ranking issues at LBHI2 and PLC. Their inclusion in the menu was the result of negotiation. It is clear from evidence filed by the PLC JAs that they ultimately agreed to the inclusion of the issue in light of the clearly delineated disagreement between the parties on the substantive issue as to the priority ranking of PLC’s subordinated obligations. Mr Geraghty, on behalf of LBHI, described this as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:1in"><span style="font-style:italic">“The menu of issues covered in Sub-Debt1 was the result of negotiation and consideration between the parties, which sought to ensure that a number of issues, time and cost of the application was proportionate, at a time when the economic outcome of each estate was still uncertain, while being comprehensive enough to facilitate distributions and progress in the administration of the LBHI2 and PLC estates.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:1in"><span style="font-style:italic">“The menu of issues covered in Sub-Debt1 was the result of negotiation and consideration between the parties, which sought to ensure that a number of issues, time and cost of the application was proportionate, at a time when the economic outcome of each estate was still uncertain, while being comprehensive enough to facilitate distributions and progress in the administration of the LBHI2 and PLC estates.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(4)</num>
@@ -1868,14 +1904,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(5)</num>
-            <intro>
+            <content>
               <p class="BodyText" style="margin-left:0.79in">The parties never debated statutory interest on subordinated debts, nor was any thought given to its inclusion on the ‘menu’ of issues for determination. There was no mention of IR 14.23(7). The focus as to the PLC estate was on priority of claims to principal: even these were uncertain to arise, and any potential for payment of statutory interest on subordinated debts was even more uncertain. The point could have been raised by any of the parties, but none did so. As stated in the PLC JAs’ skeleton argument in these proceedings:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:1in">“Both applications [<span style="font-style:italic">ECAPS1 </span>and this application] reflected the issues which the interested parties specified at the time as being in dispute. It was not for the JAs in the <span style="font-style:italic">ECAPS1 Proceedings</span> to ask the Court to determine issues which nobody had brought forward.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:1in">“Both applications [<span style="font-style:italic">ECAPS1 </span>and this application] reflected the issues which the interested parties specified at the time as being in dispute. It was not for the JAs in the <span style="font-style:italic">ECAPS1 Proceedings</span> to ask the Court to determine issues which nobody had brought forward.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.79in;text-indent:-0.39in">(6)</num>

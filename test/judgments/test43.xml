@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-          <FRBRdate date="2024-05-31T17:41:58" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:57" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2022</uk:year>
         <uk:number>343</uk:number>
         <uk:cite>[2022] UKFTT 343 (TC)</uk:cite>
-        <uk:parser>0.24.1</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>dd30d8828f0e0b2cdc637c46577fe248a2c4a6f92ba93353052ffcf00c75a782</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -190,61 +190,73 @@
           </paragraph>
           <paragraph eId="para_13">
             <num>13.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">However, in his Skeleton Argument, Mr Kamal stated that:</p>
-            </intro>
-            <subparagraph>
-              <num>“1.</num>
-              <content>
-                <p class="Taxbodytext1" style="text-indent:0.39in">The arguments of the three appellants overlap to a significant extent.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>2.</num>
-              <intro>
-                <p class="Taxbodytext1" style="text-indent:0.39in">In simple terms, the three appellants each maintain that:-</p>
-              </intro>
-              <subparagraph>
-                <num style="margin-left:0.5in">(1)</num>
-                <content>
-                  <p class="Taxbodytext2" style="margin-left:0.5in;text-indent:0.38in">Contributions were made by them to remuneration trusts in the years assessed.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.5in">(2)</num>
-                <content>
-                  <p class="Taxbodytext2" style="margin-left:0.5in;text-indent:0.38in">The “wholly and exclusively” rule governing deductibility as contained in section 34 Income Tax (Trading and Other Income) Act 2005 (“ITTOIA”) ought to be construed in accordance with the laws of the European Union (“EU”).</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.5in">(3)</num>
-                <content>
-                  <p class="Taxbodytext2" style="margin-left:0.5in;text-indent:0.38in">The contributions were a deductible expense for the purposes of the trade carried out by them and ought therefore to be deductible in computing their profits, how so ever the rule is construed.” </p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“1.</num>
+                    <content>
+                      <p class="Taxbodytext1" style="text-indent:0.39in">The arguments of the three appellants overlap to a significant extent.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>2.</num>
+                    <intro>
+                      <p class="Taxbodytext1" style="text-indent:0.39in">In simple terms, the three appellants each maintain that:-</p>
+                    </intro>
+                    <subparagraph>
+                      <num style="margin-left:0.5in">(1)</num>
+                      <content>
+                        <p class="Taxbodytext2" style="margin-left:0.5in;text-indent:0.38in">Contributions were made by them to remuneration trusts in the years assessed.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.5in">(2)</num>
+                      <content>
+                        <p class="Taxbodytext2" style="margin-left:0.5in;text-indent:0.38in">The “wholly and exclusively” rule governing deductibility as contained in section 34 Income Tax (Trading and Other Income) Act 2005 (“ITTOIA”) ought to be construed in accordance with the laws of the European Union (“EU”).</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.5in">(3)</num>
+                      <content>
+                        <p class="Taxbodytext2" style="margin-left:0.5in;text-indent:0.38in">The contributions were a deductible expense for the purposes of the trade carried out by them and ought therefore to be deductible in computing their profits, how so ever the rule is construed.” </p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_14">
             <num>14.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Although there is doubt about the status of the second appellant’s amended grounds of appeal (i.e. the second version of the first appellant’s grounds of appeal,) as far as the first sub-paragraph above is concerned it was stated that:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“The Appellant appeals each of the assessments raised by HMRC.  The Appellant made contributions (‘the Contributions’) to a trust (‘the Trust’).  Under the terms of the arrangement with the Trust, the contributed funds were held in a Personal Management Company (or ‘PMC’).  The PMC held the funds in a fiduciary capacity on behalf of the Trust.  A certain fraction of the contributions were applied in meeting the ongoing legal fees (‘Legal Fees’) of the providers of the trust services.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“The Appellant appeals each of the assessments raised by HMRC.  The Appellant made contributions (‘the Contributions’) to a trust (‘the Trust’).  Under the terms of the arrangement with the Trust, the contributed funds were held in a Personal Management Company (or ‘PMC’).  The PMC held the funds in a fiduciary capacity on behalf of the Trust.  A certain fraction of the contributions were applied in meeting the ongoing legal fees (‘Legal Fees’) of the providers of the trust services.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_15">
             <num>15.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">In the amended grounds of Appeal for the third appellant it stated:- </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">“The Appellant made contributions to a trust (“the Contributions”). This was done through funds becoming held on behalf of the trust by the Appellant/in a PMC”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">“The Appellant made contributions to a trust (“the Contributions”). This was done through funds becoming held on behalf of the trust by the Appellant/in a PMC”.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_16">
             <num>16.</num>
@@ -673,14 +685,18 @@
           </paragraph>
           <paragraph eId="para_72">
             <num>72.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Moor Green responded on 10 June 2019 stating:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">“It is noted you wish ‘tangible’ evidence and (sic) appreciate the usual meaning of this term in the circumstances. It should be stated that we have previously stated there is no evidence and an explanation was provided. While you may wish ‘tangible’ evidence we suggest that the ‘explanation is tangible’…”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">“It is noted you wish ‘tangible’ evidence and (sic) appreciate the usual meaning of this term in the circumstances. It should be stated that we have previously stated there is no evidence and an explanation was provided. While you may wish ‘tangible’ evidence we suggest that the ‘explanation is tangible’…”.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_73">
             <num>73.</num>
@@ -690,24 +706,28 @@
           </paragraph>
           <paragraph eId="para_74">
             <num>74.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">On 12 September 2019, Moor Green wrote to HMRC stating:-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">“… the initial contribution was made by and on behalf of the taxpayer …  the taxpayer borrowed sufficient cash to enable her (sic) to make contributions to the Trust in the total amount as stated.  As the borrowings were effected via internal client accounts of the Trustee and third parties, these would not necessarily appear on the bank statements nor would related evidential documentation be provided to the tax payer.  We would confirm that the taxpayer would not have access to any such third-party confidential documentation in this regard …  </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">Our client relied on professional advice which was given verbally. We would confirm that our client possesses significant business and commercial acumen and did not require the retention of written correspondence in order to comprehend the contributions made and the expenses claimed vis-<span style="font-family:'Times New Roman'">à</span>-vis signing off on the accounts …</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">Due to the passage of time our client is unable to recall who provided the initial advice.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">“… the initial contribution was made by and on behalf of the taxpayer …  the taxpayer borrowed sufficient cash to enable her (sic) to make contributions to the Trust in the total amount as stated.  As the borrowings were effected via internal client accounts of the Trustee and third parties, these would not necessarily appear on the bank statements nor would related evidential documentation be provided to the tax payer.  We would confirm that the taxpayer would not have access to any such third-party confidential documentation in this regard …  </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">Our client relied on professional advice which was given verbally. We would confirm that our client possesses significant business and commercial acumen and did not require the retention of written correspondence in order to comprehend the contributions made and the expenses claimed vis-<span style="font-family:'Times New Roman'">à</span>-vis signing off on the accounts …</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">Due to the passage of time our client is unable to recall who provided the initial advice.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_75">
             <num>75.</num>
@@ -792,14 +812,18 @@
           </paragraph>
           <paragraph eId="para_82">
             <num>82.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Moor Green wrote to HMRC on 26 May 2021 arguing that the contributions to the remuneration trust were “evidently” wholly and exclusively for the purposes of the “trade”. They stated :-</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.39in">“It is anticipated but not necessarily guaranteed that the business will benefit from adherence to the Remuneration Trust…It is understood in this case that the contribution may not necessarily result in improved economic performance but may result in or include improved relations and dealings with suppliers…Dr Cajdler’s adherence to the Trust is valid as a matter of trust law and the expense was wholly and exclusively for the purposes of the trade as confirmed above.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.39in">“It is anticipated but not necessarily guaranteed that the business will benefit from adherence to the Remuneration Trust…It is understood in this case that the contribution may not necessarily result in improved economic performance but may result in or include improved relations and dealings with suppliers…Dr Cajdler’s adherence to the Trust is valid as a matter of trust law and the expense was wholly and exclusively for the purposes of the trade as confirmed above.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_7">
@@ -878,14 +902,18 @@
           </paragraph>
           <paragraph eId="para_94">
             <num>94.</num>
-            <intro>
+            <content>
               <p style="margin-left:0in;text-indent:0.39in"><span style="font-family:'Times New Roman'">Some are more easily dismissed than others.  As an example, Moor Green asserted in the case of the first and second appellants that payments into the trust were wholly and exclusively for the purpose of the business because the appellants believed them to be for the benefit of the business. They went further in the original grounds of appeal for the first appellant where they stated:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:left;margin-left:0.39in"><span style="font-family:'Times New Roman'">“The clear intentions and beliefs of the Appellant’s advisers acting on the Appellant’s behalf and to which the Appellant evidently acquiesced, are attributable to the Appellant as his employed purpose.  This is key evidence for the purposes of determining the Appellant’s purpose in making the contribution”.</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:left;margin-left:0.39in"><span style="font-family:'Times New Roman'">“The clear intentions and beliefs of the Appellant’s advisers acting on the Appellant’s behalf and to which the Appellant evidently acquiesced, are attributable to the Appellant as his employed purpose.  This is key evidence for the purposes of determining the Appellant’s purpose in making the contribution”.</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_95">
             <num>95.</num>
@@ -1009,21 +1037,25 @@
           </paragraph>
           <paragraph eId="para_110">
             <num>110.</num>
-            <intro>
+            <content>
               <p style="margin-left:0in;text-indent:0.39in"> The Tribunal’s powers in relation to strike out are contained in Rule 8(3)(c) of the Rules which reads:-</p>
-            </intro>
-            <subparagraph>
-              <num>“(3)</num>
-              <content>
-                <p style="margin-left:0.2in">The Tribunal may strike out the whole or a part of the proceedings if –</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(c)</num>
-              <content>
-                <p style="margin-left:0.2in">the Tribunal considers there is no reasonable prospect of the appellant’s case, or part of it, succeeding.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“(3)</num>
+                    <content>
+                      <p style="margin-left:0.2in">The Tribunal may strike out the whole or a part of the proceedings if –</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>(c)</num>
+                    <content>
+                      <p style="margin-left:0.2in">the Tribunal considers there is no reasonable prospect of the appellant’s case, or part of it, succeeding.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_111">
             <num>111.</num>
@@ -1039,140 +1071,148 @@
           </paragraph>
           <paragraph eId="para_113">
             <num>113.</num>
-            <intro>
+            <content>
               <p style="margin-left:0in;text-indent:0.39in">As Stewart J observed in <span style="font-style:italic">Kimathi &amp; Ors v The Foreign and Commonwealth Office</span> [2018] EWHC 2066 (QB):</p>
-            </intro>
-            <subparagraph>
-              <num>“95.</num>
-              <intro>
-                <p style="margin-left:0.39in">In recent years there have been a number of first instance judgments which have helpfully crystallised and advanced learning in respect of the approach to evidence.  Three decisions in particular require citation.  These are:</p>
-              </intro>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:0.98in;text-indent:-0.2in">•</num>
-                <content>
-                  <p style="margin-left:0.98in"><span style="font-style:italic">Gestmin SGPS SA v Credit Suisse (UK) Limited</span> [2013] EWHC 3560 (Comm) – Leggatt J (as he then was)</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:0.98in;text-indent:-0.2in">•</num>
-                <content>
-                  <p style="margin-left:0.98in"><span style="font-style:italic">Lachaux v Lachaux</span> [2017] EWHC (Fam) – Mostyn J</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:0.98in;text-indent:-0.2in">•</num>
-                <content>
-                  <p style="margin-left:0.98in"><span style="font-style:italic">Carmarthenshire County Council v Y</span> [2017] EWFC 36 – Mostyn J</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>96.</num>
-              <content>
-                <p style="margin-left:0.39in;text-indent:0.11in">Rather than cite the relevant paragraphs from these judgments in full, I shall attempt to summarise the most important points:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>i)</num>
-              <intro>
-                <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-style:italic">Gestmin</span>:</p>
-              </intro>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">We believe memories to be more faithful than they are.  Two common errors are to suppose (1) that the stronger and more vivid the recollection, the more likely it is to be accurate; (2) the more confident another person is in their recollection, the more likely it is to be accurate.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">Memories are fluid and malleable, being constantly rewritten whenever they are retrieved.  This is even true of “flash bulb” memories (a misleading term), ie memories of experiencing or learning of a particularly shocking or traumatic event.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">Events can come to be recalled as memories which did not happen at all or which happened to somebody else.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">The process of civil litigation itself subjects the memories of witnesses to powerful biases.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">Considerable interference with memory is introduced in civil litigation by the procedure of preparing for trial.  Statements are often taken a long time after relevant events and drafted by a lawyer who is conscious of the significance for the issues in the case of what the witness does or does not say.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">The best approach from a judge is to base factual findings on inferences drawn from documentary evidence and known or probable facts.  “This does not mean that oral testimony serves no useful purpose …   Buts its value lies largely … in the opportunity which cross-examination affords to subject the documentary record to critical scrutiny and to gauge the personality, motivations and working practices of a witness, rather than in testimony of what the witness recalls of particular conversations and events.  Above all, it is important to avoid the fallacy of supposing that, because a witness has confidence in his or her recollection and is honest, evidence based on that recollection provides any reliable guide to the truth”.</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>ii)</num>
-              <intro>
-                <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-style:italic">Lachaux</span>:</p>
-              </intro>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">Mostyn J cited extensively from <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Gestmin</span><span style="font-style:italic"> </span>and referred to two passages in earlier authorities<span style="font-style:italic"> </span>(The dissenting speech of Lord Pearce in <span style="font-style:italic">Onassis and Calogeropoulos v Vergottis </span>[1968] 2 Lloyd’s Rep 403, 431; Robert Goff LJ in<span style="font-style:italic"> Armagas Ltd v Mundogas SA </span>[1985] 1 Lloyd’s Rep 1, 57).  I extract from those citations, and from Mostyn J’s judgment, the following:</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">“Witnesses, especially those who are emotional, who think they are morally in the right, tend very easily and unconsciously to conjure up a legal right that did not exist.  It is a truism, often used in accident cases, that with every day that passes the memory becomes fainter and the imagination becomes more active.  For that reason,  a witness, however honest, rarely persuades a judge that his present recollection is preferable to that which was taken down in writing immediately after the incident occurred.  Therefore, contemporary documents are always of the utmost importance…”</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">“… I have found it essential in cases of fraud, when considering the credibility of witnesses, always to test their veracity by reference to the objective fact proved independently of their testimony, in particular by reference to the documents in the case, and also to pay particular regard to their motives and to the overall probabilities…”</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">Mostyn J said of the latter quotation, “these wise words are surely of general application and are not confined to fraud cases … it is certainly often difficult to tell whether a witness is telling the truth and I agree with the view of Bingham J that the demeanour of a witness is not a reliable pointer to his or her honesty.”</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>iii)</num>
-              <intro>
-                <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-style:italic">Carmarthenshire County Council:</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <content>
-                  <p style="margin-left:1.08in">The general rule is that oral evidence given under cross-examination is the gold standard because it reflects the long-established common law consensus that the best way of assessing the reliability of evidence is by confronting the witness.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
-                <intro>
-                  <p style="margin-left:1.08in">However, oral evidence under cross-examination is far from the be all and end all of forensic proof.  Referring to paragraph 22 of <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Gestmin</span>, Mostyn J said:</p>
-                </intro>
-                <subparagraph>
-                  <content>
-                    <p style="margin-left:1.08in">“…this approach applies equally to all fact-finding exercises, especially where the facts in issue are in the distant past.  This approach does not dilute the importance that the law places on cross-examination as a vital component of due process, but it does place it in its correct context.”</p>
-                  </content>
-                </subparagraph>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>97.</num>
-              <content>
-                <p style="margin-left:0.39in;text-indent:0.11in">Of course, each case must depend on its facts and (a) this is not a commercial case (b) a central question is whether the core allegations happened at all, as well as the manner of the happening of an event and all the other material matters.  Nevertheless, they are important as a helpful general guide to evaluating oral evidence and the accuracy/reliability of memory.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“95.</num>
+                    <intro>
+                      <p style="margin-left:0.39in">In recent years there have been a number of first instance judgments which have helpfully crystallised and advanced learning in respect of the approach to evidence.  Three decisions in particular require citation.  These are:</p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:0.98in;text-indent:-0.2in">•</num>
+                      <content>
+                        <p style="margin-left:0.98in"><span style="font-style:italic">Gestmin SGPS SA v Credit Suisse (UK) Limited</span> [2013] EWHC 3560 (Comm) – Leggatt J (as he then was)</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:0.98in;text-indent:-0.2in">•</num>
+                      <content>
+                        <p style="margin-left:0.98in"><span style="font-style:italic">Lachaux v Lachaux</span> [2017] EWHC (Fam) – Mostyn J</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:0.98in;text-indent:-0.2in">•</num>
+                      <content>
+                        <p style="margin-left:0.98in"><span style="font-style:italic">Carmarthenshire County Council v Y</span> [2017] EWFC 36 – Mostyn J</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num>96.</num>
+                    <content>
+                      <p style="margin-left:0.39in;text-indent:0.11in">Rather than cite the relevant paragraphs from these judgments in full, I shall attempt to summarise the most important points:</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>i)</num>
+                    <intro>
+                      <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-style:italic">Gestmin</span>:</p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">We believe memories to be more faithful than they are.  Two common errors are to suppose (1) that the stronger and more vivid the recollection, the more likely it is to be accurate; (2) the more confident another person is in their recollection, the more likely it is to be accurate.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">Memories are fluid and malleable, being constantly rewritten whenever they are retrieved.  This is even true of “flash bulb” memories (a misleading term), ie memories of experiencing or learning of a particularly shocking or traumatic event.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">Events can come to be recalled as memories which did not happen at all or which happened to somebody else.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">The process of civil litigation itself subjects the memories of witnesses to powerful biases.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">Considerable interference with memory is introduced in civil litigation by the procedure of preparing for trial.  Statements are often taken a long time after relevant events and drafted by a lawyer who is conscious of the significance for the issues in the case of what the witness does or does not say.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">The best approach from a judge is to base factual findings on inferences drawn from documentary evidence and known or probable facts.  “This does not mean that oral testimony serves no useful purpose …   Buts its value lies largely … in the opportunity which cross-examination affords to subject the documentary record to critical scrutiny and to gauge the personality, motivations and working practices of a witness, rather than in testimony of what the witness recalls of particular conversations and events.  Above all, it is important to avoid the fallacy of supposing that, because a witness has confidence in his or her recollection and is honest, evidence based on that recollection provides any reliable guide to the truth”.</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num>ii)</num>
+                    <intro>
+                      <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-style:italic">Lachaux</span>:</p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">Mostyn J cited extensively from <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Gestmin</span><span style="font-style:italic"> </span>and referred to two passages in earlier authorities<span style="font-style:italic"> </span>(The dissenting speech of Lord Pearce in <span style="font-style:italic">Onassis and Calogeropoulos v Vergottis </span>[1968] 2 Lloyd’s Rep 403, 431; Robert Goff LJ in<span style="font-style:italic"> Armagas Ltd v Mundogas SA </span>[1985] 1 Lloyd’s Rep 1, 57).  I extract from those citations, and from Mostyn J’s judgment, the following:</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">“Witnesses, especially those who are emotional, who think they are morally in the right, tend very easily and unconsciously to conjure up a legal right that did not exist.  It is a truism, often used in accident cases, that with every day that passes the memory becomes fainter and the imagination becomes more active.  For that reason,  a witness, however honest, rarely persuades a judge that his present recollection is preferable to that which was taken down in writing immediately after the incident occurred.  Therefore, contemporary documents are always of the utmost importance…”</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">“… I have found it essential in cases of fraud, when considering the credibility of witnesses, always to test their veracity by reference to the objective fact proved independently of their testimony, in particular by reference to the documents in the case, and also to pay particular regard to their motives and to the overall probabilities…”</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">Mostyn J said of the latter quotation, “these wise words are surely of general application and are not confined to fraud cases … it is certainly often difficult to tell whether a witness is telling the truth and I agree with the view of Bingham J that the demeanour of a witness is not a reliable pointer to his or her honesty.”</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num>iii)</num>
+                    <intro>
+                      <p style="margin-left:0.39in;text-indent:0.11in"><span style="font-style:italic">Carmarthenshire County Council:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">The general rule is that oral evidence given under cross-examination is the gold standard because it reflects the long-established common law consensus that the best way of assessing the reliability of evidence is by confronting the witness.</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-family:Symbol;margin-left:1.08in;text-indent:-0.3in">•</num>
+                      <content>
+                        <p style="margin-left:1.08in">However, oral evidence under cross-examination is far from the be all and end all of forensic proof.  Referring to paragraph 22 of <span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Gestmin</span>, Mostyn J said:</p>
+                        <block name="embeddedStructure">
+                          <embeddedStructure>
+                            <level>
+                              <content>
+                                <p style="margin-left:1.08in">“…this approach applies equally to all fact-finding exercises, especially where the facts in issue are in the distant past.  This approach does not dilute the importance that the law places on cross-examination as a vital component of due process, but it does place it in its correct context.”</p>
+                              </content>
+                            </level>
+                          </embeddedStructure>
+                        </block>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num>97.</num>
+                    <content>
+                      <p style="margin-left:0.39in;text-indent:0.11in">Of course, each case must depend on its facts and (a) this is not a commercial case (b) a central question is whether the core allegations happened at all, as well as the manner of the happening of an event and all the other material matters.  Nevertheless, they are important as a helpful general guide to evaluating oral evidence and the accuracy/reliability of memory.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_114">
             <num>114.</num>
@@ -1370,7 +1410,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-                <FRBRdate date="2024-05-31T17:41:59" name="transform" />
+                <FRBRdate date="2024-08-12T19:21:57" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

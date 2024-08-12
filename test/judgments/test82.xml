@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2024/14/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2024/14/data.xml" />
-          <FRBRdate date="2024-05-27T19:13:25" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:36" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -49,7 +49,7 @@
         <uk:year>2024</uk:year>
         <uk:number>14</uk:number>
         <uk:cite>[2024] UKSC 14</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>13afde9f782d9046396599b3742020dae6b8cdb420757be9dec859c8efd82ae3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -511,21 +511,23 @@
             <p class="ParaApprovedLevel1" style="margin-left:0in;text-indent:0.5in">By an order dated 13 May 2021, Jacobs J granted the Buyers permission to appeal the Awards under section 69 of the Act on the following question of law:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Where goods sold C&amp;F free out are located at their discharge port on the date of the buyer’s default, is “the actual or estimated value of the goods, on the date of default” under sub-clause (c) of the GAFTA Default Clause to be assessed by reference to</span></heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">“Where goods sold C&amp;F free out are located at their discharge port on the date of the buyer’s default, is “the actual or estimated value of the goods, on the date of default” under sub-clause (c) of the GAFTA Default Clause to be assessed by reference to</span></p>
+                  </intro>
+                  <subparagraph>
                     <num>(A)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the market value of goods at that discharge port (where they are located on the date of default); or</span></p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(B)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">the theoretical cost on the date of default of (i) buying those goods FOB at the original port of shipment plus (ii) the market freight rate for transporting the goods from that port to the discharge port free out?”</span></p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -744,12 +746,10 @@
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-family:'Times New Roman'">set aside the award in whole or in part.</span></p>
                     </content>
                   </subparagraph>
-                </paragraph>
-                <level>
-                  <content>
+                  <wrapUp>
                     <p class="Quote" style="margin-left:1in"><span style="font-family:'Times New Roman'">The court shall not exercise its power to set aside an award, in whole or in part, unless it is satisfied that it would be inappropriate to remit the matters in question to the tribunal for reconsideration.</span></p>
-                  </content>
-                </level>
+                  </wrapUp>
+                </paragraph>
                 <paragraph>
                   <num>(8)</num>
                   <content>

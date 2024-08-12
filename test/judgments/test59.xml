@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/data.xml" />
-          <FRBRdate date="2024-05-31T17:47:00" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>117</uk:number>
         <uk:cite>[2023] UKUT 117 (IAC)</uk:cite>
-        <uk:parser>0.24.1</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>4afdf77dc3a67ee855f57c3529ae689f3979f0d099366aa71b781dea67f5ca18</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -324,27 +324,31 @@
             </subparagraph>
             <subparagraph>
               <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.18in;text-indent:-0.39in">g.</num>
-              <intro>
+              <content>
                 <p class="p" style="margin-left:1.18in"><span style="font-size:11pt">On appeal,  Upper Tribunal Judge Kebede</span><span style="font-family:BookAntiqua"> </span><span style="font-size:11pt">concluded that Judge Devittie materially erred in law in reaching the decision that he did, on risk on return to the DRC and set aside his decision. The preserved findings of First-tier Tribunal Judge Devittie in his decision dated 18 June 2019 are as follows:</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-size:11pt;font-family:'Book Antiqua'">“14.</num>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0.42in"><span style="font-size:11pt">I find that it is likely that the appellant has engaged in </span><span style="font-style:italic;font-size:11pt">sur place</span><span style="font-size:11pt"> activities solely to establish a basis for a protection claim. I do not therefore find that she holds convictions at such a level that she would upon her return to the DRC engage in active opposition to the regime.</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt;font-family:'Book Antiqua'">15.</num>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0.42in"><span style="font-size:11pt">I accept that she has taken part in </span><span style="font-style:italic;font-size:11pt">sur place</span><span style="font-size:11pt"> activity whose nature she has set out. Her evidence on this point is supported by the letter from the CSG office in London. I therefore accept that the appellant has taken part in the activities outlined and that she holds the office of President of the Women’s Liverpool branch of the CSG. I accept the evidence of the expert that the CSG has a high and public profile known to the authorities for its opposition to the regime of Kabila.</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt;font-family:'Book Antiqua'">16.</num>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0.42in"><span style="font-size:11pt">I consider that in the ordinary course of events this protection claim would have stood real prospects of success notwithstanding my finding that she has contrived to be an activist in order to provide a credible basis for her claim.”</span></p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <paragraph>
+                      <num style="font-size:11pt;font-family:'Book Antiqua'">“14.</num>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0.42in"><span style="font-size:11pt">I find that it is likely that the appellant has engaged in </span><span style="font-style:italic;font-size:11pt">sur place</span><span style="font-size:11pt"> activities solely to establish a basis for a protection claim. I do not therefore find that she holds convictions at such a level that she would upon her return to the DRC engage in active opposition to the regime.</span></p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt;font-family:'Book Antiqua'">15.</num>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0.42in"><span style="font-size:11pt">I accept that she has taken part in </span><span style="font-style:italic;font-size:11pt">sur place</span><span style="font-size:11pt"> activity whose nature she has set out. Her evidence on this point is supported by the letter from the CSG office in London. I therefore accept that the appellant has taken part in the activities outlined and that she holds the office of President of the Women’s Liverpool branch of the CSG. I accept the evidence of the expert that the CSG has a high and public profile known to the authorities for its opposition to the regime of Kabila.</span></p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt;font-family:'Book Antiqua'">16.</num>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0.42in"><span style="font-size:11pt">I consider that in the ordinary course of events this protection claim would have stood real prospects of success notwithstanding my finding that she has contrived to be an activist in order to provide a credible basis for her claim.”</span></p>
+                      </content>
+                    </paragraph>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
           </paragraph>
         </level>
@@ -420,45 +424,53 @@
           </paragraph>
           <paragraph eId="para_7">
             <num style="font-family:'Book Antiqua'">7.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">To put that guidance in context, as far as those with a political or military profile are concerned, the Tribunal said:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">“44.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">We confirm that there continues to be a real risk for those with a political or military profile. Each case must be judged on its own facts but it is possible now to provide a little more detail at least about those who fall within the "political profile" subcategory.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">45.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.25in"><span style="font-size:11pt">We would emphasise first of all that use of the word "profile" highlights the fact that this category is intended to mark out those whose actual or perceived military or political activities or involvements are likely to have brought them or to bring them to the adverse attention of the Kabila regime. Mere membership of an opposition political party will not demonstrate that a person has such a profile.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';margin-left:0.79in">46.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.25in"><span style="font-size:11pt">Bearing this point in mind, we accept that at the present time it is very dangerous to be an active member of the UDPS. The success of the ville morte action in bringing much of Kinshasa to a standstill in January 2005 has threatened the Kabila leadership. We accept Mr Kennes' evidence that UDPS militants abroad returning now would be at risk of detention. There is a much lesser risk for PALU members although this changes from time to time. According to Mr Kennes they tend to be released more easily than UDPS members. There is a potential risk for DPS members who are considered to be potential and actual collaborators or spies for Bemba and his MLC movement. The danger for high ranking MPR officials and their families has considerably diminished since the creation of the Transitional Government and depends on the position of persons held under the Mobutu regime. Those involved or believed to be involved in the assassination of President Kabila continue to be at risk of imprisonment and torture. The immigration and security services are still convinced that only part of the network that planned the assassination has been discovered and arrested.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">“44.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">We confirm that there continues to be a real risk for those with a political or military profile. Each case must be judged on its own facts but it is possible now to provide a little more detail at least about those who fall within the "political profile" subcategory.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">45.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.25in"><span style="font-size:11pt">We would emphasise first of all that use of the word "profile" highlights the fact that this category is intended to mark out those whose actual or perceived military or political activities or involvements are likely to have brought them or to bring them to the adverse attention of the Kabila regime. Mere membership of an opposition political party will not demonstrate that a person has such a profile.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Book Antiqua';margin-left:0.79in">46.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.25in"><span style="font-size:11pt">Bearing this point in mind, we accept that at the present time it is very dangerous to be an active member of the UDPS. The success of the ville morte action in bringing much of Kinshasa to a standstill in January 2005 has threatened the Kabila leadership. We accept Mr Kennes' evidence that UDPS militants abroad returning now would be at risk of detention. There is a much lesser risk for PALU members although this changes from time to time. According to Mr Kennes they tend to be released more easily than UDPS members. There is a potential risk for DPS members who are considered to be potential and actual collaborators or spies for Bemba and his MLC movement. The danger for high ranking MPR officials and their families has considerably diminished since the creation of the Transitional Government and depends on the position of persons held under the Mobutu regime. Those involved or believed to be involved in the assassination of President Kabila continue to be at risk of imprisonment and torture. The immigration and security services are still convinced that only part of the network that planned the assassination has been discovered and arrested.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_8">
             <num style="font-family:'Book Antiqua'">8.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">As far as ‘failed asylum seekers’ were concerned, the Tribunal said:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">“47.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The evidence presently before us does not satisfy us that there is any adequate evidential basis for taking a different view from current Tribunal jurisprudence that returned failed asylum seekers are not at real risk of persecution for that reason alone.  We accept that while there might be attempts to extract money from returnees the authorities are only interested in those who have or are perceived to have an ethnic, military or political profile identifying them as opponents to those in power. Mr Kennes confirms in his evidence that a person returning with valid, ordinary travel documents will not be at risk unless of interest to the authorities for these reasons.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">48.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.25in"><span style="font-size:11pt">If someone is identified as a failed asylum seeker but there are no known political charges against him, there is a risk that they may be required to pay a “fine”. Those who do not have charges against them or are otherwise not of interest to the authorities will be released upon payment of the fine….”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">“47.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The evidence presently before us does not satisfy us that there is any adequate evidential basis for taking a different view from current Tribunal jurisprudence that returned failed asylum seekers are not at real risk of persecution for that reason alone.  We accept that while there might be attempts to extract money from returnees the authorities are only interested in those who have or are perceived to have an ethnic, military or political profile identifying them as opponents to those in power. Mr Kennes confirms in his evidence that a person returning with valid, ordinary travel documents will not be at risk unless of interest to the authorities for these reasons.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">48.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.25in"><span style="font-size:11pt">If someone is identified as a failed asylum seeker but there are no known political charges against him, there is a risk that they may be required to pay a “fine”. Those who do not have charges against them or are otherwise not of interest to the authorities will be released upon payment of the fine….”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_9">
             <num style="font-family:'Book Antiqua'">9.</num>
@@ -468,56 +480,68 @@
           </paragraph>
           <paragraph eId="para_10">
             <num style="font-family:'Book Antiqua'">10.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">In <span style="text-decoration-line:underline;text-decoration-style:solid">MM (UDPS members – Risk on return) Democratic Republic of Congo CG</span> [2007] UKAIT 00023 (“<span style="text-decoration-line:underline;text-decoration-style:solid">MM (UDPS members)</span>”), the Tribunal summarised the guidance in its headnote in the following way:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“Despite indications from recent political events in the DRC that the UDPS is perceived as less of a threat than previously, the guidance given in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">AB and DM Democratic Republic of Congo</span><span style="font-size:11pt"> CG [2005] UKAIT 00118 and confirmed in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">MK DRC CG</span><span style="font-size:11pt"> [2006] UKAIT 00001 remains correct.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“Despite indications from recent political events in the DRC that the UDPS is perceived as less of a threat than previously, the guidance given in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">AB and DM Democratic Republic of Congo</span><span style="font-size:11pt"> CG [2005] UKAIT 00118 and confirmed in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">MK DRC CG</span><span style="font-size:11pt"> [2006] UKAIT 00001 remains correct.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_11">
             <num style="font-family:'Book Antiqua'">11.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">The Tribunal was concerned, in particular, with what had happened in the DRC since the start of 2006 with particular regard to the activities of the UDPS.  The Tribunal concluded that despite what appeared to be a dramatic change in the political landscape, it would be premature to conclude that the UDPS were no longer a political force or perceived as a threat to the regime.  The Tribunal said:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">“202.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">… we continue to believe that low level members/sympathisers of the UDPS for that reason alone, will not be at real risk on return to the DRC in the current climate, but conclude that it is too early in the process of the transition of the DRC to democratic rule, to find that there is no continuing threat on the part of the current Kabila regime to persecute UDPS activists.  As the Tribunal in AB and DM rightly observed, the risk category to those having or being perceived to have a military or political profile in opposition to the government is one that “fluctuates in accordance with the political situation.” (See paragraph 51(iii)) of their determination).</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">“202.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">… we continue to believe that low level members/sympathisers of the UDPS for that reason alone, will not be at real risk on return to the DRC in the current climate, but conclude that it is too early in the process of the transition of the DRC to democratic rule, to find that there is no continuing threat on the part of the current Kabila regime to persecute UDPS activists.  As the Tribunal in AB and DM rightly observed, the risk category to those having or being perceived to have a military or political profile in opposition to the government is one that “fluctuates in accordance with the political situation.” (See paragraph 51(iii)) of their determination).</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_12">
             <num style="font-family:'Book Antiqua'">12.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Finally, in <span style="text-decoration-line:underline;text-decoration-style:solid">BM and Others (returnees – criminal and non-criminal) DRC CG</span> [2015] UKUT 00293 (“<span style="text-decoration-line:underline;text-decoration-style:solid">BM and Others</span>”), the Tribunal considered whether the deportation or removal of any of the appellants from the UK to the DRC would expose them to a real risk of persecution within the framework of the Refugee Convention or serious harm contrary to Article 3.  The Tribunal summarised the guidance in its headnote:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">“1.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">A national of the Democratic Republic of Congo (“DRC”) who has acquired the status of foreign national offender in the United Kingdom is not, simply by virtue of such status, exposed to a real risk of persecution or serious harm or treatment proscribed by Article 3 ECHR in the event of enforced return to the DRC.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">2.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">A national of the DRC whose attempts to acquire refugee status in the United Kingdom have been unsuccessful is not, without more, exposed to a real risk of persecution or serious harm or proscribed treatment contrary to Article 3 ECHR in the event of enforced return to DRC.  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">3.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">A national of the DRC  who has a significant and visible profile within APARECO (UK) is, in the event of returning to his country of origin, at real risk of persecution for a Convention reason or serious harm or treatment proscribed by Article 3 ECHR by virtue of falling within one of the risk categories identified by the Upper Tribunal in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">MM (UDPS Members – Risk on Return) Democratic Republic of Congo</span><span style="font-size:11pt"> CG [2007] UKAIT 00023.  Those belonging to this category include persons who are, or are perceived to be, leaders, office bearers or spokespersons.  As a general rule, mere rank and file members are unlikely to fall within this category. However, each case will be fact sensitive, with particular attention directed to the likely knowledge and perceptions of DRC state agents.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">4.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The DRC authorities have an interest in certain types of convicted or suspected offenders, namely those who have unexecuted prison sentences in the DRC or in respect of whom there are unexecuted arrest warrants in the DRC or who allegedly committed an offence, such as document fraud, when departing the DRC.  Such persons are at real risk of imprisonment for lengthy periods and, hence, of treatment proscribed by Article 3 ECHR.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">“1.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">A national of the Democratic Republic of Congo (“DRC”) who has acquired the status of foreign national offender in the United Kingdom is not, simply by virtue of such status, exposed to a real risk of persecution or serious harm or treatment proscribed by Article 3 ECHR in the event of enforced return to the DRC.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">2.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">A national of the DRC whose attempts to acquire refugee status in the United Kingdom have been unsuccessful is not, without more, exposed to a real risk of persecution or serious harm or proscribed treatment contrary to Article 3 ECHR in the event of enforced return to DRC.  </span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">3.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">A national of the DRC  who has a significant and visible profile within APARECO (UK) is, in the event of returning to his country of origin, at real risk of persecution for a Convention reason or serious harm or treatment proscribed by Article 3 ECHR by virtue of falling within one of the risk categories identified by the Upper Tribunal in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-size:11pt">MM (UDPS Members – Risk on Return) Democratic Republic of Congo</span><span style="font-size:11pt"> CG [2007] UKAIT 00023.  Those belonging to this category include persons who are, or are perceived to be, leaders, office bearers or spokespersons.  As a general rule, mere rank and file members are unlikely to fall within this category. However, each case will be fact sensitive, with particular attention directed to the likely knowledge and perceptions of DRC state agents.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:0.79in">4.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The DRC authorities have an interest in certain types of convicted or suspected offenders, namely those who have unexecuted prison sentences in the DRC or in respect of whom there are unexecuted arrest warrants in the DRC or who allegedly committed an offence, such as document fraud, when departing the DRC.  Such persons are at real risk of imprisonment for lengthy periods and, hence, of treatment proscribed by Article 3 ECHR.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_5">
@@ -539,59 +563,63 @@
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="font-weight:bold">Part 5 </span><marker name="tab" /><span style="font-weight:bold">A summary of the 2018 elections in the DRC</span></heading>
           <paragraph eId="para_15">
             <num style="font-family:'Book Antiqua'">15.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">We confirm that we have considered all the evidence before us in the light of the evidence available to previous Tribunals in the series of CG cases we have already referred to.  For that reason it is not necessary to repeat the undoubtedly turbulent history here and observe that those at risk are likely to fluctuate in accordance with the political situation – see [202] of <span style="text-decoration-line:underline;text-decoration-style:solid">MM (UDPS members)</span>.  Central to the issues before us are the  2018 elections in the DRC.  The respondent’s CPIN, Democratic Republic of Congo: Opposition to government, published in November 2019 provides a helpful summary:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">“4.2.1</num>
-              <content>
-                <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The UNHRC in its May 2019 report on the situation of human rights in the Democratic Republic of the Congo before, during and after the elections of December 2018 stated that: ‘On 30 December 2018, the Democratic Republic of the Congo held presidential elections and national and provincial legislative elections. The Independent National Electoral Commission [CENI] announced partial and provisional results on 10 January 2019, which the Constitutional Court confirmed on 20 January 2019.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.2</num>
-              <intro>
-                <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The 3 lead contenders for the presidency were:</span></p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">•</span><marker name="tab" /><span style="font-size:11pt">Felix Tshisekedi (opposition, UDPS and Cap pour la Changement platform)</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">•</span><marker name="tab" /><span style="font-size:11pt">Martin Fayulu (opposition, Lamuka coalition)</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">•</span><marker name="tab" /><span style="font-size:11pt">Emmanuel Ramazani Shadary (Minister of Interior, ruling Front commun  pour le Congo (FCC) platform)</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.3</num>
-              <intro>
-                <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The May 2019 report of the Secretary General to the UN Security Council, ‘The situation in Central Africa and the activities of the United Nations Regional Office for Central Africa’, stated:</span></p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">‘… the country’s [DRC] presidential, national and provincial legislative elections of 30 December [2018] took place in a relatively calm atmosphere and resulted in its first peaceful transfer of power. On 10 January, the Independent National Electoral Commission announced the provisional results of the presidential election and declared the opposition candidate, Félix Tshisekedi, the winner. A legal challenge presented by the runner-up, Martin Fayulu, was rejected by the Constitutional Court and, on 24 January [2019], Mr. Tshisekedi was sworn in as President.’ </span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.4</num>
-              <content>
-                <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The CIA Factbook, updated 21 August 2019, observed: ‘Opposition candidate Felix Tshisekedi was announced the election winner on 10 January 2019 and inaugurated two weeks later. This was the first transfer of power to an opposition candidate without significant violence or a coup since the DRC's independence.’ </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.5</num>
-              <content>
-                <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The same source also reported the presidential and parliamentary election results: ‘[Presidential election] Felix Tshisekedi elected president; percent of vote - Felix Tshisekedi (UDPS) 38.6%, Martin Fayulu (Lamuka coalition) 34.8%, Emmanuel Ramazani Shadary (PPRD) 23.9%, other 2.7%...’</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">“4.2.1</num>
+                    <content>
+                      <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The UNHRC in its May 2019 report on the situation of human rights in the Democratic Republic of the Congo before, during and after the elections of December 2018 stated that: ‘On 30 December 2018, the Democratic Republic of the Congo held presidential elections and national and provincial legislative elections. The Independent National Electoral Commission [CENI] announced partial and provisional results on 10 January 2019, which the Constitutional Court confirmed on 20 January 2019.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.2</num>
+                    <intro>
+                      <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The 3 lead contenders for the presidency were:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">•</span><marker name="tab" /><span style="font-size:11pt">Felix Tshisekedi (opposition, UDPS and Cap pour la Changement platform)</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">•</span><marker name="tab" /><span style="font-size:11pt">Martin Fayulu (opposition, Lamuka coalition)</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">•</span><marker name="tab" /><span style="font-size:11pt">Emmanuel Ramazani Shadary (Minister of Interior, ruling Front commun  pour le Congo (FCC) platform)</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.3</num>
+                    <intro>
+                      <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The May 2019 report of the Secretary General to the UN Security Council, ‘The situation in Central Africa and the activities of the United Nations Regional Office for Central Africa’, stated:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="p" style="margin-left:1.58in;text-indent:0in"><span style="font-size:11pt">‘… the country’s [DRC] presidential, national and provincial legislative elections of 30 December [2018] took place in a relatively calm atmosphere and resulted in its first peaceful transfer of power. On 10 January, the Independent National Electoral Commission announced the provisional results of the presidential election and declared the opposition candidate, Félix Tshisekedi, the winner. A legal challenge presented by the runner-up, Martin Fayulu, was rejected by the Constitutional Court and, on 24 January [2019], Mr. Tshisekedi was sworn in as President.’ </span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.4</num>
+                    <content>
+                      <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The CIA Factbook, updated 21 August 2019, observed: ‘Opposition candidate Felix Tshisekedi was announced the election winner on 10 January 2019 and inaugurated two weeks later. This was the first transfer of power to an opposition candidate without significant violence or a coup since the DRC's independence.’ </span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.2.5</num>
+                    <content>
+                      <p class="p" style="margin-left:1.28in"><span style="font-size:11pt">The same source also reported the presidential and parliamentary election results: ‘[Presidential election] Felix Tshisekedi elected president; percent of vote - Felix Tshisekedi (UDPS) 38.6%, Martin Fayulu (Lamuka coalition) 34.8%, Emmanuel Ramazani Shadary (PPRD) 23.9%, other 2.7%...’</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_16">
             <num style="font-family:'Book Antiqua'">16.</num>
@@ -810,19 +838,23 @@
             </subparagraph>
             <subparagraph>
               <num style="font-family:'Book Antiqua';margin-left:1in;text-indent:-0.25in">c.</num>
-              <intro>
+              <content>
                 <p class="p" style="margin-left:1in">The US Department of State report, ‘2019 Country Reports on Human Rights Practices: Democratic Republic of the Congo’, 11 March 2020, which states:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.18in;text-indent:0in"><span style="font-size:11pt">“Security personnel arrested and detained civil society activists, journalists, and opposition party members and sometimes denied them due process... Throughout the year security forces regularly held protesters and civil society activists incommunicado and without charge for extended periods. The United Nations reported the SSF [State Security Forces] arbitrarily arrested at least 1,650 persons across the country as of July 31. Human rights defenders continued to be subject to arbitrary arrest and detention without a fair public trial.</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.18in;text-indent:0in"><span style="font-size:11pt">The United Nations reported that on January 5 in Goma, North Kivu Province, 79 persons, including seven women and 15 children, were arbitrarily arrested by PNC officers as they celebrated in the streets following rumors that Martin Fayulu had won the presidential election. On January 14, all were released after being charged with disturbing public order, destruction, and rebellion.</span></p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="p" style="margin-left:1.18in;text-indent:0in"><span style="font-size:11pt">“Security personnel arrested and detained civil society activists, journalists, and opposition party members and sometimes denied them due process... Throughout the year security forces regularly held protesters and civil society activists incommunicado and without charge for extended periods. The United Nations reported the SSF [State Security Forces] arbitrarily arrested at least 1,650 persons across the country as of July 31. Human rights defenders continued to be subject to arbitrary arrest and detention without a fair public trial.</span></p>
+                      </content>
+                    </level>
+                    <level>
+                      <content>
+                        <p class="p" style="margin-left:1.18in;text-indent:0in"><span style="font-size:11pt">The United Nations reported that on January 5 in Goma, North Kivu Province, 79 persons, including seven women and 15 children, were arbitrarily arrested by PNC officers as they celebrated in the streets following rumors that Martin Fayulu had won the presidential election. On January 14, all were released after being charged with disturbing public order, destruction, and rebellion.</span></p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="font-family:'Book Antiqua';margin-left:1in;text-indent:-0.25in">d.</num>
@@ -974,59 +1006,63 @@
           </paragraph>
           <paragraph eId="para_46">
             <num style="font-family:'Book Antiqua'">46.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Dr Kodi confirmed that the two immigration officials he had spoken to, held the rank of Senior Inspector.  The two individuals had been recommended by a friend of Dr Kodi who taught them at the University of Kinshasa and who had known them for many years.  Dr Kodi said that his friend whom gave him the names of the immigration officials, is a trustworthy person who he has known since secondary school.  He did not therefore need to double-check the identities of the immigration officials.  He asked them about the redocumentation process of failed asylum seekers and the role of the DGM Attaché to the DRC Embassy in London.  Dr Kodi refers to the questions he asked and summarises their response:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“What do you know about the redocumentation process of FAS and the role of the DGM Attaché to the DRC Embassy in London?</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">The redocumentation process has been agreed between the British and Congolese authorities and is mandatory for all returnees. It allows to establish the genuineness of the returnees’ Congolese nationality and the collect related information on their asylum application, their involvement in opposition political activities and any criminal record. The DGM Attaché is the one who interviews all the FAS and sends a report on each one of them to the headquarters in Kinshasa.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.39in;text-indent:0.39in"><span style="font-size:11pt">What kinds of questions does the DGM Attaché ask the FAS?</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">He usually asks questions about the origin of the FAS in the DRC, where they lived, what schools they attended, crimes and convictions in the DRC, the reasons why they decided to leave the country and when, their asylum claim and the reasons for the failure.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Does he ask questions about the FAS’s involvement in political activities in the UK?</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Yes, he asks questions about the FAS’ involvement in political activities, especially their participation in the activities of the radical opposition parties in the UK.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.5in;text-indent:0.29in"><span style="font-size:11pt">Does he ask questions about the reasons why they applied for asylum in the UK?</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Yes, he asks why the FAS applied for asylum in the UK and what their claim was as well as whether they had any problems with the current regime. H also asks whether they had any pending legal cases before leaving the DRC.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.5in;text-indent:0.29in"><span style="font-size:11pt">Does he share the information so collected with DGM colleagues in Kinshasa?</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Yes, this information is usually sent to the Director General who shares it with all the relevant DGM units, including those at ports of entry like Ndjili airport in Kinshasa where most FAS return.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“What do you know about the redocumentation process of FAS and the role of the DGM Attaché to the DRC Embassy in London?</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">The redocumentation process has been agreed between the British and Congolese authorities and is mandatory for all returnees. It allows to establish the genuineness of the returnees’ Congolese nationality and the collect related information on their asylum application, their involvement in opposition political activities and any criminal record. The DGM Attaché is the one who interviews all the FAS and sends a report on each one of them to the headquarters in Kinshasa.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.39in;text-indent:0.39in"><span style="font-size:11pt">What kinds of questions does the DGM Attaché ask the FAS?</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">He usually asks questions about the origin of the FAS in the DRC, where they lived, what schools they attended, crimes and convictions in the DRC, the reasons why they decided to leave the country and when, their asylum claim and the reasons for the failure.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Does he ask questions about the FAS’s involvement in political activities in the UK?</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Yes, he asks questions about the FAS’ involvement in political activities, especially their participation in the activities of the radical opposition parties in the UK.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.5in;text-indent:0.29in"><span style="font-size:11pt">Does he ask questions about the reasons why they applied for asylum in the UK?</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Yes, he asks why the FAS applied for asylum in the UK and what their claim was as well as whether they had any problems with the current regime. H also asks whether they had any pending legal cases before leaving the DRC.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.5in;text-indent:0.29in"><span style="font-size:11pt">Does he share the information so collected with DGM colleagues in Kinshasa?</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Yes, this information is usually sent to the Director General who shares it with all the relevant DGM units, including those at ports of entry like Ndjili airport in Kinshasa where most FAS return.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_47">
             <num style="font-family:'Book Antiqua'">47.</num>
@@ -1036,51 +1072,55 @@
           </paragraph>
           <paragraph eId="para_48">
             <num style="font-family:'Book Antiqua'">48.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Dr Kodi also referred to the January 2020 CPIN on the DRC – Unsuccessful Asylum Seekers, which summarises the redocumentation process and said that the information set out does not contradict the information provided by those he interviewed.  Dr Kodi said the footnote in the CPIN indicates that Home Office staff do not attend redocumentation interviews and the respondent is not therefore aware of the type of information that is gathered and sent to his/her superiors in Kinshasa by the DGM Attaché.  Dr Kodi refers to the information on the redocumentation process provided in Annex F of the CPIN which is a Home Office note dated 15 October 2014 of meetings with the DGM secondee on 13 August and 15 August. The Secondee provided the following information:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">“1.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">When conducting interviews he refuses to speak in English and will try all Congolese languages to see which the subject speaks. It’s usually Lingala or French.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">2.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks the interviewees to write their names down so that he can check the spelling with the Emergency Travel Document (ETD) application form and he asks them to explain the meaning of their names.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">3.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He also checks their date of birth and place of birth against the application form.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks when they came to the UK and how they travelled here and if they were helped to enter the UK. He asks if they hid their passports.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">5.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks them whether or not they are Congolese and asks for details of where they lived – the address / province / schools attended / first language of parents / tribe.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">6.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks why they are detained / in prison. He said some volunteer this information and others don’t.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">7.</num>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He added that he tries to convince interviewees that they should prepare to go home and says that if they have committed an offence and been sentenced to 12 months or more in the UK then they will not be allowed to stay in the UK. He tells them about DRC and that it’s not a bad place to return to. All the information is fed back to DGM Head Quarters in Kinshasa including, where supplied by the interviewee, details of criminality in the UK.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">“1.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">When conducting interviews he refuses to speak in English and will try all Congolese languages to see which the subject speaks. It’s usually Lingala or French.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">2.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks the interviewees to write their names down so that he can check the spelling with the Emergency Travel Document (ETD) application form and he asks them to explain the meaning of their names.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">3.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He also checks their date of birth and place of birth against the application form.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks when they came to the UK and how they travelled here and if they were helped to enter the UK. He asks if they hid their passports.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">5.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks them whether or not they are Congolese and asks for details of where they lived – the address / province / schools attended / first language of parents / tribe.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">6.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He asks why they are detained / in prison. He said some volunteer this information and others don’t.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">7.</num>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">He added that he tries to convince interviewees that they should prepare to go home and says that if they have committed an offence and been sentenced to 12 months or more in the UK then they will not be allowed to stay in the UK. He tells them about DRC and that it’s not a bad place to return to. All the information is fed back to DGM Head Quarters in Kinshasa including, where supplied by the interviewee, details of criminality in the UK.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_49">
             <num style="font-family:'Book Antiqua'">49.</num>
@@ -1105,14 +1145,18 @@
           <heading class="p" style="margin-left:0in;text-indent:0in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Third Report</span></heading>
           <paragraph eId="para_52">
             <num style="font-family:'Book Antiqua'">52.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">In the third of his reports, ‘Addendum 2 dated 8 June 2022’, Dr Kodi reviewed a ‘Response to an information request, Democratic Republic of Congo: Political update: November 2021 to April 2022’, that was compiled and researched by the respondent’s Country Policy and Information Team.  The document includes a timeline of events between November 2021 to April 2022.  In response, Dr Kodi states that several observers of the DRC political, economic and social scene, have already taken stock of President Tshisekedi’s more than three years in power. He states one of the most recent examples is the statement made by the Head of the Catholic Church, Cardinal Fridolin Ambongo, the Archbishop of Kinshasa on 29 May 2022:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“The situation is presently bad in the country, nothing is working. The Congolese are among the most miserable people on Earth. If you look closely at what is going on in our country, around us, the Congolese people, in spite of the immense wealth of the country’s soil and sub-soil, of its waterways, of it trees and forests, in spite of all this, the Congolese people are classified among the most miserable people of planet Earth. In any case, the country is in dire straits, nobody should lie to you. Some people will tell you that you are in paradise. If today’s Congo is paradise, I do not want to go to paradise. Should we then do nothing. No! We must act, we have to take ourselves seriously, we must take charge of ourselves. The sovereignty of our country is in danger. And while the country is in danger, we spend our time discussing posts, money and a few dollars.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“The situation is presently bad in the country, nothing is working. The Congolese are among the most miserable people on Earth. If you look closely at what is going on in our country, around us, the Congolese people, in spite of the immense wealth of the country’s soil and sub-soil, of its waterways, of it trees and forests, in spite of all this, the Congolese people are classified among the most miserable people of planet Earth. In any case, the country is in dire straits, nobody should lie to you. Some people will tell you that you are in paradise. If today’s Congo is paradise, I do not want to go to paradise. Should we then do nothing. No! We must act, we have to take ourselves seriously, we must take charge of ourselves. The sovereignty of our country is in danger. And while the country is in danger, we spend our time discussing posts, money and a few dollars.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_53">
             <num style="font-family:'Book Antiqua'">53.</num>
@@ -1122,34 +1166,38 @@
           </paragraph>
           <paragraph eId="para_54">
             <num style="font-family:'Book Antiqua'">54.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Dr Kodi also refers<span style="color:#0070C0"> </span>to criticisms of the performance of President Tshisekedi and his government by Joseph Olengankoy, the President of the Conseil National de Suivi de l’Accord de la Saint Sylvestre (CNSA) or National Council for Monitoring the Agreement of Saint Sylvester.  On 24 May 2022, Joseph Olengankoy published a press release which included, among others, the following remarks on the developments in the country which prevented President Tshisekedi to bring about the institutional changes and benefits expected by the people of DRC: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“- the upsurge of political intolerance by the regime , which has driven opinion and political leaders to flee the country or hide; </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- the existence in the country of political and opinion prisoners, even those who have benefited from a presidential amnesty; </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- dysfunctional State institutions, characterised by among others, the re-appearance of illegal prison cells and detention centres; </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- brutal repression by the National Police of non-violent protest marches; and </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- lack of appropriate policies to re-establish people’s trust in State institutions.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“- the upsurge of political intolerance by the regime , which has driven opinion and political leaders to flee the country or hide; </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- the existence in the country of political and opinion prisoners, even those who have benefited from a presidential amnesty; </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- dysfunctional State institutions, characterised by among others, the re-appearance of illegal prison cells and detention centres; </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- brutal repression by the National Police of non-violent protest marches; and </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- lack of appropriate policies to re-establish people’s trust in State institutions.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_55">
             <num style="font-family:'Book Antiqua'">55.</num>
@@ -1228,25 +1276,29 @@
           </paragraph>
           <paragraph eId="para_67">
             <num style="font-family:'Book Antiqua'">67.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Mr Hansen suggested to Dr Kodi that his suggestion of a comeback by former President Kabila is based upon mere speculation.  Dr Kodi referred to an article published in ‘Africa Continental’ on 4 March 2022.  The article states:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“…Tshisekedi has been treading cautiously in his dealings with ex-President Joseph Kabila, whose profile has diminished over the past year. Rarely attending meetings of the Senate in Kinshasa, Kabila has shown little interest in a political comeback. In law, he could stand for the presidency next year; the constitution’s bar on multiple presidential terms applies only to consecutive terms.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Yet Tshisekedi is taking nothing for granted, given the mutual distrust between him and his predecessor…” </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.5in;text-indent:0in">Dr Kodi accepted however that there is evidence that former President Kabila’s profile has diminished, that he has been marginalised and appears to have shown  little interest in a political comeback.  </p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“…Tshisekedi has been treading cautiously in his dealings with ex-President Joseph Kabila, whose profile has diminished over the past year. Rarely attending meetings of the Senate in Kinshasa, Kabila has shown little interest in a political comeback. In law, he could stand for the presidency next year; the constitution’s bar on multiple presidential terms applies only to consecutive terms.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Yet Tshisekedi is taking nothing for granted, given the mutual distrust between him and his predecessor…” </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
+          <level eId="lvl_17_1">
+            <content>
+              <p class="p" style="margin-left:0.5in;text-indent:0in">Dr Kodi accepted however that there is evidence that former President Kabila’s profile has diminished, that he has been marginalised and appears to have shown  little interest in a political comeback.  </p>
+            </content>
+          </level>
           <paragraph eId="para_68">
             <num style="font-family:'Book Antiqua'">68.</num>
             <content>
@@ -1297,29 +1349,33 @@
           </paragraph>
           <paragraph eId="para_76">
             <num style="font-family:'Book Antiqua'">76.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Mr Hansen also referred Dr Kodi to extracts from the Twitter account of Okito Tongomo, the leader of the CSG.  Dr Kodi accepted that Mr Tongomo tweeted:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“</span><span style="font-weight:bold;font-size:11pt">06 December 2020 </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Excellent Speech, DRC President Felix moving forward to correct direction.  Beboulonner en action.  Justice for voiceless.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-weight:bold;font-size:11pt">06 February 2021  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Congratulations to President Felix Tshisekedi, the first DRC Congolese and 19</span><span style="vertical-align:super;font-size:11pt">th</span><span style="font-size:11pt"> African Union Chairman Chairperson…”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“</span><span style="font-weight:bold;font-size:11pt">06 December 2020 </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Excellent Speech, DRC President Felix moving forward to correct direction.  Beboulonner en action.  Justice for voiceless.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-weight:bold;font-size:11pt">06 February 2021  </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Congratulations to President Felix Tshisekedi, the first DRC Congolese and 19</span><span style="vertical-align:super;font-size:11pt">th</span><span style="font-size:11pt"> African Union Chairman Chairperson…”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_77">
             <num style="font-family:'Book Antiqua'">77.</num>
@@ -1371,14 +1427,18 @@
           </paragraph>
           <paragraph eId="para_85">
             <num style="font-family:'Book Antiqua'">85.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Mr Hansen referred Dr Kodi to the request for information submitted to the IGC. Dr Kodi agreed that the response from Belgium is particularly important because of the large DRC diaspora living there, and the number of returns from Belgium, including FAS.  The Belgian authorities confirmed that FAS are returned to the DRC using their passports and laissez-passers issued by the DGM.  The documents do not identify the individuals as FAS.  The Belgian authorities confirmed<span style="color:#0070C0"> </span>that they do not share any information on asylum procedures with the Congolese authorities. They confirmed they never share any information about international protection requests with the national authorities of a third country national, regardless of nationality.  They were asked whether representatives of their government attend returnees’ arrival in Kinshasa.  The response was:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“Yes, EURLO is always at the airport when there is a special flight or a JRO (Joint return Operation). If individual returns occur, EURLO is not present, unless it is a special needs case. For example a person who needs medical or other special assistance upon arrival.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“Yes, EURLO is always at the airport when there is a special flight or a JRO (Joint return Operation). If individual returns occur, EURLO is not present, unless it is a special needs case. For example a person who needs medical or other special assistance upon arrival.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_86">
             <num style="font-family:'Book Antiqua'">86.</num>
@@ -1400,45 +1460,51 @@
           </paragraph>
           <paragraph eId="para_89">
             <num style="font-family:'Book Antiqua'">89.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Mr Hansen also referred Dr Kodi to the Cedoca update dated 20 January 2020<span style="color:#0070C0"> </span>that is to the same effect.  The report states, at [5.3]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“… When asked about possible problems which Congolese nationals may have encountered at the time of repatriations organised by Belgium in the past, Geert Verbauwhede from the Immigration Office replied on 2 December 2019 that there had not been any. He had also explained in a previous reply in April 2019 that there was no specific factor affecting the reception they are given on their arrival (for example, the possession of a type of travel document - temporary pass or standard passport, the return arrangements - with or without escort, compliance with the applicable migration laws, or the fact that Belgium was the country they had come from).</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <intro>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">The last repatriation of Congolese nationals from Brussels to Kinshasa took place on 26 March 2019 on a flight organised by FRONTEX54. The announcement of that collective repatriation was published on the website of the organisation Getting the Voice Out on 24 March 2019 (the website also mentions the return on this flight of Senegalese nationals), but the organisation did not publish any information on how the repatriation went or on the reception they were given in Kinshasa. The immigration officer in charge of monitoring the reception in N'jdili confirmed that there had been no problem on their arrival:</span></p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="p" style="margin-left:1.08in;text-indent:0in"><span style="font-size:11pt">"After going through the Department of Migration procedures, they returned home […] there was no National Intelligence Agency control".</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Three human rights associations working in the DRC had been contacted at the time of the previous COI Report on this subject. Those associations asked for their names and personal details not to be disclosed. The associations are well known for their human rights activities in the DRC. They said that they had not logged any problems at the time of repatriations made by the Belgian authorities.”</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.5in;text-indent:0in">Dr Kodi said that the content of that update does not alter his opinion that all failed asylum seekers are at risk upon return to the DRC, and that he prefers the information he received from the enquiries that he carried out.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“… When asked about possible problems which Congolese nationals may have encountered at the time of repatriations organised by Belgium in the past, Geert Verbauwhede from the Immigration Office replied on 2 December 2019 that there had not been any. He had also explained in a previous reply in April 2019 that there was no specific factor affecting the reception they are given on their arrival (for example, the possession of a type of travel document - temporary pass or standard passport, the return arrangements - with or without escort, compliance with the applicable migration laws, or the fact that Belgium was the country they had come from).</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <intro>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">The last repatriation of Congolese nationals from Brussels to Kinshasa took place on 26 March 2019 on a flight organised by FRONTEX54. The announcement of that collective repatriation was published on the website of the organisation Getting the Voice Out on 24 March 2019 (the website also mentions the return on this flight of Senegalese nationals), but the organisation did not publish any information on how the repatriation went or on the reception they were given in Kinshasa. The immigration officer in charge of monitoring the reception in N'jdili confirmed that there had been no problem on their arrival:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p class="p" style="margin-left:1.08in;text-indent:0in"><span style="font-size:11pt">"After going through the Department of Migration procedures, they returned home […] there was no National Intelligence Agency control".</span></p>
+                      </content>
+                    </subparagraph>
+                    <wrapUp>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Three human rights associations working in the DRC had been contacted at the time of the previous COI Report on this subject. Those associations asked for their names and personal details not to be disclosed. The associations are well known for their human rights activities in the DRC. They said that they had not logged any problems at the time of repatriations made by the Belgian authorities.”</span></p>
+                    </wrapUp>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
+          <level eId="lvl_17_2">
+            <content>
+              <p class="p" style="margin-left:0.5in;text-indent:0in">Dr Kodi said that the content of that update does not alter his opinion that all failed asylum seekers are at risk upon return to the DRC, and that he prefers the information he received from the enquiries that he carried out.</p>
+            </content>
+          </level>
           <paragraph eId="para_90">
             <num style="font-family:'Book Antiqua'">90.</num>
-            <intro>
+            <content>
               <p class="p" style="margin-left:0.5in">Mr Hansen referred Dr Kodi to the further update written by the Cedoca dated 23<span style="vertical-align:super;font-size:smaller">rd</span> July 2021 in which it is said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“On 3 May 2021, Cedoca contacted the Bill Clinton Foundation for Peace (FBCP), a Human Rights NGO based in Kinshasa. Its president Emmanuel Cole said his organization conducts monitoring of returnee arrivals at Ndjili airport. He claims that since the change of regime, persons whose asylum has been rejected and repatriated to the DRC no longer have problems upon arrival. Unlike during the previous regime, there are no more cases of arrests by the ANR of returnees and there is no one belonging to this category in Kinshasa's places of detention.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“On 3 May 2021, Cedoca contacted the Bill Clinton Foundation for Peace (FBCP), a Human Rights NGO based in Kinshasa. Its president Emmanuel Cole said his organization conducts monitoring of returnee arrivals at Ndjili airport. He claims that since the change of regime, persons whose asylum has been rejected and repatriated to the DRC no longer have problems upon arrival. Unlike during the previous regime, there are no more cases of arrests by the ANR of returnees and there is no one belonging to this category in Kinshasa's places of detention.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_91">
             <num style="font-family:'Book Antiqua'">91.</num>
@@ -1766,14 +1832,18 @@
         </paragraph>
         <paragraph eId="para_124">
           <num style="font-family:'Book Antiqua'">124.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">Dr Kodi maintained the situation in the DRC remains volatile and in the way things changed between March and July 2021, things can change again.  Whilst that is always a possibility, we did not find Dr Kodi to be entirely objective or focussed when addressing the evidence in this respect.  A useful summary of the main trends in human rights violations and abuses in the DRC is set out in the analysis of the human rights situation in 2021 prepared by the United Nations Joint Human Rights Office in the DRC (“UNJHRO”).  The analysis states:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“In 2021, the UNJHRO documented 6,989 human rights violations and abuses  throughout the DRC, which represents an average of 582 human rights violations per month. This is a decrease of nearly 12% compared to 2020 and a reversal of the trend of the previous year, which recorded an increase of 21%. This decrease reflects a reduction in the number of cases documented in the provinces affected by conflict, particularly Maniema, South Kivu, Ituri, Tanganyika and North Kivu, where the UNJHRO recorded less violations committed by State agents and abuses committed by combatants of armed groups, including conflict-related sexual violence, than the previous year. The military operations against armed groups carried out by the Forces armées de la République démocratique du Congo (FARDC) with support from MONUSCO in accordance with the Human Rights Due Diligence Policy (HRDDP), which subjects the support provided by the United Nations to the Congolese defense and security forces to certain conditions, in particular respect for international human rights, humanitarian and refugee law as well as the implementation of risk mitigation measures, may help to explain this trend.”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“In 2021, the UNJHRO documented 6,989 human rights violations and abuses  throughout the DRC, which represents an average of 582 human rights violations per month. This is a decrease of nearly 12% compared to 2020 and a reversal of the trend of the previous year, which recorded an increase of 21%. This decrease reflects a reduction in the number of cases documented in the provinces affected by conflict, particularly Maniema, South Kivu, Ituri, Tanganyika and North Kivu, where the UNJHRO recorded less violations committed by State agents and abuses committed by combatants of armed groups, including conflict-related sexual violence, than the previous year. The military operations against armed groups carried out by the Forces armées de la République démocratique du Congo (FARDC) with support from MONUSCO in accordance with the Human Rights Due Diligence Policy (HRDDP), which subjects the support provided by the United Nations to the Congolese defense and security forces to certain conditions, in particular respect for international human rights, humanitarian and refugee law as well as the implementation of risk mitigation measures, may help to explain this trend.”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_125">
           <num style="font-family:'Book Antiqua'">125.</num>
@@ -1931,24 +2001,28 @@
         </paragraph>
         <paragraph eId="para_135">
           <num style="font-family:'Book Antiqua'">135.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">The respondent submitted a request for information to the Intergovernmental Consultations on Migration, Asylum and Refugees (IGC) for the purposes of this appeal and the issues that arise in this country guidance [2401].  78% of IGC States responded.  Member States were asked; “Whether and if so how the change in Presidency in Jan 2019 and developments subsequent thereto (with the new President Tshisekedi trying to consolidate his own power and move away from his coalition with Kabila) affects the risk on return to actual or perceived opponents of Tshisekedi and/or Kabila.”  The response was:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“The dynamics within the opposition evolved since the end of the alliance between Tshisekedi and Kabila.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Whether an opposition supporter is at risk will depend on the nature and frequency of his/her activities in opposition to the Tshisekedi’s Sacred Union and to what extent whether he/she is known about by the authorities. It’s necessary to take into account the profile of the person, the role and activities in the opposition party. It’s really important to know the position of his/her party towards the Tshisekedi‘s Sacred Union. For the time being (March 3, 2021), the rival opposition leader Fayulu (ECIDE) has not joined the Sacred Union =&gt; the supporters of Fayulu are likely to be viewed adversely. It is difficult to know the position of the other opposition parties (The Research and Documentation Department (CEDOCA) of the General Commissariat for Refugees and Stateless Persons – www.cgrs.be - closely monitors the political situation).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">During the elections there were numerous cases of threats and intimidation against human rights defenders and other civil society activists, including members of the Church, Filimbi, Lucha [youth civil society movement]… Some members of civil society have been arrested, detained and subjected to acts of torture or ill treatment. Simply being a member of the Church, a human rights defender or of civil society group (apart from Lucha) is not likely to result in the person being at risk. They have to show that their profile, activities and/or past treatment at the hands of the state are such that the authorities are likely to view them adversely and subject them to treatment amounting to persecution or serious harm. Regarding Lucha, members have been arrested in January (2021) à a particular prudence/attention is necessary for supporters of Lucha. Being a journalist, media worker or blogger is not likely to lead to a person facing treatment that amounts to persecution or serious harm. However, some persons who are critical of the authorities may face a risk of serious harm and each case must be considered on its facts taking into account the subject matter of the published material, the reach and frequency of the publication…”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“The dynamics within the opposition evolved since the end of the alliance between Tshisekedi and Kabila.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Whether an opposition supporter is at risk will depend on the nature and frequency of his/her activities in opposition to the Tshisekedi’s Sacred Union and to what extent whether he/she is known about by the authorities. It’s necessary to take into account the profile of the person, the role and activities in the opposition party. It’s really important to know the position of his/her party towards the Tshisekedi‘s Sacred Union. For the time being (March 3, 2021), the rival opposition leader Fayulu (ECIDE) has not joined the Sacred Union =&gt; the supporters of Fayulu are likely to be viewed adversely. It is difficult to know the position of the other opposition parties (The Research and Documentation Department (CEDOCA) of the General Commissariat for Refugees and Stateless Persons – www.cgrs.be - closely monitors the political situation).</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">During the elections there were numerous cases of threats and intimidation against human rights defenders and other civil society activists, including members of the Church, Filimbi, Lucha [youth civil society movement]… Some members of civil society have been arrested, detained and subjected to acts of torture or ill treatment. Simply being a member of the Church, a human rights defender or of civil society group (apart from Lucha) is not likely to result in the person being at risk. They have to show that their profile, activities and/or past treatment at the hands of the state are such that the authorities are likely to view them adversely and subject them to treatment amounting to persecution or serious harm. Regarding Lucha, members have been arrested in January (2021) à a particular prudence/attention is necessary for supporters of Lucha. Being a journalist, media worker or blogger is not likely to lead to a person facing treatment that amounts to persecution or serious harm. However, some persons who are critical of the authorities may face a risk of serious harm and each case must be considered on its facts taking into account the subject matter of the published material, the reach and frequency of the publication…”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_136">
           <num style="font-family:'Book Antiqua'">136.</num>
@@ -2017,14 +2091,18 @@
         </level>
         <paragraph eId="para_141">
           <num style="font-family:'Book Antiqua'">141.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">The change in Presidency following the election on 30 December 2018 has clearly had an impact upon the risk on return of UDPS members to the DRC.  There is an absence of evidence to establish that UDPS members and activists continue to be at risk on return.  The evidence of Dr Kodi himself is that the risk faced by UDPS members and supporters has considerably diminished since President Tshisekedi took power and senior members of the party were appointed to posts in the government. He states:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“…One could even say that they enjoy a favourable treatment compared to members of other parties. UDPS supporters have repeatedly invaded Parliament every time decisions that they did not agree with, were about to be taken. They have done this with impunity even when they destroyed property and threatened parliamentarians. They have been allowed to organise marches and meetings while other political parties, especially those considered belonging to the opposition, were forbidden to do the same. The latest instances are the two marches and meetings organised by UDPS gathering tens of thousands of people to welcome President Tshisekedi in Lubumbashi and Kolwezi on 12 and 13 May 2021 respectively. Marches organised by Martin Fayulu and Adolphe Muzito, the two leaders of LAMUKA, the coalition of opposition parties, have been brutally dispersed and their followers severely beaten. After the march organised by his party was forbidden by the National Police on 15 May 2021 in order to conform to the Government’s Covid-19 guidelines, Adolpe Muzito complained about the discrimination of the opposition political parties and the preferential treatment given to UDPS by the authorities…”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“…One could even say that they enjoy a favourable treatment compared to members of other parties. UDPS supporters have repeatedly invaded Parliament every time decisions that they did not agree with, were about to be taken. They have done this with impunity even when they destroyed property and threatened parliamentarians. They have been allowed to organise marches and meetings while other political parties, especially those considered belonging to the opposition, were forbidden to do the same. The latest instances are the two marches and meetings organised by UDPS gathering tens of thousands of people to welcome President Tshisekedi in Lubumbashi and Kolwezi on 12 and 13 May 2021 respectively. Marches organised by Martin Fayulu and Adolphe Muzito, the two leaders of LAMUKA, the coalition of opposition parties, have been brutally dispersed and their followers severely beaten. After the march organised by his party was forbidden by the National Police on 15 May 2021 in order to conform to the Government’s Covid-19 guidelines, Adolpe Muzito complained about the discrimination of the opposition political parties and the preferential treatment given to UDPS by the authorities…”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_142">
           <num style="font-family:'Book Antiqua'">142.</num>
@@ -2056,57 +2134,61 @@
         </paragraph>
         <paragraph eId="para_145">
           <num style="font-family:'Book Antiqua'">145.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">In <span style="text-decoration-line:underline;text-decoration-style:solid">BM and Others</span>, as far as APARECO is concerned, the Tribunal had before it the expert evidence of Dr Erik Kennes, and also had regard to a broad range of background material including evidence relating to the APARECO organisation and certain of its members and office bearers.  The Tribunal said:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:'Book Antiqua';font-size:11pt">“87.</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;text-indent:0.21in"><span style="font-family:'Book Antiqua';font-size:11pt">We address the discrete question of risk to those who are considered to be opponents of the Kabila regime by reason of their </span><span style="font-style:italic;font-family:'Book Antiqua';font-size:11pt">sur place</span><span style="font-family:'Book Antiqua';font-size:11pt"> activities in the United Kingdom.  In addressing and determining this question, we make the following specific findings: </span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">i)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">APARECO is a cohesive, structured organisation which has its main base in France and strong basis in certain other European countries, including the United Kingdom.  It also operates in Canada and the United States. </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">ii)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">APARECO is implacably opposed to the regime of President Kabila which has governed DRC during the past decade.  Its overarching aims are the defeat of this regime and the re-establishment of the state on a different basis. </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">iii)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">APARECO has no overt presence in DRC, where it operates underground. </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">iv)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">The external opposition of APARECO to the governing regime of DRC is overt and visible. Its highest profile activities unfold in public places, accessible to all.  Activities of this nature are accompanied by advance publicity. </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">v)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">In common with many comparable regimes throughout the world, both present and past, the DRC Government has a strong interest in opposition organisations, including APARECO.  Such organisations are monitored and data is recorded.  This includes information about the identities of the most prominent members of such organisations, that is to say their leaders, office holders and spokespersons.  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">(vi)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">The monitoring of APARECO (UK) is likely to be undertaken by and on behalf of the DRC Embassy in London.  This is the agency with the most obvious motivation to carry out and co-ordinate such scrutiny.   Such scrutiny is likely to generate periodic reports to the DRC Government, in particular its ANR and DGM agencies.  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">(vii)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.75in;text-indent:0.12in"><span style="font-family:'Book Antiqua';font-size:11pt">It is likely that the leaders, office bearers and spokespersons of APARECO (UK) are known to the DRC UK Embassy and the DRC Government, in particular ANR and DGM.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:'Book Antiqua';font-size:11pt">“87.</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;text-indent:0.21in"><span style="font-family:'Book Antiqua';font-size:11pt">We address the discrete question of risk to those who are considered to be opponents of the Kabila regime by reason of their </span><span style="font-style:italic;font-family:'Book Antiqua';font-size:11pt">sur place</span><span style="font-family:'Book Antiqua';font-size:11pt"> activities in the United Kingdom.  In addressing and determining this question, we make the following specific findings: </span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">i)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">APARECO is a cohesive, structured organisation which has its main base in France and strong basis in certain other European countries, including the United Kingdom.  It also operates in Canada and the United States. </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">ii)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">APARECO is implacably opposed to the regime of President Kabila which has governed DRC during the past decade.  Its overarching aims are the defeat of this regime and the re-establishment of the state on a different basis. </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">iii)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">APARECO has no overt presence in DRC, where it operates underground. </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">iv)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">The external opposition of APARECO to the governing regime of DRC is overt and visible. Its highest profile activities unfold in public places, accessible to all.  Activities of this nature are accompanied by advance publicity. </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">v)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">In common with many comparable regimes throughout the world, both present and past, the DRC Government has a strong interest in opposition organisations, including APARECO.  Such organisations are monitored and data is recorded.  This includes information about the identities of the most prominent members of such organisations, that is to say their leaders, office holders and spokespersons.  </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">(vi)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in"><span style="font-family:'Book Antiqua';font-size:11pt">The monitoring of APARECO (UK) is likely to be undertaken by and on behalf of the DRC Embassy in London.  This is the agency with the most obvious motivation to carry out and co-ordinate such scrutiny.   Such scrutiny is likely to generate periodic reports to the DRC Government, in particular its ANR and DGM agencies.  </span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-family:'Book Antiqua';font-size:11pt;margin-left:1.75in;text-indent:-0.5in">(vii)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.75in;text-indent:0.12in"><span style="font-family:'Book Antiqua';font-size:11pt">It is likely that the leaders, office bearers and spokespersons of APARECO (UK) are known to the DRC UK Embassy and the DRC Government, in particular ANR and DGM.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_146">
           <num style="font-family:'Book Antiqua'">146.</num>
@@ -2116,19 +2198,23 @@
         </paragraph>
         <paragraph eId="para_147">
           <num style="font-family:'Book Antiqua'">147.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">We note that in response to the request for information submitted to the ICG, the Belgian authorities said:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“For the diaspora political groups that operate in Belgium, persons who have a significant and visible profile within APARECO (leaders, office bearers and spokespersons) could still be at risk. Mere rank and file members are unlikely to fall within this category. Persons who support Boketshu (and have a significant and visible profile) could be at risk. We have no more recent information about the other diaspora political groups (CEDOCA is working on this matter)</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Their activities are limited due to the COVID pandemic =&gt; APARECO meetings are organised via skype, FB; demonstrations are not possible in Belgium (but they have organised limited demonstrations in Brussels in the Summer).”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“For the diaspora political groups that operate in Belgium, persons who have a significant and visible profile within APARECO (leaders, office bearers and spokespersons) could still be at risk. Mere rank and file members are unlikely to fall within this category. Persons who support Boketshu (and have a significant and visible profile) could be at risk. We have no more recent information about the other diaspora political groups (CEDOCA is working on this matter)</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">Their activities are limited due to the COVID pandemic =&gt; APARECO meetings are organised via skype, FB; demonstrations are not possible in Belgium (but they have organised limited demonstrations in Brussels in the Summer).”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_148">
           <num style="font-family:'Book Antiqua'">148.</num>
@@ -2262,15 +2348,19 @@
         </paragraph>
         <paragraph eId="para_161">
           <num style="font-family:'Book Antiqua'">161.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">In his first report, Dr Kodi addressed the returns process.  He said:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">“67.</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">…</span><span style="font-family:TimesNewRoman;font-size:11pt"> </span><span style="font-size:11pt">I had telephone conversations with two immigration officials and three human rights activists who had previously provided me with information about the treatment by immigration officials at N’Djili airport of returnees, while I was working on other DRC country expert reports..”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">“67.</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">…</span><span style="font-family:TimesNewRoman;font-size:11pt"> </span><span style="font-size:11pt">I had telephone conversations with two immigration officials and three human rights activists who had previously provided me with information about the treatment by immigration officials at N’Djili airport of returnees, while I was working on other DRC country expert reports..”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_162">
           <num style="font-family:'Book Antiqua'">162.</num>
@@ -2304,102 +2394,118 @@
         </paragraph>
         <paragraph eId="para_167">
           <num style="font-family:'Book Antiqua'">167.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">Against the evidence of Dr Kodi, is the more recent evidence relied upon by the respondent that that we find to be more objective.  We accept what is said in the respondent’s CPIN, DRC Unsuccessful asylum seekers, January 2020:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">“2.4.10</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">No western government that has provided publicly available information about returns - including Belgium, Canada, Estonia, Finland, France, Germany, the Netherlands, Norway, Sweden and Switzerland - has reported a substantiated account of detention and ill-treatment of a voluntary or involuntary returnee. Nor is the second secretary political (SSP) at the British Embassy (BE) in Kinshasa contacted by the Home Office in September 2019 aware of substantiated accounts of arrest, detention or ill-treatment on return. The SSP was aware of the allegations of detention on return of Aristote Monsego in October 2016, whose case is documented in UR3. These were, however, investigated by BE officials at the time but they were unable to confirm the allegations (and no other source has been able to provide a full account of what happened on return or the current whereabouts of Mr Monsego) (see Reports published 2015 to 2018 and Reports/information released in 2019).</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">“2.4.10</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">No western government that has provided publicly available information about returns - including Belgium, Canada, Estonia, Finland, France, Germany, the Netherlands, Norway, Sweden and Switzerland - has reported a substantiated account of detention and ill-treatment of a voluntary or involuntary returnee. Nor is the second secretary political (SSP) at the British Embassy (BE) in Kinshasa contacted by the Home Office in September 2019 aware of substantiated accounts of arrest, detention or ill-treatment on return. The SSP was aware of the allegations of detention on return of Aristote Monsego in October 2016, whose case is documented in UR3. These were, however, investigated by BE officials at the time but they were unable to confirm the allegations (and no other source has been able to provide a full account of what happened on return or the current whereabouts of Mr Monsego) (see Reports published 2015 to 2018 and Reports/information released in 2019).</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_168">
           <num style="font-family:'Book Antiqua'">168.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">We accept, as the respondent submits, there is no substantiated evidence of ill-treatment on arrival of FAS returned to the DRC in the more recent period 2019 to 2021 or subsequently.  The ICG<span style="color:#0070C0"> </span>records that the Belgian authorities confirmed<span style="color:#0070C0"> </span>that they are not aware of any reports or allegations that voluntary or forced returnees have faced difficulties and/or been mistreated on return to Kinshasa. They also confirmed that in recent years there have been no allegations of bribes being asked for by the local migration services.  The following questions and answers are also recorded:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">“5)</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">If there have been allegations of difficulties/mistreatment, have these been substantiated with credible evidence?</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">The only allegations came from persons who had been forcedly returned from the UK, they have been verified by the EURLO [European Liaison Office] in the past years and all of them were false allegations. EURLO reported back to the UK on these cases.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">6)</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">Are you aware of any changes to treatment on return of FAS since the change of presidency in January 2019?</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">No, no changes at all.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">7)</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">Do you monitor FAS returns on and/or following their arrival in the DRC?</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Almost all returns of DRC citizens are FAS returns. There are no problems with these returns. Local authorities feel sorry for them that they have been send back and are often blaming the European countries to be too strict.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">8)</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">What organizations in the DRC monitor human rights generally and returns in particular?</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Human Rights are monitored by a lot of organizations in the DRC; for example Human Rights Watch, Monuso… but returns in specific are monitored by the EURLO who is working with the local authorities of migration, DGM.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">“5)</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">If there have been allegations of difficulties/mistreatment, have these been substantiated with credible evidence?</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">The only allegations came from persons who had been forcedly returned from the UK, they have been verified by the EURLO [European Liaison Office] in the past years and all of them were false allegations. EURLO reported back to the UK on these cases.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">6)</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">Are you aware of any changes to treatment on return of FAS since the change of presidency in January 2019?</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">No, no changes at all.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">7)</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">Do you monitor FAS returns on and/or following their arrival in the DRC?</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Almost all returns of DRC citizens are FAS returns. There are no problems with these returns. Local authorities feel sorry for them that they have been send back and are often blaming the European countries to be too strict.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">8)</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">What organizations in the DRC monitor human rights generally and returns in particular?</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-style:italic;font-size:11pt">Human Rights are monitored by a lot of organizations in the DRC; for example Human Rights Watch, Monuso… but returns in specific are monitored by the EURLO who is working with the local authorities of migration, DGM.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_169">
           <num style="font-family:'Book Antiqua'">169.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">The ‘Projects and Migration Officer’ at the British Embassy Kinshasa in a note dated February 2021 that is at Annex A of the respondent’s ‘DRC: returns’ note prepared in respect of this appeal confirms he is not aware of any reports or allegations that voluntary or forced returnees have faced difficulties and/or been mistreated on return to Kinshasa.  He confirms that since the last Country Policy Information Note was published January 2020, nothing has been reported in the media and he has not heard of any speculation about them being mistreated or facing any significant challenge caused by local authorities.  He is not aware of returnees being required to pay bribes, although he accepts that that does not necessarily mean that returnees are not harassed for money on arrival.  He states, “bribery is kind of high at the airport – sometimes even individuals with the right documentation are asked to voluntarily leave a small token.”.  Asked whether he is aware that returnees have been detailed/imprisoned, he responds:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“No – my local NGOs contacts who do sometimes monitor returnees are not aware of any detention/ imprisonment of recent. However, they do not monitor returnees regularly due to lack of funding. It may be that something happened that we are not all aware of. Those contacts and the organisations they represent are:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- Norbert Ilunga – executive director - Les amis de Nelson Mandela pour la défense des droits humains</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- Rostin K – la voix de sans voix( Floribert Tchebeya‘s organisation)</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- I also talked to 2 DGM staff … separately but they requested not to be cited in any report as we did not go through the official route ( Note Verbale). Note that in 2019 DGM refused to answer our questions though we followed the process as it should had been.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“No – my local NGOs contacts who do sometimes monitor returnees are not aware of any detention/ imprisonment of recent. However, they do not monitor returnees regularly due to lack of funding. It may be that something happened that we are not all aware of. Those contacts and the organisations they represent are:</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- Norbert Ilunga – executive director - Les amis de Nelson Mandela pour la défense des droits humains</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- Rostin K – la voix de sans voix( Floribert Tchebeya‘s organisation)</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">- I also talked to 2 DGM staff … separately but they requested not to be cited in any report as we did not go through the official route ( Note Verbale). Note that in 2019 DGM refused to answer our questions though we followed the process as it should had been.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_170">
           <num style="font-family:'Book Antiqua'">170.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">The Projects and Migration Officer was asked whether he is aware of any changes to treatment on return of failed asylum seekers since the change of Presidency in January 2019.  The response was:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“Yes – it has improved significantly. During the last investigation conducted in June-July 2019 ahead of the publication of the 2020 CPIN, results showed that Tshisekedi’s regime is less hostile to returnees than his predecessor. Most respondents (local NGOs interviewed: la voix de sans voix, ASADHO, Les amis de Nelson Mandela, etc… whereas UN agencies and western embassies were sent a questionnaire through mail) reported that the since the current president took in, returnees were no longer maltreated on arrival and even after settling back. Returnees are not targeted during this regime as compared to when Kabila was in power (combattants).”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">“Yes – it has improved significantly. During the last investigation conducted in June-July 2019 ahead of the publication of the 2020 CPIN, results showed that Tshisekedi’s regime is less hostile to returnees than his predecessor. Most respondents (local NGOs interviewed: la voix de sans voix, ASADHO, Les amis de Nelson Mandela, etc… whereas UN agencies and western embassies were sent a questionnaire through mail) reported that the since the current president took in, returnees were no longer maltreated on arrival and even after settling back. Returnees are not targeted during this regime as compared to when Kabila was in power (combattants).”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_171">
           <num style="font-family:'Book Antiqua'">171.</num>
@@ -2446,27 +2552,31 @@
         </paragraph>
         <paragraph eId="para_173">
           <num style="font-family:'Book Antiqua'">173.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in"><span style="color:#000000">Furthermore, in the respondent’s response to an information request dated 4th May 2022 which provides an update of political events between November 2021 to April 2022, and a review of material published since November 2021, it is noted:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">“4.4</num>
-            <intro>
-              <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">Sur place activity</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.4.1</num>
-              <content>
-                <p class="p" style="margin-left:1.18in"><span style="font-size:11pt">The USSD human rights report 2021 in its section on ‘politically motivated reprisal against individuals located outside of the country’ observed: ‘In August HRW reported that a few days after Jean-Jacques Lumumba, a whistleblower exiled in France, spoke to a gathering of Congolese activists in Belgium about impunity and fighting corruption, his bag was stolen on his return train trip and his car was burned in its parking place on the outskirts of Paris. Police in Kinshasa also threatened his tenants with eviction if they did not provide documents containing personal information about Lumumba.’</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt;font-family:'Book Antiqua'">4.4.2</num>
-              <content>
-                <p class="p" style="margin-left:1.18in"><span style="font-size:11pt">However, the USSD, nor other sources consulted in this response, refer to further incidents of threats, violence or other abuses against members of the Congolese diaspora outside of the DRC.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">“4.4</num>
+                  <intro>
+                    <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">Sur place activity</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.4.1</num>
+                    <content>
+                      <p class="p" style="margin-left:1.18in"><span style="font-size:11pt">The USSD human rights report 2021 in its section on ‘politically motivated reprisal against individuals located outside of the country’ observed: ‘In August HRW reported that a few days after Jean-Jacques Lumumba, a whistleblower exiled in France, spoke to a gathering of Congolese activists in Belgium about impunity and fighting corruption, his bag was stolen on his return train trip and his car was burned in its parking place on the outskirts of Paris. Police in Kinshasa also threatened his tenants with eviction if they did not provide documents containing personal information about Lumumba.’</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-size:11pt;font-family:'Book Antiqua'">4.4.2</num>
+                    <content>
+                      <p class="p" style="margin-left:1.18in"><span style="font-size:11pt">However, the USSD, nor other sources consulted in this response, refer to further incidents of threats, violence or other abuses against members of the Congolese diaspora outside of the DRC.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_174">
           <num style="font-family:'Book Antiqua'">174.</num>
@@ -2476,79 +2586,87 @@
         </paragraph>
         <paragraph eId="para_175">
           <num style="font-family:'Book Antiqua'">175.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">We accept Dr Kodi’s claims that the use of social media platforms such as YouTube, WhatsApp, and Facebook, make it easier for the DRC national intelligence agencies to monitor the diaspora, and political opposition.  We accept however, as Mr Hansen submits, there is no credible evidence that the current authorities in the DRC are interested in monitoring the diaspora community in the UK; nor is there is any credible evidence that the intelligence capability exists, even if there were the appetite.  Having considered the wealth of background material before us, we find the entirety of Dr Kodi’s evidence on this topic is based on nothing more than speculation. We prefer the evidence of the respondent set out in the ‘CG case DRC: Sur place activity, update November 2021<span style="font-weight:bold">:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">“1.5</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">Congolese state monitoring of diaspora in the UK</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">…</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.2</num>
-            <content>
-              <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">The USSD 2020 human rights report stated: ‘The government did not restrict or disrupt access to the internet or censor online content, and there were some reports that the government monitored private online communications [in the DRC] without appropriate legal authority.’</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.3</num>
-            <content>
-              <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">The DRC Embassy in the UK is a small mission with 7 diplomatic staff in London including the Ambassador plus an Honorary Consul in Birmingham</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.4</num>
-            <content>
-              <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">The DRC diaspora in the UK was estimated to be in 2006 between 20,000 –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">40,000 people.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.5</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">At the time of compiling this response, CPIT was not able to find specific information on state monitoring of persons involved in sur place activity in the sources consulted.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">“1.5</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">Congolese state monitoring of diaspora in the UK</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">…</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.2</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">The USSD 2020 human rights report stated: ‘The government did not restrict or disrupt access to the internet or censor online content, and there were some reports that the government monitored private online communications [in the DRC] without appropriate legal authority.’</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.3</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">The DRC Embassy in the UK is a small mission with 7 diplomatic staff in London including the Ambassador plus an Honorary Consul in Birmingham</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.4</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in"><span style="font-size:11pt">The DRC diaspora in the UK was estimated to be in 2006 between 20,000 –</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0in"><span style="font-size:11pt">40,000 people.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">1.5.5</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">At the time of compiling this response, CPIT was not able to find specific information on state monitoring of persons involved in sur place activity in the sources consulted.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_176">
           <num style="font-family:'Book Antiqua'">176.</num>
-          <intro>
+          <content>
             <p class="p" style="margin-left:0.5in">Finally, we address the claim made by Mr Bazini that a FAS may also face treatment contrary to Article 3 generally, as a result of being unable to obtain the necessary ID to access basic services.   In his first report, Dr Kodi noted that the essential documentation that a person needs to obtain housing, employment, and to travel internally in the country is the voter’s card, which serves as the national identity card; it is usually issued before a general election.  In his evidence before us, Dr Kodi accepted that a national of the DRC would, in principle, qualify for a ‘voter card’.  His evidence is that it can be difficult to get one.  Ideally, one would have their voter card from the last election (2018).  Without that, there are a number of documents that an individual would have to provide and that would have to be accompanied by the testimony of three individuals.  Dr Kodi confirmed that he accepts what is said in the respondent’s ‘Response to an information request, Democratic Republic Congo: Documentation – voter card, 19 May 2022’<span style="color:#0070C0"> </span>which sets out the procedure for obtaining a voter card, and the process for obtaining a replacement card if the original was lost or stolen.  As to the impact of not having a voter card, it is said:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">“2.6.3</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The USSD in its human rights report covering events in 2021 stated: ‘Authorities do not issue national identification cards for citizens. A voter card or passport serves as an identifying document. Most citizens did not have a passport, and only citizens 18 and older are eligible for a voter registration card. The lack of identification documents could hinder the ability to register at university, obtain a passport, or gain certain employment.’.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">2.6.4</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The FCDO email of 12 April 2022 noted the voter card is used ‘for the bank </span><br /><span style="font-size:11pt">process: creating a bank account and access to public services.’ Adding that the government ‘… have not provided alternatives [forms of ID to the voter card]. One of the main attraction[s] of registering to vote is to have a valid form of ID.’ The WFD email of 19 May 2022 similarly observed that ‘The card serves as an identity card’.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">2.6.5</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">On the effect of not having a card the FCDO observed ‘the impact is limited because there are several alternatives including the passport, the driver’s licence. There is no punishment for not having a card.’</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-size:11pt;font-family:'Book Antiqua'">2.6.6</num>
-            <content>
-              <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The WFD email noted ‘Those who do not have a card find it difficult to prove their identity, and in some cases to travel. There is no punishment for not  having it’. Adding in response to a question of whether there are alternatives form of ID to the voter card, ‘The passport can be used to prove identity as well as the driving licence and the birth certificate’.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">“2.6.3</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The USSD in its human rights report covering events in 2021 stated: ‘Authorities do not issue national identification cards for citizens. A voter card or passport serves as an identifying document. Most citizens did not have a passport, and only citizens 18 and older are eligible for a voter registration card. The lack of identification documents could hinder the ability to register at university, obtain a passport, or gain certain employment.’.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">2.6.4</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The FCDO email of 12 April 2022 noted the voter card is used ‘for the bank </span><br /><span style="font-size:11pt">process: creating a bank account and access to public services.’ Adding that the government ‘… have not provided alternatives [forms of ID to the voter card]. One of the main attraction[s] of registering to vote is to have a valid form of ID.’ The WFD email of 19 May 2022 similarly observed that ‘The card serves as an identity card’.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">2.6.5</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">On the effect of not having a card the FCDO observed ‘the impact is limited because there are several alternatives including the passport, the driver’s licence. There is no punishment for not having a card.’</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11pt;font-family:'Book Antiqua'">2.6.6</num>
+                  <content>
+                    <p class="p" style="margin-left:0.79in;text-indent:0.21in"><span style="font-size:11pt">The WFD email noted ‘Those who do not have a card find it difficult to prove their identity, and in some cases to travel. There is no punishment for not  having it’. Adding in response to a question of whether there are alternatives form of ID to the voter card, ‘The passport can be used to prove identity as well as the driving licence and the birth certificate’.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_177">
           <num style="font-family:'Book Antiqua'">177.</num>
@@ -2632,7 +2750,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/iac/2023/117/data.xml" />
-                <FRBRdate date="2024-05-31T17:47:08" name="transform" />
+                <FRBRdate date="2024-08-12T19:22:05" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

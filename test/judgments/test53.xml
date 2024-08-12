@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewcop/2023/3/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:13" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:00" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2023</uk:year>
         <uk:number>3</uk:number>
         <uk:cite>[2023] EWCOP 3</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>f3f59c869e23d9f4d489620fb69ba400fcb43b6d01a4b3e4cf8ee27ace5c5b9f</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -661,7 +661,7 @@
         </paragraph>
         <paragraph eId="para_3">
           <num style="margin-left:0.57in;text-indent:-0.5in">3.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">In 2020 HHJ Moir made various findings against the Defendant during the course of Court of Protection proceedings. In her, as yet unpublished judgment of 21 October 2020, she noted the Defendant’s evidence that in her view, FP had been:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -682,41 +682,33 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant and FP had an “enmeshed relationship” characterized by what she called, “high expressed emotion” and that,</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">“the dynamics of the relationship contribute to an unhealthy cycle of FP and the Defendant ’s level of emotion and distress, increasing distress in the other and, in FP’s case, leading to increased agitation and a decline in her mental health.”</p>
-                    </content>
-                  </level>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant,</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
-                    <content>
-                      <p class="Quote" style="margin-left:1in">“has often behaved towards care workers in an abusive and unpleasant fashion which may be intended and is likely to demoralise them.”</p>
-                    </content>
-                  </level>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">She found that the Defendant’s contact with FP was often associated with a decline in FP’s mental health and that the Defendant sought to control FP’s care and treatment and to prevent FP from expressing her own views.</p>
-            </content>
-          </subparagraph>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant and FP had an “enmeshed relationship” characterized by what she called, “high expressed emotion” and that,</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“the dynamics of the relationship contribute to an unhealthy cycle of FP and the Defendant ’s level of emotion and distress, increasing distress in the other and, in FP’s case, leading to increased agitation and a decline in her mental health.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">HHJ Moir found that the Defendant,</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Quote" style="margin-left:1in">“has often behaved towards care workers in an abusive and unpleasant fashion which may be intended and is likely to demoralise them.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_1">
+          <content>
+            <p style="text-align:justify;margin-left:0.57in;margin-right:0.57in">She found that the Defendant’s contact with FP was often associated with a decline in FP’s mental health and that the Defendant sought to control FP’s care and treatment and to prevent FP from expressing her own views.</p>
+          </content>
+        </level>
         <paragraph eId="para_4">
           <num style="margin-left:0.57in;text-indent:-0.5in">4.</num>
           <content>
@@ -806,10 +798,6 @@
                     </content>
                   </subparagraph>
                 </paragraph>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>2.</num>
                   <content>
@@ -826,39 +814,41 @@
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">The application to commit was originally brought in three applications made November and December 2022. Those application contained eleven separate alleged breaches of the injunctive orders made on 30 June 2022. As I shall explain in more detail below, those eleven alleged breaches were all admitted by the Defendant at the first hearing of the committal applications on 8 December 2022. I set out the admitted breaches with sequential numbering in my order of that date. However, at the hearing on 16 January 2023 the Claimant indicated that it did not seek to persuade the court that six of the admitted breaches constituted contempt of court – the Claimant relies only on the allegations numbered 1, 3, 4, 5 and 11. For the sake of economy therefore I shall not repeat the other six breaches in this judgment. I have disregarded them. The admitted breaches said to constitute contempts of court are put by the Claimant as follows:</span></p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“[The Defendant] has uploaded various materials to social media including Facebook and Twitter, specifically:</heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“[The Defendant] has uploaded various materials to social media including Facebook and Twitter, specifically:</p>
+                  </intro>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">i.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in">[No. 1] [The Defendant] has posted two YouTube videos although one video, titled The 21st Century Disgrace' has been removed. The second video, titled ‘The hospital number 2’, uploaded 29 October 2022, records the Defendant on the phone to FP, on loudspeaker, breaching paragraph 1 (d) and 2. Both of these videos had been posted to Twitter, with a link to the Defendant’s Facebook.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">ii.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in">[No. 3] On 02 November 2022, the Defendant retweeted a link to an article posted on Facebook 'on 01 April' - the text demonstrates this was posted either in 2021 or 2022 - which explains the background of these proceedings and contained links to videos of FP, although the face is blurred, and the Defendant on the telephone. This post was still visible on Facebook on 18 November 2022 thus breaching paragraphs 1(d) and 2 of the injunction order.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">iii.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in;text-indent:0.12in">[No. 4] On 31 October 2022 the Defendant retweeted a further link to an article she posted on Facebook ‘on 03 June’ – it is not clear which year this was posted which publicises these proceedings breaching paragraph 1(c) , 1(d) and paragraph 2. The Article details how she has been in Court of Protection proceedings for four years and that the court did not protect FP but was used to hid crimes. Videos are also linked in the Article…”</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">iv.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in">[No. 5] On 24 October 2022, the Defendant retweeted a link to an additional article she had posted on Facebook dated ’21 October’ - it is unclear which year this was posted - which talks about the Court of Protection. The article also links a video of an interview of FP dated 22 September 2019 where FP can be physically seen speaking, therefore breaching paragraphs 1(c), 1(d) and paragraph 2.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="margin-left:1.43in;text-indent:-0.25in">v.</num>
                     <content>
                       <p class="Quote" style="margin-left:1.43in">[No. 11] The Defendant has posted a further video to YouTube on 02 December 2022 titled ‘Movie on 17 06 2022 at 13:57’ which records the Defendant on the phone on loudspeaker to someone who is believed to be FP. Within this video recording, the Defendant also records staff speaking on the telephone, therefore breaching paragraph 1(d) and paragraph 2.”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -941,7 +931,7 @@
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Ms Turner’s firm came off the record prior to the hearing on 16 January 2023 but the Defendant secured representation, by direct access, from Mr Lewis who appeared at the hearing before me on 16 January 2023. The Defendant has attended in person as ordered. Upon notice of the most recent application for committal I directed that it should be listed for directions or disposal at the hearing on 16 January 2023, the hearing which had been fixed for consideration of sentencing. The purpose of my order, made without a hearing, was simply to list the application at the same time as the other applications to commit and to give the appropriate warnings to the Defendant about her rights, which were set out on the face of my order.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_1">
+        <level eId="lvl_2">
           <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.07in;margin-right:0.57in"><span style="font-weight:bold">Personal Service</span></p>
           </content>
@@ -1001,10 +991,6 @@
                     <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Striking out, procedural defects and discontinuance</p>
                   </content>
                 </level>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>11.1.</num>
                   <content>
@@ -1063,10 +1049,6 @@
                     </content>
                   </subparagraph>
                 </paragraph>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>(b)</num>
                   <intro>
@@ -1101,7 +1083,7 @@
             <p class="CoverText" style="text-align:justify;margin-left:0.5in;margin-right:0.57in"><span style="text-decoration-line:none">Given that the defendant was present at court (albeit remotely on each occasion) when the orders to which the committal applications relate were made and that the orders were subsequently sent to her by email, I can discern no prejudice to her at all from the failure to effect personal service of the orders upon her. Mr Lewis on behalf of the Defendant accepts that there was no prejudice to her. No permission was given prior to the applications for committal to dispense with personal service of the orders alleged to have been breached. There has therefore been a procedural defect in relation to the applications to commit. However, given the absence of prejudice to the defendant by reason of the procedural defects, in accordance with the PD21A I waive the procedural defects of failing to serve those orders personally on the defendant.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_2">
+        <level eId="lvl_3">
           <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.07in;margin-right:0.57in"><span style="font-weight:bold">Open Justice and Reporting Restrictions</span></p>
           </content>
@@ -1177,10 +1159,6 @@
                     <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">“Open Justice</p>
                   </content>
                 </level>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>3.</num>
                   <content>
@@ -1193,19 +1171,11 @@
                     <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">Derogations from the general principle can only be justified in exceptional circumstances, when they are strictly necessary as measures to secure the proper administration of justice. Derogations shall, where justified, be no more than strictly necessary to achieve their purpose.</p>
                   </content>
                 </paragraph>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <level>
                   <content>
                     <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Committal Hearings – in Public</p>
                   </content>
                 </level>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>5.</num>
                   <content>
@@ -1276,10 +1246,6 @@
                     <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Right to respect for private and family life</p>
                   </content>
                 </level>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>1.</num>
                   <content>
@@ -1292,10 +1258,6 @@
                     <p class="Quote" style="margin-left:0.72in;margin-right:0.57in;text-indent:0.28in">There shall be no interference by a public authority with the exercise of this right except such as is in accordance with the law and is necessary in a democratic society in the interests of national security, public safety or the economic well-being of the country, for the prevention of disorder or crime, for the protection of health or morals, or for the protection of the rights and freedoms of others.</p>
                   </content>
                 </paragraph>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <level>
                   <content>
                     <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Article 10</p>
@@ -1306,10 +1268,6 @@
                     <p class="Quote" style="margin-left:0.39in;margin-right:0.57in;text-indent:0.32in">Freedom of expression</p>
                   </content>
                 </level>
-              </embeddedStructure>
-            </block>
-            <block name="embeddedStructure">
-              <embeddedStructure>
                 <paragraph>
                   <num>1.</num>
                   <content>
@@ -1343,7 +1301,7 @@
         </paragraph>
         <paragraph eId="para_37">
           <num style="margin-left:0.57in;text-indent:-0.5in">37.</num>
-          <intro>
+          <content>
             <p class="CoverText" style="text-align:justify;margin-left:0.57in;margin-right:0.57in"><span style="text-decoration-line:none">Under the Court of Protection (Amendment) Rules 2022 ,which came into force on 1 January 2023,and therefore after the hearing on 8 December 2022 but before the hearing listed for sentencing on 16 January 2023, the new r 21.8(1) to (5) of the COPR provide as follows:</span></p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1423,113 +1381,99 @@
                     </content>
                   </subparagraph>
                 </paragraph>
-              </embeddedStructure>
-            </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those new rules apply to the hearing today. The court may therefore sit in private if one of the conditions under r 21.8(4) is met. For example, if the court determined that a private hearing was necessary to protect the interests of FP and that it was necessary to sit in private to secure the proper administration of justice. Ordinarily, contempt proceedings will be heard in public but the court clearly has the power to direct that contempt proceedings be heard in private. If so, then COPR r 4.2 applies:</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those new rules apply to the hearing today. The court may therefore sit in private if one of the conditions under r 21.8(4) is met. For example, if the court determined that a private hearing was necessary to protect the interests of FP and that it was necessary to sit in private to secure the proper administration of justice. Ordinarily, contempt proceedings will be heard in public but the court clearly has the power to direct that contempt proceedings be heard in private. If so, then COPR r 4.2 applies:</p>
+                  </intro>
+                  <subparagraph>
                     <num>4.2.</num>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">- (1) For the purposes of the law relating to contempt of court, information relating to proceedings held in private (whether or not contained in a document filed with the court) may be communicated in accordance with paragraph (2) or (3).</p>
                     </content>
-                  </paragraph>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(2)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">The court may make an order authorising:</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>(2)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">The court may make an order authorising:</p>
+                  </intro>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(a)the publication or communication of such information or material relating to the proceedings as it may specify; or</p>
                     </content>
-                  </level>
-                  <level>
+                  </subparagraph>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in">(b)the publication of the text or a summary of the whole or part of a judgment or order made by the court.</p>
                     </content>
-                  </level>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(3)</num>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Subject to any direction of the court, information referred to in paragraph (1) may be communicated in accordance with Practice Direction 4A.</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(4)</num>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">Where the court makes an order under paragraph (2) it may do so on such terms as it thinks fit, and in particular may:</p>
                     </content>
-                  </paragraph>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">impose restrictions on the publication of the identity of:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(i)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any party;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">P (whether or not a party);</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iii)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any witness; or</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iv)</num>
-            <content>
-              <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any other person;</p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <paragraph>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>(a)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">impose restrictions on the publication of the identity of:</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(i)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any party;</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">P (whether or not a party);</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(iii)</num>
+                  <content>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any witness; or</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(iv)</num>
+                  <intro>
+                    <p class="Quote" style="margin-left:0.46in;margin-right:0.57in;text-indent:0.36in">any other person;</p>
+                  </intro>
+                  <subparagraph>
                     <num>(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">prohibit the publication of any information that may lead to any such person being identified;</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(c)</num>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">prohibit the further publication of any information relating to the proceedings from such date as the court may specify; or</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(d)</num>
                     <content>
                       <p class="Quote" style="margin-left:0.79in;margin-right:0.57in;text-indent:0.21in">impose such other restrictions on the publication of information relating to the proceedings as the court may specify.</p>
                     </content>
-                  </paragraph>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those rules apply to all hearings conducted in private in the Court of Protection. However, in relation to contempt of court proceedings, I must have regard to the new r 21.8(5), on the face of which, as it applies to the present contempt proceedings, the court must order that the Defendant’s identity shall not be disclosed if, and only if, it considers non-disclosure necessary to secure the proper administration of justice and in order to protect the interest of the Defendant.  The general power under r 4.2 to impose restrictions on the publication of the identity of any party is circumscribed by r 21.8(5) in relation to contempt of court proceedings.</p>
-            </content>
-          </subparagraph>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="ParaLevel1" style="margin-left:0.39in;margin-right:0.57in">Those rules apply to all hearings conducted in private in the Court of Protection. However, in relation to contempt of court proceedings, I must have regard to the new r 21.8(5), on the face of which, as it applies to the present contempt proceedings, the court must order that the Defendant’s identity shall not be disclosed if, and only if, it considers non-disclosure necessary to secure the proper administration of justice and in order to protect the interest of the Defendant.  The general power under r 4.2 to impose restrictions on the publication of the identity of any party is circumscribed by r 21.8(5) in relation to contempt of court proceedings.</p>
+                  </wrapUp>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_38">
           <num style="margin-left:0.39in;text-indent:-0.5in">38.</num>

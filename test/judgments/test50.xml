@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
-          <FRBRdate date="2024-05-31T17:43:54" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:59" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>45</uk:number>
         <uk:cite>[2023] UKFTT 45 (TC)</uk:cite>
-        <uk:parser>0.24.1</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>7653fcf040c1d7f55f82082fef299fc6cf7090d63a7ff2a351feee4d4990cb13</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -618,36 +618,38 @@
         </paragraph>
         <paragraph eId="para_37">
           <num>37.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The material provisions insofar as relevant in section 84 VATA read:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(3A) Subject to subsections (3B) and (3C), where the appeal is against an assessment which is a recovery assessment for the purposes of this subsection, or against the amount of such an assessment, it shall not be entertained unless the amount notified by the assessment has been paid or deposited with HMRC.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />(3B)  In a case where the amount determined to be payable as VAT or the amount notified by the recovery assessment has not been paid or deposited, an appeal shall be entertained if –</p>
-            </intro>
-            <subparagraph>
-              <num style="margin-left:0.69in">(a)</num>
-              <content>
-                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">HMRC are satisfied (on the application of the appellant), or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:0.69in">(b)</num>
-              <content>
-                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">The tribunal decides (HMRC not being so satisfied and on the application of the appellant),</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext3" style="margin-left:0.39in">that the requirement to pay or deposit the amount determined <span style="text-decoration-line:underline;text-decoration-style:solid">would cause</span> the appellant to suffer hardship”. (emphasis added)</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(3A) Subject to subsections (3B) and (3C), where the appeal is against an assessment which is a recovery assessment for the purposes of this subsection, or against the amount of such an assessment, it shall not be entertained unless the amount notified by the assessment has been paid or deposited with HMRC.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <intro>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />(3B)  In a case where the amount determined to be payable as VAT or the amount notified by the recovery assessment has not been paid or deposited, an appeal shall be entertained if –</p>
+                  </intro>
+                  <subparagraph>
+                    <num style="margin-left:0.69in">(a)</num>
+                    <content>
+                      <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">HMRC are satisfied (on the application of the appellant), or</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="margin-left:0.69in">(b)</num>
+                    <content>
+                      <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">The tribunal decides (HMRC not being so satisfied and on the application of the appellant),</p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="Taxbodytext3" style="margin-left:0.39in">that the requirement to pay or deposit the amount determined <span style="text-decoration-line:underline;text-decoration-style:solid">would cause</span> the appellant to suffer hardship”. (emphasis added)</p>
+                  </wrapUp>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_9">
           <content>
@@ -656,56 +658,64 @@
         </level>
         <paragraph eId="para_38">
           <num>38.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 16(3) FA94 reads:-</p>
-          </intro>
-          <subparagraph>
-            <num>“(3)</num>
-            <intro>
-              <p class="Taxbodytext1" style="margin-left:0.39in">An appeal which relates to a relevant decision falling within any of paragraphs (a) to (h) of section 13A(2), or which relates to a decision on a review of any such relevant decision, shall not be entertained if the amount of relevant duty which HMRC have determined to be payable in relation to that decision has not been paid or deposited with them unless-</p>
-            </intro>
-            <subparagraph>
-              <num style="margin-left:0.69in">(a)</num>
-              <intro>
-                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Commissioners have, on the application of the appellant, issued a certificate stating either-</p>
-              </intro>
-              <subparagraph>
-                <num style="margin-left:0.98in">(i)</num>
-                <content>
-                  <p class="Taxbodytext4" style="margin-left:0.98in;text-indent:0.38in">that such security as appears to them to be adequate has been given to them for the payment of that amount; or</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:0.98in">(ii)</num>
-                <content>
-                  <p class="Taxbodytext4" style="margin-left:0.98in;text-indent:0.5in">that, on the grounds of the hardship that would otherwise be suffered by the appellant, they either do not require the giving of security for the payment of that amount or have accepted such lesser security as they consider appropriate;</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext4" style="text-indent:0.69in">or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:0.69in">(b)</num>
-              <content>
-                <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Tribunal to which the appeal is made decide that the Commissioners <span style="text-decoration-line:underline;text-decoration-style:solid">should not have refused</span> to issue a certificate under paragraph (a) above and are satisfied that such <span style="text-decoration-line:underline;text-decoration-style:solid">security</span> (if any) as it would have been reasonable for the Commissioners to accept in the circumstances has been given to the Commissioners.”  (emphasis added).</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(3)</num>
+                  <intro>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">An appeal which relates to a relevant decision falling within any of paragraphs (a) to (h) of section 13A(2), or which relates to a decision on a review of any such relevant decision, shall not be entertained if the amount of relevant duty which HMRC have determined to be payable in relation to that decision has not been paid or deposited with them unless-</p>
+                  </intro>
+                  <subparagraph>
+                    <num style="margin-left:0.69in">(a)</num>
+                    <intro>
+                      <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Commissioners have, on the application of the appellant, issued a certificate stating either-</p>
+                    </intro>
+                    <subparagraph>
+                      <num style="margin-left:0.98in">(i)</num>
+                      <content>
+                        <p class="Taxbodytext4" style="margin-left:0.98in;text-indent:0.38in">that such security as appears to them to be adequate has been given to them for the payment of that amount; or</p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:0.98in">(ii)</num>
+                      <content>
+                        <p class="Taxbodytext4" style="margin-left:0.98in;text-indent:0.5in">that, on the grounds of the hardship that would otherwise be suffered by the appellant, they either do not require the giving of security for the payment of that amount or have accepted such lesser security as they consider appropriate;</p>
+                      </content>
+                    </subparagraph>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="Taxbodytext4" style="text-indent:0.69in">or</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="margin-left:0.69in">(b)</num>
+                    <content>
+                      <p class="Taxbodytext3" style="margin-left:0.69in;text-indent:0.38in">the Tribunal to which the appeal is made decide that the Commissioners <span style="text-decoration-line:underline;text-decoration-style:solid">should not have refused</span> to issue a certificate under paragraph (a) above and are satisfied that such <span style="text-decoration-line:underline;text-decoration-style:solid">security</span> (if any) as it would have been reasonable for the Commissioners to accept in the circumstances has been given to the Commissioners.”  (emphasis added).</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_39">
           <num>39.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 13A(2)(b) is relevant for the purposes of this appeal and reads:-</p>
-          </intro>
-          <subparagraph>
-            <num>“(b)</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">so much of any decision by HMRC that a person is liable to any duty of excise, or as to the amount of his liability, as is contained in any assessment under section 12 above;”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(b)</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">so much of any decision by HMRC that a person is liable to any duty of excise, or as to the amount of his liability, as is contained in any assessment under section 12 above;”.</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_40">
           <num>40.</num>
@@ -735,31 +745,35 @@
         </level>
         <paragraph eId="para_41">
           <num>41.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in"> Subsection (4) reads:-</p>
-          </intro>
-          <subparagraph>
-            <num>“(4)</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">An assessment of the amount of any duty of excise due from any person shall not be made under this section at any time after whichever is the earlier of the following times, that is to say— </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in"> … </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">the end of the period of one year beginning with the day on which evidence of facts, sufficient in the opinion of the Commissioners to justify the making of the assessment, comes to their knowledge; </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">but this subsection shall be without prejudice, where further evidence comes to the knowledge of the Commissioners at any time after the making of an assessment under this section, to the making of a further assessment within the period applicable by virtue of this subsection in relation to that further assessment.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(4)</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">An assessment of the amount of any duty of excise due from any person shall not be made under this section at any time after whichever is the earlier of the following times, that is to say— </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in"> … </p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(b)</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">the end of the period of one year beginning with the day on which evidence of facts, sufficient in the opinion of the Commissioners to justify the making of the assessment, comes to their knowledge; </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">but this subsection shall be without prejudice, where further evidence comes to the knowledge of the Commissioners at any time after the making of an assessment under this section, to the making of a further assessment within the period applicable by virtue of this subsection in relation to that further assessment.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_11">
           <content>
@@ -828,122 +842,130 @@
         </paragraph>
         <paragraph eId="para_51">
           <num>51.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">As I have indicated, I told the parties that I agreed with Judge Poole in <span style="font-style:italic">NT </span>where he set out a review of the relevant case law in relation to VAT and hardship. In his written submissions Mr Birkbeck cited it.  That decision is not binding on me but it sets out the <span style="font-style:italic">Elbrook </span>Principles and I agree with that review and adopt it and set it out as follows:-</p>
-          </intro>
-          <subparagraph>
-            <num>“33.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">In <span style="font-style:italic">HMRC v Elbrook (Cash &amp; Carry) Limited</span> [2017] UKUT 181 (TCC) at [16] to [31], the Upper Tribunal recently provided a useful review of the legal principles in this area.  From it, I derive the following points (references are to paragraphs in the Upper Tribunal’s decision):</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(1)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The purpose of the provisions is to strike a balance between the abuse of the appeals mechanism by employing it to delay paying disputed tax and the stricture of having to pay or deposit the disputed sum as the price of entering the appeal process; the relief afforded by the ‘hardship’ provision should not be applied so as to operate as a fetter on the right of appeal ([19]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(2)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The Tribunal should not concern itself with the merits of the underlying appeal ([20]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(3)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The test is an ‘all or nothing’ one, in which it is not relevant that the appellant might be able to pay or deposit some amount less than the whole disputed sum ([31]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(4)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The test is to be applied to the position at the date of the hearing ([26]).  This means that the Tribunal should not ‘speculate as to what might become available to the appellant in the future’ ([22] &amp; [26]).  It should focus on ‘immediately or readily available resources ([21]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(5)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The fact that the appellant may have the necessary cash or other readily available resources may not be determinative, if hardship would result from using it (or them) in paying the disputed sum ([22]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(6)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Available borrowing resources may be considered, but generally only from existing sources, e.g. unused facilities or new facilities immediately available with minimal formality ([23]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(7)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Potentially available borrowing from new sources, for example if the appellant owns property capable as acting as security for a new loan, will only exceptionally be considered as ‘immediately or readily available’, for example where arrangements for borrowing are at an advanced stage ([24]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(8)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The potential sale, outside the ordinary course of business, of assets properly purchased for the purposes of the appellant’s business, might cause hardship even if the assets are not currently being used in the business ([25]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(9)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">There is no hard and fast rule that ‘regard can never be had to the resources of connected (but legally independent) entities where … there is common control and the evidence suggests a free flow of resources to meet the needs or requirements of any one entity at the expense of the other or others of them from time to time’ ([25]).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(10)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">Although the test is to be applied by reference to the circumstances at the date of the hearing (see [33(4)] above), that does not mean that events leading up to that time are necessarily ignored.  The Tribunal can take into account ‘whether the appellant is himself responsible for putting himself in a position where he cannot pay … and that would include by delaying the hearing so that at the time of the hearing he cannot pay … without hardship’ ([27]), endorsed at [28]). The basis for this is that the ‘real cause’ of the appellant’s inability to pay without hardship may be his own prior actions.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(11)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">The Tribunal should make its assessment on the basis of the most up-to-date available information.  The burden lies on the appellant to establish hardship, so it is normally incumbent on the appellant to adduce the necessary evidence to satisfy the Tribunal ([29]).  Absence of contemporaneous accounting evidence may justify the Tribunal in placing little, if any, weight on an oral assertion that the appellant is unable to afford to pay.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.39in">(12)</num>
-            <content>
-              <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">Within the above parameters, the decision of the Tribunal is a value judgment on the basis of the evidence before it ([16]).”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“33.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">In <span style="font-style:italic">HMRC v Elbrook (Cash &amp; Carry) Limited</span> [2017] UKUT 181 (TCC) at [16] to [31], the Upper Tribunal recently provided a useful review of the legal principles in this area.  From it, I derive the following points (references are to paragraphs in the Upper Tribunal’s decision):</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(1)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The purpose of the provisions is to strike a balance between the abuse of the appeals mechanism by employing it to delay paying disputed tax and the stricture of having to pay or deposit the disputed sum as the price of entering the appeal process; the relief afforded by the ‘hardship’ provision should not be applied so as to operate as a fetter on the right of appeal ([19]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(2)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The Tribunal should not concern itself with the merits of the underlying appeal ([20]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(3)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The test is an ‘all or nothing’ one, in which it is not relevant that the appellant might be able to pay or deposit some amount less than the whole disputed sum ([31]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(4)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The test is to be applied to the position at the date of the hearing ([26]).  This means that the Tribunal should not ‘speculate as to what might become available to the appellant in the future’ ([22] &amp; [26]).  It should focus on ‘immediately or readily available resources ([21]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(5)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The fact that the appellant may have the necessary cash or other readily available resources may not be determinative, if hardship would result from using it (or them) in paying the disputed sum ([22]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(6)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Available borrowing resources may be considered, but generally only from existing sources, e.g. unused facilities or new facilities immediately available with minimal formality ([23]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(7)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Potentially available borrowing from new sources, for example if the appellant owns property capable as acting as security for a new loan, will only exceptionally be considered as ‘immediately or readily available’, for example where arrangements for borrowing are at an advanced stage ([24]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(8)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The potential sale, outside the ordinary course of business, of assets properly purchased for the purposes of the appellant’s business, might cause hardship even if the assets are not currently being used in the business ([25]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(9)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">There is no hard and fast rule that ‘regard can never be had to the resources of connected (but legally independent) entities where … there is common control and the evidence suggests a free flow of resources to meet the needs or requirements of any one entity at the expense of the other or others of them from time to time’ ([25]).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(10)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">Although the test is to be applied by reference to the circumstances at the date of the hearing (see [33(4)] above), that does not mean that events leading up to that time are necessarily ignored.  The Tribunal can take into account ‘whether the appellant is himself responsible for putting himself in a position where he cannot pay … and that would include by delaying the hearing so that at the time of the hearing he cannot pay … without hardship’ ([27]), endorsed at [28]). The basis for this is that the ‘real cause’ of the appellant’s inability to pay without hardship may be his own prior actions.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(11)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">The Tribunal should make its assessment on the basis of the most up-to-date available information.  The burden lies on the appellant to establish hardship, so it is normally incumbent on the appellant to adduce the necessary evidence to satisfy the Tribunal ([29]).  Absence of contemporaneous accounting evidence may justify the Tribunal in placing little, if any, weight on an oral assertion that the appellant is unable to afford to pay.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.39in">(12)</num>
+                  <content>
+                    <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.5in">Within the above parameters, the decision of the Tribunal is a value judgment on the basis of the evidence before it ([16]).”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_52">
           <num>52.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">In addition, I quote in full these two paragraphs from the decision of the Upper Tribunal in <span style="font-style:italic">Elbrook:-</span></p>
-          </intro>
-          <subparagraph>
-            <num>“21.</num>
-            <intro>
-              <p class="Taxbodytext1" style="margin-left:0.39in">In the same passage in <span style="font-style:italic">ToTel 1</span>, Simon J also approved two further principles derived from a decision of the VAT and Duties Tribunal, <span style="font-style:italic">Seymour Limousines Limited v Revenue and Customs Commissioners</span> [2009] UKVAT V20966.  He said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.69in;text-indent:-0.39in"><marker name="tab" />‘…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>ii)</num>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.69in">The test is one of capacity to pay without financial hardship, and must be applied in a way which complies with the principle of proportionality in order to comply with Community law, see <span style="font-style:italic">Seymour Limousines Ltd</span> (above) at [57].</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>iii)</num>
-              <content>
-                <p class="Taxbodytext1" style="margin-left:0.69in">The hardship enquiry should be directed to the ability of an appellant to pay from resources which are immediately or readily available.  It should not involve a lengthy investigation of assets and liabilities, and an ability to pay in the future, see <span style="font-style:italic">Seymour Limousines Ltd</span> (above) at [58].  This is a reflection of the broader principle that the issue of hardship ought to be capable of prompt resolution on readily available material.’</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>22.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">Whether resources are immediately or readily available to pay the tax without hardship is a value judgment.  The test is not simply of capacity to pay, but capacity to pay without financial hardship.  Thus, the mere existence of cash or other readily realisable resources will not necessarily suffice, if the employment of those resources in paying the disputed cash would have consequences that would cause financial hardship.  The requirement that the resources be immediately or readily available is a reflection of the structure of s 84(3B), which looks to the existing financial position of the appellant, and does not require enquiry as to possible future action or any potential resources that might become available in the future (see <span style="font-style:italic">Buyco Limited and Sellco Limited v Revenue and Customs Commissioners</span> [2006] UKVAT V19752, at [8].”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“21.</num>
+                  <intro>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">In the same passage in <span style="font-style:italic">ToTel 1</span>, Simon J also approved two further principles derived from a decision of the VAT and Duties Tribunal, <span style="font-style:italic">Seymour Limousines Limited v Revenue and Customs Commissioners</span> [2009] UKVAT V20966.  He said:</p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.69in;text-indent:-0.39in"><marker name="tab" />‘…</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>ii)</num>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.69in">The test is one of capacity to pay without financial hardship, and must be applied in a way which complies with the principle of proportionality in order to comply with Community law, see <span style="font-style:italic">Seymour Limousines Ltd</span> (above) at [57].</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>iii)</num>
+                    <content>
+                      <p class="Taxbodytext1" style="margin-left:0.69in">The hardship enquiry should be directed to the ability of an appellant to pay from resources which are immediately or readily available.  It should not involve a lengthy investigation of assets and liabilities, and an ability to pay in the future, see <span style="font-style:italic">Seymour Limousines Ltd</span> (above) at [58].  This is a reflection of the broader principle that the issue of hardship ought to be capable of prompt resolution on readily available material.’</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>22.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">Whether resources are immediately or readily available to pay the tax without hardship is a value judgment.  The test is not simply of capacity to pay, but capacity to pay without financial hardship.  Thus, the mere existence of cash or other readily realisable resources will not necessarily suffice, if the employment of those resources in paying the disputed cash would have consequences that would cause financial hardship.  The requirement that the resources be immediately or readily available is a reflection of the structure of s 84(3B), which looks to the existing financial position of the appellant, and does not require enquiry as to possible future action or any potential resources that might become available in the future (see <span style="font-style:italic">Buyco Limited and Sellco Limited v Revenue and Customs Commissioners</span> [2006] UKVAT V19752, at [8].”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_13">
           <content>
@@ -1006,15 +1028,19 @@
         </paragraph>
         <paragraph eId="para_62">
           <num>62.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">However, and in my view entirely accurately, at paragraph 13 they stated:-</p>
-          </intro>
-          <subparagraph>
-            <num>“13.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">The test for excise duty purposes is somewhat different. The main relevant cases are <span style="font-style:italic">Commissioners of Customs and Excise v Mitsui &amp; Co Plc and H.T. Walker</span> [2000] 1 C.M.L.R 85 and, at the First-tier Tribunal level, <span style="font-style:italic">John Cozens v HMRC</span> [2012] UKFTT 228 (TC) and <span style="font-style:italic">Tradium Limited v HMRC</span> [2012] UKFTT 421 (TC). The key distinguishing features are that the excise duty test is not “all or nothing”, so criterion (6) in <span style="font-style:italic">Elbrook</span> does not apply, and <span style="font-weight:bold">the focus is on the question of security, not paymen</span>t. As explained in <span style="font-style:italic">Mitsui</span> at [9], the Commissioners are both entitled and bound to require security in lieu of immediate payment, subject to hardship being established.” (Emphasis added)</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“13.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">The test for excise duty purposes is somewhat different. The main relevant cases are <span style="font-style:italic">Commissioners of Customs and Excise v Mitsui &amp; Co Plc and H.T. Walker</span> [2000] 1 C.M.L.R 85 and, at the First-tier Tribunal level, <span style="font-style:italic">John Cozens v HMRC</span> [2012] UKFTT 228 (TC) and <span style="font-style:italic">Tradium Limited v HMRC</span> [2012] UKFTT 421 (TC). The key distinguishing features are that the excise duty test is not “all or nothing”, so criterion (6) in <span style="font-style:italic">Elbrook</span> does not apply, and <span style="font-weight:bold">the focus is on the question of security, not paymen</span>t. As explained in <span style="font-style:italic">Mitsui</span> at [9], the Commissioners are both entitled and bound to require security in lieu of immediate payment, subject to hardship being established.” (Emphasis added)</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_63">
           <num>63.</num>
@@ -1036,14 +1062,18 @@
         </paragraph>
         <paragraph eId="para_66">
           <num>66.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The second is that the decision, in that context, stated that:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in"> “..it has not been demonstrated that [the appellant] would suffer hardship should it be required to settle the debt in question, this is on the basis that the cash reserves held (both currently and as forecast) would be sufficient to enable [the appellant] to settle the debt.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in"> “..it has not been demonstrated that [the appellant] would suffer hardship should it be required to settle the debt in question, this is on the basis that the cash reserves held (both currently and as forecast) would be sufficient to enable [the appellant] to settle the debt.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_67">
           <num>67.</num>
@@ -1053,15 +1083,19 @@
         </paragraph>
         <paragraph eId="para_68">
           <num>68.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Judge Falk faced the same issue and found at paragraph 58 that:-</p>
-          </intro>
-          <subparagraph>
-            <num>“58.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">We have also considered the differences between the VAT and excise duty hardship rules. We accept that HMRC has refused the appellant’s hardship applications on grounds that referred only to not paying or depositing the (full) amount, and that their decision did not expressly refer to the provision of security for all or part of the amount as contemplated for excise duty purposes. However, we do not think that that affects our jurisdiction to determine the matter under s 16(3)(b) FA 1994, and Mr Brown did not argue otherwise. The appellant also did not offer any security at all, so must be treated as having asked that no security should be required. We find that it is not the case that it would have been reasonable in the circumstances for the Commissioners to accept no security, and therefore the appellant has not satisfied the test in s 16(3)(b).”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“58.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">We have also considered the differences between the VAT and excise duty hardship rules. We accept that HMRC has refused the appellant’s hardship applications on grounds that referred only to not paying or depositing the (full) amount, and that their decision did not expressly refer to the provision of security for all or part of the amount as contemplated for excise duty purposes. However, we do not think that that affects our jurisdiction to determine the matter under s 16(3)(b) FA 1994, and Mr Brown did not argue otherwise. The appellant also did not offer any security at all, so must be treated as having asked that no security should be required. We find that it is not the case that it would have been reasonable in the circumstances for the Commissioners to accept no security, and therefore the appellant has not satisfied the test in s 16(3)(b).”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_69">
           <num>69.</num>
@@ -1071,15 +1105,19 @@
         </paragraph>
         <paragraph eId="para_70">
           <num>70.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Judge Thomas and Ms Dean in <span style="font-style:italic">E v HMRC</span> [2017] UKFTT 348 (TC) at paragraph 45, in relation to hardship for VAT and duty stated:-</p>
-          </intro>
-          <subparagraph>
-            <num>“45.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">There are some obvious differences. VAT is a tax, not a duty. (And equally excise duty is a duty, not a tax, a point that has escaped HMRC’s hardship specialists and Solicitor’s Office – hence the plethora of “(sic)” above). And for excise duty (and any other duty to which s 16 FA 1994 applies) the question is not whether the duty does not need to be paid on the grounds that to pay it would cause hardship but whether the person assessed should give security for the duty due or whether security should not be required because of the hardship it would cause to give it.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“45.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">There are some obvious differences. VAT is a tax, not a duty. (And equally excise duty is a duty, not a tax, a point that has escaped HMRC’s hardship specialists and Solicitor’s Office – hence the plethora of “(sic)” above). And for excise duty (and any other duty to which s 16 FA 1994 applies) the question is not whether the duty does not need to be paid on the grounds that to pay it would cause hardship but whether the person assessed should give security for the duty due or whether security should not be required because of the hardship it would cause to give it.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_14">
           <content>
@@ -1153,20 +1191,24 @@
         </paragraph>
         <paragraph eId="para_81">
           <num>81.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">He pointed out that Judge Mosedale, in <span style="font-style:italic">K W Hadleigh Limited v HMRC </span>[2014] UKFTT 336 (TC) had described the rationale in<span style="font-style:italic"> Ferrazzini</span> as “very difficult to understand”, and she did. <span style="font-style:italic"> </span>However, she went on to apply it and pointed out that:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">“26…I am bound to apply it: this is because s 2 Human Rights Act requires me to take account of any relevant judgment of the ECHR.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>27.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">The effect of <span style="font-style:italic">Ferrazzini</span> is that the Convention does not guarantee a fair trial in a tax dispute. Therefore, s 3 HRA cannot require a strained reading to be given to s 83(1)(zc) in order to give the appellant a right to a hearing of his challenge to the legality of Regulation 25A.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">“26…I am bound to apply it: this is because s 2 Human Rights Act requires me to take account of any relevant judgment of the ECHR.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>27.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">The effect of <span style="font-style:italic">Ferrazzini</span> is that the Convention does not guarantee a fair trial in a tax dispute. Therefore, s 3 HRA cannot require a strained reading to be given to s 83(1)(zc) in order to give the appellant a right to a hearing of his challenge to the legality of Regulation 25A.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_16">
           <content>
@@ -1175,14 +1217,18 @@
         </level>
         <paragraph eId="para_82">
           <num>82.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Mr Hitchins argues that Judge Mosedale was “simply wrong” as the Tribunal is not bound by <span style="font-style:italic">Ferrazzini </span>but must simply<span style="font-style:italic"> </span>have regard to it. The Tribunal should rather consider whether there is a “clear and constant line of Strasbourg authorities” diluting it but he had already conceded that:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">“Whilst <span style="font-style:italic">Ferrazzinni</span> has been referred to subsequently in ECtHR judgments, it has not been subject to any comprehensive or meaningful analysis by the Strasbourg Court in subsequent decisions.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">“Whilst <span style="font-style:italic">Ferrazzinni</span> has been referred to subsequently in ECtHR judgments, it has not been subject to any comprehensive or meaningful analysis by the Strasbourg Court in subsequent decisions.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_83">
           <num>83.</num>
@@ -1200,21 +1246,21 @@
           <num>85.</num>
           <intro>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Secondly, and far more pertinently I am bound by the High Court in <span style="font-style:italic">R(oao ToTel Limited)</span><span> </span><span style="font-style:italic">v the FTT and another</span> [2011] EWHC 652 where Mr Justice Simon, having referred to those two paragraphs stated that:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“130…In <span style="font-style:italic">Jussila v Finland</span> (2006) (A/73053/01) the Court at [29], and by 13 votes to 4, made clear its views about the impact of the civil aspect of Article 6 in relation to taxes. </p>
-              <block name="embeddedStructure">
-                <embeddedStructure>
-                  <level>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“130…In <span style="font-style:italic">Jussila v Finland</span> (2006) (A/73053/01) the Court at [29], and by 13 votes to 4, made clear its views about the impact of the civil aspect of Article 6 in relation to taxes. </p>
+                  </intro>
+                  <subparagraph>
                     <content>
                       <p class="Quote" style="margin-left:0.79in">The assessment of tax and the imposition of surcharges fall outside the scope of Article 6 under its civil head (see <span style="font-style:italic">Ferrazzini v. Italy</span> ...  §29).</p>
                     </content>
-                  </level>
-                </embeddedStructure>
-              </block>
-            </content>
-          </subparagraph>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </intro>
           <subparagraph>
             <num>131.</num>
             <content>
@@ -1230,14 +1276,18 @@
         </paragraph>
         <paragraph eId="para_87">
           <num>87.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The rest of the paragraph makes it clear that the judge had been:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in">“right to place primary reliance on…<span style="font-style:italic">Ferrazzini</span>, where it was made clear …that the concept of ‘civil rights and obligations’ in article 6 is an autonomous one, and that…. ‘tax disputes fall outside the scope of civil rights and obligations, despite the pecuniary effects which they produce for the taxpayer’”. </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">“right to place primary reliance on…<span style="font-style:italic">Ferrazzini</span>, where it was made clear …that the concept of ‘civil rights and obligations’ in article 6 is an autonomous one, and that…. ‘tax disputes fall outside the scope of civil rights and obligations, despite the pecuniary effects which they produce for the taxpayer’”. </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_88">
           <num>88.</num>
@@ -1294,21 +1344,25 @@
         </paragraph>
         <paragraph eId="para_96">
           <num>96.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">In this case, the appeals in terms of section 16 FA94 followed reviews in terms of section 15 FA94 and, although that decision deals with section 16(4) FA94, the following statement by Judges Herrington and Richards in <span style="font-style:italic">Grzegorz Sczcepaniak t/a Phu Greg-Car </span>[2019] UKUT 295 (TCC) is in point since my task is to decide whether or not HMRC’s decision was unreasonable:-</p>
-          </intro>
-          <subparagraph>
-            <num>“5.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">It follows from s16(1) that the Appellant’s appeal to the FTT was against the Respondent’s ‘decision on a review under section 15’… Accordingly, the FTT could only interfere with the Respondent’s decision if was satisfied that the Respondent could not reasonably have arrived at that decision…</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>6.</num>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">However, the limitation of the FTT’s powers is subject to an important qualification. In deciding whether the Respondent’s decision was unreasonable, the FTT is not bound by the factual determinations that the Respondent made. Nor is the FTT limited to a consideration of evidence that was before the Respondent’s decision maker. It was, therefore, open to the Appellant to produce evidence that was not before the Respondent when it made its review decision and invite the FTT to reach factual conclusions different from those that the Respondent reached in its review. Moreover, the Appellant was entitled to argue that, in the light of those different factual conclusions, the Respondent’s decision was unreasonable. The Court of Appeal recently endorsed that proposition in <span style="font-style:italic">The Commissioners for Her Majesty’s Revenue &amp; Customs v Behzad Fuels (UK) Ltd</span> [2019] EWCA Civ 319…”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“5.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">It follows from s16(1) that the Appellant’s appeal to the FTT was against the Respondent’s ‘decision on a review under section 15’… Accordingly, the FTT could only interfere with the Respondent’s decision if was satisfied that the Respondent could not reasonably have arrived at that decision…</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>6.</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:0.11in">However, the limitation of the FTT’s powers is subject to an important qualification. In deciding whether the Respondent’s decision was unreasonable, the FTT is not bound by the factual determinations that the Respondent made. Nor is the FTT limited to a consideration of evidence that was before the Respondent’s decision maker. It was, therefore, open to the Appellant to produce evidence that was not before the Respondent when it made its review decision and invite the FTT to reach factual conclusions different from those that the Respondent reached in its review. Moreover, the Appellant was entitled to argue that, in the light of those different factual conclusions, the Respondent’s decision was unreasonable. The Court of Appeal recently endorsed that proposition in <span style="font-style:italic">The Commissioners for Her Majesty’s Revenue &amp; Customs v Behzad Fuels (UK) Ltd</span> [2019] EWCA Civ 319…”.</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_97">
           <num>97.</num>
@@ -1359,14 +1413,18 @@
         </paragraph>
         <paragraph eId="para_104">
           <num>104.</num>
-          <intro>
+          <content>
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">In <span style="font-style:italic">Unison </span>at paragraph 80 Lord Hodge made it explicit that:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Taxbodytext1" style="margin-left:0.3in;text-indent:-0.3in"><marker name="tab" />“Even where a statutory power authorises an intrusion upon the right of access to the courts, it is interpreted as authorising only such a degree of intrusion as is reasonably necessary to fulfil the objective of the provision in question….That depended on whether an objective need for such a rule….could be demonstrated…”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.3in;text-indent:-0.3in"><marker name="tab" />“Even where a statutory power authorises an intrusion upon the right of access to the courts, it is interpreted as authorising only such a degree of intrusion as is reasonably necessary to fulfil the objective of the provision in question….That depended on whether an objective need for such a rule….could be demonstrated…”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_105">
           <num>105.</num>

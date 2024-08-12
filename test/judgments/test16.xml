@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/621/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/621/data.xml" />
-          <FRBRdate date="2024-05-28T19:48:53" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:30" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -51,7 +51,7 @@
         <uk:year>2022</uk:year>
         <uk:number>621</uk:number>
         <uk:cite>[2022] EWHC 621 (Ch)</uk:cite>
-        <uk:parser>0.24.1</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>292cf6d77753e5f4759bd88a6e937b94b61fed53fc1d3efc6c7aee590aa2e33e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -629,25 +629,33 @@
           </paragraph>
           <paragraph eId="para_40">
             <num>40.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">On 14<span style="vertical-align:super;font-size:smaller">th</span> May 2008 the Bank wrote to Mr. Kilvert specifically in relation to the 2008 Transaction.  The letter enclosed correspondence from Chequers, solicitors acting for Mr. Attarian, which stated that the purchase of the Property and the charging of the Property to the Bank by Mr. Attarian had never actually been completed.  On 14<span style="vertical-align:super;font-size:smaller">th</span> May 2008 Mr. Kilvert wrote to FLP recording that they, FLP, had received mortgage funds in relation to a number of transactions which involved potential mortgage frauds.  The letter concluded with the following PS.:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“Since dictating the above our Client has notified us of a further case where instructions were issued from the Leeds Office involving a Borrower by the name of Attarian and a property at 91 Argyle Road, London W13 0LZ where there was a mortgage advance of £1,125,000.  We are presently awaiting papers but again please let us know what information you have in relation to that particular matter.” </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“Since dictating the above our Client has notified us of a further case where instructions were issued from the Leeds Office involving a Borrower by the name of Attarian and a property at 91 Argyle Road, London W13 0LZ where there was a mortgage advance of £1,125,000.  We are presently awaiting papers but again please let us know what information you have in relation to that particular matter.” </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_41">
             <num>41.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;text-indent:0.5in">The Bank wrote further to Mr. Kilvert on the 15<span style="vertical-align:super;font-size:smaller">th</span> May 2008, stating as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I refer to our conversation on 15</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> May.  I mention the above case, on which I sent you copy correspondence on 14</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> May.  I am now in a position to let you have the application papers; copy valuation; copy instructions to FLP.  I have requested the Certificate on Title and I will send this as soon as possible.  However as confirmed in our recent conversation I can confirm that the advance amounts to £1,125,000 it was purportedly completed on 7</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> March this year.  It would seem that the borrower is perhaps genuine, based on the fact that he has now instructed fresh solicitors to look into this situation on his behalf.  Please include in this file in your investigations and also in your claims against the compensation fund/insurers of FLP.” </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I refer to our conversation on 15</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> May.  I mention the above case, on which I sent you copy correspondence on 14</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> May.  I am now in a position to let you have the application papers; copy valuation; copy instructions to FLP.  I have requested the Certificate on Title and I will send this as soon as possible.  However as confirmed in our recent conversation I can confirm that the advance amounts to £1,125,000 it was purportedly completed on 7</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> March this year.  It would seem that the borrower is perhaps genuine, based on the fact that he has now instructed fresh solicitors to look into this situation on his behalf.  Please include in this file in your investigations and also in your claims against the compensation fund/insurers of FLP.” </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_42">
             <num>42.</num>
@@ -663,14 +671,18 @@
           </paragraph>
           <paragraph eId="para_44">
             <num>44.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Moving forward in time, on 9<span style="vertical-align:super;font-size:smaller">th</span> January 2009 a firm of solicitors called JR Jones wrote to Mr. Kilvert, identifying themselves as acting on behalf of Mr. Attarian and asking for confirmation that the Bank would consent to the registration of Mr. Attarian’s interest in the Property.  The letter stated that Mr. Attarian was continuing to pay the monthly mortgage instalments and had ongoing losses as a result of what was described as the negligence of FLP.  On 16<span style="vertical-align:super;font-size:smaller">th</span> January 2009 Mr. Kilvert replied to that letter in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“Thank you for your letter dated the 9th January in connection with the above and we note your interest in this case. We should however tell you that other Solicitors, on behalf of your Client, registered a Unilateral Notice on the 24th April of last year in respect of a contract for a sale in his favour. We are pursuing a claim against the former conveyancing Solicitors FLP and are presently waiting to hear from Indemnity Insurers as to whether they will provide cover. We have in addition also put the Compensation Fund on notice and we shall let you know when we have any further information.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“Thank you for your letter dated the 9th January in connection with the above and we note your interest in this case. We should however tell you that other Solicitors, on behalf of your Client, registered a Unilateral Notice on the 24th April of last year in respect of a contract for a sale in his favour. We are pursuing a claim against the former conveyancing Solicitors FLP and are presently waiting to hear from Indemnity Insurers as to whether they will provide cover. We have in addition also put the Compensation Fund on notice and we shall let you know when we have any further information.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_45">
             <num>45.</num>
@@ -680,68 +692,88 @@
           </paragraph>
           <paragraph eId="para_46">
             <num>46.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">I can pick up the story again on 15<span style="vertical-align:super;font-size:smaller">th</span> April 2010, when Mr. Kilvert spoke further to Ms. Popat.  Mr. Kilvert’s attendance note of that conversation contains the following reference to the registration position:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“There was also the issue of tracing Mr Ul Haq to obtain his execution to a Transfer Deed.  There was a Transfer Deed signed but not witnessed and so it would not operate as a Deed and we didn’t have a copy only a photocopy which had been provided by FLP.  I did however also provide her with the address for Mr Ul Haq and she would immediately contact her client and see if Mr Ul Haq could be traced.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“There was also the issue of tracing Mr Ul Haq to obtain his execution to a Transfer Deed.  There was a Transfer Deed signed but not witnessed and so it would not operate as a Deed and we didn’t have a copy only a photocopy which had been provided by FLP.  I did however also provide her with the address for Mr Ul Haq and she would immediately contact her client and see if Mr Ul Haq could be traced.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_47">
             <num>47.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">On 11<span style="vertical-align:super;font-size:smaller">th</span> May 2010 Mr. Kilvert spoke to Mr. Attarian on the telephone.  Mr. Kilvert’s attendance note of the conversation records the following:  </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I then telephoned and spoke with Mr. Attarian and advised him of the outstanding documentation that was needed so that we could hopefully affect registration. I was having to obtain a copy of the form of Bank of Scotland's Mortgage Deed but hopefully subject to that what we needed was a replacement of that Deed plus a replacement of the Transfer Deed from Mr. Ul Haq. He said that he would use endeavours to obtain the replacement Transfer and that he would be able to sign the replacement Charge Deed. Once I had a copy of the form of charge I would write to him. Any correspondence should be sent to him at the property.”    </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I then telephoned and spoke with Mr. Attarian and advised him of the outstanding documentation that was needed so that we could hopefully affect registration. I was having to obtain a copy of the form of Bank of Scotland's Mortgage Deed but hopefully subject to that what we needed was a replacement of that Deed plus a replacement of the Transfer Deed from Mr. Ul Haq. He said that he would use endeavours to obtain the replacement Transfer and that he would be able to sign the replacement Charge Deed. Once I had a copy of the form of charge I would write to him. Any correspondence should be sent to him at the property.”    </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_48">
             <num>48.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">There is a further attendance note of Mr. Kilvert recording a further telephone conversation with Mr. Attarian on 25<span style="vertical-align:super;font-size:smaller">th</span> May 2010.  So far as the Deceased was concerned, the attendance note states as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I rang him back and told him that we now had a replacement Charge Deed which I had completed together with a Transfer Deed and I advised him of the letter which I had dictated and would be in the post tomorrow. He told me that there would be no problem with Mr. Ul Haq because he had already made contact with him and that he was at the address which we had for him of 35 Inglis Road. Mr. Ul Haq was perfectly happy to sign the replacement Deed. I explained that the Deeds would need to be signed in the presence of a Solicitor. He told me that his former Solicitor Mr. Popat had now in fact joined another firm and that he would be asking her to continue with the matter and he would be providing me with details.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I rang him back and told him that we now had a replacement Charge Deed which I had completed together with a Transfer Deed and I advised him of the letter which I had dictated and would be in the post tomorrow. He told me that there would be no problem with Mr. Ul Haq because he had already made contact with him and that he was at the address which we had for him of 35 Inglis Road. Mr. Ul Haq was perfectly happy to sign the replacement Deed. I explained that the Deeds would need to be signed in the presence of a Solicitor. He told me that his former Solicitor Mr. Popat had now in fact joined another firm and that he would be asking her to continue with the matter and he would be providing me with details.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_49">
             <num>49.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">On 26<span style="vertical-align:super;font-size:smaller">th</span> May 2010 Mr. Kilvert wrote to Mr. Attarian, following up on their telephone conversation.  In terms of registration of the 2008 purchase of the Property, Mr. Kilvert said this: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“We have recovered from FLP before their offices closed a copy of a Transfer Deed which was signed by both Mr. UI Haq and yourself but this is insufficient to transfer the legal estate since it is merely a photocopy and neither of the signatures on the Deed has been witnessed which is essential to create an effective Deed. In addition there is no original Mortgage executed by you in favour of Bank of Scotland PIc.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">We have now obtained a copy of the Form of Mortgage Deed and accordingly enclose herewith a replacement Transfer and a replacement Mortgage Deed. Provided these can be duly executed and returned to us then we should be in a position to make progress towards the completion of registration at the Land Registry.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">However, because issues of identification have to be dealt with when making application to the Land Registry it is essential that the Deeds are signed by you and Mr. Ul Haq respectively in the presence of Solicitors who are instructed by you and we shall need the full names and addresses of those Solicitors when the Deeds are returned.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“We have recovered from FLP before their offices closed a copy of a Transfer Deed which was signed by both Mr. UI Haq and yourself but this is insufficient to transfer the legal estate since it is merely a photocopy and neither of the signatures on the Deed has been witnessed which is essential to create an effective Deed. In addition there is no original Mortgage executed by you in favour of Bank of Scotland PIc.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">We have now obtained a copy of the Form of Mortgage Deed and accordingly enclose herewith a replacement Transfer and a replacement Mortgage Deed. Provided these can be duly executed and returned to us then we should be in a position to make progress towards the completion of registration at the Land Registry.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">However, because issues of identification have to be dealt with when making application to the Land Registry it is essential that the Deeds are signed by you and Mr. Ul Haq respectively in the presence of Solicitors who are instructed by you and we shall need the full names and addresses of those Solicitors when the Deeds are returned.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_50">
             <num>50.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The 2010 TR1 was returned to Mr. Kilvert on 13<span style="vertical-align:super;font-size:smaller">th</span> July 2010.  It bore what purported to be the signatures of Mr. Attarian and the Deceased, each duly witnessed by a solicitor.  The 2010 TR1 was dated 7<span style="vertical-align:super;font-size:smaller">th</span> March 2008, thereby backdating the 2010 Transfer to what was assumed to have been the intended completion date of the original purchase of the Property in 2008.  The signature of the Signatory on the 2010 TR1 was witnessed by Mr. Kan.  Mr. Kilvert recorded the receipt of the 2010 TR1 in an attendance note made on 13<span style="vertical-align:super;font-size:smaller">th</span> July 2010 in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“When I arrived at the office this morning we had received in the post, but without any covering letter, a Transfer Deed in respect of 91 Argyle Road executed by Mr. Ul Haq and Mr. Attarian with Mr. Ul Haq's signature witnessed by a Lester Kan of Lester Dominic Solicitors of 85/87 Ballards Lane, London W3 1XT and Mr. Attarian's signature witnessed by an Olga Marsh of Steven Dean-Magac &amp; Co. Solicitors of 159 High Street, Barnet, Hertfordshire ENS 5SU, together with a Bank of Scotland Mortgage Deed executed by Mr. Attarian as well and where the signature on that Deed was also witnessed by Olga Marsh. This is something of a comfort and I did go through the documents which I had on the Attarian file and the only document which I have bearing the signatures of Ul Haq and Attarian is a photocopy of an undated and unwitnessed Transfer and the signatures on the original Deeds which I now have do appear to be the same. However, I have to be careful about this case and I first of all telephoned Lester Dominic Solicitors to speak with Mr. Kan who had witnessed the Ul Haq signature. He wasn't immediately available but I was told that someone would ring me back.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“When I arrived at the office this morning we had received in the post, but without any covering letter, a Transfer Deed in respect of 91 Argyle Road executed by Mr. Ul Haq and Mr. Attarian with Mr. Ul Haq's signature witnessed by a Lester Kan of Lester Dominic Solicitors of 85/87 Ballards Lane, London W3 1XT and Mr. Attarian's signature witnessed by an Olga Marsh of Steven Dean-Magac &amp; Co. Solicitors of 159 High Street, Barnet, Hertfordshire ENS 5SU, together with a Bank of Scotland Mortgage Deed executed by Mr. Attarian as well and where the signature on that Deed was also witnessed by Olga Marsh. This is something of a comfort and I did go through the documents which I had on the Attarian file and the only document which I have bearing the signatures of Ul Haq and Attarian is a photocopy of an undated and unwitnessed Transfer and the signatures on the original Deeds which I now have do appear to be the same. However, I have to be careful about this case and I first of all telephoned Lester Dominic Solicitors to speak with Mr. Kan who had witnessed the Ul Haq signature. He wasn't immediately available but I was told that someone would ring me back.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_51">
             <num>51.</num>
@@ -757,19 +789,23 @@
           </paragraph>
           <paragraph eId="para_53">
             <num>53.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">On 14<span style="vertical-align:super;font-size:smaller">th</span> July 2010 Mr. Kilvert wrote the Deceased at 35 Inglis Road.  The letter identified Mr. Kilvert’s client as the Bank.  As the letter is important in the claim against Rees Page, I set out the letter in full:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“You will be aware that you completed a sale of the above property to Mr. Attarian some considerable time ago in March of 2008 and that both you and Mr. Attarian were represented in the conveyancing transaction by FLP Solicitors. That firm has been intervened upon by the Solicitors Regulation Authority and there has been considerable impropriety in relation to the manner in which they dealt with the transaction and no file, so far as we are aware, has to date emerged.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">We did prepare a replacement of the Deed of 7</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> March 2008 by virtue of which you transferred the property to Mr. Attarian and this has now been returned to us duly signed and witnessed by both of you with your signature witnessed by Mr. Lester Kan of Lester Dominic Solicitors of 85/87 Ballards Lane, London N3 1XT. In view of the conduct of your former Solicitors, FLP, in dealing with any application to register the Transfer of the property by you the Land Registry may require that Mr. Kan has evidence of your identity by way of, for example, having sight of your Passport. The writer has spoken with Mr. Kan who would be more than happy to deal with that aspect and we should be grateful if you would therefore make contact with him and attend his offices to produce evidence of identity. As you may know his telephone number is </span>[telephone number]<span style="font-style:italic">. It is also in your interests that all outstanding issues should be dealt with at the earliest possible time since there are issues over the fact that FLP Solicitors did not repay the amount outstanding on mortgage out of the proceeds of sale and consequently until these issues are resolved you of course continue to have a liability in that respect.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“You will be aware that you completed a sale of the above property to Mr. Attarian some considerable time ago in March of 2008 and that both you and Mr. Attarian were represented in the conveyancing transaction by FLP Solicitors. That firm has been intervened upon by the Solicitors Regulation Authority and there has been considerable impropriety in relation to the manner in which they dealt with the transaction and no file, so far as we are aware, has to date emerged.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">We did prepare a replacement of the Deed of 7</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> March 2008 by virtue of which you transferred the property to Mr. Attarian and this has now been returned to us duly signed and witnessed by both of you with your signature witnessed by Mr. Lester Kan of Lester Dominic Solicitors of 85/87 Ballards Lane, London N3 1XT. In view of the conduct of your former Solicitors, FLP, in dealing with any application to register the Transfer of the property by you the Land Registry may require that Mr. Kan has evidence of your identity by way of, for example, having sight of your Passport. The writer has spoken with Mr. Kan who would be more than happy to deal with that aspect and we should be grateful if you would therefore make contact with him and attend his offices to produce evidence of identity. As you may know his telephone number is </span>[telephone number]<span style="font-style:italic">. It is also in your interests that all outstanding issues should be dealt with at the earliest possible time since there are issues over the fact that FLP Solicitors did not repay the amount outstanding on mortgage out of the proceeds of sale and consequently until these issues are resolved you of course continue to have a liability in that respect.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_54">
             <num>54.</num>
@@ -797,75 +833,83 @@
           </paragraph>
           <paragraph eId="para_58">
             <num>58.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The next material event occurred on 9<span style="vertical-align:super;font-size:smaller">th</span> March 2011 when, according to an attendance note made by Mr. Kilvert, he received <span style="font-style:italic">“somewhat surprisingly out of the blue”</span>, a telephone call from the Deceased.  As the content of this telephone call is important, I set out in full Mr. Kilvert’s record of the conversation.     </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“Later in the afternoon I received, somewhat surprisingly out of the blue, a telephone call from Mr. Ul Haq. He sounded extremely concerned and he told me that he had tried to contact me at this office many times. This is absolutely of course untrue as I have left messages to which he has not responded and I have written letters which he has ignored and I pointed this out to him and he didn't dispute this. He then changed his tune saying that he had made many telephone calls to the Bank and it was the Bank who had given him our details.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">I then explained the position to him that an employee of FLP Solicitors, as he was already aware, had committed what appeared to be criminal offences and run off with very large sums of money belonging both to my Client Bank and to other Banks as well and the Indemnity Insurance cover available had been exhausted. FLP had failed to discharge the Charge and pay the redemption monies due on Mr. Ul Haq's Account and he thus remained liable on his personal covenants. Consequently it seemed to me that he ought now to be considering making an application to the Compensation Fund. It was not for me to advise him but he had to know what his liabilities were and if he was intending to do that he may well need the services of a Solicitor. He had previously seen Lester Kan who witnessed his signature on the replacement Transfer Deed and I am wanting him to make arrangements to see Mr. Kan again and produce evidence of his identity by way of for example his original Passport. I didn't know of course whether he would be instructing Mr. Kan or if Mr. Kan will want to take instructions on a claim on the Compensation Fund but I would be happy to liaise with any Solicitors whom he might instruct.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">I asked him to confirm his current address, telephone numbers etc. and the details he gave me were as follows:-</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">35C Inglis Road,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">London W5 3RL</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Telephone (home) — </span>[telephone number]</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">Mobile — </span>[mobile number]<span style="font-style:italic"> </span>[there is a manuscript note at this point recording that the number was <span style="font-style:italic">“not recognised”</span>]</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">E Mail Address — </span>[email address]</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">He also told me that Mr. Attarian owed him money which he claimed to be in the region of £30,000.00 to £40,000.00 and part of it related to a car and part, as far as I could ascertain from him what from what he was saying, appeared to relate to an alleged loan and he also said that he was being chased for about £20,000.00 in alleged Council Tax arrears which were due from Mr. Attarian. He did actually say one positive thing which was that I was the first person who had been able to explain to him everything that he </span>[had]<span style="font-style:italic"> happened and put him in the picture as what the position was. Consequently I am cautiously hopeful that he may be prepared to be a little more co-operative now.”    </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“Later in the afternoon I received, somewhat surprisingly out of the blue, a telephone call from Mr. Ul Haq. He sounded extremely concerned and he told me that he had tried to contact me at this office many times. This is absolutely of course untrue as I have left messages to which he has not responded and I have written letters which he has ignored and I pointed this out to him and he didn't dispute this. He then changed his tune saying that he had made many telephone calls to the Bank and it was the Bank who had given him our details.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">I then explained the position to him that an employee of FLP Solicitors, as he was already aware, had committed what appeared to be criminal offences and run off with very large sums of money belonging both to my Client Bank and to other Banks as well and the Indemnity Insurance cover available had been exhausted. FLP had failed to discharge the Charge and pay the redemption monies due on Mr. Ul Haq's Account and he thus remained liable on his personal covenants. Consequently it seemed to me that he ought now to be considering making an application to the Compensation Fund. It was not for me to advise him but he had to know what his liabilities were and if he was intending to do that he may well need the services of a Solicitor. He had previously seen Lester Kan who witnessed his signature on the replacement Transfer Deed and I am wanting him to make arrangements to see Mr. Kan again and produce evidence of his identity by way of for example his original Passport. I didn't know of course whether he would be instructing Mr. Kan or if Mr. Kan will want to take instructions on a claim on the Compensation Fund but I would be happy to liaise with any Solicitors whom he might instruct.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">I asked him to confirm his current address, telephone numbers etc. and the details he gave me were as follows:-</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">35C Inglis Road,</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">London W5 3RL</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Telephone (home) — </span>[telephone number]</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">Mobile — </span>[mobile number]<span style="font-style:italic"> </span>[there is a manuscript note at this point recording that the number was <span style="font-style:italic">“not recognised”</span>]</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">E Mail Address — </span>[email address]</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">He also told me that Mr. Attarian owed him money which he claimed to be in the region of £30,000.00 to £40,000.00 and part of it related to a car and part, as far as I could ascertain from him what from what he was saying, appeared to relate to an alleged loan and he also said that he was being chased for about £20,000.00 in alleged Council Tax arrears which were due from Mr. Attarian. He did actually say one positive thing which was that I was the first person who had been able to explain to him everything that he </span>[had]<span style="font-style:italic"> happened and put him in the picture as what the position was. Consequently I am cautiously hopeful that he may be prepared to be a little more co-operative now.”    </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_59">
             <num>59.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">On 11<span style="vertical-align:super;font-size:smaller">th</span> March 2011 Mr. Kilvert followed up this telephone call with a letter to the Deceased addressed to 35C Inglis Road.   This letter again set out Mr. Kilvert’s explanation of the current position in relation to the Property.  The letter concluded in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“You have previously seen a Mr Lester Kan of Lester Dominic Solicitors of 85/87 Bollards Lane, Finchley Central, London, N3 1XT and indeed it was Mr Kan who witnessed your signature on a replacement Transfer Deed which was forwarded to us last year. However, when the present difficulties have been resolved and we are able to apply for registration to the Land Registry, we expect that the Land Registry may require evidence of your identification to be produced. We are aware that Mr Kan has written to you requesting that you attend his offices to provide such identification but you have not done so. We should be grateful if you would therefore kindly make arrangements to see him to produce evidence of identification by way of for example your original Passport so that he can take a copy and provide it to us.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">If you are intending to utilise Solicitors in connection with a claim on the Compensation Fund then we do not know whether you will be instructing Mr Kan's firm but it would be helpful if you would please arrange for any Solicitors whom you instruct to contact us so that we may liaise with them and in particular there is probably a considerable amount of information which we would be able to provide and which is likely to be of considerable assistance. We are sure you will appreciate that it is in your interest to now take some positive steps with a view to assisting in resolving the difficulties which have been created by FLP.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">We await hearing from you/your Solicitors and also we await hearing with evidence from Solicitors as to identity to satisfy the Land Registry.” </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“You have previously seen a Mr Lester Kan of Lester Dominic Solicitors of 85/87 Bollards Lane, Finchley Central, London, N3 1XT and indeed it was Mr Kan who witnessed your signature on a replacement Transfer Deed which was forwarded to us last year. However, when the present difficulties have been resolved and we are able to apply for registration to the Land Registry, we expect that the Land Registry may require evidence of your identification to be produced. We are aware that Mr Kan has written to you requesting that you attend his offices to provide such identification but you have not done so. We should be grateful if you would therefore kindly make arrangements to see him to produce evidence of identification by way of for example your original Passport so that he can take a copy and provide it to us.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">If you are intending to utilise Solicitors in connection with a claim on the Compensation Fund then we do not know whether you will be instructing Mr Kan's firm but it would be helpful if you would please arrange for any Solicitors whom you instruct to contact us so that we may liaise with them and in particular there is probably a considerable amount of information which we would be able to provide and which is likely to be of considerable assistance. We are sure you will appreciate that it is in your interest to now take some positive steps with a view to assisting in resolving the difficulties which have been created by FLP.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">We await hearing from you/your Solicitors and also we await hearing with evidence from Solicitors as to identity to satisfy the Land Registry.” </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_60">
             <num>60.</num>
@@ -956,14 +1000,18 @@
           </paragraph>
           <paragraph eId="para_74">
             <num>74.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Mr. Kan also says, as a matter of his firm belief, that before witnessing the 2010 TR1 he would have required the Signatory to produce evidence of identity, such as a passport or driving licence.  Mr. Kan says that this was his habitual practice.  This evidence conflicts with the evidence of Mr. Kilvert’s attendance note of his conversation with Mr. Kan of 13<span style="vertical-align:super;font-size:smaller">th</span> July 2010, which records the following:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I received this afternoon a return telephone call from Mr. Kan of Lester Dominic Solicitors and he confirmed that he had witnessed the signature of Mr. Ul Haq on the Transfer Deed but Mr. Ul Haq was not known to him and he had merely witnessed his signature and hadn't actually seen any evidence of identity. He did say, however, that if I could drop him a line with details of his address etc. then he would use his best endeavours to contact Mr. Ul Haq and ask him to attend his offices to produce evidence of identity. I said that if he was able to do so I would be happy to meet his reasonable costs although he indicated that he was unlikely to make a charge for this.” </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“I received this afternoon a return telephone call from Mr. Kan of Lester Dominic Solicitors and he confirmed that he had witnessed the signature of Mr. Ul Haq on the Transfer Deed but Mr. Ul Haq was not known to him and he had merely witnessed his signature and hadn't actually seen any evidence of identity. He did say, however, that if I could drop him a line with details of his address etc. then he would use his best endeavours to contact Mr. Ul Haq and ask him to attend his offices to produce evidence of identity. I said that if he was able to do so I would be happy to meet his reasonable costs although he indicated that he was unlikely to make a charge for this.” </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_75">
             <num>75.</num>
@@ -1000,19 +1048,23 @@
           </paragraph>
           <paragraph eId="para_80">
             <num>80.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Mr. Brown’s position on re-amendment is recorded in the following exchange on the first day of the hearing:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“MR. JUSTICE EDWIN JOHNSON: Are you saying it is your intention, assuming that the decision of the Deputy Master is set aside, is it your intention to apply for permission to re-amend at the future CMC in the terms of the Re-Amended Particulars of Claim?</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">MR. BROWN: No, because they “required yet further clarification”. As is not unusual, we circulate the draft document and the parties via the defendants have provided observations on that. Bear in mind that this is litigation that is already on foot so we do not go back to pre-action correspondence whereby we set out a case and it is dealt with in that way. We only set out a draft document. The defendants can say why it is objectionable or not for various reasons. We are entitled to consider, as indeed one would expect, their observations in respect of all of that. I am not wedded to this draft Particulars of Claim. If indeed there are points that need properly to be clarified, then we will clarify them. Our interest is ensuring that my client’s case is properly put forward rather than them being effectively seeing these are technical objectors as to this, that, and the other, all of which are capable of resolution by way of case management. That was a long answer but my short answer to my Lord’s question is, yes, we intend to apply to amend. Is it going to be identical to the format of this draft: no, it will be clarified further, in due course, and we will circulate that, and we will move that application at the CMC, and I have consistently said that.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“MR. JUSTICE EDWIN JOHNSON: Are you saying it is your intention, assuming that the decision of the Deputy Master is set aside, is it your intention to apply for permission to re-amend at the future CMC in the terms of the Re-Amended Particulars of Claim?</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">MR. BROWN: No, because they “required yet further clarification”. As is not unusual, we circulate the draft document and the parties via the defendants have provided observations on that. Bear in mind that this is litigation that is already on foot so we do not go back to pre-action correspondence whereby we set out a case and it is dealt with in that way. We only set out a draft document. The defendants can say why it is objectionable or not for various reasons. We are entitled to consider, as indeed one would expect, their observations in respect of all of that. I am not wedded to this draft Particulars of Claim. If indeed there are points that need properly to be clarified, then we will clarify them. Our interest is ensuring that my client’s case is properly put forward rather than them being effectively seeing these are technical objectors as to this, that, and the other, all of which are capable of resolution by way of case management. That was a long answer but my short answer to my Lord’s question is, yes, we intend to apply to amend. Is it going to be identical to the format of this draft: no, it will be clarified further, in due course, and we will circulate that, and we will move that application at the CMC, and I have consistently said that.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_81">
             <num>81.</num>
@@ -1049,31 +1101,35 @@
           </paragraph>
           <paragraph eId="para_86">
             <num>86.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">First, it is not generally open to a court to resolve disputed questions of fact on a summary judgment application.  As Floyd LJ said, in <span style="font-style:italic">Optaglio v Tethal</span> [2015] EWCA Civ 1002, at [31] and [32].</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“31.</num>
-              <intro>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">It is well settled that an application for summary judgment should not be allowed to develop into a mini-trial of disputed issues of fact. On the other hand:</span></p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">“ …that does not mean that the court has to accept without analysis everything said by a party in his statements before the court. In some cases it may be clear that there is no real substance in factual assertions made, particularly if contradicted by contemporary documents. If so, issues which are dependent upon those factual assertions may be susceptible of disposal at an early stage so as to save the cost and delay of trying an issue the outcome of which is inevitable”</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">see ED&amp;F Man Liquid Products Ltd v Patel and another [2003] EWCA Civ 472 at paragraph 10.</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">32.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Given the nature of the summary judgment test, the court can only dispose of factual issues in this way when there is no real prospect of the evidence of one side on that issue being accepted. I would add that it is incumbent on a judge giving summary judgment on the basis that an account of a witness is to be disbelieved to explain with reasonable particularity what it is about the contemporary record or other evidence which justified rejecting his evidence.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“31.</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">It is well settled that an application for summary judgment should not be allowed to develop into a mini-trial of disputed issues of fact. On the other hand:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">“ …that does not mean that the court has to accept without analysis everything said by a party in his statements before the court. In some cases it may be clear that there is no real substance in factual assertions made, particularly if contradicted by contemporary documents. If so, issues which are dependent upon those factual assertions may be susceptible of disposal at an early stage so as to save the cost and delay of trying an issue the outcome of which is inevitable”</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">see ED&amp;F Man Liquid Products Ltd v Patel and another [2003] EWCA Civ 472 at paragraph 10.</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">32.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Given the nature of the summary judgment test, the court can only dispose of factual issues in this way when there is no real prospect of the evidence of one side on that issue being accepted. I would add that it is incumbent on a judge giving summary judgment on the basis that an account of a witness is to be disbelieved to explain with reasonable particularity what it is about the contemporary record or other evidence which justified rejecting his evidence.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_87">
             <num>87.</num>
@@ -1083,57 +1139,65 @@
           </paragraph>
           <paragraph eId="para_88">
             <num>88.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Third, the fact that there is going to be a trial in the relevant action, whatever the outcome of the relevant summary judgment application may provide a compelling reason why summary judgment should not be granted.  This is illustrated by <span style="font-style:italic">Iliffe v Feltham Construction</span> [2015] EWCA Civ 715 [2015] CP Rep 41. The case arose out of a fire which occurred in a luxurious timber house which was under construction.  The fire caused substantial damage.  The building owners sued the main contractor, who in turn commenced third party proceedings against another party, who in turn commenced fourth party proceedings against another involved party, who in turn commenced fifth party proceedings against another involved party.  The action was therefore a multi-party action.  The building owners sought summary judgment against the main contractor.  One of the arguments deployed by the main contractor was that it was inappropriate to give summary judgment for the claimants in multi-party litigation, when the factual evidence was unclear and the position of other parties down the line was unknown.  At first instance the building owners were successful in obtaining summary judgment on liability, for damages to be assessed, but this result was overturned by the Court of Appeal on several grounds.  In explaining his decision to allow the appeal, Jackson LJ, with whose judgment the other members of the Court of Appeal agreed, said this in the concluding part of his judgment:   </p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“72.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">When I stand back from the detail and look at this case in the round, I conclude that as at 20 June/3 July 2014 the position as to causation of the fire was not so clear as to justify the grant of summary judgment on liability in favour of the claimants. Also I think it was inappropriate to do so when similar issues remained to be determined at a full trial as between the other parties. In the particular circumstances of this case that constitutes a “compelling reason” not to enter summary judgment within the meaning of CPR r.24.2(b) . A judge in multi-party litigation must aim to do justice as between all parties involved in the case.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">73.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">A further significant feature is that summary judgment in this case achieves much less in terms of saving costs and court time than is normal. There is going to be a trial anyway at which extensive factual and expert evidence will be called in order to establish: (a) what caused the fire; and (b) who is responsible. The claimants will have to participate in the trial, because they need to prove the quantum of their damages.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">74.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">I wish to emphasise that whilst, after some hesitation, I am differing from the judge in the circumstances of this case, I am certainly not discouraging robust case management or the use of summary judgment under CPR Pt 24 . In appropriate cases Pt 24 provides a valuable mechanism to avoid holding a trial, with all the expenditure of time and costs which that entails. My conclusion is simply that, for a collection of reasons as stated above, this case falls short of satisfying the requirements of CPR r.24.2 .”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“72.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">When I stand back from the detail and look at this case in the round, I conclude that as at 20 June/3 July 2014 the position as to causation of the fire was not so clear as to justify the grant of summary judgment on liability in favour of the claimants. Also I think it was inappropriate to do so when similar issues remained to be determined at a full trial as between the other parties. In the particular circumstances of this case that constitutes a “compelling reason” not to enter summary judgment within the meaning of CPR r.24.2(b) . A judge in multi-party litigation must aim to do justice as between all parties involved in the case.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">73.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">A further significant feature is that summary judgment in this case achieves much less in terms of saving costs and court time than is normal. There is going to be a trial anyway at which extensive factual and expert evidence will be called in order to establish: (a) what caused the fire; and (b) who is responsible. The claimants will have to participate in the trial, because they need to prove the quantum of their damages.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">74.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">I wish to emphasise that whilst, after some hesitation, I am differing from the judge in the circumstances of this case, I am certainly not discouraging robust case management or the use of summary judgment under CPR Pt 24 . In appropriate cases Pt 24 provides a valuable mechanism to avoid holding a trial, with all the expenditure of time and costs which that entails. My conclusion is simply that, for a collection of reasons as stated above, this case falls short of satisfying the requirements of CPR r.24.2 .”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_89">
             <num>89.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;text-indent:0.5in">Turning to the strike out jurisdiction, CPR 3.4(2) provides as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“(2)</num>
-              <intro>
-                <p style="margin-left:1.5in"><span style="font-style:italic;color:#000000">The court may strike out a statement of case if it appears to the court—</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic">(a)</num>
-                <content>
-                  <p style="margin-left:2in"><span style="font-style:italic;color:#000000">that the statement of case discloses no reasonable grounds for bringing or defending the claim;</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic">(b)</num>
-                <content>
-                  <p style="margin-left:2in"><span style="font-style:italic;color:#000000">that the statement of case is an abuse of the court’s process or is otherwise likely to obstruct the just disposal of the proceedings; or</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic">(c)</num>
-                <content>
-                  <p style="margin-left:2in"><span style="font-style:italic;color:#000000">that there has been a failure to comply with a rule, practice direction or court order.”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“(2)</num>
+                    <intro>
+                      <p style="margin-left:1.5in"><span style="font-style:italic;color:#000000">The court may strike out a statement of case if it appears to the court—</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic">(a)</num>
+                      <content>
+                        <p style="margin-left:2in"><span style="font-style:italic;color:#000000">that the statement of case discloses no reasonable grounds for bringing or defending the claim;</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic">(b)</num>
+                      <content>
+                        <p style="margin-left:2in"><span style="font-style:italic;color:#000000">that the statement of case is an abuse of the court’s process or is otherwise likely to obstruct the just disposal of the proceedings; or</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic">(c)</num>
+                      <content>
+                        <p style="margin-left:2in"><span style="font-style:italic;color:#000000">that there has been a failure to comply with a rule, practice direction or court order.”</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_90">
             <num>90.</num>
@@ -1176,44 +1240,56 @@
           </paragraph>
           <paragraph eId="para_95">
             <num>95.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Rees Page were never instructed to act on behalf of the Deceased.  Rees Page were instructed to act for the Bank.  Rees Page were initially asked to include the 2008 Transaction in their investigations of various mortgage loans made by the Bank.  Subsequently Rees Page were instructed by the Bank to procure the registration of the Attarian Charge.  This in turn required the execution and registration of a valid form of transfer as between the Deceased and Mr. Attarian, which Rees Page were also instructed to procure.  In the exercise of procuring a valid form of transfer Rees Page were acting for the Bank.  The position of the Deceased, in relation to Rees Page, was that of a third party.  In a conveyancing transaction a solicitor acting for one party will not normally owe a duty to a third party; see the decision of Donald Nicholls V-C, as he then was, in <span style="font-style:italic">Gran Gelato v Richcliff (Group) Ltd</span> [1992] Ch 560, at 570D: </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“In my view, in normal conveyancing transactions solicitors who are acting for a seller do not in general owe to the would-be buyer a duty of care when answering inquiries before contract or the like.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“In my view, in normal conveyancing transactions solicitors who are acting for a seller do not in general owe to the would-be buyer a duty of care when answering inquiries before contract or the like.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_96">
             <num>96.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">My attention was drawn to two more recent cases in which <span style="font-style:italic">Gran Gelato</span> has been treated as good law.  The first of these is <span style="font-style:italic">NRAM Ltd v Steel</span> [2018] 1 W.L.R. 1190, in which the Supreme Court decided, in a Scottish case, that a solicitor acting for a borrower would not be held to have assumed responsibility in making a misrepresentation to the lender for which it was not instructed.  Judgment in the Supreme Court was given by Lord Wilson, with whose judgment the other members of the Supreme Court agreed.  At [24] and [25], Lord Wilson noted that the concept of an assumption of responsibility remained the foundation of liability in tort for a negligent misrepresentation.  As Lord Wilson explained:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“24</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">In July 1994, in Spring v Guardian Assurance plc [1995] 2 AC 296, the House held that, in writing a reference for the claimant who had worked for them and who was now seeking work elsewhere, the defendants owed a duty of care to him. Lord Goff of Chieveley explained at p 316 that the basis of his conclusion was that the defendants had assumed responsibility to the claimant in respect of the reference within the meaning of the Hedley Byrne case [1964] AC 465. Weeks later, in Henderson v Merrett Syndicates Ltd [1995] 2 AC 145, the House held that underwriting agents at Lloyd’s owed a duty of care to a member in their conduct of his underwriting affairs even in the absence of any contract between them. In a speech with which the other members of the House agreed, Lord Goff held at p 181 that the case should be decided by reference to the concept of an assumption of responsibility. In Williams v Natural Life Health Foods Ltd [1998] 1 WLR 830. Lord Steyn remarked at p 837 that there was no better rationalisation for liability in tort for negligent misrepresentation than the concept of an assumption of responsibility. It has therefore become clear that, although it may require cautious incremental development in order to fit cases to which it does not readily apply, this concept remains the foundation of the liability.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">25</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The legal consequences of Ms Steel’s careless misrepresentation are clearly governed by whether, in making it, she assumed responsibility for it towards Northern Rock. The concept fits the present case perfectly and there is no need to consider whether there should be any incremental development of it. Nevertheless the case has an unusual dimension: for the claim is brought by one party to an arm’s length transaction against the solicitor who was acting for the other party. A solicitor owes a duty of care to the party for whom he is acting but generally owes no duty to the opposite party: Ross v Caunters [1980] Ch 297, 322. The absence of that duty runs parallel with the absence of any general duty of care on the part of one litigant towards his opponent: Jain v Trent Strategic Health Authority [2009] AC 853. Six authorities, briefly noticed in chronological order in what follows, may illumine inquiry into the existence of an assumption of responsibility by a solicitor towards the opposite party.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“24</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">In July 1994, in Spring v Guardian Assurance plc [1995] 2 AC 296, the House held that, in writing a reference for the claimant who had worked for them and who was now seeking work elsewhere, the defendants owed a duty of care to him. Lord Goff of Chieveley explained at p 316 that the basis of his conclusion was that the defendants had assumed responsibility to the claimant in respect of the reference within the meaning of the Hedley Byrne case [1964] AC 465. Weeks later, in Henderson v Merrett Syndicates Ltd [1995] 2 AC 145, the House held that underwriting agents at Lloyd’s owed a duty of care to a member in their conduct of his underwriting affairs even in the absence of any contract between them. In a speech with which the other members of the House agreed, Lord Goff held at p 181 that the case should be decided by reference to the concept of an assumption of responsibility. In Williams v Natural Life Health Foods Ltd [1998] 1 WLR 830. Lord Steyn remarked at p 837 that there was no better rationalisation for liability in tort for negligent misrepresentation than the concept of an assumption of responsibility. It has therefore become clear that, although it may require cautious incremental development in order to fit cases to which it does not readily apply, this concept remains the foundation of the liability.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">25</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The legal consequences of Ms Steel’s careless misrepresentation are clearly governed by whether, in making it, she assumed responsibility for it towards Northern Rock. The concept fits the present case perfectly and there is no need to consider whether there should be any incremental development of it. Nevertheless the case has an unusual dimension: for the claim is brought by one party to an arm’s length transaction against the solicitor who was acting for the other party. A solicitor owes a duty of care to the party for whom he is acting but generally owes no duty to the opposite party: Ross v Caunters [1980] Ch 297, 322. The absence of that duty runs parallel with the absence of any general duty of care on the part of one litigant towards his opponent: Jain v Trent Strategic Health Authority [2009] AC 853. Six authorities, briefly noticed in chronological order in what follows, may illumine inquiry into the existence of an assumption of responsibility by a solicitor towards the opposite party.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_97">
             <num>97.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Lord Wilson then proceeded to consider the six authorities to which he had made reference.  The fourth case was <span style="font-style:italic">Gran Gelato</span>, where Lord Wilson said this:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“29</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">Fourth, the decision of Sir Donald Nicholls V-C in the High Court in Gran Gelato Ltd v Richcliff (Group) Ltd [1992] Ch 560. The claimant wished to purchase an underlease from the first defendant. The claimant’s solicitors inquired of the second defendants, a firm of solicitors acting for the first defendant, whether any provisions in the headlease might affect the length of the underlease. The negative answer of the second defendants was a misrepresentation, which, following its purchase of the underlease, caused loss to the claimant. The Vice-Chancellor held that it had a valid claim against the first defendant but that the second defendants had themselves owed no duty of care to it. He observed at pp 571—572 that only in special cases, such as the Allied Finance case [1983] NZLR 22, would a solicitor owe a duty of care to the opposite party and that there was nothing special about the case before him.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“29</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">Fourth, the decision of Sir Donald Nicholls V-C in the High Court in Gran Gelato Ltd v Richcliff (Group) Ltd [1992] Ch 560. The claimant wished to purchase an underlease from the first defendant. The claimant’s solicitors inquired of the second defendants, a firm of solicitors acting for the first defendant, whether any provisions in the headlease might affect the length of the underlease. The negative answer of the second defendants was a misrepresentation, which, following its purchase of the underlease, caused loss to the claimant. The Vice-Chancellor held that it had a valid claim against the first defendant but that the second defendants had themselves owed no duty of care to it. He observed at pp 571—572 that only in special cases, such as the Allied Finance case [1983] NZLR 22, would a solicitor owe a duty of care to the opposite party and that there was nothing special about the case before him.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_98">
             <num>98.</num>
@@ -1229,68 +1305,84 @@
           </paragraph>
           <paragraph eId="para_100">
             <num>100.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">In his judgment in the Court of Appeal Patten LJ turned, at [62], to the question of whether the solicitors and agents who acted for the vendor owed any duty of care in negligence to the purchaser.  In one of the cases, the claim in negligence had been dismissed by the judge at first instance.  In the second case, a claim in negligence had not been pleaded at first instance, but was the subject of an application for permission to amend to include the claim in negligence.  At [63] Patten LJ explained why the claim in negligence had failed, in the case in which this claim had been made at first instance (<span style="font-style:italic">P&amp;P</span>):</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:0.98in;text-indent:-0.98in"><marker name="tab" /><span style="font-style:italic">“63    The judge rejected the existence of a duty of care primarily because he considered himself bound to follow the decision of Sir Donald Nicholls V-C in Gran Gelato Ltd v Richcliff (Group) Ltd [1992] Ch 560 and there were no special circumstances in the context of the particular transaction to justify the imposition of a duty of care in favour of the claimant who was not OWC’s client and was the counter-party to the transaction with its own solicitors.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:0.98in;text-indent:-0.98in"><marker name="tab" /><span style="font-style:italic">“63    The judge rejected the existence of a duty of care primarily because he considered himself bound to follow the decision of Sir Donald Nicholls V-C in Gran Gelato Ltd v Richcliff (Group) Ltd [1992] Ch 560 and there were no special circumstances in the context of the particular transaction to justify the imposition of a duty of care in favour of the claimant who was not OWC’s client and was the counter-party to the transaction with its own solicitors.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_101">
             <num>101.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Patten LJ then proceeded to a review of the relevant case law in this area, including <span style="font-style:italic">Gran Gelato</span> and <span style="font-style:italic">NRAM</span>.  The entire review is valuable, and repays study.  For present purposes it is most relevant to cite what Patten LJ had to say about the concept of assumption of responsibility, at [76].  </p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“76</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">As Lord Wilson JSC explains in his judgment, the requirement that there should be an assumption of responsibility is to some extent a legal construct in the sense that in many cases the defendant solicitor or other professional will be treated as having assumed responsibility to the third party for his actions by virtue of the proximity between them and the obvious effect which any failure on his part would have on the third party. There will rarely be an actual, conscious and voluntary assumption of responsibility not least because the solicitor or other professional will have a client to whom he is contractually bound. But, on the basis that the court is deciding whether to treat the defendant as having assumed legal responsibility to the third party, non-client, for his actions, it will be necessary to balance the foreseeability that the third party will rely on the professional to perform their task in a competent manner against any other factors which would make such an imposition of liability unreasonable or unfair.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“76</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">As Lord Wilson JSC explains in his judgment, the requirement that there should be an assumption of responsibility is to some extent a legal construct in the sense that in many cases the defendant solicitor or other professional will be treated as having assumed responsibility to the third party for his actions by virtue of the proximity between them and the obvious effect which any failure on his part would have on the third party. There will rarely be an actual, conscious and voluntary assumption of responsibility not least because the solicitor or other professional will have a client to whom he is contractually bound. But, on the basis that the court is deciding whether to treat the defendant as having assumed legal responsibility to the third party, non-client, for his actions, it will be necessary to balance the foreseeability that the third party will rely on the professional to perform their task in a competent manner against any other factors which would make such an imposition of liability unreasonable or unfair.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_102">
             <num>102.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Patten LJ then proceeded, at [78], to point out that the Money Laundering Regulations 2007 (“the MLR”), do not create a statutory duty, breach of which gives rise to a cause of action:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“78</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The MLR do not, as I have said, create a statutory duty which if breached gives rise to a cause of action at the suit of the claimants. That is because the statutory duty was imposed for the benefit of society at large and not for any particular class of persons, such as the purchasers in these cases, who are likely to suffer loss if the vendor turns out to be an imposter. In part, this is because the principal purpose of the MLR is to deter money laundering and terrorism rather than to combat identity fraud. The fact that the AML checks may have a deterrent effect on would-be fraudsters is not enough in itself to create a private law right of action for the benefit of a protected class: see X (Minors) v Bedfordshire County Council [1995] 2 AC 633, 731.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“78</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The MLR do not, as I have said, create a statutory duty which if breached gives rise to a cause of action at the suit of the claimants. That is because the statutory duty was imposed for the benefit of society at large and not for any particular class of persons, such as the purchasers in these cases, who are likely to suffer loss if the vendor turns out to be an imposter. In part, this is because the principal purpose of the MLR is to deter money laundering and terrorism rather than to combat identity fraud. The fact that the AML checks may have a deterrent effect on would-be fraudsters is not enough in itself to create a private law right of action for the benefit of a protected class: see X (Minors) v Bedfordshire County Council [1995] 2 AC 633, 731.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_103">
             <num>103.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">At [79]-[82] Patten LJ came to his decision on the facts of the two cases before him (the underlining is my own):</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“79</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">If one adopts the incremental approach starting from the general rule in the Gran Gelato case [1992] Ch 560 that a solicitor in a conveyancing transaction does not normally owe a duty of care to anyone but his own client then it seems to me that there is a material distinction between cases like White v Jones [1995] 2 AC 207 and Dean v Allin &amp; Watts [2001] 2 Lloyd’s Rep 249 and the situation in the two present appeals. In both those cases the instructions which the solicitor received were intended to benefit both the solicitors’ own client and the third party. </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">For that reason there was no conflict of interest between the two parties and an expectation that the arrangements the solicitor was instructed to put in hand would enure for their mutual benefit.</span><span style="font-style:italic"> The third party was in as proximate a position to the solicitor as he would have been had he been their client. It was what is referred to in some of the cases as a situation equivalent to contract.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">80</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">But in the transactions with which we are concerned the vendors and the purchasers were very much at arm’s length and their solicitors owed no duties to anyone but their client when acting in relation to the sales.</span><span style="font-style:italic"> Mr Blaker made the point I have mentioned about the need for the vendor’s solicitors to complete the AML checks before accepting instructions but that does not alter the fact that the checks are carried out in order to satisfy the requirements of the MLR and not as a part of a transaction designed to benefit the purchasers.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">81</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The solicitors and agents in the present appeals did not voluntarily assume responsibility to the purchasers for the adequacy of the due diligence which they carried out.</span><span style="font-style:italic"> They were not asked to give undertakings or assurances that they had properly carried out the AML checks and, had they been asked to do so, they would have had the opportunity to refuse or to limit their liability in some way by a suitable disclaimer. Nor is there anything in the nature of the particular transactions (unlike in Dean v Allin &amp; Watts [2001] 2 Lloyd’s Rep 249) which can be treated as having created a relevant assumption of responsibility or to have made it reasonable in itself for the purchaser to have relied on the vendor’s solicitors and agents to have acted competently in that regard. More particularly, there is nothing in the way that these transactions were conducted which made it objectively reasonable to assume that the AML checks would be complete and that the defendants should be legally accountable to the purchasers for the consequences. I find it difficult to see how the imposition of such liability can be justified in this case where it is common ground that Parliament did not intend a breach of the MLR to create a private law cause of action in favour of the claimants. In Dreamvar there was also, as I mentioned earlier, positive evidence that the purchaser’s solicitors did not even consider that MMS were warranting that they acted for the true owner.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">82</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">Taking all these matters into account, these are not cases in which it would be fair and reasonable to treat the solicitors and agents as having assumed responsibility to the purchasers for the adequacy of the due diligence performed in relation to their client’s identity. The judge was therefore right in P&amp;P to dismiss the claim in negligence against OWC and Winkworth. For the same reasons, I would dismiss the application for permission to amend which is made by the claimant in Dreamvar.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“79</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">If one adopts the incremental approach starting from the general rule in the Gran Gelato case [1992] Ch 560 that a solicitor in a conveyancing transaction does not normally owe a duty of care to anyone but his own client then it seems to me that there is a material distinction between cases like White v Jones [1995] 2 AC 207 and Dean v Allin &amp; Watts [2001] 2 Lloyd’s Rep 249 and the situation in the two present appeals. In both those cases the instructions which the solicitor received were intended to benefit both the solicitors’ own client and the third party. </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">For that reason there was no conflict of interest between the two parties and an expectation that the arrangements the solicitor was instructed to put in hand would enure for their mutual benefit.</span><span style="font-style:italic"> The third party was in as proximate a position to the solicitor as he would have been had he been their client. It was what is referred to in some of the cases as a situation equivalent to contract.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">80</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">But in the transactions with which we are concerned the vendors and the purchasers were very much at arm’s length and their solicitors owed no duties to anyone but their client when acting in relation to the sales.</span><span style="font-style:italic"> Mr Blaker made the point I have mentioned about the need for the vendor’s solicitors to complete the AML checks before accepting instructions but that does not alter the fact that the checks are carried out in order to satisfy the requirements of the MLR and not as a part of a transaction designed to benefit the purchasers.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">81</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The solicitors and agents in the present appeals did not voluntarily assume responsibility to the purchasers for the adequacy of the due diligence which they carried out.</span><span style="font-style:italic"> They were not asked to give undertakings or assurances that they had properly carried out the AML checks and, had they been asked to do so, they would have had the opportunity to refuse or to limit their liability in some way by a suitable disclaimer. Nor is there anything in the nature of the particular transactions (unlike in Dean v Allin &amp; Watts [2001] 2 Lloyd’s Rep 249) which can be treated as having created a relevant assumption of responsibility or to have made it reasonable in itself for the purchaser to have relied on the vendor’s solicitors and agents to have acted competently in that regard. More particularly, there is nothing in the way that these transactions were conducted which made it objectively reasonable to assume that the AML checks would be complete and that the defendants should be legally accountable to the purchasers for the consequences. I find it difficult to see how the imposition of such liability can be justified in this case where it is common ground that Parliament did not intend a breach of the MLR to create a private law cause of action in favour of the claimants. In Dreamvar there was also, as I mentioned earlier, positive evidence that the purchaser’s solicitors did not even consider that MMS were warranting that they acted for the true owner.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">82</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">Taking all these matters into account, these are not cases in which it would be fair and reasonable to treat the solicitors and agents as having assumed responsibility to the purchasers for the adequacy of the due diligence performed in relation to their client’s identity. The judge was therefore right in P&amp;P to dismiss the claim in negligence against OWC and Winkworth. For the same reasons, I would dismiss the application for permission to amend which is made by the claimant in Dreamvar.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_104">
             <num>104.</num>
@@ -1312,27 +1404,31 @@
           </paragraph>
           <paragraph eId="para_107">
             <num>107.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The Estate’s case in this respect essentially rests upon the allegations in the Amended Particulars of Claim that the Deceased had certain dealings with Mr. Kilvert, which are alleged to have taken place in the following terms, in paragraphs 24, 25 and 32 of the Amended Particulars of Claim:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“24.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">In the spring of 2010 </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> was contacted by the Seventh the Defendant and in particular by Mr Michael Kilvert, a consultant at the Sixth </span>[Seventh]<span style="font-style:italic"> Defendant firm which was then acting for the Sixth Defendant.  Mr Kilvert told </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> that his clients wanted him to sign a fresh or replacement transfer document and that he should attend the offices of the First Defendant to see the Second Defendant and should take identification evidence with him.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">25.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">During the course of the telephone conversation or conversations </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> told Mr Kilvert that he did not know the First and Second Defendants and did not wish to go to their offices to discuss or transact any business in relation to the Property and offered to travel to the Seventh Defendant’s offices in Wolverhampton to see Mr Kilvert in connection with any documents that needed signing and to discuss the matter with Mr Kilvert but Mr Kilvert said words to the effect “no, I do not want to see you.” and insisted that </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> should go to the First and Second Defendants’ office but </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> refused to do so.”  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">“32.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic;text-decoration-line:line-through">The Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Deceased</span><span style="font-style:italic"> attempted to contact the Sixth </span>[Seventh?]<span style="font-style:italic"> Defendant on several occasions after receipt of the letter of 14 July 2010 but without success.  On 9 March 2011 </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> discussed the position with Mr Kilvert.  In the course of that conversation </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> told Mr Kilvert that he had never been to the First and Second Defendant’s offices and that he had not signed the 2010 transfer.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“24.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">In the spring of 2010 </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> was contacted by the Seventh the Defendant and in particular by Mr Michael Kilvert, a consultant at the Sixth </span>[Seventh]<span style="font-style:italic"> Defendant firm which was then acting for the Sixth Defendant.  Mr Kilvert told </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> that his clients wanted him to sign a fresh or replacement transfer document and that he should attend the offices of the First Defendant to see the Second Defendant and should take identification evidence with him.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">25.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">During the course of the telephone conversation or conversations </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> told Mr Kilvert that he did not know the First and Second Defendants and did not wish to go to their offices to discuss or transact any business in relation to the Property and offered to travel to the Seventh Defendant’s offices in Wolverhampton to see Mr Kilvert in connection with any documents that needed signing and to discuss the matter with Mr Kilvert but Mr Kilvert said words to the effect “no, I do not want to see you.” and insisted that </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> should go to the First and Second Defendants’ office but </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> refused to do so.”  </span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">“32.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic;text-decoration-line:line-through">The Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Deceased</span><span style="font-style:italic"> attempted to contact the Sixth </span>[Seventh?]<span style="font-style:italic"> Defendant on several occasions after receipt of the letter of 14 July 2010 but without success.  On 9 March 2011 </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> discussed the position with Mr Kilvert.  In the course of that conversation </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> told Mr Kilvert that he had never been to the First and Second Defendant’s offices and that he had not signed the 2010 transfer.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_108">
             <num>108.</num>
@@ -1582,27 +1678,31 @@
           </paragraph>
           <paragraph eId="para_145">
             <num>145.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The pleaded claim against LDS is that LDS owed a duty of care to the Deceased to take reasonable steps to verify the identity of the Signatory at the Signing Event; see paragraph 53 of the Amended Particulars of Claim.  As with the claim against Rees Page the duty of care is alleged to have arisen in the tort of negligence only.  Several matters are relied upon in paragraph 53 in support of this alleged duty of care, which it is easiest to quote from paragraph 53:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“a.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">It was reasonably foreseeable that if the person signing the document was </span>[<span style="font-style:italic">s</span>]<span style="font-style:italic">not the person named as </span>[t]<span style="font-style:italic">he transferor in the document then that person would suffer loss</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">b.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">The fact that the Second Defendant believed that he was dealing with and intended to witness the signature of </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> gave rise to a sufficient degree of proximity between them</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">c.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">In all the circumstances of the case circumstances it is fair just and reasonable to impose such a duty.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“a.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">It was reasonably foreseeable that if the person signing the document was </span>[<span style="font-style:italic">s</span>]<span style="font-style:italic">not the person named as </span>[t]<span style="font-style:italic">he transferor in the document then that person would suffer loss</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">b.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">The fact that the Second Defendant believed that he was dealing with and intended to witness the signature of </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> gave rise to a sufficient degree of proximity between them</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">c.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">In all the circumstances of the case circumstances it is fair just and reasonable to impose such a duty.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_146">
             <num>146.</num>
@@ -1636,15 +1736,19 @@
           </paragraph>
           <paragraph eId="para_151">
             <num>151.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">In this context it is important to have in mind what was said by Pill LJ, as to the purpose of requiring a deed to be witnessed, in <span style="font-style:italic">Shah v Shah</span> [2001] EWCA Civ 527 [2002] QB 35.  In that case the question before the Court of Appeal was whether estoppel could be relied upon, in a case where a deed had not been witnessed, to overcome the statutory requirement for the deed to have been witnessed, as set out in Section 1 of the Law of Property (Miscellaneous Provisions) Act 1989.  For present purposes however the relevance of the case is confined to Pill LJ’s explanation of the purpose of attestation, at [29]:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“29</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">I bear in mind the clarity of the language of section 1(2.) and (3) and also that the requirement for attestation is integral to the requirement for signature in that the validity of the signature is stipulated to depend on the presence of the attesting witness. I also accept that attestation has a purpose in that it limits the scope for disputes as to whether the document was signed and the circumstances in which it was signed. The beneficial effect of the requirement for attestation of the signature in the manner specified in the statute is not in question. It gives some, but not complete, protection to other parties to the deed who can have more confidence in the genuineness of the signature by reason of the attestation. It gives some, but not complete,  protection to a potential signatory who may be under a disability, either permanent or temporary. A person may aver in opposition to his own deed that he was induced to execute it by fraud, misrepresentation or, as was unsuccessfully alleged in the present case, duress and the attestation requirement is a safeguard.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“29</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">I bear in mind the clarity of the language of section 1(2.) and (3) and also that the requirement for attestation is integral to the requirement for signature in that the validity of the signature is stipulated to depend on the presence of the attesting witness. I also accept that attestation has a purpose in that it limits the scope for disputes as to whether the document was signed and the circumstances in which it was signed. The beneficial effect of the requirement for attestation of the signature in the manner specified in the statute is not in question. It gives some, but not complete, protection to other parties to the deed who can have more confidence in the genuineness of the signature by reason of the attestation. It gives some, but not complete,  protection to a potential signatory who may be under a disability, either permanent or temporary. A person may aver in opposition to his own deed that he was induced to execute it by fraud, misrepresentation or, as was unsuccessfully alleged in the present case, duress and the attestation requirement is a safeguard.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_152">
             <num>152.</num>
@@ -1660,15 +1764,19 @@
           </paragraph>
           <paragraph eId="para_154">
             <num>154.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">I have already cited extensively from <span style="font-style:italic">NRAM</span> and <span style="font-style:italic">P&amp;P/Dreamvar</span>.  I add to this citation only what Patten LJ said at [74] in <span style="font-style:italic">P&amp;P/Dreamvar</span>, as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“74</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The imposition of liability in negligence towards a third party who is not the solicitor’s client clearly requires something more than it being foreseeable by the solicitor that loss will be caused to the third party by a lack of care on the solicitor’s part in carrying out whatever is the relevant task. Nor is it sufficient that the test of proximity is satisfied whether by an actual assumption of responsibility or by the existence of a direct interest on the part of the third party (as in Dean v Allin &amp; Watts) in the product of the solicitors’ instructions. The incremental approach approved in Caparo requires all these and any other relevant factors to be taken into account and globally assessed including any relevant policy considerations. In deciding whether it is just or reasonable to recognise a duty of care, the approach enshrined in the case law requires the court to take account of the contractual framework and any other factors bearing on liability.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“74</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The imposition of liability in negligence towards a third party who is not the solicitor’s client clearly requires something more than it being foreseeable by the solicitor that loss will be caused to the third party by a lack of care on the solicitor’s part in carrying out whatever is the relevant task. Nor is it sufficient that the test of proximity is satisfied whether by an actual assumption of responsibility or by the existence of a direct interest on the part of the third party (as in Dean v Allin &amp; Watts) in the product of the solicitors’ instructions. The incremental approach approved in Caparo requires all these and any other relevant factors to be taken into account and globally assessed including any relevant policy considerations. In deciding whether it is just or reasonable to recognise a duty of care, the approach enshrined in the case law requires the court to take account of the contractual framework and any other factors bearing on liability.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_155">
             <num>155.</num>
@@ -1912,15 +2020,19 @@
           </paragraph>
           <paragraph eId="para_192">
             <num>192.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">It will be recalled that the Estate’s claim against the Fourth Defendants, the purchasers of the Property from the Bank in 2013, was dismissed at an earlier hearing, which took place before Master Clark.  The order of Master Clark, which is dated 4<span style="vertical-align:super;font-size:smaller">th</span> April 2018, included the following costs provision:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“4.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">As between the Claimant and the First, Second, Third, Fifth, Sixth and Seventh Defendants the costs ordered to be paid pursuant to paragraph 2 above </span>[which ordered the Estate to pay the Fourth Defendants’ costs of their application and the claim against them]<span style="font-style:italic"> are to form part of the Claimant’s costs of the claim.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“4.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">As between the Claimant and the First, Second, Third, Fifth, Sixth and Seventh Defendants the costs ordered to be paid pursuant to paragraph 2 above </span>[which ordered the Estate to pay the Fourth Defendants’ costs of their application and the claim against them]<span style="font-style:italic"> are to form part of the Claimant’s costs of the claim.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_193">
             <num>193.</num>
@@ -1987,91 +2099,103 @@
           </paragraph>
           <paragraph eId="para_202">
             <num>202.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">This leaves the claim for an indemnity against the CLR.  The claim is made pursuant to Schedule 8, and specifically pursuant to paragraph 1(1)(b) of Schedule 8.  For present purposes, the material parts of paragraph 1 of Schedule 8 are as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic;background-color:#FFFFFF">“(1)</num>
-              <intro>
-                <p style="margin-left:1.5in"><span style="font-style:italic;font-family:'Times New Roman';color:#000000;background-color:#FFFFFF">A person is entitled to be indemnified by the registrar if he suffers loss by reason of—"</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic">“(b)</num>
-                <content>
-                  <p style="margin-left:2in"><span style="font-style:italic;font-family:'Times New Roman';color:#000000">a mistake whose correction would involve rectification of the register,”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;background-color:#FFFFFF">“(3)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic;font-family:'Times New Roman';color:#000000;background-color:#FFFFFF">No indemnity under sub-paragraph (1)(b) is payable until a decision has been made about whether to alter the register for the purpose of correcting the mistake; and the loss suffered by reason of the mistake is to be determined in the light of that decision.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic;background-color:#FFFFFF">“(1)</num>
+                    <intro>
+                      <p style="margin-left:1.5in"><span style="font-style:italic;font-family:'Times New Roman';color:#000000;background-color:#FFFFFF">A person is entitled to be indemnified by the registrar if he suffers loss by reason of—"</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic">“(b)</num>
+                      <content>
+                        <p style="margin-left:2in"><span style="font-style:italic;font-family:'Times New Roman';color:#000000">a mistake whose correction would involve rectification of the register,”</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic;background-color:#FFFFFF">“(3)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic;font-family:'Times New Roman';color:#000000;background-color:#FFFFFF">No indemnity under sub-paragraph (1)(b) is payable until a decision has been made about whether to alter the register for the purpose of correcting the mistake; and the loss suffered by reason of the mistake is to be determined in the light of that decision.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_203">
             <num>203.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The pleaded case of the Estate is that a mistake was made; namely the registration of the 2010 Transfer and the Attarian Charge in circumstances where the 2010 TR1 was forged.  The claim for an indemnity is put on the following basis, in paragraph 45 of the Amended Particulars of Claim:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“45.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">In the event that the Court decides that the register should not be altered or rectified then </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> is entitled and ought to be indemnified against </span><span style="font-style:italic;text-decoration-line:line-through">his</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">her</span><span style="font-style:italic"> losses </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">and those of the Deceased</span><span style="font-style:italic"> pursuant to section 103 and paragraph 1(1)(b) of schedule 8 of the Land Registration Act 2002.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“45.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">In the event that the Court decides that the register should not be altered or rectified then </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> is entitled and ought to be indemnified against </span><span style="font-style:italic;text-decoration-line:line-through">his</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">her</span><span style="font-style:italic"> losses </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">and those of the Deceased</span><span style="font-style:italic"> pursuant to section 103 and paragraph 1(1)(b) of schedule 8 of the Land Registration Act 2002.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_204">
             <num>204.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The losses in respect of which an indemnity is claimed are set out in paragraph 46 of the Amended Particulars of Claim, in the following terms.</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">“Particulars of the Claimant’s losses are:</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">a.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">The effect of the mistake and the entries made as a result of it is that </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> has lost the value of </span><span style="font-style:italic;text-decoration-line:line-through">his interest</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Estate’s</span><span style="font-style:italic"> in the property and of his unpaid vendor’s lien.  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">b.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic;text-decoration-line:line-through">The Claimant’s</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Estate’s</span><span style="font-style:italic"> interest in the property and/or his lien would have provided </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> with the means to discharge the 2007 Mortgage and the Inglis Road Mortgage  </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">c.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Discharge of those mortgages would have prevented interest from continuing to accrue on them at the rates specified in the mortgage documents (“the Mortgage Rates”).</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">d.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">The total amount of the Claimant’s loss is a matter for expert evidence but will be at least £787,036.88 being (£1,122,751.52 less the £335,714.64 credited by the Sixth Defendant) together with interest at the Mortgage Rates.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">e.</num>
-              <intro>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">If the Claimant succeeds in mitigating </span><span style="font-style:italic;text-decoration-line:line-through">his</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the</span><span style="font-style:italic"> loss </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">of the Estate</span><span style="font-style:italic"> by obtaining an order for the correction of the register so that </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">s</span><span style="font-style:italic">he is </span><span style="font-style:italic;text-decoration-line:line-through">re</span><span style="font-style:italic">instated as proprietor and the 2007 Charge is also restored or he is fully indemnified by the Fifth Defendant then the Claimant will still have suffered loss in as follows:</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic">i.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">Costs of the claim against the Fourth and Fifth Defendants (in so far as they are not actually paid by any other party)</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:2in;text-indent:-0.5in"><span style="font-style:italic">ii</span><marker name="tab" /><span style="font-style:italic">Interest at the Mortgage Rates from the time when the mortgages could or should have been redeemed.”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">“Particulars of the Claimant’s losses are:</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-style:italic">a.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">The effect of the mistake and the entries made as a result of it is that </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> has lost the value of </span><span style="font-style:italic;text-decoration-line:line-through">his interest</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Estate’s</span><span style="font-style:italic"> in the property and of his unpaid vendor’s lien.  </span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">b.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic;text-decoration-line:line-through">The Claimant’s</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Estate’s</span><span style="font-style:italic"> interest in the property and/or his lien would have provided </span><span style="font-style:italic;text-decoration-line:line-through">the Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the Deceased</span><span style="font-style:italic"> with the means to discharge the 2007 Mortgage and the Inglis Road Mortgage  </span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">c.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Discharge of those mortgages would have prevented interest from continuing to accrue on them at the rates specified in the mortgage documents (“the Mortgage Rates”).</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">d.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">The total amount of the Claimant’s loss is a matter for expert evidence but will be at least £787,036.88 being (£1,122,751.52 less the £335,714.64 credited by the Sixth Defendant) together with interest at the Mortgage Rates.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">e.</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">If the Claimant succeeds in mitigating </span><span style="font-style:italic;text-decoration-line:line-through">his</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">the</span><span style="font-style:italic"> loss </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">of the Estate</span><span style="font-style:italic"> by obtaining an order for the correction of the register so that </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">s</span><span style="font-style:italic">he is </span><span style="font-style:italic;text-decoration-line:line-through">re</span><span style="font-style:italic">instated as proprietor and the 2007 Charge is also restored or he is fully indemnified by the Fifth Defendant then the Claimant will still have suffered loss in as follows:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic">i.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">Costs of the claim against the Fourth and Fifth Defendants (in so far as they are not actually paid by any other party)</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in;text-indent:-0.5in"><span style="font-style:italic">ii</span><marker name="tab" /><span style="font-style:italic">Interest at the Mortgage Rates from the time when the mortgages could or should have been redeemed.”</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_205">
             <num>205.</num>
@@ -2087,62 +2211,70 @@
           </paragraph>
           <paragraph eId="para_207">
             <num>207.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">The first ground relied upon by the CLR, in support of the application of the CLR for summary judgment/striking out, was based upon the RPOC.  The point was a simple one.  Paragraph 15 of the RPOC pleads a series of steps which occurred on 10<span style="vertical-align:super;font-size:smaller">th</span> March 2008 <span style="font-style:italic">“towards (purported) completion”</span> of the 2008 Transaction.  These steps, as pleaded in paragraph 15 of the RPOC, are as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“15.</num>
-              <intro>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">It is averred that the following steps towards (purported) completion occurred on 10 March 2008:  </span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic">15.1.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">On 7 March 2008, the Bank advanced the purchase monies to FLP qua solicitors for the Bank and Mr Attarian; </span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic">15.2.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">On the same day, and in accordance with ordinary conveyancing practice, FLP allocated the purchase monies to the credit of the Deceased (i.e. FLP treated the purchase price as having been paid); </span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic">15.3.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">On the same day, and in accordance with ordinary conveyancing practice, FLP </span><marker name="tab" /><span style="font-style:italic">qua solicitors for the Deceased arranged to allocate the monies to FLP qua solicitors for the Bank for the purpose of repaying the Argyle Road Mortgage (i.e. FLP applied the purchase monies received by the Deceased from Mr Attarian to the discharge of his indebtedness to the Bank as a necessary step to completion);  </span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic">15.4.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">FLP accordingly and thereafter held the monies qua solicitors for the Bank; </span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic">15.5.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">By letter dated 27 March 2008, FLP qua solicitors for the Bank confirmed to the Bank that completion had occurred and that the Argyle Road Mortgage had been redeemed and that the Bank should proceed to discharge his charge with HM Land Registry.”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“15.</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">It is averred that the following steps towards (purported) completion occurred on 10 March 2008:  </span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic">15.1.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">On 7 March 2008, the Bank advanced the purchase monies to FLP qua solicitors for the Bank and Mr Attarian; </span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic">15.2.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">On the same day, and in accordance with ordinary conveyancing practice, FLP allocated the purchase monies to the credit of the Deceased (i.e. FLP treated the purchase price as having been paid); </span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic">15.3.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">On the same day, and in accordance with ordinary conveyancing practice, FLP </span><marker name="tab" /><span style="font-style:italic">qua solicitors for the Deceased arranged to allocate the monies to FLP qua solicitors for the Bank for the purpose of repaying the Argyle Road Mortgage (i.e. FLP applied the purchase monies received by the Deceased from Mr Attarian to the discharge of his indebtedness to the Bank as a necessary step to completion);  </span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic">15.4.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">FLP accordingly and thereafter held the monies qua solicitors for the Bank; </span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic">15.5.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">By letter dated 27 March 2008, FLP qua solicitors for the Bank confirmed to the Bank that completion had occurred and that the Argyle Road Mortgage had been redeemed and that the Bank should proceed to discharge his charge with HM Land Registry.”</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_208">
             <num>208.</num>
-            <intro>
+            <content>
               <p class="BodyText2" style="text-align:justify;margin-left:0.5in">What is said to have been the legal effect of these steps is then set out in paragraph 17 of the RPOC, in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“17.</num>
-              <intro>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Notwithstanding the defective completion, the legal effect of the steps stated in paragraph 15 above was that the Argyle Road Mortgage was redeemed upon payment to the Bank (received by its agent, FLP, as confirmed by its letter dated 27 March 2008 </span></p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">to the Bank).”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“17.</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Notwithstanding the defective completion, the legal effect of the steps stated in paragraph 15 above was that the Argyle Road Mortgage was redeemed upon payment to the Bank (received by its agent, FLP, as confirmed by its letter dated 27 March 2008 </span></p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">to the Bank).”</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_209">
             <num>209.</num>
@@ -2176,14 +2308,18 @@
           </paragraph>
           <paragraph eId="para_214">
             <num>214.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Mr. Trompeter emphasized to me that the RPOC were settled by counsel, who was subject to the following professional obligation, in version 4 of the BSB Handbook (which was then in force):</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-style:italic">“r.C9 </span><marker name="tab" /><span style="font-style:italic">Your duty to act with honesty and integrity under CD3 includes the following requirements: </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in;text-indent:-0.5in"><span style="font-style:italic">“r.C9 </span><marker name="tab" /><span style="font-style:italic">Your duty to act with honesty and integrity under CD3 includes the following requirements: </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_11">
@@ -2206,20 +2342,24 @@
           </paragraph>
           <paragraph eId="para_216">
             <num>216.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">Mr. Trompeter also drew my attention to a request for further information which was served by the CLR on the Estate, by letter dated 11<span style="vertical-align:super;font-size:smaller">th</span> December 2019.  The response was made by letter dated 17<span style="vertical-align:super;font-size:smaller">th</span> December 2019.  The first request, and its answer were in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“1.</num>
-              <content>
-                <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">Please confirm that, by providing the First Party (and the other parties to this litigation) with a copy of the draft Re-Amended Particulars of Claim, the Second Party had satisfied herself that the draft statement of case was factually accurate and faithfully represented the Second Party’s instructions to her solicitors in relation to each and every averment contained therein”</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“Yes. The Claimant interprets these requests as a means of requiring the Claimant to say that redemption definitely occurred. The Claimant does not in fact know whether redemption has definitely occurred as the Bank appears to object to this averment ... Accordingly, for the avoidance of doubt, the Claimant’s position is that redemption may have occurred but that it will be necessary for there to be disclosure.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“1.</num>
+                    <content>
+                      <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">Please confirm that, by providing the First Party (and the other parties to this litigation) with a copy of the draft Re-Amended Particulars of Claim, the Second Party had satisfied herself that the draft statement of case was factually accurate and faithfully represented the Second Party’s instructions to her solicitors in relation to each and every averment contained therein”</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“Yes. The Claimant interprets these requests as a means of requiring the Claimant to say that redemption definitely occurred. The Claimant does not in fact know whether redemption has definitely occurred as the Bank appears to object to this averment ... Accordingly, for the avoidance of doubt, the Claimant’s position is that redemption may have occurred but that it will be necessary for there to be disclosure.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_217">
             <num>217.</num>
@@ -2241,15 +2381,19 @@
           </paragraph>
           <paragraph eId="para_220">
             <num>220.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">I should mention that I have considerable sympathy for all four of the Defendants engaged in the Appeal and the Applications, so far as the RPOC are concerned.  It seems to me unsatisfactory for the Estate to have produced the RPOC, with the expression of a clear intention to re-amend its case in the terms of the RPOC, and then to retreat to a position where the question of re-amendment is left up in the air.  As I have said, it is hard to avoid the impression that the Estate decided to abandon the RPOC once it appreciated that its content was actually destructive of its case.  I do not think however that the sorry procedural history of the RPOC is sufficient to justify a striking out order on the basis of abuse of process.  My attention was drawn to case law in which the repeated changing of a claimant’s case was held to justify striking out the claimant’s proceedings; see the decision of Chief Master Marsh in <span style="font-style:italic">Nekoti v Univilla Ltd</span> [2016] EWHC 556 (Ch).  In that case the Chief Master was persuaded to strike out the claimant’s re-amended particulars of claim on the basis that the claim was, to use the Chief Master’s expression, <span style="font-style:italic">“endlessly mutable”</span>.  The Chief Master expressed his conclusion on the strike out application in the following terms, at [76]:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“76.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The position might be different if the claim were now in a position to move forward.  However, at the time of the hearing, two years after issue of the claim, the case was still being developed by the Claimant despite the Clamant </span>[Claimant]<span style="font-style:italic"> having been in a position from the outset to plead its claim. Taken with the remaining lack of coherence and changing shape of the claim supported by statements of truth about which there is real cause for concern I am satisfied that in the exercise of my discretion the right course of action is to strike out the re-amended particulars of claim relying on both CPR 3.4(2)(a) and (b).”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“76.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-style:italic">The position might be different if the claim were now in a position to move forward.  However, at the time of the hearing, two years after issue of the claim, the case was still being developed by the Claimant despite the Clamant </span>[Claimant]<span style="font-style:italic"> having been in a position from the outset to plead its claim. Taken with the remaining lack of coherence and changing shape of the claim supported by statements of truth about which there is real cause for concern I am satisfied that in the exercise of my discretion the right course of action is to strike out the re-amended particulars of claim relying on both CPR 3.4(2)(a) and (b).”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_221">
             <num>221.</num>
@@ -2284,13 +2428,17 @@
               <num>(1)</num>
               <intro>
                 <p style="text-align:justify;margin-left:1in">Paragraph 15 is clearly incomplete in the Amended Particulars of Claim, but there is, interestingly, an early draft of the Amended Particulars of Claim which was sent to the Bank’s solicitors by the Deceased’s solicitors under cover of an email sent on 14<span style="vertical-align:super;font-size:smaller">th</span> September 2016.  In this early draft paragraph 15 read as follows:</p>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <paragraph>
+                      <num style="font-style:italic">“15.</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">As well as redeeming the 2007 Mortgage FLP </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">was instructed by the Claimant to pay a further £132,782 out of the proceeds of sale to the Sixth Defendant in or towards redemption of a mortgage on another property owned by the Claimant at 35 Inglis Road London W5 3RL (“the Inglis Road Mortgage”).</span><span style="font-style:italic">”</span></p>
+                      </content>
+                    </paragraph>
+                  </embeddedStructure>
+                </block>
               </intro>
-              <subparagraph>
-                <num style="font-style:italic">“15.</num>
-                <content>
-                  <p style="text-align:justify;margin-left:2in"><span style="font-style:italic">As well as redeeming the 2007 Mortgage FLP </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">was instructed by the Claimant to pay a further £132,782 out of the proceeds of sale to the Sixth Defendant in or towards redemption of a mortgage on another property owned by the Claimant at 35 Inglis Road London W5 3RL (“the Inglis Road Mortgage”).</span><span style="font-style:italic">”</span></p>
-                </content>
-              </subparagraph>
               <subparagraph>
                 <content>
                   <p style="text-align:justify;margin-left:1in">The underlined section is missing from the Amended Particulars of Claim, so that paragraph 15 is left incomplete.</p>
@@ -2320,13 +2468,17 @@
             <num>(5)</num>
             <intro>
               <p style="text-align:justify;text-indent:1in">Paragraph 47 is in the following terms:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“47.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:2in"><span style="font-style:italic;text-decoration-line:line-through">The Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Deceased</span><span style="font-style:italic"> made a claim against FLP and received the sum of £225,000 in settlement of that claim (including costs) for which the Claimant will give credit.  The Sixth Defendant has asserted that it is entitled to that sum either under the 2007 Mortgage (which has been discharged) or under the Inglis Road Mortgage.  No admission is made to whether the Sixth Defendant’s contention is correct.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <num style="font-style:italic">“47.</num>
-              <content>
-                <p style="text-align:justify;margin-left:2in"><span style="font-style:italic;text-decoration-line:line-through">The Claimant</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">The Deceased</span><span style="font-style:italic"> made a claim against FLP and received the sum of £225,000 in settlement of that claim (including costs) for which the Claimant will give credit.  The Sixth Defendant has asserted that it is entitled to that sum either under the 2007 Mortgage (which has been discharged) or under the Inglis Road Mortgage.  No admission is made to whether the Sixth Defendant’s contention is correct.”</span></p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p style="text-align:justify;margin-left:1in">There is therefore, so it was submitted, an actual reference to the discharge of the Original Charge in this paragraph.  The point was also made that the Deceased could only have made a claim against FLP if FLP, by Mr. Uddin, had misappropriated monies belonging to the Deceased. </p>
@@ -2353,39 +2505,43 @@
           </paragraph>
           <paragraph eId="para_229">
             <num>229.</num>
-            <intro>
+            <content>
               <p class="BodyText2" style="text-align:justify;margin-left:0.5in">In this endeavour Mr. Trompeter was supported by Mr. Cousins.  In his supplemental submission in support of the Causation Argument, Mr. Cousins also made reference to the application of the mortgage funds provided by the Bank to the discharge of the borrowing secured by the Original Charge, following the allocation of the purchase monies to the Deceased’s account, as pleaded in paragraph 15 of the RPOC.  Mr. Cousins made the point that this pleading was supported by a letter from FLP to the Bank, which is dated 27<span style="vertical-align:super;font-size:smaller">th</span> March 2008, and reads as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">“Roll Number; A/35195248-7</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Property: 91 Argyle Road, London, W13 OLZ</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Borrower: Syed Ahtram UI Haq</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">Further to completion in the sale of the above secured property and redemption of the mortgage account we now enclose form END1 for your sealing and return.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">Please ensure that the discharge is lodged with HM Land Registry as soon as possible.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">We await hearing from you.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">“Roll Number; A/35195248-7</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Property: 91 Argyle Road, London, W13 OLZ</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">Borrower: Syed Ahtram UI Haq</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">Further to completion in the sale of the above secured property and redemption of the mortgage account we now enclose form END1 for your sealing and return.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">Please ensure that the discharge is lodged with HM Land Registry as soon as possible.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic">We await hearing from you.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_230">
             <num>230.</num>
@@ -2431,24 +2587,28 @@
           </paragraph>
           <paragraph eId="para_237">
             <num>237.</num>
-            <intro>
+            <content>
               <p class="BodyText2" style="text-align:justify;margin-left:0.5in">Beyond this, there is also the position between the Estate and the Bank.  One of the points which emerges from the Bank’s evidence in support of its Application is that the Deceased and, subsequently, the Estate have been engaged in litigation with the Bank in which the Bank has sought and obtained an order for possession of 35 Inglis Road.  According to the second witness statement of Mr. Singh, it has been common ground in those proceedings that the Original Charge was not redeemed in the 2008 Transaction, so that the mortgage loan secured by the Original Charge remained due and outstanding.  Mr. Singh’s evidence is that this common position dates back as far as 23<span style="vertical-align:super;font-size:smaller">rd</span> March 2008, which is the date of a letter written to the Bank by Middlesex Law Chambers, acting as solicitors for the Deceased, which states as follows:                </p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">“We act for the above named client. We wish to inform you that due to unforeseen circumstances the above mortgage was not redeemed bv the conveyancing Solicitors acting for the above. The Solicítors dealing with the transaction were FLP Solicitors.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">Legal completion took place оn the 10</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> of March 2008 however money has gone missing from the Solicitors client account.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">We are now acting as independent Solicitors against FLP to expedite the matter. We will keep you informed of the progress in the matter.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">“We act for the above named client. We wish to inform you that due to unforeseen circumstances the above mortgage was not redeemed bv the conveyancing Solicitors acting for the above. The Solicítors dealing with the transaction were FLP Solicitors.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">Legal completion took place оn the 10</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> of March 2008 however money has gone missing from the Solicitors client account.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="BodyText2" style="text-align:justify;margin-left:1in"><span style="font-style:italic">We are now acting as independent Solicitors against FLP to expedite the matter. We will keep you informed of the progress in the matter.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_238">
             <num>238.</num>
@@ -2488,20 +2648,24 @@
           </paragraph>
           <paragraph eId="para_244">
             <num>244.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">Mr. Trompeter pointed out that neither the Amended Particulars of Claim nor the RPOC plead the existence of such <span style="font-style:italic">“a decision”</span> or otherwise assert that this statutory precondition to an entitlement to an indemnity has been satisfied.  The point was the subject of one of the requests made in the request for further information which I have mentioned.  The relevant exchange was in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“6.</num>
-              <content>
-                <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">Does the Second Party accept that, for the purposes of paragraph 1(3) of Schedule 8 to the Land Registration Act 2002, the First Party has not yet made a decision about whether to alter the register for the purposes of correcting the or any alleged mistake?”</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“The Claimant does not understand which issue between the parties the information is being sought of and requests clarification of the request by reference to the pleadings.”  </span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“6.</num>
+                    <content>
+                      <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">Does the Second Party accept that, for the purposes of paragraph 1(3) of Schedule 8 to the Land Registration Act 2002, the First Party has not yet made a decision about whether to alter the register for the purposes of correcting the or any alleged mistake?”</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="BodyText" style="margin-left:0.79in"><span style="font-style:italic">“The Claimant does not understand which issue between the parties the information is being sought of and requests clarification of the request by reference to the pleadings.”  </span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_245">
             <num>245.</num>
@@ -2547,15 +2711,19 @@
           </paragraph>
           <paragraph eId="para_251">
             <num>251.</num>
-            <intro>
+            <content>
               <p class="BodyTextIndent" style="margin-left:0.5in">The Amended Particulars of Claim identify, by the use of headings, the specific claims made against certain of the Defendants.  This is not however the position with the Bank.  The claims against the Bank are not separately identified in the Amended Particulars of Claim, and the prayer for relief only separates out the claims for damages against, respectively, LDS and Rees Page.  The claim for indemnity is clearly only available against the CLR, which leaves the claim for rectification of the register, and a claim for a declaration in the following terms:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“1.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">A Declaration that what purports to be the </span><span style="font-style:italic;text-decoration-line:line-through">Claimant’s</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Deceased’s</span><span style="font-style:italic"> signature </span>[on]<span style="font-style:italic"> the 2010 Transfer is a forgery.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“1.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">A Declaration that what purports to be the </span><span style="font-style:italic;text-decoration-line:line-through">Claimant’s</span><span style="font-style:italic"> </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">Deceased’s</span><span style="font-style:italic"> signature </span>[on]<span style="font-style:italic"> the 2010 Transfer is a forgery.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_252">
             <num>252.</num>
@@ -2585,13 +2753,17 @@
             <num>256.</num>
             <intro>
               <p style="text-align:justify;margin-left:0.5in">So far as the RPOC are concerned, there is a distinct section of the RPOC which contains a claim pleaded against the Bank, in paragraphs 21-24.  The claim is pleaded in paragraphs 21 and 22, in the following terms:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“21.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Wrongly, the Bank has demanded and continues to demand payment from the Deceased and the Claimant pursuant to the redeemed Argyle Road Mortgage.</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <num style="font-style:italic">“21.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Wrongly, the Bank has demanded and continues to demand payment from the Deceased and the Claimant pursuant to the redeemed Argyle Road Mortgage.</span></p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <num style="font-style:italic">22.</num>
               <intro>
@@ -2637,15 +2809,19 @@
           </paragraph>
           <paragraph eId="para_257">
             <num>257.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Paragraph 23 then sets out a series of declarations sought, the first of which is a declaration that the Original Charge was redeemed by the Deceased on or around 10<span style="vertical-align:super;font-size:smaller">th</span> March 2008.   There is then the following claim for relief in paragraph 24:  </p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“24.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Further, the Claimant claims an account and/or inquiry into all payments made by the Deceased and/or Claimant and all charges and/or demands levied by the Bank pursuant to the Argyle Road Mortgage and/or Inglis Road Mortgage and/or damages to be assessed.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“24.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">Further, the Claimant claims an account and/or inquiry into all payments made by the Deceased and/or Claimant and all charges and/or demands levied by the Bank pursuant to the Argyle Road Mortgage and/or Inglis Road Mortgage and/or damages to be assessed.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_258">
             <num>258.</num>
@@ -2661,15 +2837,19 @@
           </paragraph>
           <paragraph eId="para_260">
             <num>260.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.5in">Mr. Allcock protested that this approach was novel, unprincipled, and unfair.  He accepted that, in principle, an application to strike out could be met with an application to amend the relevant statement of case, which might sufficient to avoid the strike out, depending upon the terms of the amendment.   In this acceptance Mr. Allcock was plainly correct.  As Tugendhat J observed in <span style="font-style:italic">Kim v Park</span> [2011] EWHC 1781 (QB), at [40]:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“40.</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">However, where the court holds that there is a defect in a pleading, it is normal for the court to refrain from striking out that pleading unless the court has given the party concerned an opportunity of putting right the defect, provided that there is reason to believe that he will be in a position to put the defect right. In para 19 of his Judgment the Master recorded that the Claimant had informed him that he already had witnesses. On 17 January 2011 the Claimant demonstrated that that was not wishful thinking, or a bluff, by submitting the statements that he did submit.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“40.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.5in"><span style="font-style:italic">However, where the court holds that there is a defect in a pleading, it is normal for the court to refrain from striking out that pleading unless the court has given the party concerned an opportunity of putting right the defect, provided that there is reason to believe that he will be in a position to put the defect right. In para 19 of his Judgment the Master recorded that the Claimant had informed him that he already had witnesses. On 17 January 2011 the Claimant demonstrated that that was not wishful thinking, or a bluff, by submitting the statements that he did submit.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_261">
             <num>261.</num>

@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/3050/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/3050/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:09" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:59" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>3050</uk:number>
         <uk:cite>[2022] EWHC 3050 (Ch)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>708fd0580e815f7b88845a9ba29ba2de26a09b0aba4bb85b346b3ef39cfc7af8</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -433,14 +433,18 @@
           </paragraph>
           <paragraph eId="para_32">
             <num>32.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">In earlier proceedings in which Mr Lynch sought to set aside a statutory demand served on him by the Bank, Mr Lynch initially put the Bank to proof as to the correct amount of the debt claimed against him; then, in a witness statement dated 24 April 2014, Mr Lynch stated:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“From my recollection of matters, I did sign some form of agreement with Aldermore but this limited my liability to no more than £150,000. Unfortunately I cannot locate a copy of the document …”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“From my recollection of matters, I did sign some form of agreement with Aldermore but this limited my liability to no more than £150,000. Unfortunately I cannot locate a copy of the document …”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_33">
             <num>33.</num>
@@ -477,33 +481,37 @@
           </paragraph>
           <paragraph eId="para_38">
             <num>38.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">The Bank’s case based on documentary evidence is then summarised at the end of this section of the judgment in the following paragraphs:</p>
-            </intro>
-            <subparagraph>
-              <num>“44.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Although Mr Atkinson and Ms Court were not called to give evidence, the Bank rely on the “Take-on Document”, never seen by Mr Lynch until these proceedings, and not signed off at the time, to support its case that the Guarantee was provided to Mr Lynch by the hand of Mr Adcock on 12 September and returned signed, witnessed and dated. The Guarantee and this evidence spells what may be described as the height of its case.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>45.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Mr Mills took the court to a number of the Bank’s internal documents arguing that they provided sufficient evidence for the court to make inferences of fact to support its case; they were of minimal evidential value. These documents were not put to any witness because the authors of those documents had not been called. In consequence, the evidence about the documents, their meaning, the date and circumstances in which they came to be created could not be tested. As an example Mr Mills took me to what he called a “preliminary checklist” which was not put to any witness. It included ticks by numbered paragraphs. Three paragraphs had a circle around the number and a tick. Mr Mills submitted that it was permissible to infer that the author (who was not disclosed) had first circled the matters that required doing before the Bank could be satisfied that the conditions for lending had been satisfied. After they were satisfied, a tick was applied. One such matter concerns the Guarantee.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>46.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">An inference can only properly drawn from a fact or facts that has or have been established. Once a fact has been established an inference may be drawn to support a further finding of fact which follows logically from the established fact.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>47.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">It has not been proved that the purpose of the circles was to indicate that an item on the sheet was outstanding. They may have been circled for other reasons. It is known that the Bank was not satisfied about the relevant licences, certificates and accreditations until 14 September 2011, yet the “Take-On” document included prior dates (12 September 2011). There is no explanation as to why there would be a shadow document tracking documents: casting further doubt on the evidential weight of the “Take-On Checklist”. Mr Mills submitted that the handwriting was that of Ms Court. Her unsigned witness summary explains her working practice and contradicts the submission made by Mr Mills. In the summary, she says that she “relied heavily” on the Take-On Checklist. She does not mention a shadow document. The method she used for outstanding matters to be dealt with, was to mark them with an asterisk and then cross the asterisk out once satisfied. In the absence of cross-examination where the documentary record could be examined, the court is left with accepting that Mr Mills’ interpretation of facts as possible, but that is not the same as drawing a proper inference of fact. I declined his invitation to do so.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“44.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Although Mr Atkinson and Ms Court were not called to give evidence, the Bank rely on the “Take-on Document”, never seen by Mr Lynch until these proceedings, and not signed off at the time, to support its case that the Guarantee was provided to Mr Lynch by the hand of Mr Adcock on 12 September and returned signed, witnessed and dated. The Guarantee and this evidence spells what may be described as the height of its case.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>45.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Mr Mills took the court to a number of the Bank’s internal documents arguing that they provided sufficient evidence for the court to make inferences of fact to support its case; they were of minimal evidential value. These documents were not put to any witness because the authors of those documents had not been called. In consequence, the evidence about the documents, their meaning, the date and circumstances in which they came to be created could not be tested. As an example Mr Mills took me to what he called a “preliminary checklist” which was not put to any witness. It included ticks by numbered paragraphs. Three paragraphs had a circle around the number and a tick. Mr Mills submitted that it was permissible to infer that the author (who was not disclosed) had first circled the matters that required doing before the Bank could be satisfied that the conditions for lending had been satisfied. After they were satisfied, a tick was applied. One such matter concerns the Guarantee.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>46.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">An inference can only properly drawn from a fact or facts that has or have been established. Once a fact has been established an inference may be drawn to support a further finding of fact which follows logically from the established fact.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>47.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">It has not been proved that the purpose of the circles was to indicate that an item on the sheet was outstanding. They may have been circled for other reasons. It is known that the Bank was not satisfied about the relevant licences, certificates and accreditations until 14 September 2011, yet the “Take-On” document included prior dates (12 September 2011). There is no explanation as to why there would be a shadow document tracking documents: casting further doubt on the evidential weight of the “Take-On Checklist”. Mr Mills submitted that the handwriting was that of Ms Court. Her unsigned witness summary explains her working practice and contradicts the submission made by Mr Mills. In the summary, she says that she “relied heavily” on the Take-On Checklist. She does not mention a shadow document. The method she used for outstanding matters to be dealt with, was to mark them with an asterisk and then cross the asterisk out once satisfied. In the absence of cross-examination where the documentary record could be examined, the court is left with accepting that Mr Mills’ interpretation of facts as possible, but that is not the same as drawing a proper inference of fact. I declined his invitation to do so.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_39">
             <num>39.</num>
@@ -549,33 +557,37 @@
           </paragraph>
           <paragraph eId="para_41">
             <num>41.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">In the next section of the judgment, headed “Execution of the Guarantee”, the Judge concludes that Mr Clark did tell Mr Lynch that a limited guarantee would be acceptable and that that was what Mr Lynch was expecting to sign. He then turned to the question of whether Mr Lynch signed any guarantee, and concluded that the Guarantee was not taken to Ruskin’s offices on 12 September 2011, nor emailed to Mr Lynch, and that the Bank’s documents did not establish that they were:</p>
-            </intro>
-            <subparagraph>
-              <num>“74.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">As to the execution of the Guarantee the Bank has failed to counter the case of Mr Lynch that the Guarantee was not taken to the offices of Ruskin on 12 September 2011. An email dated 12 September attaches the Robust Guarantee and Robust board minutes for execution. As this was considered to be a sufficient method of conveyance for the Robust guarantee it is unlikely that it would not be sufficient for the Guarantee. This is particularly so since it was the Bank’s practice to ensure that a prospective guarantor had time to take legal advice and consider the seriousness of entering such a guarantee. No proper explanation was proffered at trial by any witness. Although emailing the Guarantee did not necessarily exclude personal carriage, in the absence of evidence from Mr Adcock that he did deliver the Guarantee personally, it is more likely than not that a similar method would have been used to convey the Guarantee: no such email exists. Mr Adcock did not review the documents he took to the offices and could not recall which documents were taken. The evidence is confused about whether it was sent by post. It can be said with some degree of confidence that there is no evidence of posting and no party to the proceedings has found an email with the Guarantee attached. The evidence supports a finding that the documents taken to the Ruskin office on 12 September were corporate only.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>75.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The positive case put by the Bank is that Ms Court collected the signed Guarantee on 15 September 2011. In some ways it is an extraordinary position to take as there is no evidence that she did so. There is no doubt she did collect some documents: those taken by Mr Adcock on 12 September 2011. In these circumstances the court is asked to make a series of inferences to make good the Bank’s position based on the Bank’s normal practice, emails and internal documents. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>76.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">A major flaw to making such inferences is other evidence before the court, Mr Broomhead’s lack of knowledge as to the signing of the Guarantee, and his failure to check the Take-on Checklist before payment was made.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>77.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The failure to provide evidence from Ms Court or Mr Atkinson, both present at the meeting on 15 September 2011, is striking. That is not to say that an adverse inference should be drawn from their absence. Ms Court, for example, was not prepared to provide sworn evidence. It is beyond argument that the court does not have the benefit of this evidence and Mr Lynch is prevented from testing these potential witnesses of fact by reference to the key events in which they were involved, and the documents Ms Court in particular produced. This, in my judgment, reduces the weight the court can properly put on the untested documents.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“74.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">As to the execution of the Guarantee the Bank has failed to counter the case of Mr Lynch that the Guarantee was not taken to the offices of Ruskin on 12 September 2011. An email dated 12 September attaches the Robust Guarantee and Robust board minutes for execution. As this was considered to be a sufficient method of conveyance for the Robust guarantee it is unlikely that it would not be sufficient for the Guarantee. This is particularly so since it was the Bank’s practice to ensure that a prospective guarantor had time to take legal advice and consider the seriousness of entering such a guarantee. No proper explanation was proffered at trial by any witness. Although emailing the Guarantee did not necessarily exclude personal carriage, in the absence of evidence from Mr Adcock that he did deliver the Guarantee personally, it is more likely than not that a similar method would have been used to convey the Guarantee: no such email exists. Mr Adcock did not review the documents he took to the offices and could not recall which documents were taken. The evidence is confused about whether it was sent by post. It can be said with some degree of confidence that there is no evidence of posting and no party to the proceedings has found an email with the Guarantee attached. The evidence supports a finding that the documents taken to the Ruskin office on 12 September were corporate only.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>75.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The positive case put by the Bank is that Ms Court collected the signed Guarantee on 15 September 2011. In some ways it is an extraordinary position to take as there is no evidence that she did so. There is no doubt she did collect some documents: those taken by Mr Adcock on 12 September 2011. In these circumstances the court is asked to make a series of inferences to make good the Bank’s position based on the Bank’s normal practice, emails and internal documents. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>76.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">A major flaw to making such inferences is other evidence before the court, Mr Broomhead’s lack of knowledge as to the signing of the Guarantee, and his failure to check the Take-on Checklist before payment was made.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>77.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The failure to provide evidence from Ms Court or Mr Atkinson, both present at the meeting on 15 September 2011, is striking. That is not to say that an adverse inference should be drawn from their absence. Ms Court, for example, was not prepared to provide sworn evidence. It is beyond argument that the court does not have the benefit of this evidence and Mr Lynch is prevented from testing these potential witnesses of fact by reference to the key events in which they were involved, and the documents Ms Court in particular produced. This, in my judgment, reduces the weight the court can properly put on the untested documents.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_42">
             <num>42.</num>
@@ -585,24 +597,28 @@
           </paragraph>
           <paragraph eId="para_43">
             <num>43.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">The Judge reiterated, before proceeding to analyse the opinion evidence, that he found Mr Lynch to have given honest evidence and Ms Hughes to have been “impressive, honest and capable”, and then said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“It is from those findings that I reach my conclusions”.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <intro>
-                <p style="text-align:justify;margin-left:0.39in">He stated that the burden of proof lay on the Bank to prove its debt, and said:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The Bank has failed to prove that the Guarantee was conveyed to Mr Lynch on 12 September 2011 or later, failed to prove on the balance of probabilities that it was signed by Mr Lynch and failed to prove that it was collected or sent back to the Bank. … The Bank has provided no witness evidence to contradict the version of events as advanced by Mr Lynch, I accept his account.” [para 83]</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“It is from those findings that I reach my conclusions”.</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+              <p style="text-align:justify;margin-left:0.39in">He stated that the burden of proof lay on the Bank to prove its debt, and said:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The Bank has failed to prove that the Guarantee was conveyed to Mr Lynch on 12 September 2011 or later, failed to prove on the balance of probabilities that it was signed by Mr Lynch and failed to prove that it was collected or sent back to the Bank. … The Bank has provided no witness evidence to contradict the version of events as advanced by Mr Lynch, I accept his account.” [para 83]</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_44">
             <num>44.</num>
@@ -612,26 +628,30 @@
           </paragraph>
           <paragraph eId="para_45">
             <num>45.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">The Judge’s conclusions presented him with a final difficulty: what to say about the opinion evidence.  He dealt with it in this way:</p>
-            </intro>
-            <subparagraph>
-              <num>“86.</num>
-              <intro>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">I recognise that the second finding [about Ms Hughes’s signing] is contrary to the opinion of Dr Radley. The opinion of Dr Radley is weaker in respect of Miss Hughes than it is in respect of Mr Lynch due to the reduced amount of comparable evidence available. Further Dr Radley warned:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:1in;margin-right:0.39in">‘I am not able to establish the full writing range of variation for Miss Hughes. I am therefore unable to ascertain whether this difference is merely within her range of writing variation but not evidenced in the limited known documents presented.’</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num>87.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Dr Radley did not have the benefit of her explanation of the handwriting differences: it is similar but there were differences that stood out such as the last four letters of Marion. If the expert had more comparable evidence and a greater range there is a prospect that he would have reached a different conclusion.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“86.</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">I recognise that the second finding [about Ms Hughes’s signing] is contrary to the opinion of Dr Radley. The opinion of Dr Radley is weaker in respect of Miss Hughes than it is in respect of Mr Lynch due to the reduced amount of comparable evidence available. Further Dr Radley warned:</p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:1in;margin-right:0.39in">‘I am not able to establish the full writing range of variation for Miss Hughes. I am therefore unable to ascertain whether this difference is merely within her range of writing variation but not evidenced in the limited known documents presented.’</p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                  <paragraph>
+                    <num>87.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Dr Radley did not have the benefit of her explanation of the handwriting differences: it is similar but there were differences that stood out such as the last four letters of Marion. If the expert had more comparable evidence and a greater range there is a prospect that he would have reached a different conclusion.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_46">
             <num>46.</num>
@@ -701,66 +721,72 @@
           </paragraph>
           <paragraph eId="para_50">
             <num>50.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Simetra Global Assets Ltd v  Ikon Finance Ltd</span> [2019] EWCA Civ 1413; [2019] 4 WLR 112, Males LJ said at [37]-[38]:</p>
-            </intro>
-            <subparagraph>
-              <intro>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The approach which an appellate court should take when asked to reverse the judge’s findings of fact has been addressed in a number of recent cases. These are conveniently summarised in the <span style="font-style:italic">Group Seven</span> case under the heading of “Appellate restraint”,  at paras 21–23. I need not repeat that summary, which emphasises the advantages which the trial judge, immersed in all aspects of the case and able to test the evidence at first had, has over this court where the focus is inevitably narrower, and emphasises also the principle that this court should not interfere unless satisfied that a finding of fact is plainly wrong. However I would add a reference to <span style="font-style:italic">Volcafe Ltd v Cia Sud Americana de Vapores SA (trading as CSAV)</span> [2018] UKSC 61; [2019] AC 358, at paragraph 41, on which Mr Paul McGrath QC for Ikon particularly relied. Lord Sumption said:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:1in;margin-right:0.39in">‘this court has on a number of occasions pointed out that while an appeal to the Court of Appeal is by way of rehearing, a trial judge’s findings of fact should not be overturned simply because the Court of Appeal would have found them differently. It must be shown that the trial judge was wrong, i.e. that he fundamentally misunderstood the issue or the evidence, or that he plainly fails to take the evidence into account, or that he arrived at a conclusion which the evidence could not on any view support. Within these broad limits, the weight of the evidence is a matter for the trial judge. There is a world of difference between the impression which evidence makes on a judge who has followed it as it was deployed and the impression that an appellate court derives from cold transcripts.’.</p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">At some points in his submissions Mr Stephen Hofmeyr QC for the appellants invited us to reverse the judge’s findings of fact. In particular he invited us to find that Mr Jagannah was dishonest, contrary to the judge’s finding that he was not, and to remit the case for a retrial with that issue already determined. That struck me as an unrealistic approach. Once it is acknowledged, as Mr Hofmeyr does acknowledge, that a retrial is necessary, I consider that we should not tie the hands of the judge who will retry the case. Accordingly I do not propose that we should reverse the judge’s findings, in the sense of replacing them with findings of our own. That being so, the approach described in the <span style="font-style:italic">Group Seven</span> case and in the <span style="font-style:italic">Volcafe </span>case is not directly applicable, although clearly it must be borne in mind as constituting the framework within which this court must operate. Rather the issue is whether the judge gave adequate reasons for his conclusions. In that regard it will be necessary to consider in particular whether, in Lord Sumption’s words, the judge ‘plainly fails to take the evidence into account’. To the same effect, Lord Reed referred in <span style="font-style:italic">Henderson v Foxworth Investments Ltd</span> [2014] UKSC 41; [2014] 1 WLR 2600, at para 67, to ‘a demonstrable failure to consider relevant evidence…’”.</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <intro>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“The approach which an appellate court should take when asked to reverse the judge’s findings of fact has been addressed in a number of recent cases. These are conveniently summarised in the <span style="font-style:italic">Group Seven</span> case under the heading of “Appellate restraint”,  at paras 21–23. I need not repeat that summary, which emphasises the advantages which the trial judge, immersed in all aspects of the case and able to test the evidence at first had, has over this court where the focus is inevitably narrower, and emphasises also the principle that this court should not interfere unless satisfied that a finding of fact is plainly wrong. However I would add a reference to <span style="font-style:italic">Volcafe Ltd v Cia Sud Americana de Vapores SA (trading as CSAV)</span> [2018] UKSC 61; [2019] AC 358, at paragraph 41, on which Mr Paul McGrath QC for Ikon particularly relied. Lord Sumption said:</p>
+                    </intro>
+                    <subparagraph>
+                      <content>
+                        <p style="text-align:justify;margin-left:1in;margin-right:0.39in">‘this court has on a number of occasions pointed out that while an appeal to the Court of Appeal is by way of rehearing, a trial judge’s findings of fact should not be overturned simply because the Court of Appeal would have found them differently. It must be shown that the trial judge was wrong, i.e. that he fundamentally misunderstood the issue or the evidence, or that he plainly fails to take the evidence into account, or that he arrived at a conclusion which the evidence could not on any view support. Within these broad limits, the weight of the evidence is a matter for the trial judge. There is a world of difference between the impression which evidence makes on a judge who has followed it as it was deployed and the impression that an appellate court derives from cold transcripts.’.</p>
+                      </content>
+                    </subparagraph>
+                    <wrapUp>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">At some points in his submissions Mr Stephen Hofmeyr QC for the appellants invited us to reverse the judge’s findings of fact. In particular he invited us to find that Mr Jagannah was dishonest, contrary to the judge’s finding that he was not, and to remit the case for a retrial with that issue already determined. That struck me as an unrealistic approach. Once it is acknowledged, as Mr Hofmeyr does acknowledge, that a retrial is necessary, I consider that we should not tie the hands of the judge who will retry the case. Accordingly I do not propose that we should reverse the judge’s findings, in the sense of replacing them with findings of our own. That being so, the approach described in the <span style="font-style:italic">Group Seven</span> case and in the <span style="font-style:italic">Volcafe </span>case is not directly applicable, although clearly it must be borne in mind as constituting the framework within which this court must operate. Rather the issue is whether the judge gave adequate reasons for his conclusions. In that regard it will be necessary to consider in particular whether, in Lord Sumption’s words, the judge ‘plainly fails to take the evidence into account’. To the same effect, Lord Reed referred in <span style="font-style:italic">Henderson v Foxworth Investments Ltd</span> [2014] UKSC 41; [2014] 1 WLR 2600, at para 67, to ‘a demonstrable failure to consider relevant evidence…’”.</p>
+                    </wrapUp>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_51">
             <num>51.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Fage UK Ltd v Chobani UK Ltd</span> [2014] EWCA Civ 5; [2014] ETMR 26, Lewison LJ memorably identified the reasons for the approach that appellate courts take to challenges to findings of fact as including:</p>
-            </intro>
-            <subparagraph>
-              <num>“i.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The expertise of a trial judge is in determining what facts are relevant to the legal issues to be decided, and what those facts are if they are disputed.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>ii.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The trial is not a dress rehearsal. It is the first and last night of the show.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>iii.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Duplication of the trial judge’s role on appeal as a disproportionate use of the limited resources of an appellate court, and will seldom lead to a different outcome in an individual case</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>iv.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">In making his decisions the trial judge will have regard to the whole of the sea of evidence presented to him whereas an appellate court will only be island hopping.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>v.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The atmosphere of the courtroom cannot, in any event, be recreated by reference to documents (including transcripts of evidence).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>vi.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Thus even if it were possible to duplicate the role of the trial judge, it cannot in practice be done.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“i.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The expertise of a trial judge is in determining what facts are relevant to the legal issues to be decided, and what those facts are if they are disputed.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>ii.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The trial is not a dress rehearsal. It is the first and last night of the show.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>iii.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Duplication of the trial judge’s role on appeal as a disproportionate use of the limited resources of an appellate court, and will seldom lead to a different outcome in an individual case</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>iv.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">In making his decisions the trial judge will have regard to the whole of the sea of evidence presented to him whereas an appellate court will only be island hopping.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>v.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The atmosphere of the courtroom cannot, in any event, be recreated by reference to documents (including transcripts of evidence).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>vi.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Thus even if it were possible to duplicate the role of the trial judge, it cannot in practice be done.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_52">
             <num>52.</num>
@@ -797,19 +823,23 @@
           </paragraph>
           <paragraph eId="para_57">
             <num>57.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">As regards Ms Hughes, Dr Radley’s summary of his conclusions was different as regards the signature and the handwriting under the signature. He noted that the comparison signatures made available to him were limited in number, which had slightly restricted the examination that he made. His conclusions on, first, the signature and, second, the handwriting are as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“I am of the opinion that there is strong evidence to support the proposition that the questioned signature in the name of Marion Hughes on the questioned Guarantee was written by Ms Hughes. I consider the alternative proposition, that it is a simulation of her general signature style to be unlikely. Presentation of further course of business signatures contemporaneous with the questioned document may allow the examination to be taken further.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">I am of the opinion that Ms Hughes wrote the handwritten entries (witness name and witness address beneath the questioned signature) on the questioned Guarantee. I consider the alternative proposition, that this handwriting is the result of another individual simulating her handwriting style, can be realistically disregarded.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“I am of the opinion that there is strong evidence to support the proposition that the questioned signature in the name of Marion Hughes on the questioned Guarantee was written by Ms Hughes. I consider the alternative proposition, that it is a simulation of her general signature style to be unlikely. Presentation of further course of business signatures contemporaneous with the questioned document may allow the examination to be taken further.</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">I am of the opinion that Ms Hughes wrote the handwritten entries (witness name and witness address beneath the questioned signature) on the questioned Guarantee. I consider the alternative proposition, that this handwriting is the result of another individual simulating her handwriting style, can be realistically disregarded.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_58">
             <num>58.</num>
@@ -819,27 +849,31 @@
           </paragraph>
           <paragraph eId="para_59">
             <num>59.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">As Dr Radley’s report states, his conclusions have to be read by reference to appendix C to his report, which is a glossary of terminology. There, he sets out the scale of confidence of the opinions that he expresses, which (excluding “moderate evidence” and “inconclusive” evidence) reads as follows: </p>
-            </intro>
-            <subparagraph>
-              <num>“1.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The highest level of confidence is an absolute or<span style="font-weight:bold"> conclusive opinion</span> where an examiner has no reservations or qualifications whatsoever and an alternative explanation, in the opinion of the examiner, may be realistically disregarded.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>2.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Marginally below this level of confidence, an expression ‘<span style="font-weight:bold">there is very strong evidence to support the proposition ‘X’ wrote</span>’ may be used. It is a very narrow band of very high confidence of opinion which falls just short of the conclusive level. In this instance, it is highly unlikely that an alternative explanation represents the truth of the matter….</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>3.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Another highly confident opinion, which again is a relatively narrow band slightly below that expressed above, is the phrase “<span style="font-weight:bold">there is strong evidence to support the proposition ‘X’ wrote</span>…” In this instance, it is unlikely that an alternative explanation represents the truth of the matter. There may be a small restriction on the examination for one reason or another e.g. copy material only available for examination or a restriction on the volume of known and questioned material etc but no significant differences to the known and questioned signatures.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num>“1.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">The highest level of confidence is an absolute or<span style="font-weight:bold"> conclusive opinion</span> where an examiner has no reservations or qualifications whatsoever and an alternative explanation, in the opinion of the examiner, may be realistically disregarded.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>2.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Marginally below this level of confidence, an expression ‘<span style="font-weight:bold">there is very strong evidence to support the proposition ‘X’ wrote</span>’ may be used. It is a very narrow band of very high confidence of opinion which falls just short of the conclusive level. In this instance, it is highly unlikely that an alternative explanation represents the truth of the matter….</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num>3.</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in">Another highly confident opinion, which again is a relatively narrow band slightly below that expressed above, is the phrase “<span style="font-weight:bold">there is strong evidence to support the proposition ‘X’ wrote</span>…” In this instance, it is unlikely that an alternative explanation represents the truth of the matter. There may be a small restriction on the examination for one reason or another e.g. copy material only available for examination or a restriction on the volume of known and questioned material etc but no significant differences to the known and questioned signatures.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_60">
             <num>60.</num>
@@ -1020,14 +1054,18 @@
           </paragraph>
           <paragraph eId="para_89">
             <num>89.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">In <span style="text-decoration-line:underline;text-decoration-style:solid">Armagas Ltd v Mundogas SA (The Ocean Frost)</span> [1985] 1 Lloyd’s Rep 1, 57, Robert Goff LJ said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“Furthermore it is implicit in the statement of Lord MacMillan in <span style="font-style:italic">Powell v Streatham Manor Nursing Home </span>at p.256 that the probabilities and possibilities of the case may be such as to impel an appellant court to depart from the opinion of the trial Judge formed upon his assessment of witnesses whom he has seen and heard in the witness box. Speaking from my own experience, I have found it essential in cases of fraud, when considering the credibility of witnesses, always to test the veracity by reference to the objective facts proved independently of their testimony, in particular by reference to the documents in the case, and also to pay particular regard to their motives and to the overall probabilities. It is frequently very difficult to tell whether a witnesses telling the truth or not; and where there is a conflict of evidence such as there was in the present case, reference to the objective facts and documents, to the witnesses motives, and the overall probabilities, can be a very great assistance to a judge in ascertaining truth. I have been driven to the conclusion that the judge did not pay sufficient regard to these matters in making his findings of fact in the present case.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“Furthermore it is implicit in the statement of Lord MacMillan in <span style="font-style:italic">Powell v Streatham Manor Nursing Home </span>at p.256 that the probabilities and possibilities of the case may be such as to impel an appellant court to depart from the opinion of the trial Judge formed upon his assessment of witnesses whom he has seen and heard in the witness box. Speaking from my own experience, I have found it essential in cases of fraud, when considering the credibility of witnesses, always to test the veracity by reference to the objective facts proved independently of their testimony, in particular by reference to the documents in the case, and also to pay particular regard to their motives and to the overall probabilities. It is frequently very difficult to tell whether a witnesses telling the truth or not; and where there is a conflict of evidence such as there was in the present case, reference to the objective facts and documents, to the witnesses motives, and the overall probabilities, can be a very great assistance to a judge in ascertaining truth. I have been driven to the conclusion that the judge did not pay sufficient regard to these matters in making his findings of fact in the present case.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_90">
             <num>90.</num>
@@ -1136,14 +1174,18 @@
           </paragraph>
           <paragraph eId="para_98">
             <num>98.</num>
-            <intro>
+            <content>
               <p style="text-align:justify;margin-left:0.39in">The Judge said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“Mr Mills sought to undermine the evidence of Mr Lynch by introducing what may loosely be described as similar fact evidence, asking the court to infer that he gave dishonest testimony based upon previous denials that he had received certain documents sent in relation to other proceedings. In my judgment it would be dangerous to make a finding of dishonesty based on such evidence and in any event, the evidence must be considered as a whole.”  </p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“Mr Mills sought to undermine the evidence of Mr Lynch by introducing what may loosely be described as similar fact evidence, asking the court to infer that he gave dishonest testimony based upon previous denials that he had received certain documents sent in relation to other proceedings. In my judgment it would be dangerous to make a finding of dishonesty based on such evidence and in any event, the evidence must be considered as a whole.”  </p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_99">
             <num>99.</num>
