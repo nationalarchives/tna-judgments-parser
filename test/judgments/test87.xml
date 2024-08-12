@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/b/2024/147/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/b/2024/147/data.xml" />
-          <FRBRdate date="2024-06-25T16:15:22" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:39" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -48,7 +48,7 @@
         <uk:year>2024</uk:year>
         <uk:number>147</uk:number>
         <uk:cite>[2024] EWFC 147 (B)</uk:cite>
-        <uk:parser>0.25.1</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>82e5ce3c23b24aaa4af6f502c9d2a716f9ed298ef1ffb626866e83fc16069c25</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -409,25 +409,33 @@
         </paragraph>
         <paragraph eId="para_38">
           <num>38.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">On 30<span style="vertical-align:super;font-size:smaller">th</span> August 2022 the health visitor received a text from the mother as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“hi its [the mother] I need to talk about [B] as I have noticed that she keeps getting red mark on eyeball and need to know to get it checked out” [C89 and L34]</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“hi its [the mother] I need to talk about [B] as I have noticed that she keeps getting red mark on eyeball and need to know to get it checked out” [C89 and L34]</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_39">
           <num>39.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">On 30<span style="vertical-align:super;font-size:smaller">th</span> August 2022 the health visitor observed B’s eyes and noted </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“Mum pointed out that [B] had small pinpoint blood spots in both eyes which she says can come and go. Have advised to see GP” [L28-29, L33, C80]</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“Mum pointed out that [B] had small pinpoint blood spots in both eyes which she says can come and go. Have advised to see GP” [L28-29, L33, C80]</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_40">
           <num>40.</num>
@@ -545,14 +553,18 @@
         </paragraph>
         <paragraph eId="para_59">
           <num>59.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In [October 2022] there was an updated CP medical of B by Dr E:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“Summary; There are bilateral subconjunctival haemorrhages with multiple posterior rib fractures and a possible arm fracture in a non-mobile infant who is out of the immediate neonatal period. This is highly suggestive of non-accidental/inflicted injury. As per the RCPCH child protection companion chapter 9 “rib fractures in very young children are highly specific for abuse. Abusive rib fractures are commonly multiple. The commonest site for abusive rib fractures are posterior rib fractures”. [B’s] case was peer reviewed on [date]. Recommendations and follow up.  Following on from the strategy meetings held on [date], and [date] a section 47 investigation is ongoing. Medically B will be followed up by the Ophthalmology team under [name] in one years’ time to assess her visual development. We are awaiting a tertiary report of the second limited skeletal survey as there is a suggestion there may have been some subtle changes indicative of a fracture not seen on the initial survey. [E36-41]”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“Summary; There are bilateral subconjunctival haemorrhages with multiple posterior rib fractures and a possible arm fracture in a non-mobile infant who is out of the immediate neonatal period. This is highly suggestive of non-accidental/inflicted injury. As per the RCPCH child protection companion chapter 9 “rib fractures in very young children are highly specific for abuse. Abusive rib fractures are commonly multiple. The commonest site for abusive rib fractures are posterior rib fractures”. [B’s] case was peer reviewed on [date]. Recommendations and follow up.  Following on from the strategy meetings held on [date], and [date] a section 47 investigation is ongoing. Medically B will be followed up by the Ophthalmology team under [name] in one years’ time to assess her visual development. We are awaiting a tertiary report of the second limited skeletal survey as there is a suggestion there may have been some subtle changes indicative of a fracture not seen on the initial survey. [E36-41]”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_60">
           <num>60.</num>
@@ -1415,14 +1427,18 @@
             </intro>
             <subparagraph>
               <num style="margin-left:0.75in;text-indent:-0.25in">a)</num>
-              <intro>
+              <content>
                 <p style="text-align:justify;margin-left:0.75in"><span style="color:#000000">As noted by Dr Morton in his addendum report dated 5 January 2024 Dr Morton thought that the father presents with a ‘confusing pattern of memory difficulties’ [E481].  At E477 §2.16 the father seemed to have a clear recollection of events over Christmas having previously said that he could not remember: </span></p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p style="text-align:justify;margin-left:0.98in"><span style="font-style:italic;color:#000000">“I then asked him some questions about [C]. He told me that he is able to see [C] whenever he wants, and he has a good relationship with [C’s biological mother] . He then said, "[C] came to mum and dads for Christmas, and we opened presents there it was fun, she looked so happy when she opened her presents there". He told me that [C’s biological mother] had been very supportive and was aware of the situation but that he only sees [C] in the presence of [A] or his mum as he does not want to get into trouble”.</span></p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p style="text-align:justify;margin-left:0.98in"><span style="font-style:italic;color:#000000">“I then asked him some questions about [C]. He told me that he is able to see [C] whenever he wants, and he has a good relationship with [C’s biological mother] . He then said, "[C] came to mum and dads for Christmas, and we opened presents there it was fun, she looked so happy when she opened her presents there". He told me that [C’s biological mother] had been very supportive and was aware of the situation but that he only sees [C] in the presence of [A] or his mum as he does not want to get into trouble”.</span></p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.75in;text-indent:-0.25in">b)</num>
@@ -1480,441 +1496,441 @@
         </paragraph>
         <paragraph eId="para_158">
           <num>158.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I now turn to the case advanced by the mother. She argues that the father has lied on a number of occasions as set out at para 125 of the mother’s submissions. I include them in their entirety so that none of the detail or logic is lost. It is not helpful to try to summarise what is a complex situation and one upon which I asked for specific submissions as to how the mother argues that I should reach the conclusion for which she contends. They follow on from submissions regarding the incident at the train station.</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“The court is asked to make a finding that [the father] did not suffer ‘memory loss or dissociation’ from this event onwards and during his oral evidence to the court. Rather, [the father] has used ‘memory loss’ as a technique to avoid the scrutiny of the court and to avoid the giving of potentially vital information about how [B’s] injuries were caused. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.75in;text-indent:-0.25in">126</num>
-            <intro>
-              <p class="ParaLevel1" style="margin-left:0.75in;text-indent:0.12in"><marker name="tab" />We assert pursuant to <span style="font-style:italic">Lucas</span> that:</p>
-            </intro>
-            <subparagraph>
-              <num style="margin-left:2.95in;text-indent:-0.49in">(i)</num>
-              <content>
-                <p class="ParaLevel6" style="margin-left:2.95in">the deliberate lie(s) upon which they seek to rely;</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">Was that M had approached him, that she was not scared, that he now had memory loss covering the whole episode</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The significant issue to which it/they relate(s). </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="ParaLevel1" style="margin-left:0.5in">We say this was directly concerned with the imminence of the parents' oral evidence on the fact find trial. It was an act and then avoidant action designed to firstly put pressure on M by stalking and intimidation on the platform, and then to evade having to address his conduct by claiming a false memory loss. That action was then compounded by a sustained lie about his capacity designed to foster a lie and memory loss and evade giving evidence in court.</p>
-            </intro>
-            <subparagraph>
-              <num style="margin-left:2.95in;text-indent:-0.49in">(iii)</num>
-              <content>
-                <p class="ParaLevel6" style="margin-left:2.95in;text-indent:0.13in">on what basis it can be determined that the only explanation for the lie(s) is guilt? </p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The proximity of the act and its aftermath to the parents entering the witness box, the success of F’s avoidance act (the trial was halted, psychiatric assessment ordered, with the first leading to alleged incapacity and lack of competence to give evidence) successfully avoiding questions about his conduct causing a change in [B’s] condition evidencing harm leaving M to deal with them -  just as F had done re [A] and the apnoeic episode.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>127</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[The father] has successfully duped professionals and the court into delaying proceedings for the children for six months. The court can make this finding based on the following:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">[The father’s] dishonesty with Dr Morton</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>128</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">(a) Dr Morton’s assessment of F on 3<span style="vertical-align:super;font-size:smaller">rd</span> January 2024 records ‘no evidence of dissociation during my interview and although it has been commented on it does not appear to be a significant feature in his contact with emergency or mental health services.’ [E429]</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">When F claimed to Dr Morton that he could not remember anything, when  questions were asked in a different way, he was able to remember specific details:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(i)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">At [E475] para 2.5 F ‘could not remember the circumstances around his children being removed’, however at [E476] para 2.7 F is able to recall the reason why [B] went to hospital for ‘blotches in her eyes’ and that he ‘stayed with [C’s biological mother] and [C]’, that his mother looked after [A] and he joined M at hospital. F was asked what injuries [B] sustained and F said ‘it was broken bones and fractures’. In oral evidence F told the court that he was not aware of fractures, saying ‘I can’t remember anything’, a mere 6 days later.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">F was able to remember specific details about how he felt on Christmas Day, when he ‘heard voices’ and what the voices were saying. [E480] para 4.4</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(c)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">F told Dr Morton that ‘he is able to see [C] whenever he wants’ and in oral evidence he said he was able to see [C] ‘whenever [C’s biological mother] allows me’.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(d)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">F remembered in oral evidence that he had seen [C] at Christmas, he didn’t know where. When asked what they did F described opening presents and then said ‘I don’t remember, I don’t remember’. F told Dr Morton just six days earlier that “[C] came to Mum and Dads for Christmas and we opened presents there it was fun, she looked so happy when she opened her presents there”. [E477] para 2.16. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(e)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">In [the father’s] first assessment with Dr Morton in December 2023, this included a number of discrepancies on which questions were put:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(f)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">At [E415] para 9.14- Dr Morton writes: I asked him if he would like to make more friends and he said that he would like to, but he is “scared that he will do something wrong” when he is out socialising and get into trouble with the police. This assertion is dishonest and does not sit comfortably beside F’s ability to get in touch with total strangers on Tinder for sex, messaging on Facebook Messenger and being out and about in town. And playing football.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(g)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">At [E414]F told Dr Morton he ‘finds it harder and harder to make friends’ Reporting to Dr Morton he has ‘made one friend since leaving school and that was [friend’s name]. This does not bear scrutiny considering his friendship with [C’s biological mother], football friends and the police note of October 16<span style="vertical-align:super;font-size:smaller">th </span> 2022 at [K65i] ‘I would be with my mates and she would constantly message me when I am out with my mates’. [the mother’s] evidence was that F did not have a hard time going up to strangers, and had friends both in person and online. The online friends and acquaintances are apparent from F’s whatsapp, tinder and facebook messages.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(h)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The first assessment of Dr Morton included medical information about appointments with a mental health professional. Tellingly, on 26<span style="vertical-align:super;font-size:smaller">th</span> October [E427]when F had a telephone appointment with [the mental health professional] PGM ‘expressed concerns that if he was doing more during the day the court might think he was ‘better’ and expect him to give evidence’. This was then repeated by [the father] on the 30<span style="vertical-align:super;font-size:smaller">th</span> October to the same professional when he said ‘he was worried that if he was doing more the Court would feel that he was “better” and expect him to give evidence.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(i)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the deliberate lie(s) upon which they seek to rely;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">we say that F was deliberately misrepresenting his capacity to function in daily life so as to sustain the lie that he had lost his memory and was unfit to give evidence as at [E427] above<span style="font-weight:bold">. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the significant issue to which it/they relate(s) .</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">F wanted to avoid having to give evidence, answer questions about his parenting of [B], his mishandling of [B], his feeding frustration with [B], his conduct towards M, his sexual proclivity AND unfaithfulness to M, his deceit of her in that regard, his favouritism of [C] over [A] and [B] and effective abandonment of the children.  F was aware his evidence would reveal him to be a man of selfishness, and self-gratification.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">on what basis it can be determined that the only explanation for the lie(s) is guilt? </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The extant evidence that originates from the F’s own records that he was aware would damn him. He presented himself at hospital on 26th September saying he ‘had a bad day with  disappointing news’ [E424] when he first found out from his solicitor about the court's decision to grant disclosure on the 26th September. (email from [solicitor] of 27th September informing the parties she had spoken with her client the day before to tell him of the decision re his phone- available if the court requires it) </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">[The father’s] dishonesty with the court</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>129</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It was something of a surprise that after six months of obfuscation and delay M[the father] did indeed manage to come to court and give evidence. The court was given notice of ground rules and the intermediary was provided with questions. Much was proposed on his behalf of the potential for self-harm or potential attempt at suicide that might befall [the father] as a result. However, [the father] appeared to cope remarkably well over hours of cross examination even though his evidence … sustained, with regular breaks and overnight.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>130</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">However, [the father] continued to avoid giving useful information to the court, sustaining the lie around his purported memory loss. The court will note that [the father’s] tone when answering questions did not appear to be one of mental fragility, although he referred to wanting to commit suicide, he was curt with his questioner and appeared fed up and exasperated at having to answer questions.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>131</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[The father] also appeared to be able to link questions back to previous answers he had given (referring back to the evidence he had given about sexting a few questions earlier), and displayed a sophisticated understanding of what the questions were looking for when he said:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">‘<span style="font-style:italic">I’m trying to give you a plausible answer</span>’ and ‘<span style="font-style:italic">I think you’re trying to get at the old [father’s name] being a bad parent</span>’ and ‘<span style="font-style:italic">you’re trying to get me to say I agree with you</span>’. When his holiday [abroad] was put to him [the father] said ‘<span style="font-style:italic">you’re using that as an excuse to say I was ok</span>’.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>132</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that this level of understanding belies his purported cognitive vulnerabilities. Much of [the father’s] oral evidence was prefaced with ‘<span style="font-style:italic">I can’t remember</span>’ and he asserted that ‘<span style="font-style:italic">this court knows about my memory loss</span>’ by way of explanation. However, [the father] did remember the following:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(i)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That [C] was a ‘planned baby’, that he didn’t know when [C] had been born because he and [C’s biological mother]  had ‘fallen out’ because she had said something that caused him to run away</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">(ii)That he didn’t know why he didn’t tell his parents about [C] but that he had told friends. He didn’t worry that his friends might tell his parents</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That having [C] over to stay was not stressful</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">(iv)That he did not lie to social services about being [C’s] father, that he did not lie to [the mother] about being [C’s] father</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">(v)That it was not [the mother’s] priority to deal with [C] when she came over, it was his.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">(vi)That he remembers [A] being born, the hospital and doing his first feed</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(vii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That he remembers having kids around, going to funfair, taking [A] to play football in the park, that's all i remember from my time in the flat</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(viii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That at the time [A] was born he had difficulties keeping the flat clean and tidy</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ix)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That his mother (PGM) was right that he cannot handle stress</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(x)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That he remembered [B] being born and holding her</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(xi)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That [the mother] would never let a man tell her what to do</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(xii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That [the mother] was a good mother</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(xii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That the holiday [abroad] was ‘prepaid’ and he didn’t even want to go</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>133</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that these matters that [the father] was specifically able to recall rather than others do not tally with his purported memory loss. The court may have noticed that there were also a number of times during his evidence when he started to give an answer and then quickly followed it with ‘I can’t remember’ or ‘I don’t remember’.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>134</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[The father’s] narrative of the ‘old [father’s name]’ versus the ‘new [father’s name]’ made no sense, and was an example of him trying to distance himself from previous actions for which he might now shirk responsibility. F gave the impression that he now thought better of ‘Old [father’s name]’ ‘s behaviour and was able to see how ‘old [father’s name]’ had done things that he should apologise for as ‘New [father’s name]’.  However, F then contradicted himself by then telling the court that the ‘old [father’s name]’ was timid and kind and would have done anything for his kids. This too, it is submitted, is dishonest.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>135</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><marker name="tab" />(i) the deliberate lie(s) upon which they seek to rely;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">That F had memory loss but was able to remember certain things. The concoction of the narrative of ‘old [father’s name]’ vs ‘New [father’s name]’.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the significant issue to which it/they relate(s): </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">To avoid court scrutiny of actions or information on causation re [B’s] injuries.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">on what basis it can be determined that the only explanation for the lie(s) is guilt: </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">There is simply no reason for [the father] to have lied to the court as much as he has in relation to memory loss other than a feeling of guilt. The new narrative of ‘old [father’s name]’ vs ‘new [father’s name]’ is something he has concocted to be able to markedly distance himself from past actions. It is a form of justification, not just for the fake memory loss but also to assuage guilt so that he cannot be blamed for any past behaviours.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">[The father’s] dishonesty with Dr Mclintock</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>136</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"> It is submitted that the court cannot rely on Dr Mclintock’s report of the father and the expert conclusion he came to in relation to F’s purported memory loss. Clearly the court did not find this expert assessment reliable, directing as it did, a second opinion from Dr Morton.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>137</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The court is referred to the previous documents filed by M and the skeleton argument prepared on behalf of [the mother] for the hearing on 21<span style="vertical-align:super;font-size:smaller">st</span> October 2023 at [A607] and is reminded of the submissions made and evidence given in relation to Dr Mclintock’s various reports on F and his conclusions based on what F was reporting to him and other medical professionals.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>138</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">In particular the GP report of Dr Wood [E260] of 14th September that  [the father] is ‘struggling with normal activities of daily living without support’. The GP report of Dr Bissatt at [E261] states that from an assessment of [the father] on 21st September he is ‘struggling to carry out basic daily tasks without support’. The information from the GP’s is entirely unreliable when considered alongside the phone evidence. The court is referred to the specific messages already included in M’s documents before the court, and the annexe provided.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>139</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">A swathe of text messages in question from that period were put to [the father] in oral evidence and he said he was not able to remember, save for the football texts where [the father] justified that his private life was nothing to do with his memory loss and that engaging in football was helpful to his mental health.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>140</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The court will also bear in mind the lies [the father] told about having to be supervised by his mother, in order to give the impression that he was unable to care for himself and too mentally fragile to be on his own on the October 2<span style="vertical-align:super;font-size:smaller">nd</span> assessment date [at E271 at paragraph 4.6] when he told Dr Mclintock that he ‘is currently staying at his Mother’s property and she is ‘checking on me every hour’. [The father] self-reported that he stays in during the day and does ‘nothing. There is nothing for me to do’, in order to manipulate Dr Mclintock’s view which, he appears to have done with some success. This information is as reported to Dr Mclintock is totally dishonest when considering the phone evidence - see attached annexe.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>141</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that this was a sophisticated part of F’s tactics to avoid being seen by any of the professionals to be doing ‘too much’ as he later told Dr Morton, so that he wouldn’t have to give evidence to the court. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>142</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that this is also why he did not attend contact with [A] and [B] and prioritised his need to be seen as incapable or too mentally unwell over and above their welfare needs for a relationship with their father.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>143</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><marker name="tab" />(i) the deliberate lie(s) upon which they seek to rely;</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">That [the father] couldn’t manage any daily tasks and that he had to have 24/7 supervision by his own mother.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(ii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the significant issue to which it/they relate(s): </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">Evasion of the court’s scrutiny for information as to [B’s] injuries and cross examination.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(iii)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">on what basis it can be determined that the only explanation for the lie(s) is guilt. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">This is part of [the father’s] wholesale campaign to avoid questions and scrutiny. Why else would [the father] put so much time and energy into seeking out GP appointments to confirm his state of mental vulnerability if not an attempt to garner sympathy rather than facing the music about his guilt? The court cannot forget that up until 28th July 2023, [the father]  was fully engaged in the court process, giving clear instructions and attending at court without any problems…….</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">FINDINGS SOUGHT IN RELATION TO [THE FATHER]:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">151 The court is therefore asked to make the following findings against [the father]:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] duped Dr Mclintock about memory loss and or dissociation to the extent that Dr Mclintock’s expert assessment was flawed and F was assessed as lacking capacity to conduct litigation.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] was dishonest with Dr Morton about his purported memory loss to maintain his position that he should not have to give evidence</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(c)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] lied to the court as to his purported memory loss to avoid taking responsibility for information or any injuries to [B]</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(d)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] lied to the Guardian about the train station incident</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(e)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] lied to social services about the paternity of [C], about how often he was having contact with [C] while he was not having contact with [A] and [B], and about his ability to function in daily life in order to appear unable to function and unable to give evidence.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>152</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that any finding made in relation to (a), (b) and (c) and (d) can be relied on by the court as relevant to the likelihood that F perpetrated injury to [B]. We say that the lies in respect to his sexual unfaithfulness , alias’ and [C’s] paternity go to  prove his capacity to make and sustain a lie to protect himself from challenge and scrutiny. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="margin-left:0.75in;text-indent:-0.25in">153</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.75in;text-indent:0.12in">Although it may not be possible for the court to make a finding that [the father] duped Dr Taylor in his initial cognitive assessment, it is submitted that the level of vulnerabilities recorded in that assessment are exaggerated, given his ability and presentation at court when answering questions in cross examination as above. This is not something that any of the parties could have objected to earlier, nor could the court have realised, until [the father] eventually gave his oral evidence”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“The court is asked to make a finding that [the father] did not suffer ‘memory loss or dissociation’ from this event onwards and during his oral evidence to the court. Rather, [the father] has used ‘memory loss’ as a technique to avoid the scrutiny of the court and to avoid the giving of potentially vital information about how [B’s] injuries were caused. </p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="margin-left:0.75in;text-indent:-0.25in">126</num>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.75in;text-indent:0.12in"><marker name="tab" />We assert pursuant to <span style="font-style:italic">Lucas</span> that:</p>
+                  </intro>
+                  <subparagraph>
+                    <num style="margin-left:2.95in;text-indent:-0.49in">(i)</num>
+                    <content>
+                      <p class="ParaLevel6" style="margin-left:2.95in">the deliberate lie(s) upon which they seek to rely;</p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="ParaLevel1" style="margin-left:0.5in">Was that M had approached him, that she was not scared, that he now had memory loss covering the whole episode</p>
+                  </wrapUp>
+                </paragraph>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The significant issue to which it/they relate(s). </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.5in">We say this was directly concerned with the imminence of the parents' oral evidence on the fact find trial. It was an act and then avoidant action designed to firstly put pressure on M by stalking and intimidation on the platform, and then to evade having to address his conduct by claiming a false memory loss. That action was then compounded by a sustained lie about his capacity designed to foster a lie and memory loss and evade giving evidence in court.</p>
+                  </intro>
+                  <subparagraph>
+                    <num style="margin-left:2.95in;text-indent:-0.49in">(iii)</num>
+                    <content>
+                      <p class="ParaLevel6" style="margin-left:2.95in;text-indent:0.13in">on what basis it can be determined that the only explanation for the lie(s) is guilt? </p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="ParaLevel1" style="margin-left:0.5in">The proximity of the act and its aftermath to the parents entering the witness box, the success of F’s avoidance act (the trial was halted, psychiatric assessment ordered, with the first leading to alleged incapacity and lack of competence to give evidence) successfully avoiding questions about his conduct causing a change in [B’s] condition evidencing harm leaving M to deal with them -  just as F had done re [A] and the apnoeic episode.</p>
+                  </wrapUp>
+                </paragraph>
+                <paragraph>
+                  <num>127</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[The father] has successfully duped professionals and the court into delaying proceedings for the children for six months. The court can make this finding based on the following:</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">[The father’s] dishonesty with Dr Morton</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>128</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">(a) Dr Morton’s assessment of F on 3<span style="vertical-align:super;font-size:smaller">rd</span> January 2024 records ‘no evidence of dissociation during my interview and although it has been commented on it does not appear to be a significant feature in his contact with emergency or mental health services.’ [E429]</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(b)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">When F claimed to Dr Morton that he could not remember anything, when  questions were asked in a different way, he was able to remember specific details:</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(i)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">At [E475] para 2.5 F ‘could not remember the circumstances around his children being removed’, however at [E476] para 2.7 F is able to recall the reason why [B] went to hospital for ‘blotches in her eyes’ and that he ‘stayed with [C’s biological mother] and [C]’, that his mother looked after [A] and he joined M at hospital. F was asked what injuries [B] sustained and F said ‘it was broken bones and fractures’. In oral evidence F told the court that he was not aware of fractures, saying ‘I can’t remember anything’, a mere 6 days later.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">F was able to remember specific details about how he felt on Christmas Day, when he ‘heard voices’ and what the voices were saying. [E480] para 4.4</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(c)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">F told Dr Morton that ‘he is able to see [C] whenever he wants’ and in oral evidence he said he was able to see [C] ‘whenever [C’s biological mother] allows me’.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(d)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">F remembered in oral evidence that he had seen [C] at Christmas, he didn’t know where. When asked what they did F described opening presents and then said ‘I don’t remember, I don’t remember’. F told Dr Morton just six days earlier that “[C] came to Mum and Dads for Christmas and we opened presents there it was fun, she looked so happy when she opened her presents there”. [E477] para 2.16. </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(e)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">In [the father’s] first assessment with Dr Morton in December 2023, this included a number of discrepancies on which questions were put:</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(f)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">At [E415] para 9.14- Dr Morton writes: I asked him if he would like to make more friends and he said that he would like to, but he is “scared that he will do something wrong” when he is out socialising and get into trouble with the police. This assertion is dishonest and does not sit comfortably beside F’s ability to get in touch with total strangers on Tinder for sex, messaging on Facebook Messenger and being out and about in town. And playing football.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(g)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">At [E414]F told Dr Morton he ‘finds it harder and harder to make friends’ Reporting to Dr Morton he has ‘made one friend since leaving school and that was [friend’s name]. This does not bear scrutiny considering his friendship with [C’s biological mother], football friends and the police note of October 16<span style="vertical-align:super;font-size:smaller">th </span> 2022 at [K65i] ‘I would be with my mates and she would constantly message me when I am out with my mates’. [the mother’s] evidence was that F did not have a hard time going up to strangers, and had friends both in person and online. The online friends and acquaintances are apparent from F’s whatsapp, tinder and facebook messages.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(h)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The first assessment of Dr Morton included medical information about appointments with a mental health professional. Tellingly, on 26<span style="vertical-align:super;font-size:smaller">th</span> October [E427]when F had a telephone appointment with [the mental health professional] PGM ‘expressed concerns that if he was doing more during the day the court might think he was ‘better’ and expect him to give evidence’. This was then repeated by [the father] on the 30<span style="vertical-align:super;font-size:smaller">th</span> October to the same professional when he said ‘he was worried that if he was doing more the Court would feel that he was “better” and expect him to give evidence.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(i)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the deliberate lie(s) upon which they seek to rely;</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">we say that F was deliberately misrepresenting his capacity to function in daily life so as to sustain the lie that he had lost his memory and was unfit to give evidence as at [E427] above<span style="font-weight:bold">. </span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the significant issue to which it/they relate(s) .</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">F wanted to avoid having to give evidence, answer questions about his parenting of [B], his mishandling of [B], his feeding frustration with [B], his conduct towards M, his sexual proclivity AND unfaithfulness to M, his deceit of her in that regard, his favouritism of [C] over [A] and [B] and effective abandonment of the children.  F was aware his evidence would reveal him to be a man of selfishness, and self-gratification.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(iii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">on what basis it can be determined that the only explanation for the lie(s) is guilt? </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">The extant evidence that originates from the F’s own records that he was aware would damn him. He presented himself at hospital on 26th September saying he ‘had a bad day with  disappointing news’ [E424] when he first found out from his solicitor about the court's decision to grant disclosure on the 26th September. (email from [solicitor] of 27th September informing the parties she had spoken with her client the day before to tell him of the decision re his phone- available if the court requires it) </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">[The father’s] dishonesty with the court</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>129</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It was something of a surprise that after six months of obfuscation and delay M[the father] did indeed manage to come to court and give evidence. The court was given notice of ground rules and the intermediary was provided with questions. Much was proposed on his behalf of the potential for self-harm or potential attempt at suicide that might befall [the father] as a result. However, [the father] appeared to cope remarkably well over hours of cross examination even though his evidence … sustained, with regular breaks and overnight.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>130</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">However, [the father] continued to avoid giving useful information to the court, sustaining the lie around his purported memory loss. The court will note that [the father’s] tone when answering questions did not appear to be one of mental fragility, although he referred to wanting to commit suicide, he was curt with his questioner and appeared fed up and exasperated at having to answer questions.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>131</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[The father] also appeared to be able to link questions back to previous answers he had given (referring back to the evidence he had given about sexting a few questions earlier), and displayed a sophisticated understanding of what the questions were looking for when he said:</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">‘<span style="font-style:italic">I’m trying to give you a plausible answer</span>’ and ‘<span style="font-style:italic">I think you’re trying to get at the old [father’s name] being a bad parent</span>’ and ‘<span style="font-style:italic">you’re trying to get me to say I agree with you</span>’. When his holiday [abroad] was put to him [the father] said ‘<span style="font-style:italic">you’re using that as an excuse to say I was ok</span>’.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>132</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that this level of understanding belies his purported cognitive vulnerabilities. Much of [the father’s] oral evidence was prefaced with ‘<span style="font-style:italic">I can’t remember</span>’ and he asserted that ‘<span style="font-style:italic">this court knows about my memory loss</span>’ by way of explanation. However, [the father] did remember the following:</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(i)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That [C] was a ‘planned baby’, that he didn’t know when [C] had been born because he and [C’s biological mother]  had ‘fallen out’ because she had said something that caused him to run away</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">(ii)That he didn’t know why he didn’t tell his parents about [C] but that he had told friends. He didn’t worry that his friends might tell his parents</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(iii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That having [C] over to stay was not stressful</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">(iv)That he did not lie to social services about being [C’s] father, that he did not lie to [the mother] about being [C’s] father</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">(v)That it was not [the mother’s] priority to deal with [C] when she came over, it was his.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">(vi)That he remembers [A] being born, the hospital and doing his first feed</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(vii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That he remembers having kids around, going to funfair, taking [A] to play football in the park, that's all i remember from my time in the flat</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(viii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That at the time [A] was born he had difficulties keeping the flat clean and tidy</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(ix)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That his mother (PGM) was right that he cannot handle stress</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(x)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That he remembered [B] being born and holding her</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(xi)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That [the mother] would never let a man tell her what to do</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(xii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That [the mother] was a good mother</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(xii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">That the holiday [abroad] was ‘prepaid’ and he didn’t even want to go</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>133</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that these matters that [the father] was specifically able to recall rather than others do not tally with his purported memory loss. The court may have noticed that there were also a number of times during his evidence when he started to give an answer and then quickly followed it with ‘I can’t remember’ or ‘I don’t remember’.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>134</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[The father’s] narrative of the ‘old [father’s name]’ versus the ‘new [father’s name]’ made no sense, and was an example of him trying to distance himself from previous actions for which he might now shirk responsibility. F gave the impression that he now thought better of ‘Old [father’s name]’ ‘s behaviour and was able to see how ‘old [father’s name]’ had done things that he should apologise for as ‘New [father’s name]’.  However, F then contradicted himself by then telling the court that the ‘old [father’s name]’ was timid and kind and would have done anything for his kids. This too, it is submitted, is dishonest.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>135</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><marker name="tab" />(i) the deliberate lie(s) upon which they seek to rely;</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">That F had memory loss but was able to remember certain things. The concoction of the narrative of ‘old [father’s name]’ vs ‘New [father’s name]’.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the significant issue to which it/they relate(s): </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">To avoid court scrutiny of actions or information on causation re [B’s] injuries.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">on what basis it can be determined that the only explanation for the lie(s) is guilt: </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">There is simply no reason for [the father] to have lied to the court as much as he has in relation to memory loss other than a feeling of guilt. The new narrative of ‘old [father’s name]’ vs ‘new [father’s name]’ is something he has concocted to be able to markedly distance himself from past actions. It is a form of justification, not just for the fake memory loss but also to assuage guilt so that he cannot be blamed for any past behaviours.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">[The father’s] dishonesty with Dr Mclintock</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>136</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"> It is submitted that the court cannot rely on Dr Mclintock’s report of the father and the expert conclusion he came to in relation to F’s purported memory loss. Clearly the court did not find this expert assessment reliable, directing as it did, a second opinion from Dr Morton.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>137</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The court is referred to the previous documents filed by M and the skeleton argument prepared on behalf of [the mother] for the hearing on 21<span style="vertical-align:super;font-size:smaller">st</span> October 2023 at [A607] and is reminded of the submissions made and evidence given in relation to Dr Mclintock’s various reports on F and his conclusions based on what F was reporting to him and other medical professionals.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>138</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">In particular the GP report of Dr Wood [E260] of 14th September that  [the father] is ‘struggling with normal activities of daily living without support’. The GP report of Dr Bissatt at [E261] states that from an assessment of [the father] on 21st September he is ‘struggling to carry out basic daily tasks without support’. The information from the GP’s is entirely unreliable when considered alongside the phone evidence. The court is referred to the specific messages already included in M’s documents before the court, and the annexe provided.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>139</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">A swathe of text messages in question from that period were put to [the father] in oral evidence and he said he was not able to remember, save for the football texts where [the father] justified that his private life was nothing to do with his memory loss and that engaging in football was helpful to his mental health.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>140</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">The court will also bear in mind the lies [the father] told about having to be supervised by his mother, in order to give the impression that he was unable to care for himself and too mentally fragile to be on his own on the October 2<span style="vertical-align:super;font-size:smaller">nd</span> assessment date [at E271 at paragraph 4.6] when he told Dr Mclintock that he ‘is currently staying at his Mother’s property and she is ‘checking on me every hour’. [The father] self-reported that he stays in during the day and does ‘nothing. There is nothing for me to do’, in order to manipulate Dr Mclintock’s view which, he appears to have done with some success. This information is as reported to Dr Mclintock is totally dishonest when considering the phone evidence - see attached annexe.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>141</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that this was a sophisticated part of F’s tactics to avoid being seen by any of the professionals to be doing ‘too much’ as he later told Dr Morton, so that he wouldn’t have to give evidence to the court. </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>142</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that this is also why he did not attend contact with [A] and [B] and prioritised his need to be seen as incapable or too mentally unwell over and above their welfare needs for a relationship with their father.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>143</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><marker name="tab" />(i) the deliberate lie(s) upon which they seek to rely;</p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">That [the father] couldn’t manage any daily tasks and that he had to have 24/7 supervision by his own mother.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(ii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the significant issue to which it/they relate(s): </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">Evasion of the court’s scrutiny for information as to [B’s] injuries and cross examination.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(iii)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">on what basis it can be determined that the only explanation for the lie(s) is guilt. </p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">This is part of [the father’s] wholesale campaign to avoid questions and scrutiny. Why else would [the father] put so much time and energy into seeking out GP appointments to confirm his state of mental vulnerability if not an attempt to garner sympathy rather than facing the music about his guilt? The court cannot forget that up until 28th July 2023, [the father]  was fully engaged in the court process, giving clear instructions and attending at court without any problems…….</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">FINDINGS SOUGHT IN RELATION TO [THE FATHER]:</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">151 The court is therefore asked to make the following findings against [the father]:</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(a)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] duped Dr Mclintock about memory loss and or dissociation to the extent that Dr Mclintock’s expert assessment was flawed and F was assessed as lacking capacity to conduct litigation.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(b)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] was dishonest with Dr Morton about his purported memory loss to maintain his position that he should not have to give evidence</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(c)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] lied to the court as to his purported memory loss to avoid taking responsibility for information or any injuries to [B]</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(d)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] lied to the Guardian about the train station incident</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(e)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[the father] lied to social services about the paternity of [C], about how often he was having contact with [C] while he was not having contact with [A] and [B], and about his ability to function in daily life in order to appear unable to function and unable to give evidence.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>152</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">It is submitted that any finding made in relation to (a), (b) and (c) and (d) can be relied on by the court as relevant to the likelihood that F perpetrated injury to [B]. We say that the lies in respect to his sexual unfaithfulness , alias’ and [C’s] paternity go to  prove his capacity to make and sustain a lie to protect himself from challenge and scrutiny. </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="margin-left:0.75in;text-indent:-0.25in">153</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.75in;text-indent:0.12in">Although it may not be possible for the court to make a finding that [the father] duped Dr Taylor in his initial cognitive assessment, it is submitted that the level of vulnerabilities recorded in that assessment are exaggerated, given his ability and presentation at court when answering questions in cross examination as above. This is not something that any of the parties could have objected to earlier, nor could the court have realised, until [the father] eventually gave his oral evidence”.</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_159">
           <num>159.</num>

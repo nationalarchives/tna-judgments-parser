@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
-          <FRBRdate date="2024-05-27T19:36:14" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:18" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2023</uk:year>
         <uk:number>2099</uk:number>
         <uk:cite>[2023] EWHC 2099 (Comm)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>bd45fd11e1b91c13821ff28b7bd759a3f458041ba3aa19566d9628e800930fb3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -381,25 +381,33 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">iv)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">Paragraph 16 of the 2000 Act Arrangements provided that:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in">“The standard method for assessing the total number of journeys made by eligible persons under the Arrangements is set out in Schedule 2. The standard method for assessing the fares value to be attributed to those journeys is set out in Schedule 3. The standard method for calculating the reimbursement for revenue forgone due to the operator will be on the basis of the formula and parameters set out in Schedule 4. The standard method for calculating any costs additional to basic operating costs is set out in Schedule 6.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in">“The standard method for assessing the total number of journeys made by eligible persons under the Arrangements is set out in Schedule 2. The standard method for assessing the fares value to be attributed to those journeys is set out in Schedule 3. The standard method for calculating the reimbursement for revenue forgone due to the operator will be on the basis of the formula and parameters set out in Schedule 4. The standard method for calculating any costs additional to basic operating costs is set out in Schedule 6.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">v)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">Paragraph 17 of the 2000 Act Arrangements then provided that:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in">“In calculating the reimbursement due to the operator, the Authority will take into account any data supplied by the operator if it can be shown that the data supplied is more accurate than the standard method and is more likely to enable the Authority to meet the applicable, ‘no better, no worse’ objectives for reimbursement set out in the [Regulations] and EU Regulation 1370/2007.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in">“In calculating the reimbursement due to the operator, the Authority will take into account any data supplied by the operator if it can be shown that the data supplied is more accurate than the standard method and is more likely to enable the Authority to meet the applicable, ‘no better, no worse’ objectives for reimbursement set out in the [Regulations] and EU Regulation 1370/2007.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">vi)</num>
@@ -522,33 +530,37 @@
         </paragraph>
         <paragraph eId="para_29">
           <num>29.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The latter letter dated 31 January 2023 sought the following documentation relating to the following data:</p>
-          </intro>
-          <subparagraph>
-            <num>“a)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Data period – 2018/2019 and 2019/2020.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>b)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Data limited to just those passengers who used a DBL Service during the data period.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>c)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Anonymised data at passholder level showing (1) journeys’ during the relevant periods and (2) the services taken (including point of boarding).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>d)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">To facilitate iii), passholder numbers showing, each time a pass was used, (1) date and time; (2) service number and operator; (3) use on each operator’s services; and (4) point of boarding.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“a)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Data period – 2018/2019 and 2019/2020.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>b)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Data limited to just those passengers who used a DBL Service during the data period.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>c)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Anonymised data at passholder level showing (1) journeys’ during the relevant periods and (2) the services taken (including point of boarding).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>d)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">To facilitate iii), passholder numbers showing, each time a pass was used, (1) date and time; (2) service number and operator; (3) use on each operator’s services; and (4) point of boarding.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_30">
           <num>30.</num>
@@ -569,195 +581,207 @@
         </level>
         <paragraph eId="para_32">
           <num>32.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">CPR 31.16 has its statutory basis in s. 53 of the Senior Courts Act 1981. It has survived the Disclosure Pilot in the Business and Property Courts, and PD 57AD. It is in the following terms:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic;font-weight:bold;font-family:TimesNewRomanPS-BoldItalicMT">“31.16</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in" />
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(1)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">This rule applies where an application is made to the court under any Act for disclosure before proceedings have started.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(2)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">The application must be supported by evidence.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(3)</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">The court may make an order under this rule only where–</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(a)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">the respondent is likely to be a party to subsequent proceedings;</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(b)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">the applicant is also likely to be a party to those proceedings;</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(c)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">if proceedings had started, the respondent’s duty by way of standard disclosure, set out in rule 31.6, would extend to the documents or classes of documents of which the applicant seeks disclosure; and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(d)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">disclosure before proceedings have started is desirable in order to –</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(i)</num>
-              <intro>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in;text-indent:0.71in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">dispose fairly of the anticipated proceedings;</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(ii)</num>
-                <content>
-                  <p style="text-align:justify;margin-left:1.97in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">assist the dispute to be resolved without proceedings; or</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(iii)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in;text-indent:0.71in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">save costs.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(4)</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">An order under this rule must –</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(a)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">specify the documents or the classes of documents which the respondent must disclose; and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(b)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">require him, when making disclosure, to specify any of those documents –</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(i)</num>
-              <intro>
-                <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in;text-indent:0.71in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">which are no longer in his control; or</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(ii)</num>
-                <content>
-                  <p style="text-align:justify;margin-left:1.97in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">in respect of which he claims a right or duty to withhold inspection.</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(5)</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Such an order may –</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(a)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">require the respondent to indicate what has happened to any documents which are no longer in his control; and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(b)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">specify the time and place for disclosure and inspection.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic;font-weight:bold;font-family:TimesNewRomanPS-BoldItalicMT">“31.16</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in" />
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(1)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">This rule applies where an application is made to the court under any Act for disclosure before proceedings have started.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(2)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">The application must be supported by evidence.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(3)</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">The court may make an order under this rule only where–</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(a)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">the respondent is likely to be a party to subsequent proceedings;</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(b)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">the applicant is also likely to be a party to those proceedings;</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(c)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">if proceedings had started, the respondent’s duty by way of standard disclosure, set out in rule 31.6, would extend to the documents or classes of documents of which the applicant seeks disclosure; and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(d)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">disclosure before proceedings have started is desirable in order to –</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(i)</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in;text-indent:0.71in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">dispose fairly of the anticipated proceedings;</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(ii)</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:1.97in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">assist the dispute to be resolved without proceedings; or</span></p>
+                      </content>
+                    </subparagraph>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(iii)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in;text-indent:0.71in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">save costs.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(4)</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">An order under this rule must –</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(a)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">specify the documents or the classes of documents which the respondent must disclose; and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(b)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">require him, when making disclosure, to specify any of those documents –</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(i)</num>
+                    <intro>
+                      <p style="text-align:justify;margin-left:1.18in;margin-right:0.45in;text-indent:0.71in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">which are no longer in his control; or</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(ii)</num>
+                      <content>
+                        <p style="text-align:justify;margin-left:1.97in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">in respect of which he claims a right or duty to withhold inspection.</span></p>
+                      </content>
+                    </subparagraph>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(5)</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Such an order may –</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(a)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">require the respondent to indicate what has happened to any documents which are no longer in his control; and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">(b)</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.45in"><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">specify the time and place for disclosure and inspection.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_33">
           <num>33.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">As Mr Maynard-Connor KC points out, the Chancery Guide 2022 (June 2023 Revision), at paragraphs 7.31 and 7.32, provides some helpful guidance as to the application of CPR 31.16:</p>
-          </intro>
-          <subparagraph>
-            <num>“7.31</num>
-            <intro>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">An order for disclosure before proceedings have started is made in accordance with CPR 31.16 in Section II of CPR PD 51U. It comprises a two stage test:</p>
-            </intro>
-            <subparagraph>
-              <num>(a)</num>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.57in;margin-right:0.45in">Parties must first satisfy the four-part jurisdictional test set out in CPR 31.16(3). This includes consideration of whether such disclosure is desirable in order to dispose fairly of the anticipated proceedings, or to assist the parties to avoid litigation, or to save costs; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(b)</num>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.57in;margin-right:0.45in">If the court is satisfied that the application meets the jurisdictional threshold, it will then consider whether it is appropriate to make an order for pre-action disclosure as a matter of discretion, which has to be considered on all of the facts and not merely in principle but in detail: see <span style="font-style:italic">Black v Sumitomo</span> [2002] 1WLR 1562 ...</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num>7.32</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">The jurisdictional criteria in CPR 31.16 still require consideration of whether the documents would fall within the scope of ‘standard disclosure’ under CPR 31.6. However, when considering whether to make an order, the court should take into account that if proceedings are brought they are likely to be subject to PD 57AD, where the court would work with the parties to define the issues for disclosure and apply the most appropriate disclosure model (paragraph 8 of PD 57AD): see also <span style="font-style:italic">Willow Sports Ltd v SportsLocker24.com Ltd</span> [2021] EWHC 2524 (Ch).”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“7.31</num>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">An order for disclosure before proceedings have started is made in accordance with CPR 31.16 in Section II of CPR PD 51U. It comprises a two stage test:</p>
+                  </intro>
+                  <subparagraph>
+                    <num>(a)</num>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.57in;margin-right:0.45in">Parties must first satisfy the four-part jurisdictional test set out in CPR 31.16(3). This includes consideration of whether such disclosure is desirable in order to dispose fairly of the anticipated proceedings, or to assist the parties to avoid litigation, or to save costs; and</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(b)</num>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.57in;margin-right:0.45in">If the court is satisfied that the application meets the jurisdictional threshold, it will then consider whether it is appropriate to make an order for pre-action disclosure as a matter of discretion, which has to be considered on all of the facts and not merely in principle but in detail: see <span style="font-style:italic">Black v Sumitomo</span> [2002] 1WLR 1562 ...</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>7.32</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">The jurisdictional criteria in CPR 31.16 still require consideration of whether the documents would fall within the scope of ‘standard disclosure’ under CPR 31.6. However, when considering whether to make an order, the court should take into account that if proceedings are brought they are likely to be subject to PD 57AD, where the court would work with the parties to define the issues for disclosure and apply the most appropriate disclosure model (paragraph 8 of PD 57AD): see also <span style="font-style:italic">Willow Sports Ltd v SportsLocker24.com Ltd</span> [2021] EWHC 2524 (Ch).”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_34">
           <num>34.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The leading and seminal authority on the jurisdiction under CPR 31.16 is the decision of the Court of Appeal in <span style="font-style:italic">Black v Sumitomo</span> [2002] 1WLR 1562. CPR 31.16 has been the subject of a number of subsequent decisions, but the general principles to be applied in relation to applications for pre-action disclosure were helpfully summarised by Blair J in <span style="font-style:italic">Assetco Plc v Grant Thornton UK LLP </span>[2013] EWHC 1215 (Comm) at [17], as noted by Jacobs J in <span style="font-style:italic">Carillion Plc v KPMG LLP </span>[2020] EWHC 1416 (Comm) at [66]:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-family:TimesNewRomanPS-ItalicMT">“i)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">The respondent and applicant must both be likely to be parties to subsequent proceedings. It is not however necessary to show in addition that the initiation of such proceedings is itself likely: </span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Black v Sumitomo Corp</span><span style="font-family:TimesNewRomanPS-ItalicMT"> [2002] 1 WLR 1562 at [71 – 72], Rix LJ, which is the leading case on the rule.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:TimesNewRomanPS-ItalicMT">ii)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">The documents sought must fall within the scope of the standard disclosure which the respondent would have to give in the anticipated proceedings. It follows that at the time of the application, the issues must be sufficiently clear to enable this requirement to be properly addressed.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:TimesNewRomanPS-ItalicMT">iii)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">Disclosure before proceedings have started must be desirable (i) to dispose fairly of the anticipated proceedings, (ii) to assist the dispute to be resolved without proceedings, or (iii) to save costs: CPR 31.16 (3)(d).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:TimesNewRomanPS-ItalicMT">iv)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">In considering whether to make an order, among the important considerations are the nature of the loss complained of, the clarity and identification of the issues raised by the complaint, the nature of the documents requested, the relevance of any protocol or pre-action inquiries, and the opportunity which the complainant has to make his case without pre-action disclosure (</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Black v Sumitomo Cor</span><span style="font-family:TimesNewRomanPS-ItalicMT">p at [88]).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:TimesNewRomanPS-ItalicMT">v)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-family:TimesNewRomanPS-ItalicMT">The anticipated claim must have a real prospect of success.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-family:TimesNewRomanPS-ItalicMT">vi)</num>
-            <content>
-              <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">In the commercial context, a pre-action disclosure order, even if not exceptional, is unusual.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPS-ItalicMT">“i)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">The respondent and applicant must both be likely to be parties to subsequent proceedings. It is not however necessary to show in addition that the initiation of such proceedings is itself likely: </span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Black v Sumitomo Corp</span><span style="font-family:TimesNewRomanPS-ItalicMT"> [2002] 1 WLR 1562 at [71 – 72], Rix LJ, which is the leading case on the rule.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPS-ItalicMT">ii)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">The documents sought must fall within the scope of the standard disclosure which the respondent would have to give in the anticipated proceedings. It follows that at the time of the application, the issues must be sufficiently clear to enable this requirement to be properly addressed.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPS-ItalicMT">iii)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">Disclosure before proceedings have started must be desirable (i) to dispose fairly of the anticipated proceedings, (ii) to assist the dispute to be resolved without proceedings, or (iii) to save costs: CPR 31.16 (3)(d).</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPS-ItalicMT">iv)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">In considering whether to make an order, among the important considerations are the nature of the loss complained of, the clarity and identification of the issues raised by the complaint, the nature of the documents requested, the relevance of any protocol or pre-action inquiries, and the opportunity which the complainant has to make his case without pre-action disclosure (</span><span style="font-style:italic;font-family:TimesNewRomanPS-ItalicMT">Black v Sumitomo Cor</span><span style="font-family:TimesNewRomanPS-ItalicMT">p at [88]).</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPS-ItalicMT">v)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.45in;text-indent:0.21in"><span style="font-family:TimesNewRomanPS-ItalicMT">The anticipated claim must have a real prospect of success.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPS-ItalicMT">vi)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.17in;margin-right:0.45in"><span style="font-family:TimesNewRomanPS-ItalicMT">In the commercial context, a pre-action disclosure order, even if not exceptional, is unusual.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_35">
           <num>35.</num>
@@ -999,21 +1023,25 @@
         </paragraph>
         <paragraph eId="para_60">
           <num>60.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">TfWM’s position is most clearly articulated in paragraphs 76 and 77 of Mr Lewis’s witness statement, where he said:</p>
-          </intro>
-          <subparagraph>
-            <num style="color:#333333">“76</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in"><span style="color:#333333">Based on DfT's guidance, it is TfWM's view that the accuracy of the Look-up table used </span>for calculating Average Fare Foregone increases with the amount of data that is included. As such the current approach used by TfWM is to use data based on the entire West Midlands area passenger data. DBL's Average Fare Foregone claim, as set out in its draft Particulars of Claim, is based on an assumption by DBL that demand from concessionary fare passengers is lower on its services than the average demand from concessionary fare passengers for all bus operators across the West Midlands areas. The level of demand from concessionary fare passengers plays a significant role in the calculation of a number of elements of reimbursement under the scheme, not just in the calculation of the Average Fare Foregone. If the disclosure of the requested information supports the assumption that demand on DBL's services is lower, and Oxera produce an updated Look-up table to reflect this, with a higher Average Fare Foregone, the lower demand would mean that DBL would be entitled to lower reimbursements in relation to other elements of the Scheme reimbursement calculations. By way of an example the base level of demand used within the generation factor element of the reimbursement calculations under the Scheme is based on averages across the West Midlands area. If DBL's demand is lower than average, then this would need to be applied to this element of the reimbursement calculations. The result of this would be a smaller number of journeys paid at the Average Fare Forgone cost rate and larger number at marginal cost rate, reducing the reimbursement rate and therefore overall level of reimbursement that DBL receive.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>77</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Accordingly, if TfWM were to accept an alternative look up table produced by Oxera, then it would also be necessary to recalculate wider elements of reimbursement under the Scheme Arrangements. It is for this reason that TfWM consider that the Average Fare Foregone dispute should be determined by an independent under the Dispute Resolution Procedure, looking at the calculations as a whole. On that basis, it is therefore unlikely that disclosure of the data and production of a further Look-up table in relation to one element of reimbursement under the scheme will be of use to the parties in either disposing of or narrowing the Average Fare Foregone Dispute as it will not capture the wider ramifications of such changes to reimbursement as a whole.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="color:#333333">“76</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in"><span style="color:#333333">Based on DfT's guidance, it is TfWM's view that the accuracy of the Look-up table used </span>for calculating Average Fare Foregone increases with the amount of data that is included. As such the current approach used by TfWM is to use data based on the entire West Midlands area passenger data. DBL's Average Fare Foregone claim, as set out in its draft Particulars of Claim, is based on an assumption by DBL that demand from concessionary fare passengers is lower on its services than the average demand from concessionary fare passengers for all bus operators across the West Midlands areas. The level of demand from concessionary fare passengers plays a significant role in the calculation of a number of elements of reimbursement under the scheme, not just in the calculation of the Average Fare Foregone. If the disclosure of the requested information supports the assumption that demand on DBL's services is lower, and Oxera produce an updated Look-up table to reflect this, with a higher Average Fare Foregone, the lower demand would mean that DBL would be entitled to lower reimbursements in relation to other elements of the Scheme reimbursement calculations. By way of an example the base level of demand used within the generation factor element of the reimbursement calculations under the Scheme is based on averages across the West Midlands area. If DBL's demand is lower than average, then this would need to be applied to this element of the reimbursement calculations. The result of this would be a smaller number of journeys paid at the Average Fare Forgone cost rate and larger number at marginal cost rate, reducing the reimbursement rate and therefore overall level of reimbursement that DBL receive.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>77</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.17in;margin-right:0.45in">Accordingly, if TfWM were to accept an alternative look up table produced by Oxera, then it would also be necessary to recalculate wider elements of reimbursement under the Scheme Arrangements. It is for this reason that TfWM consider that the Average Fare Foregone dispute should be determined by an independent under the Dispute Resolution Procedure, looking at the calculations as a whole. On that basis, it is therefore unlikely that disclosure of the data and production of a further Look-up table in relation to one element of reimbursement under the scheme will be of use to the parties in either disposing of or narrowing the Average Fare Foregone Dispute as it will not capture the wider ramifications of such changes to reimbursement as a whole.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_61">
           <num>61.</num>
@@ -1325,14 +1353,18 @@
           </intro>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">i)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">In<span style="font-style:italic"> Hands v Morrison Construction Services Ltd</span> (supra) at [31], Mr Michael Briggs QC (as he then was) said:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.45in">“The desideratum in rule 31.16(3)(d)(i), that is the fair disposal of the proceedings, is addressed to the question whether early disclosure, rather than disclosure at the usual time, will add fairness.  That may be achieved not merely to give an opportunity to plead an otherwise unpleadable case but where it enables the Statement of Case to be better focused so avoiding the cost, delay and disruption which may otherwise be caused by amendment after normal disclosure, for example, leading to further consequential amendments and a yet further round of disclosure.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.18in;margin-right:0.45in">“The desideratum in rule 31.16(3)(d)(i), that is the fair disposal of the proceedings, is addressed to the question whether early disclosure, rather than disclosure at the usual time, will add fairness.  That may be achieved not merely to give an opportunity to plead an otherwise unpleadable case but where it enables the Statement of Case to be better focused so avoiding the cost, delay and disruption which may otherwise be caused by amendment after normal disclosure, for example, leading to further consequential amendments and a yet further round of disclosure.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">ii)</num>
@@ -1647,7 +1679,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/2099/data.xml" />
-                <FRBRdate date="2024-05-27T19:36:15" name="transform" />
+                <FRBRdate date="2024-08-12T19:22:18" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

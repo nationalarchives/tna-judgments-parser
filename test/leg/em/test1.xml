@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/464/em" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/464/em" />
-          <FRBRdate date="2023-10-30" name="generated" />
+          <FRBRdate date="2024-08-12" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/464/em/data.xml" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/464/em/data.xml" />
-          <FRBRdate date="2023-10-30T16:18:02Z" name="transform" />
+          <FRBRdate date="2024-08-12T19:28:32Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>0.17.11</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>317b0cf03b5fe6e9e1b8186bc48e59e249b8a248bbd624726b9acddec8c5bc00</uk:hash>
       </proprietary>
     </meta>
@@ -111,14 +111,18 @@
         <heading><b>European Convention on Human Rights</b></heading>
         <paragraph>
           <num>5.1</num>
-          <intro>
+          <content>
             <p>Amanda Solloway, the Parliamentary Under Secretary of State for Energy Consumers and Affordability has made the following statement regarding Human Rights:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p>“In my view the provisions of the EBDS (Non-Standard Cases) Regulations 2023 are compatible with the Convention rights.” </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p>“In my view the provisions of the EBDS (Non-Standard Cases) Regulations 2023 are compatible with the Convention rights.” </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
       </section>
       <section>
@@ -380,14 +384,18 @@
         </paragraph>
         <paragraph>
           <num>14.3</num>
-          <intro>
+          <content>
             <p>These instruments do not include a statutory review clause and, in line with the requirements of the Small Business, Enterprise and Employment Act 2015, the Parliamentary Under Secretary of State for Energy Consumers and Affordability for Climate has made the following statement:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p>“It is not appropriate in the circumstances to make provision for a review, given that support under the schemes will be provided for 12 months and the need for companies to have certainty during that period.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p>“It is not appropriate in the circumstances to make provision for a review, given that support under the schemes will be provided for 12 months and the need for companies to have certainty during that period.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
       </section>
       <section>

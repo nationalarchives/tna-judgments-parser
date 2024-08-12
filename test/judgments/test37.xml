@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/99/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/99/data.xml" />
-          <FRBRdate date="2024-05-27T19:34:55" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:53" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -52,7 +52,7 @@
         <uk:year>2022</uk:year>
         <uk:number>99</uk:number>
         <uk:cite>[2022] EWFC 99</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>5cb25c8545a526217cd029f39f7b040a5dce1689cf09ad323a8c99573c289f32</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -852,14 +852,18 @@
           </intro>
           <subparagraph>
             <num style="font-family:Tahoma;font-size:11pt;margin-left:0.55in;text-indent:-0.3in">20.1.</num>
-            <intro>
+            <content>
               <p style="margin-left:0.55in;text-indent:0.2in"><span style="font-family:Tahoma;font-size:11pt">If it is satisfied that the child sustained injuries it must first consider whether they were caused non-accidentally. In this context the Court reminds itself of the comments of Ryder LJ about the expression “non-accidental injury”</span><authorialNote class="footnote" marker="24"><p class="FootnoteText"> S (A Child) [2014] EWCA Civ 25</p></authorialNote><span style="font-family:Tahoma;font-size:11pt">:- </span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="margin-left:0.55in"><span style="font-family:Tahoma;font-size:11pt">“I make no criticism of its use but it is a 'catch-all' for everything that is not an accident. It is also a tautology: the true distinction is between an accident which is unexpected and unintentional and an injury which involves an element of wrong. That element of wrong may involve a lack of care and/or an intent of a greater or lesser degree that may amount to negligence, recklessness or deliberate infliction. While an analysis of that kind may be helpful to distinguish deliberate infliction from say negligence, it is unnecessary in any consideration of whether the threshold criteria are satisfied because what the statute requires is something different namely, findings of fact that at least satisfy the significant harm, attributability and objective standard of care elements of section 31(2)."</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="margin-left:0.55in"><span style="font-family:Tahoma;font-size:11pt">“I make no criticism of its use but it is a 'catch-all' for everything that is not an accident. It is also a tautology: the true distinction is between an accident which is unexpected and unintentional and an injury which involves an element of wrong. That element of wrong may involve a lack of care and/or an intent of a greater or lesser degree that may amount to negligence, recklessness or deliberate infliction. While an analysis of that kind may be helpful to distinguish deliberate infliction from say negligence, it is unnecessary in any consideration of whether the threshold criteria are satisfied because what the statute requires is something different namely, findings of fact that at least satisfy the significant harm, attributability and objective standard of care elements of section 31(2)."</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="font-family:Tahoma;font-size:11pt;margin-left:0.55in;text-indent:-0.3in">20.2.</num>

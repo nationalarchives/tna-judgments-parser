@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2018/31/press-summary/1/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2018/31/press-summary/1/data.xml" />
-          <FRBRdate date="2024-02-21T18:13:19" name="transform" />
+          <FRBRdate date="2024-07-19T15:11:40" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -35,7 +35,7 @@
         <uk:year>2018</uk:year>
         <uk:summaryOf>https://caselaw.nationalarchives.gov.uk/id/uksc/2018/31</uk:summaryOf>
         <uk:summaryOfCite>[2018] UKSC 31</uk:summaryOfCite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>eeb9f5a5a5b4daf315896023298271da8764ad364c4209605141809c738a67e3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -94,19 +94,23 @@
           </content>
         </level>
         <paragraph>
-          <intro>
+          <content>
             <p style="text-align:justify"><span style="font-family:Garamond">Second, the company relies on right to protection of property under Article 1 of the First Protocol to the European Convention on Human Rights (“A1/P1”). It argues that cancellation clearly involves an interference with the possessions represented by (at least) the sub-contractor’s entitlement to the full contract price or the bundle of rights inherent in registration </span><span style="font-weight:bold;font-family:Garamond">[18]</span><span style="font-family:Garamond">. A1/P1 provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.5in"><span style="font-family:Garamond">“Every natural or legal person is entitled to the peaceful enjoyment of his possessions No one shall be deprived of his possessions except in the public interest and subject to the conditions provided for by law and by the general principles of international law.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.5in"><span style="font-family:Garamond">The preceding provisions shall not, however, in any way impair the right of a state to enforce such laws as it deems necessary to control the use of property in accordance with the general interest or to secure the payment of taxes or other contributions or penalties.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in"><span style="font-family:Garamond">“Every natural or legal person is entitled to the peaceful enjoyment of his possessions No one shall be deprived of his possessions except in the public interest and subject to the conditions provided for by law and by the general principles of international law.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in"><span style="font-family:Garamond">The preceding provisions shall not, however, in any way impair the right of a state to enforce such laws as it deems necessary to control the use of property in accordance with the general interest or to secure the payment of taxes or other contributions or penalties.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level>
           <content>

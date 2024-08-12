@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/537/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/537/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:18" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:03" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2023</uk:year>
         <uk:number>537</uk:number>
         <uk:cite>[2023] EWHC 537 (Ch)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>750d12f927466fc89ee555de230ff8dae452f95c8b3161881ce94dd5f06d2f76</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -490,38 +490,42 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">ii)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">Schedule A provided:</p>
-            </intro>
-            <subparagraph>
-              <intro>
-                <p class="ParaLevel2" style="margin-left:0.98in">“<span style="font-style:italic">The Services are limited to the following:</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
-                <content>
-                  <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Implementation of bespoke settlement and clearing interface (“</span><span style="font-style:italic;font-weight:bold">LDX Interface</span><span style="font-style:italic">”)</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
-                <content>
-                  <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Setup and maintenance of EOS Private Blockchain (“</span><span style="font-style:italic;font-weight:bold">LDX Blockchain”</span><span style="font-style:italic">) to support LDX Interface;</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
-                <content>
-                  <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Trade clearing, settlement, confirmation and regulatory reporting relating to all transactions recorded on LDX Blockchain; and</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
-                <content>
-                  <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Revenue share distribution and corporate actions handling relating to all transactions recorded on LDX Blockchain.”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <intro>
+                      <p class="ParaLevel2" style="margin-left:0.98in">“<span style="font-style:italic">The Services are limited to the following:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
+                      <content>
+                        <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Implementation of bespoke settlement and clearing interface (“</span><span style="font-style:italic;font-weight:bold">LDX Interface</span><span style="font-style:italic">”)</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
+                      <content>
+                        <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Setup and maintenance of EOS Private Blockchain (“</span><span style="font-style:italic;font-weight:bold">LDX Blockchain”</span><span style="font-style:italic">) to support LDX Interface;</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
+                      <content>
+                        <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Trade clearing, settlement, confirmation and regulatory reporting relating to all transactions recorded on LDX Blockchain; and</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:Symbol;margin-left:1.48in;text-indent:-0.25in">•</num>
+                      <content>
+                        <p class="ParaLevel2" style="margin-left:1.48in"><span style="font-style:italic">Revenue share distribution and corporate actions handling relating to all transactions recorded on LDX Blockchain.”</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">iii)</num>
@@ -543,14 +547,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">vi)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">The Engagement Letter was governed by the laws of Hong Kong and the Company submitted to the non-exclusive jurisdiction of the courts of Hong Kong should any dispute arise in respect of the engagement.   In particular, such document stated –</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel2" style="margin-left:0.98in">“<span style="font-style:italic">This Engagement Letter will be governed by and construed in accordance with the laws of Hong Kong and you hereby submit to the non-exclusive jurisdiction of the courts of Hong Kong should any dispute arise in respect of this engagement.</span>”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel2" style="margin-left:0.98in">“<span style="font-style:italic">This Engagement Letter will be governed by and construed in accordance with the laws of Hong Kong and you hereby submit to the non-exclusive jurisdiction of the courts of Hong Kong should any dispute arise in respect of this engagement.</span>”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_15">
@@ -650,14 +658,18 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">vi)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">The agreement was governed by and to be construed in accordance with the laws of Hong Kong and clause 24 contained the following jurisdiction clause:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel2" style="margin-left:0.98in">“<span style="font-style:italic">Each Party agrees for the benefit of the other, but without prejudice to the right of any Party to take any proceedings in relation hereto before any other court of competent jurisdiction that the courts of Hong Kong shall have non-exclusive jurisdiction to hear and determine any suit, action or proceeding, and to settle any disputes, which may arise out of or in connection with this Agreement …and, for such purposes, irrevocably submits to the jurisdiction of such courts.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel2" style="margin-left:0.98in">“<span style="font-style:italic">Each Party agrees for the benefit of the other, but without prejudice to the right of any Party to take any proceedings in relation hereto before any other court of competent jurisdiction that the courts of Hong Kong shall have non-exclusive jurisdiction to hear and determine any suit, action or proceeding, and to settle any disputes, which may arise out of or in connection with this Agreement …and, for such purposes, irrevocably submits to the jurisdiction of such courts.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">vii)</num>
@@ -784,21 +796,25 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">viii)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.13in">Clause 24 provided that the Agreement was to be governed by and construed in accordance with the laws of Hong Kong and clause 25 provided,</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“25.1</num>
-              <content>
-                <p class="ParaLevel3" style="margin-left:0.98in;text-indent:0.02in"><span style="font-style:italic">Each Party agrees for the benefit of the other, but without prejudice to the right of any Party to take any proceedings in relation hereto before any other court of competent jurisdiction that the courts of Hong Kong shall have exclusive jurisdiction to hear and determine any suit, action or proceedings, and to settle any disputes, which may arise out of or in connection with this Agreement and any Instructions given hereunder and, for such purposes, irrevocably submits to the jurisdiction of such courts.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic">25.2</num>
-              <content>
-                <p class="ParaLevel3" style="margin-left:0.98in;text-indent:0.02in"><span style="font-style:italic">Each party further irrevocably waives any objection which it may have or be entitled to claim at any time to the commencement of any such suit, action or proceeding before such courts, or that the any such suit, action or proceeding has been brought in an inconvenient forum, or the enforcement of any judgment in respect thereof over any of its assets or property (including without limitation, the Digital Assets) in any jurisdiction.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“25.1</num>
+                    <content>
+                      <p class="ParaLevel3" style="margin-left:0.98in;text-indent:0.02in"><span style="font-style:italic">Each Party agrees for the benefit of the other, but without prejudice to the right of any Party to take any proceedings in relation hereto before any other court of competent jurisdiction that the courts of Hong Kong shall have exclusive jurisdiction to hear and determine any suit, action or proceedings, and to settle any disputes, which may arise out of or in connection with this Agreement and any Instructions given hereunder and, for such purposes, irrevocably submits to the jurisdiction of such courts.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic">25.2</num>
+                    <content>
+                      <p class="ParaLevel3" style="margin-left:0.98in;text-indent:0.02in"><span style="font-style:italic">Each party further irrevocably waives any objection which it may have or be entitled to claim at any time to the commencement of any such suit, action or proceeding before such courts, or that the any such suit, action or proceeding has been brought in an inconvenient forum, or the enforcement of any judgment in respect thereof over any of its assets or property (including without limitation, the Digital Assets) in any jurisdiction.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">ix)</num>
@@ -962,44 +978,48 @@
         </paragraph>
         <paragraph eId="para_24">
           <num>24.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Section 122(1)(f) of the Insolvency Act 1986 in turn provides that “<span style="font-style:italic">A company may be wound up by the court if - … (f) the company is unable to pay its debts”</span> and section 123 of the Act materially provides - </p>
-          </intro>
-          <subparagraph>
-            <num class="legds" style="font-family:Arial;font-size:9.5pt">“(1)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">A company is deemed unable to pay its debts—</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(a)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">if a creditor (by assignment or otherwise) to whom the company is indebted in a sum exceeding £750 then due has served on the company, by leaving it at the company’s registered office, a written demand (in the prescribed form) requiring the company to pay the sum so due and the company has for 3 weeks thereafter neglected to pay the sum or to secure or compound for it to the reasonable satisfaction of the creditor, or</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(b)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">if, in England and Wales, execution or other process issued on a judgment, decree or order of any court in favour of a creditor of the company is returned unsatisfied in whole or in part, or</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in"><span class="legds" style="font-style:italic;color:#000000">[…]</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(e)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">if it is proved to the satisfaction of the court that the company is unable to pay its debts as they fall due.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(2)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">A company is also deemed unable to pay its debts if it is proved to the satisfaction of the court that the value of the company’s assets is less than the amount of its liabilities, taking into account its contingent and prospective liabilities.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num class="legds" style="font-family:Arial;font-size:9.5pt">“(1)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">A company is deemed unable to pay its debts—</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(a)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">if a creditor (by assignment or otherwise) to whom the company is indebted in a sum exceeding £750 then due has served on the company, by leaving it at the company’s registered office, a written demand (in the prescribed form) requiring the company to pay the sum so due and the company has for 3 weeks thereafter neglected to pay the sum or to secure or compound for it to the reasonable satisfaction of the creditor, or</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(b)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">if, in England and Wales, execution or other process issued on a judgment, decree or order of any court in favour of a creditor of the company is returned unsatisfied in whole or in part, or</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in"><span class="legds" style="font-style:italic;color:#000000">[…]</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(e)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">if it is proved to the satisfaction of the court that the company is unable to pay its debts as they fall due.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(2)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in"><span class="legds" style="font-style:italic;color:#000000">A company is also deemed unable to pay its debts if it is proved to the satisfaction of the court that the value of the company’s assets is less than the amount of its liabilities, taking into account its contingent and prospective liabilities.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_25">
           <num>25.</num>
@@ -1009,102 +1029,108 @@
         </paragraph>
         <paragraph eId="para_26">
           <num>26.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">More recently, Norris J summarised the principles applicable to a disputed winding up petition in <span style="font-style:italic">Angel Group v British Gas </span><span style="color:#000000">[2012] EWHC 2702 (Ch),</span><span style="font-style:italic;font-family:_M#;font-size:10pt"> </span><span style="font-style:italic"> </span>[2013] BCC 263, in the following terms (at [22]):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:-0.04in"><span style="color:#000000">“</span><span style="font-style:italic;color:#000000">The principles to be applied in the exercise of this jurisdiction are familiar and may be summarised as follows:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">a)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">A creditor’s petition can only be presented by a creditor, and until a prospective petitioner is established as a creditor he is not entitled to present the petition and has no standing in the Companies Court: Mann v Goldstein [1968] 1 W.L.R. 1091.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">b)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">The company may challenge the petitioner’s standing as a creditor by advancing in good faith a substantial dispute as to the entirety of the petition debt (or at least so much as will bring the indisputable part below £750).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">c)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">A dispute will not be “substantial” if it has really no rational prospect of success: in Re A Company (No.012209 of 1991) [1992] 1 W.L.R. 351 at 354B.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">d)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">A dispute will not be put forward in good faith if the company is merely seeking to take for itself credit which it is not allowed under the contract: ibid. at 354F.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">e)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">There is thus no rule of practice that the petition will be struck out merely because the company alleges that the debt is disputed. The true rule is that it is not the practice of the Companies Court to allow a winding up petition to be used for the purpose of deciding a substantial dispute raised on bona fide grounds, because the effect of presenting a winding up petition and advertising that petition is to put upon the company a pressure to pay (rather than to litigate) which is quite different in nature from the effect of an ordinary action: in Re A Company (No.006685 of 1996) [1997] B.C.C. 830 at 832F.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">f)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">But the court will not allow this rule of practice itself to work injustice and will be alert to the risk that an unwilling debtor is raising a cloud of objections on affidavit in order to claim that a dispute exists which cannot be determined without cross-examination (ibid. at 841C).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">g)</num>
-            <content>
-              <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">The court will therefore be prepared to consider the evidence in detail even if, in performing that task, the court may be engaged in much the same exercise as would be required of a court facing an application for summary judgment: (ibid. at 837B).</span><span style="color:#000000">”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:-0.04in"><span style="color:#000000">“</span><span style="font-style:italic;color:#000000">The principles to be applied in the exercise of this jurisdiction are familiar and may be summarised as follows:</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic">a)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">A creditor’s petition can only be presented by a creditor, and until a prospective petitioner is established as a creditor he is not entitled to present the petition and has no standing in the Companies Court: Mann v Goldstein [1968] 1 W.L.R. 1091.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">b)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">The company may challenge the petitioner’s standing as a creditor by advancing in good faith a substantial dispute as to the entirety of the petition debt (or at least so much as will bring the indisputable part below £750).</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">c)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">A dispute will not be “substantial” if it has really no rational prospect of success: in Re A Company (No.012209 of 1991) [1992] 1 W.L.R. 351 at 354B.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">d)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">A dispute will not be put forward in good faith if the company is merely seeking to take for itself credit which it is not allowed under the contract: ibid. at 354F.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">e)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">There is thus no rule of practice that the petition will be struck out merely because the company alleges that the debt is disputed. The true rule is that it is not the practice of the Companies Court to allow a winding up petition to be used for the purpose of deciding a substantial dispute raised on bona fide grounds, because the effect of presenting a winding up petition and advertising that petition is to put upon the company a pressure to pay (rather than to litigate) which is quite different in nature from the effect of an ordinary action: in Re A Company (No.006685 of 1996) [1997] B.C.C. 830 at 832F.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">f)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">But the court will not allow this rule of practice itself to work injustice and will be alert to the risk that an unwilling debtor is raising a cloud of objections on affidavit in order to claim that a dispute exists which cannot be determined without cross-examination (ibid. at 841C).</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">g)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:-0.04in"><span style="font-style:italic;color:#000000">The court will therefore be prepared to consider the evidence in detail even if, in performing that task, the court may be engaged in much the same exercise as would be required of a court facing an application for summary judgment: (ibid. at 837B).</span><span style="color:#000000">”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_27">
           <num>27.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I note that whilst Norris J referred in sub-paragraph (b) to a substantial dispute in relation to so much of the petition debt as would bring the indisputable part below £750.00 (being the statutory minimum sum referred to in section 123(1) of the Act), for present purposes the relevant amount is to be regarded as £10,000.00 taking account of the provisions of Schedule 10 of the Corporate Insolvency and Governance Act 2020 (as amended by the Corporate Insolvency and Governance Act 2020 (Coronavirus )(Amendment of Schedule 10)(No. 2) Regulations 2021 (<span style="font-weight:bold">CIGA 2020</span>).  In particular, sub-paragraphs 1(1) and 1(8) of Schedule 10 to CIGA 2020 materially provide:</p>
-          </intro>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">“(1)</num>
-            <intro>
-              <p class="ParaLevel1" style="margin-left:0.89in"><span class="legsubstitution" style="font-style:italic;color:#000000">During the relevant period a creditor may not present a petition for the winding up of a company under section 124 of the 1986 Act on the ground specified—</span></p>
-            </intro>
-            <subparagraph>
-              <num style="margin-left:1.18in;text-indent:-0.3in">(a)</num>
-              <content>
-                <p class="ParaLevel5" style="margin-left:1.18in;text-indent:0.08in"><span class="legsubstitution" style="font-style:italic;color:#000000">in the case of a registered company, in section 122(1)(f) of that Act, …</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.89in"><span class="legsubstitution" style="font-style:italic;color:#000000">unless conditions A to D are met (subject to sub-paragraphs (9) to (11) </span><span class="legsubstitution" style="color:#000000">[which do not apply in the present case]</span><span class="legsubstitution" style="font-style:italic;color:#000000">).</span><span class="legsubstitution" style="color:#000000">”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">“(8)</num>
-            <intro>
-              <p class="ParaLevel1" style="margin-left:0.89in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition D is that—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.18in"><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by one creditor, the sum of the debts (or the debt, if there is only one) owed by the company to that creditor in respect of which conditions A to C are met is £10,000 or more;</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(b)</num>
-              <content>
-                <p class="ParaLevel1" style="margin-left:1.18in"><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by more than one creditor, the sum of the debts owed by the company to the creditors in respect of which conditions A to C are met is £10,000 or more.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.49in"><span class="legsubstitution" style="color:#000000">The “</span><span class="legsubstitution" style="font-style:italic;color:#000000">relevant period”</span><span class="legsubstitution" style="color:#000000"> being defined for such purposes by paragraph 4(1) of Schedule 10 to mean the period which “</span><span class="legsubstitution" style="font-style:italic;color:#000000">(a) begins with 1 October 2021, and (b) ends with 31 March 2022”</span><span class="legsubstitution" style="color:#000000">.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">“(1)</num>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.89in"><span class="legsubstitution" style="font-style:italic;color:#000000">During the relevant period a creditor may not present a petition for the winding up of a company under section 124 of the 1986 Act on the ground specified—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="margin-left:1.18in;text-indent:-0.3in">(a)</num>
+                    <content>
+                      <p class="ParaLevel5" style="margin-left:1.18in;text-indent:0.08in"><span class="legsubstitution" style="font-style:italic;color:#000000">in the case of a registered company, in section 122(1)(f) of that Act, …</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.89in"><span class="legsubstitution" style="font-style:italic;color:#000000">unless conditions A to D are met (subject to sub-paragraphs (9) to (11) </span><span class="legsubstitution" style="color:#000000">[which do not apply in the present case]</span><span class="legsubstitution" style="font-style:italic;color:#000000">).</span><span class="legsubstitution" style="color:#000000">”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">“(8)</num>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.89in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition D is that—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.18in"><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by one creditor, the sum of the debts (or the debt, if there is only one) owed by the company to that creditor in respect of which conditions A to C are met is £10,000 or more;</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:1.18in"><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by more than one creditor, the sum of the debts owed by the company to the creditors in respect of which conditions A to C are met is £10,000 or more.”</span></p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="ParaLevel1" style="margin-left:0.49in"><span class="legsubstitution" style="color:#000000">The “</span><span class="legsubstitution" style="font-style:italic;color:#000000">relevant period”</span><span class="legsubstitution" style="color:#000000"> being defined for such purposes by paragraph 4(1) of Schedule 10 to mean the period which “</span><span class="legsubstitution" style="font-style:italic;color:#000000">(a) begins with 1 October 2021, and (b) ends with 31 March 2022”</span><span class="legsubstitution" style="color:#000000">.</span></p>
+                  </wrapUp>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_28">
           <num>28.</num>
@@ -1220,161 +1246,165 @@
         </paragraph>
         <paragraph eId="para_34">
           <num>34.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In particular, as enacted, paragraph 1 of Part 1 of Schedule 10 provided as follows:</p>
-          </intro>
-          <subparagraph>
-            <num>“(1)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">No petition for the winding up of a registered company may be presented under section 124 of the 1986 Act on or after 27 April 2020 on the ground specified in paragraph (a) of section 123(1) of that Act, where the demand referred to in that paragraph was served during the relevant period.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(2)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">No petition for the winding up of an unregistered company may be presented under section 124 of the 1986 Act on the ground set out in section 222 of that Act, where the demand referred to in section 222 was served during the relevant period.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(3)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">In this Part of this Schedule, the “relevant period” is the period which—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.38in"><span class="legds" style="font-style:italic;color:#000000">begins with 1 March 2020, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.38in"><span class="legds" style="font-style:italic;color:#000000">ends with 30 September 2020.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(4)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">This paragraph is to be regarded as having come into force on 27 April 2020.</span><span style="font-style:italic;color:#000000">”</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.49in"><span style="color:#000000">Furthermore, paragraphs 2, 5 and 21 of Part 2 of Schedule 10 as enacted  provided –</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:-0.49in"><span style="font-style:italic;color:#000000">“2.(1)</span><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">A creditor may not during the relevant period present a petition under section 124 of the 1986 Act for the winding up of a registered company on a ground specified in section 123(1)(a) to (d) of that Act (“the relevant ground”), unless the condition in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(2)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is met.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(2)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The condition referred to in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(1)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is that the creditor has reasonable grounds for believing that—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">coronavirus has not had a financial effect on the company, or</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">the facts by reference to which the relevant ground applies would have arisen even if coronavirus had not had a financial effect on the company.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(3)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">A creditor may not during the relevant period present a petition under section 124 of the 1986 Act for the winding up of a registered company on the ground specified in section 123(1)(e) or (2) of that Act (“the relevant ground”), unless the condition in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(4)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is met.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(4)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The condition referred to in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(3)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is that the creditor has reasonable grounds for believing that—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">coronavirus has not had a financial effect on the company, or</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">the relevant ground would apply even if coronavirus had not had a financial effect on the company.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(5)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">This paragraph is to be regarded as having come into force on 27 April 2020.</span><span style="font-style:italic;color:#000000">” </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.98in;text-indent:-0.49in"><span class="legds" style="font-style:italic;color:#000000">“5(1)</span><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">This paragraph applies where—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">a creditor presents a petition for the winding up of a registered company under section 124 of the 1986 Act in the relevant period,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">the company is deemed unable to pay its debts on a ground specified in section 123(1) or (2) of that Act, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(c)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">it appears to the court that coronavirus had a financial effect on the company before the presentation of the petition.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(2)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The court may wind the company up under section 122(1)(f) of the 1986 Act on a ground specified in section 123(1)(a) to (d) of that Act only if the court is satisfied that the facts by reference to which that ground applies would have arisen even if coronavirus had not had a financial effect on the company.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(3)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The court may wind the company up under section 122(1)(f) of the 1986 Act on the ground specified in section 123(1)(e) or (2) of that Act only if the court is satisfied that the ground would apply even if coronavirus had not had a financial effect on the company.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-style:italic">(4)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">This paragraph is to be regarded as having come into force on 27 April 2020.”</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.98in;text-indent:-0.49in"><span style="font-style:italic;color:#000000">“</span><span class="legds" style="font-style:italic;color:#000000">21(1)</span><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">In this Part of this Schedule, “</span><span class="legterm" style="font-style:italic;color:#000000">relevant period</span><span class="legds" style="font-style:italic;color:#000000">” means the period which—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">begins with 27 April 2020, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">ends with</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legsubstitution" style="font-style:italic;color:#000000">30 September 2020</span><span class="legds" style="font-style:italic;color:#000000">.</span><span style="font-style:italic;color:#000000">”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(1)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">No petition for the winding up of a registered company may be presented under section 124 of the 1986 Act on or after 27 April 2020 on the ground specified in paragraph (a) of section 123(1) of that Act, where the demand referred to in that paragraph was served during the relevant period.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(2)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">No petition for the winding up of an unregistered company may be presented under section 124 of the 1986 Act on the ground set out in section 222 of that Act, where the demand referred to in section 222 was served during the relevant period.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(3)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">In this Part of this Schedule, the “relevant period” is the period which—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.38in"><span class="legds" style="font-style:italic;color:#000000">begins with 1 March 2020, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.38in"><span class="legds" style="font-style:italic;color:#000000">ends with 30 September 2020.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(4)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">This paragraph is to be regarded as having come into force on 27 April 2020.</span><span style="font-style:italic;color:#000000">”</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.49in"><span style="color:#000000">Furthermore, paragraphs 2, 5 and 21 of Part 2 of Schedule 10 as enacted  provided –</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:-0.49in"><span style="font-style:italic;color:#000000">“2.(1)</span><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">A creditor may not during the relevant period present a petition under section 124 of the 1986 Act for the winding up of a registered company on a ground specified in section 123(1)(a) to (d) of that Act (“the relevant ground”), unless the condition in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(2)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is met.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(2)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The condition referred to in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(1)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is that the creditor has reasonable grounds for believing that—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">coronavirus has not had a financial effect on the company, or</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">the facts by reference to which the relevant ground applies would have arisen even if coronavirus had not had a financial effect on the company.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(3)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">A creditor may not during the relevant period present a petition under section 124 of the 1986 Act for the winding up of a registered company on the ground specified in section 123(1)(e) or (2) of that Act (“the relevant ground”), unless the condition in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(4)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is met.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(4)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The condition referred to in sub-paragraph</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">(3)</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legds" style="font-style:italic;color:#000000">is that the creditor has reasonable grounds for believing that—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">coronavirus has not had a financial effect on the company, or</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">the relevant ground would apply even if coronavirus had not had a financial effect on the company.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(5)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">This paragraph is to be regarded as having come into force on 27 April 2020.</span><span style="font-style:italic;color:#000000">” </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:-0.49in"><span class="legds" style="font-style:italic;color:#000000">“5(1)</span><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">This paragraph applies where—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">a creditor presents a petition for the winding up of a registered company under section 124 of the 1986 Act in the relevant period,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">the company is deemed unable to pay its debts on a ground specified in section 123(1) or (2) of that Act, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(c)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">it appears to the court that coronavirus had a financial effect on the company before the presentation of the petition.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(2)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The court may wind the company up under section 122(1)(f) of the 1986 Act on a ground specified in section 123(1)(a) to (d) of that Act only if the court is satisfied that the facts by reference to which that ground applies would have arisen even if coronavirus had not had a financial effect on the company.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(3)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">The court may wind the company up under section 122(1)(f) of the 1986 Act on the ground specified in section 123(1)(e) or (2) of that Act only if the court is satisfied that the ground would apply even if coronavirus had not had a financial effect on the company.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-style:italic">(4)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legds" style="font-style:italic;color:#000000">This paragraph is to be regarded as having come into force on 27 April 2020.”</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:-0.49in"><span style="font-style:italic;color:#000000">“</span><span class="legds" style="font-style:italic;color:#000000">21(1)</span><marker name="tab" /><span class="legds" style="font-style:italic;color:#000000">In this Part of this Schedule, “</span><span class="legterm" style="font-style:italic;color:#000000">relevant period</span><span class="legds" style="font-style:italic;color:#000000">” means the period which—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">begins with 27 April 2020, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:1.48in"><span class="legds" style="font-style:italic;color:#000000">ends with</span><span class="apple-converted-space" style="font-style:italic;color:#000000"> </span><span class="legsubstitution" style="font-style:italic;color:#000000">30 September 2020</span><span class="legds" style="font-style:italic;color:#000000">.</span><span style="font-style:italic;color:#000000">”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_35">
           <num>35.</num>
@@ -1384,181 +1414,183 @@
         </paragraph>
         <paragraph eId="para_36">
           <num>36.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In particular, for present purposes paragraph 1 of Schedule 10 now materially provides:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic">“(1)</num>
-            <intro>
-              <p style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">During the relevant period a creditor may not present a petition for the winding up of a company under section 124 of the 1986 Act on the ground specified—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">in the case of a registered company, in section 122(1)(f) of that Act, …</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="legrhs" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">unless conditions A to D are met (subject to sub-paragraphs (9) to (11)).</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(2)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition A is that the creditor is owed a debt by the company—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">whose amount is liquidated,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">which has fallen due for payment, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(c)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">which is not an excluded debt.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(3)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition B is that the creditor has delivered written notice to the company in accordance with sub-paragraphs (4) to (6).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(4)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Notice under sub-paragraph (3) must contain the following—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">identification details for the company,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the name and address of the creditor,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(c)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the amount of the debt and the way in which it arises,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(d)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the date of the notice,</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(e)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">a statement that the creditor is seeking the company’s proposals for the payment of the debt, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(f)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">a statement that if no proposal to the creditor’s satisfaction is made within the period of 21 days beginning with the date on which the notice is delivered, the creditor intends to present a petition to the court for the winding-up of the company.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(5)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Notice under sub-paragraph (3) must be delivered—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">to the company’s registered office, or</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(b)</num>
-              <intro>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">in accordance with sub-paragraph (6) if—</span></p>
-              </intro>
-              <subparagraph>
-                <num class="legsubstitution" style="font-style:italic">(i)</num>
-                <intro>
-                  <p class="legclearfix" style="text-align:justify;margin-left:1.18in;text-indent:0.71in"><span class="legsubstitution" style="font-style:italic;color:#000000">for any reason it is not practicable to deliver the notice to the company’s registered office,</span></p>
-                </intro>
-                <subparagraph>
-                  <num class="legsubstitution" style="font-style:italic">(ii)</num>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic">“(1)</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">During the relevant period a creditor may not present a petition for the winding up of a company under section 124 of the 1986 Act on the ground specified—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">in the case of a registered company, in section 122(1)(f) of that Act, …</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="legrhs" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">unless conditions A to D are met (subject to sub-paragraphs (9) to (11)).</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(2)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition A is that the creditor is owed a debt by the company—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">whose amount is liquidated,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">which has fallen due for payment, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(c)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">which is not an excluded debt.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(3)</num>
                   <content>
-                    <p class="legclearfix" style="text-align:justify;margin-left:1.38in;text-indent:0.32in"><span class="legsubstitution" style="font-style:italic;color:#000000">the company has no registered office, or</span></p>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition B is that the creditor has delivered written notice to the company in accordance with sub-paragraphs (4) to (6).</span></p>
                   </content>
-                </subparagraph>
-              </subparagraph>
-              <subparagraph>
-                <num class="legsubstitution" style="font-style:italic">(iii)</num>
-                <content>
-                  <p class="legclearfix" style="text-align:justify;margin-left:1.18in;text-indent:0.71in"><span class="legsubstitution" style="font-style:italic;color:#000000">the company is an unregistered company.</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(6)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Where this sub-paragraph applies the notice may be delivered to—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the company’s last known principal place of business, or</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the secretary, or a director, manager or (in relation to an unregistered company) principal officer of the company.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(7)</num>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition C is that at end of the period of 21 days beginning with the day on which condition B was met the company has not made a proposal for the payment of the debt that is to the creditor’s satisfaction.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legsubstitution" style="font-style:italic">(8)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition D is that—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by one creditor, the sum of the debts (or the debt, if there is only one) owed by the company to that creditor in respect of which conditions A to C are met is £10,000 or more;</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-style:italic">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by more than one creditor, the sum of the debts owed by the company to the creditors in respect of which conditions A to C are met is £10,000 or more.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.11in;text-indent:0.39in"><span class="legsubstitution" style="font-style:italic;color:#000000">…”</span></p>
-            </content>
-          </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(4)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Notice under sub-paragraph (3) must contain the following—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">identification details for the company,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the name and address of the creditor,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(c)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the amount of the debt and the way in which it arises,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(d)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the date of the notice,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(e)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">a statement that the creditor is seeking the company’s proposals for the payment of the debt, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(f)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">a statement that if no proposal to the creditor’s satisfaction is made within the period of 21 days beginning with the date on which the notice is delivered, the creditor intends to present a petition to the court for the winding-up of the company.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(5)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Notice under sub-paragraph (3) must be delivered—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">to the company’s registered office, or</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(b)</num>
+                    <intro>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">in accordance with sub-paragraph (6) if—</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num class="legsubstitution" style="font-style:italic">(i)</num>
+                      <intro>
+                        <p class="legclearfix" style="text-align:justify;margin-left:1.18in;text-indent:0.71in"><span class="legsubstitution" style="font-style:italic;color:#000000">for any reason it is not practicable to deliver the notice to the company’s registered office,</span></p>
+                      </intro>
+                      <subparagraph>
+                        <num class="legsubstitution" style="font-style:italic">(ii)</num>
+                        <content>
+                          <p class="legclearfix" style="text-align:justify;margin-left:1.38in;text-indent:0.32in"><span class="legsubstitution" style="font-style:italic;color:#000000">the company has no registered office, or</span></p>
+                        </content>
+                      </subparagraph>
+                    </subparagraph>
+                    <subparagraph>
+                      <num class="legsubstitution" style="font-style:italic">(iii)</num>
+                      <content>
+                        <p class="legclearfix" style="text-align:justify;margin-left:1.18in;text-indent:0.71in"><span class="legsubstitution" style="font-style:italic;color:#000000">the company is an unregistered company.</span></p>
+                      </content>
+                    </subparagraph>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(6)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Where this sub-paragraph applies the notice may be delivered to—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the company’s last known principal place of business, or</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">the secretary, or a director, manager or (in relation to an unregistered company) principal officer of the company.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(7)</num>
+                  <content>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition C is that at end of the period of 21 days beginning with the day on which condition B was met the company has not made a proposal for the payment of the debt that is to the creditor’s satisfaction.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num class="legsubstitution" style="font-style:italic">(8)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.98in"><span class="legsubstitution" style="font-style:italic;color:#000000">Condition D is that—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by one creditor, the sum of the debts (or the debt, if there is only one) owed by the company to that creditor in respect of which conditions A to C are met is £10,000 or more;</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-style:italic">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><marker name="tab" /><span class="legsubstitution" style="font-style:italic;color:#000000">where the petition is presented by more than one creditor, the sum of the debts owed by the company to the creditors in respect of which conditions A to C are met is £10,000 or more.</span></p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.11in;text-indent:0.39in"><span class="legsubstitution" style="font-style:italic;color:#000000">…”</span></p>
+                  </wrapUp>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_37">
           <num>37.</num>
@@ -1846,19 +1878,23 @@
         </paragraph>
         <paragraph eId="para_61">
           <num>61.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I do not consider that it would be appropriate, in the context of determining a winding up petition, to consider any unpleaded claim for rectification, not least in circumstances where all of the parties to the relevant agreements are not before the court.  However, it does not seem to me that any claim for rectification is required because  I accept Ms Jones’ alternative submission that the use of the word “<span style="font-style:italic">exclusive”</span> was an obvious error which can be resolved as a matter of construction.  As drafted and when read in its totality, clause 25 plaily permits but does not require the parties to being proceedings in Hong Kong as it expressly contemplates that the parties have the right to bring proceedings in another court of competent jurisdiction.  Such other court of competent jurisdiction could not exist if the parties had contemplated that <span style="font-style:italic">only</span> the courts of Hong Kong were to have relevant jurisdiction.   As is summarised in <span style="font-style:italic">Chitty on Contracts, 34</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> ed</span> at 5-060, </p>
-          </intro>
-          <subparagraph>
-            <intro>
-              <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic;color:#000000">Where a mistake is obvious, for example because the literal meaning of the words would be absurd, and it is clear what is meant, rectification is not necessary; the matter will be dealt with as one of construction. As Brightman LJ said in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;color:#000000">East v Pantiles Plant Hire Ltd</span><span style="font-style:italic;color:#000000"> </span><span style="color:#000000">[[1982] 2 E.G.L.R. 111, 112]</span><span style="font-style:italic;color:#000000">:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.69in"><span style="font-style:italic;color:#000000">“It is clear on the authorities that a mistake in a written instrument can, in limited circumstances, be corrected as a matter of construction without obtaining a decree in an action for rectification. Two conditions must be satisfied: first, there must be a clear mistake on the face of the instrument; secondly, it must be clear what correction ought to be made in order to cure the mistake. If those conditions are satisfied, then the correction is made as a matter of construction.  If they are not satisfied, then either the Claimant must pursue an action for rectification or he must leave it to a court of construction to reach what answer it can on the basis that the uncorrected wording represents</span><span> </span><span style="font-style:italic;color:#000000">the manner in which the parties decided to express their intention.”</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <intro>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic;color:#000000">Where a mistake is obvious, for example because the literal meaning of the words would be absurd, and it is clear what is meant, rectification is not necessary; the matter will be dealt with as one of construction. As Brightman LJ said in </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;color:#000000">East v Pantiles Plant Hire Ltd</span><span style="font-style:italic;color:#000000"> </span><span style="color:#000000">[[1982] 2 E.G.L.R. 111, 112]</span><span style="font-style:italic;color:#000000">:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.69in"><span style="font-style:italic;color:#000000">“It is clear on the authorities that a mistake in a written instrument can, in limited circumstances, be corrected as a matter of construction without obtaining a decree in an action for rectification. Two conditions must be satisfied: first, there must be a clear mistake on the face of the instrument; secondly, it must be clear what correction ought to be made in order to cure the mistake. If those conditions are satisfied, then the correction is made as a matter of construction.  If they are not satisfied, then either the Claimant must pursue an action for rectification or he must leave it to a court of construction to reach what answer it can on the basis that the uncorrected wording represents</span><span> </span><span style="font-style:italic;color:#000000">the manner in which the parties decided to express their intention.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_62">
           <num>62.</num>
@@ -1897,19 +1933,23 @@
         </paragraph>
         <paragraph eId="para_67">
           <num>67.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">However, in <span style="font-style:italic">BST Properties Limited v Reorg-Apport Penzugyi RT</span> [2001] EWCA Civ 1997, which is referred to in the current (4<span style="vertical-align:super;font-size:smaller">th</span>) edition of the well-known textbook <span style="font-style:italic">Derek French, Applications to Wind Up Companies</span> at 7.637 as authority for the proposition that an exclusive jurisdiction clause does not preclude the companies court from deciding whether there is a dispute about the debt sufficient to prevent the winding up petition, the Court of Appeal (Lord Justice Jonathan Parker with Lord Justice Dyson agreeing) held, in relation to an exclusive jurisdiction clause in favour of the courts of Hungary (clause 18),</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic">whether or not proceedings raising a dispute as to the effect of the loan agreement could be stayed on the basis of clause 18, that does not in my judgment affect the question which was facing the Companies Court, namely whether the petition debt is bona fide disputed on substantial grounds.” </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">Accordingly, permission to appeal having been granted by Chadwick LJ in light of the existence of clause 18, the Court of Appeal held that Laddie J below had been entitled to conclude that (notwithstanding the various objections raised) the debt claimed was not bona fide disputed on substantial grounds and accordingly to have dismissed the company’s application to restrain further proceeding on the petition. </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic">whether or not proceedings raising a dispute as to the effect of the loan agreement could be stayed on the basis of clause 18, that does not in my judgment affect the question which was facing the Companies Court, namely whether the petition debt is bona fide disputed on substantial grounds.” </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">Accordingly, permission to appeal having been granted by Chadwick LJ in light of the existence of clause 18, the Court of Appeal held that Laddie J below had been entitled to conclude that (notwithstanding the various objections raised) the debt claimed was not bona fide disputed on substantial grounds and accordingly to have dismissed the company’s application to restrain further proceeding on the petition. </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_68">
           <num>68.</num>
@@ -1919,19 +1959,23 @@
         </paragraph>
         <paragraph eId="para_69">
           <num>69.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Although Ms Anwar submitted that <span style="font-style:italic">Al Saad</span> must be followed<span style="font-style:italic">, </span>I am not bound by that decision as a matter of judicial precedent.  As is explained in Volume 11 of <span style="font-style:italic">Halsbury’s Laws of England </span>at paragraph 32 (references omitted):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic;font-weight:bold;color:#000000">Decisions of co-ordinate courts.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;color:#000000">There is no statute or common law rule by which one court is bound</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000"> </span><span style="font-style:italic;color:#000000">to abide by the decision of another court of co-ordinate jurisdiction.</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000">  </span><span style="font-style:italic;color:#000000">Where, however, a judge of first instance after consideration has come to a definite decision on a matter arising out of a complicated and difficult enactment, the opinion has been expressed that a second judge of first instance of coordinate jurisdiction should follow that decision; and the modern practice is that a judge of first instance will as a matter of judicial comity</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000"> </span><span style="font-style:italic;color:#000000">usually follow the decision of another judge of first instance unless he is convinced that that judgment was wrong.</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000">. </span><span style="font-style:italic;color:#000000">Where there are conflicting decisions of courts of co-ordinate jurisdiction, the later decision is to be preferred if reached after full consideration of earlier decisions.</span><span style="font-style:italic">”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic;font-weight:bold;color:#000000">Decisions of co-ordinate courts.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in"><span style="font-style:italic;color:#000000">There is no statute or common law rule by which one court is bound</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000"> </span><span style="font-style:italic;color:#000000">to abide by the decision of another court of co-ordinate jurisdiction.</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000">  </span><span style="font-style:italic;color:#000000">Where, however, a judge of first instance after consideration has come to a definite decision on a matter arising out of a complicated and difficult enactment, the opinion has been expressed that a second judge of first instance of coordinate jurisdiction should follow that decision; and the modern practice is that a judge of first instance will as a matter of judicial comity</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000"> </span><span style="font-style:italic;color:#000000">usually follow the decision of another judge of first instance unless he is convinced that that judgment was wrong.</span><span style="font-style:italic;vertical-align:super;font-size:smaller;color:#000000">. </span><span style="font-style:italic;color:#000000">Where there are conflicting decisions of courts of co-ordinate jurisdiction, the later decision is to be preferred if reached after full consideration of earlier decisions.</span><span style="font-style:italic">”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_70">
           <num>70.</num>
@@ -1994,14 +2038,18 @@
         </paragraph>
         <paragraph eId="para_75">
           <num>75.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Both Ms Anwar and Ms Jones relied upon the following extract from <span style="font-style:italic">Chitty on Contracts</span> (at 26-001), as stating the correct test for the application of the doctrine of frustration:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic">A contract may be discharged on the ground of frustration when something occurs after the formation of the contract which renders it physically or commercially impossible to fulfil the contract or transforms the obligation to perform into a radically different obligation from that undertaken at the moment of entry into the contract </span>”.  </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“<span style="font-style:italic">A contract may be discharged on the ground of frustration when something occurs after the formation of the contract which renders it physically or commercially impossible to fulfil the contract or transforms the obligation to perform into a radically different obligation from that undertaken at the moment of entry into the contract </span>”.  </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_76">
           <num>76.</num>
@@ -2011,24 +2059,28 @@
         </paragraph>
         <paragraph eId="para_77">
           <num style="margin-left:0.49in;text-indent:-0.5in">77.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.49in">The authors of <span style="font-style:italic">Chitty</span> recite (at 26-012) the test which found favour with the House of Lords in <span style="font-style:italic">Davis Contractors Ltd v Fareham UDC</span> [1956] AC 696 and Ms Jones relied upon the same.  In that case, Lord Radcliffe stated (at 729) –</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.49in"><span style="font-style:italic">“frustration occurs whenever the law recognizes that without default of either party a contractual obligation has become incapable of being performed because the circumstances in which performance is called for would render it a thing radically different from that which was undertaken by the contract. Non haeo in foedera veni. It was not this that I promised to do.”</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Default" style="text-align:justify;margin-left:0.49in">Lord Reid (with Lord Somervell agreeing) spoke in similar terms (at 721):</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="Default" style="text-align:justify;margin-left:0.49in"><span style="font-style:italic"> “</span><span style="font-style:italic;color:initial">there is no need to consider what the parties thought or how they or reasonable men in their shoes would have dealt with the new situation if they had foreseen it. The question is whether the contract which they did make is, on its true construction, wide enough to apply to the new situation: if it is not, then it is at an end.</span><span style="font-style:italic">”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.49in"><span style="font-style:italic">“frustration occurs whenever the law recognizes that without default of either party a contractual obligation has become incapable of being performed because the circumstances in which performance is called for would render it a thing radically different from that which was undertaken by the contract. Non haeo in foedera veni. It was not this that I promised to do.”</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Default" style="text-align:justify;margin-left:0.49in">Lord Reid (with Lord Somervell agreeing) spoke in similar terms (at 721):</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="Default" style="text-align:justify;margin-left:0.49in"><span style="font-style:italic"> “</span><span style="font-style:italic;color:initial">there is no need to consider what the parties thought or how they or reasonable men in their shoes would have dealt with the new situation if they had foreseen it. The question is whether the contract which they did make is, on its true construction, wide enough to apply to the new situation: if it is not, then it is at an end.</span><span style="font-style:italic">”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_78">
           <num>78.</num>
