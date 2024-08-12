@@ -268,6 +268,54 @@ class WLine : ILine {
         return DOCX.Paragraphs.GetFirstTabAfter(main, properties, left);
     }
 
+    /* methods for detecting whether entire text is italics, bold, etc. */
+
+    private static IEnumerable<IInline> Flatten(IEnumerable<IInline> inlines) {
+        return inlines.SelectMany(inline => inline is IInlineContainer container ? Flatten(container.Contents) : [ inline ]);
+    }
+    private List<WText> GetNonEmptyTexts() {
+        return Flatten(contents).Where(i => i is WText).Cast<WText>().Where(t => !string.IsNullOrWhiteSpace(t.Text)).ToList();
+    }
+
+    public bool IsAllItalicized() {
+        bool fromStyle = false;
+        if (Style is not null) {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => DOCX.Util.OnOffToBool(s.StyleRunProperties?.Italic)) ?? false;
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return !withText.Select(t => t.Italic).Any(i => i.HasValue && !i.Value);
+        else
+            return withText.Select(t => t.Italic).All(i => i.HasValue && i.Value);
+    }
+
+    public bool IsAllBold() {
+        bool fromStyle = false;
+        if (Style is not null) {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => DOCX.Util.OnOffToBool(s.StyleRunProperties?.Bold)) ?? false;
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return !withText.Select(t => t.Bold).Any(b => b.HasValue && !b.Value);
+        else
+            return withText.Select(t => t.Bold).All(b => b.HasValue && b.Value);
+    }
+
+    public bool IsAllUnderlined() {
+        bool fromStyle = false;
+        if (Style is not null) {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => (s.StyleRunProperties?.Underline?.Val ?? UnderlineValues.None) != UnderlineValues.None);
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return !withText.Select(t => t.Underline).Any(u => u.HasValue && u.Value != UnderlineValues2.None);
+        else
+            return withText.Select(t => t.Underline).All(u => u.HasValue && u.Value != UnderlineValues2.None);
+    }
+
 }
 
 class WRestriction : WLine, IRestriction {
