@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/pat/2023/1495/data.xml" />
-          <FRBRdate date="2024-06-13T20:07:53" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:13" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1495</uk:number>
         <uk:cite>[2023] EWHC 1495 (Pat)</uk:cite>
-        <uk:parser>0.24.5</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>f5a256994f9d5137dc3cf3f27441337c260612a54cc6ddcf9a6fa3e5c715c1d6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -1700,19 +1700,23 @@
         </level>
         <paragraph eId="para_156">
           <num>156.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in"> This issue relates to the following integers of claim 1:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“transmitting a first message to first server apparatus, the first message including the decoded information and a first identifier identifying the device or a user of the device, wherein the decoded information includes an apparatus identification information item for allowing identification of the computing apparatus”; and</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“the first server apparatus: receiving the first message from the device; establishing the identity of the user of the device, wherein establishing the identity of the user comprises using the first identifier to determine if the user is registered with the first server apparatus”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“transmitting a first message to first server apparatus, the first message including the decoded information and a first identifier identifying the device or a user of the device, wherein the decoded information includes an apparatus identification information item for allowing identification of the computing apparatus”; and</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“the first server apparatus: receiving the first message from the device; establishing the identity of the user of the device, wherein establishing the identity of the user comprises using the first identifier to determine if the user is registered with the first server apparatus”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_157">
           <num>157.</num>
@@ -1894,14 +1898,18 @@
         </paragraph>
         <paragraph eId="para_170">
           <num>170.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">Third, they argued that the passage relating to the building security embodiment does not provide clear and unambiguous teaching that the display can also be non-electronic. The text of this passage is different in the application as filed, in that nothing is said to fall outside the scope of the claims. It provides as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“According to one alternative embodiment, the invention can be implemented in a building security system. In such embodiment, the computing apparatus 10 may comprise an electronic door lock. The encoded information item 112, 312, such as a GO as described above, may be displayed on a sign geographically proximate to the electronic door lock. Alternatively, the GO 112, 312 may be provided on an electronic display geographically proximate to the electronic door lock. In such embodiments, the encoded information item may be periodically updated following receipt of signals from the first server apparatus 14 (or from the second server apparatus 16 if the system is as shown in Figure 2).” </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“According to one alternative embodiment, the invention can be implemented in a building security system. In such embodiment, the computing apparatus 10 may comprise an electronic door lock. The encoded information item 112, 312, such as a GO as described above, may be displayed on a sign geographically proximate to the electronic door lock. Alternatively, the GO 112, 312 may be provided on an electronic display geographically proximate to the electronic door lock. In such embodiments, the encoded information item may be periodically updated following receipt of signals from the first server apparatus 14 (or from the second server apparatus 16 if the system is as shown in Figure 2).” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_171">
           <num>171.</num>
@@ -2124,14 +2132,18 @@
         </paragraph>
         <paragraph eId="para_198">
           <num>198.</num>
-          <intro>
+          <content>
             <p class="BodyText" style="margin-left:0.39in">The Claimant also relied on the teaching on p.2 lines 15-17 which states:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“Preferably, the decoded information includes an apparatus identification information item for allowing identification of computing apparatus on, by, or near to which the encoded information object is provided.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="BodyText" style="margin-left:0.79in"><span style="font-size:10pt">“Preferably, the decoded information includes an apparatus identification information item for allowing identification of computing apparatus on, by, or near to which the encoded information object is provided.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_199">
           <num>199.</num>

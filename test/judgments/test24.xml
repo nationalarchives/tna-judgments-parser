@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/39/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewfc/2022/39/data.xml" />
-          <FRBRdate date="2024-05-27T19:34:44" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:44" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>39</uk:number>
         <uk:cite>[2022] EWFC 39</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>f068aadbd0b3631d2db468f15eadba0bfc9b656d63966317c83bf7dcae9c3a7e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -795,7 +795,7 @@
           </paragraph>
           <paragraph eId="para_5">
             <num>5.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">A capacity assessment of KB by Dr Clarke, Consultant Obstetrician and Gynaecologist, on 20 January 2021 reported that:</p>
               <block name="embeddedStructure">
                 <embeddedStructure>
@@ -806,13 +806,13 @@
                   </level>
                 </embeddedStructure>
               </block>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.5in">KB has epilepsy, controlled by medication, and autism. Her IQ has been assessed as being between 39 and 45. She has physical disability meaning that she requires support for walking more than short distances. She suffers from bilateral optical nerve atrophy.</p>
-              </content>
-            </subparagraph>
+            </content>
           </paragraph>
+          <level eId="lvl_1_1">
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">KB has epilepsy, controlled by medication, and autism. Her IQ has been assessed as being between 39 and 45. She has physical disability meaning that she requires support for walking more than short distances. She suffers from bilateral optical nerve atrophy.</p>
+            </content>
+          </level>
           <paragraph eId="para_6">
             <num>6.</num>
             <content>
@@ -903,7 +903,7 @@
           </paragraph>
           <paragraph eId="para_16">
             <num>16.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">In the pre-sentence report prepared by a Probation Officer, GH is reported as having said that although he had told the police that he was never at AB’s house without AB being present, that was not true. </p>
               <block name="embeddedStructure">
                 <embeddedStructure>
@@ -914,13 +914,13 @@
                   </level>
                 </embeddedStructure>
               </block>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.5in">The Probation Officer noted that this version of events was difficult to reconcile with what he knew about KB’s condition. The sentencing judge did not accept that KB “was in any way responsible” and said to GH that this was “but another example of failing to acknowledge your own actions.”</p>
-              </content>
-            </subparagraph>
+            </content>
           </paragraph>
+          <level eId="lvl_1_2">
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">The Probation Officer noted that this version of events was difficult to reconcile with what he knew about KB’s condition. The sentencing judge did not accept that KB “was in any way responsible” and said to GH that this was “but another example of failing to acknowledge your own actions.”</p>
+            </content>
+          </level>
         </level>
         <level eId="lvl_2">
           <heading class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><span style="font-weight:bold">The Hearing</span></heading>
@@ -1051,7 +1051,7 @@
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.98in;text-indent:-0.49in">vii)</num>
-              <intro>
+              <content>
                 <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.01in">In a case where the alleged perpetrator of violence or abuse, or a person accused of dishonesty or fraud, is or may be the subject of criminal prosecution arising out of the same alleged facts, it is important to emphasise that the family court is not determining whether the person concerned is guilty of a specific criminal offence. As Cobb J 81. As I said in <span style="font-style:italic">F v M</span> [2019] EWHC 3177 at [29], in a passage endorsed by the Court of Appeal in <span style="font-style:italic">Re H-N</span> [2021] EWCA Civ 448,</p>
                 <block name="embeddedStructure">
                   <embeddedStructure>
@@ -1060,19 +1060,19 @@
                         <p class="Quote" style="margin-left:1in">"There is a risk in a case such as this, where the alleged conduct at the heart of the fact-finding enquiry is, or could be, of a criminal nature, for the family court to become too distracted by criminal law concepts. Although the family court may be tempted to consider the ingredients of an offence, and any defence available, when considering conduct which may also represent an offence, it is not of course directly concerned with the prosecution of crime."</p>
                       </content>
                     </level>
+                    <level>
+                      <content>
+                        <p class="ParaLevel2" style="margin-left:0.98in">The role of the Judge in a family case determining findings of fact is fundamentally different from the role of the judge and jury in the Crown Court. As the Court of Appeal said in <span style="font-style:italic">Re R</span> [2018] EWCA Civ 198:  </p>
+                      </content>
+                    </level>
+                    <level>
+                      <content>
+                        <p class="Quote" style="margin-left:1in">“The primary purpose of the family process is to determine, as best that may be done, what has gone on in the past, so that that knowledge may inform the ultimate welfare evaluation where the court will choose which option is best for a child with the court's eyes open to such risks as the factual determination may have established” [62]</p>
+                      </content>
+                    </level>
                   </embeddedStructure>
                 </block>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="ParaLevel2" style="margin-left:0.98in">The role of the Judge in a family case determining findings of fact is fundamentally different from the role of the judge and jury in the Crown Court. As the Court of Appeal said in <span style="font-style:italic">Re R</span> [2018] EWCA Civ 198:  </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Quote" style="margin-left:1in">“The primary purpose of the family process is to determine, as best that may be done, what has gone on in the past, so that that knowledge may inform the ultimate welfare evaluation where the court will choose which option is best for a child with the court's eyes open to such risks as the factual determination may have established” [62]</p>
-                </content>
-              </subparagraph>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.98in;text-indent:-0.49in">viii)</num>
@@ -1097,7 +1097,7 @@
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.98in;text-indent:-0.49in">x)</num>
-              <intro>
+              <content>
                 <p class="ParaLevel2" style="margin-left:0.98in">It is not uncommon for witnesses in these cases to tell lies in the course of the investigation and the hearing. The court must be careful to bear in mind that a witness may lie for various reasons, such as shame, misplaced loyalty, panic, fear, distress and the fact that the witness has lied about some matters does not mean that he or she has lied about everything:  see <span style="font-style:italic">R v Lucas</span> [1981] QB 720. In the recent Court of Appeal judgment in <span style="font-style:italic">A, B, and C (Children)</span> [2021] EWCA 451, Macur LJ advised at [57],</p>
                 <block name="embeddedStructure">
                   <embeddedStructure>
@@ -1106,19 +1106,19 @@
                         <p class="Quote" style="margin-left:1in">“I venture to suggest that it would be good practice when the tribunal is invited to proceed on the basis, or itself determines, that such a direction is called for, to seek Counsel’s submissions to identify: (i) the deliberate lie(s) upon which they seek to rely; (ii) the significant issue to which it/they relate(s), and (iii) on what basis it can be determined that the only explanation for the lie(s) is guilt. The principles of the direction will remain the same, but they must be tailored to the facts and circumstances of the witness before the court.”</p>
                       </content>
                     </level>
+                    <level>
+                      <content>
+                        <p class="ParaLevel1" style="margin-left:0.98in">In this case the Local Authority alleges that AB, CD and EF are lying about the arrangements for KB’s care, including financial arrangements,  to cover up the truth of what they did and how KB came to be raped and then to carry her child to term. </p>
+                      </content>
+                    </level>
                   </embeddedStructure>
                 </block>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="ParaLevel1" style="margin-left:0.98in">In this case the Local Authority alleges that AB, CD and EF are lying about the arrangements for KB’s care, including financial arrangements,  to cover up the truth of what they did and how KB came to be raped and then to carry her child to term. </p>
-                </content>
-              </subparagraph>
+              </content>
             </subparagraph>
           </paragraph>
           <paragraph eId="para_28">
             <num>28.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.5in">Amongst the findings that the Local Authority invites the court to make are allegations of dishonesty. In <span style="font-style:italic">Ivey v Genting Casinos (UK) (trading as Crockfords Club)</span> [2017] UKSC 67, Lord Hughes, with whom the other Supreme Court Justices agreed, held at [74],</p>
               <block name="embeddedStructure">
                 <embeddedStructure>
@@ -1129,13 +1129,13 @@
                   </level>
                 </embeddedStructure>
               </block>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.5in">That is the approach that I apply when considering in this case whether any person has been dishonest.</p>
-              </content>
-            </subparagraph>
+            </content>
           </paragraph>
+          <level eId="lvl_4_1">
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">That is the approach that I apply when considering in this case whether any person has been dishonest.</p>
+            </content>
+          </level>
           <paragraph eId="para_29">
             <num>29.</num>
             <content>

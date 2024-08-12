@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/488/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:14" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:01" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2023</uk:year>
         <uk:number>488</uk:number>
         <uk:cite>[2023] EWHC 488 (Admin)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>b6b56a9aae17eee317f0db0336ed6b59c497faf8dc67e08634ac759f93d267b6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -200,14 +200,18 @@
         </paragraph>
         <paragraph eId="lvl_2">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">2.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">In 2018, the IP applied for planning permission in respect of the Site for:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“<span style="font-style:italic">Change of use   from storage and distribution (Use Class B8) to offices (Use Class B1), including the conversion and extension of the building with the erection of three additional storeys to provide B1 office floorspace, together with the provision of associated secure cycle parking facilities and refuse and recycling storage</span>” (the “<span style="font-weight:bold">Proposal</span>”).</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“<span style="font-style:italic">Change of use   from storage and distribution (Use Class B8) to offices (Use Class B1), including the conversion and extension of the building with the erection of three additional storeys to provide B1 office floorspace, together with the provision of associated secure cycle parking facilities and refuse and recycling storage</span>” (the “<span style="font-weight:bold">Proposal</span>”).</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="lvl_3">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">3.</num>
@@ -251,72 +255,84 @@
         </paragraph>
         <paragraph eId="para_8">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">8.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">In line with the agreed recommendation of all three relevant experts, OR1 included a recommendation that permission be approved with a condition reflecting the above and detailing the contents of a Demolition and Construction Management Plan (“DCMP”).  In making that recommendation, Mr. Coughlan stated that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“<span style="font-style:italic">the onus would be put upon the applicant to find a means of constructing the development in such a way that they would not exceed the targets which they themselves have agreed are reasonable</span>”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“<span style="font-style:italic">the onus would be put upon the applicant to find a means of constructing the development in such a way that they would not exceed the targets which they themselves have agreed are reasonable</span>”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_9">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">9.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">On 6 March 2019, the Committee considered the Proposal. It resolved to grant the Permission (“the <span style="font-weight:bold">First Permission</span>”), with Condition 15 attached, embodying   the three proposed maximum levels, as follows (<span style="text-decoration-line:underline;text-decoration-style:solid">emphasis</span> added):</p>
-          </intro>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.58in;margin-right:0.08in"><span style="font-style:italic">“Notwithstanding the documents hereby approved, no development shall take place until a detailed Demolition and Construction Management Plan covering the matters set out below has been submitted to and approved in writing by the Local Planning Authority. The development shall only be carried out in accordance with the details and measures approved as   part of the demolition and construction management plan, which shall be maintained throughout the entire construction period. The plan </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">must</span><span style="font-style:italic"> include:</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.33in;text-indent:-0.25in">a)</num>
-              <intro>
-                <p class="ListParagraph" style="text-align:justify;margin-left:1.33in;margin-right:0.07in"><span style="font-style:italic">A demolition and construction method statement covering all phases of the development to include details of noise control measures and measures to preserve   air quality (including a risk assessment of the demolition and construction phase); The statement </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">must</span><span style="font-style:italic"> also include:</span></p>
-              </intro>
-              <subparagraph>
-                <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">i.</num>
-                <intro>
-                  <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">Details as to how the construction of the development can be carried out </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">without exceeding</span><span style="font-style:italic"> the following noise and vibration levels at a location (or locations) to be agreed by the Local Planning Authority: 1 NR 15Leq, 15min;</span></p>
-                </intro>
-                <subparagraph>
-                  <num style="font-style:italic">2.</num>
-                  <content>
-                    <p style="text-align:justify;margin-left:1.58in;text-indent:0.42in"><span style="font-style:italic">25dB LAmax; 3. 0.5 mm/s PPV.</span></p>
-                  </content>
-                </subparagraph>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">ii.</num>
-                <content>
-                  <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">Details of on-site testing which demonstrates that the construction of the development can be carried out without exceeding the noise and vibration levels set out at part i above.</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">iii.</num>
-                <content>
-                  <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in;text-indent:0.12in"><span style="font-style:italic">Details of noise and vibration monitoring to be carried out in accordance with the methodology set out in the Acoustic Report by Bureau Veritas dated November 2018. This monitoring data must be made available to the Local Authority when it is requested.</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">iv.</num>
-                <content>
-                  <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">A liaison strategy between the applicant and adjacent businesses and property      occupiers including a commitment to liaise with neighbours when particularly noisy periods of construction are likely to occur…”</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.58in;margin-right:0.08in"><span style="font-style:italic">“Notwithstanding the documents hereby approved, no development shall take place until a detailed Demolition and Construction Management Plan covering the matters set out below has been submitted to and approved in writing by the Local Planning Authority. The development shall only be carried out in accordance with the details and measures approved as   part of the demolition and construction management plan, which shall be maintained throughout the entire construction period. The plan </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">must</span><span style="font-style:italic"> include:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.33in;text-indent:-0.25in">a)</num>
+                    <intro>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1.33in;margin-right:0.07in"><span style="font-style:italic">A demolition and construction method statement covering all phases of the development to include details of noise control measures and measures to preserve   air quality (including a risk assessment of the demolition and construction phase); The statement </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">must</span><span style="font-style:italic"> also include:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">i.</num>
+                      <intro>
+                        <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">Details as to how the construction of the development can be carried out </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">without exceeding</span><span style="font-style:italic"> the following noise and vibration levels at a location (or locations) to be agreed by the Local Planning Authority: 1 NR 15Leq, 15min;</span></p>
+                      </intro>
+                      <subparagraph>
+                        <num style="font-style:italic">2.</num>
+                        <content>
+                          <p style="text-align:justify;margin-left:1.58in;text-indent:0.42in"><span style="font-style:italic">25dB LAmax; 3. 0.5 mm/s PPV.</span></p>
+                        </content>
+                      </subparagraph>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">ii.</num>
+                      <content>
+                        <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">Details of on-site testing which demonstrates that the construction of the development can be carried out without exceeding the noise and vibration levels set out at part i above.</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">iii.</num>
+                      <content>
+                        <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in;text-indent:0.12in"><span style="font-style:italic">Details of noise and vibration monitoring to be carried out in accordance with the methodology set out in the Acoustic Report by Bureau Veritas dated November 2018. This monitoring data must be made available to the Local Authority when it is requested.</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.25in">iv.</num>
+                      <content>
+                        <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">A liaison strategy between the applicant and adjacent businesses and property      occupiers including a commitment to liaise with neighbours when particularly noisy periods of construction are likely to occur…”</span></p>
+                      </content>
+                    </subparagraph>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_10">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">10.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The reason given for the imposition of Condition 15 was stated to be as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.58in;margin-right:0.08in"><span style="font-style:italic">“To avoid hazard and obstruction being caused to users of the public highway, in the interest of public safety and amenity, in order to prevent the construction of the development having an unacceptable environmental impact upon neighbouring properties and to protect air quality, human health and to contribute to National Air Quality Objectives.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.58in;margin-right:0.08in"><span style="font-style:italic">“To avoid hazard and obstruction being caused to users of the public highway, in the interest of public safety and amenity, in order to prevent the construction of the development having an unacceptable environmental impact upon neighbouring properties and to protect air quality, human health and to contribute to National Air Quality Objectives.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_11">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">11.</num>
@@ -423,19 +439,23 @@
         </paragraph>
         <paragraph eId="para_24">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">24.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.07in">The covering letter from the IP’s planning consultant submitting the March 22 BV Report made clear that the Defendant was fully aware of, and indeed prompted, the further testing. The letter from CMA of 14<span style="vertical-align:super;font-size:smaller">th</span> March 2022 read:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.33in;margin-right:0.07in"><marker name="tab" />“<span style="font-style:italic">At the request of LB Hackney (in consultation with LB Hackney’s Environmental Protection Officer) additional noise testing and monitoring was undertaken on site at 118 Curtain Road on 10 March in order to verify that the use of a handheld core drill is acceptable…etc..”</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Further correspondence</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.33in;margin-right:0.07in"><marker name="tab" />“<span style="font-style:italic">At the request of LB Hackney (in consultation with LB Hackney’s Environmental Protection Officer) additional noise testing and monitoring was undertaken on site at 118 Curtain Road on 10 March in order to verify that the use of a handheld core drill is acceptable…etc..”</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="BodyText" style="text-align:justify;margin-left:0.08in;text-indent:0.25in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Further correspondence</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_25">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">25.</num>
@@ -445,14 +465,18 @@
         </paragraph>
         <paragraph eId="para_26">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">26.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.07in">On 23 March 2022, the Claimant’s solicitors sent an email in reply, stating that the Claimant would be:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.07in"> “<span style="font-style:italic">instructing Vanguardia to review the revised details, testing      and conclusions in relation to the [March 22 BV Report] and condition 15 discharge application”, [before a] “full response” [could] “be provided so that the committee can consider a balanced view”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.07in"> “<span style="font-style:italic">instructing Vanguardia to review the revised details, testing      and conclusions in relation to the [March 22 BV Report] and condition 15 discharge application”, [before a] “full response” [could] “be provided so that the committee can consider a balanced view”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_27">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">27.</num>
@@ -462,14 +486,18 @@
         </paragraph>
         <paragraph eId="para_28">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">28.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The Claimant instructed Vanguardia to review the March 22 BV Report, and Vanguardia produced a review dated 28 March 2022 (“<span style="font-weight:bold">Vanguardia’s March 2022 Review</span>”), which contains a relevant “<span style="font-style:italic">Summary</span>” (at section 3), as well as a conclusion that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“<span style="font-style:italic">the [March 22 BV Report] provides no support for the contention that the Applicant is able to demonstrate that the construction can be carried out without exceeding the sound criteria of Condition 15, even on its own results, indeed it    demonstrates the opposite.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“<span style="font-style:italic">the [March 22 BV Report] provides no support for the contention that the Applicant is able to demonstrate that the construction can be carried out without exceeding the sound criteria of Condition 15, even on its own results, indeed it    demonstrates the opposite.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_29">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">29.</num>
@@ -519,44 +547,52 @@
           </subparagraph>
           <subparagraph>
             <num style="font-family:Cambria;font-size:11pt;margin-left:0.83in;text-indent:-0.25in">e.</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.83in;margin-right:0.08in">The Officer’s position in respect of the interpretation of Condition 15, as follows :</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“6.6</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">The wording of the specific part of the condition related to noise and vibration requires the submission of details, including testing at a location to be agreed by the Council, which show how construction can be carried out without exceeding the agreed noise and vibration levels, alongside details of monitoring and liaison. The relevant wording is repeated below for clarity…</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1.08in"><span style="font-style:italic">…</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.5in">6.11</num>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.07in"><span style="font-style:italic">… Whilst it is acknowledged that there may be exceedances, that does not mean      that the limit cannot not be met as no amount of noise mitigation can guarantee   non exceedances.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.5in">6.12</num>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">In the event that an exceedance does occur, the applicant will need to take necessary action to rectify the situation. To this end, the approach for monitoring data levels during construction is considered to be sound and will allow for effective monitoring of the relevant noise and vibration levels. The submitted liaison strategy is also considered to be acceptable and would facilitate effective communication between the applicant and affected neighbours. It is noted that Strongroom Studios have not objected to either of these aspects of the condition.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“6.6</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">The wording of the specific part of the condition related to noise and vibration requires the submission of details, including testing at a location to be agreed by the Council, which show how construction can be carried out without exceeding the agreed noise and vibration levels, alongside details of monitoring and liaison. The relevant wording is repeated below for clarity…</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.08in"><span style="font-style:italic">…</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.5in">6.11</num>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.07in"><span style="font-style:italic">… Whilst it is acknowledged that there may be exceedances, that does not mean      that the limit cannot not be met as no amount of noise mitigation can guarantee   non exceedances.</span></p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:1.58in;text-indent:-0.5in">6.12</num>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">In the event that an exceedance does occur, the applicant will need to take necessary action to rectify the situation. To this end, the approach for monitoring data levels during construction is considered to be sound and will allow for effective monitoring of the relevant noise and vibration levels. The submitted liaison strategy is also considered to be acceptable and would facilitate effective communication between the applicant and affected neighbours. It is noted that Strongroom Studios have not objected to either of these aspects of the condition.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="font-family:Cambria;font-size:11pt;margin-left:0.83in;text-indent:-0.25in">f.</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.83in;margin-right:0.08in">The overall position in respect of the details submitted in relation to noise and vibration, as follows [CB/19/246/6.13]:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-style:italic">“6.13</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">Overall, the details submitted in relation to noise and vibration are considered       to be acceptable and sufficient to discharge the condition. The fact that testing        has shown that one of the noise limits proposed by the Strongroom would be breached even in the existing background condition (i.e. with no construction works taking place) should also be noted, as should the studio’s location within a busy inner urban area where the existing sound insulation within the studios  does not appear to prevent the 25 dB LAmax levels being exceeded in relation to background noise.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-style:italic">“6.13</num>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.58in;margin-right:0.08in"><span style="font-style:italic">Overall, the details submitted in relation to noise and vibration are considered       to be acceptable and sufficient to discharge the condition. The fact that testing        has shown that one of the noise limits proposed by the Strongroom would be breached even in the existing background condition (i.e. with no construction works taking place) should also be noted, as should the studio’s location within a busy inner urban area where the existing sound insulation within the studios  does not appear to prevent the 25 dB LAmax levels being exceeded in relation to background noise.”</span></p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_32">
@@ -600,44 +636,52 @@
         </paragraph>
         <paragraph eId="para_36">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">36.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">Alongside the determination of the First Permission and discharge of Condition 15, the IP had submitted a further application dated 26 November 2020 (Ref: 2020/3775, the “<span style="font-weight:bold">Change of Use Application</span>”, by which the IP sought permission for: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in"><span style="font-style:italic">“Change of use from storage and distribution (Use Class B8) to offices (Use Class E(g))”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in"><span style="font-style:italic">“Change of use from storage and distribution (Use Class B8) to offices (Use Class E(g))”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_37">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">37.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">The Change of Use Application was supported by several documents, including a Design, Access and Planning Statement (the “<span style="font-weight:bold">DAS</span>”) which asserted that:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic">“1.6</num>
-            <content>
-              <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">The proposals are for change of use from B8 to E(g) use only, with no operational development / external alterations to the building.  It is proposed that the E(g) office space will be naturally ventilated (i.e., using passive ventilation) and as such there is no requirement for new mechanical plant / air handling equipment.  The sole consideration in relation to impacts on amenity is therefore the potential noise generated by the day-to-day operations of a E(g) office workspace.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">1.7</num>
-            <content>
-              <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">In this regard it is relevant to note that The Town and Country Planning (Use Classes) (Amendment) (England) Regulations 2020 defined Use Class E Commercial, Business and Service use as: “being a use, which can be carried out in any residential area without detriment to the amenity of that area by reason of noise, vibration, small, fumes, smoke, soot, ash, dust or grit.”</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">1.8</num>
-            <content>
-              <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">The proposed use of the site for E(g) office workspace purposes would therefore, by definition, not result in any adverse impacts on surrounding amenity.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">1.9</num>
-            <content>
-              <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">As the proposals do not include any operational development / external alterations, there are no design or heritage implications.  Internal works in association with the proposed change of use (which are not subject to planning control) would be limited to the installation of small power and data, the installation of new partitions to provide offices and meeting rooms, general finishes / decorative works and the installation of office furniture.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic">“1.6</num>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">The proposals are for change of use from B8 to E(g) use only, with no operational development / external alterations to the building.  It is proposed that the E(g) office space will be naturally ventilated (i.e., using passive ventilation) and as such there is no requirement for new mechanical plant / air handling equipment.  The sole consideration in relation to impacts on amenity is therefore the potential noise generated by the day-to-day operations of a E(g) office workspace.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">1.7</num>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">In this regard it is relevant to note that The Town and Country Planning (Use Classes) (Amendment) (England) Regulations 2020 defined Use Class E Commercial, Business and Service use as: “being a use, which can be carried out in any residential area without detriment to the amenity of that area by reason of noise, vibration, small, fumes, smoke, soot, ash, dust or grit.”</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">1.8</num>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">The proposed use of the site for E(g) office workspace purposes would therefore, by definition, not result in any adverse impacts on surrounding amenity.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-style:italic">1.9</num>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">As the proposals do not include any operational development / external alterations, there are no design or heritage implications.  Internal works in association with the proposed change of use (which are not subject to planning control) would be limited to the installation of small power and data, the installation of new partitions to provide offices and meeting rooms, general finishes / decorative works and the installation of office furniture.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_38">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">38.</num>
@@ -647,25 +691,33 @@
         </paragraph>
         <paragraph eId="para_39">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">39.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">By letter dated 7 January 2021, the Claimant’s solicitors notified the Defendant that the Claimant would not object to the Change of Use Application:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">“<span style="font-style:italic">on the strict understanding that planning conditions are imposed as set out below so that that the ‘development’ is carried out in strict accordance within the declared boundaries cited in the Design and Access and Planning Statement submitted as part of the [Change of Use Application]</span>”.  </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">“<span style="font-style:italic">on the strict understanding that planning conditions are imposed as set out below so that that the ‘development’ is carried out in strict accordance within the declared boundaries cited in the Design and Access and Planning Statement submitted as part of the [Change of Use Application]</span>”.  </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_40">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">40.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">Having set out that expressly conditional position, the Claimant’s solicitors requested that “<span style="font-style:italic">in the event that the Council is minded to grant permission</span>”, conditions mirroring the practical effect of Condition 15 attached to the First Permission be imposed.  In doing so, the Claimant’s solicitors also noted that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">“..<span style="font-style:italic">when the [First Permission] was heard by committee, members wanted the strict noise conditions to be imposed in order to protect Strongroom. The nature of our clients’ business has not changed since members wanted these conditions imposed and it remains a noise sensitive business and it needs to continue to be protected”</span>.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">“..<span style="font-style:italic">when the [First Permission] was heard by committee, members wanted the strict noise conditions to be imposed in order to protect Strongroom. The nature of our clients’ business has not changed since members wanted these conditions imposed and it remains a noise sensitive business and it needs to continue to be protected”</span>.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_41">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">41.</num>
@@ -680,61 +732,73 @@
         </paragraph>
         <paragraph eId="para_42">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">42.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">By delegated report dated 11 March 2021, the Defendant’s officer recommended that permission be granted for the Change of Use Application, including as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“Given that no external alterations are proposed, it is considered unlikely that the extent of construction works that would arise from the change of use would have an unacceptable impact upon neighbouring properties by reason of noise or disturbance.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">The objections/comments received in relation to the potential impact of the proposal upon the adjacent Strongroom Studio are noted as are the particular characteristics of the Strongroom in terms of noise sensitivity. The specific request of the Strongroom to impose the same noise and vibration limits that were included in the Construction and Management Plan condition attached to the earlier approval at the site (2018/0363) is also noted. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">Planning permission 2018/0363 involved the partial demolition of the roof of the building and the erection of a substantial extension. The extent of potential noise and vibration impacts upon the Strongroom arising from this proposal were considered to warrant specific mitigation measures. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">In this case, the proposal is for a change of use only with no external alterations proposed. The extent of noise and vibration impacts that would arise from the implementation of the development are such that it is considered unreasonable in this case to impose the same noise and vibration limits to this permission as were imposed for a significantly more impactful form of development. The imposition of the condition sought by Strongroom Studios is therefore not considered to meet the relevant tests set out in the NPPF for conditions. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">Whilst it is noted that the Design and Access Statement submitted with the application states that no operational development will be undertaken as part of the building to office, it is considered to remain the case that imposing the specific noise and vibration limits would not meet the relevant tests given the nature of the development.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">However, in view of the sensitivity of the Strongroom to noise and vibration, it is recommended that a standard CMP condition be imposed with this permission.  This will not set out specific noise and vibration limits but will require the submission and approval of a CMP which includes proposed methods for mitigating noise and vibration (among other matters).  The works of conversion associated with the proposed change of use may be minimal, in which case the CMP would only need to be minimal, however the works of conversion may be more extensive in which case the CMP would need to be more detailed and include specific noise and vibration limits.  This condition is considered to be reasonable for both the developer and the neighbour in the circumstances and is considered to be a suitable response to the particular characteristics of the site and the nature of the development proposed.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“Given that no external alterations are proposed, it is considered unlikely that the extent of construction works that would arise from the change of use would have an unacceptable impact upon neighbouring properties by reason of noise or disturbance.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">The objections/comments received in relation to the potential impact of the proposal upon the adjacent Strongroom Studio are noted as are the particular characteristics of the Strongroom in terms of noise sensitivity. The specific request of the Strongroom to impose the same noise and vibration limits that were included in the Construction and Management Plan condition attached to the earlier approval at the site (2018/0363) is also noted. </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">Planning permission 2018/0363 involved the partial demolition of the roof of the building and the erection of a substantial extension. The extent of potential noise and vibration impacts upon the Strongroom arising from this proposal were considered to warrant specific mitigation measures. </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">In this case, the proposal is for a change of use only with no external alterations proposed. The extent of noise and vibration impacts that would arise from the implementation of the development are such that it is considered unreasonable in this case to impose the same noise and vibration limits to this permission as were imposed for a significantly more impactful form of development. The imposition of the condition sought by Strongroom Studios is therefore not considered to meet the relevant tests set out in the NPPF for conditions. </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">Whilst it is noted that the Design and Access Statement submitted with the application states that no operational development will be undertaken as part of the building to office, it is considered to remain the case that imposing the specific noise and vibration limits would not meet the relevant tests given the nature of the development.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">However, in view of the sensitivity of the Strongroom to noise and vibration, it is recommended that a standard CMP condition be imposed with this permission.  This will not set out specific noise and vibration limits but will require the submission and approval of a CMP which includes proposed methods for mitigating noise and vibration (among other matters).  The works of conversion associated with the proposed change of use may be minimal, in which case the CMP would only need to be minimal, however the works of conversion may be more extensive in which case the CMP would need to be more detailed and include specific noise and vibration limits.  This condition is considered to be reasonable for both the developer and the neighbour in the circumstances and is considered to be a suitable response to the particular characteristics of the site and the nature of the development proposed.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_43">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">43.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">By decision notice dated 11 March 2021, the Defendant granted permission for the proposed change of use (Ref: 2020/3775, the “<span style="font-weight:bold">Second Permission</span>”), without any condition prescribing numerical noise and vibration limits during construction, but-in line with the officer’s recommendation-imposing Condition 6, which required submission and approval of a Construction Management Plan, as follows (<span style="text-decoration-line:underline;text-decoration-style:solid">emphasis</span> added):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“Notwithstanding the documents hereby approved, no development shall take place until a detailed Construction Management Plan covering the matters set out below has been submitted to and approved in writing by the Local Planning Authority.  The development shall only be carried out in accordance with the details and measures approved as part of the construction management plan, which shall be maintained throughout the entire construction period.  The plan must include: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">A demolition and construction method statement covering all phases of the development to include details of noise control measures and measures to preserve air quality (including a risk assessment of the demolition and construction phase)</span><span style="font-style:italic">; A Dust Management Plan to control dust emissions during demolition and construction; Details of compliance with ‘chapter 7 of the Cleaner Construction Machinery for London: A Low Emission Zone for Non-Road Mobile Machinery’ in relation to Only Non Road Mobile Machinery or used at the development site during the demolition and construction process along with details that all NRMM are entered on the Non Road Mobile Machinery online register at https://nrmm.london/user-nermm/register before being operated.  Where Non-Road Mobile Machinery, which does not comply with ‘chapter 7 of the Cleaner Construction Machinery for London: A Low Emission Zone for Non-Road Mobile Machinery’, is present on site all development work will stop until it has been removed from site. A demolition and construction waste management plan setting out how resources will be managed and waste controlled at all stages during a construction project, including, but not limited to, details of dust mitigation measures during site clearance and construction works (including any works of demolition of existing buildings or breaking out or crushing of concrete), the location of any mobile plant machinery, details of measures to be employed to mitigate against noise and vibration arising out of the construction process demonstrating best practical means. Details of the location where deliveries will be undertaken; the size and number of lorries expected to access the site daily; the access arrangements (including turning provision if applicable); construction traffic routing; details of parking suspensions (if required) for the duration of construction.” </span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“Notwithstanding the documents hereby approved, no development shall take place until a detailed Construction Management Plan covering the matters set out below has been submitted to and approved in writing by the Local Planning Authority.  The development shall only be carried out in accordance with the details and measures approved as part of the construction management plan, which shall be maintained throughout the entire construction period.  The plan must include: </span><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid">A demolition and construction method statement covering all phases of the development to include details of noise control measures and measures to preserve air quality (including a risk assessment of the demolition and construction phase)</span><span style="font-style:italic">; A Dust Management Plan to control dust emissions during demolition and construction; Details of compliance with ‘chapter 7 of the Cleaner Construction Machinery for London: A Low Emission Zone for Non-Road Mobile Machinery’ in relation to Only Non Road Mobile Machinery or used at the development site during the demolition and construction process along with details that all NRMM are entered on the Non Road Mobile Machinery online register at https://nrmm.london/user-nermm/register before being operated.  Where Non-Road Mobile Machinery, which does not comply with ‘chapter 7 of the Cleaner Construction Machinery for London: A Low Emission Zone for Non-Road Mobile Machinery’, is present on site all development work will stop until it has been removed from site. A demolition and construction waste management plan setting out how resources will be managed and waste controlled at all stages during a construction project, including, but not limited to, details of dust mitigation measures during site clearance and construction works (including any works of demolition of existing buildings or breaking out or crushing of concrete), the location of any mobile plant machinery, details of measures to be employed to mitigate against noise and vibration arising out of the construction process demonstrating best practical means. Details of the location where deliveries will be undertaken; the size and number of lorries expected to access the site daily; the access arrangements (including turning provision if applicable); construction traffic routing; details of parking suspensions (if required) for the duration of construction.” </span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_44">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">44.</num>
           <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in">The reason stated for the imposition of Condition 6 was as follows:</p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“REASON: To avoid hazard and obstruction being caused to users of the public highway, in the interest of public safety and amenity, in order to prevent the construction of the development having an unacceptable environmental impact upon neighbouring properties and to protect air quality, human health and to contribute to National Air Quality Objectives.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="margin-left:0.67in"><span style="font-style:italic">“REASON: To avoid hazard and obstruction being caused to users of the public highway, in the interest of public safety and amenity, in order to prevent the construction of the development having an unacceptable environmental impact upon neighbouring properties and to protect air quality, human health and to contribute to National Air Quality Objectives.”</span></p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p style="text-align:justify;text-indent:0.33in"><span style="text-decoration-line:underline;text-decoration-style:solid">The Undertaking</span></p>
@@ -835,25 +899,33 @@
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.75in;text-indent:-0.25in">b.</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.75in">The following “<span style="font-style:italic">Comments</span>”:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“The condition required the submission of a construction management plan.  The details submitted have been assessed by the Council’s Transport Team and TfL and are considered acceptable in terms of mitigating the impact upon the local and strategic highway network.  The details have also been assessed by officers in relation to the environmental impacts of construction and site waste management and are considered to be acceptable.  As such, it is considered that the condition may be discharged.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“The condition required the submission of a construction management plan.  The details submitted have been assessed by the Council’s Transport Team and TfL and are considered acceptable in terms of mitigating the impact upon the local and strategic highway network.  The details have also been assessed by officers in relation to the environmental impacts of construction and site waste management and are considered to be acceptable.  As such, it is considered that the condition may be discharged.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.75in;text-indent:-0.25in">c.</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.75in">The following “<span style="font-style:italic">Conclusion</span>”:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“The details submitted are considered sufficient and acceptable to discharge conditions 6 (Construction Management Plan) attached to planning permission 2020/3775.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in"><span style="font-style:italic">“The details submitted are considered sufficient and acceptable to discharge conditions 6 (Construction Management Plan) attached to planning permission 2020/3775.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_51">
@@ -933,14 +1005,18 @@
         </paragraph>
         <paragraph eId="para_54">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">54.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.33in">In relation to <span style="font-style:italic">ground 1</span>, the Claimant submitted that Condition 15 does not permit exceedances of the specified noise levels and that the Defendant’s planning officer misunderstood its meaning and therefore misled the Committee. Specifically, the Claimant said that the planning officer told the Committee that Condition 15 permitted exceedances, relying on this passage in OR 2 at para 6.11:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-style:italic">“[whilst] it is acknowledged that there may be exceedances, that does not mean the limit cannot be met as no amount of noise mitigation can guarantee non exceedances.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.39in"><span style="font-style:italic">“[whilst] it is acknowledged that there may be exceedances, that does not mean the limit cannot be met as no amount of noise mitigation can guarantee non exceedances.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_55">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">55.</num>
@@ -1086,29 +1162,33 @@
         </paragraph>
         <paragraph eId="para_72">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">72.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.33in">On the day of the hearing, 22 November 2022, the parties settled the claim. My Order, made by consent of all the parties, provided in part:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.33in">“..ON THE PARTIES AGREEING TERMS AS SET OUT IN THE DECLARATION AND AGREEMENT DATED 22 NOVEMBER 2022 AS APPENDED HERETO (the “Agreement”)</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.33in">IT IS ORDERED THAT:…</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.33in">1 The claims are adjourned generally. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.33in">3 Costs as between the Claimant and Defendant shall be determined in accordance with paragraph 4 of the Agreement.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.33in">“..ON THE PARTIES AGREEING TERMS AS SET OUT IN THE DECLARATION AND AGREEMENT DATED 22 NOVEMBER 2022 AS APPENDED HERETO (the “Agreement”)</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.33in">IT IS ORDERED THAT:…</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.33in">1 The claims are adjourned generally. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.33in">3 Costs as between the Claimant and Defendant shall be determined in accordance with paragraph 4 of the Agreement.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <level eId="lvl_4">
           <heading class="ParaLevel1">       4 There shall be no order as to costs between the Claimant and Interested Party.</heading>
@@ -1120,89 +1200,93 @@
         </level>
         <paragraph eId="para_73">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">73.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.33in">The Agreement provided in part as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.33in">“1.The practical effect of Condition 15 of Planning Consent 2018/0363 is that the Interested Party shall, during the construction work it carries out pursuant to the First Permission, ensure that there are no exceedances, within the Claimant’s studios, from construction noise and vibration of the following maximum levels: NR 15 Leq, 15 min, 25dB LAmax, 0.5mm/s PPV with monitoring to be undertaken at a location (or locations) to be agreed by the Local Planning Authority.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">2.In the event that there are exceedances of the maximum levels stated in paragraph 1, these will constitute breaches of Condition 15 which the Defendant may take enforcement action against. …</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">IT IS FURTHER AGREED AND DECLARED THAT BETWEEN THE CLAIMANT AND THE INTERESTED PARTY:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">6.The following terms shall have the following meanings:</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">‘Noisy works’ means works which shall not exceed a limit of 75dBA inside the Claimant’s Studios </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">‘Noisy day’ means days within the Relevant Period when the Interested Party wishes to carry out Noisy Works during the Noisy Work Hours</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">‘Noisy Works Hours’ means between 8:am and 11:am on Monday to Saturday</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">‘Relevant Period’ means the period of 4 weeks commencing on the date 4 weeks after the date of the notice referred to in paragraph 7</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">‘Construction Fee’ a fee of £1000 for each Noisy Day</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">7.The Interested Party shall give 4 weeks written notice to the Claimant of the Noisy Days within next Relevant Period.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">8 The Interested Party shall pay 50% of the Construction Fee to the Claimant on each day on which notice is served under paragraph 7. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">9 The Interested Party shall pay the remaining 50% of the Construction Fee to the Claimant on the day which is 4 weeks after the date on which notice was served under paragraph 7 and prior to the commencement of any Noisy Works associated with said notice.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">10.The Interested Party shall ensure that any works under the First Planning Permission or the Second Planning Permission do not exceed 75dBA inside the Claimant’s Studios during the Noisy Works Hours</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">11 The Interested Party shall ensure that any works under the First Planning Permission or the Second Planning Permission do not exceed the limits set out in paragraph 1 inside the Claimant’s Studios outside of the Noisy Works Hours</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">12 The Claimant and the Interested Party shall use their reasonable endeavours to agree terms for any licences which may be reasonably required by the Interested Party to enable the works approved by the First and Second Planning Permission to be constructed. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.25in">13 As between the parties, the Council shall take into account the terms of this agreement in considering the expediency of enforcement action against any breaches of the noise limits specified in the construction management plans as approved in respect of the First and Second Planning Permissions.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.33in">“1.The practical effect of Condition 15 of Planning Consent 2018/0363 is that the Interested Party shall, during the construction work it carries out pursuant to the First Permission, ensure that there are no exceedances, within the Claimant’s studios, from construction noise and vibration of the following maximum levels: NR 15 Leq, 15 min, 25dB LAmax, 0.5mm/s PPV with monitoring to be undertaken at a location (or locations) to be agreed by the Local Planning Authority.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">2.In the event that there are exceedances of the maximum levels stated in paragraph 1, these will constitute breaches of Condition 15 which the Defendant may take enforcement action against. …</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">IT IS FURTHER AGREED AND DECLARED THAT BETWEEN THE CLAIMANT AND THE INTERESTED PARTY:</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">6.The following terms shall have the following meanings:</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">‘Noisy works’ means works which shall not exceed a limit of 75dBA inside the Claimant’s Studios </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">‘Noisy day’ means days within the Relevant Period when the Interested Party wishes to carry out Noisy Works during the Noisy Work Hours</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">‘Noisy Works Hours’ means between 8:am and 11:am on Monday to Saturday</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">‘Relevant Period’ means the period of 4 weeks commencing on the date 4 weeks after the date of the notice referred to in paragraph 7</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">‘Construction Fee’ a fee of £1000 for each Noisy Day</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">7.The Interested Party shall give 4 weeks written notice to the Claimant of the Noisy Days within next Relevant Period.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">8 The Interested Party shall pay 50% of the Construction Fee to the Claimant on each day on which notice is served under paragraph 7. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">9 The Interested Party shall pay the remaining 50% of the Construction Fee to the Claimant on the day which is 4 weeks after the date on which notice was served under paragraph 7 and prior to the commencement of any Noisy Works associated with said notice.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">10.The Interested Party shall ensure that any works under the First Planning Permission or the Second Planning Permission do not exceed 75dBA inside the Claimant’s Studios during the Noisy Works Hours</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">11 The Interested Party shall ensure that any works under the First Planning Permission or the Second Planning Permission do not exceed the limits set out in paragraph 1 inside the Claimant’s Studios outside of the Noisy Works Hours</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">12 The Claimant and the Interested Party shall use their reasonable endeavours to agree terms for any licences which may be reasonably required by the Interested Party to enable the works approved by the First and Second Planning Permission to be constructed. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.25in">13 As between the parties, the Council shall take into account the terms of this agreement in considering the expediency of enforcement action against any breaches of the noise limits specified in the construction management plans as approved in respect of the First and Second Planning Permissions.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_74">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">74.</num>
@@ -1228,30 +1312,34 @@
         </paragraph>
         <paragraph eId="para_76">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">76.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The leading case is <span style="text-decoration-line:underline;text-decoration-style:solid">R (M) v Croydon LBC</span> [2012] 1 WLR 2607. Lord Neuberger MR said:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in"><span style="font-style:italic">“60..in Administrative Court cases, just as in other civil litigation, particularly where a claim has been settled, there is..a sharp difference between (i) a case where a claimant has been wholly successful..and (ii) a case where he has only succeeded in part…and (iii) a case where there has been some compromise which does not actually reflect the claimant’s claims. While in every case, the allocation of costs will depend on the specific facts, there are some points which can be made about these different types of case. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in"><span style="font-style:italic">61 In case (i), it is hard to see why the claimant should not recover all his costs, unless there is some good reason to the contrary. Whether pursuant to judgement following a contested hearing, or by virtue of a settlement, the claimant can, at least absent special circumstances, say that he has been vindicated and, as the successful party, that he should recover his costs. In the latter case, the defendants can no doubt say that they were realistic in settling, and should not be penalised in costs, but the answer to that point is that the defendants should, on that basis, have settled before the proceedings were issued: that is one of the main points of the pre-action protocols….</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic">62.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.17in"><span style="font-style:italic">In case (ii), when deciding how to allocate liability for costs after a trial, the court will normally determine questions such as how reasonable the claimant was in pursuing the unsuccessful claim, how important it was compared with the successful claim, and how much the costs were increased as a result of the claimant pursuing the unsuccessful claim. Given that there will have been a hearing, the court will be in a reasonably good position to make findings on such questions. However, where there has been a settlement, the court will, at least normally, be in a significantly worse position to make findings on such issues than where the case has been fought out. In many such cases, the court will be able to form a view as to the appropriate costs order based on such issues; in other cases, it will be much more difficult. I would accept the argument that, where the parties have settled the claimant’s substantive claims on the basis that he succeeds in part, but only part, there is often much to be said for concluding that there is no order for costs….However, where there is not a clear winner, so much would depend on the particular facts. In some such cases, it may help to consider who would have won if the matter had proceeded to trial, as, if it is tolerably clear, it may, for instance support or undermine that one of the two claims was stronger than the other…</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in"><span style="font-style:italic">63 In case (iii), the court is often unable to gauge whether there is a successful party in any respect, and if so, who it is. In such cases, therefore, there is an even more powerful argument that the default position should be no order for costs. However, in some such cases, it may well be sensible to look at the underlying claims and inquire whether it was tolerably clear who would have won if the matter had not settled. If it is, then that may well strongly support the contention that the party who would have won did better out of the settlement, and therefore did win.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in"><span style="font-style:italic">“60..in Administrative Court cases, just as in other civil litigation, particularly where a claim has been settled, there is..a sharp difference between (i) a case where a claimant has been wholly successful..and (ii) a case where he has only succeeded in part…and (iii) a case where there has been some compromise which does not actually reflect the claimant’s claims. While in every case, the allocation of costs will depend on the specific facts, there are some points which can be made about these different types of case. </span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in"><span style="font-style:italic">61 In case (i), it is hard to see why the claimant should not recover all his costs, unless there is some good reason to the contrary. Whether pursuant to judgement following a contested hearing, or by virtue of a settlement, the claimant can, at least absent special circumstances, say that he has been vindicated and, as the successful party, that he should recover his costs. In the latter case, the defendants can no doubt say that they were realistic in settling, and should not be penalised in costs, but the answer to that point is that the defendants should, on that basis, have settled before the proceedings were issued: that is one of the main points of the pre-action protocols….</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic">62.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.17in"><span style="font-style:italic">In case (ii), when deciding how to allocate liability for costs after a trial, the court will normally determine questions such as how reasonable the claimant was in pursuing the unsuccessful claim, how important it was compared with the successful claim, and how much the costs were increased as a result of the claimant pursuing the unsuccessful claim. Given that there will have been a hearing, the court will be in a reasonably good position to make findings on such questions. However, where there has been a settlement, the court will, at least normally, be in a significantly worse position to make findings on such issues than where the case has been fought out. In many such cases, the court will be able to form a view as to the appropriate costs order based on such issues; in other cases, it will be much more difficult. I would accept the argument that, where the parties have settled the claimant’s substantive claims on the basis that he succeeds in part, but only part, there is often much to be said for concluding that there is no order for costs….However, where there is not a clear winner, so much would depend on the particular facts. In some such cases, it may help to consider who would have won if the matter had proceeded to trial, as, if it is tolerably clear, it may, for instance support or undermine that one of the two claims was stronger than the other…</span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in"><span style="font-style:italic">63 In case (iii), the court is often unable to gauge whether there is a successful party in any respect, and if so, who it is. In such cases, therefore, there is an even more powerful argument that the default position should be no order for costs. However, in some such cases, it may well be sensible to look at the underlying claims and inquire whether it was tolerably clear who would have won if the matter had not settled. If it is, then that may well strongly support the contention that the party who would have won did better out of the settlement, and therefore did win.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_77">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">77.</num>
@@ -1266,15 +1354,19 @@
         </level>
         <paragraph eId="para_78">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">78.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The proper interpretation of a planning permission is a matter of law for the court: <span style="text-decoration-line:underline;text-decoration-style:solid">Barnett v Secretary of State for Communities and Local Government</span> [2009] EWCA Civ 476; [2010] 1 P &amp; CR, per Keene LJ, at [28]. In <span style="text-decoration-line:underline;text-decoration-style:solid">Lambeth LBC v Secretary of State for Housing, Communities and Local Government</span> [2019] PTSR 1388, Lord Carnwath said:</p>
-          </intro>
-          <subparagraph>
-            <num style="font-style:italic">“19.</num>
-            <content>
-              <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">In summary, whatever the legal character of the document in question, the starting point – and usually the end point – is to find “the natural and ordinary meaning” of the words there used, viewed in their particular context (statutory or otherwise) and in the light of common sense.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic">“19.</num>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:1in"><span style="font-style:italic">In summary, whatever the legal character of the document in question, the starting point – and usually the end point – is to find “the natural and ordinary meaning” of the words there used, viewed in their particular context (statutory or otherwise) and in the light of common sense.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_79">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">79.</num>
@@ -1289,20 +1381,24 @@
         </level>
         <paragraph eId="para_80">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">80.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The proper approach to be taken to officer reports to committee is now well settled, as summarised in <span style="text-decoration-line:underline;text-decoration-style:solid">Mansell v Tonbridge &amp; Malling</span><span> </span><span style="text-decoration-line:underline;text-decoration-style:solid">Borough Council &amp; Ors</span> [2017] EWCA Civ 1314 [Leading Planning Cases, p 436], at 42:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.58in;margin-right:0.07in"><span style="font-style:italic">“..The principles are not complicated. Planning officers’ reports to committee are not be read with undue rigour, but with reasonable benevolence, and bearing in mind that they are written      for councillors with local knowledge (see the judgment of Baroness Hale of Richmond in R (on the application of Morge) v Hampshire County Council [2011] UKSC 2, at paragraph 36, and       the judgment of Sullivan J, as he then was, in R v Mendip District Council, ex part Fabre (2000) 80 P &amp; CR 500, at p.509). Unless there is evidence to suggest otherwise, it may reasonably be assumed that, if the members followed the officer’s recommendation, they did so on the basis of the advice that he or she gave (see the judgment of Lewison LJ in Palmer v Herefordshire Council [2016] EWCA Civ 1061, at paragraph 7). The question for the court will always be whether, on a fair reading of the report as a whole, the officer has materially misled the members on a matter bearing upon their decision, and the error has gone uncorrected    before the decision was made. Minor or inconsequential errors may be excused. It is only if the advice in the officer’s report is such as to misdirect the members in a material way – so that, but for the flawed advice it was given, the committee’s decision would or might have been different – that the court will be able to conclude that the decision itself was rendered unlawful        by that advice.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:0.58in">(2)</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.58in;margin-right:0.07in;text-indent:0.38in"><span style="font-style:italic">Where the line is drawn between an officer’s advice that is significantly or seriously misleading – misleading in a material way – and advice that is misleading but not significantly   so will always depend on the context and circumstances in which the advice was given, and on       the possible consequence of it. There will be cases in which a planning officer has inadvertently    led a committee astray by making some significant error of fact (see, for example R (on the application of Loader) v Rother District Council [2016] EWCA Civ 795), or has plainly misdirected the members as to the meaning of a relevant policy (see, for example, Watermead Parish Council v Aylesbury Vale District Council [2017] EWCA Civ 152). There will be others where the officer has simply failed to deal with a matter on which the committee ought to receive explicit advice if the local planning authority is to be seen to have performed its decision-making duties in accordance with the law (see, for example, R (on the application of Williams) v Powys County Council [2017] EWCA Civ 427). But unless there is some distinct       and material defect in the officer’s advice, the court will not interfere.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.58in;margin-right:0.07in"><span style="font-style:italic">“..The principles are not complicated. Planning officers’ reports to committee are not be read with undue rigour, but with reasonable benevolence, and bearing in mind that they are written      for councillors with local knowledge (see the judgment of Baroness Hale of Richmond in R (on the application of Morge) v Hampshire County Council [2011] UKSC 2, at paragraph 36, and       the judgment of Sullivan J, as he then was, in R v Mendip District Council, ex part Fabre (2000) 80 P &amp; CR 500, at p.509). Unless there is evidence to suggest otherwise, it may reasonably be assumed that, if the members followed the officer’s recommendation, they did so on the basis of the advice that he or she gave (see the judgment of Lewison LJ in Palmer v Herefordshire Council [2016] EWCA Civ 1061, at paragraph 7). The question for the court will always be whether, on a fair reading of the report as a whole, the officer has materially misled the members on a matter bearing upon their decision, and the error has gone uncorrected    before the decision was made. Minor or inconsequential errors may be excused. It is only if the advice in the officer’s report is such as to misdirect the members in a material way – so that, but for the flawed advice it was given, the committee’s decision would or might have been different – that the court will be able to conclude that the decision itself was rendered unlawful        by that advice.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-style:italic;font-family:'Palatino Linotype';font-size:11pt;margin-left:0.58in">(2)</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.58in;margin-right:0.07in;text-indent:0.38in"><span style="font-style:italic">Where the line is drawn between an officer’s advice that is significantly or seriously misleading – misleading in a material way – and advice that is misleading but not significantly   so will always depend on the context and circumstances in which the advice was given, and on       the possible consequence of it. There will be cases in which a planning officer has inadvertently    led a committee astray by making some significant error of fact (see, for example R (on the application of Loader) v Rother District Council [2016] EWCA Civ 795), or has plainly misdirected the members as to the meaning of a relevant policy (see, for example, Watermead Parish Council v Aylesbury Vale District Council [2017] EWCA Civ 152). There will be others where the officer has simply failed to deal with a matter on which the committee ought to receive explicit advice if the local planning authority is to be seen to have performed its decision-making duties in accordance with the law (see, for example, R (on the application of Williams) v Powys County Council [2017] EWCA Civ 427). But unless there is some distinct       and material defect in the officer’s advice, the court will not interfere.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_81">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">81.</num>
@@ -1347,20 +1443,24 @@
         </paragraph>
         <paragraph eId="para_87">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">87.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">However, it seems to me that from an early stage the Defendant has not contested the Claimant’s interpretation. It is plain from the Defendant’s Summary Grounds of Defence for defending the claim that it was not suggesting that exceedances of the noise limits are permitted; see paragraphs 46 and 47:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“46…the Officer’s subsequent explanation that ‘[i]n the event that an exceedance does occur, the applicant will need to take necessary action to rectify the situation’…This plainly does not indicate that those exceedances would be ‘permitted’; on the contrary, it states clearly that they will not be permitted and must be rectified.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>47.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.17in">Moreover, this is consistent with the four-pronged approach to noise control set out in the condition itself. The very purpose of the monitoring and liaison strategy is to ensure that in the event there is an exceedance, it is identified and addressed. In this way, the condition <span style="text-decoration-line:underline;text-decoration-style:solid">itself </span>recognises the possibility (but not the permissibility) of exceedances (ie that they ‘may’ occur). This simply reflects the reality of construction processes.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“46…the Officer’s subsequent explanation that ‘[i]n the event that an exceedance does occur, the applicant will need to take necessary action to rectify the situation’…This plainly does not indicate that those exceedances would be ‘permitted’; on the contrary, it states clearly that they will not be permitted and must be rectified.</p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>47.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.17in">Moreover, this is consistent with the four-pronged approach to noise control set out in the condition itself. The very purpose of the monitoring and liaison strategy is to ensure that in the event there is an exceedance, it is identified and addressed. In this way, the condition <span style="text-decoration-line:underline;text-decoration-style:solid">itself </span>recognises the possibility (but not the permissibility) of exceedances (ie that they ‘may’ occur). This simply reflects the reality of construction processes.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_88">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">88.</num>
@@ -1376,35 +1476,43 @@
         </paragraph>
         <paragraph eId="para_90">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">90.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">The section of the Pre-Action Protocol response dealing with ground 1 starts by setting out Condition 15 and then says at paragraph 18:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“The purpose of these requirements was appropriately summarised by the officer in his report to the sub-committee in respect of the discharge application. At paragraph 6.6.26 [of OR1] the officer explained that under the condition, <span style="font-style:italic">the onus would be put upon the applicant to find a means of constructing the development in such a way that they would not exceed the targets which they themselves have agreed are reasonable.</span>”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“The purpose of these requirements was appropriately summarised by the officer in his report to the sub-committee in respect of the discharge application. At paragraph 6.6.26 [of OR1] the officer explained that under the condition, <span style="font-style:italic">the onus would be put upon the applicant to find a means of constructing the development in such a way that they would not exceed the targets which they themselves have agreed are reasonable.</span>”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_91">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">91.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">Paragraphs 22, 27 and 28 of the Pre-Action Protocol response say:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“22 The DCMP is ..required to demonstrate that there are means of constructing the development whilst meeting the noise and vibration limits. The condition then requires that the development is carried out ‘<span style="font-style:italic">in accordance with the details and measures approved.</span>’In other words, the IP was required to demonstrate how it intended to construct the development in accordance with noise and vibration limits, and thereafter it is required to comply with the means of construction that it has identified as capable of meeting those limits.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">27 By the Claimant’s interpretation, Condition 15 provides an absolute prohibition on noise and vibration above the levels specified in the condition. As such, the condition could not be discharged unless the material submitted by the IP demonstrated that there was a means of construction which would necessarily mean that exceedances could never occur. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">28 This interpretation cannot be right. As is discussed in paragraphs 22 and 26 of this response, such a requirement would be inconsistent with the type of noise and vibration generated on a construction site. What is possible (and what the condition explicitly requires) is for the IP to submit details of how ‘construction of the development can be carried out without exceeding…noise and vibration levels.’ The IP was required to demonstrate that the construction methods it intended to employ could meet defined criteria (Part (a) (i) of the condition). Condition 15 will now operate to require compliance with the details that have now been approved.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">“22 The DCMP is ..required to demonstrate that there are means of constructing the development whilst meeting the noise and vibration limits. The condition then requires that the development is carried out ‘<span style="font-style:italic">in accordance with the details and measures approved.</span>’In other words, the IP was required to demonstrate how it intended to construct the development in accordance with noise and vibration limits, and thereafter it is required to comply with the means of construction that it has identified as capable of meeting those limits.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">27 By the Claimant’s interpretation, Condition 15 provides an absolute prohibition on noise and vibration above the levels specified in the condition. As such, the condition could not be discharged unless the material submitted by the IP demonstrated that there was a means of construction which would necessarily mean that exceedances could never occur. </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in">28 This interpretation cannot be right. As is discussed in paragraphs 22 and 26 of this response, such a requirement would be inconsistent with the type of noise and vibration generated on a construction site. What is possible (and what the condition explicitly requires) is for the IP to submit details of how ‘construction of the development can be carried out without exceeding…noise and vibration levels.’ The IP was required to demonstrate that the construction methods it intended to employ could meet defined criteria (Part (a) (i) of the condition). Condition 15 will now operate to require compliance with the details that have now been approved.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_92">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">92.</num>
@@ -1557,25 +1665,33 @@
         </paragraph>
         <paragraph eId="para_116">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">116.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.12in">As to cumulative effects, they were considered in the BV January 22 and March 22 reports. It was stated at para 7.8 of the March 22 report that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“The outcome of the measurements and subsequent assessment of construction activities has shown that there are construction and demolition activities commonly adopted within the construction industry that meet the limits defined in Condition 15 (a) (i). However, should some of these activities be undertaken simultaneously, there is a risk of exceeding limits within the most sensitive parts of 120-124 Curtain Road. Nonetheless, it should be noted that noise and vibration monitoring will be carried out in accordance with an agreed Demolition and Construction Management Plan in order to provide live monitoring and should limits be exceeded, activities can be ceased until a suitable alternative approach can be implemented.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“The outcome of the measurements and subsequent assessment of construction activities has shown that there are construction and demolition activities commonly adopted within the construction industry that meet the limits defined in Condition 15 (a) (i). However, should some of these activities be undertaken simultaneously, there is a risk of exceeding limits within the most sensitive parts of 120-124 Curtain Road. Nonetheless, it should be noted that noise and vibration monitoring will be carried out in accordance with an agreed Demolition and Construction Management Plan in order to provide live monitoring and should limits be exceeded, activities can be ceased until a suitable alternative approach can be implemented.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_117">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">117.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.12in">Cumulative effects are also considered in OR2 (para 6.10), which is part of the analysis to which reference is made in para 6.11 where it is said that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“The comments of the acoustic consultant for the Strongroom have been considered but it is considered that the manner in which the analysis in relation to NR15 Leq 15 min has been presented in the application submission is sound.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“The comments of the acoustic consultant for the Strongroom have been considered but it is considered that the manner in which the analysis in relation to NR15 Leq 15 min has been presented in the application submission is sound.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_118">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">118.</num>
@@ -1591,14 +1707,18 @@
         </paragraph>
         <paragraph eId="para_120">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">120.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.33in;margin-right:0.08in;text-indent:0.12in">I do not think ground 4a adds materially to the previous grounds. I have already set out my view on the meaning of on-site testing, and the Members were correctly advised in the Addendum Report that:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">“There is no requirement within the wording of the condition for testing to take place within [the Studios]”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in">“There is no requirement within the wording of the condition for testing to take place within [the Studios]”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_121">
           <num style="font-family:Cambria;font-size:11pt;margin-left:0.33in;text-indent:-0.25in">121.</num>

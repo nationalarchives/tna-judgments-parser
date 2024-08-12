@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/144/data.xml" />
-          <FRBRdate date="2024-05-27T19:11:33" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:43" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>144</uk:number>
         <uk:cite>[2022] UKFTT 144 (TC)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>f5b19a9174dbef667b2e66f109f6477d60dbf9c7cac7192d5e351578a65c6871</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -327,59 +327,63 @@
           </paragraph>
           <paragraph eId="para_23">
             <num>23.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The Questionnaire includes:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“1.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Has the Company’s trade been conducted in such a way as to place a commercial obligation on the Company to provide benefits for consultants and other suppliers? <span style="font-style:italic">Yes but the Company does not want to recognise any liability to pay or provide benefits to any particular person, because that could create an actual legal liability.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">3.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Are the directors taking independent professional advice on the creation of the incentive arrangement?  <span style="font-style:italic">Yes</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">5.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">It is intended that the trust be discretionary.  That means that no beneficiary can order the trustees to make a payment to him.  Why do the directors think this is a good idea? <span style="font-style:italic">Because the obligation to contribute funds arises from commercial, but not legal liability.  If fixed benefits were provided, this could constitute an admission of a specific legal liability upon the Company to pay particular persons.  By putting monies into a trust, the Company discharges its commercial liability and does not have to take any further action.  It allows time for the trustees to consider the provision of specific benefits to specific persons.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">7.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The discretionary trust will prohibit the refund of contributions to the Company.  Why do the directors think this is a good idea?  <span style="font-style:italic">Because otherwise the Company could be said to have not in reality discharged its commercial liabilities. </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">10.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Do the directors consider that they or any other employee has an interest in any of the Trust funds?  <span style="font-style:italic">Since all employees are excluded from benefit in the Trust, it is recognised that none of the initial or future Trust funds can be said to belong in any way to any director or other employee of the Company</span>.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“1.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Has the Company’s trade been conducted in such a way as to place a commercial obligation on the Company to provide benefits for consultants and other suppliers? <span style="font-style:italic">Yes but the Company does not want to recognise any liability to pay or provide benefits to any particular person, because that could create an actual legal liability.</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">3.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Are the directors taking independent professional advice on the creation of the incentive arrangement?  <span style="font-style:italic">Yes</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">5.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">It is intended that the trust be discretionary.  That means that no beneficiary can order the trustees to make a payment to him.  Why do the directors think this is a good idea? <span style="font-style:italic">Because the obligation to contribute funds arises from commercial, but not legal liability.  If fixed benefits were provided, this could constitute an admission of a specific legal liability upon the Company to pay particular persons.  By putting monies into a trust, the Company discharges its commercial liability and does not have to take any further action.  It allows time for the trustees to consider the provision of specific benefits to specific persons.</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">7.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The discretionary trust will prohibit the refund of contributions to the Company.  Why do the directors think this is a good idea?  <span style="font-style:italic">Because otherwise the Company could be said to have not in reality discharged its commercial liabilities. </span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">10.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Do the directors consider that they or any other employee has an interest in any of the Trust funds?  <span style="font-style:italic">Since all employees are excluded from benefit in the Trust, it is recognised that none of the initial or future Trust funds can be said to belong in any way to any director or other employee of the Company</span>.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_5">
@@ -397,67 +401,79 @@
             </intro>
             <subparagraph>
               <num style="margin-left:0.39in">(1)</num>
-              <intro>
+              <content>
                 <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">The Beneficiaries are defined as: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in">“...the wives husbands widows widowers children step-children and remoter issue of past and present Providers and the spouses and former spouses (whether or not remarried) of such children and remoter issue and also means...future Providers and the wives husbands widows widowers children step-children and remoter issue of future Providers and the spouses and former spouses (whether or not remarried) of such children and remoter issue and “Beneficiary” has a corresponding meaning PROVIDED THAT no Excluded Person shall be a Beneficiary AND PROVIDED FURTHER THAT the Trustee shall not have power under the trusts hereunder to provide and shall not (whether directly or indirectly) provide any benefit to or for any Excluded Person and nor shall the Trustee participate in any trust, scheme or arrangement which is an “employee benefits scheme” for the purposes of Schedule 24 Finance Act 2003…AND FURTHER PROVIDED THAT the Trusts hereunder shall not have effect so as to constitute an arrangement such that the Trust Fund from time to time falls to be accounted for as an asset of the Founder”.</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in">“...the wives husbands widows widowers children step-children and remoter issue of past and present Providers and the spouses and former spouses (whether or not remarried) of such children and remoter issue and also means...future Providers and the wives husbands widows widowers children step-children and remoter issue of future Providers and the spouses and former spouses (whether or not remarried) of such children and remoter issue and “Beneficiary” has a corresponding meaning PROVIDED THAT no Excluded Person shall be a Beneficiary AND PROVIDED FURTHER THAT the Trustee shall not have power under the trusts hereunder to provide and shall not (whether directly or indirectly) provide any benefit to or for any Excluded Person and nor shall the Trustee participate in any trust, scheme or arrangement which is an “employee benefits scheme” for the purposes of Schedule 24 Finance Act 2003…AND FURTHER PROVIDED THAT the Trusts hereunder shall not have effect so as to constitute an arrangement such that the Trust Fund from time to time falls to be accounted for as an asset of the Founder”.</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.39in">(2)</num>
-              <intro>
+              <content>
                 <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">A “Provider” is defined as:</p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in">“...(i) a person who provides or has provided or may in future provide to the Founder services or custom or products or finance (save for items of a capital nature), and (ii) a person who provides or has provided or may in future provide finance to the Trustees or any manager from time to time of the Trust Fund”.</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in">“...(i) a person who provides or has provided or may in future provide to the Founder services or custom or products or finance (save for items of a capital nature), and (ii) a person who provides or has provided or may in future provide finance to the Trustees or any manager from time to time of the Trust Fund”.</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.39in">(3)</num>
-              <intro>
+              <content>
                 <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">“Excluded Person” means any of the persons named in Schedule 2 to the deed, and that schedule states that “Participator” and “connected with” have the meanings ascribed to them in the Income and Corporation Taxes Act 1988 (“ICTA 1988”):</p>
-              </intro>
-              <subparagraph>
-                <num style="font-size:11pt">“1.1</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the Founder; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">1.2</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person connected with the Founder;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">1.3</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any Participator in the Founder;</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">1.4</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person connected with the Participator.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">1.5</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">each and every person who presently or at any future time falls within the definition of “present or former employee” for the purposes of Section 143 and Schedule 24 Finance Act 2003 and section 245 Finance Act 2004.</p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">2.</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Any person who is or becomes an Excluded Person shall cease to be an Excluded Person if such person for any reason ceases to fall within the categories of description specified in paragraph 1 above and from the date of such cessation.”</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <paragraph>
+                      <num style="font-size:11pt">“1.1</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the Founder; </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">1.2</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person connected with the Founder;</p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">1.3</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any Participator in the Founder;</p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">1.4</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person connected with the Participator.</p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">1.5</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">each and every person who presently or at any future time falls within the definition of “present or former employee” for the purposes of Section 143 and Schedule 24 Finance Act 2003 and section 245 Finance Act 2004.</p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">2.</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Any person who is or becomes an Excluded Person shall cease to be an Excluded Person if such person for any reason ceases to fall within the categories of description specified in paragraph 1 above and from the date of such cessation.”</p>
+                      </content>
+                    </paragraph>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
           </paragraph>
           <paragraph eId="para_26">
@@ -530,61 +546,69 @@
             </intro>
             <subparagraph>
               <num style="margin-left:0.39in">(1)</num>
-              <intro>
+              <content>
                 <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">Clause 1.1.6 defines “the Beneficiaries” as: </p>
-              </intro>
-              <subparagraph>
-                <num style="font-size:11pt">“(a)</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any individual who during the Trust Period is or has been a Provider (but not including a person who was a Provider but has died before the execution of this Deed); </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">(b)</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any spouse or civil partner of any person who falls within category (a) above; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">(c)</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person who was the spouse or civil partner of any person who fell within category (a) above immediately before the death of the latter; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">(d)</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the children and remoter issue of any person, living or dead, who falls, or during his lifetime fell, within category (a) above; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">(e)</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person who is a spouse or civil partner of any person falling with category (d) above; </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="font-size:11pt">(f)</num>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person who was a spouse or civil partner of any person falling with category (d) above immediately before the death of the latter (whether or not such person has subsequently entered into marriage or civil partnership with a third party); </p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in">and “Beneficiary” has a corresponding meaning PROVIDED THAT no Excluded Person shall be a Beneficiary.”</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <paragraph>
+                      <num style="font-size:11pt">“(a)</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any individual who during the Trust Period is or has been a Provider (but not including a person who was a Provider but has died before the execution of this Deed); </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">(b)</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any spouse or civil partner of any person who falls within category (a) above; </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">(c)</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person who was the spouse or civil partner of any person who fell within category (a) above immediately before the death of the latter; </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">(d)</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the children and remoter issue of any person, living or dead, who falls, or during his lifetime fell, within category (a) above; </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">(e)</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person who is a spouse or civil partner of any person falling with category (d) above; </p>
+                      </content>
+                    </paragraph>
+                    <paragraph>
+                      <num style="font-size:11pt">(f)</num>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person who was a spouse or civil partner of any person falling with category (d) above immediately before the death of the latter (whether or not such person has subsequently entered into marriage or civil partnership with a third party); </p>
+                      </content>
+                    </paragraph>
+                    <level>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in">and “Beneficiary” has a corresponding meaning PROVIDED THAT no Excluded Person shall be a Beneficiary.”</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.39in">(2)</num>
-              <intro>
+              <content>
                 <p class="Taxbodytext2" style="margin-left:0.39in;text-indent:0.38in">A “Provider” is defined, by clause 1.1.7(a)(i), as: </p>
-              </intro>
-              <subparagraph>
-                <content>
-                  <p class="Taxquotation" style="margin-left:0.79in">“an individual who is or has been employed in the Particular Trade and who, while so employed, himself has provided or has been involved, whether as principal, partner, employee, independent contractor or otherwise, in the provision of, in either case in the course of the Particular Trade and during the Trust Period, finance to the Founder or to the Trustees or to any manager of the Trust Fund or any part thereof”.</p>
-                </content>
-              </subparagraph>
+                <block name="embeddedStructure">
+                  <embeddedStructure>
+                    <level>
+                      <content>
+                        <p class="Taxquotation" style="margin-left:0.79in">“an individual who is or has been employed in the Particular Trade and who, while so employed, himself has provided or has been involved, whether as principal, partner, employee, independent contractor or otherwise, in the provision of, in either case in the course of the Particular Trade and during the Trust Period, finance to the Founder or to the Trustees or to any manager of the Trust Fund or any part thereof”.</p>
+                      </content>
+                    </level>
+                  </embeddedStructure>
+                </block>
+              </content>
             </subparagraph>
             <subparagraph>
               <num style="margin-left:0.39in">(3)</num>
@@ -670,14 +694,18 @@
           </paragraph>
           <paragraph eId="para_38">
             <num>38.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">A fiduciary services agreement was executed that same day between MSB (as Principal) and MEL (as Fiduciary) (the “Fiduciary Services Agreement”).  The Fiduciary Services Agreement defines the Property as being “all and any property real and personal granted by the Principal to the Fiduciary”.  Clause 2, headed “Declaration of Bare Trust and Fiduciaryship” provides at 2.1:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in"> “During the Period of Appointment the Fiduciary shall have all rights to apply and deal with the Property and the income and capital thereof … as if it were the beneficial owner thereof…”. </p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in"> “During the Period of Appointment the Fiduciary shall have all rights to apply and deal with the Property and the income and capital thereof … as if it were the beneficial owner thereof…”. </p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_8">
@@ -1188,802 +1216,858 @@
           <heading class="Taxheading2">Corporation tax</heading>
           <paragraph eId="para_77">
             <num>77.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The requirement that expenses are wholly and exclusively for the purposes of the trade is set out in s54(1) CTA 2009, which provides:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“In calculating the profits of a trade, no deduction is allowed for - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">expenses not incurred wholly and exclusively for the purposes of the trade, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">losses not connected with or arising out of the trade.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“In calculating the profits of a trade, no deduction is allowed for - </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">expenses not incurred wholly and exclusively for the purposes of the trade, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">losses not connected with or arising out of the trade.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_78">
             <num>78.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The limitation on deductions for “employee benefit contributions” is set out in s1290 to s1296 CTA 2009.  Section 1290 relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This section applies if, in calculating for corporation tax purposes the profits of a company (“the employer”) of a period of account, a deduction would otherwise be allowable for the period in respect of employee benefit contributions made or to be made (but see subsection (4)).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">No deduction is allowed for the contributions for the period except so far as - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">qualifying benefits are provided, or qualifying expenses are paid, out of the contributions during the period or within 9 months from the end of it, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if the making of the contributions is itself the provision of qualifying benefits, the contributions are made during the period or within 9 months from the end of it.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">An amount disallowed under subsection (2) is allowed as a deduction for a subsequent period of account so far as—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">qualifying benefits are provided out of the contributions before the end of the subsequent period, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if the making of the contributions is itself the provision of qualifying benefits, the contributions are made before the end of the subsequent period.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(4)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This section does not apply to any deduction that is allowable-</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for anything given as consideration for goods or services provided in the course of a trade or profession,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for contributions under a registered pension scheme or under a superannuation fund to which section 615(3) of ICTA applies,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for contributions under a qualifying overseas pension scheme in respect of an individual who is a relevant migrant member of the pension scheme in relation to the contributions,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(d)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for contributions under an accident benefit scheme,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(e)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">under Chapter 1 of Part 11 (share incentive plans),</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(f)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">under section 67 of FA 1989 (qualifying employee share ownership trusts), or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(g)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">under Part 12 (other relief for employee share acquisitions).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This section applies if, in calculating for corporation tax purposes the profits of a company (“the employer”) of a period of account, a deduction would otherwise be allowable for the period in respect of employee benefit contributions made or to be made (but see subsection (4)).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">No deduction is allowed for the contributions for the period except so far as - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">qualifying benefits are provided, or qualifying expenses are paid, out of the contributions during the period or within 9 months from the end of it, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if the making of the contributions is itself the provision of qualifying benefits, the contributions are made during the period or within 9 months from the end of it.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">An amount disallowed under subsection (2) is allowed as a deduction for a subsequent period of account so far as—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">qualifying benefits are provided out of the contributions before the end of the subsequent period, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if the making of the contributions is itself the provision of qualifying benefits, the contributions are made before the end of the subsequent period.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This section does not apply to any deduction that is allowable-</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for anything given as consideration for goods or services provided in the course of a trade or profession,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for contributions under a registered pension scheme or under a superannuation fund to which section 615(3) of ICTA applies,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for contributions under a qualifying overseas pension scheme in respect of an individual who is a relevant migrant member of the pension scheme in relation to the contributions,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(d)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">for contributions under an accident benefit scheme,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(e)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">under Chapter 1 of Part 11 (share incentive plans),</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(f)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">under section 67 of FA 1989 (qualifying employee share ownership trusts), or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(g)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">under Part 12 (other relief for employee share acquisitions).”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_79">
             <num>79.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 1291 CTA 2009 was amended during the periods in issue.  It was enacted as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of section 1290 an “employee benefit contribution” is made if, as a result of any act or omission - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">property is held, or may be used, under an employee benefit scheme, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is an increase in the total value of property that is so held or may be so used (or a reduction in any liabilities under an employee benefit scheme).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For this purpose “employee benefit scheme” means a trust, scheme or other arrangement for the benefit of persons who are, or include, present or former employees of the employer.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of section 1290 an “employee benefit contribution” is made if, as a result of any act or omission - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">property is held, or may be used, under an employee benefit scheme, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is an increase in the total value of property that is so held or may be so used (or a reduction in any liabilities under an employee benefit scheme).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For this purpose “employee benefit scheme” means a trust, scheme or other arrangement for the benefit of persons who are, or include, present or former employees of the employer.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_80">
             <num>80.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">However, with effect in relation to acts or omissions occurring on or after 6 April 2011, s1291 was amended.  The language “or persons linked with present or former employees of the employer” was added at the end of s1291(2), and s1291(3) and (4) were introduced as below:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Section 554Z1 of ITEPA 2003 applies for the purposes of subsection (2) but as if references to A were to a present or former employee of the employer.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(4)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">So far as it is not covered by subsection (2), “employee benefit scheme” also means—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an arrangement (“the relevant arrangement”) within subsection (1)(b) of section 554A of ITEPA 2003 to which subsection (1)(c) of that section applies, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any other arrangement connected (directly or indirectly) with the relevant arrangement.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Section 554Z1 of ITEPA 2003 applies for the purposes of subsection (2) but as if references to A were to a present or former employee of the employer.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">So far as it is not covered by subsection (2), “employee benefit scheme” also means—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an arrangement (“the relevant arrangement”) within subsection (1)(b) of section 554A of ITEPA 2003 to which subsection (1)(c) of that section applies, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any other arrangement connected (directly or indirectly) with the relevant arrangement.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_23">
           <heading class="Taxheading2">Income tax – General earnings </heading>
           <paragraph eId="para_81">
             <num>81.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 9 ITEPA 2003 relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The amount of employment income which is charged to tax under this Part for a particular tax year is as follows.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In the case of general earnings, the amount charged is the net taxable earnings from an employment in the year.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The amount of employment income which is charged to tax under this Part for a particular tax year is as follows.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In the case of general earnings, the amount charged is the net taxable earnings from an employment in the year.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_82">
             <num>82.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 62 ITEPA 2003 provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This section explains what is meant by “earnings” in the employment income Parts.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In those Parts “earnings”, in relation to an employment, means - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any salary, wages or fee,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any gratuity or other profit or incidental benefit of any kind obtained by the employee if it is money or money's worth, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">anything else that constitutes an emolument of the employment.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (2) “money's worth” means something that is - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">of direct monetary value to the employee, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">capable of being converted into money or something of direct monetary value to the employee.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(4)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Subsection (1) does not affect the operation of statutory provisions that provide for amounts to be treated as earnings (and see section 721(7)).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This section explains what is meant by “earnings” in the employment income Parts.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In those Parts “earnings”, in relation to an employment, means - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any salary, wages or fee,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any gratuity or other profit or incidental benefit of any kind obtained by the employee if it is money or money's worth, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">anything else that constitutes an emolument of the employment.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (2) “money's worth” means something that is - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">of direct monetary value to the employee, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">capable of being converted into money or something of direct monetary value to the employee.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Subsection (1) does not affect the operation of statutory provisions that provide for amounts to be treated as earnings (and see section 721(7)).”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_24">
           <heading class="Taxheading2">Income tax – Part 7A ITEPA 2003</heading>
           <paragraph eId="para_83">
             <num>83.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 554A ITEPA 2003 relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Chapter 2 applies if - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person (“A”) is an employee, or a former or prospective employee, of another person (“B”),</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is an arrangement (“the relevant arrangement”) to which A is a party or which otherwise (wholly or partly) covers or relates to A,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement so far as it covers or relates to A,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in"> is (wholly or partly) a means of providing, or is otherwise concerned (wholly or partly) with the provision of, rewards or recognition or loans in connection with A's employment, or former or prospective employment, with B,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(d)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a relevant step is taken by a relevant third person, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(e)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant step is taken (wholly or partly) in pursuance of the relevant arrangement, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is some other connection (direct or indirect) between the relevant step and the relevant arrangement.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part “relevant step” means a step within section 554B, 554C or 554D.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Subsection (1) is subject to subsection (4) and sections 554E to 554Y.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(5)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (1)(b) and (c)(ii) references to A include references to any person linked with A.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(6)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(c) it does not matter if the relevant arrangement does not include details of the steps which will or may be taken in connection with providing, in essence, rewards or recognition or loans as mentioned (for example, details of any sums of money or assets which will or may be involved or details of how or when or by whom or in whose favour any step will or may be taken).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(7)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (1)(d) “relevant third person” means - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A acting as a trustee,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">B acting as a trustee, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person other than A and B.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(11)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(e) - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant step is connected with the relevant arrangement if (for example) the relevant step is taken (wholly or partly) in pursuance of an arrangement at one end of a series of arrangements with the relevant arrangement being at the other end, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it does not matter if the person taking the relevant step is unaware of the relevant arrangement.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(12)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(c) and (e) in particular, all relevant circumstances are to be taken into account in order to get to the essence of the matter.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Chapter 2 applies if - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person (“A”) is an employee, or a former or prospective employee, of another person (“B”),</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is an arrangement (“the relevant arrangement”) to which A is a party or which otherwise (wholly or partly) covers or relates to A,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement so far as it covers or relates to A,</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in"> is (wholly or partly) a means of providing, or is otherwise concerned (wholly or partly) with the provision of, rewards or recognition or loans in connection with A's employment, or former or prospective employment, with B,</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(d)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a relevant step is taken by a relevant third person, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(e)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant step is taken (wholly or partly) in pursuance of the relevant arrangement, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is some other connection (direct or indirect) between the relevant step and the relevant arrangement.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part “relevant step” means a step within section 554B, 554C or 554D.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Subsection (1) is subject to subsection (4) and sections 554E to 554Y.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(5)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (1)(b) and (c)(ii) references to A include references to any person linked with A.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(6)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(c) it does not matter if the relevant arrangement does not include details of the steps which will or may be taken in connection with providing, in essence, rewards or recognition or loans as mentioned (for example, details of any sums of money or assets which will or may be involved or details of how or when or by whom or in whose favour any step will or may be taken).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(7)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (1)(d) “relevant third person” means - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A acting as a trustee,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">B acting as a trustee, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any person other than A and B.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(11)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(e) - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant step is connected with the relevant arrangement if (for example) the relevant step is taken (wholly or partly) in pursuance of an arrangement at one end of a series of arrangements with the relevant arrangement being at the other end, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it does not matter if the person taking the relevant step is unaware of the relevant arrangement.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(12)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(c) and (e) in particular, all relevant circumstances are to be taken into account in order to get to the essence of the matter.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_84">
             <num>84.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 554B sets out the circumstances in which a person takes a relevant step and relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A person (“P”) takes a step within this section if - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a sum of money or asset held by or on behalf of P is earmarked (however informally) by P with a view to a later relevant step being taken by P or any other person (on or following the meeting of any condition or otherwise) in relation to - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">that sum of money or asset, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any sum of money or asset which may arise or derive (directly or indirectly) from it, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a sum of money or asset otherwise starts being held by or on behalf of P, specifically with a view, so far as P is concerned, to a later relevant step being taken by P or any other person (on or following the meeting of any condition or otherwise) in relation to - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">that sum of money or asset, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any sum of money or asset which may arise or derive (directly or indirectly) from it.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(a) and (b) it does not matter - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if details of the later relevant step have not been worked out (for example, details of the sum of money or asset which will or may be the subject of the step or details of how or when or by whom or in whose favour the step will or may be taken),</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if any condition which would have to be met before the later relevant step is taken might never be met, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if A, or any person linked with A, has no legal right to have a relevant step taken in relation to any sum of money or asset mentioned in subsection (1)(a)(i) or (ii) or (b)(i) or (ii) (as the case may be).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(b) it does not matter whether or not the sum of money or asset in question has previously been held by or on behalf of P on a basis which is different to that mentioned in subsection (1)(b).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A person (“P”) takes a step within this section if - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a sum of money or asset held by or on behalf of P is earmarked (however informally) by P with a view to a later relevant step being taken by P or any other person (on or following the meeting of any condition or otherwise) in relation to - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">that sum of money or asset, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any sum of money or asset which may arise or derive (directly or indirectly) from it, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a sum of money or asset otherwise starts being held by or on behalf of P, specifically with a view, so far as P is concerned, to a later relevant step being taken by P or any other person (on or following the meeting of any condition or otherwise) in relation to - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">that sum of money or asset, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any sum of money or asset which may arise or derive (directly or indirectly) from it.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(a) and (b) it does not matter - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if details of the later relevant step have not been worked out (for example, details of the sum of money or asset which will or may be the subject of the step or details of how or when or by whom or in whose favour the step will or may be taken),</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if any condition which would have to be met before the later relevant step is taken might never be met, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if A, or any person linked with A, has no legal right to have a relevant step taken in relation to any sum of money or asset mentioned in subsection (1)(a)(i) or (ii) or (b)(i) or (ii) (as the case may be).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For the purposes of subsection (1)(b) it does not matter whether or not the sum of money or asset in question has previously been held by or on behalf of P on a basis which is different to that mentioned in subsection (1)(b).”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_85">
             <num>85.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 554C sets out other circumstances in which a person takes a relevant step and relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A person (“P”) takes a step within this section if P - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">pays a sum of money to a relevant person,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">transfers an asset to a relevant person,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">takes a step by virtue of which a relevant person acquires an asset within subsection (4),</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(d)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">makes available a sum of money or asset for use, or makes it available under an arrangement which permits its use - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">as security for a loan made or to be made to a relevant person, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">otherwise as security for the meeting of any liability, or the performance of any undertaking, which a relevant person has or will have, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(e)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">grants to a relevant person a lease of any premises the effective duration of which is likely to exceed 21 years.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (1) “relevant person” - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">means A or a person chosen by A or within a class of person chosen by A, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">includes, if P is taking a step on A's behalf or otherwise at A's direction or request, any other person.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (2) references to A include references to any person linked with A.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A person (“P”) takes a step within this section if P - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">pays a sum of money to a relevant person,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">transfers an asset to a relevant person,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">takes a step by virtue of which a relevant person acquires an asset within subsection (4),</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(d)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">makes available a sum of money or asset for use, or makes it available under an arrangement which permits its use - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">as security for a loan made or to be made to a relevant person, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">otherwise as security for the meeting of any liability, or the performance of any undertaking, which a relevant person has or will have, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(e)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">grants to a relevant person a lease of any premises the effective duration of which is likely to exceed 21 years.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (1) “relevant person” - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">means A or a person chosen by A or within a class of person chosen by A, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">includes, if P is taking a step on A's behalf or otherwise at A's direction or request, any other person.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In subsection (2) references to A include references to any person linked with A.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_86">
             <num>86.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The charge under Part 7A then arises by virtue of s554Z2, which provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If this Chapter applies by reason of a relevant step, the value of the relevant step (see section 554Z3) counts as employment income of A in respect of A's employment with B - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if the relevant step is taken before A's employment with B starts, for the tax year in which the employment starts, or </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">otherwise, for the tax year in which the relevant step is taken. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the relevant step gives rise to - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an amount which (apart from this subsection) would be treated as earnings of A under a provision of the benefits code, or </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any income of A which (apart from this subsection) would be dealt with under Chapter 3of Part 4 of ITTOIA 2005, </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">subsection (1) applies instead of that provision of the benefits code or Chapter 3 of Part 4 of ITTOIA 2005 (as the case may be). </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In particular, in a case in which the relevant step is the making of an employment-related loan (within the meaning of Chapter 7 of Part 3), the effect of subsection (2)(a) is that the loan is not to be treated for any tax year as a taxable cheap loan for the purposes of that Chapter.” </p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If this Chapter applies by reason of a relevant step, the value of the relevant step (see section 554Z3) counts as employment income of A in respect of A's employment with B - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if the relevant step is taken before A's employment with B starts, for the tax year in which the employment starts, or </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">otherwise, for the tax year in which the relevant step is taken. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the relevant step gives rise to - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an amount which (apart from this subsection) would be treated as earnings of A under a provision of the benefits code, or </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any income of A which (apart from this subsection) would be dealt with under Chapter 3of Part 4 of ITTOIA 2005, </p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">subsection (1) applies instead of that provision of the benefits code or Chapter 3 of Part 4 of ITTOIA 2005 (as the case may be). </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In particular, in a case in which the relevant step is the making of an employment-related loan (within the meaning of Chapter 7 of Part 3), the effect of subsection (2)(a) is that the loan is not to be treated for any tax year as a taxable cheap loan for the purposes of that Chapter.” </p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_87">
             <num>87.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 554Z3 deals with the determination of value:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the relevant step involves a sum of money, its value is the amount of the sum. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In any other case, the value of the relevant step is— </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the market value when the relevant step is taken of the asset which is the subject of the step, or </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if higher, the cost of the relevant step.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the relevant step involves a sum of money, its value is the amount of the sum. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In any other case, the value of the relevant step is— </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the market value when the relevant step is taken of the asset which is the subject of the step, or </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if higher, the cost of the relevant step.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_88">
             <num>88.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The interpretation clause, s554Z, includes:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">"Arrangement" includes an agreement, scheme, settlement, transaction, trust or understanding (whether or not it is legally enforceable)”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">"Arrangement" includes an agreement, scheme, settlement, transaction, trust or understanding (whether or not it is legally enforceable)”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_25">
           <heading class="Taxheading2">NICs</heading>
           <paragraph eId="para_89">
             <num>89.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 6 Social Security Contributions and Benefits Act 1992 (“SSCBA 1992”) imposes a liability for Class 1 NICs in respect of an employed earner’s employment.  Section 8 provides for the calculation of that liability.  Section 3(1) gives the definition of earnings and earner as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part of this Act and Parts II to V below - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">“earnings” includes any remuneration or profit derived from an employment; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">“earner” shall be construed accordingly.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part of this Act and Parts II to V below - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">“earnings” includes any remuneration or profit derived from an employment; and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">“earner” shall be construed accordingly.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_90">
             <num>90.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 25 provides that Schedule 3 to SSCBA 1992 specifies payments which are to be disregarded in the calculation of earnings from an employed earner's employment for the purpose of earnings-related contributions.  Part X of Schedule 3 lists payments that are to be disregarded, and includes at paragraph 5:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“5 Gratuities and offerings</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A payment of, or in respect of, a gratuity or offering which -</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">satisfies the condition in either sub-paragraph (2) or (3); and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">is not within sub-paragraph (4) or (5).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The condition in this sub-paragraph is that the payment -</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">is not made, directly or indirectly, by the secondary contributor; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">does not comprise or represent sums previously paid to the secondary contributor.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The condition in this sub-paragraph is that the secondary contributor does not allocate the payment, directly or indirectly, to the earner.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(4)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A payment made to the earner by a person who is connected with the secondary contributor is within this sub-paragraph unless -</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is -</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">made in recognition for personal services rendered to the connected person by the earner or by another earner employed by the same secondary contributor; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">similar in amount to that which might reasonably be expected to be paid by a person who is not so connected; or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the person making the payment does so in his capacity as a tronc-master.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(5)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A payment made to the earner is within this sub-paragraph if it is made by a trustee holding property for any persons who include, or any class of persons which includes, the earner.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">In this sub-paragraph “trustee” does not include a tronc-master.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(6)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A person is connected with the secondary contributor for the purposes of this paragraph if his relationship with the secondary contributor, or where the employer and secondary contributor are different, with either of them, is as described in subsection (2), (3), (4), (5), (6) or (7) of section 839 of the Taxes Act (connected persons).”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“5 Gratuities and offerings</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A payment of, or in respect of, a gratuity or offering which -</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">satisfies the condition in either sub-paragraph (2) or (3); and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">is not within sub-paragraph (4) or (5).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The condition in this sub-paragraph is that the payment -</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">is not made, directly or indirectly, by the secondary contributor; and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">does not comprise or represent sums previously paid to the secondary contributor.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The condition in this sub-paragraph is that the secondary contributor does not allocate the payment, directly or indirectly, to the earner.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A payment made to the earner by a person who is connected with the secondary contributor is within this sub-paragraph unless -</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is -</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">made in recognition for personal services rendered to the connected person by the earner or by another earner employed by the same secondary contributor; and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">similar in amount to that which might reasonably be expected to be paid by a person who is not so connected; or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the person making the payment does so in his capacity as a tronc-master.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(5)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A payment made to the earner is within this sub-paragraph if it is made by a trustee holding property for any persons who include, or any class of persons which includes, the earner.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">In this sub-paragraph “trustee” does not include a tronc-master.</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(6)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A person is connected with the secondary contributor for the purposes of this paragraph if his relationship with the secondary contributor, or where the employer and secondary contributor are different, with either of them, is as described in subsection (2), (3), (4), (5), (6) or (7) of section 839 of the Taxes Act (connected persons).”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_91">
             <num>91.</num>
@@ -1996,327 +2080,355 @@
           <heading class="Taxheading2">Procedure – enquiries, discovery assessments, decisions and determinations</heading>
           <paragraph eId="para_92">
             <num>92.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Enquiries were opened into CIAISL’s company tax returns for the accounting periods ended 31 December 2013 and 31 December 2014 under paragraph 24 of Schedule 18 Finance Act 1998 (“FA 1998”) which relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">An officer of Revenue and Customs may enquire into a company tax return if they give notice to the company of their intention to do so (“notice of enquiry”) within the time allowed.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the return was delivered on or before the filing date, notice of enquiry may be given at any time up to twelve months from the day on which the return was delivered (subject to sub-paragraph (6)).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(3)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the return was delivered after the filing date, notice of enquiry may be given at any time up to and including the 31st January, 30th April, 31st July or 31st October next following the first anniversary of the day on which the return was delivered.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(4)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the company amends its return, notice of enquiry may be given at any time up to and including the 31st January, 30th April, 31st July or 31st October next following the first anniversary of the day on which the amendment was made.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">An officer of Revenue and Customs may enquire into a company tax return if they give notice to the company of their intention to do so (“notice of enquiry”) within the time allowed.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the return was delivered on or before the filing date, notice of enquiry may be given at any time up to twelve months from the day on which the return was delivered (subject to sub-paragraph (6)).</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(3)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the return was delivered after the filing date, notice of enquiry may be given at any time up to and including the 31st January, 30th April, 31st July or 31st October next following the first anniversary of the day on which the return was delivered.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If the company amends its return, notice of enquiry may be given at any time up to and including the 31st January, 30th April, 31st July or 31st October next following the first anniversary of the day on which the amendment was made.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_93">
             <num>93.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Discovery assessments were issued in respect of the accounting periods ended 31 December 2011 and 31 December 2012 under paragraph 41 of Schedule 18 FA 1998 which relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If an officer of Revenue and Customs discovers as regards an accounting period of a company that - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an amount which ought to have been assessed to tax has not been assessed, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an assessment to tax is or has become insufficient, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">relief has been given which is or has become excessive,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in"> they may make an assessment (a “discovery assessment”) in the amount or further amount which ought in their opinion to be charged in order to make good to the Crown the loss of tax.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">If an officer of Revenue and Customs discovers as regards an accounting period of a company that - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an amount which ought to have been assessed to tax has not been assessed, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">an assessment to tax is or has become insufficient, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">relief has been given which is or has become excessive,</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in"> they may make an assessment (a “discovery assessment”) in the amount or further amount which ought in their opinion to be charged in order to make good to the Crown the loss of tax.</p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_94">
             <num>94.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Paragraph 42 provides that HMRC may only issue a discovery assessment for an accounting period for which the company has delivered a company tax return if the circumstances in paragraphs 43 or 44 are met.  They provide:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“43 Loss of tax brought about carelessly or deliberately </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">A discovery assessment for an accounting period for which the company has delivered a company tax return, or a discovery determination, may be made if the situation mentioned in paragraph 41(1) or (2) was brought about carelessly or deliberately by – </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the company, or </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person acting on behalf of the company, or </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person who was a partner of the company at the relevant time.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">44 Situation not disclosed by return or related documents</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A discovery assessment for an accounting period for which the company has delivered a company tax return, or a discovery determination, may be made if at the time when an officer of Revenue and Customs - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">ceased to be entitled to give a notice of enquiry into the return, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">in a case where a notice of enquiry into the return was given</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">issued a partial closure notice as regards a matter to which the situation mentioned in paragraph 41(1) or (2) relates, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if no such partial closure notice was issued, issued a final closure notice,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">they could not have been reasonably expected, on the basis of the information made available to them before that time, to be aware of the situation mentioned in paragraph 41(1) or (2).</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For this purpose information is regarded as made available to an officer of Revenue and Customs if - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is contained in a relevant return by the company or in documents accompanying any such return…”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“43 Loss of tax brought about carelessly or deliberately </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">A discovery assessment for an accounting period for which the company has delivered a company tax return, or a discovery determination, may be made if the situation mentioned in paragraph 41(1) or (2) was brought about carelessly or deliberately by – </p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the company, or </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person acting on behalf of the company, or </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person who was a partner of the company at the relevant time.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">44 Situation not disclosed by return or related documents</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A discovery assessment for an accounting period for which the company has delivered a company tax return, or a discovery determination, may be made if at the time when an officer of Revenue and Customs - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">ceased to be entitled to give a notice of enquiry into the return, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">in a case where a notice of enquiry into the return was given</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">issued a partial closure notice as regards a matter to which the situation mentioned in paragraph 41(1) or (2) relates, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">if no such partial closure notice was issued, issued a final closure notice,</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">they could not have been reasonably expected, on the basis of the information made available to them before that time, to be aware of the situation mentioned in paragraph 41(1) or (2).</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">For this purpose information is regarded as made available to an officer of Revenue and Customs if - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is contained in a relevant return by the company or in documents accompanying any such return…”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_95">
             <num>95.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The time limits for issuing a discovery assessment are set out in paragraph 46 of Schedule 18 FA 1998.  There is no dispute that the discovery assessments (if valid) were issued in time.  Paragraph 47(1) sets out the assessment procedure and provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Notice of an assessment to tax on a company must be servcd on the company stating – </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the date on which the notice is issued; and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the time within which any appeal against the assessment may be made.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Notice of an assessment to tax on a company must be servcd on the company stating – </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the date on which the notice is issued; and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the time within which any appeal against the assessment may be made.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_96">
             <num>96.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The Section 8 Decisions were made pursuant to s8 Social Security (Transfer of Functions, etc.) Act 1999.  Rules relating to the making of decisions are set out in the Social Security Contributions (Decisions and Appeals) Regulations 1999, regulation 4(1) of which provides:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“A decision which, by virtue of section 8 of the Transfer Act or Article 7 of the Transfer Order, falls to be made by an officer of the Board under or in connection with the Social Security Contributions and Benefits Act 1992, the Social Security Administration Act 1992, the Social Security Contributions and Benefits (Northern Ireland) Act 1992, the Social Security Administration (Northern Ireland) Act 1992, the Jobseekers Act 1995 or the Jobseekers (Northern Ireland) Order 1995–</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">must be made to the best of his information and belief, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">must state the name of every person in respect of whom it is made and–</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the date from which it has effect, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the period for which it has effect.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“A decision which, by virtue of section 8 of the Transfer Act or Article 7 of the Transfer Order, falls to be made by an officer of the Board under or in connection with the Social Security Contributions and Benefits Act 1992, the Social Security Administration Act 1992, the Social Security Contributions and Benefits (Northern Ireland) Act 1992, the Social Security Administration (Northern Ireland) Act 1992, the Jobseekers Act 1995 or the Jobseekers (Northern Ireland) Order 1995–</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">must be made to the best of his information and belief, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">must state the name of every person in respect of whom it is made and–</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the date from which it has effect, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the period for which it has effect.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_97">
             <num>97.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The Regulation 80 Determinations were made under regulation 80 of the PAYE Regulations 2003, which relevantly provides:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This regulation applies if it appears to HMRC that there may be tax payable for a tax year under … regulation 68 by an employer which has neither been - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">paid to the Inland Revenue, nor</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">certified by the Inland Revenue under [various regulations].</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">HMRC may determine the amount of that tax to the best of their judgment, and serve notice of their determination on the employer.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(4)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A determination under this regulation may - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">cover the tax payable by the employer under regulation … 68 for any one or more tax periods in a tax year, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">extend to the whole of that tax, or to such part of it as is payable in respect of–</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a class or classes of employees specified in the notice of determination (without naming the individual employees), or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">one or more named employees specified in the notice.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(5)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A determination under this regulation is subject to Parts 4, 5, 5A and 6 of TMA (assessment, appeals, collection and recovery) as if - </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the determination were an assessment, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the amount of tax determined were income tax charged on the employer,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in"> and those Parts of that Act apply accordingly with any necessary modifications.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This regulation applies if it appears to HMRC that there may be tax payable for a tax year under … regulation 68 by an employer which has neither been - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">paid to the Inland Revenue, nor</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">certified by the Inland Revenue under [various regulations].</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">HMRC may determine the amount of that tax to the best of their judgment, and serve notice of their determination on the employer.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">…</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(4)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A determination under this regulation may - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">cover the tax payable by the employer under regulation … 68 for any one or more tax periods in a tax year, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">extend to the whole of that tax, or to such part of it as is payable in respect of–</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a class or classes of employees specified in the notice of determination (without naming the individual employees), or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">one or more named employees specified in the notice.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(5)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">A determination under this regulation is subject to Parts 4, 5, 5A and 6 of TMA (assessment, appeals, collection and recovery) as if - </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the determination were an assessment, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the amount of tax determined were income tax charged on the employer,</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in"> and those Parts of that Act apply accordingly with any necessary modifications.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_98">
             <num>98.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 113(1B) Taxes Management Act 1970 (“TMA 1970”) deals with delegation of some tasks to other officers:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“Where the Board or an inspector or other officer of the Board have in accordance with section 29 of this Act or paragraph 41 of Schedule 18 to the Finance Act 1998, or any other provision of the Taxes Acts, decided to make an assessment to tax, and have taken all other decisions needed for arriving at the amount of the assessment, they may entrust to some other officer of the Board responsibility for completing the assessing procedure, whether by means involving the use of a computer or otherwise, including responsibility for serving notice of the assessment on the person liable for tax.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“Where the Board or an inspector or other officer of the Board have in accordance with section 29 of this Act or paragraph 41 of Schedule 18 to the Finance Act 1998, or any other provision of the Taxes Acts, decided to make an assessment to tax, and have taken all other decisions needed for arriving at the amount of the assessment, they may entrust to some other officer of the Board responsibility for completing the assessing procedure, whether by means involving the use of a computer or otherwise, including responsibility for serving notice of the assessment on the person liable for tax.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_27">
@@ -2458,27 +2570,31 @@
           </paragraph>
           <paragraph eId="para_108">
             <num>108.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">HMRC relied on <span style="font-style:italic">Gestmin SGPS S.A. v Credit Suisse</span> [2013] EWHC 3560 (in particular at [15]- [23]) for the correct approach in assessing witness evidence in cases such as the present one, namely “to place little if any reliance at all on witnesses’ recollections of what was said in meetings and conversations, and to base factual findings on inferences drawn from the documentary evidence and known or probable facts”.  HMRC noted in particular the following observations from the judgment of Leggatt J: </p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“18.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Memory is especially unreliable when it comes to recalling past beliefs. Our memories of past beliefs are revised to make them more consistent with our present beliefs. Studies have also shown that memory is particularly vulnerable to interference and alteration when a person is presented with new information or suggestions about an event in circumstances where his or her memory of it is already weak due to the passage of time. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">19.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The process of civil litigation itself subjects the memories of witnesses to powerful biases. The nature of litigation is such that witnesses often have a stake in a particular version of events. This is obvious where the witness is a party or has a tie of loyalty (such as an employment relationship) to a party to the proceedings… </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">20.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Considerable interference with memory is also introduced in civil litigation by the procedure of preparing for trial. A witness is asked to make a statement, often (as in the present case) when a long time has already elapsed since the relevant events. The statement is usually drafted for the witness by a lawyer who is inevitably conscious of the significance for the issues in the case of what the witness does nor does not say. The statement is made after the witness's memory has been “refreshed” by reading documents. The documents considered often include statements of case and other argumentative material as well as documents which the witness did not see at the time or which came into existence after the events which he or she is being asked to recall…”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“18.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Memory is especially unreliable when it comes to recalling past beliefs. Our memories of past beliefs are revised to make them more consistent with our present beliefs. Studies have also shown that memory is particularly vulnerable to interference and alteration when a person is presented with new information or suggestions about an event in circumstances where his or her memory of it is already weak due to the passage of time. </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">19.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The process of civil litigation itself subjects the memories of witnesses to powerful biases. The nature of litigation is such that witnesses often have a stake in a particular version of events. This is obvious where the witness is a party or has a tie of loyalty (such as an employment relationship) to a party to the proceedings… </p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">20.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Considerable interference with memory is also introduced in civil litigation by the procedure of preparing for trial. A witness is asked to make a statement, often (as in the present case) when a long time has already elapsed since the relevant events. The statement is usually drafted for the witness by a lawyer who is inevitably conscious of the significance for the issues in the case of what the witness does nor does not say. The statement is made after the witness's memory has been “refreshed” by reading documents. The documents considered often include statements of case and other argumentative material as well as documents which the witness did not see at the time or which came into existence after the events which he or she is being asked to recall…”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_109">
             <num>109.</num>
@@ -2569,43 +2685,47 @@
           </paragraph>
           <paragraph eId="para_115">
             <num>115.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The Court of Appeal considered the wholly and exclusively test in <span style="font-style:italic">Vodafone Cellular Ltd v Shaw</span> [1997] STC 734, and Millett LJ set out the following propositions at [742e] to [743a]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“The leading modern cases on the application of the “exclusively” test are <span style="font-style:italic">Mallalieu v Drummond</span> [1983] AC 861 and <span style="font-style:italic">Mackinlay v Arthur Young McClelland Moores &amp; Co.</span> [1990] 2 AC 239. From these cases the following propositions may be derived:</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">1.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The words “for the purposes of the trade” mean “to serve the purposes of the trade”. They do not mean “for the purposes of the taxpayer” but for “the purposes of the trade”, which is a different concept. A fortiori they do not mean “for the benefit of the taxpayer.”</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">2.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">To ascertain whether the payment was made for the purposes of the taxpayer's trade it is necessary to discover his object in making the payment. Save in obvious cases which speak for themselves, this involves an inquiry into the taxpayer's subjective intentions at the time of the payment.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">3.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The object of the taxpayer in making the payment must be distinguished from the effect of the payment. A payment may be made exclusively for the purposes of the trade even though it also secures a private benefit. This will be the case if the securing of the private benefit was not the object of the payment but merely a consequential and incidental effect of the payment.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">4.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Although the taxpayer's subjective intentions are determinative, these are not limited to the conscious motives which were in his mind at the time of the payment. Some consequences are so inevitably and inextricably involved in the payment that unless merely incidental they must be taken to be a purpose for which the payment was made.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">To these propositions I would add one more. The question does not involve an inquiry of the taxpayer whether he consciously intended to obtain a trade or personal advantage by the payment. The primary inquiry is to ascertain what was the particular object of the taxpayer in making the payment. Once that is ascertained, its characterisation as a trade or private purpose is in my opinion a matter for the Commissioners, not for the taxpayer. Thus in <span style="font-style:italic">Mallalieu v Drummond</span> the primary question was not whether Miss Mallalieu intended her expenditure on clothes to serve exclusively a professional purpose or partly a professional and partly a private purpose; but whether it was intended not only to enable her to comply with the requirements of the Bar Council when appearing as a barrister in Court but also to preserve warmth and decency.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“The leading modern cases on the application of the “exclusively” test are <span style="font-style:italic">Mallalieu v Drummond</span> [1983] AC 861 and <span style="font-style:italic">Mackinlay v Arthur Young McClelland Moores &amp; Co.</span> [1990] 2 AC 239. From these cases the following propositions may be derived:</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">1.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The words “for the purposes of the trade” mean “to serve the purposes of the trade”. They do not mean “for the purposes of the taxpayer” but for “the purposes of the trade”, which is a different concept. A fortiori they do not mean “for the benefit of the taxpayer.”</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">2.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">To ascertain whether the payment was made for the purposes of the taxpayer's trade it is necessary to discover his object in making the payment. Save in obvious cases which speak for themselves, this involves an inquiry into the taxpayer's subjective intentions at the time of the payment.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">3.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">The object of the taxpayer in making the payment must be distinguished from the effect of the payment. A payment may be made exclusively for the purposes of the trade even though it also secures a private benefit. This will be the case if the securing of the private benefit was not the object of the payment but merely a consequential and incidental effect of the payment.</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">4.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Although the taxpayer's subjective intentions are determinative, these are not limited to the conscious motives which were in his mind at the time of the payment. Some consequences are so inevitably and inextricably involved in the payment that unless merely incidental they must be taken to be a purpose for which the payment was made.</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">To these propositions I would add one more. The question does not involve an inquiry of the taxpayer whether he consciously intended to obtain a trade or personal advantage by the payment. The primary inquiry is to ascertain what was the particular object of the taxpayer in making the payment. Once that is ascertained, its characterisation as a trade or private purpose is in my opinion a matter for the Commissioners, not for the taxpayer. Thus in <span style="font-style:italic">Mallalieu v Drummond</span> the primary question was not whether Miss Mallalieu intended her expenditure on clothes to serve exclusively a professional purpose or partly a professional and partly a private purpose; but whether it was intended not only to enable her to comply with the requirements of the Bar Council when appearing as a barrister in Court but also to preserve warmth and decency.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_116">
             <num>116.</num>
@@ -3210,14 +3330,18 @@
           </paragraph>
           <paragraph eId="para_168">
             <num>168.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Before considering the evidence of Mr Midwinter, I remind myself of the authorities on what constitutes a discovery.  This was considered by the Upper Tribunal in <span style="font-style:italic">Charlton &amp; ors v HMRC</span> [2013] STC 866 at [37]:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in">“In our judgment, no new information, of fact or law, is required for there to be a discovery. All that is required is that it has newly appeared to an officer, acting honestly and reasonably, that there is an insufficiency in an assessment. That can be for any reason, including a change of view, change of opinion, or correction of an oversight. The requirement for newness does not relate to the reason for the conclusion reached by the officer, but to the conclusion itself.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in">“In our judgment, no new information, of fact or law, is required for there to be a discovery. All that is required is that it has newly appeared to an officer, acting honestly and reasonably, that there is an insufficiency in an assessment. That can be for any reason, including a change of view, change of opinion, or correction of an oversight. The requirement for newness does not relate to the reason for the conclusion reached by the officer, but to the conclusion itself.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_169">
             <num>169.</num>
@@ -3434,27 +3558,31 @@
           </paragraph>
           <paragraph eId="para_184">
             <num>184.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 62 then explains what is meant by “earnings” and at s62(2) states that earnings, in relation to an employment, means:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any salary, wages or fee,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any gratuity or other profit or incidental benefit of any kind obtained by the employee if it is money or money's worth, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">anything else that constitutes an emolument of the employment.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any salary, wages or fee,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">any gratuity or other profit or incidental benefit of any kind obtained by the employee if it is money or money's worth, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">anything else that constitutes an emolument of the employment.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_185">
             <num>185.</num>
@@ -3548,15 +3676,19 @@
           </paragraph>
           <paragraph eId="para_195">
             <num>195.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Having set out the question at [1], Lord Hodge then described the central issue in the appeal as “whether it is necessary that the employee himself or herself should receive, or at least be entitled to receive, the remuneration for his or her work in order for that reward to amount to taxable emoluments” (at [36]).  He concluded that there is no such requirement.  His reasons included that the primary legislation taxes the employee whose work gives rise to the remuneration, not the recipient of the earnings (at [37]) and that the concept of emoluments is not generally restricted by requiring payment to a specific recipient (at [38]).  He could see nothing in the wider purpose of the legislation, which taxes remuneration from employment, which excludes from the tax charge or the PAYE regime remuneration which the employee is entitled to have paid to a third party (at [39]).  From this, he set out the general rules as being:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“41.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">… the charge to tax on employment income extends to money that the employee is entitled to have paid as his or her remuneration whether it is paid to the employee or a third party. The legislation does not require that the employee receive the money; a third party, including a trustee, may receive it.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“41.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">… the charge to tax on employment income extends to money that the employee is entitled to have paid as his or her remuneration whether it is paid to the employee or a third party. The legislation does not require that the employee receive the money; a third party, including a trustee, may receive it.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_196">
             <num>196.</num>
@@ -3599,74 +3731,78 @@
           </paragraph>
           <paragraph eId="para_202">
             <num>202.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The conditions for Chapter 2 to apply are set out in s554A(1):</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(1)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Chapter 2 applies if—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(a)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person (“A”) is an employee, or a former or prospective employee, of another person (“B”),</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(b)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is an arrangement (“the relevant arrangement”) to which A is a party or which otherwise (wholly or partly) covers or relates to A,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(c)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement so far as it covers or relates to A,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in"> is (wholly or partly) a means of providing, or is otherwise concerned (wholly or partly) with the provision of, rewards or recognition or loans in connection with A's employment, or former or prospective employment, with B,</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(d)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a relevant step is taken by a relevant third person, and</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(e)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(i)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant step is taken (wholly or partly) in pursuance of the relevant arrangement, or</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-size:11pt">(ii)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is some other connection (direct or indirect) between the relevant step and the relevant arrangement.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(1)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">Chapter 2 applies if—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(a)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a person (“A”) is an employee, or a former or prospective employee, of another person (“B”),</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(b)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is an arrangement (“the relevant arrangement”) to which A is a party or which otherwise (wholly or partly) covers or relates to A,</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(c)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant arrangement so far as it covers or relates to A,</p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in"> is (wholly or partly) a means of providing, or is otherwise concerned (wholly or partly) with the provision of, rewards or recognition or loans in connection with A's employment, or former or prospective employment, with B,</p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="font-size:11pt">(d)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">a relevant step is taken by a relevant third person, and</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(e)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">it is reasonable to suppose that, in essence—</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(i)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">the relevant step is taken (wholly or partly) in pursuance of the relevant arrangement, or</p>
+                    </content>
+                  </paragraph>
+                  <paragraph>
+                    <num style="font-size:11pt">(ii)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">there is some other connection (direct or indirect) between the relevant step and the relevant arrangement.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_203">
             <num>203.</num>
@@ -3988,15 +4124,19 @@
           </paragraph>
           <paragraph eId="para_228">
             <num>228.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">Section 554A(2) was amended by FA 2017 to read:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“(2)</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part “relevant step” means a step within section 554B, 554C or 554D, or paragraph 1 or 1A of Schedule 11 to F(No. 2)A 2017]4 (including such a step where the taking of the step, or some aspect of the taking of the step, constitutes a breach of trust or is a constituent part of a breach of trust, and even if the step or aspect is void as a result of breach of trust)”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“(2)</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">In this Part “relevant step” means a step within section 554B, 554C or 554D, or paragraph 1 or 1A of Schedule 11 to F(No. 2)A 2017]4 (including such a step where the taking of the step, or some aspect of the taking of the step, constitutes a breach of trust or is a constituent part of a breach of trust, and even if the step or aspect is void as a result of breach of trust)”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_229">
             <num>229.</num>
@@ -4156,15 +4296,19 @@
           </paragraph>
           <paragraph eId="para_240">
             <num>240.</num>
-            <intro>
+            <content>
               <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">I was referred to the decision of the Court of Appeal in <span style="font-style:italic">Clark v HMRC</span> [2020] EWCA Civ 204 for guidance on the interpretation of the word “payment”.  Henderson LJ set out the issue as follows:</p>
-            </intro>
-            <subparagraph>
-              <num style="font-size:11pt">“1.</num>
-              <content>
-                <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This appeal involves two distinct questions of principle. The first concerns the meaning of the word "payment" in the definition of the term "unauthorised member payment" in section 160(2) of the Finance Act 2004 , and the consequential charges to income tax in respect of such payments contained in sections 208 to 210 . The question, in short, is whether the word "payment", construed in its statutory context, is apt to include a transfer of money (in the tax year 2009/10) from one registered pension scheme to another, in circumstances where it later transpired that the trusts of the recipient scheme were void for uncertainty. The agreed consequence of this is that the transfer was in law effective to transfer only bare legal title to the money, the beneficial interest in which was held on a resulting trust for the transferor.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <paragraph>
+                    <num style="font-size:11pt">“1.</num>
+                    <content>
+                      <p class="Taxquotation" style="margin-left:0.79in;text-indent:0.21in">This appeal involves two distinct questions of principle. The first concerns the meaning of the word "payment" in the definition of the term "unauthorised member payment" in section 160(2) of the Finance Act 2004 , and the consequential charges to income tax in respect of such payments contained in sections 208 to 210 . The question, in short, is whether the word "payment", construed in its statutory context, is apt to include a transfer of money (in the tax year 2009/10) from one registered pension scheme to another, in circumstances where it later transpired that the trusts of the recipient scheme were void for uncertainty. The agreed consequence of this is that the transfer was in law effective to transfer only bare legal title to the money, the beneficial interest in which was held on a resulting trust for the transferor.”</p>
+                    </content>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_241">
             <num>241.</num>

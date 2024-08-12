@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/uksc/2021/12/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/uksc/2021/12/data.xml" />
-          <FRBRdate date="2024-05-27T19:11:11" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:26" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,7 +44,7 @@
         <uk:year>2021</uk:year>
         <uk:number>12</uk:number>
         <uk:cite>[2021] UKSC 12</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>45f81b52757f8b95cba6e0a91a4f32fd69edf065f4f913902ff3d62e8179e429</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -297,27 +297,29 @@
             <p class="ParaLevel1" style="margin-left:0in;text-indent:0.5in">In respect of public liability, the policy coverage is stated in the following terms:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“The INSURERS will indemnify the INSURED against all sums which the INSURED shall become legally liable to pay as compensatory damages and claimant’s costs and expenses arising out of accidental</heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“The INSURERS will indemnify the INSURED against all sums which the INSURED shall become legally liable to pay as compensatory damages and claimant’s costs and expenses arising out of accidental</p>
+                  </intro>
+                  <subparagraph>
                     <num style="color:#2B2B2B;font-size:13pt">(a)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="font-weight:bold;color:#2B2B2B">INJURY </span><span style="color:#2B2B2B">to any person</span></p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="color:#2B2B2B;font-size:13pt">(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="color:#2B2B2B">physical loss of or physical damage to material property</span></p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num style="color:#2B2B2B;font-size:13pt">(c)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in"><span style="color:#2B2B2B">obstruction trespass nuisance or interference with any right of way light air or </span><span style="font-weight:bold;color:#2B2B2B">water</span><span style="color:#2B2B2B"> </span>…”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -386,15 +388,17 @@
             <p class="ParaLevel1" style="margin-left:0in;text-indent:0.5in">Wrongful arrest is defined as:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“any unlawful physical restraint by one person on the liberty of another and includes:</heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“any unlawful physical restraint by one person on the liberty of another and includes:</p>
+                  </intro>
+                  <subparagraph>
                     <num style="font-size:13pt">(1)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.5in;text-indent:0.5in">assault and battery committed or alleged to have been committed at the time of making or attempting to make an arrest or in resisting an overt attempt to escape by a person under arrest before such person has been or could be placed in the custody of the police or an officer of the court …”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>

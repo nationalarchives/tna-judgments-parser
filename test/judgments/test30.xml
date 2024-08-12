@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/1148/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/1148/data.xml" />
-          <FRBRdate date="2024-05-27T19:34:48" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:48" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,7 +39,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1148</uk:number>
         <uk:cite>[2022] EWHC 1148 (SCCO)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>42852cd524ee910c775b29a415114e971f7b2d238ef16439765f848807bcf06e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -253,14 +253,18 @@
         </paragraph>
         <paragraph eId="para_19">
           <num>19.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;margin-left:0.5in">For some considerable time, the allowance of images under the 2013 Regulations was something of an all or nothing affair. Either the images were considered to be sufficiently important that they were all part of the PPE or they were too peripheral for any of them to be allowed. That position changed when the Senior Costs Judge, Andrew Gordon-Saker, gave his decision in the case of <span style="text-decoration-line:underline;text-decoration-style:solid">R v Sereika</span> on 12 December 2018. In that case he said, at paragraph 16:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“In this particular case, the exercise of that discretion is not easy. On the one hand the prosecution chose to serve this evidence as an exhibit. Given the nature of the defence, that the phone was used by others, it is not difficult to conclude the solicitors would have wished to look for photographs indicating that use. On the other hand, it is unlikely that the vast majority of those photographs would have been relevant to that task. It would seem unlikely that the solicitors would have looked in detail at each of the 20,608 images served on disc. Most will have required a glance or less.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.79in;margin-right:0.39in">“In this particular case, the exercise of that discretion is not easy. On the one hand the prosecution chose to serve this evidence as an exhibit. Given the nature of the defence, that the phone was used by others, it is not difficult to conclude the solicitors would have wished to look for photographs indicating that use. On the other hand, it is unlikely that the vast majority of those photographs would have been relevant to that task. It would seem unlikely that the solicitors would have looked in detail at each of the 20,608 images served on disc. Most will have required a glance or less.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_20">
           <num>20.</num>
