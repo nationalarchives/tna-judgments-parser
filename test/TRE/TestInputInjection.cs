@@ -127,6 +127,22 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
             return Api.Parser.Parse(apiRequest);
         }
 
+        [Fact]
+        public void TestConflictingURIandCite()
+        {
+            string uri = "uksc/1900/1";
+            string cite = "[1900] UKPC 2";
+            string expected = Api.URI.Domain + "id/" + uri;
+            ParserInputs inputs = new()
+            {
+                DocumentType = ParserInputs.JudgmentDocumentType,
+                Metadata = new InputMetadata() { URI = uri, Cite = cite }
+            };
+            Api.Response response = LambdaTest(Docx1, inputs);
+            Assert.Equal(expected, response.Meta.Uri);
+            Assert.Equal(cite, response.Meta.Cite);
+        }
+
     }
 
 }

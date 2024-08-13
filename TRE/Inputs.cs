@@ -186,8 +186,8 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE
 
             if (uri is not null && cite is not null && !uri.StartsWith(Citations.MakeUriComponent(cite))) // handles press-summary URIs
             {
-                logger.LogCritical("cite and URI do not match");
-                throw new Exception("cite and URI do not match");
+                logger.LogWarning("cite and URI do not match");
+                // throw new Exception("cite and URI do not match");
             }
 
             if (court is not null && !Courts.ByCode.ContainsKey(court))
