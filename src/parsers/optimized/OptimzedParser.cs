@@ -662,10 +662,6 @@ abstract class OptimizedParser {
                         i = save2;
                         break;
                     }
-                    if (leaf.Contents.LastOrDefault() is not QuotedStructure) {
-                        i = save2;
-                        break;
-                    }
                     intro.AddRange(leaf.Contents);
                     continue;
                 }
