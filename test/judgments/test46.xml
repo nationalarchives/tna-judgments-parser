@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2022/2616/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:08" name="transform" />
+          <FRBRdate date="2024-08-13T18:30:58" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2616</uk:number>
         <uk:cite>[2022] EWHC 2616 (Comm)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>fa9569b8916d5ac30dc3a6f0b802c4b1cee008965c19896a4909458a0bcae9c7</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -234,24 +234,24 @@
         </paragraph>
         <paragraph eId="para_9">
           <num>9.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">On 31 May 2021, Macquarie sent Phelan a notice entitled “Transaction between [Macquarie] and [Phelan] with trade date 14 May 2021 and Reference TTD933K/23728873 (the ‘Transaction’)”, stating:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“We refer to the Transaction. We hereby notify that you have failed to make a payment to Macquarie in the sum of [ZAR 117,780,488.64] <span style="font-weight:bold">[square brackets in original</span>] which was due on 28 May 2021 in respect of the Transaction …</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">A failure to make this payment to Macquarie on or before the first Local Business Day after this notice is given to you will constitute an Event of Default under Section 5(a)(i) of the ISDA Agreement”.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" />(<span style="font-weight:bold">the Disputed Default Notice</span>).</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“We refer to the Transaction. We hereby notify that you have failed to make a payment to Macquarie in the sum of [ZAR 117,780,488.64] <span style="font-weight:bold">[square brackets in original</span>] which was due on 28 May 2021 in respect of the Transaction …</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">A failure to make this payment to Macquarie on or before the first Local Business Day after this notice is given to you will constitute an Event of Default under Section 5(a)(i) of the ISDA Agreement”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" />(<span style="font-weight:bold">the Disputed Default Notice</span>).</p>
+          </content>
         </paragraph>
         <paragraph eId="para_10">
           <num>10.</num>
@@ -261,19 +261,19 @@
         </paragraph>
         <paragraph eId="para_11">
           <num>11.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Macquarie provided a response on 2 June 2022, and stated that it was reserving its right to designate an Early Termination Date under the Master Agreement. The following day, Macquarie sent Phelan a letter entitled “Designation of Early Termination Date” which stated:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“We hereby give you notice, pursuant to Section 6(a) of the ISDA Master Agreement that we designate <span style="text-decoration-line:underline;text-decoration-style:solid">4 June 2021</span> as the Early Termination Date in respect of all outstanding Transactions under the ISDA Agreement as a result of the aforementioned continuing Event of Default”.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">(the Disputed ETDN</span>).</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“We hereby give you notice, pursuant to Section 6(a) of the ISDA Master Agreement that we designate <span style="text-decoration-line:underline;text-decoration-style:solid">4 June 2021</span> as the Early Termination Date in respect of all outstanding Transactions under the ISDA Agreement as a result of the aforementioned continuing Event of Default”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaLevel1" style="margin-left:0.5in;text-indent:-0.5in"><marker name="tab" /><span style="font-weight:bold">(the Disputed ETDN</span>).</p>
+          </content>
         </paragraph>
         <paragraph eId="para_12">
           <num>12.</num>
@@ -283,14 +283,18 @@
         </paragraph>
         <paragraph eId="para_13">
           <num>13.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">On 9 June 2021, Macquarie sent Phelan a document entitled “Notice of Early Termination Amount|” which stated:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“Please find attached in the schedule (‘Schedule’) a statement specifying the payments due in respect of the Early Termination Date. This notice constitutes the statement required by Section 6(d)(i) of the Agreement … Please make payment of USD 22,643,860.22 (the ‘Termination Payment Amount’).”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“Please find attached in the schedule (‘Schedule’) a statement specifying the payments due in respect of the Early Termination Date. This notice constitutes the statement required by Section 6(d)(i) of the Agreement … Please make payment of USD 22,643,860.22 (the ‘Termination Payment Amount’).”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_14">
           <num>14.</num>
@@ -341,78 +345,86 @@
           </intro>
           <subparagraph>
             <num style="margin-left:0.98in;text-indent:-0.49in">i)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.98in">Section 5 provides:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel2" style="text-align:left;margin-left:0.98in"><span class="markedcontent">“Events of Default and Termination Events</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.28in;text-indent:-0.39in">(a)</num>
-              <intro>
-                <p class="ParaLevel5" style="margin-left:1.28in"><span class="markedcontent">Events of Default. The occurrence at any time with respect to a party or, if applicable, any Credit Support Provider of such party or any Specified Entity of such party of any of the following events constitutes … an event of default (an ‘Event of Default’) with respect to such party:—</span></p>
-              </intro>
-              <subparagraph>
-                <num style="margin-left:1.67in;text-indent:-0.39in">(ii)</num>
-                <content>
-                  <p class="ParaLevel6" style="margin-left:1.67in;text-indent:0.11in"><span class="markedcontent">Failure to Pay or Deliver. Failure by the party to make, when due, any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)(i)(2) or (4) required to be made by it if such failure is not remedied on or before the first Local Business Day in the case of any such payment or the first Local Delivery Day in the case of any such delivery after, in each case, notice of such failure is given to the party.</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num style="margin-left:1.67in;text-indent:-0.39in">(iii)</num>
-                <intro>
-                  <p class="ParaLevel6" style="margin-left:1.67in;text-indent:0.23in">Breach of Agreement; Repudiation of Agreement.</p>
-                </intro>
-                <subparagraph>
-                  <num style="margin-left:2.07in;text-indent:-0.39in">(1)</num>
-                  <content>
-                    <p class="ParaLevel6" style="margin-left:2.07in"><span class="markedcontent">Failure by the party to comply with or perform any agreement or obligation (other than an</span><span> </span><span class="markedcontent">obligation to make any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)i)(2) or (4) or to give notice of a Termination Event or any agreement or obligation under Season 4(a)(i),</span><span> </span><span class="markedcontent">4(a)(iii) or 4(d)) to be complied with or performed by the party in accordance with this Agreement if such failure is not remedied within 30 days after notice of such failure is given to the party …”.</span></p>
-                  </content>
-                </subparagraph>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel2" style="text-align:left;margin-left:0.98in"><span class="markedcontent">“Events of Default and Termination Events</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="margin-left:1.28in;text-indent:-0.39in">(a)</num>
+                    <intro>
+                      <p class="ParaLevel5" style="margin-left:1.28in"><span class="markedcontent">Events of Default. The occurrence at any time with respect to a party or, if applicable, any Credit Support Provider of such party or any Specified Entity of such party of any of the following events constitutes … an event of default (an ‘Event of Default’) with respect to such party:—</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="margin-left:1.67in;text-indent:-0.39in">(ii)</num>
+                      <content>
+                        <p class="ParaLevel6" style="margin-left:1.67in;text-indent:0.11in"><span class="markedcontent">Failure to Pay or Deliver. Failure by the party to make, when due, any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)(i)(2) or (4) required to be made by it if such failure is not remedied on or before the first Local Business Day in the case of any such payment or the first Local Delivery Day in the case of any such delivery after, in each case, notice of such failure is given to the party.</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num style="margin-left:1.67in;text-indent:-0.39in">(iii)</num>
+                      <intro>
+                        <p class="ParaLevel6" style="margin-left:1.67in;text-indent:0.23in">Breach of Agreement; Repudiation of Agreement.</p>
+                      </intro>
+                      <subparagraph>
+                        <num style="margin-left:2.07in;text-indent:-0.39in">(1)</num>
+                        <content>
+                          <p class="ParaLevel6" style="margin-left:2.07in"><span class="markedcontent">Failure by the party to comply with or perform any agreement or obligation (other than an</span><span> </span><span class="markedcontent">obligation to make any payment under this Agreement or delivery under Section 2(a)(i) or 9(h)i)(2) or (4) or to give notice of a Termination Event or any agreement or obligation under Season 4(a)(i),</span><span> </span><span class="markedcontent">4(a)(iii) or 4(d)) to be complied with or performed by the party in accordance with this Agreement if such failure is not remedied within 30 days after notice of such failure is given to the party …”.</span></p>
+                        </content>
+                      </subparagraph>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
           <subparagraph>
             <num style="margin-left:0.89in;text-indent:-0.39in">ii)</num>
-            <intro>
+            <content>
               <p class="ParaLevel2" style="margin-left:0.89in">Section 6 provides:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel2" style="margin-left:0.89in"><span class="markedcontent">“Early Termination: Close Out Netting:</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.28in;text-indent:-0.39in">(a)</num>
-              <content>
-                <p class="ParaLevel5" style="margin-left:1.28in"><span class="markedcontent">Right to Terminate Following Event of Default. If at any time an Event of Default with respect to a party (the ‘Defaulting Party’) has occurred and is then continuing, the other party (the ‘Non-defaulting Party’) may, by not</span><span> </span><span class="markedcontent">more than 20 days notice to the Defaulting Party specifying the relevant Event of Default, designate a day not earlier</span><span> </span><span class="markedcontent">than the day such notice is effective as an Early Termination Date in respect of all outstanding Transactions.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel5" style="text-align:left;margin-left:0.89in"><span class="markedcontent">…</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="margin-left:1.28in;text-indent:-0.3in">(c)</num>
-              <intro>
-                <p class="ParaLevel5" style="margin-left:1.28in;text-indent:0.08in"><span class="markedcontent">Effect of Designation:</span></p>
-              </intro>
-              <subparagraph>
-                <num style="margin-left:1.67in;text-indent:-0.39in">(i)</num>
-                <content>
-                  <p class="ParaLevel6" style="margin-left:1.67in"><span class="markedcontent">If notice designating an Early Termination Date is given under Section 6(a) or 6(b), the Early Termination Date will occur on the date so designated, whether or not the relevant Event of Default or Termination Event is then continuing,</span></p>
-                </content>
-              </subparagraph>
-              <subparagraph>
-                <num class="markedcontent">(ii)</num>
-                <content>
-                  <p class="ParaLevel5" style="margin-left:1.67in"><span class="markedcontent">Upon the occurrence or effective designation of an Early Termination Date, no further payments or deliveries under Section 2(a)(i) or 9(h)(i) in respect of the Terminated Transactions will be required to be</span><span> </span><span class="markedcontent">made, but without prejudice to the other provisions of this Agreement. The amount, if any, payable in</span><span> </span><span class="markedcontent">respect of an Early Termination Date will be determined pursuant to Sections 6(e) and 9(h)(ii)”.</span></p>
-                </content>
-              </subparagraph>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel2" style="margin-left:0.89in"><span class="markedcontent">“Early Termination: Close Out Netting:</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="margin-left:1.28in;text-indent:-0.39in">(a)</num>
+                    <content>
+                      <p class="ParaLevel5" style="margin-left:1.28in"><span class="markedcontent">Right to Terminate Following Event of Default. If at any time an Event of Default with respect to a party (the ‘Defaulting Party’) has occurred and is then continuing, the other party (the ‘Non-defaulting Party’) may, by not</span><span> </span><span class="markedcontent">more than 20 days notice to the Defaulting Party specifying the relevant Event of Default, designate a day not earlier</span><span> </span><span class="markedcontent">than the day such notice is effective as an Early Termination Date in respect of all outstanding Transactions.</span></p>
+                    </content>
+                  </paragraph>
+                  <level>
+                    <content>
+                      <p class="ParaLevel5" style="text-align:left;margin-left:0.89in"><span class="markedcontent">…</span></p>
+                    </content>
+                  </level>
+                  <paragraph>
+                    <num style="margin-left:1.28in;text-indent:-0.3in">(c)</num>
+                    <intro>
+                      <p class="ParaLevel5" style="margin-left:1.28in;text-indent:0.08in"><span class="markedcontent">Effect of Designation:</span></p>
+                    </intro>
+                    <subparagraph>
+                      <num style="margin-left:1.67in;text-indent:-0.39in">(i)</num>
+                      <content>
+                        <p class="ParaLevel6" style="margin-left:1.67in"><span class="markedcontent">If notice designating an Early Termination Date is given under Section 6(a) or 6(b), the Early Termination Date will occur on the date so designated, whether or not the relevant Event of Default or Termination Event is then continuing,</span></p>
+                      </content>
+                    </subparagraph>
+                    <subparagraph>
+                      <num class="markedcontent">(ii)</num>
+                      <content>
+                        <p class="ParaLevel5" style="margin-left:1.67in"><span class="markedcontent">Upon the occurrence or effective designation of an Early Termination Date, no further payments or deliveries under Section 2(a)(i) or 9(h)(i) in respect of the Terminated Transactions will be required to be</span><span> </span><span class="markedcontent">made, but without prejudice to the other provisions of this Agreement. The amount, if any, payable in</span><span> </span><span class="markedcontent">respect of an Early Termination Date will be determined pursuant to Sections 6(e) and 9(h)(ii)”.</span></p>
+                      </content>
+                    </subparagraph>
+                  </paragraph>
+                </embeddedStructure>
+              </block>
+            </content>
           </subparagraph>
         </paragraph>
         <level eId="lvl_4">
@@ -872,78 +884,90 @@
         </paragraph>
         <paragraph eId="para_39">
           <num>39.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In circumstances in which the relevant debt arises as from the Early Termination Date and prior to any calculation under the ISDA Master Agreement, it would be surprising if the effect of an error in one party’s calculation was sufficient to prevent the debt becoming due. As Gloster LJ noted in <span style="font-style:italic">Videocon Global</span> at [57]:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in">“The point to make in the present context is that the accrual of the <span class="coitalic" style="font-style:italic">debt </span>obligation in respect of the amount due in respect of an Early Termination Date necessarily arises prior to the service of the statement referred to in section 6(d) (i) . Therefore, it cannot possibly be subject to the type of condition precedent for which Mr Wheeler contended, namely service of a statement compliant with all the requirements of section 6(d)(i) , including the ‘as soon as reasonably practicable’ requirement. <span style="font-style:italic">The debt obligation in respect of the amount due in respect of an Early Termination Date cannot be discharged simply by reason of a failure to serve a statement that is compliant with all the requirements of section 6(d)(i)</span>” (emphasis added).</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in">“The point to make in the present context is that the accrual of the <span class="coitalic" style="font-style:italic">debt </span>obligation in respect of the amount due in respect of an Early Termination Date necessarily arises prior to the service of the statement referred to in section 6(d) (i) . Therefore, it cannot possibly be subject to the type of condition precedent for which Mr Wheeler contended, namely service of a statement compliant with all the requirements of section 6(d)(i) , including the ‘as soon as reasonably practicable’ requirement. <span style="font-style:italic">The debt obligation in respect of the amount due in respect of an Early Termination Date cannot be discharged simply by reason of a failure to serve a statement that is compliant with all the requirements of section 6(d)(i)</span>” (emphasis added).</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_40">
           <num>40.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">An important feature of the ISDA Master Agreement is that a party entitled to an Early Termination Amount is, within certain limits, entitled to quantify the amount of the payment <span style="font-style:italic">after the debt has arisen</span>. Those limits include the requirement to act “in good faith and use commercially reasonable procedures in order to produce a commercially reasonable result” (which appear in the definition of “close-out amount” in section 14). If no such calculation is performed, it is clear that this does not render the debt which has accrued forever unquantified or unpayable. As Rix LJ noted of the valuation procedures in <span style="font-style:italic">Socimer International Bank Ltd v Standard Bank London Ltd (No 2)</span> [2008] EWCA Civ 116 (a case not concerned with either form of ISDA Master Agreement) at [65]:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in"><span style="color:initial;background-color:#FFFFFF">“The second issue referred to above is what is to happen if the contractual discretion ought to have been exercised but has not. That is answered in this court by </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Cantor Fitzgerald International v. Horkulak </span><span style="color:initial;background-color:#FFFFFF">[2004] EWCA Civ 1287. There an employee who had been wrongly dismissed sought compensation to include a discretionary bonus which he might otherwise have been awarded. This court held that the court's task in such a case is to put itself in the shoes of the decision-maker”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in"><span style="color:initial;background-color:#FFFFFF">“The second issue referred to above is what is to happen if the contractual discretion ought to have been exercised but has not. That is answered in this court by </span><span style="font-style:italic;color:initial;background-color:#FFFFFF">Cantor Fitzgerald International v. Horkulak </span><span style="color:initial;background-color:#FFFFFF">[2004] EWCA Civ 1287. There an employee who had been wrongly dismissed sought compensation to include a discretionary bonus which he might otherwise have been awarded. This court held that the court's task in such a case is to put itself in the shoes of the decision-maker”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_41">
           <num>41.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The effect of the invalid calculation of the Early Termination Amount, therefore, will frequently be that the court will determine the amount due itself. This was the course followed by Burton J in <span style="font-style:italic">Lehman Brothers Finance SA (in liquidation) v Sal Oppenheim Jr &amp; Cie </span>[2014] EWHC 2627 (Comm), [36] and by Robin Knowles J in <span style="font-style:italic">Lehman Brothers Special Financing Inc v National Power Corp </span>[2018] EWHC 487 (Comm). At [51], Robin Knowles J summarised the position as follows:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="margin-left:0.89in"><span style="color:initial;background-color:#FFFFFF">“In my judgment on the true interpretation of the 2002 ISDA Master Agreement the position is as follows:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">With its letter dated 17 October 2008 NPC caused a debt obligation to arise and with delivery of NPC's letter dated 26 January 2009 an obligation to pay arose.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">These are significant contractual events and once they have arisen the relationship between the parties is thereafter affected, and not reversible (save by agreement, or in some cases an order of a court or tribunal).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(c)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">NPC was required and permitted to make a determination.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(d)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">NPC made a determination that US$3,461,590.93 (plus interest and aside from Expenses) was payable. The Annex showed how that determination had been calculated. This completed its obligation and right to make a determination.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(e)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">If there is an error in the determination then (absent agreement) the court or tribunal chosen by the parties will be left to declare that and to state what the Close-out Amount would have been on a determination that was without error.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(f)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">However, the Determining Party is also a party to the contract. It can make and accept proposals in its capacity as a party to the contract, including to correct an error in the determination.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(g)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in">The revised calculation statement may still serve as evidence to inform the question of whether there was an error, and the question what the Close-out Amount would have been on a determination that was without error …”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="margin-left:0.89in"><span style="color:initial;background-color:#FFFFFF">“In my judgment on the true interpretation of the 2002 ISDA Master Agreement the position is as follows:</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>(a)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">With its letter dated 17 October 2008 NPC caused a debt obligation to arise and with delivery of NPC's letter dated 26 January 2009 an obligation to pay arose.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(b)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">These are significant contractual events and once they have arisen the relationship between the parties is thereafter affected, and not reversible (save by agreement, or in some cases an order of a court or tribunal).</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(c)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">NPC was required and permitted to make a determination.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(d)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">NPC made a determination that US$3,461,590.93 (plus interest and aside from Expenses) was payable. The Annex showed how that determination had been calculated. This completed its obligation and right to make a determination.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(e)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">If there is an error in the determination then (absent agreement) the court or tribunal chosen by the parties will be left to declare that and to state what the Close-out Amount would have been on a determination that was without error.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(f)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">However, the Determining Party is also a party to the contract. It can make and accept proposals in its capacity as a party to the contract, including to correct an error in the determination.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(g)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in">The revised calculation statement may still serve as evidence to inform the question of whether there was an error, and the question what the Close-out Amount would have been on a determination that was without error …”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_42">
           <num>42.</num>
@@ -1007,12 +1031,16 @@
             <num style="margin-left:0.98in;text-indent:-0.49in">ii)</num>
             <intro>
               <p class="ParaLevel2" style="margin-left:0.98in">While the Early Termination Amount will become due on the effective designation of an Early Termination Date, it does not become payable until the requirements of section 6(d)(ii) have been met. This provides:</p>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel2" style="margin-left:1.28in">“An Early Termination Amount due in respect of any Early Termination Date will, together with any amount of interest payable pursuant to Section 9(h)(ii)(2), <span style="font-style:italic">be payable ... on the day on which notice of the amount payable is effective</span> in the case of an Early Termination Event which is designated or occurs as a result of an Event of Default” (emphasis added).</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
             </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel2" style="margin-left:1.28in">“An Early Termination Amount due in respect of any Early Termination Date will, together with any amount of interest payable pursuant to Section 9(h)(ii)(2), <span style="font-style:italic">be payable ... on the day on which notice of the amount payable is effective</span> in the case of an Early Termination Event which is designated or occurs as a result of an Event of Default” (emphasis added).</p>
-              </content>
-            </subparagraph>
             <subparagraph>
               <content>
                 <p class="ParaLevel2" style="margin-left:0.98in">On the assumption that Macquarie’s calculation of the Early Termination Amount used the wrong spot rate for the 28 May 2021 Settlement Trade, it was not an “effective” notice, and in the absence of service of a fresh notice, the debt due is not yet payable.</p>
@@ -1022,52 +1050,54 @@
         </paragraph>
         <paragraph eId="para_47">
           <num>47.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Hobson supported his argument by reference to the following statement in Gloster LJ’s judgment in <span style="font-style:italic">Videocon Global</span>:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:1.28in;text-indent:-0.39in">“[59]<marker name="tab" />Before the judge Mr Yeo, appearing on behalf of Goldman, accepted in the light of the decision of Mr Knowles QC that pursuant to section 6(d) the sum claimed only became ‘payable’ once <span class="coitalic" style="font-style:italic">adequate details </span>of the sum claimed had been provided … In my judgment that concession was not correct. Likewise I do not agree with the judge's conclusion as set out in paragraph 16, that once ‘sufficient details’ of both the calculation of the sum claimed and of the bank account into which the sum was to be paid ‘the notice is … effective’. The use by the draftsman of the word ‘notice’, in conjunction with the word ‘effective’, in section 6(d)(ii) in order to ascertain the Payment Date must, in my judgment, be a reference to the language of section 12 , which expressly addresses the question of the precise day upon which a notice is deemed to be ‘effective’. The words used in section 6(d) (ii) (i.e. ‘on the day that notice of the amount payable is effective’) are not, in my view, addressing a wholly different concept of ‘effectiveness’ – namely the concept that a section 6(d)(i) statement (or notice) can only be ‘effective’ once all the details required to be contained in such a statement are supplied, a date which may be unclear and open to argument. On the contrary, section 6(d)(ii) is referring to when, in accordance with the provisions of section 12 , the notice is ‘effective’, viz. a specific delivery date, identified by the provisions of section 12.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in">…</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:1.28in;text-indent:-0.39in">[62]<marker name="tab" />In the present case the letter dated 14 December 2011, and delivered on that date <span style="font-weight:bold">clearly set out not only the amount payable</span><span style="font-style:italic">,</span> but also Goldman's calculations of the amount payable. The fact that, according to Mr Knowles QC, such calculations were not sufficiently detailed to satisfy the contractual requirements of section 6(d) (i) , did not, in my judgment, prevent the letter constituting an adequate ‘notice of the amount payable’ for the purposes of identifying a Payment Date under section 6(d)(ii) …. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p style="text-indent:0.39in"><span style="color:initial;background-color:#FFFFFF">[64]</span><marker name="tab" /><span style="color:initial;background-color:#FFFFFF">My reasons for this conclusion may be summarised as follows.</span></p>
-            </intro>
-            <subparagraph>
-              <num>(i)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.28in">Section 6(d)(ii) does not state that the amount due in respect of an Early Termination Date will be payable <span class="coitalic" style="font-style:italic">only</span> when a statement compliant with section 6(d)(i) has been served. On the contrary, section 6(d)(ii) states that the sum is payable on the day that notice of the amount payable is effective’. <span style="font-weight:bold">In other words, as I have already suggested, the Payment Date is linked to the date on which the Non-defaulting Party gives notice of ‘the amount payable’ and that notice is deemed to be ‘effective’ in accordance with the provisions of section 12</span> . In the present case, that notice was in fact given well in time on 14 December 2011. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="margin-left:1.28in;text-indent:-0.39in">…</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num>(iii)</num>
-              <content>
-                <p style="text-align:justify;margin-left:1.28in">The appellants' construction is inconsistent not only with the wording, but also with the contractual scheme and mechanisms of the Master Agreement . As I have already said, the <span class="coitalic" style="font-style:italic">debt </span>obligation to pay the amount due in respect of any Early Termination Date, as calculated under section 6(e) , clearly arises on the Early Termination Date. It would be surprising, to say the least, if that debt obligation could never be enforced, because, on the appellants' analysis, the obligation to pay such sum never arose, and therefore the Non-defaulting Party had to sue for some entirely different amount, which it might be able to establish at its loss as the result of the Defaulting Party's breach of contract.”</p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="margin-left:0.49in">(emphasis in bold added).</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:1.28in;text-indent:-0.39in">“[59]<marker name="tab" />Before the judge Mr Yeo, appearing on behalf of Goldman, accepted in the light of the decision of Mr Knowles QC that pursuant to section 6(d) the sum claimed only became ‘payable’ once <span class="coitalic" style="font-style:italic">adequate details </span>of the sum claimed had been provided … In my judgment that concession was not correct. Likewise I do not agree with the judge's conclusion as set out in paragraph 16, that once ‘sufficient details’ of both the calculation of the sum claimed and of the bank account into which the sum was to be paid ‘the notice is … effective’. The use by the draftsman of the word ‘notice’, in conjunction with the word ‘effective’, in section 6(d)(ii) in order to ascertain the Payment Date must, in my judgment, be a reference to the language of section 12 , which expressly addresses the question of the precise day upon which a notice is deemed to be ‘effective’. The words used in section 6(d) (ii) (i.e. ‘on the day that notice of the amount payable is effective’) are not, in my view, addressing a wholly different concept of ‘effectiveness’ – namely the concept that a section 6(d)(i) statement (or notice) can only be ‘effective’ once all the details required to be contained in such a statement are supplied, a date which may be unclear and open to argument. On the contrary, section 6(d)(ii) is referring to when, in accordance with the provisions of section 12 , the notice is ‘effective’, viz. a specific delivery date, identified by the provisions of section 12.</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in">…</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.28in;text-indent:-0.39in">[62]<marker name="tab" />In the present case the letter dated 14 December 2011, and delivered on that date <span style="font-weight:bold">clearly set out not only the amount payable</span><span style="font-style:italic">,</span> but also Goldman's calculations of the amount payable. The fact that, according to Mr Knowles QC, such calculations were not sufficiently detailed to satisfy the contractual requirements of section 6(d) (i) , did not, in my judgment, prevent the letter constituting an adequate ‘notice of the amount payable’ for the purposes of identifying a Payment Date under section 6(d)(ii) …. </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
+        <level eId="lvl_11">
+          <heading style="text-indent:0.39in"><span style="color:initial;background-color:#FFFFFF">[64]</span><marker name="tab" /><span style="color:initial;background-color:#FFFFFF">My reasons for this conclusion may be summarised as follows.</span></heading>
+          <paragraph>
+            <num>(i)</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.28in">Section 6(d)(ii) does not state that the amount due in respect of an Early Termination Date will be payable <span class="coitalic" style="font-style:italic">only</span> when a statement compliant with section 6(d)(i) has been served. On the contrary, section 6(d)(ii) states that the sum is payable on the day that notice of the amount payable is effective’. <span style="font-weight:bold">In other words, as I have already suggested, the Payment Date is linked to the date on which the Non-defaulting Party gives notice of ‘the amount payable’ and that notice is deemed to be ‘effective’ in accordance with the provisions of section 12</span> . In the present case, that notice was in fact given well in time on 14 December 2011. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <content>
+              <p style="margin-left:1.28in;text-indent:-0.39in">…</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>(iii)</num>
+            <content>
+              <p style="text-align:justify;margin-left:1.28in">The appellants' construction is inconsistent not only with the wording, but also with the contractual scheme and mechanisms of the Master Agreement . As I have already said, the <span class="coitalic" style="font-style:italic">debt </span>obligation to pay the amount due in respect of any Early Termination Date, as calculated under section 6(e) , clearly arises on the Early Termination Date. It would be surprising, to say the least, if that debt obligation could never be enforced, because, on the appellants' analysis, the obligation to pay such sum never arose, and therefore the Non-defaulting Party had to sue for some entirely different amount, which it might be able to establish at its loss as the result of the Defaulting Party's breach of contract.”</p>
+            </content>
+          </paragraph>
+        </level>
+        <level eId="lvl_12">
+          <content>
+            <p style="margin-left:0.49in">(emphasis in bold added).</p>
+          </content>
+        </level>
         <paragraph eId="para_48">
           <num>48.</num>
           <content>
@@ -1076,41 +1106,49 @@
         </paragraph>
         <paragraph eId="para_49">
           <num>49.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Gloster LJ referred with approval to the decision of Aikens J in<span style="font-style:italic"> ANZ Banking Group Ltd v Société Générale </span>[2000] CLC 161, another case concerned with the 1992 ISDA Master Agreement. Section 5(b)(v) had been supplemented in that case by an additional termination event for “Russian market events”, with both parties being treated as affected parties and with the “loss” measure to be used in calculating the amounts payable on termination. One party (SG) served a notice of a “Russian market event”, contending that both parties were required to serve their calculation of loss or gain. The parties agreed an early termination date of 24 September 1998, and provided their respective calculations on 1 October 1998. A significant feature of the case was that the net amount payable was dependent on the combined effect of the calculations of <span style="font-style:italic">both </span>parties. ANZ disputed SG’s calculation, and the court upheld that challenge. A dispute arose as to which interest rate was payable to ANZ, the contractual termination rate or the default rate. SG submitted ([13]):</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in">“[A] party does not have the right to be paid on the ‘payment date’ in accordance with s. 6(d)(ii) until a notice of the amount payable is effective. But in the present case neither side produced a notice of the amount payable because of the dispute as to how the losses of SG should be calculated. The calculation of SG, even if it is ultimately found to be wrong, was, in the words of the ‘loss’ clause, ‘reasonably determined [by SG] to be its total losses and costs’. Therefore if the parties, in good faith, fail to agree on the amount payable in accordance with s. 6(e), and so no effective notice was produced, then no ‘payment date’ can be determined. Therefore the ‘payment date’ will only arrive upon the court's determination of the proper basis for calculating SG's losses. Until that time SG is not in default and so does not have to pay the ‘default rate’.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in">“[A] party does not have the right to be paid on the ‘payment date’ in accordance with s. 6(d)(ii) until a notice of the amount payable is effective. But in the present case neither side produced a notice of the amount payable because of the dispute as to how the losses of SG should be calculated. The calculation of SG, even if it is ultimately found to be wrong, was, in the words of the ‘loss’ clause, ‘reasonably determined [by SG] to be its total losses and costs’. Therefore if the parties, in good faith, fail to agree on the amount payable in accordance with s. 6(e), and so no effective notice was produced, then no ‘payment date’ can be determined. Therefore the ‘payment date’ will only arrive upon the court's determination of the proper basis for calculating SG's losses. Until that time SG is not in default and so does not have to pay the ‘default rate’.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_50">
           <num>50.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Aikens J rejected that argument. He noted at [15]:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in">“There is nothing in s. 6(d)(i) or (ii) or s. 12 (which defines how a notice may be given under the contract: e.g. in writing or by telex or e-mail, and the point at which it is effective) to indicate that the two parties' statements must agree before there can be a notice of the amount payable to one party or the other. This is not surprising, as in some cases there will only be one ‘affected party’ (see s. 6(e)(ii)(1)) and so only that party will have to make a calculation and serve a statement.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in">“There is nothing in s. 6(d)(i) or (ii) or s. 12 (which defines how a notice may be given under the contract: e.g. in writing or by telex or e-mail, and the point at which it is effective) to indicate that the two parties' statements must agree before there can be a notice of the amount payable to one party or the other. This is not surprising, as in some cases there will only be one ‘affected party’ (see s. 6(e)(ii)(1)) and so only that party will have to make a calculation and serve a statement.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_51">
           <num>51.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">At [16], he rejected the argument that the amount only became payable when both parties had served their statements, such that the net amount payable was known, concluding:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in">“I think that time runs once a calculation has been served stipulating the amount payable to one party as set out in s. 6(d)(i) and (ii), <span style="font-weight:bold">provided that the calculation is either agreed or (retrospectively) once the court ultimately finds that the calculation served is correct. </span>If it were otherwise one party could always claim that the ‘payment date’ could never arrive if the calculation of the amounts due were disputed, provided that party's calculation was made in good faith.”</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="text-align:left;margin-left:0.5in;text-indent:-0.01in">(emphasis added).</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in">“I think that time runs once a calculation has been served stipulating the amount payable to one party as set out in s. 6(d)(i) and (ii), <span style="font-weight:bold">provided that the calculation is either agreed or (retrospectively) once the court ultimately finds that the calculation served is correct. </span>If it were otherwise one party could always claim that the ‘payment date’ could never arrive if the calculation of the amounts due were disputed, provided that party's calculation was made in good faith.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaLevel1" style="text-align:left;margin-left:0.5in;text-indent:-0.01in">(emphasis added).</p>
+          </content>
         </paragraph>
         <paragraph eId="para_52">
           <num>52.</num>
@@ -1172,7 +1210,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Subject to the quantum issues which I address below, I am willing to adjourn the interim payment application to allow Macquarie to serve such a precautionary notice in respect of its claim to the Alternative Early Termination Amount.</p>
           </content>
         </paragraph>
-        <level eId="lvl_11">
+        <level eId="lvl_13">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">The amount recoverable</span></p>
           </content>
@@ -1197,14 +1235,18 @@
         </paragraph>
         <paragraph eId="para_60">
           <num>60.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Second, by way of a late developing point, it was said that there was reason to believe Macquarie had made a “highly material” (but unquantified) gain on a hedging contract it had taken out in relation to its exposure to Phelan, and that it is arguable that such a profit needs to be brought into account when calculating the Alternative Early Payment Amount. In this context, Mr Hobson relied upon the definition of “Close-out Amount”, and in particular the words:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.89in">“Without duplication of amounts calculated based on information described in clause (i), (ii) or (iii) above, or other relevant information, and when it is commercially reasonable to do so, the Determining Party may in addition consider in calculating a Close-out Amount any loss or costs incurred in connection with its terminating, liquidating or re-establishing any hedge related to a Terminated Transaction or group of Terminated Transactions (or any gain resulting from any of them”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.89in">“Without duplication of amounts calculated based on information described in clause (i), (ii) or (iii) above, or other relevant information, and when it is commercially reasonable to do so, the Determining Party may in addition consider in calculating a Close-out Amount any loss or costs incurred in connection with its terminating, liquidating or re-establishing any hedge related to a Terminated Transaction or group of Terminated Transactions (or any gain resulting from any of them”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_61">
           <num>61.</num>
@@ -1212,7 +1254,7 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Mr Hardwick KC objected that if there had been such a gain, and if it had to be brought into account in the calculation of the Early Termination or Alternative Early Termination Amount (neither of which were admitted), the maximum amount was of the order of US$165,000. However, there was no evidence supporting this figure. In the absence of such evidence, but having regard to the circumstances in which the point arose and the fact that experts’ reports will be exchanged on 28 October 2022, I decided to adjourn this aspect of the interim payment application, with liberty to restore once the expert reports have been exchanged.</p>
           </content>
         </paragraph>
-        <level eId="lvl_12">
+        <level eId="lvl_14">
           <content>
             <p class="ParaLevel1"><span style="font-weight:bold">CONCLUSION</span></p>
           </content>

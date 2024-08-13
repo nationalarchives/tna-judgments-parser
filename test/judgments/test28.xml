@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1199/data.xml" />
-          <FRBRdate date="2024-05-27T16:27:20" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1199</uk:number>
         <uk:cite>[2022] EWHC 1199 (QB)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>3711e3a04086f49deb18d4ebbb01a29844464ceabc9d835623e8dad2f485fac5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -562,15 +562,19 @@
         </paragraph>
         <paragraph eId="para_40">
           <num style="margin-left:0.5in;text-indent:-0.25in">40.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The relevant principles relating to the familiar “two stage test” to determine whether there has been a misuse of private information were summarised by the Supreme Court in </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">ZXC v Bloomberg LP</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#000000"> </span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">[2022] UKSC 5; [2022] 2 W.L.R. 424 at [45]-[62]. At the first stage the Court determines whether the claimant has a reasonable expectation of privacy in relation to the information in question; if so, at the second stage, the Court balances the claimant’s privacy right against the rights of others, most commonly the defendant’s right to freedom of expression. At [60] the Supreme Court in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#000000">ZXC</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> referred to the test for a reasonable expectation of privacy derived from </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Murray v Express Newspapers Plc</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> [2008] EWCA Civ 446; [2009] Ch. 481, observing: </span></p>
-          </intro>
-          <subparagraph>
-            <num>“50.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">As stated in Murray at para 36, the question whether there is a reasonable expectation of privacy is a broad one, which takes account of all the circumstances of the case". Such circumstances are likely to include, but are not limited to, the circumstances identified at para 36 in Murray -the so-called Murray factors". These are: (1) the attributes of the claimant; (2) the nature of the activity in which the claimant was engaged; (3) the place at which it was happening; (4) the nature and purpose of the intrusion; (5) the absence of consent and whether it was known or could be inferred; (6) the effect on the claimant; and (7) the circumstances in which and the purposes for which the information came into the hands of the publisher.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“50.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">As stated in Murray at para 36, the question whether there is a reasonable expectation of privacy is a broad one, which takes account of all the circumstances of the case". Such circumstances are likely to include, but are not limited to, the circumstances identified at para 36 in Murray -the so-called Murray factors". These are: (1) the attributes of the claimant; (2) the nature of the activity in which the claimant was engaged; (3) the place at which it was happening; (4) the nature and purpose of the intrusion; (5) the absence of consent and whether it was known or could be inferred; (6) the effect on the claimant; and (7) the circumstances in which and the purposes for which the information came into the hands of the publisher.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_41">
           <num style="margin-left:0.5in;text-indent:-0.25in">41.</num>

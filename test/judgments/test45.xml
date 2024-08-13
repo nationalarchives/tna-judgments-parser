@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:08" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:58" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2022</uk:year>
         <uk:number>2578</uk:number>
         <uk:cite>[2022] EWHC 2578 (Ch)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>79d2f5213b7678ab85ed006ba34f880f77e241ede67a9b9868b24bca6aa292a5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -279,33 +279,37 @@
         </level>
         <paragraph eId="para_18">
           <num>18.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">S.245(2) of the Act so far as relevant to this application provides:</p>
-          </intro>
-          <subparagraph>
-            <num>“(2)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[Invalidity of floating charge] Subject as follows, a floating charge on the company’s undertaking or property created at a relevant time is invalid except to the extent of the aggregate of–</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(a)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the value of so much of the consideration for the creation of the charge as consists of money paid, or goods or services supplied, to the company at the same time as, or after, the creation of the charge,</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(b)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the value of so much of that consideration as consists of the discharge or reduction, at the same time as, or after, the creation of the charge, of any debt of the company, and</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>(c)</num>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the amount of such interest (if any) as is payable on the amount falling within paragraph (a) or (b) in pursuance of any agreement under which the money was so paid, the goods or services were so supplied or the debt was so discharged or reduced.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“(2)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">[Invalidity of floating charge] Subject as follows, a floating charge on the company’s undertaking or property created at a relevant time is invalid except to the extent of the aggregate of–</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(a)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the value of so much of the consideration for the creation of the charge as consists of money paid, or goods or services supplied, to the company at the same time as, or after, the creation of the charge,</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(b)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the value of so much of that consideration as consists of the discharge or reduction, at the same time as, or after, the creation of the charge, of any debt of the company, and</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(c)</num>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.5in;text-indent:0.5in">the amount of such interest (if any) as is payable on the amount falling within paragraph (a) or (b) in pursuance of any agreement under which the money was so paid, the goods or services were so supplied or the debt was so discharged or reduced.”</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_19">
           <num>19.</num>
@@ -348,14 +352,18 @@
         </paragraph>
         <paragraph eId="para_24">
           <num>24.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">It is also important to bear in mind the legal nature of a charge. In Bridge et al, <span style="font-style:italic">The Law of Personal Property</span> (3rd ed. 2022), the following summary is given at para 16-068:-</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“When a charge is created, the debtor (the “chargor”) simply agrees with the creditor (the “chargee”) that certain assets (the “charged assets”) are to be appropriated to the discharge of a debt or other obligation. It is in the nature of a charge that it be made for consideration. If the security agreement is between debtor and creditor, there is inevitably consideration, but charges are not limited to agreements between these parties. What is critical is the existence of a specifically enforceable agreement creating the charge. This is because the existence of the equitable proprietary right relies on the chargee having a specifically enforceable right to have the charged property appropriated to the payment of the relevant debt or discharge of some other obligation. As Briggs J put it in <span style="font-style:italic">Re Lehman Bros International (Europe) Ltd</span>: “It is that right of specific enforcement which transforms what might have otherwise been a purely personal right into a species of proprietary interest in the charged property” ([2012] EWHC 2997)”.</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“When a charge is created, the debtor (the “chargor”) simply agrees with the creditor (the “chargee”) that certain assets (the “charged assets”) are to be appropriated to the discharge of a debt or other obligation. It is in the nature of a charge that it be made for consideration. If the security agreement is between debtor and creditor, there is inevitably consideration, but charges are not limited to agreements between these parties. What is critical is the existence of a specifically enforceable agreement creating the charge. This is because the existence of the equitable proprietary right relies on the chargee having a specifically enforceable right to have the charged property appropriated to the payment of the relevant debt or discharge of some other obligation. As Briggs J put it in <span style="font-style:italic">Re Lehman Bros International (Europe) Ltd</span>: “It is that right of specific enforcement which transforms what might have otherwise been a purely personal right into a species of proprietary interest in the charged property” ([2012] EWHC 2997)”.</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_25">
           <num>25.</num>
@@ -365,14 +373,18 @@
         </paragraph>
         <paragraph eId="para_26">
           <num>26.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">However, not all agreements to grant a charge bring a charge into existence. In <span style="font-style:italic">Re Jackson and Bassford</span> [1906] 2 Ch 467, Buckley LJ said </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“An agreement to give security may be either one of two things. It may be so expressed as to create a present equitable right to a security. If it does that, then it would seem to me that it must be registered under s. 14 of the Act of 1900, otherwise it is void as against the liquidator and any creditor of the company. Or it may be so expressed as to be merely an agreement that in some future circumstances a security shall in the future be created. In that latter case, the agreement not creating a present security will not require registration.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“An agreement to give security may be either one of two things. It may be so expressed as to create a present equitable right to a security. If it does that, then it would seem to me that it must be registered under s. 14 of the Act of 1900, otherwise it is void as against the liquidator and any creditor of the company. Or it may be so expressed as to be merely an agreement that in some future circumstances a security shall in the future be created. In that latter case, the agreement not creating a present security will not require registration.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_27">
           <num>27.</num>
@@ -656,14 +668,18 @@
         </paragraph>
         <paragraph eId="para_59">
           <num>59.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I think that this conclusion is also inherent in the conclusions actually reached in <span style="font-style:italic">In Re Peak Hotels and Resorts Limited (In Liquidation)</span> [2019] EWCA Civ 345. In that case the chargee, Candey, had contracted to supply services. Henderson LJ said (at [36]) </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“Those services were supplied pursuant to the Fixed Fee Agreement, but for the purposes of section 245 the question is not what sum was contractually due from PHRL to Candey in return for those services. … The relevant issue is the extent to which Candey is entitled to enforce its charge, and for that purpose what has to be ascertained is the value, calculated in accordance with section 245(6), of the services actually supplied by Candey to PHRL during the relevant period.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“Those services were supplied pursuant to the Fixed Fee Agreement, but for the purposes of section 245 the question is not what sum was contractually due from PHRL to Candey in return for those services. … The relevant issue is the extent to which Candey is entitled to enforce its charge, and for that purpose what has to be ascertained is the value, calculated in accordance with section 245(6), of the services actually supplied by Candey to PHRL during the relevant period.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_60">
           <num>60.</num>
@@ -719,14 +735,18 @@
         </paragraph>
         <paragraph eId="para_67">
           <num>67.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The Joint Administrators point out that the question of what the phrase “goods and services” is intended to mean in this context is unclear. Sealy &amp; Milman: Annotated Guide to the Insolvency Legislation (25th Ed. – 2022), Volume 1:  observe that “Whether paras (a) and (b) will themselves be open to a restrictive interpretation is unclear: it is hard to see why other forms of valuable consideration (e.g. the transfer of land or shares) were not included within the reform that was made”. However, the plain language of the provision refers only to “money” “goods” and “services”. Shares are not naturally described as “goods”. This is the point made by Armour and Bennett, Vulnerable Transactions in Corporate Insolvency (2003), at 5.5913: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“The use of the verb ‘supply’ and the choice of the terms ‘goods’ and ‘services’ rather than broader terms such as ‘property’ indicate that many assets with considerable value are excluded from the permissible forms of value under Section 245. Thus, consideration for a floating charge in the form of rights over, for example, land, intellectual property or choses in action would be regarded as of no value under the legislation. While it is hard to justify this discrimination, it appears unavoidable as a matter of statutory interpretation.” </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“The use of the verb ‘supply’ and the choice of the terms ‘goods’ and ‘services’ rather than broader terms such as ‘property’ indicate that many assets with considerable value are excluded from the permissible forms of value under Section 245. Thus, consideration for a floating charge in the form of rights over, for example, land, intellectual property or choses in action would be regarded as of no value under the legislation. While it is hard to justify this discrimination, it appears unavoidable as a matter of statutory interpretation.” </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_68">
           <num>68.</num>
@@ -736,14 +756,18 @@
         </paragraph>
         <paragraph eId="para_69">
           <num>69.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The answer to this may be found in <span style="font-style:italic">In Re Peak Hotels and Resorts Ltd (In Liquidation) </span>[2019] EWCA Civ 345; [2019] Bus. L.R. 1758. In that case, at [17], Henderson LJ quoted (with apparent approval) the following passage from Goode, Principles of Corporate Insolvency (5th Edition, 2018)14 at para 13-111: </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“The effect of s. 245 is that the most common forms of new value – money, goods, services, payment of debt – now suffice to preserve the validity of the floating charge. This extension in the concept of new value represents a compromise between the views of the hardliners who considered that the old restriction to cash should be retained and the proponents of the opposing view that any form of money’s worth should suffice. The Cork committee rather cautiously recommended the addition of goods to cash but the exclusion of services [Insolvency Law and Practice, Report of the Review Committee, Cmnd. 8558, para 1564]. In the end, services were added to the list. The result in broad terms is that admissible new value is restricted to those forms of benefit to the company which arise from day-to-day trading and finance and have a readily ascertainable value. Excluded are a wide range of other assets, both tangible and intangible, including land and buildings, intellectual property rights, debts and other receivables and rights under contracts.” </p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“The effect of s. 245 is that the most common forms of new value – money, goods, services, payment of debt – now suffice to preserve the validity of the floating charge. This extension in the concept of new value represents a compromise between the views of the hardliners who considered that the old restriction to cash should be retained and the proponents of the opposing view that any form of money’s worth should suffice. The Cork committee rather cautiously recommended the addition of goods to cash but the exclusion of services [Insolvency Law and Practice, Report of the Review Committee, Cmnd. 8558, para 1564]. In the end, services were added to the list. The result in broad terms is that admissible new value is restricted to those forms of benefit to the company which arise from day-to-day trading and finance and have a readily ascertainable value. Excluded are a wide range of other assets, both tangible and intangible, including land and buildings, intellectual property rights, debts and other receivables and rights under contracts.” </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_70">
           <num>70.</num>
@@ -1294,14 +1318,18 @@
         </paragraph>
         <paragraph eId="para_119">
           <num>119.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">I have been referred to the notes in the White Book following CPR 40.2 and in particular to the cases of <span style="font-style:italic">Re Barrell Enterprises</span> [1971] 1 WLR 19, CA and <span style="font-style:italic">Re L (Children) (Preliminary Finding: Power to Reverse)</span> [2013] UKSC 8. In the latter case, Baroness Hale of Richmond JSC stated:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“[The] overriding objective must be to deal with the case justly. A relevant factor must be whether any party has acted upon the decision to his detriment, especially in a case where it is expected that they may do so before the order is formally drawn up. On the other hand, in <span style="font-style:italic">re Blenheim Leisure (Restaurants) Ltd</span>, Neuberger J gave some examples of cases where it might be just to revisit the earlier decision. But these are only examples. A carefully considered change of mind can be sufficient. Every case is going to depend upon its particular circumstances.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“[The] overriding objective must be to deal with the case justly. A relevant factor must be whether any party has acted upon the decision to his detriment, especially in a case where it is expected that they may do so before the order is formally drawn up. On the other hand, in <span style="font-style:italic">re Blenheim Leisure (Restaurants) Ltd</span>, Neuberger J gave some examples of cases where it might be just to revisit the earlier decision. But these are only examples. A carefully considered change of mind can be sufficient. Every case is going to depend upon its particular circumstances.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_120">
           <num>120.</num>

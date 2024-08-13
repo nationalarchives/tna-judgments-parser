@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/grc/2023/916/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/grc/2023/916/data.xml" />
-          <FRBRdate date="2024-05-27T16:27:07" name="transform" />
+          <FRBRdate date="2024-08-12T19:22:29" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,7 +41,7 @@
         <uk:number>916</uk:number>
         <uk:cite>[2023] UKFTT 916 (GRC)</uk:cite>
         <uk:jurisdiction>InformationRights</uk:jurisdiction>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>134025e65cf965cd195d28246b1713ee78d93731fe751d724fc236b90626f9bc</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -135,34 +135,38 @@
           <heading style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">The Grounds of Appeal:</span></heading>
           <paragraph eId="para_4">
             <num style="font-weight:bold;font-family:'Book Antiqua';color:#000000;margin-left:0.35in;text-indent:-0.25in">4.</num>
-            <intro>
+            <content>
               <p class="ListParagraph" style="text-align:justify;margin-left:0.35in"><span style="font-family:'Book Antiqua';color:#000000">On 6 March 2023 the Appellant appealed to the Tribunal against the DN. In his grounds of appeal, the Appellant argues;</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">“Sussex Police are continuing to ignore and blatantly in disregard to their duty of care and protection to the public. Article 2 of the Human Rights Act ‘Safeguarding Life’ states: They must do everything reasonable within their powers to protect life. They are withholding vitally important information from us, which could cause death/injury or severe health problems. They have a legal obligation to adhere to the Law and the Police are already aware of our risks. For over three years, </span><span style="font-size:11pt;color:#000000">[redacted]</span><span style="font-style:italic;font-size:11pt;color:#000000"> has continued to intimidate and threaten my family and using foul language and aggression. He was finally interviewed by a member of the public, working as </span><span style="font-size:11pt;color:#000000">[redacted] </span><span style="font-style:italic;font-size:11pt;color:#000000">and admitted to this </span><span style="font-size:11pt;color:#000000">[redacted] </span><span style="font-style:italic;font-size:11pt;color:#000000">that he used aggravated and violent conduct; swearing at me in the road to fight him. He was wearing just a dressing gown and was completely out of control.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">This has not only led to massive ongoing stress and worry but in May last year, he and </span><span style="font-size:11pt;color:#000000">[redacted]</span><span style="font-style:italic;font-size:11pt;color:#000000">blocked my car in and punched and smashed my windscreen in trying to get me out of my car. This included spitting in my face and damaging my car further.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">Apparently, this matter has still not been dealt with but far more importantly, Sussex Police continue to ignore their legal responsibility to make the public aware of possible risks, life changing and otherwise.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">I request this matter be reviewed. I will be passing on this information to </span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-size:11pt;color:#000000">[redacted] </span><span style="font-style:italic;font-size:11pt;color:#000000">who amongst other </span><span style="font-size:11pt;color:#000000">[redacted]</span><span style="font-style:italic;font-size:11pt;color:#000000"> are shocked by the ability of Sussex Police to ignore their duty of care and protection.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">“Sussex Police are continuing to ignore and blatantly in disregard to their duty of care and protection to the public. Article 2 of the Human Rights Act ‘Safeguarding Life’ states: They must do everything reasonable within their powers to protect life. They are withholding vitally important information from us, which could cause death/injury or severe health problems. They have a legal obligation to adhere to the Law and the Police are already aware of our risks. For over three years, </span><span style="font-size:11pt;color:#000000">[redacted]</span><span style="font-style:italic;font-size:11pt;color:#000000"> has continued to intimidate and threaten my family and using foul language and aggression. He was finally interviewed by a member of the public, working as </span><span style="font-size:11pt;color:#000000">[redacted] </span><span style="font-style:italic;font-size:11pt;color:#000000">and admitted to this </span><span style="font-size:11pt;color:#000000">[redacted] </span><span style="font-style:italic;font-size:11pt;color:#000000">that he used aggravated and violent conduct; swearing at me in the road to fight him. He was wearing just a dressing gown and was completely out of control.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">This has not only led to massive ongoing stress and worry but in May last year, he and </span><span style="font-size:11pt;color:#000000">[redacted]</span><span style="font-style:italic;font-size:11pt;color:#000000">blocked my car in and punched and smashed my windscreen in trying to get me out of my car. This included spitting in my face and damaging my car further.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">Apparently, this matter has still not been dealt with but far more importantly, Sussex Police continue to ignore their legal responsibility to make the public aware of possible risks, life changing and otherwise.</span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-style:italic;font-size:11pt;color:#000000">I request this matter be reviewed. I will be passing on this information to </span></p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:0.55in"><span style="font-size:11pt;color:#000000">[redacted] </span><span style="font-style:italic;font-size:11pt;color:#000000">who amongst other </span><span style="font-size:11pt;color:#000000">[redacted]</span><span style="font-style:italic;font-size:11pt;color:#000000"> are shocked by the ability of Sussex Police to ignore their duty of care and protection.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_4">

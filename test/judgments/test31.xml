@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1593/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1593/data.xml" />
-          <FRBRdate date="2024-05-27T19:34:48" name="transform" />
+          <FRBRdate date="2024-08-13T18:30:50" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -51,7 +51,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1593</uk:number>
         <uk:cite>[2022] EWHC 1593 (QB)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>235dcc0bd359888fa1c341d3f75a5e6322b6bdc4f92c61f31fc009d802ac8b40</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -414,14 +414,18 @@
           </paragraph>
           <paragraph eId="para_29">
             <num>29.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.39in">In passing, I would express some surprise that the Coroner held that any of the events surrounding this death engaged Article 2 of the ECHR.  It is far from obvious why the events on the 12 December 2018 engaged the state’s systems duty, even arguably.  The systems duty is a “<span style="font-style:italic">high level structural duty</span>” rather than an obligation of result (see <span style="font-style:italic">R (Gardner) v Secretary of State for Health and Social Care</span> [2022] EWHC 967 Admin) at [226]).  Its content and effect in the healthcare context has been the subject of a consistent line of authority; (see for example <span style="font-style:italic">Powell v United Kingdom</span> (2000) 30 EHRR CD 362, at 364; <span style="font-style:italic">Savage v South Essex Partnership NHS Foundation Trust</span> [2009] 1 AC 681 at [45]; <span style="font-style:italic">R (Humberstone) v Legal Services Comm</span>ission [2011] 1 WLR 146; <span style="font-style:italic"> (R Long) v Secretary of State for Defence</span> [2015] EWCA Civ 770, [2015] 1 WLR 5006, at [25]; <span style="font-style:italic">R (Parkinson) v HM Senior Coroner for Kent</span> [2018] EWHC 150 at [86] – [90]; <span style="font-style:italic">Fernandes De Oliveira v Portugal</span> (2019) 69 E.H.R.R. 8 at [106] and [186]-[196]) and R<span style="font-style:italic"> (Boyce) v Teesside and Hartlepool Senior Coroner </span>[2022] EWHC 107 at [41].  Farby J put the essential point neatly, if I may say so, at [57] in <span style="font-style:italic">R (Dove) v HM Coroner for Teesside and Hartlepool</span> [2021] EWHC 2511 (Admin)</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">“<span style="font-style:italic">The systems duty is not concerned with errors of individual state actors or with the failure of co-ordination among individual state actors.”</span></p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.79in">“<span style="font-style:italic">The systems duty is not concerned with errors of individual state actors or with the failure of co-ordination among individual state actors.”</span></p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_30">
             <num>30.</num>
@@ -449,45 +453,53 @@
           </paragraph>
           <paragraph eId="para_34">
             <num>34.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.39in">She then set out, over the course of some five pages of text, her findings of fact.  She described the deceased’s medical and psychiatric history, and the care Mr Sylaj had received from his GP practice, St Mary’s Hospital and the HTT.  She set out her finding as to events on 12 and 13 December and as to the disciplinary hearing on 14 December.  She described the circumstances of his death.  She then said this:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">“[A]s we know on 19 December 2018, he came off the balcony of his flat on the fifth floor I believe it was at Longland Court in West 11 sustaining fatal injuries and was pronounced life extinct at the scene. Police attended and pronounced the death to be nonsuspicious. No note of intent was found. The pathologist gave the cause of death as multiple trauma. There was the presence of mirtazapine in his system at the time of his death. No other drugs, no alcohol in his system that would have influenced his behaviour or decision-making. There’s been an admitted failure by the Trust, and I was very pleased the family and Mr Rule praise Ms Cox for the rapidity with which they recognised what had gone wrong; the fact that they were open about what had gone wrong with the family; and that they, as quickly as possible, put in a process to safeguard a repeat of what went wrong. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">However I don’t think we can say on the balance of probabilities that the outcome would have been different if he had had a clinical triage. It’s a missed opportunity. It’s possible there may have been a referral to secondary mental-health services, but we know that he was seen by an experienced GP the following day who did not consider he needed referral to secondary mental-health services. If he’d been triaged by a clinician on the 12<span style="vertical-align:super;font-size:smaller">th</span>, there was quite a significant range of options available between referring back to the Home Treatment Team, and we know that his presentation on the 13<span style="vertical-align:super;font-size:smaller">th</span> December, when put to Dr Lowe, he felt it would be unlikely that the referral would reach the Home Treatment Team level. He could have been referred to community mental-health services, a community mental-health outpatient appointment, and we’ve looked at all the timelines. Without the triage, we don’t know what sort of timeline would necessarily he’d have followed for an assessment He could indeed have been referred to his GP, as he was when he had thoughts of self-harm and presented in a crisis to Dr Patel in February and was referred to St Mary’s and assessed by liaison psychiatry at that point. He was referred back to his GP. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">So it’s my view that, yes, there was admitted failure, but I can’t say that we can say on the balance of probabilities would have made any difference. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">As far as evidence of Dr Sanghera goes, it was very clear that she did not deem him in need of a referral to secondary mental-health services and that assessment was by a fully qualified GP with some experience in general practice. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel1" style="margin-left:0.79in">As we know from looking at the documents, the policies, the particular SPA policy, it is the usual assumption that cases of anxiety and depression are managed within a primary-care setting by general practice, unless there is an elevated risk of harm to self, or others, or health, and Dr Lowe explained that to us, that clearly, we know how to assess a risk of harm. He was directly asked if he had any thoughts of self-harm and he said no. He had never shown any disposition to be a risk of harm to others. And as to a risk of health, clearly, he was presenting as anxious and low mood because of a very specific matter which Dr Sanghera felt that she might be able to assist with by providing him with a letter, increasing his mirtazapine and referring him to psychological therapy, safety netting him, and providing him with a follow-up in a very traumatic meeting.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.79in">“[A]s we know on 19 December 2018, he came off the balcony of his flat on the fifth floor I believe it was at Longland Court in West 11 sustaining fatal injuries and was pronounced life extinct at the scene. Police attended and pronounced the death to be nonsuspicious. No note of intent was found. The pathologist gave the cause of death as multiple trauma. There was the presence of mirtazapine in his system at the time of his death. No other drugs, no alcohol in his system that would have influenced his behaviour or decision-making. There’s been an admitted failure by the Trust, and I was very pleased the family and Mr Rule praise Ms Cox for the rapidity with which they recognised what had gone wrong; the fact that they were open about what had gone wrong with the family; and that they, as quickly as possible, put in a process to safeguard a repeat of what went wrong. </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.79in">However I don’t think we can say on the balance of probabilities that the outcome would have been different if he had had a clinical triage. It’s a missed opportunity. It’s possible there may have been a referral to secondary mental-health services, but we know that he was seen by an experienced GP the following day who did not consider he needed referral to secondary mental-health services. If he’d been triaged by a clinician on the 12<span style="vertical-align:super;font-size:smaller">th</span>, there was quite a significant range of options available between referring back to the Home Treatment Team, and we know that his presentation on the 13<span style="vertical-align:super;font-size:smaller">th</span> December, when put to Dr Lowe, he felt it would be unlikely that the referral would reach the Home Treatment Team level. He could have been referred to community mental-health services, a community mental-health outpatient appointment, and we’ve looked at all the timelines. Without the triage, we don’t know what sort of timeline would necessarily he’d have followed for an assessment He could indeed have been referred to his GP, as he was when he had thoughts of self-harm and presented in a crisis to Dr Patel in February and was referred to St Mary’s and assessed by liaison psychiatry at that point. He was referred back to his GP. </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.79in">So it’s my view that, yes, there was admitted failure, but I can’t say that we can say on the balance of probabilities would have made any difference. </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.79in">As far as evidence of Dr Sanghera goes, it was very clear that she did not deem him in need of a referral to secondary mental-health services and that assessment was by a fully qualified GP with some experience in general practice. </p>
+                    </content>
+                  </level>
+                  <level>
+                    <content>
+                      <p class="ParaLevel1" style="margin-left:0.79in">As we know from looking at the documents, the policies, the particular SPA policy, it is the usual assumption that cases of anxiety and depression are managed within a primary-care setting by general practice, unless there is an elevated risk of harm to self, or others, or health, and Dr Lowe explained that to us, that clearly, we know how to assess a risk of harm. He was directly asked if he had any thoughts of self-harm and he said no. He had never shown any disposition to be a risk of harm to others. And as to a risk of health, clearly, he was presenting as anxious and low mood because of a very specific matter which Dr Sanghera felt that she might be able to assist with by providing him with a letter, increasing his mirtazapine and referring him to psychological therapy, safety netting him, and providing him with a follow-up in a very traumatic meeting.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
           <paragraph eId="para_35">
             <num>35.</num>
-            <intro>
+            <content>
               <p class="ParaLevel1" style="margin-left:0.39in">Her Record of Inquest recorded the deceased’s name and the medical cause of death, “<span style="font-style:italic">Multiple Trauma</span>”.  The question “<span style="font-style:italic">how, when and where….and in what circumstances the deceased came by his…death</span>” was answered as follows;  “<span style="font-style:italic">On 19</span><span style="font-style:italic;vertical-align:super;font-size:smaller">th</span><span style="font-style:italic"> December 2018 Besim Sylaj died outside Longland Court, Westbourne Grove, W11</span>”.  The “<span style="font-style:italic">Conclusion of the Coroner as to the death</span>” was as follows:</p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="ParaLevel2" style="margin-left:0.79in">“Besim Sylaj developed a depressive illness in March 2017 and following an overdose in February 2018, was under the care of the Home Treatment Team. His mental health was relatively stable following discharge back to his GP. He returned to work requesting no adjustments be made to his working pattern. A disciplinary matter arose at work causing him stress, anxiety and a lowering of his mood. On 12th December he rang the Single Point of Access (SPA) service but was not triaged by a clinician as per SPA policy. It is not possible to say if he had been triaged, it would have prevented his death. His death was due to suicide.”</p>
-              </content>
-            </subparagraph>
+              <block name="embeddedStructure">
+                <embeddedStructure>
+                  <level>
+                    <content>
+                      <p class="ParaLevel2" style="margin-left:0.79in">“Besim Sylaj developed a depressive illness in March 2017 and following an overdose in February 2018, was under the care of the Home Treatment Team. His mental health was relatively stable following discharge back to his GP. He returned to work requesting no adjustments be made to his working pattern. A disciplinary matter arose at work causing him stress, anxiety and a lowering of his mood. On 12th December he rang the Single Point of Access (SPA) service but was not triaged by a clinician as per SPA policy. It is not possible to say if he had been triaged, it would have prevented his death. His death was due to suicide.”</p>
+                    </content>
+                  </level>
+                </embeddedStructure>
+              </block>
+            </content>
           </paragraph>
         </level>
         <level eId="lvl_5">
@@ -670,22 +682,22 @@
           <num>51.</num>
           <intro>
             <p class="ParaLevel1" style="margin-left:0.39in">On another occasion the Coroner interrupted Mr Rule in order to ensure that the witness remained focused on relevant points. At page 201 the transcript reads as follows: </p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“Rule: so, this is your exhibit for the referral that the GP would make, yourself, to the mental health team. As opposed to self-referrals to community living well or that type of referral, correct?</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">Patel: Yeah. This is a referral to secondary mental health team, SPA. </p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ParaLevel1" style="margin-left:0.79in;text-indent:-0.39in"><marker name="tab" />Rule: Thank you. This is the type that would have come through—or usually you would do yourself, isn’t it? You mentioned that there’s the self-refer type…</p>
           </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“Rule: so, this is your exhibit for the referral that the GP would make, yourself, to the mental health team. As opposed to self-referrals to community living well or that type of referral, correct?</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">Patel: Yeah. This is a referral to secondary mental health team, SPA. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in;text-indent:-0.39in"><marker name="tab" />Rule: Thank you. This is the type that would have come through—or usually you would do yourself, isn’t it? You mentioned that there’s the self-refer type…</p>
-            </content>
-          </subparagraph>
           <subparagraph>
             <content>
               <p class="ParaLevel1" style="margin-left:0.79in;text-indent:-0.39in"><marker name="tab" />Coroner: yes, we understand all that, Mr Rule, I’ve got it. Okay. Let’s focus on the SPA referral form. </p>
@@ -705,14 +717,18 @@
         </paragraph>
         <paragraph eId="para_53">
           <num>53.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.39in">On another occasion Mr Rule was asking Dr Sanghera about a letter she had written on 13 December. The Coroner interrupted the exchange and the following appears at page 218 </p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.79in">“Coroner: Can we just hold on a moment? Just hold on. Just let’s be pleasant about it. So let’s be more—just calm down. Doctor Sanghera, I can appreciate that you feel there is a certain tone but if you just let Mr Rule ask his questions and I’ll intervene if they feel they are not giving you an opportunity to answer them adequately. If you feel that you want to add on something to an answer then let me know rather than be interrupted. Okay?</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel1" style="margin-left:0.79in">“Coroner: Can we just hold on a moment? Just hold on. Just let’s be pleasant about it. So let’s be more—just calm down. Doctor Sanghera, I can appreciate that you feel there is a certain tone but if you just let Mr Rule ask his questions and I’ll intervene if they feel they are not giving you an opportunity to answer them adequately. If you feel that you want to add on something to an answer then let me know rather than be interrupted. Okay?</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_54">
           <num>54.</num>
@@ -980,14 +996,18 @@
         </level>
         <paragraph eId="para_86">
           <num>86.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.39in">The Court of Appeal laid down the test by which an error of fact amounts to a justiciable error of law in <span style="font-style:italic">E v SSHD</span> [2004] EWCA Civ 49. Carnwath LJ at [66] said this:</p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel2" style="margin-left:0.79in">“… First, there must have been a mistake as to an existing fact, including a mistake as to the availability of evidence on a particular matter. Secondly, the fact or evidence must have been "established", in the sense that it was uncontentious and objectively verifiable. Thirdly, the [claimant] must not been have been responsible for the mistake. Fourthly, the mistake must have played a material (not necessarily decisive) part in the Tribunal's reasoning.”</p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ParaLevel2" style="margin-left:0.79in">“… First, there must have been a mistake as to an existing fact, including a mistake as to the availability of evidence on a particular matter. Secondly, the fact or evidence must have been "established", in the sense that it was uncontentious and objectively verifiable. Thirdly, the [claimant] must not been have been responsible for the mistake. Fourthly, the mistake must have played a material (not necessarily decisive) part in the Tribunal's reasoning.”</p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_87">
           <num>87.</num>

@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/96/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/96/data.xml" />
-          <FRBRdate date="2024-02-16T18:06:37" name="transform" />
+          <FRBRdate date="2024-08-12T19:21:44" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,7 +39,7 @@
         <uk:year>2022</uk:year>
         <uk:number>96</uk:number>
         <uk:cite>[2022] UKUT 96 (AAC)</uk:cite>
-        <uk:parser>0.22.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>064c1aa29b73a2d8c57864d34423f8fde1c89f2b362b2b1cfc691e592c6093dd</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -142,14 +142,18 @@
         </paragraph>
         <paragraph eId="para_9">
           <num style="font-family:Arial">9.</num>
-          <intro>
+          <content>
             <p style="text-align:justify;text-indent:0.5in"><span style="font-family:Arial">As to the approach which the Upper Tribunal must take on an appeal such as this, paragraph 17(1) of Schedule 4 to the Transport Act 1985 provides:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:1in;margin-right:0.49in"><span style="font-family:Arial;font-size:11pt">“The Upper Tribunal are to have full jurisdiction to hear and determine on all matters (whether of law or of fact) for the purpose of the exercise of any of their functions under an enactment related to transport”.</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:1in;margin-right:0.49in"><span style="font-family:Arial;font-size:11pt">“The Upper Tribunal are to have full jurisdiction to hear and determine on all matters (whether of law or of fact) for the purpose of the exercise of any of their functions under an enactment related to transport”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_10">
           <num style="font-family:Arial">10.</num>

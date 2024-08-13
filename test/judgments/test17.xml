@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/eat/2022/36/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/eat/2022/36/data.xml" />
-          <FRBRdate date="2024-05-27T19:11:17" name="transform" />
+          <FRBRdate date="2024-08-13T18:30:35" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -45,7 +45,7 @@
         <uk:year>2022</uk:year>
         <uk:number>36</uk:number>
         <uk:cite>[2022] EAT 36</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>ccaa94a4b1840803928abfc9b8285dbb33e2879ad69148a8f3f85fd29097df95</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -117,137 +117,147 @@
         </level>
         <paragraph eId="para_1">
           <num style="font-size:12pt">1.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> Part X </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Employment Rights Act 1996</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> concerns unfair dismissal. Within Chapter 1 section 94 sets out the right not to be unfairly dismissed. Section 95 then provides as follows:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="Heading5" style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><marker name="tab" /><span class="legds">“</span><span class="legds" style="font-size:12pt;color:#000000">Circumstances in which an employee is dismissed.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-weight:bold;font-size:12pt">(1)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.5in;margin-right:0.39in;text-indent:0.5in"><span class="legds" style="font-weight:bold;color:#000000">For the purposes of this Part an employee is dismissed by his employer if (and, subject to subsection (2) only if)—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-weight:bold;font-size:12pt">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">the contract under which he is employed is terminated by the employer (whether with or without notice),</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legsubstitution" style="font-weight:bold;font-size:12pt">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legsubstitution" style="font-weight:bold;color:#000000">he is employed under a limited-term contract and that contract terminates by virtue of the limiting event without being renewed under the same contract, or</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-weight:bold;font-size:12pt">(c)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">the employee terminates the contract under which he is employed (with or without notice) in circumstances in which he is entitled to terminate it without notice by reason of the employer’s conduct.</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <num class="legds" style="font-weight:bold;font-size:12pt">(2)</num>
-            <intro>
-              <p class="legclearfix" style="text-align:justify;margin-left:0.5in;margin-right:0.39in;text-indent:0.5in"><span class="legds" style="font-weight:bold;color:#000000">An employee shall be taken to be dismissed by his employer for the purposes of this Part if—</span></p>
-            </intro>
-            <subparagraph>
-              <num class="legds" style="font-weight:bold;font-size:12pt">(a)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">the employer gives notice to the employee to terminate his contract of employment, and</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num class="legds" style="font-weight:bold;font-size:12pt">(b)</num>
-              <content>
-                <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">at a time within the period of that notice the employee gives notice to the employer to terminate the contract of employment on a date earlier than the date on which the employer’s notice is due to expire;</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="legrhs" style="text-align:justify;margin-left:0.5in;margin-right:0.39in"><span style="font-weight:bold;color:#000000">and the reason for the dismissal is to be taken to be the reason for which the employer’s notice is given.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="Heading5" style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><marker name="tab" /><span class="legds">“</span><span class="legds" style="font-size:12pt;color:#000000">Circumstances in which an employee is dismissed.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num class="legds" style="font-weight:bold;font-size:12pt">(1)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.5in;margin-right:0.39in;text-indent:0.5in"><span class="legds" style="font-weight:bold;color:#000000">For the purposes of this Part an employee is dismissed by his employer if (and, subject to subsection (2) only if)—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-weight:bold;font-size:12pt">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">the contract under which he is employed is terminated by the employer (whether with or without notice),</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legsubstitution" style="font-weight:bold;font-size:12pt">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legsubstitution" style="font-weight:bold;color:#000000">he is employed under a limited-term contract and that contract terminates by virtue of the limiting event without being renewed under the same contract, or</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-weight:bold;font-size:12pt">(c)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">the employee terminates the contract under which he is employed (with or without notice) in circumstances in which he is entitled to terminate it without notice by reason of the employer’s conduct.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num class="legds" style="font-weight:bold;font-size:12pt">(2)</num>
+                  <intro>
+                    <p class="legclearfix" style="text-align:justify;margin-left:0.5in;margin-right:0.39in;text-indent:0.5in"><span class="legds" style="font-weight:bold;color:#000000">An employee shall be taken to be dismissed by his employer for the purposes of this Part if—</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num class="legds" style="font-weight:bold;font-size:12pt">(a)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">the employer gives notice to the employee to terminate his contract of employment, and</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num class="legds" style="font-weight:bold;font-size:12pt">(b)</num>
+                    <content>
+                      <p class="legclearfix" style="text-align:justify;margin-left:0.69in;margin-right:0.59in;text-indent:0.31in"><span class="legds" style="font-weight:bold;color:#000000">at a time within the period of that notice the employee gives notice to the employer to terminate the contract of employment on a date earlier than the date on which the employer’s notice is due to expire;</span></p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="legrhs" style="text-align:justify;margin-left:0.5in;margin-right:0.39in"><span style="font-weight:bold;color:#000000">and the reason for the dismissal is to be taken to be the reason for which the employer’s notice is given.”</span></p>
+                  </wrapUp>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_2">
           <num style="font-size:12pt">2.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">In the present case the contract of employment of the claimant in the employment tribunal included the following provisions:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">“3.1</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.49in;margin-right:0.2in;text-indent:0.01in"><span style="font-weight:bold;font-size:12pt">This Agreement shall commence on the Commencement Date and will, subject to earlier termination below, continue unless and until it is terminated by either party giving to the other 9 months' prior written notice. The Executive's period of continuous employment commenced on 22 October 1990. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-size:12pt">…</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">19.5</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">Where the Executive serves notice to terminate his employment with the Company, the Company shall at any time during the period of notice be entitled to terminate the Executive's employment forthwith and in full and final settlement of the Executive's claims under this Agreement by paying to the Executive, the salary (excluding bonuses) to which he would have been entitled during the notice period or any part of it in lieu of such notice or any part of it.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">“3.1</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.49in;margin-right:0.2in;text-indent:0.01in"><span style="font-weight:bold;font-size:12pt">This Agreement shall commence on the Commencement Date and will, subject to earlier termination below, continue unless and until it is terminated by either party giving to the other 9 months' prior written notice. The Executive's period of continuous employment commenced on 22 October 1990. </span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-size:12pt">…</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">19.5</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">Where the Executive serves notice to terminate his employment with the Company, the Company shall at any time during the period of notice be entitled to terminate the Executive's employment forthwith and in full and final settlement of the Executive's claims under this Agreement by paying to the Executive, the salary (excluding bonuses) to which he would have been entitled during the notice period or any part of it in lieu of such notice or any part of it.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_3">
           <num style="font-size:12pt">3.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The claimant’s employment came to an end following a change in ownership of the business. How this came about was described by the tribunal in the following passage:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">“17.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">The Claimant resigned by letter dated 16 April 2019. The Claimant explained the reasons for his resignation briefly (this is not a criticism). He says this at paragraph 20 of his statement and I accept this (unchallenged) evidence: “</span><span style="font-style:italic;font-weight:bold;font-size:12pt">Following the change in ownership, infrastructure and working environment I determined in April 2019 that, after what would eventually be just over 29 years of loyal, dedicated and unblemished service, and in the final few years of my career, the new arrangement was not necessarily something I desired.</span><span style="font-weight:bold;font-size:12pt">”</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">18.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">He gave nine months’ notice and in the meantime continued to work. The Claimant, however, indicated that he was willing to be flexible since his employment would be terminating so close to the financial year end. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">19.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">On 16 October 2019, Mr Hathaway, Managing Director, wrote to the Claimant apologising that it had taken so long to “confirm” the Claimant’s resignation and to accept it. He noted that the Claimant’s last day of employment, in accordance with his notice, would be 16 January 2020. Mr Hathaway thanked the Claimant for his flexibility and said “… </span><span style="font-style:italic;font-weight:bold;font-size:12pt">I note and appreciate the flexibility around this date you have indicated, due to the financial year end. I therefore propose to review this with you closer to the time when we have a clearer idea of the input required</span><span style="font-weight:bold;font-size:12pt">”.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">20.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">On 19 December 2019, the Claimant was called to a meeting with Mr David Joyce, Chief Operating Officer, who was his line manager. Mr Joyce told him that the Respondent was exercising its discretion to pay him in lieu of the remainder of his notice period, bringing his employment to an immediate end. The meeting was followed up with a letter on the same day which said, among other things, as follows: </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-style:italic;font-weight:bold;font-size:12pt">Your notice was due to expire on 16 January 2020. However, in accordance with clause 19.5 of your service agreement dated 4 April 2007, in circumstances where you serve notice to terminate your employment, the company has the right to terminate your employment with immediate effect at any time during your notice period by making a payment in lieu of your salary only in respect of any part of your notice period not worked. Your employment therefore ends today (19 December 2019) […] </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">21.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">The Claimant was subsequently paid his salary in lieu of the remainder of his notice period. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">22.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">The Claimant was surprised by this approach but he did not protest to the Respondent. </span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">23.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">I agree with the parties, and find, that the effective date of termination was 19 December 2019. Not least that is because the Claimant was told in clear and unequivocal terms that his employment was to come to an immediate end on that date.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">“17.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">The Claimant resigned by letter dated 16 April 2019. The Claimant explained the reasons for his resignation briefly (this is not a criticism). He says this at paragraph 20 of his statement and I accept this (unchallenged) evidence: “</span><span style="font-style:italic;font-weight:bold;font-size:12pt">Following the change in ownership, infrastructure and working environment I determined in April 2019 that, after what would eventually be just over 29 years of loyal, dedicated and unblemished service, and in the final few years of my career, the new arrangement was not necessarily something I desired.</span><span style="font-weight:bold;font-size:12pt">”</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">18.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">He gave nine months’ notice and in the meantime continued to work. The Claimant, however, indicated that he was willing to be flexible since his employment would be terminating so close to the financial year end. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">19.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">On 16 October 2019, Mr Hathaway, Managing Director, wrote to the Claimant apologising that it had taken so long to “confirm” the Claimant’s resignation and to accept it. He noted that the Claimant’s last day of employment, in accordance with his notice, would be 16 January 2020. Mr Hathaway thanked the Claimant for his flexibility and said “… </span><span style="font-style:italic;font-weight:bold;font-size:12pt">I note and appreciate the flexibility around this date you have indicated, due to the financial year end. I therefore propose to review this with you closer to the time when we have a clearer idea of the input required</span><span style="font-weight:bold;font-size:12pt">”.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">20.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">On 19 December 2019, the Claimant was called to a meeting with Mr David Joyce, Chief Operating Officer, who was his line manager. Mr Joyce told him that the Respondent was exercising its discretion to pay him in lieu of the remainder of his notice period, bringing his employment to an immediate end. The meeting was followed up with a letter on the same day which said, among other things, as follows: </span></p>
+                  </content>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-style:italic;font-weight:bold;font-size:12pt">Your notice was due to expire on 16 January 2020. However, in accordance with clause 19.5 of your service agreement dated 4 April 2007, in circumstances where you serve notice to terminate your employment, the company has the right to terminate your employment with immediate effect at any time during your notice period by making a payment in lieu of your salary only in respect of any part of your notice period not worked. Your employment therefore ends today (19 December 2019) […] </span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">21.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">The Claimant was subsequently paid his salary in lieu of the remainder of his notice period. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">22.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">The Claimant was surprised by this approach but he did not protest to the Respondent. </span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">23.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt">I agree with the parties, and find, that the effective date of termination was 19 December 2019. Not least that is because the Claimant was told in clear and unequivocal terms that his employment was to come to an immediate end on that date.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_4">
           <num style="font-size:12pt">4.</num>
@@ -280,324 +290,338 @@
         </level>
         <paragraph eId="para_8">
           <num style="font-size:12pt">8.</num>
-          <intro>
-            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Before I turn to the actual decision in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, I should note that at the time the definition of dismissal for the purposes of an unfair dismissal claim was found in the predecessor or section 95(1) of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">1996 Act</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, section 55(2) </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Employment Protection (Consolidation) Act 1978</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">. The wording of section 55(2)(a) was as follows:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt;color:#010302">“(a)</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">the contract under which he is employed by the employer is terminated by the employer, whether it is so terminated by notice or without notice,”</span></p>
-            </content>
-          </subparagraph>
-        </paragraph>
-        <level eId="lvl_3">
           <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Before I turn to the actual decision in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, I should note that at the time the definition of dismissal for the purposes of an unfair dismissal claim was found in the predecessor or section 95(1) of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">1996 Act</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, section 55(2) </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Employment Protection (Consolidation) Act 1978</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">. The wording of section 55(2)(a) was as follows:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt;color:#010302">“(a)</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">the contract under which he is employed by the employer is terminated by the employer, whether it is so terminated by notice or without notice,”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
             <p class="ListParagraph" style="text-align:justify"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In section 95(1)(a) of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">1996 Act</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> (set out above) the second part has been compressed into the words in brackets. It was rightly agreed before me, however, that there is no difference in meaning.</span></p>
           </content>
-        </level>
+        </paragraph>
         <paragraph eId="para_9">
           <num style="font-size:12pt">9.</num>
           <intro>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> the employee (the Respondent to that appeal) was a salesman, earning basic pay and substantial commission</span><span style="font-family:'Times New Roman';font-size:12pt">. How the employment ended, the relevant contractual provisions, and the analysis of the tribunal below, were described by the EAT in the following passage:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">“2  On 18 November 1990, he gave written notice of resignation.  It is common ground that such notice would produce a termination date in three months’ time, that is 18 February 1991.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">3  Negotiations were entered into between the Appellants and the Respondent for the payment of a sum of money to facilitate the Appellants dispensing with the services of the Respondent prior to 18 February 1991.  These negotiations broke down mainly upon the issue of payment of commission.  The Appellants decided to pay the Respondent the sum total of his salary (excluding any commission) up to 18 February.  Such payments were made gross.  The Appellants refused to allow the Respondent to continue working after 30 November.  One of the effects of that decision was that between 30 November and 18 February Mr Hamblin was deprived of the opportunity of selling vehicles and consequently he lost any chance of being paid commission.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">4  The Respondent claimed that he was unfairly dismissed and the Industrial Tribunal upheld that submission.  In relation to notice the staff handbook which we are informed was accepted by both sides in front of the Industrial Tribunal as representing the Contract of Service, the following terms appear.</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">"</span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Notice</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Employment may be terminated by previous notice in writing on either side in accordance with your Contract of Employment.  Unless increased by an individual Agreement, this will normally be as follows..."</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">There is then set out various periods of acceptable notice and in the case of Mr Hamblin who was an employee of very long standing, the period would have been not less than 12 weeks.  The handbook continues:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><marker name="tab" /><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">"Notice will normally be given at the beginning of the appropriate pay period.  Payments in lieu of notice are at the discretion of the Company."</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">5 The Tribunal's main findings were:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">‘10.  We do not accept Miss Boswell's argument based on section 49(3) of the 1978 Act.  In our view, the words "waiving his right to notice" mean waiving a right to insist that notice should be given in accordance with a contract of employment.  In this case the applicant had given notice.  This fact is agreed.  In the circumstances, the question of waiving a right to notice just does not arise.  One cannot waive a right to notice in a case where notice has already been given.</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
           </intro>
           <subparagraph>
+            <num style="font-weight:bold;font-size:12pt">11.</num>
             <content>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">“2  On 18 November 1990, he gave written notice of resignation.  It is common ground that such notice would produce a termination date in three months’ time, that is 18 February 1991.</span></p>
+              <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">In any event, whatever the meaning of section 49(3) may be, we agree with Mr Devonshire that in this case there was never any question of waiving any right at all.  On 30 November 1990 Mr Pickett purported to terminate the applicant's contract of employment - and did so.  In the Notice of Appearance the respondents have said that they used their discretion in making a payment in lieu of notice in accordance with the terms and conditions of employment.  An employer, in our view, cannot make a payment in lieu of an unexpired period of notice already given by an employee.  The meaning of "in lieu of" is perfectly plain.  In this case there was no question of the respondents giving notice to the applicant:  it was the applicant who had given notice to the respondents.</span></p>
             </content>
           </subparagraph>
           <subparagraph>
+            <num style="font-weight:bold;font-size:12pt">12.</num>
             <content>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">3  Negotiations were entered into between the Appellants and the Respondent for the payment of a sum of money to facilitate the Appellants dispensing with the services of the Respondent prior to 18 February 1991.  These negotiations broke down mainly upon the issue of payment of commission.  The Appellants decided to pay the Respondent the sum total of his salary (excluding any commission) up to 18 February.  Such payments were made gross.  The Appellants refused to allow the Respondent to continue working after 30 November.  One of the effects of that decision was that between 30 November and 18 February Mr Hamblin was deprived of the opportunity of selling vehicles and consequently he lost any chance of being paid commission.</span></p>
+              <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">We can well understand why the respondents did not wish the applicant to work his full notice.  In most cases, where there is no element of commission, no doubt an employer can satisfy his obligation to pay an employee during a notice period by making a payment in lieu of notice.  A  payment in lieu of notice, as the Court of Appeal have recently emphasised, is a payment of liquidated damages for breach of a contract of employment.  In a case where the prospect of earning commission during the notice period may be a substantial one, a payment in lieu of notice will not absolve an employer from his obligations.  We agree with Miss Boswell that an employee cannot insist on remaining in employment after giving notice.  In circumstances such as this, a mutual agreement is called for.  Such a mutual agreement, as pointed out in </span><span style="font-style:italic;font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">McAlwane v Boughton Estates Ltd</span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt"> [1973] 2 A11 ER 299, a case referred to us by Miss Boswell, will not alter the original character of the termination of contract of employment; it will merely alter the notice period.  In this case, there was no attempt to reach any agreement as to the liability to pay commission during the notice period.</span></p>
             </content>
           </subparagraph>
           <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">4  The Respondent claimed that he was unfairly dismissed and the Industrial Tribunal upheld that submission.  In relation to notice the staff handbook which we are informed was accepted by both sides in front of the Industrial Tribunal as representing the Contract of Service, the following terms appear.</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">"</span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">Notice</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Employment may be terminated by previous notice in writing on either side in accordance with your Contract of Employment.  Unless increased by an individual Agreement, this will normally be as follows..."</span></p>
-              </content>
-            </subparagraph>
+            <num style="font-weight:bold;font-size:12pt">13.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Section 55(4)(a) of the Employment Protection (Consolidation) Act 1978 provides that the effective date of termination, in relation to an employee whose contract is terminated by notice, means the date on which the notice expires.</span></p>
+            </content>
           </subparagraph>
           <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">There is then set out various periods of acceptable notice and in the case of Mr Hamblin who was an employee of very long standing, the period would have been not less than 12 weeks.  The handbook continues:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><marker name="tab" /><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">"Notice will normally be given at the beginning of the appropriate pay period.  Payments in lieu of notice are at the discretion of the Company."</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">5 The Tribunal's main findings were:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">‘10.  We do not accept Miss Boswell's argument based on section 49(3) of the 1978 Act.  In our view, the words "waiving his right to notice" mean waiving a right to insist that notice should be given in accordance with a contract of employment.  In this case the applicant had given notice.  This fact is agreed.  In the circumstances, the question of waiving a right to notice just does not arise.  One cannot waive a right to notice in a case where notice has already been given.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">11.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">In any event, whatever the meaning of section 49(3) may be, we agree with Mr Devonshire that in this case there was never any question of waiving any right at all.  On 30 November 1990 Mr Pickett purported to terminate the applicant's contract of employment - and did so.  In the Notice of Appearance the respondents have said that they used their discretion in making a payment in lieu of notice in accordance with the terms and conditions of employment.  An employer, in our view, cannot make a payment in lieu of an unexpired period of notice already given by an employee.  The meaning of "in lieu of" is perfectly plain.  In this case there was no question of the respondents giving notice to the applicant:  it was the applicant who had given notice to the respondents.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">12.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">We can well understand why the respondents did not wish the applicant to work his full notice.  In most cases, where there is no element of commission, no doubt an employer can satisfy his obligation to pay an employee during a notice period by making a payment in lieu of notice.  A  payment in lieu of notice, as the Court of Appeal have recently emphasised, is a payment of liquidated damages for breach of a contract of employment.  In a case where the prospect of earning commission during the notice period may be a substantial one, a payment in lieu of notice will not absolve an employer from his obligations.  We agree with Miss Boswell that an employee cannot insist on remaining in employment after giving notice.  In circumstances such as this, a mutual agreement is called for.  Such a mutual agreement, as pointed out in </span><span style="font-style:italic;font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt">McAlwane v Boughton Estates Ltd</span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt"> [1973] 2 A11 ER 299, a case referred to us by Miss Boswell, will not alter the original character of the termination of contract of employment; it will merely alter the notice period.  In this case, there was no attempt to reach any agreement as to the liability to pay commission during the notice period.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">13.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">Section 55(4)(a) of the Employment Protection (Consolidation) Act 1978 provides that the effective date of termination, in relation to an employee whose contract is terminated by notice, means the date on which the notice expires.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">14.</num>
-              <content>
-                <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">On 30 November 1990 the applicant was still employed by the respondents.  His employment was terminated summarily, with a "payment in lieu of notice", on that date.  He was dismissed by the respondents.’ ”</span></p>
-              </content>
-            </subparagraph>
+            <num style="font-weight:bold;font-size:12pt">14.</num>
+            <content>
+              <p style="text-align:justify;margin-left:0.98in;margin-right:0.59in;text-indent:0.02in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt">On 30 November 1990 the applicant was still employed by the respondents.  His employment was terminated summarily, with a "payment in lieu of notice", on that date.  He was dismissed by the respondents.’ ”</span></p>
+            </content>
           </subparagraph>
         </paragraph>
         <paragraph eId="para_10">
           <num style="font-size:12pt">10.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">By a majority the EAT allowed the appeal. Their reasons, in full, were as follows:</span></p>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="margin-left:0.5in"><span style="font-weight:bold;color:#010302">“6  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">"Payment in lieu"</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">The Tribunal gave their decision before the case of Delaney v Staples [1992] ICR 483 was decided and at page 488 Lord Browne-Wilkinson analysed the expression "payment in lieu of notice" as follows:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">"The phrase "payment in lieu of notice" is not a term of art. It is commonly used to describe many types of payment the legal analysis of which differs. Without attempting to give an exhaustive list, the following are the principal categories.</span></p>
-            </intro>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">(1)</num>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">An employer gives proper notice of termination to his employee, tells the employee that he need not work until the termination date and gives him the wages attributable to the notice period in a lump sum. In this case (commonly called "garden leave") there is no breach of contract by the employer. The employment continues until the expiry of the notice: the lump sum payment is simply advance payment of wages.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">(2)</num>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">The contract of employment provides expressly that the employment may be terminated either by notice or, on payment of a sum in lieu of notice, summarily. In such a case if the employer summarily dismisses the employee he is not in breach of contract provided that he makes the payment in lieu. But the payment in lieu is not a payment of wages in the ordinary sense since it is not a payment for work to be done under the contract of employment.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">(3)</num>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">At the end of the employment, the employer and the employee agree that the employment is to terminate forthwith on payment of a sum in lieu of notice. Again, the employer is not in breach of contract by dismissing summarily and the payment in lieu is not strictly wages since it is not remuneration for work done during the continuance of the employment.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <num style="font-weight:bold;font-size:12pt">(4)</num>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">Without the agreement of the employee, the employer summarily dismisses the employee and tenders a payment in lieu of proper notice. This is by far the most common type of payment in lieu and the present case falls into this category. The employer is in breach of contract by dismissing the employee without proper notice. However, the summary dismissal is effective to put an end to the employment relationship, whether or not it unilaterally discharges the contract of employment. Since the employment relationship has ended no further services are to be rendered by the employee under the contract. It follows that the payment in lieu is not a payment of wages in the ordinary sense since it is not a payment for work done under the contract of employment.</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">The nature of payment in lieu falling within the fourth category has been analysed as a payment by the employer on account of the employee's claim for damages for breach of contract. In </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Gothard v Mirror Group Newspapers Ltd</span><span style="font-weight:bold;color:#000000"> [1988] ICR 729, 733, Lord Donaldson of Lymington MR stated the position to be as follows:</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"If a man is dismissed without notice, but with money in lieu, what he receives is, as a matter of law, payment which falls to be set against, and will usually be designed by the employer to extinguish, any claim for damages for breach of contract, i.e. wrongful dismissal. During the period to which the money in lieu relates he is not employed by his employer."</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">In my view that statement is the only possible legal analysis of a payment in lieu of the fourth category. But it is not, and was not meant to be, an analysis of a payment in lieu of the first three categories, in none of which is the dismissal or breach of contract by the employer. In the first three categories, the employee is entitled to the payment in lieu not as damages for breach of contract but under a contractual obligation on the employer to make the payment."</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">Had the employer given notice the present case would have fitted within the second category as defined by Lord Browne-Wilkinson in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Delaney</span><span style="font-weight:bold;color:#000000">. Does the fact that the employee gives notice affect the position? This raises the problem whether such a term of a contract can be utilised in order to cut short the period of notice already given by the employee.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">7  The approach of the Tribunal was that the employer could not waive a notice which had already been given by the employee. With respect we do not consider that this is a correct analysis of the situation. Until such time as the employee's notice expires, the contract of employment continues. The employer is entitled to utilise a term of that contract to bring the employment to an end at an earlier date than the date of the expiry of the employee's notice. The waiver of the employer is in relation to the period of notice (provided he pays the appropriate sum in lieu). In spite of some considerable hesitation we have come to the conclusion that in a contract of employment which gives the employer option to make a payment in lieu, there is no right in the employee to work out his notice.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">8  We therefore agree with the contention of the Appellants that if this does not fit precisely within the analysis of the second category outlined by Lord Browne-Wilkinson, we regard it as a further category with the same attributes as the that category save only that the employee has given notice. It was urged upon us that any other approach to the problem would result in the employee being in a position to "blackmail" the employer by forcing him to retain an unwanted employee in his service.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">9  The Tribunal here held that an employee cannot insist on remaining in employment after giving notice. It does not seem to us that this is a decisive argument, and if our interpretation of contracts containing the discretion to make a payment in lieu of notice is correct the difficulty does not arise.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">10  We find some support for our view that the employer has a right to waive a period of notice and where it is specified in a contract, make a payment in lieu, by the terms of section 49(3) of the Employment Protection (Consolidation) Act 1978. This provides:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"Any provision for shorter notice in any contract of employment with a person who has been continuously employed for [one month] or more shall have effect subject to the foregoing subsections, but this section shall not be taken to prevent either party from waiving his right to notice on any occasion, or from accepting a payment in lieu of notice."</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">11  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Commission</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">Does the fact that the employee derives the major part of his remuneration from commission affect the position? At one stage we were attracted to the argument that an employer in such cases is under a duty to allow the employee to earn his commission. A waiver of notice and a payment in lieu prevents the employee earning such commission and the employer would thereby be in breach of contract. With some hesitation we have reached the conclusion that two factors negate that approach. The first is that there is no right to commission at all under the contract. All payments are made at the discretion of the Company under the terms of the contract. We considered whether, although there was no right to payment of commission, was there a breach by the employer of preventing the employee from placing himself in a position where the Company's discretion could be exercised towards him? In the final analysis we considered this goes beyond the accepted approach that an employer may not prevent an employee from </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">earning</span><span style="font-weight:bold;color:#000000"> a commission.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">12  Secondly, upon the hypothesis that some sum in respect of lost commission is due to the Respondent that does not prevent the employer waiving his notice and bringing matters to an end. Any further claims can be pursued under section 50, Schedule 3 of the 1978 Act. The employee's right is to pursue a claim in the County Court (see </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Westwood v Secretary of State for Employment</span><span style="font-weight:bold;color:#000000"> [1985] ICR 209).</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">13  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Admission of Wrongful Dismissal</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">By paragraph 4.3 the Industrial Tribunal held:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"There followed an exchange of letters, as recorded in the Originating Application, and, on 30 November 1990, there was a meeting attended by the applicant, with Mr Sayer in attendance, Mr Pickett and one of the respondents' directors. Mr Sayer took a comprehensive note, which included the following paragraph:</span></p>
-              </content>
-            </subparagraph>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"Mr Pickett, addressing Mr Hamblin, commented that it was common for the Contract of Employment to be terminated by the Company and for the payment to be made in lieu of notice. By making such a payment, the Company recognised that it was in breach of contract satisfying any claim for damages by paying in lieu. He went on to say that the payment in lieu could be made free of tax and confirmed that it would be so here. He was adamant that Mr Hamblin's employment would end as from tonight.""</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <intro>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">We do not accept that such an admission binds the Court in any way. Moreover it seems to have been made after considering the passage in Harvey "Industrial Relations and Employment Law" volume 3, paragraph Q224 which is in the following terms:</span></p>
-            </intro>
-            <subparagraph>
-              <content>
-                <p class="NormalWeb" style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"Note however that where the employee resigns if the employer imposes a termination of the employment before the expiry of the notice given, this will amount to a dismissal; the </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">British Midland Airways Ltd v Lewis [1978] ICR 782."</span></p>
-              </content>
-            </subparagraph>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">14  We have considered that case and insofar as the entry in Harvey indicates that any termination during a period of the employee's notice will amount to a dismissal, there is no support for that proposition in the case cited and in our view the passage in Harvey is misleading.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Conclusion</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <content>
-              <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">15  There was no dismissal in this case. The Respondent resigned and within the terms of the contract the Appellants paid wages (but not commission) until the expiry of the notice. Insofar as such commission is contractually recoverable that is a matter which lies outside the jurisdiction of the Industrial Tribunal, the correct forum for such claims being the County Court.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="margin-left:0.5in"><span style="font-weight:bold;color:#010302">“6  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">"Payment in lieu"</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">The Tribunal gave their decision before the case of Delaney v Staples [1992] ICR 483 was decided and at page 488 Lord Browne-Wilkinson analysed the expression "payment in lieu of notice" as follows:</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <intro>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.49in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">"The phrase "payment in lieu of notice" is not a term of art. It is commonly used to describe many types of payment the legal analysis of which differs. Without attempting to give an exhaustive list, the following are the principal categories.</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-weight:bold;font-size:12pt">(1)</num>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">An employer gives proper notice of termination to his employee, tells the employee that he need not work until the termination date and gives him the wages attributable to the notice period in a lump sum. In this case (commonly called "garden leave") there is no breach of contract by the employer. The employment continues until the expiry of the notice: the lump sum payment is simply advance payment of wages.</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-weight:bold;font-size:12pt">(2)</num>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">The contract of employment provides expressly that the employment may be terminated either by notice or, on payment of a sum in lieu of notice, summarily. In such a case if the employer summarily dismisses the employee he is not in breach of contract provided that he makes the payment in lieu. But the payment in lieu is not a payment of wages in the ordinary sense since it is not a payment for work to be done under the contract of employment.</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-weight:bold;font-size:12pt">(3)</num>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">At the end of the employment, the employer and the employee agree that the employment is to terminate forthwith on payment of a sum in lieu of notice. Again, the employer is not in breach of contract by dismissing summarily and the payment in lieu is not strictly wages since it is not remuneration for work done during the continuance of the employment.</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-weight:bold;font-size:12pt">(4)</num>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">Without the agreement of the employee, the employer summarily dismisses the employee and tenders a payment in lieu of proper notice. This is by far the most common type of payment in lieu and the present case falls into this category. The employer is in breach of contract by dismissing the employee without proper notice. However, the summary dismissal is effective to put an end to the employment relationship, whether or not it unilaterally discharges the contract of employment. Since the employment relationship has ended no further services are to be rendered by the employee under the contract. It follows that the payment in lieu is not a payment of wages in the ordinary sense since it is not a payment for work done under the contract of employment.</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">The nature of payment in lieu falling within the fourth category has been analysed as a payment by the employer on account of the employee's claim for damages for breach of contract. In </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Gothard v Mirror Group Newspapers Ltd</span><span style="font-weight:bold;color:#000000"> [1988] ICR 729, 733, Lord Donaldson of Lymington MR stated the position to be as follows:</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"If a man is dismissed without notice, but with money in lieu, what he receives is, as a matter of law, payment which falls to be set against, and will usually be designed by the employer to extinguish, any claim for damages for breach of contract, i.e. wrongful dismissal. During the period to which the money in lieu relates he is not employed by his employer."</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">In my view that statement is the only possible legal analysis of a payment in lieu of the fourth category. But it is not, and was not meant to be, an analysis of a payment in lieu of the first three categories, in none of which is the dismissal or breach of contract by the employer. In the first three categories, the employee is entitled to the payment in lieu not as damages for breach of contract but under a contractual obligation on the employer to make the payment."</span></p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">Had the employer given notice the present case would have fitted within the second category as defined by Lord Browne-Wilkinson in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Delaney</span><span style="font-weight:bold;color:#000000">. Does the fact that the employee gives notice affect the position? This raises the problem whether such a term of a contract can be utilised in order to cut short the period of notice already given by the employee.</span></p>
+                  </wrapUp>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">7  The approach of the Tribunal was that the employer could not waive a notice which had already been given by the employee. With respect we do not consider that this is a correct analysis of the situation. Until such time as the employee's notice expires, the contract of employment continues. The employer is entitled to utilise a term of that contract to bring the employment to an end at an earlier date than the date of the expiry of the employee's notice. The waiver of the employer is in relation to the period of notice (provided he pays the appropriate sum in lieu). In spite of some considerable hesitation we have come to the conclusion that in a contract of employment which gives the employer option to make a payment in lieu, there is no right in the employee to work out his notice.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">8  We therefore agree with the contention of the Appellants that if this does not fit precisely within the analysis of the second category outlined by Lord Browne-Wilkinson, we regard it as a further category with the same attributes as the that category save only that the employee has given notice. It was urged upon us that any other approach to the problem would result in the employee being in a position to "blackmail" the employer by forcing him to retain an unwanted employee in his service.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">9  The Tribunal here held that an employee cannot insist on remaining in employment after giving notice. It does not seem to us that this is a decisive argument, and if our interpretation of contracts containing the discretion to make a payment in lieu of notice is correct the difficulty does not arise.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <intro>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">10  We find some support for our view that the employer has a right to waive a period of notice and where it is specified in a contract, make a payment in lieu, by the terms of section 49(3) of the Employment Protection (Consolidation) Act 1978. This provides:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"Any provision for shorter notice in any contract of employment with a person who has been continuously employed for [one month] or more shall have effect subject to the foregoing subsections, but this section shall not be taken to prevent either party from waiving his right to notice on any occasion, or from accepting a payment in lieu of notice."</span></p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">11  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Commission</span></p>
+                  </wrapUp>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">Does the fact that the employee derives the major part of his remuneration from commission affect the position? At one stage we were attracted to the argument that an employer in such cases is under a duty to allow the employee to earn his commission. A waiver of notice and a payment in lieu prevents the employee earning such commission and the employer would thereby be in breach of contract. With some hesitation we have reached the conclusion that two factors negate that approach. The first is that there is no right to commission at all under the contract. All payments are made at the discretion of the Company under the terms of the contract. We considered whether, although there was no right to payment of commission, was there a breach by the employer of preventing the employee from placing himself in a position where the Company's discretion could be exercised towards him? In the final analysis we considered this goes beyond the accepted approach that an employer may not prevent an employee from </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">earning</span><span style="font-weight:bold;color:#000000"> a commission.</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">12  Secondly, upon the hypothesis that some sum in respect of lost commission is due to the Respondent that does not prevent the employer waiving his notice and bringing matters to an end. Any further claims can be pursued under section 50, Schedule 3 of the 1978 Act. The employee's right is to pursue a claim in the County Court (see </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Westwood v Secretary of State for Employment</span><span style="font-weight:bold;color:#000000"> [1985] ICR 209).</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">13  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Admission of Wrongful Dismissal</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <intro>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">By paragraph 4.3 the Industrial Tribunal held:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"There followed an exchange of letters, as recorded in the Originating Application, and, on 30 November 1990, there was a meeting attended by the applicant, with Mr Sayer in attendance, Mr Pickett and one of the respondents' directors. Mr Sayer took a comprehensive note, which included the following paragraph:</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:1in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"Mr Pickett, addressing Mr Hamblin, commented that it was common for the Contract of Employment to be terminated by the Company and for the payment to be made in lieu of notice. By making such a payment, the Company recognised that it was in breach of contract satisfying any claim for damages by paying in lieu. He went on to say that the payment in lieu could be made free of tax and confirmed that it would be so here. He was adamant that Mr Hamblin's employment would end as from tonight.""</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">We do not accept that such an admission binds the Court in any way. Moreover it seems to have been made after considering the passage in Harvey "Industrial Relations and Employment Law" volume 3, paragraph Q224 which is in the following terms:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p class="NormalWeb" style="text-align:justify;margin-left:0.98in;margin-right:0.59in"><span style="font-weight:bold;color:#000000">"Note however that where the employee resigns if the employer imposes a termination of the employment before the expiry of the notice given, this will amount to a dismissal; the </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">British Midland Airways Ltd v Lewis [1978] ICR 782."</span></p>
+                    </content>
+                  </subparagraph>
+                  <wrapUp>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">14  We have considered that case and insofar as the entry in Harvey indicates that any termination during a period of the employee's notice will amount to a dismissal, there is no support for that proposition in the case cited and in our view the passage in Harvey is misleading.</span></p>
+                  </wrapUp>
+                </paragraph>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;color:#000000">Conclusion</span></p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="NormalWeb" style="text-align:justify;margin-left:0.5in;margin-right:0.2in"><span style="font-weight:bold;color:#000000">15  There was no dismissal in this case. The Respondent resigned and within the terms of the contract the Appellants paid wages (but not commission) until the expiry of the notice. Insofar as such commission is contractually recoverable that is a matter which lies outside the jurisdiction of the Industrial Tribunal, the correct forum for such claims being the County Court.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <level eId="lvl_4">
+        <level eId="lvl_3">
           <content>
             <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">The approach of the EAT to its own previous decisions</span></p>
           </content>
         </level>
         <paragraph eId="para_11">
           <num style="font-size:12pt">11.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">British Gas Trading v Lock</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [2016] ICR 503 the EAT (Singh J as he then was) reviewed earlier authorities which had considered in what circumstances the EAT will depart from its own previous decisions. Drawing the threads together at [75] he said this:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">“75.</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">In the light of the authorities to which I have referred it may be helpful if I summarise the applicable principles when this Appeal Tribunal is invited to depart from an earlier decision of its own.  Although this Appeal Tribunal is not bound by its own previous decisions, they are of persuasive authority. It will accord them respect and will generally follow them.  The established exceptions to this are as follows:</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">(1)</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where the earlier decision was </span><span style="font-style:italic;font-weight:bold;color:#000000">per incuriam</span><span style="font-weight:bold;color:#000000">, in other words where a relevant legislative provision or binding decision of the courts was not considered;</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">(2)</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where there are two or more inconsistent decisions of this Appeal Tribunal;</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">(3)</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where there are inconsistent decisions of this Appeal Tribunal and another court or tribunal on the same point, at least where they are of co-ordinate jurisdiction, for example the High Court;</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">(4)</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where the earlier decision is manifestly wrong;</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">(5)</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where there are other exceptional circumstances.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">“75.</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">In the light of the authorities to which I have referred it may be helpful if I summarise the applicable principles when this Appeal Tribunal is invited to depart from an earlier decision of its own.  Although this Appeal Tribunal is not bound by its own previous decisions, they are of persuasive authority. It will accord them respect and will generally follow them.  The established exceptions to this are as follows:</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">(1)</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where the earlier decision was </span><span style="font-style:italic;font-weight:bold;color:#000000">per incuriam</span><span style="font-weight:bold;color:#000000">, in other words where a relevant legislative provision or binding decision of the courts was not considered;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">(2)</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where there are two or more inconsistent decisions of this Appeal Tribunal;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">(3)</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where there are inconsistent decisions of this Appeal Tribunal and another court or tribunal on the same point, at least where they are of co-ordinate jurisdiction, for example the High Court;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">(4)</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where the earlier decision is manifestly wrong;</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">(5)</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.59in;margin-right:0.39in;text-indent:0.41in"><span style="font-weight:bold;color:#000000">where there are other exceptional circumstances.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_12">
           <num style="font-size:12pt">12.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">He added, at [77] and [78]:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">“77.</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">I would not wish to add any further gloss to the concept of “manifestly wrong”: it means a decision which can be seen to be obviously wrong (“manifest”).  If the error in the decision is manifest it should not be necessary for there to be extensive or complicated argument about the point.</span></p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">78.</num>
-            <content>
-              <p class="text" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">As for the concept of “exceptional circumstances” it is inherently one that it is flexible and dependent on the circumstances.  It is deliberately not defined by reference to an exhaustive list or in some other way because one cannot predict what circumstances will arise in the future and which may justify departure from an earlier decision.  In this way courts and tribunals retain the flexibility required to do justice in the case before them.  On the other hand it is also important to recall that certainty in the law is also a fundamental value: indeed it lies at the root of the concept of legal certainty which is well-established in EU law and on which reliance has been placed by Mr Cavanagh in the course of his submissions albeit in a different context.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">“77.</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">I would not wish to add any further gloss to the concept of “manifestly wrong”: it means a decision which can be seen to be obviously wrong (“manifest”).  If the error in the decision is manifest it should not be necessary for there to be extensive or complicated argument about the point.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">78.</num>
+                  <content>
+                    <p class="text" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;color:#000000">As for the concept of “exceptional circumstances” it is inherently one that it is flexible and dependent on the circumstances.  It is deliberately not defined by reference to an exhaustive list or in some other way because one cannot predict what circumstances will arise in the future and which may justify departure from an earlier decision.  In this way courts and tribunals retain the flexibility required to do justice in the case before them.  On the other hand it is also important to recall that certainty in the law is also a fundamental value: indeed it lies at the root of the concept of legal certainty which is well-established in EU law and on which reliance has been placed by Mr Cavanagh in the course of his submissions albeit in a different context.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
         <paragraph eId="para_13">
           <num style="font-size:12pt">13.</num>
-          <intro>
+          <content>
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In that case the EAT was invited to depart from its previous decision in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Bear Scotland Limited v Fulton</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [2015] ICR 221, which Singh J declined to do. He observed:</span></p>
-          </intro>
-          <subparagraph>
-            <num style="font-weight:bold;font-size:12pt">“104.</num>
-            <content>
-              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt;color:#000000">In my judgment the present case does not fall into any of the established exceptions to the general principle that this Appeal Tribunal will normally follow one of its own earlier decisions.  I have come to the conclusion that it would be inappropriate for me to reconsider the merits of the substantive argument, considered recently and at length by Langstaff J in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt;color:#000000">Bear Scotland</span><span style="font-weight:bold;font-size:12pt;color:#000000">.  If I were to accede to the invitation extended by Mr Cavanagh, however eloquently put, there would be nothing to prevent this Appeal Tribunal, if differently constituted, taking yet again a different view in a third case, perhaps in a year’s time.  Furthermore it would in the meantime merely create uncertainty for everyone who has to apply the relevant legislation, including the Employment Tribunal, which is bound by decisions of this Appeal Tribunal.  I agree with the submission made on behalf of the Secretary of State by Mr Tolley that, if </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt;color:#000000">Bear Scotland</span><span style="font-weight:bold;font-size:12pt;color:#000000"> was wrongly decided, then it must be for the Court of Appeal to say so, not for me sitting in this Appeal Tribunal.”</span></p>
-            </content>
-          </subparagraph>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-weight:bold;font-size:12pt">“104.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;margin-right:0.2in;text-indent:0.5in"><span style="font-weight:bold;font-size:12pt;color:#000000">In my judgment the present case does not fall into any of the established exceptions to the general principle that this Appeal Tribunal will normally follow one of its own earlier decisions.  I have come to the conclusion that it would be inappropriate for me to reconsider the merits of the substantive argument, considered recently and at length by Langstaff J in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt;color:#000000">Bear Scotland</span><span style="font-weight:bold;font-size:12pt;color:#000000">.  If I were to accede to the invitation extended by Mr Cavanagh, however eloquently put, there would be nothing to prevent this Appeal Tribunal, if differently constituted, taking yet again a different view in a third case, perhaps in a year’s time.  Furthermore it would in the meantime merely create uncertainty for everyone who has to apply the relevant legislation, including the Employment Tribunal, which is bound by decisions of this Appeal Tribunal.  I agree with the submission made on behalf of the Secretary of State by Mr Tolley that, if </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt;color:#000000">Bear Scotland</span><span style="font-weight:bold;font-size:12pt;color:#000000"> was wrongly decided, then it must be for the Court of Appeal to say so, not for me sitting in this Appeal Tribunal.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
         </paragraph>
-        <level eId="lvl_5">
+        <level eId="lvl_4">
           <content>
             <p style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">The claimant’s case that the EAT should not follow</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302"> </span><span style="font-style:italic;font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span></p>
           </content>
@@ -608,7 +632,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Mr Jackson submitted that, with reference to the five categories identified in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Lock</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> at [75], categories (1), (2) and (4) applied here.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_6">
+        <level eId="lvl_5">
           <content>
             <p class="ListParagraph" style="text-align:justify"><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">Per incuriam previous authority?</span></p>
           </content>
@@ -625,7 +649,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">However, I do not consider that </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> was decided </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">per incuriam</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> the decision in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Tipton</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">. As is well established, the </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">per incuriam</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> principle only applies where the decision under scrutiny has overlooked an earlier inconsistent decision in light of which it is apparent that its reasoning was “demonstrably wrong”: </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Morelle v Wakeling</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [1955] 2 QB 379, 406. That requires the earlier decision to be directly concerned with the specific point at issue, which </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Tipton</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, which concerned the significance, or not, of a right of appeal, to the fairness of a dismissal, was not. </span></p>
           </content>
         </paragraph>
-        <level eId="lvl_7">
+        <level eId="lvl_6">
           <content>
             <p class="ListParagraph" style="text-align:justify"><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">Inconsistent authority?</span></p>
           </content>
@@ -642,7 +666,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">I note that in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">McLoughlin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, at [13], the EAT suggested that the passage in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Hamblin </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">which refers to the commentary in </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">Harvey</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> “may have been too sweeping”. But it said no more than that; and the appeal in hand was decided on the basis that, on a correct analysis of the facts of that case, there had been no early termination imposed by the employer prior to the expiry of the employee’s notice. At best for the present claimant the EAT’s observations on this passage from </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> were </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">obiter</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">. In agreement with EJ Dyal, I conclude that </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">McLoughlin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> is not an inconsistent authority, and I do not regard it as providing a basis to depart from </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_8">
+        <level eId="lvl_7">
           <content>
             <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Is </span><span style="font-style:italic;font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302"> manifestly wrong? The arguments</span></p>
           </content>
@@ -725,7 +749,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> If </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">could not be said to be </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">manifestly</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> wrong, I could not depart from it.  Indeed, like Singh J in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Lock</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, I should resist the temptation to descend into the detail of the doctrinal arguments. Any such exercise must be left to the Court of Appeal. On that point Mr Jackson responded that I could not judge whether </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> was manifestly wrong, without examining what, in principle, I considered the right analysis of the underlying legal issue to be. He referred me to </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Jhuti v Royal Mail Group Limited</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [2018] ICR 1077 in which Simler P, as she then was, was also invited to depart from a previous EAT decision on a particular point, and began with an analysis of the underlying statutory framework pertinent to the issue. Mr Solomon responded that </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Jhuti</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> does not add to, or gloss, the guidance given by Singh J in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Lock</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">; and in the event, on the point at issue in </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Jhuti</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, it was concluded that the relevant part of the previous decision was </span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">obiter</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">. </span></p>
           </content>
         </paragraph>
-        <level eId="lvl_9">
+        <level eId="lvl_8">
           <content>
             <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Discussion</span></p>
           </content>
@@ -850,7 +874,7 @@
             <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Having, after considerable reflection, come to the conclusion that I cannot say that these points are obviously not reasonably arguable, I am driven to the conclusion, despite my misgivings about the substantive reasoning in the decision itself, that the proposition of law which, it was common ground before me, emerges from </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">Marshall v Hamblin</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, is not one that I can say is manifestly wrong. I have therefore concluded that I cannot depart from it on this point; and I will therefore refrain from considering these lines of argument any further, or indicating how I would have decided the point had I considered myself free to do so. Resolution of it must be left to the Court of Appeal.</span></p>
           </content>
         </paragraph>
-        <level eId="lvl_10">
+        <level eId="lvl_9">
           <content>
             <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Outcome </span></p>
           </content>

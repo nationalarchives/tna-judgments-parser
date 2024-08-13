@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/eat/2023/173" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/eat/2023/173" />
+          <FRBRdate date="2023-11-14" name="judgment" />
+          <FRBRauthor href="#eat" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="173" />
+          <FRBRname value="DR GUEORGUI KOLEV v MIDDLESEX UNIVERSITY" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/eat/2023/173" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/eat/2023/173" />
+          <FRBRdate date="2023-11-14" name="judgment" />
+          <FRBRauthor href="#eat" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/eat/2023/173/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/eat/2023/173/data.xml" />
+          <FRBRdate date="2024-08-13T18:31:40" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2023-11-14" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="eat" href="https://www.gov.uk/courts-tribunals/employment-appeal-tribunal" showAs="Employment Appeal Tribunal" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="dr-gueorgui-kolev" href="" showAs="DR GUEORGUI KOLEV" />
+        <TLCPerson eId="middlesex-university" href="" showAs="MIDDLESEX UNIVERSITY" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-her-honour-judge-tucker" href="/judge-her-honour-judge-tucker" showAs="HER HONOUR JUDGE TUCKER" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EAT</uk:court>
+        <uk:year>2023</uk:year>
+        <uk:number>173</uk:number>
+        <uk:cite>[2023] EAT 173</uk:cite>
+        <uk:parser>0.26.0</uk:parser>
+        <uk:hash>05d0a50634bd13a6fcd814cd0f0dd774527a66952fecb6ab1640642b6b327afc</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 11pt; }
+#judgment .Heading1 { font-size: 16pt; color: #365F91; }
+#judgment .BodyText { margin-left: 0.35in; font-family: Algerian; font-size: 12pt; }
+#judgment .ListParagraph { }
+#judgment .TableParagraph { }
+#judgment .Header { }
+#judgment .Footer { }
+#judgment .CommentText { font-size: 10pt; }
+#judgment .CommentSubject { font-weight: bold; font-size: 10pt; }
+#judgment .BodyTextChar { }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .UnresolvedMention1 { color: #605E5C; background-color: initial; }
+#judgment .HeaderChar { }
+#judgment .FooterChar { }
+#judgment .Heading1Char { font-size: 16pt; color: #365F91; }
+#judgment .CommentReference { font-size: 8pt; }
+#judgment .CommentTextChar { font-size: 10pt; }
+#judgment .CommentSubjectChar { font-weight: bold; font-size: 10pt; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <coverPage>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:8pt;color:#000000">Judgment approved by the court</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> </span><marker name="tab" /><span style="font-family:'Times New Roman';font-size:6pt">Kolev v Middlesex University</span></p>
+    </coverPage>
+    <header>
+      <p><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Neutral Citation Number: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">[2023] EAT 173</neutralCitation></p>
+      <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Case No: </span><docketNumber style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">EA-2021-000663-BA</docketNumber></p>
+      <p><courtType refersTo="#eat" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">EMPLOYMENT APPEAL TRIBUNAL</courtType></p>
+      <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Rolls Building</span></p>
+      <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Fetter Lane, London, EC4A 1NL</span></p>
+      <p style="text-align:right"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">Date: </span><docDate date="2023-11-14" refersTo="#judgment" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">14 November 2023</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Before</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> :</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-her-honour-judge-tucker" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">HER HONOUR JUDGE TUCKER</judge></p>
+      <p style="text-align:center"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Between :</span></p>
+      <p style="text-align:center"><party refersTo="#dr-gueorgui-kolev" as="#appellant" style="font-weight:bold;font-size:12pt">DR GUEORGUI KOLEV</party></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt">Appellant</role></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-size:12pt">- and –</span></p>
+      <p style="text-align:center"><party refersTo="#middlesex-university" as="#respondent" style="font-weight:bold;font-size:12pt">MIDDLESEX UNIVERSITY</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt">Respondent</role></p>
+      <p style="text-align:center"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center;text-indent:-0in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Mr Laith Dilaimi </span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">(instructed by Advocate) for the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Appellant</span></p>
+      <p style="text-align:center;text-indent:-0in"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Mr Shane Crawford (</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">instructed by SA Law LLP) for the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Respondent</span></p>
+      <p style="text-align:center"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Hearing date: 14 November 2023</span></p>
+      <p style="text-align:center"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">- - - - - - - - - - - - - - - - - - - - -</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman';font-size:18pt;color:#000000">JUDGMENT</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level eId="lvl_1">
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">SUMMARY</span></p>
+            <p style="text-align:justify"><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Practice and Procedure, Sex Discrimination </span></p>
+            <p style="text-align:justify"><span style="font-size:12pt;color:#000000">The EAT allowed an appeal against the decision of an Employment Judge in which the Claimant’s claims of sex discrimination were struck out at a Preliminary Hearing. The Judge erred in a number of respects. First, the PH had been listed to consider applications to strike out pursuant to r.37 of the ET Rules 2013. However, the Judge, rather than striking out the claims for any identified reason set out in r.37(1)(a) to (e) appeared to have determined, summarily, whether the claims were brought in time (within the meaning of s.123(1) of the EqA 2010) and having determined that they were not, and that there was no act which extended over a period, determined, summarily, that time should not be extended. Further, the Claimant’s claims and allegations had not been properly identified. No evidence was heard and it appeared that no consideration had been given to whether evidence should be prepared or considered in order to determine preliminary issues. Comments made regarding the importance of not allowing the volume of work before Tribunals to lead to decision making without proper procedures being followed. Reiteration of caution in respect of strike out in respect of discrimination claims.</span></p>
+            <p style="text-align:justify"><span style="font-weight:bold;font-size:12pt;color:#000000">HER HONOUR</span><span style="font-size:12pt;color:#000000"> </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">JUDGE TUCKER:</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-size:12pt">1.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-size:12pt">By a Notice of Appeal received by the Employment Appeal Tribunal on 11 April 2022 the Appellant appeals against the decision of Employment Judge Alliott sitting in the Watford Tribunal on 26 April 2021. By that decision the Judge held that the Claimant’s claims of sex discrimination, harassment, victimisation (alleged to have arisen out of treatment said to have occurred prior to 7 October 2019) were out of time. The Judge struck out the claims. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-size:12pt">2.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-size:12pt">In this Judgment I refer to the Appellant as the Claimant and to the Respondent to the appeal as the Respondent as they were before the Tribunal.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_2">
+          <content>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-size:12pt">Grounds of appeal</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_3">
+          <num style="font-size:12pt">3.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-size:12pt">The following two grounds were permitted to proceed to a full hearing following a hearing before His Honour Judge Tayler.  </span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;color:#010302;margin-left:1.04in;text-indent:-0.25in">(1)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1.04in;text-indent:0.12in"><span style="font-size:12pt;color:#010302">Ground 1: </span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The Employment Tribunal erred in its approach when considering whether or not the Claimant’s complaints under the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">Equality Act 2010</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000"> extended over a period of time within the meaning of section 123 of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">EqA 2010</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-family:Arial;font-size:12pt;color:#010302;margin-left:1.04in;text-indent:-0.25in">(2)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1.04in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Ground 2: The Tribunal erred in its approach when considering whether or not it was just and equitable to extend time under section 123(1)(b) of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#000000">EqA 2010</span><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level eId="lvl_3">
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#000000">The background to the litigation, the facts and the Tribunal’s decision</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_4">
+          <num style="font-size:12pt">4.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The Claimant lodged a claim before the Employment Tribunal (“ET”) on 15 May 2020. That included, the Tribunal later found, a claim of unfair dismissal, automatic unfair dismissal, a claim of sex discrimination and other claims.  The claim of unfair dismissal was lodged within the relevant statutory limitation period. Although it was a little difficult to define precisely the claims made by the Claimant in the Claim Form, the Claimant complained both about his dismissal which took place in December 2019 and also about conduct which was said to have occurred before that. In particular, in the opening paragraph of the form, where he was required to describe the details of his claim, he complained that he was denied promotion on three occasions in three consecutive years for jobs which were then offered to women who were less qualified than him. In addition, he complained that he had been bullied and harassed in 2018. His claim about dismissal was also linked to a complaint he made about being refused a sabbatical.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_5">
+          <num style="font-size:12pt">5.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.49in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Prior to dismissal, the Claimant had secured alternative work with another educational institution, Coventry University. He had communicated with the Respondent about that matter. Correspondence took place about whether the Respondent would grant him leave of absence so that he could take up that alternative post for a period of time. Ultimately, he made an application for a sabbatical. That application for a sabbatical was not granted. Nonetheless, the Claimant appears to have accepted the role he was offered with Coventry University.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_6">
+          <num style="font-size:12pt">6.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.49in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">Disciplinary proceedings were commenced against the Claimant. Those disciplinary proceedings included an allegation that he had failed to follow the correct procedure regarding work being undertaken for another institution. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_7">
+          <num style="font-size:12pt">7.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.49in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">The Claimant also complained about treatment he asserted he was subjected to whilst he had been on sickness absence after breaking his leg. He compared the treatment he received with that the Respondent afforded to a female colleague when she experienced challenging personal events in her life.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_8">
+          <num style="font-size:12pt">8.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">There is a specific heading in the Claimant’s Claim Form of “Gender Discrimination”. Under that heading the Claimant stated:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#000000">“</span><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">The Respondent is a complicated eco-system where, with a bit of over-simplification, the female administrators, Dean Anna Cyprio, Deputy Dean Heather Clay before, Deputy Dean Tracy Copperton at the time I was dismissed, come to work and run the day to day affairs unchecked.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_9">
+          <num style="font-size:12pt">9.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">The Claimant made a number of specific allegations about what he alleged was less favourable treatment of him because of his sex. He identified specific female comparators. First, he had stated that a female colleague had asked for a sabbatical, and that she was given it, in no time, without any problem. He asserted that, conversely, when he asked for a sabbatical, he was” dragged through the disciplinarian circus”. He complained about applications for posts he had made, asserting that women were appointed who were less qualified than him. He stated that, in that regard, he was treated less favourably than an actual comparator, “Female 1”: her husband had been ill and she was given time away from teaching for a whole year. On the contrary, he stated that when he broke his leg, he was dragged through months of disciplinary investigations.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_10">
+          <num style="font-size:12pt">10.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">There were other complaints within the Claimant’s Claim Form. For example, complaints where reference is made to a male comparator. Nonetheless, in the Claim Form the Claimant makes a number of specific allegations of sex discrimination and also linked his request for a sabbatical with the subsequent disciplinary proceedings that he was subjected to.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_11">
+          <num style="font-size:12pt">11.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">The Respondent lodged a Response. In it, it asserted that the Claimant’s claims of sex discrimination were out of time. Furthermore, the Respondent stated that the Claimant had been dismissed following an investigation into various acts of alleged misconduct, including potential breach of his employment contract and failure to follow the Respondent’s procedures.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_12">
+          <num style="font-size:12pt">12.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">By an email letter dated 24 August 2020, solicitors acting for the Respondent made an application for an Order striking out the Claimant’s Claim, alternatively for a Deposit Order. I accepted the submissions on behalf of the Claimant that the precise basis and grounds upon which those Orders were sought was not entirely clear in the email. It was clear, however, that the Respondent was asserting that the claims of sex discrimination, harassment, bullying, and victimisation were time barred and should be struck out. Further, the Respondent appeared to assert that the claims of sex discrimination, and some of his other claims, were scandalous, vexatious and had no reasonable prospect of success and should be struck out. Alternatively, the Respondent appeared to seek an order that the Claimant should be made to pay a deposit as a condition of proceeding with his claim(s).</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_13">
+          <num style="font-size:12pt">13.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">On 18 October 2020 an Employment Judge directed that the case be considered at a Preliminary Hearing (PH) to, “consider any application for Strike-out or Deposit Orders”. The parties were informed that the PH would take place on 17 March 2021. The letter informing the parties of that listing included the following information:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:-0.2in"><marker name="tab" /><marker name="tab" /><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">“You may submit written representations for consideration at the hearing. If so, they must be sent to the Tribunal and to all other parties not less than seven days before the hearing.  You will have the chance to put forward oral arguments in any case.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_14">
+          <num style="font-size:12pt">14.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">The PH took place before EJ Alliott. The Claimant represented himself and the Respondent was represented by counsel.  The Judgment of the Tribunal was as follows:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;margin-right:0.39in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">“The Claimant’s Claim of sex discrimination, harassment, victimisation arising out of alleged treatment prior to 7 October 2019 are out of time and it is not just and equitable to extend time. Accordingly, those Claims are struck out.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_15">
+          <num style="font-size:12pt">15.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">Before I go on to consider the specific grounds of appeal I note the following. First, it appears to be common ground that, in breach of the directions provided in the letter of 18 October 2020, written submissions were not sent to either party not less than seven days before the hearing. The Respondent provided written submissions to the Tribunal and to the Claimant less than a day before the hearing on 16 March 2021. The Respondent’s proposed draft List of Issues and Agenda for the hearing were sent to the Claimant on 15 March 2021, again, just the day before the PH.  During the hearing, the Judge stated that that had allowed the Claimant all of 16 March 2021 to consider the Agenda, and some time on the day before the PH to consider the written submissions. The Claimant provided his written submissions to the Tribunal and to the Respondent approximately half an hour before the PH began.  I have made a point of including this in this Judgment because I consider that the exchange of those important documents, very shortly before the PH, will not have assisted the parties in presenting their application(s) and responding to them. Little time was available to properly reflect on what the issues were. It is possible that, in turn, this did not assist the Employment Judge. In addition, the (late) provision of documents, shortly before a hearing, creates additional difficulties for litigants in person. It can increase anxiety, make participation in that hearing on an equal footing with counsel and solicitors more difficult, alternatively, give an impression that that is not being achieved. That, in turn, is also unlikely to facilitate meaningful discussion regarding other means of dispute resolution. All these points are relevant to the parties’ roles in assisting the Tribunal in furthering the overriding objective. Rules and directions for the preparation for a hearing are made for a reason. They should, except in exceptional circumstances, be adhered to.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_4">
+          <content>
+            <p style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">The Tribunal’s decision</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_16">
+          <num style="font-size:12pt">16.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">In the Reasons for the Tribunal’s Judgment,  the Employment Judge recorded that the Claimant was employed as a senior lecturer employed by the Respondent. He had worked from either 2013 or 2014 up until his dismissal on 20 December 2019. He was summarily dismissed for alleged gross misconduct. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_17">
+          <num style="font-size:12pt">17.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">As noted above, the Claimant presented a Claim Form to the Employment Tribunal on 15 May 2020. The Judge recorded that, accordingly, events which took place prior to three months before the date of dismissal (20 December 2019) were </span><span style="font-style:italic;font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">prima facie</span><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000"> outside the primary three months’ time limit set out in section 123 of the </span><span style="font-weight:bold;font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">Equality Act 2010 (EqA 2010)</span><span style="font-family:TimesNewRomanPSMT;font-size:12pt;color:#000000">.  The Judge recorded that the Claimant sought to pursue claims for unfair dismissal, sex discrimination, notice pay and also identified that there were other, the less well particularised allegations of bullying, harassment and victimisation. The Judge recorded that the Respondent’s application was one for a strike-out Order and/or a Deposit Order in relation to the allegations of sex discrimination, harassment and victimisation. The Judge stated as follows at paragraph 8:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in"><marker name="tab" /><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">“The Claimant is a litigant in person. He is obviously highly intelligent and well qualified. That said, in discussion with the Claimant during the course of his hearing it has not always been easy to identify the treatment that the Claimant is complaining about in support of his sex discrimination Claims.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">9.</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">Mr Crawford on behalf of the Respondent has prepared a draft list of issues which includes a list of alleged treatment that he has drawn from the Claimant’s Claim Form. This identifies 14 acts numbered A to M.  By reference to those 14 issues they can be broken down into different groups as follows:</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">9.1</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">Five of them relate to the Claimant not being successful when he applied for promotion. The Claimant was notified that he had been unsuccessful following various applications in July 2016, February 2017, 28 February 2018, 28 January 2019 and 22 February 2019.  As regards the last of those, on 22 February 2019 the three-month primary limitation period would have expired on 21 May 2019. Accordingly, the Claim Form was just short of a year out of time.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">9.2</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">Five issues relate to the Respondent’s handling of two grievances made against the Claimant and one grievance made by the Claimant. The grievances against the Claimant were dealt with between March and June 2018. Consequently, the three-month primary limitation period would have expired in May 2019 and, again, the Claim Form is approximately one year out of time. One item of treatment relates to the Respondent allegedly being hostile to the Claimant when he returned from sickness in 2018 and the Claimant told me that this hostility resumed in November 2018. As regards this allegation, the primary limitation period would have expired in about February 2019 and, accordingly, the Claim Form is in excess of one year out of time.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">9.4.</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">One issue relates to the Claimant being denied sabbatical leave in September 2019. The Claimant told me that this also encompassed a complaint that he had been denied sabbatical leave following a request in June/July 2019. The three-month primary limitation period would have expired in December 2019 and the Claim Form is accordingly five months out of time.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">9.5</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">The final two issues relate to the instigation of the disciplinary investigation on 7 October 2019 and the dismissal of the Claimant on 20 December 2019. It was agreed by Mr Crawford on behalf of the Respondent that those two issues are in time.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">10.</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">I have endeavoured to ascertain from the Claimant what treatment he was complaining about in support of his allegations of sex discrimination, harassment and victimisation. He told me he did rely upon the three occasions when his applications for promotion failed. He told me that he was not sure if gender had any influence insofar as the handling of the grievances found against him were concerned. He complained of his treatment when he went off sick in February 2018 and on his return to work in February 2019 with a month’s investigation into him when he was not told what he was being investigated about. He says that he was subjected to unwarranted behaviour repeated a year later which he characterised as bullying and harassment in November 2018. He relied on the denial of being offered a sabbatical in June, July and September 2019. He made a generalised allegation against the Respondent’s Dean, Anna Cypranou, accusing her of orchestrating all the treatment that the Claimant complains about.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">11.</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">As regards all the alleged treatment of the Claimant prior to 7 October 2019 I find that these were </span><span style="font-style:italic;font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">prima facie</span><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000"> out of time and that they were in excess of three months prior to 20 December 2019.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:TimesNewRomanPSMT;font-size:10pt">12.</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.98in;text-indent:0.02in"><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">As regards the denial of promotion, Mr Crawford drew my attention to the case of </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000">Amies v Inner London Education Authority</span><span style="font-family:TimesNewRomanPSMT;font-size:10pt;color:#000000"> [1977] ICR 308 EAT in support of a proposition that rejection for promotion is usually considered a single act so the date of promotion the comparator is the date on which the alleged discrimination is said to have taken place.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_18">
+          <num style="font-size:12pt">18.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Pausing there for a moment, there is no express reference in those passages to parts of the Claimant’s Claim Form that I have referred to in this Judgment. In particular, there is no reference to the paragraph which is headed “</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">Gender discrimination”</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">, nor to the reference and description of a complicated eco-system where a predominantly female group of administrators were said to be in charge and making decisions. There was no reference either to the named female comparators that were identified by the Claimant.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_19">
+          <num style="font-size:12pt">19.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The reference within the Judgment to a generalised allegation about the Dean does not refer back to that which is set out within the Claim Form.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_20">
+          <num style="font-size:12pt">20.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The Judge then set out the relevant statutory provisions, section 123 of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">EqA 2002 </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">and  continued at paragraph 14:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in"><marker name="tab" /><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">“Having found that all of the events prior to 7 October 2019 were </span><span style="font-style:italic;font-family:'Times New Roman';font-size:10pt;color:#010302">prima facie</span><span style="font-family:'Times New Roman';font-size:10pt;color:#010302"> out of time I need to consider whether there was a continuing act of discrimination extending over a period of time or a series of distinct acts up until the Claimant’s dismissal on 20 December 2019.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">15.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.23in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">Where there is a series of distinct acts the time limits begin to act to run when each act is completed. In my judgment, all of the acts complained about by the Claimant do form a series of distinct acts. The outcomes of the applications for promotion, the outcomes of the grievances and the alleged denial of the Claimant’s application for a sabbatical all crystallised on a date and so were known to the Claimant. As regards the bullying and harassment in February 2018 and November 2018, again, these had an end point.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">16.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.23in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">I have taken into account the case of </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:10pt;color:#010302">Aziz v FDA</span><span style="font-family:'Times New Roman';font-size:10pt;color:#010302"> [2010] EWCA (Civ) 304 where the Court of Appeal noted that in considering whether separate incidents form part of an act extending over a period one relevant, but not conclusive, factor is whether the same or different individuals were involved in those incidents.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">17.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.23in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">From the Claimant’s Claim Form it can be seen that the Claimant complains about the actions or motives of a number of individuals not only the Dean but also the Deputy Dean, Miss Tracy Copperton and Heather Clay, along with Parveen Kujal, the Claimant’s Head of Department, Marianna Dodorova and Thomas Lange. In addition Lawrence Petch is complained about.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">18.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.23in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">As regards the failure of the Claimant to claim promotion, it is likely that further individuals will have been involved in the assessment of and rejection of the Claimant’s application.  The number of individuals alleged to have acted in this discriminatory way towards the Claimant supports my conclusion that these were a series of distinct acts and not continuing acts extending over a period.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">19.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.23in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">However, leaving aside the issue of sabbatical leave, the last of the acts complained about was in February 2019 and there is a significant gap between then and 7 October 2019.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">By leaving aside the issue of sabbatical leave, the Judge left aside the Claimant’s allegation that he had not been granted sabbatical leave and that the failure to grant him that was less favourable treatment of him compared to how an identified female comparator had been treated. In addition, putting the issue of sabbatical leave to the side meant that the Judge failed to take into account the fact that it was the non-granting of sabbatical leave and then taking up the work with Coventry University which appears to have led to the dismissal. By simply  leaving aside the issue of sabbatical leave, the Judge removed from his consideration the possibility that there was an allegation of sex discrimination which culminated in dismissal, albeit it had begun much sooner than June or July of 2019.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_21">
+          <num style="font-size:12pt;color:#010302">21.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The Judge continued at paragraph 20:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">“Further, the instigation of the disciplinary process against the Claimant on 7 October 2019 appears to have been in the context of a meeting at which the Claimant was complaining about not being granted a sabbatical when it came to light that he had taken a full-time appointment at Coventry University. Whilst that may be a matter of dispute between the parties and I make no finding, in my judgment it would appear that the initiation of the disciplinary proceedings were[sic] of a totally different nature of the alleged treatment relied upon by the Claimant in support of his other sex discrimination claims.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">I pause again at this point. The Judge did not make any finding about the factual issues in dispute regarding the initiation of the disciplinary proceedings and his taking up of a full-time appointment. The Judge was not, therefore, in a position to discern whether those issues were of a different nature to the treatment relied upon by the Claimant.  The Claimant asserted that they were all linked because, as a man, he was treated less favourably than a woman. His claim form appeared to assert that within the Respondent organisation in which he worked, women were treated more favourably than men. Whether those allegations would have been established at trial is a different matter. However, what the Judge could not do was, on the one hand, recognise the need to take the Claimant’s case at its highest, and then, on the other, simply not do so.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_22">
+          <num style="font-size:12pt;color:#010302">22.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The Judge continued at paragraph 21:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.79in;margin-right:0.39in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">“Accordingly, in my judgment, there was no continuing act of discrimination and the incidents relied upon by the Claimant were a series of distinct acts for each of which time would start running when completed.</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302">22.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.21in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">Having concluded that all alleged treatment prior to 7 October 2019 was </span><span style="font-style:italic;font-family:'Times New Roman';font-size:10pt;color:#010302">prima facie</span><span style="font-family:'Times New Roman';font-size:10pt;color:#010302"> out of time I went on to consider whether it would be just and equitable to extend time. The Claimant told me that he had researched extensively on the internet and was under the impression that he could not present a Claim to the ET until he resigned or his employment had come to an end. That is obviously totally incorrect. It is clear that the Claimant had union advice during the relevant period as they were involved in his grievances. The Claimant also told me that in February 2018, rather than complain, he kept his mouth shut and carried on with business as usual.  The Claimant is an intelligent and articulate man who, if he considered he had been discriminated against on grounds of sex, could and should have been able to instigate a claim relating to those distinct acts sooner.</span></p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302;margin-left:0.79in">23.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.79in;margin-right:0.39in;text-indent:0.25in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">I take into account that some of the Claimant’s allegations relate as far back as 2016. Most relate to events some time ago. Any delay is the enemy of justice as recollections inevitably fade over time.  Accordingly, I do not consider it to be just and equitable to extend time for these claims.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_23">
+          <num style="font-size:12pt;color:#010302">23.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.49in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Judge Tayler allowed the two Grounds of Appeal to proceed following a hearing pursuant to Rule 3(10). The reasons given by the judge at that stage were as follows:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.59in;margin-right:0.39in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">“I consider that this appeal is arguable primarily because the preliminary hearing was to consider applications to strike out the Claim or for a Deposit Order. I consider it is arguable that the EJ failed to distinguish between a strike-out of the Claim because there are no reasonable prospects that it will be found to be within time under rule 37.1(a) and 53(1)(c) of the ET rules and determining whether a claim is out of time as a preliminary issue. Rule 53(1)(b) and 3 of the ET rules.  Determination of a preliminary issue against a party does not result in a claim being struck out but in it being dismissed.  Determining a preliminary issue would generally require prior orders for preparation including the identification of the issues and for evidence on matters such as whether it is just and equitable to apply a time limit in excess of three months. It is arguable that the EJ did not properly direct himself as to the law applicable to strike-out and/or the determination of preliminary issues. It is arguable that the EJ determined the time point as if it were a preliminary issue, although the preliminary hearing had not been listed to determine a preliminary issue and no orders had been made to prepare to determine a preliminary issue”.</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <level eId="lvl_5">
+          <content>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';color:#010302">The Law</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_24">
+          <num style="font-size:12pt;color:#010302">24.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Section 123(1) and (3)of the </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">EqA 2010</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> provides as follows:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="margin-left:0.79in;margin-right:0.39in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">“</span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:10pt;color:#010302">Time limit</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num style="font-size:10pt;color:#010302">(1)</num>
+                  <intro>
+                    <p class="ListParagraph" style="margin-left:0.79in;margin-right:0.39in;text-indent:0.21in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">Proceedings on a complaint to an ET relating to the contravention of part 5 work may not be brought after the end of:</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">(a)</num>
+                    <content>
+                      <p class="ListParagraph" style="margin-left:1in;margin-right:0.39in;text-indent:0.36in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">the period of three months starting with the date of the act to which the complaint relates or,</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num style="font-size:10pt;color:#010302;margin-left:1in;text-indent:-0.02in">(b)</num>
+                    <content>
+                      <p class="ListParagraph" style="margin-left:1in;margin-right:0.39in;text-indent:0.36in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">such other period as the ET thinks is just and equitable.</span></p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="ListParagraph" style="margin-left:1in;margin-right:0.39in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">…</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-family:Arial;font-size:10pt;color:#010302;margin-left:1.04in;text-indent:-0.25in">(3)</num>
+                  <intro>
+                    <p class="ListParagraph" style="margin-left:1.04in;margin-right:0.39in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">For the purposes of this section-</span></p>
+                  </intro>
+                  <subparagraph>
+                    <num style="font-size:10pt;color:#010302">(a)</num>
+                    <content>
+                      <p class="ListParagraph" style="margin-left:0.45in;margin-right:0.39in;text-indent:0.05in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">conduct extending over a period is to be treated as done at the end of the period.”</span></p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_25">
+          <num style="font-size:12pt;color:#010302">25.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Rule 37 of Schedule 1 of the Employment Tribunal (Constitutional of Rules and Procedure) Regulations 2013 (The ET Rules 2013)provides as follows: </span></p>
+          </intro>
+          <subparagraph>
+            <num style="text-decoration-line:underline;text-decoration-style:solid;font-size:10pt;color:#010302">37.</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:10pt;color:#010302">Striking Out</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">(1)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">At any stage of proceedings, either on its own initiative or on the application of a party, a Tribunal may strike out all or part of a claim or response on any of the following grounds:</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">(a)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">that it is scandalous or vexatious or has no reasonable prospect of success;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">(b)</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">that the manner in which the proceedings have been conducted by or on behalf of the claimant or the respondent (as the case may be) has been scandalous, unreasonable or vexatious;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">(c)for non-compliance with any of these Rules or with an order of the Tribunal;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">(d)that it has not been actively pursued;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">(e)that the Tribunal considers that it is no longer possible to have a fair hearing in respect of the claim or response (or the part to be struck out).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="margin-left:1in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">…”</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_26">
+          <num style="font-size:12pt;color:#010302">26.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Rule 39 sets out the Tribunal’s power to order a Deposit Order. It provides as follows:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="text-decoration-line:underline;text-decoration-style:solid;font-size:10pt;color:#010302">39.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:10pt;color:#010302">Deposit Orders</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">(1)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">Where at a preliminary hearing (under Rule 53) the Tribunal considers that any specific allegation or argument in a claim or response has little reasonable prospects of success, it may make an order requiring a party (“the paying party”) to pay a deposit not exceeding £1,000 as a condition of continuing to advance that allegation or argument.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_27">
+          <num style="font-size:12pt;color:#010302">27.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Rules 53 and 54 of the ET rules concern Preliminary Hearings. They provide as follows:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="text-decoration-line:underline;text-decoration-style:solid;font-size:10pt;color:#010302">53.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:10pt;color:#010302">Scope of preliminary hearings</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">1.</num>
+            <intro>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">A preliminary hearing is a hearing at which the Tribunal may do one or more of the following -</span></p>
+            </intro>
+            <subparagraph>
+              <num style="font-size:10pt;color:#010302">(a)</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.38in;margin-right:0.39in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">conduct a preliminary consideration of the claim with the parties and make a case management order (including an order relating to the conduct of the final hearing);</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:10pt;color:#010302">(b)</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.38in;margin-right:0.39in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">determine any preliminary issue;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:10pt;color:#010302">(c)</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.38in;margin-right:0.39in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">consider whether a claim or response, or any part, should be struck out under rule 37;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:10pt;color:#010302">(d)</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.38in;margin-right:0.39in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">make a deposit order under rule 39;</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:10pt;color:#010302">(e)</num>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:1.38in;margin-right:0.39in;text-indent:0.12in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">explore the possibility of settlement or alternative dispute resolution, (including judicial mediation).</span></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">2.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">There may be more than one preliminary hearing in any case. </span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:10pt;color:#010302">3.</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">“Preliminary issue” means, as regards any complaint, any substantive issue which may determine liability, (for example, an issue as to jurisdiction or as to whether an employee was dismissed).</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in"><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:10pt;color:#010302">54.Fixing of preliminary hearings</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:1in;margin-right:0.39in"><span style="font-family:'Times New Roman';font-size:10pt;color:#010302">A preliminary hearing may be directed by the Tribunal on its own initiative at any time or as a result of an application by a party.  The Tribunal should give the parties reasonable notice of the date of the hearing and in the case of a hearing involving preliminary issues, at least 14 days’ notice shall be given and the notice shall specify the preliminary issues that are to be or may be decided at the hearing. </span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_28">
+          <num style="font-size:12pt;color:#010302">28.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">There is, in my judgment, a wealth of authority regarding the strike-out of discrimination claims, and how Tribunals should proceed when they are considering striking out claims. The principles are, for example, set out in, in particular, </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Mechkarov v Citibank</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [2016] ICR 1121. They are, however, worth re-stating:</span></p>
+          </intro>
+          <subparagraph>
+            <num style="font-size:12pt;color:#010302">(1)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Discrimination claims are generally fact-sensitive. Their proper determination is always vital in our pluralistic society.</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;color:#010302">(2)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">It is only in the clearest case that a discrimination claim should be struck out without determining key core disputed issues;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;color:#010302">(2)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Where there are core issues of fact that turn to any extent on oral evidence, they should not be decided without hearing oral evidence;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;color:#010302">(3)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The Claimant’s case must, ordinarily, be taken at its highest;</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;color:#010302">(4)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">If the Claimant’s case is conclusively disproved by, or is totally and inexplicably inconsistent with undisputed contemporaneous documents, it may be struck out; and</span></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num style="font-size:12pt;color:#010302">(5)</num>
+            <content>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.98in;margin-right:0.39in;text-indent:0.02in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">A Tribunal should not conduct an impromptu mini trial of oral evidence to resolve core disputed facts.</span></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph eId="para_29">
+          <num style="font-size:12pt;color:#010302">29.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Further guidance is set out in the case of </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Balls v Downham Market High School and College</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302"> </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">[2011] IRLR  217 (EAT), </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">HM Prison Service v. Dolby</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [2003] IRLR 694 and  </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Parkin v Leeds City Council</span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302"> </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">[UKEAT/0178/19/RN]. In </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Balls v Downham Market High School and </span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">College </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Lady Smith sitting in the EAT advocated a two stage approach to an application for strike out on the grounds that there is no reasonable prospect of success  (r.37(1)(a)), noting that that test is not whether the claim is likely to fail or possible to fail. First, the Tribunal must  consider whether, on a careful consideration of all the available material, the tribunal can properly conclude that the claim has </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">no</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> reasonable prospect of success. Secondly, the Tribunal should then consider whether it should exercise its discretion to strike the claim out. There are also a number of cases which contain guidance as to the proper approach to considering limitation issues at a preliminary stage of proceedings and also generally in respect of preliminary hearings.  In particular, in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Caterham School Limited v Rose</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> (UKEAT/0149RN) the EAT, His Honour Judge Auerbach, emphasised the importance of ensuring that there is clarity as to the purposes of a preliminary hearing and what is to be considered. I agree. If crucial, at times, wholly determinative issues are to be decided at a preliminary hearing it is an essential tenet of a fair process that the parties should know what those issues are and have had adequate notice of them so as to be able to fairly and properly address them and their implications for the claims before the Tribunal. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_30">
+          <num style="font-size:12pt;color:#010302">30.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">It is also necessary to ensure that there is a clarity about whether the preliminary hearing has been listed to determine an application to strike out, or, to determine a preliminary issue. Strike-out applications may be made wholly on submission, taking the case of the party whose claim or response is at risk of strike-out at its highest.  Fair and just determination of a preliminary issue may require evidence to be given, including oral evidence, and a factual determination to be made so as to reach a definitive outcome on a point which cannot be re-visited at a full merits hearing.  In many cases that will require either, agreed case management directions or a hearing to identify the issues which will be considered at the preliminary hearing so that directions can be made as to how and when evidence should be prepared and considered. In addition, the terms or r.54 of the ET Rules of Procedure 2014 are mandatory: in the case of a preliminary hearing  involving ‘preliminary issues’ as defined in r.53(3) (i.e. those which may determine liability), at least 14 days notice must be given </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">and</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> that notice must </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">‘specify’</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> the preliminary issues that are, or may be determined.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_6">
+          <num style="font-size:12pt;color:#010302">30.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Tribunals and Courts are under significant pressure at present from the volume of work before them. The need for effective case management and application of the principles set out in the overriding objective is clear. That, however, cannot be any justification for short cuts where that leads to unjust or unfair consideration of important issues and claims.  Whilst unnecessary delay is inconsistent with the proper administration of justice, “justice must never be sacrificed on the altar of speed”.  (See, albeit in a different jurisdiction, but where delay was particularly significant becasuse of a statutory time limit for proceedings per Paulfley J. in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Re: NL (A child) </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">[2014] EWHC 270).</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_31">
+          <num style="font-size:12pt;color:#010302">31.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In my judgment, two further issues are important. First, the position of litigants in person. Lawyers will be, or should be, familiar with the rules of procedure; litigants in person may not be. They may not appreciate the significance of a PH at which a preliminary issue is to be determined. Employment Judges must be astute to ensure that before such a hearing proceeds, particularly one where preliminary issues (as defined above) are determined. a litigant in person has had adequate notice of both the hearing, the issues to be determined, has understood the purpose of the hearing and (if appropriate) has had time to reflect upon the need for evidence. Secondly, the question of whether and when some issues should be determined at a preliminary hearing. One party may be keen to proceed with a preliminary hearing to determine what, from their perspective is a knock-out point. For the other, however, that may mean that determination of a key issue has taken place before a full hearing on the merits and prior to disclosure having taken place. It is vitally important, in my judgment, not to lose sight of the previously well stated principle: discrimination is highly fact sensitive. It is not uncommon that most of the documentary evidence will be in the hands of one party. It is for all these reasons that the principles have been stated, time and time again, that only in the clearest of cases should a discrimination case be struck out without full consideration of the merits.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_32">
+          <num style="font-size:12pt;color:#010302">32.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">For similar reasons, there is authority to support the proposition that caution applies to consideration of limitation issues in discrimination cases at a preliminary stage. In practice, those issues may be so closely inter-twined with merits of the claims themselves. For example, it may not be possible to determine whether an act extended over a period within the meaning of s123(3) of the EqA 1010. unless and until a decision is made about whether separate incidents amounted to unlawful discrimination. Consequently, there may be no appreciable saving of time in seeking to determine those limitation issues at a preliminary hearing. See further the specific guidance set out by Ellenbogen J, in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">E v 1) X 2) L and 3) Z</span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302"> </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">UKEAT/0079/20/RN. Having referred to the Judgment of HHJ Auerbach in </span><span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN), Mrs Justice Ellenbogen expressed some limited disagreement with one of the points made in that case. In that case the EAT had considered an appeal from a tribunal’s determination that treatment complained of, up to and including a complaint of constructive dismissal, had all formed part of a “conduct extending over a period” for the purposes of s.123(3)(a) of the EqA 2010. In <span style="font-weight:bold">Caterham, </span>HHJ Auerbach had stated<span style="font-family:'Times New Roman';font-size:12pt;color:#010302">:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“59.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:1in;text-indent:0.5in">The differences, in particular, between consideration of a substantive issue, and consideration of a strike out application, at a Preliminary Hearing, are generally well understood, but still worth restating. A strike out application in respect of some part of a claim can (and should) be approached assuming, for that purpose, the facts to be as pleaded by the Claimant. <span style="font-style:italic">That does not require evidence or actual findings of fact.</span> If a strike out application succeeds, on the basis that, even if all the facts were as pleaded, the complaint would have no reasonable prospect of success (whether because of a time point, or on the merits), that will bring that complaint to an end. But if a strike out application fails, the point is not decided in the Claimant’s favour. The Respondent, as well as the Claimant, lives to fight another day, at the Full Hearing, on the time point and/or whatever point it may be”. (Emphasis added)</p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+            <p style="text-align:justify"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Mrs Justice Ellenbogen expressed disagreement with the point italicised above. She stated:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">“ </span>47. With respect to His Honour Judge Auerbach, I do not share his view as stated at paragraph 59, that: “A strike out application in respect of some part of a claim can (and should) be approached assuming, for that purpose, the facts to be as pleaded by the Claimant. <span style="text-decoration-line:underline;text-decoration-style:solid">That does not require evidence or actual findings of fact</span>.” (emphasis added.) It seems to me that the emphasised parts of such a conclusion are at odds with the conclusion of Hooper LJ, at paragraphs 10 and 11 of <span style="font-weight:bold">Lyfar</span> (cited above), by which I am bound. It is also at odds with the way in which such cases proceed in practice and without criticism by the higher courts – see, for example, <span style="font-weight:bold">Hendricks</span>, at paragraph 22, from which it is clear that the claimant had produced a 42-page witness statement and given oral evidence at the preliminary hearing. In my judgment, whilst, in any given case, it may be possible and appropriate to determine a strike-out application by reference to the pleaded case alone, it cannot be said that that approach should be adopted on every occasion. That is not to say that the tribunal is to consider the assertions made by the claimant uncritically, or to disregard any implausible aspects of the claimant’s case, taken at its highest. Save, possibly, to highlight any factual basis for asserted implausibility (which is not synonymous with the mere running of an alternative case), one would not expect evidence to be called by a respondent in relation to the existence, or otherwise, of a prima facie case (see, for example, paragraph 36 of <span style="font-weight:bold">Hendricks</span>; and paragraphs 23 and 35 of <span style="font-weight:bold">Aziz</span>). </p>
+                  </content>
+                </level>
+                <level>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">…</span></p>
+                  </content>
+                </level>
+                <paragraph>
+                  <num>50.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in">With the qualification to which I have referred at paragraph 47 above, from the above authorities the following principles may be derived: </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>1)</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in">In order to identify the substance of the acts of which complaint is made, it is necessary to look at the claim form: <span style="font-weight:bold">Sougrin v Haringey Health Authority</span> [1992] ICR 650 CA; </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>2)</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in">It is appropriate to consider the way in which a claimant puts his or her case and, in particular, whether there is said to be a link between the acts of which complaint is made. The fact that the alleged acts in question may be framed as different species of discrimination (and harassment) is immaterial: <span style="font-weight:bold">Robinson v Royal Surrey County Hospital NHS Foundation Trust </span>(UKEAT/0311/14/MC); </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>3)</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in">Nonetheless, it is not essential that a positive assertion that the claimant is complaining of a continuing discriminatory state of affairs be explicitly stated, either in the claim form, or in the list of issues. Such a contention may become apparent from evidence or submissions made, once a time point is taken against the claimant: <span style="font-weight:bold">Sridhar v Kingston Hospital NHS Foundation Trust</span> (UKEAT/0066/20/LA)</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>4)</num>
+                  <intro>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in">It is important that the issues for determination by the tribunal at a preliminary hearing have been identified with clarity. That will include identification of whether the tribunal is being asked: </p>
+                  </intro>
+                  <subparagraph>
+                    <num>(1)</num>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1in;text-indent:0.5in">to consider whether a particular allegation or complaint should be struck out, because no prima facie case can be demonstrated, or </p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <num>(2)</num>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1in;text-indent:0.5in">substantively to determine the limitation issue:</p>
+                    </content>
+                  </subparagraph>
+                  <subparagraph>
+                    <content>
+                      <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span> </span><span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN); </p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num>5)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">When faced with a strike-out application arising from a time point, the test which a tribunal must apply is whether the claimant has established a prima facie case, in which connection it may be advisable for oral evidence to be called. It will be a finding of fact for the tribunal as to whether one act leads to another, in any particular case: <span style="font-weight:bold">Lyfar v. Brighton and Sussex University Hospitals NHS Trust</span> [2006] EWCA Civ 304;</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>6)</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in">An alternative framing of the test to be applied on a strike-out application is whether the claimant has established a reasonably arguable basis for the contention that the various acts are so linked as to be continuing acts, or to constitute an on-going state of affairs: <span style="font-weight:bold">Aziz v. FDA</span> [2010] EWCA Civ 304; <span style="font-weight:bold">Sridhar v Kingston Hospital NHS Foundation Trust</span> (UKEAT/0066/20/LA)</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>7)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">The fact that different individuals may have been involved in the various acts of which complaint is made is a relevant, but not conclusive, factor: <span style="font-weight:bold">Aziz v. FDA</span> [2010] EWCA Civ 304</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>8)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">In an appropriate case, a strike-out application in respect of some part of a claim can been approached, assuming, for that purpose, the facts to be as pleaded by the claimant. In that event, no evidence will be required — the matter will be decided on the claimant’s pleading: <span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN) (as qualified at paragraph 47 above); </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>9)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">A tribunal hearing a strike-out application should view the claimant’s case, at its highest, critically, including by considering whether any aspect of that case is innately implausible for any reason: <span style="font-weight:bold">Robinson v Royal Surrey County Hospital NHS Foundation Trust </span>(UKEAT/0311/14/MC) and paragraph 47 above; </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>10)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">If a strike-out application succeeds, on the basis that, even if all the facts were as pleaded, the complaint would have no reasonable prospect of success (whether because of a time point or on the merits), that will bring that complaint to an end. If it fails, the claimant lives to fight another day, at the full merits hearing: <span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN)</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>11)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">Thus, if a tribunal considers (properly) at a preliminary hearing that there is no reasonable prospect of establishing at trial that a particular incident, complaint about which would, by itself, be out of time, formed part of such conduct together with other incidents, such as to make it in time, that complaint may be struck out: <span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN)</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>12)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">Definitive determination of an issue which is factually disputed requires preparation and presentation of evidence to be considered at the preliminary hearing, findings of fact and, as necessary, the application of the law to those facts, so as to reach a definitive outcome on the point, which cannot then be revisited at the full merits hearing: <span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN);</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>13)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.5in;text-indent:0.5in">If it can be done properly, it may be sensible, and, potentially, beneficial, for a tribunal to consider a time point at a preliminary hearing, either on the basis of a strike-out application, or, in an appropriate case, substantively,, so that time and resource is not taken up preparing, and considering at a full merits hearing, complaints which may properly be found to be truly stale such that they ought not to be so considered. However, caution should be exercised, having regard to the difficulty of disentangling time points relating to individual complaints from other complaints and issues in the case; the fact that there may make no appreciable saving of preparation or hearing time, in any event, if episodes that could be potentially severed as out of time are, in any case, relied upon as background more recent complaints; the acute fact-sensitivity of discrimination claims and the high strike-out threshold; and the need for evidence to be prepared, and facts found (unless agreed), in order to make a definitive determination of such an issue: <span style="font-weight:bold">Caterham School Ltd v Rose</span> (UKEAT/0149/RN).” </p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_33">
+          <num style="font-size:12pt;color:#010302">33.</num>
+          <intro>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Tribunals have a wide discretion in terms of case management decisions and in the application of s.123 of the EqA 2010, both of which must be properly respected. The principles set out above are, in my judgment, however, valid and important points of guidance which Tribunal judges should consider when looking at time limits at a preliminary stage of proceedings. In addition, it is important, in my judgment, to consider the following passages from the Judgment of His Honour Judge Tayler in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Cox v Adecco Group UK Ltd</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> [2021] ICR1307 who had undertaken a review of relevant authorities and with which I agree:</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num>“28.</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:0.84in;text-indent:0.16in"><span style="font-family:'Times New Roman'" />From these cases a number of general propositions emerge, some generally well understood, some not so much: </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(1)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">No-one gains by truly hopeless cases being pursued to a hearing;  </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(2)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">Strike out is not prohibited in discrimination or whistleblowing cases; but especial care must be taken in such cases as it is very rarely appropriate;  </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(3)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">If the question of whether a claim has reasonable prospect of success turns on factual issues that are disputed, it is highly unlikely that strike out will be appropriate; </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(4)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">The Claimant’s case must ordinarily be taken at its highest; </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(5)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">It is necessary to consider, in reasonable detail, what the claims and issues are. Put bluntly, you can’t decide whether a claim has reasonable prospects of success if you don’t know what it is;</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(6)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">This does not necessarily require the agreement of a formal list of issues, although that may assist greatly, but does require a fair assessment of the claims and issues on the basis of the pleadings and any other documents in which the claimant seeks to set out the claim; </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(7)</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">In the case of a litigant in person, the claim should not be ascertained only by </p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p style="text-align:justify;margin-left:1.22in">requiring the claimant to explain it while under the stresses of a hearing; reasonable care must be taken to read the pleadings (including additional information) and any key documents in which the claimant sets out the case. When pushed by a judge to explain the claim, a litigant in person may become like a rabbit in the headlights and fail to explain the case they have set out in writing; </p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(8)</num>
+                  <content>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">Respondents, particularly if legally represented, in accordance with their duties to assist the tribunal to comply with the overriding objective and not to take procedural advantage of litigants in person, should assist the tribunal to identify the documents in which the claim is set out, even if it may not be explicitly pleaded in a manner that would be expected of a lawyer; </p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num style="font-size:11.5pt;margin-left:1.21in;text-indent:-0.37in">(9)</num>
+                  <intro>
+                    <p style="text-align:justify;margin-left:1.21in;text-indent:0in">If the claim would have reasonable prospects of success had it been properly pleaded, consideration should be given to the possibility of an amendment, subject to the usual test of balancing the justice of permitting or refusing the amendment, taking account of the relevant circumstances.  </p>
+                  </intro>
+                  <subparagraph>
+                    <content>
+                      <p style="text-align:justify;margin-left:1in">…</p>
+                    </content>
+                  </subparagraph>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </intro>
+          <subparagraph>
+            <num>30.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'" />There has to be a reasonable attempt at identifying the claims and the issues before considering strike out or making a deposit order. In some cases, a proper analysis of the pleadings, and any core documents in which the claimant seeks to identify the claims, may show that there really is no claim, and there are no issues to be identified; but more often there will be a claim if one reads the documents carefully, even if it might require an amendment. Strike out is not a way of avoiding rolling up one’s sleeves and identifying, in reasonable detail, the claims and issues; doing so is a prerequisite of considering whether the claim has reasonable prospects of success. Often it is argued that a claim is bound to fail because there is one issue that is hopeless. For example, in the protected disclosure context, it might be argued that the claimant will not be able to establish a reasonable belief in wrongdoing; however, it is generally not possible to analyse the issue of wrongdoing without considering what information the claimant contends has been disclosed and what type of wrongdoing the claimant contends the information tended to show. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>31.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1in;text-indent:0.5in">Respondents seeking strike out should not see it as a way of avoiding having to get to</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p style="text-align:justify;margin-left:1in">grips with the claim. They need to assist the employment tribunal in identifying what, on a fair reading of the pleadings and other key documents in which the claimant sets out the case, the claims and issues are. Respondents, particularly if legally represented, in accordance with their duties to assist the tribunal to comply with the overriding objective and not to take procedural advantage of litigants in person, should assist the tribunal to identify the documents, and key passages of the documents, in which the claim appears to be set out, even if it may not be explicitly pleaded in a manner that would be expected of a lawyer, and take particular care if a litigant in person has applied the wrong legal label to a factual claim that, if properly pleaded, would be arguable. In applying for strike out, it is as well to take care in what you wish for, as you may get it, but then find that an appeal is being resisted with a losing hand. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>32.</num>
+            <content>
+              <p style="text-align:justify;margin-left:1in;text-indent:0.5in"><span style="font-family:'Times New Roman'" />This does not mean that litigants in person have no responsibilities. So far as they can, they should seek to explain their claims clearly even though they may not know the correct legal terms. They should focus on their core claims rather than trying to argue every conceivable point. The more prolix and convoluted the claim is, the less a litigant in person can criticise an employment tribunal for failing to get to grips with all the possible claims and issues. Litigants in person should appreciate that, usually, when a tribunal requires additional information it is with the aim of clarifying, and where possible simplifying, the claim, so that the focus is on the core contentions. The overriding objective also applies to litigants in person, who should do all they can to help the employment tribunal clarify the claim. The employment tribunal can only be expected to take reasonable steps to identify the claims and issues. But respondents, and tribunals, should remember that repeatedly asking for additional information and particularisation rarely assists a litigant in person to clarify the claim. Requests for additional information should be as limited and clearly focussed as possible.”</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level eId="lvl_7">
+          <content>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Submissions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_34">
+          <num style="font-size:12pt;color:#010302">34.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The Claimant submitted that the hearing had been listed for a preliminary hearing to consider an application for strike-out and/or for a deposit, however, it rapidly converted into a preliminary hearing to consider a substantive point, namely whether or not claims of discrimination were out of time and, if they were, whether or not time should be extended. It was submitted that there were a number of errors of law in respect of the approach of the Tribunal. First, the Tribunal proceeded to hear something where notice had not been properly given of that preliminary issue. In addition, no proper case management had taken place in advance of the preliminary hearing prior to determining that substantive issue. Thirdly, the judge failed to apply the two-stage approach outlined in case law, in particular in the case of </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Balls v Downham Market High School</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> and also in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">HM Prison Service v Dolby</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">.  It failed to consider which of the specified grounds for striking out the Claim had been established and it then failed to step back and ask itself whether or not it was appropriate to strike out the Claims on that basis. Further, it was submitted that the Tribunal failed to direct itself to the applicable and relevant law and in particular failed to comply with the principles set out in paragraphs paragraph 50 of Ellenbogen J.’s Judgment in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">E v X, L and Z</span><span style="font-style:italic;font-family:'Times New Roman';font-size:12pt;color:#010302">. </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">It was submitted that the Judge wrongly determined that the acts complained of were a series of distinct acts rather than conduct which extended over a period of time. It was submitted that the Judge simply failed to consider the case that was set out by the Claimant, namely that there was gender discrimination within the management of  Middlesex University.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_35">
+          <num style="font-size:12pt;color:#010302">35.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">The Respondent submitted that although it was accepted that the Judge, with two brief exceptions, had not referred to relevant case law or principles, what the Judge did was, in substance, apply the correct legal principles and he reached a decision which was open to him. It was submitted that the Judge looked at the substance of the allegations made by the Claimant and concluded that the Claimant had not established that there was an act which extended over a period. In particular, the Judge had regard to inconsistencies within the Claimant’s own pleaded case. For example, in relation to one or two allegations of discrimination the Claimant appeared to have identified a male comparator and complained about more favourable treatment granted to a male comparator.  It was submitted that the Judge approached the case considering the Claimant’s case at its highest and that he did, in fact, adopt the relevant two stage approach. It was submitted that the guidance set out by Ellenbogen J, was guidance only, but that in any event the Judge had clearly complied with it.</span></p>
+          </content>
+        </paragraph>
+        <level eId="lvl_8">
+          <content>
+            <p class="ListParagraph" style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Analysis and conclusions</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_36">
+          <num style="font-size:12pt;color:#010302">36.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">I have already out some relevant matters above when considering the detail of the Judge’s Judgment and Reasons.  I consider that the Judgment was flawed and that a number of errors of law took place.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_37">
+          <num style="font-size:12pt;color:#010302">37.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">First, in my view, it was clear that the case had been listed as a PH to consider strike-out and whether a Deposit Order should be paid. However, the Judge then proceeded to determine issues of substance, preliminary issues properly so called. First, whether not claims were out of time, which, in this case, required consideration of whether that which was alleged was “an act which extended over a period”. The Claimant asserted that it was. Secondly, the Judge then considered whether or not time should be extended.  </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_38">
+          <num style="font-size:12pt;color:#010302">38.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Further, in my judgment, the Judge failed to properly identify how the Claimant put his claim and the issues within those claims. The Judge’ summary of the claims failed to refer to clear and relevant aspects of the Claimant’s case. Even if there were doubts about whether or not the way in which the Claimant’s case was put would succeed at final hearing, that did not legitimise a failure to identify the way in which the case was put.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_39">
+          <num style="font-size:12pt;color:#010302">39.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Thirdly, on the application to strike out there is no apparent analysis of whether the Judge considered the alternative possibility of making a deposit order or, if he did, why that was inappropriate and strike out required. The Judge did not appear to distinguish between whether there was </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">no</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> reasonable prospect of success in establishing that there was an act which extended over a period, or </span><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">little</span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302"> reasonable prospect of successfully doing so. In determining that there was not an act which extended over the period the Judge referred to the number of individuals who were said to be involved in the alleged sex discrimination. Whilst the Judge directed himself that the number of individuals involved was a relevant, but not conclusive, factor he, nonetheless, appeared to have treated this as a conclusive factor. I have already alluded to the fact that I am concerned that, although the Judge warned himself that he should  take the Claimant’s case at its highest, he did not do so because he did not consider the way in which the Claimant put his case and nor did he consider the link the Claimant sought to make between the refusal to grant him a sabbatical and the subsequent disciplinary proceedings.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_9">
+          <num style="font-size:12pt;color:#010302">37.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In addition, there was no proper notice of the preliminary hearing as required by r.54 of the ET Rules of Procedure 2013. The notice given did not ‘specify’ as required by the rules (r.54 read in conjunction with r.53) the preliminary issue (as defined in r.53(3) which was, potentially, determinative) which was, or might be, considered at the hearing. The lack of adequate notice was then compounded by the late provision of documents and the fact that the basis for the preliminary hearing appeared to change at the hearing. I also consider that there was an apparent conflation of a preliminary issue and a strike-out application. To some extent, this is evident from the Judge’s Judgment, where the Judge held that the Claims were out of time and then struck them out. Strictly speaking, if the claims were out of time, the Judgment should have reflected that fact and then recorded that consequently, the Tribunal had no jurisdiction to hear them. The use of the phrase ‘strike out’ is suggestive of r. 37 of the ET Rules of Procedure 2013 and strike out on one of the grounds set out in r.37(1)(a) to (e).</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_10">
+          <num style="font-size:12pt;color:#010302">38.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">In those circumstances, I consider that both grounds of appeal should be allowed.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_11">
+          <num style="font-size:12pt;color:#010302">39.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">As to disposal, I consider that there are many disputed issues of fact in this case. This is not a case where the EAT can substitute any view. What is required is that the case is returned to the Tribunal to consider, presumably, the strike-out application and/or the issues of time in respect of jurisdiction. I suggest, although ultimately it is a matter for the Tribunal, that initially a directions hearing takes place, that there is proper and identification of the Claimant’s claims, that the Claimant sets out the basis upon which he will assert that the Dean had oversight and involvement in the decisions about which he had complained, including significantly, the decision in respect of the sabbatical and other earlier decisions. Having carried out that exercise, it may be the case that the Claimant determines not to proceed with all of the individual allegations of discrimination. He is of course entitled to rely on those facts, not as a claim, but to support his complaint that discrimination took place at a later date. </span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_40">
+          <num style="font-size:12pt;color:#010302">40.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">I consider that the claim should be remitted to a differently constituted Tribunal. The Respondent did not suggest that it should be returned to the same Judge; doing so, in my judgment, would not be in accordance with relevant guidance set out in </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman';font-size:12pt;color:#010302">Sinclair Roche &amp; Temperley v Heard </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">[2004] IRLR EAT</span><span style="font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302">; Barke v SEETEC Business Technology Centre Ltd</span><span style="font-style:italic;font-weight:bold;font-family:'Times New Roman';font-size:12pt;color:#010302"> </span><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">[2005] IRLR 663 (CA).  First, there is no reason to suggest that the Judge would have a particularly strong memory of the case and the prospect that he has forgotten the case and detail in it is a very real risk. Secondly, given that I consider that the case to be that Judgment is wholly flawed, I consider it would not in any event be appropriate to return it to that Judge and, thirdly, in practical terms, re-submitting the case to the same Judge is likely to make it more difficult to list promptly.  I would encourage the ET to list the case promptly. I would also encourage both parties to have regard to the overriding objective and seek to work together progress the case to trial in as efficient a way as possible by focusing only on those issues which need to be resolved in order to determine the claims.</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="lvl_12">
+          <num style="font-size:12pt;color:#010302">40.</num>
+          <content>
+            <p class="ListParagraph" style="text-align:justify;text-indent:0.5in"><span style="font-family:'Times New Roman';font-size:12pt;color:#010302">Finally, I note that this case is now of some age. It is of course a matter entirely for the parties, but they may be invited to take part in judicial mediation, depending on the length of time of the hearing. That of course, however, is a matter for the parties and the Tribunal. </span></p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

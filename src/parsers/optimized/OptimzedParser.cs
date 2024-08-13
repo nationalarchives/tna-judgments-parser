@@ -533,6 +533,12 @@ abstract class OptimizedParser {
         // return isOnlyOneLine ? first : left;
     }
 
+    internal static bool IsHanging(WLine line) {
+        float first = GetEffectiveIndent(line);
+        float rest = line.LeftIndentInches ?? 0f;
+        return first < rest - MarginOfError;
+    }
+
     protected virtual bool HasProperParagraphNumber(IDivision div) {
         return div.Number is not null && Regex.IsMatch(div.Number.Text.Trim(), @"^\d+\.?$");
     }
@@ -575,6 +581,7 @@ abstract class OptimizedParser {
     }
 
     protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false, bool quote = false) {
+
         ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)
             return div;
@@ -586,22 +593,23 @@ abstract class OptimizedParser {
             return div;
         
         float indent1 = GetEffectiveIndent(line);
+        bool hanging1 = IsHanging(line);
 
-        List<IBlock> intro = new List<IBlock>();
-        intro.AddRange(div.Contents);
-        List<IDivision> subparagraphs = new List<IDivision>();
+        List<IBlock> intro = [.. div.Contents];
+        List<IDivision> subparagraphs = [];
 
         while (i < PreParsed.Body.Count) {
             IBlock next = PreParsed.Body.ElementAt(i).Block;
+            bool thereIsAtLeastOneSubparagraph = subparagraphs.Count > 0;
             if (next is ITable table) {
-                if (subparagraphs.Any())
+                if (thereIsAtLeastOneSubparagraph)
                     break;
                 intro.Add(table);
                 i += 1;
                 continue;
             }
             if (next is ITableOfContents2 toc) {
-                if (subparagraphs.Any())
+                if (thereIsAtLeastOneSubparagraph)
                     break;
                 intro.Add(toc);
                 i += 1;
@@ -612,27 +620,34 @@ abstract class OptimizedParser {
                 if (CannotBeSubparagraph(nextLine))
                     break;
 
-                if (!quote && !subparagraphs.Any() && IsQuotedStructure(nextLine, indent1)) {
+                if (!quote && !thereIsAtLeastOneSubparagraph && IsFirstLineOfQuotedStructure(nextLine, indent1)) {
                     QuotedStructure qs = ParseQuotedStructure(nextLine);
                     intro.Add(qs);
                     continue;
                 }
 
-                if (IsWrapUp(nextLine) && !sub && !quote && div.Number is not null && subparagraphs.Any()) {
-                    List<WLine> wrapUp = new(1) { nextLine };
+                if (IsWrapUp(nextLine) && !sub && !quote && div.Number is not null && thereIsAtLeastOneSubparagraph) {
+                    List<WLine> wrapUp = [ nextLine ];
                     i += 1;
                     return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs, WrapUp = wrapUp };
                 }
-                if (IsWrapUp(nextLine) && !sub && !quote && div.Number is not null && !subparagraphs.Any() && intro.LastOrDefault() is QuotedStructure) {
+                if (IsWrapUp(nextLine) && !sub && !quote && div.Number is not null && !thereIsAtLeastOneSubparagraph && intro.LastOrDefault() is QuotedStructure) {
                     intro.Add(nextLine);
                     i += 1;
                     break;  // could return new WNewNumberedParagraph(div.Number, intro);
                 }
 
-                float nextIndent1 = GetEffectiveIndent(nextLine);
+                float nextIndent = GetEffectiveIndent(nextLine);
 
                 /* quoted structures */
-                if (!sub && !quote && nextIndent1 == indent1 && !subparagraphs.Any() && intro.LastOrDefault() is QuotedStructure) {
+                bool indentIsRight;
+                if (hanging1)
+                    indentIsRight = nextIndent - MarginOfError > indent1;
+                else
+                    indentIsRight = nextIndent == indent1; // Supreme Court
+                // see test 3 before para 64
+                bool charFormattingIsRight = !nextLine.IsAllItalicized() && !nextLine.IsAllBold() && !nextLine.IsAllUnderlined();
+                if (!sub && !quote && nextLine is not WOldNumberedParagraph && indentIsRight && charFormattingIsRight && !thereIsAtLeastOneSubparagraph && intro.LastOrDefault() is QuotedStructure) {
                     int save2 = i;
                     IDivision nextparagraph = ParseParagraphAndSubparagraphs(nextLine, false);
                     if (nextparagraph.Number is not null) {
@@ -647,15 +662,11 @@ abstract class OptimizedParser {
                         i = save2;
                         break;
                     }
-                    if (leaf.Contents.LastOrDefault() is not QuotedStructure) {
-                        i = save2;
-                        break;
-                    }
                     intro.AddRange(leaf.Contents);
                     continue;
                 }
 
-                if (nextIndent1 - MarginOfError <= indent1)
+                if (nextIndent - MarginOfError <= indent1)
                     break;
 
                 int save = i;
@@ -674,14 +685,12 @@ abstract class OptimizedParser {
         }
 
         // ideally all cross-headings would already have been recognized
-        if (!sub && div.Number is null && intro.Count == 1 && subparagraphs.Any())
+        if (!sub && !quote && div.Number is null && intro.Count == 1 && subparagraphs.Any())
             return new CrossHeading { Heading = intro1, Children = subparagraphs.Select(PromoteFromSubparagraph) };
         if (subparagraphs.Any())
             return new BranchParagraph { Number = div.Number, Intro = intro, Children = subparagraphs };
         if (intro.Count == div.Contents.Count())
             return div;
-        // if (!sub && div.Number is null)
-        //     return new WDummyDivision(intro);
         return new WNewNumberedParagraph(div.Number, intro);
     }
 
@@ -695,8 +704,8 @@ abstract class OptimizedParser {
 
     /* quoted structures */
 
-    private static bool IsQuotedStructure(WLine line, float parentIndent) {
-        if (line.Style != "Quote")
+    private static bool IsFirstLineOfQuotedStructure(WLine line, float parentIndent) {
+        if (line.Style != "Quote" && !line.NormalizedContent.StartsWith('“'))
             return false;
         float indent = GetEffectiveIndent(line);
         if (indent - MarginOfError <= parentIndent)
@@ -706,7 +715,7 @@ abstract class OptimizedParser {
 
     private QuotedStructure ParseQuotedStructure(WLine line1) {
         float indent1 = GetEffectiveIndent(line1);
-        List<IDivision> contents = new();
+        List<IDivision> contents = [];
         IDivision div1 = ParseParagraphAndSubparagraphs(line1, false, true);
         contents.Add(div1);
         while (i < PreParsed.Body.Count) {
@@ -714,9 +723,17 @@ abstract class OptimizedParser {
             if (nextBlock is not WLine nextLine)
                 break;
             float nextIndent = GetEffectiveIndent(nextLine);
-            if (nextIndent != indent1)
+            if (Math.Abs(nextIndent - indent1) > MarginOfError)
                 break;
             IDivision nextDiv = ParseParagraphAndSubparagraphs(nextLine, false, true);
+            // wrapUp
+            if (nextDiv is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.Last() is WLine line) {
+                if (contents.LastOrDefault() is BranchParagraph branch && branch.WrapUp is null) {
+                    List<WLine> wrapUp = [ line ];
+                    branch.WrapUp = wrapUp;
+                    continue;
+                }
+            }
             contents.Add(nextDiv);
         }
         return new QuotedStructure() { Contents = contents };

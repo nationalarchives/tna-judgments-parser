@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/1526/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2023/1526/data.xml" />
-          <FRBRdate date="2024-05-27T19:35:53" name="transform" />
+          <FRBRdate date="2024-08-13T18:31:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,7 +46,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1526</uk:number>
         <uk:cite>[2023] EWHC 1526 (Admin)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.0</uk:parser>
         <uk:hash>b5b6b2adf244515bd82deaa89ade3d7084240e4b04818b298f5a24bf2e57c775</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -575,7 +575,7 @@
         </level>
         <paragraph eId="para_35">
           <num>35.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Section 37(1) lays down a general duty on every water undertaker in the following terms:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -596,20 +596,14 @@
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">for maintaining, improving and extending the water undertaker’s water mains and other pipes, </p>
                     </content>
                   </subparagraph>
-                </paragraph>
-                <level>
-                  <content>
+                  <wrapUp>
                     <p class="Quote" style="margin-left:1in">as are necessary for securing that the undertaker is and continues to be able to meet its obligations under this Part.”</p>
-                  </content>
-                </level>
+                  </wrapUp>
+                </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">This primary duty is enforceable by the Secretary of State or OFWAT under s.18 of the 1991 Act. </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">This primary duty is enforceable by the Secretary of State or OFWAT under s.18 of the 1991 Act. </p>
+          </content>
         </paragraph>
         <paragraph eId="para_36">
           <num>36.</num>
@@ -706,12 +700,10 @@
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">in any event, not later than the end of the period of five years beginning with the date when the plan (or revised plan) was last published, </p>
                     </content>
                   </subparagraph>
-                </paragraph>
-                <level>
-                  <content>
+                  <wrapUp>
                     <p class="Quote" style="margin-left:1in">and shall follow the procedure in section 37B below (whether or not the revised plan prepared by the undertaker includes any proposed alterations to the previous plan).</p>
-                  </content>
-                </level>
+                  </wrapUp>
+                </paragraph>
                 <paragraph>
                   <num>(7)</num>
                   <content>
@@ -742,33 +734,31 @@
         </paragraph>
         <paragraph eId="para_40">
           <num>40.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Where the owner or occupier of premises in the area of a water undertaker requests a supply of water for non-domestic purposes it is the undertaker’s duty, in accordance with terms and conditions determined under s.56, to take steps to provide that supply. Those terms and conditions are to be determined by agreement between the parties or, in default, by OFWAT according to what appears to it to be reasonable. Section 55(3) qualifies the duty under s.55: </p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“A water undertaker shall not be required by virtue of this section to provide a new supply to any premises, or to take any steps to enable it to provide such a supply, if the provision of that supply or the taking of those steps would—</heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“A water undertaker shall not be required by virtue of this section to provide a new supply to any premises, or to take any steps to enable it to provide such a supply, if the provision of that supply or the taking of those steps would—</p>
+                  </intro>
+                  <subparagraph>
                     <num>(a)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">require the undertaker, in order to meet all its existing obligations to supply water for domestic or other purposes, together with its probable future obligations to supply buildings and parts of buildings with water for domestic purposes, to incur unreasonable expenditure in carrying out works; or</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">otherwise put at risk the ability of the undertaker to meet any of the existing or probable future obligations mentioned in paragraph (a) above.”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">Any dispute arising under s.55(3) is determined by OFWAT (s.56(2)).</p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">Any dispute arising under s.55(3) is determined by OFWAT (s.56(2)).</p>
+          </content>
         </paragraph>
         <level eId="lvl_5">
           <content>
@@ -794,7 +784,7 @@
         </paragraph>
         <paragraph eId="para_43">
           <num>43.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In so far as is material, reg.63 provides:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -815,12 +805,10 @@
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">is not directly connected with or necessary to the management of that site,</p>
                     </content>
                   </subparagraph>
-                </paragraph>
-                <level>
-                  <content>
+                  <wrapUp>
                     <p class="Quote" style="margin-left:1in">must make an appropriate assessment of the implications of the plan or project for that site in view of that site’s conservation objectives.</p>
-                  </content>
-                </level>
+                  </wrapUp>
+                </paragraph>
                 <paragraph>
                   <num>(2)</num>
                   <content>
@@ -858,16 +846,12 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The “appropriate nature conservation” body in this case was NE (reg.5(1)). </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">The “appropriate nature conservation” body in this case was NE (reg.5(1)). </p>
+          </content>
         </paragraph>
         <paragraph eId="para_44">
           <num>44.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Regulation 64(1) provides: </p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -879,12 +863,8 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">It is not suggested that reg.64(2) was engaged in this case. </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">It is not suggested that reg.64(2) was engaged in this case. </p>
+          </content>
         </paragraph>
         <paragraph eId="para_45">
           <num>45.</num>
@@ -1002,27 +982,29 @@
             <p class="ParaLevel1" style="margin-left:0.5in">Regulation 14(3) provides (so far as is relevant): </p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <heading class="Quote" style="margin-left:1in">“The environmental statement referred to in paragraph (1) must– </heading>
-                  <paragraph>
+                <paragraph>
+                  <intro>
+                    <p class="Quote" style="margin-left:1in">“The environmental statement referred to in paragraph (1) must– </p>
+                  </intro>
+                  <subparagraph>
                     <num>(a)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">… </p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(b)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">include the information reasonably required for reaching a reasoned conclusion on the significant effects of the development on the environment, taking into account current knowledge and methods of assessment; and</p>
                     </content>
-                  </paragraph>
-                  <paragraph>
+                  </subparagraph>
+                  <subparagraph>
                     <num>(c)</num>
                     <content>
                       <p class="Quote" style="margin-left:1.18in;text-indent:0.32in">… ”</p>
                     </content>
-                  </paragraph>
-                </level>
+                  </subparagraph>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -1141,7 +1123,7 @@
         </paragraph>
         <paragraph eId="para_62">
           <num>62.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">On 8 April 2022 SZC provided its response to the defendant’s request dated 18 March 2022 for further information. The document summarised the submissions and information already supplied and stated that there was no difference between the positions of SZC and NWL. SZC summarised the range of options being considered by NWL, which included water transfer. It emphasised that WRMP24 would be subject to SEA and HRA. NWL had said that after submitting its plan for consultation it would work with SZC to negotiate an agreement under s.55 of the 1991 Act. Paragraphs 2.1.16 and 2.1.17 read as follows:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1159,12 +1141,8 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">SZC stated that it had put in place plans for a temporary desalination unit which would cover the project’s water requirements up to the commissioning of unit 1 of the power station. That would give NWL 10 years to plan for and deliver a permanent water supply. </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">SZC stated that it had put in place plans for a temporary desalination unit which would cover the project’s water requirements up to the commissioning of unit 1 of the power station. That would give NWL 10 years to plan for and deliver a permanent water supply. </p>
+          </content>
         </paragraph>
         <paragraph eId="para_63">
           <num>63.</num>
@@ -1238,7 +1216,7 @@
         </paragraph>
         <paragraph eId="para_73">
           <num>73.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">In <span style="font-style:italic">Wingfield</span> at [64] Lang J indicated some factors which <span style="font-style:italic">may</span> be taken into account in determining the extent of a project:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -1274,12 +1252,8 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The judge made it clear that these factors were not exhaustive. The weight to be given to them will depend upon the circumstances of each case and is a matter for the decision maker. </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">The judge made it clear that these factors were not exhaustive. The weight to be given to them will depend upon the circumstances of each case and is a matter for the decision maker. </p>
+          </content>
         </paragraph>
         <paragraph eId="para_74">
           <num>74.</num>
@@ -2037,7 +2011,7 @@
         </paragraph>
         <paragraph eId="para_167">
           <num>167.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">Participants continued to make representations after the close of the Examination. For example, a Mr. Parker returned to the subject of the lifetime and adequacy of the sea defences at Sizewell C. The EA and ONR provided a joint response dated 7 June 2022 which was forwarded to the defendant. At DL 4.366 the Secretary of State relied upon this response which he had summarised at DL 4.365:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -2049,12 +2023,8 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The ONR specifically said that the design of the sea defences had been based upon the period running up to 2140, but if the life-time of the station extended beyond that year, SZC would need to demonstrate that the sea defences will continue to protect the site adequately, and if not provide additional protection.</p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">The ONR specifically said that the design of the sea defences had been based upon the period running up to 2140, but if the life-time of the station extended beyond that year, SZC would need to demonstrate that the sea defences will continue to protect the site adequately, and if not provide additional protection.</p>
+          </content>
         </paragraph>
         <paragraph eId="para_168">
           <num>168.</num>
@@ -2064,7 +2034,7 @@
         </paragraph>
         <paragraph eId="para_169">
           <num>169.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The defendant returned to these issues at DL 4.279 which summarised the Panel’s views as follows:</p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -2076,12 +2046,8 @@
                 </paragraph>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The defendant agreed (DL 4.293) (and see also DL 4.280, 4.284, 4.285 and DL 4.290). </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">The defendant agreed (DL 4.293) (and see also DL 4.280, 4.284, 4.285 and DL 4.290). </p>
+          </content>
         </paragraph>
         <paragraph eId="para_170">
           <num>170.</num>
@@ -2097,7 +2063,7 @@
         </paragraph>
         <paragraph eId="para_172">
           <num>172.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">The claimant relied upon DL 4.590 which states: </p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -2108,12 +2074,8 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">The claimant places a good deal of emphasis on the last sentence, and also upon DL 4.245. These paragraphs refer to an assumption that spent fuel will be removed from Sizewell C by 2140, which is also the year to which the modelling for predicted extreme sea levels runs. </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">The claimant places a good deal of emphasis on the last sentence, and also upon DL 4.245. These paragraphs refer to an assumption that spent fuel will be removed from Sizewell C by 2140, which is also the year to which the modelling for predicted extreme sea levels runs. </p>
+          </content>
         </paragraph>
         <paragraph eId="para_173">
           <num>173.</num>
@@ -2212,7 +2174,7 @@
         </paragraph>
         <paragraph eId="para_184">
           <num>184.</num>
-          <intro>
+          <content>
             <p class="ParaLevel1" style="margin-left:0.5in">At PR 5.7.90 the Panel concluded: </p>
             <block name="embeddedStructure">
               <embeddedStructure>
@@ -2223,12 +2185,8 @@
                 </level>
               </embeddedStructure>
             </block>
-          </intro>
-          <subparagraph>
-            <content>
-              <p class="ParaLevel1" style="margin-left:0.5in">That conclusion was then carried forward to PR 5.7.100. It is also relevant to note the reference here to the policy support for new nuclear power generation because of the contribution it makes to reducing GHGs that would otherwise be produced from other sources (as opposed to the “gross” emissions from a nuclear power station taken in isolation). </p>
-            </content>
-          </subparagraph>
+            <p class="ParaLevel1" style="margin-left:0.5in">That conclusion was then carried forward to PR 5.7.100. It is also relevant to note the reference here to the policy support for new nuclear power generation because of the contribution it makes to reducing GHGs that would otherwise be produced from other sources (as opposed to the “gross” emissions from a nuclear power station taken in isolation). </p>
+          </content>
         </paragraph>
         <paragraph eId="para_185">
           <num>185.</num>
