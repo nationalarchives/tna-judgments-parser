@@ -93,6 +93,20 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
             Assert.Throws<Exception>(() => { InputHelper.GetMetadata(inputs, Logger); });
         }
 
+        [Fact]
+        public void TestConflictingURIandCite()
+        {
+            string uri = "uksc/1900/1";
+            string cite = "[1900] UKPC 2";
+            ParserInputs inputs = new()
+            {
+                DocumentType = ParserInputs.JudgmentDocumentType,
+                Metadata = new InputMetadata() { URI = uri, Cite = cite }
+            };
+            var exception = Record.Exception(() => { InputHelper.GetMetadata(inputs, Logger); });
+            Assert.Null(exception);
+        }
+
     }
 
 }
