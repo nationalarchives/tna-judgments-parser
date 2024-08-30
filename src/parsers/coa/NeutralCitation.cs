@@ -29,6 +29,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))",   // EWCA/Civ/2017/1798
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))",
         @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWCC \d+)",
+        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWCR \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EAT \d+)"
     };
     private static readonly string[] patterns2 = {
@@ -44,6 +45,7 @@ class NetrualCitation : Enricher2 {
         @"^Neutral Citation Number: (\[\d{4}\[ EWCA (Civ|Crim) \d+)",   // [2018[ EWCA Civ 1744
         @"^(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$",
         @"^(\[\d{4}\] EWCC \d+)",
+        @"^(\[\d{4}\] EWCR \d+)",
         @"^ *(\[?\d{4}\]? EAT \d+)$",
         @"^Neutral Citation Number:? (\[\d{4}\] UKIPTrib \d+)"
     };
