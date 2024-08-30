@@ -67,6 +67,12 @@ public class Citations {
             if (!string.IsNullOrEmpty(num))
                 return $"[{ match.Groups[1].Value }] EWCC { num }";
         }
+        match = Regex.Match(cite, @"^\[(\d{4})\] EWCR (\d+)$", RegexOptions.IgnoreCase);
+        if (match.Success) {
+            string num = match.Groups[2].Value.TrimStart('0');
+            if (!string.IsNullOrEmpty(num))
+                return $"[{ match.Groups[1].Value }] EWCR { num }";
+        }
         match = Regex.Match(cite, @"^\[?(\d{4})[\]\[] UKUT (\d+) ?\((AAC|IAC|LC|TCC)\)$", RegexOptions.IgnoreCase);
         if (match.Success) {
             string num = match.Groups[2].Value.TrimStart('0');
@@ -125,6 +131,9 @@ public class Citations {
         match = Regex.Match(normalized, @"^\[(\d{4})\] EWCC (\d+)$");
         if (match.Success)
             return [ "EWCC", match.Groups[1].Value, match.Groups[2].Value ];
+        match = Regex.Match(normalized, @"^\[(\d{4})\] EWCR (\d+)$");
+        if (match.Success)
+            return [ "EWCR", match.Groups[1].Value, match.Groups[2].Value ];
         match = Regex.Match(normalized, @"^\[(\d{4})\] (UKUT) (\d+) \((AAC|IAC|LC|TCC)\)$");
         if (match.Success)
             return new string[] { match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value };
