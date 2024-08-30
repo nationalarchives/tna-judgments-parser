@@ -310,6 +310,12 @@ public readonly partial struct Courts {
         CitationPattern = new Regex(@"^\[\d{4}\] EWCC \d+$")
     };
 
+    public static readonly Court EWCR = new Court {
+        Code = "EWCR",
+        LongName = "The Crown Court",
+        URL = "https://www.judiciary.uk/courts-and-tribunals/crown-court/",
+        CitationPattern = new Regex(@"^\[\d{4}\] EWCR \d+$")
+    };
 
     /* tribunals */
 
@@ -416,6 +422,7 @@ public readonly partial struct Courts {
         EWCOP, EWCOP_T1, EWCOP_T2, EWCOP_T3,
         EWFC, EWFC_B,
         EWCC,
+        EWCR,
 
         UpperTribunal_AdministrativeAppealsChamber,
         UpperTribunal_ImmigrationAndAsylumChamber, OldAsylumAndImmigrationTribunal,
