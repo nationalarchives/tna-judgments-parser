@@ -23,7 +23,7 @@ public class Tests {
         Transform.Load(xsltReader);
     }
 
-    static readonly int total = 90;
+    static readonly int total = 91;
 
     public static readonly IEnumerable<object[]> indices =
         Enumerable.Concat(

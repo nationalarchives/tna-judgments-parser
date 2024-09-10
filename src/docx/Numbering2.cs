@@ -625,7 +625,7 @@ class Numbering2 {
         return true;
     }
 
-    class PrevAbsStartAccumulator {
+    class StartAccumulator {
 
         private readonly Dictionary<int, Dictionary<int, int>> Map = new();
 
@@ -666,8 +666,9 @@ class Numbering2 {
 
         int absStart = GetAbstractStart(main, abstractNumId, ilvl);
 
-        var prevAbsStarts = new PrevAbsStartAccumulator();
-        var prevAbsStartsStyle = new PrevAbsStartAccumulator();
+        var prevAbsStarts = new StartAccumulator();
+        var prevAbsStartsStyle = new StartAccumulator();
+        var prevStarts = new StartAccumulator();
         int count = 0;
 
         foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
@@ -755,6 +756,8 @@ class Numbering2 {
                     // prevNumIdWithoutStyle.HasValue && ... is not good enough
                     if (prevNumIdWithoutStyle == numberingId && prevStartOverride.Value > 1)
                         prevContainsNumOverrideAtLowerLevel = true;
+                    if (!isHigher && prevNumIdWithoutStyle.HasValue) // for test 91, !isHight for test 68
+                        prevStarts.Put(prevNumIdWithoutStyle.Value, prevIlvl, prevStartOverride.Value);
                 }
 
                 continue;
@@ -766,6 +769,13 @@ class Numbering2 {
                 var prevAbsStart = prevAbsStarts.Get(prevNumIdWithoutStyle.Value, prevIlvl + 2);
                 if (prevAbsStart.HasValue) {
                     start = prevAbsStart.Value;
+                    numIdOfStartOverride = -2;
+                }
+            }
+            if (prevNumIdWithoutStyle.HasValue) {
+                var prevStart = prevStarts.Get(prevNumIdWithoutStyle.Value, ilvl + 1);
+                if (prevStart.HasValue) {
+                    start = prevStart.Value;
                     numIdOfStartOverride = -2;
                 }
             }
@@ -809,6 +819,13 @@ class Numbering2 {
             var prevAbsStart = prevAbsStarts.Get(thisNumIdWithoutStyle.Value, ilvl + 2);
             if (prevAbsStart.HasValue) {
                 start = prevAbsStart.Value;
+                numIdOfStartOverride = -2;
+            }
+        }
+        if (thisNumIdWithoutStyle.HasValue) {
+            var prevStart = prevStarts.Get(thisNumIdWithoutStyle.Value, ilvl + 1);
+            if (prevStart.HasValue) {
+                start = prevStart.Value;
                 numIdOfStartOverride = -2;
             }
         }
