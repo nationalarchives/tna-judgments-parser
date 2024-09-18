@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/99/data.xml" />
-          <FRBRdate date="2024-05-27T19:12:05" name="transform" />
+          <FRBRdate date="2024-09-18T19:49:29" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="hamilton-bradbury-ltd-in-liquidation" href="" showAs="HAMILTON BRADBURY LTD (IN LIQUIDATION)" />
         <TLCRole eId="applicant" href="" showAs="Applicant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge-allatt" href="/judge-tribunal-judge-allatt" showAs="TRIBUNAL JUDGE ALLATT" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
         <uk:year>2023</uk:year>
         <uk:number>99</uk:number>
         <uk:cite>[2023] UKFTT 99 (TC)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.3</uk:parser>
         <uk:hash>0f75ddf793168bfea5b24bd6e3a3aaea4df4b13969087cb6c9db2f259f18c2c6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -109,7 +110,7 @@
       <p><span style="font-style:italic">Application that arrangements should be treated as notifiable within the meaning of s306(1) FA 2004</span></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>02 February 2023</p>
       <p style="text-align:center"><span style="font-weight:bold">Decided by:</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE ALLATT</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-allatt" style="font-weight:bold">TRIBUNAL JUDGE ALLATT</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
       <p style="text-align:center"><party refersTo="#the-commissioners-for-his-majestys-revenue-and-customs" as="#applicant" style="font-weight:bold">THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS</party></p>
       <p style="text-align:right"><role refersTo="#applicant" style="font-weight:bold">Applicants</role></p>
