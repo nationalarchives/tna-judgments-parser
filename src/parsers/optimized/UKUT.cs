@@ -190,7 +190,8 @@ class OptimizedUKUTParser : OptimizedParser {
         new UKUT.CourtType2(),
         new UKUT.CaseNo(),
         new UKUT.Date1(),
-        new PartyEnricher()
+        new PartyEnricher(),
+        new UKUT.JudgeNames()
     };
 
     protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage) {
