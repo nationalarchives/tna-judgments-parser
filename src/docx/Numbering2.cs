@@ -163,6 +163,12 @@ class Numbering2 {
             if (format.Val.Value == Char.ConvertFromUtf32(0xf0d5))    // "right arrow?" EWCA/Civ/2004/1294
                 return format.Val.Value;
             // if (format.Val.Value == "%1")  // 00223_ukut_iac_2015_mk_sierra leone
+
+            if (format.Val.Value == Char.ConvertFromUtf32(0xf020)) { // [2024] EWHC 2427 (Ch)
+                logger.LogWarning("removing bullet xf020");
+                return null;
+            }
+
             logger.LogWarning("unknown bullet text: {}", format.Val.Value);
             return Char.ConvertFromUtf32(0x2022);  // default bullet
         }
