@@ -33,15 +33,15 @@ public class Party {
             text = text.Substring(0, text.Length - 18);
         if (text == "R E G I N A")
             return "REGINA";
-        match = Regex.Match(text, @"^The Queen on the application of ([A-Z][A-Z0-9 ]*)$", RegexOptions.IgnoreCase);
+        match = Regex.Match(text, @"^\(?on the application of ([A-Z][A-Z0-9 ,]*)\)?$", RegexOptions.IgnoreCase);
         if (match.Success)
-            return match.Groups[1].Value + " (R on the application of)";
-        match = Regex.Match(text, @"^The Queen on the application of ([A-Z][A-Z0-9 ]*[A-Z]) \([A-Z]+\)$", RegexOptions.IgnoreCase);
+            return match.Groups[1].Value;
+        match = Regex.Match(text, @"^The (King|Queen) \(?on the application of ([A-Z][A-Z0-9 ,]*)\)?$", RegexOptions.IgnoreCase);
         if (match.Success)
-            return match.Groups[1].Value + " (R on the application of)";
-        match = Regex.Match(text, @"^The Queen \(on the application of ([A-Z][A-Z0-9 ,]*)\)$", RegexOptions.IgnoreCase);
+            return match.Groups[2].Value;
+        match = Regex.Match(text, @"^The (King|Queen) on the application of ([A-Z][A-Z0-9 ]*[A-Z]) \([A-Z]+\)$", RegexOptions.IgnoreCase);
         if (match.Success)
-            return match.Groups[1].Value + " (R on the application of)";
+            return match.Groups[2].Value;
 
         match = Regex.Match(text, @"^[A-Z]+ \(a child, by");
         if (match.Success)

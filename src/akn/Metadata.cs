@@ -155,6 +155,7 @@ class Metadata {
             }
 
             IEnumerable<IParty> parties = Util.Descendants<IParty>(judgment.Header);
+            parties = parties.Where(party => !party.Suppress);
             IDictionary<string, IParty> uniqueParties = new Dictionary<string, IParty>();
             foreach (IParty party in parties)
                 uniqueParties.TryAdd(party.Id, party);
