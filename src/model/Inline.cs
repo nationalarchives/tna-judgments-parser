@@ -244,6 +244,13 @@ interface IParty : IInline {
 
     PartyRole? Role { get; }
 
+    /// <summary>
+    /// Indicates whether a party should be ignored in the XML.
+    /// </summary>
+    bool Suppress { get; set; }
+
+    // bool ROnTheApplicationOf { get; set; }
+
 }
 
 interface IParty1 : IFormattedText, IParty { }

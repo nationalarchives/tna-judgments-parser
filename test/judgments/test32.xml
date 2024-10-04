@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840/data.xml" />
-          <FRBRdate date="2024-08-13T18:30:51" name="transform" />
+          <FRBRdate date="2024-10-04T18:15:40" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -34,7 +34,6 @@
         <TLCOrganization eId="ewca-civil" href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division" showAs="The Court of Appeal of England and Wales (Civil Division)" shortForm="Court of Appeal Criminal Division" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
-        <TLCPerson eId="the-queen-on-the-application-of" href="" showAs="THE QUEEN on the application of" />
         <TLCPerson eId="public-and-commercial-services-union" href="" showAs="PUBLIC AND COMMERCIAL SERVICES UNION" />
         <TLCPerson eId="detention-action" href="" showAs="DETENTION ACTION" />
         <TLCPerson eId="care-4-calais" href="" showAs="CARE 4 CALAIS" />
@@ -51,7 +50,7 @@
         <uk:year>2022</uk:year>
         <uk:number>840</uk:number>
         <uk:cite>[2022] EWCA Civ 840</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.6</uk:parser>
         <uk:hash>0bc8db175ea1908ea1e36bca130bdb75094a0332cfea49214c8f54fb10a4ac9c</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -124,7 +123,7 @@
             <p style="margin-left:0.39in" />
           </td>
           <td>
-            <p style="text-align:center;margin-left:0.39in"><party refersTo="#the-queen-on-the-application-of" as="#appellant" style="font-weight:bold">THE QUEEN on the application of</party></p>
+            <p style="text-align:center;margin-left:0.39in"><span style="font-weight:bold">THE QUEEN on the application of</span></p>
             <p style="text-align:center;margin-left:0.39in" />
             <p style="text-align:center;margin-left:0.39in"><party refersTo="#public-and-commercial-services-union" as="#appellant" style="font-weight:bold">(1) PUBLIC AND COMMERCIAL SERVICES UNION</party></p>
             <p style="text-align:center;margin-left:0.59in;text-indent:0in"><party refersTo="#detention-action" as="#appellant" style="font-weight:bold">(2) DETENTION ACTION</party></p>

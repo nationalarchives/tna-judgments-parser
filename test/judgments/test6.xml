@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2021/3387/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2021/3387/data.xml" />
-          <FRBRdate date="2024-08-13T18:30:33" name="transform" />
+          <FRBRdate date="2024-10-04T18:15:21" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -34,8 +34,6 @@
         <TLCOrganization eId="ewhc-qbd-planning" href="https://www.gov.uk/courts-tribunals/planning-court" showAs="The Planning Court (Queen's Bench Division)" shortForm="The Planning Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
-        <TLCPerson eId="the-queen" href="" showAs="THE QUEEN" />
-        <TLCPerson eId="on-the-application-of" href="" showAs="on the application of" />
         <TLCPerson eId="london-borough-of-hillingdon" href="" showAs="LONDON BOROUGH OF HILLINGDON" />
         <TLCPerson eId="mayor-of-london" href="" showAs="MAYOR OF LONDON" />
         <TLCPerson eId="inland-limited" href="" showAs="INLAND LIMITED" />
@@ -51,7 +49,7 @@
         <uk:year>2021</uk:year>
         <uk:number>3387</uk:number>
         <uk:cite>[2021] EWHC 3387 (Admin)</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.6</uk:parser>
         <uk:hash>f5670bbc721217ddffdbc2cca3baae9b2dbf744ae050894f6c22902453eecb4c</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -108,9 +106,9 @@
             <p />
           </td>
           <td>
-            <p style="text-align:center"><party refersTo="#the-queen" as="#claimant" style="font-weight:bold">THE QUEEN</party></p>
+            <p style="text-align:center"><span style="font-weight:bold">THE QUEEN</span></p>
             <p style="text-align:center" />
-            <p style="text-align:center"><party refersTo="#on-the-application-of" as="#claimant" style="font-weight:bold">on the application of</party></p>
+            <p style="text-align:center"><span style="font-weight:bold">on the application of</span></p>
             <p style="text-align:center" />
             <p style="text-align:center"><party refersTo="#london-borough-of-hillingdon" as="#claimant" style="font-weight:bold">LONDON BOROUGH OF HILLINGDON</party></p>
           </td>
