@@ -239,7 +239,7 @@ internal class WNeutralCitation2 : INeutralCitation2 {
 
     public IEnumerable<IFormattedText> Contents { get; init; }
 
-    public String Text => IInline.ToString(Contents);
+    public string Text => IInline.ToString(Contents);
 
 }
 
@@ -341,6 +341,10 @@ internal class WParty : WText, IParty1 {
 
     public PartyRole? Role { get; set; }
 
+    public bool Suppress { get; set; }
+
+    // public bool RonTheApplicationOf { get; set; }
+
 }
 
 internal class WParty2 : IParty2 {
@@ -358,6 +362,10 @@ internal class WParty2 : IParty2 {
     public PartyRole? Role { get; set; }
 
     public IEnumerable<ITextOrWhitespace> Contents { get; init; }
+
+    public bool Suppress { get; set; }
+
+    // public bool RonTheApplicationOf { get; set; }
 
 }
 

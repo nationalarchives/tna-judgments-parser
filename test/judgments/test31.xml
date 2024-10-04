@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1593/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2022/1593/data.xml" />
-          <FRBRdate date="2024-08-13T18:30:50" name="transform" />
+          <FRBRdate date="2024-10-04T18:15:33" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -34,8 +34,6 @@
         <TLCOrganization eId="ewhc-qbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (Queen's Bench Division)" shortForm="The Administrative Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
-        <TLCPerson eId="the-queen" href="" showAs="THE QUEEN" />
-        <TLCPerson eId="on-the-application-of" href="" showAs="ON THE APPLICATION OF" />
         <TLCPerson eId="mrs-fatmire-gorani" href="" showAs="MRS FATMIRE GORANI" />
         <TLCPerson eId="her-majestys-assistant-coroner" href="" showAs="HER MAJESTY’S ASSISTANT CORONER" />
         <TLCPerson eId="for-inner-west-london" href="" showAs="FOR INNER WEST LONDON" />
@@ -51,7 +49,7 @@
         <uk:year>2022</uk:year>
         <uk:number>1593</uk:number>
         <uk:cite>[2022] EWHC 1593 (QB)</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.6</uk:parser>
         <uk:hash>235dcc0bd359888fa1c341d3f75a5e6322b6bdc4f92c61f31fc009d802ac8b40</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -111,8 +109,8 @@
       <p class="CoverMain" style="text-align:center;margin-left:0.39in;text-indent:-0.39in"><judge refersTo="#judge-mr-justice-garnham">MR JUSTICE GARNHAM</judge></p>
       <p style="text-align:center;margin-left:0.39in;text-indent:-0.39in">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center;margin-left:0.39in;text-indent:-0.39in"><span style="font-weight:bold">Between:</span></p>
-      <p style="text-align:center"><party refersTo="#the-queen" as="#claimant">THE QUEEN </party></p>
-      <p style="text-align:center"><party refersTo="#on-the-application-of" as="#claimant">ON THE APPLICATION OF</party></p>
+      <p style="text-align:center">THE QUEEN </p>
+      <p style="text-align:center">ON THE APPLICATION OF</p>
       <p style="text-align:center"><party refersTo="#mrs-fatmire-gorani" as="#claimant">MRS FATMIRE GORANI</party></p>
       <p style="text-align:right"><role refersTo="#claimant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Claimant</role></p>
       <p style="text-align:center"><span style="font-weight:bold">and</span></p>

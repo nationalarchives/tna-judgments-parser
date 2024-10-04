@@ -1213,7 +1213,7 @@ class PartyEnricher : Enricher {
         return row;
     }
 
-    private static PartyRole? GetPartyRole(WCell cell) {
+    public static PartyRole? GetPartyRole(WCell cell) {
         PartyRole? role = GetOneLinePartyRole(cell);
         if (role is not null)
             return role;
@@ -1471,7 +1471,7 @@ class PartyEnricher : Enricher {
                     if (string.IsNullOrWhiteSpace(wText.Text))
                         return false;
                     string trimmed = wText.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')') && !trimmed.StartsWith("(on the application of", StringComparison.InvariantCultureIgnoreCase))
+                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
                         return false;
                     if (IsAnd(trimmed))
                         return false;
@@ -1502,7 +1502,7 @@ class PartyEnricher : Enricher {
                     if (string.IsNullOrWhiteSpace(wText.Text))
                         return line;
                     string trimmed = wText.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')') && !trimmed.StartsWith("(on the application of", StringComparison.InvariantCultureIgnoreCase))
+                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
                         return line;
                     if (IsAnd(trimmed))
                         return line;
@@ -1734,7 +1734,7 @@ class PartyEnricher : Enricher {
 
     /* new methods */
 
-    private static PartyRole? GetPartyRole(string s) {
+    public static PartyRole? GetPartyRole(string s) {
         if (s.Contains('/')) {
             var (one, two) = s.Split('/', 2) switch { var x => (x[0], x[1]) };
             if (!string.IsNullOrWhiteSpace(one) && !string.IsNullOrWhiteSpace(two)) // not if at beginning or end of line

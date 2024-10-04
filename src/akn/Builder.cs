@@ -571,6 +571,10 @@ abstract class Builder {
     }
 
     private void AddParty(XmlElement parent, IParty1 model) {
+        if (model.Suppress) {
+            AddOrWrapText(parent, model);
+            return;
+        }
         XmlElement party = doc.CreateElement("party", ns);
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);
@@ -583,6 +587,10 @@ abstract class Builder {
         party.AppendChild(text);
     }
     private void AddParty2(XmlElement parent, IParty2 model) {
+        if (model.Suppress) {
+            AddInlines(parent, model.Contents);
+            return;
+        }
         XmlElement party = doc.CreateElement("party", ns);
         parent.AppendChild(party);
         party.SetAttribute("refersTo", "#" + model.Id);

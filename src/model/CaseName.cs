@@ -33,32 +33,30 @@ class CaseName {
             if (Regex.IsMatch(name1, @"^THE (KING|QUEEN) \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Skip(1).FirstOrDefault();
                 if (next1 is not null && next1.Role == party1.Role) {
+                    party1.Suppress = true;
+                    // next1.ROnTheApplicationOf = true;
                     name1 = next1.Name + " (R on the application of)";
                 }
             }
             if (Regex.IsMatch(name1, @"^THE (KING|QUEEN)$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Skip(1).FirstOrDefault();
                 if (next1 is not null && next1.Role == party1.Role) {
-                    string next1normalized = Regex.Replace(next1.Text, @"\s+", " ").Trim();
-                    Match match = Regex.Match(next1normalized, @"^\(on the application of ([A-Z][A-Z0-9 ]*)\)$", RegexOptions.IgnoreCase);
+                    char[] trim = { ' ', '(', ')', '-' };
+                    string next1normalized = Regex.Replace(next1.Text, @"\s+", " ").Trim(trim);
+                    Match match = Regex.Match(next1normalized, @"^on the application of ([A-Z][A-Z0-9 ]*)$", RegexOptions.IgnoreCase);
                     if (match.Success) {
+                        party1.Suppress = true;
+                        // next1.Name = match.Groups[1].Value;
+                        // next1.ROnTheApplicationOf = true;
                         name1 = match.Groups[1].Value + " (R on the application of)";
                     }
-                    match = Regex.Match(next1normalized, @"^on the application of ([A-Z][A-Z0-9 ]*)$", RegexOptions.IgnoreCase);
-                    if (match.Success) {
-                        name1 = match.Groups[1].Value + " (R on the application of)";
-                    }
-                    match = Regex.Match(next1normalized, @"^\(?on the application of\)?$", RegexOptions.IgnoreCase);
+                    match = Regex.Match(next1normalized, @"^on the application of$", RegexOptions.IgnoreCase);
                     if (match.Success) {
                         IParty next2 = parties.Skip(2).FirstOrDefault();
                         if (next2 is not null && next2.Role == party1.Role) {
-                            name1 = next2.Name + " (R on the application of)";
-                        }
-                    }
-                    match = Regex.Match(next1normalized, @"^-on the application of-$", RegexOptions.IgnoreCase);
-                    if (match.Success) {
-                        IParty next2 = parties.Skip(2).FirstOrDefault();
-                        if (next2 is not null && next2.Role == party1.Role) {
+                            party1.Suppress = true;
+                            next1.Suppress = true;
+                            // next2.ROnTheApplicationOf = true;
                             name1 = next2.Name + " (R on the application of)";
                         }
                     }
@@ -68,6 +66,7 @@ class CaseName {
             if (Regex.IsMatch(name2, @"^THE (KING|QUEEN) \(?on the application of\)?$", RegexOptions.IgnoreCase)) {
                 IParty next1 = parties.Where(p => p.Role == party2.Role).Skip(1).FirstOrDefault();
                 if (next1 is not null) {
+                    party2.Suppress = true;
                     name2 = next1.Name + " (R on the application of)";
                 }
             }
