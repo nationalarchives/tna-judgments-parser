@@ -13,7 +13,7 @@ class WLine : ILine {
 
     internal readonly MainDocumentPart main;
     internal readonly ParagraphProperties properties;
-    private IEnumerable<IInline> contents;
+    private List<IInline> contents;
 
     internal IEnumerable<WBookmark> Bookmarks { get; private set; }
     internal void PrependBookmarksFromPrecedingSkippedLines(IEnumerable<WBookmark> skipped) {
@@ -27,14 +27,14 @@ class WLine : ILine {
     internal WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
         this.main = main;
         this.properties = properties;
-        this.contents = contents;
+        this.contents = contents.ToList();
         Paragraph = null;
     }
     internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
         var combined = NationalArchives.CaseLaw.Parse.Inline2.ParseContents(main, paragraph);
-        this.contents = combined.Where(i => i is not WBookmark);
+        this.contents = combined.Where(i => i is not WBookmark).ToList();
         Bookmarks = combined.Where(i => i is WBookmark).Cast<WBookmark>();
         Paragraph = paragraph;
     }
@@ -42,7 +42,7 @@ class WLine : ILine {
     protected WLine(WLine prototype, IEnumerable<IInline> contents) {
         this.main = prototype.main;
         this.properties = prototype.properties;
-        this.contents = contents;
+        this.contents = contents.ToList();
         Bookmarks = prototype.Bookmarks;
         IsFirstLineOfNumberedParagraph = prototype.IsFirstLineOfNumberedParagraph;
         Paragraph = prototype.Paragraph;
@@ -244,7 +244,7 @@ class WLine : ILine {
 
     public IEnumerable<IInline> Contents {
         get => contents;
-        set { contents = value; }
+        set { contents = value.ToList(); }
     }
 
     private string _textContent;
