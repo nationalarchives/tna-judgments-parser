@@ -96,6 +96,12 @@ class NetrualCitation : Enricher2 {
         return Enumerable.Concat(two.Prepend(one), three);
     }
 
+    override protected WLine Enrich(WLine line) {
+        if (line.NormalizedContent.Contains("the draft judgment is only to be used to"))
+            return line;
+        return base.Enrich(line);
+    }
+
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
         if (line.Any()) {
             IInline first = line.First();
