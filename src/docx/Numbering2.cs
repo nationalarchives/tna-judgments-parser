@@ -22,12 +22,16 @@ class Numbering2 {
     private static ILogger logger = Logging.Factory.CreateLogger<DOCX.Numbering2>();
 
     public static bool HasOwnNumber(Paragraph paragraph) {
-        int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+        MainDocumentPart main = Main.Get(paragraph);
+        (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
         if (!numId.HasValue)
             return false;
         if (numId.Value == 0)
             return false;
-        var vanish = paragraph.ParagraphProperties?.ParagraphMarkRunProperties?.ChildElements.OfType<Vanish>().FirstOrDefault();
+        Level level = Numbering.GetLevel(main, numId.Value, ilvl);
+        if (level == null)
+            return false;
+        var vanish = level.NumberingSymbolRunProperties?.ChildElements.OfType<Vanish>().FirstOrDefault();
         if (vanish is null)
             return true;
         if (vanish.Val is null)

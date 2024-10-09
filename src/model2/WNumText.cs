@@ -160,7 +160,7 @@ internal class WNumText : IFormattedText {
     } }
 
     public bool IsHidden { get {
-        Vanish vanish = Get3<Vanish>(x => x.Vanish, x => x.Vanish);
+        Vanish vanish = props?.Vanish;
         if (vanish is null)
             return false;
         OnOffValue val = vanish.Val;
