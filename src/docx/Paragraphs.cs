@@ -121,6 +121,11 @@ static class Paragraphs {
             return "-" + indentation.Hanging.Value;
         if (indentation?.FirstLine is not null)
             return indentation.FirstLine.Value;
+
+        if (indentation?.Left is not null)  // eat/2024/162
+            return null;
+        // if this doesn't quite work, consider checking for presence of Hanging or FirstLine in style
+
         Style style = Styles.GetStyle(main, pProps);
         indentation = style?.GetInheritedProperty(s => s.StyleParagraphProperties?.Indentation);
         if (indentation?.Hanging is not null)
