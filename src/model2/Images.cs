@@ -279,6 +279,13 @@ public class WImageRef : IImageRef {
                 float inches = DOCX.CSS.ConvertToInches(raw);
                 if (inches > 8.5f)
                     return true;
+                if (inches < 0 && styles.ContainsKey("width")) {
+                    float width = DOCX.CSS.ConvertToInches(styles["width"]);
+                    if (width < Math.Abs(inches)) // [2021] UKUT 82 (TCC)
+                        return true;
+                if (inches < -8.5f) // [2021] UKUT 151 (TCC)
+                    return true;
+                }
             } catch {
                 logger.LogWarning("can't convert to inches: {}", raw);
             }
