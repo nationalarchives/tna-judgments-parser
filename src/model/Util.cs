@@ -77,7 +77,7 @@ class Util {
             Descendants<T>(judgment.Header),
             Descendants<T>(judgment.Body),
             Descendants<T>(judgment.Conclusions),
-            Descendants<T>(judgment.Annexes.SelectMany(a => a.Contents)),
+            Descendants<T>(judgment.Annexes.SelectMany(a => a.Contents.Prepend(a.Number))),
             Descendants<T>(judgment.InternalAttachments.SelectMany(a => a.Contents))
         };
         return listOfLists.SelectMany(x => x);
