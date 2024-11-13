@@ -661,6 +661,7 @@ class Numbering2 {
 
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+        Style thisStyle = Styles.GetStyle(main, paragraph);
 
         int? start = null;
         int numIdOfStartOverride = -1;
@@ -703,6 +704,7 @@ class Numbering2 {
 
             int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
             int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            Style prevStyle =  Styles.GetStyle(main, prev);
 
             if (prevIlvl < ilvl) {
                 if (numIdOfStartOverride == -2) {
@@ -720,13 +722,20 @@ class Numbering2 {
                 // the strange case of [2023] EWCA Civ 657 (test60)
                 // prevIlvl > 0 needed for test76
                 if (prevIlvl > 0 && !prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
-                    Style prevStyle =  Styles.GetStyle(main, prev);
                     string prevBasedOn = prevStyle?.BasedOn?.Val?.Value;
                     string thisStyleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
                     int? prevStyleIlvl = prevStyle?.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
                     if (prevBasedOn is not null && prevBasedOn == thisStyleId && prevStyleIlvl.HasValue)
                         continue;
                 }
+                // for test 94
+                if (prevIlvl > 0) {
+                    bool prevIsOutlineNumbered = prevStyle?.StyleParagraphProperties?.OutlineLevel?.Val?.Value is not null;
+                    bool thisIsOutlineNumbered = thisStyle?.StyleParagraphProperties?.OutlineLevel?.Val?.Value is not null;
+                    if (prevIsOutlineNumbered && !thisIsOutlineNumbered)
+                        continue;
+                }
+
                 count = 0;
                 continue;
             }
