@@ -53,6 +53,7 @@ class OptimizedEWHCParser : OptimizedParser {
         "RULING ON THE COSTS OF THE APPLICATION FOR A COSTS CAPPING ORDER", //
         "Determination as to Venue",    // [2022] EWHC 152 (Admin)
         "Approved Consequentials Judgment", // [2022] EWHC 629 (Ch)
+        "APPROVED SANCTION JUDGMENT", // [2024] EWHC 2588 (Comm)
         "SUBSTANTIVE JUDGMENT", // [2023] EWHC 323 (Ch)
         "REDACTED JUDGMENT",  // [2023] EWHC 654 (Ch)
 
