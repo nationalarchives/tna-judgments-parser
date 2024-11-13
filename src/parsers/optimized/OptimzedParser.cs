@@ -132,7 +132,8 @@ abstract class OptimizedParser {
         @"^(LORD|LADY|MRS?) JUSTICE( [A-Z]+)+:",
         @"^(Lord|Lady|Mrs?|The Honourable Mrs?) Justice ([A-Z][a-z]* )?[A-Z][a-z]+(-[A-Z][a-z]+)?( VP)?:",
         @"^Mrs? ([A-Z]\.){1,3} [A-Z][a-z]+:",
-        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge:"
+        @"^[A-Z][a-z]+ [A-Z][a-z]+ QC, Deputy High Court Judge:",
+        "^LORD [A-Z]+ \\(Concurring"
     };
     private IEnumerable<Regex> titledJudgeNameRegexes2 = titledJudgeNamePatterns2
         .Select(p => new Regex(p));
@@ -157,8 +158,8 @@ abstract class OptimizedParser {
         while (i < PreParsed.Body.Count) {
             logger.LogTrace("parsing element " + i);
             BlockWithBreak block = PreParsed.Body.ElementAt(i);
-            if (IsFirstLineOfAnnex(block.Block))
-                break;
+//            if (IsFirstLineOfAnnex(block.Block)) // this was removed for [2024] UKSC 36
+//                break;
             int save = i;
             IDecision decision = Decision();
             if (decision is null) {
