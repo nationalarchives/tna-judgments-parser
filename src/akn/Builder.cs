@@ -268,6 +268,17 @@ abstract class Builder {
         rowspan += 1;
         td.SetAttribute("rowspan", rowspan.ToString());
     }
+    private static void DecrementRowspans(List<XmlElement> row) {
+        foreach (XmlElement td in row) {
+            string attr = td.GetAttribute("rowspan");
+            int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
+            rowspan -= 1;
+            if (rowspan > 1)
+                td.SetAttribute("rowspan", rowspan.ToString());
+            else
+                td.RemoveAttribute("rowspan");
+        }
+    }
 
     private void AddTable(XmlElement parent, ITable model) {
         XmlElement table = doc.CreateElement("table", ns);
@@ -322,8 +333,13 @@ abstract class Builder {
                     thisRowOfCellsWithRepeats.Add(td);
                 iCell += colspan;
             }
-            if (tr.HasChildNodes)   // some rows might contain nothing but merged cells
+            if (tr.HasChildNodes) {   // some rows might contain nothing but merged cells
                 table.AppendChild(tr);
+            } else {
+                // if row is not added, rowspans in row above may need to be adjusted, e.g., [2024] EWHC 2920 (KB)
+                List<XmlElement> above = allCellsWithRepeats[iRow - 1];
+                DecrementRowspans(above);
+            }
             iRow += 1;
         }
     }
