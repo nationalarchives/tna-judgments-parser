@@ -759,19 +759,6 @@ class Numbering2 {
                         numIdOfStartOverride = -2;
                     }
 
-                    bool styleNumbersMatch = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value == thisNumIdOfStyle.Value;
-                    bool adHocNumbersMatch = prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value == thisNumIdWithoutStyle.Value;
-                    bool forTest89 = prevIlvl == 1 && styleNumbersMatch && adHocNumbersMatch;
-                    if (prevIlvl == 1 && styleNumbersMatch && prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
-                        var prevAbsStartPlus2 = prevAbsStartsStyle.Get(prevNumIdOfStyle.Value, prevIlvl + 2);
-                        if (!prevAbsStartPlus2.HasValue) // for test 77
-                            forTest89 = true;
-                    }
-                    if (forTest89) {
-                        start = absStart;
-                        numIdOfStartOverride = -2;
-                    }
-
                     // prevNumIdWithoutStyle.HasValue && ... is not good enough
                     if (prevNumIdWithoutStyle == numberingId && prevStartOverride.Value > 1)
                         prevContainsNumOverrideAtLowerLevel = true;
