@@ -267,9 +267,12 @@ class WCell : ICell {
 
     private static IEnumerable<IBlock> ParseCellChild(WCell cell, OpenXmlElement e) {
         if (e is TableCellProperties)
-            return Enumerable.Empty<IBlock>();
+            return [];
         if (e is BookmarkStart || e is BookmarkEnd)
-            return Enumerable.Empty<IBlock>();
+            return [];
+        // this is especially important for paragraphs with numbers, see [2024] EWHC 3163 (Comm)
+        if (cell.VMerge == VerticalMerge.Continuation && e is Paragraph p && string.IsNullOrWhiteSpace(e.InnerText))
+            return [];
         return Blocks.ParseBlock(cell.Main, e);
     }
 
