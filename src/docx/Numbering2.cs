@@ -697,6 +697,17 @@ class Numbering2 {
             if (prevNumbering is null)
                 continue;
 
+            // [2024] EWHC 3163 (Comm)
+            if (prev.Parent is TableCell tc) {
+                var merge = tc.TableCellProperties?.VerticalMerge;
+                if (merge is not null) {
+                    if (merge.Val is null || merge.Val == MergedCellValues.Continue) {
+                        if (string.IsNullOrEmpty(prev.InnerText))
+                            continue;
+                    }
+                }
+            }
+
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
             int prevAbsNumId = prevAbsNum.AbstractNumberId;
             if (prevAbsNumId != abstractNumId)
