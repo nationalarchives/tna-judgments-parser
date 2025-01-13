@@ -148,8 +148,10 @@ class Metadata : IAknMetadata {
         title = title
             .Replace("(Appellant)", "")
             .Replace("(Appellants)", "")
+            .Replace("(Appellant and Cross-Respondent)", "")
             .Replace("(Respondent)", "")
-            .Replace("(Respondents)", "");
+            .Replace("(Respondents)", "")
+            .Replace("(Respondent and Cross-Appellant)", "");
         title = Regex.Replace(title, @"\s+", " ").Trim();
         return "Press Summary of " + title;
     }
@@ -195,7 +197,7 @@ class CombinedMetadata : IAknMetadata {
         string summaryOfCite = extMeta.Cite ?? intMeta.Proprietary.Where(t => t.Item1 == "summaryOfCite").Select(t => t.Item2).FirstOrDefault();
         string summaryOf;
         if (extMeta.Cite is not null)
-            summaryOf = Citations.MakeUriComponent(extMeta.Cite);
+            summaryOf = "https://caselaw.nationalarchives.gov.uk/id/" + Citations.MakeUriComponent(extMeta.Cite);
         else if (extMeta.ShortUriComponent is not null)
             summaryOf = "https://caselaw.nationalarchives.gov.uk/id/" + extMeta.ShortUriComponent.Substring(0, extMeta.ShortUriComponent.IndexOf("/press-summary"));
         else
