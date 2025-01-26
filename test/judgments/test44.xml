@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/347/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/347/data.xml" />
-          <FRBRdate date="2024-08-13T18:30:58" name="transform" />
+          <FRBRdate date="2025-01-26T21:55:41" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge-anne-scott" href="/judge-tribunal-judge-anne-scott" showAs="TRIBUNAL JUDGE ANNE SCOTT" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>347</uk:number>
         <uk:cite>[2022] UKFTT 347 (TC)</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.19</uk:parser>
         <uk:hash>51d8c1a13161a2a0c1d62acd4ecb25d662874fc0a8ef56a6eb6caa6ed01884d3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -100,7 +101,7 @@
       <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on:  </span><docDate date="2022-06-27" refersTo="#hearing" style="font-weight:bold">27 June 2022</docDate></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: 26 September 2022</span></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-anne-scott" style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
       <p style="text-align:center"><party refersTo="#r-d-utilities-limited" as="#appellant" style="font-weight:bold">R D UTILITIES LIMITED</party></p>
       <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>

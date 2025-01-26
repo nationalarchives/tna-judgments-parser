@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-          <FRBRdate date="2024-08-12T19:21:57" name="transform" />
+          <FRBRdate date="2025-01-26T21:55:14" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge-anne-scott" href="/judge-tribunal-judge-anne-scott" showAs="TRIBUNAL JUDGE ANNE SCOTT" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>343</uk:number>
         <uk:cite>[2022] UKFTT 343 (TC)</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.19</uk:parser>
         <uk:hash>dd30d8828f0e0b2cdc637c46577fe248a2c4a6f92ba93353052ffcf00c75a782</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -97,7 +98,7 @@
       <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span><docDate date="2022-02-02" refersTo="#hearing">2 February 2022</docDate></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>14 February 2022</p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-anne-scott" style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
       <p style="text-align:center"><party refersTo="#dr-marcin-daniel-cajdler" as="#appellant" style="font-weight:bold">DR MARCIN DANIEL CAJDLER</party></p>
       <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>
@@ -1410,7 +1411,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-                <FRBRdate date="2024-08-12T19:21:57" name="transform" />
+                <FRBRdate date="2025-01-26T21:55:14" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>
