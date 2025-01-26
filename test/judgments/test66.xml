@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2024-08-12T19:22:18" name="transform" />
+          <FRBRdate date="2025-01-26T21:55:21" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,10 +41,12 @@
         <TLCPerson eId="his-majestys-revenue-and-customs" href="" showAs="HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge" href="/judge-tribunal-judge" showAs="TRIBUNAL JUDGE" />
+        <TLCPerson eId="judge-jennifer-lee" href="/judge-jennifer-lee" showAs="jennifer lee" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.19</uk:parser>
         <uk:hash>5bcbfa5ad6c93073a2a31a4b88a45fe9766462749c88947665cef2f4ea3f5308</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -98,7 +100,7 @@
       <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span><docDate date="2022-03-13" refersTo="#hearing">13 March 2022</docDate></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>24 July 2023</p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE </span><span style="font-weight:bold;text-transform:uppercase">jennifer lee</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge" style="font-weight:bold">TRIBUNAL JUDGE </judge><judge refersTo="#judge-jennifer-lee" style="font-weight:bold;text-transform:uppercase">jennifer lee</judge></p>
       <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase">TRIBUNAL MEMBER REBECCA NEWNS</span></p>
       <p style="text-align:center"><img src="image1.png" style="width:115.95pt;height:88.95pt" /></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
@@ -732,7 +734,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk//annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-                <FRBRdate date="2024-08-12T19:22:18" name="transform" />
+                <FRBRdate date="2025-01-26T21:55:21" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

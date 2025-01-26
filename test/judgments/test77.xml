@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/137/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/137/data.xml" />
-          <FRBRdate date="2024-08-13T18:31:29" name="transform" />
+          <FRBRdate date="2025-01-26T21:55:35" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -40,13 +40,14 @@
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge-anne-scott" href="/judge-tribunal-judge-anne-scott" showAs="TRIBUNAL JUDGE ANNE SCOTT" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
         <uk:year>2024</uk:year>
         <uk:number>137</uk:number>
         <uk:cite>[2024] UKFTT 137 (TC)</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.26.19</uk:parser>
         <uk:hash>2c4bf18d720132dcbd29f8d50f034b59ced8de8180145037098fc4e1fd5017cb</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -112,7 +113,7 @@
       <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span><docDate date="2023-05-05" refersTo="#hearing">5 May 2023</docDate></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>12 February 2024</p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-anne-scott" style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
       <p style="text-align:center"><party refersTo="#monmore-properties-limited" as="#appellant" style="font-weight:bold">MONMORE PROPERTIES LIMITED</party></p>
       <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>

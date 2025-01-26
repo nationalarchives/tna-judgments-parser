@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/226/data.xml" />
-          <FRBRdate date="2024-05-27T19:11:47" name="transform" />
+          <FRBRdate date="2025-01-26T21:55:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,13 +41,14 @@
         <TLCPerson eId="the-commissioners-for-her-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HER MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge-amanda-brown-qc" href="/judge-tribunal-judge-amanda-brown-qc" showAs="TRIBUNAL JUDGE AMANDA BROWN QC" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>226</uk:number>
         <uk:cite>[2022] UKFTT 226 (TC)</uk:cite>
-        <uk:parser>0.24.0</uk:parser>
+        <uk:parser>0.26.19</uk:parser>
         <uk:hash>2d4805fd4176f1888b378d56759b8a87d27bf8571bcce77368f3c3c5d963163a</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -100,7 +101,7 @@
       <p style="text-align:right;margin-left:3.05in"><span style="font-weight:bold">Heard on: </span>23 and <docDate date="2022-05-24" refersTo="#hearing">24 May 2022</docDate></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>22 July 2022</p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold">TRIBUNAL JUDGE AMANDA BROWN QC</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-amanda-brown-qc" style="font-weight:bold">TRIBUNAL JUDGE AMANDA BROWN QC</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">MARK BUFFERY</span></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
       <p style="text-align:center"><party refersTo="#the-towards-zero-foundaiton" as="#appellant" style="font-weight:bold">THE TOWARDS ZERO FOUNDAITON</party></p>
