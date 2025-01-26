@@ -51,7 +51,9 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT
                 return false;
             if (line.Contents.First() is not WText text)
                 return false;
-            return text.Text == "Decided by:";
+            if (text.Text.TrimEnd(':') == "Before")
+                return true;
+            return text.Text.TrimEnd(':') == "Decided by";
         }
 
         private static bool IsJudgeName(WLine line)
