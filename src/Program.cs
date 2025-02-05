@@ -48,6 +48,11 @@ class Program {
             TransformEM(input, output, outputZip, log, test, attachment);
             return;
         }
+        if ("bill".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            var xml = UK.Gov.Legislation.Lawmaker.Helper.ParseFile(input.FullName).Xml;
+            Console.WriteLine(xml);
+            return;
+        }
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
         if (attachment is null) {

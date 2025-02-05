@@ -68,7 +68,12 @@ class HardNumbers {
         @"^([“""]?[ivx]+\.)",           @"^([“""]?\(?[ivx]+\))",
         // compound
         @"^([“""]?[1-9]\d*\.\d+\.?)",        @"^([“""]?\(?[1-9]\d*\.\d+\))",
-        @"^([“""]?[1-9]\d*\.\d+\.\d+\.?)",   @"^([“""]?\(?[1-9]\d*\.\d+\.\d+\))"
+        @"^([“""]?[1-9]\d*\.\d+\.\d+\.?)",   @"^([“""]?\(?[1-9]\d*\.\d+\.\d+\))",
+
+        // legislation
+        @"^([“""]?\d+[A-Z]+\.)",        // section
+        @"^([“""]?\(?\d+[A-Z]+\))",     // subsection
+
     }.Select(s => s + @"(\s|$)").ToArray();
 
     private WOldNumberedParagraph ExtractPlainNumber(WLine line) {
