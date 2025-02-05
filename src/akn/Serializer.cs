@@ -55,7 +55,7 @@ public class Serializer {
             blockDepth += 1;
         }
         // if (e.LocalName == "embeddedStructure") {
-        if (e.GetAttribute("name") == "embeddedStructure") {
+        if (e.GetAttribute("name") == "embeddedStructure" || e.LocalName == "quotedStructure") {
             writer.Formatting = Formatting.Indented;
             DepthOfEmbeddedStructure.Push(blockDepth);
             blockDepth = 0;
@@ -68,7 +68,7 @@ public class Serializer {
                 writer.Formatting = Formatting.Indented;
         }
         // if (e.LocalName == "embeddedStructure") {
-        if (e.GetAttribute("name") == "embeddedStructure") {
+        if (e.GetAttribute("name") == "embeddedStructure" || e.LocalName == "quotedStructure") {
             blockDepth = DepthOfEmbeddedStructure.Pop();
             if (blockDepth == 0)
                 writer.Formatting = Formatting.Indented;

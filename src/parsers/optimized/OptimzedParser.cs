@@ -494,7 +494,7 @@ abstract class OptimizedParser {
         throw new System.Exception(block.GetType().ToString());
     }
 
-    private static bool IsFlushLeft(WLine line) {
+    internal static bool IsFlushLeft(WLine line) {
         if (line.Alignment == AlignmentValues.Right)
             return false;
         if (line.Alignment == AlignmentValues.Center)

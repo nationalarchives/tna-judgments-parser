@@ -182,13 +182,13 @@ abstract class Builder {
         }
     }
 
-    private void AddIntro(XmlElement level, IBranch branch) {
+    protected void AddIntro(XmlElement level, IBranch branch) {
         if (branch.Intro is null || !branch.Intro.Any())
             return;
         XmlElement intro = CreateAndAppend("intro", level);
         blocks(intro, branch.Intro);
     }
-    private void AddWrapUp(XmlElement level, IBranch branch) {
+    protected void AddWrapUp(XmlElement level, IBranch branch) {
         if (branch.WrapUp is null || !branch.WrapUp.Any())
             return;
         XmlElement wrapUp = CreateAndAppend("wrapUp", level);
@@ -251,7 +251,7 @@ abstract class Builder {
 
     /* quoted structures */
 
-    private void AddQuotedStructure(XmlElement blockContext, IQuotedStructure qs) {
+    protected virtual void AddQuotedStructure(XmlElement blockContext, IQuotedStructure qs) {
         XmlElement block = CreateAndAppend("block", blockContext);
         block.SetAttribute("name", "embeddedStructure");
         XmlElement embeddedStructure = CreateAndAppend("embeddedStructure", block);
@@ -348,7 +348,7 @@ abstract class Builder {
 
     private string ContainingParagraphStyle;
 
-    private XmlElement Block(XmlElement parent, ILine line, string name) {
+    protected XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
@@ -478,7 +478,7 @@ abstract class Builder {
             throw new Exception(model.GetType().ToString());
     }
 
-    private XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
+    protected XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
         XmlElement e = CreateAndAppend(name, parent);
         TextAndFormatting(e, model);
         return e;
