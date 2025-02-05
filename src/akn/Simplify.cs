@@ -120,6 +120,10 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 State[item.Key] = item.Value;
             e.RemoveAttribute("class");
             e.RemoveAttribute("style");
+            if (e.HasAttribute("title")) {
+                e.SetAttribute("class", e.GetAttribute("title"));
+                e.RemoveAttribute("title");
+            }
         }
 
         private static bool IsPrefaceParagraph(XmlElement p) {
