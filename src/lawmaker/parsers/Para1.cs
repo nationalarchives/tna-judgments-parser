@@ -29,6 +29,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                if (CurrentLineIsIndentedLessThan(line))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (next is Para1) {
