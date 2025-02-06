@@ -91,6 +91,32 @@ class WLine : ILine {
         }
     }
 
+    public AlignmentValues? Convert(Justification just) {
+        if (just is null)
+            return null;
+        if (just.Val.Equals(JustificationValues.Left))
+            return AlignmentValues.Left;
+        if (just.Val.Equals(JustificationValues.Right))
+            return AlignmentValues.Right;
+        if (just.Val.Equals(JustificationValues.Center))
+            return AlignmentValues.Center;
+        if (just.Val.Equals(JustificationValues.Both))
+            return AlignmentValues.Justify;
+        return null;
+    }
+    public AlignmentValues? OwnAlignment => Convert(properties?.Justification);
+
+    public AlignmentValues? GetEffectiveAlignment() {
+        Justification just = properties?.Justification;
+        if (just is null && Style is not null) {
+            Style style = DOCX.Styles.GetStyle(main, properties);
+            if (style is not null) {
+                just = DOCX.Styles.GetInheritedProperty(style, s => s.StyleParagraphProperties?.Justification);
+            }
+        }
+        return Convert(just);
+    }
+
     internal float? LeftIndentWithNumber {
         get {
             return DOCX.Paragraphs.GetLeftIndentWithNumberingAndStyleInInches(main, properties);

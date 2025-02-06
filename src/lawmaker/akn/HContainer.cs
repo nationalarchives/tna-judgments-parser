@@ -31,7 +31,13 @@ namespace UK.Gov.Legislation.Lawmaker
         protected void AddHContainer(XmlElement parent, HContainer hc)
         {
             string name = hc.Name ?? "level";
-            XmlElement level = CreateAndAppend(name, parent);
+            XmlElement level;
+            if (name == "crossheading") {
+                level = CreateAndAppend("hcontainer", parent);
+                level.SetAttribute("name", name);
+            } else {
+                level = CreateAndAppend(name, parent);
+            }
             string eId = MakeDivisionId(hc);
             if (eId is not null)
             {

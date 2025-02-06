@@ -13,6 +13,18 @@ namespace UK.Gov.Legislation.Lawmaker
             HContainer hContainer;
 
             var save = i;
+            hContainer = ParsePart(line);
+            if (hContainer != null)
+                return hContainer;
+            i = save;
+
+            save = i;
+            hContainer = ParseCrossheading(line);
+            if (hContainer != null)
+                return hContainer;
+            i = save;
+
+            save = i;
             hContainer = ParseProv1(line);
             if (hContainer != null)
                 return hContainer;

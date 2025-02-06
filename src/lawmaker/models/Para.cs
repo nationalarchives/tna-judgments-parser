@@ -22,6 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Para1Branch : Branch, Para1
     {
         public override string Name { get; internal init; } = "paragraph";
+
         public override string Class => "para1";
 
     }
@@ -30,6 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Para1Leaf : Leaf, Para1
     {
         public override string Name { get; internal init; } = "paragraph";
+
         public override string Class => "para1";
 
     }
