@@ -10,33 +10,34 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseUnnumberedParagraph(WLine line)
+        private CrossHeading ParseCrossheading(WLine line)
         {
-            if (line is WOldNumberedParagraph)
+            if (line is WOldNumberedParagraph np)
                 return null;
-            if (!IsLeftAligned(line))
+            if (!IsCenterAligned(line))
+                return null;
+            if (!line.IsAllItalicized())
+                return null;
+            if (i == Document.Body.Count - 1)
                 return null;
 
+            var save1 = i;
             i += 1;
 
-            List<IBlock> intro = [line];
-
-            if (i == Document.Body.Count)
-            {
-                return new UnnumberedLeaf { Contents = intro };
-            }
+            ILine heading = line;
 
             List<IDivision> children = [];
 
             while (i < Document.Body.Count)
             {
-                if (CurrentLineIsIndentedLessThan(line))
-                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Para1)
-                {
+                if (next is not Prov1) {
+                    i = save;
+                    break;
+                }
+                if (!NextChildNumberIsAcceptable(children, next)) {
                     i = save;
                     break;
                 }
@@ -44,12 +45,10 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             if (children.Count == 0)
             {
-                return new UnnumberedLeaf { Contents = intro };
+                i = save1;
+                return null;
             }
-            else
-            {
-                return new UnnumberedBranch { Intro = intro, Children = children };
-            }
+            return new CrossHeading { Heading = heading, Children = children };
         }
 
     }

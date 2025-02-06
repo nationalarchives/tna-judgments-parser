@@ -14,6 +14,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private IBlock Current() => Document.Body[i].Block;
 
+        private static bool IsLeftAligned(WLine line) {
+            var alignment = line.GetEffectiveAlignment();
+            return !alignment.HasValue || alignment == AlignmentValues.Left || alignment == AlignmentValues.Justify;
+        }
+
+        private static bool IsCenterAligned(WLine line) {
+            var alignment = line.GetEffectiveAlignment();
+            return alignment == AlignmentValues.Center;
+        }
+
         private static bool IsFlushLeft(WLine line) => OptimizedParser.IsFlushLeft(line);
 
         private static float GetEffectiveIndent(WLine line) => OptimizedParser.GetEffectiveIndent(line);
