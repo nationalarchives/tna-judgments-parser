@@ -112,8 +112,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 Prov2Leaf l = new() { Number = num1, Contents = [ rest1 ] };
                 intro.RemoveAt(intro.Count - 1);
                 children.Insert(0, l);
-            }
-            if (last.Contents.FirstOrDefault() is WText t1 && last.Contents.Skip(1).FirstOrDefault() is WText t2) {
+            } else if (last.Contents.FirstOrDefault() is WText t1 && last.Contents.Skip(1).FirstOrDefault() is WText t2) {
                 string combined = t1.Text + t2.Text;
                 if (combined.StartsWith("—(1) ")) {
                     WText num1 = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
