@@ -11,73 +11,49 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
+        // matches only a heading above numbered section
         private HContainer ParseProv1(WLine line)
+        {
+            if (line is WOldNumberedParagraph)
+                return null;  // could return ParseBaseProv1(np);
+            if (!IsFlushLeft(line))
+                return null;
+            if (i == Document.Body.Count)
+                return null;
+            if (Document.Body[i+1].Block is not WOldNumberedParagraph np)
+                return null;
+
+            int save = i;
+            i += 1;
+            HContainer next = ParseBareProv1(np);
+            if (next is null) {
+                i = save;
+                return null;
+            }
+
+            next.Heading = line;
+            return next;
+        }
+
+        // matches only a numbered section without a heading
+        private HContainer ParseBareProv1(WLine line)
         {
             if (!IsFlushLeft(line))
                 return null;
+            if (line is not WOldNumberedParagraph np)
+                return null;
+            if (!Prov1.IsSectionNumber(np.Number.Text))
+                return null;
 
-            IFormattedText num;
-            ILine heading;
-            if (line is WOldNumberedParagraph np)
-            {
-                if (!Prov1.IsSectionNumber(np.Number.Text))
-                    return null;
-                num = np.Number;
-                heading = WLine.RemoveNumber(np);
-            }
-            else
-            {
-                num = null;
-                heading = line;
-            }
             i += 1;
 
+            IFormattedText num = np.Number;
+            List<IBlock> intro = [ WLine.RemoveNumber(np) ];
+
             if (i == Document.Body.Count)
-                return new Prov1Leaf { Number = num, Contents = [heading] };
+                return new Prov1Leaf { Number = num, Contents = intro };
 
-            if (line is not WOldNumberedParagraph)
-            {
-                int save = i;
-                IDivision next = ParseNextBodyDivision();
-                if (next is not Prov1)
-                {
-                    i = save;
-                    return new Prov1Leaf { Number = num, Contents = [heading] };
-                }
-                if (next is Prov1Branch branch)
-                {
-                    if (branch.Number is null || branch.Heading is not null)
-                    {
-                        i = save;
-                        return new Prov1Leaf { Number = num, Contents = [heading] };
-                    }
-                    else
-                    {
-                        branch.Heading = heading;
-                        return branch;
-                    }
-                }
-                if (next is Prov1Leaf leaf)
-                {
-                    if (leaf.Number is null || leaf.Heading is not null)
-                    {
-                        i = save;
-                        return new Prov1Leaf { Number = num, Contents = [heading] };
-                    }
-                    else
-                    {
-                        leaf.Heading = heading;
-                        return leaf;
-                    }
-                }
-                throw new System.Exception();
-            }
-
-            // look for children
-            List<IBlock> intro = [ heading ];
-            heading = null;
             List<IDivision> children = [];
-
             while (i < Document.Body.Count) {
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
@@ -90,11 +66,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             FixFirstSubsection(intro, children);
 
-            if (children.Count == 0) {
+            if (children.Count == 0)
                 return new Prov1Leaf { Number = num, Contents = intro };
-            } else {
+            else
                 return new Prov1Branch { Number = num, Intro = intro, Children = children };
-            }
 
         }
 
