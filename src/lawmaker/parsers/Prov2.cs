@@ -34,6 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 QuotedStructure qs = ParseQuotedStructure();
                 if (qs is not null)
                     intro.Add(qs);
+                AddTables(intro);
                 return new Prov2Leaf { Number = num, Contents = intro };
             }
             else
