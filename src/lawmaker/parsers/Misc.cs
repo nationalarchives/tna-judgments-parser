@@ -41,16 +41,36 @@ namespace UK.Gov.Legislation.Lawmaker
             return GetEffectiveIndent(line) > GetEffectiveIndent(other);
         }
 
-        private static bool NextChildNumberIsAcceptable(List<IDivision> children, IDivision next) {
+        private static bool NextChildIsAcceptable(List<IDivision> children, IDivision next) {
             if (children.Count == 0)
                 return true;
             IDivision prev = children.Last();
+            if (prev is Prov1 != next is Prov1)
+                return false;
+            if (prev is Prov1 && next is Prov1) {
+                string num1 = prev.Number.Text.TrimEnd('.');
+                string num2 = next.Number.Text.TrimEnd('.');
+                if (num1.All(char.IsDigit) && num2.All(char.IsDigit))
+                    return int.Parse(num1) == int.Parse(num2) - 1;
+            }
+            if (prev is Prov2 != next is Prov2)
+                return false;
+            if (prev is Prov2 && next is Prov2) {
+                string num1 = prev.Number.Text.TrimStart('(').TrimEnd(')');
+                string num2 = next.Number.Text.TrimStart('(').TrimEnd(')');
+                if (num1.All(char.IsDigit) && num2.All(char.IsDigit))
+                    return int.Parse(num1) == int.Parse(num2) - 1;
+            }
+            // if (prev is Para1 != next is Para1)
+            //     return false;
             if (prev is Para1 && next is Para1) {
                 string num1 = prev.Number.Text.TrimStart('(').TrimEnd(')');
                 string num2 = next.Number.Text.TrimStart('(').TrimEnd(')');
                 if (num1.Length == 1 && num2.Length == 1)
                     return num1[0] == (char)(num2[0] - 1);
             }
+            // if (prev is Para2 !=  next is Para2)
+            //     return false;
             if (prev is Para2 && next is Para2) {
                 string num1 = prev.Number.Text.TrimStart('(').TrimEnd(')');
                 string num2 = next.Number.Text.TrimStart('(').TrimEnd(')');
