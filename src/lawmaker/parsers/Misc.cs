@@ -13,7 +13,6 @@ namespace UK.Gov.Legislation.Lawmaker
     {
 
         private IBlock Current() => Document.Body[i].Block;
-
         private static bool IsLeftAligned(WLine line) {
             var alignment = line.GetEffectiveAlignment();
             return !alignment.HasValue || alignment == AlignmentValues.Left || alignment == AlignmentValues.Justify;
@@ -29,14 +28,17 @@ namespace UK.Gov.Legislation.Lawmaker
         private static float GetEffectiveIndent(WLine line) => OptimizedParser.GetEffectiveIndent(line);
 
         private bool CurrentLineIsIndentedLessThan(WLine parent) {
-            return LineAtIsIndentedLessThan(i, parent);
+            if (Document.Body[i].Block is not WLine line)
+                return false;
+            return LineIsIndentedLessThan(line, parent);
         }
 
-        private bool LineAtIsIndentedLessThan(int index, WLine parent) {
-            if (Document.Body[index].Block is not WLine line)
-                return false;
-            return GetEffectiveIndent(line) < GetEffectiveIndent(parent);
+        private static bool LineIsIndentedLessThan(WLine line, WLine other) {
+            return GetEffectiveIndent(line) < GetEffectiveIndent(other);
+        }
 
+        private static bool LineIsIndentedMoreThan(WLine line, WLine other) {
+            return GetEffectiveIndent(line) > GetEffectiveIndent(other);
         }
 
         private static bool NextChildNumberIsAcceptable(List<IDivision> children, IDivision next) {

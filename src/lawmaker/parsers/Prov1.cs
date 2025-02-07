@@ -54,7 +54,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Prov1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
+
+            FixFirstSubsection(intro, children);
+
             while (i < Document.Body.Count) {
+                if (!CurrentIsPossibleProv1Child(line))
+                    break;
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (next is not Prov2) {
@@ -64,8 +69,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 children.Add(next);
             }
 
-            FixFirstSubsection(intro, children);
-
             if (children.Count == 0)
                 return new Prov1Leaf { Number = num, Contents = intro };
             else
@@ -73,27 +76,45 @@ namespace UK.Gov.Legislation.Lawmaker
 
         }
 
+        private bool CurrentIsPossibleProv1Child(WLine leader) {
+            if (Current() is not WLine line)
+                return true;
+            if (!IsLeftAligned(line))
+                return false;
+            if (LineIsIndentedLessThan(line, leader))
+                return false;
+            return true;
+        }
+
         private void FixFirstSubsection(List<IBlock> intro, List<IDivision> children) {
-            if (children.Count == 0)
-                return;
             if (intro.Last() is not WLine last || last is WOldNumberedParagraph)
                 return;
-            if (children.First() is not Prov2 sub2 || sub2.Number?.Text != "(2)")
-                return;
+            WText num1;
+            WLine rest1;
             if (last.Contents.FirstOrDefault() is WText t && t.Text.StartsWith("—(1) ")) {
-                WText num1 = new("(1)", t.properties);
+                num1 = new("(1)", t.properties);
                 WText x = new(t.Text[5..], t.properties);
-                WLine rest1 = WLine.Make(last, last.Contents.Skip(1).Prepend(x));
-                Prov2Leaf l = new() { Number = num1, Contents = [ rest1 ] };
+                rest1 = WLine.Make(last, last.Contents.Skip(1).Prepend(x));
+                List<IDivision> grandchildren = ParseProv2Children(last);
+                Prov2 l;
+                if (grandchildren.Count == 0)
+                    l = new Prov2Leaf { Number = num1, Contents = [ rest1 ] };
+                else
+                    l = new Prov2Branch { Number = num1, Intro = [ rest1 ], Children = grandchildren};
                 intro.RemoveAt(intro.Count - 1);
                 children.Insert(0, l);
             } else if (last.Contents.FirstOrDefault() is WText t1 && last.Contents.Skip(1).FirstOrDefault() is WText t2) {
                 string combined = t1.Text + t2.Text;
                 if (combined.StartsWith("—(1) ")) {
-                    WText num1 = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
+                    num1 = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
                     WText x = new(combined[5..], t2.properties);
-                    WLine rest1 = WLine.Make(last, last.Contents.Skip(2).Prepend(x));
-                    Prov2Leaf l = new() { Number = num1, Contents = [ rest1 ] };
+                    rest1 = WLine.Make(last, last.Contents.Skip(2).Prepend(x));
+                    List<IDivision> grandchildren = ParseProv2Children(last);
+                    Prov2 l;
+                    if (grandchildren.Count == 0)
+                        l = new Prov2Leaf { Number = num1, Contents = [ rest1 ] };
+                    else
+                        l = new Prov2Branch { Number = num1, Intro = [ rest1 ], Children = grandchildren};
                     intro.RemoveAt(intro.Count - 1);
                     children.Insert(0, l);
                 }
