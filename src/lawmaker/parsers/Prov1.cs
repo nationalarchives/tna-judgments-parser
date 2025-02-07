@@ -62,7 +62,11 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Prov2) {
+                if (next is not Prov2 && next is not Para1) {
+                    i = save;
+                    break;
+                }
+                if (!NextChildIsAcceptable(children, next)) {
                     i = save;
                     break;
                 }
