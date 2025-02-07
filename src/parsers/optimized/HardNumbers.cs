@@ -74,7 +74,9 @@ class HardNumbers {
         @"^([“""]?\d+[A-Z]+\.)",        // section
         @"^([“""]?\(?\d+[A-Z]+\))",     // subsection
 
-    }.Select(s => s + @"(\s|$)").ToArray();
+    }.Select(s => s + @"(\s|$)")
+    .Append(@"^([“""]?\d+\.)—") // em dash, perhaps it could be added to previous line?
+    .ToArray();
 
     private WOldNumberedParagraph ExtractPlainNumber(WLine line) {
         if (line is WOldNumberedParagraph)
