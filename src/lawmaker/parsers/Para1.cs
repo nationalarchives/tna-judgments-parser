@@ -29,7 +29,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
-                if (CurrentLineIsIndentedLessThan(line))
+                if (!CurrentIsPossiblePara1Child(line))
                     break;
 
                 int save = i;
@@ -62,6 +62,8 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
         }
+
+        private bool CurrentIsPossiblePara1Child(WLine leader) => CurrentIsPossibleProv1Child(leader);
 
     }
 
