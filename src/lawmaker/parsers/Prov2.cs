@@ -56,8 +56,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                // check if next is same type as children.Last()
-                if (next is Para1 && !NextChildNumberIsAcceptable(children, next)) {
+                if (!NextChildIsAcceptable(children, next)) {
                     i = save;
                     break;
                 }
