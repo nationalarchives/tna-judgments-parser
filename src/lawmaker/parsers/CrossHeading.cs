@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildNumberIsAcceptable(children, next)) {
+                if (!NextChildIsAcceptable(children, next)) {
                     i = save;
                     break;
                 }
