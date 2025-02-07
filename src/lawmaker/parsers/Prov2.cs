@@ -27,26 +27,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i == Document.Body.Count)
                 return new Prov2Leaf { Number = num, Contents = intro };
 
-            List<IDivision> children = [];
+            List<IDivision> children = ParseProv2Children(line);
 
-            while (i < Document.Body.Count)
-            {
-                if (CurrentLineIsIndentedLessThan(line))
-                    break;
-
-                int save = i;
-                IDivision next = ParseNextBodyDivision();
-                if (next is not Para1 && next is not UnnumberedParagraph)
-                {
-                    i = save;
-                    break;
-                }
-                if (next is Para1 && !NextChildNumberIsAcceptable(children, next)) {
-                    i = save;
-                    break;
-                }
-                children.Add(next);
-            }
             if (children.Count == 0)
             {
                 QuotedStructure qs = ParseQuotedStructure();
@@ -58,6 +40,42 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 return new Prov2Branch { Number = num, Intro = intro, Children = children };
             }
+        }
+
+        internal List<IDivision> ParseProv2Children(WLine leader) {
+            List<IDivision> children = [];
+            while (i < Document.Body.Count)
+            {
+                if (!CurrentIsPossibleProv2Child(leader))
+                    break;
+
+                int save = i;
+                IDivision next = ParseNextBodyDivision();
+                if (next is not Para1 && next is not UnnumberedParagraph)
+                {
+                    i = save;
+                    break;
+                }
+                // check if next is same type as children.Last()
+                if (next is Para1 && !NextChildNumberIsAcceptable(children, next)) {
+                    i = save;
+                    break;
+                }
+                children.Add(next);
+            }
+            return children;
+        }
+
+        private bool CurrentIsPossibleProv2Child(WLine leader) {
+            if (Current() is not WLine line)
+                return true;
+            if (!IsLeftAligned(line))
+                return false;
+            if (LineIsIndentedLessThan(line, leader))
+                return false;
+            if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
+                return false;
+            return true;
         }
 
     }
