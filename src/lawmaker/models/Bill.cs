@@ -11,6 +11,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public abstract string Type { get; protected init; }
 
+        internal Dictionary<string, Dictionary<string, string>> Styles { get; init; }
+
         internal IList<IBlock> CoverPage { get; init; }
 
         internal IList<IBlock> Preface { get; init; }
