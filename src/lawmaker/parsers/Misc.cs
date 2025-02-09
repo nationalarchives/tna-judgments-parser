@@ -51,6 +51,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (children.Count == 0)
                 return true;
             IDivision prev = children.Last();
+
+            if (prev is CrossHeading != next is CrossHeading)
+                return false;
+
             if (prev is Prov1 != next is Prov1)
                 return false;
             if (prev is Prov1 && next is Prov1)
@@ -60,6 +64,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (num1.All(char.IsDigit) && num2.All(char.IsDigit))
                     return int.Parse(num1) == int.Parse(num2) - 1;
             }
+
             if (prev is Prov2 != next is Prov2)
                 return false;
             if (prev is Prov2 && next is Prov2)
