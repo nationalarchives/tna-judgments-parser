@@ -43,7 +43,12 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not CrossHeading) {
+                if (next is not CrossHeading && next is not Prov1) {
+                    i = save;
+                    break;
+                }
+                if (!NextChildIsAcceptable(children, next))
+                {
                     i = save;
                     break;
                 }
