@@ -18,7 +18,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             Bill bill = BillParser.Parse(docx);
             XmlDocument doc = Builder.Build(bill);
-            NationalArchives.AkomaNtoso.Simplifier.Simplify(doc);
+            NationalArchives.AkomaNtoso.Simplifier.Simplify(doc, bill.Styles);
             string xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
             return new Bundle { Xml = xml };
         }
