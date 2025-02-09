@@ -11,11 +11,6 @@ namespace UK.Gov.Legislation.Lawmaker
     partial class Builder : AkN.Builder
     {
 
-        protected override string MakeDivisionId(IDivision div)
-        {
-            return null;
-        }
-
         protected override void AddDivision(XmlElement parent, IDivision div)
         {
             if (div is HContainer hc)
