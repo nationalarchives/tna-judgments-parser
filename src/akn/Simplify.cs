@@ -16,6 +16,10 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
         {
             new Simplifier(doc).VisitDocument();
         }
+        public static void Simplify(XmlDocument doc, Dictionary<string, Dictionary<string, string>> styles)
+        {
+            new Simplifier(doc, styles).VisitDocument();
+        }
 
         readonly XmlDocument Document;
         readonly XmlNamespaceManager NamespaceManager;
@@ -29,6 +33,14 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             NamespaceManager.AddNamespace("akn", Builder.ns);
             Styles = ParseStyles();
             State = new();
+        }
+        private Simplifier(XmlDocument doc, Dictionary<string, Dictionary<string, string>> styles)
+        {
+            Document = doc;
+            NamespaceManager = new XmlNamespaceManager(doc.NameTable);
+            NamespaceManager.AddNamespace("akn", Builder.ns);
+            Styles = CorrectStyles(styles);
+            State = [];
         }
 
         private Dictionary<string, Dictionary<string, string>> ParseStyles()
@@ -54,6 +66,19 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                     css.Add(selector, props);
             }
             presentation.ParentNode.RemoveChild(presentation);
+            return css;
+        }
+
+        private Dictionary<string, Dictionary<string, string>> CorrectStyles(Dictionary<string, Dictionary<string, string>> styles)
+        {
+            Dictionary<string, Dictionary<string, string>> css = new();
+            foreach (var item in styles)
+            {
+                var key = string.Join(' ', item.Key.Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Where(s => !s.StartsWith('#')));
+                if (key.StartsWith('.'))
+                    key = key[1..];
+                css.Add(key, item.Value);
+            }
             return css;
         }
 
