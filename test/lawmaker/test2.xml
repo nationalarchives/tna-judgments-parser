@@ -1,0 +1,2455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nipbb">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage>
+      <p><b>Climate Change (No. 2) Bill</b></p>
+      <p>[AS INTRODUCED]</p>
+      <p>CONTENTS</p>
+      <p>PART 1</p>
+      <p>EMISSIONS TARGETS</p>
+      <p><i>The emissions targets</i></p>
+      <blockContainer>
+        <num>1.</num>
+        <p>The emissions target for 2050 </p>
+      </blockContainer>
+      <blockContainer>
+        <num>2.</num>
+        <p>The emissions target for 2040 </p>
+      </blockContainer>
+      <blockContainer>
+        <num>3.</num>
+        <p>The emissions target for 2030 </p>
+      </blockContainer>
+      <p><i>Power to amend targets</i></p>
+      <blockContainer>
+        <num>4.</num>
+        <p>Power to amend emission targets </p>
+      </blockContainer>
+      <p><i>Meaning of key concepts</i></p>
+      <blockContainer>
+        <num>5.</num>
+        <p>Meaning of “baseline” </p>
+      </blockContainer>
+      <blockContainer>
+        <num>6.</num>
+        <p>Meaning of “net Northern Ireland emissions account” for a year </p>
+      </blockContainer>
+      <p><i>Meaning of underlying concepts</i></p>
+      <blockContainer>
+        <num>7.</num>
+        <p>Meaning of “net Northern Ireland emissions” </p>
+      </blockContainer>
+      <blockContainer>
+        <num>8.</num>
+        <p>Meaning of “Northern Ireland emissions”: international aviation and shipping </p>
+      </blockContainer>
+      <blockContainer>
+        <num>9.</num>
+        <p>Crediting and debiting of carbon units </p>
+      </blockContainer>
+      <blockContainer>
+        <num>10.</num>
+        <p>Carbon units: accounting scheme </p>
+      </blockContainer>
+      <p>PART 2</p>
+      <p>CARBON BUDGETS</p>
+      <blockContainer>
+        <num>11.</num>
+        <p>Carbon budgets </p>
+      </blockContainer>
+      <blockContainer>
+        <num>12.</num>
+        <p>Emissions not to exceed carbon budget </p>
+      </blockContainer>
+      <blockContainer>
+        <num>13.</num>
+        <p>Setting of carbon budgets: principles </p>
+      </blockContainer>
+      <blockContainer>
+        <num>14.</num>
+        <p>Setting of carbon budgets: timing </p>
+      </blockContainer>
+      <blockContainer>
+        <num>15.</num>
+        <p>Carrying amounts from one budgetary period to another </p>
+      </blockContainer>
+      <p>PART 3</p>
+      <p>REPORTS AND STATEMENTS AGAINST TARGETS AND BUDGETS ETC</p>
+      <p><i>Carbon budgets</i></p>
+      <blockContainer>
+        <num>16.</num>
+        <p>Proposals and policies for meeting carbon budget </p>
+      </blockContainer>
+      <blockContainer>
+        <num>17.</num>
+        <p>Interim progress reporting for budgetary period </p>
+      </blockContainer>
+      <blockContainer>
+        <num>18.</num>
+        <p>Final statement for budgetary period </p>
+      </blockContainer>
+      <blockContainer>
+        <num>19.</num>
+        <p>Proposals and policies where carbon budget not met </p>
+      </blockContainer>
+      <p><i>Emissions targets</i></p>
+      <blockContainer>
+        <num>20.</num>
+        <p>Statements on compliance with emissions targets </p>
+      </blockContainer>
+      <p><i>Other reports</i></p>
+      <blockContainer>
+        <num>21.</num>
+        <p>Climate change reporting by public bodies </p>
+      </blockContainer>
+      <p>PART 4</p>
+      <p>REPORTS BY COMMITTEE ON CLIMATE CHANGE</p>
+      <blockContainer>
+        <num>22.</num>
+        <p>Progress report during first budgetary period </p>
+      </blockContainer>
+      <blockContainer>
+        <num>23.</num>
+        <p>Progress reports after statement about each budgetary period </p>
+      </blockContainer>
+      <blockContainer>
+        <num>24.</num>
+        <p>Progress report after statement about emissions target for 2030 </p>
+      </blockContainer>
+      <blockContainer>
+        <num>25.</num>
+        <p>Progress report after statement about emissions target for 2040 </p>
+      </blockContainer>
+      <blockContainer>
+        <num>26.</num>
+        <p>Response to progress reports </p>
+      </blockContainer>
+      <blockContainer>
+        <num>27.</num>
+        <p>Adaptation programme reports </p>
+      </blockContainer>
+      <blockContainer>
+        <num>28.</num>
+        <p>Response to adaptation programme reports </p>
+      </blockContainer>
+      <p>PART 5</p>
+      <p>SUPPLEMENTARY</p>
+      <p><i>Duties in relation to emissions</i></p>
+      <blockContainer>
+        <num>29.</num>
+        <p>Duties to ensure that targets etc are met </p>
+      </blockContainer>
+      <p><i>Regulation-making powers: general</i></p>
+      <blockContainer>
+        <num>30.</num>
+        <p>Regulations: general </p>
+      </blockContainer>
+      <p><i>Regulation-making powers: restrictions and considerations</i></p>
+      <blockContainer>
+        <num>31.</num>
+        <p>Regulations that amend or add an emissions target or amend a carbon budget </p>
+      </blockContainer>
+      <blockContainer>
+        <num>32.</num>
+        <p>Regulations that specify a different baseline year or change a budgetary period </p>
+      </blockContainer>
+      <p><i>Regulation-making powers: advice</i></p>
+      <blockContainer>
+        <num>33.</num>
+        <p>Requirement to obtain advice about proposals to make regulations </p>
+      </blockContainer>
+      <blockContainer>
+        <num>34.</num>
+        <p>Advice about proposed regulations relating to targets </p>
+      </blockContainer>
+      <blockContainer>
+        <num>35.</num>
+        <p>Advice about proposed regulations relating to budgets </p>
+      </blockContainer>
+      <p><i>Definitions</i></p>
+      <blockContainer>
+        <num>36.</num>
+        <p>Meaning of “carbon unit” </p>
+      </blockContainer>
+      <blockContainer>
+        <num>37.</num>
+        <p>Meaning of “greenhouse gas” </p>
+      </blockContainer>
+      <blockContainer>
+        <num>38.</num>
+        <p>Meaning and measurement of emissions </p>
+      </blockContainer>
+      <blockContainer>
+        <num>39.</num>
+        <p>Other definitions</p>
+      </blockContainer>
+      <p><i>General</i></p>
+      <blockContainer>
+        <num>40.</num>
+        <p>Commencement </p>
+      </blockContainer>
+      <blockContainer>
+        <num>41.</num>
+        <p>Short title </p>
+      </blockContainer>
+    </coverPage>
+    <preface eId="preface">
+      <p class="center">A</p>
+      <p class="center"><b>BILL</b></p>
+      <p class="center">TO</p>
+      <p>Set targets for the years 2050, 2040 and 2030 for the reduction of greenhouse gas emissions; to provide for a system of carbon budgeting; to provide for reporting and statements against those targets and budgets; to confer power to impose climate change reporting duties on public bodies; to provide for reports and advice from the Committee on Climate Change; and for connected purposes.</p>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>BE IT ENACTED by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>PART 1</num>
+        <heading>EMISSIONS TARGETS</heading>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>The emissions targets</i></heading>
+          <section eId="sec_1" class="prov1">
+            <heading><b>The emissions target for 2050 </b></heading>
+            <num><b>1.</b></num>
+            <content>
+              <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2050 is at least 82% lower than the baseline.</p>
+            </content>
+          </section>
+          <section eId="sec_2" class="prov1">
+            <heading><b>The emissions target for 2040 </b></heading>
+            <num><b>2.</b></num>
+            <content>
+              <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2040 is at least 69% lower than the baseline.</p>
+            </content>
+          </section>
+          <section eId="sec_3" class="prov1">
+            <heading><b>The emissions target for 2030 </b></heading>
+            <num><b>3.</b></num>
+            <content>
+              <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2030 is at least 48% lower than the baseline.</p>
+            </content>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Power to amend targets</i></heading>
+          <section eId="sec_4" class="prov1">
+            <heading><b>Power to amend emission targets </b></heading>
+            <num><b>4.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>The Department may by regulations amend section 1, 2 or 3 so as to⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>specify a different year for a particular emissions target;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>specify a different percentage for a particular year.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>The Department may by regulations amend this Part so as to impose a duty on the Northern Ireland departments to ensure that the net Northern Ireland emissions account for a specified year is at least a specified percentage lower than the baseline.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>See section 31 for restrictions on the powers conferred by subsections (1) and (2).</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Meaning of key concepts</i></heading>
+          <section eId="sec_5" class="prov1">
+            <heading><b>Meaning of “baseline”</b></heading>
+            <num><b>5.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>The baseline is the aggregate amount of net Northern Ireland emissions of each greenhouse gas mentioned in the following table in the year specified in relation to that gas⁠—</p>
+                <table d9p1:widths="2.66in 2.66in" xmlns:d9p1="https://www.legislation.gov.uk/namespaces/UK-AKN">
+                  <tr>
+                    <td>
+                      <p><i>Greenhouse gas</i></p>
+                    </td>
+                    <td>
+                      <p><i>Year</i></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Carbon dioxide</p>
+                    </td>
+                    <td>
+                      <p>1990</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Methane</p>
+                    </td>
+                    <td>
+                      <p>1990</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Nitrous oxide</p>
+                    </td>
+                    <td>
+                      <p>1990</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Hydroflourocarbons</p>
+                    </td>
+                    <td>
+                      <p>1995</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Perflourocarbons</p>
+                    </td>
+                    <td>
+                      <p>1995</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Sulphur hexaflouride</p>
+                    </td>
+                    <td>
+                      <p>1995</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Nitrogen triflouride</p>
+                    </td>
+                    <td>
+                      <p>1995</p>
+                    </td>
+                  </tr>
+                </table>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>The Department may by regulations amend the table in subsection (1) so as to specify a different year in relation to a greenhouse gas.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>See section 32 for restrictions on the power conferred by subsection (2).</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_6" class="prov1">
+            <heading><b>Meaning of “net Northern Ireland emissions account” for a year </b></heading>
+            <num><b>6.</b></num>
+            <intro>
+              <p>The net Northern Ireland emissions account for a year is determined as follows⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <content>
+                <p>take the aggregate amount of net Northern Ireland emissions of each greenhouse gas for that year (which is to be determined in accordance with sections 7 and 8),</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <content>
+                <p>deduct the amount of carbon units that are to be credited to the net Northern Ireland emissions account for that year (in accordance with regulations under section 9), and</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(c)</num>
+              <content>
+                <p>add the amount of carbon units that are to be debited from the net Northern Ireland emissions account for that year (also in accordance with regulations under section 9).</p>
+              </content>
+            </paragraph>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Meaning of underlying concepts</i></heading>
+          <section eId="sec_7" class="prov1">
+            <heading><b>Meaning of “net Northern Ireland emissions” </b></heading>
+            <num><b>7.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>The amount of net Northern Ireland emissions of a greenhouse gas for a period is⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the amount of Northern Ireland emissions of the gas for the period (see subsection (2)),</p>
+                </content>
+              </paragraph>
+              <level class="unnumberedParagraph">
+                <content>
+                  <p>minus</p>
+                </content>
+              </level>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the amount of Northern Ireland removals of the gas for the period (see subsection (3)).</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>The Northern Ireland emissions of a gas for a period are⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>emissions of the gas from sources in Northern Ireland in the period, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>emissions of the gas from international aviation or international shipping that count as Northern Ireland emissions for the period (as determined by regulations under section 8).</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>The Northern Ireland removals of a gas for a period are removals of the gas from the atmosphere in the period due to⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>land use in Northern Ireland;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>land-use change in Northern Ireland; and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>forestry activities in Northern Ireland.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>The Department may by regulations amend subsection (3) so as to amend the definition of Northern Ireland removals.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(5)</num>
+              <content>
+                <p>The amounts of Northern Ireland emissions and Northern Ireland removals of a gas for a period must be determined consistently with international carbon reporting practice (see section 39).</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_8" class="prov1">
+            <heading><b>Meaning of “Northern Ireland emissions”: international aviation and shipping </b></heading>
+            <num><b>8.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>The Department may by regulations make provision for emissions of a greenhouse gas from international aviation or international shipping to count as Northern Ireland emissions of the gas.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>The regulations may⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>specify activities which are to be regarded as international aviation or international shipping;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>specify the circumstances in which, and the extent to which, emissions of a greenhouse gas from international aviation or international shipping are to count as Northern Ireland emissions of that gas;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>specify the period (whether past or future) for which emissions of a greenhouse gas from international aviation or international shipping are to count as Northern Ireland emissions of that gas;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>make provision about how emissions of a greenhouse gas from international aviation or international shipping are to be taken into account in determining Northern Ireland emissions of that gas for the year specified in section 5(1) in relation to it.</p>
+                </content>
+              </paragraph>
+            </subsection>
+          </section>
+          <section eId="sec_9" class="prov1">
+            <heading><b>Crediting and debiting of carbon units </b></heading>
+            <num><b>9.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>The Department may by regulations make provision about⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the circumstances in which carbon units may or may not be credited to the net Northern Ireland emissions account for a period;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the circumstances in which carbon units may or may not be debited from that account for a period, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>how that is to be done.</p>
+                </content>
+              </paragraph>
+            </subsection>
+          </section>
+        </hcontainer>
+      </part>
+      <level class="unnumberedParagraph">
+        <content>
+          <p>Section 36 explains what a “carbon unit” is.</p>
+        </content>
+      </level>
+      <subsection class="prov2">
+        <num>(2)</num>
+        <content>
+          <p>The regulations must contain provision for ensuring that carbon units that are credited to the net Northern Ireland emissions account for a period cease to be available to offset other greenhouse gas emissions.</p>
+        </content>
+      </subsection>
+      <subsection class="prov2">
+        <num>(3)</num>
+        <content>
+          <p>The regulations may set a limit on the net amount of carbon units by which the net Northern Ireland emissions account for a period may be reduced as a result of applying provision made under subsection (1)(a) and (b).</p>
+        </content>
+      </subsection>
+      <subsection class="prov2">
+        <num>(4)</num>
+        <content>
+          <p>The regulations may provide that carbon units of a description specified in the regulations do not count towards the limit.</p>
+        </content>
+      </subsection>
+      <section eId="sec_10" class="prov1">
+        <heading><b>Carbon units: accounting scheme </b></heading>
+        <num><b>10.</b></num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>The Department may by regulations make provision for a scheme⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>for registering or otherwise keeping track of carbon units, or</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>for establishing and maintaining accounts in which carbon units may be held, and between which they may be transferred, by the Department.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection class="prov2">
+          <num>(2)</num>
+          <content>
+            <p>The regulations may provide for an existing scheme to be adapted for those purposes.</p>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(3)</num>
+          <intro>
+            <p>The regulations may⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>appoint a person or body (an “administrator”) to administer the scheme, or provide that the Department is to do so;</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>establish a body for the purpose of administering the scheme and make provision in relation to the appointment of members, staffing, expenditure and procedure of that body;</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(c)</num>
+            <content>
+              <p>confer or impose functions on the administrator for the purpose of administering the scheme;</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(d)</num>
+            <content>
+              <p>confer power on the Department to give guidance or directions to the administrator;</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(e)</num>
+            <content>
+              <p>require the payment by persons using the scheme of charges (of an amount determined by or under the regulations) towards the cost of operating it.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection class="prov2">
+          <num>(4)</num>
+          <content>
+            <p>If regulations adapt an existing scheme or appoint an existing person to administer the scheme, the regulations may amend any statutory provision relating to the existing scheme or existing person.</p>
+          </content>
+        </subsection>
+      </section>
+      <part eId="pt_2" class="group2">
+        <num>PART 2</num>
+        <heading>CARBON BUDGETS</heading>
+        <section eId="sec_11" class="prov1">
+          <heading><b>Carbon budgets </b></heading>
+          <num><b>11.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>The Department must by regulations set a maximum total amount for the net Northern Ireland emissions account for each budgetary period.</p>
+            </content>
+          </subsection>
+        </section>
+      </part>
+      <level class="unnumberedParagraph">
+        <content>
+          <p>That amount is referred to as the “carbon budget” for that period.</p>
+        </content>
+      </level>
+      <subsection class="prov2">
+        <num>(2)</num>
+        <intro>
+          <p>The budgetary periods are⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>2023 to 2027, and</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>each succeeding period of five years.</p>
+          </content>
+        </paragraph>
+      </subsection>
+      <subsection class="prov2">
+        <num>(3)</num>
+        <content>
+          <p>The Department may by regulations amend subsection (2) so as to change a budgetary period.</p>
+        </content>
+      </subsection>
+      <subsection class="prov2">
+        <num>(4)</num>
+        <intro>
+          <p>See⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>sections 13 to 15 for provision about the setting and adjustment of carbon budgets, and</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>section 32 for restrictions on the power conferred by subsection (3).</p>
+          </content>
+        </paragraph>
+      </subsection>
+      <section eId="sec_12" class="prov1">
+        <heading><b>Emissions not to exceed carbon budget </b></heading>
+        <num><b>12.</b></num>
+        <content>
+          <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for each budgetary period does not exceed the carbon budget for that period.</p>
+        </content>
+      </section>
+      <section eId="sec_13" class="prov1">
+        <heading><b>Setting of carbon budgets: principles </b></heading>
+        <num><b>13.</b></num>
+        <intro>
+          <p>The Department must⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>set the carbon budget for each budgetary period up to and including the budgetary period 2048 to 2052 at a level that it is satisfied is consistent with meeting the emissions target for 2050 (see section 1);</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>set the carbon budget for the budgetary periods 2033 to 2037 and 2038 to 2042 at a level that it is satisfied is consistent with meeting the emissions target for 2040 (see section 2); and</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(c)</num>
+          <content>
+            <p>set the carbon budget for the budgetary periods 2023 to 2027 and 2028 to 2032 at a level that it is satisfied is consistent with meeting the emissions targets for 2030 and 2040 (see sections 2 and 3).</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="sec_14" class="prov1">
+        <heading><b>Setting of carbon budgets: timing </b></heading>
+        <num><b>14.</b></num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>The Department must⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>set the carbon budgets for the first three budgetary periods before the end of 2023, and</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>set the carbon budget for the fourth and subsequent budgetary periods at least twelve years before the start of the period in question.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>The Department may by regulations⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>amend the carbon budget for any budgetary period before the start of the period (and not otherwise);</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>amend subsection (1) so as to change the date by which a carbon budget must be set.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection class="prov2">
+          <num>(3)</num>
+          <content>
+            <p>See section 31 for restrictions on the power conferred by subsection (2)(a).</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_15" class="prov1">
+        <heading><b>Carrying amounts from one budgetary period to another </b></heading>
+        <num><b>15.</b></num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>The Department may decide to carry part of the carbon budget for a budgetary period back to the preceding budgetary period.</p>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>If the Department carries back part of the carbon budget⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>the budget for the later period is reduced, and</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>the budget for the earlier period is increased,</p>
+            </content>
+          </paragraph>
+          <level class="unnumberedParagraph">
+            <content>
+              <p>by the amount carried back.</p>
+            </content>
+          </level>
+        </subsection>
+        <subsection class="prov2">
+          <num>(3)</num>
+          <content>
+            <p>The amount carried back must not exceed 1% of the carbon budget for the later period.</p>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(4)</num>
+          <content>
+            <p>The Department may decide to carry any unused part of the carbon budget for a budgetary period forward to the next budgetary period.</p>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(5)</num>
+          <intro>
+            <p>If the Department carries forward part of the carbon budget⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>the budget for the later period is increased, and</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>the budget for the earlier period is reduced,</p>
+            </content>
+          </paragraph>
+          <level class="unnumberedParagraph">
+            <content>
+              <p>by the amount carried forward.</p>
+            </content>
+          </level>
+        </subsection>
+        <subsection class="prov2">
+          <num>(6)</num>
+          <content>
+            <p>The carbon budget for a period is “unused” to the extent that it exceeds the net Northern Ireland emissions account for the period.</p>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(7)</num>
+          <intro>
+            <p>Before deciding to carry an amount back or forward under this section, the Department must consult⁠—</p>
+          </intro>
+          <paragraph class="para1">
+            <num>(a)</num>
+            <content>
+              <p>the other Northern Ireland departments, and</p>
+            </content>
+          </paragraph>
+          <paragraph class="para1">
+            <num>(b)</num>
+            <content>
+              <p>the Committee on Climate Change.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection class="prov2">
+          <num>(8)</num>
+          <content>
+            <p>Each Northern Ireland department must provide such assistance as the Department requires when deciding to carry an amount back or forward under this section.</p>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(9)</num>
+          <content>
+            <p>Section 18 provides for the reporting of a decision under this section.</p>
+          </content>
+        </subsection>
+      </section>
+      <part eId="pt_3" class="group2">
+        <num>PART 3</num>
+        <heading>REPORTS AND STATEMENTS AGAINST TARGETS AND BUDGETS ETC</heading>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Carbon budgets</i></heading>
+          <section eId="sec_16" class="prov1">
+            <heading><b>Proposals and policies for meeting carbon budget </b></heading>
+            <num><b>16.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>The Department must prepare and publish a report for each budgetary period setting out proposals and policies for meeting the carbon budget for that period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>The report must set out proposals and policies covering the areas of responsibility of each Northern Ireland department.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>Each Northern Ireland department must provide the Department with⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>its proposals and policies in its areas of responsibility, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>such other assistance as the Department requires in the preparation of the report.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>Each Northern Ireland department must provide its proposals and policies  for a budgetary period before the end of the first nine months of that period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(5)</num>
+              <content>
+                <p>The Department must lay the report for a budgetary period before the Assembly before the end of the first year of that period.</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_17" class="prov1">
+            <heading><b>Interim progress reporting for budgetary period </b></heading>
+            <num><b>17.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>The Department must, during the course of each budgetary period, prepare and publish a report setting out what progress has been made in implementing the proposals and policies set out in the report prepared under section 16 for that period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>Each Northern Ireland department must provide the Department with⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>information on the progress it has made in its areas of responsibility in implementing its proposals and policies, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>such other assistance as the Department requires in the preparation of the report.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>Each Northern Ireland department must provide the information on its progress for a budgetary period before the end of the first 33 months of that period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>The Department must lay the report for a budgetary period before the Assembly before the end of the third year of that period.</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_18" class="prov1">
+            <heading><b>Final statement for budgetary period </b></heading>
+            <num><b>18.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>The Department must⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>prepare a final statement for each budgetary period in accordance with this section, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>lay the statement before the Assembly before the end of the second year after that period.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>A final statement under this section must state, in respect of each greenhouse gas⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the total amount of Northern Ireland emissions,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the total amount of Northern Ireland removals, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>the total amount of net Northern Ireland emissions,</p>
+                </content>
+              </paragraph>
+              <level class="unnumberedParagraph">
+                <content>
+                  <p>for the period.</p>
+                </content>
+              </level>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>It must⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>state the total amount of carbon units that have been credited to or debited from the net Northern Ireland emissions account for the period, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>give details of the number and type of those units.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>It must state the final amount of the net Northern Ireland emissions account for the period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(5)</num>
+              <intro>
+                <p>It must⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>state whether the Department has decided to carry an amount back or forward under section 15 so as to increase or reduce the carbon budget for the period, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>if so, state the amount carried back or forward.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(6)</num>
+              <content>
+                <p>It must state the final amount of the carbon budget for the period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(7)</num>
+              <content>
+                <p>Whether the carbon budget for a period has been met is to be determined by reference to the information in the statement for that period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(8)</num>
+              <content>
+                <p>The statement must explain why the carbon budget for the period has, or has not, been met.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(9)</num>
+              <intro>
+                <p>In particular, it must include an assessment of the extent to which the proposals and policies for meeting the carbon budget set out in the report under section 16 for the period⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>have been carried out, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>have contributed to the carbon budget for the period being met or not being met.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(10)</num>
+              <content>
+                <p>The statement under subsection (8) and assessment under subsection (9) must cover the areas of responsibility of each Northern Ireland department.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(11)</num>
+              <intro>
+                <p>Each Northern Ireland department must provide the Department with⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>an explanation of what it considers to be the reasons why the carbon budget for the period has, or has not, been met, so far as relating to its areas of responsibility,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <intro>
+                  <p>its assessment of the extent to which its proposals and policies for meeting the carbon budget⁠—</p>
+                </intro>
+                <subparagraph class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>have been carried out, and</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>have contributed to the carbon budget for the period being met or not being met, and</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>such other assistance as the Department requires in the preparation of the statement.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(12)</num>
+              <content>
+                <p>Each Northern Ireland department must provide its explanation and  assessment for a budgetary period before the end of the first 21 months after that period.</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_19" class="prov1">
+            <heading><b>Proposals and policies where carbon budget not met </b></heading>
+            <num><b>19.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>This section applies if the Department has laid a final statement before the Assembly under section 18 in respect of a budgetary period for which the net Northern Ireland emissions account exceeds the carbon budget.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>No later than three months after laying the statement, the Department must lay before the Assembly a report setting out proposals and policies to compensate for the excess emissions in subsequent budgetary periods.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>Each Northern Ireland department must provide such assistance as the Department requires in the preparation of the report.</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Emissions targets</i></heading>
+          <section eId="sec_20" class="prov1">
+            <heading><b>Statements on compliance with emissions targets </b></heading>
+            <num><b>20.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>The Department must⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>prepare a statement for each of the years 2030, 2040 and 2050 in accordance with this section, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>lay each statement before the Assembly before the end of the second year after the year to which it relates.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>A statement under this section must state, in respect of each greenhouse gas⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the total amount of Northern Ireland emissions,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the total amount of Northern Ireland removals, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>the total amount of net Northern Ireland emissions,</p>
+                </content>
+              </paragraph>
+              <level class="unnumberedParagraph">
+                <content>
+                  <p>for the year to which the statement relates.</p>
+                </content>
+              </level>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>It must—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>state the total amount of carbon units that have been credited to or debited from the net Northern Ireland emissions account for the year, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>give details of the number and type of those units.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>It must state the amount of the net Northern Ireland emissions account for the year.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(5)</num>
+              <content>
+                <p>Whether the emissions target for 2030, 2040 or 2050 has been met is to be determined by reference to the information in the statement for that year.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(6)</num>
+              <content>
+                <p>The statement must explain why the target has, or has not, been met.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(7)</num>
+              <intro>
+                <p>Each Northern Ireland department must provide the Department with⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>an explanation of what it considers to be the reasons why the target for the year has, or has not, been met, so far as relating to its areas of responsibility, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>such other assistance as the Department requires in the preparation of the statement.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(8)</num>
+              <content>
+                <p>Each Northern Ireland department must provide its explanation before the end of the first 21 months after the year to which the statement relates.</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Other reports</i></heading>
+          <section eId="sec_21" class="prov1">
+            <heading><b>Climate change reporting by public bodies </b></heading>
+            <num><b>21.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>The Department may by regulations impose, on specified public bodies, specified climate change reporting duties.</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+      </part>
+      <level class="unnumberedParagraph">
+        <content>
+          <p>“Specified” means specified in the regulations.</p>
+        </content>
+      </level>
+      <subsection class="prov2">
+        <num>(2)</num>
+        <intro>
+          <p>In this section “public body” means⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>a person or body with functions of a public nature;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>a person who is a statutory undertaker within the meaning of the Planning Act (Northern Ireland) 2011 (see section 250 of that Act).</p>
+          </content>
+        </paragraph>
+      </subsection>
+      <subsection class="prov2">
+        <num>(3)</num>
+        <intro>
+          <p>The climate change reporting duties that may be imposed on a body under subsection (1) include in particular duties to prepare reports containing any of the following⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>an assessment of the current and predicted impact of climate change in relation to the body’s functions;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>a statement of the body’s proposals and policies for adapting to, or mitigating the effects of, climate change in the exercise of its functions;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(c)</num>
+          <content>
+            <p>a statement of the time-scales for implementing those proposals and policies;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(d)</num>
+          <content>
+            <p>an assessment of the progress made by the body towards implementing the proposals and policies set out in any previous reports prepared under the regulations.</p>
+          </content>
+        </paragraph>
+      </subsection>
+      <subsection class="prov2">
+        <num>(4)</num>
+        <intro>
+          <p>The regulations may require public bodies to have regard to (among other things) the following, so far as relevant⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>the most recent report under section 56 of the Climate Change Act 2008 (report on impact of climate change);</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>the most recent programme under section 60 of that Act (programme for adaptation to climate change for Northern Ireland).</p>
+          </content>
+        </paragraph>
+      </subsection>
+      <subsection class="prov2">
+        <num>(5)</num>
+        <intro>
+          <p>The regulations may make provision about⁠—</p>
+        </intro>
+        <paragraph class="para1">
+          <num>(a)</num>
+          <content>
+            <p>the contents of a report (including the time period to which the report relates);</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(b)</num>
+          <content>
+            <p>the time period within which a report must be prepared;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(c)</num>
+          <content>
+            <p>co-operation between public bodies in the preparation of a report, or the preparation of a joint report by two or more public bodies;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(d)</num>
+          <content>
+            <p>the form of reports;</p>
+          </content>
+        </paragraph>
+        <paragraph class="para1">
+          <num>(e)</num>
+          <content>
+            <p>the publication of reports.</p>
+          </content>
+        </paragraph>
+      </subsection>
+      <subsection class="prov2">
+        <num>(6)</num>
+        <content>
+          <p>The regulations may confer functions on the Department in connection with the duties imposed by the regulations.</p>
+        </content>
+      </subsection>
+      <subsection class="prov2">
+        <num>(7)</num>
+        <content>
+          <p>The Department must consult such public bodies, and such other persons, as it considers appropriate before making the regulations.</p>
+        </content>
+      </subsection>
+      <part eId="pt_4" class="group2">
+        <num>PART 4</num>
+        <heading>REPORTS BY COMMITTEE ON CLIMATE CHANGE</heading>
+        <section eId="sec_22" class="prov1">
+          <heading><b>Progress report during first budgetary period </b></heading>
+          <num><b>22.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Before the end of 2027, the Committee on Climate Change must send a report to the Department setting out the Committee’s views on⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <intro>
+                <p>the progress that has been made towards meeting⁠—</p>
+              </intro>
+              <subparagraph class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>the emissions targets that have been set by section 1, 2 and 3, and</p>
+                </content>
+              </subparagraph>
+              <subparagraph class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>the carbon budgets that have been set under section 11,</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <content>
+                <p>whether those targets and budgets are likely to be met, and</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(c)</num>
+              <content>
+                <p>any further measures that are needed to meet those targets and budgets.</p>
+              </content>
+            </paragraph>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>The Department must lay a copy of the report before the Assembly as soon as reasonably practicable after receiving it.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_23" class="prov1">
+          <heading><b>Progress reports after statement about each budgetary period </b></heading>
+          <num><b>23.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>No later than six months after the Department lays the final statement for a budgetary period before the Assembly under section 18, the Committee on Climate Change must send a report to the Department setting out the Committee’s views on⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <content>
+                <p>the way in which the carbon budget for the period was, or was not, met,</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <content>
+                <p>the action taken by the Northern Ireland departments to reduce net Northern Ireland emissions of greenhouse gases during the period,</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(c)</num>
+              <intro>
+                <p>the progress that has been made towards meeting⁠—</p>
+              </intro>
+              <subparagraph class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>the emissions targets that have been set by section 1, 2 and 3, and</p>
+                </content>
+              </subparagraph>
+              <subparagraph class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>the carbon budgets that have been set under section 11,</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(d)</num>
+              <content>
+                <p>whether those targets and budgets are likely to be met, and</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(e)</num>
+              <content>
+                <p>any further measures that are needed to meet those targets and budgets.</p>
+              </content>
+            </paragraph>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Subsection (1)(c) to (e) do not require the Committee to set out its views on the matters mentioned in those paragraphs to the extent that they concern targets and budgets relating to periods of time that end before the report is sent.</p>
+            </content>
+          </subsection>
+          <subsection class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>The Department must lay a copy of the report before the Assembly as soon as reasonably practicable after receiving it.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_24" class="prov1">
+          <heading><b>Progress report after statement about emissions target for 2030 </b></heading>
+          <num><b>24.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>No later than six months after the Department lays the statement under section 20 for 2030 before the Assembly, the Committee on Climate Change must send a report to the Department setting out the Committee’s views on⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <content>
+                <p>whether the emissions targets for 2040 and 2050 are the highest achievable targets,</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <intro>
+                <p>if either of them is not the highest achievable target⁠—</p>
+              </intro>
+              <subparagraph class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>what is the highest achievable target, and</p>
+                </content>
+              </subparagraph>
+              <subparagraph class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>what further measures are needed to meet the highest achievable target.</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>The Department must lay a copy of the report before the Assembly as soon as reasonably practicable after receiving it.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_25" class="prov1">
+          <heading><b>Progress report after statement about emissions target for 2040 </b></heading>
+          <num><b>25.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>No later than six months after the Department lays the statement under section 20 for 2040 before the Assembly, the Committee on Climate Change must send a report to the Department setting out the Committee’s views on⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <content>
+                <p>whether the emissions target for 2050 is the highest achievable target, </p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <intro>
+                <p>if not⁠—</p>
+              </intro>
+              <subparagraph class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>what is the highest achievable target, and</p>
+                </content>
+              </subparagraph>
+              <subparagraph class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>what further measures are needed to meet the highest achievable target.</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>The Department must lay a copy of the report before the Assembly as soon as reasonably practicable after receiving it.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_26" class="prov1">
+          <heading><b>Response to progress reports </b></heading>
+          <num><b>26.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>The Department must prepare a response to the points raised by each report of the Committee on Climate Change under sections 22 to 25.</p>
+            </content>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Each Northern Ireland department must provide such assistance as the Department requires in the preparation of the response.</p>
+            </content>
+          </subsection>
+          <subsection class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>The Department must lay the response before the Assembly within six months of receiving the report from the Committee.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_27" class="prov1">
+          <heading><b>Adaptation programme reports </b></heading>
+          <num><b>27.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>This section applies where a programme is laid before the Assembly  under section 60 of the Climate Change Act 2008 (programme for adaptation to climate change for Northern Ireland).</p>
+            </content>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>No later than 3 years after the programme is laid, the Committee on Climate Change must send a report to the Department setting out⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <content>
+                <p>the Committee’s assessment of the progress made towards implementing the objectives, proposals and policies set out in the programme, and</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <content>
+                <p>the Committee’s recommendations for the next programme to be laid under section 60 of that Act.</p>
+              </content>
+            </paragraph>
+          </subsection>
+          <subsection class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>The Department must lay a copy of the report before the Assembly as soon as reasonably practicable after receiving it.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_28" class="prov1">
+          <heading><b>Response to adaptation programme reports </b></heading>
+          <num><b>28.</b></num>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>The Department must prepare a response to the points raised by each report of the Committee on Climate Change under section 27.</p>
+            </content>
+          </subsection>
+          <subsection class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Each Northern Ireland department must provide such assistance as the Department requires in the preparation of the response.</p>
+            </content>
+          </subsection>
+          <subsection class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>The Department must lay the response before the Assembly within six months of receiving the report from the Committee.</p>
+            </content>
+          </subsection>
+        </section>
+      </part>
+      <part eId="pt_5" class="group2">
+        <num>PART 5</num>
+        <heading>SUPPLEMENTARY</heading>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Duties in relation to emissions</i></heading>
+          <section eId="sec_29" class="prov1">
+            <heading><b>Duties to ensure that targets etc are met </b></heading>
+            <num><b>29.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>The duties mentioned in sections 1 to 4 and 12 on the Northern Ireland departments (namely, to ensure that the net Northern Ireland emissions account is below a certain amount) are duties on each of them⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>to exercise its own functions, so far as is possible to do so, in a manner that is consistent with the achievement of that objective,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>so far as is consistent with the proper exercise of its own functions, to co-operate with each of the other departments in the performance by the other department of the other department’s duty under paragraph (a), and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>to draw up and implement such plans, policies and strategies as may be appropriate for the purpose of performing its duties under paragraphs (a) and (b).</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>Subsection (1) is in addition to (and does not limit) the duties under other sections of this Act.</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Regulation-making powers: general</i></heading>
+          <section eId="sec_30" class="prov1">
+            <heading><b>Regulations: general </b></heading>
+            <num><b>30.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>Regulations under this Act may make such consequential or supplementary provision as the Department considers appropriate.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>The provision that may be made under subsection (1) includes, in particular, provision that⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>amends this Act, or</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>amends the carbon budget for any budgetary period before the start of the period (but not otherwise).</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>Regulations may not be made under any provision of this Act unless a draft of the regulations has been laid before, and approved by a resolution of, the Assembly; but this is subject to subsection (4).</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>Regulations under section 7(4) or 21(1) are subject to negative resolution, unless they contain consequential or supplementary provision of the kind mentioned in subsection (2).</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(5)</num>
+              <content>
+                <p>See sections 31 and 32 for restrictions on the power to make provision mentioned in subsection (2).</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Regulation-making powers: restrictions and considerations</i></heading>
+          <section eId="sec_31" class="prov1">
+            <heading><b>Regulations that amend or add an emissions target or amend a carbon budget </b></heading>
+            <num><b>31.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>This section applies in relation to the making of regulations, under any provision of this Act, that⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>amend an emissions target or add a new target in relation to emissions, or</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>amend a carbon budget.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>The Department may make such regulations only if⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <intro>
+                  <p>it is satisfied that it is appropriate to do so as a result of significant developments in one or more of the following matters⁠—</p>
+                </intro>
+                <subparagraph class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>United Kingdom or international law or policy relating to climate change;</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>scientific knowledge about climate change;</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(iii)</num>
+                  <content>
+                    <p>technology relevant to climate change; or</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <intro>
+                  <p>the provision made by the regulations⁠—</p>
+                </intro>
+                <subparagraph class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>has been recommended by the Committee on Climate Change, or</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>is not substantially different from provision that has been recommended by the Committee.</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>When making such regulations, the Department must have regard to the following matters⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>United Kingdom and international law or policy relating to climate change,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>scientific knowledge about climate change, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>technology relevant to climate change.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>But if the Department is satisfied that it is appropriate to make the regulations as a result of significant developments in a matter listed in subsection (2)(a) the Department is not also required by subsection (3) to have separate regard to that matter.</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_32" class="prov1">
+            <heading><b>Regulations that specify a different baseline year or change a budgetary period </b></heading>
+            <num><b>32.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>This section applies in relation to the making of regulations, under any provision of this Act, that⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>specify a different baseline year for a greenhouse gas, or</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>change a budgetary period.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>The Department may make such regulations only if it is satisfied that it is appropriate to do so as a result of significant developments in United Kingdom or international law or policy relating to climate change.</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Regulation-making powers: advice</i></heading>
+          <section eId="sec_33" class="prov1">
+            <heading><b>Requirement to obtain advice about proposals to make regulations </b></heading>
+            <num><b>33.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>This section applies in relation to the making of regulations under any provision of this Act, except regulations that are made in accordance with section 31(2)(b) (recommendation by the Committee on Climate Change).</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>Before making regulations under section 7(4) or 21(1), or laying draft regulations before the Assembly under section 30(3), the Department must⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>request advice from the Committee on Climate Change about the proposal to make the regulations, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>take the Committee’s advice into account.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>When the Department requests advice from the Committee on Climate Change under this section, it must specify a reasonable period within which the advice must be provided.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>The Committee must provide the advice within that period.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(5)</num>
+              <content>
+                <p>The Committee’s advice must set out the reasons for the advice.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(6)</num>
+              <content>
+                <p>The Department must publish the Committee’s advice as soon as reasonably practicable after receiving it.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(7)</num>
+              <intro>
+                <p>Subsections (8) and (9) apply where⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the Committee’s advice includes recommendations as to provision that should be made by regulations, and </p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the Department intends to make regulations that differ from that recommendation.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(8)</num>
+              <content>
+                <p>If the regulations are to be laid in draft before the Assembly, the Department must at the same time lay before the Assembly a statement setting out the reasons for the difference.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(9)</num>
+              <content>
+                <p>Otherwise, the Department must, on making the regulations, publish a statement setting out the reasons for the difference.</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_34" class="prov1">
+            <heading><b>Advice about proposed regulations relating to targets </b></heading>
+            <num><b>34.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>Subsections (2) and (3) apply where⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <intro>
+                  <p>the Department proposes to make regulations, under any provision of this Act, that⁠—</p>
+                </intro>
+                <subparagraph class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>specify a different year for a particular emissions target, or</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>specify a different percentage for a particular year, and</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the Committee on Climate Change provides advice under section 33.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>Where the Department proposes to make regulations that specify a different year for a particular target, the Committee’s advice must include the Committee’s opinion as to⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>whether the year proposed is the earliest year for which the target could be achieved, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>if not, what is the earliest year for which the target could be achieved.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>Where the Department proposes to make regulations that specify a different percentage for a particular year, the Committee’s advice must include the Committee’s opinion as to⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>whether the percentage proposed is the highest percentage achievable for the year, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>if not, what is the highest percentage achievable for the year.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <intro>
+                <p>When giving advice in accordance with this section, the Committee must have regard to the following matters⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>United Kingdom and international law or policy relating to climate change,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>scientific knowledge about climate change, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>technology relevant to climate change.</p>
+                </content>
+              </paragraph>
+            </subsection>
+          </section>
+          <section eId="sec_35" class="prov1">
+            <heading><b>Advice about proposed regulations relating to budgets </b></heading>
+            <num><b>35.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>This section applies where⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the Department proposes to make regulations, under any provision of this Act, that set or change a carbon budget for a budgetary period, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>the Committee on Climate Change provides advice under section 33.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>The Committee’s advice must include the Committee’s opinion as to⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the appropriate level of the carbon budget for the period;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <intro>
+                  <p>the extent to which the carbon budget for the period should be met⁠—</p>
+                </intro>
+                <subparagraph class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>by reducing the amount of net Northern Ireland emissions of greenhouse gases, or</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>by the use of carbon units that, in accordance with regulations made under section 9, may be credited to the net Northern Ireland emissions account for the period;</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <intro>
+                  <p>the respective contributions towards meeting the carbon budget for the period that should be made⁠—</p>
+                </intro>
+                <subparagraph class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>by the sectors of the Northern Ireland economy covered by trading schemes (taken as a whole);</p>
+                  </content>
+                </subparagraph>
+                <subparagraph class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>by the sectors of the Northern Ireland economy not so covered (taken as a whole);</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>the sectors of the Northern Ireland economy in which there are particular opportunities for contributions to be made towards meeting the carbon budget for the period through reductions in emissions of greenhouse gases.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <intro>
+                <p>When giving advice in accordance with this section, the Committee must have regard to the following matters⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>United Kingdom and international law or policy relating to climate change,</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>scientific knowledge about climate change, and</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>technology relevant to climate change.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(4)</num>
+              <content>
+                <p>In subsection (2)(c), “trading schemes” has the meaning given by section 44 of the Climate Change Act 2008.</p>
+              </content>
+            </subsection>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>Definitions</i></heading>
+          <section eId="sec_36" class="prov1">
+            <heading><b>Meaning of “carbon unit” </b></heading>
+            <num><b>36.</b></num>
+            <intro>
+              <p>In this Act, a “carbon unit” is a unit of a kind specified in regulations made by the Department and representing⁠—</p>
+            </intro>
+            <paragraph class="para1">
+              <num>(a)</num>
+              <content>
+                <p>a reduction in an amount of greenhouse gas emissions,</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(b)</num>
+              <content>
+                <p>the removal of an amount of greenhouse gas from the atmosphere, or</p>
+              </content>
+            </paragraph>
+            <paragraph class="para1">
+              <num>(c)</num>
+              <content>
+                <p>an amount of greenhouse gas emissions allowed under a scheme or arrangement imposing a limit on such emissions.</p>
+              </content>
+            </paragraph>
+          </section>
+          <section eId="sec_37" class="prov1">
+            <heading><b>Meaning of “greenhouse gas” </b></heading>
+            <num><b>37.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <intro>
+                <p>In this Act, “greenhouse gas” means any of the following⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>carbon dioxide;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>methane;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>nitrous oxide;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>hydrofluorocarbons;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(e)</num>
+                <content>
+                  <p>perfluorocarbons;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(f)</num>
+                <content>
+                  <p>sulphur hexafluoride;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(g)</num>
+                <content>
+                  <p>nitrogen triflouride.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <content>
+                <p>The Department may by regulations amend the list of greenhouse gases in subsection (1) so as to add a gas.</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_38" class="prov1">
+            <heading><b>Meaning and measurement of emissions </b></heading>
+            <num><b>38.</b></num>
+            <subsection class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>In this Act, “emissions”, in relation to a greenhouse gas, means emissions of that gas into the atmosphere that are attributable to human activity.</p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(2)</num>
+              <intro>
+                <p>Each of the following must be measured or calculated in tonnes of carbon dioxide equivalent⁠—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>emissions of greenhouse gases;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>reductions in greenhouse gas emissions;</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>removals of greenhouse gases from the atmosphere.</p>
+                </content>
+              </paragraph>
+            </subsection>
+            <subsection class="prov2">
+              <num>(3)</num>
+              <content>
+                <p>A “tonne of carbon dioxide equivalent” means one metric tonne of carbon dioxide or an amount of any other greenhouse gas with an equivalent global warming potential, calculated consistently with international carbon reporting practice (see section 39).</p>
+              </content>
+            </subsection>
+          </section>
+          <section eId="sec_39" class="prov1">
+            <heading><b>Other definitions</b></heading>
+            <num><b>39.</b></num>
+            <intro>
+              <p>In this Act⁠—</p>
+            </intro>
+            <level class="unnumberedParagraph">
+              <content>
+                <p>“the Committee on Climate Change” means the Committee of that name established by Part 2 of the Climate Change Act 2008;</p>
+              </content>
+            </level>
+            <level class="unnumberedParagraph">
+              <content>
+                <p>“the Department” means the Department of Agriculture, Environment and Rural Affairs;</p>
+              </content>
+            </level>
+            <level class="unnumberedParagraph">
+              <content>
+                <p>“emissions target” means a target set by section 1, 2 or 3;</p>
+              </content>
+            </level>
+            <level class="unnumberedParagraph">
+              <intro>
+                <p>“international carbon reporting practice” means accepted practice in relation to reporting for the purposes of—</p>
+              </intro>
+              <paragraph class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the protocols to the United Nations Framework Convention on Climate Change, or</p>
+                </content>
+              </paragraph>
+              <paragraph class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>such other international agreements or arrangements as the Department may specify by regulations;</p>
+                </content>
+              </paragraph>
+            </level>
+            <level class="unnumberedParagraph">
+              <content>
+                <p>“Northern Ireland emissions” has the meaning given by section 7(2);</p>
+              </content>
+            </level>
+            <level class="unnumberedParagraph">
+              <content>
+                <p>“Northern Ireland removals” has the meaning given by section 7(3).</p>
+              </content>
+            </level>
+          </section>
+        </hcontainer>
+        <hcontainer name="crossheading" class="group7">
+          <heading><i>General</i></heading>
+          <section eId="sec_40" class="prov1">
+            <heading><b>Commencement </b></heading>
+            <num><b>40.</b></num>
+            <content>
+              <p>This Act comes into operation on the day after the day on which it receives Royal Assent.</p>
+            </content>
+          </section>
+          <section eId="sec_41" class="prov1">
+            <heading><b>Short title </b></heading>
+            <num><b>41.</b></num>
+            <content>
+              <p>This Act may be cited as the Climate Change Act (Northern Ireland) 2021.</p>
+            </content>
+          </section>
+        </hcontainer>
+      </part>
+    </body>
+  </bill>
+</akomaNtoso>
