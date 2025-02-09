@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
+using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -38,7 +39,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i != Document.Body.Count)
                 Logger.LogWarning("parsing did not complete: {}", i);
 
+            var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
+
             return new NIPublicBill {
+                Styles = styles,
                 CoverPage = coverPage,
                 Preface = preface,
                 Preamble = preamble,
