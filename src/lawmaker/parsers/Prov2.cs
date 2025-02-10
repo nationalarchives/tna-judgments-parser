@@ -31,10 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
             {
-                QuotedStructure qs = ParseQuotedStructure();
-                if (qs is not null)
-                    intro.Add(qs);
-                AddTables(intro);
+                AddFollowingToContent(line, intro);
                 return new Prov2Leaf { Number = num, Contents = intro };
             }
             else
@@ -43,7 +40,8 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        internal List<IDivision> ParseProv2Children(WLine leader) {
+        internal List<IDivision> ParseProv2Children(WLine leader)
+        {
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
@@ -57,7 +55,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next)) {
+                if (!NextChildIsAcceptable(children, next))
+                {
                     i = save;
                     break;
                 }
@@ -66,7 +65,8 @@ namespace UK.Gov.Legislation.Lawmaker
             return children;
         }
 
-        private bool CurrentIsPossibleProv2Child(WLine leader) {
+        private bool CurrentIsPossibleProv2Child(WLine leader)
+        {
             if (Current() is not WLine line)
                 return true;
             if (!IsLeftAligned(line))
