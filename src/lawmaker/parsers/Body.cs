@@ -27,27 +27,25 @@ namespace UK.Gov.Legislation.Lawmaker
         // always leaves i in the right place; shouldn't return null, unless unhandled block type
         private IDivision ParseNextBodyDivision()
         {
-            IBlock block = Document.Body[i].Block;
-            if (block is WLine line)
+            HContainer hContainer = ParseLine();
+            if (hContainer is not null)
             {
-                return ParseLine(line);
+                return hContainer;
             }
-            else if (block is WTable table)
+            IBlock block = Current();
+            if (block is WTable table)
             {
                 i += 1;
                 return new WDummyDivision(table);
             }
-            else if (block is NationalArchives.TableOfContents toc)
+            if (block is NationalArchives.TableOfContents toc)
             {
                 i += 1;
                 return new WTableOfContents(toc.Contents);
             }
-            else
-            {
-                Logger.LogCritical("unexpected block: {}", block.GetType().ToString());
-                i += 1;
-                return null;
-            }
+            Logger.LogCritical("unexpected block: {}", block.GetType().ToString());
+            i += 1;
+            return null;
         }
 
     }
