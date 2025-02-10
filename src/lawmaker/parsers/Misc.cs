@@ -94,17 +94,6 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
-        private void AddTables(List<IBlock> container)
-        {
-            while (i < Document.Body.Count)
-            {
-                if (Document.Body[i].Block is not WTable table)
-                    break;
-                i += 1;
-                container.Add(table);
-            }
-        }
-
     }
 
 }
