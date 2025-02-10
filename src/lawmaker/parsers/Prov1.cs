@@ -25,7 +25,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             int save = i;
             i += 1;
-            HContainer next = ParseBareProv1(np);
+            HContainer next = ParseBareProv1(np, line);
             if (next is null)
             {
                 i = save;
@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         // matches only a numbered section without a heading
-        private HContainer ParseBareProv1(WLine line)
+        private HContainer ParseBareProv1(WLine line, WLine heading = null)
         {
             if (!IsFlushLeft(line))
                 return null;
@@ -56,7 +56,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> children = [];
 
-            FixFirstSubsection(intro, children);
+            FixFirstSubsection(intro, children, heading);
+
+            if (children.Count == 0)
+                AddFollowingToIntroOrWrapUp(heading ?? line, intro);
 
             while (i < Document.Body.Count)
             {
@@ -79,8 +82,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
                 return new Prov1Leaf { Number = num, Contents = intro };
-            else
-                return new Prov1Branch { Number = num, Intro = intro, Children = children };
+
+            List<IBlock> wrapUp = [];
+            AddFollowingToIntroOrWrapUp(heading ?? line, wrapUp);
+            return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
 
         }
 
@@ -95,7 +100,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
-        private void FixFirstSubsection(List<IBlock> intro, List<IDivision> children)
+        private void FixFirstSubsection(List<IBlock> intro, List<IDivision> children, WLine heading = null)
         {
             if (intro.Last() is not WLine last || last is WOldNumberedParagraph)
                 return;
@@ -125,12 +130,14 @@ namespace UK.Gov.Legislation.Lawmaker
             if (grandchildren.Count == 0)
             {
                 List<IBlock> contents = [rest1];
-                AddTables(contents);
+                AddFollowingToContent(heading ?? last, contents);
                 l = new Prov2Leaf { Number = num1, Contents = contents };
             }
             else
             {
-                l = new Prov2Branch { Number = num1, Intro = [rest1], Children = grandchildren };
+                List<IBlock> wrapUp = [];
+                AddFollowingToIntroOrWrapUp(heading ?? last, wrapUp);
+                l = new Prov2Branch { Number = num1, Intro = [rest1], Children = grandchildren, WrapUp = wrapUp };
             }
             intro.RemoveAt(intro.Count - 1);
             children.Insert(0, l);
