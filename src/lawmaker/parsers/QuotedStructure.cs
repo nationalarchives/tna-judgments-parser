@@ -11,12 +11,18 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private QuotedStructure ParseQuotedStructure() {
+        private QuotedStructure ParseQuotedStructure()
+        {
             if (i == Document.Body.Count)
                 return null;
             IBlock block = Document.Body[i].Block;
             if (block is not WLine line)
                 return null;
+            return ParseQuotedStructure(line);
+        }
+
+        private QuotedStructure ParseQuotedStructure(WLine line)
+        {
             if (line is not WOldNumberedParagraph np)
                 return null;
             if (!np.Number.Text.StartsWith('“'))
@@ -25,22 +31,26 @@ namespace UK.Gov.Legislation.Lawmaker
             np = new WOldNumberedParagraph(newNum, np);
             int save = i;
             var p2 = ParseProv2(np, true);
-            if (p2 is null) {
+            if (p2 is null)
+            {
                 i = save;
                 return null;
             }
 
-            List<IDivision> contents = [ p2 ];
-            while (i < Document.Body.Count) {
+            List<IDivision> contents = [p2];
+            while (i < Document.Body.Count)
+            {
                 if (Document.Body[i].Block is not WLine nextLine)
                     break;
                 save = i;
                 p2 = ParseProv2(nextLine, true);
-                if (p2 is null) {
+                if (p2 is null)
+                {
                     i = save;
                     break;
                 }
-                if (OptimizedParser.GetEffectiveIndent(nextLine) < OptimizedParser.GetEffectiveIndent(line)) {
+                if (OptimizedParser.GetEffectiveIndent(nextLine) < OptimizedParser.GetEffectiveIndent(line))
+                {
                     i = save;
                     break;
                 }
