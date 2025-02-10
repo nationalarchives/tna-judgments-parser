@@ -10,62 +10,65 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        // always leaves i in the right place; never returns null
-        private HContainer ParseLine(WLine line)
+        private readonly Dictionary<(string, int), (HContainer Result, int NextPosition)> memo = [];
+
+        // call only if line is Current()
+        private HContainer ParseAndMemoize(WLine line, string name, System.Func<WLine, HContainer> parseFunction) {
+            var key = (name, i);
+            if (memo.TryGetValue(key, out var cached)) {
+                i = cached.NextPosition;
+                return cached.Result;
+            }
+            int save = i;
+            HContainer hContainer = parseFunction(line);
+            if (hContainer is null)
+                i = save;
+            memo[key] = (hContainer, i);
+            return hContainer;
+        }
+
+        private HContainer ParseLine()
         {
+            if (Current() is not WLine line)
+                return null;
+
             HContainer hContainer;
 
-            var save = i;
-            hContainer = ParsePart(line);
+            hContainer = ParseAndMemoize(line, "Part", ParsePart);
             if (hContainer != null)
                 return hContainer;
-            i = save;
 
-            save = i;
-            hContainer = ParseCrossheading(line);
+            hContainer = ParseAndMemoize(line, "CrossHeading", ParseCrossheading);
             if (hContainer != null)
                 return hContainer;
-            i = save;
 
-            save = i;
-            hContainer = ParseProv1(line);
+            hContainer = ParseAndMemoize(line, "Prov1", ParseProv1);
             if (hContainer != null)
                 return hContainer;
-            i = save;
 
-            hContainer = ParseProv2(line);
+            hContainer = ParseAndMemoize(line, "Prov2", line => ParseProv2(line));
             if (hContainer != null)
                 return hContainer;
-            i = save;
 
-            hContainer = ParsePara1(line);
+            hContainer = ParseAndMemoize(line, "Para1", ParsePara1);
             if (hContainer != null)
                 return hContainer;
-            i = save;
 
-            // hContainer = ParsePara2(line);
-            // if (hContainer != null)
-            //     return hContainer;
-            // i = save;
-
-            hContainer = ParseUnnumberedParagraph(line);
+            hContainer = ParseAndMemoize(line, "Para2", ParsePara2);
             if (hContainer != null)
                 return hContainer;
-            i = save;
+
+            hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
+            if (hContainer != null)
+                return hContainer;
 
             i += 1;
             if (line is WOldNumberedParagraph np)
-            {
-                if (Para2.IsPara2Number(np.Number.Text))
-                    return new Para2Leaf() { Number = np.Number, Contents = [WLine.RemoveNumber(np)] };
-                else
-                    return new UnknownLevel() { Number = np.Number, Contents = [WLine.RemoveNumber(np)] };
-            }
+                return new UnknownLevel() { Number = np.Number, Contents = [WLine.RemoveNumber(np)] };
             else
-            {
                 return new UnknownLevel() { Contents = [line] };
-            }
         }
+
 
         /* helper functions for content, intro and wrapUp */
 
