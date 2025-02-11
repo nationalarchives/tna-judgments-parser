@@ -10,8 +10,9 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseProv2(WLine line, bool quoted = false)
+        private HContainer ParseProv2(WLine line)
         {
+            bool quoted = quoteDepth > 0;
             if (line is not WOldNumberedParagraph np)
                 return null;
             if (quoted && !Prov2.IsQuotedProv2Number(np.Number.Text))
