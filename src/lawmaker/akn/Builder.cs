@@ -23,6 +23,8 @@ namespace UK.Gov.Legislation.Lawmaker
         private XmlDocument Build()
         {
             XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
+            akomaNtoso.SetAttribute("xmlns:ukl", UKNS);
+
 
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type);
