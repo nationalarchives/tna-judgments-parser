@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="nipbb">
     <meta>
       <identification source="#author">
@@ -346,7 +346,7 @@
               <num>(1)</num>
               <content>
                 <p>The baseline is the aggregate amount of net Northern Ireland emissions of each greenhouse gas mentioned in the following table in the year specified in relation to that gas⁠—</p>
-                <table d9p1:widths="2.66in 2.66in" xmlns:d9p1="https://www.legislation.gov.uk/namespaces/UK-AKN">
+                <table ukl:widths="2.66in 2.66in">
                   <tr>
                     <td>
                       <p><i>Greenhouse gas</i></p>
