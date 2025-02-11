@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
     public partial class BillParser
     {
+
+        private int quoteDepth = 0;
 
         private QuotedStructure ParseQuotedStructure()
         {
@@ -29,10 +30,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             WText newNum = new WText(np.Number.Text.TrimStart('“'), null);  // not ideal
             np = new WOldNumberedParagraph(newNum, np);
+
+            quoteDepth += 1;
+
             int save = i;
-            var p2 = ParseProv2(np, true);
+            var p2 = ParseProv2(np);
             if (p2 is null)
             {
+                quoteDepth -= 1;
                 i = save;
                 return null;
             }
@@ -43,20 +48,20 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (Document.Body[i].Block is not WLine nextLine)
                     break;
                 save = i;
-                p2 = ParseProv2(nextLine, true);
+                p2 = ParseProv2(nextLine);
                 if (p2 is null)
                 {
                     i = save;
                     break;
                 }
-                if (OptimizedParser.GetEffectiveIndent(nextLine) < OptimizedParser.GetEffectiveIndent(line))
+                if (LineIsIndentedLessThan(nextLine, line))
                 {
                     i = save;
                     break;
                 }
                 contents.Add(p2);
             }
-
+            quoteDepth -= 1;
             return new QuotedStructure { Contents = contents, StartQuote = "“" };
         }
 
