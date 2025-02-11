@@ -46,7 +46,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Prov2", line => ParseProv2(line));
+            hContainer = ParseAndMemoize(line, "Prov2", ParseProv2);
             if (hContainer != null)
                 return hContainer;
 
