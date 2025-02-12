@@ -22,6 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (div is not null)
                     body.Add(div);
             }
+            ExtractAllEndQuotesAndAppendTexts(body);
         }
 
         // always leaves i in the right place; shouldn't return null, unless unhandled block type

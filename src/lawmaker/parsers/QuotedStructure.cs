@@ -1,5 +1,7 @@
 
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -45,16 +47,16 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> contents = [p2];
             while (i < Document.Body.Count)
             {
-                if (Document.Body[i].Block is not WLine nextLine)
+                if (Document.Body[i].Block is not WLine next)
                     break;
                 save = i;
-                p2 = ParseProv2(nextLine);
+                p2 = ParseProv2(next);
                 if (p2 is null)
                 {
                     i = save;
                     break;
                 }
-                if (LineIsIndentedLessThan(nextLine, line))
+                if (LineIsIndentedLessThan(next, line))
                 {
                     i = save;
                     break;
@@ -63,6 +65,50 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             quoteDepth -= 1;
             return new QuotedStructure { Contents = contents, StartQuote = "“" };
+        }
+
+        // extract end quote marks and appended text
+
+        internal static void ExtractAllEndQuotesAndAppendTexts(IList<IDivision> body)
+        {
+            Util.WithEachBlock.Do(body, ExtractEndQuotesAndAppendTexts);
+        }
+
+        private static void ExtractEndQuotesAndAppendTexts(IBlock block)
+        {
+            if (block is not QuotedStructure qs)
+                return;
+            var f = new ExtractAndReplace();
+            LastLine.Replace(qs.Contents, f.Invoke);
+            qs.EndQuote = f.EndQuote;
+            qs.AppendText = f.AppendText;
+        }
+
+        /// <summary>
+        /// This function removes the end quote and appended text from a line and returns a new line.
+        /// It retains the extracted bits for insertion into the QuotedStructure model.
+        /// </summary>
+        private class ExtractAndReplace
+        {
+            internal string EndQuote { get; private set; } = null;
+            internal WText AppendText { get; private set; } = null;
+
+            private static readonly string pattern = @"”([\.;])?$";
+
+            public WLine Invoke(WLine line)
+            {
+                if (line.Contents.LastOrDefault() is not WText last)
+                    return null;
+                Match match = Regex.Match(last.Text, pattern);
+                if (match.Success) {
+                    EndQuote = "”";
+                    AppendText = new WText(match.Groups[1].Value, last.properties);
+                    WText replacement = new(last.Text[..match.Index], last.properties);
+                    return WLine.Make(line, line.Contents.SkipLast(1).Append(replacement));
+                }
+                return null;
+            }
+
         }
 
     }
