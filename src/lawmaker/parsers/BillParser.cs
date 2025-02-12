@@ -13,6 +13,14 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
+        /*
+          This class takes a list of "pre-parsed" blocks, and arranges them into a bill structure.
+          The pre-parsed list contains blocks of only four types:
+           - WLine (a line of text, corresponding to a Word "paragraph") (won't have a number unless subclassed)
+           - WOldNumberedParagraph (a subclass of WLine, with a number)
+           = WTable
+           - WTableOfContents
+        */
         public static Bill Parse(byte[] docx)
         {
             WordprocessingDocument doc = AkN.Parser.Read(docx);
@@ -38,6 +46,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (i != Document.Body.Count)
                 Logger.LogWarning("parsing did not complete: {}", i);
+
+            // do this after parsing is complete, because it alters the contents of parsed results
+            // which does not work well with memoization
+            ExtractAllEndQuotesAndAppendTexts(body);
 
             var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
