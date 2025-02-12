@@ -258,17 +258,17 @@ abstract class Builder {
 
     /* tables */
 
-    private int getColspan(XmlElement td) {
+    protected int getColspan(XmlElement td) {
         string attr = td.GetAttribute("colspan");
         return string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
     }
-    private void incrementRowspan(XmlElement td) {
+    protected void incrementRowspan(XmlElement td) {
         string attr = td.GetAttribute("rowspan");
         int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
         rowspan += 1;
         td.SetAttribute("rowspan", rowspan.ToString());
     }
-    private static void DecrementRowspans(List<XmlElement> row) {
+    protected static void DecrementRowspans(List<XmlElement> row) {
         foreach (XmlElement td in row) {
             string attr = td.GetAttribute("rowspan");
             int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
@@ -280,7 +280,7 @@ abstract class Builder {
         }
     }
 
-    private void AddTable(XmlElement parent, ITable model) {
+    protected virtual void AddTable(XmlElement parent, ITable model) {
         XmlElement table = doc.CreateElement("table", ns);
         if (model.Style is not null)
             table.SetAttribute("class", model.Style);
