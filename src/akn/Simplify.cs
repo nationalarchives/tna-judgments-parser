@@ -138,25 +138,38 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             State = copy;
         }
 
-        private void UpdateStateAndRemoveStyleAttributes(XmlElement e) {
+        private void UpdateStateAndRemoveStyleAttributes(XmlElement e)
+        {
             foreach (KeyValuePair<string, string> item in GetClassProperties(e))
                 State[item.Key] = item.Value;
             foreach (KeyValuePair<string, string> item in GetStyleProperties(e))
                 State[item.Key] = item.Value;
-            e.RemoveAttribute("class");
-            e.RemoveAttribute("style");
-            if (e.HasAttribute("title")) {
-                e.SetAttribute("class", e.GetAttribute("title"));
-                e.RemoveAttribute("title");
+            e.RemoveAttribute("class", "");
+            e.RemoveAttribute("style", "");
+            // replace "class" and "style" attributes with those in another namespace
+            var toCopy = new List<XmlAttribute>();
+            foreach (XmlAttribute attr in e.Attributes)
+            {
+                // if (string.IsNullOrEmpty(attr.NamespaceURI))
+                //     continue;
+                if (attr.LocalName == "class" || attr.LocalName == "style")
+                    toCopy.Add(attr);
+            }
+            foreach (XmlAttribute attr in toCopy)
+            {
+                e.RemoveAttributeNode(attr);
+                e.SetAttribute(attr.LocalName, "", attr.Value);
             }
         }
 
-        private static bool IsPrefaceParagraph(XmlElement p) {
+        private static bool IsPrefaceParagraph(XmlElement p)
+        {
             if (p.LocalName != "p")
                 return false;
             return p.ParentNode.LocalName == "preface";
         }
-        private static bool IsAttachmentParagraph(XmlElement p) {
+        private static bool IsAttachmentParagraph(XmlElement p)
+        {
             if (p.LocalName != "p")
                 return false;
             if (p.ParentNode.LocalName != "mainBody")
@@ -167,7 +180,8 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 return false;
             return true;
         }
-        private void AddClassToPrefaceOrAttachmentParagraph(XmlElement p) {
+        private void AddClassToPrefaceOrAttachmentParagraph(XmlElement p)
+        {
             if (!IsPrefaceParagraph(p) && !IsAttachmentParagraph(p))
                 return;
             State.TryGetValue("text-align", out string align);
@@ -175,7 +189,8 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 p.SetAttribute("class", align);
         }
 
-        private static void RemoveSpan(XmlElement span) {
+        private static void RemoveSpan(XmlElement span)
+        {
             if (span.LocalName != "span")
                 return;
             List<XmlNode> children = span.ChildNodes.Cast<XmlNode>().ToList();
@@ -244,7 +259,8 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             //     State["text-decoration-line"] = decor;
             //     return;
             // }
-            if (State.GetValueOrDefault("text-transform") == "uppercase") {
+            if (State.GetValueOrDefault("text-transform") == "uppercase")
+            {
                 text.Value = text.Value.ToUpper();
                 return;
             }
