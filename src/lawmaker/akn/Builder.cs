@@ -90,6 +90,11 @@ namespace UK.Gov.Legislation.Lawmaker
                     e.SetAttribute("startQuote", qs2.StartQuote);
                 if (qs2.EndQuote is not null)
                     e.SetAttribute("endQuote", qs2.EndQuote);
+                if (qs2.AppendText is not null) {
+                    XmlElement at = CreateAndAppend("inline", mod);
+                    at.SetAttribute("name", "AppendText");
+                    AddOrWrapText(at, qs2.AppendText);
+                }
             }
             AddDivisions(e, qs.Contents);
         }
