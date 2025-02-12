@@ -698,7 +698,7 @@ abstract class Builder {
         foreach (IFormattedText span in text)
             AddOrWrapText(parent, span);
     }
-    private void AddOrWrapText(XmlElement parent, IFormattedText fText) {
+    protected void AddOrWrapText(XmlElement parent, IFormattedText fText) {
         if (fText.Style is not null) {
             AddAndWrapText(parent, "span", fText);
             return;
