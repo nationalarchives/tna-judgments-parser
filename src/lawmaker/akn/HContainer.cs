@@ -40,9 +40,8 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             if (hc.Class is not null)
             {
-                // this is a bit of a hack, because the system already uses the "class" attribute for Word style
-                // the Simplifer class corrects this, setting the "class" attribute and removing the "title"
-                level.SetAttribute("title", hc.Class);
+                // currently "class" and "style" attributes need to be in a non-empty namespace
+                level.SetAttribute("class", UKNS, hc.Class);
             }
 
             if (hc.HeadingPrecedesNumber)
