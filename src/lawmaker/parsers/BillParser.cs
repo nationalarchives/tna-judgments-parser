@@ -41,7 +41,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private NIPublicBill Parse()
         {
 
-            ParseHeader();
+            ParseAndEnrichHeader();
             ParseBody();
 
             if (i != Document.Body.Count)
@@ -53,7 +53,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
             var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
-            return new NIPublicBill {
+            return new NIPublicBill
+            {
                 Styles = styles,
                 CoverPage = coverPage,
                 Preface = preface,
