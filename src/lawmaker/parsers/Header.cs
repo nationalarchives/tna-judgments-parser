@@ -16,14 +16,24 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private readonly List<IBlock> preamble = [];
 
-        private void ParseHeader() {
+        private void ParseAndEnrichHeader()
+        {
+            ParseHeader();
+            EnrichHeader();
+        }
+
+        private void ParseHeader()
+        {
             bool foundPreface = false;
-            while (i < Document.Body.Count - 10) {
+            while (i < Document.Body.Count - 10)
+            {
                 var block1 = Document.Body[i].Block;
                 var block2 = Document.Body[i + 1].Block;
                 var block3 = Document.Body[i + 2].Block;
-                if (!foundPreface && block1 is WLine line1 && block2 is WLine line2 && block3 is WLine line3) {
-                    if (line1.TextContent == "A" && line2.TextContent == "Bill" && line3.TextContent == "to") {
+                if (!foundPreface && block1 is WLine line1 && block2 is WLine line2 && block3 is WLine line3)
+                {
+                    if (line1.TextContent == "A" && line2.TextContent == "Bill" && line3.TextContent == "to")
+                    {
                         preface.Add(block1);
                         preface.Add(block2);
                         preface.Add(block3);
@@ -32,22 +42,41 @@ namespace UK.Gov.Legislation.Lawmaker
                         continue;
                     }
                 }
-                if (foundPreface && block1 is WLine line && line.TextContent.StartsWith("BE IT ENACTED by")) {
+                if (foundPreface && block1 is WLine line && line.TextContent.StartsWith("BE IT ENACTED by"))
+                {
                     preamble.Add(block1);
                     i += 1;
                     return;
                 }
-                if (foundPreface) {
+                if (foundPreface)
                     preface.Add(block1);
-                } else {
+                else
                     coverPage.Add(block1);
-                }
                 i += 1;
             }
             coverPage.Clear();
             preface.Clear();
             preamble.Clear();
             i = 0;
+        }
+
+        private void EnrichHeader()
+        {
+            EnrichCoverPage();
+        }
+
+        private void EnrichCoverPage()
+        {
+            if (coverPage.Count == 0)
+                return;
+            if (coverPage[0] is not WLine first)
+                return;
+            if (!first.NormalizedContent.EndsWith(" Bill"))
+                return;
+            ShortTitle shortTitle = new() { Contents = [.. first.Contents] };
+            WLine replacement = WLine.Make(first, [shortTitle]);
+            coverPage.RemoveAt(0);
+            coverPage.Insert(0, replacement);
         }
 
     }
