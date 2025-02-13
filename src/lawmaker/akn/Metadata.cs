@@ -4,7 +4,7 @@ using System.Xml;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    class Metadata
+    class MetadataBuilder
     {
 
         internal static XmlElement Add(XmlElement parent, string title)
