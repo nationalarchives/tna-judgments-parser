@@ -29,8 +29,8 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type);
 
-            string title = "";
-            Metadata.Add(main, title);
+            string title = Metadata.Extract(bill).Title;
+            MetadataBuilder.Add(main, title);
 
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
@@ -90,7 +90,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     e.SetAttribute("startQuote", qs2.StartQuote);
                 if (qs2.EndQuote is not null)
                     e.SetAttribute("endQuote", qs2.EndQuote);
-                if (qs2.AppendText is not null) {
+                if (qs2.AppendText is not null)
+                {
                     XmlElement at = CreateAndAppend("inline", mod);
                     at.SetAttribute("name", "AppendText");
                     AddOrWrapText(at, qs2.AppendText);
