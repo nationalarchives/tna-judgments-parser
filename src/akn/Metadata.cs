@@ -5,6 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 
+using judgments.src.akn;
+using UK.Gov.NationalArchives.CaseLaw.Model;
+
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
 class Metadata {
@@ -231,11 +234,21 @@ class Metadata {
                 proprietary.AppendChild(cite);
                 cite.AppendChild(doc.CreateTextNode(metadata.Cite.ToString()));
             }
+
+
+            foreach (var caseNo in metadata.CaseNos()) {
+                MetadataExtensions.AddProprietaryField(proprietary, "caseNumber", caseNo);
+            }
+
             foreach (IDocJurisdiction jd in jurisdictions) {
                 XmlElement juris = doc.CreateElement("uk", "jurisdiction", ukns);
                 proprietary.AppendChild(juris);
                 juris.AppendChild(doc.CreateTextNode(jd.ShortName));
             }
+
+            if (metadata is IMetadataExtended extended)
+                MetadataExtensions.AddProprietaryFields(proprietary, extended);
+
             if (true) {
                 XmlElement parser = doc.CreateElement("uk", "parser", ukns);
                 proprietary.AppendChild(parser);
