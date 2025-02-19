@@ -12,7 +12,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public IList<IDivision> Contents { get; internal init; }
 
-        public string StartQuote { get; internal init; }
+        public string StartQuote { get; internal set; }
 
         public string EndQuote { get; internal set; }
 

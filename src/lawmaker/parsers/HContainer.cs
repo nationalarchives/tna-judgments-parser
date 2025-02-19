@@ -10,21 +10,21 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private readonly Dictionary<(string, int), (HContainer Result, int NextPosition)> memo = [];
+        private readonly Dictionary<(string, int, int), (object Result, int NextPosition)> memo = [];
 
         // call only if line is Current()
-        private HContainer ParseAndMemoize(WLine line, string name, System.Func<WLine, HContainer> parseFunction) {
-            var key = (name, i);
+        private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
+            var key = (name, i, quoteDepth);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
-                return cached.Result;
+                return (T)cached.Result;
             }
             int save = i;
-            HContainer hContainer = parseFunction(line);
-            if (hContainer is null)
+            T result = parseFunction(line);
+            if (result is null)
                 i = save;
-            memo[key] = (hContainer, i);
-            return hContainer;
+            memo[key] = (result, i);
+            return result;
         }
 
         private HContainer ParseLine()
