@@ -7,65 +7,10 @@ using System.Xml.Schema;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
+using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace Backlog.Src
 {
-
-    internal class ExtendedMetadata : IMetadata
-    {
-        internal JudgmentType Type { get; init; }
-
-        public Court? Court { get; init; }
-
-        public int? Year { get; init; }
-
-        public int? Number { get; init; }
-
-        public string Cite { get; init; }
-
-        public string ShortUriComponent { get; init; }
-
-        public string WorkThis { get => WorkURI; }
-
-        public string WorkURI { get; init; }
-
-        public string ExpressionThis { get => ExpressionUri; }
-
-        public string ExpressionUri { get; init; }
-
-        public string ManifestationThis { get => ManifestationUri; }
-
-        public string ManifestationUri { get; init; }
-
-        public INamedDate Date { get; init; }
-
-        public string Name { get; init; }
-
-        public IEnumerable<IExternalAttachment> ExternalAttachments { get; init; }
-
-        public List<string> CaseNumbers { get; init; }
-
-        public IEnumerable<string> CaseNos() => CaseNumbers;
-
-        public Dictionary<string, Dictionary<string, string>> CSSStyles() => [];
-
-        public List<IParty> Parties { get; init; }
-
-        public string SourceFormat { get; init; }
-
-        // public List<string> Categories { get; init; } = [];
-
-        internal class Category {
-
-            public string Name { get; init; }
-
-            public string Parent { get; init; }
-
-        }
-
-        public List<Category> Categories { get; init; } = [];
-
-    }
 
     // internal class Subcategory {
 
@@ -86,7 +31,7 @@ namespace Backlog.Src
         private static readonly string UKNS = "https://caselaw.nationalarchives.gov.uk/akn";
 
         private readonly XmlDocument Document = new();
-        private readonly ExtendedMetadata Data;
+        private readonly IMetadataExtended Data;
 
         private XmlElement CreateAndAppend(string name, XmlNode parent)
         {
@@ -278,7 +223,7 @@ namespace Backlog.Src
         // private static void AddCategory(XmlElement proprietary, string value) {
         //     AddProprietaryField(proprietary, "category", value);
         // }
-        internal static void AddCategory(XmlElement proprietary, ExtendedMetadata.Category value) {
+        internal static void AddCategory(XmlElement proprietary, ICategory value) {
             var e = AddProprietaryField(proprietary, "category", value.Name);
             if (value.Parent is not null)
                 e.SetAttribute("parent", value.Parent);
