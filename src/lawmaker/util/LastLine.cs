@@ -12,6 +12,39 @@ namespace UK.Gov.Legislation.Lawmaker
     class LastLine
     {
 
+        /* get */
+
+        internal static WLine GetLastLine(IDivision division)
+        {
+            if (division is Leaf leaf)
+                return GetLastLineInLeaf(leaf);
+            if (division is Branch branch)
+                return GetLastLineInBranch(branch);
+            return null;
+        }
+
+        static WLine GetLastLineInLeaf(Leaf leaf)
+        {
+            return GetLastLineIn(leaf.Contents);
+        }
+
+        static WLine GetLastLineInBranch(Branch branch)
+        {
+            if (branch.WrapUp?.Count > 0)
+                return GetLastLineIn(branch.WrapUp);
+            return GetLastLine(branch.Children.Last());
+        }
+
+        static WLine GetLastLineIn(IList<IBlock> blocks)
+        {
+            IBlock last = blocks.LastOrDefault();
+            if (last is not WLine line)
+                return null;
+            return line;
+        }
+
+        /* replace */
+
         internal static bool Replace(IList<IDivision> divisions, Func<WLine, WLine> replace)
         {
             IDivision last = divisions.LastOrDefault();

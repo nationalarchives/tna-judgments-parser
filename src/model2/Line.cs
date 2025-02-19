@@ -79,15 +79,7 @@ class WLine : ILine {
                     return AlignmentValues.Center;
                 return null;
             }
-            if (just.Val.Equals(JustificationValues.Left))
-                return AlignmentValues.Left;
-            if (just.Val.Equals(JustificationValues.Right))
-                return AlignmentValues.Right;
-            if (just.Val.Equals(JustificationValues.Center))
-                return AlignmentValues.Center;
-            if (just.Val.Equals(JustificationValues.Both))
-                return AlignmentValues.Justify;
-            return null;
+            return Convert(just);
         }
     }
 
@@ -102,6 +94,10 @@ class WLine : ILine {
             return AlignmentValues.Center;
         if (just.Val.Equals(JustificationValues.Both))
             return AlignmentValues.Justify;
+        if (just.Val.Equals(JustificationValues.Start))
+            return AlignmentValues.Left;
+        if (just.Val.Equals(JustificationValues.End))
+            return AlignmentValues.Right;
         return null;
     }
     public AlignmentValues? OwnAlignment => Convert(properties?.Justification);
