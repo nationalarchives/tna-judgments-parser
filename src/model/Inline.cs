@@ -224,7 +224,7 @@ interface IDocDate : IDate, INamedDate {
 
 }
 
-enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, ThirdParty, Intervener, RequestedPerson, RequestingState, BeforeTheV, AfterTheV }
+public enum PartyRole { Appellant, Applicant, Claimant, Defendant, Petitioner, Respondent, InterestedParty, ThirdParty, Intervener, RequestedPerson, RequestingState, BeforeTheV, AfterTheV }
 
 interface IParty : IInline {
 

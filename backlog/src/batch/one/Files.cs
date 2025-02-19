@@ -22,6 +22,26 @@ namespace Backlog.Src.Batch.One
             return pdfs.First();
         }
 
+        internal static string GetDocx(string id) {
+            var dir = Root + "j" + id + @"\";
+            var files = System.IO.Directory.GetFiles(dir);
+            if (files.Where(file => file.EndsWith(".pdf")).Any())
+                return null;
+            var pdfs = files.Where(file => file.EndsWith(".docx"));
+            var count = pdfs.Count();
+            if (count == 0)
+                return null;
+            if (count > 1)
+                throw new System.Exception();
+            return pdfs.First();
+        }
+
+        internal static void SaveXml(string id, string xml) {
+            var dir = Root + "j" + id + @"\";
+            var file = dir + "j" + id + "_judgment.xml";
+            System.IO.File.WriteAllText(file, xml);
+        }
+
     }
 
 }

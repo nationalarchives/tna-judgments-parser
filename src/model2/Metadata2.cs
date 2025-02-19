@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
+using UK.Gov.NationalArchives.CaseLaw.Model;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class WMetadata2 : WMetadata {
@@ -59,7 +61,7 @@ class WMetadata2 : WMetadata {
 
 }
 
-class WMetadata3 : WMetadata {
+class WMetadata3 : WMetadata, IMetadataExtended {
 
     private readonly IOutsideMetadata outside;
 
@@ -92,6 +94,20 @@ class WMetadata3 : WMetadata {
     override public string Name { get {
         return outside.Name ?? base.Name;
     } }
+
+    public string SourceFormat => outside.SourceFormat;
+
+    public List<string> CaseNumbers => outside.CaseNumbers;
+
+    override public IEnumerable<string> CaseNos() {
+        if (CaseNumbers.Count != 0)
+            return CaseNumbers;
+        return base.CaseNos();
+    }
+
+    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => outside.Parties;
+
+    public List<ICategory> Categories => outside.Categories;
 
 }
 

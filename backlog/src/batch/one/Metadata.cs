@@ -91,7 +91,7 @@ namespace Backlog.Src.Batch.One
         }
 
         private static byte[] MakeAndSaveBundle(Line line, string file, uint bulkNum) {
-            Stub stub = GenerateStub(line);
+            Stub stub = GenerateStub(line, "application/pdf");
             Bundle.Source source = new() {
                 Filename = Path.GetFileName(file),
                 Content = File.ReadAllBytes(file),
@@ -116,9 +116,21 @@ namespace Backlog.Src.Batch.One
             return bundle;
         }
 
-        private static Stub GenerateStub(Line line)
-        {
-            // IDictionary<string, ISet<string>> done = new Dictionary<string, ISet<string>>();
+        internal static ExtendedMetadata GetMetadata(uint id, string sourceFormat) {
+            string path = @"C:\Users\Administrator\TDR-2024-CG6F_converted\imset-judgments_RowsCleanedHL.csv";
+            using var reader = new StreamReader(path);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var lines = csv.GetRecords<Line>();
+            foreach (var line in lines)
+            {
+                if (line.id != id.ToString())
+                    continue;
+                return GetMetadata(line, sourceFormat);
+            }
+            throw new Exception(id.ToString());
+        }
+
+        private static ExtendedMetadata GetMetadata(Line line, string sourceFormat) {
             ISet<string> parents = new HashSet<string>();
             List<ExtendedMetadata.Category> categories = [];
             if (!string.IsNullOrWhiteSpace(line.main_subcategory_id)) {
@@ -143,12 +155,20 @@ namespace Backlog.Src.Batch.One
                 Name = line.claimants + " v " + line.respondent,
                 CaseNumbers = [line.CaseNo],
                 Parties = [
-                    new WParty(line.claimants, null) { Role = PartyRole.Claimant },
-                        new WParty(line.respondent, null) { Role = PartyRole.Respondent }
+                    // new WParty(line.claimants, null) { Role = PartyRole.Claimant },
+                    // new WParty(line.respondent, null) { Role = PartyRole.Respondent }
+                    new UK.Gov.NationalArchives.CaseLaw.Model.Party() { Name = line.claimants, Role = PartyRole.Claimant },
+                    new UK.Gov.NationalArchives.CaseLaw.Model.Party() { Name = line.respondent, Role = PartyRole.Respondent }
                 ],
-                SourceFormat = "application/pdf",
+                SourceFormat = sourceFormat,
                 Categories = [.. categories]
             };
+            return meta;
+        }
+
+        private static Stub GenerateStub(Line line, string sourceFormat)
+        {
+            ExtendedMetadata meta = GetMetadata(line, sourceFormat);
             Stub stub = Stub.Make(meta);
             var errors = stub.Validate();
             if (errors.Count > 0)
