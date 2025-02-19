@@ -79,6 +79,8 @@ namespace UK.Gov.Legislation.Lawmaker
             base.blocks(parent, blocks);
         }
 
+        private int quoteDepth = 0;
+
         protected override void AddQuotedStructure(XmlElement parent, IQuotedStructure qs)
         {
             XmlElement p = CreateAndAppend("p", parent);
@@ -97,7 +99,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     AddOrWrapText(at, qs2.AppendText);
                 }
             }
+            quoteDepth += 1;
             AddDivisions(e, qs.Contents);
+            quoteDepth -= 1;
         }
 
     }
