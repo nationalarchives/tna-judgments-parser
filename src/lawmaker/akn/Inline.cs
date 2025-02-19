@@ -11,13 +11,24 @@ namespace UK.Gov.Legislation.Lawmaker
 
         override protected void AddInline(XmlElement parent, IInline model)
         {
-            if (model is not ShortTitle st)
+            if (model is ShortTitle st)
             {
-                base.AddInline(parent, model);
+                XmlElement e = CreateAndAppend("shortTitle", parent);
+                AddInlines(e, st.Contents);
                 return;
             }
-            XmlElement e = CreateAndAppend("shortTitle", parent);
-            AddInlines(e, st.Contents);
+            if (model is QuotedText qt)
+            {
+                XmlElement e = CreateAndAppend("quotedText", parent);
+                if (qt.StartQuote is not null)
+                    e.SetAttribute("startQuote", qt.StartQuote);
+                if (qt.EndQuote is not null)
+                    e.SetAttribute("endQuote", qt.EndQuote);
+                AddInlines(e, qt.Contents);
+                return;
+
+            }
+            base.AddInline(parent, model);
         }
 
     }
