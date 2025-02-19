@@ -54,7 +54,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsQuotedProv2Number(string num)
         {
-            string pattern = @"^\(\d+[A-Z]*\)$";
+            string pattern = @"^“?\(\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 
