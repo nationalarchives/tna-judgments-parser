@@ -59,7 +59,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return prevLeft > prevRight;
         }
 
-        private bool IsEndOfQuotedStructure(HContainer hContainer)
+        private static bool IsEndOfQuotedStructure(HContainer hContainer)
         {
             WLine line = LastLine.GetLastLine(hContainer);
             if (line is null)
