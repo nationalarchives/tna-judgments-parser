@@ -15,4 +15,11 @@
     <PackageReference Include="AWSSDK.S3" Version="3.7.308.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DotNetEnv" Version="2.4.0" />
+    <None Update=".env">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
