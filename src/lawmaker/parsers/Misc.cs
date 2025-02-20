@@ -25,6 +25,12 @@ namespace UK.Gov.Legislation.Lawmaker
             return alignment == AlignmentValues.Center;
         }
 
+        private static bool IsRightAligned(WLine line)
+        {
+            var alignment = line.GetEffectiveAlignment();
+            return alignment == AlignmentValues.Right;
+        }
+
         private static bool IsFlushLeft(WLine line) => OptimizedParser.IsFlushLeft(line);
 
         private static float GetEffectiveIndent(WLine line) => OptimizedParser.GetEffectiveIndent(line);
