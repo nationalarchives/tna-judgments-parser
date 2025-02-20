@@ -1,9 +1,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private Schedule ParseSchedule(WLine line)
+        private SchedulePart ParseSchedulePart(WLine line)
         {
             if (line is WOldNumberedParagraph np)
                 return null;
@@ -20,39 +20,18 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return null;
 
-            if (!Schedule.IsScheduleNumber(line.NormalizedContent))
+            if (!SchedulePart.IsPartNumber(line.NormalizedContent))
                 return null;
-
-            string numberString = Regex.Replace(
+            IFormattedText number = new WText(
                 line.NormalizedContent,
-                @"SCHEDULE",
-                "Schedule",
-                RegexOptions.IgnoreCase
+                line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
             );
-            IFormattedText number = new WText(numberString, null);
 
             if (Document.Body[i + 1].Block is not WLine line2)
                 return null;
-
-            WLine referenceNoteLine = null;
-            WLine headingLine = line2;
-            if (IsRightAligned(line2))
-            {
-                // Handle reference note
-                if (Document.Body[i + 2].Block is not WLine line3)
-                    return null;
-                referenceNoteLine = line2;
-                headingLine = line3;
-                i += 1;
-            }
-            if (!IsCenterAligned(headingLine))
+            if (!IsCenterAligned(line2))
                 return null;
-            ILine heading = headingLine;
-
-            IFormattedText referenceNote = new WText(
-                referenceNoteLine is null ? "" : referenceNoteLine.NormalizedContent,
-                null
-            );
+            ILine heading = line2;
 
             var save1 = i;
             i += 2;
@@ -63,9 +42,10 @@ namespace UK.Gov.Legislation.Lawmaker
             isInSchedule = true;
             while (i < Document.Body.Count)
             {
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not SchedulePart && next is not CrossHeading && next is not Prov1) // TODO: change to schProv1
+                if (next is not ScheduleChapter && next is not ScheduleCrossHeading && next is not Prov1) // TODO: Change to schProv1
                 {
                     i = save;
                     break;
@@ -83,7 +63,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 isInSchedule = isInScheduleSave;
                 return null;
             }
-            return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = children };
+            return new SchedulePart { Number = number, Heading = heading, Children = children };
         }
 
     }
