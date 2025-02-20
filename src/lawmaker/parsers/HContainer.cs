@@ -34,6 +34,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
             HContainer hContainer;
 
+            hContainer = ParseAndMemoize(line, "Schedules", ParseSchedules);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "Schedule", ParseSchedule);
+            if (hContainer != null)
+                return hContainer;
+
             hContainer = ParseAndMemoize(line, "Part", ParsePart);
             if (hContainer != null)
                 return hContainer;

@@ -28,4 +28,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
+    internal class Schedules : Branch
+    {
+
+        public static bool IsSchedulesHeading(string heading)
+        {
+            string pattern = @"^SCHEDULES$";
+            return Regex.IsMatch(heading, pattern, RegexOptions.IgnoreCase);
+        }
+
+        public override string Name { get; internal init; } = "schedules";
+
+        public override string Class => "schs";
+
+    }
+
+
 }
