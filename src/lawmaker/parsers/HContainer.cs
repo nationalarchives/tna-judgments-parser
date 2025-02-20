@@ -108,6 +108,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "Chapter", ParseChapter);
+            if (hContainer != null)
+                return hContainer;
+
             hContainer = ParseAndMemoize(line, "CrossHeading", ParseCrossheading);
             if (hContainer != null)
                 return hContainer;
