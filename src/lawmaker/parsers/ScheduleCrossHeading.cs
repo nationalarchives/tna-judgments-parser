@@ -35,7 +35,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Prov1) // TODO: Change to SchProv1
+                if (next is not SchProv1)
                 {
                     i = save;
                     break;
@@ -47,15 +47,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
-            // TODO: Uncomment this
-            /*
             if (children.Count == 0)
             {
                 i = save1;
                 isInSchedule = isInScheduleSave;
                 return null;
             }
-            */
             return new ScheduleCrossHeading { Heading = heading, Children = children };
         }
 

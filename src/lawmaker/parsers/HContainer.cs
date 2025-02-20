@@ -88,6 +88,14 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "SchProv1", ParseSchProv1);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "SchProv2", ParseSchProv2);
+            if (hContainer != null)
+                return hContainer;
+
             return null;
         }
 
