@@ -27,11 +27,20 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             string name = hc.Name ?? "level";
             XmlElement level;
-            if (name == "crossheading") {
-                level = CreateAndAppend("hcontainer", parent);
-                level.SetAttribute("name", name);
-            } else {
-                level = CreateAndAppend(name, parent);
+            switch (name)
+            {
+                case "crossheading":
+                case "schedules":
+                    level = CreateAndAppend("hcontainer", parent);
+                    level.SetAttribute("name", name);
+                    break;
+                case "schedule":
+                    level = CreateAndAppend("hcontainer", parent);
+                    level.SetAttribute("name", name);
+                    break;
+                default:
+                    level = CreateAndAppend(name, parent);
+                    break;
             }
             string eId = MakeDivisionId(hc);
             if (eId is not null)
@@ -44,14 +53,15 @@ namespace UK.Gov.Legislation.Lawmaker
                 level.SetAttribute("class", UKNS, hc.Class);
             }
 
+            XmlElement number;
             if (hc.HeadingPrecedesNumber)
             {
                 AddHeading(level, hc.Heading);
-                AddNumber(level, hc.Number);
+                number = AddNumber(level, hc.Number);
             }
             else
             {
-                AddNumber(level, hc.Number);
+                number = AddNumber(level, hc.Number);
                 AddHeading(level, hc.Heading);
             }
 
@@ -65,13 +75,27 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 AddContent(level, leaf.Contents);
             }
+            else if (hc is Schedule schedule)
+            {
+                AddReferenceNote(number, schedule.ReferenceNote);
+                AddDivisions(level, schedule.Contents);
+            }
         }
 
-        private void AddNumber(XmlElement parent, IFormattedText num)
+        private XmlElement AddNumber(XmlElement parent, IFormattedText num)
         {
             if (num is null)
+                return null;
+            return AddAndWrapText(parent, "num", num);
+        }
+
+        private void AddReferenceNote(XmlElement number, IFormattedText referenceNote)
+        {
+            if (referenceNote is null)
                 return;
-            AddAndWrapText(parent, "num", num);
+            XmlElement authorialNote = CreateAndAppend("authorialNote", number);
+            authorialNote.SetAttribute("class", UKNS, "referenceNote");
+            AddAndWrapText(authorialNote, "p", referenceNote);
         }
 
         private void AddHeading(XmlElement parent, ILine heading)
