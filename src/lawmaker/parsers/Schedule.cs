@@ -65,7 +65,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not SchedulePart && next is not CrossHeading && next is not Prov1) // TODO: change to schProv1
+                if (next is not SchedulePart && next is not ScheduleCrossHeading && next is not SchProv1)
                 {
                     i = save;
                     break;
