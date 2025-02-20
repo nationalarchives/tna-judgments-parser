@@ -104,27 +104,11 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (intro.Last() is not WLine last || last is WOldNumberedParagraph)
                 return;
-            WText num1;
-            WLine rest1;
-            if (last.Contents.FirstOrDefault() is WText t && t.Text.StartsWith("—(1) "))
-            {
-                num1 = new("(1)", t.properties);
-                WText x = new(t.Text[5..], t.properties);
-                rest1 = WLine.Make(last, last.Contents.Skip(1).Prepend(x));
-            }
-            else if (last.Contents.FirstOrDefault() is WText t1 && last.Contents.Skip(1).FirstOrDefault() is WText t2)
-            {
-                string combined = t1.Text + t2.Text;
-                if (!combined.StartsWith("—(1) "))
-                    return;
-                num1 = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
-                WText x = new(combined[5..], t2.properties);
-                rest1 = WLine.Make(last, last.Contents.Skip(2).Prepend(x));
-            }
-            else
-            {
+
+            (WText num1, WLine rest1) = FixFirstProv2Num(last);
+            if (num1 is null)
                 return;
-            }
+
             List<IDivision> grandchildren = ParseProv2Children(last);
             Prov2 l;
             if (grandchildren.Count == 0)
@@ -141,6 +125,28 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             intro.RemoveAt(intro.Count - 1);
             children.Insert(0, l);
+        }
+
+        private (WText, WLine) FixFirstProv2Num(WLine line)
+        {
+            WText num = null;
+            WLine rest = null;
+            if (line.Contents.FirstOrDefault() is WText t && t.Text.StartsWith("—(1) "))
+            {
+                num = new("(1)", t.properties);
+                WText x = new(t.Text[5..], t.properties);
+                rest = WLine.Make(line, line.Contents.Skip(1).Prepend(x));
+            }
+            else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
+            {
+                string combined = t1.Text + t2.Text;
+                if (!combined.StartsWith("—(1) "))
+                    return (null, null);
+                num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
+                WText x = new(combined[5..], t2.properties);
+                rest = WLine.Make(line, line.Contents.Skip(2).Prepend(x));
+            }
+            return (num, rest);
         }
 
     }

@@ -41,6 +41,38 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
+
+    /* schProv1 */
+
+    internal interface SchProv1
+    {
+
+        public static bool IsScheduleParagraphNumber(string num)
+        {
+            string pattern = @"^\d+[A-Z]*\.$";
+            return Regex.IsMatch(num, pattern);
+        }
+
+    }
+
+    internal class SchProv1Branch : Branch, SchProv1
+    {
+
+        public override string Name { get; internal init; } = "paragraph";
+
+        public override string Class => "schProv1";
+
+    }
+
+    internal class SchProv1Leaf : Leaf, SchProv1
+    {
+
+        public override string Name { get; internal init; } = "paragraph";
+
+        public override string Class => "schProv1";
+
+    }
+
     /* prov2 */
 
     internal interface Prov2 : IDivision
@@ -75,6 +107,44 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "subsection";
 
         public override string Class => "prov2";
+
+    }
+
+
+    /* schProv2 */
+
+    internal interface SchProv2 : IDivision
+    {
+
+        public static bool IsSchProv2Number(string num)
+        {
+            string pattern = @"^\(\d+\)$";
+            return Regex.IsMatch(num, pattern);
+        }
+
+        public static bool IsQuotedSchProv2Number(string num)
+        {
+            string pattern = @"^\(\d+[A-Z]*\)$";
+            return Regex.IsMatch(num, pattern);
+        }
+
+    }
+
+    internal class SchProv2Branch : Branch, SchProv2
+    {
+
+        public override string Name { get; internal init; } = "subparagraph";
+
+        public override string Class => "schProv2";
+
+    }
+
+    internal class SchProv2Leaf : Leaf, SchProv2
+    {
+
+        public override string Name { get; internal init; } = "subparagraph";
+
+        public override string Class => "schProv2";
 
     }
 
