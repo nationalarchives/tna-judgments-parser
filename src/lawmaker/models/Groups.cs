@@ -19,6 +19,21 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
+    internal class Chapter : Branch
+    {
+
+        public static bool IsChapterNumber(string num)
+        {
+            string pattern = @"^CHAPTER \d+$";
+            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
+        }
+
+        public override string Name { get; internal init; } = "chapter";
+
+        public override string Class => "group4";
+
+    }
+
     internal class CrossHeading : Branch
     {
 
