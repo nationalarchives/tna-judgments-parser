@@ -76,7 +76,17 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             HContainer hContainer;
 
-            // TODO: Handle schedule subdivisions
+            hContainer = ParseAndMemoize(line, "SchedulePart", ParseSchedulePart);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "ScheduleChapter", ParseScheduleChapter);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "ScheduleCrossHeading", ParseScheduleCrossheading);
+            if (hContainer != null)
+                return hContainer;
 
             return null;
         }
