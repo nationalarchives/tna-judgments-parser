@@ -43,5 +43,43 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
+    internal class SchedulePart : Branch
+    {
+
+        public static bool IsPartNumber(string num)
+        {
+            string pattern = @"^PART \d+$";
+            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
+        }
+
+        public override string Name { get; internal init; } = "part";
+
+        public override string Class => "schGroup2";
+
+    }
+
+    internal class ScheduleChapter : Branch
+    {
+
+        public static bool IsChapterNumber(string num)
+        {
+            string pattern = @"^CHAPTER \d+$";
+            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
+        }
+
+        public override string Name { get; internal init; } = "chapter";
+
+        public override string Class => "schGroup4";
+
+    }
+
+    internal class ScheduleCrossHeading : Branch
+    {
+
+        public override string Name { get; internal init; } = "crossheading";
+
+        public override string Class => "schGroup7";
+
+    }
 
 }
