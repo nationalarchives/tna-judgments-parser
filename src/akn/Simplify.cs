@@ -21,12 +21,12 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             new Simplifier(doc, styles).VisitDocument();
         }
 
-        readonly XmlDocument Document;
-        readonly XmlNamespaceManager NamespaceManager;
-        readonly Dictionary<string, Dictionary<string, string>> Styles;
-        Dictionary<string, string> State;
+        protected readonly XmlDocument Document;
+        protected readonly XmlNamespaceManager NamespaceManager;
+        protected readonly Dictionary<string, Dictionary<string, string>> Styles;
+        protected Dictionary<string, string> State;
 
-        private Simplifier(XmlDocument doc)
+        protected Simplifier(XmlDocument doc)
         {
             Document = doc;
             NamespaceManager = new XmlNamespaceManager(doc.NameTable);
@@ -34,7 +34,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             Styles = ParseStyles();
             State = new();
         }
-        private Simplifier(XmlDocument doc, Dictionary<string, Dictionary<string, string>> styles)
+        protected Simplifier(XmlDocument doc, Dictionary<string, Dictionary<string, string>> styles)
         {
             Document = doc;
             NamespaceManager = new XmlNamespaceManager(doc.NameTable);
@@ -43,7 +43,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             State = [];
         }
 
-        private Dictionary<string, Dictionary<string, string>> ParseStyles()
+        protected Dictionary<string, Dictionary<string, string>> ParseStyles()
         {
             Dictionary<string, Dictionary<string, string>> css = new();
             XmlNode presentation = Document.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:presentation", NamespaceManager);
@@ -69,7 +69,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             return css;
         }
 
-        private Dictionary<string, Dictionary<string, string>> CorrectStyles(Dictionary<string, Dictionary<string, string>> styles)
+        protected Dictionary<string, Dictionary<string, string>> CorrectStyles(Dictionary<string, Dictionary<string, string>> styles)
         {
             Dictionary<string, Dictionary<string, string>> css = new();
             foreach (var item in styles)
@@ -82,7 +82,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             return css;
         }
 
-        private static Dictionary<string, string> ParseProperties(string properties)
+        protected static Dictionary<string, string> ParseProperties(string properties)
         {
             Dictionary<string, string> props = new();
             foreach (var item in properties.Split(';'))
@@ -97,7 +97,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             return props;
         }
 
-        private Dictionary<string, string> GetClassProperties(XmlElement e)
+        protected Dictionary<string, string> GetClassProperties(XmlElement e)
         {
             string cls = e.GetAttribute("class");
             if (string.IsNullOrEmpty(cls))
@@ -107,7 +107,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             return new();
         }
 
-        private static IDictionary<string, string> GetStyleProperties(XmlElement e)
+        protected static IDictionary<string, string> GetStyleProperties(XmlElement e)
         {
             string style = e.GetAttribute("style");
             if (style is null)
@@ -115,12 +115,12 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             return ParseProperties(style);
         }
 
-        private void VisitDocument()
+        protected void VisitDocument()
         {
             VisitElement(Document.DocumentElement);
         }
 
-        private void VisitNode(XmlNode node)
+        protected void VisitNode(XmlNode node)
         {
             if (node.NodeType == XmlNodeType.Element)
                 VisitElement(node as XmlElement);
@@ -128,7 +128,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 VisitText(node as XmlText);
         }
 
-        private void VisitElement(XmlElement e)
+        protected void VisitElement(XmlElement e)
         {
             Dictionary<string, string> copy = new(this.State);
             UpdateStateAndRemoveStyleAttributes(e);
@@ -138,7 +138,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             State = copy;
         }
 
-        private void UpdateStateAndRemoveStyleAttributes(XmlElement e)
+        protected void UpdateStateAndRemoveStyleAttributes(XmlElement e)
         {
             foreach (KeyValuePair<string, string> item in GetClassProperties(e))
                 State[item.Key] = item.Value;
@@ -162,13 +162,13 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             }
         }
 
-        private static bool IsPrefaceParagraph(XmlElement p)
+        protected static bool IsPrefaceParagraph(XmlElement p)
         {
             if (p.LocalName != "p")
                 return false;
             return p.ParentNode.LocalName == "preface";
         }
-        private static bool IsAttachmentParagraph(XmlElement p)
+        protected static bool IsAttachmentParagraph(XmlElement p)
         {
             if (p.LocalName != "p")
                 return false;
@@ -180,7 +180,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 return false;
             return true;
         }
-        private void AddClassToPrefaceOrAttachmentParagraph(XmlElement p)
+        protected void AddClassToPrefaceOrAttachmentParagraph(XmlElement p)
         {
             if (!IsPrefaceParagraph(p) && !IsAttachmentParagraph(p))
                 return;
@@ -189,7 +189,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 p.SetAttribute("class", align);
         }
 
-        private static void RemoveSpan(XmlElement span)
+        protected static void RemoveSpan(XmlElement span)
         {
             if (span.LocalName != "span")
                 return;
@@ -202,7 +202,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             span.ParentNode.RemoveChild(span);
         }
 
-        private void VisitText(XmlText text)
+        protected void VisitText(XmlText text)
         {
             if (State.GetValueOrDefault("font-weight") == "bold")
             {
