@@ -34,27 +34,21 @@ namespace UK.Gov.Legislation.Lawmaker
 
             HContainer hContainer;
 
+            if (isInSchedule)
+                hContainer = ParseScheduleLine(line);
+            else
+                hContainer = ParseNonScheduleLine(line);
+
+            if (hContainer != null)
+                return hContainer;
+
+            // Parse divisions which can occur both inside AND outside schedules
+
             hContainer = ParseAndMemoize(line, "Schedules", ParseSchedules);
             if (hContainer != null)
                 return hContainer;
 
             hContainer = ParseAndMemoize(line, "Schedule", ParseSchedule);
-            if (hContainer != null)
-                return hContainer;
-
-            hContainer = ParseAndMemoize(line, "Part", ParsePart);
-            if (hContainer != null)
-                return hContainer;
-
-            hContainer = ParseAndMemoize(line, "CrossHeading", ParseCrossheading);
-            if (hContainer != null)
-                return hContainer;
-
-            hContainer = ParseAndMemoize(line, "Prov1", ParseProv1);
-            if (hContainer != null)
-                return hContainer;
-
-            hContainer = ParseAndMemoize(line, "Prov2", ParseProv2);
             if (hContainer != null)
                 return hContainer;
 
@@ -77,6 +71,39 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new UnknownLevel() { Contents = [line] };
         }
 
+        // Parse divisions that only occur INSIDE Schedules
+        private HContainer ParseScheduleLine(WLine line)
+        {
+            HContainer hContainer;
+
+            // TODO: Handle schedule subdivisions
+
+            return null;
+        }
+
+        // Parse divisions that only occur OUTSIDE Schedules
+        private HContainer ParseNonScheduleLine(WLine line)
+        {
+            HContainer hContainer;
+
+            hContainer = ParseAndMemoize(line, "Part", ParsePart);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "CrossHeading", ParseCrossheading);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "Prov1", ParseProv1);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "Prov2", ParseProv2);
+            if (hContainer != null)
+                return hContainer;
+
+            return null;
+        }
 
         /* helper functions for content, intro and wrapUp */
 
