@@ -47,10 +47,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
+            isInSchedule = isInScheduleSave;
             if (children.Count == 0)
             {
                 i = save1;
-                isInSchedule = isInScheduleSave;
                 return null;
             }
             return new ScheduleCrossHeading { Heading = heading, Children = children };
