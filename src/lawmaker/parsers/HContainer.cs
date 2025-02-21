@@ -151,7 +151,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     container.Add(current);
                     continue;
                 }
-                QuotedStructure qs = ParseQuotedStructure(line);
+                BlockQuotedStructure qs = ParseQuotedStructure(line);
                 if (qs is not null)
                 {
                     container.Add(qs);
