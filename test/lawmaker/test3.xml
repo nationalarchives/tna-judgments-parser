@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <bill name="nipbb">
+  <bill name="nipubb">
     <meta>
       <identification source="#author">
         <FRBRWork>
@@ -83,16 +83,16 @@
       </blockContainer>
     </coverPage>
     <preface eId="preface">
-      <p>A</p>
-      <p>Bill</p>
-      <p>to</p>
-      <p>Amend the Human Tissue Act 2004 concerning consent to activities done for the</p>
-      <p>purpose of transplantation and make consequential amendments about the</p>
-      <p>provision of information about such consent.</p>
+      <longTitle>
+        <p class="A">A</p>
+        <p class="Bill">bill</p>
+        <p class="To">to</p>
+        <p>Amend the Human Tissue Act 2004 concerning consent to activities done for the purpose of transplantation and make consequential amendments about the provision of information about such consent.</p>
+      </longTitle>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
-        <p>BE IT ENACTED by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
+        <p><inline name="dropCap">B</inline><inline name="smallCaps">e it enacted</inline> by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
       </formula>
     </preamble>
     <body>
