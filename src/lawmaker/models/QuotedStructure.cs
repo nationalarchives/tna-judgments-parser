@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    internal class QuotedStructure : IQuotedStructure
+    internal class BlockQuotedStructure : IQuotedStructure
     {
 
         public IList<IDivision> Contents { get; internal init; }
@@ -16,7 +15,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public string EndQuote { get; internal set; }
 
-        public WText AppendText { get; internal set; }
+        public AppendText AppendText { get; internal set; }
 
     }
 
