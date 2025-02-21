@@ -1,8 +1,12 @@
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
-
+using DocumentFormat.OpenXml.Vml;
+using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -46,11 +50,53 @@ namespace UK.Gov.Legislation.Lawmaker
             AddBlocks(e, coverPage);
         }
 
-        private void AddPreface(XmlElement bill, IList<IBlock> preface)
+        private void AddPreface(XmlElement bill, IList<IBlock> prefaceElements)
         {
-            XmlElement e = CreateAndAppend("preface", bill);
-            e.SetAttribute("eId", "preface");
-            AddBlocks(e, preface);
+            XmlElement preface = CreateAndAppend("preface", bill);
+            preface.SetAttribute("eId", "preface");
+            XmlElement longTitle = CreateAndAppend("longTitle", preface);
+
+            List<string> standardPrefaceElements = ["A", "Bill", "To"];
+
+            IEnumerable<XmlElement> elements = prefaceElements
+                .Select(block => {
+                    if (block is not WLine)
+                    {
+                        logger.LogWarning("Preface contains an element that isn't a WLine!");
+                        return null;
+                    }
+                    WLine line = block as WLine;
+                    XmlElement p = doc.CreateElement("p", ns);
+                    switch (line.NormalizedContent.ToLower()) {
+                    case "a":
+                        p.SetAttribute("class", ns, "A");
+                        break;
+                    case "bill":
+                        p.SetAttribute("class", ns, "Bill");
+                        break;
+                    case "to":
+                        p.SetAttribute("class", ns, "To");
+                        break;
+                    }
+                    p.InnerText = line.NormalizedContent;
+                    return p;
+                })
+                .Where(b => b is not null);
+                IEnumerable<XmlElement> longTitleText =
+                elements
+                .TakeWhile(e => standardPrefaceElements.Contains(e.GetAttribute("class", ns)))
+                .Append(
+                    elements
+                    .SkipWhile(e => standardPrefaceElements.Contains(e.GetAttribute("class", ns)))
+                    .Aggregate((XmlElement acc, XmlElement element) => {
+                        acc.InnerText = acc.InnerText + " " + element.InnerText;
+                        return acc;
+                }));
+            // LNI-224: For now we can assume any text content in the preface is the longTitle and
+            // should just be in one <p> tag
+            foreach (XmlElement element in longTitleText) {
+                longTitle.AppendChild(element);
+            }
         }
 
         private void AddPreamble(XmlElement bill, IList<IBlock> preamble)
