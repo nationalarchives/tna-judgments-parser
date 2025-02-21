@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UK.Gov.Legislation.Lawmaker.Api;
@@ -26,7 +27,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return new Response()
             {
                 Xml = bundle.Xml,
-                Images = null
+                Images = new List<Image>()
             };
         }
 
