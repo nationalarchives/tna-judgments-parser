@@ -16,6 +16,7 @@ abstract class Builder {
     private static ILogger logger = Logging.Factory.CreateLogger<Builder>();
 
     public static readonly string ns = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+    public static readonly string AknNamespace = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
     protected abstract string UKNS { get; }
 
@@ -25,7 +26,7 @@ abstract class Builder {
         doc = new XmlDocument();
     }
 
-    private XmlElement CreateElement(string name) {
+    protected XmlElement CreateElement(string name) {
         return doc.CreateElement(name, ns);
     }
     protected XmlElement CreateAndAppend(string name, XmlNode parent) {

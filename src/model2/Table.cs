@@ -73,6 +73,20 @@ class WRow : IRow {
         return DOCX.Util.OnOffToBool(tblHeader.Val) ?? true;
     } }
 
+    public bool IsImplicitHeader { get {
+        IEnumerable<WText> rowText = TypedCells
+            .SelectMany(cell => cell.Contents)
+            .OfType<WLine>()
+            .SelectMany(line => line.Contents)
+            .OfType<WText>();
+
+        bool isFirstRow = Table.Rows.First() == this;
+        bool isAllItalic = rowText.All(text => text.Italic ?? false);
+        bool isAllBold = rowText.All(text => text.Bold ?? false);
+
+        return IsHeader || (isFirstRow && (isAllItalic || isAllBold));
+    }}
+
     public List<WCell> TypedCells { get; private init; }
     public IEnumerable<ICell> Cells { get => TypedCells; }
 
