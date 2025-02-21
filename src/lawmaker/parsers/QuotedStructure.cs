@@ -76,7 +76,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return false;
         }
 
-        private QuotedStructure ParseQuotedStructure()
+        private BlockQuotedStructure ParseQuotedStructure()
         {
             if (i == Document.Body.Count)
                 return null;
@@ -86,7 +86,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure);
         }
 
-        private QuotedStructure ParseQuotedStructure(WLine line)
+        private BlockQuotedStructure ParseQuotedStructure(WLine line)
         {
             if (!IsFirstLineOfQuotedStructure(line))
                 return null;
@@ -109,7 +109,7 @@ namespace UK.Gov.Legislation.Lawmaker
             quoteDepth -= 1;
             if (contents.Count == 0)
                 return null;
-            return new QuotedStructure { Contents = contents };
+            return new BlockQuotedStructure { Contents = contents };
         }
 
         // extract start and end quote marks and appended text
@@ -121,7 +121,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static void ExtractQuotesAndAppendTexts(IBlock block)
         {
-            if (block is not QuotedStructure qs)
+            if (block is not BlockQuotedStructure qs)
                 return;
             if (qs.StartQuote is null && qs.Contents.FirstOrDefault() is HContainer first)
             {
@@ -154,7 +154,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private class ExtractAndReplace
         {
             internal string EndQuote { get; private set; } = null;
-            internal WText AppendText { get; private set; } = null;
+            internal AppendText AppendText { get; private set; } = null;
 
             private static readonly string pattern = "\u201D([\\.;])?$";
 
@@ -165,8 +165,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 Match match = Regex.Match(last.Text, pattern);
                 if (match.Success)
                 {
-                    EndQuote = "\u201D";
-                    AppendText = new WText(match.Groups[1].Value, last.properties);
+                    EndQuote = "”";
+                    AppendText = new AppendText(match.Groups[1].Value, last.properties);
                     WText replacement = new(last.Text[..match.Index], last.properties);
                     return WLine.Make(line, line.Contents.SkipLast(1).Append(replacement));
                 }
