@@ -39,6 +39,7 @@ interface IRow {
 
     bool IsHeader { get; }
 
+    bool IsImplicitHeader { get; }
     IEnumerable<ICell> Cells { get; }
 
 }

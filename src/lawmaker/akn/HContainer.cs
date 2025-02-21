@@ -29,6 +29,7 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement level;
             switch (name)
             {
+                case "groupOfParts":
                 case "crossheading":
                 case "schedules":
                 case "definition":

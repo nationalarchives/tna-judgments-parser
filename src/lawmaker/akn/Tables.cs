@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-
+using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -11,6 +11,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
     partial class Builder : AkN.Builder
     {
+
+        private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Lawmaker.Builder>();
 
         private static readonly string HtmlNamespace = "http://www.w3.org/1999/xhtml";
 
@@ -25,39 +27,55 @@ namespace UK.Gov.Legislation.Lawmaker
             return e;
         }
 
+
         // in future we can combine this with base function so logic isn't duplicated
         override protected void AddTable(XmlElement parent, ITable model)
         {
             XmlElement tblock = CreateAndAppend("tblock", parent);
+            tblock.SetAttribute("class", AknNamespace, "table");
             XmlElement foreign = CreateAndAppend("foreign", tblock);
-            XmlElement table = CreateAndAppendHtml("table", foreign);
+            XmlElement table = CreateAndAppend("table", foreign);
+            table.SetAttribute("xmlns", HtmlNamespace);
+            table.SetAttribute("xmlns:akn", AknNamespace);
+            table.SetAttribute("class", HtmlNamespace, "allBorders tableleft width100");
+            table.SetAttribute("cols", model.ColumnWidthsIns.Count.ToString());
 
-            List<float> widths = model.ColumnWidthsIns;
-            XmlElement colgroup = CreateAndAppendHtml("colgroup", table);
-            foreach (var width in widths)
+
+
+            IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
+
+            foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
             {
-                XmlElement col = CreateAndAppendHtml("col", colgroup);
-                // currently "class" and "style" attributes need to be in a non-empty namespace
-                col.SetAttribute("style", UKNS, "width: " + CSS.ConvertSize(width, "in"));
+                AddRows(model, table, rows.TakeWhile(row => row.IsImplicitHeader));
+                AddRows(model, table, rows.SkipWhile(row => row.IsImplicitHeader));
             }
 
+        }
+        protected void AddRows(ITable model, XmlElement table, IEnumerable<IRow> rows)
+        {
+            if (!rows.Any(_ => true))
+            {
+                return;
+            }
             /* This keeps a grid of cells, with the dimensions the table would have
             /* if none of the cells were merged. Merged cells are repeated.
             /* The purpose is to find the correct cell above for vertically merged cells. */
             List<List<XmlElement>> allCellsWithRepeats = [];
-
-            List<List<ICell>> rows = [.. model.Rows.Select(r => r.Cells.ToList())]; // enrichers are lazy
             int iRow = 0;
-            foreach (List<ICell> row in rows)
-            {
 
+            bool rowIsHeader = rows.First().IsImplicitHeader;
+            XmlElement tbody = rowIsHeader ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
+            tbody.SetAttribute("class", HtmlNamespace, rowIsHeader ? "bold centre" : "left");
+
+            foreach (IRow row in rows)
+            {
+                // The merging is probably borked now
                 List<XmlElement> thisRowOfCellsWithRepeats = [];
                 allCellsWithRepeats.Add(thisRowOfCellsWithRepeats);
 
-                bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
-                XmlElement tr = CreateHtml("tr");
+                XmlElement tr = CreateElement("tr");
                 int iCell = 0;
-                foreach (ICell cell in row)
+                foreach (ICell cell in row.Cells)
                 {
                     if (cell.VMerge == VerticalMerge.Continuation)
                     {
@@ -71,7 +89,8 @@ namespace UK.Gov.Legislation.Lawmaker
                         iCell += colspanAbove;
                         continue;
                     }
-                    XmlElement td = CreateHtml(rowIsHeader ? "th" : "td");
+                    XmlElement td = CreateElement(rowIsHeader ? "th" : "td");
+
                     if (cell.ColSpan is not null)
                         td.SetAttribute("colspan", cell.ColSpan.ToString());
                     Dictionary<string, string> styles = cell.GetCSSStyles();
@@ -87,7 +106,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 if (tr.HasChildNodes)
                 {   // some rows might contain nothing but merged cells
-                    table.AppendChild(tr);
+                    tbody.AppendChild(tr);
                 }
                 else
                 {
@@ -99,6 +118,34 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-    }
+        // Group up header rows with their proceeding body rows
+        // A list that looks like this:
+        // [header header row row header row row header row]
+        // will become this:
+        // [[header header row row] [header row row] [header row]]
+        private static IEnumerable<IEnumerable<IRow>> GroupRowsByHeaders(IEnumerable<IRow> rows)
+        {
+            List<(List<IRow>, List<IRow>)> headersWithRows =
+                rows.Aggregate(new List<(List<IRow>, List<IRow>)> { ([], []) },
+                (acc, row) => {
+                (var currentHeaders, var currentRows) = acc.Last();
+                if (row.IsImplicitHeader && currentRows.Count > 0)
+                {
+                    acc.Add(([row], []));
+                } else if (row.IsImplicitHeader)
+                {
+                    currentHeaders.Add(row);
+                } else
+                {
+                    currentRows.Add(row);
+                }
+                return acc;
+            });
+            return headersWithRows.Select(rows => {
+                (var headerRows, var bodyRows) = rows;
+                return headerRows.Concat(bodyRows);
+            });
+        }
 
+    }
 }
