@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public class LawmakerTest
     {
 
-        private static readonly int N = 4;
+        private static readonly int N = 5;
 
         public static readonly IEnumerable<object[]> Indices = Enumerable.Range(1, N)
             .Select(i => new object[] { i });
@@ -29,13 +29,8 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlDocument expectedDoc = new();
             expectedDoc.LoadXml(expected);
 
-
             Assert.Equal(expectedDoc.OuterXml, actualDoc.OuterXml);
         }
-
-        /* helpers */
-
-
         private static byte[] ReadDocx(int i)
         {
             var resource = $"test.lawmaker.test{i}.docx";
