@@ -51,7 +51,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             if (children.Count == 0)
             {
-                QuotedStructure qs = ParseQuotedStructure();
+                BlockQuotedStructure qs = ParseQuotedStructure();
                 if (qs is not null)
                     intro.Add(qs);
                 return new Para1Leaf { Number = num, Contents = intro };
