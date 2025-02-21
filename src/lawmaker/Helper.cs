@@ -1,18 +1,35 @@
 
 using System.IO;
 using System.Xml;
+using UK.Gov.Legislation.Lawmaker.Api;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
+    public enum Hint { Bill }
+
     public class Helper
     {
 
-        public static Bundle ParseFile(string path)
+        // Invoked via CLI when running locally
+        public static Bundle LocalParse(string path)
         {
             byte[] docx = File.ReadAllBytes(path);
             return Parse(docx);
         }
+
+        // Invoked via AWS Lambda function handler 
+        public static Response LambdaParse(Request request)
+        {
+            byte[] docx = request.Content;
+            Bundle bundle = Parse(docx);
+            return new Response()
+            {
+                Xml = bundle.Xml,
+                Images = null
+            };
+        }
+
 
         public static Bundle Parse(byte[] docx)
         {
