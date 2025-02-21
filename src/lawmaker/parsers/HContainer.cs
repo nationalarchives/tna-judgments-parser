@@ -111,6 +111,9 @@ namespace UK.Gov.Legislation.Lawmaker
         private HContainer ParseNonScheduleLine(WLine line)
         {
             HContainer hContainer;
+            hContainer = ParseAndMemoize(line, "GroupOfParts", ParseGroupOfParts);
+            if (hContainer != null)
+                return hContainer;
 
             hContainer = ParseAndMemoize(line, "Part", ParsePart);
             if (hContainer != null)
