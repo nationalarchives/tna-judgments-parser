@@ -37,7 +37,9 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                return new Prov2Branch { Number = num, Intro = intro, Children = children };
+                List<IBlock> wrapUp = [];
+                AddFollowingToIntroOrWrapUp(line, wrapUp);
+                return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
         }
 
