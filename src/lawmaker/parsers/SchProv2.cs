@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -37,16 +37,18 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                return new SchProv2Branch { Number = num, Intro = intro, Children = children };
+                List<IBlock> wrapUp = [];
+                AddFollowingToIntroOrWrapUp(line, wrapUp);
+                return new SchProv2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
         }
 
-        internal List<IDivision> ParseSchProv2Children(WLine leader)
+        internal List<IDivision> ParseSchProv2Children(WLine leader, bool ignoreIndentation = false)
         {
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
-                if (!CurrentIsPossibleSchProv2Child(leader))
+                if (!CurrentIsPossibleSchProv2Child(leader, ignoreIndentation))
                     break;
 
                 int save = i;
@@ -66,16 +68,20 @@ namespace UK.Gov.Legislation.Lawmaker
             return children;
         }
 
-        private bool CurrentIsPossibleSchProv2Child(WLine leader)
+        private bool CurrentIsPossibleSchProv2Child(WLine leader, bool ignoreIndentation = false)
         {
             if (Current() is not WLine line)
                 return true;
             if (!IsLeftAligned(line))
                 return false;
-            if (LineIsIndentedLessThan(line, leader))
-                return false;
-            if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
-                return false;
+
+            if (!ignoreIndentation)
+            {
+                if (LineIsIndentedLessThan(line, leader))
+                    return false;
+                if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
+                    return false;
+            }
             return true;
         }
 
