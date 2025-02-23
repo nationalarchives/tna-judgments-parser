@@ -18,7 +18,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;  // could return ParseBaseProv1(np);
             if (!IsFlushLeft(line))
                 return null;
-            if (i == Document.Body.Count)
+            if (i > Document.Body.Count - 2)
                 return null;
             if (Document.Body[i + 1].Block is not WOldNumberedParagraph np)
                 return null;
