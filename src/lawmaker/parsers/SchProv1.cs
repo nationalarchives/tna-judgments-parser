@@ -70,7 +70,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
-            AddFollowingToIntroOrWrapUp(line, wrapUp);
+            AddFollowingToIntroOrWrapUp(line, wrapUp, true);
             return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
 
         }
@@ -95,7 +95,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (num1 is null)
                 return;
 
-            List<IDivision> grandchildren = ParseSchProv2Children(last);
+            // Indentation seems to be bugged
+            bool ignoreIndentation = true;
+            List<IDivision> grandchildren = ParseSchProv2Children(last, ignoreIndentation);
+
             SchProv2 l;
             if (grandchildren.Count == 0)
             {
