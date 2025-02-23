@@ -62,7 +62,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
             if (hContainer != null)
-                return hContainer;
+                return null;
 
             i += 1;
             if (line is WOldNumberedParagraph np)
@@ -162,7 +162,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        private void AddFollowingToIntroOrWrapUp(WLine leader, List<IBlock> container)
+        private void AddFollowingToIntroOrWrapUp(WLine leader, List<IBlock> container, bool isInSchedule = false)
         {
             while (i < Document.Body.Count)
             {
@@ -172,13 +172,19 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 if (!IsLeftAligned(line))
                     break;
+                /*
                 if (LineIsIndentedLessThan(line, leader))
                     break;
+                */
                 int save = i;
-                HContainer test = ParseProv1(line);
-                i = save;
-                if (test is not null)
-                    break;
+                if (!isInSchedule)
+                {
+                    // Prevent possible following Section heading from being mistaken as WrapUp
+                    HContainer test = ParseProv1(line);
+                    i = save;
+                    if (test is not null)
+                        break;
+                }
                 i += 1;
                 container.Add(line);
             }
