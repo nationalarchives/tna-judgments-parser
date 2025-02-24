@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
-            if (!Schedules.IsSchedulesHeading(line.NormalizedContent))
+            if (!Schedules.IsValidHeading(line.NormalizedContent))
                 return null;
 
             // Schedules container must be followed by Schedule
@@ -51,15 +51,9 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Schedule)
-                {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
+                if (!Schedules.IsValidChild(next))
                 {
                     i = save;
                     break;

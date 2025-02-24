@@ -20,7 +20,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return null;
 
-            if (!ScheduleChapter.IsChapterNumber(line.NormalizedContent))
+            if (!ScheduleChapter.IsValidNumber(line.NormalizedContent))
                 return null;
             IFormattedText number = new WText(
                 line.NormalizedContent,
@@ -45,12 +45,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not ScheduleCrossHeading && next is not SchProv1)
-                {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
+                if (!ScheduleChapter.IsValidChild(next))
                 {
                     i = save;
                     break;
