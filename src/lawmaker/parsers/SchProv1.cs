@@ -17,7 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!SchProv1.IsScheduleParagraphNumber(np.Number.Text))
+            if (!SchProv1.IsValidNumber(np.Number.Text))
                 return null;
 
             int save = i;
@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not SchProv2 && next is not Para1 && next is not UnnumberedParagraph)
+                if (!SchProv1.IsValidChild(next))
                 {
                     i = save;
                     break;
@@ -72,7 +72,6 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> wrapUp = [];
             AddFollowingToIntroOrWrapUp(line, wrapUp, true);
             return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
-
         }
 
         private bool CurrentIsPossibleSchProv1Child(WLine leader)
