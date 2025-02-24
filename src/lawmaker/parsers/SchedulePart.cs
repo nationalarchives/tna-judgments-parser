@@ -38,8 +38,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> children = [];
 
-            bool isInScheduleSave = isInSchedule;
-            isInSchedule = true;
+            bool isInSchedulesSave = isInSchedules;
+            isInSchedules = true;
             while (i < Document.Body.Count)
             {
 
@@ -57,7 +57,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
-            isInSchedule = isInScheduleSave;
+            isInSchedules = isInSchedulesSave;
             if (children.Count == 0)
             {
                 i = save1;
