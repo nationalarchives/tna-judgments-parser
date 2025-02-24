@@ -60,6 +60,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "Para3", ParsePara3);
+            if (hContainer != null)
+                return hContainer;
+
             hContainer = ParseAndMemoize(line, "Definition", ParseDefinition);
             if (hContainer != null)
                 return hContainer;

@@ -28,8 +28,45 @@ namespace UK.Gov.Legislation.Lawmaker
             IFormattedText num = np.Number;
             List<IBlock> intro = [ WLine.RemoveNumber(np) ];
 
-            return new Para2Leaf { Number = num, Contents = intro };
+            if (i == Document.Body.Count)
+                return new Para2Leaf { Number = num, Contents = intro };
+
+            List<IDivision> children = [];
+
+            while (i < Document.Body.Count)
+            {
+                if (!CurrentIsPossiblePara2Child(line))
+                    break;
+
+                int save = i;
+                IDivision next = ParseNextBodyDivision();
+                if (!Para2.IsValidChild(next))
+                {
+                    i = save;
+                    break;
+                }
+                if (!NextChildIsAcceptable(children, next))
+                {
+                    i = save;
+                    break;
+                }
+                children.Add(next);
+            }
+            if (children.Count == 0)
+            {
+                QuotedStructure qs = ParseQuotedStructure();
+                if (qs is not null)
+                    intro.Add(qs);
+                return new Para2Leaf { Number = num, Contents = intro };
+            }
+            else
+            {
+                return new Para2Branch { Number = num, Intro = intro, Children = children };
+            }
+
         }
+
+        private bool CurrentIsPossiblePara2Child(WLine leader) => CurrentIsPossibleProv1Child(leader);
 
     }
 
