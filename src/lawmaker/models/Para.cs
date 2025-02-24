@@ -35,7 +35,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
     internal class Para1Branch : Branch, Para1
     {
-        public override string Name { get; internal init; } = "paragraph";
+        public override string Name { get; internal init; } = "level";
 
         public override string Class => "para1";
 
@@ -44,7 +44,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
     internal class Para1Leaf : Leaf, Para1
     {
-        public override string Name { get; internal init; } = "paragraph";
+        public override string Name { get; internal init; } = "level";
 
         public override string Class => "para1";
 
@@ -61,12 +61,25 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.IsMatch(num, pattern);
         }
 
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Para3)
+                return true;
+            if (child is Definition)
+                return true;
+            if (child is UnnumberedParagraph)
+                return true;
+            if (child is WDummyDivision)
+                return true;
+            return false;
+        }
+
     }
 
     internal class Para2Branch : Branch, Para2
     {
 
-        public override string Name { get; internal init; } = "subparagraph";
+        public override string Name { get; internal init; } = "level";
 
         public override string Class => "para2";
 
@@ -76,9 +89,41 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Para2Leaf : Leaf, Para2
     {
 
-        public override string Name { get; internal init; } = "subparagraph";
+        public override string Name { get; internal init; } = "level";
 
         public override string Class => "para2";
+
+    }
+
+    /* para3 */
+
+    internal interface Para3
+    {
+
+        public static bool IsValidNumber(string num)
+        {
+            string pattern = @"^\([A-Z]+\)$";
+            return Regex.IsMatch(num, pattern);
+        }
+
+    }
+
+    internal class Para3Branch : Branch, Para2
+    {
+
+        public override string Name { get; internal init; } = "level";
+
+        public override string Class => "para3";
+
+    }
+
+
+    internal class Para3Leaf : Leaf, Para2
+    {
+
+        public override string Name { get; internal init; } = "level";
+
+        public override string Class => "para3";
 
     }
 
