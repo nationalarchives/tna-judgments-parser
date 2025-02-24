@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    internal class QuotedStructure : IQuotedStructure
+    internal class QuotedText : IInlineContainer
     {
-
-        public IList<IDivision> Contents { get; internal init; }
 
         public string StartQuote { get; internal set; }
 
         public string EndQuote { get; internal set; }
 
-        public WText AppendText { get; internal set; }
+        internal IList<IInline> Contents { get; init; }
+
+        IEnumerable<IInline> IInlineContainer.Contents => Contents;
 
     }
 

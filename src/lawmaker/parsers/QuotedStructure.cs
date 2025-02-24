@@ -14,6 +14,68 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private int quoteDepth = 0;
 
+        private static (int, int) CountLeftAndRightQuotes(WLine line)
+        {
+            int left = 0;
+            int right = 0;
+            foreach (char c in line.TextContent)
+            {
+                if (c == '\u201C')
+                    left++;
+                else if (c == '\u201D')
+                    right++;
+            }
+            return (left, right);
+        }
+
+        private bool IsFirstLineOfQuotedStructure(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+            {
+                if (np.Number.Text.StartsWith('“'))
+                    return true;
+            }
+            else
+            {
+                if (line.NormalizedContent.StartsWith('“'))
+                {
+                    var (left, right) = CountLeftAndRightQuotes(line);
+                    if (left == 1 && right == 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            if (i == 0)
+                return false;
+            if (Document.Body[i - 1].Block is not WLine previous)
+                return false;
+            // currently IsFirstLineOfQuotedStructure works only with current line
+            // if (IsFirstLineOfQuotedStructure(previous))
+            //     return false;
+            if (previous.NormalizedContent.StartsWith('“'))
+                return false;
+            var (prevLeft, prevRight) = CountLeftAndRightQuotes(previous);
+            return prevLeft > prevRight;
+        }
+
+        private static bool IsEndOfQuotedStructure(HContainer hContainer)
+        {
+            WLine line = LastLine.GetLastLine(hContainer);
+            if (line is null)
+                return false;
+            string text = line.NormalizedContent;
+            if (text.EndsWith('”'))
+                return true;
+            if (text.EndsWith("”."))
+                return true;
+            if (text.EndsWith("”;"))
+                return true;
+            if (text.EndsWith("”, and"))
+                return true;
+            return false;
+        }
+
         private QuotedStructure ParseQuotedStructure()
         {
             if (i == Document.Body.Count)
@@ -21,63 +83,64 @@ namespace UK.Gov.Legislation.Lawmaker
             IBlock block = Document.Body[i].Block;
             if (block is not WLine line)
                 return null;
-            return ParseQuotedStructure(line);
+            return ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure);
         }
 
         private QuotedStructure ParseQuotedStructure(WLine line)
         {
-            if (line is not WOldNumberedParagraph np)
+            if (!IsFirstLineOfQuotedStructure(line))
                 return null;
-            if (!np.Number.Text.StartsWith('“'))
-                return null;
-            WText newNum = new WText(np.Number.Text.TrimStart('“'), null);  // not ideal
-            np = new WOldNumberedParagraph(newNum, np);
 
+            List<IDivision> contents = [];
             quoteDepth += 1;
-
-            int save = i;
-            var p2 = ParseProv2(np);
-            if (p2 is null)
-            {
-                quoteDepth -= 1;
-                i = save;
-                return null;
-            }
-
-            List<IDivision> contents = [p2];
             while (i < Document.Body.Count)
             {
-                if (Document.Body[i].Block is not WLine next)
-                    break;
-                save = i;
-                p2 = ParseProv2(next);
-                if (p2 is null)
+                int save = i;
+                var child = ParseLine();
+                if (child is null)
                 {
                     i = save;
                     break;
                 }
-                if (LineIsIndentedLessThan(next, line))
-                {
-                    i = save;
+                contents.Add(child);
+                if (IsEndOfQuotedStructure(child))
                     break;
-                }
-                contents.Add(p2);
             }
             quoteDepth -= 1;
-            return new QuotedStructure { Contents = contents, StartQuote = "“" };
+            if (contents.Count == 0)
+                return null;
+            return new QuotedStructure { Contents = contents };
         }
 
-        // extract end quote marks and appended text
+        // extract start and end quote marks and appended text
 
-        internal static void ExtractAllEndQuotesAndAppendTexts(IList<IDivision> body)
+        internal static void ExtractAllQuotesAndAppendTexts(IList<IDivision> body)
         {
-            Util.WithEachBlock.Do(body, ExtractEndQuotesAndAppendTexts);
+            Util.WithEachBlock.Do(body, ExtractQuotesAndAppendTexts);
         }
 
-        private static void ExtractEndQuotesAndAppendTexts(IBlock block)
+        private static void ExtractQuotesAndAppendTexts(IBlock block)
         {
             if (block is not QuotedStructure qs)
                 return;
+            if (qs.StartQuote is null && qs.Contents.FirstOrDefault() is HContainer first)
+            {
+                if (first.HeadingPrecedesNumber)
+                {
+                    // ToDo
+                }
+                else
+                {
+                    if (first.Number is not null && first.Number.Text.StartsWith('“'))
+                    {
+                        if (first.Number is WText wText)
+                            first.Number = new WText(first.Number.Text[1..], wText.properties);
+                        else
+                            first.Number = new WText(first.Number.Text[1..], null);
+                        qs.StartQuote = "“";
+                    }
+                }
+            }
             var f = new ExtractAndReplace();
             LastLine.Replace(qs.Contents, f.Invoke);
             qs.EndQuote = f.EndQuote;
@@ -100,7 +163,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (line.Contents.LastOrDefault() is not WText last)
                     return null;
                 Match match = Regex.Match(last.Text, pattern);
-                if (match.Success) {
+                if (match.Success)
+                {
                     EndQuote = "”";
                     AppendText = new WText(match.Groups[1].Value, last.properties);
                     WText replacement = new(last.Text[..match.Index], last.properties);

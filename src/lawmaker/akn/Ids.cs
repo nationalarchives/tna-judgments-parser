@@ -10,6 +10,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         protected override string MakeDivisionId(IDivision div)
         {
+            if (quoteDepth > 0)
+                return null;
             if (div is Part)
                 return div.Number.Text.Replace("PART", "pt").Replace(' ', '_').ToLower();
             if (div is Prov1)
