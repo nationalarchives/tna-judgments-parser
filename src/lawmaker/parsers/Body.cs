@@ -13,7 +13,7 @@ namespace UK.Gov.Legislation.Lawmaker
     {
 
         private readonly List<IDivision> body = [];
-        private bool isInSchedule = false;
+        private bool isInSchedules = false;
 
         private void ParseBody()
         {

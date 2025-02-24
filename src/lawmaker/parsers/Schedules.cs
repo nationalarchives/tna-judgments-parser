@@ -19,12 +19,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
-
             if (!Schedules.IsSchedulesHeading(line.NormalizedContent))
                 return null;
-
-            IFormattedText headingText = new WText("Schedules", null);
-            ILine heading = WLine.Make(line, new List<IInline>(1) { headingText });
 
             // Schedules container must be followed by Schedule
             if (Document.Body[i + 1].Block is not WLine line2)
@@ -32,13 +28,27 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsCenterAligned(line2))
                 return null;
 
+            IFormattedText headingText = new WText("Schedules", null);
+            ILine heading = WLine.Make(line, new List<IInline>(1) { headingText });
+
             var save1 = i;
             i += 1;
 
-            List<IDivision> children = [];
+            List<IDivision> children = ParseSchedulesChildren();
+            if (children.Count == 0)
+            {
+                i = save1;
+                return null;
+            }
+            return new Schedules { Number = null, Heading = heading, Children = children };
+        }
 
-            bool isInScheduleSave = isInSchedule;
-            isInSchedule = true;
+        internal List<IDivision> ParseSchedulesChildren()
+        {
+            bool isInSchedulesSave = isInSchedules;
+            isInSchedules = true;
+
+            List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
 
@@ -56,13 +66,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
-            isInSchedule = isInScheduleSave;
-            if (children.Count == 0)
-            {
-                i = save1;
-                return null;
-            }
-            return new Schedules { Number = null, Heading = heading, Children = children };
+            isInSchedules = isInSchedulesSave;
+            return children;
         }
 
     }
