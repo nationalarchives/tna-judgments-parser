@@ -64,9 +64,9 @@ namespace Backlog.Src
             using var memStream = new MemoryStream();
             var gz = new GZipOutputStream(memStream);
             var tar = new TarOutputStream(gz, Encoding.UTF8);
-            WriteSource(source.Content, source.Filename, tar);
-            WriteXml(response.Xml, metadata.Parameters.TRE.Payload.Xml, tar);
-            WriteMetadata(metadata, tar);
+            WriteSource(source.Content, uuid, source.Filename, tar);
+            WriteXml(response.Xml, uuid, metadata.Parameters.TRE.Payload.Xml, tar);
+            WriteMetadata(metadata, uuid, tar);
             tar.Close();
             gz.Close();
             byte[] tarGz = memStream.ToArray();
@@ -77,21 +77,23 @@ namespace Backlog.Src
             };
         }
 
-        private static void WriteSource(byte[] file, string filename, TarOutputStream tar)
+        private static void WriteSource(byte[] file, string uuid, string filename, TarOutputStream tar)
         {
-            Write(file, filename, tar);
+            var name = uuid + "/" + filename;
+            Write(file, name, tar);
         }
 
-        private static void WriteXml(string xml, string filename, TarOutputStream tar)
+        private static void WriteXml(string xml, string uuid, string filename, TarOutputStream tar)
         {
             var bytes = Encoding.UTF8.GetBytes(xml);
-            Write(bytes, filename, tar);
+            var name = uuid + "/" + filename;
+            Write(bytes, name, tar);
         }
 
-        private static void WriteMetadata(Metadata metadata, TarOutputStream tar)
+        private static void WriteMetadata(Metadata metadata, string uuid, TarOutputStream tar)
         {
             var json = JsonSerializer.SerializeToUtf8Bytes(metadata, metadata.Options);
-            var name = metadata.Parameters.TRE.Payload.Metadata;
+            var name = uuid + "/" + metadata.Parameters.TRE.Payload.Metadata;
             Write(json, name, tar);
         }
 
