@@ -4,6 +4,7 @@ using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using System.Text.RegularExpressions;
+using UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -11,7 +12,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private Schedule ParseSchedule(WLine line)
+        private HContainer ParseSchedule(WLine line)
         {
             if (line is WOldNumberedParagraph np)
                 return null;
@@ -43,7 +44,6 @@ namespace UK.Gov.Legislation.Lawmaker
                     return null;
                 referenceNoteLine = line2;
                 headingLine = line3;
-                i += 1;
             }
             if (!IsCenterAligned(headingLine))
                 return null;
@@ -55,12 +55,38 @@ namespace UK.Gov.Legislation.Lawmaker
             );
 
             var save1 = i;
-            i += 2;
+            List<IDivision> children;
+            if (isInSchedules || quoteDepth > 0)
+            {
+                i += (referenceNoteLine is null) ? 2 : 3;
+                children = ParseScheduleChildren();
+                if (children.Count == 0)
+                {
+                    i = save1;
+                    return null;
+                }
+                return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = children };
+            }
+            else
+            {
+                // If we encounter a Schedule outside of a Schedules container, it must be wrapped
+                // Note: Does not apply inside quoted structures
+                children = ParseSchedulesChildren();
+                if (children.Count == 0)
+                {
+                    i = save1;
+                    return null;
+                }
+                return new Schedules { Number = null, Heading = null, Children = children };
+            }
+        }
+
+        internal List<IDivision> ParseScheduleChildren()
+        {
+            bool isInSchedulesSave = isInSchedules;
+            isInSchedules = true;
 
             List<IDivision> children = [];
-
-            bool isInScheduleSave = isInSchedule;
-            isInSchedule = true;
             while (i < Document.Body.Count)
             {
                 int save = i;
@@ -77,14 +103,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
-            isInSchedule = isInScheduleSave;
-            if (children.Count == 0)
-            {
-                i = save1;
-                return null;
-            }
-            return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = children };
+            isInSchedules = isInSchedulesSave;
+            return children;
         }
+
 
     }
 
