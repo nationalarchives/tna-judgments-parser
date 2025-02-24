@@ -1,45 +1,28 @@
 
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Backlog.Src.Batch.One
 {
 
     class Files
     {
-        static readonly string Root = @"C:\Users\Administrator\TDR-2024-CG6F\data\JudgmentFiles\";
 
-        internal static string GetPdf(string id) {
-            var dir = Root + "j" + id + @"\";
-            var files = System.IO.Directory.GetFiles(dir);
-            if (files.Where(file => file.EndsWith(".docx")).Any())
-                return null;
-            var pdfs = files.Where(file => file.EndsWith(".pdf"));
-            var count = pdfs.Count();
-            if (count == 0)
-                return null;
-            if (count > 1)
-                throw new System.Exception();
-            return pdfs.First();
+        private static string GetUuid(string pathToDataFolder, Metadata.Line meta) {
+            string clientside_original_filepath = meta.FilePath.Replace(@"JudgmentFiles\", @"data/HMCTS_Judgment_Files/").Replace('\\', '/');
+            IEnumerable<string> lines = System.IO.File.ReadLines(pathToDataFolder + @"tdr_metadata\file-metadata.csv");
+            foreach (var line in lines)
+            {
+                if (!line.Contains(clientside_original_filepath))
+                    continue;
+                return line.Substring(line.LastIndexOf(',') + 1);
+            }
+            return null;
         }
 
-        internal static string GetDocx(string id) {
-            var dir = Root + "j" + id + @"\";
-            var files = System.IO.Directory.GetFiles(dir);
-            if (files.Where(file => file.EndsWith(".pdf")).Any())
-                return null;
-            var pdfs = files.Where(file => file.EndsWith(".docx"));
-            var count = pdfs.Count();
-            if (count == 0)
-                return null;
-            if (count > 1)
-                throw new System.Exception();
-            return pdfs.First();
-        }
-
-        internal static void SaveXml(string id, string xml) {
-            var dir = Root + "j" + id + @"\";
-            var file = dir + "j" + id + "_judgment.xml";
-            System.IO.File.WriteAllText(file, xml);
+        internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta) {
+            string uuid = GetUuid(pathToDataFolder, meta);
+            string path = pathToDataFolder + @"court_documents\" + uuid;
+            return System.IO.File.ReadAllBytes(path);
         }
 
     }
