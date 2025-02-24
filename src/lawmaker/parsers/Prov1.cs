@@ -43,7 +43,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Prov1.IsSectionNumber(np.Number.Text))
+            if (!Prov1.IsValidNumber(np.Number.Text))
                 return null;
 
             i += 1;
@@ -67,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Prov2 && next is not Para1 && next is not UnnumberedParagraph)
+                if (!Prov1.IsValidChild(next))
                 {
                     i = save;
                     break;
