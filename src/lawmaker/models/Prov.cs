@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -47,10 +48,23 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface SchProv1
     {
 
-        public static bool IsScheduleParagraphNumber(string num)
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^\d+[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
+        }
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is SchProv2)
+                return true;
+            if (child is Para1)
+                return true;
+            if (child is UnnumberedParagraph)
+                return true;
+            if (child is WDummyDivision)
+                return true;
+            return false;
         }
 
     }
@@ -116,7 +130,7 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface SchProv2 : IDivision
     {
 
-        public static bool IsSchProv2Number(string num)
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^\(\d+\)$";
             return Regex.IsMatch(num, pattern);
@@ -126,6 +140,17 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             string pattern = @"^\(\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
+        }
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Para1)
+                return true;
+            if (child is UnnumberedParagraph)
+                return true;
+            if (child is WDummyDivision)
+                return true;
+            return false;
         }
 
     }

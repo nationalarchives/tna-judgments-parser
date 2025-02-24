@@ -20,8 +20,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
-
-            if (!Schedule.IsScheduleNumber(line.NormalizedContent))
+            if (!Schedule.IsValidNumber(line.NormalizedContent))
                 return null;
 
             string numberString = Regex.Replace(
@@ -91,12 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not SchedulePart && next is not ScheduleCrossHeading && next is not SchProv1)
-                {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
+                if (!Schedule.IsValidChild(next))
                 {
                     i = save;
                     break;
@@ -106,7 +100,6 @@ namespace UK.Gov.Legislation.Lawmaker
             isInSchedules = isInSchedulesSave;
             return children;
         }
-
 
     }
 

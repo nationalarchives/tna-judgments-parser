@@ -32,15 +32,9 @@ namespace UK.Gov.Legislation.Lawmaker
             isInSchedules = true;
             while (i < Document.Body.Count)
             {
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not SchProv1)
-                {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
+                if (!ScheduleCrossHeading.IsValidChild(next))
                 {
                     i = save;
                     break;

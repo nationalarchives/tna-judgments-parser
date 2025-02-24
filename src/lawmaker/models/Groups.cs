@@ -1,5 +1,7 @@
 
 using System.Text.RegularExpressions;
+using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -46,45 +48,70 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Schedules : Branch
     {
 
-        public static bool IsSchedulesHeading(string heading)
+        public override string Name { get; internal init; } = "schedules";
+
+        public override string Class => "schs";
+
+        public static bool IsValidHeading(string heading)
         {
             string pattern = @"^SCHEDULES$";
             return Regex.IsMatch(heading, pattern, RegexOptions.IgnoreCase);
         }
 
-        public override string Name { get; internal init; } = "schedules";
-
-        public override string Class => "schs";
+        public static bool IsValidChild(IDivision child)
+        {
+            // Upon entering the Schedules container, all following elements should be within 
+            return true;
+        }
 
     }
 
     internal class SchedulePart : Branch
     {
 
-        public static bool IsPartNumber(string num)
+        public override string Name { get; internal init; } = "part";
+
+        public override string Class => "schGroup2";
+
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^PART \d+$";
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
 
-        public override string Name { get; internal init; } = "part";
-
-        public override string Class => "schGroup2";
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is ScheduleChapter)
+                return true;
+            if (child is ScheduleCrossHeading)
+                return true;
+            if (child is SchProv1)
+                return true;
+            return false;
+        }
 
     }
 
     internal class ScheduleChapter : Branch
     {
 
-        public static bool IsChapterNumber(string num)
+        public override string Name { get; internal init; } = "chapter";
+
+        public override string Class => "schGroup4";
+
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^CHAPTER \d+$";
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
-
-        public override string Name { get; internal init; } = "chapter";
-
-        public override string Class => "schGroup4";
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is ScheduleCrossHeading)
+                return true;
+            if (child is SchProv1)
+                return true;
+            return false;
+        }
 
     }
 
@@ -94,6 +121,13 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "crossheading";
 
         public override string Class => "schGroup7";
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is SchProv1)
+                return true;
+            return false;
+        }
 
     }
 

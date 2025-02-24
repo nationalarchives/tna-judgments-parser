@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Para1 && next is not UnnumberedParagraph)
+                if (!SchProv2.IsValidChild(next))
                 {
                     i = save;
                     break;
