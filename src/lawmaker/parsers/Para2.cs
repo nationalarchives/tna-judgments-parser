@@ -20,7 +20,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Para2.IsPara2Number(np.Number.Text))
+            if (!Para2.IsValidNumber(np.Number.Text))
                 return null;
 
             i += 1;
