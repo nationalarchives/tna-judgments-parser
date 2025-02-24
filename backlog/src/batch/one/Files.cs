@@ -25,6 +25,20 @@ namespace Backlog.Src.Batch.One
             return System.IO.File.ReadAllBytes(path);
         }
 
+        /* */
+
+        internal static void CopyAllFilesWithExtension(string pathToDataFolder, List<Metadata.Line> lines) {
+            foreach (var line in lines)
+            {
+                string uuid = GetUuid(pathToDataFolder, line);
+                string path = pathToDataFolder + @"court_documents\" + uuid;
+                byte[] data = System.IO.File.ReadAllBytes(path);
+                path += line.Extension.ToLower();
+                System.IO.File.WriteAllBytes(path, data);
+            }
+
+        }
+
     }
 
 }
