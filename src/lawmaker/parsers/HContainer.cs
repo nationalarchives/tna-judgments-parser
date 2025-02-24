@@ -60,11 +60,9 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
-            /*
-            hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
+            hContainer = ParseAndMemoize(line, "Definition", ParseDefinition);
             if (hContainer != null)
                 return hContainer;
-            */
 
             i += 1;
             if (line is WOldNumberedParagraph np)
