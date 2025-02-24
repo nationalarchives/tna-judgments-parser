@@ -17,11 +17,16 @@ namespace Backlog.Src
     class Bundle
     {
 
+        internal string Uuid { get; init; }
+
+        internal Metadata Data { get; init; }
+
+        internal byte[] TarGz { get; init; }
+
         internal class Source {
             public string Filename { get; init; }
             public byte[] Content { get; init; }
             public string MimeType { get; init; }
-//            public string ContentHash { get; init; }
         }
 
         private static string Hash(byte[] content) {
@@ -29,17 +34,16 @@ namespace Backlog.Src
             return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
         }
 
-        internal static byte[] Make(Source source, Judgments.Api.Response response, uint number)
+        internal static Bundle Make(Source source, Judgments.Api.Response response)
         {
-            string blkNum = "BULK-" + number;
-            string prefix = blkNum + "/";
+            string uuid = Guid.NewGuid().ToString();
             Metadata metadata = new()
             {
                 Parameters = new Parameters
                 {
                     TRE = new TRE.Metadata
                     {
-                        Reference = blkNum,
+                        Reference = uuid,
                         Payload = new TRE.Payload
                         {
                             Filename = source.Filename,
@@ -60,31 +64,34 @@ namespace Backlog.Src
             using var memStream = new MemoryStream();
             var gz = new GZipOutputStream(memStream);
             var tar = new TarOutputStream(gz, Encoding.UTF8);
-            WriteSource(source.Content, source.Filename, prefix, tar);
-            WriteXml(response.Xml, metadata.Parameters.TRE.Payload.Xml, prefix, tar);
-            WriteMetadata(metadata, prefix, tar);
+            WriteSource(source.Content, source.Filename, tar);
+            WriteXml(response.Xml, metadata.Parameters.TRE.Payload.Xml, tar);
+            WriteMetadata(metadata, tar);
             tar.Close();
             gz.Close();
-            return memStream.ToArray(); ;
+            byte[] tarGz = memStream.ToArray();
+            return new() {
+                Uuid = uuid,
+                Data = metadata,
+                TarGz = tarGz
+            };
         }
 
-        private static void WriteSource(byte[] file, string filename, string prefix, TarOutputStream tar)
+        private static void WriteSource(byte[] file, string filename, TarOutputStream tar)
         {
-            var name = prefix + filename;
-            Write(file, name, tar);
+            Write(file, filename, tar);
         }
 
-        private static void WriteXml(string xml, string filename, string prefix, TarOutputStream tar)
+        private static void WriteXml(string xml, string filename, TarOutputStream tar)
         {
             var bytes = Encoding.UTF8.GetBytes(xml);
-            var name = prefix + filename;
-            Write(bytes, name, tar);
+            Write(bytes, filename, tar);
         }
 
-        private static void WriteMetadata(Metadata metadata, string prefix, TarOutputStream tar)
+        private static void WriteMetadata(Metadata metadata, TarOutputStream tar)
         {
-            var json = JsonSerializer.SerializeToUtf8Bytes(metadata, Metadata.Options);
-            var name = prefix + metadata.Parameters.TRE.Payload.Metadata;
+            var json = JsonSerializer.SerializeToUtf8Bytes(metadata, metadata.Options);
+            var name = metadata.Parameters.TRE.Payload.Metadata;
             Write(json, name, tar);
         }
 
@@ -97,16 +104,16 @@ namespace Backlog.Src
             tar.CloseEntry();
         }
 
-        class Metadata
+        internal class Metadata
         {
 
-            public static readonly JsonSerializerOptions Options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            public readonly JsonSerializerOptions Options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
             public Parameters Parameters { get; set; }
 
         }
 
-        class Parameters
+        internal class Parameters
         {
 
             [JsonPropertyName("TRE")]
