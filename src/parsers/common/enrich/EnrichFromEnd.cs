@@ -12,7 +12,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.NationalArchives.Enrichment
 {
 
-    internal delegate IInline Constructor(string ncn, RunProperties props);
+    internal delegate IInline Constructor(string text, RunProperties props);
 
     class EnrichFromEnd
     {
