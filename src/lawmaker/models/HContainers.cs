@@ -11,6 +11,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         string Class { get; }
 
+        public bool HeadingPrecedesNumber { get; }
+
     }
 
     abstract class HContainer : IHContainer
@@ -20,7 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public abstract string Class { get; }
 
-        public virtual IFormattedText Number { get; internal init; }
+        public virtual IFormattedText Number { get; internal set; }
 
         public virtual ILine Heading { get; internal set; }
 
