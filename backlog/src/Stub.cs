@@ -184,21 +184,17 @@ namespace Backlog.Src
                 number.AppendChild(Document.CreateTextNode(caseNo));
 
             }
-            foreach (IParty pty in Data.Parties)
+            foreach (UK.Gov.NationalArchives.CaseLaw.Model.Party pty in Data.Parties)
             {
                 XmlElement e = CreateAndAppendUK("party", proprietary);
                 proprietary.AppendChild(e);
-                e.SetAttribute("role", pty.Role.Value.ShowAs());
+                e.SetAttribute("role", pty.Role.ShowAs());
                 e.AppendChild(Document.CreateTextNode(pty.Name));
             }
             foreach (var cat in Data.Categories)
             {
                 AddCategory(proprietary, cat);
             }
-            // foreach (var subcat in Data.Subcategories)
-            // {
-            //     AddSubcategory(proprietary, subcat);
-            // }
             if (true)
             {
                 XmlElement e = CreateAndAppendUK("sourceFormat", proprietary);
@@ -220,9 +216,7 @@ namespace Backlog.Src
             e.AppendChild(text);
             return e;
         }
-        // private static void AddCategory(XmlElement proprietary, string value) {
-        //     AddProprietaryField(proprietary, "category", value);
-        // }
+
         internal static void AddCategory(XmlElement proprietary, ICategory value) {
             var e = AddProprietaryField(proprietary, "category", value.Name);
             if (value.Parent is not null)
