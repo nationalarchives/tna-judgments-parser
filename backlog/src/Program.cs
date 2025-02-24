@@ -1,4 +1,6 @@
 
+using Backlog.Src.Batch.One;
+
 namespace Backlog.Src
 {
 
@@ -11,8 +13,13 @@ namespace Backlog.Src
                 PathToCourtMetadataFile = @"C:\Users\Administrator\TDR-2025-CNS6\court_metadata.csv",
                 PathDoDataFolder = @"C:\Users\Administrator\TDR-2025-CNS6\"
             };
-            Bundle bundle = helper.GenerateBundle(87);
-            System.Console.WriteLine(bundle.Data.Parameters.TRE.Payload.Filename);
+            // Files.CopyAllFilesWithExtension(helper.PathDoDataFolder, Metadata.Read(helper.PathToCourtMetadataFile));
+
+            // Bundle bundle = helper.GenerateBundle(65);
+
+            // string output = @"C:\Users\Administrator\TDR-2025-CNS6\test.tar.gz";
+            // System.IO.File.WriteAllBytes(output, bundle.TarGz);
+
             return 0;
         }
 
