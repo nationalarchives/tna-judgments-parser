@@ -34,7 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             HContainer hContainer;
 
-            if (isInSchedule)
+            if (isInSchedules)
                 hContainer = ParseScheduleLine(line);
             else
                 hContainer = ParseNonScheduleLine(line);
@@ -164,7 +164,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        private void AddFollowingToIntroOrWrapUp(WLine leader, List<IBlock> container, bool isInSchedule = false)
+        private void AddFollowingToIntroOrWrapUp(WLine leader, List<IBlock> container, bool isInSchedules = false)
         {
             while (i < Document.Body.Count)
             {
@@ -179,7 +179,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 */
                 int save = i;
-                if (!isInSchedule)
+                if (!isInSchedules)
                 {
                     // Prevent possible following Section heading from being mistaken as WrapUp
                     HContainer test = ParseProv1(line);
