@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Para1.IsPara1Number(np.Number.Text))
+            if (!Para1.IsValidNumber(np.Number.Text))
                 return null;
 
             i += 1;
@@ -38,7 +38,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     next = ParseCurrentAsPara2();
                 }
-                if (next is not Para2)
+                if (!Para1.IsValidChild(next))
                 {
                     i = save;
                     break;
