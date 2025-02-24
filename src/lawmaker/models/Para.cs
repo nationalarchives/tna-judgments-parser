@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -11,10 +12,23 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Para1
     {
 
-        public static bool IsPara1Number(string num)
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^\([a-z]+\)$";
             return Regex.IsMatch(num, pattern);
+        }
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Para2)
+                return true;
+            if (child is Definition)
+                return true;
+            if (child is UnnumberedParagraph)
+                return true;
+            if (child is WDummyDivision)
+                return true;
+            return false;
         }
 
     }
@@ -41,7 +55,7 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Para2
     {
 
-        public static bool IsPara2Number(string num)
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^\([ivxl]+\)$";
             return Regex.IsMatch(num, pattern);

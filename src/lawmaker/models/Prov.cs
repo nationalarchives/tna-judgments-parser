@@ -12,10 +12,25 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Prov1
     {
 
-        public static bool IsSectionNumber(string num)
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^\d+[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
+        }
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Prov2)
+                return true;
+            if (child is Para1)
+                return true;
+            if (child is Definition)
+                return true;
+            if (child is UnnumberedParagraph)
+                return true;
+            if (child is WDummyDivision)
+                return true;
+            return false;
         }
 
     }
@@ -60,6 +75,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (child is Para1)
                 return true;
+            if (child is Definition)
+                return true;
             if (child is UnnumberedParagraph)
                 return true;
             if (child is WDummyDivision)
@@ -92,16 +109,29 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Prov2 : IDivision
     {
 
-        public static bool IsProv2Number(string num)
+        public static bool IsValidNumber(string num)
         {
             string pattern = @"^\(\d+\)$";
             return Regex.IsMatch(num, pattern);
         }
 
-        public static bool IsQuotedProv2Number(string num)
+        public static bool IsValidQuotedNumber(string num)
         {
             string pattern = @"^“?\(\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
+        }
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Para1)
+                return true;
+            if (child is Definition)
+                return true;
+            if (child is UnnumberedParagraph)
+                return true;
+            if (child is WDummyDivision)
+                return true;
+            return false;
         }
 
     }
@@ -145,6 +175,8 @@ namespace UK.Gov.Legislation.Lawmaker
         public static bool IsValidChild(IDivision child)
         {
             if (child is Para1)
+                return true;
+            if (child is Definition)
                 return true;
             if (child is UnnumberedParagraph)
                 return true;

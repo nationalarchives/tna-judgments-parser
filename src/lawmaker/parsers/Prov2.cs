@@ -15,9 +15,9 @@ namespace UK.Gov.Legislation.Lawmaker
             bool quoted = quoteDepth > 0;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (quoted && !Prov2.IsQuotedProv2Number(np.Number.Text))
+            if (quoted && !Prov2.IsValidQuotedNumber(np.Number.Text))
                 return null;
-            if (!quoted && !Prov2.IsProv2Number(np.Number.Text))
+            if (!quoted && !Prov2.IsValidNumber(np.Number.Text))
                 return null;
 
             i += 1;
@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Para1 && next is not UnnumberedParagraph)
+                if (!Prov2.IsValidChild(next))
                 {
                     i = save;
                     break;
