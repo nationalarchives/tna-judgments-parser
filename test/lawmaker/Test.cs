@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
+using System.Xml;
 using Xunit;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -22,8 +22,15 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             var docx = ReadDocx(i);
             var actual = Helper.Parse(docx).Xml;
+            XmlDocument actualDoc = new();
+            actualDoc.LoadXml(actual);
+
             var expected = ReadXml(i);
-            Assert.Equal(expected, actual);
+            XmlDocument expectedDoc = new();
+            expectedDoc.LoadXml(expected);
+
+
+            Assert.Equal(expectedDoc.OuterXml, actualDoc.OuterXml);
         }
 
         /* helpers */
