@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -196,6 +196,26 @@ namespace UK.Gov.Legislation.Lawmaker
                 i += 1;
                 container.Add(line);
             }
+        }
+
+        private List<IBlock> HandleClosingWords(List<IDivision> children)
+        {
+            List<IBlock> wrapUp = [];            
+            if (children.Count > 1 && children.Last() is UnnumberedLeaf leaf)
+            {
+                children.RemoveAt(children.Count - 1);
+                wrapUp = [.. leaf.Contents];
+            }
+            return wrapUp;
+        }
+
+        private bool IsProv1End(WLine leader)
+        {
+            if (Current() is not WLine line)
+                return false;
+            if (!IsLeftAligned(line))
+                return true;
+            return false;
         }
 
     }
