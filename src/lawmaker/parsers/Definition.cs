@@ -22,7 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
             string startQuote = "[“]";
             string endQuote = "[”]";
             string defPattern = $@"({startQuote}.*?{endQuote})";
-            if (!Regex.IsMatch(line.NormalizedContent, $@"^{defPattern} .*$"))
+            if (!Regex.IsMatch(line.NormalizedContent, $@"^{defPattern}.*$"))
                 return null;
 
             // Use enricher to create <def> element around defined term
