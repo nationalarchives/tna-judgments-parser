@@ -15,8 +15,6 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return null;
-            if (!IsCenterAligned(line))
-                return null;
             if (i > Document.Body.Count - 3)
                 return null;
 

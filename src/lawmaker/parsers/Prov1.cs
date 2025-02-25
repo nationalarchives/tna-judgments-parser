@@ -63,7 +63,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
-                if (!CurrentIsPossibleProv1Child(line))
+                if (IsProv1End(line))
                     break;
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
@@ -79,12 +79,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
+            List<IBlock> wrapUp = HandleClosingWords(children);
 
             if (children.Count == 0)
                 return new Prov1Leaf { Number = num, Contents = intro };
 
-            List<IBlock> wrapUp = [];
-            AddFollowingToIntroOrWrapUp(heading ?? line, wrapUp);
             return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
 
         }
@@ -111,6 +110,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> grandchildren = ParseProv2Children(last);
             Prov2 l;
+            List<IBlock> wrapUp = HandleClosingWords(grandchildren);
             if (grandchildren.Count == 0)
             {
                 List<IBlock> contents = [rest1];
@@ -119,8 +119,6 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                List<IBlock> wrapUp = [];
-                AddFollowingToIntroOrWrapUp(heading ?? last, wrapUp);
                 l = new Prov2Branch { Number = num1, Intro = [rest1], Children = grandchildren, WrapUp = wrapUp };
             }
             intro.RemoveAt(intro.Count - 1);
