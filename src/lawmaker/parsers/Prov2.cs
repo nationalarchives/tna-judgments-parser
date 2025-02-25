@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -30,6 +30,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> children = ParseProv2Children(line);
 
+            List<IBlock> wrapUp = HandleClosingWords(children);
             if (children.Count == 0)
             {
                 AddFollowingToContent(line, intro);
@@ -37,8 +38,6 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                List<IBlock> wrapUp = [];
-                AddFollowingToIntroOrWrapUp(line, wrapUp);
                 return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
         }
@@ -48,7 +47,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
-                if (!CurrentIsPossibleProv2Child(leader))
+                if (IsProv1End(leader))
                     break;
 
                 int save = i;

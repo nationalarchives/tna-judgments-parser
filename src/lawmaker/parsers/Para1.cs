@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -29,7 +29,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
-                if (!CurrentIsPossiblePara1Child(line))
+                if (IsProv1End(line))
                     break;
 
                 int save = i;
@@ -51,6 +51,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
+            List<IBlock> wrapUp = HandleClosingWords(children);
             if (children.Count == 0)
             {
                 QuotedStructure qs = ParseQuotedStructure();
@@ -60,7 +61,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                return new Para1Branch { Number = num, Intro = intro, Children = children };
+                return new Para1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
 
         }
