@@ -68,6 +68,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
+            if (hContainer != null)
+                return hContainer;
+
             i += 1;
             if (line is WOldNumberedParagraph np)
                 return new UnknownLevel() { Number = np.Number, Contents = [WLine.RemoveNumber(np)] };
