@@ -70,7 +70,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
-            AddFollowingToIntroOrWrapUp(line, wrapUp, true);
+            if (children.Last() is UnnumberedLeaf leaf)
+            {
+                children.RemoveAt(children.Count - 1);
+                wrapUp = [.. leaf.Contents];
+            }
             return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
@@ -94,7 +98,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (num1 is null)
                 return;
 
-            // Indentation seems to be bugged
+            // Indentation seems to be bugged when parsing children of first SchProv2
             bool ignoreIndentation = true;
             List<IDivision> grandchildren = ParseSchProv2Children(last, ignoreIndentation);
 

@@ -38,7 +38,11 @@ namespace UK.Gov.Legislation.Lawmaker
             else
             {
                 List<IBlock> wrapUp = [];
-                AddFollowingToIntroOrWrapUp(line, wrapUp);
+                if (children.Last() is UnnumberedLeaf leaf)
+                {
+                    children.RemoveAt(children.Count - 1);
+                    wrapUp = [.. leaf.Contents];
+                }
                 return new SchProv2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
         }
