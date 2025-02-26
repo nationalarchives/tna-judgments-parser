@@ -23,23 +23,30 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!Para2.IsValidNumber(np.Number.Text))
                 return null;
 
-            i += 1;
-
             IFormattedText num = np.Number;
-            List<IBlock> intro = [ WLine.RemoveNumber(np) ];
+            List<IBlock> intro = [WLine.RemoveNumber(np)];
+
+            i += 1;
 
             if (i == Document.Body.Count)
                 return new Para2Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
 
+            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
-                if (IsProv1End(line))
+                if (BreakFromProv1(line))
                     break;
 
                 int save = i;
+                IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
+                if (IsExtraIntroLine(next, childStartLine, line, children.Count))
+                {
+                    intro.Add(childStartLine);
+                    continue;
+                }
                 if (!Para2.IsValidChild(next))
                 {
                     i = save;
@@ -51,8 +58,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+                finalChildStartLine = save;
             }
-            List<IBlock> wrapUp = HandleClosingWords(children);
+            List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
             if (children.Count == 0)
             {
                 QuotedStructure qs = ParseQuotedStructure();
@@ -66,8 +74,6 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
         }
-
-        private bool CurrentIsPossiblePara2Child(WLine leader) => CurrentIsPossibleProv1Child(leader);
 
     }
 

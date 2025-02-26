@@ -170,51 +170,60 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        private void AddFollowingToIntroOrWrapUp(WLine leader, List<IBlock> container, bool isInSchedules = false)
+        private bool IsExtraIntroLine(IDivision division, IBlock line, WLine leader, int childCount)
         {
-            while (i < Document.Body.Count)
-            {
-                if (Current() is not WLine line)
-                    break;
-                if (line is WOldNumberedParagraph)
-                    break;
-                if (!IsLeftAligned(line))
-                    break;
-                /*
-                if (LineIsIndentedLessThan(line, leader))
-                    break;
-                */
-                int save = i;
-                if (!isInSchedules)
-                {
-                    // Prevent possible following Section heading from being mistaken as WrapUp
-                    HContainer test = ParseProv1(line);
-                    i = save;
-                    if (test is not null)
-                        break;
-                }
-                i += 1;
-                container.Add(line);
-            }
+            if (childCount > 0)
+                return false;
+            if (division is not UnnumberedLeaf)
+                return false;
+            if (line is not WLine wLine)
+                return false;
+            if (line is WOldNumberedParagraph)
+                return false;
+            if (!IsLeftAligned(wLine))
+                return false;
+            if (LineIsIndentedLessThan(wLine, leader))
+                return false;
+            return true;
         }
 
-        private List<IBlock> HandleClosingWords(List<IDivision> children)
+        private List<IBlock> HandleWrapUp(List<IDivision> children, int save)
         {
-            List<IBlock> wrapUp = [];            
-            if (children.Count > 1 && children.Last() is UnnumberedLeaf leaf)
+            List<IBlock> wrapUp = [];
+            if (children.Count == 0)
+                return wrapUp;
+            if (children.Last() is not UnnumberedLeaf leaf)
+                // Closing Words must be the final child 
+                return wrapUp;
+            if (children.Count == 1)
             {
+                // This *is* Closing Words, but Closing words cannot be an only child,
+                // so it must belong to an ancestor provision
                 children.RemoveAt(children.Count - 1);
-                wrapUp = [.. leaf.Contents];
+                i = save;
+                return wrapUp;
             }
-            return wrapUp;
+            children.RemoveAt(children.Count - 1);
+            return [..leaf.Contents];
         }
 
-        private bool IsProv1End(WLine leader)
+        
+        private bool BreakFromProv1(WLine leader)
         {
             if (Current() is not WLine line)
                 return false;
-            if (!IsLeftAligned(line))
+
+            // The following provisions cannot occur inside a Prov1/SchProv1
+            // If we encounter one, we must step out of the Prov1/SchProv1 
+            if (PeekProv1(line))
                 return true;
+            if (PeekSchedule(line))
+                return true;
+            if (PeekSchedules(line))
+                return true;
+            if (PeekScheduleCrossHeading(line))
+                return true;
+            // Todo: Add other grouping provisions?
             return false;
         }
 

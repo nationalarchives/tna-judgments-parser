@@ -14,13 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSchedule(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (i > Document.Body.Count - 3)
-                return null;
-            if (!Schedule.IsValidNumber(line.NormalizedContent))
+            if (!PeekSchedule(line))
                 return null;
 
             string numberString = Regex.Replace(
@@ -78,6 +72,19 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 return new Schedules { Number = null, Heading = null, Children = children };
             }
+        }
+
+        private bool PeekSchedule(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            if (!Schedule.IsValidNumber(line.NormalizedContent))
+                return false;
+            return true;
         }
 
         internal List<IDivision> ParseScheduleChildren()

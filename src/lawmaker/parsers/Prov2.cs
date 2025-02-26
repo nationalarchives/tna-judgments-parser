@@ -20,38 +20,42 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!quoted && !Prov2.IsValidNumber(np.Number.Text))
                 return null;
 
-            i += 1;
-
             IFormattedText num = np.Number;
             List<IBlock> intro = [WLine.RemoveNumber(np)];
+
+            i += 1;
 
             if (i == Document.Body.Count)
                 return new Prov2Leaf { Number = num, Contents = intro };
 
-            List<IDivision> children = ParseProv2Children(line);
+            List<IBlock> wrapUp = [];
+            List<IDivision> children = ParseProv2Children(line, intro, wrapUp);
 
-            List<IBlock> wrapUp = HandleClosingWords(children);
             if (children.Count == 0)
             {
                 AddFollowingToContent(line, intro);
                 return new Prov2Leaf { Number = num, Contents = intro };
             }
-            else
-            {
-                return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
-            }
+            return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
-        internal List<IDivision> ParseProv2Children(WLine leader)
+        internal List<IDivision> ParseProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
         {
             List<IDivision> children = [];
+            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
-                if (IsProv1End(leader))
+                if (BreakFromProv1(leader))
                     break;
 
                 int save = i;
+                IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
+                if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
+                {
+                    intro.Add(childStartLine);
+                    continue;
+                }
                 if (!Prov2.IsValidChild(next))
                 {
                     i = save;
@@ -63,7 +67,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+                finalChildStartLine = save;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStartLine));
             return children;
         }
 
