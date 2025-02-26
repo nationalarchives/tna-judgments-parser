@@ -13,19 +13,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private Schedules ParseSchedules(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (i > Document.Body.Count - 3)
-                return null;
-            if (!Schedules.IsValidHeading(line.NormalizedContent))
-                return null;
-
-            // Schedules container must be followed by Schedule
-            if (Document.Body[i + 1].Block is not WLine line2)
-                return null;
-            if (!IsCenterAligned(line2))
+            if (!PeekSchedules(line))
                 return null;
 
             IFormattedText headingText = new WText("Schedules", null);
@@ -41,6 +29,25 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new Schedules { Number = null, Heading = heading, Children = children };
+        }
+
+        private bool PeekSchedules(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            if (!Schedules.IsValidHeading(line.NormalizedContent))
+                return false;
+
+            // Schedules container must be followed by Schedule
+            if (Document.Body[i + 1].Block is not WLine line2)
+                return false;
+            if (!IsCenterAligned(line2))
+                return false;
+            return true;
         }
 
         internal List<IDivision> ParseSchedulesChildren()
