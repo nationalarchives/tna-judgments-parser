@@ -477,14 +477,10 @@
               </intro>
               <level class="para1">
                 <num>(a)</num>
-                <intro>
+                <content>
                   <p>the amount of Northern Ireland emissions of the gas for the period (see subsection (2)),</p>
-                </intro>
-                <level class="unnumberedParagraph">
-                  <content>
-                    <p>minus</p>
-                  </content>
-                </level>
+                  <p>minus</p>
+                </content>
               </level>
               <level class="para1">
                 <num>(b)</num>
@@ -869,11 +865,9 @@
                 <p>the budget for the earlier period is increased,</p>
               </content>
             </level>
-            <level class="unnumberedParagraph">
-              <content>
-                <p>by the amount carried back.</p>
-              </content>
-            </level>
+            <wrapUp>
+              <p>by the amount carried back.</p>
+            </wrapUp>
           </subsection>
           <subsection class="prov2">
             <num>(3)</num>
@@ -900,14 +894,10 @@
             </level>
             <level class="para1">
               <num>(b)</num>
-              <intro>
+              <content>
                 <p>the budget for the earlier period is reduced,</p>
-              </intro>
-              <level class="unnumberedParagraph">
-                <content>
-                  <p>by the amount carried forward.</p>
-                </content>
-              </level>
+                <p>by the amount carried forward.</p>
+              </content>
             </level>
           </subsection>
           <subsection class="prov2">
@@ -1083,11 +1073,9 @@
                   <p>the total amount of net Northern Ireland emissions,</p>
                 </content>
               </level>
-              <level class="unnumberedParagraph">
-                <content>
-                  <p>for the period.</p>
-                </content>
-              </level>
+              <wrapUp>
+                <p>for the period.</p>
+              </wrapUp>
             </subsection>
             <subsection class="prov2">
               <num>(3)</num>
@@ -1285,11 +1273,9 @@
                   <p>the total amount of net Northern Ireland emissions,</p>
                 </content>
               </level>
-              <level class="unnumberedParagraph">
-                <content>
-                  <p>for the year to which the statement relates.</p>
-                </content>
-              </level>
+              <wrapUp>
+                <p>for the year to which the statement relates.</p>
+              </wrapUp>
             </subsection>
             <subsection class="prov2">
               <num>(3)</num>
@@ -1360,10 +1346,14 @@
             <num>21.</num>
             <subsection class="prov2">
               <num>(1)</num>
-              <content>
+              <intro>
                 <p>The Department may by regulations impose, on specified public bodies, specified climate change reporting duties.</p>
-                <p>“Specified” means specified in the regulations.</p>
-              </content>
+              </intro>
+              <hcontainer name="definition" class="definition">
+                <content>
+                  <p><def ukl:startQuote="“" ukl:endQuote="”">Specified</def> means specified in the regulations.</p>
+                </content>
+              </hcontainer>
             </subsection>
             <subsection class="prov2">
               <num>(2)</num>
@@ -2389,32 +2379,48 @@
             <num>39.</num>
             <intro>
               <p>In this Act⁠—</p>
-              <p>“the Committee on Climate Change” means the Committee of that name established by Part 2 of the Climate Change Act 2008;</p>
-              <p>“the Department” means the Department of Agriculture, Environment and Rural Affairs;</p>
-              <p>“emissions target” means a target set by section 1, 2 or 3;</p>
-              <p>“international carbon reporting practice” means accepted practice in relation to reporting for the purposes of—</p>
             </intro>
-            <level class="para1">
-              <num>(a)</num>
-              <content>
-                <p>the protocols to the United Nations Framework Convention on Climate Change, or</p>
-              </content>
-            </level>
-            <level class="para1">
-              <num>(b)</num>
-              <content>
-                <p>such other international agreements or arrangements as the Department may specify by regulations;</p>
-              </content>
-            </level>
             <hcontainer name="definition" class="definition">
               <content>
-                <p><def ukl:startQuote="“" ukl:endQuote="”">Northern Ireland emissions</def> has the meaning given by section 7(2);</p>
+                <p><def ukl:startQuote="“" ukl:endQuote="”">the Committee on Climate Change</def> means the Committee of that name established by Part 2 of the Climate Change Act 2008;</p>
               </content>
             </hcontainer>
             <hcontainer name="definition" class="definition">
               <content>
-                <p><def ukl:startQuote="“" ukl:endQuote="”">Northern Ireland removals</def> has the meaning given by section 7(3).</p>
+                <p><def ukl:startQuote="“" ukl:endQuote="”">the Department</def> means the Department of Agriculture, Environment and Rural Affairs;</p>
               </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p><def ukl:startQuote="“" ukl:endQuote="”">emissions target</def> means a target set by section 1, 2 or 3;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p><def ukl:startQuote="“" ukl:endQuote="”">international carbon reporting practice</def> means accepted practice in relation to reporting for the purposes of—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>the protocols to the United Nations Framework Convention on Climate Change, or</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <intro>
+                  <p>such other international agreements or arrangements as the Department may specify by regulations;</p>
+                </intro>
+                <hcontainer name="definition" class="definition">
+                  <content>
+                    <p><def ukl:startQuote="“" ukl:endQuote="”">Northern Ireland emissions</def> has the meaning given by section 7(2);</p>
+                  </content>
+                </hcontainer>
+                <hcontainer name="definition" class="definition">
+                  <content>
+                    <p><def ukl:startQuote="“" ukl:endQuote="”">Northern Ireland removals</def> has the meaning given by section 7(3).</p>
+                  </content>
+                </hcontainer>
+              </level>
             </hcontainer>
           </section>
         </hcontainer>
