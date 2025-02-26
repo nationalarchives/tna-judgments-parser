@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
     {
 
         private IBlock Current() => Document.Body[i].Block;
+        private IBlock Previous() => i > 0 ? Document.Body[i-1].Block : null;
+
         private static bool IsLeftAligned(WLine line)
         {
             var alignment = line.GetEffectiveAlignment();

@@ -28,35 +28,34 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i == Document.Body.Count)
                 return new SchProv2Leaf { Number = num, Contents = intro };
 
-            List<IDivision> children = ParseSchProv2Children(line);
+            List<IBlock> wrapUp = [];
+            List<IDivision> children = ParseSchProv2Children(line, intro, wrapUp);
 
             if (children.Count == 0)
             {
                 AddFollowingToContent(line, intro);
                 return new SchProv2Leaf { Number = num, Contents = intro };
             }
-            else
-            {
-                List<IBlock> wrapUp = [];
-                if (children.Last() is UnnumberedLeaf leaf)
-                {
-                    children.RemoveAt(children.Count - 1);
-                    wrapUp = [.. leaf.Contents];
-                }
-                return new SchProv2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
-            }
+            return new SchProv2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
-        internal List<IDivision> ParseSchProv2Children(WLine leader, bool ignoreIndentation = false)
+        internal List<IDivision> ParseSchProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
         {
             List<IDivision> children = [];
+            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
-                if (!CurrentIsPossibleSchProv2Child(leader, ignoreIndentation))
+                if (BreakFromProv1(leader))
                     break;
 
                 int save = i;
+                IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
+                if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
+                {
+                    intro.Add(childStartLine);
+                    continue;
+                }
                 if (!SchProv2.IsValidChild(next))
                 {
                     i = save;
@@ -68,25 +67,10 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+                finalChildStartLine = save;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStartLine));
             return children;
-        }
-
-        private bool CurrentIsPossibleSchProv2Child(WLine leader, bool ignoreIndentation = false)
-        {
-            if (Current() is not WLine line)
-                return true;
-            if (!IsLeftAligned(line))
-                return false;
-
-            if (!ignoreIndentation)
-            {
-                if (LineIsIndentedLessThan(line, leader))
-                    return false;
-                if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
-                    return false;
-            }
-            return true;
         }
 
     }
