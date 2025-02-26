@@ -44,15 +44,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
             FixFirstSchProv2(intro, children);
 
-            if (children.Count == 0)
-                AddFollowingToIntroOrWrapUp(line, intro);
-
+            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
-                if (!CurrentIsPossibleSchProv1Child(line))
+                if (BreakFromProv1(line))
                     break;
+
                 int save = i;
+                IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
+                if (IsExtraIntroLine(next, childStartLine, np, children.Count))
+                {
+                    intro.Add(childStartLine);
+                    continue;
+                }
                 if (!SchProv1.IsValidChild(next))
                 {
                     i = save;
@@ -64,29 +69,14 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+                finalChildStartLine = save;
             }
+            List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
 
             if (children.Count == 0)
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
-            List<IBlock> wrapUp = [];
-            if (children.Last() is UnnumberedLeaf leaf)
-            {
-                children.RemoveAt(children.Count - 1);
-                wrapUp = [.. leaf.Contents];
-            }
             return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
-        }
-
-        private bool CurrentIsPossibleSchProv1Child(WLine leader)
-        {
-            if (Current() is not WLine line)
-                return true;
-            if (!IsLeftAligned(line))
-                return false;
-            if (LineIsIndentedLessThan(line, leader))
-                return false;
-            return true;
         }
 
         private void FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)
@@ -98,12 +88,11 @@ namespace UK.Gov.Legislation.Lawmaker
             if (num1 is null)
                 return;
 
-            // Indentation seems to be bugged when parsing children of first SchProv2
-            bool ignoreIndentation = true;
-            List<IDivision> grandchildren = ParseSchProv2Children(last, ignoreIndentation);
+            List<IBlock> prov2WrapUp = [];
+            List<IDivision> prov2Children = ParseSchProv2Children(last, intro, prov2WrapUp);
 
             SchProv2 l;
-            if (grandchildren.Count == 0)
+            if (prov2Children.Count == 0)
             {
                 List<IBlock> contents = [rest1];
                 AddFollowingToContent(heading ?? last, contents);
@@ -111,9 +100,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                List<IBlock> wrapUp = [];
-                AddFollowingToIntroOrWrapUp(heading ?? last, wrapUp);
-                l = new SchProv2Branch { Number = num1, Intro = [rest1], Children = grandchildren, WrapUp = wrapUp };
+                l = new SchProv2Branch { Number = num1, Intro = [rest1], Children = prov2Children, WrapUp = prov2WrapUp };
             }
             intro.RemoveAt(intro.Count - 1);
             children.Insert(0, l);
