@@ -12,13 +12,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private ScheduleCrossHeading ParseScheduleCrossheading(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (!line.IsAllItalicized())
-                return null;
-            if (i == Document.Body.Count - 1)
+            if (!PeekScheduleCrossHeading(line))
                 return null;
 
             var save1 = i;
@@ -48,6 +42,19 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new ScheduleCrossHeading { Heading = heading, Children = children };
+        }
+
+        private bool PeekScheduleCrossHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.IsAllItalicized())
+                return false;
+            if (i == Document.Body.Count - 1)
+                return false;
+            return true;
         }
 
     }
