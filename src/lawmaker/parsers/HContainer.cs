@@ -177,6 +177,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (childCount > 0)
                 return false;
+            if (division is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable)
+                return true;
             if (division is not UnnumberedLeaf)
                 return false;
             if (line is not WLine wLine)
