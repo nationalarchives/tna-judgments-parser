@@ -88,21 +88,25 @@ namespace UK.Gov.Legislation.Lawmaker
             if (num1 is null)
                 return;
 
+            intro.Remove(last);
+            intro.Add(rest1);
+
             List<IBlock> prov2WrapUp = [];
             List<IDivision> prov2Children = ParseSchProv2Children(last, intro, prov2WrapUp);
 
             SchProv2 l;
             if (prov2Children.Count == 0)
             {
-                List<IBlock> contents = [rest1];
+                List<IBlock> contents = new(intro);
                 AddFollowingToContent(heading ?? last, contents);
                 l = new SchProv2Leaf { Number = num1, Contents = contents };
             }
             else
             {
-                l = new SchProv2Branch { Number = num1, Intro = [rest1], Children = prov2Children, WrapUp = prov2WrapUp };
+                List<IBlock> contents = new(intro);
+                l = new SchProv2Branch { Number = num1, Intro = contents, Children = prov2Children, WrapUp = prov2WrapUp };
             }
-            intro.RemoveAt(intro.Count - 1);
+            intro.Clear();
             children.Insert(0, l);
         }
     }
