@@ -40,8 +40,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Def() { Contents = [wText], StartQuote = text[..1], EndQuote = text[^1..] };
             }
             WLine enriched = EnrichFromEnd.Enrich(line, defPattern, constructor);
-            if (ReferenceEquals(enriched, line))
-                return null;
+            //if (ReferenceEquals(enriched, line))
+                //return null;
             
             i += 1;
 
