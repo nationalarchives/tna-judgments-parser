@@ -29,7 +29,7 @@ namespace UK.Gov.Legislation.Lawmaker
             int startQuoteCount = text.Count(c => c == '“');
             int endQuoteCount = text.Count(c => c == '”');
 
-            bool isDefinition = text.Contains("“");//text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
+            bool isDefinition = text.Contains('\u201c');//text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
             if (!isDefinition)
                 return null;
             
