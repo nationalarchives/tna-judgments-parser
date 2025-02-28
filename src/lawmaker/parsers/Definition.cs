@@ -32,7 +32,7 @@ namespace UK.Gov.Legislation.Lawmaker
             bool isDefinition = text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
             if (!isDefinition)
                 return null;
-
+            /*
             // Use enricher to create <def> element around defined term
             static IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
             {
@@ -42,7 +42,7 @@ namespace UK.Gov.Legislation.Lawmaker
             WLine enriched = EnrichFromEnd.Enrich(line, defPattern, constructor);
             if (ReferenceEquals(enriched, line))
                 return null;
-
+            */
             i += 1;
 
             List<IBlock> intro = [enriched];
