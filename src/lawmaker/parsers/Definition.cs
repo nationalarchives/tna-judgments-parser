@@ -1,7 +1,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml.Bibliography;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
@@ -22,7 +24,13 @@ namespace UK.Gov.Legislation.Lawmaker
             string startQuote = "[“]";
             string endQuote = "[”]";
             string defPattern = $@"({startQuote}.*?{endQuote})";
-            if (!Regex.IsMatch(line.NormalizedContent, $@"^{defPattern}.*$"))
+
+            String text = line.NormalizedContent;
+            int startQuoteCount = text.Count(c => c == '“');
+            int endQuoteCount = text.Count(c => c == '”');
+
+            bool isDefinition = text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
+            if (!isDefinition)
                 return null;
 
             // Use enricher to create <def> element around defined term
