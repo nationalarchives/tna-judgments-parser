@@ -1,9 +1,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using DocumentFormat.OpenXml.Bibliography;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
@@ -21,18 +19,12 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsLeftAligned(line))
                 return null;
 
-            string startQuote = "[“]";
-            string endQuote = "[”]";
-            string defPattern = $@"({startQuote}.*?{endQuote})";
-
-            String text = line.NormalizedContent;
-            int startQuoteCount = text.Count(c => c == '“');
-            int endQuoteCount = text.Count(c => c == '”');
-
-            bool isDefinition = text.Contains('\u201c');//text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
-            if (!isDefinition)
+            string startQuote = "[\u201C]";
+            string endQuote = "[\u201D]";
+            string defPattern = $@"({startQuote}.+?{endQuote})";
+            if (!Regex.IsMatch(line.NormalizedContent, $@"^{defPattern}.*?\w+.*?$"))
                 return null;
-            
+
             // Use enricher to create <def> element around defined term
             static IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
             {
@@ -40,9 +32,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Def() { Contents = [wText], StartQuote = text[..1], EndQuote = text[^1..] };
             }
             WLine enriched = EnrichFromEnd.Enrich(line, defPattern, constructor);
-            //if (ReferenceEquals(enriched, line))
-                //return null;
-            
+            if (ReferenceEquals(enriched, line))
+                return null;
+
             i += 1;
 
             List<IBlock> intro = [enriched];
