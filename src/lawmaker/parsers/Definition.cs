@@ -29,9 +29,9 @@ namespace UK.Gov.Legislation.Lawmaker
             int startQuoteCount = text.Count(c => c == '“');
             int endQuoteCount = text.Count(c => c == '”');
 
-            bool isDefinition = text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
-            //if (!isDefinition)
-              //  return null;
+            bool isDefinition = text.Contains("“");//text.StartsWith("“") && !text.EndsWith("”") && startQuoteCount == endQuoteCount;
+            if (!isDefinition)
+                return null;
             
             // Use enricher to create <def> element around defined term
             static IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
