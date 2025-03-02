@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
+using System.Xml;
 using Xunit;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public class LawmakerTest
     {
 
-        private static readonly int N = 3;
+        private static readonly int N = 4;
 
         public static readonly IEnumerable<object[]> Indices = Enumerable.Range(1, N)
             .Select(i => new object[] { i });
@@ -22,8 +22,15 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             var docx = ReadDocx(i);
             var actual = Helper.Parse(docx).Xml;
+            XmlDocument actualDoc = new();
+            actualDoc.LoadXml(actual);
+
             var expected = ReadXml(i);
-            Assert.Equal(expected, actual);
+            XmlDocument expectedDoc = new();
+            expectedDoc.LoadXml(expected);
+
+
+            Assert.Equal(expectedDoc.OuterXml, actualDoc.OuterXml);
         }
 
         /* helpers */

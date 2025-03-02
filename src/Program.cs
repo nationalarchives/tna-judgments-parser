@@ -49,8 +49,11 @@ class Program {
             return;
         }
         if ("bill".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            var xml = UK.Gov.Legislation.Lawmaker.Helper.ParseFile(input.FullName).Xml;
-            Console.WriteLine(xml);
+            var xml = UK.Gov.Legislation.Lawmaker.Helper.LocalParse(input.FullName).Xml;
+            if (output is not null)
+                File.WriteAllText(output.FullName, xml);
+            else
+                Console.WriteLine(xml);
             return;
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
