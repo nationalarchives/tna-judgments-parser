@@ -19,8 +19,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsLeftAligned(line))
                 return null;
 
-            string startQuote = "[“]";
-            string endQuote = "[”]";
+            string startQuote = "[\u201C]";
+            string endQuote = "[\u201D]";
             string defPattern = $@"({startQuote}.*?{endQuote})";
             if (!Regex.IsMatch(line.NormalizedContent, $@"^{defPattern}.*$"))
                 return null;
