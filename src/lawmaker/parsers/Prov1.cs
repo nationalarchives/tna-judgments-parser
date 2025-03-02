@@ -112,22 +112,26 @@ namespace UK.Gov.Legislation.Lawmaker
             (WText num1, WLine rest1) = FixFirstProv2Num(last);
             if (num1 is null)
                 return;
-            
+
+            intro.Remove(last);
+            intro.Add(rest1);
+
             List<IBlock> prov2WrapUp = [];
             List<IDivision> prov2Children = ParseProv2Children(last, intro, prov2WrapUp);
 
             Prov2 l;
             if (prov2Children.Count == 0)
             {
-                List<IBlock> contents = [rest1];
+                List<IBlock> contents = new(intro);
                 AddFollowingToContent(heading ?? last, contents);
                 l = new Prov2Leaf { Number = num1, Contents = contents };
             }
             else
             {
-                l = new Prov2Branch { Number = num1, Intro = [rest1], Children = prov2Children, WrapUp = prov2WrapUp };
+                List<IBlock> contents = new(intro);
+                l = new Prov2Branch { Number = num1, Intro = contents, Children = prov2Children, WrapUp = prov2WrapUp };
             }
-            intro.RemoveAt(intro.Count - 1);
+            intro.Clear();
             children.Insert(0, l);
         }
 
