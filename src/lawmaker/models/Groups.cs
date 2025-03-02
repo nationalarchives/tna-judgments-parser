@@ -6,13 +6,24 @@ using UK.Gov.Legislation.Judgments;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
+    internal class GroupOfParts : Branch
+    {
+        public override string Name { get; internal init; } = "groupOfParts";
+        public override string Class => "group1";
+        public static bool IsGroupOfPartsHeading(string num)
+        {
+            string pattern = @"^the (\w+) group of parts";
+            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
+        }
+    }
+
     internal class Part : Branch
     {
 
         public static bool IsPartNumber(string num)
         {
             string pattern = @"^PART \d+$";
-            return Regex.IsMatch(num, pattern);
+            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
 
         public override string Name { get; internal init; } = "part";
@@ -60,7 +71,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidChild(IDivision child)
         {
-            // Upon entering the Schedules container, all following elements should be within 
+            // Upon entering the Schedules container, all following elements should be within
             return true;
         }
 

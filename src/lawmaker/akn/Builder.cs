@@ -1,8 +1,12 @@
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
-
+using DocumentFormat.OpenXml.Vml;
+using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -46,20 +50,109 @@ namespace UK.Gov.Legislation.Lawmaker
             AddBlocks(e, coverPage);
         }
 
-        private void AddPreface(XmlElement bill, IList<IBlock> preface)
+        private void AddPreface(XmlElement bill, IList<IBlock> prefaceElements)
         {
-            XmlElement e = CreateAndAppend("preface", bill);
-            e.SetAttribute("eId", "preface");
-            AddBlocks(e, preface);
+            if (prefaceElements.Count <= 0)
+            {
+                logger.LogWarning("The parsed Preface elements were empty!");
+                return;
+            }
+            XmlElement preface = CreateAndAppend("preface", bill);
+            preface.SetAttribute("eId", "preface");
+            XmlElement longTitle = CreateAndAppend("longTitle", preface);
+
+            List<string> standardPrefaceElements = ["A", "Bill", "To"];
+            // We could make this a bit more robust by also allowing "A Bill to" text that isn't in separate IBlocks
+            IEnumerable<XmlElement> elements = prefaceElements
+                .Select(block => {
+                    if (block is not WLine)
+                    {
+                        logger.LogWarning("Preface contains an element that isn't a WLine!");
+                        return null;
+                    }
+                    WLine line = block as WLine;
+                    XmlElement p = doc.CreateElement("p", ns);
+                    switch (line.NormalizedContent.ToLower()) {
+                    case "a":
+                        p.SetAttribute("class", ns, "A");
+                        p.InnerText = "A";
+                        break;
+                    case "bill":
+                        p.SetAttribute("class", ns, "Bill");
+                        p.InnerText = "bill";
+                        break;
+                    case "to":
+                        p.SetAttribute("class", ns, "To");
+                        p.InnerText = "to";
+                        break;
+                    default:
+                        p.InnerText = line.NormalizedContent;
+                        break;
+                    }
+                    return p;
+                })
+                .Where(b => b is not null);
+                IEnumerable<XmlElement> longTitleText =
+                elements
+                .TakeWhile(e => standardPrefaceElements.Contains(e.GetAttribute("class", ns)))
+                .Append(
+                    elements
+                    .SkipWhile(e => standardPrefaceElements.Contains(e.GetAttribute("class", ns)))
+                    .Aggregate((XmlElement acc, XmlElement element) => {
+                        acc.InnerText = acc.InnerText + " " + element.InnerText;
+                        return acc;
+                }));
+            // LNI-224: For now we can assume any text content in the preface is the longTitle and
+            // should just be in one <p> tag
+            foreach (XmlElement element in longTitleText) {
+                longTitle.AppendChild(element);
+            }
         }
 
         private void AddPreamble(XmlElement bill, IList<IBlock> preamble)
         {
+            if (preamble.Count <= 0)
+            {
+                logger.LogWarning("The parsed Preamble elements were empty!");
+                return;
+            }
             XmlElement e = CreateAndAppend("preamble", bill);
             e.SetAttribute("eId", "preamble");
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
-            AddBlocks(formula, preamble);
+
+            XmlElement element =  doc.CreateElement("p", ns);
+            element.InnerText = preamble.OfType<WLine>()
+            .Select(line => line.NormalizedContent)
+            .Aggregate((string acc, string element) => acc + " " + element);
+            element = TransformPreambleText(element);
+            formula.AppendChild(element);
+        }
+
+        private XmlElement TransformPreambleText(XmlElement pElement)
+        {
+            const string ENACTING_PREFIX = "be it enacted";
+            string preambleText = pElement.InnerText;
+            if (!preambleText.ToLower().StartsWith(ENACTING_PREFIX))
+            {
+                logger.LogWarning("Enacting text is malformed and does not start with \'BE IT ENACTED\'");
+                return pElement;
+            }
+            string enactingPrefix = preambleText[..ENACTING_PREFIX.Length];
+
+            XmlElement dropCapB = doc.CreateElement("inline", ns);
+            dropCapB.SetAttribute("name","dropCap");
+            dropCapB.InnerText = enactingPrefix[..1];
+            XmlElement smallCaps = doc.CreateElement("inline", ns);
+            smallCaps.SetAttribute("name", "smallCaps");
+            smallCaps.InnerText = enactingPrefix[1..ENACTING_PREFIX.Length].ToLower();
+            XmlText text = doc.CreateTextNode(preambleText[ENACTING_PREFIX.Length..]);
+
+            pElement.RemoveAll();
+            pElement.AppendChild(dropCapB);
+            pElement.AppendChild(smallCaps);
+            pElement.AppendChild(text);
+            return pElement;
         }
 
         private void AddBody(XmlElement main, IList<IDivision> divisions, IList<Schedule> schedules)
