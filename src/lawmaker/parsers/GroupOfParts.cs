@@ -1,31 +1,32 @@
-
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
-using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
-
+    // TODO: Move this responsibility to the actual GroupOfParts object
+    // e.g. GroupOfParts.Parse(WLine line)
     public partial class BillParser
     {
-
-        private Chapter ParseChapter(WLine line)
+        private GroupOfParts ParseGroupOfParts(WLine line)
         {
             if (line is WOldNumberedParagraph np)
+                return null;
+            if (line.GetEffectiveAlignment() is not AlignmentValues.Center)
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
 
-            if (!Chapter.IsChapterNumber(line.NormalizedContent))
+            if (!GroupOfParts.IsGroupOfPartsHeading(line.NormalizedContent))
                 return null;
             IFormattedText number = new WText(
-                line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
+                ToTitleCase(line.NormalizedContent),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
             );
 
-            if (Document.Body[i + 1].Block is not WLine line2)
+            if (Document.Body[i+1].Block is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))
                 return null;
@@ -41,8 +42,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not CrossHeading && next is not Prov1)
-                {
+                if (next is not Part) {
                     i = save;
                     break;
                 }
@@ -58,9 +58,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new Chapter { Number = number, Heading = heading, Children = children };
+            return new GroupOfParts { Number = number, Heading = heading, Children = children };
+
         }
+        private static string ToTitleCase(string line)
+        {
+            // ugly
+            return line.Split(" ").Aggregate((acc, word) => {
+                if (word.ToLower().Equals("of"))
+                    return acc + " " + word;
+                return acc + " " + word[..1].ToUpper() + word[1..].ToLower();
+            });
 
+        }
     }
-
 }

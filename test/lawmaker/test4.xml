@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <bill name="nipbb">
+  <bill name="nipubb">
     <meta>
       <identification source="#author">
         <FRBRWork>
@@ -514,22 +514,24 @@
       <p>Schedule 4<marker name="tab" />Transitional and transitory provisions and savings</p>
     </coverPage>
     <preface eId="preface">
-      <p>A</p>
-      <p>Bill</p>
-      <p>to</p>
-      <p>Restate and amend the law relating to adoption; to make further amendments of the law relating to children; and for connected purposes.</p>
+      <longTitle>
+        <p class="A">A</p>
+        <p class="Bill">bill</p>
+        <p class="To">to</p>
+        <p>Restate and amend the law relating to adoption; to make further amendments of the law relating to children; and for connected purposes.</p>
+      </longTitle>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
-        <p>BE IT ENACTED by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
+        <p><inline name="dropCap">B</inline><inline name="smallCaps">e it enacted</inline> by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
       </formula>
     </preamble>
     <body>
       <part eId="pt_1" class="group2">
-        <num>PART 1</num>
+        <num>Part 1</num>
         <heading>Adoption</heading>
         <chapter class="group4">
-          <num>CHAPTER 1</num>
+          <num>Chapter 1</num>
           <heading>introductory</heading>
           <section eId="sec_1" class="prov1">
             <heading>Considerations applying to the exercise of powers</heading>
@@ -672,7 +674,7 @@
           </section>
         </chapter>
         <chapter class="group4">
-          <num>CHAPTER 2</num>
+          <num>Chapter 2</num>
           <heading>the adoption service</heading>
           <hcontainer name="crossheading" class="group7">
             <heading>The Adoption Service</heading>
@@ -1695,7 +1697,7 @@
           </hcontainer>
         </chapter>
         <chapter class="group4">
-          <num>CHAPTER 3</num>
+          <num>Chapter 3</num>
           <heading>Placement for adoption and adoption orders</heading>
           <hcontainer name="crossheading" class="group7">
             <heading>Placement of children by adoption agency for adoption</heading>
@@ -5419,7 +5421,7 @@
           </hcontainer>
         </chapter>
         <chapter class="group4">
-          <num>CHAPTER 4</num>
+          <num>Chapter 4</num>
           <heading>STATUS OF ADOPTED CHILDREN</heading>
           <section eId="sec_65" class="prov1">
             <heading>Meaning of adoption in Chapter 4</heading>
@@ -5832,7 +5834,7 @@
           </section>
         </chapter>
         <chapter class="group4">
-          <num>CHAPTER 5</num>
+          <num>Chapter 5</num>
           <heading>Registers</heading>
           <hcontainer name="crossheading" class="group7">
             <heading>Adopted Children Register, etc.</heading>
@@ -6228,7 +6230,7 @@
           </hcontainer>
         </chapter>
         <chapter class="group4">
-          <num>CHAPTER 6</num>
+          <num>Chapter 6</num>
           <heading>Adoptions with a foreign element</heading>
           <hcontainer name="crossheading" class="group7">
             <heading>Bringing children into and out of the United Kingdom</heading>
@@ -7042,7 +7044,7 @@
           </hcontainer>
         </chapter>
         <chapter class="group4">
-          <num>CHAPTER 7</num>
+          <num>Chapter 7</num>
           <heading>Miscellaneous</heading>
           <hcontainer name="crossheading" class="group7">
             <heading>Restrictions</heading>
