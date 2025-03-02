@@ -19,14 +19,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
-            
+
             if (!Part.IsPartNumber(line.NormalizedContent))
                 return null;
             IFormattedText number = new WText(
-                line.NormalizedContent,
+                line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
             );
-            
+
             if (Document.Body[i+1].Block is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))

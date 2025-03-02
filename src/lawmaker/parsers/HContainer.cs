@@ -111,6 +111,9 @@ namespace UK.Gov.Legislation.Lawmaker
         private HContainer ParseNonScheduleLine(WLine line)
         {
             HContainer hContainer;
+            hContainer = ParseAndMemoize(line, "GroupOfParts", ParseGroupOfParts);
+            if (hContainer != null)
+                return hContainer;
 
             hContainer = ParseAndMemoize(line, "Part", ParsePart);
             if (hContainer != null)
@@ -174,6 +177,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (childCount > 0)
                 return false;
+            if (division is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable)
+                return true;
             if (division is not UnnumberedLeaf)
                 return false;
             if (line is not WLine wLine)

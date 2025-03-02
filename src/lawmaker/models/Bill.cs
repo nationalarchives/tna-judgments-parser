@@ -28,7 +28,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public class NIPublicBill : Bill
     {
 
-        public override string Type { get; protected init; } = "nipbb";
+        public override string Type { get; protected init; } = "nipubb";
 
     }
 

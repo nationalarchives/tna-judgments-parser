@@ -13,7 +13,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (quoteDepth > 0)
                 return null;
             if (div is Part)
-                return div.Number.Text.Replace("PART", "pt").Replace(' ', '_').ToLower();
+                return div.Number.Text.Replace("Part", "pt").Replace(' ', '_').ToLower();
             if (div is Prov1)
                 return "sec_" + div.Number.Text.TrimEnd('.');
             return null;

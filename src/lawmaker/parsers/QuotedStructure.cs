@@ -24,7 +24,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     left++;
                 else if (c == '\u201D')
                     right++;
-            }
+        }
             return (left, right);
         }
 
@@ -32,12 +32,12 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
             {
-                if (np.Number.Text.StartsWith('“'))
+                if (np.Number.Text.StartsWith('\u201C'))
                     return true;
             }
             else
             {
-                if (line.NormalizedContent.StartsWith('“'))
+                if (line.NormalizedContent.StartsWith('\u201C'))
                 {
                     var (left, right) = CountLeftAndRightQuotes(line);
                     if (left == 1 && right == 0)
@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // currently IsFirstLineOfQuotedStructure works only with current line
             // if (IsFirstLineOfQuotedStructure(previous))
             //     return false;
-            if (previous.NormalizedContent.StartsWith('“'))
+            if (previous.NormalizedContent.StartsWith('\u201C'))
                 return false;
             var (prevLeft, prevRight) = CountLeftAndRightQuotes(previous);
             return prevLeft > prevRight;
@@ -65,14 +65,14 @@ namespace UK.Gov.Legislation.Lawmaker
             if (line is null)
                 return false;
             string text = line.NormalizedContent;
-            if (text.EndsWith('”'))
-                return true;
-            if (text.EndsWith("”."))
-                return true;
-            if (text.EndsWith("”;"))
-                return true;
-            if (text.EndsWith("”, and"))
-                return true;
+            if (text.EndsWith('\u201D'))
+                    return true;
+            if (text.EndsWith("\u201D."))
+                    return true;
+            if (text.EndsWith("\u201D;"))
+                    return true;
+            if (text.EndsWith("\u201D, and"))
+                    return true;
             return false;
         }
 
@@ -131,13 +131,13 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 else
                 {
-                    if (first.Number is not null && first.Number.Text.StartsWith('“'))
+                    if (first.Number is not null && first.Number.Text.StartsWith('\u201C'))
                     {
                         if (first.Number is WText wText)
                             first.Number = new WText(first.Number.Text[1..], wText.properties);
                         else
                             first.Number = new WText(first.Number.Text[1..], null);
-                        qs.StartQuote = "“";
+                        qs.StartQuote = "\u201C";
                     }
                 }
             }
@@ -156,7 +156,7 @@ namespace UK.Gov.Legislation.Lawmaker
             internal string EndQuote { get; private set; } = null;
             internal WText AppendText { get; private set; } = null;
 
-            private static readonly string pattern = @"”([\.;])?$";
+            private static readonly string pattern = "\u201D([\\.;])?$";
 
             public WLine Invoke(WLine line)
             {
@@ -165,7 +165,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 Match match = Regex.Match(last.Text, pattern);
                 if (match.Success)
                 {
-                    EndQuote = "”";
+                    EndQuote = "\u201D";
                     AppendText = new WText(match.Groups[1].Value, last.properties);
                     WText replacement = new(last.Text[..match.Index], last.properties);
                     return WLine.Make(line, line.Contents.SkipLast(1).Append(replacement));
