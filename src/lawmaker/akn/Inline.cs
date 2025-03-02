@@ -26,7 +26,16 @@ namespace UK.Gov.Legislation.Lawmaker
                     e.SetAttribute("endQuote", qt.EndQuote);
                 AddInlines(e, qt.Contents);
                 return;
-
+            }
+            if (model is Def def)
+            {
+                XmlElement e = CreateAndAppend("def", parent);
+                if (def.StartQuote is not null)
+                    e.SetAttribute("startQuote", UKNS, def.StartQuote);
+                if (def.EndQuote is not null)
+                    e.SetAttribute("endQuote", UKNS, def.EndQuote);
+                AddInlines(e, def.Contents);
+                return;
             }
             base.AddInline(parent, model);
         }
