@@ -179,18 +179,14 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement p = CreateAndAppend("p", parent);
             XmlElement mod = CreateAndAppend("mod", p);
             XmlElement e = CreateAndAppend("quotedStructure", mod);
-            if (qs is QuotedStructure qs2)
+            if (qs is BlockQuotedStructure qs2)
             {
                 if (qs2.StartQuote is not null)
                     e.SetAttribute("startQuote", qs2.StartQuote);
                 if (qs2.EndQuote is not null)
                     e.SetAttribute("endQuote", qs2.EndQuote);
                 if (qs2.AppendText is not null)
-                {
-                    XmlElement at = CreateAndAppend("inline", mod);
-                    at.SetAttribute("name", "AppendText");
-                    AddOrWrapText(at, qs2.AppendText);
-                }
+                    AddAppendText(mod, qs2.AppendText);
             }
             quoteDepth += 1;
             AddDivisions(e, qs.Contents);
