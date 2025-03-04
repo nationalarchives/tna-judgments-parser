@@ -63,7 +63,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
             if (children.Count == 0)
             {
-                QuotedStructure qs = ParseQuotedStructure();
+                BlockQuotedStructure qs = ParseQuotedStructure();
                 if (qs is not null)
                     intro.Add(qs);
                 return new Para2Leaf { Number = num, Contents = intro };
