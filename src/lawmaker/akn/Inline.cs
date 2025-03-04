@@ -43,6 +43,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 AddAppendText(parent, at);
                 return;
             }
+            if (model is ITab)
+            {
+                return;
+            }
             base.AddInline(parent, model);
         }
 
