@@ -51,7 +51,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
+                // It's safer to assume that an UnknownLevel is a child of the previous division rather than a new top level element
+                if (next is UnknownLevel || IsExtraIntroLine(next, childStartLine, leader, children.Count))
                 {
                     intro.Add(childStartLine);
                     continue;
