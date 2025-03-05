@@ -27,6 +27,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
             );
 
+            // next line should always be a Part heading
             if (Document.Body[i+1].Block is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))
@@ -43,7 +44,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Chapter && next is not CrossHeading && next is not Prov1) {
+                if (!Part.IsValidChild(next)) {
                     i = save;
                     break;
                 }
@@ -54,6 +55,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
+
+            // Parts should always have a child
             if (children.Count == 0)
             {
                 i = save1;

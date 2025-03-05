@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return Parse(docx);
         }
 
-        // Invoked via AWS Lambda function handler 
+        // Invoked via AWS Lambda function handler
         public static Response LambdaParse(Request request)
         {
             byte[] docx = request.Content;

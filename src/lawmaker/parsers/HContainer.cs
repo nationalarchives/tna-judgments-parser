@@ -198,7 +198,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (children.Count == 0)
                 return wrapUp;
             if (children.Last() is not UnnumberedLeaf leaf)
-                // Closing Words must be the final child 
+                // Closing Words must be the final child
                 return wrapUp;
             if (children.Count == 1)
             {
@@ -212,14 +212,14 @@ namespace UK.Gov.Legislation.Lawmaker
             return [..leaf.Contents];
         }
 
-        
+
         private bool BreakFromProv1(WLine leader)
         {
             if (Current() is not WLine line)
                 return false;
 
             // The following provisions cannot occur inside a Prov1/SchProv1
-            // If we encounter one, we must step out of the Prov1/SchProv1 
+            // If we encounter one, we must step out of the Prov1/SchProv1
             if (PeekProv1(line))
                 return true;
             if (PeekSchedule(line))

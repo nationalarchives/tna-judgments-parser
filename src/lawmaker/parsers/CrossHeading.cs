@@ -33,7 +33,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Prov1) {
+                if (!CrossHeading.IsValidChild(next)) {
                     i = save;
                     break;
                 }

@@ -15,6 +15,7 @@ namespace UK.Gov.Legislation.Lawmaker
             string pattern = @"^the (\w+) group of parts";
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
+         public static bool IsValidChild(IDivision child) => child is Part;
     }
 
     internal class Part : Branch
@@ -25,6 +26,13 @@ namespace UK.Gov.Legislation.Lawmaker
             string pattern = @"^PART \d+$";
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
+
+        public static bool IsValidChild(IDivision child) => child switch {
+            Chapter => true,
+            CrossHeading => true,
+            Prov1 => true,
+            _ => false,
+        };
 
         public override string Name { get; internal init; } = "part";
 
@@ -41,6 +49,12 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
 
+        public static bool IsValidChild(IDivision child) => child switch {
+            CrossHeading => true,
+            Prov1 => true,
+            _ => false,
+        };
+
         public override string Name { get; internal init; } = "chapter";
 
         public override string Class => "group4";
@@ -54,6 +68,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "group7";
 
+        public static bool IsValidChild(IDivision child) => child is Prov1;
     }
 
     internal class Schedules : Branch
@@ -90,16 +105,12 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
 
-        public static bool IsValidChild(IDivision child)
-        {
-            if (child is ScheduleChapter)
-                return true;
-            if (child is ScheduleCrossHeading)
-                return true;
-            if (child is SchProv1)
-                return true;
-            return false;
-        }
+        public static bool IsValidChild(IDivision child) => child switch {
+            ScheduleChapter => true,
+            ScheduleCrossHeading => true,
+            SchProv1 => true,
+            _ => false,
+        };
 
     }
 
@@ -115,14 +126,11 @@ namespace UK.Gov.Legislation.Lawmaker
             string pattern = @"^CHAPTER \d+$";
             return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
         }
-        public static bool IsValidChild(IDivision child)
-        {
-            if (child is ScheduleCrossHeading)
-                return true;
-            if (child is SchProv1)
-                return true;
-            return false;
-        }
+        public static bool IsValidChild(IDivision child) => child switch {
+            ScheduleCrossHeading => true,
+            SchProv1 => true,
+            _ => false,
+        };
 
     }
 
@@ -133,13 +141,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "schGroup7";
 
-        public static bool IsValidChild(IDivision child)
-        {
-            if (child is SchProv1)
-                return true;
-            return false;
-        }
-
+        public static bool IsValidChild(IDivision child) => child is SchProv1;
     }
 
 }
