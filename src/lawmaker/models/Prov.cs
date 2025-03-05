@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\d+[A-Z]*\.$";
+            string pattern = @"^[A-Z]*\d+[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -65,7 +65,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\d+[A-Z]*\.$";
+            string pattern = @"^[A-Z]*\d+[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -111,13 +111,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\(\d+\)$";
-            return Regex.IsMatch(num, pattern);
-        }
-
-        public static bool IsValidQuotedNumber(string num)
-        {
-            string pattern = @"^“?\(\d+[A-Z]*\)$";
+            string pattern = @"^\([A-Z]*\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -162,13 +156,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\(\d+\)$";
-            return Regex.IsMatch(num, pattern);
-        }
-
-        public static bool IsQuotedSchProv2Number(string num)
-        {
-            string pattern = @"^\(\d+[A-Z]*\)$";
+            string pattern = @"^\([A-Z]*\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 

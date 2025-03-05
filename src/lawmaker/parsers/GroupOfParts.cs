@@ -10,7 +10,7 @@ namespace UK.Gov.Legislation.Lawmaker
     // e.g. GroupOfParts.Parse(WLine line)
     public partial class BillParser
     {
-        private GroupOfParts ParseGroupOfParts(WLine line)
+        private GroupOfParts ParseGroupOfParts(WLine line, string startQuote)
         {
             if (line is WOldNumberedParagraph np)
                 return null;

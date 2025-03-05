@@ -11,9 +11,9 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private Schedules ParseSchedules(WLine line)
+        private Schedules ParseSchedules(WLine line, string startQuote)
         {
-            if (!PeekSchedules(line))
+            if (!PeekSchedules(line, startQuote))
                 return null;
 
             IFormattedText headingText = new WText("Schedules", null);
@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return new Schedules { Number = null, Heading = heading, Children = children };
         }
 
-        private bool PeekSchedules(WLine line)
+        private bool PeekSchedules(WLine line, string startQuote = null)
         {
             if (line is WOldNumberedParagraph np)
                 return false;
@@ -39,7 +39,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            if (!Schedules.IsValidHeading(line.NormalizedContent))
+            string heading = (startQuote == null) ? line.NormalizedContent : line.NormalizedContent[1..];
+            if (!Schedules.IsValidHeading(heading))
                 return false;
 
             // Schedules container must be followed by Schedule

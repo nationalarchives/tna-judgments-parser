@@ -6,8 +6,12 @@ using UK.Gov.Legislation.Judgments;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    internal class BlockQuotedStructure : IQuotedStructure
+    internal class BlockQuotedStructure : HContainer, IQuotedStructure
     {
+
+        public override string Name { get; internal init; } = "quotedStructure";
+
+        public override string Class => null;
 
         public IList<IDivision> Contents { get; internal init; }
 
