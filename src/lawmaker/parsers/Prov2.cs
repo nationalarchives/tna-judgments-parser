@@ -10,14 +10,12 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseProv2(WLine line)
+        private HContainer ParseProv2(WLine line, string startQuote)
         {
-            bool quoted = quoteDepth > 0;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (quoted && !Prov2.IsValidQuotedNumber(np.Number.Text))
-                return null;
-            if (!quoted && !Prov2.IsValidNumber(np.Number.Text))
+            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            if (!Prov2.IsValidNumber(numText))
                 return null;
 
             IFormattedText num = np.Number;
@@ -33,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
             {
-                AddFollowingToContent(line, intro);
+                //AddFollowingToContent(line, intro);
                 return new Prov2Leaf { Number = num, Contents = intro };
             }
             return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
@@ -45,10 +43,18 @@ namespace UK.Gov.Legislation.Lawmaker
             int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
+                int save = i;
+                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
+                if (qs != null)
+                {
+                    intro.Add(qs);
+                    continue;
+                }
+                i = save;
+
                 if (BreakFromProv1(leader))
                     break;
 
-                int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
@@ -61,29 +67,19 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next))
+                if (!HasValidIndentForChild(childStartLine, leader))
                 {
-                    i = save;
+                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
+                    if (addToWrapUp.Count > 0)
+                        wrapUp.AddRange(addToWrapUp);
+                    else
+                        i = save;
                     break;
                 }
                 children.Add(next);
                 finalChildStartLine = save;
             }
-            wrapUp.AddRange(HandleWrapUp(children, finalChildStartLine));
             return children;
-        }
-
-        private bool CurrentIsPossibleProv2Child(WLine leader)
-        {
-            if (Current() is not WLine line)
-                return true;
-            if (!IsLeftAligned(line))
-                return false;
-            if (LineIsIndentedLessThan(line, leader))
-                return false;
-            if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
-                return false;
-            return true;
         }
 
     }

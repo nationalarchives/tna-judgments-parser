@@ -10,7 +10,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseUnnumberedParagraph(WLine line)
+        private HContainer ParseUnnumberedParagraph(WLine line, string startQuote)
         {
             if (line is WOldNumberedParagraph)
                 return null;
