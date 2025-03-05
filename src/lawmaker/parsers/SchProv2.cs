@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -10,14 +9,12 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseSchProv2(WLine line)
+        private HContainer ParseSchProv2(WLine line, string startQuote)
         {
-            bool quoted = quoteDepth > 0;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (quoted && !Prov2.IsValidQuotedNumber(np.Number.Text))
-                return null;
-            if (!quoted && !Prov2.IsValidNumber(np.Number.Text))
+            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            if (!SchProv2.IsValidNumber(numText))
                 return null;
 
             i += 1;
@@ -42,13 +39,20 @@ namespace UK.Gov.Legislation.Lawmaker
         internal List<IDivision> ParseSchProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
         {
             List<IDivision> children = [];
-            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
+                int save = i;
+                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
+                if (qs != null)
+                {
+                    intro.Add(qs);
+                    continue;
+                }
+                i = save;
+
                 if (BreakFromProv1(leader))
                     break;
 
-                int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
@@ -61,15 +65,17 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next))
+                if (!HasValidIndentForChild(childStartLine, leader))
                 {
-                    i = save;
+                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
+                    if (addToWrapUp.Count > 0)
+                        wrapUp.AddRange(addToWrapUp);
+                    else
+                        i = save;
                     break;
                 }
                 children.Add(next);
-                finalChildStartLine = save;
             }
-            wrapUp.AddRange(HandleWrapUp(children, finalChildStartLine));
             return children;
         }
 

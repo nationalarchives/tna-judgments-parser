@@ -13,21 +13,21 @@ namespace UK.Gov.Legislation.Lawmaker
         private readonly Dictionary<(string, int, int), (object Result, int NextPosition)> memo = [];
 
         // call only if line is Current()
-        private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
+        private T ParseAndMemoize<T>(WLine line, string startQuote, string name, System.Func<WLine, string, T> parseFunction) {
             var key = (name, i, quoteDepth);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
                 return (T)cached.Result;
             }
             int save = i;
-            T result = parseFunction(line);
+            T result = parseFunction(line, startQuote);
             if (result is null)
                 i = save;
             memo[key] = (result, i);
             return result;
         }
 
-        private HContainer ParseLine()
+        private HContainer ParseLine(string startQuote = null)
         {
             if (Current() is not WLine line)
                 return null;
@@ -35,40 +35,40 @@ namespace UK.Gov.Legislation.Lawmaker
             HContainer hContainer;
 
             if (isInSchedules)
-                hContainer = ParseScheduleLine(line);
+                hContainer = ParseScheduleLine(line, startQuote);
             else
-                hContainer = ParseNonScheduleLine(line);
+                hContainer = ParseNonScheduleLine(line, startQuote);
 
             if (hContainer != null)
                 return hContainer;
 
             // Parse divisions which can occur both inside AND outside schedules
 
-            hContainer = ParseAndMemoize(line, "Schedules", ParseSchedules);
+            hContainer = ParseAndMemoize(line, startQuote, "Schedules", ParseSchedules);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Schedule", ParseSchedule);
+            hContainer = ParseAndMemoize(line, startQuote, "Schedule", ParseSchedule);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Para1", ParsePara1);
+            hContainer = ParseAndMemoize(line, startQuote, "Para1", ParsePara1);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Para2", ParsePara2);
+            hContainer = ParseAndMemoize(line, startQuote, "Para2", ParsePara2);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Para3", ParsePara3);
+            hContainer = ParseAndMemoize(line, startQuote, "Para3", ParsePara3);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Definition", ParseDefinition);
+            hContainer = ParseAndMemoize(line, startQuote, "Definition", ParseDefinition);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
+            hContainer = ParseAndMemoize(line, startQuote, "UnnumberedParagraph", ParseUnnumberedParagraph);
             if (hContainer != null)
                 return hContainer;
 
@@ -80,27 +80,27 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         // Parse divisions that only occur INSIDE Schedules
-        private HContainer ParseScheduleLine(WLine line)
+        private HContainer ParseScheduleLine(WLine line, string startQuote)
         {
             HContainer hContainer;
 
-            hContainer = ParseAndMemoize(line, "SchedulePart", ParseSchedulePart);
+            hContainer = ParseAndMemoize(line, startQuote, "SchedulePart", ParseSchedulePart);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "ScheduleChapter", ParseScheduleChapter);
+            hContainer = ParseAndMemoize(line, startQuote, "ScheduleChapter", ParseScheduleChapter);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "ScheduleCrossHeading", ParseScheduleCrossheading);
+            hContainer = ParseAndMemoize(line, startQuote, "ScheduleCrossHeading", ParseScheduleCrossheading);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "SchProv1", ParseSchProv1);
+            hContainer = ParseAndMemoize(line, startQuote, "SchProv1", ParseSchProv1);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "SchProv2", ParseSchProv2);
+            hContainer = ParseAndMemoize(line, startQuote, "SchProv2", ParseSchProv2);
             if (hContainer != null)
                 return hContainer;
 
@@ -108,30 +108,30 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         // Parse divisions that only occur OUTSIDE Schedules
-        private HContainer ParseNonScheduleLine(WLine line)
+        private HContainer ParseNonScheduleLine(WLine line, string startQuote)
         {
             HContainer hContainer;
-            hContainer = ParseAndMemoize(line, "GroupOfParts", ParseGroupOfParts);
+            hContainer = ParseAndMemoize(line, startQuote, "GroupOfParts", ParseGroupOfParts);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Part", ParsePart);
+            hContainer = ParseAndMemoize(line, startQuote, "Part", ParsePart);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Chapter", ParseChapter);
+            hContainer = ParseAndMemoize(line, startQuote, "Chapter", ParseChapter);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "CrossHeading", ParseCrossheading);
+            hContainer = ParseAndMemoize(line, startQuote, "CrossHeading", ParseCrossheading);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Prov1", ParseProv1);
+            hContainer = ParseAndMemoize(line, startQuote, "Prov1", ParseProv1);
             if (hContainer != null)
                 return hContainer;
 
-            hContainer = ParseAndMemoize(line, "Prov2", ParseProv2);
+            hContainer = ParseAndMemoize(line, startQuote, "Prov2", ParseProv2);
             if (hContainer != null)
                 return hContainer;
 
@@ -151,12 +151,14 @@ namespace UK.Gov.Legislation.Lawmaker
                     container.Add(current);
                     continue;
                 }
+                /* TODO: Remove
                 BlockQuotedStructure qs = ParseQuotedStructure(line);
                 if (qs is not null)
                 {
                     container.Add(qs);
                     continue;
                 }
+                */
                 if (line is WOldNumberedParagraph)
                     break;
                 if (!IsLeftAligned(line))
@@ -212,7 +214,24 @@ namespace UK.Gov.Legislation.Lawmaker
             return [..leaf.Contents];
         }
 
-        
+        private List<IBlock> HandleWrapUp2(IDivision next, int childCount)
+        {
+            if (childCount == 0)
+                return [];
+            if (next is not UnnumberedLeaf leaf)
+                // Closing Words must be the final child 
+                return [];
+            if (childCount == 1)
+            {
+                // This *is* Closing Words, but Closing words cannot be an only child,
+                // so it must belong to an ancestor provision
+                return [];
+            }
+            return [.. leaf.Contents];
+        }
+
+
+
         private bool BreakFromProv1(WLine leader)
         {
             if (Current() is not WLine line)

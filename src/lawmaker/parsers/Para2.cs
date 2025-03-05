@@ -10,17 +10,18 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseCurrentAsPara2() {
+        private HContainer ParseCurrentAsPara2(string startQuote) {
             if (Current() is not WLine line)
                 return null;
-            return ParsePara2(line);
+            return ParsePara2(line, startQuote);
         }
 
-        private HContainer ParsePara2(WLine line)
+        private HContainer ParsePara2(WLine line, string startQuote)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Para2.IsValidNumber(np.Number.Text))
+            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            if (!Para2.IsValidNumber(numText))
                 return null;
 
             IFormattedText num = np.Number;
@@ -32,14 +33,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Para2Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
+            List<IBlock> wrapUp = [];
 
-            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
+                int save = i;
+                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
+                if (qs != null)
+                {
+                    intro.Add(qs);
+                    continue;
+                }
+                i = save;
+
                 if (BreakFromProv1(line))
                     break;
 
-                int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, line, children.Count))
@@ -52,9 +61,13 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next))
+                if (!HasValidIndentForChild(childStartLine, line))
                 {
-                    i = save;
+                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
+                    if (addToWrapUp.Count > 0)
+                        wrapUp.AddRange(addToWrapUp);
+                    else
+                        i = save;
                     break;
                 }
                 children.Add(next);
@@ -73,6 +86,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Para2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
 
+            if (children.Count == 0)
+                return new Para2Leaf { Number = num, Contents = intro };
+            else
+                return new Para2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
     }
