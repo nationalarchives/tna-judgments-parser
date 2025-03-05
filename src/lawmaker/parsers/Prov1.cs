@@ -12,9 +12,9 @@ namespace UK.Gov.Legislation.Lawmaker
     {
 
         // matches only a heading above numbered section
-        private HContainer ParseProv1(WLine line)
+        private HContainer ParseProv1(WLine line, string startQuote = null)
         {
-            if (!PeekProv1(line))
+            if (!PeekProv1(line, startQuote))
                 return null;
 
             int save = i;
@@ -31,26 +31,29 @@ namespace UK.Gov.Legislation.Lawmaker
             return next;
         }
 
-        private bool PeekProv1(WLine line)
+        private bool PeekProv1(WLine line, string startQuote = null)
         {
+            bool quoted = quoteDepth > 0;
             if (line is WOldNumberedParagraph)
                 return false;  // could ParseBaseProv1(np);
-            if (!IsFlushLeft(line))
+            if (!IsFlushLeft(line) && !quoted)
                 return false;
             if (i > Document.Body.Count - 2)
                 return false;
             if (Document.Body[i + 1].Block is not WLine nextLine)
                 return false;
-            return PeekBareProv1(nextLine);
+            return PeekBareProv1(nextLine, startQuote);
         }
 
-        private bool PeekBareProv1(WLine line)
+        private bool PeekBareProv1(WLine line, string startQuote = null)
         {
-            if (!IsFlushLeft(line))
+            bool quoted = quoteDepth > 0;
+            if (!IsFlushLeft(line) && !quoted)
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            if (!Prov1.IsValidNumber(np.Number.Text))
+            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            if (!Prov1.IsValidNumber(numText))
                 return false;
             return true;
         }
@@ -67,15 +70,24 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Prov1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
+            List<IBlock> wrapUp = [];
 
             FixFirstSubsection(intro, children, heading);
 
-            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
+                int save = i;
+                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
+                if (qs != null)
+                {
+                    intro.Add(qs);
+                    continue;
+                }
+                i = save;
+
                 if (BreakFromProv1(np))
                     break;
-                int save = i;
+
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, np, children.Count))
@@ -88,15 +100,17 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next))
+                if (!HasValidIndentForChild(childStartLine, heading ?? np))
                 {
-                    i = save;
+                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
+                    if (addToWrapUp.Count > 0)
+                        wrapUp.AddRange(addToWrapUp);
+                    else
+                        i = save;
                     break;
                 }
                 children.Add(next);
-                finalChildStartLine = save;
             }
-            List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
 
             if (children.Count == 0)
                 return new Prov1Leaf { Number = num, Contents = intro };

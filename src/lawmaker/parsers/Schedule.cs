@@ -12,9 +12,9 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseSchedule(WLine line)
+        private HContainer ParseSchedule(WLine line, string startQuote)
         {
-            if (!PeekSchedule(line))
+            if (!PeekSchedule(line, startQuote))
                 return null;
 
             string numberString = Regex.Replace(
@@ -74,7 +74,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        private bool PeekSchedule(WLine line)
+        private bool PeekSchedule(WLine line, string startQuote = null)
         {
             if (line is WOldNumberedParagraph np)
                 return false;
@@ -82,7 +82,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            if (!Schedule.IsValidNumber(line.NormalizedContent))
+            string num = (startQuote == null) ? line.NormalizedContent : line.NormalizedContent[1..];
+            if (!Schedule.IsValidNumber(num))
                 return false;
             return true;
         }
