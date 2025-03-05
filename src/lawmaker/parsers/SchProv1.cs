@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, np, children.Count))
+                if (next is UnknownLevel || IsExtraIntroLine(next, childStartLine, np, children.Count))
                 {
                     intro.Add(childStartLine);
                     continue;
