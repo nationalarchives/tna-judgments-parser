@@ -28,35 +28,34 @@ namespace UK.Gov.Legislation.Lawmaker
             return (left, right);
         }
 
-        private bool IsFirstLineOfQuotedStructure(WLine line)
+        private (bool, string) IsFirstLineOfQuotedStructure(WLine line)
         {
+            string text;
             if (line is WOldNumberedParagraph np)
-            {
-                if (np.Number.Text.StartsWith('\u201C'))
-                    return true;
-            }
+                text = np.Number.Text + " " + line.NormalizedContent;
             else
+                text = line.NormalizedContent;
+
+            if (text.StartsWith('\u201C'))
             {
-                if (line.NormalizedContent.StartsWith('\u201C'))
-                {
-                    var (left, right) = CountLeftAndRightQuotes(line);
-                    if (left == 1 && right == 0)
-                        return true;
-                    else
-                        return false;
-                }
+                var (left, right) = CountLeftAndRightQuotes(line);
+                if (left > right)
+                    return (true, "\u201C");
+                // Handle single-paragraph quoted structures
+                else if (left == right && Regex.IsMatch(text, QuotedStructureEndPattern()))
+                    return (true, "\u201C");
             }
             if (i == 0)
-                return false;
+                return (false, null);
             if (Document.Body[i - 1].Block is not WLine previous)
-                return false;
+                return (false, null);
             // currently IsFirstLineOfQuotedStructure works only with current line
             // if (IsFirstLineOfQuotedStructure(previous))
             //     return false;
             if (previous.NormalizedContent.StartsWith('\u201C'))
-                return false;
+                return (false, null);
             var (prevLeft, prevRight) = CountLeftAndRightQuotes(previous);
-            return prevLeft > prevRight;
+            return (prevLeft > prevRight, null);
         }
 
         private static bool IsEndOfQuotedStructure(HContainer hContainer)
@@ -65,30 +64,42 @@ namespace UK.Gov.Legislation.Lawmaker
             if (line is null)
                 return false;
             string text = line.NormalizedContent;
-            if (text.EndsWith('\u201D'))
-                    return true;
-            if (text.EndsWith("\u201D."))
-                    return true;
-            if (text.EndsWith("\u201D;"))
-                    return true;
-            if (text.EndsWith("\u201D, and"))
-                    return true;
-            return false;
+            return Regex.IsMatch(text, QuotedStructureEndPattern());
         }
 
-        private BlockQuotedStructure ParseQuotedStructure()
+        private static string QuotedStructureEndPattern()
         {
+            string[] possibleFollowingTexts = {
+                ".", 
+                ";", 
+                ",", 
+                ", or", 
+                ", and", 
+                "; or", 
+                "; and"
+            };
+            string followingTextRegex = $"({string.Join("|", possibleFollowingTexts)})";
+            followingTextRegex = followingTextRegex.Replace(".", "\\.");
+            return $"\u201D{followingTextRegex}?$";
+        }
+
+        private BlockQuotedStructure ParseQuotedStructure(int childCount)
+        {
+            if (childCount > 0)
+                // A quoted structure cannot occur after a child
+                return null;
             if (i == Document.Body.Count)
                 return null;
             IBlock block = Document.Body[i].Block;
             if (block is not WLine line)
                 return null;
-            return ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure);
+            return ParseAndMemoize(line, null, "QuotedStructure", ParseQuotedStructure);
         }
 
-        private BlockQuotedStructure ParseQuotedStructure(WLine line)
+        private BlockQuotedStructure ParseQuotedStructure(WLine line, string startQuote)
         {
-            if (!IsFirstLineOfQuotedStructure(line))
+            (bool isFirstLineOfQuotedStructure, startQuote) = IsFirstLineOfQuotedStructure(line);
+            if (!isFirstLineOfQuotedStructure)
                 return null;
 
             List<IDivision> contents = [];
@@ -96,7 +107,7 @@ namespace UK.Gov.Legislation.Lawmaker
             while (i < Document.Body.Count)
             {
                 int save = i;
-                var child = ParseLine();
+                var child = ParseLine(startQuote);
                 if (child is null)
                 {
                     i = save;
@@ -125,9 +136,16 @@ namespace UK.Gov.Legislation.Lawmaker
                 return;
             if (qs.StartQuote is null && qs.Contents.FirstOrDefault() is HContainer first)
             {
+                // First text item can be in the num, heading, intro, OR content.
+                // Depends on the HContainer
                 if (first.HeadingPrecedesNumber)
                 {
-                    // ToDo
+                    /*
+                    ILine line = first.Heading;
+                    IInline firstInline = line.Contents.FirstOrDefault();
+                    line.Contents.RemoveAt()
+                    first.Heading = new WLine(line, )
+                    */
                 }
                 else
                 {
@@ -141,7 +159,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     }
                 }
             }
-            var f = new ExtractAndReplace();
+            var f = new ExtractAndReplace(QuotedStructureEndPattern());
             LastLine.Replace(qs.Contents, f.Invoke);
             qs.EndQuote = f.EndQuote;
             qs.AppendText = f.AppendText;
@@ -156,16 +174,21 @@ namespace UK.Gov.Legislation.Lawmaker
             internal string EndQuote { get; private set; } = null;
             internal AppendText AppendText { get; private set; } = null;
 
-            private static readonly string pattern = "\u201D([\\.;])?$";
+            internal string EndPattern { private get; set; }
+
+            public ExtractAndReplace(string endPattern)
+            {
+                EndPattern = endPattern;
+            }
 
             public WLine Invoke(WLine line)
             {
                 if (line.Contents.LastOrDefault() is not WText last)
                     return null;
-                Match match = Regex.Match(last.Text, pattern);
+                Match match = Regex.Match(last.Text, EndPattern);
                 if (match.Success)
                 {
-                    EndQuote = "”";
+                    EndQuote = "\u201D";
                     AppendText = new AppendText(match.Groups[1].Value, last.properties);
                     WText replacement = new(last.Text[..match.Index], last.properties);
                     return WLine.Make(line, line.Contents.SkipLast(1).Append(replacement));

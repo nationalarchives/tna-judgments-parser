@@ -11,13 +11,15 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseSchProv1(WLine line)
+        private HContainer ParseSchProv1(WLine line, string startQuote)
         {
-            if (!IsFlushLeft(line))
+            bool quoted = quoteDepth > 0;
+            if (!IsFlushLeft(line) && !quoted)
                 return null;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!SchProv1.IsValidNumber(np.Number.Text))
+            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            if (!SchProv1.IsValidNumber(numText))
                 return null;
 
             int save = i;
@@ -41,16 +43,24 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
+            List<IBlock> wrapUp = [];
 
             FixFirstSchProv2(intro, children);
 
-            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
+                int save = i;
+                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
+                if (qs != null)
+                {
+                    intro.Add(qs);
+                    continue;
+                }
+                i = save;
+
                 if (BreakFromProv1(line))
                     break;
 
-                int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, np, children.Count))
@@ -63,20 +73,22 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next))
+                if (!HasValidIndentForChild(childStartLine, line))
                 {
-                    i = save;
+                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
+                    if (addToWrapUp.Count > 0)
+                        wrapUp.AddRange(addToWrapUp);
+                    else
+                        i = save;
                     break;
                 }
                 children.Add(next);
-                finalChildStartLine = save;
             }
-            List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
 
             if (children.Count == 0)
                 return new SchProv1Leaf { Number = num, Contents = intro };
-
-            return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            else
+                return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
         private void FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)
