@@ -42,6 +42,11 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
+                if (next is UnknownLevel || IsExtraIntroLine(next, childStartLine, line, children.Count))
+                {
+                    intro.Add(childStartLine);
+                    continue;
+                }
                 if (!Para2.IsValidChild(next))
                 {
                     i = save;
