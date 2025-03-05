@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -11,18 +12,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSchProv2(WLine line)
         {
+            bool quoted = quoteDepth > 0;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
-            if (!SchProv2.IsValidNumber(numText))
+            if (quoted && !Prov2.IsValidQuotedNumber(np.Number.Text))
+                return null;
+            if (!quoted && !Prov2.IsValidNumber(np.Number.Text))
                 return null;
 
             i += 1;
 
             IFormattedText num = np.Number;
-            List<IBlock> intro = HandleParagraphs(np);
+            List<IBlock> intro = [WLine.RemoveNumber(np)];
 
-            if (IsEndOfQuotedStructure(intro))
+            if (i == Document.Body.Count)
                 return new SchProv2Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
@@ -30,6 +33,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
             {
+                AddFollowingToContent(line, intro);
                 return new SchProv2Leaf { Number = num, Contents = intro };
             }
             return new SchProv2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
@@ -38,26 +42,34 @@ namespace UK.Gov.Legislation.Lawmaker
         internal List<IDivision> ParseSchProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
         {
             List<IDivision> children = [];
-            int finalChildStart = i;
+            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
                 if (BreakFromProv1(leader))
                     break;
 
                 int save = i;
+                IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
+                if (next is UnknownLevel || IsExtraIntroLine(next, childStartLine, leader, children.Count))
+                {
+                    intro.Add(childStartLine);
+                    continue;
+                }
                 if (!SchProv2.IsValidChild(next))
                 {
                     i = save;
                     break;
                 }
-                children.Add(next);
-                finalChildStart = save;
-
-                if (IsEndOfQuotedStructure(next))
+                if (!NextChildIsAcceptable(children, next))
+                {
+                    i = save;
                     break;
+                }
+                children.Add(next);
+                finalChildStartLine = save;
             }
-            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStartLine));
             return children;
         }
 
