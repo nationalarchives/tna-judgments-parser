@@ -10,7 +10,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private ScheduleCrossHeading ParseScheduleCrossheading(WLine line)
+        private ScheduleCrossHeading ParseScheduleCrossheading(WLine line, string startQuote)
         {
             if (!PeekScheduleCrossHeading(line))
                 return null;

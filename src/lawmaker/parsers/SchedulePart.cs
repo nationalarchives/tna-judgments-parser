@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private SchedulePart ParseSchedulePart(WLine line)
+        private SchedulePart ParseSchedulePart(WLine line, string startQuote)
         {
             if (line is WOldNumberedParagraph np)
                 return null;

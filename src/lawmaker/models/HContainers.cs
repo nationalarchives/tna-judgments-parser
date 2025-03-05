@@ -1,7 +1,9 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -28,6 +30,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public virtual bool HeadingPrecedesNumber { get; } = false;
 
+        public virtual string FirstText()
+        {
+            if (!HeadingPrecedesNumber && Number != null)
+                return Number.Text;
+            if (Heading == null)
+                return null;
+            string contents = IInline.ToString(Heading.Contents);
+            return Regex.Replace(contents, @"\s+", " ").Trim();
+        }
+
     }
 
     abstract class Branch : HContainer, IBranch
@@ -45,6 +57,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
         IEnumerable<IBlock> IBranch.WrapUp => WrapUp;
 
+        public override string FirstText()
+        {
+            string baseText = base.FirstText();
+            if (baseText != null)
+                return baseText;
+            if (Intro == null)
+                return null;
+            IBlock firstLine = Intro.FirstOrDefault(b => b is ILine);
+            if (firstLine == null)
+                return null;
+            string contents = IInline.ToString((firstLine as ILine).Contents);
+            return Regex.Replace(contents, @"\s+", " ").Trim();
+        }
+
     }
 
     abstract class Leaf : HContainer, ILeaf
@@ -53,6 +79,20 @@ namespace UK.Gov.Legislation.Lawmaker
         public IList<IBlock> Contents { get; internal init; }
 
         IEnumerable<IBlock> ILeaf.Contents => Contents;
+
+        public override string FirstText()
+        {
+            string baseText = base.FirstText();
+            if (baseText != null)
+                return baseText;
+            if (Contents == null)
+                return null;
+            IBlock firstLine = Contents.FirstOrDefault(b => b is ILine);
+            if (firstLine == null)
+                return null;
+            string contents = IInline.ToString((firstLine as ILine).Contents);
+            return Regex.Replace(contents, @"\s+", " ").Trim();
+        }
 
     }
 

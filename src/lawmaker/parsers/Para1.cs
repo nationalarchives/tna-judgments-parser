@@ -10,11 +10,12 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParsePara1(WLine line)
+        private HContainer ParsePara1(WLine line, string startQuote)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Para1.IsValidNumber(np.Number.Text))
+            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            if (!Para1.IsValidNumber(numText))
                 return null;
 
             IFormattedText num = np.Number;
@@ -26,14 +27,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Para1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
+            List<IBlock> wrapUp = [];
 
-            int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
+                int save = i;
+                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
+                if (qs != null)
+                {
+                    intro.Add(qs);
+                    continue;
+                }
+                i = save;
+
                 if (BreakFromProv1(line))
                     break;
 
-                int save = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, line, children.Count))
@@ -41,38 +50,33 @@ namespace UK.Gov.Legislation.Lawmaker
                     intro.Add(childStartLine);
                     continue;
                 }
-
                 if (next is Para1) {
                     // Para1 & Para2 nums are both lowercase alphabetical 
                     // Para1 parser has higher precedence, so must force parse as Para2
                     i = save;
-                    next = ParseCurrentAsPara2();
+                    next = ParseCurrentAsPara2(startQuote);
                 }
                 if (!Para1.IsValidChild(next))
                 {
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next)) {
-                    i = save;
+                if (!HasValidIndentForChild(childStartLine, line))
+                {
+                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
+                    if (addToWrapUp.Count > 0)
+                        wrapUp.AddRange(addToWrapUp);
+                    else
+                        i = save;
                     break;
                 }
                 children.Add(next);
-                finalChildStartLine = save;
-            }
-            List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
-            if (children.Count == 0)
-            {
-                BlockQuotedStructure qs = ParseQuotedStructure();
-                if (qs is not null)
-                    intro.Add(qs);
-                return new Para1Leaf { Number = num, Contents = intro };
-            }
-            else
-            {
-                return new Para1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
 
+            if (children.Count == 0)
+                return new Para1Leaf { Number = num, Contents = intro };
+            else
+                return new Para1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
     }
