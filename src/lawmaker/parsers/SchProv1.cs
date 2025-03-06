@@ -24,7 +24,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             int save = i;
             i += 1;
-            HContainer next = Parse(line, np);
+            HContainer next = Parse(line, np, startQuote);
             if (next is null)
             {
                 i = save;
@@ -34,12 +34,12 @@ namespace UK.Gov.Legislation.Lawmaker
             return next;
         }
 
-        private HContainer Parse(WLine line, WOldNumberedParagraph np)
+        private HContainer Parse(WLine line, WOldNumberedParagraph np, string startQuote)
         {
             IFormattedText num = np.Number;
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
-            if (i == Document.Body.Count)
+            if (i == Document.Body.Count || IsEndOfQuotedStructure(line, startQuote))
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
@@ -47,6 +47,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             FixFirstSchProv2(intro, children);
 
+            int finalChildStart = i;
             while (i < Document.Body.Count)
             {
                 int save = i;
@@ -66,6 +67,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsExtraIntroLine(next, childStartLine, np, children.Count))
                 {
                     intro.Add(childStartLine);
+                    if (IsEndOfQuotedStructure(childStartLine as WLine))
+                        break;
                     continue;
                 }
                 if (!SchProv1.IsValidChild(next))
@@ -73,17 +76,10 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!HasValidIndentForChild(childStartLine, line))
-                {
-                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
-                    if (addToWrapUp.Count > 0)
-                        wrapUp.AddRange(addToWrapUp);
-                    else
-                        i = save;
-                    break;
-                }
                 children.Add(next);
+                finalChildStart = save;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
             if (children.Count == 0)
                 return new SchProv1Leaf { Number = num, Contents = intro };

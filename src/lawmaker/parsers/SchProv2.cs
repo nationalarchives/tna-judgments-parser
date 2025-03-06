@@ -22,7 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
             IFormattedText num = np.Number;
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
-            if (i == Document.Body.Count)
+            if (i == Document.Body.Count || IsEndOfQuotedStructure(line, startQuote))
                 return new SchProv2Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
@@ -39,6 +39,7 @@ namespace UK.Gov.Legislation.Lawmaker
         internal List<IDivision> ParseSchProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
         {
             List<IDivision> children = [];
+            int finalChildStart = i;
             while (i < Document.Body.Count)
             {
                 int save = i;
@@ -53,11 +54,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (BreakFromProv1(leader))
                     break;
 
+                finalChildStart = i;
                 IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
                 if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
                 {
                     intro.Add(childStartLine);
+                    if (IsEndOfQuotedStructure(childStartLine as WLine))
+                        break;
                     continue;
                 }
                 if (!SchProv2.IsValidChild(next))
@@ -65,17 +69,10 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!HasValidIndentForChild(childStartLine, leader))
-                {
-                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
-                    if (addToWrapUp.Count > 0)
-                        wrapUp.AddRange(addToWrapUp);
-                    else
-                        i = save;
-                    break;
-                }
                 children.Add(next);
+                finalChildStart = save;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
             return children;
         }
 

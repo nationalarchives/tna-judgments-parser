@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -22,34 +21,26 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
             i += 1;
-
             if (i == Document.Body.Count)
+                return new Para1Leaf { Number = num, Contents = intro };
+
+            HandleExtraParagraphs(line, intro);
+            HandleQuotedStructures(intro);
+
+            if (IsEndOfQuotedStructure(intro))
                 return new Para1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
+            int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                int save = i;
-                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
-                if (qs != null)
-                {
-                    intro.Add(qs);
-                    continue;
-                }
-                i = save;
-
                 if (BreakFromProv1(line))
                     break;
 
-                IBlock childStartLine = Current();
+                int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, line, children.Count))
-                {
-                    intro.Add(childStartLine);
-                    continue;
-                }
                 if (next is Para1) {
                     // Para1 & Para2 nums are both lowercase alphabetical 
                     // Para1 parser has higher precedence, so must force parse as Para2
@@ -61,17 +52,13 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!HasValidIndentForChild(childStartLine, line))
-                {
-                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
-                    if (addToWrapUp.Count > 0)
-                        wrapUp.AddRange(addToWrapUp);
-                    else
-                        i = save;
-                    break;
-                }
                 children.Add(next);
+                finalChildStart = save;
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
             if (children.Count == 0)
                 return new Para1Leaf { Number = num, Contents = intro };
