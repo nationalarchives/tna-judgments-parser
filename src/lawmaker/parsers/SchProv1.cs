@@ -11,20 +11,19 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseSchProv1(WLine line, string startQuote)
+        private HContainer ParseSchProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
             if (!IsFlushLeft(line) && !quoted)
                 return null;
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!SchProv1.IsValidNumber(numText))
                 return null;
 
             int save = i;
-            i += 1;
-            HContainer next = Parse(line, np, startQuote);
+            HContainer next = Parse(line, np);
             if (next is null)
             {
                 i = save;
@@ -34,43 +33,38 @@ namespace UK.Gov.Legislation.Lawmaker
             return next;
         }
 
-        private HContainer Parse(WLine line, WOldNumberedParagraph np, string startQuote)
+        private HContainer Parse(WLine line, WOldNumberedParagraph np)
         {
             IFormattedText num = np.Number;
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
-            if (i == Document.Body.Count || IsEndOfQuotedStructure(line, startQuote))
+            i += 1;
+            if (i == Document.Body.Count)
                 return new SchProv1Leaf { Number = num, Contents = intro };
+
+            HandleExtraParagraphs(np, intro);
+            HandleQuotedStructures(intro);
 
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
-            FixFirstSchProv2(intro, children);
+            bool isEndOfQuotedStructure = FixFirstSchProv2(intro, children);
+            if (isEndOfQuotedStructure)
+            {
+                if (children.Count == 0)
+                    return new SchProv1Leaf { Number = num, Contents = intro };
+
+                return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            }
 
             int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                int save = i;
-                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
-                if (qs != null)
-                {
-                    intro.Add(qs);
-                    continue;
-                }
-                i = save;
-
                 if (BreakFromProv1(line))
                     break;
 
-                IBlock childStartLine = Current();
+                int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, np, children.Count))
-                {
-                    intro.Add(childStartLine);
-                    if (IsEndOfQuotedStructure(childStartLine as WLine))
-                        break;
-                    continue;
-                }
                 if (!SchProv1.IsValidChild(next))
                 {
                     i = save;
@@ -78,44 +72,53 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
                 finalChildStart = save;
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
             if (children.Count == 0)
                 return new SchProv1Leaf { Number = num, Contents = intro };
-            else
-                return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            
+            return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
-        private void FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)
+        private bool FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)
         {
-            if (intro.Last() is not WLine last || last is WOldNumberedParagraph)
-                return;
+            if (intro.First() is not WLine first || first is WOldNumberedParagraph)
+                return false;
 
-            (WText num1, WLine rest1) = FixFirstProv2Num(last);
-            if (num1 is null)
-                return;
+            (WText schProv2Num, WLine schProv2FirstLine) = FixFirstProv2Num(first);
+            if (schProv2Num is null)
+                return false;
 
-            intro.Remove(last);
-            intro.Add(rest1);
+            intro.Remove(first);
+            intro.Insert(0, schProv2FirstLine);
 
-            List<IBlock> prov2WrapUp = [];
-            List<IDivision> prov2Children = ParseSchProv2Children(last, intro, prov2WrapUp);
 
-            SchProv2 l;
-            if (prov2Children.Count == 0)
+            SchProv2 schProv2;
+            bool isEndOfQuotedStructure = IsEndOfQuotedStructure(intro);
+            if (isEndOfQuotedStructure)
             {
                 List<IBlock> contents = new(intro);
-                AddFollowingToContent(heading ?? last, contents);
-                l = new SchProv2Leaf { Number = num1, Contents = contents };
+                schProv2 = new SchProv2Leaf { Number = schProv2Num, Contents = contents };
             }
             else
             {
+                List<IBlock> schProv2WrapUp = [];
+                List<IDivision> schProv2Children = ParseSchProv2Children(first, intro, schProv2WrapUp);
+
                 List<IBlock> contents = new(intro);
-                l = new SchProv2Branch { Number = num1, Intro = contents, Children = prov2Children, WrapUp = prov2WrapUp };
+                if (schProv2Children.Count == 0)
+                    schProv2 = new SchProv2Leaf { Number = schProv2Num, Contents = contents };
+                else
+                    schProv2 = new SchProv2Branch { Number = schProv2Num, Intro = contents, Children = schProv2Children, WrapUp = schProv2WrapUp };
+
             }
             intro.Clear();
-            children.Insert(0, l);
+            children.Insert(0, schProv2);
+            return isEndOfQuotedStructure;
         }
     }
 

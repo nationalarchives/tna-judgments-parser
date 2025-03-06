@@ -9,20 +9,25 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseSchProv2(WLine line, string startQuote)
+        private HContainer ParseSchProv2(WLine line)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!SchProv2.IsValidNumber(numText))
                 return null;
-
-            i += 1;
 
             IFormattedText num = np.Number;
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
-            if (i == Document.Body.Count || IsEndOfQuotedStructure(line, startQuote))
+            i += 1;
+            if (i == Document.Body.Count)
+                return new SchProv2Leaf { Number = num, Contents = intro };
+
+            HandleExtraParagraphs(line, intro);
+            HandleQuotedStructures(intro);
+
+            if (IsEndOfQuotedStructure(intro))
                 return new SchProv2Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
@@ -30,7 +35,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
             {
-                AddFollowingToContent(line, intro);
                 return new SchProv2Leaf { Number = num, Contents = intro };
             }
             return new SchProv2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
@@ -42,28 +46,11 @@ namespace UK.Gov.Legislation.Lawmaker
             int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                int save = i;
-                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
-                if (qs != null)
-                {
-                    intro.Add(qs);
-                    continue;
-                }
-                i = save;
-
                 if (BreakFromProv1(leader))
                     break;
 
-                finalChildStart = i;
-                IBlock childStartLine = Current();
+                int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
-                {
-                    intro.Add(childStartLine);
-                    if (IsEndOfQuotedStructure(childStartLine as WLine))
-                        break;
-                    continue;
-                }
                 if (!SchProv2.IsValidChild(next))
                 {
                     i = save;
@@ -71,6 +58,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
                 finalChildStart = save;
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
             return children;

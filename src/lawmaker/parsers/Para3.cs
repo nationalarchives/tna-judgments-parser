@@ -10,11 +10,11 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParsePara3(WLine line, string startQuote)
+        private HContainer ParsePara3(WLine line)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!Para3.IsValidNumber(numText))
                 return null;
 

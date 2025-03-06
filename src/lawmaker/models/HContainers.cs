@@ -30,8 +30,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public virtual bool HeadingPrecedesNumber { get; } = false;
 
-        public bool IsEndOfQuotedStructure { get; set; }
-
     }
 
     abstract class Branch : HContainer, IBranch
