@@ -22,8 +22,13 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
             i += 1;
-
             if (i == Document.Body.Count)
+                return new Prov2Leaf { Number = num, Contents = intro };
+
+            HandleExtraParagraphs(line, intro);
+            HandleQuotedStructures(intro);
+
+            if (IsEndOfQuotedStructure(intro))
                 return new Prov2Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
@@ -31,7 +36,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
             {
-                //AddFollowingToContent(line, intro);
                 return new Prov2Leaf { Number = num, Contents = intro };
             }
             return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
@@ -40,45 +44,26 @@ namespace UK.Gov.Legislation.Lawmaker
         internal List<IDivision> ParseProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
         {
             List<IDivision> children = [];
-            int finalChildStartLine = i;
+            int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                int save = i;
-                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
-                if (qs != null)
-                {
-                    intro.Add(qs);
-                    continue;
-                }
-                i = save;
-
                 if (BreakFromProv1(leader))
                     break;
 
-                IBlock childStartLine = Current();
+                int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, leader, children.Count))
-                {
-                    intro.Add(childStartLine);
-                    continue;
-                }
                 if (!Prov2.IsValidChild(next))
                 {
                     i = save;
                     break;
                 }
-                if (!HasValidIndentForChild(childStartLine, leader))
-                {
-                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
-                    if (addToWrapUp.Count > 0)
-                        wrapUp.AddRange(addToWrapUp);
-                    else
-                        i = save;
-                    break;
-                }
                 children.Add(next);
-                finalChildStartLine = save;
+                finalChildStart = save;
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
             return children;
         }
 

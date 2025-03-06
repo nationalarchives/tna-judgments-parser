@@ -21,7 +21,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IBlock> intro = [line];
 
-            if (i == Document.Body.Count)
+            if (i == Document.Body.Count || IsEndOfQuotedStructure(line, startQuote))
             {
                 return new UnnumberedLeaf { Contents = intro };
             }
