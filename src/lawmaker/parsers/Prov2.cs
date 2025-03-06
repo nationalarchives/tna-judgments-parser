@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -10,11 +9,11 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseProv2(WLine line, string startQuote)
+        private HContainer ParseProv2(WLine line)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!Prov2.IsValidNumber(numText))
                 return null;
 
