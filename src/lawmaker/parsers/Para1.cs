@@ -9,11 +9,11 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParsePara1(WLine line, string startQuote)
+        private HContainer ParsePara1(WLine line)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!Para1.IsValidNumber(numText))
                 return null;
 
@@ -45,7 +45,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     // Para1 & Para2 nums are both lowercase alphabetical 
                     // Para1 parser has higher precedence, so must force parse as Para2
                     i = save;
-                    next = ParseCurrentAsPara2(startQuote);
+                    next = ParseCurrentAsPara2();
                 }
                 if (!Para1.IsValidChild(next))
                 {
