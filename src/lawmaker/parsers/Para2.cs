@@ -9,17 +9,17 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseCurrentAsPara2(string startQuote) {
+        private HContainer ParseCurrentAsPara2() {
             if (Current() is not WLine line)
                 return null;
-            return ParsePara2(line, startQuote);
+            return ParsePara2(line);
         }
 
-        private HContainer ParsePara2(WLine line, string startQuote)
+        private HContainer ParsePara2(WLine line)
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!Para2.IsValidNumber(numText))
                 return null;
 

@@ -10,7 +10,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private CrossHeading ParseCrossheading(WLine line, string startQuote)
+        private CrossHeading ParseCrossheading(WLine line)
         {
             if (line is WOldNumberedParagraph np)
                 return null;
