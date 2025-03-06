@@ -28,6 +28,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return (left, right);
         }
 
+        private static (int, int) CountLeftAndRightQuotes(IEnumerable<IBlock> blocks)
+        {
+            int left = 0;
+            int right = 0;
+            foreach (IBlock block in blocks)
+            {
+                if (block is not WLine line)
+                    continue;
+                (int addToLeft, int addtoRight) = CountLeftAndRightQuotes(line);
+                left += addToLeft;
+                right += addtoRight;
+            }
+            return (left, right);
+        }
+
         private (bool, string) IsFirstLineOfQuotedStructure(WLine line)
         {
             string text;
@@ -58,14 +73,84 @@ namespace UK.Gov.Legislation.Lawmaker
             return (prevLeft > prevRight, null);
         }
 
-        private static bool IsEndOfQuotedStructure(HContainer hContainer)
+        private string GetStartQuote()
         {
-            WLine line = LastLine.GetLastLine(hContainer);
-            if (line is null)
-                return false;
-            string text = line.NormalizedContent;
-            return Regex.IsMatch(text, QuotedStructureEndPattern());
+            if (Current() is not WLine line)
+                return null;
+
+            string text;
+            if (line is WOldNumberedParagraph np)
+                text = np.Number.Text + " " + line.NormalizedContent;
+            else
+                text = line.NormalizedContent;
+
+            if (text.StartsWith('\u201C'))
+            {
+                var (left, right) = CountLeftAndRightQuotes(line);
+                if (left > right)
+                    return "\u201C";
+                // Handle single-paragraph quoted structures
+                else if (left == right && Regex.IsMatch(text, QuotedStructureEndPattern()))
+                    return "\u201C";
+            }
+            return null;
         }
+
+        private static bool IsEndOfQuotedStructure(IDivision division, string startQuote = null)
+        {
+            WLine line = LastLine.GetLastLine(division);
+            return IsEndOfQuotedStructure(line, startQuote);
+        }
+
+        private static bool IsEndOfQuotedStructure(IDivision division)
+        {
+            if (division is not ILeaf leaf)
+                return false;
+            return IsEndOfQuotedStructure(leaf.Contents, null);
+        }
+
+        private static bool IsEndOfQuotedStructure(IBlock block, string startQuote = null)
+        {
+            if (block is null)
+                return false;
+            if (block is not WLine line)
+                return false;
+
+            string text = line.NormalizedContent;
+            bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
+            if (!isEndQuoteAtEnd)
+                return false;
+
+            bool isStartQuoteAtStart = startQuote != null;
+            (int left, int right) = CountLeftAndRightQuotes(line);
+            //if (line.TextContent.StartsWith(startQuote)) left -= 1;
+
+            bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
+            bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
+            return isSingleLine || isEndOfMultiLine;
+        }
+
+        private static bool IsEndOfQuotedStructure(IEnumerable<IBlock> container, string startQuote = null)
+        {
+            IBlock lastLine = container.Last(b => b is WLine);
+            if (lastLine == null)
+                return false;
+
+            string text = (lastLine as WLine).NormalizedContent;
+            bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
+            if (!isEndQuoteAtEnd)
+                return false;
+
+            bool isStartQuoteAtStart = startQuote != null;
+            (int left, int right) = CountLeftAndRightQuotes(container);
+
+
+            bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
+
+            bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
+            return isSingleLine || isEndOfMultiLine;
+        }
+
 
         private static string QuotedStructureEndPattern()
         {
@@ -83,11 +168,46 @@ namespace UK.Gov.Legislation.Lawmaker
             return $"\u201D{followingTextRegex}?$";
         }
 
-        private BlockQuotedStructure ParseQuotedStructure(int childCount)
+        private void HandleQuotedStructures(List<IBlock> container)
         {
-            if (childCount > 0)
-                // A quoted structure cannot occur after a child
-                return null;
+            if (i == Document.Body.Count)
+                return;
+            int save = i;
+
+            // Handle the case where the first quoted structure has no start quote
+            (int left, int right) = CountLeftAndRightQuotes(container);
+            if (left > right)
+            {
+                BlockQuotedStructure qs = ParseQuotedStructure2();
+                if (qs != null)
+                    container.Add(qs);
+                else
+                    i = save;
+            }
+
+            // Handle regular quoted structures
+            while (i < Document.Body.Count)
+            {
+                save = i;
+                string startQuote = GetStartQuote();
+                if (startQuote == null)
+                {
+                    i = save;
+                    break;
+                }
+                BlockQuotedStructure qs = ParseQuotedStructure2(startQuote);
+                if (qs == null)
+                {
+                    i = save;
+                    break;
+                }
+                container.Add(qs);
+            }
+        }
+
+        // DEANTODO: Remove child count
+        private BlockQuotedStructure ParseQuotedStructure(int childCount = 0)
+        {
             if (i == Document.Body.Count)
                 return null;
             IBlock block = Document.Body[i].Block;
@@ -95,6 +215,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             return ParseAndMemoize(line, null, "QuotedStructure", ParseQuotedStructure);
         }
+
+        private BlockQuotedStructure ParseQuotedStructure2(string startQuote = null)
+        {
+            if (i == Document.Body.Count)
+                return null;
+            IBlock block = Document.Body[i].Block;
+            if (block is not WLine line)
+                return null;
+            return ParseAndMemoize(line, startQuote, "QuotedStructure", ParseQuotedStructure2);
+        }
+
 
         private BlockQuotedStructure ParseQuotedStructure(WLine line, string startQuote)
         {
@@ -114,8 +245,35 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 contents.Add(child);
-                if (IsEndOfQuotedStructure(child))
+                if (IsEndOfQuotedStructure(child, startQuote))
                     break;
+                // Startquote only applies to first child
+                startQuote = null;
+            }
+            quoteDepth -= 1;
+            if (contents.Count == 0)
+                return null;
+            return new BlockQuotedStructure { Contents = contents };
+        }
+
+        private BlockQuotedStructure ParseQuotedStructure2(WLine line, string startQuote)
+        {
+            List<IDivision> contents = [];
+            quoteDepth += 1;
+            while (i < Document.Body.Count)
+            {
+                int save = i;
+                var child = ParseLine(startQuote);
+                if (child is null)
+                {
+                    i = save;
+                    break;
+                }
+                contents.Add(child);
+                if (IsEndOfQuotedStructure(child, startQuote))
+                    break;
+                // Startquote only applies to first child
+                startQuote = null;
             }
             quoteDepth -= 1;
             if (contents.Count == 0)

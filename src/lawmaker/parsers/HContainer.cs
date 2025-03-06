@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -175,6 +176,46 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
+        private void HandleExtraParagraphs(WLine leader, List<IBlock> container) {
+            while (i < Document.Body.Count)
+            {
+                int save = i;
+                if (BreakFromProv1(leader))
+                {
+                    i = save;
+                    break;
+                }
+                IDivision next = ParseNextBodyDivision();
+                IBlock extraParagraph = GetExtraParagraph(next, leader);
+                if (extraParagraph == null)
+                {
+                    i = save;
+                    break;
+                }
+                container.Add(extraParagraph);
+            }
+        }
+
+        private IBlock GetExtraParagraph(IDivision division, WLine leader)
+        {
+            if (division is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
+                return table;
+            if (division is not UnnumberedLeaf leaf)
+                return null;
+            if (leaf.Contents.Count != 1)
+                return null;
+            if (leaf.Contents.First() is not WLine line)
+                return null;
+            if (line is WOldNumberedParagraph)
+                return null;
+            if (!IsLeftAligned(line))
+                return null;
+            if (LineIsIndentedLessThan(line, leader))
+                return null;
+            return line;
+        }
+
+        // DEANTODO: Remove
         private bool IsExtraIntroLine(IDivision division, IBlock line, WLine leader, int childCount)
         {
             if (childCount > 0)

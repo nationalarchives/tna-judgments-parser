@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -65,52 +66,39 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> intro = [WLine.RemoveNumber(np)];
 
             i += 1;
-
             if (i == Document.Body.Count)
                 return new Prov1Leaf { Number = num, Contents = intro };
+
+            HandleExtraParagraphs(np, intro);
+            HandleQuotedStructures(intro);
 
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
-            FixFirstSubsection(intro, children, heading);
+            bool isEndOfQuotedStructure = FixFirstSubsection(intro, children, heading);
+            if (isEndOfQuotedStructure)
+                return new Prov1Leaf { Number = num, Contents = intro };
 
+            int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                int save = i;
-                BlockQuotedStructure qs = ParseQuotedStructure(children.Count);
-                if (qs != null)
-                {
-                    intro.Add(qs);
-                    continue;
-                }
-                i = save;
-
                 if (BreakFromProv1(np))
                     break;
 
-                IBlock childStartLine = Current();
+                int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, np, children.Count))
-                {
-                    intro.Add(childStartLine);
-                    continue;
-                }
                 if (!Prov1.IsValidChild(next))
                 {
                     i = save;
                     break;
                 }
-                if (!HasValidIndentForChild(childStartLine, heading ?? np))
-                {
-                    List<IBlock> addToWrapUp = HandleWrapUp2(next, children.Count);
-                    if (addToWrapUp.Count > 0)
-                        wrapUp.AddRange(addToWrapUp);
-                    else
-                        i = save;
-                    break;
-                }
                 children.Add(next);
+                finalChildStart = save;
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
             if (children.Count == 0)
                 return new Prov1Leaf { Number = num, Contents = intro };
@@ -118,35 +106,39 @@ namespace UK.Gov.Legislation.Lawmaker
             return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
-        private void FixFirstSubsection(List<IBlock> intro, List<IDivision> children, WLine heading = null)
+        private bool FixFirstSubsection(List<IBlock> intro, List<IDivision> children, WLine heading = null)
         {
-            if (intro.Last() is not WLine last || last is WOldNumberedParagraph)
-                return;
+            if (intro.First() is not WLine first || first is WOldNumberedParagraph)
+                return false;
 
-            (WText num1, WLine rest1) = FixFirstProv2Num(last);
-            if (num1 is null)
-                return;
+            (WText prov2Num, WLine prov2FirstLine) = FixFirstProv2Num(first);
+            if (prov2Num is null)
+                return false;
 
-            intro.Remove(last);
-            intro.Add(rest1);
+            intro.Remove(first);
+            intro.Insert(0, prov2FirstLine);
 
-            List<IBlock> prov2WrapUp = [];
-            List<IDivision> prov2Children = ParseProv2Children(last, intro, prov2WrapUp);
-
-            Prov2 l;
-            if (prov2Children.Count == 0)
+            Prov2 prov2;
+            bool isEndOfQuotedStructure = IsEndOfQuotedStructure(intro);
+            if (isEndOfQuotedStructure)
             {
                 List<IBlock> contents = new(intro);
-                AddFollowingToContent(heading ?? last, contents);
-                l = new Prov2Leaf { Number = num1, Contents = contents };
+                prov2 = new Prov2Leaf { Number = prov2Num, Contents = contents };
             }
             else
             {
+                List<IBlock> prov2WrapUp = [];
+                List<IDivision> prov2Children = ParseProv2Children(first, intro, prov2WrapUp);
+
                 List<IBlock> contents = new(intro);
-                l = new Prov2Branch { Number = num1, Intro = contents, Children = prov2Children, WrapUp = prov2WrapUp };
+                if (prov2Children.Count == 0)
+                    prov2 = new Prov2Leaf { Number = prov2Num, Contents = contents };
+                else
+                    prov2 = new Prov2Branch { Number = prov2Num, Intro = contents, Children = prov2Children, WrapUp = prov2WrapUp };
             }
             intro.Clear();
-            children.Insert(0, l);
+            children.Insert(0, prov2);
+            return isEndOfQuotedStructure;
         }
 
         private (WText, WLine) FixFirstProv2Num(WLine line)
