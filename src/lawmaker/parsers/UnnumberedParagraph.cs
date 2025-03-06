@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
@@ -10,21 +11,24 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseUnnumberedParagraph(WLine line, string startQuote)
+        private HContainer ParseUnnumberedParagraph(WLine line)
         {
             if (line is WOldNumberedParagraph)
                 return null;
             if (!IsLeftAligned(line))
                 return null;
 
-            i += 1;
-
             List<IBlock> intro = [line];
 
-            if (i == Document.Body.Count || IsEndOfQuotedStructure(line, startQuote))
-            {
+            i += 1;
+            if (i == Document.Body.Count)
                 return new UnnumberedLeaf { Contents = intro };
-            }
+
+            HandleExtraParagraphs(line, intro);
+            HandleQuotedStructures(intro);
+
+            if (IsEndOfQuotedStructure(intro))
+                return new UnnumberedLeaf { Contents = intro };
 
             List<IDivision> children = [];
 

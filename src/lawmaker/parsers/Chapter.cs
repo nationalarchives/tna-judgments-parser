@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private Chapter ParseChapter(WLine line, string startQuote)
+        private Chapter ParseChapter(WLine line)
         {
             if (line is WOldNumberedParagraph np)
                 return null;
