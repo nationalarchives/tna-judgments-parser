@@ -13,9 +13,9 @@ namespace UK.Gov.Legislation.Lawmaker
     {
 
         // matches only a heading above numbered section
-        private HContainer ParseProv1(WLine line, string startQuote = null)
+        private HContainer ParseProv1(WLine line)
         {
-            if (!PeekProv1(line, startQuote))
+            if (!PeekProv1(line))
                 return null;
 
             int save = i;
@@ -77,7 +77,12 @@ namespace UK.Gov.Legislation.Lawmaker
 
             bool isEndOfQuotedStructure = FixFirstSubsection(intro, children, heading);
             if (isEndOfQuotedStructure)
+            {
+                if (children.Count == 0)
+                    return new Prov1Leaf { Number = num, Contents = intro };
+
                 return new Prov1Leaf { Number = num, Contents = intro };
+            }
 
             int finalChildStart = i;
             while (i < Document.Body.Count)
