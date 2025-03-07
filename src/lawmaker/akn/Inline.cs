@@ -1,6 +1,6 @@
 
+using System.Linq;
 using System.Xml;
-
 using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -11,15 +11,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         override protected void AddInline(XmlElement parent, IInline model)
         {
+            if (model is Def def)
+            {
+                AddDef(parent, def);
+                return;
+            }
+
             if (model is ShortTitle st)
             {
                 XmlElement e = CreateAndAppend("shortTitle", parent);
                 AddInlines(e, st.Contents);
-                return;
-            }
-            if (model is Mod mod)
-            {
-                AddMod(parent, mod);
                 return;
             }
             if (model is QuotedText qt)
@@ -44,10 +45,32 @@ namespace UK.Gov.Legislation.Lawmaker
             base.AddInline(parent, model);
         }
 
-        void AddMod(XmlElement parent, Mod model)
+        void AddDef(XmlElement parent, Def def)
         {
-            XmlElement mod = CreateAndAppend("mod", parent);
-            AddInlines(mod, model.Contents);
+            XmlElement e = CreateAndAppend("def", parent);
+            if (def.StartQuote is not null)
+                e.SetAttribute("startQuote", UKNS, def.StartQuote);
+            if (def.EndQuote is not null)
+                e.SetAttribute("endQuote", UKNS, def.EndQuote);
+            AddInlines(e, def.Contents);
+        }
+
+        void AddMod(XmlElement parent, Mod mod)
+        {
+            XmlElement p = CreateAndAppend("p", parent);
+            XmlElement modElement = CreateAndAppend("mod", p);
+
+            foreach (IBlock block in mod.Contents)
+            {
+                if (block is ILine line)
+                {
+                    AddInlines(modElement, line.Contents);
+                }
+                else
+                {
+                    AddBlocks(modElement, [block]);
+                }
+            }
         }
 
         void AddQuotedText(XmlElement parent, QuotedText model)

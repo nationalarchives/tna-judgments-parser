@@ -62,15 +62,10 @@ namespace UK.Gov.Legislation.Lawmaker
         // matches only a numbered section without a heading
         private HContainer ParseBareProv1(WOldNumberedParagraph np, WLine heading = null)
         {
-            IFormattedText num = np.Number;
-            List<IBlock> intro = [WLine.RemoveNumber(np)];
-
             i += 1;
-            if (i == Document.Body.Count)
-                return new Prov1Leaf { Number = num, Contents = intro };
 
-            HandleExtraParagraphs(np, intro);
-            HandleQuotedStructures(intro);
+            IFormattedText num = np.Number;
+            List<IBlock> intro = HandleParagraphs(np);
 
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];

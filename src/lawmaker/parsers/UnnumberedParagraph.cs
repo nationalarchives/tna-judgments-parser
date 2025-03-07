@@ -18,14 +18,9 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsLeftAligned(line))
                 return null;
 
-            List<IBlock> intro = [line];
-
             i += 1;
-            if (i == Document.Body.Count)
-                return new UnnumberedLeaf { Contents = intro };
 
-            HandleExtraParagraphs(line, intro);
-            HandleQuotedStructures(intro);
+            List<IBlock> intro = HandleParagraphs(line);
 
             if (IsEndOfQuotedStructure(intro))
                 return new UnnumberedLeaf { Contents = intro };
