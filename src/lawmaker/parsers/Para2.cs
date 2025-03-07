@@ -23,15 +23,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!Para2.IsValidNumber(numText))
                 return null;
 
-            IFormattedText num = np.Number;
-            List<IBlock> intro = [WLine.RemoveNumber(np)];
-
             i += 1;
-            if (i == Document.Body.Count)
-                return new Para2Leaf { Number = num, Contents = intro };
 
-            HandleExtraParagraphs(line, intro);
-            HandleQuotedStructures(intro);
+            IFormattedText num = np.Number;
+            List<IBlock> intro = HandleParagraphs(np);
 
             if (IsEndOfQuotedStructure(intro))
                 return new Para2Leaf { Number = num, Contents = intro };

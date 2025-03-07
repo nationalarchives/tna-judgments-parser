@@ -4,6 +4,7 @@ using System.Linq;
 using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -174,6 +175,34 @@ namespace UK.Gov.Legislation.Lawmaker
                 i += 1;
                 container.Add(line);
             }
+        }
+        
+        private List<IBlock> HandleParagraphs(WLine line)
+        {
+            List<IBlock> container = [];
+
+            /* Handle first paragraph */
+
+            WLine first;
+            if (line is WOldNumberedParagraph np)
+                first = WLine.RemoveNumber(np);
+            else
+                first = line;
+
+            // Every paragraph can have one or more quoted structures 
+            List<IQuotedStructure> quotedStructures = HandleQuotedStructures(first);
+            if (quotedStructures.Count > 0)
+            {
+                List<IBlock> contents = [first, ..quotedStructures];
+                Mod mod = new() { Contents = contents };
+                container.Add(mod);
+            } 
+            else
+            {
+                container.Add(first);
+            }
+
+            return container;
         }
 
         private void HandleExtraParagraphs(WLine leader, List<IBlock> container) {
