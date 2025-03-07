@@ -59,11 +59,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 List<IInline> contents = [.. enriched.Contents.SkipLast(1), qt, qs2];
                 if (qs.AppendText is not null)
                     contents.Add(qs.AppendText);
-                Mod mod = new() { Contents = contents };
-                WLine combined = WLine.Make(enriched, [mod]);
-                leaf.Contents.RemoveAt(i);
-                leaf.Contents.RemoveAt(i);
-                leaf.Contents.Insert(i, combined);
+                //Mod mod = new() { Contents = contents };
+               // WLine combined = WLine.Make(enriched, [mod]);
+                //leaf.Contents.RemoveAt(i);
+                //leaf.Contents.RemoveAt(i);
+                //leaf.Contents.Insert(i, combined);
                 break;
             }
         }

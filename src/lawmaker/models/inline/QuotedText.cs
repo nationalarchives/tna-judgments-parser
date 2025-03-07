@@ -9,12 +9,10 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    class Mod : IInlineContainer
+    class Mod : IBlock
     {
 
-        internal IList<IInline> Contents { get; init; }
-
-        IEnumerable<IInline> IInlineContainer.Contents => Contents;
+        internal IList<IBlock> Contents { get; init; }
 
     }
 

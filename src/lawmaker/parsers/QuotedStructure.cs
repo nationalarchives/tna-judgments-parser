@@ -203,19 +203,20 @@ namespace UK.Gov.Legislation.Lawmaker
             return text;
         }
 
-        private void HandleQuotedStructures(List<IBlock> container)
+        private List<IQuotedStructure> HandleQuotedStructures(WLine line)
         {
+            List<IQuotedStructure> quotedStructures = [];
             if (i == Document.Body.Count)
-                return;
+                return [];
             int save = i;
 
             // Handle the case where the first quoted structure has no start quote
-            (int left, int right) = CountLeftAndRightQuotes(container);
+            (int left, int right) = CountLeftAndRightQuotes(line);
             if (left > right)
             {
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 if (qs != null)
-                    container.Add(qs);
+                    quotedStructures.Add(qs);
                 else
                     i = save;
             }
@@ -236,8 +237,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                container.Add(qs);
+                quotedStructures.Add(qs);
             }
+            return quotedStructures;
         }
 
         private BlockQuotedStructure ParseQuotedStructure()
