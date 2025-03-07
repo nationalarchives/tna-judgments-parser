@@ -35,15 +35,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer Parse(WLine line, WOldNumberedParagraph np)
         {
-            IFormattedText num = np.Number;
-            List<IBlock> intro = [WLine.RemoveNumber(np)];
-
             i += 1;
-            if (i == Document.Body.Count)
-                return new SchProv1Leaf { Number = num, Contents = intro };
 
-            HandleExtraParagraphs(np, intro);
-            HandleQuotedStructures(intro);
+            IFormattedText num = np.Number;
+            List<IBlock> intro = HandleParagraphs(np);
 
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
