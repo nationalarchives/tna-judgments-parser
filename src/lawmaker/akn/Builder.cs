@@ -169,16 +169,48 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void AddBlocks(XmlElement parent, IEnumerable<IBlock> blocks)
         {
-            base.blocks(parent, blocks);
+            foreach (IBlock block in blocks)
+            {
+                if (block is IOldNumberedParagraph np)
+                {
+                    XmlElement container = doc.CreateElement("blockContainer", ns);
+                    parent.AppendChild(container);
+                    if (np.Number is not null)
+                        AddAndWrapText(container, "num", np.Number);
+                    this.p(container, np);
+                }
+                else if (block is ILine line)
+                {
+                    this.p(parent, line);
+                }
+                else if (block is Mod mod)
+                {
+                    AddMod(parent, mod);
+                }
+                else if (block is ITable table)
+                {
+                    AddTable(parent, table);
+                }
+                else if (block is IQuotedStructure qs)
+                {
+                    AddQuotedStructure(parent, qs);
+                }
+                else if (block is IDivWrapper wrapper)
+                {
+                    AddDivision(parent, wrapper.Division);
+                }
+                else
+                {
+                    throw new Exception(block.GetType().ToString());
+                }
+            }
         }
 
         private int quoteDepth = 0;
 
         protected override void AddQuotedStructure(XmlElement parent, IQuotedStructure qs)
         {
-            XmlElement p = CreateAndAppend("p", parent);
-            XmlElement mod = CreateAndAppend("mod", p);
-            XmlElement e = CreateAndAppend("quotedStructure", mod);
+            XmlElement e = CreateAndAppend("quotedStructure", parent);
             if (qs is BlockQuotedStructure qs2)
             {
                 if (qs2.StartQuote is not null)
@@ -186,7 +218,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (qs2.EndQuote is not null)
                     e.SetAttribute("endQuote", qs2.EndQuote);
                 if (qs2.AppendText is not null)
-                    AddAppendText(mod, qs2.AppendText);
+                    AddAppendText(parent, qs2.AppendText);
             }
             quoteDepth += 1;
             AddDivisions(e, qs.Contents);
