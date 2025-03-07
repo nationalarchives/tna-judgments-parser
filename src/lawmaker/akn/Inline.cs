@@ -1,6 +1,6 @@
 
+using System.Linq;
 using System.Xml;
-
 using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -21,11 +21,6 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 XmlElement e = CreateAndAppend("shortTitle", parent);
                 AddInlines(e, st.Contents);
-                return;
-            }
-            if (model is Mod mod)
-            {
-                AddMod(parent, mod);
                 return;
             }
             if (model is QuotedText qt)
@@ -60,10 +55,22 @@ namespace UK.Gov.Legislation.Lawmaker
             AddInlines(e, def.Contents);
         }
 
-        void AddMod(XmlElement parent, Mod model)
+        void AddMod(XmlElement parent, Mod mod)
         {
-            XmlElement mod = CreateAndAppend("mod", parent);
-            AddInlines(mod, model.Contents);
+            XmlElement p = CreateAndAppend("p", parent);
+            XmlElement modElement = CreateAndAppend("mod", p);
+
+            foreach (IBlock block in mod.Contents)
+            {
+                if (block is ILine line)
+                {
+                    AddInlines(modElement, line.Contents);
+                }
+                else
+                {
+                    AddBlocks(modElement, [block]);
+                }
+            }
         }
 
         void AddQuotedText(XmlElement parent, QuotedText model)
