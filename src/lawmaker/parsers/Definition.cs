@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 WText wText = new(text[1..^1], props);
                 return new Def() { Contents = [wText], StartQuote = text[..1], EndQuote = text[^1..] };
             }
-            WLine enriched = EnrichFromEnd.Enrich(line, defPattern, constructor);
+            WLine enriched = EnrichFromBeginning.Enrich(line, defPattern, constructor);
             if (ReferenceEquals(enriched, line))
                 return null;
 
