@@ -7,7 +7,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    internal class Schedule : HContainer
+    internal class Schedule : Branch
     {
 
         public override string Name { get; internal init; } = "schedule";
@@ -15,8 +15,6 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Class => "sch";
 
         public IFormattedText ReferenceNote { get; internal init; }
-
-        internal IList<IDivision> Contents { get; init; }
 
         public static bool IsValidNumber(string number)
         {

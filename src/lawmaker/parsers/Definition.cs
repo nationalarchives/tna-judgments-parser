@@ -27,9 +27,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             string definitionPattern;
             if (quoteDepth > 1)
-                definitionPattern = $@"^{startQuote}?{defPattern}.*$";
+                definitionPattern = $@"^{startQuote}?{defPattern}.*\w+.*$";
             else
-                definitionPattern = $@"^{defPattern}.*$";
+                definitionPattern = $@"^{defPattern}.*\w+.*$";
             if (!Regex.IsMatch(text, definitionPattern))
                 return null;
 

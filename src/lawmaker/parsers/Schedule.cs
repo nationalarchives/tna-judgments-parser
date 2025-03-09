@@ -58,7 +58,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save1;
                     return null;
                 }
-                return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = children };
+                return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
             else
             {

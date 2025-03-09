@@ -284,37 +284,77 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static void ExtractQuotesAndAppendTexts(IBlock block)
         {
+            if (block is Mod mod)
+            {
+                foreach (IBlock modBlock in mod.Contents)
+                    ExtractQuotesAndAppendTexts(modBlock);
+                return;
+            }
+
             if (block is not BlockQuotedStructure qs)
                 return;
-            if (qs.StartQuote is null && qs.Contents.FirstOrDefault() is HContainer first)
-            {
-                // First text item can be in the num, heading, intro, OR content.
-                // Depends on the HContainer
-                if (first.HeadingPrecedesNumber)
-                {
-                    /*
-                    ILine line = first.Heading;
-                    IInline firstInline = line.Contents.FirstOrDefault();
-                    line.Contents.RemoveAt()
-                    first.Heading = new WLine(line, )
-                    */
-                }
-                else
-                {
-                    if (first.Number is not null && first.Number.Text.StartsWith('\u201C'))
-                    {
-                        if (first.Number is WText wText)
-                            first.Number = new WText(first.Number.Text[1..], wText.properties);
-                        else
-                            first.Number = new WText(first.Number.Text[1..], null);
-                        qs.StartQuote = "\u201C";
-                    }
-                }
-            }
+
+            ExtractStartQuote(qs);
+
             var f = new ExtractAndReplace(QuotedStructureEndPattern());
             LastLine.Replace(qs.Contents, f.Invoke);
             qs.EndQuote = f.EndQuote;
             qs.AppendText = f.AppendText;
+        }
+
+        private static void ExtractStartQuote(BlockQuotedStructure qs)
+        {
+            if (qs.StartQuote != null)
+                return;
+            if (qs.Contents.FirstOrDefault() is not HContainer hContainer)
+                return;
+
+            string startQuote = "\u201C";
+
+            // First text item can be in the num, heading, intro, OR content.
+            if (hContainer.HeadingPrecedesNumber && hContainer.Heading is WLine heading)
+            {
+                // Todo: this currently ONLY removes the start quote when the first inline is a WText.
+                if (heading.Contents.First() is WText firstText && firstText.Text.StartsWith(startQuote))
+                {
+                    WText modified = new WText(firstText.Text[1..], firstText.properties);
+                    heading.Contents = [modified, ..heading.Contents.Skip(1)];
+                    qs.StartQuote = startQuote;
+                }
+            }
+            else if (hContainer.Number is not null && hContainer.Number.Text.StartsWith(startQuote))
+            {
+                if (hContainer.Number is WText wText)
+                    hContainer.Number = new WText(hContainer.Number.Text[1..], wText.properties);
+                else
+                    hContainer.Number = new WText(hContainer.Number.Text[1..], null);
+                qs.StartQuote = startQuote;
+            }
+            else
+            {
+                IList<IBlock> container;
+                if (hContainer is Leaf leaf)
+                    container = leaf.Contents;
+                else if (hContainer is Branch branch)
+                    container = branch.Intro;
+                else
+                    return;
+
+                // Todo: this currently ONLY removes the start quote when the first block is a WLine
+                // and the inline is a WText.
+
+                if (container.First() is not WLine line || line.Contents.First() is not WText firstText)
+                    return;
+                if (!firstText.Text.StartsWith(startQuote))
+                    return;
+
+                WText modified = new WText(firstText.Text[1..], firstText.properties);
+                line.Contents = [modified, .. line.Contents.Skip(1)];
+                container = 
+                qs.StartQuote = startQuote;
+
+            }
+        }
         }
 
         /// <summary>
