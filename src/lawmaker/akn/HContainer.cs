@@ -80,7 +80,7 @@ namespace UK.Gov.Legislation.Lawmaker
             else if (hc is Schedule schedule)
             {
                 AddReferenceNote(number, schedule.ReferenceNote);
-                AddDivisions(level, schedule.Contents);
+                AddDivisions(level, schedule.Children);
             }
         }
 
