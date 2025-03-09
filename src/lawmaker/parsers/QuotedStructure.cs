@@ -350,11 +350,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 WText modified = new WText(firstText.Text[1..], firstText.properties);
                 line.Contents = [modified, .. line.Contents.Skip(1)];
-                container = 
+                container.RemoveAt(0);
+                container.Insert(0, line);
                 qs.StartQuote = startQuote;
-
             }
-        }
         }
 
         /// <summary>
