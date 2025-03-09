@@ -142,94 +142,69 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /* helper functions for content, intro and wrapUp */
 
-        private void AddFollowingToContent(WLine leader, List<IBlock> container)
-        {
-            while (i < Document.Body.Count)
-            {
-                IBlock current = Current();
-                if (Current() is not WLine line)
-                {
-                    i += 1;
-                    container.Add(current);
-                    continue;
-                }
-                /* TODO: Remove
-                BlockQuotedStructure qs = ParseQuotedStructure(line);
-                if (qs is not null)
-                {
-                    container.Add(qs);
-                    continue;
-                }
-                */
-                if (line is WOldNumberedParagraph)
-                    break;
-                if (!IsLeftAligned(line))
-                    break;
-                if (LineIsIndentedLessThan(line, leader))
-                    break;
-                int save = i;
-                HContainer test = ParseProv1(line);
-                i = save;
-                if (test is not null)
-                    break;
-                i += 1;
-                container.Add(line);
-            }
-        }
-        
+
+        /*
+         * Returns a list of blocks starting with the current paragraph, plus any
+         * additional blocks (i.e extra paragraphs, quoted structures, and/or tables) 
+        */
         private List<IBlock> HandleParagraphs(WLine line)
         {
             List<IBlock> container = [];
 
-            /* Handle first paragraph */
+            WLine first = (line is WOldNumberedParagraph np) ? WLine.RemoveNumber(np) : line;
+            HandleMod(first, container);
 
-            WLine first;
-            if (line is WOldNumberedParagraph np)
-                first = WLine.RemoveNumber(np);
-            else
-                first = line;
-
-            // Every paragraph can have one or more quoted structures 
-            List<IQuotedStructure> quotedStructures = HandleQuotedStructures(first);
-            if (quotedStructures.Count > 0)
-            {
-                List<IBlock> contents = [first, ..quotedStructures];
-                Mod mod = new() { Contents = contents };
-                container.Add(mod);
-            } 
-            else
-            {
-                container.Add(first);
-            }
-
-            return container;
-        }
-
-        private void HandleExtraParagraphs(WLine leader, List<IBlock> container) {
             while (i < Document.Body.Count)
             {
                 int save = i;
-                if (BreakFromProv1(leader))
-                {
-                    i = save;
-                    break;
-                }
-                IDivision next = ParseNextBodyDivision();
-                IBlock extraParagraph = GetExtraParagraph(next, leader);
+                IBlock extraParagraph = GetExtraParagraph(line);
                 if (extraParagraph == null)
                 {
                     i = save;
                     break;
                 }
-                container.Add(extraParagraph);
+                HandleMod(extraParagraph, container);
             }
+            return container;
         }
 
-        private IBlock GetExtraParagraph(IDivision division, WLine leader)
+        /*
+         * Adds the given block to the given container.
+         * If the block is followed by one or more quoted structures,
+         * it is wrapped in a Mod together with the quoted structures.
+        */
+        private void HandleMod(IBlock block, List<IBlock> container)
         {
-            if (division is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
+            if (block is not WLine line)
+            {
+                container.Add(block);
+                return;
+            }
+            List <IQuotedStructure> quotedStructures = HandleQuotedStructures(line);
+            if (quotedStructures.Count == 0)
+            {
+                container.Add(line);
+                return;
+            }
+            List<IBlock> contents = [line, .. quotedStructures];
+            Mod mod = new() { Contents = contents };
+            container.Add(mod);
+        }
+
+        /*
+         * Determines if the next line is an extra paragraph belonging to the current division.
+         * If so, it returns the line. If not, it returns null.
+        */
+        private IBlock GetExtraParagraph(WLine leader)
+        {
+            if (BreakFromProv1(leader))
+                return null;
+
+            IDivision next = ParseNextBodyDivision();
+
+            if (next is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
                 return table;
-            if (division is not UnnumberedLeaf leaf)
+            if (next is not UnnumberedLeaf leaf)
                 return null;
             if (leaf.Contents.Count != 1)
                 return null;
@@ -242,26 +217,6 @@ namespace UK.Gov.Legislation.Lawmaker
             if (LineIsIndentedLessThan(line, leader))
                 return null;
             return line;
-        }
-
-        // DEANTODO: Remove
-        private bool IsExtraIntroLine(IDivision division, IBlock line, WLine leader, int childCount)
-        {
-            if (childCount > 0)
-                return false;
-            if (division is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable)
-                return true;
-            if (division is not UnnumberedLeaf)
-                return false;
-            if (line is not WLine wLine)
-                return false;
-            if (line is WOldNumberedParagraph)
-                return false;
-            if (!IsLeftAligned(wLine))
-                return false;
-            if (LineIsIndentedLessThan(wLine, leader))
-                return false;
-            return true;
         }
 
         private List<IBlock> HandleWrapUp(List<IDivision> children, int save)
@@ -283,24 +238,6 @@ namespace UK.Gov.Legislation.Lawmaker
             children.RemoveAt(children.Count - 1);
             return [..leaf.Contents];
         }
-
-        private List<IBlock> HandleWrapUp2(IDivision next, int childCount)
-        {
-            if (childCount == 0)
-                return [];
-            if (next is not UnnumberedLeaf leaf)
-                // Closing Words must be the final child 
-                return [];
-            if (childCount == 1)
-            {
-                // This *is* Closing Words, but Closing words cannot be an only child,
-                // so it must belong to an ancestor provision
-                return [];
-            }
-            return [.. leaf.Contents];
-        }
-
-
 
         private bool BreakFromProv1(WLine leader)
         {
