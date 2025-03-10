@@ -38,18 +38,26 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             IFormattedText num = np.Number;
-            List<IBlock> intro = HandleParagraphs(np);
-
+            List<IBlock> intro = [];
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
-            bool isEndOfQuotedStructure = FixFirstSchProv2(intro, children);
-            if (isEndOfQuotedStructure)
-            {
-                if (children.Count == 0)
-                    return new SchProv1Leaf { Number = num, Contents = intro };
+            WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
+            bool hasProv2Child = (firstProv2Line != null);
 
-                return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            if (hasProv2Child)
+            {
+                i -= 1;
+                HContainer schProv2 = ParseAndMemoize(firstProv2Line, "SchProv2", ParseSchProv2);
+                if (schProv2 == null)
+                    return new SchProv1Leaf { Number = num, Contents = intro };
+                children.Add(schProv2);
+                if (IsEndOfQuotedStructure(schProv2))
+                    return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            }
+            else
+            {
+                intro = HandleParagraphs(np);
             }
 
             int finalChildStart = i;

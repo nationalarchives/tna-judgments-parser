@@ -258,13 +258,46 @@ namespace UK.Gov.Legislation.Lawmaker
             return false;
         }
 
-        private static Leaf FinalLeaf(IDivision division)
+        private static List<IInline> FinalParagraphText(IDivision division)
         {
-            if (division is Leaf leaf)
-                return leaf;
+            List<IInline> inlines = [];
+
             if (division is Branch branch)
-                return FinalLeaf(branch.Children.Last());
-            return null;
+            {
+                if (branch.WrapUp == null || branch.WrapUp.Count == 0)
+                    return FinalParagraphText(branch.Children.Last());
+
+                foreach (IBlock block in branch.WrapUp)
+                {
+                    if (block is ILine line)
+                        inlines.AddRange(line.Contents);
+                }
+                return inlines;
+            }
+            if (division is not Leaf leaf)
+                return null;
+
+            // Squash all Leaf content into a single list
+            if (leaf.HeadingPrecedesNumber)
+            {
+                if (leaf.Heading != null)
+                    inlines.AddRange(leaf.Heading.Contents);
+                if (leaf.Number != null)
+                    inlines.Add(leaf.Number);
+            }
+            else
+            {
+                if (leaf.Number != null)
+                    inlines.Add(leaf.Number);
+                if (leaf.Heading != null)
+                    inlines.AddRange(leaf.Heading.Contents);
+            }
+            foreach (IBlock block in leaf.Contents)
+            {
+                if (block is ILine line)
+                    inlines.AddRange(line.Contents);
+            }
+            return inlines;
         }
 
     }
