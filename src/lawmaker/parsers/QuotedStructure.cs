@@ -111,37 +111,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static bool IsEndOfQuotedStructure(IDivision division)
         {
-            Leaf finalLeaf = FinalLeaf(division);
-            return IsEndOfQuotedStructure(
-                finalLeaf.Contents,
-                finalLeaf.Heading,
-                finalLeaf.Number,
-                finalLeaf.HeadingPrecedesNumber
-            );
+            string finalParagraphText = IInline.ToString(FinalParagraphText(division));
+            return IsEndOfQuotedStructure(finalParagraphText);
         }
-
-        /*
-        private static bool IsEndOfQuotedStructureOld(IBlock block)
-        {
-            if (block is null)
-                return false;
-            if (block is not WLine line)
-                return false;
-
-            string text = line.NormalizedContent;
-            bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
-            if (!isEndQuoteAtEnd)
-                return false;
-
-            bool isStartQuoteAtStart = startQuote != null;
-            (int left, int right) = CountLeftAndRightQuotes(line);
-            //if (line.TextContent.StartsWith(startQuote)) left -= 1;
-
-            bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
-            bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
-            return isSingleLine || isEndOfMultiLine;
-        }*/
-
+        
         private static bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
         {
             // Squash text content into single string
@@ -165,15 +138,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (block is ILine line)
                     inlines.AddRange(line.Contents);
             }
-            string allTextContent = IInline.ToString(inlines);
+            return IsEndOfQuotedStructure(IInline.ToString(inlines));
+        }
 
-            // Analyse text
-            bool isEndQuoteAtEnd = Regex.IsMatch(allTextContent, QuotedStructureEndPattern());
+        private static bool IsEndOfQuotedStructure(string text)
+        {
+            bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
             if (!isEndQuoteAtEnd)
                 return false;
 
-            bool isStartQuoteAtStart = allTextContent.StartsWith("\u201C");
-            (int left, int right) = CountLeftAndRightQuotes(allTextContent);
+            bool isStartQuoteAtStart = text.StartsWith("\u201C");
+            (int left, int right) = CountLeftAndRightQuotes(text);
 
             bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
             bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
@@ -343,7 +318,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 // Todo: this currently ONLY removes the start quote when the first block is a WLine
                 // and the inline is a WText.
 
-                if (container.First() is not WLine line || line.Contents.First() is not WText firstText)
+                if (container is null || container.First() is null)
+                    return;
+                if (container.First() is not WLine line)
+                    return;
+                if (line.Contents.First() is not WText firstText)
                     return;
                 if (!firstText.Text.StartsWith(startQuote))
                     return;

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -32,7 +32,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return next;
         }
 
-        private bool PeekProv1(WLine line, string startQuote = null)
+        private bool PeekProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
             if (line is WOldNumberedParagraph)
@@ -43,17 +43,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (Document.Body[i + 1].Block is not WLine nextLine)
                 return false;
-            return PeekBareProv1(nextLine, startQuote);
+            return PeekBareProv1(nextLine);
         }
 
-        private bool PeekBareProv1(WLine line, string startQuote = null)
+        private bool PeekBareProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
             if (!IsFlushLeft(line) && !quoted)
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            string numText = (startQuote == null) ? np.Number.Text : np.Number.Text[1..];
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
             if (!Prov1.IsValidNumber(numText))
                 return false;
             return true;
@@ -65,18 +65,26 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             IFormattedText num = np.Number;
-            List<IBlock> intro = HandleParagraphs(np);
-
+            List<IBlock> intro = [];
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
-            bool isEndOfQuotedStructure = FixFirstSubsection(intro, children, heading);
-            if (isEndOfQuotedStructure)
-            {
-                if (children.Count == 0)
-                    return new Prov1Leaf { Number = num, Contents = intro };
+            WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
+            bool hasProv2Child = (firstProv2Line != null);
 
-                return new Prov1Leaf { Number = num, Contents = intro };
+            if (hasProv2Child)
+            {
+                i -= 1;
+                HContainer prov2 = ParseAndMemoize(firstProv2Line, "Prov2", ParseProv2);
+                if (prov2 == null)
+                    return new Prov1Leaf { Number = num, Contents = intro };
+                children.Add(prov2);
+                if (IsEndOfQuotedStructure(prov2))
+                    return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            }
+            else
+            {
+                intro = HandleParagraphs(np);
             }
 
             int finalChildStart = i;
@@ -105,42 +113,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
-
-        private bool FixFirstSubsection(List<IBlock> intro, List<IDivision> children, WLine heading = null)
-        {
-            if (intro.First() is not WLine first || first is WOldNumberedParagraph)
-                return false;
-
-            (WText prov2Num, WLine prov2FirstLine) = FixFirstProv2Num(first);
-            if (prov2Num is null)
-                return false;
-
-            intro.Remove(first);
-            intro.Insert(0, prov2FirstLine);
-
-            Prov2 prov2;
-            bool isEndOfQuotedStructure = IsEndOfQuotedStructure(intro);
-            if (isEndOfQuotedStructure)
-            {
-                List<IBlock> contents = new(intro);
-                prov2 = new Prov2Leaf { Number = prov2Num, Contents = contents };
-            }
-            else
-            {
-                List<IBlock> prov2WrapUp = [];
-                List<IDivision> prov2Children = ParseProv2Children(first, intro, prov2WrapUp);
-
-                List<IBlock> contents = new(intro);
-                if (prov2Children.Count == 0)
-                    prov2 = new Prov2Leaf { Number = prov2Num, Contents = contents };
-                else
-                    prov2 = new Prov2Branch { Number = prov2Num, Intro = contents, Children = prov2Children, WrapUp = prov2WrapUp };
-            }
-            intro.Clear();
-            children.Insert(0, prov2);
-            return isEndOfQuotedStructure;
-        }
-
+        
         private (WText, WLine) FixFirstProv2Num(WLine line)
         {
             WText num = null;
@@ -162,6 +135,29 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             return (num, rest);
         }
+
+        private WOldNumberedParagraph FixFirstProv2(WLine line)
+        {
+            WOldNumberedParagraph rest = null;
+            if (line.Contents.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text))
+            {
+                WText num = new("(1)", t.properties);
+                WText remainder = new(t.Text[5..], t.properties);
+                return new(num, line.Contents.Skip(1).Prepend(remainder), line);
+            }
+            else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
+            {
+                string combined = t1.Text + t2.Text;
+                if (!Prov2.IsFirstProv2Start(combined))
+                    return null;
+
+                WText num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
+                WText remainder = new(combined[5..], t2.properties);
+                return new(num, line.Contents.Skip(2).Prepend(remainder), line);
+            }
+            return null;
+        }
+
 
     }
 

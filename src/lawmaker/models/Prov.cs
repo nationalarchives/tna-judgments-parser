@@ -115,6 +115,14 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.IsMatch(num, pattern);
         }
 
+        // Identifies when a Prov2 num starts with an em-dash and must therefore be the first child of a Prov1.
+        // Note that the num of the first Prov2 is not necessarily (1). It could be (A1), for example.
+        public static bool IsFirstProv2Start(string text)
+        {
+            string pattern = @"^\u2014\([A-Z]*\d+[A-Z]*\).*";
+            return Regex.IsMatch(text, pattern);
+        }
+
         public static bool IsValidChild(IDivision child)
         {
             if (child is Para1)
