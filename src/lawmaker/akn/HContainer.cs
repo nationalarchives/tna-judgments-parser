@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 using UK.Gov.Legislation.Judgments;
@@ -109,6 +110,15 @@ namespace UK.Gov.Legislation.Lawmaker
                 return;
             Block(parent, heading, "heading");
         }
+
+        private void AddIntro(XmlElement level, IBranch branch)
+        {
+            if (branch.Intro is null || !branch.Intro.Any())
+                return;
+            XmlElement intro = CreateAndAppend("intro", level);
+            AddBlocks(intro, branch.Intro);
+        }
+
 
         private void AddContent(XmlElement parent, IEnumerable<IBlock> blocks)
         {
