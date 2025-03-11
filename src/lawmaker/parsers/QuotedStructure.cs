@@ -48,36 +48,6 @@ namespace UK.Gov.Legislation.Lawmaker
             return (left, right);
         }
 
-        private (bool, string) IsFirstLineOfQuotedStructure(WLine line)
-        {
-            string text;
-            if (line is WOldNumberedParagraph np)
-                text = np.Number.Text + " " + line.NormalizedContent;
-            else
-                text = line.NormalizedContent;
-
-            if (text.StartsWith('\u201C'))
-            {
-                var (left, right) = CountLeftAndRightQuotes(line);
-                if (left > right)
-                    return (true, "\u201C");
-                // Handle single-paragraph quoted structures
-                else if (left == right && Regex.IsMatch(text, QuotedStructureEndPattern()))
-                    return (true, "\u201C");
-            }
-            if (i == 0)
-                return (false, null);
-            if (Document.Body[i - 1].Block is not WLine previous)
-                return (false, null);
-            // currently IsFirstLineOfQuotedStructure works only with current line
-            // if (IsFirstLineOfQuotedStructure(previous))
-            //     return false;
-            if (previous.NormalizedContent.StartsWith('\u201C'))
-                return (false, null);
-            var (prevLeft, prevRight) = CountLeftAndRightQuotes(previous);
-            return (prevLeft > prevRight, null);
-        }
-
         private string GetStartQuote()
         {
             if (Current() is not WLine line)
@@ -100,14 +70,6 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             return null;
         }
-
-        /*
-        private static bool IsEndOfQuotedStructureOld(IDivision division)
-        {
-            WLine line = LastLine.GetLastLine(division);
-            return IsEndOfQuotedStructure(line);
-        }
-        */
 
         private static bool IsEndOfQuotedStructure(IDivision division)
         {

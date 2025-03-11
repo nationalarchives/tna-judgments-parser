@@ -26,6 +26,15 @@ namespace UK.Gov.Legislation.Lawmaker
                 EnrichBranch(branch);
         }
 
+        internal static void EnrichBranch(Branch branch)
+        {
+            if (branch.Intro != null)
+                EnrichBlocks(branch.Intro);
+            EnrichDivisions(branch.Children);
+            if (branch.WrapUp != null)
+                EnrichBlocks(branch.WrapUp);
+        }
+
         internal static void EnrichBlocks(IList<IBlock> blocks)
         {
             string pattern = @"(\u201C[^\u201C\u201D]+?(?:\u201D|$))";
@@ -57,23 +66,6 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        internal static void EnrichBranch(Branch branch)
-        {
-            if (branch.Intro != null)
-                EnrichBlocks(branch.Intro);
-            EnrichDivisions(branch.Children);
-            if (branch.WrapUp != null)
-                EnrichBlocks(branch.WrapUp);
-        }
-
-        internal static IBlock EnrichLine(WLine raw, string pattern, Constructor constructor)
-        {
-            IEnumerable<IInline> enriched = Enrich(raw.Contents, pattern, constructor);
-            if (!ReferenceEquals(enriched, raw))
-                return new Mod() { Contents = [WLine.Make(raw, enriched)] };
-            return raw;
-        }
-
         internal static Mod EnrichMod(Mod raw, string pattern, Constructor constructor)
         {
             List<IBlock> enrichedBlocks = [];
@@ -100,6 +92,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
             }
             return new Mod() { Contents = enrichedBlocks };
+        }
+
+        /*
+         * Identifies quoted text elements in the given line. 
+         * If one or more are found, the line is wrapped in a mod element. 
+         */
+        internal static IBlock EnrichLine(WLine raw, string pattern, Constructor constructor)
+        {
+            IEnumerable<IInline> enriched = Enrich(raw.Contents, pattern, constructor);
+            if (!ReferenceEquals(enriched, raw))
+                return new Mod() { Contents = [WLine.Make(raw, enriched)] };
+            return raw;
         }
 
         internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string pattern, Constructor constructor)
