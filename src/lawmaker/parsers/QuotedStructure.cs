@@ -111,8 +111,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static bool IsEndOfQuotedStructure(IDivision division)
         {
-            string finalParagraphText = IInline.ToString(FinalParagraphText(division));
-            return IsEndOfQuotedStructure(finalParagraphText);
+            string lastParagraphText = LastLine.GetLastParagraphText(division);
+            return IsEndOfQuotedStructure(lastParagraphText);
         }
         
         private static bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
@@ -185,9 +185,13 @@ namespace UK.Gov.Legislation.Lawmaker
                 return [];
             int save = i;
 
-            // Handle the case where the first quoted structure has no start quote
             (int left, int right) = CountLeftAndRightQuotes(line);
-            if (left > right)
+            // This extra left/right quote check ensures that definitions
+            // are not misparsed as quoted structures
+            bool hasStartQuote = line.TextContent.StartsWith("\u201C") && (left == right + 1);
+
+            // Handle the case where the first quoted structure has no start quote
+            if (!hasStartQuote && left > right)
             {
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 if (qs != null)
@@ -207,7 +211,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 BlockQuotedStructure qs = ParseQuotedStructure();
-                if (qs == null)
+                // For now, quoted structures cannot begin with unnumbered paragraphs
+                // as they are confused with extra paragraphs of the parent division
+                if (qs == null || qs.Contents.First() is UnnumberedParagraph)
                 {
                     i = save;
                     break;
