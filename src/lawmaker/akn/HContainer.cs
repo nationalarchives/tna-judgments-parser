@@ -111,7 +111,7 @@ namespace UK.Gov.Legislation.Lawmaker
             Block(parent, heading, "heading");
         }
 
-        private void AddIntro(XmlElement level, IBranch branch)
+        private new void AddIntro(XmlElement level, IBranch branch)
         {
             if (branch.Intro is null || !branch.Intro.Any())
                 return;
@@ -119,11 +119,18 @@ namespace UK.Gov.Legislation.Lawmaker
             AddBlocks(intro, branch.Intro);
         }
 
-
         private void AddContent(XmlElement parent, IEnumerable<IBlock> blocks)
         {
             XmlElement content = CreateAndAppend("content", parent);
             AddBlocks(content, blocks);
+        }
+
+        protected new void AddWrapUp(XmlElement level, IBranch branch)
+        {
+            if (branch.WrapUp is null || !branch.WrapUp.Any())
+                return;
+            XmlElement wrapUp = CreateAndAppend("wrapUp", level);
+            AddBlocks(wrapUp, branch.WrapUp);
         }
 
     }
