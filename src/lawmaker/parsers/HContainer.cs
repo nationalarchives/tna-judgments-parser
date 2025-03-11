@@ -208,15 +208,23 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (leaf.Contents.Count != 1)
                 return null;
-            if (leaf.Contents.First() is not WLine line)
+
+            IBlock firstBlock = leaf.Contents.First();
+            WLine firstLine = null;
+            if (firstBlock is WLine)
+                firstLine = firstBlock as WLine;
+            else if (firstBlock is Mod mod && mod.Contents.First() is WLine firstModLine)
+                firstLine = firstModLine;
+            else
                 return null;
-            if (line is WOldNumberedParagraph)
+
+            if (firstLine is WOldNumberedParagraph)
                 return null;
-            if (!IsLeftAligned(line))
+            if (!IsLeftAligned(firstLine))
                 return null;
-            if (LineIsIndentedLessThan(line, leader))
+            if (LineIsIndentedLessThan(firstLine, leader))
                 return null;
-            return line;
+            return firstBlock;
         }
 
         private List<IBlock> HandleWrapUp(List<IDivision> children, int save)
@@ -257,49 +265,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // Todo: Add other grouping provisions?
             return false;
         }
-
-        private static List<IInline> FinalParagraphText(IDivision division)
-        {
-            List<IInline> inlines = [];
-
-            if (division is Branch branch)
-            {
-                if (branch.WrapUp == null || branch.WrapUp.Count == 0)
-                    return FinalParagraphText(branch.Children.Last());
-
-                foreach (IBlock block in branch.WrapUp)
-                {
-                    if (block is ILine line)
-                        inlines.AddRange(line.Contents);
-                }
-                return inlines;
-            }
-            if (division is not Leaf leaf)
-                return null;
-
-            // Squash all Leaf content into a single list
-            if (leaf.HeadingPrecedesNumber)
-            {
-                if (leaf.Heading != null)
-                    inlines.AddRange(leaf.Heading.Contents);
-                if (leaf.Number != null)
-                    inlines.Add(leaf.Number);
-            }
-            else
-            {
-                if (leaf.Number != null)
-                    inlines.Add(leaf.Number);
-                if (leaf.Heading != null)
-                    inlines.AddRange(leaf.Heading.Contents);
-            }
-            foreach (IBlock block in leaf.Contents)
-            {
-                if (block is ILine line)
-                    inlines.AddRange(line.Contents);
-            }
-            return inlines;
-        }
-
+        
     }
 
 }
