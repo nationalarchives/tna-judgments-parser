@@ -12,10 +12,10 @@ namespace UK.Gov.Legislation.Lawmaker
     class QuotedTextEnricher
     {
 
-        internal static void EnrichDivisions(List<IDivision> divisions)
+        internal static void EnrichDivisions(IList<IDivision> divisions)
         {
             foreach (var div in divisions)
-            EnrichDivision(div);
+                EnrichDivision(div);
         }
 
         internal static void EnrichDivision(IDivision division)
@@ -71,24 +71,30 @@ namespace UK.Gov.Legislation.Lawmaker
             return raw;
         }
 
-        /*
-         * When a paragraph already belongs to a mod (due to a quoted structure),
-         * quoted text elements (if any) must be added to the existing mod, rather than 
-         * causing additional mod elements to be created.
-         */
         internal static Mod EnrichMod(Mod raw, string pattern, Constructor constructor)
         {
             List<IBlock> enrichedBlocks = [];
             for (int i = 0; i < raw.Contents.Count; i++)
             {
-                if (raw.Contents[i] is not WLine line)
+                 // When a paragraph already belongs to a mod (due to a quoted structure), quoted text 
+                 // elements (if any) must be added to the existing mod, rather than causing additional 
+                 // mod elements to be created.
+                if (raw.Contents[i] is WLine line)
+                {
+                    IEnumerable<IInline> enrichedInlines = Enrich(line.Contents, pattern, constructor);
+                    WLine enrichedLine = WLine.Make(line, enrichedInlines);
+                    enrichedBlocks.Add(enrichedLine);
+                }
+                // Must enrich the divisions inside quoted structures
+                else if (raw.Contents[i] is BlockQuotedStructure qs)
+                {
+                    EnrichDivisions(qs.Contents);
+                    enrichedBlocks.Add(qs);
+                }
+                else
                 {
                     enrichedBlocks.Add(raw.Contents[i]);
-                    continue;
                 }
-                IEnumerable<IInline> enrichedInlines = Enrich(line.Contents, pattern, constructor);
-                WLine enrichedLine = WLine.Make(line, enrichedInlines);
-                enrichedBlocks.Add(enrichedLine);
             }
             return new Mod() { Contents = enrichedBlocks };
         }
