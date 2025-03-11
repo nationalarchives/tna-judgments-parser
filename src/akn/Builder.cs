@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml;
 
 using Microsoft.Extensions.Logging;
-
+using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
@@ -475,6 +475,10 @@ abstract class Builder {
         else if (model is ITab)
             AddTab(parent);
         else if (model is IBookmark) { ; }
+        else if (model is IInvalidRef reference) {
+            reference.Add(parent);
+        }
+
         else
             throw new Exception(model.GetType().ToString());
     }
