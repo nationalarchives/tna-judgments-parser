@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
@@ -28,42 +28,31 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal static void EnrichLeaf(Leaf leaf)
         {
-            for (int i = 0; i < leaf.Contents.Count - 1; i++)
+            string pattern = @"(\u201C[^\u201C\u201D]+?(?:\u201D|$))";
+            QuotedText qt = null;
+            IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
             {
-                if (leaf.Contents[i] is not WLine line)
+                string endQuote = text.EndsWith("\u201D") ? "\u201D" : null;
+                string contents = (endQuote == null) ? text[1..] : text[1..^1];
+                WText wText = new(contents, props);
+                qt = new QuotedText() { Contents = [wText], StartQuote = text[..1], EndQuote = endQuote };
+                return qt;
+            }
+
+            for (int i = 0; i < leaf.Contents.Count; i++)
+            {
+                IBlock enriched;
+                if (leaf.Contents[i] is WLine line && !line.NormalizedContent.StartsWith('\u201C'))
+                    enriched = EnrichLine(line, pattern, constructor);
+                else if (leaf.Contents[i] is Mod mod)
+                    enriched = EnrichMod(mod, pattern, constructor);
+                else
                     continue;
-                if (leaf.Contents[i+1] is not BlockQuotedStructure qs)
-                    continue;
-                if (qs.StartQuote is not null)
-                    continue;
-                if (line.NormalizedContent.StartsWith('“'))
-                    continue;
-                string pattern = "(“[^“”]+)$";
-                QuotedText qt = null;
-                IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
-                {
-                    WText wText = new(text[1..], props);
-                    qt = new QuotedText() { Contents = [wText], StartQuote = text[..1] };
-                    return qt;
-                }
-                WLine enriched = EnrichFromEnd.Enrich(line, pattern, constructor);
-                if (ReferenceEquals(enriched, line))  // means there was no match found
-                    continue;
+
                 if (qt is null)  // should be impossible
                     continue;
-                InlineQuotedStructure qs2 = new() {
-                    Contents = qs.Contents,
-                    StartQuote = qs.StartQuote,
-                    EndQuote = qs.EndQuote
-                };
-                List<IInline> contents = [.. enriched.Contents.SkipLast(1), qt, qs2];
-                if (qs.AppendText is not null)
-                    contents.Add(qs.AppendText);
-                //Mod mod = new() { Contents = contents };
-               // WLine combined = WLine.Make(enriched, [mod]);
-                //leaf.Contents.RemoveAt(i);
-                //leaf.Contents.RemoveAt(i);
-                //leaf.Contents.Insert(i, combined);
+                leaf.Contents.RemoveAt(i);
+                leaf.Contents.Insert(i, enriched);
                 break;
             }
         }
@@ -72,6 +61,58 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             foreach (var child in branch.Children)
                 EnrichDivision(child);
+        }
+
+        internal static IBlock EnrichLine(WLine raw, string pattern, Constructor constructor)
+        {
+            IEnumerable<IInline> enriched = Enrich(raw.Contents, pattern, constructor);
+            if (!ReferenceEquals(enriched, raw))
+                return new Mod() { Contents = [WLine.Make(raw, enriched)] };
+            return raw;
+        }
+
+        /*
+         * When a paragraph already belongs to a mod (due to a quoted structure),
+         * quoted text elements (if any) must be added to the existing mod, rather than 
+         * causing additional mod elements to be created.
+         */
+        internal static Mod EnrichMod(Mod raw, string pattern, Constructor constructor)
+        {
+            List<IBlock> enrichedBlocks = [];
+            for (int i = 0; i < raw.Contents.Count; i++)
+            {
+                if (raw.Contents[i] is not WLine line)
+                {
+                    enrichedBlocks.Add(raw.Contents[i]);
+                    continue;
+                }
+                IEnumerable<IInline> enrichedInlines = Enrich(line.Contents, pattern, constructor);
+                WLine enrichedLine = WLine.Make(line, enrichedInlines);
+                enrichedBlocks.Add(enrichedLine);
+            }
+            return new Mod() { Contents = enrichedBlocks };
+        }
+
+        internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string pattern, Constructor constructor)
+        {
+            if (raw.Last() is not WText current)
+                return raw;
+
+            MatchCollection matches = Regex.Matches(current.Text, pattern);
+            string[] segments = Regex.Split(current.Text, pattern);
+
+            if (segments.Count() == 1)
+                return raw;
+
+            List<IInline> enrichedInlines = [];
+            foreach (string segment in segments)
+            {
+                if (Regex.IsMatch(segment, pattern))
+                    enrichedInlines.Add(constructor(segment, current.properties));
+                else
+                    enrichedInlines.Add(new WText(segment, current.properties));
+            }
+            return enrichedInlines;
         }
 
     }
