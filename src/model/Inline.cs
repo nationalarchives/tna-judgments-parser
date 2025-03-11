@@ -54,8 +54,8 @@ interface IInline {
         return "";
     }
 
-    static string ToString(IEnumerable<IInline> inlines) {
-        return string.Join("", inlines.Select(GetText));
+    static string ToString(IEnumerable<IInline> inlines, string separator = "") {
+        return string.Join(separator, inlines.Select(GetText));
     }
 
 }
