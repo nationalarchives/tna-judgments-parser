@@ -22,8 +22,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (child is Para2)
                 return true;
-            if (child is Definition)
-                return true;
+            //if (child is Definition)
+            //    return true;
             if (child is UnnumberedParagraph)
                 return true;
             if (child is WDummyDivision)
