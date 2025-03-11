@@ -21,12 +21,12 @@ namespace UK.Gov.Legislation.Lawmaker
         internal static void EnrichDivision(IDivision division)
         {
             if (division is Leaf leaf)
-                EnrichLeaf(leaf);
+                EnrichBlocks(leaf.Contents);
             else if (division is Branch branch)
                 EnrichBranch(branch);
         }
 
-        internal static void EnrichLeaf(Leaf leaf)
+        internal static void EnrichBlocks(IList<IBlock> blocks)
         {
             string pattern = @"(\u201C[^\u201C\u201D]+?(?:\u201D|$))";
             QuotedText qt = null;
@@ -39,28 +39,31 @@ namespace UK.Gov.Legislation.Lawmaker
                 return qt;
             }
 
-            for (int i = 0; i < leaf.Contents.Count; i++)
+            for (int i = 0; i < blocks.Count; i++)
             {
                 IBlock enriched;
-                if (leaf.Contents[i] is WLine line && !line.NormalizedContent.StartsWith('\u201C'))
+                if (blocks[i] is WLine line && !line.NormalizedContent.StartsWith('\u201C'))
                     enriched = EnrichLine(line, pattern, constructor);
-                else if (leaf.Contents[i] is Mod mod)
+                else if (blocks[i] is Mod mod)
                     enriched = EnrichMod(mod, pattern, constructor);
                 else
                     continue;
 
                 if (qt is null)  // should be impossible
                     continue;
-                leaf.Contents.RemoveAt(i);
-                leaf.Contents.Insert(i, enriched);
+                blocks.RemoveAt(i);
+                blocks.Insert(i, enriched);
                 break;
             }
         }
 
         internal static void EnrichBranch(Branch branch)
         {
-            foreach (var child in branch.Children)
-                EnrichDivision(child);
+            if (branch.Intro != null)
+                EnrichBlocks(branch.Intro);
+            EnrichDivisions(branch.Children);
+            if (branch.WrapUp != null)
+                EnrichBlocks(branch.WrapUp);
         }
 
         internal static IBlock EnrichLine(WLine raw, string pattern, Constructor constructor)
