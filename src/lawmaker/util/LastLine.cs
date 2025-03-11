@@ -43,6 +43,63 @@ namespace UK.Gov.Legislation.Lawmaker
             return line;
         }
 
+        /* 
+         * Obtains the entire text content of the last paragraph of the given division,
+         * including any Numbers or Headings.
+         */
+        internal static string GetLastParagraphText(IDivision division)
+        {
+            if (division is Leaf leaf)
+                return GetLastParagraphTextInLeaf(leaf);
+            if (division is Branch branch)
+                return GetLastParagraphTextInBranch(branch);
+            return null;
+        }
+
+        /*
+         * Obtains the combined text content of a Leaf.
+         * Includes the Number, Heading, and Contents. 
+         */
+        static string GetLastParagraphTextInLeaf(Leaf leaf)
+        {
+            List<IInline> inlines = [];
+            if (leaf.HeadingPrecedesNumber)
+            {
+                if (leaf.Heading != null)
+                    inlines.AddRange(leaf.Heading.Contents);
+                if (leaf.Number != null)
+                    inlines.Add(leaf.Number);
+            }
+            else
+            {
+                if (leaf.Number != null)
+                    inlines.Add(leaf.Number);
+                if (leaf.Heading != null)
+                    inlines.AddRange(leaf.Heading.Contents);
+            }
+            foreach (IBlock block in leaf.Contents)
+            {
+                if (block is ILine line)
+                    inlines.AddRange(line.Contents);
+            }
+            return IInline.ToString(inlines, " ");
+        }
+
+        static string GetLastParagraphTextInBranch(Branch branch)
+        {
+            if (branch.WrapUp?.Count > 0)
+            {
+                List<IInline> inlines = [];
+                foreach (IBlock block in branch.WrapUp)
+                {
+                    if (block is ILine line)
+                        inlines.AddRange(line.Contents);
+                }
+                return IInline.ToString(inlines, " ");
+            }
+            return GetLastParagraphText(branch.Children.Last());
+        }
+
         /* replace */
 
         internal static bool Replace(IList<IDivision> divisions, Func<WLine, WLine> replace)
