@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Xml;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -218,7 +218,11 @@ internal class WText : IFormattedText {
         return formatting;
     }
 
-}
+        public override string ToString()
+        {
+            return "WText: " + this.text;
+        }
+    }
 
 class WTab : ITab {
 
