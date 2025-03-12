@@ -1,10 +1,8 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using System.Text.RegularExpressions;
-using UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -70,7 +68,14 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save1;
                     return null;
                 }
-                return new Schedules { Number = null, Heading = null, Children = children };
+                WLine schedulesHeading = null;
+                if (children.Count > 1)
+                {
+                    // Schedules heading is only present when there is more than one Schedule
+                    WText wText = new WText("Schedules", null);
+                    schedulesHeading = WLine.Make(line, [wText]);
+                }
+                return new Schedules { Number = null, Heading = schedulesHeading, Children = children };
             }
         }
 
@@ -104,6 +109,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             isInSchedules = isInSchedulesSave;
             return children;
