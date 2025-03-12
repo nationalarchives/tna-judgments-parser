@@ -43,6 +43,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (Document.Body[i + 1].Block is not WLine nextLine)
                 return false;
+            // The heading and first line should have the same indentation
+            if (LineIsIndentedMoreThan(line, nextLine, 0.2f))
+                return false;
             return PeekBareProv1(nextLine);
         }
 
