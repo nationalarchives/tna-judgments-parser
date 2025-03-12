@@ -58,6 +58,8 @@ namespace UK.Gov.Legislation.Lawmaker
             else
             {
                 intro = HandleParagraphs(np);
+                if (IsEndOfQuotedStructure(intro))
+                    return new SchProv1Leaf { Number = num, Contents = intro };
             }
 
             int finalChildStart = i;
