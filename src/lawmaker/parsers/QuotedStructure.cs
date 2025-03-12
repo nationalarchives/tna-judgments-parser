@@ -105,6 +105,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static bool IsEndOfQuotedStructure(string text)
         {
+            if (text == null)
+                return false;
             bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
             if (!isEndQuoteAtEnd)
                 return false;
@@ -199,6 +201,9 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             List<IDivision> contents = [];
             quoteDepth += 1;
+            // Assume the quoted structure contains section-based content
+            bool isInSchedulesSave = isInSchedules;
+            isInSchedules = false;
             while (i < Document.Body.Count)
             {
                 int save = i;
@@ -213,6 +218,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
             }
             quoteDepth -= 1;
+            isInSchedules = isInSchedulesSave;
             if (contents.Count == 0)
                 return null;
             return new BlockQuotedStructure { Contents = contents };
