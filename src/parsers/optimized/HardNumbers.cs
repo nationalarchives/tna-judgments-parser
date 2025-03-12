@@ -75,7 +75,7 @@ class HardNumbers {
         @"^([“""]?\(?[A-Z]*\d+[A-Z]*\))",     // subsection
 
     }.Select(s => s + @"(\s|$)")
-    .Append(@"^([“""]?\d+[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
+    .Append(@"^([“""]?[A-Z]*\d+[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
     .ToArray();
 
     private WOldNumberedParagraph ExtractPlainNumber(WLine line) {
@@ -106,7 +106,7 @@ class HardNumbers {
         if (contents.FirstOrDefault() is not WText first)
             return null;
         IEnumerable<IInline> rest = contents.Skip(1);
-        string trimmed = first.Text.TrimStart();
+        string trimmed = first.Text.TrimStart().Replace("\u2060", "");
         RunProperties firstProps = first.properties;
         RunProperties lastProps = first.properties;
         Match match = Regex.Match(trimmed, format);
