@@ -44,14 +44,14 @@ namespace UK.Gov.Legislation.Lawmaker
             return LineIsIndentedLessThan(line, parent);
         }
 
-        private static bool LineIsIndentedLessThan(WLine line, WLine other)
+        private static bool LineIsIndentedLessThan(WLine line, WLine other, float threshold = 0f)
         {
-            return GetEffectiveIndent(line) < GetEffectiveIndent(other);
+            return GetEffectiveIndent(line) < GetEffectiveIndent(other) - threshold;
         }
 
-        private static bool LineIsIndentedMoreThan(WLine line, WLine other)
+        private static bool LineIsIndentedMoreThan(WLine line, WLine other, float threshold = 0f)
         {
-            return GetEffectiveIndent(line) > GetEffectiveIndent(other);
+            return GetEffectiveIndent(line) > GetEffectiveIndent(other) + threshold;
         }
 
         private static bool HasValidIndentForChild(IBlock block, WLine leader)
