@@ -85,7 +85,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (children.Count == 0)
                 return new SchProv1Leaf { Number = num, Contents = intro };
-            
+
             return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
