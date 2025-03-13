@@ -63,15 +63,15 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is Para3)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+            Para3
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+            or UnknownLevel
+                => true,
+            _   => false,
+            };
         }
 
     }
