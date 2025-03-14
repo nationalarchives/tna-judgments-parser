@@ -75,10 +75,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             i += 1;
+            // UnknownLevels are marked up as a single <p> element. If the line is numbered,
+            // we must combine the Number with the Contents to ensure the number is not lost
             if (line is WOldNumberedParagraph np)
-                return new UnknownLevel() { Number = np.Number, Contents = [WLine.RemoveNumber(np)] };
-            else
-                return new UnknownLevel() { Contents = [line] };
+                line = new WLine(line, [np.Number, new WText(" ", null), .. np.Contents]);
+
+            return new UnknownLevel() { Contents = [line] };
         }
 
         // Parse divisions that only occur INSIDE Schedules
@@ -149,21 +151,27 @@ namespace UK.Gov.Legislation.Lawmaker
         */
         private List<IBlock> HandleParagraphs(WLine line)
         {
-            List<IBlock> container = [];
-
             WLine first = (line is WOldNumberedParagraph np) ? WLine.RemoveNumber(np) : line;
+            if (IsEndOfQuotedStructure(first.TextContent))
+                return [first];
+
+            List<IBlock> container = [];
             HandleMod(first, container);
 
             while (i < Document.Body.Count)
             {
                 int save = i;
-                IBlock extraParagraph = GetExtraParagraph(line);
+                IList<IBlock> extraParagraph = GetExtraParagraph(line);
                 if (extraParagraph == null)
                 {
                     i = save;
                     break;
                 }
-                HandleMod(extraParagraph, container);
+                foreach (IBlock block in extraParagraph)
+                    HandleMod(block, container);
+
+                if (extraParagraph.Last() is WLine lastLine && IsEndOfQuotedStructure(lastLine.TextContent))
+                    break;
             }
             return container;
         }
@@ -193,9 +201,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /*
          * Determines if the next line is an extra paragraph belonging to the current division.
-         * If so, it returns the line. If not, it returns null.
+         * If so, it returns the paragraph. If not, it returns null.
         */
-        private IBlock GetExtraParagraph(WLine leader)
+        private IList<IBlock> GetExtraParagraph(WLine leader)
         {
             if (BreakFromProv1(leader))
                 return null;
@@ -203,11 +211,11 @@ namespace UK.Gov.Legislation.Lawmaker
             IDivision next = ParseNextBodyDivision();
 
             if (next is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
-                return table;
-            if (next is not UnnumberedLeaf leaf)
+                return [table];
+            // UnknownLevels are treated as extra paragraphs of the previous division 
+            if (next is not UnnumberedLeaf && next is not UnknownLevel)
                 return null;
-            if (leaf.Contents.Count != 1)
-                return null;
+            Leaf leaf = next as Leaf;
 
             IBlock firstBlock = leaf.Contents.First();
             WLine firstLine = null;
@@ -220,11 +228,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (firstLine is WOldNumberedParagraph)
                 return null;
-            if (!IsLeftAligned(firstLine))
-                return null;
-            if (LineIsIndentedLessThan(firstLine, leader))
-                return null;
-            return firstBlock;
+            if (next is UnnumberedLeaf)
+            {
+                if (!IsLeftAligned(firstLine))
+                    return null;
+                if (LineIsIndentedLessThan(firstLine, leader))
+                    return null;
+            }
+            return leaf.Contents;
         }
 
         private List<IBlock> HandleWrapUp(List<IDivision> children, int save)

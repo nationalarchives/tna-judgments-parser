@@ -26,7 +26,6 @@ namespace UK.Gov.Legislation.Lawmaker
             or Definition
             or UnnumberedParagraph
             or WDummyDivision
-            or UnknownLevel
                 => true,
             _   => false,
             }
@@ -78,7 +77,6 @@ namespace UK.Gov.Legislation.Lawmaker
             or Definition
             or UnnumberedParagraph
             or WDummyDivision
-            or UnknownLevel
                 => true,
             _   => false,
             };
@@ -130,7 +128,6 @@ namespace UK.Gov.Legislation.Lawmaker
             or Definition
             or UnnumberedParagraph
             or WDummyDivision
-            or UnknownLevel
                 => true,
             _   => false,
             };

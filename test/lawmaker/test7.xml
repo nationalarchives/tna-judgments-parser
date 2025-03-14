@@ -290,27 +290,12 @@
             <section eId="sec_1" class="prov1">
               <heading>The emissions target for 2050</heading>
               <num>1.</num>
-              <intro>
+              <content>
                 <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2050 is at least 82% lower than the baseline.</p>
-              </intro>
-              <level>
-                <num>•</num>
-                <content>
-                  <p>List item 1</p>
-                </content>
-              </level>
-              <level>
-                <num>•</num>
-                <content>
-                  <p>List item 2</p>
-                </content>
-              </level>
-              <level>
-                <num>•</num>
-                <content>
-                  <p>List item 3</p>
-                </content>
-              </level>
+                <p>• List item 1</p>
+                <p>• List item 2</p>
+                <p>• List item 3</p>
+              </content>
             </section>
             <section eId="sec_2" class="prov1">
               <heading>The emissions target for 2040</heading>
@@ -468,12 +453,7 @@
                 <num>(a)</num>
                 <content>
                   <p>take the aggregate amount of net Northern Ireland emissions of each greenhouse gas for that year (which is to be determined in accordance with sections 7 and 8),</p>
-                </content>
-              </level>
-              <level>
-                <num>•</num>
-                <content>
-                  <p>This is a list in the middle of nowwhere and looks weird</p>
+                  <p>• This is a list in the middle of nowwhere and looks weird</p>
                 </content>
               </level>
               <level class="para1">
@@ -505,27 +485,17 @@
                   <content>
                     <p>the amount of Northern Ireland emissions of the gas for the period (see subsection (2)),</p>
                     <p>minus</p>
+                    <p>• This is a list that is the child of a subsections</p>
+                    <p>• List item 2</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>the amount of Northern Ireland removals of the gas for the period (see subsection (3)).</p>
                   </content>
                 </level>
               </subsection>
-              <level>
-                <num>•</num>
-                <content>
-                  <p>This is a list that is the child of a subsections</p>
-                </content>
-              </level>
-              <level>
-                <num>•</num>
-                <content>
-                  <p>List item 2</p>
-                </content>
-              </level>
-              <level class="para1">
-                <num>(b)</num>
-                <content>
-                  <p>the amount of Northern Ireland removals of the gas for the period (see subsection (3)).</p>
-                </content>
-              </level>
               <subsection class="prov2">
                 <num>(2)</num>
                 <intro>
@@ -535,20 +505,16 @@
                   <num>(a)</num>
                   <content>
                     <p>emissions of the gas from sources in Northern Ireland in the period, and</p>
+                    <p>This is some right aligned text that should completely throw off the parser</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>emissions of the gas from international aviation or international shipping that count as Northern Ireland emissions for the period (as determined by regulations under section 8).</p>
                   </content>
                 </level>
               </subsection>
-              <level>
-                <content>
-                  <p>This is some right aligned text that should completely throw off the parser</p>
-                </content>
-              </level>
-              <level class="para1">
-                <num>(b)</num>
-                <content>
-                  <p>emissions of the gas from international aviation or international shipping that count as Northern Ireland emissions for the period (as determined by regulations under section 8).</p>
-                </content>
-              </level>
               <subsection class="prov2">
                 <num>(3)</num>
                 <intro>
