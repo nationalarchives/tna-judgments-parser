@@ -495,6 +495,24 @@
                     <p>the amount of Northern Ireland removals of the gas for the period (see subsection (3)).</p>
                   </content>
                 </level>
+                <level>
+                  <num>•</num>
+                  <content>
+                    <p>This is a list that is the child of a subsections</p>
+                  </content>
+                </level>
+                <level>
+                  <num>•</num>
+                  <content>
+                    <p>List item 2</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>the amount of Northern Ireland removals of the gas for the period (see subsection (3)).</p>
+                  </content>
+                </level>
               </subsection>
               <subsection class="prov2">
                 <num>(2)</num>
@@ -505,6 +523,17 @@
                   <num>(a)</num>
                   <content>
                     <p>emissions of the gas from sources in Northern Ireland in the period, and</p>
+                    <p>This is some right aligned text that should completely throw off the parser</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>emissions of the gas from international aviation or international shipping that count as Northern Ireland emissions for the period (as determined by regulations under section 8).</p>
+                  </content>
+                </level>
+                <level>
+                  <content>
                     <p>This is some right aligned text that should completely throw off the parser</p>
                   </content>
                 </level>
