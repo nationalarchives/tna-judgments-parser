@@ -20,17 +20,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is Prov2)
-                return true;
-            if (child is Para1)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+            Prov2
+            or Para1
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+                => true,
+            _   => false,
+            }
+            ;
         }
 
     }
@@ -71,17 +70,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is SchProv2)
-                return true;
-            if (child is Para1)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+
+            SchProv2
+            or Para1
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+                => true,
+            _   => false,
+            };
         }
 
     }
@@ -125,15 +123,15 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is Para1)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+            Para1
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+                => true,
+            _   => false,
+            };
+
         }
 
     }

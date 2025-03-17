@@ -118,7 +118,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
-        
+
         private (WText, WLine) FixFirstProv2Num(WLine line)
         {
             WText num = null;

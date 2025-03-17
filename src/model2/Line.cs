@@ -39,7 +39,7 @@ class WLine : ILine {
         Paragraph = paragraph;
     }
 
-    protected WLine(WLine prototype, IEnumerable<IInline> contents) {
+    public WLine(WLine prototype, IEnumerable<IInline> contents) {
         this.main = prototype.main;
         this.properties = prototype.properties;
         this.contents = contents.ToList();
