@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public class LawmakerTest
     {
 
-        private static readonly int N = 6;
+        private static readonly int N = 8;
 
         public static readonly IEnumerable<object[]> Indices = Enumerable.Range(1, N)
             .Select(i => new object[] { i });

@@ -32,8 +32,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (child is WDummyDivision)
                 return true;
-            if (child is UnknownLevel)
-                return true;
             return false;
         }
 
