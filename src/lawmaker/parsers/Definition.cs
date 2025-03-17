@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -26,10 +27,23 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
 
             // Use enricher to create <def> element around defined term
-            static IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
+            static IInline constructor(IEnumerable<IInline> inlines)
             {
-                WText wText = new(text[1..^1], props);
-                return new Def() { Contents = [wText], StartQuote = text[..1], EndQuote = text[^1..] };
+                string startQuote = null;
+                string endQuote = null;
+                if (inlines.FirstOrDefault() is WText first)
+                {
+                    startQuote = first.Text[..1];
+                    WText fixedFirst = new(first.Text[1..], first.properties);
+                    inlines = inlines.Skip(1).Prepend(fixedFirst);
+                }
+                if (inlines.LastOrDefault() is WText last)
+                {
+                    endQuote = last.Text[^1..];
+                    WText fixedLast = new(last.Text[..^1], last.properties);
+                    inlines = inlines.SkipLast(1).Append(fixedLast);
+                }
+                return new Def() { Contents = inlines.ToList(), StartQuote = startQuote, EndQuote = endQuote };
             }
             WLine enriched = EnrichFromBeginning.Enrich(line, defPattern, constructor);
             if (ReferenceEquals(enriched, line))
