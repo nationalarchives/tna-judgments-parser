@@ -233,13 +233,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static void ExtractQuotesAndAppendTexts(IBlock block)
         {
-            if (block is Mod mod)
-            {
-                foreach (IBlock modBlock in mod.Contents)
-                    ExtractQuotesAndAppendTexts(modBlock);
-                return;
-            }
-
             if (block is not BlockQuotedStructure qs)
                 return;
 
