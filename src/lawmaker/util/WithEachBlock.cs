@@ -41,7 +41,13 @@ namespace UK.Gov.Legislation.Lawmaker.Util
             if (blocks is null)
                 return;
             foreach (var block in blocks)
+            {
                 consumer(block);
+                if (block is Mod mod)
+                    DoWithBlocks(mod.Contents, consumer);
+                else if (block is BlockQuotedStructure qs)
+                    Do(qs.Contents, consumer);
+            }
         }
 
     }
