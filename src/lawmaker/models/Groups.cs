@@ -54,6 +54,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "group7";
 
+        public override bool HeadingPrecedesNumber => true;
+
     }
 
     internal class Schedules : Branch
@@ -62,6 +64,8 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "schedules";
 
         public override string Class => "schs";
+
+        public override bool HeadingPrecedesNumber => true;
 
         public static bool IsValidHeading(string heading)
         {
