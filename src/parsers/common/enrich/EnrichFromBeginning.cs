@@ -12,6 +12,8 @@ namespace UK.Gov.NationalArchives.Enrichment
     class EnrichFromBeginning
     {
 
+        internal delegate IInline Constructor(IList<IInline> inlines);
+
         internal static WLine Enrich(WLine raw, string pattern, Constructor constructor)
         {
             IEnumerable<IInline> enriched = Enrich(raw.Contents, pattern, constructor);
@@ -22,37 +24,75 @@ namespace UK.Gov.NationalArchives.Enrichment
 
         internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string pattern, Constructor constructor)
         {
-            IEnumerator<IInline> enumerator = raw.Reverse().GetEnumerator();
+            IEnumerator<IInline> enumerator = raw.GetEnumerator();
+            List<int> inlinePositions = [0];
             string beginning = "";
+            Match match = null;
             while (enumerator.MoveNext())
             {
                 if (enumerator.Current is not WText wText)
                     return raw;
                 beginning += wText.Text;
-                Match match = Regex.Match(beginning, pattern);
-                if (!match.Success)
-                    continue;
-                List<IInline> replacement = [];
-                Group group = match.Groups[1];
-                if (group.Index > 0)
-                {
-                    string before = beginning[..group.Index];
-                    WText leading = new(before, wText.properties);
-                    replacement.Add(leading);
-                }
-                IInline middle = constructor(group.Value, wText.properties);
-                replacement.Add(middle);
-                if (group.Index + group.Length < beginning.Length)
-                {
-                    string after = beginning[(group.Index + group.Length)..];
-                    WText trailing = new(after, wText.properties);
-                    replacement.Add(trailing);
-                }
-                while (enumerator.MoveNext())
-                    replacement.Add(enumerator.Current);
-                return replacement;
+                inlinePositions.Add(beginning.Length);
+                match = Regex.Match(beginning, pattern);
+                if (match.Success)
+                    break;
             }
-            return raw;
+            if (match == null)
+                return raw;
+
+            Group group = match.Groups[1];
+            int groupStart = group.Index;
+            int groupEnd = group.Index + group.Length;
+
+            List<IInline> before, inside, after;
+
+            // Collect Inlines before group
+            before = raw.TakeWhile((inline, index) =>
+                inlinePositions.Count > index + 1 && inlinePositions[index + 1] <= groupStart
+            ).ToList();
+
+            // Handle boundary condition where an Inline crosses the start of the group.
+            // In which case, the Inline must be split.
+            List<IInline> remainder = [];
+            int inlineIndex = before.Count;
+            int start = inlinePositions[inlineIndex];
+            if (start < groupStart)
+            {
+                WText inlineToSplit = raw.ElementAt(inlineIndex) as WText;
+                WText portionBefore = new WText(inlineToSplit.Text[..(groupStart - start)], inlineToSplit.properties);
+                WText portionAfter = new WText(inlineToSplit.Text[(groupStart - start)..], inlineToSplit.properties);
+                inlinePositions.Insert(inlineIndex + 1, start + portionBefore.Text.Length);
+                before.Add(portionBefore);
+                remainder.Add(portionAfter);
+            }
+            remainder.AddRange(raw.Skip(before.Count));
+
+            // Collect Inlines inside group
+            inside = remainder.TakeWhile((inline, index) => {
+                int adjustedIndex = index + before.Count;
+                return inlinePositions.Count > adjustedIndex + 1 && inlinePositions[adjustedIndex + 1] <= groupEnd;
+            }).ToList();
+
+            // Handle boundary condition where an Inline crosses the end of the group.
+            // In which case, the Inline must be split.
+            after = [];
+            inlineIndex = before.Count + inside.Count;
+            int end = inlinePositions.ElementAtOrDefault(inlineIndex + 1);
+            if (end > groupEnd)
+            {
+                start = inlinePositions[inlineIndex];
+                WText inlineToSplit = remainder.Skip(inside.Count).First() as WText;
+                WText portionBefore = new WText(inlineToSplit.Text[..(groupEnd - start)], inlineToSplit.properties);
+                WText portionAfter = new WText(inlineToSplit.Text[(groupEnd - start)..], inlineToSplit.properties);
+                inside.Add(portionBefore);
+                after.Add(portionAfter);
+            }
+
+            // Collect Inlines after group
+            after.AddRange(remainder.Skip(inside.Count));
+
+            return [.. before, constructor(inside), .. after];
         }
 
     }
