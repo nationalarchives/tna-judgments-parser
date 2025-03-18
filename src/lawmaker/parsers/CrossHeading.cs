@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
@@ -24,8 +25,6 @@ namespace UK.Gov.Legislation.Lawmaker
             var save1 = i;
             i += 1;
 
-            ILine heading = line;
-
             List<IDivision> children = [];
 
             while (i < Document.Body.Count)
@@ -33,22 +32,21 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Prov1) {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next)) {
+                if (!CrossHeading.IsValidChild(next)) {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
                 i = save1;
                 return null;
             }
-            return new CrossHeading { Heading = heading, Children = children };
+            return new CrossHeading { Heading = line, Children = children };
         }
 
     }

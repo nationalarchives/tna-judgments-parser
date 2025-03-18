@@ -19,8 +19,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
-
-            if (!Part.IsPartNumber(line.NormalizedContent))
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!Part.IsValidNumber(numText))
                 return null;
             IFormattedText number = new WText(
                 line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
@@ -40,19 +40,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Chapter && next is not CrossHeading && next is not Prov1) {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
-                {
+                if (!Part.IsValidChild(next)) {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
