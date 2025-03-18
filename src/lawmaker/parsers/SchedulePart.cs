@@ -19,8 +19,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (i > Document.Body.Count - 3)
                 return null;
-
-            if (!SchedulePart.IsValidNumber(line.NormalizedContent))
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!SchedulePart.IsValidNumber(numText))
                 return null;
             IFormattedText number = new WText(
                 line.NormalizedContent,
@@ -50,6 +50,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             isInSchedules = isInSchedulesSave;
             if (children.Count == 0)
