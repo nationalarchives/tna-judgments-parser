@@ -71,20 +71,16 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hc is Schedule schedule)
             {
                 AddReferenceNote(number, schedule.ReferenceNote);
-                AddDivisions(level, schedule.Children);
             }
-            else
+            if (hc is IBranch branch)
             {
-                if (hc is IBranch branch)
-                {
-                    AddIntro(level, branch);
-                    AddDivisions(level, branch.Children);
-                    AddWrapUp(level, branch);
-                }
-                else if (hc is ILeaf leaf)
-                {
-                    AddContent(level, leaf.Contents);
-                }
+                AddIntro(level, branch);
+                AddDivisions(level, branch.Children);
+                AddWrapUp(level, branch);
+            }
+            else if (hc is ILeaf leaf)
+            {
+                AddContent(level, leaf.Contents);
             }
         }
 
