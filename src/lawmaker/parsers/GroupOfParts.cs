@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return null;
 
-            if (!GroupOfParts.IsGroupOfPartsHeading(line.NormalizedContent))
+            if (!GroupOfParts.IsValidNumber(line.NormalizedContent))
                 return null;
             IFormattedText number = new WText(
                 ToTitleCase(line.NormalizedContent),
@@ -39,19 +39,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Part) {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
-                {
+                if (!GroupOfParts.IsValidChild(next)) {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
