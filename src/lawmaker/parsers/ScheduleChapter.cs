@@ -51,6 +51,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             isInSchedules = isInSchedulesSave;
             if (children.Count == 0)
