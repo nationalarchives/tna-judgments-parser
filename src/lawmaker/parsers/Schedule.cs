@@ -45,38 +45,33 @@ namespace UK.Gov.Legislation.Lawmaker
                 null
             );
 
+            var save = i;
+            i += (referenceNoteLine is null) ? 2 : 3;
             var save1 = i;
-            List<IDivision> children;
-            if (isInSchedules || quoteDepth > 0)
+
+            HContainer schedule;
+            IDivision next = ParseNextBodyDivision();
+            if (next is UnnumberedLeaf content)
             {
-                i += (referenceNoteLine is null) ? 2 : 3;
-                children = ParseScheduleChildren();
-                if (children.Count == 0)
-                {
-                    i = save1;
-                    return null;
-                }
-                return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
+                schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = content.Contents };
             }
             else
             {
-                // If we encounter a Schedule outside of a Schedules container, it must be wrapped
-                // Note: Does not apply inside quoted structures
-                children = ParseSchedulesChildren();
+                i = save1;
+                List<IDivision> children = ParseScheduleChildren();
                 if (children.Count == 0)
                 {
-                    i = save1;
+                    i = save;
                     return null;
                 }
-                WLine schedulesHeading = null;
-                if (children.Count > 1)
-                {
-                    // Schedules heading is only present when there is more than one Schedule
-                    WText wText = new WText("Schedules", null);
-                    schedulesHeading = WLine.Make(line, [wText]);
-                }
-                return new Schedules { Number = null, Heading = schedulesHeading, Children = children };
+                schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
+
+            if (isInSchedules || quoteDepth > 0)
+                return schedule;
+
+            // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped
+            return new Schedules { Number = null, Children = [schedule] };
         }
 
         private bool PeekSchedule(WLine line)
@@ -107,6 +102,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     i = save;
                     break;
+                }
+                // Schedules can have a 
+                if (next is UnnumberedLeaf)
+                {
+                    
                 }
                 children.Add(next);
 
