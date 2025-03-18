@@ -7,14 +7,10 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    internal class Schedule : Branch
+    internal interface Schedule
     {
 
-        public override string Name { get; internal init; } = "schedule";
-
-        public override string Class => "sch";
-
-        public IFormattedText ReferenceNote { get; internal init; }
+        IFormattedText ReferenceNote { get; }
 
         public static bool IsValidNumber(string number)
         {
@@ -30,11 +26,38 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (child is SchProv1)
                 return true;
+            if (child is UnnumberedLeaf)
+                return true;
             if (child is WDummyDivision)
                 return true;
             return false;
         }
 
+    }
+
+    internal class ScheduleBranch : Branch, Schedule
+    {
+
+        public override string Name { get; internal init; } = "schedule";
+
+        public override string Class => "sch";
+
+        public IFormattedText ReferenceNote { get; internal init; }
+
+        IFormattedText Schedule.ReferenceNote => ReferenceNote;
+
+    }
+
+    internal class ScheduleLeaf : Leaf, Schedule
+    {
+
+        public override string Name { get; internal init; } = "schedule";
+
+        public override string Class => "sch";
+
+        public IFormattedText ReferenceNote { get; internal init; }
+
+        IFormattedText Schedule.ReferenceNote => ReferenceNote;
     }
 
 }
