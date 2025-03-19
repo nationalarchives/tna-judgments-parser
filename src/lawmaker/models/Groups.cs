@@ -76,7 +76,19 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
-    internal class CrossHeading : Branch
+    internal interface CrossHeading
+    {
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Prov1)
+                return true;
+            return false;
+        }
+
+    }
+
+    internal class CrossHeadingBranch : Branch, CrossHeading
     {
 
         public override string Name { get; internal init; } = "crossheading";
@@ -85,12 +97,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override bool HeadingPrecedesNumber => true;
 
-        public static bool IsValidChild(IDivision child)
-        {
-            if (child is Prov1)
-                return true;
-            return false;
-        }
+    }
+
+    internal class CrossHeadingLeaf : Leaf, CrossHeading
+    {
+
+        public override string Name { get; internal init; } = "crossheading";
+
+        public override string Class => "group7";
+
+        public override bool HeadingPrecedesNumber => true;
 
     }
 
