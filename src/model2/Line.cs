@@ -61,6 +61,8 @@ class WLine : ILine {
             return new WOldNumberedParagraph(np, contents);
         if (prototype is WRestriction restrict)
             return new WRestriction(restrict, contents);
+        if (prototype is WUnknownLine line)
+            return new WUnknownLine(line, contents);
         return new WLine(prototype, contents);
     }
     public static WLine RemoveNumber(WOldNumberedParagraph np) {
@@ -338,6 +340,14 @@ class WLine : ILine {
         else
             return withText.Select(t => t.Underline).All(u => u.HasValue && u.Value != UnderlineValues2.None);
     }
+
+}
+
+class WUnknownLine : WLine, IUnknownLine {
+
+    internal WUnknownLine(WLine line) : base(line) { }
+
+    internal WUnknownLine(WLine proto, IEnumerable<IInline> contents) : base(proto, contents) { }
 
 }
 
