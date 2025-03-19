@@ -21,7 +21,7 @@ namespace UK.Gov.Legislation.Lawmaker
         internal static void EnrichDivision(IDivision division)
         {
             if (division is Leaf leaf)
-                EnrichBlocks(leaf.Contents);
+                EnrichLeaf(leaf);
             else if (division is Branch branch)
                 EnrichBranch(branch);
         }
@@ -34,6 +34,13 @@ namespace UK.Gov.Legislation.Lawmaker
             if (branch.WrapUp != null)
                 EnrichBlocks(branch.WrapUp);
         }
+
+        internal static void EnrichLeaf(Leaf leaf)
+        {
+            if (leaf.Contents?.Count > 0)
+                EnrichBlocks(leaf.Contents);
+        }
+
 
         internal static void EnrichBlocks(IList<IBlock> blocks)
         {
