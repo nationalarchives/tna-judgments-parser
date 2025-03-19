@@ -5,7 +5,6 @@ using System.Linq;
 using System.Xml;
 
 using Microsoft.Extensions.Logging;
-using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
@@ -174,7 +173,7 @@ abstract class Builder {
             AddIntro(level, branch);
             AddDivisions(level, branch.Children);
             AddWrapUp(level, branch);
-        } else if (div is ILeaf leaf) {
+        } else if (div is ILeaf leaf && leaf.Contents?.Count() > 0) {
             XmlElement content = doc.CreateElement("content", ns);
             level.AppendChild(content);
             blocks(content, leaf.Contents);
