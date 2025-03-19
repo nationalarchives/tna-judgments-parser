@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private ScheduleChapter ParseScheduleChapter(WLine line)
+        private HContainer ParseScheduleChapter(WLine line)
         {
             if (line is WOldNumberedParagraph np)
                 return null;
@@ -27,11 +27,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
             );
 
+            if (IsEndOfQuotedStructure(line.NormalizedContent))
+                return new ScheduleChapterLeaf { Number = number };
+
             if (Document.Body[i + 1].Block is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))
                 return null;
             ILine heading = line2;
+
+            if (IsEndOfQuotedStructure(line2.NormalizedContent))
+                return new ScheduleChapterLeaf { Number = number, Heading = heading };
 
             var save1 = i;
             i += 2;
@@ -61,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new ScheduleChapter { Number = number, Heading = heading, Children = children };
+            return new ScheduleChapterBranch { Number = number, Heading = heading, Children = children };
         }
 
     }
