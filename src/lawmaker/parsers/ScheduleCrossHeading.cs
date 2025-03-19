@@ -10,7 +10,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private ScheduleCrossHeading ParseScheduleCrossheading(WLine line)
+        private HContainer ParseScheduleCrossheading(WLine line)
         {
             if (!PeekScheduleCrossHeading(line))
                 return null;
@@ -18,7 +18,8 @@ namespace UK.Gov.Legislation.Lawmaker
             var save1 = i;
             i += 1;
 
-            ILine heading = line;
+            if (IsEndOfQuotedStructure(line.NormalizedContent))
+                return new CrossHeadingLeaf { Heading = line };
 
             List<IDivision> children = [];
 
@@ -44,7 +45,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new ScheduleCrossHeading { Heading = heading, Children = children };
+            return new ScheduleCrossHeadingBranch { Heading = line, Children = children };
         }
 
         private bool PeekScheduleCrossHeading(WLine line)
@@ -53,7 +54,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (!line.IsAllItalicized())
+            if (!line.IsPartiallyItalicized())
                 return false;
             if (i == Document.Body.Count - 1)
                 return false;

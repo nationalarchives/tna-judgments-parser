@@ -103,11 +103,6 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                // Schedules can have a 
-                if (next is UnnumberedLeaf)
-                {
-                    
-                }
                 children.Add(next);
 
                 if (IsEndOfQuotedStructure(next))
