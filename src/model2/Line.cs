@@ -312,6 +312,21 @@ class WLine : ILine {
             return withText.Select(t => t.Italic).All(i => i.HasValue && i.Value);
     }
 
+    public bool IsPartiallyItalicized()
+    {
+        bool fromStyle = false;
+        if (Style is not null)
+        {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => DOCX.Util.OnOffToBool(s.StyleRunProperties?.Italic)) ?? false;
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return true;
+        else
+            return withText.Select(t => t.Italic).Any(i => i.HasValue && i.Value);
+    }
+
     public bool IsAllBold() {
         bool fromStyle = false;
         if (Style is not null) {
