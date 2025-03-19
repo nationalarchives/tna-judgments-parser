@@ -1,10 +1,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DocumentFormat.OpenXml.Vml;
+using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -81,10 +80,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             i += 1;
+            // If we've reached here then this is an element we don't know how to handle
             // UnknownLevels are marked up as a single <p> element. If the line is numbered,
             // we must combine the Number with the Contents to ensure the number is not lost
-            if (line is WOldNumberedParagraph np)
-                line = new WLine(line, [np.Number, new WText(" ", null), .. np.Contents]);
+            this.Logger.LogWarning("Encountered an unknown provision at " +
+            "i: {Position} with Contents: {Contents}"
+            , this.i
+            , line.NormalizedContent);
+            line = line switch {
+                WOldNumberedParagraph np => new WUnknownLine(line, [np.Number, new WText(" ", null), .. np.Contents]),
+                _ => new WUnknownLine(line),
+
+            };
 
             return new UnknownLevel() { Contents = [line] };
         }
