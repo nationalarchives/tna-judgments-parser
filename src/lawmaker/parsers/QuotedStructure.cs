@@ -121,6 +121,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static string QuotedStructureEndPattern()
         {
+            string[] possibleEndQuotes =
+            {
+                "\u201D"
+            };
             string[] possibleFollowingTexts = {
                 ".", 
                 ";", 
@@ -130,9 +134,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 "; or", 
                 "; and"
             };
+
+            string endQuoteRegex = $"({string.Join("|", possibleEndQuotes)})";
             string followingTextRegex = $"({string.Join("|", possibleFollowingTexts)})";
             followingTextRegex = followingTextRegex.Replace(".", "\\.");
-            return $"\u201D{followingTextRegex}?$";
+            return $"{endQuoteRegex}{followingTextRegex}?$";
         }
 
         private static string IgnoreStartQuote(string text, int quoteDepth)
@@ -318,19 +324,33 @@ namespace UK.Gov.Legislation.Lawmaker
                 EndPattern = endPattern;
             }
 
+            /*
+              Note that the end quote and appended text may span across multiple of the line's inline children. 
+              For example, when portions of the line have different styling.  
+            */
             public WLine Invoke(WLine line)
             {
-                if (line.Contents.LastOrDefault() is not WText last)
-                    return null;
-                Match match = Regex.Match(last.Text, EndPattern);
-                if (match.Success)
+                Match match = null;
+                string endText = "";
+                int inlineCount = 0;
+                foreach (IInline inline in line.Contents.Reverse())
                 {
-                    EndQuote = "\u201D";
-                    AppendText = new AppendText(match.Groups[1].Value, last.properties);
-                    WText replacement = new(last.Text[..match.Index], last.properties);
-                    return WLine.Make(line, line.Contents.SkipLast(1).Append(replacement));
+                    if (inline is not WText wText)
+                        return null;
+                    endText = wText.Text + endText;
+                    inlineCount += 1;
+                    match = Regex.Match(endText, EndPattern);
+                    if (match.Success)
+                        break;
                 }
-                return null;
+                if (match is null || !match.Success)
+                    return null;
+
+                EndQuote = match.Groups[1].Value;
+                WText lastWText = line.Contents.Last() as WText;
+                AppendText = new AppendText(match.Groups[2].Value, lastWText.properties);
+                WText replacement = new(endText[..match.Index], lastWText.properties);
+                return WLine.Make(line, line.Contents.SkipLast(inlineCount).Append(replacement));
             }
 
         }
