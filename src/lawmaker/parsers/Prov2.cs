@@ -13,7 +13,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
+            string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
             if (!Prov2.IsValidNumber(numText))
                 return null;
 
