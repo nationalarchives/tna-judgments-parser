@@ -71,11 +71,11 @@ class HardNumbers {
         @"^([“""]?[1-9]\d*\.\d+\.\d+\.?)",   @"^([“""]?\(?[1-9]\d*\.\d+\.\d+\))",
 
         // legislation
-        @"^([“""]?[A-Z]*\d+[A-Z]*\.)",        // section
-        @"^([“""]?\(?[A-Z]*\d+[A-Z]*\))",     // subsection
+        @"^([“""]?[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.)",        // section
+        @"^([“""]?\(?[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\))",     // subsection
 
     }.Select(s => s + @"(\s|$)")
-    .Append(@"^([“""]?[A-Z]*\d+[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
+    .Append(@"^([“""]?[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
     .ToArray();
 
     private WOldNumberedParagraph ExtractPlainNumber(WLine line) {
