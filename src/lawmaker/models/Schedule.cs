@@ -14,8 +14,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string number)
         {
-            string pattern = @"^SCHEDULE \d+$";
-            return Regex.IsMatch(number, pattern);
+            string pattern = @"^SCHEDULE [A-Z]*\d+[A-Z]*$";
+            return Regex.IsMatch(number, pattern, RegexOptions.IgnoreCase);
         }
 
         public static bool IsValidChild(IDivision child)
