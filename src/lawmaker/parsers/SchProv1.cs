@@ -13,7 +13,13 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSchProv1(WLine line)
         {
-            if (!PeekSchProv1(line))
+            bool quoted = quoteDepth > 0;
+            if (!IsFlushLeft(line) && !quoted)
+                return null;
+            if (line is not WOldNumberedParagraph np)
+                return null;
+            string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
+            if (!SchProv1.IsValidNumber(numText))
                 return null;
 
             int save = i;

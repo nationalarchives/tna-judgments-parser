@@ -13,7 +13,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParsePart(WLine line)
         {
-            if (!PeekPartHeading(line))
+            if (line is WOldNumberedParagraph np)
+                return null;
+            if (!IsCenterAligned(line))
+                return null;
+            if (i > Document.Body.Count - 3)
+                return null;
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!Part.IsValidNumber(numText))
                 return null;
 
             IFormattedText number = new WText(
