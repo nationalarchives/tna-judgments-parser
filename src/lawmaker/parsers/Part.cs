@@ -13,9 +13,15 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParsePart(WLine line)
         {
-            if (!PeekPartHeading(line))
+            if (line is WOldNumberedParagraph np)
                 return null;
-
+            if (!IsCenterAligned(line))
+                return null;
+            if (i > Document.Body.Count - 3)
+                return null;
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!Part.IsValidNumber(numText))
+                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -40,10 +46,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
-                HContainer peek = PeekGroupingProvision();
-                if (peek != null && !Part.IsValidChild(peek))
-                    break;
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!Part.IsValidChild(next)) {
@@ -61,20 +63,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new PartBranch { Number = number, Heading = heading, Children = children };
-        }
-
-        private bool PeekPartHeading(WLine line)
-        {
-            if (line is WOldNumberedParagraph np)
-                return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (i > Document.Body.Count - 3)
-                return false;
-            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
-            if (!Part.IsValidNumber(numText))
-                return false;
-            return true;
         }
 
     }
