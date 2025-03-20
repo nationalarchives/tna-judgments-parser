@@ -14,61 +14,129 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private int quoteDepth = 0;
 
-        private static (int, int) CountLeftAndRightQuotes(string line)
+        private static string startQuotePattern;
+        private static string endQuotePattern;
+        private static string quotedStructureStartPattern;
+        private static string quotedStructureEndPattern;
+
+        /*
+         * A quoted structure must begin with a start quote. Optionally, there may be a 
+         * 'code' before the start quote surrounded in braces i.e. {ukpga-sch} which dictates 
+         * the 'doctype' and 'context' with which to parse the contents of the quoted structure.
+         */
+        private static string QuotedStructureStartPattern()
         {
-            int left = 0;
-            int right = 0;
-            foreach (char c in line)
+            if (quotedStructureStartPattern is not null)
+                return quotedStructureStartPattern;
+
+            string codeRegex = "({.*?})?";
+            quotedStructureStartPattern = $"^{codeRegex}{StartQuotePattern()}";
+            return quotedStructureStartPattern;
+        }
+
+        /*
+         * Returns a regular expression representing a single possible start quote. 
+         */
+        private static string StartQuotePattern()
+        {
+            if (startQuotePattern is not null)
+                return startQuotePattern;
+
+            string[] possibleStartQuotes =
             {
-                if (c == '\u201C')
-                    left++;
-                else if (c == '\u201D')
-                    right++;
-            }
-            return (left, right);
+                "\u201C"
+            };
+            startQuotePattern = $"({string.Join("|", possibleStartQuotes)})";
+            return startQuotePattern;
         }
 
-        private static (int, int) CountLeftAndRightQuotes(WLine line)
+        /*
+         * A quoted structure must terminate with an end quote. Optionally, there may be 
+         * 'following text' after the end quote, which has a small number of possible patterns.
+         */
+        private static string QuotedStructureEndPattern()
         {
-            return CountLeftAndRightQuotes(line.TextContent);
+            if (quotedStructureEndPattern is not null)
+                return quotedStructureEndPattern;
+
+            string[] possibleFollowingTexts = {
+                ".",
+                ";",
+                ",",
+                ", or",
+                ", and",
+                "; or",
+                "; and"
+            };
+            string followingTextRegex = $"({string.Join("|", possibleFollowingTexts)})";
+            followingTextRegex = followingTextRegex.Replace(".", "\\.");
+            quotedStructureEndPattern = $"{EndQuotePattern()}{followingTextRegex}?$";
+            return quotedStructureEndPattern;
         }
 
-        private static (int, int) CountLeftAndRightQuotes(IEnumerable<IBlock> blocks)
+        /*
+         * Returns a regular expression representing a single possible end quote. 
+         */
+        private static string EndQuotePattern()
         {
-            int left = 0;
-            int right = 0;
+            if (endQuotePattern is not null)
+                return endQuotePattern;
+
+            string[] possibleEndQuotes =
+            {
+                "\u201D"
+            };
+            endQuotePattern = $"({string.Join("|", possibleEndQuotes)})";
+            return endQuotePattern;
+        }
+
+        private static (int, int) CountStartAndEndQuotes(string text)
+        {
+            int start = Regex.Matches(text, StartQuotePattern()).Count;
+            int end = Regex.Matches(text, EndQuotePattern()).Count;
+            return (start, end);
+        }
+
+        private static (int, int) CountStartAndEndQuotes(WLine line)
+        {
+            return CountStartAndEndQuotes(line.TextContent);
+        }
+
+        private static (int, int) CountStartAndEndQuotes(IEnumerable<IBlock> blocks)
+        {
+            int start = 0;
+            int end = 0;
             foreach (IBlock block in blocks)
             {
                 if (block is not WLine line)
                     continue;
-                (int addToLeft, int addtoRight) = CountLeftAndRightQuotes(line);
-                left += addToLeft;
-                right += addtoRight;
+                (int addToStart, int addToEnd) = CountStartAndEndQuotes(line);
+                start += addToStart;
+                end += addToEnd;
             }
-            return (left, right);
+            return (start, end);
         }
 
-        private string GetStartQuote()
+        /*
+         * Determines if a given block begins with a quoted structure. 
+         */
+        private bool IsStartOfQuotedStructure(IBlock block)
         {
-            if (Current() is not WLine line)
-                return null;
+            if (block is not WLine line)
+                return false;
+            if (!Regex.IsMatch(line.NormalizedContent, QuotedStructureStartPattern()))
+                return false;
 
-            string text;
-            if (line is WOldNumberedParagraph np)
-                text = np.Number.Text + " " + line.NormalizedContent;
-            else
-                text = line.NormalizedContent;
-
-            if (text.StartsWith('\u201C'))
-            {
-                var (left, right) = CountLeftAndRightQuotes(line);
-                if (left > right)
-                    return "\u201C";
-                // Handle single-paragraph quoted structures
-                else if (left == right && Regex.IsMatch(text, QuotedStructureEndPattern()))
-                    return "\u201C";
-            }
-            return null;
+            var (left, right) = CountStartAndEndQuotes(line);
+            // Handle start of multi-line quoted structures.
+            // These feature more left quotes than right quotes, as the end quote will be on a later line. 
+            if (left > right)
+                return true;
+            // Handle single-paragraph quoted structures
+            // Number of left and right quotes must match.
+            else if (left == right && Regex.IsMatch(line.NormalizedContent, QuotedStructureEndPattern()))
+                return true;
+            return false;
         }
 
         private static bool IsEndOfQuotedStructure(IDivision division)
@@ -111,57 +179,39 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!isEndQuoteAtEnd)
                 return false;
 
-            bool isStartQuoteAtStart = text.StartsWith("\u201C");
-            (int left, int right) = CountLeftAndRightQuotes(text);
+            bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
+            (int left, int right) = CountStartAndEndQuotes(text);
 
             bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
             bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
             return isSingleLine || isEndOfMultiLine;
         }
+        
 
-        private static string QuotedStructureEndPattern()
+        /*
+         * Strips the quoted structure start pattern (if present) from the beginning of the given string. 
+         */
+        private static string IgnoreQuotedStructureStart(string text, int quoteDepth)
         {
-            string[] possibleEndQuotes =
-            {
-                "\u201D"
-            };
-            string[] possibleFollowingTexts = {
-                ".", 
-                ";", 
-                ",", 
-                ", or", 
-                ", and", 
-                "; or", 
-                "; and"
-            };
-
-            string endQuoteRegex = $"({string.Join("|", possibleEndQuotes)})";
-            string followingTextRegex = $"({string.Join("|", possibleFollowingTexts)})";
-            followingTextRegex = followingTextRegex.Replace(".", "\\.");
-            return $"{endQuoteRegex}{followingTextRegex}?$";
+            if (quoteDepth == 0)
+                return text;
+            return Regex.Replace(text, QuotedStructureStartPattern(), "");
         }
 
-        private static string IgnoreStartQuote(string text, int quoteDepth)
-        {
-            if (quoteDepth > 0 && text.StartsWith("\u201C"))
-                return text[1..];
-            return text;
-        }
-
-        private List<IQuotedStructure> HandleQuotedStructures(WLine line)
+        /*
+         * Determines if a given line is followed by any quoted structures, and if so, 
+         * parses each quoted structure and returns them in a list. 
+         */
+        private List<IQuotedStructure> HandleQuotedStructuresAfter(WLine line)
         {
             List<IQuotedStructure> quotedStructures = [];
             if (i == Document.Body.Count)
                 return [];
             int save = i;
 
-            (int left, int right) = CountLeftAndRightQuotes(line);
-            // This extra left/right quote check ensures that definitions
-            // are not misparsed as quoted structures
-            bool hasStartQuote = line.TextContent.StartsWith("\u201C") && (left == right + 1);
-
-            // Handle the case where the first quoted structure has no start quote
-            if (!hasStartQuote && left > right)
+            // Handle the case where the start quote of the first quoted structure is NOT on a new line
+            (int left, int right) = CountStartAndEndQuotes(line);
+            if (left > right)
             {
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 if (qs != null)
@@ -169,17 +219,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 else
                     i = save;
             }
-
             // Handle regular quoted structures
-            while (i < Document.Body.Count)
+            while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
-                string startQuote = GetStartQuote();
-                if (startQuote == null)
-                {
-                    i = save;
-                    break;
-                }
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 // For now, quoted structures cannot begin with unnumbered paragraphs
                 // as they are confused with extra paragraphs of the parent division

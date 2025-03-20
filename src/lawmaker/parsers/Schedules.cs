@@ -39,7 +39,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            string heading = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            string heading = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
             if (!Schedules.IsValidHeading(heading))
                 return false;
 
