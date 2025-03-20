@@ -188,7 +188,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 container.Add(block);
                 return;
             }
-            List <IQuotedStructure> quotedStructures = HandleQuotedStructures(line);
+            List <IQuotedStructure> quotedStructures = HandleQuotedStructuresAfter(line);
             if (quotedStructures.Count == 0)
             {
                 container.Add(line);
