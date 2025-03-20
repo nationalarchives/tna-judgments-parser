@@ -82,7 +82,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            string num = IgnoreStartQuote(line.NormalizedContent, quoteDepth); ;
+            string num = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
             if (!Schedule.IsValidNumber(num))
                 return false;
             return true;
