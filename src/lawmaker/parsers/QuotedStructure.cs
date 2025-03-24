@@ -181,9 +181,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 BlockQuotedStructure qs = ParseQuotedStructure();
-                // For now, quoted structures cannot begin with unnumbered paragraphs
-                // as they are confused with extra paragraphs of the parent division
-                if (qs == null || qs.Contents.First() is UnnumberedParagraph)
+                if (qs == null)
                 {
                     i = save;
                     break;
