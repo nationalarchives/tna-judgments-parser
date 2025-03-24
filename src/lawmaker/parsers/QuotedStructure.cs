@@ -1,8 +1,9 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using DocumentFormat.OpenXml.Wordprocessing;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -18,19 +19,19 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string endQuotePattern;
         private static string quotedStructureStartPattern;
         private static string quotedStructureEndPattern;
+        private static string quotedStructureInfoPattern = "(?:{(?'docName'.*?)(?:-(?'context'.*?))?})?";
 
         /*
-         * A quoted structure must begin with a start quote. Optionally, there may be a 
-         * 'code' before the start quote surrounded in braces i.e. {ukpga-sch} which dictates 
-         * the 'doctype' and 'context' with which to parse the contents of the quoted structure.
+         * A quoted structure must begin with a start quote. Optionally, there may be 'info' 
+         * before the start quote surrounded in braces i.e. {ukpga-sch} which dictates the 
+         * 'doctype' and 'context' with which to parse the contents of the quoted structure.
          */
         private static string QuotedStructureStartPattern()
         {
             if (quotedStructureStartPattern is not null)
                 return quotedStructureStartPattern;
 
-            string codeRegex = "({.*?})?";
-            quotedStructureStartPattern = $"^{codeRegex}{StartQuotePattern()}";
+            quotedStructureStartPattern = $"^{quotedStructureInfoPattern}{StartQuotePattern()}";
             return quotedStructureStartPattern;
         }
 
@@ -46,7 +47,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 "\u201C"
             };
-            startQuotePattern = $"({string.Join("|", possibleStartQuotes)})";
+            startQuotePattern = $"(?'startQuote'{string.Join("|", possibleStartQuotes)})";
             return startQuotePattern;
         }
 
@@ -68,7 +69,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 "; or",
                 "; and"
             };
-            string followingTextRegex = $"({string.Join("|", possibleFollowingTexts)})";
+            string followingTextRegex = $"(?'followingText'{string.Join("|", possibleFollowingTexts)})";
             followingTextRegex = followingTextRegex.Replace(".", "\\.");
             quotedStructureEndPattern = $"{EndQuotePattern()}{followingTextRegex}?$";
             return quotedStructureEndPattern;
@@ -86,8 +87,42 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 "\u201D"
             };
-            endQuotePattern = $"({string.Join("|", possibleEndQuotes)})";
+            endQuotePattern = $"(?'endQuote'{string.Join("|", possibleEndQuotes)})";
             return endQuotePattern;
+        }
+
+        /*
+         * Extracts the 'frame' info from the braces at the start of the
+         * quoted structure (if present), and adds the frame to the stack. 
+         * i.e. Given the quoted structure: {UKPGA-SCH}“quoted content”
+         * The docName is set to 'UKPGA', and the context is set to 'SCH'.
+         */
+        private void AddQuotedStructureFrame(IBlock block)
+        {
+            if (block is not WLine line)
+            {
+                frames.PushDefault();
+                return;
+            }
+            string pattern = $"{quotedStructureInfoPattern}{StartQuotePattern()}";
+            MatchCollection matches = Regex.Matches(line.NormalizedContent, pattern);
+            if (matches.Count == 0)
+            {
+                frames.PushDefault();
+                return;
+            }
+            GroupCollection groups = matches.Last().Groups;
+            DocName docName;
+            if (!Enum.TryParse(groups[1].Value.ToUpper(), out docName))
+            {
+                frames.PushDefault();
+                return;
+            }
+            Context context;
+            if (groups.Count > 3 && Enum.TryParse(groups[2].Value.ToUpper(), out context))
+                frames.Push(docName, context);
+            else
+                frames.Push(docName, frames.CurrentContext);
         }
 
         private static (int, int) CountStartAndEndQuotes(string text)
@@ -97,8 +132,10 @@ namespace UK.Gov.Legislation.Lawmaker
             return (start, end);
         }
 
-        private static (int, int) CountStartAndEndQuotes(WLine line)
+        private static (int, int) CountStartAndEndQuotes(IBlock block)
         {
+            if (block is not WLine line)
+                return (0, 0);
             return CountStartAndEndQuotes(line.TextContent);
         }
 
@@ -108,9 +145,7 @@ namespace UK.Gov.Legislation.Lawmaker
             int end = 0;
             foreach (IBlock block in blocks)
             {
-                if (block is not WLine line)
-                    continue;
-                (int addToStart, int addToEnd) = CountStartAndEndQuotes(line);
+                (int addToStart, int addToEnd) = CountStartAndEndQuotes(block);
                 start += addToStart;
                 end += addToEnd;
             }
@@ -213,16 +248,19 @@ namespace UK.Gov.Legislation.Lawmaker
             (int left, int right) = CountStartAndEndQuotes(line);
             if (left > right)
             {
+                AddQuotedStructureFrame(line);
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 if (qs != null)
                     quotedStructures.Add(qs);
                 else
                     i = save;
+                frames.Pop();
             }
             // Handle regular quoted structures
             while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
+                AddQuotedStructureFrame(Current());
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 // For now, quoted structures cannot begin with unnumbered paragraphs
                 // as they are confused with extra paragraphs of the parent division
@@ -232,6 +270,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 quotedStructures.Add(qs);
+                frames.Pop();
             }
             return quotedStructures;
         }
@@ -250,9 +289,6 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             List<IDivision> contents = [];
             quoteDepth += 1;
-            // Assume the quoted structure contains section-based content
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = false;
             while (i < Document.Body.Count)
             {
                 int save = i;
@@ -267,10 +303,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
             }
             quoteDepth -= 1;
-            isInSchedules = isInSchedulesSave;
             if (contents.Count == 0)
                 return null;
-            return new BlockQuotedStructure { Contents = contents };
+            return new BlockQuotedStructure { Contents = contents, Context = frames.CurrentContext };
         }
 
         // extract start and end quote marks and appended text
@@ -300,26 +335,31 @@ namespace UK.Gov.Legislation.Lawmaker
             if (qs.Contents.FirstOrDefault() is not HContainer hContainer)
                 return;
 
-            string startQuote = "\u201C";
-
             // First text item can be in the num, heading, intro, OR content.
+
             if (hContainer.HeadingPrecedesNumber && hContainer.Heading is WLine heading)
             {
-                // Todo: this currently ONLY removes the start quote when the first inline is a WText.
-                if (heading.Contents.First() is WText firstText && firstText.Text.StartsWith(startQuote))
+                // Todo: this currently ONLY removes the start quote if the first inline is a WText.
+                if (heading.Contents.First() is WText firstText)
                 {
-                    WText modified = new WText(firstText.Text[1..], firstText.properties);
+                    Match match = Regex.Match(firstText.Text, QuotedStructureStartPattern());
+                    if (!match.Success)
+                        return;
+                    int patternEndIndex = match.Index + match.Length;
+                    WText modified = new WText(firstText.Text[patternEndIndex..], firstText.properties);
                     heading.Contents = [modified, ..heading.Contents.Skip(1)];
-                    qs.StartQuote = startQuote;
+                    qs.StartQuote = match.Groups["startQuote"].Value;
                 }
             }
-            else if (hContainer.Number is not null && hContainer.Number.Text.StartsWith(startQuote))
+            else if (hContainer.Number is not null)
             {
-                if (hContainer.Number is WText wText)
-                    hContainer.Number = new WText(hContainer.Number.Text[1..], wText.properties);
-                else
-                    hContainer.Number = new WText(hContainer.Number.Text[1..], null);
-                qs.StartQuote = startQuote;
+                Match match = Regex.Match(hContainer.Number.Text, QuotedStructureStartPattern());
+                if (!match.Success)
+                    return;
+                int patternEndIndex = match.Index + match.Length;
+                RunProperties runProperties = hContainer.Number is WText wText ? wText.properties : null;
+                hContainer.Number = new WText(hContainer.Number.Text[patternEndIndex..], runProperties);
+                qs.StartQuote = match.Groups["startQuote"].Value;
             }
             else
             {
@@ -334,20 +374,23 @@ namespace UK.Gov.Legislation.Lawmaker
                 // Todo: this currently ONLY removes the start quote when the first block is a WLine
                 // and the inline is a WText.
 
-                if (container is null || container.First() is null)
+                if (container is null || container.Count == 0 || container.First() is null)
                     return;
                 if (container.First() is not WLine line)
                     return;
                 if (line.Contents.First() is not WText firstText)
                     return;
-                if (!firstText.Text.StartsWith(startQuote))
+
+                Match match = Regex.Match(firstText.Text, QuotedStructureStartPattern());
+                if (!match.Success)
                     return;
 
-                WText modified = new WText(firstText.Text[1..], firstText.properties);
+                int patternEndIndex = match.Index + match.Length;
+                WText modified = new WText(firstText.Text[patternEndIndex..], firstText.properties);
                 line.Contents = [modified, .. line.Contents.Skip(1)];
                 container.RemoveAt(0);
                 container.Insert(0, line);
-                qs.StartQuote = startQuote;
+                qs.StartQuote = match.Groups["startQuote"].Value;
             }
         }
 
@@ -389,9 +432,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (match is null || !match.Success)
                     return null;
 
-                EndQuote = match.Groups[1].Value;
+                EndQuote = match.Groups["endQuote"].Value;
                 WText lastWText = line.Contents.Last() as WText;
-                AppendText = new AppendText(match.Groups[2].Value, lastWText.properties);
+                AppendText = new AppendText(match.Groups["followingText"].Value, lastWText.properties);
                 WText replacement = new(endText[..match.Index], lastWText.properties);
                 return WLine.Make(line, line.Contents.SkipLast(inlineCount).Append(replacement));
             }
