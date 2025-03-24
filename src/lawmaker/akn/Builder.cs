@@ -219,10 +219,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     e.SetAttribute("endQuote", qs2.EndQuote);
                 if (qs2.AppendText is not null)
                     AddAppendText(parent, qs2.AppendText);
-
                 e.SetAttribute("indent", UKNS, "indent0");
-                // Todo: These values should not be hard coded
-                e.SetAttribute("context", UKNS, "body");
+                e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
                 e.SetAttribute("docName", UKNS, "nia");
 
             }

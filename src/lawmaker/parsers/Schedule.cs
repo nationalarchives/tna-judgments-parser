@@ -67,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
 
-            if (isInSchedules || quoteDepth > 0)
+            if (frames.IsScheduleContext() || quoteDepth > 0)
                 return schedule;
 
             // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped
@@ -90,9 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal List<IDivision> ParseScheduleChildren()
         {
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = true;
-
+            frames.PushScheduleContext();
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
@@ -108,7 +106,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            isInSchedules = isInSchedulesSave;
+            frames.Pop();
             return children;
         }
 
