@@ -57,7 +57,8 @@ namespace UK.Gov.Legislation.Lawmaker
             // do this after parsing is complete, because it alters the contents of parsed results
             // which does not work well with memoization
             ExtractAllQuotesAndAppendTexts(body);
-            QuotedTextEnricher.EnrichDivisions(body);
+            QuotedTextEnricher quotedTextEnricher = new($"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
+            quotedTextEnricher.EnrichDivisions(body);
 
             var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
