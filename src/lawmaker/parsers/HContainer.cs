@@ -45,7 +45,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             HContainer hContainer;
 
-            if (isInSchedules)
+            if (frames.IsScheduleContext())
                 hContainer = ParseScheduleLine(line);
             else
                 hContainer = ParseNonScheduleLine(line);
