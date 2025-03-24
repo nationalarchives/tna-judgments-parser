@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public string EndQuote { get; internal set; }
 
-        public string Context { get; internal set; }
+        public Context Context { get; internal set; }
 
         public AppendText AppendText { get; internal set; }
 
