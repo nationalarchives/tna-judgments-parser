@@ -43,9 +43,6 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 2;
 
             List<IDivision> children = [];
-
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = true;
             while (i < Document.Body.Count)
             {
 
@@ -61,7 +58,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            isInSchedules = isInSchedulesSave;
             if (children.Count == 0)
             {
                 i = save1;
