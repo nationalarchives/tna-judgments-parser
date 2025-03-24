@@ -22,9 +22,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new CrossHeadingLeaf { Heading = line };
 
             List<IDivision> children = [];
-
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = true;
             while (i < Document.Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
@@ -43,7 +40,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            isInSchedules = isInSchedulesSave;
             if (children.Count == 0)
             {
                 i = save1;
