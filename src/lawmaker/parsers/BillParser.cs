@@ -34,7 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         private readonly ILogger Logger = Logging.Factory.CreateLogger<BillParser>();
-
+        private Frames frames = new Frames(DocName.NIA, Context.BODY);
         private readonly CaseLaw.WordDocument Document;
         private int i = 0;
 
@@ -45,7 +45,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private NIPublicBill Parse()
         {
-
             ParseAndEnrichHeader();
             ParseBody();
 

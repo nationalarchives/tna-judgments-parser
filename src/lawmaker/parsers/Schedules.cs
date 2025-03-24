@@ -53,9 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal List<IDivision> ParseSchedulesChildren()
         {
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = true;
-
+            frames.PushScheduleContext();
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
@@ -72,7 +70,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
-            isInSchedules = isInSchedulesSave;
+            frames.Pop();
             return children;
         }
 
