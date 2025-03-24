@@ -274,10 +274,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 save = i;
                 bool isValidFrame = AddQuotedStructureFrame(Current());
                 BlockQuotedStructure qs = ParseQuotedStructure();
-                qs.HasInvalidCode = !isValidFrame;
-                // For now, quoted structures cannot begin with unnumbered paragraphs
-                // as they are confused with extra paragraphs of the parent division
-                if (qs == null || qs.Contents.First() is UnnumberedParagraph)
+                if (qs == null)
                 {
                     i = save;
                     break;
