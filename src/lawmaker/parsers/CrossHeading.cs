@@ -1,7 +1,5 @@
 
-using System;
 using System.Collections.Generic;
-
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -20,7 +18,12 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             if (IsEndOfQuotedStructure(line.NormalizedContent))
-                return new CrossHeadingLeaf { Heading = line };
+            {
+                if (frames.IsSecondaryDocName())
+                    return new GroupingSectionLeaf { Heading = line };
+                else
+                    return new CrossHeadingLeaf { Heading = line };
+            }
 
             List<IDivision> children = [];
 
@@ -46,7 +49,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new CrossHeadingBranch { Heading = line, Children = children };
+            if (frames.IsSecondaryDocName())
+                return new GroupingSectionBranch { Heading = line, Children = children };
+            else
+                return new CrossHeadingBranch { Heading = line, Children = children };
         }
 
         private bool PeekCrossHeading(WLine line)
