@@ -1,12 +1,13 @@
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public enum DocName { NIA }
+    public enum DocName { NIA, UKPGA, ASP, NISI, NISR, UKSI, SSI }
 
-    public enum Context { BODY, SCH }
+    public enum Context { BODY, SCH, ORDER, RULES, REGS }
 
 
     class Frames
@@ -46,6 +47,11 @@ namespace UK.Gov.Legislation.Lawmaker
         public bool IsScheduleContext()
         {
             return CurrentContext == Context.SCH;
+        }
+
+        public bool IsSecondaryDocName()
+        {
+            return new[] { DocName.NISI, DocName.NISR, DocName.UKSI, DocName.SSI }.Contains(CurrentDocName);
         }
 
         public bool Pop()
