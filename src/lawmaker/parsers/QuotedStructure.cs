@@ -123,7 +123,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (groups.Count > 3 && Enum.TryParse(groups["context"].Value.ToUpper(), out context))
                 frames.Push(docName, context);
             else
-                frames.Push(docName, frames.CurrentContext);
+                frames.Push(docName, Context.BODY); // Default to section-based content
         }
 
         private static (int, int) CountStartAndEndQuotes(string text)
@@ -307,7 +307,7 @@ namespace UK.Gov.Legislation.Lawmaker
             quoteDepth -= 1;
             if (contents.Count == 0)
                 return null;
-            return new BlockQuotedStructure { Contents = contents, Context = frames.CurrentContext };
+            return new BlockQuotedStructure { Contents = contents, DocName = frames.CurrentDocName, Context = frames.CurrentContext };
         }
 
         // extract start and end quote marks and appended text
