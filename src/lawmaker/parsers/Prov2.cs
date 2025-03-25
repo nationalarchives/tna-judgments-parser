@@ -22,17 +22,19 @@ namespace UK.Gov.Legislation.Lawmaker
             IFormattedText num = np.Number;
             List<IBlock> intro = HandleParagraphs(np);
 
+            Prov2Name tagName = GetProv2Name();
+
             if (IsEndOfQuotedStructure(intro))
-                return new Prov2Leaf { Number = num, Contents = intro };
+                return new Prov2Leaf { TagName = tagName, Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
             List<IDivision> children = ParseProv2Children(line, intro, wrapUp);
 
             if (children.Count == 0)
             {
-                return new Prov2Leaf { Number = num, Contents = intro };
+                return new Prov2Leaf { TagName = tagName, Number = num, Contents = intro };
             }
-            return new Prov2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            return new Prov2Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
         internal List<IDivision> ParseProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
@@ -65,6 +67,11 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
             return children;
+        }
+
+        private Prov2Name GetProv2Name()
+        {
+            return frames.IsSecondaryDocName() ? Prov2Name.paragraph : Prov2Name.subsection;
         }
 
     }
