@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string endQuotePattern;
         private static string quotedStructureStartPattern;
         private static string quotedStructureEndPattern;
-        private static string quotedStructureInfoPattern = "(?:{(?'docName'.*?)(?:-(?'context'.*?))?})?";
+        private static string quotedStructureInfoPattern = @"(?:{(?'docName'.*?)(?:-(?'context'.*?))?}\s*)?";
 
         /*
          * A quoted structure must begin with a start quote. Optionally, there may be 'info' 
@@ -105,7 +105,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return;
             }
             string pattern = $"{quotedStructureInfoPattern}{StartQuotePattern()}";
-            MatchCollection matches = Regex.Matches(line.NormalizedContent, pattern);
+            string text = Regex.Replace(line.NormalizedContent, @"\s+", string.Empty);
+            MatchCollection matches = Regex.Matches(text, pattern);
             if (matches.Count == 0)
             {
                 frames.PushDefault();
@@ -113,13 +114,13 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             GroupCollection groups = matches.Last().Groups;
             DocName docName;
-            if (!Enum.TryParse(groups[1].Value.ToUpper(), out docName))
+            if (!Enum.TryParse(groups["docName"].Value.ToUpper(), out docName))
             {
                 frames.PushDefault();
                 return;
             }
             Context context;
-            if (groups.Count > 3 && Enum.TryParse(groups[2].Value.ToUpper(), out context))
+            if (groups.Count > 3 && Enum.TryParse(groups["context"].Value.ToUpper(), out context))
                 frames.Push(docName, context);
             else
                 frames.Push(docName, frames.CurrentContext);
@@ -159,10 +160,11 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (block is not WLine line)
                 return false;
-            if (!Regex.IsMatch(line.NormalizedContent, QuotedStructureStartPattern()))
+            string text = Regex.Replace(line.NormalizedContent, @"\s+", string.Empty);
+            if (!Regex.IsMatch(text, QuotedStructureStartPattern()))
                 return false;
 
-            var (left, right) = CountStartAndEndQuotes(line);
+            var (left, right) = CountStartAndEndQuotes(text);
             // Handle start of multi-line quoted structures.
             // These feature more left quotes than right quotes, as the end quote will be on a later line. 
             if (left > right)
