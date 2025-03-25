@@ -151,6 +151,29 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
+    internal class GroupingSectionBranch : Branch, CrossHeading
+    {
+
+        public override string Name { get; internal init; } = "section";
+
+        public override string Class => "group5";
+
+        public override bool HeadingPrecedesNumber => true;
+
+    }
+
+    internal class GroupingSectionLeaf : Leaf, CrossHeading
+    {
+
+        public override string Name { get; internal init; } = "section";
+
+        public override string Class => "group5";
+
+        public override bool HeadingPrecedesNumber => true;
+
+    }
+
+
     internal class Schedules : Branch
     {
 
