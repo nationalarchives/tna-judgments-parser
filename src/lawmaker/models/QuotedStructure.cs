@@ -21,6 +21,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public Context Context { get; internal set; }
 
+        public DocName DocName { get; internal set; }
+
         public AppendText AppendText { get; internal set; }
 
     }
