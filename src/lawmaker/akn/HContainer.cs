@@ -34,6 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 case "crossheading":
                 case "schedules":
                 case "definition":
+                case "regulation":
                     level = CreateAndAppend("hcontainer", parent);
                     level.SetAttribute("name", name);
                     break;
