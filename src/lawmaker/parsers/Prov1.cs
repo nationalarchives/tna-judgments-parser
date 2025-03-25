@@ -1,8 +1,6 @@
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -72,24 +70,25 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
+            Prov1Name tagName = GetProv1Name();
+
             WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
             bool hasProv2Child = (firstProv2Line != null);
-
             if (hasProv2Child)
             {
                 i -= 1;
                 HContainer prov2 = ParseAndMemoize(firstProv2Line, "Prov2", ParseProv2);
                 if (prov2 == null)
-                    return new Prov1Leaf { Number = num, Contents = intro };
+                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
                 children.Add(prov2);
                 if (IsEndOfQuotedStructure(prov2))
-                    return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+                    return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
             }
             else
             {
                 intro = HandleParagraphs(np);
                 if (IsEndOfQuotedStructure(intro))
-                    return new Prov1Leaf { Number = num, Contents = intro };
+                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
             }
 
             int finalChildStart = i;
@@ -114,9 +113,9 @@ namespace UK.Gov.Legislation.Lawmaker
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
             if (children.Count == 0)
-                return new Prov1Leaf { Number = num, Contents = intro };
+                return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
 
-            return new Prov1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
         private (WText, WLine) FixFirstProv2Num(WLine line)
@@ -163,6 +162,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        private Prov1Name GetProv1Name()
+        {
+            if (!frames.IsSecondaryDocName())
+                return Prov1Name.section;
+            // NISI should always contain articles, regardless of what the user specifies
+            if (frames.CurrentDocName == DocName.NISI)
+                return Prov1Name.article;
+            return frames.CurrentContext switch
+            {
+                Context.RULES => Prov1Name.rule,
+                Context.ORDER => Prov1Name.article,
+                _ => Prov1Name.regulation
+            };
+
+        }
 
     }
 
