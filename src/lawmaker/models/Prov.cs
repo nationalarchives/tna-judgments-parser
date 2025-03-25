@@ -9,6 +9,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
     /* prov1 */
 
+    internal enum Prov1Name { section, regulation, rule, article }
+
     internal interface Prov1
     {
 
@@ -36,8 +38,13 @@ namespace UK.Gov.Legislation.Lawmaker
 
     internal class Prov1Branch : Branch, Prov1
     {
+        public required Prov1Name TagName;
 
-        public override string Name { get; internal init; } = "section";
+        public override string Name 
+        { 
+            get => TagName.ToString();
+            internal init => TagName.ToString();
+        } 
 
         public override string Class => "prov1";
 
@@ -48,7 +55,13 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Prov1Leaf : Leaf, Prov1
     {
 
-        public override string Name { get; internal init; } = "section";
+        public required Prov1Name TagName;
+
+        public override string Name
+        {
+            get => TagName.ToString();
+            internal init => TagName.ToString();
+        }
 
         public override string Class => "prov1";
 
@@ -104,6 +117,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
     /* prov2 */
 
+    internal enum Prov2Name { subsection, paragraph }
+
     internal interface Prov2 : IDivision
     {
 
@@ -139,7 +154,13 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Prov2Branch : Branch, Prov2
     {
 
-        public override string Name { get; internal init; } = "subsection";
+        public required Prov2Name TagName;
+
+        public override string Name
+        {
+            get => TagName.ToString();
+            internal init => TagName.ToString();
+        }
 
         public override string Class => "prov2";
 
@@ -148,7 +169,13 @@ namespace UK.Gov.Legislation.Lawmaker
     internal class Prov2Leaf : Leaf, Prov2
     {
 
-        public override string Name { get; internal init; } = "subsection";
+        public required Prov2Name TagName;
+
+        public override string Name
+        {
+            get => TagName.ToString();
+            internal init => TagName.ToString();
+        }
 
         public override string Class => "prov2";
 
