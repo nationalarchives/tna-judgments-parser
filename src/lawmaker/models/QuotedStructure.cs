@@ -25,6 +25,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public AppendText AppendText { get; internal set; }
 
+        public bool HasInvalidCode = false;
+
     }
 
 }
