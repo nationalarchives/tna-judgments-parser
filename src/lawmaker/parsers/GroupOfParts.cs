@@ -19,7 +19,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return null;
 
-            if (!GroupOfParts.IsValidNumber(line.NormalizedContent))
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!GroupOfParts.IsValidNumber(numText))
                 return null;
             IFormattedText number = new WText(
                 ToTitleCase(line.NormalizedContent),
