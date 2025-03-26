@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string endQuotePattern;
         private static string quotedStructureStartPattern;
         private static string quotedStructureEndPattern;
-        private static string quotedStructureInfoPattern = @"(?:{(?'docName'.*?)(?:-(?'context'.*?))?}\s*)?";
+        private static string quotedStructureInfoPattern = @"(?'info'{(?'docName'.*?)(?:-(?'context'.*?))?}\s*)?";
 
         /*
          * A quoted structure must begin with a start quote. Optionally, there may be 'info' 
@@ -92,19 +92,19 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Extracts the 'frame' info from the braces at the start of the
-         * quoted structure (if present), and adds the frame to the stack. 
-         * i.e. Given the quoted structure: {UKPGA-SCH}“quoted content”
-         * The docName is set to 'UKPGA', and the context is set to 'SCH'.
-         * Returns false if the frame info could not be parsed, in which case
-         * it defaults to the Context and DocName of the overall document.
+         * Extracts the 'frame' info from the braces at the start of the quoted structure (if present),
+         * and adds the frame to the stack. i.e. Given the quoted structure: {UKPGA-SCH}“quoted content”
+         * The DocName is set to 'UKPGA', and the Context is set to 'SCH'.
+         * If 'frame' info cannot be determined (i.e. is absent or malformed), the Context and DocName 
+         * of the quoted structure default to those of the overall document.
+         * Returns false specifically when the 'frame' info is present, but malformed.
          */
         private bool AddQuotedStructureFrame(IBlock block)
         {
             if (block is not WLine line)
             {
                 frames.PushDefault();
-                return false;
+                return true;
             }
             string pattern = $"{quotedStructureInfoPattern}{StartQuotePattern()}";
             string text = Regex.Replace(line.NormalizedContent, @"\s+", string.Empty);
@@ -112,9 +112,14 @@ namespace UK.Gov.Legislation.Lawmaker
             if (matches.Count == 0)
             {
                 frames.PushDefault();
-                return false;
+                return true;
             }
             GroupCollection groups = matches.Last().Groups;
+            if (!groups["info"].Success)
+            {
+                frames.PushDefault();
+                return true;
+            }
             DocName docName;
             if (!Enum.TryParse(groups["docName"].Value.ToUpper(), out docName))
             {
