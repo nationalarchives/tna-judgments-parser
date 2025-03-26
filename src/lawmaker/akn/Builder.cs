@@ -222,9 +222,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
                 if (new[] { Context.REGS, Context.RULES, Context.ORDER }.Contains(qs2.Context))
                     qs2.Context = Context.BODY;
-
                 e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
                 e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
+
+                if (qs2.HasInvalidCode)
+                    e.SetAttribute("class", UKNS, "unknownImport");
             }
             quoteDepth += 1;
             AddDivisions(e, qs.Contents);
