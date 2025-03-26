@@ -20,7 +20,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return null;
 
-            if (!ScheduleChapter.IsValidNumber(line.NormalizedContent))
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!ScheduleChapter.IsValidNumber(numText))
                 return null;
             IFormattedText number = new WText(
                 line.NormalizedContent,
