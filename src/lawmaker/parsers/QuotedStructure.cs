@@ -96,13 +96,15 @@ namespace UK.Gov.Legislation.Lawmaker
          * quoted structure (if present), and adds the frame to the stack. 
          * i.e. Given the quoted structure: {UKPGA-SCH}“quoted content”
          * The docName is set to 'UKPGA', and the context is set to 'SCH'.
+         * Returns false if the frame info could not be parsed, in which case
+         * it defaults to the Context and DocName of the overall document.
          */
-        private void AddQuotedStructureFrame(IBlock block)
+        private bool AddQuotedStructureFrame(IBlock block)
         {
             if (block is not WLine line)
             {
                 frames.PushDefault();
-                return;
+                return false;
             }
             string pattern = $"{quotedStructureInfoPattern}{StartQuotePattern()}";
             string text = Regex.Replace(line.NormalizedContent, @"\s+", string.Empty);
@@ -110,20 +112,21 @@ namespace UK.Gov.Legislation.Lawmaker
             if (matches.Count == 0)
             {
                 frames.PushDefault();
-                return;
+                return false;
             }
             GroupCollection groups = matches.Last().Groups;
             DocName docName;
             if (!Enum.TryParse(groups["docName"].Value.ToUpper(), out docName))
             {
                 frames.PushDefault();
-                return;
+                return false;
             }
             Context context;
             if (groups.Count > 3 && Enum.TryParse(groups["context"].Value.ToUpper(), out context))
                 frames.Push(docName, context);
             else
                 frames.Push(docName, Context.BODY); // Default to section-based content
+            return true;
         }
 
         private static (int, int) CountStartAndEndQuotes(string text)
@@ -250,8 +253,9 @@ namespace UK.Gov.Legislation.Lawmaker
             (int left, int right) = CountStartAndEndQuotes(line);
             if (left > right)
             {
-                AddQuotedStructureFrame(line);
+                bool isValidFrame = AddQuotedStructureFrame(line);
                 BlockQuotedStructure qs = ParseQuotedStructure();
+                qs.HasInvalidCode = !isValidFrame;
                 if (qs != null)
                     quotedStructures.Add(qs);
                 else
@@ -262,8 +266,9 @@ namespace UK.Gov.Legislation.Lawmaker
             while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
-                AddQuotedStructureFrame(Current());
+                bool isValidFrame = AddQuotedStructureFrame(Current());
                 BlockQuotedStructure qs = ParseQuotedStructure();
+                qs.HasInvalidCode = !isValidFrame;
                 // For now, quoted structures cannot begin with unnumbered paragraphs
                 // as they are confused with extra paragraphs of the parent division
                 if (qs == null || qs.Contents.First() is UnnumberedParagraph)
