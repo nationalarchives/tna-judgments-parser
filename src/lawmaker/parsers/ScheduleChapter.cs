@@ -16,6 +16,9 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!PeekScheduleChapterHeading(line))
                 return null;
 
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!ScheduleChapter.IsValidNumber(numText))
+                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent,
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
