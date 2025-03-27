@@ -16,7 +16,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^[A-Z]*\d+[A-Z]*\.$";
+            string pattern = @"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -77,7 +77,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^[A-Z]*\d+[A-Z]*\.$";
+            string pattern = @"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -124,7 +124,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\([A-Z]*\d+[A-Z]*\)$";
+            string pattern = @"^\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -132,7 +132,7 @@ namespace UK.Gov.Legislation.Lawmaker
         // Note that the num of the first Prov2 is not necessarily (1). It could be (A1), for example.
         public static bool IsFirstProv2Start(string text)
         {
-            string pattern = @"^\u2014\([A-Z]*\d+[A-Z]*\).*";
+            string pattern = @"^\u2014\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\).*";
             return Regex.IsMatch(text, pattern);
         }
 
@@ -189,7 +189,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\([A-Z]*\d+[A-Z]*\)$";
+            string pattern = @"^\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 
