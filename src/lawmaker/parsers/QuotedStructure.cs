@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.Enrichment;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -31,7 +32,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (quotedStructureStartPattern is not null)
                 return quotedStructureStartPattern;
 
-            quotedStructureStartPattern = $"^{quotedStructureInfoPattern}{StartQuotePattern()}";
+            quotedStructureStartPattern = @$"^\s*({quotedStructureInfoPattern}{StartQuotePattern()})";
             return quotedStructureStartPattern;
         }
 
@@ -351,17 +352,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (hContainer.HeadingPrecedesNumber && hContainer.Heading is WLine heading)
             {
-                // Todo: this currently ONLY removes the start quote if the first inline is a WText.
-                if (heading.Contents.First() is WText firstText)
-                {
-                    Match match = Regex.Match(firstText.Text, QuotedStructureStartPattern());
-                    if (!match.Success)
-                        return;
-                    int patternEndIndex = match.Index + match.Length;
-                    WText modified = new WText(firstText.Text[patternEndIndex..], firstText.properties);
-                    heading.Contents = [modified, ..heading.Contents.Skip(1)];
-                    qs.StartQuote = match.Groups["startQuote"].Value;
-                }
+                WLine enriched = EnrichFromBeginning.Enrich(heading, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
+                WBookmark bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
+                qs.StartQuote = bookmark.Name;
+                heading.Contents = enriched.Contents.Where(i => i is not WBookmark);
             }
             else if (hContainer.Number is not null)
             {
@@ -383,27 +377,33 @@ namespace UK.Gov.Legislation.Lawmaker
                 else
                     return;
 
-                // Todo: this currently ONLY removes the start quote when the first block is a WLine
-                // and the inline is a WText.
-
+                // This currently ONLY removes the start quote when the first block is a WLine
                 if (container is null || container.Count == 0 || container.First() is null)
                     return;
                 if (container.First() is not WLine line)
                     return;
-                if (line.Contents.First() is not WText firstText)
-                    return;
 
-                Match match = Regex.Match(firstText.Text, QuotedStructureStartPattern());
-                if (!match.Success)
-                    return;
-
-                int patternEndIndex = match.Index + match.Length;
-                WText modified = new WText(firstText.Text[patternEndIndex..], firstText.properties);
-                line.Contents = [modified, .. line.Contents.Skip(1)];
+                WLine enriched = EnrichFromBeginning.Enrich(line, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
+                WBookmark bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
+                qs.StartQuote = bookmark.Name;
+                line.Contents = enriched.Contents.Where(i => i is not WBookmark);
                 container.RemoveAt(0);
                 container.Insert(0, line);
-                qs.StartQuote = match.Groups["startQuote"].Value;
             }
+        }
+
+        // Removes any braced quoted structure info, and wraps the start quote in a WBookmark so it
+        // can later be extracted and added to the startQuote attribute of the quoted structure.
+        static IInline ExtractStartQuoteConstructor(IEnumerable<IInline> inlines)
+        {
+            if (inlines == null || !inlines.Any())
+                return null;
+            string text = "";
+            foreach (IInline inline in inlines)
+                text += IInline.GetText(inline);
+            string startQuote = text.Split("}").LastOrDefault();
+            // Todo: should probably use something other than WBookmark 
+            return new WBookmark { Name = startQuote };
         }
 
         /// <summary>
