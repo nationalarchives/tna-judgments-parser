@@ -23,8 +23,8 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string quotedStructureInfoPattern = @"(?'info'{(?'docName'.*?)(?:-(?'context'.*?))?}\s*)?";
 
         /*
-         * A quoted structure must begin with a start quote. Optionally, there may be 'info' 
-         * before the start quote surrounded in braces i.e. {ukpga-sch} which dictates the 
+         * A quoted structure must begin with a start quote. Optionally, there may be 'info'
+         * before the start quote surrounded in braces i.e. {ukpga-sch} which dictates the
          * 'doctype' and 'context' with which to parse the contents of the quoted structure.
          */
         private static string QuotedStructureStartPattern()
@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Returns a regular expression representing a single possible start quote. 
+         * Returns a regular expression representing a single possible start quote.
          */
         private static string StartQuotePattern()
         {
@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * A quoted structure must terminate with an end quote. Optionally, there may be 
+         * A quoted structure must terminate with an end quote. Optionally, there may be
          * 'following text' after the end quote, which has a small number of possible patterns.
          */
         private static string QuotedStructureEndPattern()
@@ -77,7 +77,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Returns a regular expression representing a single possible end quote. 
+         * Returns a regular expression representing a single possible end quote.
          */
         private static string EndQuotePattern()
         {
@@ -94,9 +94,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /*
          * Extracts the 'frame' info from the braces at the start of the quoted structure (if present),
-         * and adds the frame to the stack. i.e. Given the quoted structure: {UKPGA-SCH}“quoted content”
+         * and adds the frame to the stack. i.e. Given the quoted structure: {UKPGA-SCH}ï¿½quoted contentï¿½
          * The DocName is set to 'UKPGA', and the Context is set to 'SCH'.
-         * If 'frame' info cannot be determined (i.e. is absent or malformed), the Context and DocName 
+         * If 'frame' info cannot be determined (i.e. is absent or malformed), the Context and DocName
          * of the quoted structure default to those of the overall document.
          * Returns false specifically when the 'frame' info is present, but malformed.
          */
@@ -163,7 +163,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Determines if a given block begins with a quoted structure. 
+         * Determines if a given block begins with a quoted structure.
          */
         private bool IsStartOfQuotedStructure(IBlock block)
         {
@@ -175,7 +175,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             var (left, right) = CountStartAndEndQuotes(text);
             // Handle start of multi-line quoted structures.
-            // These feature more left quotes than right quotes, as the end quote will be on a later line. 
+            // These feature more left quotes than right quotes, as the end quote will be on a later line.
             if (left > right)
                 return true;
             // Handle single-paragraph quoted structures
@@ -232,10 +232,10 @@ namespace UK.Gov.Legislation.Lawmaker
             bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
             return isSingleLine || isEndOfMultiLine;
         }
-        
+
 
         /*
-         * Strips the quoted structure start pattern (if present) from the beginning of the given string. 
+         * Strips the quoted structure start pattern (if present) from the beginning of the given string.
          */
         private static string IgnoreQuotedStructureStart(string text, int quoteDepth)
         {
@@ -245,8 +245,8 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Determines if a given line is followed by any quoted structures, and if so, 
-         * parses each quoted structure and returns them in a list. 
+         * Determines if a given line is followed by any quoted structures, and if so,
+         * parses each quoted structure and returns them in a list.
          */
         private List<IQuotedStructure> HandleQuotedStructuresAfter(WLine line)
         {
@@ -275,9 +275,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 bool isValidFrame = AddQuotedStructureFrame(Current());
                 BlockQuotedStructure qs = ParseQuotedStructure();
                 qs.HasInvalidCode = !isValidFrame;
-                // For now, quoted structures cannot begin with unnumbered paragraphs
-                // as they are confused with extra paragraphs of the parent division
-                if (qs == null || qs.Contents.First() is UnnumberedParagraph)
+                if (qs == null)
                 {
                     i = save;
                     break;
@@ -402,7 +400,7 @@ namespace UK.Gov.Legislation.Lawmaker
             foreach (IInline inline in inlines)
                 text += IInline.GetText(inline);
             string startQuote = text.Split("}").LastOrDefault();
-            // Todo: should probably use something other than WBookmark 
+            // Todo: should probably use something other than WBookmark
             return new WBookmark { Name = startQuote };
         }
 
