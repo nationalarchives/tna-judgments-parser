@@ -278,8 +278,11 @@ namespace UK.Gov.Legislation.Lawmaker
             if (Current() is not WLine line)
                 return false;
 
+            // The following provisions cannot occur inside a Prov1/SchProv1
+            // If we encounter one, we must step out of the Prov1/SchProv1 
+
             // Sections cannot occur in a Schedule context, so no need to check for them
-            if (!isInSchedules && PeekProv1(line))
+            if (!frames.IsScheduleContext() && PeekProv1(line))
                 return true;
             if (PeekSchProv1(line))
                 return true;
