@@ -340,7 +340,22 @@ class WLine : ILine {
             return withText.Select(t => t.Bold).All(b => b.HasValue && b.Value);
     }
 
-    public bool IsAllUnderlined() {
+    public bool IsPartiallyBold()
+    {
+        bool fromStyle = false;
+        if (Style is not null)
+        {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => DOCX.Util.OnOffToBool(s.StyleRunProperties?.Bold)) ?? false;
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return true;
+        else
+            return withText.Select(t => t.Bold).Any(i => i.HasValue && i.Value);
+    }
+
+     public bool IsAllUnderlined() {
         bool fromStyle = false;
         if (Style is not null) {
             Style style = DOCX.Styles.GetStyle(main, Style);
