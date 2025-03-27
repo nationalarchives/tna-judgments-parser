@@ -265,7 +265,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             // The following provisions cannot occur inside a Prov1/SchProv1
             // If we encounter one, we must step out of the Prov1/SchProv1 
-            if (PeekProv1(line))
+
+            // Sections cannot occur in a Schedule context, so no need to check for them
+            if (!frames.IsScheduleContext() && PeekProv1(line))
                 return true;
             if (PeekSchedule(line))
                 return true;
