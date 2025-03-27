@@ -9,10 +9,10 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseCrossheading(WLine line)
+        private HContainer ParseScheduleGroupingSection(WLine line)
         {
-            // Cross headings only exist in primary legislation
-            if (frames.IsSecondaryDocName())
+            // Schedule grouping sections only exist in secondary legislation
+            if (!frames.IsSecondaryDocName())
                 return null;
 
             if (line is WOldNumberedParagraph np)
@@ -28,16 +28,15 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             if (IsEndOfQuotedStructure(line.NormalizedContent))
-                return new CrossHeadingLeaf { Heading = line };
+                return new ScheduleGroupingSectionLeaf { Heading = line };
 
             List<IDivision> children = [];
 
             while (i < Document.Body.Count)
             {
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (!CrossHeading.IsValidChild(next)) {
+                if (!ScheduleGroupingSection.IsValidChild(next)) {
                     i = save;
                     break;
                 }
@@ -51,7 +50,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new CrossHeadingBranch { Heading = line, Children = children };
+            return new ScheduleGroupingSectionBranch { Heading = line, Children = children };
         }
 
     }
