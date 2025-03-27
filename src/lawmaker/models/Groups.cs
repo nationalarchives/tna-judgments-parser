@@ -53,6 +53,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (child is Chapter)
                 return true;
+            if (child is GroupingSection)
+                return true;
             if (child is CrossHeading)
                 return true;
             if (child is Prov1)
@@ -94,6 +96,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (child is CrossHeading)
                 return true;
+            if (child is GroupingSection)
+                return true;
             if (child is Prov1)
                 return true;
             return false;
@@ -114,6 +118,40 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "chapter";
 
         public override string Class => "group4";
+
+    }
+
+    internal interface GroupingSection
+    {
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is Prov1)
+                return true;
+            return false;
+        }
+
+    }
+
+    internal class GroupingSectionBranch : Branch, GroupingSection
+    {
+
+        public override string Name { get; internal init; } = "section";
+
+        public override string Class => "group5";
+
+        public override bool HeadingPrecedesNumber => true;
+
+    }
+
+    internal class GroupingSectionLeaf : Leaf, GroupingSection
+    {
+
+        public override string Name { get; internal init; } = "section";
+
+        public override string Class => "group5";
+
+        public override bool HeadingPrecedesNumber => true;
 
     }
 
@@ -151,29 +189,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
-    internal class GroupingSectionBranch : Branch, CrossHeading
-    {
-
-        public override string Name { get; internal init; } = "section";
-
-        public override string Class => "group5";
-
-        public override bool HeadingPrecedesNumber => true;
-
-    }
-
-    internal class GroupingSectionLeaf : Leaf, CrossHeading
-    {
-
-        public override string Name { get; internal init; } = "section";
-
-        public override string Class => "group5";
-
-        public override bool HeadingPrecedesNumber => true;
-
-    }
-
-
     internal class Schedules : Branch
     {
 
@@ -209,6 +224,8 @@ namespace UK.Gov.Legislation.Lawmaker
         public static bool IsValidChild(IDivision child)
         {
             if (child is ScheduleChapter)
+                return true;
+            if (child is ScheduleGroupingSection)
                 return true;
             if (child is ScheduleCrossHeading)
                 return true;
@@ -247,6 +264,8 @@ namespace UK.Gov.Legislation.Lawmaker
         }
         public static bool IsValidChild(IDivision child)
         {
+            if (child is ScheduleGroupingSection)
+                return true;
             if (child is ScheduleCrossHeading)
                 return true;
             if (child is SchProv1)
@@ -272,6 +291,41 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "schGroup4";
 
+    }
+
+    internal interface ScheduleGroupingSection
+    {
+
+        public static bool IsValidChild(IDivision child)
+        {
+            if (child is ScheduleCrossHeading)
+                return true;
+            if (child is SchProv1)
+                return true;
+            return false;
+        }
+
+    }
+
+    internal class ScheduleGroupingSectionBranch : Branch, ScheduleGroupingSection
+    {
+
+        public override string Name { get; internal init; } = "section";
+
+        public override string Class => "schGroup5";
+
+        public override bool HeadingPrecedesNumber => true;
+
+    }
+
+    internal class ScheduleGroupingSectionLeaf : Leaf, ScheduleGroupingSection
+    {
+
+        public override string Name { get; internal init; } = "section";
+
+        public override string Class => "schGroup5";
+
+        public override bool HeadingPrecedesNumber => true;
     }
 
     internal interface ScheduleCrossHeading

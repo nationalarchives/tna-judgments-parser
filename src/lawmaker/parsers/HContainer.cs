@@ -12,11 +12,11 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private readonly Dictionary<(string, int, int), (object Result, int NextPosition)> memo = [];
+        private readonly Dictionary<(string, int, int, DocName, Context), (object Result, int NextPosition)> memo = [];
 
         // call only if line is Current()
         private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
-            var key = (name, i, quoteDepth);
+            var key = (name, i, quoteDepth, frames.CurrentDocName, frames.CurrentContext);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
                 return (T)cached.Result;
@@ -96,6 +96,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "ScheduleGroupingSection", ParseScheduleGroupingSection);
+            if (hContainer != null)
+                return hContainer;
+
             hContainer = ParseAndMemoize(line, "ScheduleCrossHeading", ParseScheduleCrossheading);
             if (hContainer != null)
                 return hContainer;
@@ -124,6 +128,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             hContainer = ParseAndMemoize(line, "Chapter", ParseChapter);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "GroupingSection", ParseGroupingSection);
             if (hContainer != null)
                 return hContainer;
 
