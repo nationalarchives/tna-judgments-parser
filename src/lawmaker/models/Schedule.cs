@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string number)
         {
-            string pattern = @"^SCHEDULE [A-Z]*\d+[A-Z]*$";
+            string pattern = @"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$";
             return Regex.IsMatch(number, pattern, RegexOptions.IgnoreCase);
         }
 
