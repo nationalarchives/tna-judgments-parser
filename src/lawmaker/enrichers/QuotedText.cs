@@ -132,7 +132,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return raw;
 
             int charIndex = 0;
-            List<IInline> enrichedInlines = [];
+            List<IInline> enrichedInlines = raw.Contents.SkipLast(1).ToList();
             foreach (Match match in matches)
             {
                 if (match.Index > charIndex)
