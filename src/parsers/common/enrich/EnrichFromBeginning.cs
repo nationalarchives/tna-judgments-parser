@@ -30,9 +30,7 @@ namespace UK.Gov.NationalArchives.Enrichment
             Match match = null;
             while (enumerator.MoveNext())
             {
-                if (enumerator.Current is not WText wText)
-                    return raw;
-                beginning += wText.Text;
+                beginning += IInline.GetText(enumerator.Current);
                 inlinePositions.Add(beginning.Length);
                 match = Regex.Match(beginning, pattern);
                 if (match.Success)
@@ -69,7 +67,8 @@ namespace UK.Gov.NationalArchives.Enrichment
             remainder.AddRange(raw.Skip(before.Count));
 
             // Collect Inlines inside group
-            inside = remainder.TakeWhile((inline, index) => {
+            inside = remainder.TakeWhile((inline, index) =>
+            {
                 int adjustedIndex = index + before.Count;
                 return inlinePositions.Count > adjustedIndex + 1 && inlinePositions[adjustedIndex + 1] <= groupEnd;
             }).ToList();
@@ -91,10 +90,11 @@ namespace UK.Gov.NationalArchives.Enrichment
 
             // Collect Inlines after group
             after.AddRange(remainder.Skip(inside.Count));
-
-            return [.. before, constructor(inside), .. after];
+            IInline enrichedInline = constructor(inside);
+            if (enrichedInline == null)
+                return [.. before, .. after];
+            return [.. before, enrichedInline, .. after];
         }
-
     }
 
 }
