@@ -53,6 +53,9 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             XmlElement p = CreateAndAppend("p", parent);
             XmlElement modElement = CreateAndAppend("mod", p);
+            if (mod.Contents.Any(line => line is IUnknownLine)) {
+                p.SetAttribute("class", UKNS, "unknownImport");
+            }
 
             foreach (IBlock block in mod.Contents)
             {
