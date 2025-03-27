@@ -52,13 +52,20 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (!line.IsPartiallyItalicized())
-                return false;
             if (i == Document.Body.Count - 1)
                 return false;
-            return true;
+            if (frames.IsSecondaryDocName())
+            {
+                if (!IsFlushLeft(line) && quoteDepth == 0)
+                    return false;
+                return line.IsPartiallyBold();
+            }
+            else
+            {
+                if (!IsCenterAligned(line))
+                    return false;
+                return line.IsPartiallyItalicized();
+            }
         }
 
     }
