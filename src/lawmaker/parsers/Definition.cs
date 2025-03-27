@@ -13,6 +13,19 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
+        private static string defPattern;
+
+        private static string DefPattern()
+        {
+            if (defPattern is not null)
+                return defPattern;
+
+            string startQuote = "[\u201C]";
+            string endQuote = "[\u201D]";
+            defPattern = $@"({startQuote}(?:(?!{startQuote}|{endQuote}).)*{endQuote})";
+            return defPattern;
+        }
+
         private HContainer ParseDefinition(WLine line)
         {
             if (line is WOldNumberedParagraph)
@@ -20,18 +33,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsLeftAligned(line))
                 return null;
 
-            string text = line.NormalizedContent;
-
-            string startQuote = "[\u201C]";
-            string endQuote = "[\u201D]";
-            string defPattern = $@"({startQuote}.*?{endQuote})";
-
-            string definitionPattern;
-            if (quoteDepth > 1)
-                definitionPattern = $@"^{startQuote}?{defPattern}.*\w+.*$";
-            else
-                definitionPattern = $@"^{defPattern}.*\w+.*$";
-            if (!Regex.IsMatch(text, definitionPattern))
+            string definitionPattern = $@"^{QuotedStructureStartPattern()}?{DefPattern()}.*\w+.*$";
+            if (!Regex.IsMatch(line.NormalizedContent, definitionPattern))
                 return null;
 
             // Use enricher to create <def> element around defined term
