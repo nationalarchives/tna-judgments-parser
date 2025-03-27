@@ -9,28 +9,34 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseCrossheading(WLine line)
+        private HContainer ParseScheduleGroupingSection(WLine line)
         {
-            if (!PeekCrossHeading(line))
+            // Schedule grouping sections only exist in secondary legislation
+            if (!frames.IsSecondaryDocName())
+                return null;
+
+            if (line is WOldNumberedParagraph np)
+                return null;
+            if (!IsCenterAligned(line))
+                return null;
+            if (!line.IsPartiallyItalicized())
+                return null;
+            if (i == Document.Body.Count - 1)
                 return null;
 
             var save1 = i;
             i += 1;
 
             if (IsEndOfQuotedStructure(line.NormalizedContent))
-                return new CrossHeadingLeaf { Heading = line };
+                return new ScheduleGroupingSectionLeaf { Heading = line };
 
             List<IDivision> children = [];
 
             while (i < Document.Body.Count)
             {
-                HContainer peek = PeekGroupingProvision();
-                if (peek != null && !CrossHeading.IsValidChild(peek))
-                    break;
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (!CrossHeading.IsValidChild(next)) {
+                if (!ScheduleGroupingSection.IsValidChild(next)) {
                     i = save;
                     break;
                 }
@@ -44,20 +50,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new CrossHeadingBranch { Heading = line, Children = children };
-        }
-
-        private bool PeekCrossHeading(WLine line)
-        {
-            if (line is WOldNumberedParagraph np)
-                return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (!line.IsAllItalicized())
-                return false;
-            if (i == Document.Body.Count - 1)
-                return false;
-            return true;
+            return new ScheduleGroupingSectionBranch { Heading = line, Children = children };
         }
 
     }
