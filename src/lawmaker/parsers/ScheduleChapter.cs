@@ -13,15 +13,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private ScheduleChapter ParseScheduleChapter(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (i > Document.Body.Count - 3)
+            if (!PeekScheduleChapterHeading(line))
                 return null;
 
-            if (!ScheduleChapter.IsValidNumber(line.NormalizedContent))
-                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent,
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -42,6 +36,9 @@ namespace UK.Gov.Legislation.Lawmaker
             isInSchedules = true;
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !ScheduleChapter.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
@@ -62,6 +59,20 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new ScheduleChapter { Number = number, Heading = heading, Children = children };
+        }
+
+        private bool PeekScheduleChapterHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!ScheduleChapter.IsValidNumber(numText))
+                return false;
+            return true;
         }
 
     }
