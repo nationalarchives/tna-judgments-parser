@@ -16,16 +16,25 @@ namespace UK.Gov.Legislation.Lawmaker
 
         // call only if line is Current()
         private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
+            parseAndMemoizeDepth += 1;
+            if (parseAndMemoizeDepth > parseAndMemoizeDepthMax)
+                parseAndMemoizeDepthMax = parseAndMemoizeDepth;
             var key = (name, i, quoteDepth);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
+                parseAndMemoizeDepth -= 1;
                 return (T)cached.Result;
             }
             int save = i;
+            parseDepth += 1;
+            if (parseDepth > parseDepthMax)
+                parseDepthMax = parseDepth;
             T result = parseFunction(line);
             if (result is null)
                 i = save;
             memo[key] = (result, i);
+            parseAndMemoizeDepth -= 1;
+            parseDepth -= 1;
             return result;
         }
 
@@ -263,8 +272,6 @@ namespace UK.Gov.Legislation.Lawmaker
             if (Current() is not WLine line)
                 return false;
 
-            // The following provisions cannot occur inside a Prov1/SchProv1
-            // If we encounter one, we must step out of the Prov1/SchProv1 
             if (PeekProv1(line))
                 return true;
             if (PeekSchedule(line))
@@ -273,7 +280,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (PeekScheduleCrossHeading(line))
                 return true;
-            // Todo: Add other grouping provisions?
             return false;
         }
         
