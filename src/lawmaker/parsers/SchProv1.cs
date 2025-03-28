@@ -13,23 +13,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSchProv1(WLine line)
         {
-            bool quoted = quoteDepth > 0;
-            if (!IsFlushLeft(line) && !quoted)
-                return null;
-            if (line is not WOldNumberedParagraph np)
-                return null;
-            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
-            if (!SchProv1.IsValidNumber(numText))
+            if (!PeekSchProv1(line))
                 return null;
 
             int save = i;
+            WOldNumberedParagraph np = line as WOldNumberedParagraph;
             HContainer next = Parse(line, np);
             if (next is null)
             {
                 i = save;
                 return null;
             }
-
             return next;
         }
 
@@ -65,7 +59,7 @@ namespace UK.Gov.Legislation.Lawmaker
             int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                if (BreakFromProv1(line))
+                if (BreakFromProv1())
                     break;
 
                 int save = i;
@@ -87,6 +81,19 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
             return new SchProv1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+        }
+
+        private bool PeekSchProv1(WLine line)
+        {
+            bool quoted = quoteDepth > 0;
+            if (!IsFlushLeft(line) && !quoted)
+                return false;
+            if (line is not WOldNumberedParagraph np)
+                return false;
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
+            if (!SchProv1.IsValidNumber(numText))
+                return false;
+            return true;
         }
 
         private bool FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)
