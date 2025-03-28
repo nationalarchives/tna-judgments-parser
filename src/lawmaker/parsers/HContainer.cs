@@ -214,7 +214,7 @@ namespace UK.Gov.Legislation.Lawmaker
         */
         private IList<IBlock> GetExtraParagraph(WLine leader)
         {
-            if (BreakFromProv1(leader))
+            if (BreakFromProv1())
                 return null;
 
             IDivision next = ParseNextBodyDivision();
@@ -267,22 +267,68 @@ namespace UK.Gov.Legislation.Lawmaker
             return [..leaf.Contents];
         }
 
-        private bool BreakFromProv1(WLine leader)
+        /*
+         * Prevents the ParseAndMemoize method from recursing too deep. 
+         * If we are inside a Prov1/SchProv1 or any of their descendants, and we
+         * encounter another (non-quoted) Prov1/SchProv1 or a grouping provision, 
+         * then we know the current Prov1/SchProv1 must have ended, and must break.
+         */
+        private bool BreakFromProv1()
         {
             if (Current() is not WLine line)
                 return false;
 
-            if (PeekProv1(line))
+            // Sections cannot occur in a Schedule context, so no need to check for them
+            if (!isInSchedules && PeekProv1(line))
                 return true;
-            if (PeekSchedule(line))
+            if (PeekSchProv1(line))
                 return true;
-            if (PeekSchedules(line))
-                return true;
-            if (PeekScheduleCrossHeading(line))
+            // If centre-aligned, it must be a grouping provision
+            if (IsCenterAligned(line))
                 return true;
             return false;
         }
-        
-    }
 
+        /*
+         * Prevents the ParseAndMemoize method from recursing too deep.
+         * Given that we are currently inside a grouping provision, if we encounter
+         * another (non-quoted) grouping provision that is not a valid child of
+         * the current one, then the current one must have ended, and we must break. 
+         * Importantly, this is determined by 'peeking' rather than 'parsing', which
+         * significantly cuts down on recursion depth.
+         */
+        private HContainer PeekGroupingProvision()
+        {
+            if (Current() is not WLine line)
+                return null;
+            if (!IsCenterAligned(line))
+                return null;
+            if (isInSchedules)
+            {
+                if (PeekSchedules(line))
+                    return new Schedules { };
+                if (PeekSchedule(line))
+                    return new ScheduleLeaf { };
+                if (PeekSchedulePartHeading(line))
+                    return new SchedulePart { };
+                if (PeekScheduleChapterHeading(line))
+                    return new ScheduleChapter { };
+                if (PeekScheduleCrossHeading(line))
+                    return new ScheduleCrossHeading { };
+            }
+            else
+            {
+                if (PeekGroupOfPartsHeading(line))
+                    return new GroupOfParts { };
+                if (PeekPartHeading(line))
+                    return new Part { };
+                if (PeekChapterHeading(line))
+                    return new Chapter { };
+                if (PeekCrossHeading(line))
+                    return new CrossHeading { };
+            }
+            return null;
+        }
+
+    }
 }

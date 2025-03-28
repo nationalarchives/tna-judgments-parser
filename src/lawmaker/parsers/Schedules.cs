@@ -59,6 +59,10 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !Schedules.IsValidChild(peek))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!Schedules.IsValidChild(next))
