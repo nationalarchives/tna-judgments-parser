@@ -95,7 +95,7 @@ namespace UK.Gov.Legislation.Lawmaker
             int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                if (BreakFromProv1(np))
+                if (BreakFromProv1())
                     break;
 
                 int save = i;

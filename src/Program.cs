@@ -40,7 +40,7 @@ class Program {
 
     static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment, string hint) {
         if (log is not null) {
-            Logging.SetFile(log, LogLevel.Debug);
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
             ILogger logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
         }
