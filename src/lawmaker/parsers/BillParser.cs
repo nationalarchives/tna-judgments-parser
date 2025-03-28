@@ -51,6 +51,9 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i != Document.Body.Count)
                 Logger.LogWarning("parsing did not complete: {}", i);
 
+            Logger.LogInformation($"Maximum ParseAndMemoize depth reached: {parseAndMemoizeDepthMax}");
+            Logger.LogInformation($"Maximum Parse depth reached: {parseDepthMax}");
+
             // Handle start and end quotes after parsing is complete, because it alters the
             // contents of parsed results which does not work well with memoization
             ExtractAllQuotesAndAppendTexts(body);

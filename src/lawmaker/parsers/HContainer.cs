@@ -15,6 +15,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         // call only if line is Current()
         private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
+            parseAndMemoizeDepth += 1;
+            if (parseAndMemoizeDepth > parseAndMemoizeDepthMax)
+                parseAndMemoizeDepthMax = parseAndMemoizeDepth;
             var key = (name, i, quoteDepth, frames.CurrentDocName, frames.CurrentContext);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
@@ -300,6 +303,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             // If centre-aligned, it must be a grouping provision
             if (IsCenterAligned(line))
+                return true;
+            if (PeekScheduleCrossHeading(line))
                 return true;
             return false;
         }
