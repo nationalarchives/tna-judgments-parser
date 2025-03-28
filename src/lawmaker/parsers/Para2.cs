@@ -36,7 +36,7 @@ namespace UK.Gov.Legislation.Lawmaker
             int finalChildStartLine = i;
             while (i < Document.Body.Count)
             {
-                if (BreakFromProv1(line))
+                if (BreakFromProv1())
                     break;
 
                 int save = i;
