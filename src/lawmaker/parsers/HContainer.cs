@@ -325,22 +325,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (PeekSchedule(line))
                     return new ScheduleLeaf { };
                 if (PeekSchedulePartHeading(line))
-                    return new SchedulePart { };
+                    return new SchedulePartLeaf { };
                 if (PeekScheduleChapterHeading(line))
-                    return new ScheduleChapter { };
+                    return new ScheduleChapterLeaf { };
                 if (PeekScheduleCrossHeading(line))
-                    return new ScheduleCrossHeading { };
+                    return new ScheduleCrossHeadingLeaf { };
             }
             else
             {
                 if (PeekGroupOfPartsHeading(line))
-                    return new GroupOfParts { };
+                    return new GroupOfPartsLeaf { };
                 if (PeekPartHeading(line))
-                    return new Part { };
+                    return new PartLeaf { };
                 if (PeekChapterHeading(line))
-                    return new Chapter { };
+                    return new ChapterLeaf { };
                 if (PeekCrossHeading(line))
-                    return new CrossHeading { };
+                    return new CrossHeadingLeaf { };
             }
             return null;
         }
