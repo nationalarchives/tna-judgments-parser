@@ -1,6 +1,6 @@
 
+using System.Linq;
 using System.Xml;
-
 using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -11,6 +11,12 @@ namespace UK.Gov.Legislation.Lawmaker
 
         override protected void AddInline(XmlElement parent, IInline model)
         {
+            if (model is Def def)
+            {
+                AddDef(parent, def);
+                return;
+            }
+
             if (model is ShortTitle st)
             {
                 XmlElement e = CreateAndAppend("shortTitle", parent);
@@ -19,25 +25,81 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             if (model is QuotedText qt)
             {
-                XmlElement e = CreateAndAppend("quotedText", parent);
-                if (qt.StartQuote is not null)
-                    e.SetAttribute("startQuote", qt.StartQuote);
-                if (qt.EndQuote is not null)
-                    e.SetAttribute("endQuote", qt.EndQuote);
-                AddInlines(e, qt.Contents);
+                AddQuotedText(parent, qt);
                 return;
             }
-            if (model is Def def)
+            if (model is InlineQuotedStructure qs)
             {
-                XmlElement e = CreateAndAppend("def", parent);
-                if (def.StartQuote is not null)
-                    e.SetAttribute("startQuote", UKNS, def.StartQuote);
-                if (def.EndQuote is not null)
-                    e.SetAttribute("endQuote", UKNS, def.EndQuote);
-                AddInlines(e, def.Contents);
+                AddInlineQuotedStructure(parent, qs);
+                return;
+            }
+            if (model is AppendText at)
+            {
+                AddAppendText(parent, at);
+                return;
+            }
+            if (model is ITab)
+            {
                 return;
             }
             base.AddInline(parent, model);
+        }
+
+        void AddDef(XmlElement parent, Def def)
+        {
+            XmlElement e = CreateAndAppend("def", parent);
+            if (def.StartQuote is not null)
+                e.SetAttribute("startQuote", UKNS, def.StartQuote);
+            if (def.EndQuote is not null)
+                e.SetAttribute("endQuote", UKNS, def.EndQuote);
+            AddInlines(e, def.Contents);
+        }
+
+        void AddMod(XmlElement parent, Mod mod)
+        {
+            XmlElement p = CreateAndAppend("p", parent);
+            XmlElement modElement = CreateAndAppend("mod", p);
+
+            foreach (IBlock block in mod.Contents)
+            {
+                if (block is ILine line)
+                {
+                    AddInlines(modElement, line.Contents);
+                }
+                else
+                {
+                    AddBlocks(modElement, [block]);
+                }
+            }
+        }
+
+        void AddQuotedText(XmlElement parent, QuotedText model)
+        {
+            XmlElement e = CreateAndAppend("quotedText", parent);
+            if (model.StartQuote is not null)
+                e.SetAttribute("startQuote", model.StartQuote);
+            if (model.EndQuote is not null)
+                e.SetAttribute("endQuote", model.EndQuote);
+            AddInlines(e, model.Contents);
+        }
+
+        void AddInlineQuotedStructure(XmlElement parent, InlineQuotedStructure model)
+        {
+            XmlElement e = CreateAndAppend("quotedStructure", parent);
+            if (model.StartQuote is not null)
+                e.SetAttribute("startQuote", model.StartQuote);
+            if (model.EndQuote is not null)
+                e.SetAttribute("endQuote", model.EndQuote);
+            quoteDepth += 1;
+            AddDivisions(e, model.Contents);
+            quoteDepth -= 1;
+        }
+
+        void AddAppendText(XmlElement parent, AppendText model)
+        {
+            XmlElement e = CreateAndAppend("inline", parent);
+            e.SetAttribute("name", "AppendText");
+            AddOrWrapText(e, model);
         }
 
     }

@@ -13,15 +13,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private SchedulePart ParseSchedulePart(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (i > Document.Body.Count - 3)
+            if (!PeekSchedulePartHeading(line))
                 return null;
 
-            if (!SchedulePart.IsValidNumber(line.NormalizedContent))
-                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent,
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -42,6 +36,10 @@ namespace UK.Gov.Legislation.Lawmaker
             isInSchedules = true;
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !SchedulePart.IsValidChild(peek))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!SchedulePart.IsValidChild(next))
@@ -50,6 +48,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             isInSchedules = isInSchedulesSave;
             if (children.Count == 0)
@@ -58,6 +59,20 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new SchedulePart { Number = number, Heading = heading, Children = children };
+        }
+
+        private bool PeekSchedulePartHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!SchedulePart.IsValidNumber(numText))
+                return false;
+            return true;
         }
 
     }

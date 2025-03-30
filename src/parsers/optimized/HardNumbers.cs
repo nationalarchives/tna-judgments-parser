@@ -63,19 +63,19 @@ class HardNumbers {
 
     public static readonly string[] NumberFormats = new string[] {
         @"^([“""]?\d+\.)",              @"^([“""]?\(?\d+\))",
-        @"^([“""]?[A-Z]\.)",            @"^([“""]?\(?[A-Z]\))",
-        @"^([“""]?[a-z]\.)",            @"^([“""]?\(?[a-z]\))",
+        @"^([“""]?[A-Z]\.)",            @"^([“""]?\(?[A-Z]+\))",
+        @"^([“""]?[a-z]\.)",            @"^([“""]?\(?[a-z]+\))",
         @"^([“""]?[ivx]+\.)",           @"^([“""]?\(?[ivx]+\))",
         // compound
         @"^([“""]?[1-9]\d*\.\d+\.?)",        @"^([“""]?\(?[1-9]\d*\.\d+\))",
         @"^([“""]?[1-9]\d*\.\d+\.\d+\.?)",   @"^([“""]?\(?[1-9]\d*\.\d+\.\d+\))",
 
         // legislation
-        @"^([“""]?\d+[A-Z]+\.)",        // section
-        @"^([“""]?\(?\d+[A-Z]+\))",     // subsection
+        @"^([“""]?[A-Z]*\d+[A-Z]*\.)",        // section
+        @"^([“""]?\(?[A-Z]*\d+[A-Z]*\))",     // subsection
 
     }.Select(s => s + @"(\s|$)")
-    .Append(@"^([“""]?\d+[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
+    .Append(@"^([“""]?[A-Z]*\d+[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
     .ToArray();
 
     private WOldNumberedParagraph ExtractPlainNumber(WLine line) {
@@ -106,7 +106,7 @@ class HardNumbers {
         if (contents.FirstOrDefault() is not WText first)
             return null;
         IEnumerable<IInline> rest = contents.Skip(1);
-        string trimmed = first.Text.TrimStart();
+        string trimmed = first.Text.TrimStart().Replace("\u2060", "");
         RunProperties firstProps = first.properties;
         RunProperties lastProps = first.properties;
         Match match = Regex.Match(trimmed, format);
