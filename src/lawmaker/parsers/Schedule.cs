@@ -1,10 +1,8 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using System.Text.RegularExpressions;
-using UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -47,31 +45,33 @@ namespace UK.Gov.Legislation.Lawmaker
                 null
             );
 
+            var save = i;
+            i += (referenceNoteLine is null) ? 2 : 3;
             var save1 = i;
-            List<IDivision> children;
-            if (isInSchedules || quoteDepth > 0)
+
+            HContainer schedule;
+            IDivision next = ParseNextBodyDivision();
+            if (next is UnnumberedLeaf content)
             {
-                i += (referenceNoteLine is null) ? 2 : 3;
-                children = ParseScheduleChildren();
-                if (children.Count == 0)
-                {
-                    i = save1;
-                    return null;
-                }
-                return new Schedule { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = children };
+                schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = content.Contents };
             }
             else
             {
-                // If we encounter a Schedule outside of a Schedules container, it must be wrapped
-                // Note: Does not apply inside quoted structures
-                children = ParseSchedulesChildren();
+                i = save1;
+                List<IDivision> children = ParseScheduleChildren();
                 if (children.Count == 0)
                 {
-                    i = save1;
+                    i = save;
                     return null;
                 }
-                return new Schedules { Number = null, Heading = null, Children = children };
+                schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
+
+            if (isInSchedules || quoteDepth > 0)
+                return schedule;
+
+            // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped
+            return new Schedules { Number = null, Children = [schedule] };
         }
 
         private bool PeekSchedule(WLine line)
@@ -82,7 +82,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            if (!Schedule.IsValidNumber(line.NormalizedContent))
+            string num = IgnoreStartQuote(line.NormalizedContent, quoteDepth); ;
+            if (!Schedule.IsValidNumber(num))
                 return false;
             return true;
         }
@@ -95,6 +96,10 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !Schedule.IsValidChild(peek))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!Schedule.IsValidChild(next))
@@ -102,7 +107,15 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
+                // Schedules can have a 
+                if (next is UnnumberedLeaf)
+                {
+                    
+                }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             isInSchedules = isInSchedulesSave;
             return children;

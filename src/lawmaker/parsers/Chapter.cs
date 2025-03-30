@@ -13,13 +13,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private Chapter ParseChapter(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (i > Document.Body.Count - 3)
+            if (!PeekChapterHeading(line))
                 return null;
 
-            if (!Chapter.IsChapterNumber(line.NormalizedContent))
-                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -38,20 +34,21 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !Chapter.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not CrossHeading && next is not Prov1)
-                {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
+                if (!Chapter.IsValidChild(next))
                 {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
@@ -59,6 +56,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new Chapter { Number = number, Heading = heading, Children = children };
+        }
+
+        private bool PeekChapterHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!Chapter.IsValidNumber(numText))
+                return false;
+            return true;
         }
 
     }

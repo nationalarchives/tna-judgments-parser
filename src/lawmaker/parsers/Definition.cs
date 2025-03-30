@@ -20,10 +20,18 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsLeftAligned(line))
                 return null;
 
+            string text = line.NormalizedContent;
+
             string startQuote = "[\u201C]";
             string endQuote = "[\u201D]";
             string defPattern = $@"({startQuote}.*?{endQuote})";
-            if (!Regex.IsMatch(line.NormalizedContent, $@"^{defPattern}.*$"))
+
+            string definitionPattern;
+            if (quoteDepth > 1)
+                definitionPattern = $@"^{startQuote}?{defPattern}.*\w+.*$";
+            else
+                definitionPattern = $@"^{defPattern}.*\w+.*$";
+            if (!Regex.IsMatch(text, definitionPattern))
                 return null;
 
             // Use enricher to create <def> element around defined term

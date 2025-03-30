@@ -1,8 +1,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -14,16 +16,25 @@ namespace UK.Gov.Legislation.Lawmaker
 
         // call only if line is Current()
         private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
+            parseAndMemoizeDepth += 1;
+            if (parseAndMemoizeDepth > parseAndMemoizeDepthMax)
+                parseAndMemoizeDepthMax = parseAndMemoizeDepth;
             var key = (name, i, quoteDepth);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
+                parseAndMemoizeDepth -= 1;
                 return (T)cached.Result;
             }
             int save = i;
+            parseDepth += 1;
+            if (parseDepth > parseDepthMax)
+                parseDepthMax = parseDepth;
             T result = parseFunction(line);
             if (result is null)
                 i = save;
             memo[key] = (result, i);
+            parseAndMemoizeDepth -= 1;
+            parseDepth -= 1;
             return result;
         }
 
@@ -73,10 +84,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             i += 1;
+            // UnknownLevels are marked up as a single <p> element. If the line is numbered,
+            // we must combine the Number with the Contents to ensure the number is not lost
             if (line is WOldNumberedParagraph np)
-                return new UnknownLevel() { Number = np.Number, Contents = [WLine.RemoveNumber(np)] };
-            else
-                return new UnknownLevel() { Contents = [line] };
+                line = new WLine(line, [np.Number, new WText(" ", null), .. np.Contents]);
+
+            return new UnknownLevel() { Contents = [line] };
         }
 
         // Parse divisions that only occur INSIDE Schedules
@@ -140,56 +153,98 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /* helper functions for content, intro and wrapUp */
 
-        private void AddFollowingToContent(WLine leader, List<IBlock> container)
+
+        /*
+         * Returns a list of blocks starting with the current paragraph, plus any
+         * additional blocks (i.e extra paragraphs, quoted structures, and/or tables) 
+        */
+        private List<IBlock> HandleParagraphs(WLine line)
         {
+            WLine first = (line is WOldNumberedParagraph np) ? WLine.RemoveNumber(np) : line;
+            if (IsEndOfQuotedStructure(first.TextContent))
+                return [first];
+
+            List<IBlock> container = [];
+            HandleMod(first, container);
+
             while (i < Document.Body.Count)
             {
-                IBlock current = Current();
-                if (Current() is not WLine line)
-                {
-                    i += 1;
-                    container.Add(current);
-                    continue;
-                }
-                QuotedStructure qs = ParseQuotedStructure(line);
-                if (qs is not null)
-                {
-                    container.Add(qs);
-                    continue;
-                }
-                if (line is WOldNumberedParagraph)
-                    break;
-                if (!IsLeftAligned(line))
-                    break;
-                if (LineIsIndentedLessThan(line, leader))
-                    break;
                 int save = i;
-                HContainer test = ParseProv1(line);
-                i = save;
-                if (test is not null)
+                IList<IBlock> extraParagraph = GetExtraParagraph(line);
+                if (extraParagraph == null)
+                {
+                    i = save;
                     break;
-                i += 1;
-                container.Add(line);
+                }
+                foreach (IBlock block in extraParagraph)
+                    HandleMod(block, container);
+
+                if (extraParagraph.Last() is WLine lastLine && IsEndOfQuotedStructure(lastLine.TextContent))
+                    break;
             }
+            return container;
         }
 
-        private bool IsExtraIntroLine(IDivision division, IBlock line, WLine leader, int childCount)
+        /*
+         * Adds the given block to the given container.
+         * If the block is followed by one or more quoted structures,
+         * it is wrapped in a Mod together with the quoted structures.
+        */
+        private void HandleMod(IBlock block, List<IBlock> container)
         {
-            if (childCount > 0)
-                return false;
-            if (division is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable)
-                return true;
-            if (division is not UnnumberedLeaf)
-                return false;
-            if (line is not WLine wLine)
-                return false;
-            if (line is WOldNumberedParagraph)
-                return false;
-            if (!IsLeftAligned(wLine))
-                return false;
-            if (LineIsIndentedLessThan(wLine, leader))
-                return false;
-            return true;
+            if (block is not WLine line)
+            {
+                container.Add(block);
+                return;
+            }
+            List <IQuotedStructure> quotedStructures = HandleQuotedStructures(line);
+            if (quotedStructures.Count == 0)
+            {
+                container.Add(line);
+                return;
+            }
+            List<IBlock> contents = [line, .. quotedStructures];
+            Mod mod = new() { Contents = contents };
+            container.Add(mod);
+        }
+
+        /*
+         * Determines if the next line is an extra paragraph belonging to the current division.
+         * If so, it returns the paragraph. If not, it returns null.
+        */
+        private IList<IBlock> GetExtraParagraph(WLine leader)
+        {
+            if (BreakFromProv1())
+                return null;
+
+            IDivision next = ParseNextBodyDivision();
+
+            if (next is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
+                return [table];
+            // UnknownLevels are treated as extra paragraphs of the previous division 
+            if (next is not UnnumberedLeaf && next is not UnknownLevel)
+                return null;
+            Leaf leaf = next as Leaf;
+
+            IBlock firstBlock = leaf.Contents.First();
+            WLine firstLine = null;
+            if (firstBlock is WLine)
+                firstLine = firstBlock as WLine;
+            else if (firstBlock is Mod mod && mod.Contents.First() is WLine firstModLine)
+                firstLine = firstModLine;
+            else
+                return null;
+
+            if (firstLine is WOldNumberedParagraph)
+                return null;
+            if (next is UnnumberedLeaf)
+            {
+                if (!IsLeftAligned(firstLine))
+                    return null;
+                if (LineIsIndentedLessThan(firstLine, leader))
+                    return null;
+            }
+            return leaf.Contents;
         }
 
         private List<IBlock> HandleWrapUp(List<IDivision> children, int save)
@@ -212,26 +267,68 @@ namespace UK.Gov.Legislation.Lawmaker
             return [..leaf.Contents];
         }
 
-        
-        private bool BreakFromProv1(WLine leader)
+        /*
+         * Prevents the ParseAndMemoize method from recursing too deep. 
+         * If we are inside a Prov1/SchProv1 or any of their descendants, and we
+         * encounter another (non-quoted) Prov1/SchProv1 or a grouping provision, 
+         * then we know the current Prov1/SchProv1 must have ended, and must break.
+         */
+        private bool BreakFromProv1()
         {
             if (Current() is not WLine line)
                 return false;
 
-            // The following provisions cannot occur inside a Prov1/SchProv1
-            // If we encounter one, we must step out of the Prov1/SchProv1 
-            if (PeekProv1(line))
+            // Sections cannot occur in a Schedule context, so no need to check for them
+            if (!isInSchedules && PeekProv1(line))
                 return true;
-            if (PeekSchedule(line))
+            if (PeekSchProv1(line))
                 return true;
-            if (PeekSchedules(line))
+            // If centre-aligned, it must be a grouping provision
+            if (IsCenterAligned(line))
                 return true;
-            if (PeekScheduleCrossHeading(line))
-                return true;
-            // Todo: Add other grouping provisions?
             return false;
         }
 
-    }
+        /*
+         * Prevents the ParseAndMemoize method from recursing too deep.
+         * Given that we are currently inside a grouping provision, if we encounter
+         * another (non-quoted) grouping provision that is not a valid child of
+         * the current one, then the current one must have ended, and we must break. 
+         * Importantly, this is determined by 'peeking' rather than 'parsing', which
+         * significantly cuts down on recursion depth.
+         */
+        private HContainer PeekGroupingProvision()
+        {
+            if (Current() is not WLine line)
+                return null;
+            if (!IsCenterAligned(line))
+                return null;
+            if (isInSchedules)
+            {
+                if (PeekSchedules(line))
+                    return new Schedules { };
+                if (PeekSchedule(line))
+                    return new ScheduleLeaf { };
+                if (PeekSchedulePartHeading(line))
+                    return new SchedulePart { };
+                if (PeekScheduleChapterHeading(line))
+                    return new ScheduleChapter { };
+                if (PeekScheduleCrossHeading(line))
+                    return new ScheduleCrossHeading { };
+            }
+            else
+            {
+                if (PeekGroupOfPartsHeading(line))
+                    return new GroupOfParts { };
+                if (PeekPartHeading(line))
+                    return new Part { };
+                if (PeekChapterHeading(line))
+                    return new Chapter { };
+                if (PeekCrossHeading(line))
+                    return new CrossHeading { };
+            }
+            return null;
+        }
 
+    }
 }

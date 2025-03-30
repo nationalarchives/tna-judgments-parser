@@ -44,14 +44,30 @@ namespace UK.Gov.Legislation.Lawmaker
             return LineIsIndentedLessThan(line, parent);
         }
 
-        private static bool LineIsIndentedLessThan(WLine line, WLine other)
+        private static bool LineIsIndentedLessThan(WLine line, WLine other, float threshold = 0f)
         {
-            return GetEffectiveIndent(line) < GetEffectiveIndent(other);
+            return GetEffectiveIndent(line) < GetEffectiveIndent(other) - threshold;
         }
 
-        private static bool LineIsIndentedMoreThan(WLine line, WLine other)
+        private static bool LineIsIndentedMoreThan(WLine line, WLine other, float threshold = 0f)
         {
-            return GetEffectiveIndent(line) > GetEffectiveIndent(other);
+            return GetEffectiveIndent(line) > GetEffectiveIndent(other) + threshold;
+        }
+
+        private static bool HasValidIndentForChild(IBlock block, WLine leader)
+        {
+            if (block is not WLine line)
+                return true;
+            if (!IsLeftAligned(line))
+                return false;
+            if (LineIsIndentedLessThan(line, leader))
+                return false;
+            // This was causing havoc with NI subsections
+            /*
+            if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
+                return false;
+            */
+            return true;
         }
 
         private static bool NextChildIsAcceptable(List<IDivision> children, IDivision next)
