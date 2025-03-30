@@ -13,15 +13,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private Part ParsePart(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (i > Document.Body.Count - 3)
+            if (!PeekPartHeading(line))
                 return null;
 
-            if (!Part.IsPartNumber(line.NormalizedContent))
-                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -40,19 +34,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !Part.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Chapter && next is not CrossHeading && next is not Prov1) {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
-                {
+                if (!Part.IsValidChild(next)) {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
@@ -60,6 +55,20 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new Part { Number = number, Heading = heading, Children = children };
+        }
+
+        private bool PeekPartHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!Part.IsValidNumber(numText))
+                return false;
+            return true;
         }
 
     }

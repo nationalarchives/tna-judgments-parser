@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -14,34 +13,29 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Para1.IsValidNumber(np.Number.Text))
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
+            if (!Para1.IsValidNumber(numText))
                 return null;
-
-            IFormattedText num = np.Number;
-            List<IBlock> intro = [WLine.RemoveNumber(np)];
 
             i += 1;
 
-            if (i == Document.Body.Count)
+            IFormattedText num = np.Number;
+            List<IBlock> intro = HandleParagraphs(np);
+
+            if (IsEndOfQuotedStructure(intro))
                 return new Para1Leaf { Number = num, Contents = intro };
 
             List<IDivision> children = [];
+            List<IBlock> wrapUp = [];
 
-            int finalChildStartLine = i;
+            int finalChildStart = i;
             while (i < Document.Body.Count)
             {
-                if (BreakFromProv1(line))
+                if (BreakFromProv1())
                     break;
 
                 int save = i;
-                IBlock childStartLine = Current();
                 IDivision next = ParseNextBodyDivision();
-                if (IsExtraIntroLine(next, childStartLine, line, children.Count))
-                {
-                    intro.Add(childStartLine);
-                    continue;
-                }
-
                 if (next is Para1) {
                     // Para1 & Para2 nums are both lowercase alphabetical 
                     // Para1 parser has higher precedence, so must force parse as Para2
@@ -53,26 +47,18 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                if (!NextChildIsAcceptable(children, next)) {
-                    i = save;
-                    break;
-                }
                 children.Add(next);
-                finalChildStartLine = save;
-            }
-            List<IBlock> wrapUp = HandleWrapUp(children, finalChildStartLine);
-            if (children.Count == 0)
-            {
-                QuotedStructure qs = ParseQuotedStructure();
-                if (qs is not null)
-                    intro.Add(qs);
-                return new Para1Leaf { Number = num, Contents = intro };
-            }
-            else
-            {
-                return new Para1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
-            }
+                finalChildStart = save;
 
+                if (IsEndOfQuotedStructure(next))
+                    break;
+            }
+            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
+
+            if (children.Count == 0)
+                return new Para1Leaf { Number = num, Contents = intro };
+            else
+                return new Para1Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
     }
