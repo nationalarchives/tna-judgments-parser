@@ -14,23 +14,22 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\d+[A-Z]*\.$";
+            string pattern = @"^[A-Z]*\d+[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
         }
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is Prov2)
-                return true;
-            if (child is Para1)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+            Prov2
+            or Para1
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+                => true,
+            _   => false,
+            }
+            ;
         }
 
     }
@@ -65,23 +64,22 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\d+[A-Z]*\.$";
+            string pattern = @"^[A-Z]*\d+[A-Z]*\.$";
             return Regex.IsMatch(num, pattern);
         }
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is SchProv2)
-                return true;
-            if (child is Para1)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+
+            SchProv2
+            or Para1
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+                => true,
+            _   => false,
+            };
         }
 
     }
@@ -111,27 +109,29 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\(\d+\)$";
+            string pattern = @"^\([A-Z]*\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 
-        public static bool IsValidQuotedNumber(string num)
+        // Identifies when a Prov2 num starts with an em-dash and must therefore be the first child of a Prov1.
+        // Note that the num of the first Prov2 is not necessarily (1). It could be (A1), for example.
+        public static bool IsFirstProv2Start(string text)
         {
-            string pattern = @"^“?\(\d+[A-Z]*\)$";
-            return Regex.IsMatch(num, pattern);
+            string pattern = @"^\u2014\([A-Z]*\d+[A-Z]*\).*";
+            return Regex.IsMatch(text, pattern);
         }
 
         public static bool IsValidChild(IDivision child)
         {
-            if (child is Para1)
-                return true;
-            if (child is Definition)
-                return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
+            return child switch {
+            Para1
+            or Definition
+            or UnnumberedParagraph
+            or WDummyDivision
+                => true,
+            _   => false,
+            };
+
         }
 
     }
@@ -162,13 +162,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\(\d+\)$";
-            return Regex.IsMatch(num, pattern);
-        }
-
-        public static bool IsQuotedSchProv2Number(string num)
-        {
-            string pattern = @"^\(\d+[A-Z]*\)$";
+            string pattern = @"^\([A-Z]*\d+[A-Z]*\)$";
             return Regex.IsMatch(num, pattern);
         }
 

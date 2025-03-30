@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 using UK.Gov.Legislation.Judgments;
@@ -67,6 +68,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 AddHeading(level, hc.Heading);
             }
 
+            if (hc is Schedule schedule)
+            {
+                AddReferenceNote(number, schedule.ReferenceNote);
+            }
             if (hc is IBranch branch)
             {
                 AddIntro(level, branch);
@@ -76,11 +81,6 @@ namespace UK.Gov.Legislation.Lawmaker
             else if (hc is ILeaf leaf)
             {
                 AddContent(level, leaf.Contents);
-            }
-            else if (hc is Schedule schedule)
-            {
-                AddReferenceNote(number, schedule.ReferenceNote);
-                AddDivisions(level, schedule.Contents);
             }
         }
 
@@ -107,10 +107,26 @@ namespace UK.Gov.Legislation.Lawmaker
             Block(parent, heading, "heading");
         }
 
+        private new void AddIntro(XmlElement level, IBranch branch)
+        {
+            if (branch.Intro is null || !branch.Intro.Any())
+                return;
+            XmlElement intro = CreateAndAppend("intro", level);
+            AddBlocks(intro, branch.Intro);
+        }
+
         private void AddContent(XmlElement parent, IEnumerable<IBlock> blocks)
         {
             XmlElement content = CreateAndAppend("content", parent);
             AddBlocks(content, blocks);
+        }
+
+        protected new void AddWrapUp(XmlElement level, IBranch branch)
+        {
+            if (branch.WrapUp is null || !branch.WrapUp.Any())
+                return;
+            XmlElement wrapUp = CreateAndAppend("wrapUp", level);
+            AddBlocks(wrapUp, branch.WrapUp);
         }
 
     }
