@@ -39,7 +39,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            if (!Schedules.IsValidHeading(line.NormalizedContent))
+            string heading = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!Schedules.IsValidHeading(heading))
                 return false;
 
             // Schedules container must be followed by Schedule
@@ -58,6 +59,10 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !Schedules.IsValidChild(peek))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!Schedules.IsValidChild(next))

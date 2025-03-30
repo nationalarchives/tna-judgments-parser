@@ -12,15 +12,9 @@ namespace UK.Gov.Legislation.Lawmaker
     {
         private GroupOfParts ParseGroupOfParts(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (line.GetEffectiveAlignment() is not AlignmentValues.Center)
-                return null;
-            if (i > Document.Body.Count - 3)
+            if (!PeekGroupOfPartsHeading(line))
                 return null;
 
-            if (!GroupOfParts.IsGroupOfPartsHeading(line.NormalizedContent))
-                return null;
             IFormattedText number = new WText(
                 ToTitleCase(line.NormalizedContent),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -39,19 +33,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !GroupOfParts.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Part) {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next))
-                {
+                if (!GroupOfParts.IsValidChild(next)) {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
@@ -61,6 +56,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return new GroupOfParts { Number = number, Heading = heading, Children = children };
 
         }
+
+        private bool PeekGroupOfPartsHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            if (!GroupOfParts.IsValidNumber(numText))
+                return false;
+            return true;
+        }
+
         private static string ToTitleCase(string line)
         {
             // ugly

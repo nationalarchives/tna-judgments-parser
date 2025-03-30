@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
@@ -12,43 +13,50 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private CrossHeading ParseCrossheading(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (!line.IsAllItalicized())
-                return null;
-            if (i == Document.Body.Count - 1)
+            if (!PeekCrossHeading(line))
                 return null;
 
             var save1 = i;
             i += 1;
 
-            ILine heading = line;
-
             List<IDivision> children = [];
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !CrossHeading.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (next is not Prov1) {
-                    i = save;
-                    break;
-                }
-                if (!NextChildIsAcceptable(children, next)) {
+                if (!CrossHeading.IsValidChild(next)) {
                     i = save;
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             if (children.Count == 0)
             {
                 i = save1;
                 return null;
             }
-            return new CrossHeading { Heading = heading, Children = children };
+            return new CrossHeading { Heading = line, Children = children };
+        }
+
+        private bool PeekCrossHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.IsAllItalicized())
+                return false;
+            if (i == Document.Body.Count - 1)
+                return false;
+            return true;
         }
 
     }

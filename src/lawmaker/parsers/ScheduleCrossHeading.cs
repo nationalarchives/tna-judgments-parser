@@ -26,6 +26,10 @@ namespace UK.Gov.Legislation.Lawmaker
             isInSchedules = true;
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !ScheduleCrossHeading.IsValidChild(peek))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!ScheduleCrossHeading.IsValidChild(next))
@@ -34,6 +38,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
                 }
                 children.Add(next);
+
+                if (IsEndOfQuotedStructure(next))
+                    break;
             }
             isInSchedules = isInSchedulesSave;
             if (children.Count == 0)

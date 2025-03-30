@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 using UK.Gov.Legislation.Judgments;
@@ -19,12 +20,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             i += 1;
 
-            List<IBlock> intro = [line];
+            List<IBlock> intro = HandleParagraphs(line);
 
-            if (i == Document.Body.Count)
-            {
+            if (IsEndOfQuotedStructure(intro))
                 return new UnnumberedLeaf { Contents = intro };
-            }
 
             List<IDivision> children = [];
 

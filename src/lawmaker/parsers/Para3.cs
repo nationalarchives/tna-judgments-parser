@@ -14,7 +14,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is not WOldNumberedParagraph np)
                 return null;
-            if (!Para3.IsValidNumber(np.Number.Text))
+            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
+            if (!Para3.IsValidNumber(numText))
                 return null;
 
             i += 1;
