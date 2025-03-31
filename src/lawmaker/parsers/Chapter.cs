@@ -13,14 +13,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseChapter(WLine line)
         {
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (i > Document.Body.Count - 3)
+            if (!PeekChapterHeading(line))
                 return null;
 
-            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!Chapter.IsValidNumber(numText))
-                return null;
             IFormattedText number = new WText(
                 line.NormalizedContent[..1].ToUpper() + line.NormalizedContent[1..].ToLower(),
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
@@ -64,6 +59,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new ChapterBranch { Number = number, Heading = heading, Children = children };
+        }
+
+        private bool PeekChapterHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (i > Document.Body.Count - 3)
+                return false;
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!Chapter.IsValidNumber(numText))
+                return false;
+            return true;
         }
 
     }
