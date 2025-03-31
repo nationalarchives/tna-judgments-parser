@@ -51,7 +51,12 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public bool IsSecondaryDocName()
         {
-            return new[] { DocName.NISI, DocName.NISR, DocName.UKSI, DocName.SSI }.Contains(CurrentDocName);
+            return IsSecondaryDocName(CurrentDocName);
+        }
+
+        public static bool IsSecondaryDocName(DocName docName)
+        {
+            return new[] { DocName.NISI, DocName.NISR, DocName.UKSI, DocName.SSI }.Contains(docName);
         }
 
         public bool Pop()
