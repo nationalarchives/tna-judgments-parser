@@ -11,17 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseGroupingSection(WLine line)
         {
-            // Grouping sections only exist in secondary legislation
-            if (!frames.IsSecondaryDocName())
-                return null;
-
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (!line.IsPartiallyItalicized())
-                return null;
-            if (i == Document.Body.Count - 1)
+            if (!PeekGroupingSectionHeading(line))
                 return null;
 
             var save1 = i;
@@ -51,6 +41,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new GroupingSectionBranch { Heading = line, Children = children };
+        }
+
+        private bool PeekGroupingSectionHeading(WLine line)
+        {
+            // Grouping sections only exist in secondary legislation
+            if (!frames.IsSecondaryDocName())
+                return false;
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.IsPartiallyItalicized())
+                return false;
+            if (i == Document.Body.Count - 1)
+                return false;
+            return true;
         }
 
     }
