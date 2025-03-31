@@ -112,26 +112,42 @@ namespace UK.Gov.Legislation.Lawmaker
             MatchCollection matches = Regex.Matches(text, pattern);
             if (matches.Count == 0)
             {
+                // Quoted structure start pattern could not be matched.
+                // This should not be possible in practice.
                 frames.PushDefault();
                 return true;
             }
-            GroupCollection groups = matches.Last().Groups;
-            if (!groups["info"].Success)
+            GroupCollection groups = matches.First().Groups;
+            if (!groups["info"].Success || !groups["docName"].Success)
             {
+                // No frame info present - valid scenario.
                 frames.PushDefault();
                 return true;
             }
             DocName docName;
             if (!Enum.TryParse(groups["docName"].Value.ToUpper(), out docName))
             {
+                // Frame info present but DocName is malformed - invalid scenario.
                 frames.PushDefault();
                 return false;
             }
             Context context;
-            if (groups.Count > 3 && Enum.TryParse(groups["context"].Value.ToUpper(), out context))
-                frames.Push(docName, context);
-            else
-                frames.Push(docName, Context.BODY); // Default to section-based content
+            if (!groups["context"].Success)
+            {
+                // Frame info has DocName but no Context - valid scenario.
+                // Default to BODY context. 
+                frames.Push(docName, Context.BODY);
+                return true;
+            }
+            if (!Enum.TryParse(groups["context"].Value.ToUpper(), out context))
+            {
+                // Frame info has a Context, but it is malformed - invalid scenario.
+                // Default to BODY context. 
+                frames.Push(docName, Context.BODY);
+                return false;
+            }
+            // Frame info has valid DocName and Context
+            frames.Push(docName, context);
             return true;
         }
 
