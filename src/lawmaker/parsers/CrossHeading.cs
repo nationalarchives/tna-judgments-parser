@@ -11,17 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseCrossheading(WLine line)
         {
-            // Cross headings only exist in primary legislation
-            if (frames.IsSecondaryDocName())
-                return null;
-
-            if (line is WOldNumberedParagraph np)
-                return null;
-            if (!IsCenterAligned(line))
-                return null;
-            if (!line.IsPartiallyItalicized())
-                return null;
-            if (i == Document.Body.Count - 1)
+            if (!PeekCrossHeading(line))
                 return null;
 
             var save1 = i;
@@ -34,6 +24,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !CrossHeading.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
@@ -52,6 +45,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
             return new CrossHeadingBranch { Heading = line, Children = children };
+        }
+
+        private bool PeekCrossHeading(WLine line)
+        {
+            // Cross headings only exist in primary legislation
+            if (frames.IsSecondaryDocName())
+                return false;
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.IsPartiallyItalicized())
+                return false;
+            if (i == Document.Body.Count - 1)
+                return false;
+            return true;
         }
 
     }
