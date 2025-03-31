@@ -132,18 +132,19 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             }
             Context context;
+            Context defaultContext = Frames.IsSecondaryDocName(docName) ? Context.REGS : Context.BODY;
             if (!groups["context"].Success)
             {
                 // Frame info has DocName but no Context - valid scenario.
-                // Default to BODY context. 
-                frames.Push(docName, Context.BODY);
+                // Resort to default Context. 
+                frames.Push(docName, defaultContext);
                 return true;
             }
             if (!Enum.TryParse(groups["context"].Value.ToUpper(), out context))
             {
                 // Frame info has a Context, but it is malformed - invalid scenario.
-                // Default to BODY context. 
-                frames.Push(docName, Context.BODY);
+                // Resort to default Context. 
+                frames.Push(docName, defaultContext);
                 return false;
             }
             // Frame info has valid DocName and Context
