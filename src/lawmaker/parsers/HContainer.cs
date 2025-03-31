@@ -310,7 +310,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (!IsCenterAligned(line))
                 return null;
-            if (isInSchedules)
+            if (frames.IsScheduleContext())
             {
                 if (PeekSchedules(line))
                     return new Schedules { };
@@ -320,6 +320,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     return new SchedulePartLeaf { };
                 if (PeekScheduleChapterHeading(line))
                     return new ScheduleChapterLeaf { };
+                if (PeekScheduleGroupingSectionHeading(line))
+                    return new ScheduleGroupingSectionLeaf { };
                 if (PeekScheduleCrossHeading(line))
                     return new ScheduleCrossHeadingLeaf { };
             }
@@ -331,6 +333,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     return new PartLeaf { };
                 if (PeekChapterHeading(line))
                     return new ChapterLeaf { };
+                if (PeekGroupingSectionHeading(line))
+                    return new GroupingSectionLeaf { };
                 if (PeekCrossHeading(line))
                     return new CrossHeadingLeaf { };
             }
