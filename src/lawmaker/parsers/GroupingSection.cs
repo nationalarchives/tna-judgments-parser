@@ -24,6 +24,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !GroupingSection.IsValidChild(peek))
+                    break;
+
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!GroupingSection.IsValidChild(next)) {
