@@ -40,6 +40,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                HContainer peek = PeekGroupingProvision();
+                if (peek != null && !Chapter.IsValidChild(peek))
+                    break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();

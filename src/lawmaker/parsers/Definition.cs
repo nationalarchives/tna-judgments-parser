@@ -28,13 +28,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseDefinition(WLine line)
         {
-            if (line is WOldNumberedParagraph)
-                return null;
-            if (!IsLeftAligned(line))
-                return null;
-
-            string definitionPattern = $@"^{QuotedStructureStartPattern()}?{DefPattern()}.*\w+.*$";
-            if (!Regex.IsMatch(line.NormalizedContent, definitionPattern))
+            if (!PeekDefinition(line))
                 return null;
 
             // Use enricher to create <def> element around defined term
@@ -73,6 +67,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
             while (i < Document.Body.Count)
             {
+                if (PeekDefinition(Current()))
+                    break;
                 if (CurrentLineIsIndentedLessThan(line))
                     break;
 
@@ -93,6 +89,21 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 return new DefinitionBranch { Intro = intro, Children = children };
             }
+        }
+
+        private bool PeekDefinition(IBlock block)
+        {
+            if (block is not WLine line)
+                return false;
+            if (line is WOldNumberedParagraph)
+                return false;
+            if (!IsLeftAligned(line))
+                return false;
+
+            string definitionPattern = $@"^{QuotedStructureStartPattern()}?{DefPattern()}.*\w+.*$";
+            if (!Regex.IsMatch(line.NormalizedContent, definitionPattern))
+                return false;
+            return true;
         }
 
     }
