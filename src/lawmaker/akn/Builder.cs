@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
@@ -71,7 +72,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     }
                     WLine line = block as WLine;
                     XmlElement p = doc.CreateElement("p", ns);
-                    switch (line.NormalizedContent.ToLower()) {
+                    string text = Regex.Replace(line.NormalizedContent, @"\s", "").ToLower();
+                    switch (text) {
                     case "a":
                         p.SetAttribute("class", ns, "A");
                         p.InnerText = "A";
