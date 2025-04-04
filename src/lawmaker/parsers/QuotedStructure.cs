@@ -272,9 +272,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 return [];
             int save = i;
 
-            // Handle the case where the start quote of the first quoted structure is NOT on a new line
+            // Handle the case where the start quote of the first quoted structure is NOT at the 
+            // start of a new line, but rather is at the end of the previous line.
             (int left, int right) = CountStartAndEndQuotes(line);
-            if (left > right)
+            bool isAtStartOfLine = (left == right + 1) && Regex.IsMatch(line.NormalizedContent, QuotedStructureStartPattern());
+            if (left > right && !isAtStartOfLine)
             {
                 bool isValidFrame = AddQuotedStructureFrame(line);
                 BlockQuotedStructure qs = ParseQuotedStructure();
