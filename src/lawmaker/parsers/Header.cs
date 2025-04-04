@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -27,31 +28,40 @@ namespace UK.Gov.Legislation.Lawmaker
             bool foundPreface = false;
             while (i < Document.Body.Count - 10)
             {
-                var block1 = Document.Body[i].Block;
-                var block2 = Document.Body[i + 1].Block;
-                var block3 = Document.Body[i + 2].Block;
-                if (!foundPreface && block1 is WLine line1 && block2 is WLine line2 && block3 is WLine line3)
+                List<IBlock> blocks = [];
+                blocks.Add(Document.Body[i].Block);
+                blocks.Add(Document.Body[i + 1].Block);
+                blocks.Add(Document.Body[i + 2].Block);
+
+                if (!foundPreface && blocks.All(b => b is WLine))
                 {
-                    if (line1.TextContent == "A" && line2.TextContent == "Bill" && line3.TextContent == "to")
+                    IEnumerable<string> textContent = blocks
+                        .Select(b => (b as WLine).TextContent)
+                        .Select(s => Regex.Replace(s, @"\s", ""));
+
+                    string longTitle = string.Join(" ", textContent).ToUpper();
+                    if (longTitle == "A BILL TO")
                     {
-                        preface.Add(block1);
-                        preface.Add(block2);
-                        preface.Add(block3);
+                        preface.AddRange(blocks);
                         i += 3;
                         foundPreface = true;
                         continue;
                     }
                 }
-                if (foundPreface && block1 is WLine line && line.TextContent.StartsWith("BE IT ENACTED by"))
+                if (foundPreface && blocks[0] is WLine line)
                 {
-                    preamble.Add(block1);
-                    i += 1;
-                    return;
+                    string enactingText = Regex.Replace(line.TextContent, @"\s", "").ToUpper();
+                    if (enactingText.StartsWith("BEITENACTEDBY"))
+                    {
+                        preamble.Add(blocks[0]);
+                        i += 1;
+                        return;
+                    }
                 }
                 if (foundPreface)
-                    preface.Add(block1);
+                    preface.Add(blocks[0]);
                 else
-                    coverPage.Add(block1);
+                    coverPage.Add(blocks[0]);
                 i += 1;
             }
             coverPage.Clear();
