@@ -61,6 +61,8 @@ class WLine : ILine {
             return new WOldNumberedParagraph(np, contents);
         if (prototype is WRestriction restrict)
             return new WRestriction(restrict, contents);
+        if (prototype is WUnknownLine line)
+            return new WUnknownLine(line, contents);
         return new WLine(prototype, contents);
     }
     public static WLine RemoveNumber(WOldNumberedParagraph np) {
@@ -313,6 +315,21 @@ class WLine : ILine {
             return withText.Select(t => t.Italic).All(i => i.HasValue && i.Value);
     }
 
+    public bool IsPartiallyItalicized()
+    {
+        bool fromStyle = false;
+        if (Style is not null)
+        {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => DOCX.Util.OnOffToBool(s.StyleRunProperties?.Italic)) ?? false;
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return true;
+        else
+            return withText.Select(t => t.Italic).Any(i => i.HasValue && i.Value);
+    }
+
     public bool IsAllBold() {
         bool fromStyle = false;
         if (Style is not null) {
@@ -326,7 +343,22 @@ class WLine : ILine {
             return withText.Select(t => t.Bold).All(b => b.HasValue && b.Value);
     }
 
-    public bool IsAllUnderlined() {
+    public bool IsPartiallyBold()
+    {
+        bool fromStyle = false;
+        if (Style is not null)
+        {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            fromStyle = DOCX.Styles.GetInheritedProperty(style, (s) => DOCX.Util.OnOffToBool(s.StyleRunProperties?.Bold)) ?? false;
+        }
+        var withText = GetNonEmptyTexts();
+        if (fromStyle)
+            return true;
+        else
+            return withText.Select(t => t.Bold).Any(i => i.HasValue && i.Value);
+    }
+
+     public bool IsAllUnderlined() {
         bool fromStyle = false;
         if (Style is not null) {
             Style style = DOCX.Styles.GetStyle(main, Style);
@@ -338,6 +370,14 @@ class WLine : ILine {
         else
             return withText.Select(t => t.Underline).All(u => u.HasValue && u.Value != UnderlineValues2.None);
     }
+
+}
+
+class WUnknownLine : WLine, IUnknownLine {
+
+    internal WUnknownLine(WLine line) : base(line) { }
+
+    internal WUnknownLine(WLine proto, IEnumerable<IInline> contents) : base(proto, contents) { }
 
 }
 
