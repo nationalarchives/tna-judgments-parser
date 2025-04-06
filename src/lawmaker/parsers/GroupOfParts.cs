@@ -10,7 +10,7 @@ namespace UK.Gov.Legislation.Lawmaker
     // e.g. GroupOfParts.Parse(WLine line)
     public partial class BillParser
     {
-        private GroupOfParts ParseGroupOfParts(WLine line)
+        private HContainer ParseGroupOfParts(WLine line)
         {
             if (!PeekGroupOfPartsHeading(line))
                 return null;
@@ -20,11 +20,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 line.Contents.Where(i => i is WText).Cast<WText>().Select(t => t.properties).FirstOrDefault()
             );
 
+            if (IsEndOfQuotedStructure(line.NormalizedContent))
+                return new GroupOfPartsLeaf { Number = number };
+
             if (Document.Body[i+1].Block is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))
                 return null;
             ILine heading = line2;
+
+            if (IsEndOfQuotedStructure(line2.NormalizedContent))
+                return new GroupOfPartsLeaf { Number = number, Heading = heading };
 
             var save1 = i;
             i += 2;
@@ -53,7 +59,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new GroupOfParts { Number = number, Heading = heading, Children = children };
+            return new GroupOfPartsBranch { Number = number, Heading = heading, Children = children };
 
         }
 
@@ -65,7 +71,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            string numText = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
             if (!GroupOfParts.IsValidNumber(numText))
                 return false;
             return true;

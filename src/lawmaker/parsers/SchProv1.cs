@@ -90,7 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            string numText = IgnoreStartQuote(np.Number.Text, quoteDepth);
+            string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
             if (!SchProv1.IsValidNumber(numText))
                 return false;
             return true;
