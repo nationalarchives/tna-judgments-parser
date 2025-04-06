@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using DocumentFormat.OpenXml.Vml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -162,7 +161,6 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 AddDivision(body, division);
             }
-            // add schedules
         }
 
         /* */
@@ -219,6 +217,16 @@ namespace UK.Gov.Legislation.Lawmaker
                     e.SetAttribute("endQuote", qs2.EndQuote);
                 if (qs2.AppendText is not null)
                     AddAppendText(parent, qs2.AppendText);
+                e.SetAttribute("indent", UKNS, "indent0");
+
+                // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
+                if (new[] { Context.REGS, Context.RULES, Context.ORDER }.Contains(qs2.Context))
+                    qs2.Context = Context.BODY;
+                e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
+                e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
+
+                if (qs2.HasInvalidCode)
+                    e.SetAttribute("class", UKNS, "unknownImport");
             }
             quoteDepth += 1;
             AddDivisions(e, qs.Contents);

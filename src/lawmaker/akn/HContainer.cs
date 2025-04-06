@@ -34,6 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 case "crossheading":
                 case "schedules":
                 case "definition":
+                case "regulation":
                     level = CreateAndAppend("hcontainer", parent);
                     level.SetAttribute("name", name);
                     break;
@@ -78,7 +79,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 AddDivisions(level, branch.Children);
                 AddWrapUp(level, branch);
             }
-            else if (hc is ILeaf leaf)
+            else if (hc is ILeaf leaf && leaf.Contents?.Count() > 0)
             {
                 AddContent(level, leaf.Contents);
             }

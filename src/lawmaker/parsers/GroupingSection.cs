@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -10,28 +9,28 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private HContainer ParseScheduleCrossheading(WLine line)
+        private HContainer ParseGroupingSection(WLine line)
         {
-            if (!PeekScheduleCrossHeading(line))
+            if (!PeekGroupingSectionHeading(line))
                 return null;
 
             var save1 = i;
             i += 1;
 
             if (IsEndOfQuotedStructure(line.NormalizedContent))
-                return new CrossHeadingLeaf { Heading = line };
+                return new GroupingSectionLeaf { Heading = line };
 
             List<IDivision> children = [];
+
             while (i < Document.Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
-                if (peek != null && !ScheduleCrossHeading.IsValidChild(peek))
+                if (peek != null && !GroupingSection.IsValidChild(peek))
                     break;
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (!ScheduleCrossHeading.IsValidChild(next))
-                {
+                if (!GroupingSection.IsValidChild(next)) {
                     i = save;
                     break;
                 }
@@ -45,27 +44,23 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new ScheduleCrossHeadingBranch { Heading = line, Children = children };
+            return new GroupingSectionBranch { Heading = line, Children = children };
         }
 
-        private bool PeekScheduleCrossHeading(WLine line)
+        private bool PeekGroupingSectionHeading(WLine line)
         {
+            // Grouping sections only exist in secondary legislation
+            if (!frames.IsSecondaryDocName())
+                return false;
             if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.IsPartiallyItalicized())
                 return false;
             if (i == Document.Body.Count - 1)
                 return false;
-            if (frames.IsSecondaryDocName())
-            {
-                if (!IsFlushLeft(line) && quoteDepth == 0)
-                    return false;
-                return line.IsPartiallyBold();
-            }
-            else
-            {
-                if (!IsCenterAligned(line))
-                    return false;
-                return line.IsPartiallyItalicized();
-            }
+            return true;
         }
 
     }

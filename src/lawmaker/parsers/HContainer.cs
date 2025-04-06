@@ -1,10 +1,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DocumentFormat.OpenXml.Vml;
+using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -12,14 +11,14 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private readonly Dictionary<(string, int, int), (object Result, int NextPosition)> memo = [];
+        private readonly Dictionary<(string, int, int, DocName, Context), (object Result, int NextPosition)> memo = [];
 
         // call only if line is Current()
         private T ParseAndMemoize<T>(WLine line, string name, System.Func<WLine, T> parseFunction) {
             parseAndMemoizeDepth += 1;
             if (parseAndMemoizeDepth > parseAndMemoizeDepthMax)
                 parseAndMemoizeDepthMax = parseAndMemoizeDepth;
-            var key = (name, i, quoteDepth);
+            var key = (name, i, quoteDepth, frames.CurrentDocName, frames.CurrentContext);
             if (memo.TryGetValue(key, out var cached)) {
                 i = cached.NextPosition;
                 parseAndMemoizeDepth -= 1;
@@ -45,7 +44,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             HContainer hContainer;
 
-            if (isInSchedules)
+            if (frames.IsScheduleContext())
                 hContainer = ParseScheduleLine(line);
             else
                 hContainer = ParseNonScheduleLine(line);
@@ -84,10 +83,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             i += 1;
+            // If we've reached here then this is an element we don't know how to handle
             // UnknownLevels are marked up as a single <p> element. If the line is numbered,
             // we must combine the Number with the Contents to ensure the number is not lost
-            if (line is WOldNumberedParagraph np)
-                line = new WLine(line, [np.Number, new WText(" ", null), .. np.Contents]);
+            this.Logger.LogWarning("Encountered an unknown provision at " +
+            "i: {Position} with Contents: {Contents}"
+            , this.i
+            , line.NormalizedContent);
+            line = line switch {
+                WOldNumberedParagraph np => new WUnknownLine(line, [np.Number, new WText(" ", null), .. np.Contents]),
+                _ => new WUnknownLine(line),
+
+            };
 
             return new UnknownLevel() { Contents = [line] };
         }
@@ -102,6 +109,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             hContainer = ParseAndMemoize(line, "ScheduleChapter", ParseScheduleChapter);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "ScheduleGroupingSection", ParseScheduleGroupingSection);
             if (hContainer != null)
                 return hContainer;
 
@@ -133,6 +144,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             hContainer = ParseAndMemoize(line, "Chapter", ParseChapter);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "GroupingSection", ParseGroupingSection);
             if (hContainer != null)
                 return hContainer;
 
@@ -197,7 +212,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 container.Add(block);
                 return;
             }
-            List <IQuotedStructure> quotedStructures = HandleQuotedStructures(line);
+            List <IQuotedStructure> quotedStructures = HandleQuotedStructuresAfter(line);
             if (quotedStructures.Count == 0)
             {
                 container.Add(line);
@@ -268,9 +283,9 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Prevents the ParseAndMemoize method from recursing too deep. 
+         * Prevents the ParseAndMemoize method from recursing too deep.
          * If we are inside a Prov1/SchProv1 or any of their descendants, and we
-         * encounter another (non-quoted) Prov1/SchProv1 or a grouping provision, 
+         * encounter another (non-quoted) Prov1/SchProv1 or a grouping provision,
          * then we know the current Prov1/SchProv1 must have ended, and must break.
          */
         private bool BreakFromProv1()
@@ -279,10 +294,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             // Sections cannot occur in a Schedule context, so no need to check for them
-            if (!isInSchedules && PeekProv1(line))
+            if (!frames.IsScheduleContext() && PeekProv1(line))
                 return true;
+            // Disabled for now, as numbered list items appear identical to SchProv1 elements
+            // and were causing an unnecessary and problematic break  
+            /*          
             if (PeekSchProv1(line))
                 return true;
+            */
             // If centre-aligned, it must be a grouping provision
             if (IsCenterAligned(line))
                 return true;
@@ -293,7 +312,7 @@ namespace UK.Gov.Legislation.Lawmaker
          * Prevents the ParseAndMemoize method from recursing too deep.
          * Given that we are currently inside a grouping provision, if we encounter
          * another (non-quoted) grouping provision that is not a valid child of
-         * the current one, then the current one must have ended, and we must break. 
+         * the current one, then the current one must have ended, and we must break.
          * Importantly, this is determined by 'peeking' rather than 'parsing', which
          * significantly cuts down on recursion depth.
          */
@@ -303,29 +322,33 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (!IsCenterAligned(line))
                 return null;
-            if (isInSchedules)
+            if (frames.IsScheduleContext())
             {
                 if (PeekSchedules(line))
                     return new Schedules { };
                 if (PeekSchedule(line))
                     return new ScheduleLeaf { };
                 if (PeekSchedulePartHeading(line))
-                    return new SchedulePart { };
+                    return new SchedulePartLeaf { };
                 if (PeekScheduleChapterHeading(line))
-                    return new ScheduleChapter { };
+                    return new ScheduleChapterLeaf { };
+                if (PeekScheduleGroupingSectionHeading(line))
+                    return new ScheduleGroupingSectionLeaf { };
                 if (PeekScheduleCrossHeading(line))
-                    return new ScheduleCrossHeading { };
+                    return new ScheduleCrossHeadingLeaf { };
             }
             else
             {
                 if (PeekGroupOfPartsHeading(line))
-                    return new GroupOfParts { };
+                    return new GroupOfPartsLeaf { };
                 if (PeekPartHeading(line))
-                    return new Part { };
+                    return new PartLeaf { };
                 if (PeekChapterHeading(line))
-                    return new Chapter { };
+                    return new ChapterLeaf { };
+                if (PeekGroupingSectionHeading(line))
+                    return new GroupingSectionLeaf { };
                 if (PeekCrossHeading(line))
-                    return new CrossHeading { };
+                    return new CrossHeadingLeaf { };
             }
             return null;
         }
