@@ -1,7 +1,5 @@
 
-using System;
 using System.Collections.Generic;
-
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -11,13 +9,16 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class BillParser
     {
 
-        private CrossHeading ParseCrossheading(WLine line)
+        private HContainer ParseCrossheading(WLine line)
         {
             if (!PeekCrossHeading(line))
                 return null;
 
             var save1 = i;
             i += 1;
+
+            if (IsEndOfQuotedStructure(line.NormalizedContent))
+                return new CrossHeadingLeaf { Heading = line };
 
             List<IDivision> children = [];
 
@@ -43,16 +44,19 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new CrossHeading { Heading = line, Children = children };
+            return new CrossHeadingBranch { Heading = line, Children = children };
         }
 
         private bool PeekCrossHeading(WLine line)
         {
+            // Cross headings only exist in primary legislation
+            if (frames.IsSecondaryDocName())
+                return false;
             if (line is WOldNumberedParagraph np)
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (!line.IsAllItalicized())
+            if (!line.IsPartiallyItalicized())
                 return false;
             if (i == Document.Body.Count - 1)
                 return false;

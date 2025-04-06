@@ -77,12 +77,15 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (leaf.Heading != null)
                     inlines.AddRange(leaf.Heading.Contents);
             }
-            foreach (IBlock block in leaf.Contents)
+            if (leaf.Contents != null)
             {
-                if (block is ILine line)
-                    inlines.AddRange(line.Contents);
+                foreach (IBlock block in leaf.Contents)
+                {
+                    if (block is ILine line)
+                        inlines.AddRange(line.Contents);
+                }
             }
-            return IInline.ToString(inlines, " ");
+            return IInline.ToString(inlines, "");
         }
 
         static string GetLastParagraphTextInBranch(Branch branch)
@@ -121,7 +124,11 @@ namespace UK.Gov.Legislation.Lawmaker
 
         static bool ReplaceLastLineInLeaf(Leaf leaf, Func<WLine, WLine> replace)
         {
-            return ReplaceLastOf(leaf.Contents, replace);
+            if (leaf.Contents?.Count > 0)
+                return ReplaceLastOf(leaf.Contents, replace);
+            if (leaf.Heading is not null)
+                return ReplaceHeading(leaf, replace);
+            return false;
         }
 
         static bool ReplaceLastLineInBranch(Branch branch, Func<WLine, WLine> replace)
@@ -142,6 +149,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             blocks.RemoveAt(blocks.Count - 1);
             blocks.Add(replacement);
+            return true;
+        }
+
+        static bool ReplaceHeading(HContainer hContainer, Func<WLine, WLine> replace)
+        {
+            if (hContainer.Heading is not WLine line)
+                return false;
+            // tables?
+            WLine replacement = replace(line);
+            if (replacement is null)
+                return false;
+            hContainer.Heading = replacement;
             return true;
         }
 

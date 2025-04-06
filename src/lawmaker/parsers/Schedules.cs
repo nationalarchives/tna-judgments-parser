@@ -39,7 +39,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            string heading = IgnoreStartQuote(line.NormalizedContent, quoteDepth);
+            string heading = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
             if (!Schedules.IsValidHeading(heading))
                 return false;
 
@@ -53,9 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal List<IDivision> ParseSchedulesChildren()
         {
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = true;
-
+            frames.PushScheduleContext();
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
@@ -72,7 +70,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
             }
-            isInSchedules = isInSchedulesSave;
+            frames.Pop();
             return children;
         }
 

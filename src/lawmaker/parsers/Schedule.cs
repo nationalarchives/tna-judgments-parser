@@ -67,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
 
-            if (isInSchedules || quoteDepth > 0)
+            if (frames.IsScheduleContext() || quoteDepth > 0)
                 return schedule;
 
             // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped
@@ -82,17 +82,15 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            string num = IgnoreStartQuote(line.NormalizedContent, quoteDepth); ;
-            if (!Schedule.IsValidNumber(num))
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!Schedule.IsValidNumber(numText))
                 return false;
             return true;
         }
 
         internal List<IDivision> ParseScheduleChildren()
         {
-            bool isInSchedulesSave = isInSchedules;
-            isInSchedules = true;
-
+            frames.PushScheduleContext();
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
@@ -107,17 +105,12 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     break;
                 }
-                // Schedules can have a 
-                if (next is UnnumberedLeaf)
-                {
-                    
-                }
                 children.Add(next);
 
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            isInSchedules = isInSchedulesSave;
+            frames.Pop();
             return children;
         }
 

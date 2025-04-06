@@ -4,29 +4,37 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.Enrichment;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
     class QuotedTextEnricher
     {
+        private string Pattern;
 
-        internal static void EnrichDivisions(IList<IDivision> divisions)
+        internal delegate IInline Constructor(Match match, RunProperties props);
+
+        public QuotedTextEnricher(string startPattern, string endPattern)
+        {
+            Pattern = @$"{startPattern}(?'contents'.+?)(?:{endPattern}|$)";
+        }
+
+        internal void EnrichDivisions(IList<IDivision> divisions)
         {
             foreach (var div in divisions)
                 EnrichDivision(div);
         }
 
-        internal static void EnrichDivision(IDivision division)
+        internal void EnrichDivision(IDivision division)
         {
             if (division is Leaf leaf)
-                EnrichBlocks(leaf.Contents);
+                EnrichLeaf(leaf);
             else if (division is Branch branch)
                 EnrichBranch(branch);
         }
 
-        internal static void EnrichBranch(Branch branch)
+        internal void EnrichBranch(Branch branch)
         {
             if (branch.Intro != null)
                 EnrichBlocks(branch.Intro);
@@ -35,16 +43,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 EnrichBlocks(branch.WrapUp);
         }
 
-        internal static void EnrichBlocks(IList<IBlock> blocks)
+        internal void EnrichLeaf(Leaf leaf)
         {
-            string pattern = @"(\u201C[^\u201C\u201D]+?(?:\u201D|$))";
+            if (leaf.Contents?.Count > 0)
+                EnrichBlocks(leaf.Contents);
+        }
+
+
+        internal void EnrichBlocks(IList<IBlock> blocks)
+        {
             QuotedText qt = null;
-            IInline constructor(string text, DocumentFormat.OpenXml.Wordprocessing.RunProperties props)
+            IInline constructor(Match match, RunProperties props)
             {
-                string endQuote = text.EndsWith("\u201D") ? "\u201D" : null;
-                string contents = (endQuote == null) ? text[1..] : text[1..^1];
-                WText wText = new(contents, props);
-                qt = new QuotedText() { Contents = [wText], StartQuote = text[..1], EndQuote = endQuote };
+                string startQuote = match.Groups["startQuote"].Value;
+                string contents = match.Groups["contents"].Value;
+                string endQuote = match.Groups["endQuote"].Value;
+                qt = new QuotedText() { Contents = [new WText(contents, props)], StartQuote = startQuote, EndQuote = endQuote };
                 return qt;
             }
 
@@ -52,9 +66,9 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 IBlock enriched;
                 if (blocks[i] is WLine line && !line.NormalizedContent.StartsWith('\u201C'))
-                    enriched = EnrichLine(line, pattern, constructor);
+                    enriched = EnrichLine(line, constructor);
                 else if (blocks[i] is Mod mod)
-                    enriched = EnrichMod(mod, pattern, constructor);
+                    enriched = EnrichMod(mod, constructor);
                 else
                     continue;
 
@@ -66,7 +80,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
-        internal static Mod EnrichMod(Mod raw, string pattern, Constructor constructor)
+        internal Mod EnrichMod(Mod raw, Constructor constructor)
         {
             List<IBlock> enrichedBlocks = [];
             for (int i = 0; i < raw.Contents.Count; i++)
@@ -76,8 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
                  // mod elements to be created.
                 if (raw.Contents[i] is WLine line)
                 {
-                    IEnumerable<IInline> enrichedInlines = Enrich(line.Contents, pattern, constructor);
-                    WLine enrichedLine = WLine.Make(line, enrichedInlines);
+                    WLine enrichedLine = Enrich(line, constructor);
                     enrichedBlocks.Add(enrichedLine);
                 }
                 // Must enrich the divisions inside quoted structures
@@ -95,37 +108,41 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Identifies quoted text elements in the given line. 
-         * If one or more are found, the line is wrapped in a mod element. 
+         * A wrapper for the 'Enrich' method that wraps the given line in a 
+         * Mod element if it contains any QuotedText elements. 
          */
-        internal static IBlock EnrichLine(WLine raw, string pattern, Constructor constructor)
+        internal IBlock EnrichLine(WLine raw, Constructor constructor)
         {
-            IEnumerable<IInline> enriched = Enrich(raw.Contents, pattern, constructor);
+            WLine enriched = Enrich(raw, constructor);
             if (!ReferenceEquals(enriched, raw))
-                return new Mod() { Contents = [WLine.Make(raw, enriched)] };
+                return new Mod() { Contents = [enriched] };
             return raw;
         }
 
-        internal static IEnumerable<IInline> Enrich(IEnumerable<IInline> raw, string pattern, Constructor constructor)
+        /*
+         * Identifies and extracts any QuotedText instances from the plaintext of a given line. 
+         */
+        internal WLine Enrich(WLine raw, Constructor constructor)
         {
-            if (raw.Last() is not WText current)
+            if (raw.Contents.Count() == 0 || raw.Contents.Last() is not WText current)
+                return raw;
+            string text = current.Text;
+            MatchCollection matches = Regex.Matches(text, Pattern);
+            if (matches.Count == 0)
                 return raw;
 
-            MatchCollection matches = Regex.Matches(current.Text, pattern);
-            string[] segments = Regex.Split(current.Text, pattern);
-
-            if (segments.Count() == 1)
-                return raw;
-
-            List<IInline> enrichedInlines = [];
-            foreach (string segment in segments)
+            int charIndex = 0;
+            List<IInline> enrichedInlines = raw.Contents.SkipLast(1).ToList();
+            foreach (Match match in matches)
             {
-                if (Regex.IsMatch(segment, pattern))
-                    enrichedInlines.Add(constructor(segment, current.properties));
-                else
-                    enrichedInlines.Add(new WText(segment, current.properties));
+                if (match.Index > charIndex)
+                    enrichedInlines.Add(new WText(text[charIndex..match.Index], current.properties));
+                charIndex = match.Index + match.Length;
+                enrichedInlines.Add(constructor(match, current.properties));
             }
-            return enrichedInlines;
+            if (charIndex != text.Length)
+                enrichedInlines.Add(new WText(text[charIndex..], current.properties));
+            return WLine.Make(raw, enrichedInlines);
         }
 
     }

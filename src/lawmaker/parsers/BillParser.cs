@@ -34,7 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         private readonly ILogger Logger = Logging.Factory.CreateLogger<BillParser>();
-
+        private Frames frames = new Frames(DocName.NIA, Context.BODY);
         private readonly CaseLaw.WordDocument Document;
         private int i = 0;
 
@@ -45,7 +45,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private NIPublicBill Parse()
         {
-
             ParseAndEnrichHeader();
             ParseBody();
 
@@ -55,10 +54,11 @@ namespace UK.Gov.Legislation.Lawmaker
             Logger.LogInformation($"Maximum ParseAndMemoize depth reached: {parseAndMemoizeDepthMax}");
             Logger.LogInformation($"Maximum Parse depth reached: {parseDepthMax}");
 
-            // do this after parsing is complete, because it alters the contents of parsed results
-            // which does not work well with memoization
+            // Handle start and end quotes after parsing is complete, because it alters the
+            // contents of parsed results which does not work well with memoization
             ExtractAllQuotesAndAppendTexts(body);
-            QuotedTextEnricher.EnrichDivisions(body);
+            QuotedTextEnricher quotedTextEnricher = new($"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
+            quotedTextEnricher.EnrichDivisions(body);
 
             var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
