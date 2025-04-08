@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 
-using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src.Batch.One
@@ -14,22 +13,26 @@ namespace Backlog.Src.Batch.One
 
         internal string PathDoDataFolder { get; init; }
 
-        internal Bundle GenerateBundle(uint id) {
+        internal List<Metadata.Line> FindLines(uint id)
+        {
             List<Metadata.Line> lines = Metadata.Read(PathToCourtMetadataFile);
-            Metadata.Line line = Metadata.FindLine(lines, id);
-            if (line.Extension == ".pdf")
-                return MakePdfBundle(line);
-            else
-                return MakeDocxBundle(line);
+            return Metadata.FindLines(lines, id);
         }
 
-        internal Bundle MakePdfBundle(Metadata.Line line) {
+        internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false) {
+            if (line.Extension == ".pdf")
+                return MakePdfBundle(line, autoPublish);
+            else
+                return MakeDocxBundle(line, autoPublish);
+        }
+
+        internal Bundle MakePdfBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
             var pdf = Files.ReadFile(PathDoDataFolder, line);
             var stub = Stub.Make(meta);
             Api.Meta meta2 = new() {
                 DocumentType = "decision",
-                Court = Courts.FirstTierTribunal_GRC.Code,
+                Court = meta.Court?.Code,
                 Date = line.DecisionDate,
                 Name = line.claimants + " v " + line.respondent
             };
@@ -42,10 +45,10 @@ namespace Backlog.Src.Batch.One
                 Content = pdf,
                 MimeType = "application/pdf"
             };
-            return Bundle.Make(source, resp2);
+            return Bundle.Make(source, resp2, autoPublish);
         }
 
-        internal Bundle MakeDocxBundle(Metadata.Line line) {
+        internal Bundle MakeDocxBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
             var docx = Files.ReadFile(PathDoDataFolder, line);
             Api.Meta meta2 = new()
@@ -71,7 +74,7 @@ namespace Backlog.Src.Batch.One
                 Content = docx,
                 MimeType = meta.SourceFormat
             };
-            return Bundle.Make(source, resp2);
+            return Bundle.Make(source, resp2, autoPublish);
         }
 
     }
