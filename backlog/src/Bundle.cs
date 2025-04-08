@@ -34,7 +34,7 @@ namespace Backlog.Src
             return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
         }
 
-        internal static Bundle Make(Source source, Judgments.Api.Response response)
+        internal static Bundle Make(Source source, Judgments.Api.Response response, bool autoPublish = false)
         {
             string uuid = Guid.NewGuid().ToString();
             Metadata metadata = new()
@@ -53,7 +53,7 @@ namespace Backlog.Src
                     PARSER = response.Meta,
                     IngestorOptions = new IngestorOptions()
                     {
-                        AutoPublish = false,
+                        AutoPublish = autoPublish,
                         Source = new() {
                             Format = source.MimeType,
                             Hash = Hash(source.Content)
