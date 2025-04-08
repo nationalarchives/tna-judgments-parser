@@ -52,12 +52,9 @@ namespace Backlog.Src.Batch.One
             return csv.GetRecords<Line>().ToList();
         }
 
-        internal static Line FindLine(List<Line> lines, uint id)
+        internal static List<Line> FindLines(List<Line> lines, uint id)
         {
-            foreach (var line in lines)
-                if (line.id == id.ToString())
-                    return line;
-            return null;
+            return lines.Where(line => line.id == id.ToString()).ToList();
         }
 
         internal static ExtendedMetadata MakeMetadata(Line line) {
@@ -73,10 +70,12 @@ namespace Backlog.Src.Batch.One
                 sourceFormat = "application/pdf";
             else
                 throw new Exception(line.Extension);
+            bool old = String.Compare(line.DecisionDate, "2010-01-18") < 0;
+            Court court = old ? Courts.OldImmigationServicesTribunal : Courts.FirstTierTribunal_GRC; 
             ExtendedMetadata meta = new()
             {
                 Type = JudgmentType.Decision,
-                Court = Courts.FirstTierTribunal_GRC,
+                Court = court,
                 Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
                 Name = line.claimants + " v " + line.respondent,
                 CaseNumbers = [line.CaseNo],
