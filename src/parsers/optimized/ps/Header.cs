@@ -180,8 +180,12 @@ class Header {
             return;
         }
         if (NextLineIsCiteOnly()) {
-            WLine title = WDocTitle2.ConvertContents(line);
-            Enriched.Add(title);
+            if (TitleHasBeenFound()) {
+                Enriched.Add(line);
+            } else {
+                WLine title = WDocTitle2.ConvertContents(line);
+                Enriched.Add(title);
+            }
             return;
         }
         Enriched.Add(line);
@@ -196,6 +200,13 @@ class Header {
         if (nextBlock is not WLine line)
             return false;
         return Enricher.IsCiteOnly(line);
+    }
+
+    private bool TitleHasBeenFound() {
+        return Enriched.Where(block => block is WLine)
+            .Cast<WLine>()
+            .Where(line => line.Contents.Where(inline => inline is WDocTitle || inline is WDocTitle2).Any())
+            .Any();
     }
 
     private void AfterCiteBeforeOnAppealFrom(IBlock block) {

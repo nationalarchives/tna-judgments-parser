@@ -73,8 +73,8 @@ partial class Enricher {
             return true;
         if (line.NormalizedContent.Contains(@"In the matter of ", StringComparison.InvariantCultureIgnoreCase))
             return true;
-        // if (line.NormalizedContent.Contains(@"R (on the application of ", StringComparison.InvariantCultureIgnoreCase))
-        //     return true;
+        if (line.NormalizedContent.StartsWith(@"Re "))
+            return true;
         if (line.NormalizedContent.Contains("(Appellant") && line.NormalizedContent.Contains("(Respondent"))
             return true;
         if (line.NormalizedContent.Contains("(Applicant") && line.NormalizedContent.Contains("(Intervener"))
