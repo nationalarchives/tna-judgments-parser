@@ -180,7 +180,9 @@ class Header {
             return;
         }
         if (NextLineIsCiteOnly()) {
-            if (TitleHasBeenFound()) {
+            // if the next line is the NCN, we'll assume this line is the case name,
+            // but only if the case name has not already been found
+            if (CaseNameHasBeenFound()) {
                 Enriched.Add(line);
             } else {
                 WLine title = WDocTitle2.ConvertContents(line);
@@ -202,7 +204,7 @@ class Header {
         return Enricher.IsCiteOnly(line);
     }
 
-    private bool TitleHasBeenFound() {
+    private bool CaseNameHasBeenFound() {
         return Enriched.Where(block => block is WLine)
             .Cast<WLine>()
             .Where(line => line.Contents.Where(inline => inline is WDocTitle || inline is WDocTitle2).Any())
