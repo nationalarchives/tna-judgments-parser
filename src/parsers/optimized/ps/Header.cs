@@ -180,7 +180,7 @@ class Header {
             return;
         }
         if (NextLineIsCiteOnly()) {
-            // if the next line is the NCN, we'll assume this line is the case name,
+            // if the next line is the NCN, we'll assume the current line is the case name,
             // but only if the case name has not already been found
             if (CaseNameHasBeenFound()) {
                 Enriched.Add(line);
