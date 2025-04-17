@@ -1,0 +1,35 @@
+name: Run Integrations Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up .NET environment (assuming C# is the primary language)
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x' # Adjust to your target version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: dotnet restore
+
+      # Run tests
+      - name: Run tests
+        run: dotnet test test --verbosity normal
