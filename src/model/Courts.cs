@@ -388,6 +388,12 @@ public readonly partial struct Courts {
         URL = "https://investigatorypowerstribunal.org.uk/",
         CitationPattern = new Regex(@"^\[\d{4}\] UKIPTrib \d+$")
     };
+    public static readonly Court ConsumerCreditAppealsTribunal = new() {
+        Code = "UKFTT-Credit",
+        LongName = "Consumer Credit Appeals Tribunal",
+        URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20090516110219/http://www.consumercreditappeals.tribunals.gov.uk/",
+    };
+    
 
     public static readonly Court[] All = {
         SupremeCourt,
@@ -436,7 +442,9 @@ public readonly partial struct Courts {
 
         EmploymentTribunal,
 
-        InvestigatoryPowersTribunal
+        InvestigatoryPowersTribunal,
+
+        ConsumerCreditAppealsTribunal
     };
 
     public static readonly ImmutableDictionary<string, Court> ByCode =

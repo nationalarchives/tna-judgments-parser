@@ -10,7 +10,7 @@ using CsvHelper;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src.Batch.Three
 {
 
     class Metadata
@@ -36,39 +36,24 @@ namespace Backlog.Src.Batch.One
             return csv.GetRecords<Line>().ToList();
         }
 
-        internal static List<Line> FindLines(List<Line> lines, uint id)
-        {
-            return lines.Where(line => line.id == id.ToString()).ToList();
-        }
-
         internal static ExtendedMetadata MakeMetadata(Line line) {
-            List<ExtendedMetadata.Category> categories = [];
-            categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory_description });
-            if (!string.IsNullOrWhiteSpace(line.sec_subcategory_description)) {
-                categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory_description, Parent = line.main_subcategory_description });
-            }
             string sourceFormat;
-            if (line.Extension == ".doc" || line.Extension == ".docx")
-                sourceFormat = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            else if (line.Extension == ".pdf")
-                sourceFormat = "application/pdf";
-            else
-                throw new Exception(line.Extension);
+            sourceFormat = "application/pdf";
             
-            Court court = Courts.XXX; 
+            Court court = Courts.ConsumerCreditAppealsTribunal;
+
             ExtendedMetadata meta = new()
             {
                 Type = JudgmentType.Decision,
                 Court = court,
-                Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
-                Name = line.claimants + " v " + line.respondent,
-                CaseNumbers = [line.CaseNo],
+                //Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
+                Name = line.AppellantName + " v " + line.RespondentName,
+                //CaseNumbers = [line.CaseNo],
                 Parties = [
-                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.claimants, Role = PartyRole.Claimant },
-                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.respondent, Role = PartyRole.Respondent }
+                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.AppellantName, Role = PartyRole.Appellant },
+                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.RespondentName, Role = PartyRole.Respondent }
                 ],
                 SourceFormat = sourceFormat,
-                Categories = [.. categories]
             };
             return meta;
         }
