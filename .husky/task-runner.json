@@ -1,0 +1,40 @@
+{
+   "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+   "tasks": [
+      {
+         "name": "commit-message-linter",
+         "command": "dotnet",
+         "args": [
+            "husky",
+            "exec",
+            ".husky/csx/commit-lint.csx",
+            "--args",
+            "${args}"
+         ]
+      },
+      {
+         "name": "csharpier",
+         "group": "pre-commit",
+         "command": "dotnet",
+         "args": ["csharpier", "${staged}"],
+         "include": ["**/*.cs"]
+      },
+      {
+         "name": "warning-check",
+         "command": "dotnet",
+         "group": "pre-push",
+         "args": ["build", "/warnaserror"],
+         "include": ["**/*.cs", "**/*.vb"]
+      },
+      {
+         "name": "run-jb-clean-up-code",
+         "command": "sh",
+         "pathMode": "relative",
+         "args": [
+           "-c",
+           "dotnet jb cleanupcode judgments.csproj --include=${staged} || echo 'No items were found to cleanup.'"
+         ],
+         "group": "pre-commit"
+      }
+   ]
+}

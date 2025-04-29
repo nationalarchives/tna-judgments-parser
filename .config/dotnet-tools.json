@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "husky": {
+      "version": "0.7.2",
+      "commands": [
+        "husky"
+      ]
+    },
+    "csharpier": {
+      "version": "0.30.6",
+      "commands": [
+        "dotnet-csharpier"
+      ]
+    },
+    "dotnet-sonarscanner": {
+      "version": "9.1.0",
+      "commands": [
+        "dotnet-sonarscanner"
+      ]
+    },
+    "jetbrains.resharper.globaltools": {
+      "version": "2024.3.5",
+      "commands": [
+        "jb"
+      ]
+    }
+  }
+}
