@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
@@ -71,7 +72,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     }
                     WLine line = block as WLine;
                     XmlElement p = doc.CreateElement("p", ns);
-                    switch (line.NormalizedContent.ToLower()) {
+                    string text = Regex.Replace(line.NormalizedContent, @"\s", "").ToLower();
+                    switch (text) {
                     case "a":
                         p.SetAttribute("class", ns, "A");
                         p.InnerText = "A";
@@ -202,6 +204,20 @@ namespace UK.Gov.Legislation.Lawmaker
                     throw new Exception(block.GetType().ToString());
                 }
             }
+        }
+
+        override protected void p(XmlElement parent, ILine line) {
+        if (line is IUnknownLine) {
+            // Putting this here for now, this should eventually be moved to a method IUnknownLine.Add(parent)
+            // but for now we need access to the AddInline method
+            XmlElement p = parent.OwnerDocument.CreateElement("p", parent.NamespaceURI);
+            p.SetAttribute("class", parent.NamespaceURI, "unknownImport");
+            foreach(IInline inline in line.Contents) {
+                AddInline(p, inline);
+            }
+            parent.AppendChild(p);
+        } else
+            base.p(parent, line);
         }
 
         private int quoteDepth = 0;
