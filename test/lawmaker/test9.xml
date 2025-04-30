@@ -222,7 +222,19 @@
             <subsection class="prov2">
               <num>(21)</num>
               <content>
-                <p><mod>In Article 159 of that Order (appointment of guardians by court) note that this is one of those bad unnumbered paragraph examples <quotedText startQuote="“" endQuote="">; or</quotedText><quotedStructure endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nisi"><level class="para1"><num>(c)</num><content><p>sub-paragraph (b) does not apply, and the child’s only or last surviving special guardian dies.</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
+                <p><mod>In Article 159 of that Order (appointment of guardians by court) note that this is one of those bad unnumbered paragraph examples—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nisi"><level class="unnumberedParagraph"><intro><p>; or</p></intro><level class="para1"><num>(c)</num><content><p>This should be a child of the unnumbered paragraph, since it is a valid child, and is indented more than its parent.</p></content></level></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(21B)</num>
+              <content>
+                <p><mod>In Article 159 of that Order (appointment of guardians by court) note that this is one of those bad unnumbered paragraph examples—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nisi"><level class="unnumberedParagraph"><content><p>; or</p></content></level><level class="para1"><num>(c)</num><content><p>This should be a following sibling as it is indented less than the previous provision.</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
+              </content>
+            </subsection>
+            <subsection class="prov2">
+              <num>(21C)</num>
+              <content>
+                <p><mod>In Article 159 of that Order (appointment of guardians by court) note that this is one of those bad unnumbered paragraph examples—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nisi"><level class="unnumberedParagraph"><content><p>; or</p></content></level><paragraph class="prov2"><num>(1)</num><content><p>This Prov2 is not a valid child of an unnumbered paragraph, so it should be a following sibling</p></content></paragraph></quotedStructure><inline name="AppendText">.</inline></mod></p>
               </content>
             </subsection>
             <subsection class="prov2">
@@ -286,23 +298,11 @@
               <paragraph class="schProv1">
                 <num>2.</num>
                 <content>
-                  <p><mod>Test empty code—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia" class="unknownImport"><level class="para1"><num>(ba)</num><content><p>special guardians (within the meaning of Article 14A of the Children (Northern Ireland) Order 1995);</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
+                  <p><mod>In Article 4 (meaning of certain other terms used in the Order), in paragraph (4) after sub-paragraph (b) insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nisr"><level class="para1"><num>(ba)</num><content><p>special guardians (within the meaning of Article 14A of the Children (Northern Ireland) Order 1995);</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
                 </content>
               </paragraph>
               <paragraph class="schProv1">
                 <num>3.</num>
-                <content>
-                  <p><mod>Test invalid docname—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia" class="unknownImport"><level class="para1"><num>(ba)</num><content><p>special guardians (within the meaning of Article 14A of the Children (Northern Ireland) Order 1995);</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
-                </content>
-              </paragraph>
-              <paragraph class="schProv1">
-                <num>4.</num>
-                <content>
-                  <p><mod>Test valid docname but invalid context. Should have NISI docname but default to BODY context—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nisi" class="unknownImport"><level class="para1"><num>(ba)</num><content><p>special guardians (within the meaning of Article 14A of the Children (Northern Ireland) Order 1995);</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
-                </content>
-              </paragraph>
-              <paragraph class="schProv1">
-                <num>5.</num>
                 <content>
                   <p><mod>For Schedule 3 (application and modification of Adoption (Northern Ireland) Order 1987 in respect of parental orders and applications for such orders) substitute—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="sch" ukl:docName="nisi"><paragraph class="schProv1"><num>1.</num><content><p>The provisions of the 2021 Act set out in the following paragraphs have effect in relation to parental orders and applications for parental orders subject to the modifications set out in those paragraphs.</p></content></paragraph><paragraph class="schProv1"><num>2.</num><subparagraph class="schProv2"><num>(1)</num><content><p>Section 1 (considerations applying to the exercise of powers) is modified as follows.</p></content></subparagraph><subparagraph class="schProv2"><num>(2)</num><content><p><mod>The section has effect as if the words <quotedText startQuote="“" endQuote="”">or adoption agency</quotedText> were omitted on each occasion they appear.</mod></p></content></subparagraph><subparagraph class="schProv2"><num>(3)</num><content><p><mod>Subsection (1) has effect as if for <quotedText startQuote="“" endQuote="”">the adoption of</quotedText> there were substituted <quotedText startQuote="“" endQuote="">the making of a parental order in relation to</quotedText></mod></p></content></subparagraph></paragraph></quotedStructure><inline name="AppendText">.</inline></mod></p>
                 </content>
