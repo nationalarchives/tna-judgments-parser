@@ -375,19 +375,10 @@ abstract class Builder {
             AddInline(block, inline);
         ContainingParagraphStyle = null;
     }
-    protected void p(XmlElement parent, ILine line) {
+    virtual protected void p(XmlElement parent, ILine line) {
         if (line is IRestriction restriction)
             AddNamedBlock(parent, line, "restriction");
-        else if (line is IUnknownLine) {
-            // Putting this here for now, this should eventually be moved to a method IUnknownLine.Add(parent)
-            // but for now we need access to the AddInline method
-            XmlElement p = parent.OwnerDocument.CreateElement("p", parent.NamespaceURI);
-            p.SetAttribute("class", parent.NamespaceURI, "unknownImport");
-            foreach(IInline inline in line.Contents) {
-                AddInline(p, inline);
-            }
-            parent.AppendChild(p);
-        } else
+        else
             Block(parent, line, "p");
     }
 
