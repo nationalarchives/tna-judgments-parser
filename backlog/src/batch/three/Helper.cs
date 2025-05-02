@@ -4,7 +4,7 @@ using System.IO;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src.Batch.Three
 {
     class Helper
     {
@@ -12,12 +12,6 @@ namespace Backlog.Src.Batch.One
         internal string PathToCourtMetadataFile { get; init; }
 
         internal string PathDoDataFolder { get; init; }
-
-        internal List<Metadata.Line> FindLines(uint id)
-        {
-            List<Metadata.Line> lines = Metadata.Read(PathToCourtMetadataFile);
-            return Metadata.FindLines(lines, id);
-        }
 
         internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false) {
             if (line.Extension == ".pdf")
@@ -33,8 +27,7 @@ namespace Backlog.Src.Batch.One
             Api.Meta meta2 = new() {
                 DocumentType = "decision",
                 Court = meta.Court?.Code,
-                Date = line.DecisionDate,
-                Name = line.claimants + " v " + line.respondent
+                Name = line.AppellantName + " v " + line.RespondentName
             };
             Api.Response resp2 = new() {
                 Xml = stub.Serialize(),

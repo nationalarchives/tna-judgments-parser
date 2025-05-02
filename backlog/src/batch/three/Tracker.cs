@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src.Batch.Three
 {
 
     class Tracker
@@ -15,7 +15,7 @@ namespace Backlog.Src.Batch.One
         }
 
         private string MakeKey(Metadata.Line line) {
-            return line.id + "/" + line.FilePath;
+            return line.FilePath;
         }
 
         internal bool WasDone(Metadata.Line line) {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using CsvHelper;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src.Batch.Three
 {
 
     class BulkNumbers
