@@ -393,7 +393,12 @@ public readonly partial struct Courts {
         LongName = "Consumer Credit Appeals Tribunal",
         URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20090516110219/http://www.consumercreditappeals.tribunals.gov.uk/",
     };
-    
+
+    public static readonly Court EstateAgentsTribunal = new() {
+        Code = "UKFTT-Estate",
+        LongName = "Estate Agents Tribunal",
+        URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20130206050212/https://www.justice.gov.uk/tribunals/estate-agents",
+    };    
 
     public static readonly Court[] All = {
         SupremeCourt,

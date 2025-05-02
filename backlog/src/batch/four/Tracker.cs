@@ -1,0 +1,35 @@
+
+using System.IO;
+using System.Linq;
+
+namespace Backlog.Src.Batch.Four
+{
+
+    class Tracker
+    {
+        private readonly string file;
+        internal Tracker(string file) {
+            this.file = file;
+            if (!File.Exists(file))
+                File.Create(file); // FixMe close this stream
+        }
+
+        private string MakeKey(Metadata.Line line) {
+            return line.FilePath;
+        }
+
+        internal bool WasDone(Metadata.Line line) {
+            var key = MakeKey(line);
+            return File.ReadAllLines(file).Where(line => line.Contains(key)).Any();
+        }
+
+        internal void MarkDone(Metadata.Line line, string uuid) {
+            var key = MakeKey(line);
+            var timestamp = System.DateTime.Now.ToFileTime();
+            string next = key + "," + uuid + "," + timestamp;
+            File.AppendAllLines(file, [next]);
+        }
+
+    }
+
+}
