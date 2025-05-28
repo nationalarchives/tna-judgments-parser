@@ -1,6 +1,8 @@
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -47,6 +49,7 @@ namespace Backlog.Src
                         Payload = new TRE.Payload
                         {
                             Filename = source.Filename,
+                            Images = [.. response.Images.Select(i => i.Name)],
                             Log = null
                         }
                     },
@@ -67,6 +70,7 @@ namespace Backlog.Src
             WriteSource(source.Content, uuid, source.Filename, tar);
             WriteXml(response.Xml, uuid, metadata.Parameters.TRE.Payload.Xml, tar);
             WriteMetadata(metadata, uuid, tar);
+            WriteImages(response.Images, uuid, tar);
             tar.Close();
             gz.Close();
             byte[] tarGz = memStream.ToArray();
@@ -95,6 +99,15 @@ namespace Backlog.Src
             var json = JsonSerializer.SerializeToUtf8Bytes(metadata, metadata.Options);
             var name = uuid + "/" + metadata.Parameters.TRE.Payload.Metadata;
             Write(json, name, tar);
+        }
+
+        private static void WriteImages(IEnumerable<Judgments.Api.Image> images, string uuid, TarOutputStream tar)
+        {
+            foreach (var image in images)
+            {
+                var name = uuid + "/" + image.Name;
+                Write(image.Content, name, tar);
+            }
         }
 
         private static void Write(byte[] data, string name, TarOutputStream tar)
