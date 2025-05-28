@@ -10,8 +10,10 @@ namespace Backlog.Src.Batch.One
         private readonly string file;
         internal Tracker(string file) {
             this.file = file;
-            if (!File.Exists(file))
-                File.Create(file); // FixMe close this stream
+            if (!File.Exists(file)) {
+                using var stream = File.Create(file);
+                stream.Close();
+            }
         }
 
         private string MakeKey(Metadata.Line line) {
