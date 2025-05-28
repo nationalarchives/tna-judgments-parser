@@ -22,6 +22,8 @@ namespace Backlog.Src.Batch.One
         internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta) {
             string uuid = GetUuid(pathToDataFolder, meta);
             string path = pathToDataFolder + @"court_documents\" + uuid;
+            if (meta.Extension == ".doc")
+                path += ".docx";
             return System.IO.File.ReadAllBytes(path);
         }
 
