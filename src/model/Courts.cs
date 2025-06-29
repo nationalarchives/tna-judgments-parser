@@ -375,6 +375,11 @@ public readonly partial struct Courts {
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(GRC\)$")
     };
 
+    public static readonly Court OldImmigationServicesTribunal = new() {
+        Code = "UKIST",
+        LongName = "The Immigation Services Tribunal"
+    };
+
     public static readonly Court EmploymentTribunal = new Court {
         Code = "ET",
         LongName = "The Employment Tribunal",
@@ -433,6 +438,7 @@ public readonly partial struct Courts {
 
         FirstTierTribunal_Tax,
         FirstTierTribunal_GRC,
+        OldImmigationServicesTribunal,
 
         EmploymentTribunal,
 
