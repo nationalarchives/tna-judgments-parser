@@ -14,8 +14,30 @@ namespace Backlog.Src
 
         static int Main(string[] args)
         {
-            uint id = 2;
-            bool autoPublish = true;
+            TestTracker(64);
+            return 0;
+        }
+
+        static void OneLocal(uint id, bool autoPublish = false)
+        {
+            Helper helper = new()
+            {
+                PathToCourtMetadataFile = @"C:\Users\Administrator\TDR-2025-CNS6\court_metadata.csv",
+                PathDoDataFolder = @"C:\Users\Administrator\TDR-2025-CNS6\"
+            };
+            List<Metadata.Line> lines = helper.FindLines(id);
+            foreach (var line in lines)
+            {
+                Bundle bundle = helper.GenerateBundle(line, autoPublish);
+                string output = @"C:\Users\Administrator\TDR-2025-CNS6\" + bundle.Uuid + ".tar.gz";
+                System.IO.File.WriteAllBytes(output, bundle.TarGz);
+                System.Console.WriteLine(bundle.Uuid + ".tar.gz");
+                System.Console.WriteLine(System.DateTime.Now);
+            }
+        }
+
+        static void OneForReal(uint id, bool autoPublish = true)
+        {
 
             DotNetEnv.Env.Load();  // required for bucket name
 
@@ -30,7 +52,8 @@ namespace Backlog.Src
 
             foreach (var line in lines)
             {
-                if (tracker.WasDone(line)) {
+                if (tracker.WasDone(line))
+                {
                     System.Console.WriteLine("skipping " + line.id);
                     continue;
                 }
@@ -54,7 +77,22 @@ namespace Backlog.Src
 
             }
 
-            return 0;
+        }
+
+        static void TestTracker(uint id)
+        {
+            Tracker tracker = new Tracker(@"C:\Users\Administrator\TDR-2025-CNS6\uploaded-production.csv");
+            Helper helper = new()
+            {
+                PathToCourtMetadataFile = @"C:\Users\Administrator\TDR-2025-CNS6\court_metadata.csv",
+                PathDoDataFolder = @"C:\Users\Administrator\TDR-2025-CNS6\"
+            };
+            List<Metadata.Line> lines = helper.FindLines(id);
+            System.Console.WriteLine(lines.Count + " lines");
+            foreach (var line in lines)
+            {
+                System.Console.WriteLine(tracker.WasDone(line));
+            }
         }
 
     }
