@@ -12,14 +12,6 @@ using UK.Gov.NationalArchives.CaseLaw.Model;
 namespace Backlog.Src
 {
 
-    // internal class Subcategory {
-
-    //     public string Name { get; init; }
-
-    //     public string Parent { get; init; }
-
-    // }
-
     internal class Stub
     {
         internal static Stub Make(ExtendedMetadata data)
