@@ -33,12 +33,6 @@ public class SHA256 {
         text = Regex.Replace(text, @"\s", "");
         byte[] hash = Crypto.SHA256.HashData(Encoding.UTF8.GetBytes(text));
         return System.BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
-        // Crypto.SHA256 sha256 = Crypto.SHA256.Create();
-        // byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(text));
-        // StringWriter writer = new StringWriter();
-        // for (int i = 0; i < bytes.Length; i++)
-        //     writer.Write($"{bytes[i]:X2}");
-        // return writer.ToString().ToLower();
     }
 
 }
