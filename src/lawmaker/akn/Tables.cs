@@ -99,6 +99,12 @@ namespace UK.Gov.Legislation.Lawmaker
                     tr.AppendChild(td);
                     this.blocks(td, cell.Contents);
 
+                    // all direct children of a td in Lawmaker gets the AKN as a default namespace
+                    foreach (XmlElement element in td.ChildNodes.OfType<XmlElement>())
+                    {
+                        element.SetAttribute("xmlns", AknNamespace);
+                    }
+
                     int colspan = cell.ColSpan ?? 1;
                     for (int i = 0; i < colspan; i++)
                         thisRowOfCellsWithRepeats.Add(td);
