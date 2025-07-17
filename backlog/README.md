@@ -83,21 +83,87 @@ bulk_num,trib_id
 
 This tracking ensures consistency across multiple processing runs and helps maintain referential integrity between the source tribunal system and our system.
 
+## Implementation Details
+
+### Directory Structure
+
+The expected directory structure for data processing is:
+
+```plaintext
+data/
+├── tdr_metadata/
+│   └── file-metadata.csv    # Maps judgment files to UUIDs
+└── court_documents/         # Contains the actual judgment documents
+    ├── {uuid}              # Original files (no extension)
+    └── {uuid}.{ext}        # Processed files with extensions
+```
+
+### File Processing
+
+The module implements robust file handling with several key features:
+
+1. **UUID-based File Management**:
+   - Files are stored internally using UUIDs
+   - Original filenames are mapped to UUIDs in `file-metadata.csv`
+   - Supports tracking of original file locations and names
+
+2. **Extension Handling**:
+   - Automatic conversion of `.doc` to `.docx` format
+   - Preserves original file extensions for tracking
+   - Maintains both original and processed versions
+
+3. **Error Handling**:
+   - Continues processing on individual file errors
+   - Logs issues for manual review
+   - Maintains processing state for partial batch completion
+
+### Batch Processing
+
+The module processes files in batches with these key components:
+
+1. **File Discovery**:
+
+   ```csharp
+   var files = Files.GetFiles(dataDir, pattern);
+   ```
+
+2. **Extension Processing**:
+
+   ```csharp
+   Files.CopyAllFilesWithExtension(dataDir, files);
+   ```
+
+3. **Content Reading**:
+
+   ```csharp
+   byte[] content = Files.ReadFile(dataDir, metadataLine);
+   ```
+
 ## Usage
 
-1. Set up the required environment variables or ensure files exist in default locations
+To process backlog judgments:
 
-2. Run the backlog processor with an ID and auto-publish flag:
+```bash
+export COURT_METADATA_PATH=/path/to/metadata.csv
+export DATA_FOLDER_PATH=/path/to/data
+export TRACKER_PATH=/path/to/tracker.csv
+export OUTPUT_PATH=/path/to/output
+export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
+```
+
+Prepare your data directory structure as shown in the directory structure section above, then run the backlog processor:
 
 ```csharp
 // Example
 uint id = 2;
 bool autoPublish = true;
 
-Helper helper = new()
+var helper = new Helper
 {
     PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH"),
-    PathDoDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH")
+    PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH")
+};
+```
 };
 ```
 
