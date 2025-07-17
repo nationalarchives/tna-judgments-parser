@@ -14,7 +14,7 @@ namespace Backlog.Src.Batch.One
 
         private static readonly uint LastBeforeThisBatch = 357;
 
-        private static readonly string Path = @"C:\Users\Administrator\TDR-2024-CG6F_converted\bulk_numbers.csv";
+        private static readonly string Path = Environment.GetEnvironmentVariable("BULK_NUMBERS_PATH") ?? System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bulk_numbers.csv");
 
         internal static uint Next(uint id)
         {
@@ -39,6 +39,11 @@ namespace Backlog.Src.Batch.One
             return next;
         }
 
+        /// <summary>
+        /// Saves a bulk number assignment for a tribunal ID to the tracking CSV file.
+        /// </summary>
+        /// <param name="id">The tribunal ID being assigned a bulk number</param>
+        /// <param name="bulkNum">The bulk number being assigned</param>
         internal static void Save(uint id, uint bulkNum) {
             // using var stream = new FileStream(Path, FileMode.Append, FileAccess.Write);
             using var writer = new StreamWriter(Path, true);
@@ -51,12 +56,20 @@ namespace Backlog.Src.Batch.One
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// Represents a line in the bulk numbers CSV file.
+        /// </summary>
         class Line
         {
-
+            /// <summary>
+            /// The assigned bulk number
+            /// </summary>
             public string bulk_num { get; set; }
-            public string trib_id { get; set; }
 
+            /// <summary>
+            /// The tribunal ID that was assigned the bulk number
+            /// </summary>
+            public string trib_id { get; set; }
         }
 
 
