@@ -21,10 +21,11 @@ namespace Backlog.Src
 
             Helper helper = new()
             {
-                PathToCourtMetadataFile = @"C:\Users\Administrator\TDR-2025-CNS6\court_metadata.csv",
-                PathDoDataFolder = @"C:\Users\Administrator\TDR-2025-CNS6\"
+                PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
+                PathDoDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
             };
-            Tracker tracker = new Tracker(@"C:\Users\Administrator\TDR-2025-CNS6\uploaded-production.csv");
+            string trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
+            Tracker tracker = new Tracker(trackerPath);
 
             List<Metadata.Line> lines = helper.FindLines(id);
 
@@ -37,7 +38,8 @@ namespace Backlog.Src
 
                 Bundle bundle = helper.GenerateBundle(line, autoPublish);
 
-                string output = @"C:\Users\Administrator\TDR-2025-CNS6\" + bundle.Uuid + ".tar.gz";
+                string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
+                string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
                 System.IO.File.WriteAllBytes(output, bundle.TarGz);
 
                 System.Console.WriteLine(bundle.Uuid + ".tar.gz");
