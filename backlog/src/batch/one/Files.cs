@@ -12,7 +12,7 @@ namespace Backlog.Src.Batch.One
     {
         // Directory structure constants
         private const string TDR_METADATA_DIR = "tdr_metadata";
-        private const string COURT_DOCUMENTS_DIR = "court_documents";
+        private const string COURT_DOCUMENTS_DIR = "court_documents/e14fb247-5d9b-42b8-9238-52ae3bd8345b";
         private const string METADATA_FILENAME = "file-metadata.csv";
         private const string JUDGMENT_FILES_PATH = "JudgmentFiles";
         private const string HMCTS_FILES_PATH = "data/HMCTS_Judgment_Files";
@@ -24,21 +24,41 @@ namespace Backlog.Src.Batch.One
         /// <param name="meta">Metadata line containing file information</param>
         /// <returns>UUID from the metadata file, or null if not found</returns>
         private static string GetUuid(string pathToDataFolder, Metadata.Line meta) {
-            string clientside_original_filepath = meta.FilePath
-                .Replace(Path.DirectorySeparatorChar == '/' ? JUDGMENT_FILES_PATH : JUDGMENT_FILES_PATH.Replace('/', '\\'),
-                        HMCTS_FILES_PATH)
-                .Replace('\\', '/');
+            if (string.IsNullOrEmpty(meta.FilePath))
+                throw new ArgumentException("FilePath cannot be empty", nameof(meta));
+
+            // Handle paths in OS-agnostic way
+            var normalizedPath = meta.FilePath.Replace('\\', '/');
+            if (!normalizedPath.StartsWith(JUDGMENT_FILES_PATH))
+                throw new ArgumentException($"FilePath must start with {JUDGMENT_FILES_PATH}", nameof(meta));
+
+            // Extract the relative path after JudgmentFiles/
+            var relativePath = normalizedPath.Substring(JUDGMENT_FILES_PATH.Length + 1);
                 
             var metadataPath = Path.Combine(pathToDataFolder, TDR_METADATA_DIR, METADATA_FILENAME);
-            IEnumerable<string> lines = File.ReadLines(metadataPath);
-            
+            if (!File.Exists(metadataPath))
+                throw new FileNotFoundException($"Metadata file not found at {metadataPath}");
+
+            var lines = File.ReadLines(metadataPath);
             foreach (var line in lines)
             {
-                if (!line.Contains(clientside_original_filepath))
-                    continue;
-                return line.Substring(line.LastIndexOf(',') + 1);
+                if (string.IsNullOrEmpty(line)) continue;
+                var parts = line.Split(',');
+                if (parts.Length < 25) continue;  // Need at least up to the UUID column
+
+                var filePath = parts[4].Replace('\\', '/');  // clientside_original_filepath is column 5
+                // Look for files that have the same relative path after HMCTS_FILES_PATH
+                if (!filePath.StartsWith(HMCTS_FILES_PATH)) continue;
+                var metadataRelativePath = filePath.Substring(HMCTS_FILES_PATH.Length + 1);
+                if (metadataRelativePath != relativePath) continue;
+
+                return parts[25];  // UUID is the last column
             }
-            return null;
+
+            throw new FileNotFoundException(
+                $"No UUID found for {relativePath} in {metadataPath}. " +
+                $"Original path: {meta.FilePath}"
+            );
         }
 
         /// <summary>
@@ -49,7 +69,8 @@ namespace Backlog.Src.Batch.One
         /// <returns>File contents as a byte array</returns>
         internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta) {
             string uuid = GetUuid(pathToDataFolder, meta);
-            string path = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR, uuid);
+            string documentPath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR);
+            string path = Path.Combine(documentPath, uuid);
             
             if (meta.Extension.ToLower() == ".doc")
                 path += ".docx";
@@ -69,7 +90,11 @@ namespace Backlog.Src.Batch.One
                 string sourcePath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR, uuid);
                 string targetPath = sourcePath + line.Extension.ToLower();
                 
-                byte[] data = File.ReadAllBytes(sourcePath);
+                string sourceFullPath = sourcePath;
+                if (line.Extension.ToLower() == ".doc")
+                    sourceFullPath += ".docx";
+                
+                byte[] data = File.ReadAllBytes(sourceFullPath);
                 File.WriteAllBytes(targetPath, data);
             }
         }
