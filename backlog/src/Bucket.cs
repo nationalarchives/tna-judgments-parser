@@ -9,29 +9,36 @@ using Amazon.S3.Model;
 namespace Backlog.Src
 {
 
-    class Bucket
+    public    class Bucket
     {
+        private static IAmazonS3 client = new AmazonS3Client();
+        private static string bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME");
 
-        // private static readonly Amazon.RegionEndpoint London = Amazon.RegionEndpoint.EUWest2;
+        // For testing purposes
+        public static void Configure(IAmazonS3 s3Client, string testBucketName = null)
+        {
+            client = s3Client;
+            if (testBucketName != null)
+                bucketName = testBucketName;
+        }
 
-        private static readonly string BucketName = Environment.GetEnvironmentVariable("BUCKET_NAME");
+        // Reset to default configuration
+        public static void ResetConfiguration()
+        {
+            client = new AmazonS3Client();
+            bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME");
+        }
 
-        // private static readonly string AccessKeyId = Environment.GetEnvironmentVariable("ACCESS_KEY_ID");
-
-        // private static readonly string SecretAccessKey = Environment.GetEnvironmentVariable("SECRET_ACCESS_KEY");
-
-        private static readonly AmazonS3Client Client = new();
-
-        internal static Task<PutObjectResponse> UploadBundle(string key, byte[] bundle)
+        public static Task<PutObjectResponse> UploadBundle(string key, byte[] bundle)
         {
             PutObjectRequest request = new()
             {
-                BucketName = BucketName,
+                BucketName = bucketName,
                 Key = key,
                 ContentType = "application/gzip",
                 InputStream = new MemoryStream(bundle)
             };
-            return Client.PutObjectAsync(request);
+            return client.PutObjectAsync(request);
         }
     }
 
