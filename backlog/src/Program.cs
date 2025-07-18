@@ -1,6 +1,9 @@
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
+using System.Linq;
 
 using Amazon.S3.Model;
 
@@ -9,54 +12,83 @@ using Backlog.Src.Batch.One;
 namespace Backlog.Src
 {
 
-    class Program
+    public class Program
     {
 
-        static int Main(string[] args)
+        public static int Main(string[] args)
         {
-            uint id = 2;
-            bool autoPublish = true;
-
-            DotNetEnv.Env.Load();  // required for bucket name
-
-            Helper helper = new()
+            try
             {
-                PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
-                PathDoDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
-            };
-            string trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
-            Tracker tracker = new Tracker(trackerPath);
-
-            List<Metadata.Line> lines = helper.FindLines(id);
-
-            foreach (var line in lines)
-            {
-                if (tracker.WasDone(line)) {
-                    System.Console.WriteLine("skipping " + line.id);
-                    continue;
+                if (args.Length < 2 || args[0] != "--id" || !uint.TryParse(args[1], out uint id))
+                {
+                    System.Console.WriteLine("Usage: backlog --id <id>");
+                    return 1;
                 }
 
-                Bundle bundle = helper.GenerateBundle(line, autoPublish);
+                bool autoPublish = true;
 
-                string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
-                string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
-                System.IO.File.WriteAllBytes(output, bundle.TarGz);
+                DotNetEnv.Env.Load();  // required for bucket name
 
-                System.Console.WriteLine(bundle.Uuid + ".tar.gz");
-                System.Console.WriteLine(System.DateTime.Now);
+                Helper helper = new()
+                {
+                    PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
+                    PathDoDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
+                };
+                string trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
+                Tracker tracker = new Tracker(trackerPath);
 
-                Task<PutObjectResponse> task = Bucket.UploadBundle(bundle.Uuid + ".tar.gz", bundle.TarGz);
-                var x = task.Result;
+                List<Metadata.Line> lines = helper.FindLines(id);
+                if (!lines.Any())
+                {
+                    System.Console.WriteLine($"No records found for id {id}");
+                    return 1;
+                }
 
-                tracker.MarkDone(line, bundle.Uuid);
+                foreach (var line in lines)
+                {
+                    if (tracker.WasDone(line)) {
+                        System.Console.WriteLine("skipping " + line.id);
+                        continue;
+                    }
 
-                System.Console.WriteLine("success");
-                System.Console.WriteLine(bundle.Uuid + ".tar.gz");
-                System.Console.WriteLine(System.DateTime.Now);
+                    try
+                    {
+                        System.Console.WriteLine($"Processing file: {line.FilePath}");
+                        System.Console.WriteLine($"Using court metadata from: {helper.PathToCourtMetadataFile}");
+                        System.Console.WriteLine($"Using data folder: {helper.PathDoDataFolder}");
+                        
+                        Bundle bundle = helper.GenerateBundle(line, autoPublish);
 
+                        string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
+                        string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
+                        System.IO.File.WriteAllBytes(output, bundle.TarGz);
+
+                        System.Console.WriteLine(bundle.Uuid + ".tar.gz");
+                        System.Console.WriteLine(System.DateTime.Now);
+
+                        Task<PutObjectResponse> task = Bucket.UploadBundle(bundle.Uuid + ".tar.gz", bundle.TarGz);
+                        var response = task.Result;
+
+                        tracker.MarkDone(line, bundle.Uuid);
+
+                        System.Console.WriteLine("success");
+                        System.Console.WriteLine(bundle.Uuid + ".tar.gz");
+                        System.Console.WriteLine(System.DateTime.Now);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine($"Error processing line {line.id}: {ex.Message}");
+                        return 1;
+                    }
+                }
+
+                return 0;
             }
-
-            return 0;
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Fatal error: {ex.Message}");
+                return 1;
+            }
         }
 
     }
