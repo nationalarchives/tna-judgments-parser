@@ -11,11 +11,19 @@ namespace judgments.src.akn
     {
 
         internal static void AddProprietaryFields(XmlElement proprietary, IMetadataExtended meta) {
-            foreach (var party in meta.Parties)
-                AddParty(proprietary, party);
-            foreach (var cat in meta.Categories)
-                AddCategory(proprietary, cat);
-            AddSourceFormat(proprietary, meta.SourceFormat);
+            if (meta?.Parties != null) {
+                foreach (var party in meta.Parties)
+                    if (party != null)
+                        AddParty(proprietary, party);
+            }
+            if (meta?.Categories != null) {
+                foreach (var cat in meta.Categories)
+                    if (cat != null)
+                        AddCategory(proprietary, cat);
+            }
+            if (meta?.SourceFormat != null) {
+                AddSourceFormat(proprietary, meta.SourceFormat);
+            }
         }
 
         static void AddParty(XmlElement proprietary, UK.Gov.NationalArchives.CaseLaw.Model.Party party)

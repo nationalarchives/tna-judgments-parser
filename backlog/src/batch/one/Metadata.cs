@@ -71,7 +71,7 @@ namespace Backlog.Src.Batch.One
             else
                 throw new Exception(line.Extension);
             bool old = String.Compare(line.DecisionDate, "2010-01-18") < 0;
-            Court court = old ? Courts.OldImmigationServicesTribunal : Courts.FirstTierTribunal_GRC; 
+            Court court = old ? Courts.OldImmigrationServicesTribunal : Courts.FirstTierTribunal_GRC;
             ExtendedMetadata meta = new()
             {
                 Type = JudgmentType.Decision,
