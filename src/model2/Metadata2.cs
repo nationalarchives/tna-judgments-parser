@@ -100,8 +100,8 @@ class WMetadata3 : WMetadata, IMetadataExtended {
     public List<string> CaseNumbers => outside.CaseNumbers;
 
     override public IEnumerable<string> CaseNos() {
-        if (CaseNumbers.Count != 0)
-            return CaseNumbers;
+        if (outside?.CaseNumbers != null && outside.CaseNumbers.Count != 0)
+            return outside.CaseNumbers;
         return base.CaseNos();
     }
 
