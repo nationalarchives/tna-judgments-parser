@@ -122,9 +122,9 @@ The module implements robust file handling with several key features:
    - Supports tracking of original file locations and names
 
 2. **Extension Handling**:
-   - Automatic conversion of `.doc` to `.docx` format
+   - Handles `.doc`, `.docx`, and `.pdf` files
    - Preserves original file extensions for tracking
-   - Maintains both original and processed versions
+   - Note: For `.doc` files, corresponding `.docx` files must be pre-converted and available in the court_documents directory
 
 3. **Error Handling**:
    - Continues processing on individual file errors
@@ -133,52 +133,50 @@ The module implements robust file handling with several key features:
 
 ### Batch Processing
 
-The module processes files in batches with these key components:
+The module processes files in batches by ID, where each ID maps to one or more related judgment files. The process includes:
 
-1. **File Discovery**:
+1. **Metadata Lookup**:
+   - Files are found by looking up their ID in the court metadata CSV
+   - Each ID may have multiple associated files
 
-   ```csharp
-   var files = Files.GetFiles(dataDir, pattern);
-   ```
+2. **UUID Resolution**:
+   - Each judgment file's UUID is looked up in the TDR metadata
+   - The UUID is used to locate the actual file in the court_documents directory
 
-2. **Extension Processing**:
-
-   ```csharp
-   Files.CopyAllFilesWithExtension(dataDir, files);
-   ```
-
-3. **Content Reading**:
-
-   ```csharp
-   byte[] content = Files.ReadFile(dataDir, metadataLine);
-   ```
+3. **Content Processing**:
+   - Files are read and converted to the appropriate format
+   - XML is generated for DOCX files
+   - PDFs are wrapped in a simple XML structure
 
 ## Usage
 
 To process backlog judgments:
 
-```bash
-export COURT_METADATA_PATH=/path/to/metadata.csv
-export DATA_FOLDER_PATH=/path/to/data
-export TRACKER_PATH=/path/to/tracker.csv
-export OUTPUT_PATH=/path/to/output
-export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
-export LAST_BEFORE_BATCH=0
-```
+1. Set up the environment variables:
 
-Prepare your data directory structure as shown in the directory structure section above, then run the backlog processor:
+    ```bash
+    export COURT_METADATA_PATH=/path/to/metadata.csv
+    export DATA_FOLDER_PATH=/path/to/data
+    export TRACKER_PATH=/path/to/tracker.csv
+    export OUTPUT_PATH=/path/to/output
+    export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
+    export LAST_BEFORE_BATCH=0
+    ```
 
-```csharp
-// Example
-uint id = 2;
-bool autoPublish = true;
+2. Prepare your data directory structure as shown in the directory structure section above.
 
-var helper = new Helper
-{
-    PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH"),
-    PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH")
-};
-```
+3. Run the backlog processor with an ID:
+
+    ```bash
+    backlog --id <id>
+    ```
+
+The program will:
+
+- Look up the ID in the court metadata
+- Process all associated judgment files
+- Generate bundles and upload them to S3
+- Track the processed files in the tracker CSV
 
 ## Development
 
