@@ -30,12 +30,6 @@ namespace Backlog.Src.Batch.One
                 next = lines.Select(line => uint.Parse(line.bulk_num)).Max() + 1;
             reader.Close();
 
-            // using var stream = new FileStream(path, FileMode.Append, FileAccess.Write);
-            // using var writer = new StreamWriter(stream);
-            // using var csv2 = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            // Line line = new() { bulk_num = next.ToString(), trib_id = id.ToString() };
-            // csv2.WriteRecords([line]);
-
             return next;
         }
 
@@ -45,11 +39,7 @@ namespace Backlog.Src.Batch.One
         /// <param name="id">The tribunal ID being assigned a bulk number</param>
         /// <param name="bulkNum">The bulk number being assigned</param>
         internal static void Save(uint id, uint bulkNum) {
-            // using var stream = new FileStream(Path, FileMode.Append, FileAccess.Write);
             using var writer = new StreamWriter(Path, true);
-            // using var csv2 = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            // Line line = new() { bulk_num = bulkNum.ToString(), trib_id = id.ToString() };
-            // csv2.WriteRecords([line]);
             writer.Write(bulkNum);
             writer.Write(",");
             writer.Write(id);
