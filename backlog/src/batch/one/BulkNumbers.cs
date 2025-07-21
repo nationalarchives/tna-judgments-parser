@@ -12,7 +12,7 @@ namespace Backlog.Src.Batch.One
     class BulkNumbers
     {
 
-        private static readonly uint LastBeforeThisBatch = 357;
+        private static readonly uint LastBeforeThisBatch = uint.Parse(Environment.GetEnvironmentVariable("LAST_BEFORE_BATCH"));
 
         private static readonly string Path = Environment.GetEnvironmentVariable("BULK_NUMBERS_PATH") ?? System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bulk_numbers.csv");
 
