@@ -3,21 +3,16 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Amazon.S3;
 using Amazon.S3.Model;
-using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Backlog.Test
 {
     [TestFixture]
-    public class EndToEndTests : IDisposable
+    public class EndToEndTests
     {
         private string tempDir;
         private string dataDir;
@@ -165,36 +160,5 @@ namespace Backlog.Test
             }
         }
 
-        private void CreateCourtMetadataFile(dynamic[] entries)
-        {
-            var csv = new StringBuilder();
-            csv.AppendLine("id,created_datetime,publication_datetime,last_updatedtime,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,headnote_summary,is_published,main_subcategory_description,sec_subcategory_description,Name,FilePath,Extension,SizeInMB,FileLastEditTime");
-            foreach (var entry in entries)
-            {
-                // Make sure FilePath matches the format expected in CreateFileMetadataFile
-                csv.AppendLine($"{entry.Id},,,,{entry.Date} 10:00:00,FN1,FN2,FN3,Test Claimant,Test Respondent,,true,{entry.Name},,Test Case,JudgmentFiles/test.docx,.docx,1.0,2025-01-01 10:00:00");
-            }
-            File.WriteAllText(courtMetadataPath, csv.ToString());
-        }
-
-        private void CreateFileMetadataFile(params (string FilePath, string Uuid)[] entries)
-        {
-            var metadataPath = Path.Combine(tdrMetadataDir, "file-metadata.csv");
-            var csv = new StringBuilder();
-            // No header needed as Files.cs doesn't expect one
-            foreach (var entry in entries)
-            {
-                var hmctsPath = entry.FilePath
-                    .Replace("JudgmentFiles", "data/HMCTS_Judgment_Files")
-                    .Replace('\\', '/');
-                csv.AppendLine($"{hmctsPath},{entry.Uuid}");
-            }
-            File.WriteAllText(metadataPath, csv.ToString());
-        }
-
-        public void Dispose()
-        {
-            mockS3Client?.Object?.Dispose();
-        }
     }
 }
