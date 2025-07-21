@@ -22,7 +22,7 @@ namespace Backlog.Src.Batch.One
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var lines = csv.GetRecords<Line>().ToList();
             if (lines.Where(line => id.ToString().Equals(line.trib_id)).Any())
-                throw new Exception();
+                throw new InvalidOperationException($"Tribunal ID {id} already has an assigned bulk number.");
             uint next;
             if (lines.Count == 0)
                 next = LastBeforeThisBatch + 1;
