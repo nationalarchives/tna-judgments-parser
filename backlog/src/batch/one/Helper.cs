@@ -70,8 +70,6 @@ namespace Backlog.Src.Batch.One
                 Content = docx
             };
             Api.Response resp2 = Api.Parser.Parse(request);
-            // if (resp2.Meta.Court is null)
-            //     resp2.Meta.Court = meta2.Court;
             Bundle.Source source = new() {
                 Filename = Path.GetFileName(line.FilePath),
                 Content = docx,
