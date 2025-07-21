@@ -9,13 +9,13 @@ namespace UK.Gov.NationalArchives.CaseLaw.Model
     interface IMetadataExtended : IMetadata
     {
 
-        public string SourceFormat { get; }
+        string SourceFormat { get; }
 
-        public List<string> CaseNumbers { get; }
+        List<string> CaseNumbers { get; }
 
-        public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; }
+        List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; }
 
-        public List<ICategory> Categories { get; }
+        List<ICategory> Categories { get; }
 
     }
 
@@ -30,9 +30,9 @@ namespace UK.Gov.NationalArchives.CaseLaw.Model
     public interface ICategory
     {
 
-        public string Name { get; }
+        string Name { get; }
 
-        public string Parent { get; }
+        string Parent { get; }
 
     }
 
