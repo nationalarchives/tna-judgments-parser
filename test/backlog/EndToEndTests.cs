@@ -59,8 +59,10 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
             Environment.SetEnvironmentVariable("BUCKET_NAME", null);
+            Environment.SetEnvironmentVariable("AWS_DEFAULT_REGION", null);
 
             // Set environment variables for this test
+            Environment.SetEnvironmentVariable("AWS_DEFAULT_REGION", "eu-west-2");
             Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
             Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
             Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
@@ -79,6 +81,7 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
             Environment.SetEnvironmentVariable("BUCKET_NAME", null);
+            Environment.SetEnvironmentVariable("AWS_DEFAULT_REGION", null);
             
             // Only clean up output files and tracker, leave test data intact
             if (File.Exists(trackerPath))
@@ -169,38 +172,6 @@ namespace Backlog.Test
                 Assert.That(actualXml, Is.EqualTo(expectedXml), "Generated XML does not match expected output");
             }
         }
-
-        // [Test]
-        // public async Task ProcessBacklogJudgment_HandlesFailedUpload()
-        // {
-        //     // Arrange
-        //     const string judgmentContent = "Test judgment content";
-        //     const string uuid = "test-judgment-uuid";
-        //     const uint courtId = 2;
-
-        //     // Configure mock S3 client to simulate failure
-        //     mockS3Client
-        //         .Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
-        //         .ThrowsAsync(new AmazonS3Exception("Test upload failure"));
-
-        //     // Test files should already exist in test-data directory
-
-        //     // Act
-        //     var exitCode = Backlog.Src.Program.Main(new[] { "--id", "2" });
-
-        //     // Assert
-        //     Assert.That(exitCode, Is.EqualTo(1), "Program should exit with error");
-
-        //     // Verify S3 upload was attempted
-        //     mockS3Client.Verify(x => x.PutObjectAsync(
-        //         It.Is<PutObjectRequest>(req => req.BucketName == TEST_BUCKET && req.Key == $"{uuid}.tar.gz"),
-        //         It.IsAny<CancellationToken>()
-        //     ), Times.Once);
-
-        //     // Check if tracker was not updated
-        //     var trackerContent = await File.ReadAllTextAsync(trackerPath);
-        //     StringAssert.DoesNotContain(uuid, trackerContent, "Tracker should not contain the UUID on failure");
-        // }
 
         private void CreateCourtMetadataFile(dynamic[] entries)
         {
