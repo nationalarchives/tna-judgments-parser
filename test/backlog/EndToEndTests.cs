@@ -94,7 +94,6 @@ namespace Backlog.Test
         public async Task ProcessBacklogJudgment_SuccessfullyUploadsToS3()
         {
             // Arrange
-            const string uuid = "e14fb247-5d9b-42b8-9238-52ae3bd8345b";
             const uint courtId = 5;  // From your court_metadata.csv
 
             // Configure mock S3 client to capture the uploaded content
@@ -148,7 +147,7 @@ namespace Backlog.Test
 
             // Check if generated XML matches expected output
             using (var gzipStream = new ICSharpCode.SharpZipLib.GZip.GZipInputStream(new MemoryStream(outputContent)))
-            using (var archive = new ICSharpCode.SharpZipLib.Tar.TarInputStream(gzipStream))
+            using (var archive = new ICSharpCode.SharpZipLib.Tar.TarInputStream(gzipStream, System.Text.Encoding.UTF8))
             {
                 var entry = archive.GetNextEntry();
                 while (entry != null && !entry.Name.EndsWith(".xml"))
