@@ -37,13 +37,13 @@ interface IOutsideMetadata {
 
     /* */
 
-    public string SourceFormat { get; }
+    string SourceFormat { get; }
 
-    public List<string> CaseNumbers { get; }
+    List<string> CaseNumbers { get; }
 
-    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; }
+    List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; }
 
-    public List<ICategory> Categories { get; }
+    List<ICategory> Categories { get; }
 
 
 }
