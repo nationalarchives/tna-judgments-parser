@@ -79,9 +79,6 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
             Environment.SetEnvironmentVariable("BUCKET_NAME", null);
-
-            // Reset Bucket configuration
-            Backlog.Src.Bucket.ResetConfiguration();
             
             // Only clean up output files and tracker, leave test data intact
             if (File.Exists(trackerPath))
