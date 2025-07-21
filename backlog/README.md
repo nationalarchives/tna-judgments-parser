@@ -42,6 +42,7 @@ The module uses environment variables for configuration. All paths default to th
 | `TRACKER_PATH` | Path to the CSV file tracking uploaded judgments | `{BaseDir}/uploaded-production.csv` |
 | `OUTPUT_PATH` | Path where generated bundle files will be saved | `{BaseDir}` |
 | `BULK_NUMBERS_PATH` | Path to the CSV file tracking bulk numbers | `{BaseDir}/bulk_numbers.csv` |
+| `LAST_BEFORE_BATCH` | The last bulk number used before this batch started | `0` |
 
 where `{BaseDir}` is the application's base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
@@ -149,6 +150,7 @@ export DATA_FOLDER_PATH=/path/to/data
 export TRACKER_PATH=/path/to/tracker.csv
 export OUTPUT_PATH=/path/to/output
 export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
+export LAST_BEFORE_BATCH=0
 ```
 
 Prepare your data directory structure as shown in the directory structure section above, then run the backlog processor:
@@ -162,8 +164,6 @@ var helper = new Helper
 {
     PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH"),
     PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH")
-};
-```
 };
 ```
 
