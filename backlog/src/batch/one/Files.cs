@@ -12,7 +12,7 @@ namespace Backlog.Src.Batch.One
     {
         // Directory structure constants
         private const string TDR_METADATA_DIR = "tdr_metadata";
-        private const string COURT_DOCUMENTS_DIR = "court_documents/e14fb247-5d9b-42b8-9238-52ae3bd8345b";
+        private const string COURT_DOCUMENTS_DIR = "court_documents";
         private const string METADATA_FILENAME = "file-metadata.csv";
         private const string JUDGMENT_FILES_PATH = "JudgmentFiles";
         private const string HMCTS_FILES_PATH = "data/HMCTS_Judgment_Files";
@@ -52,7 +52,7 @@ namespace Backlog.Src.Batch.One
                 var metadataRelativePath = filePath.Substring(HMCTS_FILES_PATH.Length + 1);
                 if (metadataRelativePath != relativePath) continue;
 
-                return parts[25];  // UUID is the last column
+                return parts[26];  // UUID is the 27th column, thus the 26th index
             }
 
             throw new FileNotFoundException(
