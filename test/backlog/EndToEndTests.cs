@@ -33,15 +33,6 @@ namespace Backlog.Test
         [SetUp]
         public void SetUp()
         {
-            // Set environment variables for this test
-            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
-            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
-            Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
-            Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
-            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
-            Environment.SetEnvironmentVariable("BUCKET_NAME", TEST_BUCKET);
-            Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-
             // Use the test data directory with pre-populated files
             tempDir = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "backlog", "test-data"));
             dataDir = tempDir;
@@ -56,6 +47,15 @@ namespace Backlog.Test
 
             // Create output directory - other directories should already exist
             Directory.CreateDirectory(outputPath);
+
+            // Set environment variables for this test
+            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
+            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
+            Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
+            Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
+            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
+            Environment.SetEnvironmentVariable("BUCKET_NAME", TEST_BUCKET);
+            Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
 
             // Set up mock S3 client
             mockS3Client = new Mock<IAmazonS3>();
