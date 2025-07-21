@@ -81,7 +81,7 @@ namespace Backlog.Test
         public async Task ProcessBacklogJudgment_SuccessfullyUploadsToS3()
         {
             // Arrange
-            const uint courtId = 5;  // From your court_metadata.csv
+            const uint docId = 5;  // doc id 5 from the court_metadata.csv being tested
 
             // Configure mock S3 client to capture the uploaded content
             byte[] capturedContent = null;
@@ -107,7 +107,7 @@ namespace Backlog.Test
                 .Returns(taskCompletionSource.Task);
 
             // Act
-            var exitCode = Backlog.Src.Program.Main(new[] { "--id", courtId.ToString() });
+            var exitCode = Backlog.Src.Program.Main(new[] { "--id", docId.ToString() });
 
             // Assert
             Assert.That(exitCode, Is.EqualTo(0), "Program should exit successfully");
